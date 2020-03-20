@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
@@ -52,6 +53,12 @@ public class SnapshotFeatureImpl extends ReferencePropertyImpl implements Snapsh
 	}
 	
 	@Override
+	public EList<Type> getType() {
+		IndividualUsageImpl.setTypingFor(this);
+		return super.getType();
+	}
+	
+	@Override
 	protected Set<Type> getGeneralTypes(Type type) {
 		return Collections.singleton(null);
 	}
@@ -60,6 +67,12 @@ public class SnapshotFeatureImpl extends ReferencePropertyImpl implements Snapsh
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return Collections.singletonList(type == getOwner()? this:
 			   (Feature)getDefaultType(SNAPSHOT_FEATURE_REDEFINED_FEATURE));
+	}
+
+	@Override
+	public void transform() {
+		super.transform();
+		IndividualUsageImpl.setTypingFor(this);
 	}
 
 } //SnapshotFeatureImpl

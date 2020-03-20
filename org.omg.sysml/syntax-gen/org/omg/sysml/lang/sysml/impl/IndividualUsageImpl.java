@@ -14,6 +14,7 @@ import org.omg.sysml.lang.sysml.SnapshotFeature;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -162,9 +163,9 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	 * @generated NOT
 	 */
 	public Feature basicGetTimeSliceFeature() {
-		return setTypingFor(getOwnedFeature().stream().
+		return getOwnedFeature().stream().
 				filter(feature->feature instanceof TimeSliceFeature).
-				findAny().orElse(null));
+				findAny().orElse(null);
 	}
 
 	/**
@@ -194,9 +195,9 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	 * @generated NOT
 	 */
 	public Feature basicGetSnapshotFeature() {
-		return setTypingFor(getOwnedFeature().stream().
+		return getOwnedFeature().stream().
 				filter(feature->feature instanceof SnapshotFeature).
-				findAny().orElse(null));
+				findAny().orElse(null);
 	}
 
 	/**
@@ -209,24 +210,32 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 		throw new UnsupportedOperationException();
 	}
 
-	public Feature setTypingFor(Feature feature) {
-		if (feature != null) {
+	@Override
+	public EList<Type> getType() {
+		setTypingFor(this);
+		return super.getType();
+	}
+	
+	public static void setTypingFor(Feature feature) {
+		Type type = feature.getOwningType();
+		if (type instanceof IndividualDefinition || type instanceof IndividualUsage) {
 			EList<FeatureTyping> typings = feature.getTyping();
 			if (typings.isEmpty()) {
 				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
 				feature.getOwnedRelationship_comp().add(typing);
 				typings.add(typing);
-			}			
-			typings.get(0).setType(getIndividualDefinition());
+			}
+			if (type instanceof IndividualUsage) {
+				type = ((IndividualUsage)type).getIndividualDefinition();
+			}
+			typings.get(0).setType(type);
 		}
-		return feature;
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		getTimeSliceFeature();
-		getSnapshotFeature();
+		setTypingFor(this);
 	}
 
 	/**

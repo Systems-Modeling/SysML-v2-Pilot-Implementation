@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -52,6 +53,12 @@ public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeS
 	}
 	
 	@Override
+	public EList<Type> getType() {
+		IndividualUsageImpl.setTypingFor(this);
+		return super.getType();
+	}
+	
+	@Override
 	protected Set<Type> getGeneralTypes(Type type) {
 		return Collections.singleton(null);
 	}
@@ -61,5 +68,11 @@ public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeS
 		return Collections.singletonList(type == getOwner()? this:
 			   (Feature)getDefaultType(TIME_SLICE_FEATURE_REDEFINED_FEATURE));
 	}
-
+	
+	@Override
+	public void transform() {
+		super.transform();
+		IndividualUsageImpl.setTypingFor(this);
+	}
+	
 } //TimeSliceFeatureImpl

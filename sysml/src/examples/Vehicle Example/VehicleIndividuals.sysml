@@ -37,10 +37,14 @@ package VehicleIndividuals {
 		}
 		
 		/**
-		 * This is a snapshot of Vehicle1 at time t1;
+		 * This is a time slice of Vehicle1 starting at snapshot vehicle1_t0 
+		 * (time t0) and ending at time t1.
 		 */
-		snapshot vehicle1_t1: Vehicle1 {
-			value t = t1;
+		timeslice vehicle1_t0_t1: Vehicle1 {
+			snapshot :>> start = vehicle1_t0;
+			snapshot :>> done {
+				value t = t1;
+			}
 		}	
 	}
 	
@@ -56,7 +60,7 @@ package VehicleIndividuals {
 		/**
 		 * This is a snapshot of Vehicle1 in configuration vehicle1_C2 at time t0;
 		 */
-		snapshot vehicle1_C2_t0 :> vehicle1_C2, vehicle1_t0 {		
+		snapshot vehicle1_C2_t0 :> vehicle1_C2, vehicle1_t0 {
 			/**
 			 * frontAxleAssembly is a feature of vehicle1_C2.
 			 */
@@ -72,7 +76,7 @@ package VehicleIndividuals {
 		/**
 		 * This is a snapshot of Vehicle1 in configuration vehicle_C2 at time t1;
 		 */
-		snapshot vehicle1_C2_t1 :> vehicle1_C2, vehicle1_t1 {
+		snapshot vehicle1_C2_t1 :> vehicle1_C2, vehicle1_t0_t1::done {
 			part :>> frontAxleAssembly {
 				/**
 				 * This asserts that Wheel1 is the rightFrontWheel of vehicle_C2_t1.

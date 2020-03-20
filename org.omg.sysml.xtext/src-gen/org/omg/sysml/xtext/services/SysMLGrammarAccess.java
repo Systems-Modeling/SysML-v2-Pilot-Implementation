@@ -4267,7 +4267,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMemberFeature_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedMemberFeature_compStateActionUsageParserRuleCall_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_2.eContents().get(0);
 		
-		///* STATE MEMBERSHIPS */ EntryActionMember SysML::StateActionMembership:
+		///* STATE MEMBERSHIPS */ EntryActionMember SysML::StateSubactionMembership:
 		//	DefinitionMemberPrefix kind=EntryActionKind ownedMemberFeature_comp=StateActionUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4293,7 +4293,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EntryActionKind");
 		private final Keyword cEntryKeyword = (Keyword)rule.eContents().get(1);
 		
-		//EntryActionKind SysML::StateActionKind:
+		//EntryActionKind SysML::StateSubactionKind:
 		//	'entry';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4309,7 +4309,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMemberFeature_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedMemberFeature_compStateActionUsageParserRuleCall_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_2.eContents().get(0);
 		
-		//DoActionMember SysML::StateActionMembership:
+		//DoActionMember SysML::StateSubactionMembership:
 		//	DefinitionMemberPrefix kind=DoActionKind ownedMemberFeature_comp=StateActionUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4335,7 +4335,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DoActionKind");
 		private final Keyword cDoKeyword = (Keyword)rule.eContents().get(1);
 		
-		//DoActionKind SysML::StateActionKind:
+		//DoActionKind SysML::StateSubactionKind:
 		//	'do';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4351,7 +4351,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMemberFeature_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedMemberFeature_compStateActionUsageParserRuleCall_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_2.eContents().get(0);
 		
-		//ExitActionMember SysML::StateActionMembership:
+		//ExitActionMember SysML::StateSubactionMembership:
 		//	DefinitionMemberPrefix kind=ExitActionKind ownedMemberFeature_comp=StateActionUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4377,7 +4377,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ExitActionKind");
 		private final Keyword cExitKeyword = (Keyword)rule.eContents().get(1);
 		
-		//ExitActionKind SysML::StateActionKind:
+		//ExitActionKind SysML::StateSubactionKind:
 		//	'exit';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -12430,7 +12430,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEmptyActionUsageAccess().getRule();
 	}
 	
-	///* STATE MEMBERSHIPS */ EntryActionMember SysML::StateActionMembership:
+	///* STATE MEMBERSHIPS */ EntryActionMember SysML::StateSubactionMembership:
 	//	DefinitionMemberPrefix kind=EntryActionKind ownedMemberFeature_comp=StateActionUsage;
 	public EntryActionMemberElements getEntryActionMemberAccess() {
 		return pEntryActionMember;
@@ -12440,7 +12440,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEntryActionMemberAccess().getRule();
 	}
 	
-	//EntryActionKind SysML::StateActionKind:
+	//EntryActionKind SysML::StateSubactionKind:
 	//	'entry';
 	public EntryActionKindElements getEntryActionKindAccess() {
 		return pEntryActionKind;
@@ -12450,7 +12450,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEntryActionKindAccess().getRule();
 	}
 	
-	//DoActionMember SysML::StateActionMembership:
+	//DoActionMember SysML::StateSubactionMembership:
 	//	DefinitionMemberPrefix kind=DoActionKind ownedMemberFeature_comp=StateActionUsage;
 	public DoActionMemberElements getDoActionMemberAccess() {
 		return pDoActionMember;
@@ -12460,7 +12460,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getDoActionMemberAccess().getRule();
 	}
 	
-	//DoActionKind SysML::StateActionKind:
+	//DoActionKind SysML::StateSubactionKind:
 	//	'do';
 	public DoActionKindElements getDoActionKindAccess() {
 		return pDoActionKind;
@@ -12470,7 +12470,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getDoActionKindAccess().getRule();
 	}
 	
-	//ExitActionMember SysML::StateActionMembership:
+	//ExitActionMember SysML::StateSubactionMembership:
 	//	DefinitionMemberPrefix kind=ExitActionKind ownedMemberFeature_comp=StateActionUsage;
 	public ExitActionMemberElements getExitActionMemberAccess() {
 		return pExitActionMember;
@@ -12480,7 +12480,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getExitActionMemberAccess().getRule();
 	}
 	
-	//ExitActionKind SysML::StateActionKind:
+	//ExitActionKind SysML::StateSubactionKind:
 	//	'exit';
 	public ExitActionKindElements getExitActionKindAccess() {
 		return pExitActionKind;

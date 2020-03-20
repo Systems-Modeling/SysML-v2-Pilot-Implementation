@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConstraintUsage is a Usage that is also a BooleanExpression, and, so, is typed by a Predicate. Nominally, if the type is a ConstraintDefinition, a ConstraintUsage is a Usage of that ConstraintDefinition, asserting that the defined constraint holds in the context of the ConstraintUsage. However, non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
+ * <p>A ConstraintUsage is a Usage that is also a BooleanExpression, and, so, is typed by a Predicate. Nominally, if the type is a ConstraintDefinition, a ConstraintUsage is a Usage of that ConstraintDefinition. However, non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
  * 
- * <p>A ConstraintUsage (other than an AssertConstraintUsage owned by a Part) must subset, directly or indirectly, the base ConstraintUsage "constraints" from the Systems model library.</p>
+ * <p>A ConstraintUsage (other than an AssertConstraintUsage owned by a Part) must subset, directly or indirectly, the base ConstraintUsage "constraintChecks" from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -19,8 +19,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintDefinition <em>Constraint Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningUsage <em>Constraint Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConstraintUsage()

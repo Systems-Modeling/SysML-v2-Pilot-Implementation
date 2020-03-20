@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -11,29 +13,29 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * A TransitionUsage is a Usage that is also a Step that is typed by the Activity Transition from the Systems model library, or a subclass of it. As such, it is a behavioral Step that represents a transition between ActionUsages or StateUsages.
  * 
- * A TransitionUsage must subset, directly or indirectly, the base TransitionUsage "transitions", if it is not a composite feature, or the TransitionUsage "subtransitions" inherited from its owner, if it is a composite feature.
+ * A TransitionUsage must subset, directly or indirectly, the base TransitionUsage "transitionActions", if it is not a composite feature, or the TransitionUsage "subtransitions" inherited from its owner, if it is a composite feature.
  * 
- * A TransitionUsage may have up to three features using TransitionFeatureMembership, all of different kinds, corresponding to the trigger, guard and effect of the transition.
+ * A TransitionUsage may own Features using TransitionFeatureMembership,  corresponding to the triggers, guards and effects of the transition.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage <em>Transition Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTriggerAction <em>Trigger Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getGuardExpression <em>Guard Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getEffectAction <em>Effect Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getSuccession <em>Succession</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage <em>Transition Owning Usage</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage()
  * @model
  * @generated
  */
-public interface TransitionUsage extends Usage, Step {
+public interface TransitionUsage extends ActionUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
@@ -43,12 +45,13 @@ public interface TransitionUsage extends Usage, Step {
 	 * The source ActionUsage of this TransitionUsage, derived as the source of the succession for the TransitionUsage.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(Step)
+	 * @see #setSource(ActionUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_Source()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='outgoingTransition'"
 	 * @generated
 	 */
-	Step getSource();
+	ActionUsage getSource();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.TransitionUsage#getSource <em>Source</em>}' reference.
@@ -58,7 +61,7 @@ public interface TransitionUsage extends Usage, Step {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Step value);
+	void setSource(ActionUsage value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference.
@@ -68,12 +71,13 @@ public interface TransitionUsage extends Usage, Step {
 	 * The target ActionUsage of this TransitionUsage, derived as the target of the succession for the TransitionUsage.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Step)
+	 * @see #setTarget(ActionUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_Target()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='incomingTransition'"
 	 * @generated
 	 */
-	Step getTarget();
+	ActionUsage getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.TransitionUsage#getTarget <em>Target</em>}' reference.
@@ -83,94 +87,96 @@ public interface TransitionUsage extends Usage, Step {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Step value);
+	void setTarget(ActionUsage value);
 
 	/**
-	 * Returns the value of the '<em><b>Trigger Action</b></em>' reference.
+	 * Returns the value of the '<em><b>Trigger Action</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AcceptActionUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The AcceptActionUsage that defines the trigger of this TransitionUsage, derived as the member feature with a TransitionFeatureMembership of kind "trigger" with the TransitionUsage.
+	 * The AcceptActionUsage that defines the triggers of this TransitionUsage, derived as the Features of this TransitionUsage owned using a TransitionFeatureMembership of kind "trigger".
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Trigger Action</em>' reference.
-	 * @see #setTriggerAction(AcceptActionUsage)
+	 * @return the value of the '<em>Trigger Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TriggerAction()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='triggeredTransition'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
-	AcceptActionUsage getTriggerAction();
+	EList<AcceptActionUsage> getTriggerAction();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.TransitionUsage#getTriggerAction <em>Trigger Action</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trigger Action</em>' reference.
-	 * @see #getTriggerAction()
-	 * @generated
-	 */
-	void setTriggerAction(AcceptActionUsage value);
-
-	/**
-	 * Returns the value of the '<em><b>Guard Expression</b></em>' reference.
+	 * Returns the value of the '<em><b>Guard Expression</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Expression that defines the guard of this TransitionUsage, derived as the member feature with a TransitionFeatureMembership of kind "guard" with the TransitionUsage.
+	 * The Expressions that define the guards of this TransitionUsage, derived as the Features of the TransitionUsage owned using a TransitionFeatureMembership of kind "guard".
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Guard Expression</em>' reference.
-	 * @see #setGuardExpression(Expression)
+	 * @return the value of the '<em>Guard Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_GuardExpression()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='guardedTransition'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
-	Expression getGuardExpression();
+	EList<Expression> getGuardExpression();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.TransitionUsage#getGuardExpression <em>Guard Expression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Guard Expression</em>' reference.
-	 * @see #getGuardExpression()
-	 * @generated
-	 */
-	void setGuardExpression(Expression value);
-
-	/**
-	 * Returns the value of the '<em><b>Effect Action</b></em>' reference.
+	 * Returns the value of the '<em><b>Effect Action</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The ActionUsage that defines the effect of this TransitionUsage, derived as the member feature with a TransitionFeatureMembership of kind "effect" with the TransitionUsage.
+	 * The ActionUsages that define the effects of this TransitionUsage, derived as the Features of the TransitionUsage owned using a TransitionFeatureMembership of kind "effect".
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Effect Action</em>' reference.
-	 * @see #setEffectAction(ActionUsage)
+	 * @return the value of the '<em>Effect Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_EffectAction()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='activeTransition'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
-	ActionUsage getEffectAction();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.TransitionUsage#getEffectAction <em>Effect Action</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Effect Action</em>' reference.
-	 * @see #getEffectAction()
-	 * @generated
-	 */
-	void setEffectAction(ActionUsage value);
+	EList<ActionUsage> getEffectAction();
 
 	/**
 	 * Returns the value of the '<em><b>Succession</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Succession that is the ownedFeature of this TransitionUsage that redefines TransitionPerformance::transitionLink.
+	 * The Succession that is the owned Feature of this TransitionUsage that redefines TransitionPerformance::transitionLink.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Succession</em>' reference.
 	 * @see #setSuccession(Succession)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_Succession()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='linkedTransition'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Succession getSuccession();

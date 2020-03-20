@@ -19,7 +19,6 @@ import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.LiteralReal
 import org.omg.sysml.lang.sysml.LiteralUnbounded
-import org.omg.sysml.lang.sysml.LiteralNull
 import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Type
@@ -28,6 +27,7 @@ import org.omg.sysml.lang.sysml.Classifier
 import org.omg.sysml.lang.sysml.Annotation
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Function
+import org.omg.sysml.lang.sysml.NullExpression
 
 /**
  * Customization of the default outline structure.
@@ -49,18 +49,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		else visibility.toString
 	}
 	
-	def String _text(Membership membership) {
-		membership.prefixText + ' ' + membership.nameText
-	}
-	
-	def String nameText(Membership membership) {
-		if (membership.memberName !== null)
-			membership.memberName
-		else if (membership.memberElement?.name !== null)
-			membership.memberElement.name
-		else ""
-	}
-	
 	def String prefixText(Membership membership) {
 		var text = membership.eClass.name;
 		if (membership.ownedMemberElement !== null) {
@@ -72,8 +60,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String prefixText(FeatureMembership membership) {
-		var text = (membership as Membership).prefixText
+	def String nameText(Membership membership) {
+		if (membership.memberName !== null)
+			membership.memberName
+		else if (membership.memberElement?.name !== null)
+			membership.memberElement.name
+		else ""
+	}
+	
+	def String _text(Membership membership) {
+		membership.prefixText + ' ' + membership.nameText
+	}
+	
+	def String featurePrefixText(FeatureMembership membership) {
+		var text = membership.prefixText
 		if (membership.isComposite) {
 			text += ' composite'
 		}
@@ -87,6 +87,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + membership.direction
 		}
 		text
+	}
+	
+	def String _text(FeatureMembership membership) {
+		membership.featurePrefixText + ' ' + membership.nameText
 	}
 	
 	def String _text(Import import_) {
@@ -131,8 +135,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		"LiteralUnbounded *"
 	}
 	
-	def String _text(LiteralNull literal) {
-		"LiteralNull null"
+	def String _text(NullExpression expression) {
+		"NullExpression null"
 	}
 	
 	def boolean _isLeaf(Annotation annotation) {
@@ -187,16 +191,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			}
 		}
 		for (_import: _package.ownedImport) {
-			createEObjectNode(parentNode, _import, 
-				_import._image, _import._text, 
-				_import._isLeaf
-			)
+			createNode(parentNode, _import)
 		}
 		for (membership: _package.ownedMembership) {
-			createEObjectNode(parentNode, membership, 
-				membership._image, membership._text, 
-				membership._isLeaf
-			)
+			createNode(parentNode, membership)
 		}
 	}
 	

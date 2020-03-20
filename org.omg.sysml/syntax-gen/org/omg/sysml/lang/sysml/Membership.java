@@ -2,14 +2,12 @@
  */
 package org.omg.sysml.lang.sysml;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Membership is a relationship between a Package and an Element that helps manage how elements are described and made visible in different models.</p>
+ * <p>Membership is a Relationship between a Package and an Element that indicates the Element is a <tt>member</tt> of (i.e., is contained in) the Package. The Membership may define a <tt>memberName</tt> for the Element as a member of the Package and specifies whether or not the Element is publicly visible as a member of the Package from outside the Package. The Element may be owned by the Membership, in which case it is an <tt>ownedMember</tt> of the Package, or it may be referenced but not owned, in which case it is effectively individually imported into the Package.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -19,7 +17,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
@@ -90,22 +87,6 @@ public interface Membership extends Relationship {
 	void setVisibility(VisibilityKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Aliases</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Aliases</em>' attribute list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aliases</em>' attribute list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_Aliases()
-	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
-	 * @generated
-	 */
-	EList<String> getAliases();
-
-	/**
 	 * Returns the value of the '<em><b>Member Element</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
@@ -119,6 +100,10 @@ public interface Membership extends Relationship {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Element that becomes a <tt>member</tt> of the <tt>membershipOwningPackage</tt> due to this Membership.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Element</em>' reference.
 	 * @see #setMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MemberElement()
@@ -154,6 +139,10 @@ public interface Membership extends Relationship {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Package of which the <tt>memberElement</tt> becomes a <tt>member</tt> due to this Membership.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership Owning Package</em>' container reference.
 	 * @see #setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningPackage()
@@ -183,6 +172,10 @@ public interface Membership extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <tt>memberElement</tt> of this Membership if it is owned by the Membership as an <tt>ownedRelatedElement</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Element comp</em>' containment reference.
 	 * @see #setOwnedMemberElement_comp(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement_comp()

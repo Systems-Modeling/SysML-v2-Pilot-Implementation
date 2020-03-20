@@ -9,7 +9,6 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Package</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * membership->isUnique(name)
  * membership->forAll(m1 | membership->forAll(m2 | m1 <> m2 implies m1.isDistinguishableFrom(m2)))
  * member = membership.memberElement
  * ownedMember = ownedMembership.ownedMemberElement
@@ -20,12 +19,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMember <em>Member</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}</li>
  * </ul>
@@ -45,6 +44,10 @@ public interface Package extends Element {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>All Memberships in this Package, defined as the union of <tt>ownedMemberships</tt> and <tt>importedMemberships</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_Membership()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
@@ -64,6 +67,10 @@ public interface Package extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Import Relationships for which this Package is the <tt>importingPackage</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Import comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedImport_comp()
 	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningPackage
@@ -94,6 +101,14 @@ public interface Package extends Element {
 	 * @generated
 	 */
 	EList<Import> getOwnedImport();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
+	 * @generated
+	 */
+	EList<String> namesOf(Element element);
 
 	/**
 	 * Returns the value of the '<em><b>Member</b></em>' reference list. The list
@@ -154,6 +169,10 @@ public interface Package extends Element {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Memberships in this Package that result from Import Relationships between the Package and other Packages. This excludes any Membership from one imported Package that would be indistinguishable from a Membership imported from another Package or from an <tt>ownedMembership</tt> of this Package.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_ImportedMembership()
 	 * @model transient="true" volatile="true" derived="true"
@@ -173,6 +192,10 @@ public interface Package extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Memberships for which this Package is the <tt>membershipOwningPackage</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Membership comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMembership_comp()
 	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage
@@ -204,13 +227,6 @@ public interface Package extends Element {
 	 * @generated
 	 */
 	EList<Membership> getOwnedMembership();
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
-	 * @generated
-	 */
-	String nameOf(Element element);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

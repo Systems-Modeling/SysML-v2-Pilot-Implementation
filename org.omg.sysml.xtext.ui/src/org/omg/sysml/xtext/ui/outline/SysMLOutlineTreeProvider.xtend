@@ -4,8 +4,7 @@
 package org.omg.sysml.xtext.ui.outline
 
 import org.omg.kerml.xtext.ui.outline.KerMLOutlineTreeProvider
-import org.omg.sysml.lang.sysml.StateActionMembership
-import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.StateSubactionMembership
 
 /**
  * Customization of the default outline structure.
@@ -14,8 +13,8 @@ import org.omg.sysml.lang.sysml.FeatureMembership
  */
 class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	
-	def String _text(StateActionMembership membership) {
-		 (membership as FeatureMembership).prefixText + " " + membership.kind + " " + membership.nameText
+	def String _text(StateSubactionMembership membership) {
+		 membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
 	}
 
 }

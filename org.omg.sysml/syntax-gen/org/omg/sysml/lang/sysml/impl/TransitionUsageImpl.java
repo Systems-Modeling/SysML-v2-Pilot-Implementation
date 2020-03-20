@@ -3,23 +3,22 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
 /**
@@ -30,19 +29,18 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTransitionOwningUsage <em>Transition Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTriggerAction <em>Trigger Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getGuardExpression <em>Guard Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getEffectAction <em>Effect Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getSuccession <em>Succession</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTransitionOwningUsage <em>Transition Owning Usage</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
+public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
 	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitions";
 	/**
@@ -67,36 +65,12 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
-		super.getType().stream().
-			filter(type->type instanceof Behavior).
-			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-		return !getBehavior().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Step getSource() {
-		Step source = basicGetSource();
-		return source != null && source.eIsProxy() ? (Step)eResolveProxy((InternalEObject)source) : source;
+	public ActionUsage getSource() {
+		ActionUsage source = basicGetSource();
+		return source != null && source.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)source) : source;
 	}
 
 	/**
@@ -104,13 +78,13 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Step basicGetSource() {
+	public ActionUsage basicGetSource() {
 		EList<Feature> relatedFeatures = getSuccession().getRelatedFeature();
 		if (relatedFeatures.isEmpty()) {
 			return null;
 		} else {
 			Feature source = relatedFeatures.get(0);
-			return source instanceof Step? (Step)source: null;
+			return source instanceof ActionUsage? (ActionUsage)source: null;
 		}
 	}
 
@@ -120,7 +94,7 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setSource(Step newSource) {
+	public void setSource(ActionUsage newSource) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -130,9 +104,9 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated
 	 */
 	@Override
-	public Step getTarget() {
-		Step target = basicGetTarget();
-		return target != null && target.eIsProxy() ? (Step)eResolveProxy((InternalEObject)target) : target;
+	public ActionUsage getTarget() {
+		ActionUsage target = basicGetTarget();
+		return target != null && target.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)target) : target;
 	}
 
 	/**
@@ -140,13 +114,13 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Step basicGetTarget() {
+	public ActionUsage basicGetTarget() {
 		EList<Feature> relatedFeatures = getSuccession().getRelatedFeature();
 		if (relatedFeatures.size() < 2) {
 			return null;
 		} else {
 			Feature target = relatedFeatures.get(1);
-			return target instanceof Step? (Step)target: null;
+			return target instanceof ActionUsage? (ActionUsage)target: null;
 		}
 	}
 
@@ -156,12 +130,11 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setTarget(Step newTarget) {
+	public void setTarget(ActionUsage newTarget) {
 		throw new UnsupportedOperationException();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -196,29 +169,8 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated
 	 */
 	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Usage getOwningUsage() {
-		return getTransitionOwningUsage();
+		return getActionOwningUsage();
 	}
 
 	/**
@@ -228,7 +180,7 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 */
 	@Override
 	public Usage basicGetOwningUsage() {
-		return basicGetTransitionOwningUsage();
+		return basicGetActionOwningUsage();
 	}
 
 	/**
@@ -237,7 +189,7 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated
 	 */
 	public void setOwningUsage(Usage newOwningUsage) {
-		setTransitionOwningUsage(newOwningUsage);
+		setActionOwningUsage(newOwningUsage);
 	}
 
 	/**
@@ -254,33 +206,27 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 		return getOwnedSubsettingWithComputedRedefinitions(TRANSITION_USAGE_SUBSETTING_DEFAULT);
 	}
 
-	public Feature getTransitionFeature(TransitionFeatureKind kind) {
+	public Stream<Feature> getTransitionFeatures(TransitionFeatureKind kind) {
 		return getOwnedFeatureMembership().stream().
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
 				map(mem->mem.getMemberFeature()).
-				filter(f->f != null).
-				findAny().orElse(null);
+				filter(f->f != null);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public AcceptActionUsage getTriggerAction() {
-		AcceptActionUsage triggerAction = basicGetTriggerAction();
-		return triggerAction != null && triggerAction.eIsProxy() ? (AcceptActionUsage)eResolveProxy((InternalEObject)triggerAction) : triggerAction;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public AcceptActionUsage basicGetTriggerAction() {
-		Feature feature = getTransitionFeature(TransitionFeatureKind.TRIGGER);
-		return feature instanceof AcceptActionUsage? (AcceptActionUsage)feature: null;
+	@Override
+	public EList<AcceptActionUsage> getTriggerAction() {
+		EList<AcceptActionUsage> triggerActions = 
+				new EObjectEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
+		getTransitionFeatures(TransitionFeatureKind.TRIGGER).
+			filter(feature->feature instanceof AcceptActionUsage).
+			map(feature->(AcceptActionUsage)feature).
+			forEachOrdered(triggerActions::add);
+		return triggerActions;
 	}
 
 	/**
@@ -289,29 +235,14 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setTriggerAction(AcceptActionUsage newTriggerAction) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Expression getGuardExpression() {
-		Expression guardExpression = basicGetGuardExpression();
-		return guardExpression != null && guardExpression.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)guardExpression) : guardExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Expression basicGetGuardExpression() {
-		Feature feature = getTransitionFeature(TransitionFeatureKind.GUARD);
-		return feature instanceof Expression? (Expression)feature: null;
+	public EList<Expression> getGuardExpression() {
+		EList<Expression> guardExpressions = 
+				new EObjectEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
+		getTransitionFeatures(TransitionFeatureKind.GUARD).
+			filter(feature->feature instanceof Expression).
+			map(feature->(Expression)feature).
+			forEachOrdered(guardExpressions::add);
+		return guardExpressions;
 	}
 
 	/**
@@ -320,39 +251,14 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setGuardExpression(Expression newGuardExpression) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ActionUsage getEffectAction() {
-		ActionUsage effectAction = basicGetEffectAction();
-		return effectAction != null && effectAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)effectAction) : effectAction;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public ActionUsage basicGetEffectAction() {
-		Feature feature = getTransitionFeature(TransitionFeatureKind.EFFECT);
-		return feature instanceof ActionUsage? (ActionUsage)feature: null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setEffectAction(ActionUsage newEffectAction) {
-		throw new UnsupportedOperationException();
+	public EList<ActionUsage> getEffectAction() {
+		EList<ActionUsage> effectActions = 
+				new EObjectEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
+		getTransitionFeatures(TransitionFeatureKind.EFFECT).
+			filter(feature->feature instanceof ActionUsage).
+			map(feature->(ActionUsage)feature).
+			forEachOrdered(effectActions::add);
+		return effectActions;
 	}
 
 	/**
@@ -404,8 +310,9 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__BEHAVIOR:
-				return getBehavior();
+			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
+				if (resolve) return getTransitionOwningUsage();
+				return basicGetTransitionOwningUsage();
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -413,20 +320,14 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 				if (resolve) return getTarget();
 				return basicGetTarget();
 			case SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION:
-				if (resolve) return getTriggerAction();
-				return basicGetTriggerAction();
+				return getTriggerAction();
 			case SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION:
-				if (resolve) return getGuardExpression();
-				return basicGetGuardExpression();
+				return getGuardExpression();
 			case SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION:
-				if (resolve) return getEffectAction();
-				return basicGetEffectAction();
+				return getEffectAction();
 			case SysMLPackage.TRANSITION_USAGE__SUCCESSION:
 				if (resolve) return getSuccession();
 				return basicGetSuccession();
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				if (resolve) return getTransitionOwningUsage();
-				return basicGetTransitionOwningUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -440,30 +341,29 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__BEHAVIOR:
-				getBehavior().clear();
-				getBehavior().addAll((Collection<? extends Behavior>)newValue);
+			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
+				setTransitionOwningUsage((Usage)newValue);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
-				setSource((Step)newValue);
+				setSource((ActionUsage)newValue);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__TARGET:
-				setTarget((Step)newValue);
+				setTarget((ActionUsage)newValue);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION:
-				setTriggerAction((AcceptActionUsage)newValue);
+				getTriggerAction().clear();
+				getTriggerAction().addAll((Collection<? extends AcceptActionUsage>)newValue);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION:
-				setGuardExpression((Expression)newValue);
+				getGuardExpression().clear();
+				getGuardExpression().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION:
-				setEffectAction((ActionUsage)newValue);
+				getEffectAction().clear();
+				getEffectAction().addAll((Collection<? extends ActionUsage>)newValue);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__SUCCESSION:
 				setSuccession((Succession)newValue);
-				return;
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				setTransitionOwningUsage((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -477,29 +377,26 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__BEHAVIOR:
-				getBehavior().clear();
+			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
+				setTransitionOwningUsage((Usage)null);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
-				setSource((Step)null);
+				setSource((ActionUsage)null);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__TARGET:
-				setTarget((Step)null);
+				setTarget((ActionUsage)null);
 				return;
 			case SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION:
-				setTriggerAction((AcceptActionUsage)null);
+				getTriggerAction().clear();
 				return;
 			case SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION:
-				setGuardExpression((Expression)null);
+				getGuardExpression().clear();
 				return;
 			case SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION:
-				setEffectAction((ActionUsage)null);
+				getEffectAction().clear();
 				return;
 			case SysMLPackage.TRANSITION_USAGE__SUCCESSION:
 				setSuccession((Succession)null);
-				return;
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				setTransitionOwningUsage((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -513,60 +410,24 @@ public class TransitionUsageImpl extends UsageImpl implements TransitionUsage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__TYPE:
-				return isSetType();
-			case SysMLPackage.TRANSITION_USAGE__BEHAVIOR:
-				return isSetBehavior();
 			case SysMLPackage.TRANSITION_USAGE__OWNING_USAGE:
 				return isSetOwningUsage();
+			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
+				return isSetTransitionOwningUsage();
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
 				return basicGetSource() != null;
 			case SysMLPackage.TRANSITION_USAGE__TARGET:
 				return basicGetTarget() != null;
 			case SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION:
-				return basicGetTriggerAction() != null;
+				return !getTriggerAction().isEmpty();
 			case SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION:
-				return basicGetGuardExpression() != null;
+				return !getGuardExpression().isEmpty();
 			case SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION:
-				return basicGetEffectAction() != null;
+				return !getEffectAction().isEmpty();
 			case SysMLPackage.TRANSITION_USAGE__SUCCESSION:
 				return basicGetSuccession() != null;
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				return isSetTransitionOwningUsage();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Step.class) {
-			switch (derivedFeatureID) {
-				case SysMLPackage.TRANSITION_USAGE__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Step.class) {
-			switch (baseFeatureID) {
-				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.TRANSITION_USAGE__BEHAVIOR;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //TransitionStepImpl

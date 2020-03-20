@@ -36,6 +36,10 @@ public interface Import extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Package whose visible <tt>members</tt> are imported by this Import.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Package</em>' reference.
 	 * @see #setImportedPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportedPackage()
@@ -102,6 +106,10 @@ public interface Import extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Package into which <tt>members</tt> are imported by this Import, which must be the <tt>owningRelatedElement</tt> of the Import.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Import Owning Package</em>' container reference.
 	 * @see #setImportOwningPackage(org.omg.sysml.lang.sysml.Package)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningPackage()

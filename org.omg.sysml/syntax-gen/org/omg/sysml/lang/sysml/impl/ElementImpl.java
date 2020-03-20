@@ -461,9 +461,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
-	 * Compute all relationship defaults and required element expansions.
+	 * Trigger in-place model transformations.
 	 */
-	public void computeDefaults() {		
+	public void transform() {		
 	}
 	
 	/**

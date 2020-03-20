@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,11 +23,7 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal;
 
-import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
@@ -116,24 +112,7 @@ public class ElementVisitor {
 	 */
 	protected void preProcess() {
 		Element element = this.getElement();
-		((ElementImpl)element).computeDefaults();
-		if (element instanceof Classifier) {
-			((Classifier)element).getOwnedSuperclassing();
-		} else if (element instanceof Feature) {
-			((Feature)element).getOwnedSubsetting();
-			((Feature)element).getFeature();
-			
-			if (element instanceof Expression) {
-				((Expression)element).getInput();
-				((Expression)element).getOutput();
-				((Expression)element).getTyping();
-			}
-			
-			if (element instanceof IndividualUsage) {
-				((IndividualUsage)element).getTimeSliceFeature();
-				((IndividualUsage)element).getSnapshotFeature();
-			}
-		}		
+		((ElementImpl)element).transform();
 		this.getFacade().preProcess(element);
 	}
 	

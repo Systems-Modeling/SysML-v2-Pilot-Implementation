@@ -721,9 +721,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	@Override
-	public EList<Feature> getFeature() {
+	public void transform() {
+		super.transform();
+		getOwnedSubsetting();
 		getValueConnector();
-		return super.getFeature();
 	}
 	
 	// Utility methods

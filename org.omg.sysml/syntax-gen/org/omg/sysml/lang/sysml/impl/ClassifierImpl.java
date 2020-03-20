@@ -67,6 +67,12 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		getOwnedSuperclassing();
 		return super.getOwnedGeneralization();
 	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getOwnedSuperclassing();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

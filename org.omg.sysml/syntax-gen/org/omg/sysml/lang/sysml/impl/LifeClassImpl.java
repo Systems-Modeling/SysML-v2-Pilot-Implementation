@@ -97,8 +97,8 @@ public class LifeClassImpl extends BlockImpl implements LifeClass {
 	}
 
 	@Override
-	public void computeDefaults() {
-		super.computeDefaults();
+	public void transform() {
+		super.transform();
 		getMultiplicity();
 	}
 	

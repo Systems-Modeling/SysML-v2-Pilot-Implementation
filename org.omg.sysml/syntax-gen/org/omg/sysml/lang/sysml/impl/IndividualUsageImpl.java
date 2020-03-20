@@ -221,6 +221,13 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 		}
 		return feature;
 	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getTimeSliceFeature();
+		getSnapshotFeature();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

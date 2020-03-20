@@ -7,9 +7,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 
@@ -160,9 +162,9 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	 * @generated NOT
 	 */
 	public Feature basicGetTimeSliceFeature() {
-		return getOwnedFeature().stream().
+		return setTypingFor(getOwnedFeature().stream().
 				filter(feature->feature instanceof TimeSliceFeature).
-				findAny().orElse(null);
+				findAny().orElse(null));
 	}
 
 	/**
@@ -192,9 +194,9 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	 * @generated NOT
 	 */
 	public Feature basicGetSnapshotFeature() {
-		return getOwnedFeature().stream().
+		return setTypingFor(getOwnedFeature().stream().
 				filter(feature->feature instanceof SnapshotFeature).
-				findAny().orElse(null);
+				findAny().orElse(null));
 	}
 
 	/**
@@ -205,6 +207,19 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	@Override
 	public void setSnapshotFeature(Feature newSnapshotFeature) {
 		throw new UnsupportedOperationException();
+	}
+
+	public Feature setTypingFor(Feature feature) {
+		if (feature != null) {
+			EList<FeatureTyping> typings = feature.getTyping();
+			if (typings.isEmpty()) {
+				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+				feature.getOwnedRelationship_comp().add(typing);
+				typings.add(typing);
+			}			
+			typings.get(0).setType(getIndividualDefinition());
+		}
+		return feature;
 	}
 
 	/**

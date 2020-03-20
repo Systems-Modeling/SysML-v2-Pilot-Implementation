@@ -20,7 +20,6 @@ package VehicleIndividuals {
 		
 		individual def Wheel1 :> Wheel;
 		individual def Wheel2 :> Wheel;
-
 	}
 	
 	package IndividualSnapshots {
@@ -42,8 +41,7 @@ package VehicleIndividuals {
 		 */
 		snapshot vehicle1_t1: Vehicle1 {
 			value t = t1;
-		}
-	
+		}	
 	}
 	
 	package IndividualConfigurations {
@@ -81,7 +79,6 @@ package VehicleIndividuals {
 				 */
 				snapshot rightFrontWheel_t1: Wheel1 :>> rightFrontWheel;
 			}
-		}
-	
+		}	
 	}
 }

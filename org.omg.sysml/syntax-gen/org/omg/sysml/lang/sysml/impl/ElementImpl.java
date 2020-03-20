@@ -454,8 +454,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		name = newName;
 	}
 	
-	public void clearCaches() {
-		
+	/**
+	 * Clear cached member derivations.
+	 */
+	public void clearCaches() {		
+	}
+	
+	/**
+	 * Compute all relationship defaults and required element expansions.
+	 */
+	public void computeDefaults() {		
 	}
 	
 	/**

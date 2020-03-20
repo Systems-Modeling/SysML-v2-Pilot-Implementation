@@ -28,6 +28,9 @@ import org.omg.sysml.lang.sysml.Annotation
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Function
 import org.omg.sysml.lang.sysml.NullExpression
+import org.omg.sysml.lang.sysml.LifeClass
+import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.IndividualUsage
 
 /**
  * Customization of the default outline structure.
@@ -198,6 +201,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(LifeClass lifeClass) {
+		(lifeClass as ElementImpl).computeDefaults()
+		_isLeaf(lifeClass as Classifier)
+	}
+	
 	def boolean _isLeaf(Classifier classifier) {
 		// Ensure default subclassing
 		classifier.ownedSuperclassing
@@ -216,6 +224,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		// Ensure valuation connector
 		feature.feature
 		super._isLeaf(feature)
+	}
+	
+	def boolean _isLeaf(IndividualUsage individual) {
+		// Ensure feature typing
+		individual.timeSliceFeature
+		individual.snapshotFeature
+		_isLeaf(individual as Feature)
 	}
 	
 	def boolean _isLeaf(Generalization generalization) {

@@ -27,6 +27,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
@@ -115,6 +116,7 @@ public class ElementVisitor {
 	 */
 	protected void preProcess() {
 		Element element = this.getElement();
+		((ElementImpl)element).computeDefaults();
 		if (element instanceof Classifier) {
 			((Classifier)element).getOwnedSuperclassing();
 		} else if (element instanceof Feature) {
@@ -125,6 +127,11 @@ public class ElementVisitor {
 				((Expression)element).getInput();
 				((Expression)element).getOutput();
 				((Expression)element).getTyping();
+			}
+			
+			if (element instanceof IndividualUsage) {
+				((IndividualUsage)element).getTimeSliceFeature();
+				((IndividualUsage)element).getSnapshotFeature();
 			}
 		}		
 		this.getFacade().preProcess(element);

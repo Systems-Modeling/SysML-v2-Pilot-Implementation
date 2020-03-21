@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -452,6 +453,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public void basicSetName(String newName) {
 		name = newName;
+	}
+	
+	/**
+	 * Get documentation text for this element, as given by the body of the first owned comment
+	 * annotating the element (if any).
+	 */
+	public String getDocumentationText() {
+		Comment comment = (Comment)getOwnedElement().stream().
+				filter(elm->elm instanceof Comment && ((Comment)elm).getCommentedElement() == this).
+				findFirst().orElse(null);
+		return comment == null? null: comment.getBody();
 	}
 	
 	/**

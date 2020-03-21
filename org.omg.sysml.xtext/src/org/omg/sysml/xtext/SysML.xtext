@@ -197,6 +197,7 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	| ownedMemberElement_comp = Activity
     | ownedMemberElement_comp = StateDefinition
     | ownedMemberElement_comp = ConstraintDefinition
+    | ownedMemberElement_comp = RequirementDefinition
 	| ownedMemberElement_comp = Comment
 	| ( 'import' | 'alias' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 	)
@@ -219,6 +220,8 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'abstract' 'state' ownedMemberElement_comp = AbstractStateUsage
 	| 'constraint' ownedMemberElement_comp = ConstraintUsage
 	| 'abstract' 'constraint' ownedMemberElement_comp = AbstractConstraintUsage
+	| 'requirement' ownedMemberElement_comp = RequirementUsage
+	| 'abstract' 'requirement' ownedMemberElement_comp = AbstractRequirementUsage
 ;
 
 /* DEFINITIONS */
@@ -294,9 +297,12 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = AbstractStateUsage
 	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = ConstraintUsage
 	| 'abstract' ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = AbstractConstraintUsage
+	| ( 'ref' 'requirement' | isComposite ?= 'requirement' ) ownedMemberFeature_comp = RequirementUsage
+	| 'abstract' ( 'ref' 'requirement' | isComposite ?= 'requirement' ) ownedMemberFeature_comp = AbstractRequirementUsage
 	| 'perform' ownedMemberFeature_comp = PerformActionUsage
 	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
 	| 'assert' ownedMemberFeature_comp = AssertConstraintUsage
+	| 'satisfy' ownedMemberFeature_comp = SatisfyRequirementUsage
 	)
 ;
 
@@ -709,6 +715,49 @@ fragment EmptyReturnParameterPart returns SysML::Type :
 
 EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
+;
+
+/* CONSTRAINT DEFINITIONS */
+
+RequirementDefinition returns SysML::RequirementDefinition :
+	RequirementDefDeclaration RequirementBody  
+;
+
+fragment RequirementDefDeclaration returns SysML::RequirementDefinition :
+	( isAbstract ?= 'abstract' )? 'requirement' 'def' ( reqId = STRING_VALUE )? name = Name 
+	ParameterList? EmptyReturnParameterPart SuperclassingList?
+;
+
+fragment RequirementBody returns SysML::RequirementDefinition :
+	  ';' | '{' ( text = STRING_VALUE )? RequirementMembers '}'
+;
+
+fragment RequirementMembers returns SysML::Type :
+	( 
+	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedFeatureMembership_comp += NestedUsageMember 
+	| ownedFeatureMembership_comp += RequirementConstraintMember
+	| ownedImport_comp += Import
+	)*
+;
+
+RequirementConstraintUsage returns SysML::ConstraintUsage :
+    ( ( ( name = Name )? TypePart? 'by' )? ownedRelationship_comp += Subset 
+      ConstraintParameterPart DefinitionBody
+    | 'constraint' ( name = Name )? TypePart? 
+      ConstraintParameterPart ConstraintBody
+    )
+;
+
+/* REQUIREMENT DEFINITION MEMBERSHIPS */
+
+RequirementConstraintMember returns SysML::RequirementConstraintMembership :
+	DefinitionMemberPrefix kind = RequirementConstraintKind 
+	ownedMemberFeature_comp = RequirementConstraintUsage
+;
+
+enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
+	assumption = 'assume' | requirement = 'require'
 ;
 
 /* USAGES */
@@ -1374,6 +1423,51 @@ TrueLiteralExpression returns SysML::LiteralBoolean :
 
 TrueLiteralMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = TrueLiteralExpression
+;
+
+/* REQUIREMENTS */
+
+RequirementUsage returns SysML::RequirementUsage :
+	RequirementDeclaration RequirementUsageBody
+;
+
+AbstractRequirementUsage returns SysML::RequirementUsage :
+	RequirementDeclaration AbstractRequirementUsageBody
+;
+
+fragment RequirementDeclaration returns SysML::RequirementUsage :
+	( reqId = STRING_VALUE )? 
+	( name = Name TypePart? ConstraintParameterPart
+	| TypePart? ( ActionParameterList EmptyReturnParameterPart )? ValuePart?
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition 
+		TypePart? ActionParameterList? EmptyReturnParameterPart ValuePart?
+	)
+;
+
+fragment RequirementUsageBody returns SysML::RequirementUsage :
+	  ';' | '{' ( text = STRING_VALUE )? RequirementMembers '}'
+;
+
+fragment AbstractRequirementUsageBody returns SysML::RequirementUsage :
+	  isAbstract ?= ';'
+	| isAbstract ?= '{' ( text = STRING_VALUE )? RequirementMembers '}'
+;
+
+SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
+    ownedRelationship_comp += Subset 
+    ( 'with' ownedFeatureMembership_comp += SatisfactionConnectorMember )?
+    ConstraintParameterPart InvariantPart
+    RequirementUsageBody
+;
+
+SatisfactionConnector returns SysML::BindingConnector :
+	ownedFeatureMembership_comp += EmptySourceEndMember ownedFeatureMembership_comp += ConnectorEndMember
+;
+
+/* REQUIREMENT MEMBERSHIPS */
+
+SatisfactionConnectorMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = SatisfactionConnector
 ;
 
 /* EXPRESSIONS */

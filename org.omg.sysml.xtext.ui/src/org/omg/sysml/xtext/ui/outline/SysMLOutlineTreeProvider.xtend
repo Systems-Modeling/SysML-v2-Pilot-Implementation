@@ -5,6 +5,12 @@ package org.omg.sysml.xtext.ui.outline
 
 import org.omg.kerml.xtext.ui.outline.KerMLOutlineTreeProvider
 import org.omg.sysml.lang.sysml.StateSubactionMembership
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership
+import org.omg.sysml.lang.sysml.RequirementDefinition
+import org.omg.sysml.lang.sysml.Type
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.RequirementUsage
 
 /**
  * Customization of the default outline structure.
@@ -16,5 +22,65 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	def String _text(StateSubactionMembership membership) {
 		 membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
 	}
-
+	
+	def String _text(RequirementConstraintMembership membership) {
+		membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
+	}
+	
+	def String _text(RequirementDefinition requirementDef) {
+		var text = requirementDef.eClass.name;
+		if (requirementDef.isAbstract) {
+			text += ' abstract'
+		}
+		if (requirementDef.reqId !== null) {
+			text += ' "' + requirementDef.reqId + '"'
+		}
+		if (requirementDef.name !== null) {
+			text += ' ' + requirementDef.name
+		}
+		text
+	}
+	
+	def boolean _isLeaf(RequirementDefinition requirementDef) {
+		requirementDef.text === null && _isLeaf(requirementDef as Type)
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, RequirementDefinition requirementDef) {
+		if (requirementDef.text !== null) {
+			createEStructuralFeatureNode(parentNode, requirementDef, 
+				SysMLPackage.eINSTANCE.requirementDefinition_Text, 
+				_image(requirementDef.text), 'text ' + requirementDef.text , true
+			)
+		}
+		super._createChildren(parentNode, requirementDef)
+	}
+	
+	def String _text(RequirementUsage requirement) {
+		var text = requirement.eClass.name;
+		if (requirement.isAbstract) {
+			text += ' abstract'
+		}
+		if (requirement.reqId !== null) {
+			text += ' "' + requirement.reqId + '"'
+		}
+		if (requirement.name !== null) {
+			text += ' ' + requirement.name
+		}
+		text
+	}
+	
+	def boolean _isLeaf(RequirementUsage requirement) {
+		requirement.text === null && _isLeaf(requirement as Type)
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, RequirementUsage requirement) {
+		if (requirement.text !== null) {
+			createEStructuralFeatureNode(parentNode, requirement, 
+				SysMLPackage.eINSTANCE.requirementDefinition_Text, 
+				_image(requirement.text), 'text ' + requirement.text , true
+			)
+		}
+		super._createChildren(parentNode, requirement)
+	}
+	
 }

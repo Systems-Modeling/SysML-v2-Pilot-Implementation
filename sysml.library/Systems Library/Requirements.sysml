@@ -10,12 +10,10 @@ package Requirements {
 	/**
 	 * RequirementCheck is the most general class for requirements checking. RequirementsCheck is the base
 	 * type of all requirement definitions.
+	 * 
+	 * The subject is the entity that is being check for satisfaction of the required constraints.
 	 */
-	constraint def RequirementCheck :> ConstraintCheck {
-		/**
-		 * The subject entity that is being check for satisfaction of the required constraints.
-		 */
-		ref subject: Anything;
+	requirement def RequirementCheck(subject: Anything) :> ConstraintCheck {
 		
 		/**
 		 * Assumptions that must hold for the required constraints to apply.
@@ -28,6 +26,11 @@ package Requirements {
 		constraint constraints[0..*] :> constraintChecks;
 		
 		/**
+		 * Nested requirements, which are also required constraints.
+		 */
+		requirement subrequirements[0..*] :> requirementChecks, constraints;
+		
+		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
 		 */
 		assert constraint { 
@@ -38,45 +41,35 @@ package Requirements {
 	/**
 	 * A functional requirement specifies an action that a system, or part of a system, must perform.
 	 */
-	constraint def FunctionalRequirementCheck :> RequirementCheck {
-		ref subject: Activities::Action redefines RequirementCheck::subject;
-	}
+	requirement def FunctionalRequirementCheck(subject: Activities::Action) :> RequirementCheck;
 	
 	/** 
 	 * An interface requirement specifies an interface for connecting systems and system parts, which
 	 * optionally may include item flows across the interface and/or interface constraints.
 	 */
-	constraint def InterfaceRequirementCheck :> RequirementCheck {
-		ref subject: Blocks::Interface redefines RequirementCheck::subject;
-	}
+	requirement def InterfaceRequirementCheck(subject: Blocks::Interface) :> RequirementCheck;
 	
 	/**
 	 * A performance requirement quantitavely measures the extent to which a system, or a system part, 
 	 * satisfies a required capability or condition.
 	 */
-	constraint def PerformanceRequirementCheck :> RequirementCheck {
-		value subject: Blocks::Value redefines RequirementCheck::subject;
-	}
+	requirement def PerformanceRequirementCheck(subject: Blocks::Value) :> RequirementCheck;
 	
 	/**
 	 * A physical requirement specifies physical characteristics and/or physical constraints of the 
 	 * system, or a system part.
 	 */
-	constraint def PhysicalRequirementCheck :> RequirementCheck {
-		ref subject: Blocks::Part redefines RequirementCheck::subject;
-	}
+	requirement def PhysicalRequirementCheck(subject: Blocks::Part) :> RequirementCheck;
 	
 	/**
 	 * A design constraint specifies a constraint on the implementation of the system or system part, 
 	 * such as the system must use a commercial off the shelf component.
 	 */
-	constraint def DesignConstraintCheck :> RequirementCheck {
-		ref subject: Blocks::Part redefines RequirementCheck::subject;
-	}
+	requirement def DesignConstraintCheck(subject: Blocks::Part) :> RequirementCheck;
 	
 	/**
 	 * requirementChecks is the base feature os all requirement usages.
 	 */
-	constraint requirementChecks: RequirementCheck[0..*] :> constraintChecks;
+	requirement requirementChecks: RequirementCheck[0..*] (subject: Anything) :> constraintChecks;
 	
 }

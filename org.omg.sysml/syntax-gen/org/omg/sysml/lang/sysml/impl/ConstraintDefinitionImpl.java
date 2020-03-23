@@ -19,7 +19,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -151,8 +150,8 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	// Additional redefinitions and subsets
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT);
+	protected String getDefaultSuperclassingType() {
+		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	@Override

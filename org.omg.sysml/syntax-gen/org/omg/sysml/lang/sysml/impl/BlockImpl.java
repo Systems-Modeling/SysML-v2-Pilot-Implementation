@@ -2,12 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.Block;
-import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -41,14 +38,8 @@ public class BlockImpl extends DefinitionImpl implements Block {
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(BLOCK_SUPERCLASS_DEFAULT);
-	}
-
-	@Override
-	public EList<Generalization> getOwnedGeneralization() {
-		getOwnedSuperclassing();
-		return super.getOwnedGeneralization();
+	protected String getDefaultSuperclassingType() {
+		return BLOCK_SUPERCLASS_DEFAULT;
 	}
 
 } //BlockImpl

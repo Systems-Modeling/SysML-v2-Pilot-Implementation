@@ -2,9 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.DataType;
 
@@ -38,12 +36,9 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 		return SysMLPackage.Literals.DATA_TYPE;
 	}
 
-	/**
-	 * If the DataType has no Superclassings, then create one whose superclass is the appropriate default library class.
-	 */
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(DATA_TYPE_SUPERCLASS_DEFAULT);
+	protected String getDefaultSuperclassingType() {
+		return DATA_TYPE_SUPERCLASS_DEFAULT;
 	}
 
 }

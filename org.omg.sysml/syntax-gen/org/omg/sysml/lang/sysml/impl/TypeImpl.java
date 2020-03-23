@@ -326,7 +326,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
+	protected <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
 		Generalization generalization = null;
 		if (generalizations.isEmpty()) {
 			Type general = getDefaultType(defaultNames);

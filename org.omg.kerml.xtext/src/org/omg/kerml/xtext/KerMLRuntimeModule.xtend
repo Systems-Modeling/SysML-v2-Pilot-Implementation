@@ -9,6 +9,10 @@ import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.kerml.xtext.library.KerMLLibraryProvider
+import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.resource.DerivedStateAwareResource
+import org.eclipse.xtext.resource.IDerivedStateComputer
+import org.omg.kerml.xtext.postprocessor.KerMLDerivedStateComputer
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -26,5 +30,12 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		KerMLGlobalScopeProvider
 	}
-		
+	
+	override Class<? extends XtextResource> bindXtextResource() {
+		DerivedStateAwareResource
+	}
+
+	def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
+		KerMLDerivedStateComputer
+	}	
 }

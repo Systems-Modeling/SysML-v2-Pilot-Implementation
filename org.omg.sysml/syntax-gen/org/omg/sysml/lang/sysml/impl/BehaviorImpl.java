@@ -14,7 +14,6 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -71,13 +70,9 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
-	/**
-	 * If the Behavior has no Superclassings, then create one whose superclass is
-	 * the appropriate default library class.
-	 */
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(BEHAVIOR_SUPERCLASS_DEFAULT);
+	protected String getDefaultSuperclassingType() {
+		return BEHAVIOR_SUPERCLASS_DEFAULT;
 	}
 
 	/**

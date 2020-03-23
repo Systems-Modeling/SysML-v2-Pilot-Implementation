@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -37,8 +35,8 @@ public class PredicateImpl extends FunctionImpl implements Predicate {
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(PREDICATE_SUPERCLASS_DEFAULT);
+	protected String getDefaultSuperclassingType() {
+		return PREDICATE_SUPERCLASS_DEFAULT;
 	}
 
 } // PredicateImpl

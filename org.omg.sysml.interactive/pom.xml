@@ -1,0 +1,74 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <!-- <relativePath>../pom.xml</relativePath> -->
+    <groupId>org.omg.sysml</groupId>
+    <artifactId>org.omg.sysml.parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>org.omg.sysml</groupId>
+  <artifactId>org.omg.sysml.interactive</artifactId>
+
+  <packaging>eclipse-plugin</packaging>
+  
+  <properties>
+    <dir.lib>${project.build.directory}/lib</dir.lib>
+    <dir.libs>${project.build.directory}/libs</dir.libs>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${dir.lib}</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-dependencies</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${dir.libs}</outputDirectory>
+              <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>${maven-antrun-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>package-jar</id>
+            <phase>package</phase>
+            <configuration>
+              <target>
+                <ant antfile="${project.basedir}/sysmli.xml">
+                  <property name="dir.jarfile" value="${project.basedir}/dist"/>
+                  <property name="jar.filename" value="sysmli.jar"/>
+                  <property name="main.class" value="org.omg.sysml.interactive.SysMLInteractive" />
+                </ant>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

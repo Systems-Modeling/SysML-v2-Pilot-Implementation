@@ -8,13 +8,11 @@ package Requirements {
 	private import Constraints::*;
 	
 	/**
-	 * RequirementCheck is the most general class for requirements checking. RequirementsCheck is the base
-	 * type of all requirement definitions.
-	 * 
-	 * The subject is the entity that is being check for satisfaction of the required constraints.
+	 * RequirementConstraintCheck is the base ConstraintCheck for RequirementCheck, defining the
+	 * separate assumeptions and required constraints such that, if all the assumptions are true,
+	 * then all the required constraints must be true.
 	 */
-	requirement def RequirementCheck(subject: Anything) :> ConstraintCheck {
-		
+	private abstract constraint def RequirementConstraintCheck {
 		/**
 		 * Assumptions that must hold for the required constraints to apply.
 		 */
@@ -25,17 +23,25 @@ package Requirements {
 		 */
 		constraint constraints[0..*] :> constraintChecks;
 		
+		/*
+		 * If all the assumptions are true, then all the required constraints must hold.
+		 */
+		!allTrue(assumptions) | allTrue(constraints)	
+	}
+	
+	/**
+	 * RequirementCheck is the most general class for requirements checking. RequirementsCheck is the base
+	 * type of all requirement definitions.
+	 * 
+	 * The subject is the entity that is being check for satisfaction of the required constraints.
+	 */
+	requirement def RequirementCheck(subject: Anything) :> RequirementConstraintCheck {
+		
 		/**
 		 * Nested requirements, which are also required constraints.
 		 */
 		requirement subrequirements[0..*] :> requirementChecks, constraints;
 		
-		/**
-		 * If all the assumptions are true, then all the required constraints must hold.
-		 */
-		assert constraint { 
-			!allTrue(assumptions) | allTrue(constraints)
-		}
 	}
 	
 	/**
@@ -68,7 +74,7 @@ package Requirements {
 	requirement def DesignConstraintCheck(subject: Blocks::Part) :> RequirementCheck;
 	
 	/**
-	 * requirementChecks is the base feature os all requirement usages.
+	 * requirementChecks is the base feature of all requirement usages.
 	 */
 	requirement requirementChecks: RequirementCheck[0..*] (subject: Anything) :> constraintChecks;
 	

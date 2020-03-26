@@ -7,8 +7,8 @@ package '15_19-Materials with Properties' {
     part Da = AtomicMassUnit();
 
     value type AtomicMassValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-    	ref scale: AtomicMassUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+    	ref mRef: AtomicMassUnit redefines QuantityValue::mRef;
     }
     
     block TensileStrengthUnit :> MeasurementUnit {
@@ -24,8 +24,8 @@ package '15_19-Materials with Properties' {
     }
     
     value type TensileStrengthValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-    	ref scale: TensileStrengthUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+    	ref mRef: TensileStrengthUnit redefines QuantityValue::mRef;
     }
 
     block Substance;

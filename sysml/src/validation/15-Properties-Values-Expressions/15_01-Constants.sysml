@@ -17,8 +17,8 @@ package '15_01-Constants' {
      * Should this be in the ISQ library model?
      */
     value type DimensionOneValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-    	ref scale: UnitOfDimensionOne redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+    	ref mRef: UnitOfDimensionOne redefines QuantityValue::mRef;
     }
     
     /**
@@ -33,8 +33,8 @@ package '15_01-Constants' {
 		}		
     }
     value type AccelerationValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-    	ref scale: AccelerationUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+    	ref mRef: AccelerationUnit redefines QuantityValue::mRef;
     }
 
     /**

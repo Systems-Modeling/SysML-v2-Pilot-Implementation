@@ -23,7 +23,7 @@ package Requirements {
 		 */
 		constraint constraints[0..*] :> constraintChecks;
 		
-		/*
+		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
 		 */
 		!allTrue(assumptions) | allTrue(constraints)	

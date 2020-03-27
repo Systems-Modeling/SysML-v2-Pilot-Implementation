@@ -69,7 +69,7 @@ package '3a-Function-based Behavior-' {
 		
 		succession first engineStart[1] then 'do provide power'[1];
 		
-		perform 'do provide power'[*] by 'provide power' (
+		perform 'do provide power'[*] as 'provide power' (
 			in fuelCmd = 'provide power with control'::fuelCmd, 
 			out wheelTorque1 = 'provide power with control'::wheelTorque1,
 			out wheelTorque2 = 'provide power with control'::wheelTorque2

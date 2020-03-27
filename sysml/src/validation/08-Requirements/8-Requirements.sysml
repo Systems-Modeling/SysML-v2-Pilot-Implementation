@@ -43,14 +43,14 @@ package '8-Requirements' {
 	
 	// Requirements
 	
-	requirement def MassLimitationRequirement {
+	requirement def id '1' MassLimitationRequirement {
 		value massActual: MassValue;
 		value massReqd: MassValue;
-		require constraint massConstraint { massActual <= massReqd }
+		require constraint { massActual <= massReqd }
 	}
 	
 	package 'vehicle1-c1 Specification' {
-		requirement "1.1" vehicleMass1: MassLimitationRequirement (vehicle: Vehicle) {
+		requirement id '1.1' vehicleMass1: MassLimitationRequirement (vehicle: Vehicle) {
 			/* The vehicle mass shall be less than or equal to 2000 kg. */
 			
 			redefines massActual: MassValue = vehicle::mass;
@@ -63,17 +63,17 @@ package '8-Requirements' {
 	}
 	
 	package 'engine-v1 Specification' {
-		requirement "3.2" torqueGeneration: FunctionalRequirementCheck(subject: 'Generate Torque') {
+		requirement id '3.2' torqueGeneration: FunctionalRequirementCheck(subject: 'Generate Torque') {
 			/* The engine shall generate torque as a function of RPM as shown in Table 1. */
 		}
 		
-		requirement "3.1" drivePowerInterface: InterfaceRequirementCheck(subject: EngineToTransmissionInterface) {
+		requirement id '3.1' drivePowerInterface: InterfaceRequirementCheck(subject: EngineToTransmissionInterface) {
 			/* The engine shall transfer its generated torque to the transmission via the clutch interface. */
 		}
 	}
 	
 	package 'vehicle1-c2 Specification' {
-		requirement "2.1" vehicleMass2: MassLimitationRequirement (vehicle: Vehicle) {
+		requirement id '2.1' vehicleMass2: MassLimitationRequirement (vehicle: Vehicle) {
 			/* The vehicle mass shall be less than or equal to 2500 kg. */
 			
 			redefines massActual: MassValue = vehicle::mass;
@@ -91,14 +91,14 @@ package '8-Requirements' {
 		import 'vehicle1-c1 Specification'::*;
 		import 'engine-v1 Specification'::*;
 		
-		satisfy vehicleMass1 with vehicle1_c1;
-		satisfy torqueGeneration with vehicle1_c1::engine_v1::'generate torque';
-		satisfy drivePowerInterface with vehicle1_c1::engineToTransmission;
+		satisfy vehicleMass1 by vehicle1_c1;
+		satisfy torqueGeneration by vehicle1_c1::engine_v1::'generate torque';
+		satisfy drivePowerInterface by vehicle1_c1::engineToTransmission;
 	}
 	
 	part 'vehicle1_c2 Specification Context' {
 		import 'vehicle1-c2 Specification'::*;
 		
-		satisfy vehicleMass2 with vehicle1_c2;				
+		satisfy vehicleMass2 by vehicle1_c2;				
 	}
 }

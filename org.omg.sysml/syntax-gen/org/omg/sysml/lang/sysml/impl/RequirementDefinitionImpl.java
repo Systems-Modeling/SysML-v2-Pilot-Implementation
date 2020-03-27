@@ -143,14 +143,19 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	public String getReqId() {
 		return reqId == null? "": reqId;
 	}
+	
+	@Override
+	public void setReqId(String newReqId) {
+		setReqIdGen(unescapeString(newReqId));
+	}
+	
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setReqId(String newReqId) {
+	public void setReqIdGen(String newReqId) {
 		String oldReqId = reqId;
 		reqId = newReqId;
 		if (eNotificationRequired())

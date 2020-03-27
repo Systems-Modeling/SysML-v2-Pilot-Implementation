@@ -8,6 +8,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
 			}
 		}
 	}

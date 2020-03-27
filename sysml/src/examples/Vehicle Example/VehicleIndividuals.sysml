@@ -18,6 +18,8 @@ package VehicleIndividuals {
 			value redefines mass = 1700@[kg];
 		}
 		
+		individual def AxleAssembly1 :> AxleAssembly;
+		
 		individual def Wheel1 :> Wheel;
 		individual def Wheel2 :> Wheel;
 	}
@@ -58,13 +60,13 @@ package VehicleIndividuals {
 		individual vehicle1_C2: Vehicle1 :> vehicle_C2;
 		
 		/**
-		 * This is a snapshot of Vehicle1 in configuration vehicle1_C2 at time t0;
+		 * This is a snapshot of Vehicle1 in configuration vehicle1_C2 at time t0.
 		 */
 		snapshot vehicle1_C2_t0 :> vehicle1_C2, vehicle1_t0 {
 			/**
 			 * frontAxleAssembly is a feature of vehicle1_C2.
 			 */
-			part :>> frontAxleAssembly {
+			snapshot axleAssembly1_t0: AxleAssembly1 :>> frontAxleAssembly {
 				/**
 				 * This asserts that Wheel1 is the leftFrontWheel of vehicle_C2_t0
 				 * (leftFrontWheel is a feature of vehicle_C2::frontAxleAssembly).
@@ -74,10 +76,10 @@ package VehicleIndividuals {
 		}
 		
 		/**
-		 * This is a snapshot of Vehicle1 in configuration vehicle_C2 at time t1;
+		 * This is a snapshot of Vehicle1 in configuration vehicle_C2 at time t1.
 		 */
 		snapshot vehicle1_C2_t1 :> vehicle1_C2, vehicle1_t0_t1::done {
-			part :>> frontAxleAssembly {
+			snapshot axleAssembly1_t1: AxleAssembly1 :>> frontAxleAssembly {
 				/**
 				 * This asserts that Wheel1 is the rightFrontWheel of vehicle_C2_t1.
 				 */

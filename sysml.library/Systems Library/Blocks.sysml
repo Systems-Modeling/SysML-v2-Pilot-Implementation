@@ -12,6 +12,9 @@ package Blocks {
 	block Part :> Object {
 		ref self: Part :>> Base::self;
 		
+		part start: Part :>> startShot;
+		part done: Part :>> endShot;
+		
 		/**
 		 * Ports that are on this part.
 		 */

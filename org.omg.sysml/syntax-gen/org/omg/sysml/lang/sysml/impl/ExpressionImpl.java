@@ -236,6 +236,13 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		getResult();
 		return super.getOwnedParameters();
 	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getInput();
+		getOutput();
+	}
 		
 	/**
 	 * <!-- begin-user-doc -->

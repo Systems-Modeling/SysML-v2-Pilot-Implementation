@@ -39,6 +39,7 @@ Unit returns SysML::Package :
 	| PackageUnit 
 	| BlockUnit
 	| ValueTypeUnit
+	| IndividualDefinitionUnit
 	| AssociationBlockUnit
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
@@ -64,6 +65,10 @@ BlockUnit returns SysML::Block:
 
 ValueTypeUnit returns SysML::ValueType :
 	UnitPrefix ValueTypeDeclaration DefinitionBody
+;
+
+IndividualDefinitionUnit returns SysML::IndividualDefinition :
+	UnitPrefix IndividualDefDeclaration DefinitionBody
 ;
 
 AssociationBlockUnit returns SysML::AssociationBlock :
@@ -185,6 +190,7 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	( ownedMemberElement_comp = Package
 	| ownedMemberElement_comp = Block
 	| ownedMemberElement_comp = ValueType
+	| ownedMemberElement_comp = IndividualDefinition
 	| ownedMemberElement_comp = AssociationBlock
 	| ownedMemberElement_comp = InterfaceDefinition
 	| ownedMemberElement_comp = PortDefinition
@@ -201,6 +207,12 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'abstract' 'part' ownedMemberElement_comp = AbstractPartProperty
 	| 'value'? ownedMemberElement_comp = ValueProperty
 	| 'abstract' 'value'? ownedMemberElement_comp = AbstractValueProperty
+	| 'individual' ownedMemberElement_comp = IndividualUsage
+	| 'abstract' 'individual' ownedMemberElement_comp = AbstractIndividualUsage
+	| 'timeslice' ownedMemberElement_comp = TimeSliceUsage
+	| 'abstract' 'timeslice' ownedMemberElement_comp = AbstractTimeSliceUsage
+	| 'snapshot' ownedMemberElement_comp = SnapshotUsage
+	| 'abstract' 'snapshot' ownedMemberElement_comp = AbstractSnapshotUsage
 	| 'action' ownedMemberElement_comp = ActionUsage
 	| 'abstract' 'action' ownedMemberElement_comp = AbstractActionUsage
 	| 'state' ownedMemberElement_comp = StateUsage
@@ -252,12 +264,18 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractReferenceProperty
 	| 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractValueProperty
-	| 'interface' ownedMemberFeature_comp = InterfaceUsage
-	| 'abstract' 'interface' ownedMemberFeature_comp = AbstractInterfaceUsage
+	|  ( 'ref' 'individual' | isComposite ?= 'individual') ( direction = FeatureDirection )? ownedMemberFeature_comp = IndividualUsage
+	| 'abstract' ( 'ref' 'individual' | isComposite ?= 'individual') ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractIndividualUsage
+	|  ( 'ref' 'timeslice' | isComposite ?= 'timeslice' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = TimeSliceUsage
+	| 'abstract' ( 'ref' 'timeslice' | isComposite ?= 'timeslice' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractTimeSliceUsage
+	|  ( 'ref' 'snapshot' | isComposite ?= 'snapshot' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = SnapshotUsage
+	| 'abstract' ( 'ref' 'snapshot' | isComposite ?= 'snapshot' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSnapshotUsage
 	| 'link' ownedMemberFeature_comp = ConnectionUsage 
     | 'abstract' 'link' ownedMemberFeature_comp = AbstractConnectionUsage
  	| 'connect' ownedMemberFeature_comp = Connector 
     | 'abstract' 'connect' ownedMemberFeature_comp = AbstractConnector
+	| 'interface' ownedMemberFeature_comp = InterfaceUsage
+	| 'abstract' 'interface' ownedMemberFeature_comp = AbstractInterfaceUsage
     | 'bind' ownedMemberFeature_comp = BindingConnector
 	| 'succession' ownedMemberFeature_comp = Succession 
     | 'abstract' 'succession' ownedMemberFeature_comp = AbstractSuccession
@@ -339,6 +357,27 @@ ValueType returns SysML::ValueType :
 
 fragment ValueTypeDeclaration returns SysML::ValueType :
 	( isAbstract ?= 'abstract' )? 'value' 'type' ClassifierDeclarationCompletion
+;
+
+/* INDIVIDUAL DEFINITIONS */
+
+IndividualDefinition returns SysML::IndividualDefinition :
+	IndividualDefDeclaration DefinitionBody
+;
+
+fragment IndividualDefDeclaration returns SysML::IndividualDefinition :
+	( isAbstract ?= 'abstract' )? 'individual' 'def' ClassifierDeclarationCompletion
+	ownedMembership_comp += LifeClassMembership
+;
+
+LifeClass returns SysML::LifeClass :
+	{SysML::LifeClass}
+;
+
+/* INDIVIDUAL DEFINITION MEMBERSHIPS */
+
+LifeClassMembership returns SysML::Membership :
+	ownedMemberElement_comp = LifeClass
 ;
 
 /* PORT DEFINITIONS */
@@ -810,6 +849,54 @@ ValueProperty returns SysML::ValueProperty :
 
 AbstractValueProperty returns SysML::ValueProperty :
 	AbstractUsage
+;
+
+/* INDIVIDUALS */
+
+IndividualUsage returns SysML::IndividualUsage :
+	Usage
+;
+
+AbstractIndividualUsage returns SysML::IndividualUsage :
+	AbstractUsage
+;
+
+TimeSliceUsage returns SysML::IndividualUsage :
+	UsageDeclaration ownedFeatureMembership_comp += TimeSliceFeatureMember 
+	UsageCompletion
+;
+
+AbstractTimeSliceUsage returns SysML::IndividualUsage :
+	UsageDeclaration ownedFeatureMembership_comp += TimeSliceFeatureMember
+	AbstractUsageCompletion
+;
+
+TimeSliceFeature returns SysML::TimeSliceFeature :
+	{SysML::TimeSliceFeature}
+;
+
+SnapshotUsage returns SysML::IndividualUsage :
+	UsageDeclaration ownedFeatureMembership_comp += SnapshotFeatureMember 
+	UsageCompletion
+;
+
+AbstractSnapshotUsage returns SysML::IndividualUsage :
+	UsageDeclaration ownedFeatureMembership_comp += SnapshotFeatureMember
+	AbstractUsageCompletion
+;
+
+SnapshotFeature returns SysML::SnapshotFeature :
+	{SysML::SnapshotFeature}
+;
+
+/* INDIVIDUAL MEMBERSHIPS */
+
+TimeSliceFeatureMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = TimeSliceFeature
+;
+
+SnapshotFeatureMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = SnapshotFeature
 ;
 
 /* PORT USAGE */

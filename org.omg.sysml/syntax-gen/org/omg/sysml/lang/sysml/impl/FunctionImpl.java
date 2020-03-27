@@ -137,12 +137,6 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 		return getOwnedSuperclassingWithDefault(FUNCTION_SUPERCLASS_DEFAULT);
 	}
 
-	@Override
-	public EList<Feature> getFeature() {
-		getResultConnector();
-		return super.getFeature();
-	}
-	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
@@ -150,6 +144,12 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		return filterRelevantFeatures(super.getFeature());
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getResultConnector();
 	}
 
 	/**

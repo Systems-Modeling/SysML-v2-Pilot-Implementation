@@ -539,10 +539,10 @@ fragment ParameterList returns SysML::Type :
 ;
 
 fragment ActivityBody returns SysML::Type :
-	  ';' 
+	    ';' 
 		// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 		// while incrementally parsing.
-	  | '{' => ActivityBodyItem* '}'	  
+	  | '{' => ActivityBodyItem* '}' 
 ;
 
 fragment AbstractActivityBody returns SysML::Type :
@@ -732,7 +732,13 @@ RequirementDefinition returns SysML::RequirementDefinition :
 
 fragment RequirementDefDeclaration returns SysML::RequirementDefinition :
 	( isAbstract ?= 'abstract' )? 'requirement' 'def' ( 'id' reqId = Name )? name = Name 
-	ParameterList? EmptyReturnParameterPart SuperclassingList?
+	RequirementDefParameterList EmptyReturnParameterPart SuperclassingList?
+;
+
+fragment RequirementDefParameterList returns SysML::Type :
+	  ownedFeatureMembership_comp += EmptyParameterMember
+	| '(' ownedFeatureMembership_comp += EmptyParameterMember ')'
+	| '(' ownedFeatureMembership_comp += ParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
 ;
 
 fragment RequirementBody returns SysML::Type :
@@ -1464,6 +1470,22 @@ fragment RequirementDeclaration returns SysML::RequirementUsage :
 		TypePart? ActionParameterList? EmptyReturnParameterPart ValuePart?
 	)
 ;
+
+//fragment RequirementParameterPart returns SysML::RequirementUsage :
+//	RequirementParameterList EmptyReturnParameterPart SubsettingPart ValuePart?
+//;
+//
+//fragment RequirementParameterList returns SysML::RequirementUsage :
+//	  ownedFeatureMembership_comp += EmptyParameterMember
+//	| ParenRequirementParameterList
+//;
+//
+//fragment ParenRequirementParameterList returns SysML::RequirementUsage :
+//	  '(' ownedFeatureMembership_comp += EmptyParameterMember ')'
+//	| '(' ownedFeatureMembership_comp += ActionParameterMember ( ownedFeatureMembership_comp += ActionParameterFlowMember )?
+//		  ( ',' ownedFeatureMembership_comp += ActionParameterMember ( ownedFeatureMembership_comp += ActionParameterFlowMember )? )*
+//	  ')'	
+//;
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
      ( ( ( name = Name )? TypePart? 'as' )? ownedRelationship_comp += Subset 

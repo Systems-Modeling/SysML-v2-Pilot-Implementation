@@ -98,6 +98,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConstraintBodyAccess().getAlternatives(), "rule__ConstraintBody__Alternatives");
 			builder.put(grammarAccess.getAbstractConstraintBodyAccess().getAlternatives(), "rule__AbstractConstraintBody__Alternatives");
 			builder.put(grammarAccess.getConstraintMembersAccess().getAlternatives_0(), "rule__ConstraintMembers__Alternatives_0");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getAlternatives(), "rule__RequirementDefParameterList__Alternatives");
 			builder.put(grammarAccess.getRequirementBodyAccess().getAlternatives(), "rule__RequirementBody__Alternatives");
 			builder.put(grammarAccess.getAbstractRequirementBodyAccess().getAlternatives(), "rule__AbstractRequirementBody__Alternatives");
 			builder.put(grammarAccess.getRequirementMembersAccess().getAlternatives(), "rule__RequirementMembers__Alternatives");
@@ -348,6 +349,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementDefinitionAccess().getGroup(), "rule__RequirementDefinition__Group__0");
 			builder.put(grammarAccess.getRequirementDefDeclarationAccess().getGroup(), "rule__RequirementDefDeclaration__Group__0");
 			builder.put(grammarAccess.getRequirementDefDeclarationAccess().getGroup_3(), "rule__RequirementDefDeclaration__Group_3__0");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getGroup_1(), "rule__RequirementDefParameterList__Group_1__0");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getGroup_2(), "rule__RequirementDefParameterList__Group_2__0");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getGroup_2_2(), "rule__RequirementDefParameterList__Group_2_2__0");
 			builder.put(grammarAccess.getRequirementBodyAccess().getGroup_1(), "rule__RequirementBody__Group_1__0");
 			builder.put(grammarAccess.getAbstractRequirementBodyAccess().getGroup_1(), "rule__AbstractRequirementBody__Group_1__0");
 			builder.put(grammarAccess.getRequirementConstraintUsageAccess().getGroup(), "rule__RequirementConstraintUsage__Group__0");
@@ -817,6 +821,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementDefDeclarationAccess().getIsAbstractAssignment_0(), "rule__RequirementDefDeclaration__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getRequirementDefDeclarationAccess().getReqIdAssignment_3_1(), "rule__RequirementDefDeclaration__ReqIdAssignment_3_1");
 			builder.put(grammarAccess.getRequirementDefDeclarationAccess().getNameAssignment_4(), "rule__RequirementDefDeclaration__NameAssignment_4");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_0");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_1_1");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_2_1(), "rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_2_1");
+			builder.put(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_2_2_1(), "rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_2_2_1");
 			builder.put(grammarAccess.getAbstractRequirementBodyAccess().getIsAbstractAssignment_0(), "rule__AbstractRequirementBody__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getAbstractRequirementBodyAccess().getIsAbstractAssignment_1_0(), "rule__AbstractRequirementBody__IsAbstractAssignment_1_0");
 			builder.put(grammarAccess.getRequirementMembersAccess().getOwnedMembership_compAssignment_0(), "rule__RequirementMembers__OwnedMembership_compAssignment_0");

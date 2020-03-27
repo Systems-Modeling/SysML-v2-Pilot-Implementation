@@ -16,12 +16,12 @@ package Requirements {
 		/**
 		 * Assumptions that must hold for the required constraints to apply.
 		 */
-		constraint assumptions[0..*] :> constraintChecks;
+		ref constraint assumptions[0..*] :> constraintChecks;
 		
 		/**
 		 * The required constraints that are to be checked.
 		 */
-		constraint constraints[0..*] :> constraintChecks;
+		ref constraint constraints[0..*] :> constraintChecks;
 		
 		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
@@ -40,7 +40,7 @@ package Requirements {
 		/**
 		 * Nested requirements, which are also required constraints.
 		 */
-		requirement subrequirements[0..*] :> requirementChecks, constraints;
+		ref requirement subrequirements[0..*] :> requirementChecks, constraints;
 		
 	}
 	

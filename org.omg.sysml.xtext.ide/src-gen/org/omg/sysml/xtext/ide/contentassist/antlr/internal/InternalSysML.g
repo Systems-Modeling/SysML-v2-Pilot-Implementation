@@ -2530,6 +2530,23 @@ finally {
 }
 
 
+// Rule RequirementDefParameterList
+ruleRequirementDefParameterList 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getAlternatives()); }
+		(rule__RequirementDefParameterList__Alternatives)
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getAlternatives()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 // Rule RequirementBody
 ruleRequirementBody 
 	@init {
@@ -9585,6 +9602,33 @@ rule__ConstraintMembers__Alternatives_0
 		{ before(grammarAccess.getConstraintMembersAccess().getOwnedImport_compAssignment_0_2()); }
 		(rule__ConstraintMembers__OwnedImport_compAssignment_0_2)
 		{ after(grammarAccess.getConstraintMembersAccess().getOwnedImport_compAssignment_0_2()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Alternatives
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_0()); }
+		(rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_0)
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getGroup_1()); }
+		(rule__RequirementDefParameterList__Group_1__0)
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getGroup_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getGroup_2()); }
+		(rule__RequirementDefParameterList__Group_2__0)
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getGroup_2()); }
 	)
 ;
 finally {
@@ -25095,9 +25139,9 @@ rule__RequirementDefDeclaration__Group__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRequirementDefDeclarationAccess().getParameterListParserRuleCall_5()); }
-	(ruleParameterList)?
-	{ after(grammarAccess.getRequirementDefDeclarationAccess().getParameterListParserRuleCall_5()); }
+	{ before(grammarAccess.getRequirementDefDeclarationAccess().getRequirementDefParameterListParserRuleCall_5()); }
+	ruleRequirementDefParameterList
+	{ after(grammarAccess.getRequirementDefDeclarationAccess().getRequirementDefParameterListParserRuleCall_5()); }
 )
 ;
 finally {
@@ -25205,6 +25249,249 @@ rule__RequirementDefDeclaration__Group_3__1__Impl
 	{ before(grammarAccess.getRequirementDefDeclarationAccess().getReqIdAssignment_3_1()); }
 	(rule__RequirementDefDeclaration__ReqIdAssignment_3_1)
 	{ after(grammarAccess.getRequirementDefDeclarationAccess().getReqIdAssignment_3_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__RequirementDefParameterList__Group_1__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_1__0__Impl
+	rule__RequirementDefParameterList__Group_1__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_1__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getLeftParenthesisKeyword_1_0()); }
+	'('
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getLeftParenthesisKeyword_1_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_1__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_1__1__Impl
+	rule__RequirementDefParameterList__Group_1__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_1__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_1_1()); }
+	(rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_1_1)
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_1_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_1__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_1__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_1__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getRightParenthesisKeyword_1_2()); }
+	')'
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getRightParenthesisKeyword_1_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__RequirementDefParameterList__Group_2__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_2__0__Impl
+	rule__RequirementDefParameterList__Group_2__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getLeftParenthesisKeyword_2_0()); }
+	'('
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getLeftParenthesisKeyword_2_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_2__1__Impl
+	rule__RequirementDefParameterList__Group_2__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_2_1()); }
+	(rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_2_1)
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_2_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_2__2__Impl
+	rule__RequirementDefParameterList__Group_2__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getGroup_2_2()); }
+	(rule__RequirementDefParameterList__Group_2_2__0)*
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getGroup_2_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_2__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2__3__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getRightParenthesisKeyword_2_3()); }
+	')'
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getRightParenthesisKeyword_2_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__RequirementDefParameterList__Group_2_2__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_2_2__0__Impl
+	rule__RequirementDefParameterList__Group_2_2__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2_2__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getCommaKeyword_2_2_0()); }
+	','
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getCommaKeyword_2_2_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2_2__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RequirementDefParameterList__Group_2_2__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__Group_2_2__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_2_2_1()); }
+	(rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_2_2_1)
+	{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compAssignment_2_2_1()); }
 )
 ;
 finally {
@@ -46394,6 +46681,66 @@ rule__RequirementDefDeclaration__NameAssignment_4
 		{ before(grammarAccess.getRequirementDefDeclarationAccess().getNameNameParserRuleCall_4_0()); }
 		ruleName
 		{ after(grammarAccess.getRequirementDefDeclarationAccess().getNameNameParserRuleCall_4_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_0_0()); }
+		ruleEmptyParameterMember
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_1_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_1_1_0()); }
+		ruleEmptyParameterMember
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compEmptyParameterMemberParserRuleCall_1_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_2_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compParameterMemberParserRuleCall_2_1_0()); }
+		ruleParameterMember
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compParameterMemberParserRuleCall_2_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RequirementDefParameterList__OwnedFeatureMembership_compAssignment_2_2_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compParameterMemberParserRuleCall_2_2_1_0()); }
+		ruleParameterMember
+		{ after(grammarAccess.getRequirementDefParameterListAccess().getOwnedFeatureMembership_compParameterMemberParserRuleCall_2_2_1_0()); }
 	)
 ;
 finally {

@@ -42,7 +42,7 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	}
 	
 	def boolean _isLeaf(RequirementDefinition requirementDef) {
-		requirementDef.text === null && _isLeaf(requirementDef as Type)
+		_isLeaf(requirementDef as Type) && requirementDef.text === null
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, RequirementDefinition requirementDef) {
@@ -70,7 +70,7 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 	}
 	
 	def boolean _isLeaf(RequirementUsage requirement) {
-		requirement.text === null && _isLeaf(requirement as Type)
+		_isLeaf(requirement as Type) && requirement.text === null
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, RequirementUsage requirement) {

@@ -3,7 +3,18 @@
  */
 package org.omg.sysml.xtext.validation
 
+
+import org.eclipse.xtext.validation.Check
 import org.omg.kerml.xtext.validation.KerMLValidator
+import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.Generalization
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.MultiplicityRange
+import org.omg.sysml.lang.sysml.LiteralInteger
+import org.omg.sysml.lang.sysml.Connector
+import org.omg.sysml.lang.sysml.LiteralUnbounded
 
 /**
  * This class contains custom validation rules. 
@@ -12,15 +23,97 @@ import org.omg.kerml.xtext.validation.KerMLValidator
  */
 class SysMLValidator extends KerMLValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					SysMLPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	public static val INVALID_SUBSETTING_OWNINGTYPECONFORMANCE = 'Invalid Subsetting -OwningType conformance';
+	public static val INVALID_REDEFINITION_OWNINGTYPECONFORMANCE = 'Invalid Redefinition - OwningType conformance'
+	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
+	public static val INVALID_SUBSETTING_ORDEREDCONFORMANCE = 'Invalid subsetting - Ordering conformance'
+	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid subsetting - uniqueness conformance'
 	
+	@Check
+	def checkSubsettingConformance(Subsetting sub) { 
+		
+		var subsettingFeatureName = sub.subsettingFeature?.name
+		var subsettedFeatureName = sub.subsettedFeature?.name
+		var subsettingOwningType = sub.subsettingFeature?.owningType
+		var subsettedOwningType = sub.subsettedFeature?.owningType
+		
+		//due to how connector is implemented - no validation is performed
+		if ( subsettingOwningType === null || subsettedOwningType === null ||
+			subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
+			return;
+			
+		//multiplicity conformance
+		var setting_m = sub.subsettingFeature?.multiplicity 
+		var setting_m_l = (setting_m as MultiplicityRange)?.lowerBound
+		var setting_m_u = (setting_m as MultiplicityRange)?.upperBound
+		
+		var setted_m = sub.subsettedFeature?.multiplicity 
+		var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
+		var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
+		
+		if (setting_m_l instanceof LiteralUnbounded)
+			error("Subsetting.subsettingFeature( " + subsettingFeatureName + ")'s lowerBound multiplicity should not be unbounded, sub", 
+					SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+		if (setted_m_l instanceof LiteralUnbounded)
+			error("Subseting.subsettedFeature( " + subsettedFeatureName + ")'s lowerBound multiplicity should not be unbounded, sub", 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+					
+		if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger){
+			if ( (setting_m_l as LiteralInteger).value < (setted_m_l as LiteralInteger).value) 
+				error("Subsetting.subsettingFeature(" + subsettingFeatureName + ")'s lowerBound multiplicity(" +  (setting_m_l as LiteralInteger).value + ") shall be greater than or equal to Subsetting.subsettedFeature(" + subsettedFeatureName + ")'s lowerBound multiplicity(" +  (setted_m_l as LiteralInteger).value + ").", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+		}
+		//upperbound: setting must be <= setted
+		if ( setting_m_u instanceof LiteralUnbounded && !(setted_m_u instanceof LiteralUnbounded))
+			error("Subsetting.subsettingFeature("+ subsettingFeatureName + ")'s upperBound multiplicity shall be less than or equal to Subsetting.subsettedFeature(" + subsettedFeatureName + ")'s upperBound multiplicity.", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+		if ( setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger)
+			if ( (setting_m_u as LiteralInteger).value > (setted_m_u as LiteralInteger).value) 
+				error("Subsetting.subsettingFeature("+ subsettingFeatureName + ")'s upperBound multiplicity(" +  (setting_m_u as LiteralInteger).value + ") shall be less than or equal to Subsetting.subsettedFeature(" + subsettedFeatureName + ")'s upperBound multiplicity(" + (setted_m_u as LiteralInteger).value + ").", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
+
+		//ordering conformance
+		var setted_o = sub.subsettedFeature?.ordered 
+		if (setted_o == true){
+			var setting_o = sub.subsettingFeature?.ordered
+			if ( setting_o !== true){
+				if ((setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
+					error("Subsetting.subsettedFeature(" + subsettedFeatureName +") is ordered then subsettingFeature(" + subsettingFeatureName + ") shall be ordered.", sub, 
+						SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_ORDEREDCONFORMANCE)
+				}
+			}
+		}
+		
+		//uniqueness conformance
+		if ( sub.subsettedFeature.unique && !sub.subsettingFeature.unique){
+			if ((setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
+				error("Subsetting.subsettedFeature(" + subsettedFeatureName +") is unique then subsettingFeature(" + subsettingFeatureName + ") shall be unique.", sub, 
+						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
+			}
+		}
+					
+		//owningType conformance
+		if (subsettingOwningType == subsettedOwningType && sub instanceof Redefinition){
+			error("Redefinition.subsettingFeature.owningType shall not the same as Redefinition.subsettedFeature.owningType", sub, 
+				SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+		}
+		else if (subsettingOwningType !== subsettedOwningType){
+			if (!isAInheritedB(subsettingOwningType, subsettedOwningType)){
+				error("Subsetting.subsettingFeature.owningType(" + sub.subsettingFeature + ") is not the same/direct/indirect specialization of Subsetting.subsettedFeature.owningType(" + sub.subsettedFeature.name + ")", sub, 
+				SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
+			}
+		}
+		//else subsettingOwningType == subsettingOwnedType && !sub instanceof Redefinition
+	}
+	
+	protected def boolean isAInheritedB(Type a, Type b){
+		var tas = a.ownedGeneralization
+		for(Generalization ta: tas){
+			if (ta.general == b)
+				return true
+			else if (isAInheritedB(ta.general,b))
+				return true
+		}
+		return false; 
+	}
 }

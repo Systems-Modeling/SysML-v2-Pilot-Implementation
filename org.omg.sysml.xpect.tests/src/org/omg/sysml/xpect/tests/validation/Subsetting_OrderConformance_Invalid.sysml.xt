@@ -1,0 +1,34 @@
+//Owning type conformance: The owningType of the subsettingFeature shall conform to the owingType of the subsettedFeature
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+package '1a-Parts Tree Simplified' {
+	
+	part rearAxleAssembly {			
+		part rearWheel: Wheel[2] ordered;
+		// XPECT errors --> "Subsetting.subsettedFeature(rearWheel) is ordered then subsettingFeature(rearWheel_1) shall be ordered."  at "rearWheel"
+		part rearWheel_1: Wheel[2] subsets rearWheel;
+		// XPECT errors --> "Subsetting.subsettedFeature(rearWheel) is ordered then subsettingFeature(rearWheel_2) shall be ordered."  at "rearWheel"
+		part rearWheel_2 subsets rearWheel;
+		// XPECT errors --> "Subsetting.subsettedFeature(rearWheel) is ordered then subsettingFeature(rearWheel_3) shall be ordered."  at "rearWheel"
+		part rearWheel_3 subsets rearWheel = rearWheel[1];
+	}
+	block Wheel;
+}
+

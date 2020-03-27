@@ -1,0 +1,27 @@
+//Owning type conformance: The owningType of the subsettingFeature shall conform to the owingType of the subsettedFeature
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'Subsetting Example' {
+		block Vehicle {
+		part eng : Engine;
+	}
+	block Engine;
+	
+	block SmallVehicle {
+		// XPECT errors --> "Couldn't resolve reference to Feature 'eng'." at "eng"
+		part smallEng : Engine subsets eng;
+	}
+}

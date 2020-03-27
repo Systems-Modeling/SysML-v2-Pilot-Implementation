@@ -1,0 +1,37 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'Redefinition Example' {
+
+	block Engine {
+		part cyl : Cylinder[4..6];
+	}
+	block SmallEngine :> Engine {
+		// XPECT errors --> "Subsetting.subsettingFeature(null)'s upperBound multiplicity(7) shall be less than or equal to Subsetting.subsettedFeature(cyl)'s upperBound multiplicity(6)." at "cyl"
+		part redefines cyl[7];
+		//* XPECT errors ---
+ 		"Subsetting.subsettingFeature(mycyl)'s lowerBound multiplicity(1) shall be greater than or equal to Subsetting.subsettedFeature(cyl)'s lowerBound multiplicity(4)." at "cyl"
+		"Subsetting.subsettingFeature(mycyl)'s upperBound multiplicity(8) shall be less than or equal to Subsetting.subsettedFeature(cyl)'s upperBound multiplicity(6)." at "cyl"
+		--- */
+		part mycyl: Cylinder[1..8] redefines cyl;
+	}
+	block BigEngine :> Engine {
+		// XPECT errors --> "Subsetting.subsettingFeature(null)'s lowerBound multiplicity(1) shall be greater than or equal to Subsetting.subsettedFeature(cyl)'s lowerBound multiplicity(4)." at "cyl"
+		part redefines cyl[1..6];
+		part bcyl: Cylinder[*];
+	}
+
+	block Cylinder;
+}

@@ -1,0 +1,28 @@
+//Owning type conformance: The owningType of the subsettingFeature shall not be to the owingType of the subsettedFeature
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'Redefinition Example' {
+
+	block Vehicle {
+		part eng : Engine;
+		// XPECT errors --> "Redefinition.subsettingFeature.owningType shall not the same as Redefinition.subsettedFeature.owningType" at "eng"
+		part smallEng : Engine redefines eng;
+	}
+	block Engine {
+		part cyl : Cylinder[4..6];
+	}
+	block Cylinder;
+}

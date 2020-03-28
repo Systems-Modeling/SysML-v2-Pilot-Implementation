@@ -1,6 +1,6 @@
 block Camera {
 	
-	perform takePicture[*] by PictureTaking::takePicture;
+	perform takePicture[*] as PictureTaking::takePicture;
 	
 	part focusingSubsystem {
 		perform takePicture::focus;

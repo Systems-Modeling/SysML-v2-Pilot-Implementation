@@ -199,9 +199,9 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	}
 
 	@Override
-	public EList<Feature> getFeature() {
+	public void transform() {
+		super.transform();
 		getSatisfyingFeatureConnector();
-		return super.getFeature();
 	}
 
 	/**

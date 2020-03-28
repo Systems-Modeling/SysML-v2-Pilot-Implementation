@@ -22,6 +22,7 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
 /**
@@ -47,6 +48,7 @@ import org.omg.sysml.lang.sysml.Usage;
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
 
 	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
+	public static final String REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT = "Requirements::RequirementCheck::subrequirements";
 
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
@@ -227,20 +229,24 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getReqId() {
-		return reqId;
+		return reqId == null? "": reqId;
 	}
 
+	@Override
+	public void setReqId(String newReqId) {
+		setReqIdGen(unescapeString(newReqId));
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setReqId(String newReqId) {
+	public void setReqIdGen(String newReqId) {
 		String oldReqId = reqId;
 		reqId = newReqId;
 		if (eNotificationRequired())
@@ -250,11 +256,14 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText() {
-		return text;
+		if (text == null) {
+			setText(getDocumentationText());
+		}
+		return text == null? "": text;
 	}
 
 	/**
@@ -336,11 +345,17 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
 		return getOwnedSubsettingWithComputedRedefinitions(
-				isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
-				isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
+				isRequirementConstraint()? REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
 				REQUIREMENT_SUBSETTING_BASE_DEFAULT);
 	}
 	
+	@Override
+	public boolean isRequirementConstraint() {
+		Type owningType = getOwningType();
+		return !isAssumptionConstraint() &&
+			   (owningType instanceof RequirementDefinition || 
+			    owningType instanceof RequirementUsage);
+	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

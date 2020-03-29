@@ -19,6 +19,7 @@
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>http://download.eclipse.org/releases/2019-12</eclipse-repository>
+    <plantuml-repository>http://hallvard.github.io/plantuml/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
   </properties>
 
@@ -26,6 +27,11 @@
     <repository>
       <id>eclipse</id>
       <url>${eclipse-repository}</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <id>plantUML</id>
+      <url>${plantuml-repository}</url>
       <layout>p2</layout>
     </repository>
   </repositories>

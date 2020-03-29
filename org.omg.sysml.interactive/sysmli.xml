@@ -25,7 +25,7 @@
         <fileset dir="${dir.libs}">
           <exclude name="**/lib/sysml-v2-api-*.jar"/>
         </fileset>
-        <regexpmapper from="^[^/]*/([A-Za-z]*/.*)" to="\1" handledirsep="yes"/>
+        <regexpmapper from="^[^/]*/(plantuml-epl-[^/]*/)?([A-Za-z]*/.*)" to="\2" handledirsep="yes"/>
       </mappedresources>
     </jar>
   </target>

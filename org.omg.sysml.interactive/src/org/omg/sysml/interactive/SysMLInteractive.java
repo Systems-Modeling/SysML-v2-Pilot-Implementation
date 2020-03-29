@@ -46,6 +46,7 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
@@ -216,6 +217,35 @@ public class SysMLInteractive extends SysMLUtil {
 			return SysMLInteractiveUtil.formatException(e);
 		}
 	}
+
+
+    private SysML2PlantUMLSvc sysml2PlantUMLSvc;
+    private SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
+        if (sysml2PlantUMLSvc == null) {
+            sysml2PlantUMLSvc = new SysML2PlantUMLSvc();
+        }
+        return sysml2PlantUMLSvc;
+    }
+
+	public void setGraphVizPath(String path) {
+		getSysML2PlantUMLSvc().setGraphVizPath(path);
+	}
+
+	public VizResult viz(String name) {
+		this.counter++;
+		try {
+			Element element = this.resolve(name);
+            if (element != null) {
+                return new VizResult(getSysML2PlantUMLSvc().getSVG(element));
+            } else {
+                return VizResult.unresolvedResult(name);
+            }
+		} catch (Exception e) {
+			return new VizResult(e);
+		}
+	}
+
+
 	
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
 		System.out.println("API base path: " + this.apiBasePath);

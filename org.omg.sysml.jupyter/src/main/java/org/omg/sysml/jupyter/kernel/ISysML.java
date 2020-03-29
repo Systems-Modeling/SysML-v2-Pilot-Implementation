@@ -12,6 +12,7 @@ import java.util.logging.Level;
 public class ISysML {
     public static final String LIBRARY_PATH_KEY = "ISYSML_LIBRARY_PATH";
     public static final String API_BASE_PATH_KEY = "ISYSML_API_BASE_PATH";
+    public static final String GRAPHVIZ_PATH_KEY = "ISYSML_GRAPHVIZ_PATH";
 
     private static volatile SysMLKernel kernel;
 

@@ -55,7 +55,7 @@ public class SysML2PlantUMLSvc {
         return bos.toString("UTF-8");
     }
 
-    public SysML2PlantUMLSvc() {
-        this.s2Text = new SysML2PlantUMLText(null);
+    public SysML2PlantUMLSvc(SysML2PlantUMLLinkProvider linkProvider) {
+        this.s2Text = new SysML2PlantUMLText(linkProvider);
     }
 }

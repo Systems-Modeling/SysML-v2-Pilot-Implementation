@@ -31,6 +31,8 @@ import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
@@ -46,6 +48,7 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
@@ -218,11 +221,25 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 
+    private class LinkProvider implements SysML2PlantUMLLinkProvider {
+        @Override
+        public String getLinkString(EObject eObj) {
+            // TODO: Delegate it to Jupyter environment
+            return null;
+        }
+
+        @Override
+        public String getText(EObject eObj) {
+            ICompositeNode node = NodeModelUtils.getNode(eObj);
+            if (node == null) return null;
+            return node.getText();
+        }
+    }
 
     private SysML2PlantUMLSvc sysml2PlantUMLSvc;
     private SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
         if (sysml2PlantUMLSvc == null) {
-            sysml2PlantUMLSvc = new SysML2PlantUMLSvc();
+            sysml2PlantUMLSvc = new SysML2PlantUMLSvc(new LinkProvider());
         }
         return sysml2PlantUMLSvc;
     }

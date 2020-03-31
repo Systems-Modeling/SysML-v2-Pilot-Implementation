@@ -37,6 +37,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.EObjectAtOffsetHelper;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -68,6 +70,13 @@ public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvi
             URI uri = SysMLDiagramLinkOpener.getEObjectLink(eObj);
             if (uri == null) return null;
             return uri.toString();
+        }
+
+        @Override
+        public String getText(EObject eObj) {
+            ICompositeNode node = NodeModelUtils.getNode(eObj);
+            if (node == null) return null;
+            return node.getText();
         }
     }
 

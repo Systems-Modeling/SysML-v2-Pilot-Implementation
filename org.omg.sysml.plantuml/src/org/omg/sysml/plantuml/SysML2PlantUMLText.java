@@ -37,22 +37,27 @@ import org.omg.sysml.lang.sysml.Block;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.PartProperty;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
+import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -63,6 +68,7 @@ public class SysML2PlantUMLText {
         MIXED,
         STRUCTURE,
         STATE_MACHINE,
+        IBD,
         ACTIVITY,
         SEQUENCE
     }
@@ -79,6 +85,11 @@ public class SysML2PlantUMLText {
         return linkProvider.getLinkString(eObj);
     }
 
+    private String getText(EObject eObj) {
+        if (linkProvider == null) return null;
+        return linkProvider.getText(eObj);
+    }
+
     private MODE diagramMode = MODE.MIXED;
 
     private void setMode(MODE m) {
@@ -89,12 +100,13 @@ public class SysML2PlantUMLText {
         if (eObj instanceof StateUsage) {
             return MODE.STATE_MACHINE;
         } else {
-            return MODE.MIXED;
+            //return MODE.IBD;
+        	return MODE.MIXED;
         }
     }
 
     private boolean skipStructure() {
-        return diagramMode != MODE.MIXED;
+        return (diagramMode == MODE.STATE_MACHINE);
     }
 
     private static void quote(StringBuilder sb, String s) {
@@ -161,6 +173,11 @@ public class SysML2PlantUMLText {
         StringBuilder sb = new StringBuilder("@startuml\n");
         if (!skipStructure()) {
             sb.append("allow_mixing\n");
+        }
+
+        if (diagramMode == MODE.IBD) {
+            sb.append("skinparam linetype polyline\nskinparam linetype ortho\n");
+            sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
         }
         
         restTexts.clear();
@@ -244,11 +261,15 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void addNameWithId(StringBuilder sb, Element e) {
-        quote(sb, e.getName());
+    private void addNameWithId(StringBuilder sb, Element e, String name) {
+        quote(sb, name);
         sb.append(" as ");
         addIdStr(sb, e);
         sb.append(' ');
+    }
+
+    private void addNameWithId(StringBuilder sb, Element e) {
+        addNameWithId(sb, e, e.getName());
     }
 
     private static class PRelation {
@@ -432,12 +453,21 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void addGeneralizations(StringBuilder sb, Type typ, String rel) {
+    private String getGeneralizationRelString(Generalization g) {
+        if (g instanceof Redefinition) {
+            return " x..|> ";
+        } else if (g instanceof Superclassing) {
+            return " --|> ";
+        }
+        return " ..|> ";
+    }
+
+    private void addGeneralizations(StringBuilder sb, Type typ) {
         for (Generalization g: typ.getOwnedGeneralization()) {
             Type gt = g.getGeneral();
-            if (gt.getName() != null) {
-                addPRelation(typ, gt, rel);
-            }
+            if (gt.getName() == null) continue;
+            String rel = getGeneralizationRelString(g);
+            addPRelation(typ, gt, rel);
         }
     }
 
@@ -454,6 +484,7 @@ public class SysML2PlantUMLText {
     }
 
     private Element getEnd(Feature f) {
+        if (f == null) return null;
         for (Subsetting ss: f.getOwnedSubsetting()) {
             return ss.getSubsettedFeature();
         }
@@ -472,11 +503,10 @@ public class SysML2PlantUMLText {
         return sb.toString();
     }
 
-    private Feature getRedefinedFeature(Feature f) {
+    private Redefinition getRedefinition(Feature f) {
         List<Redefinition> rs = f.getOwnedRedefinition();
         if (rs.isEmpty()) return null;
-        Redefinition r = rs.get(0);
-        return r.getRedefinedFeature();
+        return rs.get(0);
     }
 
     private String convertToDescription(StateSubactionMembership sam, PerformActionUsage pau) {
@@ -590,6 +620,20 @@ public class SysML2PlantUMLText {
         flushPRelations(sb);
     }
 
+    private void addConnector(StringBuilder sb, Connector c) {
+        List<Feature> ends = c.getConnectorEnd();
+        int size = ends.size();
+        if (size >= 2) {
+            Element end1 = getEnd(ends.get(0));
+            if (end1 == null) return;
+            for (int i = 1; i < size; i++) {
+                Element end2 = getEnd(ends.get(i));
+                if (end2 == null) continue;
+                addPRelation(end1, end2, "---", null);
+            }
+        }
+    }
+
     private void addType(StringBuilder sb, Type typ, Type parent) {
         if (typ instanceof StateUsage) {
             StateUsage su = (StateUsage) typ;
@@ -599,22 +643,63 @@ public class SysML2PlantUMLText {
             return;
         }
         if (!skipStructure()) {
-            sb.append("class ");
-            addNameWithId(sb, typ);
+            String keyword = "class ";
+            String style = " ";
+            String name = typ.getName();
             if (typ instanceof Block) {
-                sb.append(" << (B,green) >> ");
-                addGeneralizations(sb, typ, "--|>");
+                if (diagramMode == MODE.IBD) {
+                    keyword = "rectangle ";
+                    style = " <<block>> ";
+                } else {
+                    style = " << (B,green) >> ";
+                }
+                addGeneralizations(sb, typ);
             } else if (typ instanceof Class) {
-                addGeneralizations(sb, typ, "--|>");
+                if (diagramMode == MODE.IBD) {
+                    keyword = "rectangle ";
+                }
+                addGeneralizations(sb, typ);
             } else if (typ instanceof PartProperty) {
-                sb.append(" << (P,lightgreen) >> ");
-                addGeneralizations(sb, typ, "..|>");
+                if (diagramMode == MODE.IBD) {
+                    keyword = "rectangle ";
+                } else {
+                    style = " << (P,lightgreen) >> ";
+                }
+                addGeneralizations(sb, typ);
+            } else if (typ instanceof Connector) {
+                addConnector(sb, (Connector) typ);
+                return;
+            } else if (typ instanceof PortUsage) {
+                if (diagramMode == MODE.IBD) {
+                    keyword = "rectangle ";
+                    // TODO: We need another way to neatly print a name.
+                    // name = " ";
+                } else {
+                    style = " << (O,gray) >> ";
+                }
             } else if (typ instanceof Feature) {
-                sb.append(" << (F,yellow) >> ");
-                addGeneralizations(sb, typ, "..|>");
+                addGeneralizations(sb, typ);
+                if (diagramMode == MODE.IBD) {
+                    if (name == null) return;
+                    sb.append("rectangle ");
+                    Feature f = (Feature) typ;
+                    StringBuilder namesb = new StringBuilder();
+                    addFeatureText(namesb, f);
+                    addNameWithId(sb, f, namesb.toString());
+                    addLink(sb, f);
+                    sb.append('\n');
+                    return;
+                } else {
+                    style = " << (F,yellow) >> ";
+                }
             } else {
-                sb.append(" << (T,blue) >> ");
+                if (diagramMode == MODE.IBD) return;
+                style = " << (T,blue) >> ";
             }
+            if (name == null) return;
+            sb.append(keyword);
+            addNameWithId(sb, typ, name);
+            sb.append(style);
             addLink(sb, typ);
         }
         owned2P(sb, typ);
@@ -631,12 +716,47 @@ public class SysML2PlantUMLText {
         sb.append(name);
     }
 
+    private FeatureValue getFeatureValue(Feature f) {
+        // TODO: Multiple Feature Value.
+        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+            if (fm instanceof FeatureValue) return (FeatureValue) fm;
+        }
+        return null;
+    }
+
+    private void addFeatureText(StringBuilder sb, Feature f) {
+        String name = f.getName();
+        if (name == null) return;
+        sb.append(name);
+        addTypeText(sb, ": ", f);
+        FeatureValue fv = getFeatureValue(f);
+        if (fv != null) {
+            String text = getText(fv);
+            if (text != null) {
+                sb.append('=');
+                text = text.replace("\r", "");
+                text = text.replace("\n", "\\n");
+                sb.append(text);
+            }
+        }
+        Redefinition rd = getRedefinition(f);
+        if (rd != null) {
+            String text = getText(rd);
+            if (text != null) {
+                // waved decoration for redefinition
+                sb.append("\\n//:>>");
+                sb.append(text);
+                sb.append("//");
+            }
+        }
+    }
+
     private void type2P(StringBuilder sb, Type typ, Type parent) {
         if (typ == null) return;
-        String name = typ.getName();
-        if (name == null) return;
 
-        if ((parent != null) && !skipStructure()) {
+        if (diagramMode == MODE.IBD) {
+            if (parent instanceof Step) return; // TODO
+        } else if ((parent != null) && !skipStructure()) {
             if (typ instanceof PartProperty) {
                 sb = newText();
                 addPRelation(parent, typ, "*--");
@@ -644,10 +764,8 @@ public class SysML2PlantUMLText {
                 sb = newText();
                 addPRelation(parent, typ, "+--");
             } else if (typ instanceof Feature) {
-                sb.append(typ.getName());
-                Feature f = (Feature) typ;
-                addTypeText(sb, ": ", f);
-                sb.append("\n");
+                addFeatureText(sb, (Feature) typ);
+                sb.append('\n');
                 return;
             }
         }
@@ -656,9 +774,10 @@ public class SysML2PlantUMLText {
     }
 
     private void package2P(StringBuilder sb, org.omg.sysml.lang.sysml.Package pkg) {
-        if (!skipStructure()) {
+        String name = pkg.getName();
+        if (!((name == null) || skipStructure())) {
             sb.append("package ");
-            quote(sb, pkg.getName());
+            quote(sb, name);
             sb.append(' ');
             addLink(sb, pkg);
         }

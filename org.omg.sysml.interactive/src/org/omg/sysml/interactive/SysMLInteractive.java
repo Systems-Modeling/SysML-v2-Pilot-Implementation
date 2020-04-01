@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -234,6 +234,7 @@ public class SysMLInteractive extends SysMLUtil {
 				String modelName = element.getName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
+				processingFacade.commit();
 				System.out.println();
 				return modelName + " (" + processingFacade.getProjectId() + ")\n";
 			}

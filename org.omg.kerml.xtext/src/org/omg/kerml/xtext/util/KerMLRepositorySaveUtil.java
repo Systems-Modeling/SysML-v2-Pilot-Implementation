@@ -60,18 +60,51 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		return this.projectId;
 	}
 	
+	/**
+	 * Return the base path for API access. This is either as set via the command line "-b" option or,
+	 * otherwise, is the ApiElementProcessFacade default.
+	 * 
+	 * @return
+	 */
 	public String getBasePath() {
 		return this.basePath;
 	}
 	
+	/**
+	 * Get the library path that was set via command line "-l" option (if any).
+	 * 
+	 * @return	the optional library path
+	 */
 	public String getLibraryPath() {
 		return this.libraryPath;
 	}
 	
+	/**
+	 * Get the project name that was set from the command line argument.
+	 * 
+	 * @return
+	 */
 	public String getProjectName() {
 		return this.projectName;
 	}
 	
+	/**
+	 * Process the command line arguments:
+	 * <ul>
+	 * <li> Set the base path if the "-b" option is present.</li>
+	 * <li> Set the library path if the "-l" option is present.</li>
+	 * <li> Set the project name as the file name from the first argument after
+	 *      any options, stripped of its extension, with the current date/time
+	 *      appended.</li>
+	 * <li> Return the list of arguments with any options removed and the
+	 *      library path (if any) prepended to all arguments other than the
+	 *      first.</li>
+	 * </ul>
+	 * 
+	 * @param 	args		the original command line arguments
+	 * @return	the arguments without any options and with the library path (if given)
+	 *          prepended to arguments for library model files.
+	 */
 	protected String[] processArgs(String[] args) {
 		int n = args.length;
 		if (n > 0) {
@@ -109,6 +142,11 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		return null;
 	}
 	
+	/**
+	 * Initialize the traversal with an ApiProcessingFacade to write to a new repository Project.
+	 * 
+	 * @throws 	ApiException	if there is an error creating the new repository Project.
+	 */
 	protected void initialize() throws ApiException  {
 		String libraryPath = this.getLibraryPath();
 		if (libraryPath != null) {
@@ -119,6 +157,15 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		processingFacade.setTraversal(this.initialize(processingFacade));
 		processingFacade.setIsVerbose(true);
 		this.projectId = processingFacade.getProjectId();
+	}
+	
+	/**
+	 * Traverse the model and then commit the change set of ElementVersions so obtained.
+	 */
+	@Override
+	public void process() {
+		super.process();
+		((ApiElementProcessingFacade)this.traversal.getFacade()).commit();
 	}
 	
 	/**
@@ -135,8 +182,9 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				this.initialize();				
 				this.read(args);
 				
-				System.out.println("Base path is " + this.getBasePath());
-				System.out.println("Saving project " + this.getProjectName() + "... id is " + this.getProjectId());
+				System.out.println("/nBase path is " + this.getBasePath());
+				System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
+				System.out.println();
 				
 				this.process();
 			}

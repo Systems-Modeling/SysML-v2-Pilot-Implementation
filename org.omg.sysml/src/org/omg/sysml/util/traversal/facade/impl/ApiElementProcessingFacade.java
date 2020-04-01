@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Project Driven Solutions, Inc.
+ * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,10 +32,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.api.CommitApi;
 import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.model.Commit;
+import org.omg.sysml.model.ElementIdentity;
+import org.omg.sysml.model.ElementVersion;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
@@ -56,8 +59,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	private static final int MAX_DOT_COUNT = 100;
 	
 	private final ApiClient apiClient = new ApiClient();
-	private final ElementApi elementApi = new ElementApi(apiClient);
 	private final ProjectApi projectApi = new ProjectApi(apiClient);
+	private final CommitApi commitApi = new CommitApi(apiClient);
 
 	private final org.omg.sysml.model.Project project;
 	private Traversal traversal;
@@ -76,9 +79,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public ApiElementProcessingFacade(String projectName, String basePath) throws ApiException {
 		this.apiClient.setBasePath(basePath);
 		org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
-		project.setAtType("Project");
 		project.setName(projectName);
-		this.project = projectApi.createProject(project);
+		this.project = projectApi.postProject(project);
 	}
 	
 	/**
@@ -133,7 +135,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	the UUID of the project saved in the repository
 	 */
 	public String getProjectId() {
-		return this.project.getIdentifier().toString();
+		return this.project.getId().toString();
 	}
 	
 	/**
@@ -149,12 +151,11 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	/**
 	 * Create an Identified object containing the identifier of the given element.
 	 * 
-	 * @param element
-	 * @return
+	 * @param 	element				the Element to be identified
+	 * @return	an Identified object the the given Element (or null if the input is null).
 	 */
 	private Identified getIdentified(Element element) {
-		Object identifier = this.traversal.getIdentifier(element);
-		return identifier instanceof UUID? identified((UUID)identifier): null;
+		return element == null? null: identified(UUID.fromString(element.getIdentifier()));
 	}
 	
 	/**
@@ -171,21 +172,6 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Return a new API Element initialized with type, containing Project and name from the given 
-	 * source model Element.
-	 * 
-	 * @param 	modelElement		the Element as it is represented in Ecore
-	 * @return	the Element as it is represented in the API
-	 */
-	protected org.omg.sysml.model.Element initialize(Element modelElement) {
-		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
-		apiElement.put("@type", modelElement.eClass().getName());
-		apiElement.put("containingProject", identified(this.project.getIdentifier()));
-		apiElement.put("name", modelElement.getName());
-		return apiElement;
-	}
-	
-	/**
 	 * Use the API to save the given source model Element to the repository. Return the data for the Element
 	 * as it was saved in the repository.
 	 * 
@@ -193,18 +179,27 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	the Element as saved in the repository, as it is represented in the API
 	 * @throws 	ApiException
 	 */
-	protected org.omg.sysml.model.Element createElement(org.omg.sysml.model.Element apiElement) {
-		try {
-			return this.elementApi.createElement(apiElement);
-		} catch (ApiException e) {
-			System.out.println();
-			if (e.getCode() >= 500) {
-				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
-			} else {
-				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-				return null;
+	@SuppressWarnings("unchecked")
+	protected org.omg.sysml.model.ElementVersion createElementVersion(Element element) {
+		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
+		EClass eClass = element.eClass();
+		apiElement.put("@type", eClass.getName());
+		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
+		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
+			String name = feature.getName();
+			if (name == null || !(name.endsWith("_comp") || apiElement.containsKey(name))) {
+				Object value = element.eGet(feature);
+				if (feature instanceof EReference) {
+					value = isLibraryElement? null:
+							feature.isMany()?
+								getIdentified((List<Element>)value):
+								getIdentified((Element)value);
+				}
+				apiElement.put(feature.getName(), value);
 			}
 		}
+		return new ElementVersion().data(apiElement).
+				identity(new ElementIdentity().id(UUID.fromString(element.getIdentifier())));
 	}
 	
 	/**
@@ -215,16 +210,15 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * 			and whether it is a proxy.
 	 */
 	public static String descriptionOf(Element element) {
-		String s = element.eClass().getName() + "@" + Integer.toHexString(element.hashCode());
+		String s = element.eClass().getName();
 		String name = element.getName();
 		if (name != null) {
 			s += " (" + name + ")";
-		}
-		
+		}		
 		if (element.eIsProxy()) {
 			s += " PROXY";
 		}
-		return s;
+		return s + " " + element.getIdentifier();
 	}
 	
 	/**
@@ -238,7 +232,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	@Override
 	public Object process(Element element) {
 		if (this.isVerbose()) {
-			System.out.print("Saving " + descriptionOf(element) + "... ");
+			System.out.println("Saving " + descriptionOf(element));
 		} else {
 			if (dotCount == MAX_DOT_COUNT) {
 				System.out.println();
@@ -247,47 +241,24 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 			System.out.print(".");
 			dotCount++;
 		}
-		Object identifier = UUID.fromString((String)this.createElement(this.initialize(element)).get("identifier"));
-		if (identifier == null) {
-			identifier = Integer.toHexString(element.hashCode());
-		}
-		if (this.isVerbose()) {
-			System.out.println("id is " + identifier);
-		}
-		return identifier;
+		return this.createElementVersion(element);
 	}
-
-	/**
-	 * Post-process the given Element by updating its record in the repository with the values of 
-	 * all its attributes (unless it is a library model element, in which case only its non-referential
-	 * attribute values are saved). This is done as a post-processing step so that any referenced Elements
-	 * will already have been visited and have generated identifiers.
-	 * 
-	 * @param 	element				the Element to be post-processed
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void postProcess(Element element) {
-		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
-		EClass eClass = element.eClass();
-		apiElement.put("@type", eClass.getName());
-		apiElement.put("identifier", this.traversal.getIdentifier(element).toString());
-		apiElement.put("containingProject", identified(this.project.getIdentifier()));
-		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
-		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
-			String name = feature.getName();
-			if (!apiElement.containsKey(name)) {
-				Object value = element.eGet(feature);
-				if (feature instanceof EReference) {
-					value = isLibraryElement? null:
-							feature.isMany()?
-								getIdentified((List<Element>)value):
-								getIdentified((Element)value);
-				}
-				apiElement.put(feature.getName(), value);
+	
+	public void commit() {
+		List<ElementVersion> changeSet = this.traversal.getIdentifiers().stream().
+				map(ElementVersion.class::cast).collect(Collectors.toList());
+		try {
+			Commit commit = new Commit().changes(changeSet);
+			if (this.isVerbose()) {
+				System.out.println(commit);
+				System.out.print("\nPosting Commit... ");
 			}
+			commit = this.commitApi.postCommitByProject(this.project.getId(), commit);
+			if (this.isVerbose()) {
+				System.out.println(commit.getId());
+			}
+		} catch (ApiException e) {
+			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
 		}
-		this.createElement(apiElement);
 	}
-
 }

@@ -24,6 +24,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -374,11 +375,15 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If no identifier has been set, then generate a random UUID and set the identifier to that.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getIdentifier() {
+		if (identifier == null) {
+			identifier = UUID.randomUUID().toString();
+		}
 		return identifier;
 	}
 

@@ -11,7 +11,7 @@ package '15_19-Materials with Properties' {
     	ref scale: AtomicMassUnit redefines QuantityValue::scale;
     }
     
-    block TensileStrengthUnit :> MeasurementUnit {
+    block TensileStrengthUnit :> SIDerivedUnit {
 		value lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = -1;
 		}

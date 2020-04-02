@@ -91,7 +91,7 @@ package '4a1-Functional Allocation' {
 					}
 				}
 				part rightAxle redefines vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle {
-					port axleToWheelPort redefines vehicle1_c1::rearAxleAssembly::rearAxle::leftAxle::axleToWheelPort {
+					port axleToWheelPort redefines vehicle1_c1::rearAxleAssembly::rearAxle::rightAxle::axleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}

@@ -25,6 +25,7 @@ package 'Redefinition Example' {
 	}
 	block BigEngine :> Engine {
 		part cyl1[6] :> cyl;
+		part cyl0[0..1] :> cyl;
 	}
 
 	block Cylinder;

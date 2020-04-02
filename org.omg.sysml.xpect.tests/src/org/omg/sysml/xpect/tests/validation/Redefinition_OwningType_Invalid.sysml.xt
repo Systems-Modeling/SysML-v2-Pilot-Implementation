@@ -1,4 +1,3 @@
-//Owning type conformance: For redefinition, the owningType of the subsettingFeature shall not be the owinngType of the subsettedFeature
 //* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
@@ -19,7 +18,7 @@ package 'Redefinition Example' {
 
 	block Vehicle {
 		part eng : Engine;
-		// XPECT errors --> "Redefinition.subsettingFeature.owningType shall not the same as Redefinition.subsettedFeature.owningType" at "eng"
+		// XPECT errors --> "Redefinition.redefiningFeature.owningType shall not the same as Redefinition.redefinedFeature.owningType" at "eng"
 		part smallEng : Engine redefines eng;
 	}
 	block Engine {

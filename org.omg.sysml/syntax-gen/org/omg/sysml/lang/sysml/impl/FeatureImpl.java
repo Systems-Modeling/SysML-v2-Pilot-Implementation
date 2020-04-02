@@ -292,15 +292,34 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_UNIQUE, oldIsUnique, isUnique));
 	}
+	
+	private boolean isOrderChecked = false;
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Force the Feature to be ordered if any subsetted Feature is ordered.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isOrdered() {
-		return isOrdered;
+		return checkIsOrdered(this, new HashSet<Feature>());
+	}
+	
+	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
+		if (feature.isOrdered || feature.isOrderChecked) {
+			return feature.isOrdered;
+		} else {
+			visited.add(feature);
+			for (Subsetting subsetting: feature.getOwnedSubsettingWithoutDefault()) {
+				Feature subsettedFeature = subsetting.getSubsettedFeature();
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 	/**

@@ -5,10 +5,12 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.omg.sysml.xpect.tests.expression.SysMLExpressionTest;
 import org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests;
+import org.omg.sysml.xpect.tests.validation.SysMLValidationTests;
 
 @SuiteClasses({ 
 		SysMLSimpleTests.class, //
 		SysMLExpressionTest.class, //
+		SysMLValidationTests.class, //
 })
 @RunWith(Suite.class)
 public class AllSysMLXpectTests {

@@ -9,12 +9,12 @@ import org.omg.kerml.xtext.validation.KerMLValidator
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Type
-import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.LiteralUnbounded
+import java.util.Set
 
 /**
  * This class contains custom validation rules. 
@@ -73,20 +73,16 @@ class SysMLValidator extends KerMLValidator {
 					SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
 
 		//ordering conformance
-		var setted_o = sub.subsettedFeature?.ordered 
-		if (setted_o == true){
-			var setting_o = sub.subsettingFeature?.ordered
-			if ( setting_o !== true){
-				if ((setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
-					error("Subsetting.subsettedFeature(" + subsettedFeatureName +") is ordered then subsettingFeature(" + subsettingFeatureName + ") shall be ordered.", sub, 
-						SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_ORDEREDCONFORMANCE)
-				}
+		if (sub.subsettedFeature !== null && sub.subsettedFeature.ordered && sub.subsettingFeature !== null && !sub.subsettingFeature.ordered){
+			if (setting_m_u instanceof LiteralUnbounded || (setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
+				error("Subsetting.subsettedFeature(" + subsettedFeatureName +") is ordered then subsettingFeature(" + subsettingFeatureName + ") shall be ordered.", sub, 
+					SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_ORDEREDCONFORMANCE)
 			}
 		}
 		
 		//uniqueness conformance
-		if ( sub.subsettedFeature.unique && !sub.subsettingFeature.unique){
-			if ((setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
+		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
+			if (setting_m_u instanceof LiteralUnbounded || (setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
 				error("Subsetting.subsettedFeature(" + subsettedFeatureName +") is unique then subsettingFeature(" + subsettingFeatureName + ") shall be unique.", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 			}
@@ -97,23 +93,22 @@ class SysMLValidator extends KerMLValidator {
 			error("Redefinition.subsettingFeature.owningType shall not the same as Redefinition.subsettedFeature.owningType", sub, 
 				SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
 		}
-		else if (subsettingOwningType !== subsettedOwningType){
-			if (!isAInheritedB(subsettingOwningType, subsettedOwningType)){
-				error("Subsetting.subsettingFeature.owningType(" + sub.subsettingFeature + ") is not the same/direct/indirect specialization of Subsetting.subsettedFeature.owningType(" + sub.subsettedFeature.name + ")", sub, 
-				SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
-			}
+		else if (!subsettingOwningType.conformsTo(subsettedOwningType)){
+			error("Subsetting.subsettingFeature.owningType(" + sub.subsettingFeature + ") is not the same/direct/indirect specialization of Subsetting.subsettedFeature.owningType(" + sub.subsettedFeature.name + ")", sub, 
+			SysMLPackage.eINSTANCE.subsetting_SubsettedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_OWNINGTYPECONFORMANCE)
 		}
 		//else subsettingOwningType == subsettingOwnedType && !sub instanceof Redefinition
 	}
 	
-	protected def boolean isAInheritedB(Type a, Type b){
-		var tas = a.ownedGeneralization
-		for(Generalization ta: tas){
-			if (ta.general == b)
-				return true
-			else if (isAInheritedB(ta.general,b))
-				return true
-		}
-		return false; 
+	protected def boolean conformsTo(Type subtype, Type supertype) {
+		subtype.conformsTo(supertype, newHashSet);
 	}
+	
+	// Note: Generalizations are allowed to be cyclic.
+	protected def boolean conformsTo(Type subtype, Type supertype, Set<Type> visited) {
+		visited.add(subtype);
+		return subtype === supertype || 
+			subtype.ownedGeneralization.exists[!visited.contains(general) && general.conformsTo(supertype, visited)]
+	}
+
 }

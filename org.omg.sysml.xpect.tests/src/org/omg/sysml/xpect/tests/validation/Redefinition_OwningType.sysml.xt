@@ -1,0 +1,42 @@
+//Owning type conformance: For a redefinition, the owningType of the subsettingFeature shall not be to the owningType of the subsettedFeature
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'Redefinition Example' {
+
+	block Vehicle {
+		part eng : Engine;
+	}
+	block SmallVehicle :> Vehicle {
+		part smallEng : SmallEngine redefines eng;
+	}
+	block BigVehicle :> Vehicle {
+		part bigEng : BigEngine :>> eng;
+	}
+
+	block Engine {
+		part cyl : Cylinder[4..6];
+	}
+	block SmallEngine :> Engine {
+		part redefines cyl[4];
+	}
+	block BigEngine :> Engine {
+		part redefines cyl[6];
+	}
+
+	block Cylinder;
+}

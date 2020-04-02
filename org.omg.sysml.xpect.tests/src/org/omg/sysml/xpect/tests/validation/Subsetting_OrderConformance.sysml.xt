@@ -1,4 +1,3 @@
-//Owning type conformance: The owningType of the subsettingFeature shall conform to the owingType of the subsettedFeature
 //* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
@@ -26,12 +25,17 @@ END_SETUP
 package 'Subsetting Example' {
 	
 	part rearAxleAssembly {			
-		part rearWheel: Wheel[2] ordered;
 		//subsetting - uniquness conformance is valid if both subsetting and subsetted features are ordered
+		part rearWheel: Wheel[2] ordered;
 		part rearWheel_1: Wheel[2] ordered subsets rearWheel;
+		
 		//subsetting - ordering conformance is valid if subsetting multiplicity upperBound is less then or equal to 1
 		part rearWheel_2[0..1] subsets rearWheel;
 		part rearWheel_3[1] subsets rearWheel = rearWheel[1];
+
+		//subsetting - uniquness conformance is valid if both subsetting and subsetted features are ordered
+		part rearWheels: Wheel[*] ordered;
+		part rearWheels_1: Wheel[1] subsets rearWheels;		
 	}
 	block Wheel;
 }

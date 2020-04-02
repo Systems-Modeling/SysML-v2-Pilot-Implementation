@@ -1,4 +1,4 @@
-//Owning type conformance: The owningType of the subsettingFeature shall not be to the owingType of the subsettedFeature
+//Owning type conformance: For redefinition, the owningType of the subsettingFeature shall not be the owinngType of the subsettedFeature
 //* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {

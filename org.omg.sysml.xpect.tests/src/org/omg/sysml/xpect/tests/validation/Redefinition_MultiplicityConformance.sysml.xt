@@ -1,4 +1,3 @@
-//Owning type conformance: The owningType of the subsettingFeature shall not be to the owingType of the subsettedFeature
 //* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
@@ -17,16 +16,6 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package 'Redefinition Example' {
-
-	block Vehicle {
-		part eng : Engine;
-	}
-	block SmallVehicle :> Vehicle {
-		part smallEng : SmallEngine redefines eng;
-	}
-	block BigVehicle :> Vehicle {
-		part bigEng : BigEngine :>> eng;
-	}
 
 	block Engine {
 		part cyl : Cylinder[4..6];

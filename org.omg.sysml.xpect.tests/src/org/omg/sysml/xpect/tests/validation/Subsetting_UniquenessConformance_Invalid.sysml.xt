@@ -26,7 +26,7 @@ package '1a-Parts Tree Simplified' {
 	
 	part rearAxleAssembly {			
 		part rearWheel: Wheel[2];
-		// XPECT errors --> " Subsetting.subsettedFeature(rearWheel) is unique then subsettingFeature(rearWheel_1) shall be unique." at "rearWheel"
+		// XPECT errors --> "Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique" at "rearWheel"
 		part rearWheel_1: Wheel[2] nonunique subsets rearWheel;
 		//subsetting - uniquness conformance is valid if subsetting multiplicity upperBound is less then or equal to 1
 		part rearWheel_2[0..1] nonunique subsets rearWheel;

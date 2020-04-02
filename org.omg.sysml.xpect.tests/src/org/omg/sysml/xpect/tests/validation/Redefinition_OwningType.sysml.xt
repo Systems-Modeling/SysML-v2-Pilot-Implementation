@@ -17,9 +17,14 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package 'Redefinition Example' {
+	
+	part wheel : Wheel;
 
 	block Vehicle {
 		part eng : Engine;
+		
+		// A feature owned by a package is treated as if it was owned by Anything.
+		part redefines wheel;
 	}
 	block SmallVehicle :> Vehicle {
 		part smallEng : SmallEngine redefines eng;
@@ -39,4 +44,5 @@ package 'Redefinition Example' {
 	}
 
 	block Cylinder;
+	block Wheel;
 }

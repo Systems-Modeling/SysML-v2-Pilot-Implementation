@@ -20,16 +20,16 @@ package 'Redefinition Example' {
 		part cyl : Cylinder[4..6];
 	}
 	block SmallEngine :> Engine {
-		// XPECT errors --> "Subsetting.subsettingFeature(null)'s upperBound multiplicity(7) shall be less than or equal to Subsetting.subsettedFeature(cyl)'s upperBound multiplicity(6)." at "cyl"
+		// XPECT errors --> "Subsetting/redefining feature cannot have larger multiplicity upper bound" at "cyl"
 		part redefines cyl[7];
 		//* XPECT errors ---
- 		"Redefinition.redefiningFeature(mycyl)'s lowerBound multiplicity(1) shall be greater than or equal to Redefinition.redefinedFeature(cyl)'s lowerBound multiplicity(4)." at "cyl"
-		"Subsetting.subsettingFeature(mycyl)'s upperBound multiplicity(8) shall be less than or equal to Subsetting.subsettedFeature(cyl)'s upperBound multiplicity(6)." at "cyl"
+ 		"Redefining feature cannot have smaller multiplicity lower bound" at "cyl"
+		"Subsetting/redefining feature cannot have larger multiplicity upper bound" at "cyl"
 		--- */
 		part mycyl: Cylinder[1..8] redefines cyl;
 	}
 	block BigEngine :> Engine {
-		// XPECT errors --> "Redefinition.redefiningFeature(null)'s lowerBound multiplicity(1) shall be greater than or equal to Redefinition.redefinedFeature(cyl)'s lowerBound multiplicity(4)." at "cyl"
+		// XPECT errors --> "Redefining feature cannot have smaller multiplicity lower bound" at "cyl"
 		part redefines cyl[1..6];
 		part bcyl: Cylinder[*];
 	}

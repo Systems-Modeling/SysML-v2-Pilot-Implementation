@@ -2,8 +2,11 @@ package '15_01-Constants' {
     import SI::*;
 
     /* TODO: Move mathematical and fundamental physical constants to model library package(s) */
-    /* TODO: Add capability to mark constant values as "constant" or "invariant" */
     /* TODO: Add concept of precision for Real values */
+    
+    /* Note: Value properties that are bound to specific values are constants, have the specified
+     * values in all contexts. It is not legal to redefine them.
+     */    
     
     /**
      * Standard mathematical constants

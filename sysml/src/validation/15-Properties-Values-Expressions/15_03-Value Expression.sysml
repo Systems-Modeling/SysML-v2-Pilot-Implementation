@@ -14,7 +14,7 @@ package '15_03-Value Expression' {
     	value hubDiameter: LengthValue = 18@['in'];
         value width: LengthValue = 245@[mm];
         value placement: AxisPlacement3DCartesian[0..1];
-        /* TODO: Add derived value outerDiameter = (self.hubDiameter + 2 * self.tyre.height)@[mm]; */
+        value outerDiameter = (hubDiameter + 2 * tyre::height)@[mm];
         part tyre: Tyre[1];
     }
     

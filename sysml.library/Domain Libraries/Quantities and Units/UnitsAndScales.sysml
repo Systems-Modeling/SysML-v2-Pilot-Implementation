@@ -183,7 +183,6 @@ package UnitsAndScales {
 	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
 	 */
 	value type QuantityDimension {
-		// Should be ordered or the order should be derived from an ordered set of base units
 		value baseUnitPowerFactor: UnitPowerFactor[0..*] ordered;
 	}
 

@@ -4,9 +4,10 @@ package BasicGeometry {
 
     /**
      * Component of Cartesian direction vector with value in interval [-1:1]
-     * TODO: Add range restriction constraint {self.num => -1.0 and self.num <= 1.0}
      */
-    value type DirectionValue :> DimensionOneValue;
+    value type DirectionValue :> DimensionOneValue {
+    	assert constraint { num >= -1.0 & num <= 1.0 }
+    }
 
     value type CoordinateValue :> LengthValue;
 
@@ -20,7 +21,7 @@ package BasicGeometry {
         value xDir: DirectionValue;
         value yDir: DirectionValue;
         value zDir: DirectionValue;
-        // TODO: Add constraint { Abs(1 - Sqrt(xDir**2 + yDir**2 + zDir**2)) < epsilon }
+        assert constraint { Abs(1 - Sqrt(xDir**2 + yDir**2 + zDir**2)) == 0.0 }
     }
 
     value type AxisPlacement3DCartesian {

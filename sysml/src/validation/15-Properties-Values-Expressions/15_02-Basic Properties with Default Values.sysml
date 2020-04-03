@@ -3,6 +3,10 @@ package '15_02-Basic Properties with Default Values' {
     import USCustomaryUnits::*;
     import BasicGeometry::AxisPlacement3DCartesian;
 
+	/* Note: The values given below for various properties are NOT default values/
+	 * They are fixed bound values for these properties.
+	 */
+	 
     block Wheel {
         value hubDiameter: LengthValue = 18@['in'];
         value width: LengthValue = 245@[mm];

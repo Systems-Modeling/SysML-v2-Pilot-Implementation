@@ -14,7 +14,7 @@
   <property name="sysmlv2api.jar" refid="sysmlv2api-id"/> 
 
   <target name="create_jar">
-    <jar destfile="${jar.file}">
+    <jar destfile="${jar.file}" update="true">
       <manifest>
         <attribute name="Main-Class" value="${main.class}" />
       </manifest>

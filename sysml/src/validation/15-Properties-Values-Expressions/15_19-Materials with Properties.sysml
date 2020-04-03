@@ -1,16 +1,17 @@
 package '15_19-Materials with Properties' {
 	import SI::*;
 	
-	/** This needs to be fully defined. */
-    block AtomicMassUnit :> MeasurementUnit;
+	// TODO: Move definition of atomic mass and Da to SI
+	block AtomicMassUnit :> MassUnit;
         
-    part Da = AtomicMassUnit();
-
     value type AtomicMassValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
     	ref mRef: AtomicMassUnit redefines QuantityValue::mRef;
     }
     
+    part Da = AtomicMassUnit(name => "dalton", unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.6605390666050e-27));
+
+	// TODO: Move definition of tensile strength and N/mm² to SI
     block TensileStrengthUnit :> MeasurementUnit {
 		value lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = -1;
@@ -27,6 +28,8 @@ package '15_19-Materials with Properties' {
 		value num: Real redefines QuantityValue::num;
     	ref mRef: TensileStrengthUnit redefines QuantityValue::mRef;
     }
+    
+    part 'N/mm²': TensileStrengthUnit = N / mm**2 {name redefines MeasurementReference::name = "newton per square millimetre";}
 
     block Substance;
 
@@ -65,6 +68,6 @@ package '15_19-Materials with Properties' {
         	MaterialFraction(Carbon, 0.0018), 
         	MaterialFraction(Manganese, 0.012)
         };
-        value tensileStrength: TensileStrengthValue = 980@[N/(mm^2)];
+        value tensileStrength: TensileStrengthValue = 980@['N/mm²'];
     }
 }

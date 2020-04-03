@@ -1,12 +1,12 @@
 package '15_01-Constants' {
     import SI::*;
-    import USCustomaryUnits::*;
 
-    /* Math and physical constants should be defined in the model library. */
+    /* TODO: Move mathematical and fundamental physical constants to model library package(s) */
+    /* TODO: Add capability to mark constant values as "constant" or "invariant" */
+    /* TODO: Add concept of precision for Real values */
     
-     /**
-     Examples of mathematical constants
-     Note: There should be a way to mark these as "invariant" 
+    /**
+     * Standard mathematical constants
      */
     package 'Mathematical Constants' {
         value e: Real = 2.71828182845904523536;
@@ -14,36 +14,11 @@ package '15_01-Constants' {
     }
 
     /**
-     * Should this be in the ISQ library model?
-     */
-    value type DimensionOneValue :> QuantityValue {
-		value num: Real redefines QuantityValue::num;
-    	ref mRef: UnitOfDimensionOne redefines QuantityValue::mRef;
-    }
-    
-    /**
-     * Should this ibe in the ISQ library model?
-     */
-    block AccelerationUnit :> SIDerivedUnit {
-		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		value timePowerFactor :> SIDerivedUnit::timePowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = -2;
-		}		
-    }
-    value type AccelerationValue :> QuantityValue {
-		value num: Real redefines QuantityValue::num;
-    	ref mRef: AccelerationUnit redefines QuantityValue::mRef;
-    }
-
-    /**
-     Examples of fundamental physical constants
-     Note: There should be a way to mark these as "invariant" 
-     */
-    /**
+     * Standard fundamental physical constants
+     *
      * The reference source is:
-     CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2010 Recommended Values - See http://www.codata.org/committees-and-groups/fundamental-physical-constants/tgfc-previous-values-and-publications
+     * CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2010 Recommended Values
+     * See http://www.codata.org/committees-and-groups/fundamental-physical-constants/tgfc-previous-values-and-publications
      */
     package 'Fundamental Physical Constants' {
         value 'fine structure constant': DimensionOneValue = 7.297352569824E-3;
@@ -52,11 +27,10 @@ package '15_01-Constants' {
     }
 
     package 'Global Context' {
-        value 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@[m/(s^2)];
+        value 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@['m/s²'];
     }
 
     package 'Model X Context' {
         value 'amplifier gain': DimensionOneValue = 3.5;
     }
-
 }

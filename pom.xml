@@ -12,7 +12,13 @@
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>
     <module>org.omg.sysml.plantuml</module>
-    <module>org.omg.sysml.interactive</module>
+    <module>org.omg.kerml.xtext.ui</module>
+    <module>org.omg.sysml.xtext.ui</module>
+    <module>org.omg.kerml.xtext.ide</module>
+    <module>org.omg.sysml.xtext.ide</module>
+<!--    <module>org.omg.sysml.interactive</module> -->
+    <module>org.omg.sysml.feature</module>
+    <module>org.omg.sysml.site</module>
   </modules>
 
   <properties>
@@ -38,6 +44,47 @@
         <version>${tycho-version}</version>
         <extensions>true</extensions>
       </plugin>
+
+      <plugin>
+	<groupId>org.eclipse.tycho</groupId>
+	<artifactId>tycho-p2-repository-plugin</artifactId>
+	<version>${tycho-version}</version>
+	<configuration>
+	  <includeAllDependencies>false</includeAllDependencies>
+	</configuration>
+      </plugin>
+
+      <plugin>
+	<groupId>org.eclipse.tycho.extras</groupId>
+	<artifactId>tycho-source-feature-plugin</artifactId>
+	<version>${tycho-version}</version>
+	<executions>
+	  <execution>
+	    <id>source-feature</id>
+	    <phase>package</phase>
+	    <goals>
+	      <goal>source-feature</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <excludes/>
+	</configuration>
+      </plugin>
+      <plugin>
+	<groupId>org.eclipse.tycho</groupId>
+	<artifactId>tycho-source-plugin</artifactId>
+	<version>${tycho-version}</version>
+	<executions>
+	  <execution>
+	    <id>plugin-source</id>
+	    <goals>
+	      <goal>plugin-source</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+
     </plugins>
   </build>
 </project>

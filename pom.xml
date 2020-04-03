@@ -16,7 +16,7 @@
     <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
-<!--    <module>org.omg.sysml.interactive</module> -->
+    <module>org.omg.sysml.interactive</module>
     <module>org.omg.sysml.feature</module>
     <module>org.omg.sysml.site</module>
   </modules>

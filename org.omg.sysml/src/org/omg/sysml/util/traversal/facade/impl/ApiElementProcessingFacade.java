@@ -23,6 +23,7 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -45,6 +46,8 @@ import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
 /**
  * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
+ * A change set of ElementVersions is constructed during traversal of the model. Once the traversal is
+ * completed, this change set can be committed to the repository.
  * 
  * @author Ed Seidewitz
  *
@@ -67,6 +70,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	
 	private boolean isVerbose = false;
 	private int dotCount = 0;
+	
+	private final List<ElementVersion> changeSet = new ArrayList<>();
 
 	/**
 	 * Create a facade for processing the Elements of a project with the given name. A project with that name
@@ -139,12 +144,30 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	/**
+	 * Return the change set of ElementVersions to be committed.
+	 * 
+	 * @return	the change set of ElementsVersions to be committed. 
+	 */
+	protected List<ElementVersion> getChangeSet() {
+		return this.changeSet;
+	}
+	
+	/**
+	 * Add an ElementVersion to the change set.
+	 * 
+	 * @param 	elementVersion	the ElementVersion to be added to the change set
+	 */
+	protected void addToChangeSet(ElementVersion elementVersion) {
+		this.changeSet.add(elementVersion);
+	}
+	
+	/**
 	 * Create an Identified object with the given identifier.
 	 * 
 	 * @param 	identifier			the UUID of the object being identified
 	 * @return	an Identified object with the given identifier
 	 */
-	private static Identified identified(UUID identifier) {
+	protected static Identified identified(UUID identifier) {
 		return new Identified().identifier(identifier);
 	}
 	
@@ -154,8 +177,9 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	element				the Element to be identified
 	 * @return	an Identified object the the given Element (or null if the input is null).
 	 */
-	private Identified getIdentified(Element element) {
-		return element == null? null: identified(UUID.fromString(element.getIdentifier()));
+	protected Identified getIdentified(Element element) {
+		Object identifier = this.traversal.getIdentifier(element);
+		return identifier instanceof UUID? identified((UUID)identifier): null;
 	}
 	
 	/**
@@ -164,7 +188,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	elements			the Elements being identified
 	 * @return	a list of Identified objects with the identifiers of the given elements
 	 */
-	private List<Identified> getIdentified(List<Element> elements) {
+	protected List<Identified> getIdentified(List<Element> elements) {
 		return elements.stream().
 				map(this::getIdentified).
 				filter(id->id != null).
@@ -172,12 +196,12 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Use the API to save the given source model Element to the repository. Return the data for the Element
-	 * as it was saved in the repository.
+	 * Create an ElementVersion for the given model Element including the values of all its attributes 
+	 * (unless it is a library model element, in which case only its non-referential attribute values 
+	 * are included). The ID for the ElementVersion uses the identifier from the model Element.
 	 * 
-	 * @param 	modelElement		the source model Element as it is represented in Ecore
-	 * @return	the Element as saved in the repository, as it is represented in the API
-	 * @throws 	ApiException
+	 * @param 	element				the source model Element as it is represented in Ecore
+	 * @return	an ElementVersion with the API representation of the given Element as its data
 	 */
 	@SuppressWarnings("unchecked")
 	protected org.omg.sysml.model.ElementVersion createElementVersion(Element element) {
@@ -222,9 +246,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 	
 	/**
-	 * Save the given Element to the repository and, if successful, return the UUID created for it.
-	 * If there is an exception while saving the element, return an identifier based on the
-	 * Element hash code, so that the Element can still be recorded as having been visited.
+	 * Record that the given Element is being processed by returning a UUID constructed
+	 * from its identifier.
 	 * 
 	 * @param 	element				the Element to be processed
 	 * @return	a unique identifier for the processed Element
@@ -232,7 +255,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	@Override
 	public Object process(Element element) {
 		if (this.isVerbose()) {
-			System.out.println("Saving " + descriptionOf(element));
+			System.out.println("Processing " + descriptionOf(element));
 		} else {
 			if (dotCount == MAX_DOT_COUNT) {
 				System.out.println();
@@ -241,22 +264,33 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 			System.out.print(".");
 			dotCount++;
 		}
-		return this.createElementVersion(element);
+		return UUID.fromString(element.getIdentifier());
 	}
 	
+	/**
+	 * Post-process the given Element by creating an ElementVersion for it and adding that
+	 * to the change set being constructed. This is done as a post-processing step so that
+	 * derived references to library model Elements not included in the change set can be
+	 * excluded.
+	 * 
+	 * @param 	element				the Element to be post-processed
+	 */
+	@Override
+	public void postProcess(Element element) {
+		this.addToChangeSet(this.createElementVersion(element));
+	}
+
+	/**
+	 * Create and post a commit to save to the repository the ElementVersions in the 
+	 * constructed change set.
+	 */
 	public void commit() {
-		List<ElementVersion> changeSet = this.traversal.getIdentifiers().stream().
-				map(ElementVersion.class::cast).collect(Collectors.toList());
 		try {
-			Commit commit = new Commit().changes(changeSet);
-			if (this.isVerbose()) {
-				System.out.println(commit);
-				System.out.print("\nPosting Commit... ");
-			}
+			Commit commit = new Commit().changes(this.getChangeSet());
+//			System.out.println(new org.omg.sysml.JSON().serialize(commit));
+			System.out.print("Posting Commit ");
 			commit = this.commitApi.postCommitByProject(this.project.getId(), commit);
-			if (this.isVerbose()) {
-				System.out.println(commit.getId());
-			}
+			System.out.println(commit.getId());
 		} catch (ApiException e) {
 			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
 		}

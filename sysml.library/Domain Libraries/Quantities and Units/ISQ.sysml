@@ -154,13 +154,6 @@ package ISQ {
 	}	 
 	 
 	/**
-	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit"
-	 */
-	block UnitOfDimensionOne :> DerivedUnit {
-		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
-	}
-	
-	/**
 	 * force
 	 */	
 	block ForceUnit :> SIDerivedUnit {
@@ -243,4 +236,21 @@ package ISQ {
 	 
 	value kineticEnergy :> energy;
 	value potentialEnergy :> energy;
+	
+	/**
+	 * acceleration
+	 */	
+    block AccelerationUnit :> SIDerivedUnit {
+		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+			value exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		value timePowerFactor :> SIDerivedUnit::timePowerFactor {
+			value exponent redefines UnitPowerFactor::exponent = -2;
+		}		
+    }
+    value type AccelerationValue :> QuantityValue {
+		value num: Real redefines QuantityValue::num;
+    	ref mRef: AccelerationUnit redefines QuantityValue::mRef;
+    }
+    value acceleration: AccelerationValue :> quantity;
 }

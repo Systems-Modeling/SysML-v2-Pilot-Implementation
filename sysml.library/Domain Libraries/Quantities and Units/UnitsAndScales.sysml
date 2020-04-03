@@ -186,4 +186,16 @@ package UnitsAndScales {
 		// Should be ordered or the order should be derived from an ordered set of base units
 		value baseUnitPowerFactor: UnitPowerFactor[0..*] ordered;
 	}
+
+	/**
+	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
+	 */
+	block DimensionOneUnit :> DerivedUnit {
+		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
+	}
+	value type DimensionOneValue :> Quantities::QuantityValue {
+		value num: ScalarValues::Real redefines Quantities::QuantityValue::num;
+		ref mRef: DimensionOneUnit redefines Quantities::QuantityValue::mRef;
+	}
+	part one = DimensionOneUnit();
 }

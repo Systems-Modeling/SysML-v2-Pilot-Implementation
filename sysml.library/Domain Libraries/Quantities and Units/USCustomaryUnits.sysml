@@ -13,12 +13,32 @@ package USCustomaryUnits {
 
     part lb = MassUnit(name => "pound (avoirdupois)", unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 0.4535924 ));
 
-    part 'mi/hr': SpeedUnit = mi / hr { name redefines MeasurementReference::name = "mile per hour"; }
+    part 'mi/h': SpeedUnit = mi / h { name redefines MeasurementReference::name = "mile per hour"; }
     
     part lbf = ForceUnit(name => "pound-force", unitConversion => ConversionByConvention(referenceUnit => N, conversionFactor => 4.448222 ));
 
     /*
      * Definition of an alias for mile per hour
      */
-    part mph is 'mi/hr';
+    part mph is 'mi/h';
+
+	/*
+	 * degree fahrenheit unit for temperature difference quantities
+	 */
+	part '°F' = TemperatureUnit(name => "degree fahrenheit", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 5.0/9.0));
+	 
+	/*
+	 * degree fahrenheit interval scale for absolute temperature quantities
+	 * 
+	 * The interval scale is defined with an explicit mapping to the celsius scale from which the offset between the scales can be computed.
+	 */
+	part temperatureWaterAtFreezingPointInF = ScaleValueDefinition(num => 32.0, description => "temperature in degree Fahrenheit of pure water at freezing point");
+	part fahrenheitToCelsiusScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureWaterAtFreezingPointInF, referenceScaleValue => temperatureWaterAtFreezingPointInC);
+	
+	/* TODO: Consider part name '°F_abs' or '°F (abs)' */
+	part '°F scale' = IntervalScale(name => "degree fahrenheit scale") {
+		ref unit redefines MeasurementScale::unit = '°F';
+		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureWaterAtFreezingPointInF;
+		ref scaleValueMapping redefines MeasurementScale::scaleValueMapping = fahrenheitToCelsiusScaleMapping;
+	}
 }

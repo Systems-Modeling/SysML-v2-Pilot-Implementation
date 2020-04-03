@@ -22,41 +22,34 @@ package SI {
 
 	part A = ElectricCurrentUnit(name => "ampere");
 	
-	part temperatureInKelvinTriplePointWater = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of the triple point of pure water");
-	part K = TemperatureUnit(name => "kelvin") {
-		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureInKelvinTriplePointWater; 
-	}
+	part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of pure water at the triple point");
+	part K = TemperatureUnit(name => "kelvin") { ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; }
 	
 	part mol = AmountOfSubstanceUnit(name => "mol");
 
 	part cd = LuminousIntensityUnit(name => "candela");
 	
 	/*
-	 * SI derived units
+	 * Derived units
+	 * 
+	 * TODO: Auto-generate a complete list of quantities and units for the ISO/IEC 80000 parts 3 to 14 
 	 */ 
 
-	/*
-	 * newton
-	 * N: ForceUnit = Quantities::DerivedUnit({ 
-	 *   Quantities::MeasurementUnitPowerFactor(kg, 1), 
-	 *   Quantities::MeasurementUnitPowerFactor(m, 1), 
-	 *   Quantities::MeasurementUnitPowerFactor(s, -2)
-	 * });	 
-	 */
-	part N: ForceUnit = kg * m / s ^ 2 {name redefines MeasurementReference::name = "newton"; }
-	
-	part 'm/s': SpeedUnit = m / s {name redefines MeasurementReference::name = "metre per second"; }
-	part J : EnergyUnit = N * m  {name redefines MeasurementReference::name = "joule"; }
-	part 'N.m': TorqueUnit = N * m {name redefines MeasurementReference::name = "newton metre"; }
+	part N: ForceUnit = kg * m / s**2 {name redefines MeasurementReference::name = "newton";}
+	part 'm/s': SpeedUnit = m / s {name redefines MeasurementReference::name = "metre per second";}
+	part 'm/s²': AccelerationUnit = m / s**2 {name redefines MeasurementReference::name = "metre per second squared";}
+	part J : EnergyUnit = N * m  {name redefines MeasurementReference::name = "joule";}
+	part 'N·m': TorqueUnit = N * m {name redefines MeasurementReference::name = "newton metre";}
 	
 	/*
-	 * Examples of other conversion based units that are accepted in SI, but not standard 
+	 * Non-standard conversion based units that are accepted in SI
 	 */
 	part min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60.0));
-	part hr = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));		
-
+	part h = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));
+	part 'km/h': SpeedUnit = km / h {name redefines MeasurementReference::name = "kilometre per hour";}
+		
 	/* 
-	 * Prefixed units - incomplete list
+	 * Prefixed units
 	 */
 	part mm = LengthUnit(name => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
 	part km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
@@ -66,26 +59,24 @@ package SI {
 	part GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
 	
 	/*
-	 * Derived units - incomplete list
-	 */
-	part 'km/hr': SpeedUnit = km / hr;
-	
-	/*
-	 * Interval scales - incomplete list
-	 */
-	 
-	/*
-	 * The degree Celsius unit and scale
-	 * 
-	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
+	 * degree Celsius unit for temperature difference quantities
 	 */
 	part '°C' = TemperatureUnit(name => "degree celsius", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
 	 
-	part temperatureInCelsiusTriplePointWater = ScaleValueDefinition(num => 0.01, description => "temperature in degree celsius of the triple point of pure water");
-	part celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureInCelsiusTriplePointWater, referenceScaleValue => temperatureInKelvinTriplePointWater);
+	/*
+	 * degree Celsius interval scale for absolute temperature quantities
+	 * 
+	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
+	 * TODO: Make visibility of temperatureWaterAtTriplePointInC, celsiusToKelvinScaleMapping private, i.e. private parts ;-)
+	 */
+	part temperatureWaterAtTriplePointInC = ScaleValueDefinition(num => 0.01, description => "temperature in degree Celsius of pure water at the triple point");
+	part temperatureWaterAtFreezingPointInC = ScaleValueDefinition(num => 0.0, description => "temperature in degree Celsius of pure water at freezing point");
+	part celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => temperatureOfWaterAtTriplePointInK);
+
+	/* TODO: Consider part name '°C_abs' or '°C (abs)'*/
 	part '°C scale' = IntervalScale(name => "degree celsius scale") {
 		ref unit redefines MeasurementScale::unit = '°C';
-		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureInCelsiusTriplePointWater;
+		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
 		ref scaleValueMapping redefines MeasurementScale::scaleValueMapping = celsiusToKelvinScaleMapping;
 	}
 }

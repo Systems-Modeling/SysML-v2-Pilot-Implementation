@@ -3,18 +3,21 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateSubactionKind;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,14 +27,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getStep <em>Step</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getState <em>State</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getEntryAction <em>Entry Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getDoAction <em>Do Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StateDefinitionImpl#getExitAction <em>Exit Action</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StateDefinitionImpl extends DefinitionImpl implements StateDefinition {
+public class StateDefinitionImpl extends ActivityImpl implements StateDefinition {
 
 	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::State";
 	
@@ -87,6 +91,104 @@ public class StateDefinitionImpl extends DefinitionImpl implements StateDefiniti
 				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
+	public static ActionUsage getStateSubaction(Type owner, StateSubactionKind kind) {
+		return owner.getOwnedFeatureMembership().stream().
+				filter(mem->(mem instanceof StateSubactionMembership) && ((StateSubactionMembership)mem).getKind() == kind).
+				map(mem->((StateSubactionMembership)mem).getAction()).
+				filter(action->action != null).
+				findAny().orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActionUsage getEntryAction() {
+		ActionUsage entryAction = basicGetEntryAction();
+		return entryAction != null && entryAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)entryAction) : entryAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ActionUsage basicGetEntryAction() {
+		return getStateSubaction(this, StateSubactionKind.ENTRY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setEntryAction(ActionUsage newEntryAction) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActionUsage getDoAction() {
+		ActionUsage doAction = basicGetDoAction();
+		return doAction != null && doAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)doAction) : doAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ActionUsage basicGetDoAction() {
+		return getStateSubaction(this, StateSubactionKind.DO);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setDoAction(ActionUsage newDoAction) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ActionUsage getExitAction() {
+		ActionUsage exitAction = basicGetExitAction();
+		return exitAction != null && exitAction.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)exitAction) : exitAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ActionUsage basicGetExitAction() {
+		return getStateSubaction(this, StateSubactionKind.EXIT);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setExitAction(ActionUsage newExitAction) {
+		throw new UnsupportedOperationException();
+	}
+
 	@Override
 	public EList<Superclassing> getOwnedSuperclassing() {
 		return getOwnedSuperclassingWithDefault(STATE_DEFINITION_SUPERCLASS_DEFAULT);
@@ -100,12 +202,17 @@ public class StateDefinitionImpl extends DefinitionImpl implements StateDefiniti
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.STATE_DEFINITION__STEP:
-				return getStep();
-			case SysMLPackage.STATE_DEFINITION__PARAMETER:
-				return getParameter();
 			case SysMLPackage.STATE_DEFINITION__STATE:
 				return getState();
+			case SysMLPackage.STATE_DEFINITION__ENTRY_ACTION:
+				if (resolve) return getEntryAction();
+				return basicGetEntryAction();
+			case SysMLPackage.STATE_DEFINITION__DO_ACTION:
+				if (resolve) return getDoAction();
+				return basicGetDoAction();
+			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
+				if (resolve) return getExitAction();
+				return basicGetExitAction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,17 +226,18 @@ public class StateDefinitionImpl extends DefinitionImpl implements StateDefiniti
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.STATE_DEFINITION__STEP:
-				getStep().clear();
-				getStep().addAll((Collection<? extends Step>)newValue);
-				return;
-			case SysMLPackage.STATE_DEFINITION__PARAMETER:
-				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
-				return;
 			case SysMLPackage.STATE_DEFINITION__STATE:
 				getState().clear();
 				getState().addAll((Collection<? extends StateUsage>)newValue);
+				return;
+			case SysMLPackage.STATE_DEFINITION__ENTRY_ACTION:
+				setEntryAction((ActionUsage)newValue);
+				return;
+			case SysMLPackage.STATE_DEFINITION__DO_ACTION:
+				setDoAction((ActionUsage)newValue);
+				return;
+			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
+				setExitAction((ActionUsage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,14 +251,17 @@ public class StateDefinitionImpl extends DefinitionImpl implements StateDefiniti
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.STATE_DEFINITION__STEP:
-				getStep().clear();
-				return;
-			case SysMLPackage.STATE_DEFINITION__PARAMETER:
-				getParameter().clear();
-				return;
 			case SysMLPackage.STATE_DEFINITION__STATE:
 				getState().clear();
+				return;
+			case SysMLPackage.STATE_DEFINITION__ENTRY_ACTION:
+				setEntryAction((ActionUsage)null);
+				return;
+			case SysMLPackage.STATE_DEFINITION__DO_ACTION:
+				setDoAction((ActionUsage)null);
+				return;
+			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
+				setExitAction((ActionUsage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -164,48 +275,16 @@ public class StateDefinitionImpl extends DefinitionImpl implements StateDefiniti
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.STATE_DEFINITION__STEP:
-				return !getStep().isEmpty();
-			case SysMLPackage.STATE_DEFINITION__PARAMETER:
-				return !getParameter().isEmpty();
 			case SysMLPackage.STATE_DEFINITION__STATE:
 				return !getState().isEmpty();
+			case SysMLPackage.STATE_DEFINITION__ENTRY_ACTION:
+				return basicGetEntryAction() != null;
+			case SysMLPackage.STATE_DEFINITION__DO_ACTION:
+				return basicGetDoAction() != null;
+			case SysMLPackage.STATE_DEFINITION__EXIT_ACTION:
+				return basicGetExitAction() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == Behavior.class) {
-			switch (derivedFeatureID) {
-				case SysMLPackage.STATE_DEFINITION__STEP: return SysMLPackage.BEHAVIOR__STEP;
-				case SysMLPackage.STATE_DEFINITION__PARAMETER: return SysMLPackage.BEHAVIOR__PARAMETER;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == Behavior.class) {
-			switch (baseFeatureID) {
-				case SysMLPackage.BEHAVIOR__STEP: return SysMLPackage.STATE_DEFINITION__STEP;
-				case SysMLPackage.BEHAVIOR__PARAMETER: return SysMLPackage.STATE_DEFINITION__PARAMETER;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //StateDefinitionImpl

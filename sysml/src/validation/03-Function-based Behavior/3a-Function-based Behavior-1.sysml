@@ -3,7 +3,7 @@ package '3a-Function-based Behavior-1' {
 	// ITEMS
 	
 	value type FuelCmd;
-	value type Torque is ISQ::TorqueValue;
+	import ISQ::TorqueValue as Torque;
 	
 	// SIGNALS
 	
@@ -87,7 +87,7 @@ package '3a-Function-based Behavior-1' {
 		succession first engineStart[1] then 'provide power'[1];
 			
 		bind 'do provide power'::fuelCmd = fuelCmd;
-		perform 'do provide power'[*] by 'provide power' (
+		perform 'do provide power'[*] as 'provide power' (
 			in fuelCmd, 
 			out wheelTorque1, 
 			out wheelTorque2

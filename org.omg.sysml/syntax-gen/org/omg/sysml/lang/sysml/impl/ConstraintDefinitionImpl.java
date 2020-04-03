@@ -39,7 +39,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConstraintDefinitionImpl extends DefinitionImpl implements ConstraintDefinition {
 	
-	public static final String CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT = "Constraints::Constraint";
+	public static final String CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT = "Constraints::ConstraintCheck";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last

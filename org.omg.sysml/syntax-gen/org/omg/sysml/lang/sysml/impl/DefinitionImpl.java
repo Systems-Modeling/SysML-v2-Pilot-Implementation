@@ -3,7 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -15,6 +14,7 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -28,15 +28,16 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowProperty <em>Flow Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedProperty <em>Owned Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAction <em>Owned Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedState <em>Owned State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConstraint <em>Owned Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowProperty <em>Flow Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedTransition <em>Owned Transition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRequirement <em>Owned Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @generated
@@ -153,6 +154,16 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @generated NOT
 	 */
 	@Override
+	public EList<RequirementUsage> getOwnedRequirement() {
+		return new DerivedEObjectEList<RequirementUsage>(RequirementUsage.class, this, SysMLPackage.DEFINITION__OWNED_REQUIREMENT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Usage> getOwnedUsage() {
 		return new DerivedEObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -165,24 +176,26 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				return getFlowProperty();
 			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
 				return getOwnedProperty();
+			case SysMLPackage.DEFINITION__PROPERTY:
+				return getProperty();
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
 				return getOwnedAction();
 			case SysMLPackage.DEFINITION__OWNED_STATE:
 				return getOwnedState();
 			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
 				return getOwnedConstraint();
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				return getFlowProperty();
-			case SysMLPackage.DEFINITION__PROPERTY:
-				return getProperty();
 			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
 				return getOwnedTransition();
+			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
+				return getOwnedRequirement();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,17 +209,21 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				getFlowProperty().clear();
+				getFlowProperty().addAll((Collection<? extends Property>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
 				getOwnedProperty().clear();
 				getOwnedProperty().addAll((Collection<? extends Property>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__PROPERTY:
+				getProperty().clear();
+				getProperty().addAll((Collection<? extends Property>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
 				getOwnedAction().clear();
@@ -220,17 +237,17 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedConstraint().clear();
 				getOwnedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				getFlowProperty().clear();
-				getFlowProperty().addAll((Collection<? extends Property>)newValue);
-				return;
-			case SysMLPackage.DEFINITION__PROPERTY:
-				getProperty().clear();
-				getProperty().addAll((Collection<? extends Property>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
 				getOwnedTransition().clear();
 				getOwnedTransition().addAll((Collection<? extends TransitionUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
+				getOwnedRequirement().clear();
+				getOwnedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -244,14 +261,17 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				getFlowProperty().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
 				getOwnedProperty().clear();
+				return;
+			case SysMLPackage.DEFINITION__PROPERTY:
+				getProperty().clear();
 				return;
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
 				getOwnedAction().clear();
@@ -262,14 +282,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
 				getOwnedConstraint().clear();
 				return;
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				getFlowProperty().clear();
-				return;
-			case SysMLPackage.DEFINITION__PROPERTY:
-				getProperty().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
 				getOwnedTransition().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
+				getOwnedRequirement().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -283,24 +303,26 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
+			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
+				return !getFlowProperty().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PROPERTY:
 				return !getOwnedProperty().isEmpty();
+			case SysMLPackage.DEFINITION__PROPERTY:
+				return !getProperty().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_ACTION:
 				return !getOwnedAction().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_STATE:
 				return !getOwnedState().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_CONSTRAINT:
 				return !getOwnedConstraint().isEmpty();
-			case SysMLPackage.DEFINITION__FLOW_PROPERTY:
-				return !getFlowProperty().isEmpty();
-			case SysMLPackage.DEFINITION__PROPERTY:
-				return !getProperty().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_TRANSITION:
 				return !getOwnedTransition().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
+				return !getOwnedRequirement().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return !getOwnedUsage().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

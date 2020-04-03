@@ -89,6 +89,9 @@ public interface Comment extends Element {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Annotation that relates this Comment to its <tt>commentedElement</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotation For Comment</em>' reference.
 	 * @see #setAnnotationForComment(Annotation)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getComment_AnnotationForComment()

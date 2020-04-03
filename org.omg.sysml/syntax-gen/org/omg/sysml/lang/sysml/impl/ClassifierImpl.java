@@ -58,10 +58,20 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		return getOwnedGeneralizationWithDefault(Superclassing.class, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING, SysMLPackage.eINSTANCE.getSuperclassing(), superclassDefault);
 	}
 	
+	protected EList<Superclassing> getOwnedSuperclassingWithoutDefault() {
+		return getOwnedGeneralizationWithoutDefault(Superclassing.class, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING);
+	}
+	
 	@Override
 	public EList<Generalization> getOwnedGeneralization() {
 		getOwnedSuperclassing();
 		return super.getOwnedGeneralization();
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getOwnedSuperclassing();
 	}
 
 	/**

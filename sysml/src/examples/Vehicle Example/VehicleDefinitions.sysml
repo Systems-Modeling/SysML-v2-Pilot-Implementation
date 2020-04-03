@@ -16,21 +16,21 @@ package VehicleDefinitions {
 	block Axle;	
 	block Wheel;
 	block Lugbolt {
-		value tighteningTorque is ISQ::torque;
+		value tighteningTorque :> ISQ::torque;
 	}
 	
 	/* INTERFACE BLOCKS */
 	
 	port def DriveIF { 
-		in driveTorque:> ISQ::torque;
+		in driveTorque :> ISQ::torque;
 	}
 	
 	port def AxleMountIF { 
-		out transferredTorque is ISQ::torque;
+		out transferredTorque :> ISQ::torque;
 	}
 	
 	port def WheelHubIF { 
-		in appliedTorque is ISQ::torque;
+		in appliedTorque :> ISQ::torque;
 	}
 	
 	/* ASSOCIATION BLOCKS */

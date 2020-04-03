@@ -6,13 +6,13 @@ package '1a-Parts Tree' {
 	/* Definitions */
 	
 	block Vehicle {
-		value mass is ISQ::mass;
+		value mass :> ISQ::mass;
 	}
 	
 	block AxleAssembly;
 	
 	block Axle { 
-		value mass is ISQ::mass;
+		value mass :> ISQ::mass;
 	}
 	
 	block FrontAxle:> Axle { 

@@ -1,0 +1,32 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	class A{
+		import test::*;
+		class b{
+			import A::*;
+			//xpect throws RuntimeError class name and its specializes are the same. so no scope or linking test at d
+			//* XPECT scope at d ---
+			   
+			 --- */
+		   //XPECT linkedName at d --> test.A.b.d
+			class d specializes d{}
+		}
+	}
+}

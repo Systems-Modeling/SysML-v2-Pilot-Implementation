@@ -1,0 +1,25 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors --> ""
+package Test1{
+	class A specializes A.B{
+		//XPECT linkedName at A --> Test1.A
+		//* XPECT scope at A ---
+   		A, A.B, A.B.B, B, B.B, 
+   		Test1.A, Test1.A.B, Test1.A.B.B
+ 	--- */
+		class B specializes A {}
+	}
+}

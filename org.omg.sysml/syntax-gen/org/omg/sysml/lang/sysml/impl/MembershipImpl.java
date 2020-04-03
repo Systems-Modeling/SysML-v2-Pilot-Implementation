@@ -3,9 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -14,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -36,7 +32,6 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getAliases <em>Aliases</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MembershipImpl#getOwnedMemberElement <em>Owned Member Element</em>}</li>
@@ -94,16 +89,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @ordered
 	 */
 	protected VisibilityKind visibility = VISIBILITY_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAliases() <em>Aliases</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAliases()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> aliases;
 
 	/**
 	 * The cached value of the '{@link #getOwnedMemberElement_comp() <em>Owned Member Element comp</em>}' containment reference.
@@ -315,19 +300,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__VISIBILITY, oldVisibility, visibility));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<String> getAliases() {
-		if (aliases == null) {
-			aliases = new EDataTypeUniqueEList<String>(String.class, this, SysMLPackage.MEMBERSHIP__ALIASES);
-		}
-		return aliases;
 	}
 
 	/**
@@ -602,8 +574,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return getMemberName();
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return getVisibility();
-			case SysMLPackage.MEMBERSHIP__ALIASES:
-				return getAliases();
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				return getMembershipOwningPackage();
 			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
@@ -620,7 +590,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -632,10 +601,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return;
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
-				return;
-			case SysMLPackage.MEMBERSHIP__ALIASES:
-				getAliases().clear();
-				getAliases().addAll((Collection<? extends String>)newValue);
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)newValue);
@@ -666,9 +631,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return;
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
-				return;
-			case SysMLPackage.MEMBERSHIP__ALIASES:
-				getAliases().clear();
 				return;
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)null);
@@ -705,8 +667,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 				return MEMBER_NAME_EDEFAULT == null ? memberName != null : !MEMBER_NAME_EDEFAULT.equals(memberName);
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
-			case SysMLPackage.MEMBERSHIP__ALIASES:
-				return aliases != null && !aliases.isEmpty();
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
 				return isSetMembershipOwningPackage();
 			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
@@ -745,8 +705,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		result.append(memberName);
 		result.append(", visibility: ");
 		result.append(visibility);
-		result.append(", aliases: ");
-		result.append(aliases);
 		result.append(')');
 		return result.toString();
 	}

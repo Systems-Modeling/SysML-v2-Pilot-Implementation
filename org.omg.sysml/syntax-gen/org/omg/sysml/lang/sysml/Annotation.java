@@ -35,6 +35,9 @@ public interface Annotation extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Element that is annotated by the <tt>annotatingComment</tt> of this Annotation.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference.
 	 * @see #setAnnotatedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatedElement()
@@ -70,6 +73,10 @@ public interface Annotation extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Comment that annotates the <tt>annotatedElement</tt> of this Annotation.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotating Comment</em>' reference.
 	 * @see #setAnnotatingComment(Comment)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatingComment()

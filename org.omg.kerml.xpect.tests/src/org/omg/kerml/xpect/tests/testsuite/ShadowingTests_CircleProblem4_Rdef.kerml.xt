@@ -1,0 +1,44 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}				
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package Test1{
+	//XPECT linkedName at A.B --> Test1.A.B
+	//* XPECT scope at A.B ---
+	   	   A.B.B, Test1.A.B.B, A.B.B.b, A.B.B.b.b, Test1.A.B.B.b, Test1.A.B.B.b.b,
+	       A.B.b, A.B.b.B.b, A.B.b.b, A.b, 
+	   	   A.B.b.B, Test1.A.B.b.B,
+		   A, A.B, Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.B.b.B.b, Test1.A.B.b.b, Test1.A.b, OuterPackage.B.b,
+		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
+	--- */
+	feature A redefines A.B {
+		feature B {
+			import A::*;
+			//* XPECT scope at B ---
+			    A.B.B, A.B.B.b, A.B.B.b.b, Test1.A.B.B, Test1.A.B.B.b, Test1.A.B.B.b.b,
+			    b.b, b.B, b.B.b,
+			    A.B.b.B, A.B.b.B.b, A.B.b.b, B.b.b, Test1.A.B.b.B, Test1.A.B.b.B.b, Test1.A.B.b.b, 
+			   	A, A.B, A.B.b, A.b, B, B.b, 
+			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
+			   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, OuterPackage.B.b.a1,
+			--- */
+			feature b redefines B; //added this line to see the scope of B
+		}
+	}
+}

@@ -7,7 +7,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Ownership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Ownership provides an organizational hint to the model to support the development of tree views of the model and nested serializations.</p>
+ * <p>Ownership is a Relationship whose sole purpose is to model the ownership of one Element by another. As such, its two <tt>relatedElements</tt> consist of a single <tt>owningRelatedElement</tt> (the source) and a single <tt>ownedRelatedElement</tt> (the target). Note that it is <em>not</em> usually necessary to use an Ownership Relationship to model ownership in a model, as other Relationships can also have <tt>ownedRelatedElements</tt> (most notably Memberships, which can be used to model <tt>ownedMembers</tt> of a Package).</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -46,6 +46,9 @@ public interface Ownership extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <tt>owningRelatedElement</tt> that is the <tt>source</tt> of this Ownership.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Source</em>' reference.
 	 * @see #setOwningSource(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwnership_OwningSource()
@@ -81,6 +84,9 @@ public interface Ownership extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <tt>ownedRelatedElement</tt> that is the <tt>target</tt> of this Ownership.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Target comp</em>' containment reference.
 	 * @see #setOwnedTarget_comp(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOwnership_OwnedTarget_comp()

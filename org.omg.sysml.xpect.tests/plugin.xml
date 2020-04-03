@@ -4,10 +4,25 @@
    <extension
          point="org.eclipse.xpect.fileExtensions">
       <fileExtension
-            fileExtension="alf"
-            xtextLanguageName="org.omg.kerml.xtext.KerML"
+            fileExtension="sysml"
+            xtextLanguageName="org.omg.sysml.xtext.SysML"
             xtextRuntimeModule="org.omg.sysml.xpect.SysMLXpectRuntimeModule"
+            xtextUiModule="org.omg.sysml.xtext.ui.SysMLUiModule">
+      </fileExtension>
+      <fileExtension
+            fileExtension="kerml"
+            xtextLanguageName="org.omg.sysml.xtext.KerML"
+            xtextRuntimeModule="org.omg.kerml.xpect.KerMLXpectRuntimeModule"
             xtextUiModule="org.omg.kerml.xtext.ui.KerMLUiModule">
+      </fileExtension>
+   </extension>
+   <extension
+         point="org.eclipse.xpect.fileExtensions">
+      <fileExtension
+            fileExtension="sysml"
+            xtextLanguageName="org.omg.sysml.xtext.SysML"
+            xtextRuntimeModule="org.omg.sysml.xpect.SysMLXpectRuntimeModule"
+            xtextUiModule="org.omg.sysml.xtext.ui.SysMLUiModule">
       </fileExtension>
    </extension>
 

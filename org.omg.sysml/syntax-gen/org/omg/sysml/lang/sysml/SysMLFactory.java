@@ -103,15 +103,6 @@ public interface SysMLFactory extends EFactory {
 	MergeNode createMergeNode();
 
 	/**
-	 * Returns a new object of class '<em>State Action Membership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>State Action Membership</em>'.
-	 * @generated
-	 */
-	StateActionMembership createStateActionMembership();
-
-	/**
 	 * Returns a new object of class '<em>State Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,6 +454,15 @@ public interface SysMLFactory extends EFactory {
 	ExhibitStateUsage createExhibitStateUsage();
 
 	/**
+	 * Returns a new object of class '<em>State Subaction Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>State Subaction Membership</em>'.
+	 * @generated
+	 */
+	StateSubactionMembership createStateSubactionMembership();
+
+	/**
 	 * Returns a new object of class '<em>Conjugated Port Typing</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -479,6 +479,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ValueType createValueType();
+
+	/**
+	 * Returns a new object of class '<em>Individual Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Individual Usage</em>'.
+	 * @generated
+	 */
+	IndividualUsage createIndividualUsage();
+
+	/**
+	 * Returns a new object of class '<em>Individual Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Individual Definition</em>'.
+	 * @generated
+	 */
+	IndividualDefinition createIndividualDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Interface Definition</em>'.
@@ -544,6 +562,15 @@ public interface SysMLFactory extends EFactory {
 	ReferenceProperty createReferenceProperty();
 
 	/**
+	 * Returns a new object of class '<em>Satisfy Requirement Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Satisfy Requirement Usage</em>'.
+	 * @generated
+	 */
+	SatisfyRequirementUsage createSatisfyRequirementUsage();
+
+	/**
 	 * Returns a new object of class '<em>Part Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -569,6 +596,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Class createClass();
+
+	/**
+	 * Returns a new object of class '<em>Requirement Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Usage</em>'.
+	 * @generated
+	 */
+	RequirementUsage createRequirementUsage();
+
+	/**
+	 * Returns a new object of class '<em>Requirement Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Definition</em>'.
+	 * @generated
+	 */
+	RequirementDefinition createRequirementDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Binding Connector</em>'.
@@ -616,15 +661,6 @@ public interface SysMLFactory extends EFactory {
 	Annotation createAnnotation();
 
 	/**
-	 * Returns a new object of class '<em>Atomic Interaction</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Atomic Interaction</em>'.
-	 * @generated
-	 */
-	AtomicInteraction createAtomicInteraction();
-
-	/**
 	 * Returns a new object of class '<em>Interaction</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -659,6 +695,42 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Ownership createOwnership();
+
+	/**
+	 * Returns a new object of class '<em>Life Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Life Class</em>'.
+	 * @generated
+	 */
+	LifeClass createLifeClass();
+
+	/**
+	 * Returns a new object of class '<em>Time Slice Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Time Slice Feature</em>'.
+	 * @generated
+	 */
+	TimeSliceFeature createTimeSliceFeature();
+
+	/**
+	 * Returns a new object of class '<em>Snapshot Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Snapshot Feature</em>'.
+	 * @generated
+	 */
+	SnapshotFeature createSnapshotFeature();
+
+	/**
+	 * Returns a new object of class '<em>Requirement Constraint Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Constraint Membership</em>'.
+	 * @generated
+	 */
+	RequirementConstraintMembership createRequirementConstraintMembership();
 
 	/**
 	 * Returns a new object of class '<em>Literal Boolean</em>'.

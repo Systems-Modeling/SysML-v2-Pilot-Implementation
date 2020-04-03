@@ -1,0 +1,36 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.systems/ControlNodes.sysml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.systems/Activities.sysml"}
+				File {from ="/library.systems/ControlNodes.sysml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+activity ControlNodeTest {
+	action A1;
+	then J;
+	
+	action A2;
+	then J;
+	
+	join J;
+	then fork F;
+	then B1;
+	then B2;
+		
+	action B1;
+	action B2;
+}

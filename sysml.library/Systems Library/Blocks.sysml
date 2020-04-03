@@ -12,6 +12,9 @@ package Blocks {
 	block Part :> Object {
 		ref self: Part :>> Base::self;
 		
+		part start: Part :>> startShot;
+		part done: Part :>> endShot;
+		
 		/**
 		 * Ports that are on this part.
 		 */
@@ -30,7 +33,7 @@ package Blocks {
 		/**
 		 * Constraints that are asserted by this part.
 		 */
-		abstract ref constraint assertedConstraints: Constraints::Constraint[0..*] :> enactedPerformances;
+		abstract ref constraint assertedConstraints: Constraints::ConstraintCheck[0..*] :> enactedPerformances;
 	}
 	
 	/**

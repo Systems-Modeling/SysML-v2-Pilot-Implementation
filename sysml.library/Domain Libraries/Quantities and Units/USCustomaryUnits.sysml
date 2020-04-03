@@ -20,7 +20,7 @@ package USCustomaryUnits {
     /*
      * Definition of an alias for mile per hour
      */
-    part mph is 'mi/h';
+    alias 'mi/h' as mph;
 
 	/*
 	 * degree fahrenheit unit for temperature difference quantities

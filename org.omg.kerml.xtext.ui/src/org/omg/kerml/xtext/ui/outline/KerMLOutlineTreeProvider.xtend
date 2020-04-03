@@ -3,31 +3,29 @@
  */
 package org.omg.kerml.xtext.ui.outline
 
-import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider
+import org.omg.sysml.lang.sysml.Annotation
+import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.Generalization
-import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Import
-import org.omg.sysml.lang.sysml.Subsetting
-import org.omg.sysml.lang.sysml.OperatorExpression
-import org.omg.sysml.lang.sysml.Relationship
-import org.omg.sysml.lang.sysml.LiteralString
 import org.omg.sysml.lang.sysml.LiteralBoolean
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.LiteralReal
+import org.omg.sysml.lang.sysml.LiteralString
 import org.omg.sysml.lang.sysml.LiteralUnbounded
-import org.omg.sysml.lang.sysml.LiteralNull
-import org.omg.sysml.lang.sysml.FeatureMembership
-import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.Membership
+import org.omg.sysml.lang.sysml.NullExpression
+import org.omg.sysml.lang.sysml.OperatorExpression
+import org.omg.sysml.lang.sysml.Package
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
-import org.omg.sysml.lang.sysml.Classifier
-import org.omg.sysml.lang.sysml.Annotation
-import org.omg.sysml.lang.sysml.Conjugation
-import org.omg.sysml.lang.sysml.Function
+import org.omg.sysml.lang.sysml.impl.ElementImpl
 
 /**
  * Customization of the default outline structure.
@@ -49,18 +47,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		else visibility.toString
 	}
 	
-	def String _text(Membership membership) {
-		membership.prefixText + ' ' + membership.nameText
-	}
-	
-	def String nameText(Membership membership) {
-		if (membership.memberName !== null)
-			membership.memberName
-		else if (membership.memberElement?.name !== null)
-			membership.memberElement.name
-		else ""
-	}
-	
 	def String prefixText(Membership membership) {
 		var text = membership.eClass.name;
 		if (membership.ownedMemberElement !== null) {
@@ -72,8 +58,20 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String prefixText(FeatureMembership membership) {
-		var text = (membership as Membership).prefixText
+	def String nameText(Membership membership) {
+		if (membership.memberName !== null)
+			membership.memberName
+		else if (membership.memberElement?.name !== null)
+			membership.memberElement.name
+		else ""
+	}
+	
+	def String _text(Membership membership) {
+		membership.prefixText + ' ' + membership.nameText
+	}
+	
+	def String featurePrefixText(FeatureMembership membership) {
+		var text = membership.prefixText
 		if (membership.isComposite) {
 			text += ' composite'
 		}
@@ -87,6 +85,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + membership.direction
 		}
 		text
+	}
+	
+	def String _text(FeatureMembership membership) {
+		membership.featurePrefixText + ' ' + membership.nameText
 	}
 	
 	def String _text(Import import_) {
@@ -131,8 +133,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		"LiteralUnbounded *"
 	}
 	
-	def String _text(LiteralNull literal) {
-		"LiteralNull null"
+	def String _text(NullExpression expression) {
+		"NullExpression null"
 	}
 	
 	def boolean _isLeaf(Annotation annotation) {
@@ -180,44 +182,18 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, org.omg.sysml.lang.sysml.Package _package) {
+	def void _createChildren(IOutlineNode parentNode, Package _package) {
 		for (childElement : _package.eContents()) {
 			if (!(childElement instanceof Import || childElement instanceof Membership)) {
 				createNode(parentNode, childElement)
 			}
 		}
 		for (_import: _package.ownedImport) {
-			createEObjectNode(parentNode, _import, 
-				_import._image, _import._text, 
-				_import._isLeaf
-			)
+			createNode(parentNode, _import)
 		}
 		for (membership: _package.ownedMembership) {
-			createEObjectNode(parentNode, membership, 
-				membership._image, membership._text, 
-				membership._isLeaf
-			)
+			createNode(parentNode, membership)
 		}
-	}
-	
-	def boolean _isLeaf(Classifier classifier) {
-		// Ensure default subclassing
-		classifier.ownedSuperclassing
-		super._isLeaf(classifier)
-	}
-	
-	def boolean _isLeaf(Function function) {
-		// Ensure result connector
-		function.feature
-		_isLeaf(function as Classifier)
-	}
-	
-	def boolean _isLeaf(Feature feature) {
-		// Ensure default redefinition/subsetting
-		feature.ownedSubsetting
-		// Ensure valuation connector
-		feature.feature
-		super._isLeaf(feature)
 	}
 	
 	def boolean _isLeaf(Generalization generalization) {
@@ -272,17 +248,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(Expression expression) {
-		// Ensure derivation of inputs and outputs
-		expression.input
-		expression.output
-		return _isLeaf(expression as Feature)
-	}
-	
-	def boolean _isLeaf(OperatorExpression expression) {
-		// Ensure derivation of typing
-		expression.typing
-		_isLeaf(expression as Expression) && expression.ownedMembership.isEmpty
+	def boolean _isLeaf(Type type) {
+		(type as ElementImpl).transform()
+		super._isLeaf(type)
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {

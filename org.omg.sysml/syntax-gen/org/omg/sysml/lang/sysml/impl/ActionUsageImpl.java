@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.StateActionMembership;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -32,8 +32,8 @@ import org.omg.sysml.lang.sysml.Usage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActivity <em>Activity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningUsage <em>Action Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -184,8 +184,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
 	protected String getRedefinedFeature() {
 		FeatureMembership membership = getOwningFeatureMembership();
-		return membership instanceof StateActionMembership?
-					STATE_BASE + "::" + ((StateActionMembership)membership).getKind().toString() + "Action": 
+		return membership instanceof StateSubactionMembership?
+					STATE_BASE + "::" + ((StateSubactionMembership)membership).getKind().toString() + "Action": 
 			   membership instanceof TransitionFeatureMembership? 
 					TRANSITION_BASE + "::" + ((TransitionFeatureMembership)membership).getKind().toString(): 
 					null;
@@ -228,12 +228,12 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return getBehavior();
 			case SysMLPackage.ACTION_USAGE__ACTIVITY:
 				return getActivity();
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				if (resolve) return getActionOwningDefinition();
-				return basicGetActionOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				if (resolve) return getActionOwningUsage();
 				return basicGetActionOwningUsage();
+			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
+				if (resolve) return getActionOwningDefinition();
+				return basicGetActionOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -255,11 +255,11 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				getActivity().clear();
 				getActivity().addAll((Collection<? extends Behavior>)newValue);
 				return;
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				setActionOwningDefinition((Definition)newValue);
-				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)newValue);
+				return;
+			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
+				setActionOwningDefinition((Definition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -279,11 +279,11 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			case SysMLPackage.ACTION_USAGE__ACTIVITY:
 				getActivity().clear();
 				return;
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				setActionOwningDefinition((Definition)null);
-				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				setActionOwningUsage((Usage)null);
+				return;
+			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
+				setActionOwningDefinition((Definition)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -301,16 +301,16 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return isSetType();
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				return isSetBehavior();
-			case SysMLPackage.ACTION_USAGE__OWNING_DEFINITION:
-				return isSetOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__OWNING_USAGE:
 				return isSetOwningUsage();
+			case SysMLPackage.ACTION_USAGE__OWNING_DEFINITION:
+				return isSetOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTIVITY:
 				return isSetActivity();
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				return isSetActionOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
 				return isSetActionOwningUsage();
+			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
+				return isSetActionOwningDefinition();
 		}
 		return super.eIsSet(featureID);
 	}

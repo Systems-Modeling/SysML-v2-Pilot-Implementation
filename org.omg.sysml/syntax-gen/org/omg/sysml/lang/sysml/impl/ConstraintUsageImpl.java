@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -19,11 +20,18 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -37,15 +45,17 @@ import org.omg.sysml.lang.sysml.Usage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintDefinition <em>Constraint Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningUsage <em>Constraint Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
-	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraints";
+	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
+	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
+	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last
@@ -391,13 +401,52 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+		return getOwnedSubsettingWithComputedRedefinitions(
+				isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
+				isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
+				CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+	}
+	
+	public boolean isAssumptionConstraint() {
+		return getRequirementConstraintKind() == RequirementConstraintKind.ASSUMPTION;
+	}
+	
+	public boolean isRequirementConstraint() {
+		return getRequirementConstraintKind() == RequirementConstraintKind.REQUIREMENT;
+	}
+	
+	public RequirementConstraintKind getRequirementConstraintKind() {
+		FeatureMembership owningMembership = getOwningFeatureMembership();
+		return owningMembership instanceof RequirementConstraintMembership? 
+				((RequirementConstraintMembership)owningMembership).getKind(): null;
 	}
 	
 	@Override
 	public EList<Feature> getFeature() {
 		getResultConnector();
 		return super.getFeature();
+	}
+	
+	/**
+	 * If this ConstraintUsage has a RequirementDefinition as a type, then ensure that it has
+	 * at least one owned Parameter (to redefine the requirement subject parameter).
+	 */
+	@Override
+	public List<Parameter> getOwnedParameters() {
+		List<Parameter> parameters = super.getOwnedParameters();
+		// Note: A ConstraintUsage will always have at least a return Parameter.
+		if (parameters.size() < 2 && isRequirement() ) {
+			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
+			membership.setOwnedMemberParameter_comp(parameter);
+			getOwnedFeatureMembership_comp().add(0, membership);
+			parameters.add(0, parameter);
+		}
+		return parameters;
+	}
+	
+	public boolean isRequirement() {
+		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
 	}
 	
 	@Override 
@@ -410,6 +459,13 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getOwnedParameters();
+		getResultConnector();
 	}
 	
 	//
@@ -433,12 +489,12 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				if (resolve) return getConstraintDefinition();
 				return basicGetConstraintDefinition();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				if (resolve) return getConstraintOwningDefinition();
-				return basicGetConstraintOwningDefinition();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
 				if (resolve) return getConstraintOwningUsage();
 				return basicGetConstraintOwningUsage();
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
+				if (resolve) return getConstraintOwningDefinition();
+				return basicGetConstraintOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -465,11 +521,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				setConstraintDefinition((Predicate)newValue);
 				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				setConstraintOwningDefinition((Definition)newValue);
-				return;
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
 				setConstraintOwningUsage((Usage)newValue);
+				return;
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
+				setConstraintOwningDefinition((Definition)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -495,11 +551,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				setConstraintDefinition((Predicate)null);
 				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				setConstraintOwningDefinition((Definition)null);
-				return;
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
 				setConstraintOwningUsage((Usage)null);
+				return;
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
+				setConstraintOwningDefinition((Definition)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -521,16 +577,16 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return isSetFunction();
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				return isSetPredicate();
-			case SysMLPackage.CONSTRAINT_USAGE__OWNING_DEFINITION:
-				return isSetOwningDefinition();
 			case SysMLPackage.CONSTRAINT_USAGE__OWNING_USAGE:
 				return isSetOwningUsage();
+			case SysMLPackage.CONSTRAINT_USAGE__OWNING_DEFINITION:
+				return isSetOwningDefinition();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				return isSetConstraintOwningDefinition();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
 				return isSetConstraintOwningUsage();
+			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
+				return isSetConstraintOwningDefinition();
 		}
 		return super.eIsSet(featureID);
 	}

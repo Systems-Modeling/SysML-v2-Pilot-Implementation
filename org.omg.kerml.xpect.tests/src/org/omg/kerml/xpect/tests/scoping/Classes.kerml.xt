@@ -1,0 +1,25 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
+	ResourceSet {
+		ThisFile {}
+		File "Classes2.kerml" {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File "Classes2.kerml" {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+import Classes2::*;
+package Classes1 {
+	// XPECT scope at A --> A, B, ...
+	private class B specializes A {
+		private y: A;
+	} 
+	
+}

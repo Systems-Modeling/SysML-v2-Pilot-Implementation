@@ -1,0 +1,53 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/src/DependencyPackageAlias1.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/src/DependencyPackageAlias1.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors ---> ""
+package test{
+	import PackageAlias1::*;
+	class A{}
+	//XPECT linkedName at A --> test.A
+	//* XPECT scope at A ---
+		   A, test.A,  
+		   A_alias, A_alias.a, A_alias.a_alias, test.A_alias, test.A_alias.a, test.A_alias.a_alias,
+		   AA, AA.aa, AA.aa_alias, test.AA, test.AA.aa, test.AA.aa_alias,
+		   AA_alias, AA_alias.aa, AA_alias.aa_alias, test.AA_alias, test.AA_alias.aa, test.AA_alias.aa_alias,
+ 		   test_a, test.test_a,   
+ 		   test_alias, test_alias.a, test_alias.a_alias, test.test_alias, test.test_alias.a, test.test_alias.a_alias,
+ 		   PackageAlias1.A, PackageAlias1.A.a,  PackageAlias1.A.a_alias, 
+ 		   PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
+ 		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
+		   --- */
+	class test_a specializes A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
+ 		   
+	
+	//XPECT linkedName at A_alias --> PackageAlias1.A
+	//* XPECT scope at A_alias ---
+		   A, test.A,  
+		   A_alias, A_alias.a, A_alias.a_alias, test.A_alias, test.A_alias.a, test.A_alias.a_alias,
+		   AA, AA.aa, AA.aa_alias, test.AA, test.AA.aa, test.AA.aa_alias,
+		   AA_alias, AA_alias.aa, AA_alias.aa_alias, test.AA_alias, test.AA_alias.aa, test.AA_alias.aa_alias,
+ 		   test_a, test.test_a,   
+ 		   test_alias, test_alias.a, test_alias.a_alias, test.test_alias, test.test_alias.a, test.test_alias.a_alias,
+ 		   PackageAlias1.A, PackageAlias1.A.a,  PackageAlias1.A.a_alias, 
+ 		   PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
+ 		   PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+ 		   PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa,  PackageAlias1.AA_alias.aa_alias,
+  		   --- */
+	class test_alias specializes A_alias{}
+}
+   

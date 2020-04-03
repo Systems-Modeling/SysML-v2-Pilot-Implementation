@@ -59,7 +59,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
-	private static final int MAX_DOT_COUNT = 100;
+	private static final int ELEMENTS_PER_DOT = 100;
 	
 	private final ApiClient apiClient = new ApiClient();
 	private final ProjectApi projectApi = new ProjectApi(apiClient);
@@ -69,7 +69,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	private Traversal traversal;
 	
 	private boolean isVerbose = false;
-	private int dotCount = 0;
+	private int elementCount = 0;
 	
 	private final List<ElementVersion> changeSet = new ArrayList<>();
 
@@ -257,12 +257,14 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		if (this.isVerbose()) {
 			System.out.println("Processing " + descriptionOf(element));
 		} else {
-			if (dotCount == MAX_DOT_COUNT) {
-				System.out.println();
-				dotCount = 0;
+			if (elementCount == 0) {
+				System.out.print("Processing");
 			}
-			System.out.print(".");
-			dotCount++;
+			if (elementCount == ELEMENTS_PER_DOT) {
+				System.out.print(".");
+				elementCount = 0;
+			}
+			elementCount++;
 		}
 		return UUID.fromString(element.getIdentifier());
 	}
@@ -286,9 +288,11 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public void commit() {
 		try {
-			Commit commit = new Commit().changes(this.getChangeSet());
+			List<ElementVersion> changeSet = this.getChangeSet();
+			Commit commit = new Commit().changes(changeSet);
 //			System.out.println(new org.omg.sysml.JSON().serialize(commit));
-			System.out.print("Posting Commit ");
+			int n = changeSet.size();
+			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ") ": "s) "));
 			commit = this.commitApi.postCommitByProject(this.project.getId(), commit);
 			System.out.println(commit.getId());
 		} catch (ApiException e) {

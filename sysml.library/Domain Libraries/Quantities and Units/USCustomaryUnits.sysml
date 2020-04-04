@@ -23,22 +23,25 @@ package USCustomaryUnits {
     alias 'mi/h' as mph;
 
 	/*
-	 * degree fahrenheit unit for temperature difference quantities
+	 * degree Fahrenheit unit for relative temperature (i.e. temperature difference) quantities
 	 */
-	part '°F' = TemperatureUnit(name => "degree fahrenheit", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 5.0/9.0));
+	part '°F«rel»' = TemperatureUnit(name => "degree fahrenheit (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 5.0/9.0));
 	 
 	/*
-	 * degree fahrenheit interval scale for absolute temperature quantities
+	 * degree Fahrenheit interval scale for absolute temperature quantities
 	 * 
 	 * The interval scale is defined with an explicit mapping to the celsius scale from which the offset between the scales can be computed.
 	 */
-	part temperatureWaterAtFreezingPointInF = ScaleValueDefinition(num => 32.0, description => "temperature in degree Fahrenheit of pure water at freezing point");
-	part fahrenheitToCelsiusScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureWaterAtFreezingPointInF, referenceScaleValue => temperatureWaterAtFreezingPointInC);
-	
-	/* TODO: Consider part name '°F_abs' or '°F (abs)' */
-	part '°F scale' = IntervalScale(name => "degree fahrenheit scale") {
-		ref unit redefines MeasurementScale::unit = '°F';
-		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureWaterAtFreezingPointInF;
+	part '°F«abs»' = IntervalScale(name => "degree fahrenheit (absolute)") {
+		ref unit redefines MeasurementScale::unit = '°F«rel»';
+		private part temperatureWaterAtFreezingPointInF = ScaleValueDefinition(
+			num => 32.0, description => "temperature in degree Fahrenheit of pure water at freezing point"
+		);
+		private part fahrenheitToCelsiusScaleMapping = ScaleValueMapping(
+			mappedScaleValue => temperatureWaterAtFreezingPointInF, referenceScaleValue => '°C«abs»'::temperatureWaterAtFreezingPointInC
+		);
+		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = temperatureWaterAtFreezingPointInF;
 		ref scaleValueMapping redefines MeasurementScale::scaleValueMapping = fahrenheitToCelsiusScaleMapping;
 	}
+	alias '°F«abs»' as '°F';
 }

@@ -33,9 +33,9 @@ package SI {
 	
 	/*
 	 * Derived units
-	 * 
-	 * TODO: Auto-generate a complete list of quantities and units for the ISO/IEC 80000 parts 3 to 14 
 	 */ 
+
+	// TODO: Auto-generate a complete list of quantities and units for the ISO/IEC 80000 parts 3 to 14
 
 	part N: ForceUnit = kg * m / s**2 {name redefines MeasurementReference::name = "newton";}
 	part 'm/s': SpeedUnit = m / s {name redefines MeasurementReference::name = "metre per second";}
@@ -63,22 +63,27 @@ package SI {
 	/*
 	 * degree Celsius unit for temperature difference quantities
 	 */
-	part '°C' = TemperatureUnit(name => "degree celsius", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
+	part '°C«rel»' = TemperatureUnit(name => "degree celsius (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
 	 
 	/*
 	 * degree Celsius interval scale for absolute temperature quantities
 	 * 
 	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
-	 * TODO: Make visibility of temperatureWaterAtTriplePointInC, celsiusToKelvinScaleMapping private, i.e. private parts ;-)
 	 */
-	part temperatureWaterAtTriplePointInC = ScaleValueDefinition(num => 0.01, description => "temperature in degree Celsius of pure water at the triple point");
-	part temperatureWaterAtFreezingPointInC = ScaleValueDefinition(num => 0.0, description => "temperature in degree Celsius of pure water at freezing point");
-	part celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => temperatureOfWaterAtTriplePointInK);
 
-	/* TODO: Consider part name '°C_abs' or '°C (abs)'*/
-	part '°C scale' = IntervalScale(name => "degree celsius scale") {
-		ref unit redefines MeasurementScale::unit = '°C';
-		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
+	part '°C«abs»' = IntervalScale(name => "degree celsius (absolute)") {
+		ref unit redefines MeasurementScale::unit = '°C«rel»';
+		part temperatureWaterAtFreezingPointInC = ScaleValueDefinition(
+			num => 0.0, description => "temperature in degree Celsius of pure water at freezing point"
+		);
+		private part temperatureWaterAtTriplePointInC = ScaleValueDefinition(
+			num => 0.01, description => "temperature in degree Celsius of pure water at the triple point"
+		);
+		private part celsiusToKelvinScaleMapping = ScaleValueMapping(
+			mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => temperatureOfWaterAtTriplePointInK
+		);
+		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
 		ref scaleValueMapping redefines MeasurementScale::scaleValueMapping = celsiusToKelvinScaleMapping;
 	}
+	alias '°C«abs»' as '°C';
 }

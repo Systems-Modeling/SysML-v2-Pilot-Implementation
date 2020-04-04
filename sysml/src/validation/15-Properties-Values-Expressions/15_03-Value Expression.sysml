@@ -20,7 +20,7 @@ package '15_03-Value Expression' {
     
 
     block Tyre {
-    	profileDepth: LengthValue = 6.0@[mm];
+    	profileDepth: LengthValue = @i{6.0 ± 0.5}@[mm];
     	/* TODO: Change profileDepth by adding tolerance: profileDepth: LengthValue = @i{6.0 ± 0.5}@[mm]; */
     	height: LengthValue = 45@[mm];
     }

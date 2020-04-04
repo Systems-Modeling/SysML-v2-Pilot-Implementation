@@ -13,7 +13,7 @@ package '15_01-Constants' {
      */
     package 'Mathematical Constants' {
         value e: Real = 2.71828182845904523536;
-        value pi: Real = 3.14159265358979323846;
+        value pi: Real = 3.14159265358979323846; 
     }
 
     /**

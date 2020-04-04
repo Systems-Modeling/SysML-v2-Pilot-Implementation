@@ -24,8 +24,10 @@ package SI {
 
 	part A = ElectricCurrentUnit(name => "ampere");
 	
-	part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of pure water at the triple point");
-	part K = TemperatureUnit(name => "kelvin") { ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; }
+	part K = TemperatureUnit(name => "kelvin") { 
+		part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of pure water at the triple point");
+		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; 
+	}
 	
 	part mol = AmountOfSubstanceUnit(name => "mol");
 
@@ -61,7 +63,7 @@ package SI {
 	part GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
 	
 	/*
-	 * degree Celsius unit for temperature difference quantities
+	 * degree Celsius unit for relative temperature (i.e. temperature difference) quantities
 	 */
 	part '°C«rel»' = TemperatureUnit(name => "degree celsius (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
 	 
@@ -70,7 +72,6 @@ package SI {
 	 * 
 	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
 	 */
-
 	part '°C«abs»' = IntervalScale(name => "degree celsius (absolute)") {
 		ref unit redefines MeasurementScale::unit = '°C«rel»';
 		part temperatureWaterAtFreezingPointInC = ScaleValueDefinition(
@@ -80,7 +81,7 @@ package SI {
 			num => 0.01, description => "temperature in degree Celsius of pure water at the triple point"
 		);
 		private part celsiusToKelvinScaleMapping = ScaleValueMapping(
-			mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => temperatureOfWaterAtTriplePointInK
+			mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K::temperatureOfWaterAtTriplePointInK
 		);
 		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};
 		ref scaleValueMapping redefines MeasurementScale::scaleValueMapping = celsiusToKelvinScaleMapping;

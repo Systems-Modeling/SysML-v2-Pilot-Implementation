@@ -25,7 +25,7 @@ package SI {
 	part A = ElectricCurrentUnit(name => "ampere");
 	
 	part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of pure water at the triple point");
-	part K = TemperatureUnit(name => "kelvin") { ref scaleValueDefinition: ScaleValueDefinition :> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; }
+	part K = TemperatureUnit(name => "kelvin") { ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; }
 	
 	part mol = AmountOfSubstanceUnit(name => "mol");
 

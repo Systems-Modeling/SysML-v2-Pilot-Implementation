@@ -21,7 +21,7 @@ package BasicGeometry {
         value xDir: DirectionValue;
         value yDir: DirectionValue;
         value zDir: DirectionValue;
-        assert constraint { Abs(1 - Sqrt(xDir**2 + yDir**2 + zDir**2)) == 0.0 }
+        assert constraint { Sqrt(xDir**2 + yDir**2 + zDir**2) == 1.0 }
     }
 
     value type AxisPlacement3DCartesian {

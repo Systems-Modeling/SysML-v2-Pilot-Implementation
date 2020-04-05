@@ -5,34 +5,34 @@ package SI {
 	import UnitsAndScales::*;
 	import ISQ::*;
 	import SIPrefixes::*;
+	private import RationalFunctions::Rat;
 	
 	/*
 	 * SI simple units needed before creation of base units
 	 */
-	part g = MassUnit(name => "gram");
+	part g: MassUnit = MassUnit(name => "gram");
 
 	/*
 	 * SI base units
 	 */	
-	part m = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
+	part m: LengthUnit = LengthUnit(name => "metre"); // Using en-GB spelling in line with ISO 80000
 
-	part mm = LengthUnit(name => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
+	part mm: LengthUnit = LengthUnit(name => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
 	
-	part kg = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
+	part kg: MassUnit = MassUnit(name => "kilogram", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => g));
 
-	part s = TimeUnit(name => "second");
+	part s: TimeUnit = TimeUnit(name => "second");
 
-	part A = ElectricCurrentUnit(name => "ampere");
+	part A: ElectricCurrentUnit = ElectricCurrentUnit(name => "ampere");
 	
-	part K = TemperatureUnit(name => "kelvin") { 
-		// TODO: value 273.16 should be defined as Rational(27316, 100), see comment in USCustomaryUnits.sysml
-		part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of pure water at the triple point");
+	part K: TemperatureUnit = TemperatureUnit(name => "kelvin") { 
+		part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => Rat(27316, 100), description => "temperature in kelvin of pure water at the triple point");
 		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; 
 	}
 	
-	part mol = AmountOfSubstanceUnit(name => "mol");
+	part mol: AmountOfSubstanceUnit = AmountOfSubstanceUnit(name => "mol");
 
-	part cd = LuminousIntensityUnit(name => "candela");
+	part cd: LuminousIntensityUnit = LuminousIntensityUnit(name => "candela");
 	
 	/*
 	 * Derived units
@@ -49,40 +49,39 @@ package SI {
 	/*
 	 * Non-standard conversion based units that are accepted in SI
 	 */
-	part min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60));
-	part h = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60));
+	part min: TimeUnit = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60));
+	part h: TimeUnit = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60));
 	part 'km/h': SpeedUnit = km / h {name redefines MeasurementReference::name = "kilometre per hour";}
 		
 	/* 
 	 * Prefixed units
 	 */
-	part mm = LengthUnit(name => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
-	part km = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
-	part mN = ForceUnit(name => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
-	part kJ = EnergyUnit(name => "kilojoule", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => J));
-	part MJ = EnergyUnit(name => "megajoule", unitConversion => ConversionByPrefix(prefix => mega, referenceUnit => J));
-	part GJ = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
+	part mm: LengthUnit = LengthUnit(name => "millimetre", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => m));
+	part km: LengthUnit = LengthUnit(name => "kilometre", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => m));
+	part mN: ForceUnit = ForceUnit(name => "millinewton", unitConversion => ConversionByPrefix(prefix => milli, referenceUnit => N));
+	part kJ: EnergyUnit = EnergyUnit(name => "kilojoule", unitConversion => ConversionByPrefix(prefix => kilo, referenceUnit => J));
+	part MJ: EnergyUnit = EnergyUnit(name => "megajoule", unitConversion => ConversionByPrefix(prefix => mega, referenceUnit => J));
+	part GJ: EnergyUnit = EnergyUnit(name => "gigajoule", unitConversion => ConversionByPrefix(prefix => giga, referenceUnit => J));
 	
 	/*
 	 * degree Celsius unit for relative temperature (i.e. temperature difference) quantities
 	 */
-	part '°C«rel»' = TemperatureUnit(name => "degree celsius (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1));
+	part '°C«rel»': TemperatureUnit = TemperatureUnit(name => "degree celsius (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1));
 	 
 	/*
 	 * degree Celsius interval scale for absolute temperature quantities
 	 * 
 	 * The interval scale is defined with an explicit mapping to the kelvin ratio scale from which the offset between the scales can be computed.
 	 */
-	part '°C«abs»' = IntervalScale(name => "degree celsius (absolute)") {
+	part '°C«abs»': IntervalScale = IntervalScale(name => "degree celsius (absolute)") {
 		ref unit redefines MeasurementScale::unit = '°C«rel»';
-		part temperatureWaterAtFreezingPointInC = ScaleValueDefinition(
+		part temperatureWaterAtFreezingPointInC: ScaleValueDefinition = ScaleValueDefinition(
 			num => 0, description => "temperature in degree Celsius of pure water at freezing point"
 		);
-		// TODO: value 0.01 should be defined as Rational(1, 100), see comment in USCustomaryUnits.sysml
-		private part temperatureWaterAtTriplePointInC = ScaleValueDefinition(
-			num => 0.01, description => "temperature in degree Celsius of pure water at the triple point"
+		private part temperatureWaterAtTriplePointInC: ScaleValueDefinition = ScaleValueDefinition(
+			num => Rat(1, 100), description => "temperature in degree Celsius of pure water at the triple point"
 		);
-		private part celsiusToKelvinScaleMapping = ScaleValueMapping(
+		private part celsiusToKelvinScaleMapping: ScaleValueMapping = ScaleValueMapping(
 			mappedScaleValue => temperatureWaterAtTriplePointInC, referenceScaleValue => K::temperatureOfWaterAtTriplePointInK
 		);
 		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = {temperatureWaterAtTriplePointInC, temperatureWaterAtFreezingPointInC};

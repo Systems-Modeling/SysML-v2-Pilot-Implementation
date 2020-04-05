@@ -5,22 +5,25 @@ package '15_19-Materials with Properties' {
 	block AtomicMassUnit :> MassUnit;
         
     value type AtomicMassValue :> QuantityValue {
-		value num: Real redefines QuantityValue::num;
-    	ref mRef: AtomicMassUnit redefines QuantityValue::mRef;
+		value num: Real :>> QuantityValue::num;
+    	ref mRef: AtomicMassUnit :>> QuantityValue::mRef;
     }
     
-    part Da = AtomicMassUnit(name => "dalton", unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.6605390666050e-27));
+    part Da: AtomicMassUnit = AtomicMassUnit(
+    	name => "dalton", 
+    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.6605390666050e-27)
+    );
 
 	// TODO: Move definition of tensile strength and N/mm² to SI
-    block TensileStrengthUnit :> MeasurementUnit {
-		value lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = -1;
+    block TensileStrengthUnit :> SIDerivedUnit {
+		value lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
+			value exponent :>> UnitPowerFactor::exponent = -1;
 		}
-		value massPowerFactor redefines SIDerivedUnit::massPowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = 1;
+		value massPowerFactor :>> SIDerivedUnit::massPowerFactor {
+			value exponent :>> UnitPowerFactor::exponent = 1;
 		}
-		value timePowerFactor redefines SIDerivedUnit::timePowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = -2;
+		value timePowerFactor :>> SIDerivedUnit::timePowerFactor {
+			value exponent :>> UnitPowerFactor::exponent = -2;
 		}
     }
     
@@ -29,7 +32,9 @@ package '15_19-Materials with Properties' {
     	ref mRef: TensileStrengthUnit redefines QuantityValue::mRef;
     }
     
-    part 'N/mm²': TensileStrengthUnit = N / mm**2 {name redefines MeasurementReference::name = "newton per square millimetre";}
+    part 'N/mm²': TensileStrengthUnit = N / mm**2 {
+    	value name :>> MeasurementReference::name = "newton per square millimetre";
+    }
 
     block Substance;
 
@@ -51,18 +56,18 @@ package '15_19-Materials with Properties' {
     }
 
     individual def Carbon :> Metal {
-        value atomicMass redefines Metal::atomicMass = 12.011@[Da];
+        value atomicMass :>> Metal::atomicMass = 12.011@[Da];
     }
 
     individual def Manganese :> Metal {
-        value atomicMass redefines Metal::atomicMass = 54.938@[Da];
+        value atomicMass :>> Metal::atomicMass = 54.938@[Da];
     }
 
     block Alloy :> Material {
         value fractions: MaterialFraction[2..*];
     }
 
-    part Steel_980: Alloy { // Individual
+    individual def Steel_980 :> Alloy {
         value fraction1 :> fractions {
         	ref :>> material : Iron;
         	value :>> massFraction = 0.9862;

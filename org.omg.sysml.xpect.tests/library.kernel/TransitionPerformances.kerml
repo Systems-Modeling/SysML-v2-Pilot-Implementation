@@ -19,21 +19,18 @@ package TransitionPerformances {
 		succession effect[*] then transitionLink::later[1];
 		
 		connector transitionLink[0..1] to trigger[1..*];
-		connector guardConstraint: all TPCGuardConstraint[*] 
+		connector all guardConstraint: TPCGuardConstraint[*] 
 			from transitionLink[0..1] to guard[*];
 			
-		succession :all HappensBefore 
-			first trigger[*] then guard[*];
-		succession :all HappensBefore 
-			first guard[*] then effect[*];
+		succession all trigger[*] then guard[*];
+		succession all guard[*] then effect[*];
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
 		succession transitionLinkSource[1] then trigger[*];
 		succession transitionLinkSource[1] then guard[*];
 		
-		succession :all HappensBefore 
-			first guard[*] then transitionLink::later[0..1];
+		succession all guard[*] then transitionLink::later[0..1];
 	}
 	
 	assoc TPCGuardConstraint {

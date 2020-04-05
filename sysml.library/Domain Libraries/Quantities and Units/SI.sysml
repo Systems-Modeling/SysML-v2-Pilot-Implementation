@@ -25,7 +25,7 @@ package SI {
 	part A = ElectricCurrentUnit(name => "ampere");
 	
 	part temperatureInKelvinTriplePointWater = ScaleValueDefinition(magnitude => 273.16, description => "temperature in kelvin of the triple point of pure water");
-	part K = TemperatureUnit(name => "kelvin") {
+	part K: TemperatureUnit = TemperatureUnit(name => "kelvin") {
 		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementScale::scaleValueDefinition = temperatureInKelvinTriplePointWater; 
 	}
 	
@@ -85,7 +85,7 @@ package SI {
 	 
 	part temperatureInCelsiusTriplePointWater = ScaleValueDefinition(magnitude => 0.01, description => "temperature in degree celsius of the triple point of pure water");
 	part celsiusToKelvinScaleMapping = ScaleValueMapping(mappedScaleValue => temperatureInCelsiusTriplePointWater, referenceScaleValue => temperatureInKelvinTriplePointWater);
-	part '°C scale' = IntervalScale(name => "degree celsius scale") {
+	part '°C scale': IntervalScale = IntervalScale(name => "degree celsius scale") {
 		ref unit redefines NonRatioScale::unit = '°C';
 		ref scaleValueDefinition: ScaleValueDefinition :> MeasurementScale::scaleValueDefinition = temperatureInCelsiusTriplePointWater;
 		ref scaleValueMapping redefines NonRatioScale::scaleValueMapping = celsiusToKelvinScaleMapping;

@@ -63,8 +63,7 @@ package StatePerformances {
 			inv { !transitionLinkSource::isAcceptFirst | size(self) == size(trigger) }
 		}
 		
-		succession :all HappensBefore 
-			first transitionLinkSource::middle[1..*] then guard[*];
+		succession all transitionLinkSource::middle[1..*] then guard[*];
 		succession guard[*] then transitionLinkSource::exit[1];		
 	}
 }

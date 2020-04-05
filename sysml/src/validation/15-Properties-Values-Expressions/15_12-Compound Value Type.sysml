@@ -1,6 +1,10 @@
 package '15_12-Compound Value Type' {
     import ISQ::*;
     import BasicGeometry::*;
+    
+    /* Note: DirectionValue, CartesianLocation3D, CartesianDirection3D and CartesianAxisPlacement3D
+     * are defined in BasicGeometry.
+     */
 
     /**
      * Vehicle with placements of the front left and right wheel assemblies w.r.t the vehicle coordinate frame.

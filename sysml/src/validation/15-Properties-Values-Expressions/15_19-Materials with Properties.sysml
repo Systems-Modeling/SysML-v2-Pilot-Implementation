@@ -38,7 +38,7 @@ package '15_19-Materials with Properties' {
     value type MassFractionValue;
 
     value type MaterialFraction {
-        ref material: Material; 
+        ref material: Material[1]; 
         value massFraction: MassFractionValue;
     }
 
@@ -46,15 +46,15 @@ package '15_19-Materials with Properties' {
         value atomicMass: AtomicMassValue;
     }
 
-    part Iron: Metal { // Individual
-        value atomicMass redefines Metal::atomicMass = 55.845@[Da];
+    individual def Iron :> Metal {
+        value :>> atomicMass = 55.845@[Da];
     }
 
-    part Carbon: Metal { // Individual
+    individual def Carbon :> Metal {
         value atomicMass redefines Metal::atomicMass = 12.011@[Da];
     }
 
-    part Manganese: Metal { // Individual
+    individual def Manganese :> Metal {
         value atomicMass redefines Metal::atomicMass = 54.938@[Da];
     }
 
@@ -63,11 +63,21 @@ package '15_19-Materials with Properties' {
     }
 
     part Steel_980: Alloy { // Individual
-        value fractions redefines Alloy::fractions = { 
-        	MaterialFraction(Iron, 0.9862), 
-        	MaterialFraction(Carbon, 0.0018), 
-        	MaterialFraction(Manganese, 0.012)
-        };
+        value fraction1 :> fractions {
+        	ref :>> material : Iron;
+        	value :>> massFraction = 0.9862;
+        }
+        
+        value fraction2 :> fractions {
+        	ref :>> material : Carbon;
+        	value :>> massFraction = 0.9862;
+        }
+        
+        value fraction3 :> fractions {
+        	ref :>> material : Manganese;
+        	value :>> massFraction = 0.9862;
+        }
+        
         value tensileStrength: TensileStrengthValue = 980@['N/mm²'];
     }
 }

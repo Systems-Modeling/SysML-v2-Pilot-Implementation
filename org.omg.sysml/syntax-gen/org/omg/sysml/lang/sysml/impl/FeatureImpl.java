@@ -400,7 +400,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void addSubsetting(String name) {
 		Type type = getDefaultType(name);
-		if (type instanceof Feature) {
+		if (type instanceof Feature && type != this &&
+				!getOwnedSubsettingWithoutDefault().stream().anyMatch(sub->sub.getSubsettedFeature() == type)) {
 			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 			subsetting.setSubsettedFeature((Feature)type);
 			subsetting.setSubsettingFeature(this);
@@ -436,7 +437,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				List<? extends Feature> features = getRelevantFeatures(general);
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
-					if (redefinedFeature != null) {
+					if (redefinedFeature != null && redefinedFeature != this) {
 						Redefinition redefinition;
 						if (j < n) {
 							redefinition = emptyRedefinitions.get(j);

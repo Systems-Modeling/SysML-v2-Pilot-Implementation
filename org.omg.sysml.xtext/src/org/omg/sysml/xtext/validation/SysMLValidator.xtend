@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.LiteralUnbounded
 import java.util.Set
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Multiplicity
+import org.omg.sysml.lang.sysml.Connector
 
 /**
  * This class contains custom validation rules. 
@@ -69,6 +70,11 @@ class SysMLValidator extends KerMLValidator {
 		var subsettingOwningType = sub.subsettingFeature?.owningType
 		var subsettedOwningType = sub.subsettedFeature?.owningType
 		
+		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
+		if ( subsettingOwningType === null || subsettedOwningType === null ||
+			subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
+			return;
+
 		// Multiplicity conformance
 		
 		var setted_m = sub.subsettedFeature?.multiplicity

@@ -1,10 +1,9 @@
 package '15_14-Discretely Sampled Function Value' {
-	import BaseFunctions::size;
 	import NonScalarValues::SampledFunctionValue;
 	import ISQ::*;
 	import BasicGeometry::*;
 	
-	block AsscentProfile :> SampledFunctionValue {
+	block AscentProfile :> SampledFunctionValue {
 		/* Note: The multiplicity 0..* and ordering are automatically "inherited"
 		 * from the redefined value properties. */
 		value missionElapsedTime : TimeValue :>> domain;

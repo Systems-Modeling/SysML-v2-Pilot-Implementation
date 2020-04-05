@@ -236,7 +236,7 @@ public class SysMLInteractive extends SysMLUtil {
 				processingFacade.getTraversal().visit(element);
 				processingFacade.commit();
 				System.out.println();
-				return modelName + " (" + processingFacade.getProjectId() + ")\n";
+				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);

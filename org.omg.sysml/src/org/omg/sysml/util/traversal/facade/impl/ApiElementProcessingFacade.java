@@ -26,6 +26,7 @@ package org.omg.sysml.util.traversal.facade.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
@@ -43,6 +44,8 @@ import org.omg.sysml.model.ElementVersion;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
+
+import okhttp3.OkHttpClient;
 
 /**
  * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
@@ -82,7 +85,14 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @throws 	ApiException
 	 */
 	public ApiElementProcessingFacade(String projectName, String basePath) throws ApiException {
-		this.apiClient.setBasePath(basePath);
+		this.apiClient.setBasePath(basePath);		
+		this.apiClient.setHttpClient(
+			new OkHttpClient.Builder().
+				connectTimeout(1, TimeUnit.HOURS).
+				readTimeout(1, TimeUnit.HOURS).
+				writeTimeout(1, TimeUnit.HOURS).
+				build());
+		
 		org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
 		project.setName(projectName);
 		this.project = projectApi.postProject(project);

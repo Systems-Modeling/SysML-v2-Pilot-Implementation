@@ -6,7 +6,7 @@ package BasicGeometry {
      * Component of Cartesian direction vector with value in interval [-1:1]
      */
     value type DirectionValue :> DimensionOneValue {
-    	assert constraint { num >= -1 & num <= 1 }
+    	assert constraint { num >= -1.0 & num <= 1.0 }
     }
 
     value type CoordinateValue :> LengthValue;
@@ -21,7 +21,7 @@ package BasicGeometry {
         value xDir: DirectionValue[1];
         value yDir: DirectionValue[1];
         value zDir: DirectionValue[1];
-        assert constraint { xDir**2 + yDir**2 + zDir**2 == 1 }
+        assert constraint { xDir**2 + yDir**2 + zDir**2 == 1.0 }
     }
 
     value type AxisPlacement3DCartesian {

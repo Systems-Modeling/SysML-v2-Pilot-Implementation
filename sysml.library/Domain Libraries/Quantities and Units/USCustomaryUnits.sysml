@@ -6,10 +6,19 @@
 package USCustomaryUnits {	
 	import SI::*;
 	
+	/*
+	 * TODO: To make conversionFactor definitions truly implementation platform independent they should be defined as Rational numbers per examples below
+	 * 0.3048 becomes Rational(3048, 10000)
+	 * 1.0/12.0 becomes Rational(1, 12)
+	 * 0.4535924 becomes Rational(4535924, 10000000)
+	 * 4.448222 becomes Rational(4448222, 1000000)
+	 * 5.0/9.0 becomes Rational(5, 9)
+	 * where function Rational is defined as Rational(numerator: Integer, denominator: Integer): Rational.
+	 */
 	 
 	part ft = LengthUnit(name => "foot", unitConversion => ConversionByConvention(referenceUnit => m, conversionFactor => 0.3048));
 	part 'in' = LengthUnit(name => "inch", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 1.0/12.0));
-    part mi = LengthUnit(name => "mile", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 5280.0 ));	
+    part mi = LengthUnit(name => "mile", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => 5280 ));	
 
     part lb = MassUnit(name => "pound (avoirdupois)", unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 0.4535924 ));
 
@@ -30,7 +39,7 @@ package USCustomaryUnits {
 	/*
 	 * degree Fahrenheit interval scale for absolute temperature quantities
 	 * 
-	 * The interval scale is defined with an explicit mapping to the celsius scale from which the offset between the scales can be computed.
+	 * The interval scale is defined with an explicit mapping to the degree Celsius interval scale from which the offset between the scales can be computed.
 	 */
 	part '°F«abs»' = IntervalScale(name => "degree fahrenheit (absolute)") {
 		ref unit redefines MeasurementScale::unit = '°F«rel»';

@@ -25,6 +25,7 @@ package SI {
 	part A = ElectricCurrentUnit(name => "ampere");
 	
 	part K = TemperatureUnit(name => "kelvin") { 
+		// TODO: value 273.16 should be defined as Rational(27316, 100), see comment in USCustomaryUnits.sysml
 		part temperatureOfWaterAtTriplePointInK = ScaleValueDefinition(num => 273.16, description => "temperature in kelvin of pure water at the triple point");
 		ref scaleValueDefinition: ScaleValueDefinition :>> MeasurementReference::scaleValueDefinition = temperatureOfWaterAtTriplePointInK; 
 	}
@@ -48,8 +49,8 @@ package SI {
 	/*
 	 * Non-standard conversion based units that are accepted in SI
 	 */
-	part min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60.0));
-	part h = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60.0));
+	part min = TimeUnit(name => "minute", unitConversion => ConversionByConvention(referenceUnit => s, conversionFactor => 60));
+	part h = TimeUnit(name => "hour", unitConversion => ConversionByConvention(referenceUnit => min, conversionFactor => 60));
 	part 'km/h': SpeedUnit = km / h {name redefines MeasurementReference::name = "kilometre per hour";}
 		
 	/* 
@@ -65,18 +66,19 @@ package SI {
 	/*
 	 * degree Celsius unit for relative temperature (i.e. temperature difference) quantities
 	 */
-	part '°C«rel»' = TemperatureUnit(name => "degree celsius (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1.0));
+	part '°C«rel»' = TemperatureUnit(name => "degree celsius (relative)", unitConversion => ConversionByConvention(referenceUnit => K, conversionFactor => 1));
 	 
 	/*
 	 * degree Celsius interval scale for absolute temperature quantities
 	 * 
-	 * The interval scale is defined with an explicit mapping to the kelvin scale from which the offset between the scales can be computed.
+	 * The interval scale is defined with an explicit mapping to the kelvin ratio scale from which the offset between the scales can be computed.
 	 */
 	part '°C«abs»' = IntervalScale(name => "degree celsius (absolute)") {
 		ref unit redefines MeasurementScale::unit = '°C«rel»';
 		part temperatureWaterAtFreezingPointInC = ScaleValueDefinition(
-			num => 0.0, description => "temperature in degree Celsius of pure water at freezing point"
+			num => 0, description => "temperature in degree Celsius of pure water at freezing point"
 		);
+		// TODO: value 0.01 should be defined as Rational(1, 100), see comment in USCustomaryUnits.sysml
 		private part temperatureWaterAtTriplePointInC = ScaleValueDefinition(
 			num => 0.01, description => "temperature in degree Celsius of pure water at the triple point"
 		);

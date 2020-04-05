@@ -12,21 +12,21 @@ package BasicGeometry {
     value type CoordinateValue :> LengthValue;
 
     value type Location3DCartesian {
-        value x: CoordinateValue;
-        value y: CoordinateValue;
-        value z: CoordinateValue;
+        value x: CoordinateValue[1];
+        value y: CoordinateValue[1];
+        value z: CoordinateValue[1];
     }
 
     value type Direction3DCartesian {
-        value xDir: DirectionValue;
-        value yDir: DirectionValue;
-        value zDir: DirectionValue;
+        value xDir: DirectionValue[1];
+        value yDir: DirectionValue[1];
+        value zDir: DirectionValue[1];
         assert constraint { xDir**2 + yDir**2 + zDir**2 == 1 }
     }
 
     value type AxisPlacement3DCartesian {
-        value location: Location3DCartesian;
-        value zAxisDir: Direction3DCartesian;
-        value xAxisDir: Direction3DCartesian;
+        value location: Location3DCartesian[1];
+        value zAxisDir: Direction3DCartesian[1];
+        value xAxisDir: Direction3DCartesian[1];
     }
 }

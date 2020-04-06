@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Project Driven Solutions, Inc.
+ * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,8 +23,10 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal.facade.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
@@ -32,16 +34,23 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.ApiClient;
 import org.omg.sysml.ApiException;
-import org.omg.sysml.api.ElementApi;
+import org.omg.sysml.api.CommitApi;
 import org.omg.sysml.api.ProjectApi;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.model.Commit;
+import org.omg.sysml.model.ElementIdentity;
+import org.omg.sysml.model.ElementVersion;
 import org.omg.sysml.model.Identified;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
 
+import okhttp3.OkHttpClient;
+
 /**
  * This is an element-processing facade that uses the SysML v2 REST API to write Elements to a repository.
+ * A change set of ElementVersions is constructed during traversal of the model. Once the traversal is
+ * completed, this change set can be committed to the repository.
  * 
  * @author Ed Seidewitz
  *
@@ -53,17 +62,19 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 */
 	public static final String DEFAULT_BASE_PATH = "http://sysml2-dev.intercax.com:9000";
 	
-	private static final int MAX_DOT_COUNT = 100;
+	private static final int ELEMENTS_PER_DOT = 100;
 	
 	private final ApiClient apiClient = new ApiClient();
-	private final ElementApi elementApi = new ElementApi(apiClient);
 	private final ProjectApi projectApi = new ProjectApi(apiClient);
+	private final CommitApi commitApi = new CommitApi(apiClient);
 
 	private final org.omg.sysml.model.Project project;
 	private Traversal traversal;
 	
 	private boolean isVerbose = false;
-	private int dotCount = 0;
+	private int elementCount = 0;
+	
+	private final List<ElementVersion> changeSet = new ArrayList<>();
 
 	/**
 	 * Create a facade for processing the Elements of a project with the given name. A project with that name
@@ -74,11 +85,17 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @throws 	ApiException
 	 */
 	public ApiElementProcessingFacade(String projectName, String basePath) throws ApiException {
-		this.apiClient.setBasePath(basePath);
+		this.apiClient.setBasePath(basePath);		
+		this.apiClient.setHttpClient(
+			new OkHttpClient.Builder().
+				connectTimeout(1, TimeUnit.HOURS).
+				readTimeout(1, TimeUnit.HOURS).
+				writeTimeout(1, TimeUnit.HOURS).
+				build());
+		
 		org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
-		project.setAtType("Project");
 		project.setName(projectName);
-		this.project = projectApi.createProject(project);
+		this.project = projectApi.postProject(project);
 	}
 	
 	/**
@@ -133,7 +150,25 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	the UUID of the project saved in the repository
 	 */
 	public String getProjectId() {
-		return this.project.getIdentifier().toString();
+		return this.project.getId().toString();
+	}
+	
+	/**
+	 * Return the change set of ElementVersions to be committed.
+	 * 
+	 * @return	the change set of ElementsVersions to be committed. 
+	 */
+	protected List<ElementVersion> getChangeSet() {
+		return this.changeSet;
+	}
+	
+	/**
+	 * Add an ElementVersion to the change set.
+	 * 
+	 * @param 	elementVersion	the ElementVersion to be added to the change set
+	 */
+	protected void addToChangeSet(ElementVersion elementVersion) {
+		this.changeSet.add(elementVersion);
 	}
 	
 	/**
@@ -142,17 +177,17 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	identifier			the UUID of the object being identified
 	 * @return	an Identified object with the given identifier
 	 */
-	private static Identified identified(UUID identifier) {
+	protected static Identified identified(UUID identifier) {
 		return new Identified().identifier(identifier);
 	}
 	
 	/**
 	 * Create an Identified object containing the identifier of the given element.
 	 * 
-	 * @param element
-	 * @return
+	 * @param 	element				the Element to be identified
+	 * @return	an Identified object the the given Element (or null if the input is null).
 	 */
-	private Identified getIdentified(Element element) {
+	protected Identified getIdentified(Element element) {
 		Object identifier = this.traversal.getIdentifier(element);
 		return identifier instanceof UUID? identified((UUID)identifier): null;
 	}
@@ -163,7 +198,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @param 	elements			the Elements being identified
 	 * @return	a list of Identified objects with the identifiers of the given elements
 	 */
-	private List<Identified> getIdentified(List<Element> elements) {
+	protected List<Identified> getIdentified(List<Element> elements) {
 		return elements.stream().
 				map(this::getIdentified).
 				filter(id->id != null).
@@ -171,112 +206,22 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	}
 
 	/**
-	 * Return a new API Element initialized with type, containing Project and name from the given 
-	 * source model Element.
+	 * Create an ElementVersion for the given model Element including the values of all its attributes 
+	 * (unless it is a library model element, in which case only its non-referential attribute values 
+	 * are included). The ID for the ElementVersion uses the identifier from the model Element.
 	 * 
-	 * @param 	modelElement		the Element as it is represented in Ecore
-	 * @return	the Element as it is represented in the API
-	 */
-	protected org.omg.sysml.model.Element initialize(Element modelElement) {
-		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
-		apiElement.put("@type", modelElement.eClass().getName());
-		apiElement.put("containingProject", identified(this.project.getIdentifier()));
-		apiElement.put("name", modelElement.getName());
-		return apiElement;
-	}
-	
-	/**
-	 * Use the API to save the given source model Element to the repository. Return the data for the Element
-	 * as it was saved in the repository.
-	 * 
-	 * @param 	modelElement		the source model Element as it is represented in Ecore
-	 * @return	the Element as saved in the repository, as it is represented in the API
-	 * @throws 	ApiException
-	 */
-	protected org.omg.sysml.model.Element createElement(org.omg.sysml.model.Element apiElement) {
-		try {
-			return this.elementApi.createElement(apiElement);
-		} catch (ApiException e) {
-			System.out.println();
-			if (e.getCode() >= 500) {
-				throw new RuntimeException("Error: " + e.getCode() + " " + e.getMessage());
-			} else {
-				System.out.println("Error: " + e.getCode() + " " + e.getMessage());
-				return null;
-			}
-		}
-	}
-	
-	/**
-	 * Create a description of the given SysML model Element, for use in logging.
-	 * 
-	 * @param 	element				the Element to be described
-	 * @return	a description of the Element, in terms of its EClass name, hash code, Element name 
-	 * 			and whether it is a proxy.
-	 */
-	public static String descriptionOf(Element element) {
-		String s = element.eClass().getName() + "@" + Integer.toHexString(element.hashCode());
-		String name = element.getName();
-		if (name != null) {
-			s += " (" + name + ")";
-		}
-		
-		if (element.eIsProxy()) {
-			s += " PROXY";
-		}
-		return s;
-	}
-	
-	/**
-	 * Save the given Element to the repository and, if successful, return the UUID created for it.
-	 * If there is an exception while saving the element, return an identifier based on the
-	 * Element hash code, so that the Element can still be recorded as having been visited.
-	 * 
-	 * @param 	element				the Element to be processed
-	 * @return	a unique identifier for the processed Element
-	 */
-	@Override
-	public Object process(Element element) {
-		if (this.isVerbose()) {
-			System.out.print("Saving " + descriptionOf(element) + "... ");
-		} else {
-			if (dotCount == MAX_DOT_COUNT) {
-				System.out.println();
-				dotCount = 0;
-			}
-			System.out.print(".");
-			dotCount++;
-		}
-		Object identifier = UUID.fromString((String)this.createElement(this.initialize(element)).get("identifier"));
-		if (identifier == null) {
-			identifier = Integer.toHexString(element.hashCode());
-		}
-		if (this.isVerbose()) {
-			System.out.println("id is " + identifier);
-		}
-		return identifier;
-	}
-
-	/**
-	 * Post-process the given Element by updating its record in the repository with the values of 
-	 * all its attributes (unless it is a library model element, in which case only its non-referential
-	 * attribute values are saved). This is done as a post-processing step so that any referenced Elements
-	 * will already have been visited and have generated identifiers.
-	 * 
-	 * @param 	element				the Element to be post-processed
+	 * @param 	element				the source model Element as it is represented in Ecore
+	 * @return	an ElementVersion with the API representation of the given Element as its data
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
-	public void postProcess(Element element) {
+	protected org.omg.sysml.model.ElementVersion createElementVersion(Element element) {
 		org.omg.sysml.model.Element apiElement = new org.omg.sysml.model.Element();
 		EClass eClass = element.eClass();
 		apiElement.put("@type", eClass.getName());
-		apiElement.put("identifier", this.traversal.getIdentifier(element).toString());
-		apiElement.put("containingProject", identified(this.project.getIdentifier()));
 		boolean isLibraryElement = SysMLLibraryUtil.isModelLibrary(element.eResource());
 		for (EStructuralFeature feature: eClass.getEAllStructuralFeatures()) {
 			String name = feature.getName();
-			if (!apiElement.containsKey(name)) {
+			if (name == null || !(name.endsWith("_comp") || apiElement.containsKey(name))) {
 				Object value = element.eGet(feature);
 				if (feature instanceof EReference) {
 					value = isLibraryElement? null:
@@ -287,7 +232,81 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 				apiElement.put(feature.getName(), value);
 			}
 		}
-		this.createElement(apiElement);
+		return new ElementVersion().data(apiElement).
+				identity(new ElementIdentity().id(UUID.fromString(element.getIdentifier())));
+	}
+	
+	/**
+	 * Create a description of the given SysML model Element, for use in logging.
+	 * 
+	 * @param 	element				the Element to be described
+	 * @return	a description of the Element, in terms of its EClass name, hash code, Element name 
+	 * 			and whether it is a proxy.
+	 */
+	public static String descriptionOf(Element element) {
+		String s = element.eClass().getName();
+		String name = element.getName();
+		if (name != null) {
+			s += " (" + name + ")";
+		}		
+		if (element.eIsProxy()) {
+			s += " PROXY";
+		}
+		return s + " " + element.getIdentifier();
+	}
+	
+	/**
+	 * Record that the given Element is being processed by returning a UUID constructed
+	 * from its identifier.
+	 * 
+	 * @param 	element				the Element to be processed
+	 * @return	a unique identifier for the processed Element
+	 */
+	@Override
+	public Object process(Element element) {
+		if (this.isVerbose()) {
+			System.out.println("Processing " + descriptionOf(element));
+		} else {
+			if (elementCount == 0) {
+				System.out.print("Processing");
+			}
+			if (elementCount == ELEMENTS_PER_DOT) {
+				System.out.print(".");
+				elementCount = 0;
+			}
+			elementCount++;
+		}
+		return UUID.fromString(element.getIdentifier());
+	}
+	
+	/**
+	 * Post-process the given Element by creating an ElementVersion for it and adding that
+	 * to the change set being constructed. This is done as a post-processing step so that
+	 * derived references to library model Elements not included in the change set can be
+	 * excluded.
+	 * 
+	 * @param 	element				the Element to be post-processed
+	 */
+	@Override
+	public void postProcess(Element element) {
+		this.addToChangeSet(this.createElementVersion(element));
 	}
 
+	/**
+	 * Create and post a commit to save to the repository the ElementVersions in the 
+	 * constructed change set.
+	 */
+	public void commit() {
+		try {
+			List<ElementVersion> changeSet = this.getChangeSet();
+			Commit commit = new Commit().changes(changeSet);
+//			System.out.println(new org.omg.sysml.JSON().serialize(commit));
+			int n = changeSet.size();
+			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ") ": "s) "));
+			commit = this.commitApi.postCommitByProject(this.project.getId(), commit);
+			System.out.println(commit.getId());
+		} catch (ApiException e) {
+			System.out.println("\nError: " + e.getCode() + " " + e.getMessage());
+		}
+	}
 }

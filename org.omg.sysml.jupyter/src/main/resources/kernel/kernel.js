@@ -42,6 +42,12 @@ var enableMode = function (CodeMirror) {
 							escaped = !escaped && next == "\\";
 						}
 						return "variable";
+				},
+				"/": function(stream) {
+					if (stream.match("/*", false)) {
+						stream.next();
+					}
+					return false;
 				}
 			}
         });

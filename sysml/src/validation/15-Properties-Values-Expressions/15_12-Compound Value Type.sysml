@@ -2,7 +2,7 @@ package '15_12-Compound Value Type' {
     import ISQ::*;
     import BasicGeometry::*;
     
-    /* Note: DirectionValue, CartesianLocation3D, CartesianDirection3D and CartesianAxisPlacement3D
+    /* Note: DirectionValue, LocationCartesian3D, Direction3DCartesian and AxisPlacement3DCartesian
      * are defined in BasicGeometry.
      */
 

@@ -6,7 +6,7 @@
     <!-- <relativePath>../pom.xml</relativePath> -->
     <groupId>org.omg.sysml</groupId>
     <artifactId>org.omg.sysml.parent</artifactId>
-    <version>0.2.0-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
   </parent>
   <groupId>org.omg.sysml</groupId>
   <artifactId>org.omg.sysml.interactive</artifactId>

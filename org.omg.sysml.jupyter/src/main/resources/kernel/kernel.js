@@ -29,14 +29,15 @@ var enableMode = function (CodeMirror) {
                 "in inout instanceof interface individual join link merge nonunique of ordered out package part perform port private " +
                 "protected public redefines ref require requirement satisfy send snapshot specializes state stream subsets succession then " + 
                 "timeslice to transition type typed value"),
-            defKeywords: words("action activity assoc block constraint def id link interface package part port ref state transition type value"),
+            defKeywords: words("action activity assoc block constraint def id link individual interface package part port ref requirement " +
+                               "snapshot state timeslice transition type value"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,
             modeProps: {fold: ["brace"]},
             hooks: {
 				"'": function(stream) {
-						var escaped = false, next, end = false;
+						var escaped = false, next;
 						while ((next = stream.next()) != null) {
 							if (next == "'" && !escaped) { break; }
 							escaped = !escaped && next == "\\";

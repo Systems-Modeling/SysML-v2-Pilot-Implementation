@@ -1,4 +1,4 @@
-package '15_14-Discretely Sampled Function Value' {
+package '15_13-Discretely Sampled Function Value' {
 	import NonScalarValues::SampledFunctionValue;
 	import ISQ::*;
 	import BasicGeometry::*;

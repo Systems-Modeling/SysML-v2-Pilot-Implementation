@@ -31,11 +31,10 @@ public class SysMLInteractiveUtil {
 		}
 		
 		String name = element.getName();
-		String id = Integer.toHexString(element.hashCode());
 		buffer.append(indentation + 
 				formatRelationship(relationship) + 
 				element.eClass().getName() + 
-				(name == null? "": " " + name) + " (" + id + ")\n");
+				(name == null? "": " " + name) + " (" + element.getIdentifier() + ")\n");
 	}
 	
 	private static void formatTree(StringBuilder buffer, String indentation, Element element, Relationship relationship) {

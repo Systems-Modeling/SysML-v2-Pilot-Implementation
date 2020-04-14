@@ -18,7 +18,7 @@ package IntegerFunctions {
 	function Max(x: Integer, y: Integer): Integer specializes NumericalFunctions::Max;
 	function Min(x: Integer, y: Integer): Integer specializes NumericalFunctions::Min;
 
-	function '='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'==';
+	function '=='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'==';
 	function '!='(x: Integer, y: Integer): Boolean specializes BaseFunctions::'!=';
 	
 	function '..'(lower: Integer, upper: Integer): Integer[0..*] specializes ScalarFunctions::'..';	
@@ -26,6 +26,7 @@ package IntegerFunctions {
 	function ToString(x: Integer): String specializes BaseFunctions::ToString;
 	function ToNatural(x: Integer): Natural;
 	function ToInteger(x: String): Integer;
+	function ToRational(x: Integer): Rational;
 	function ToReal(x: Integer): Real;
 	
 	function sum(collection: Integer[0..*]): Integer specializes ScalarFunctions::sum {

@@ -4,12 +4,15 @@
 package UnitsAndScales {
 
 	/**
-	 * Top-level representation of measurement scale.
+	 * Representation of a measurement reference.
 	 * 
-	 * A MeasurementScale can have zero or more scaleValueDefinition that define particular essential 
-	 * values on the measurement scale.
+	 * The measurement reference concept is defined in VIM "quantity" (see https://jcgm.bipm.org/vim/en/1.1.html) NOTE 2 as 
+	 * "A reference can be a measurement unit, a measurement procedure, a reference material, or a combination of such." 
+	 * 
+	 * A MeasurementReference can have zero or more scaleValueDefinition that define particular essential 
+	 * values on a measurement scale.
 	 */
-	abstract block MeasurementScale {
+	abstract block MeasurementReference {
 		value name: ScalarValues::String; 
 		part scaleValueDefinition: ScaleValueDefinition[0..*];
 	}
@@ -17,15 +20,15 @@ package UnitsAndScales {
 	/**
 	 * Representation of a measurement unit.
 	 * 
-	 * Note: MeasurementUnit specializes MeasurementScale in order to allow for efficient and intuitive definition of a ratio scale.
+	 * Note: MeasurementUnit directly specializes MeasurementReference in order to allow for efficient and intuitive definition of a ratio scale.
 	 * 
 	 * A MeasurementUnit can be used in two ways:
-	 * 1. Directly as the scale in a QuantityValue, which implies that the effective measurement scale is a ratio scale.
-	 * 2. As the unit value of a non-ratio scale, see the specializations of NonRatioScale.
+	 * 1. Directly as the mRef in a QuantityValue, which implies that the effective measurement reference is a ratio scale defined by the unit.
+	 * 2. As the unit of a MeasurementScale.
 	 * 
 	 * A MeasurementUnit specifies one or more UnitPowerFactors. 
 	 */
-	abstract block MeasurementUnit :> MeasurementScale { 
+	abstract block MeasurementUnit :> MeasurementReference { 
 		value unitPowerFactor: UnitPowerFactor[1..*] ordered;
 		part unitConversion: UnitConversion[0..1];
 	}
@@ -34,7 +37,7 @@ package UnitsAndScales {
 	 * Representation of a measurement unit that does not depend on any other measurement unit.
 	 */
 	abstract block SimpleUnit :> MeasurementUnit {
-		ref self : SimpleUnit redefines Base::self;
+		ref self: SimpleUnit redefines Base::self;
 		value unitPowerFactor: UnitPowerFactor redefines MeasurementUnit::unitPowerFactor {
 			ref unit redefines UnitPowerFactor::unit = self;
 			value exponent redefines UnitPowerFactor::exponent = 1;			
@@ -42,7 +45,9 @@ package UnitsAndScales {
 	}
 	
 	/**
-	 * Representation of a measurement unit that depends on one or more powers of other measurement units.
+	 * Representation of a derived measurement unit that depends on one or more powers of other measurement units.
+	 * 
+	 * VIM defines "derived unit" as "measurement unit for a derived quantity", see https://jcgm.bipm.org/vim/en/1.11.html .
 	 */
 	abstract block DerivedUnit :> MeasurementUnit;
 	
@@ -95,11 +100,11 @@ package UnitsAndScales {
 	
 		
 	/**
-	 * Representation of a non-ratio measurement scale as opposed to a ratio measurement scale.
+	 * Representation of a non-ratio measurement scale as opposed to a ratio measurement scale defined by a MeasurementUnit.
 	 * 
-	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the scale in a QuantityValue.
+	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a QuantityValue.
 	 */
-	abstract block NonRatioScale :> MeasurementScale {
+	abstract block MeasurementScale :> MeasurementReference {
 		ref unit: MeasurementUnit;
 		part scaleValueMapping: ScaleValueMapping[0..1];	
 	}
@@ -107,14 +112,14 @@ package UnitsAndScales {
 	/**
 	 * Representation of an ordinal measurement scale.
 	 */
-	block OrdinalScale :> NonRatioScale;
+	block OrdinalScale :> MeasurementScale;
 	
 	/**
 	 * Representation of an interval measurement scale.
 	 * 
-	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see NonRatioScale.
+	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see MeasurementReference.
 	 */
-	block IntervalScale :> NonRatioScale;
+	block IntervalScale :> MeasurementScale;
 	
 	/**
 	 * Representation of a ratio measurement scale with a periodic cycle.
@@ -123,7 +128,7 @@ package UnitsAndScales {
 	 * Example: Planar angle with modulus 360 degrees, therefore on such a cyclic ratio scale, 
 	 * an angle of 450 degrees is equivalent to an angle of 90 degrees, and -60 degrees is equivalent to 300 degrees.
 	 */
-	block CyclicRatioScale :> NonRatioScale { 
+	block CyclicRatioScale :> MeasurementScale { 
 		value modulus: ScalarValues::Number;
 	}
 
@@ -140,7 +145,7 @@ package UnitsAndScales {
      *   x_ref is a reference quantity,
      *   a is an exponent.
 	 */
-	block LogarithmicScale :> NonRatioScale {
+	block LogarithmicScale :> MeasurementScale {
 		value logarithmBase: ScalarValues::Number;
 		value factor: ScalarValues::Number;
 		value exponent: ScalarValues::Number;
@@ -166,11 +171,11 @@ package UnitsAndScales {
 	 * 
 	 * Typically such a particular value is defined by convention.
 	 * Example: The 'kelvin' ratio scale for temperature could have a 
-	 * ScaleValueDefinition(magnitude => 273.16, description => "absolute temperature of the triple point of pure water")
+	 * ScaleValueDefinition(num => 273.16, description => "absolute temperature of the triple point of pure water")
 	 * that is part of the definition of the scale.
 	 */
 	block ScaleValueDefinition {
-		value magnitude: ScalarValues::Number;
+		value num: ScalarValues::Number;
 		value description: ScalarValues::String;
 	}
 	
@@ -178,7 +183,18 @@ package UnitsAndScales {
 	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
 	 */
 	value type QuantityDimension {
-		// Should be ordered or the order should be derived from an ordered set of base units
 		value baseUnitPowerFactor: UnitPowerFactor[0..*] ordered;
 	}
+
+	/**
+	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
+	 */
+	block DimensionOneUnit :> DerivedUnit {
+		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
+	}
+	value type DimensionOneValue :> Quantities::QuantityValue {
+		value num: ScalarValues::Real redefines Quantities::QuantityValue::num;
+		ref mRef: DimensionOneUnit redefines Quantities::QuantityValue::mRef;
+	}
+	part one = DimensionOneUnit();
 }

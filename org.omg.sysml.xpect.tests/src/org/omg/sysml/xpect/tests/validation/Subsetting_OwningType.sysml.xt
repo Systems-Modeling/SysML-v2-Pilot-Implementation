@@ -1,0 +1,52 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'Subsetting Example' {
+	
+	block Vehicle {
+		part parts : VehiclePart[*];
+		//checking A conforms to B (same)		
+		part eng : Engine subsets parts;
+		part trans : Transmission subsets parts;
+		part wheels : Wheel[4] :> parts;
+	}
+	
+	abstract block VehiclePart;
+	block Engine :> VehiclePart;
+	block Transmission :> VehiclePart;
+	block Wheel :> VehiclePart;
+	
+	block SmallVehicle :> Vehicle {
+		//checking A conforms to B (direct specialization)
+		part smallEng : SmallEngine subsets eng;
+	}
+	block SmallEngine :> Engine {}
+	
+	block SmallSmallVehicle :> SmallVehicle {
+		//checking A conforms to B (indirect specialization)
+		part smallsmallEng : SmallSmallEngine subsets eng;
+	}
+	block SmallSmallEngine :> Engine {}
+	
+	
+}
+
+//part eng: Engine subsets parts 
+//	subsettingFeature = eng , its owningType = Vehicle
+// 	subsettedFeature = parts, its owningType = Vechicle
+//part smallEng : SmallEngine subsets eng;
+//	The owningType of smallEng (subsettingFeature) shall conform to the owningType of eng (subsettedFeature)

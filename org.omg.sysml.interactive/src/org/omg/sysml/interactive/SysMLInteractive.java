@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -61,6 +61,7 @@ public class SysMLInteractive extends SysMLUtil {
 	public static final String SYSTEMS_LIBRARY_DIRECTORY = "Systems Library";
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
 	public static final String QUANTITIES_AND_UNITS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Quantities and Units";
+	public static final String GEOMETRY_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Geometry";
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
@@ -105,6 +106,9 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SI" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/USCustomaryUnits" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Time" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			
+			this.readAll(path + GEOMETRY_DIRECTORY, false, SYSML_EXTENSION);
+
 		}
 	}
 	
@@ -234,8 +238,9 @@ public class SysMLInteractive extends SysMLUtil {
 				String modelName = element.getName() + " " + new Date();
 				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
 				processingFacade.getTraversal().visit(element);
+				processingFacade.commit();
 				System.out.println();
-				return modelName + " (" + processingFacade.getProjectId() + ")\n";
+				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
 			}
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);

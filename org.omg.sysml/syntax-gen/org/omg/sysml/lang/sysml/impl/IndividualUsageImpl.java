@@ -217,18 +217,21 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	}
 	
 	public static void setTypingFor(Feature feature) {
-		Type type = feature.getOwningType();
-		if (type instanceof IndividualDefinition || type instanceof IndividualUsage) {
+		Type owningType = feature.getOwningType();
+		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
+			Type type = owningType instanceof IndividualUsage? 
+					((IndividualUsage)owningType).getIndividualDefinition(): 
+					owningType;
 			EList<FeatureTyping> typings = feature.getTyping();
 			if (typings.isEmpty()) {
 				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+				typing.setType(type);
 				feature.getOwnedRelationship_comp().add(typing);
 				typings.add(typing);
+			} else {
+				typings.stream().filter(typing->typing.getType() == null).findFirst().
+					ifPresent(typing->typing.setType(type));
 			}
-			if (type instanceof IndividualUsage) {
-				type = ((IndividualUsage)type).getIndividualDefinition();
-			}
-			typings.get(0).setType(type);
 		}
 	}
 	

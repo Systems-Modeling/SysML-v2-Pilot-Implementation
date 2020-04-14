@@ -292,15 +292,34 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_UNIQUE, oldIsUnique, isUnique));
 	}
+	
+	private boolean isOrderChecked = false;
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Force the Feature to be ordered if any subsetted Feature is ordered.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isOrdered() {
-		return isOrdered;
+		return checkIsOrdered(this, new HashSet<Feature>());
+	}
+	
+	public static boolean checkIsOrdered(FeatureImpl feature, Set<Feature> visited) {
+		if (feature.isOrdered || feature.isOrderChecked) {
+			return feature.isOrdered;
+		} else {
+			visited.add(feature);
+			for (Subsetting subsetting: feature.getOwnedSubsettingWithoutDefault()) {
+				Feature subsettedFeature = subsetting.getSubsettedFeature();
+				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
+						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 
 	/**
@@ -381,7 +400,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void addSubsetting(String name) {
 		Type type = getDefaultType(name);
-		if (type instanceof Feature) {
+		if (type instanceof Feature && type != this &&
+				!getOwnedSubsettingWithoutDefault().stream().anyMatch(sub->sub.getSubsettedFeature() == type)) {
 			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 			subsetting.setSubsettedFeature((Feature)type);
 			subsetting.setSubsettingFeature(this);
@@ -417,7 +437,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				List<? extends Feature> features = getRelevantFeatures(general);
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
-					if (redefinedFeature != null) {
+					if (redefinedFeature != null && redefinedFeature != this) {
 						Redefinition redefinition;
 						if (j < n) {
 							redefinition = emptyRedefinitions.get(j);

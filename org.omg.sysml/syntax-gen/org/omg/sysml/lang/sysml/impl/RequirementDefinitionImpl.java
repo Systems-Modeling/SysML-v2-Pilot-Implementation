@@ -211,7 +211,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 

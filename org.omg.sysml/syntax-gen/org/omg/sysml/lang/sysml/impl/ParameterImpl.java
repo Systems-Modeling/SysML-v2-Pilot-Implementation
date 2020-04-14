@@ -49,7 +49,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 				(FeatureMembership)container: 
 			    super.getOwningFeatureMembership();
 	}
-
+	
 	public boolean isResultParameter() {
 		return ((TypeImpl) getOwningType()).getResult() == this;
 	}

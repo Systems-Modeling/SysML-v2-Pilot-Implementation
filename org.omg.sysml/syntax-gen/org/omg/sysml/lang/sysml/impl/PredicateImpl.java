@@ -35,7 +35,7 @@ public class PredicateImpl extends FunctionImpl implements Predicate {
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return PREDICATE_SUPERCLASS_DEFAULT;
 	}
 

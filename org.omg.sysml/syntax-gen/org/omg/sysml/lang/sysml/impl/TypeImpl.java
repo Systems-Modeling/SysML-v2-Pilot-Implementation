@@ -73,6 +73,8 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  * @generated
  */
 public class TypeImpl extends PackageImpl implements Type {
+	public String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
+
 	/**
 	 * The cached value of the '{@link #getConjugator() <em>Conjugator</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -279,6 +281,29 @@ public class TypeImpl extends PackageImpl implements Type {
 		return ownedMembership_comp;
 	}
 
+	public void computeImplicitGeneralization() {
+		if (!isConjugated()) {
+			EClass generalizationEClass = getGeneralizationEClass();
+ 			@SuppressWarnings("unchecked")
+			Generalization generalization = getDefaultGeneralization(
+					getOwnedGeneralizationWithoutDefault(
+							(Class<? extends Generalization>)generalizationEClass.getInstanceClass(), 
+							SysMLPackage.TYPE__OWNED_GENERALIZATION),
+					generalizationEClass, getDefaultSupertype());
+			if (generalization != null) {
+				getOwnedRelationship_comp().add(generalization);
+			}
+ 		}
+	}
+	
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getGeneralization();
+	}
+	
+	protected String getDefaultSupertype() {
+		return TYPE_GENERALIZATION_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

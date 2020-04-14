@@ -297,7 +297,7 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 * If the Association has no Superclassings, then create one whose superclass is
 	 * the appropriate default library class.
 	 */
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return getOwnedEndFeature().size() > 2 ? ASSOCIATION_SUPERCLASS_DEFAULT
 				: BINARY_ASSOCIATION_SUPERCLASS_DEFAULT;
 	}

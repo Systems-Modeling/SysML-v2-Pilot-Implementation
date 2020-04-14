@@ -22,8 +22,7 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
+import  org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -244,12 +243,19 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				isSubtransfer()? 
-					ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
-					ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return isSubtransfer()? 
+				ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
+				ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithDefault(
+//				isSubtransfer()? 
+//					ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
+//					ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+//	}
 	
 	public boolean isSubtransfer() {
 		return StepImpl.isPerformanceFeature(this);

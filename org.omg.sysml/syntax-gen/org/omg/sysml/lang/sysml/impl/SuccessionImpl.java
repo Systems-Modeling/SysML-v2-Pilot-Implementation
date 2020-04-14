@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -140,10 +139,15 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-					SUCCESSION_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return SUCCESSION_SUBSETTING_BASE_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithComputedRedefinitions(
+//					SUCCESSION_SUBSETTING_BASE_DEFAULT);
+//	}
 	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {

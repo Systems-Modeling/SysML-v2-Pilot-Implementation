@@ -137,7 +137,7 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return PORT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	

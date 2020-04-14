@@ -71,7 +71,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return BEHAVIOR_SUPERCLASS_DEFAULT;
 	}
 

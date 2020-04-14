@@ -73,7 +73,7 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return getOwnedEndFeature().size() > 2? 
 					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
 					INTERFACE_DEFINITION_SUPERCLASS_DEFAULT;

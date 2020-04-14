@@ -37,7 +37,7 @@ public class ValueTypeImpl extends DefinitionImpl implements ValueType {
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return VALUE_TYPE_SUPERCLASS_DEFAULT;
 	}
 

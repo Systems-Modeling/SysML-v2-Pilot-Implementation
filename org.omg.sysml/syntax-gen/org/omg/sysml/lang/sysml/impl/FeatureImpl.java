@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Class;
@@ -193,6 +192,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
+		computeImplicitGeneralization();
 		return getTypes(true);
 	}
 	
@@ -328,12 +328,29 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return ownedTypes;
 	}
 	
-	@Override
-	public EList<Generalization> getOwnedGeneralization() {
-		getOwnedSubsetting();
-		return super.getOwnedGeneralization();
-	}
+//	@Override
+//	public EList<Generalization> getOwnedGeneralization() {
+//		getOwnedSubsetting();
+//		return super.getOwnedGeneralization();
+//	}
 
+	@Override
+	public void computeImplicitGeneralization() {
+		super.computeImplicitGeneralization();
+	}
+	
+	@Override
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getSubsetting();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+			   hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+			   FEATURE_SUBSETTING_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,10 +372,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
-				FEATURE_SUBSETTING_DEFAULT);
+		return getOwnedSubsettingWithoutDefault();
+//		return getOwnedSubsettingWithComputedRedefinitions(
+//				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+//				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+//				FEATURE_SUBSETTING_DEFAULT);
 	}
 	
 	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String... subsettingDefault) {

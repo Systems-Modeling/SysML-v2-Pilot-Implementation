@@ -456,12 +456,19 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				getConnectorEnd().size() > 2? 
-					CONNECTOR_SUBSETTING_DEFAULT:
-					BINARY_CONNECTOR_SUBSETTING_DEFAULT);
+	protected String getDefaultSupertype() {
+		return getConnectorEnd().size() > 2? 
+				CONNECTOR_SUBSETTING_DEFAULT:
+				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithDefault(
+//				getConnectorEnd().size() > 2? 
+//					CONNECTOR_SUBSETTING_DEFAULT:
+//					BINARY_CONNECTOR_SUBSETTING_DEFAULT);
+//	}
 	
 	// Utility Methods
 	

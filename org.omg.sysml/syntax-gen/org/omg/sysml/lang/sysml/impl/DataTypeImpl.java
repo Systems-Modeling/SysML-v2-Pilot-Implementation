@@ -37,7 +37,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return DATA_TYPE_SUPERCLASS_DEFAULT;
 	}
 

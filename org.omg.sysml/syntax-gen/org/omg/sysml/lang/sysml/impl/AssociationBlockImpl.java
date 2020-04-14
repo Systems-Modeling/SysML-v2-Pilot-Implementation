@@ -311,7 +311,7 @@ public class AssociationBlockImpl extends BlockImpl implements AssociationBlock 
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return getOwnedEndFeature().size() > 2? 
 					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
 					ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT;

@@ -52,14 +52,19 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
+	public void computeImplicitGeneralization() {
 		addItemFlowEndSubsetting();
-		EList<Subsetting> subsettings = super.getOwnedSubsettingWithComputedRedefinitions();
-		for (Feature feature : getOwnedFeature()) {
-			feature.getOwnedSubsetting();
-		}
-		return subsettings;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		addItemFlowEndSubsetting();
+//		EList<Subsetting> subsettings = super.getOwnedSubsettingWithComputedRedefinitions();
+//		for (Feature feature : getOwnedFeature()) {
+//			feature.getOwnedSubsetting();
+//		}
+//		return subsettings;
+//	}
 
 	protected void addItemFlowEndSubsetting() {
 		EList<Feature> features = getOwnedFeature();

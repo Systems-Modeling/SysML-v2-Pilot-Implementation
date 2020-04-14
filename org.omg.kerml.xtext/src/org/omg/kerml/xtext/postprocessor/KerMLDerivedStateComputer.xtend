@@ -3,7 +3,7 @@ package org.omg.kerml.xtext.postprocessor
 import org.eclipse.xtext.resource.IDerivedStateComputer
 import org.eclipse.xtext.resource.DerivedStateAwareResource
 import org.eclipse.emf.ecore.EObject
-import org.omg.sysml.lang.sysml.impl.ClassifierImpl
+import org.omg.sysml.lang.sysml.impl.TypeImpl
 
 class KerMLDerivedStateComputer implements IDerivedStateComputer {
 
@@ -20,8 +20,8 @@ class KerMLDerivedStateComputer implements IDerivedStateComputer {
 		// By default do nothing
 	}
 
-	protected def dispatch void computeDerivedState(ClassifierImpl classifier) {
-		classifier.computeImplicitSuperclassing
+	protected def dispatch void computeDerivedState(TypeImpl type) {
+		type.computeImplicitGeneralization
 	}
 
 	override void discardDerivedState(DerivedStateAwareResource resource) {

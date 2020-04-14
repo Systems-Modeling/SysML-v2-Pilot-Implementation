@@ -150,7 +150,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	// Additional redefinitions and subsets
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 

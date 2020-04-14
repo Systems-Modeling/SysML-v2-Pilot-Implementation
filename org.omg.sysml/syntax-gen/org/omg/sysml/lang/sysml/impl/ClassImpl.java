@@ -36,7 +36,7 @@ public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysm
 	}
 	
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return CLASS_SUPERCLASS_DEFAULT;
 	}
 

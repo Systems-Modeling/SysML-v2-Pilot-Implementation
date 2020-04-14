@@ -38,7 +38,7 @@ public class BlockImpl extends DefinitionImpl implements Block {
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return BLOCK_SUPERCLASS_DEFAULT;
 	}
 

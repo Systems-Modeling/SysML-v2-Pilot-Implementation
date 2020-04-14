@@ -92,7 +92,7 @@ public class ActivityImpl extends DefinitionImpl implements Activity {
 				new int[] {SysMLPackage.TYPE__FEATURE});
 	}
 
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return ACTIVITY_SUPERCLASS_DEFAULT;
 	}
 	

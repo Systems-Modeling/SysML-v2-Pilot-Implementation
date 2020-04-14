@@ -128,7 +128,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return FUNCTION_SUPERCLASS_DEFAULT;
 	}
 

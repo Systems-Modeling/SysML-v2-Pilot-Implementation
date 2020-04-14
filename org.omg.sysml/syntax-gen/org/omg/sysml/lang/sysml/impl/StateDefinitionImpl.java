@@ -189,7 +189,7 @@ public class StateDefinitionImpl extends ActivityImpl implements StateDefinition
 	}
 
 	@Override
-	protected String getDefaultSuperclassingType() {
+	protected String getDefaultSupertype() {
 		return STATE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	

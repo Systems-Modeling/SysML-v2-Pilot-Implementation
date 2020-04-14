@@ -3,9 +3,13 @@
    <description name="SysML v2 Pilot Implementation Update Site">
       This site contains feature and plugin versions for the Eclipse-based pilot implementation of SysML v2, as developed by the SysML v2 Submission Team.
    </description>
-   <!-- <repository-reference location="http://download.eclipse.org/releases/2019-12" enabled="true" /> -->
+   <repository-reference location="http://download.eclipse.org/releases/2019-12" enabled="true" />
+   <repository-reference location="http://hallvard.github.io/plantuml/" enabled="true" />
 
    <feature id="org.omg.sysml.feature">
+      <category name="KerML and SysML Editors"/>
+   </feature>
+   <feature id="org.omg.sysml.plantuml.feature">
       <category name="KerML and SysML Editors"/>
    </feature>
    <category-def name="KerML and SysML Editors" label="KerML and SysML Editors">

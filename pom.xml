@@ -11,27 +11,37 @@
     <module>org.omg.sysml</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>
-    <module>org.omg.sysml.plantuml</module>
     <module>org.omg.kerml.xtext.ui</module>
     <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
     <module>org.omg.sysml.interactive</module>
     <module>org.omg.sysml.feature</module>
+    <module>org.omg.sysml.plantuml</module>
+    <module>org.omg.sysml.plantuml.eclipse</module>
+    <module>org.omg.sysml.plantuml.feature</module>
     <module>org.omg.sysml.site</module>
   </modules>
 
   <properties>
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repository>http://download.eclipse.org/releases/2019-12</eclipse-repository>
+    <eclipse-repository>https://download.eclipse.org/releases/2019-12</eclipse-repository>
+    <plantuml-repository>https://hallvard.github.io/plantuml</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
 
   <repositories>
     <repository>
       <id>eclipse</id>
       <url>${eclipse-repository}</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <id>plantuml-eclipse</id>
+      <url>${plantuml-repository}</url>
       <layout>p2</layout>
     </repository>
   </repositories>

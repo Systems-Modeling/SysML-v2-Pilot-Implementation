@@ -3,6 +3,7 @@
  * Copyright (c) 2018, 2020 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
+ * Copyright (c) 2019 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +24,7 @@
  *  Ed Seidewitz, MDS
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
- *  Hisashi Miyashita, Maplesoft
+ *  Hisashi Miyashita, Maplesoft/Mgnite
  * 
  *****************************************************************************/
 

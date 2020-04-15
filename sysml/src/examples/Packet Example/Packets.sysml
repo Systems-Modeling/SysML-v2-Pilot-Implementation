@@ -9,7 +9,7 @@ package Packets {
 		value 'user data field';
 	}
 	
-	block 'Data Packet' { 
+	block 'Data Packet' {
 		value 'packet primary header' redefines 'packet header' {
 			value 'packet version number': Integer;
 			value 'packet identification': String;

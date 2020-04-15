@@ -24,6 +24,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -40,6 +41,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -373,11 +375,15 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * If no identifier has been set, then generate a random UUID and set the identifier to that.
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getIdentifier() {
+		if (identifier == null) {
+			identifier = UUID.randomUUID().toString();
+		}
 		return identifier;
 	}
 
@@ -454,8 +460,27 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		name = newName;
 	}
 	
-	public void clearCaches() {
-		
+	/**
+	 * Get documentation text for this element, as given by the body of the first owned comment
+	 * annotating the element (if any).
+	 */
+	public String getDocumentationText() {
+		Comment comment = (Comment)getOwnedElement().stream().
+				filter(elm->elm instanceof Comment && ((Comment)elm).getCommentedElement() == this).
+				findFirst().orElse(null);
+		return comment == null? null: comment.getBody();
+	}
+	
+	/**
+	 * Clear cached member derivations.
+	 */
+	public void clearCaches() {		
+	}
+	
+	/**
+	 * Trigger in-place model transformations.
+	 */
+	public void transform() {		
 	}
 	
 	/**

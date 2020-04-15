@@ -66,6 +66,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Req Id</em>' attribute isn't clear,
@@ -75,7 +76,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_ReqId()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getReqId();
@@ -92,6 +93,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
@@ -101,7 +103,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_Text()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getText();

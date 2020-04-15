@@ -158,6 +158,12 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		operands.addAll(getOperand_comp());
 		return operands;
 	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getTyping();
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

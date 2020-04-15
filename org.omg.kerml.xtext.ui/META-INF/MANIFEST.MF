@@ -3,7 +3,7 @@ Automatic-Module-Name: org.omg.kerml.xtext.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.kerml.xtext.ui
 Bundle-Vendor: SysML v2 Submission Team
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.3.0.qualifier
 Bundle-SymbolicName: org.omg.kerml.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.kerml.xtext,

@@ -13,7 +13,7 @@ package NaturalFunctions {
 
 	function Max(x: Natural, y: Natural): Natural specializes IntegerFunctions::Max, UnlimitedNaturalFunctions::Max;
 
-	function '='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes IntegerFunctions::'=', UnlimitedNaturalFunctions::'=';
+	function '=='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes IntegerFunctions::'==', UnlimitedNaturalFunctions::'=';
 	function '/='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes IntegerFunctions::'!=', UnlimitedNaturalFunctions::'!=';
 	
 	function ToString(x: Natural): String specializes IntegerFunctions::ToString, UnlimitedNaturalFunctions::ToString;

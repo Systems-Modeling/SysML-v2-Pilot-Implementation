@@ -20,5 +20,5 @@ package USCustomaryUnits {
     /*
      * Definition of an alias for mile per hour
      */
-    part mph is 'mi/hr';
+    alias 'mi/hr' as mph;
 }

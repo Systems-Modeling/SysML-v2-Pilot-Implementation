@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -21,12 +22,16 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -49,8 +54,8 @@ import org.omg.sysml.lang.sysml.Usage;
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
-	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::Requirement::assumptions";
-	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::Requirement::constraints";
+	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
+	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last
@@ -422,6 +427,28 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		return super.getFeature();
 	}
 	
+	/**
+	 * If this ConstraintUsage has a RequirementDefinition as a type, then ensure that it has
+	 * at least one owned Parameter (to redefine the requirement subject parameter).
+	 */
+	@Override
+	public List<Parameter> getOwnedParameters() {
+		List<Parameter> parameters = super.getOwnedParameters();
+		// Note: A ConstraintUsage will always have at least a return Parameter.
+		if (parameters.size() < 2 && isRequirement() ) {
+			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
+			membership.setOwnedMemberParameter_comp(parameter);
+			getOwnedFeatureMembership_comp().add(0, membership);
+			parameters.add(0, parameter);
+		}
+		return parameters;
+	}
+	
+	public boolean isRequirement() {
+		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
+	}
+	
 	@Override 
 	public Feature getResult() {
 		return getOwnedFeatureMembership().stream().
@@ -432,6 +459,13 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getOwnedParameters();
+		getResultConnector();
 	}
 	
 	//

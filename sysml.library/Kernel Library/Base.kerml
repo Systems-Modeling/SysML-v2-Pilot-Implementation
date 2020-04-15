@@ -69,7 +69,7 @@ package Base {
 		 * Occurrences of which this occurrence is a portion, including at
 		 * least this occurrence.
 		 */
-		 feature portionOf : Occurrence[1..*];
+		feature portionOf : Occurrence[1..*];
 		
 		/**
 		 * Portions of an occurrence over some slice of time, including at
@@ -81,7 +81,7 @@ package Base {
 		 * Occurrences of which this occurrence is a time slice, including at
 		 * least this occurrence.
 		 */
-		 feature timeSliceOf : Occurrence[1..*] subsets portionOf;
+		feature timeSliceOf : Occurrence[1..*] subsets portionOf;
 		
 		/**
 		 * Time slices of an occurrence that happen at a single instant of time
@@ -92,7 +92,7 @@ package Base {
 		/**
 		 * Occurrences of which this occurrence is a snapshot.
 		 */
-		 feature snapshotOf : Occurrence[1..*] subsets timeSliceOf;
+		feature snapshotOf : Occurrence[1..*] subsets timeSliceOf;
 		
 		/**
 		 * The snapshot representing the start of the occurrence in time.

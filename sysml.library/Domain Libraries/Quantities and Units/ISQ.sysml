@@ -21,8 +21,8 @@ package ISQ {
 		}
 	}
 	value type LengthValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: LengthUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: LengthUnit redefines QuantityValue::mRef;
 	}	
 	value length: LengthValue :> quantity;
 	
@@ -35,8 +35,8 @@ package ISQ {
 		}
 	}
 	value type MassValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: MassUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: MassUnit redefines QuantityValue::mRef;
 	}
 	value mass: MassValue :> quantity;
 
@@ -49,8 +49,8 @@ package ISQ {
 		}
 	}
 	value type TimeValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: TimeUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: TimeUnit redefines QuantityValue::mRef;
 	}
 	value time: TimeValue :> quantity;
 	
@@ -63,8 +63,8 @@ package ISQ {
 		}
 	}
 	value type ElectricCurrentValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: ElectricCurrentUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: ElectricCurrentUnit redefines QuantityValue::mRef;
 	}
 	value electricCurrent: ElectricCurrentValue :> quantity;
 	
@@ -78,8 +78,8 @@ package ISQ {
 		}
 	}
 	value type TemperatureValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: TemperatureUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: TemperatureUnit redefines QuantityValue::mRef;
 	}
 	value temperature: TemperatureValue :> quantity;
 	
@@ -92,8 +92,8 @@ package ISQ {
 		}		
 	}
 	value type AmountOfSubstanceValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: AmountOfSubstanceUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: AmountOfSubstanceUnit redefines QuantityValue::mRef;
 	}
 	value amountOfSubstance: AmountOfSubstanceValue :> quantity;
 			
@@ -107,8 +107,8 @@ package ISQ {
 		}
 	}	
 	value type LuminousIntensityValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: LuminousIntensityUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: LuminousIntensityUnit redefines QuantityValue::mRef;
 	}
 	value luminousIntensity: LuminousIntensityValue :> quantity;
 	
@@ -154,13 +154,6 @@ package ISQ {
 	}	 
 	 
 	/**
-	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit"
-	 */
-	block UnitOfDimensionOne :> DerivedUnit {
-		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
-	}
-	
-	/**
 	 * force
 	 */	
 	block ForceUnit :> SIDerivedUnit {
@@ -175,8 +168,8 @@ package ISQ {
 		}
 	}
 	value type ForceValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: ForceUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: ForceUnit redefines QuantityValue::mRef;
 	}
 	value force: ForceValue :> quantity;
 	
@@ -192,8 +185,8 @@ package ISQ {
 		}		
 	}
 	value type SpeedValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: SpeedUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: SpeedUnit redefines QuantityValue::mRef;
 	}
 	value speed: SpeedValue :> quantity;
 	
@@ -212,8 +205,8 @@ package ISQ {
 		}
 	}
 	value type TorqueValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: TorqueUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: TorqueUnit redefines QuantityValue::mRef;
 	}
 	value torque: TorqueValue :> quantity;
 	
@@ -232,8 +225,8 @@ package ISQ {
 		}
 	}
 	value type EnergyValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-		ref scale: EnergyUnit redefines QuantityValue::scale;
+		value num: Real redefines QuantityValue::num;
+		ref mRef: EnergyUnit redefines QuantityValue::mRef;
 	}
 	value energy: EnergyValue :> quantity;
 	
@@ -243,4 +236,21 @@ package ISQ {
 	 
 	value kineticEnergy :> energy;
 	value potentialEnergy :> energy;
+	
+	/**
+	 * acceleration
+	 */	
+    block AccelerationUnit :> SIDerivedUnit {
+		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+			value exponent redefines UnitPowerFactor::exponent = 1;
+		}
+		value timePowerFactor :> SIDerivedUnit::timePowerFactor {
+			value exponent redefines UnitPowerFactor::exponent = -2;
+		}		
+    }
+    value type AccelerationValue :> QuantityValue {
+		value num: Real redefines QuantityValue::num;
+    	ref mRef: AccelerationUnit redefines QuantityValue::mRef;
+    }
+    value acceleration: AccelerationValue :> quantity;
 }

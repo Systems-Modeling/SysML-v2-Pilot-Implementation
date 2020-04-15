@@ -7,11 +7,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -205,6 +208,37 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	@Override
 	public void setSnapshotFeature(Feature newSnapshotFeature) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public EList<Type> getType() {
+		setTypingFor(this);
+		return super.getType();
+	}
+	
+	public static void setTypingFor(Feature feature) {
+		Type owningType = feature.getOwningType();
+		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
+			Type type = owningType instanceof IndividualUsage? 
+					((IndividualUsage)owningType).getIndividualDefinition(): 
+					owningType;
+			EList<FeatureTyping> typings = feature.getTyping();
+			if (typings.isEmpty()) {
+				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+				typing.setType(type);
+				feature.getOwnedRelationship_comp().add(typing);
+				typings.add(typing);
+			} else {
+				typings.stream().filter(typing->typing.getType() == null).findFirst().
+					ifPresent(typing->typing.setType(type));
+			}
+		}
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		setTypingFor(this);
 	}
 
 	/**

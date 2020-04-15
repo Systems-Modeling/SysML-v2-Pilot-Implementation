@@ -22,11 +22,10 @@ import org.omg.sysml.xtext.services.SysMLGrammarAccess;
 public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SysMLGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_ActionUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
 	protected AbstractElementAlias match_ActivityBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_AssertConstraintUsage_ByKeyword_0_0_2_q;
-	protected AbstractElementAlias match_AssertConstraintUsage_ConstraintKeyword_1_0_q;
-	protected AbstractElementAlias match_AssertConstraintUsage_TypePart_ConstraintKeyword_1_0_or___ColonKeyword_0_0_AnyKeyword_0_1_1__;
+	protected AbstractElementAlias match_AssertConstraintUsage_AsKeyword_0_0_0_2_q;
+	protected AbstractElementAlias match_AssertConstraintUsage_ConstraintKeyword_0_1_0_q;
+	protected AbstractElementAlias match_AssertConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
 	protected AbstractElementAlias match_AssociationBlockBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_AssociationEndMember_RefKeyword_1_2_1_q;
 	protected AbstractElementAlias match_AssociationEndMember_RefKeyword_1_3_2_q;
@@ -35,12 +34,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p;
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a;
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p;
-	protected AbstractElementAlias match_BindingConnector_OfKeyword_0_2_q;
-	protected AbstractElementAlias match_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
+	protected AbstractElementAlias match_BindingConnector_AsKeyword_0_2_q;
 	protected AbstractElementAlias match_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q;
 	protected AbstractElementAlias match_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q;
-	protected AbstractElementAlias match_ConstraintBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
-	protected AbstractElementAlias match_ConstraintDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
 	protected AbstractElementAlias match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Documentation_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q;
@@ -52,28 +48,29 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_NonPortStructureUsageMember_ValueKeyword_1_4_0_q;
 	protected AbstractElementAlias match_NonPortStructureUsageMember_ValueKeyword_1_5_1_q;
 	protected AbstractElementAlias match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__;
-	protected AbstractElementAlias match_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0;
+	protected AbstractElementAlias match_PackagedDefinitionMember_AliasKeyword_12_0_1_or_ImportKeyword_12_0_0;
 	protected AbstractElementAlias match_PackagedUsageMember_ValueKeyword_2_0_q;
 	protected AbstractElementAlias match_PackagedUsageMember_ValueKeyword_3_1_q;
-	protected AbstractElementAlias match_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q;
-	protected AbstractElementAlias match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1;
+	protected AbstractElementAlias match_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
+	protected AbstractElementAlias match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q;
+	protected AbstractElementAlias match_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q;
+	protected AbstractElementAlias match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
+	protected AbstractElementAlias match_SatisfyRequirementUsage_AsKeyword_0_0_0_2_q;
+	protected AbstractElementAlias match_SatisfyRequirementUsage_RequirementKeyword_0_1_0_q;
+	protected AbstractElementAlias match_SatisfyRequirementUsage_TypePart_RequirementKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
 	protected AbstractElementAlias match_SendActionNodeDeclaration_OfKeyword_3_1_q;
-	protected AbstractElementAlias match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1;
 	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_2_q;
-	protected AbstractElementAlias match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1;
 	protected AbstractElementAlias match_TransitionStep_FirstKeyword_1_2_q;
-	protected AbstractElementAlias match_TypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q;
-	protected AbstractElementAlias match_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1;
+	protected AbstractElementAlias match_TypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
 	protected AbstractElementAlias match_ValueDeclaration_ValueKeyword_1_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SysMLGrammarAccess) access;
-		match_ActionUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getActionUsageDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getActionUsageDeclarationAccess().getRedefinesKeyword_2_0_1()));
 		match_ActivityBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getActivityBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getActivityBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getActivityBodyAccess().getSemicolonKeyword_0()));
-		match_AssertConstraintUsage_ByKeyword_0_0_2_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getByKeyword_0_0_2());
-		match_AssertConstraintUsage_ConstraintKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getConstraintKeyword_1_0());
-		match_AssertConstraintUsage_TypePart_ConstraintKeyword_1_0_or___ColonKeyword_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getAssertConstraintUsageAccess().getConstraintKeyword_1_0()));
+		match_AssertConstraintUsage_AsKeyword_0_0_0_2_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getAsKeyword_0_0_0_2());
+		match_AssertConstraintUsage_ConstraintKeyword_0_1_0_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getConstraintKeyword_0_1_0());
+		match_AssertConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getAssertConstraintUsageAccess().getConstraintKeyword_0_1_0()));
 		match_AssociationBlockBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssociationBlockBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getAssociationBlockBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getAssociationBlockBodyAccess().getSemicolonKeyword_0()));
 		match_AssociationEndMember_RefKeyword_1_2_1_q = new TokenAlias(false, true, grammarAccess.getAssociationEndMemberAccess().getRefKeyword_1_2_1());
 		match_AssociationEndMember_RefKeyword_1_3_2_q = new TokenAlias(false, true, grammarAccess.getAssociationEndMemberAccess().getRefKeyword_1_3_2());
@@ -82,12 +79,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()));
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a = new AlternativeAlias(true, true, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()));
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p = new AlternativeAlias(true, false, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()));
-		match_BindingConnector_OfKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorAccess().getOfKeyword_0_2());
-		match_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConjugatePortUsageDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getConjugatePortUsageDeclarationAccess().getRedefinesKeyword_2_0_1()));
+		match_BindingConnector_AsKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getBindingConnectorAccess().getAsKeyword_0_2());
 		match_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q = new TokenAlias(false, true, grammarAccess.getConjugatedInterfaceEndMemberAccess().getPortKeyword_1_0_1());
 		match_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q = new TokenAlias(false, true, grammarAccess.getConjugatedInterfaceEndMemberAccess().getPortKeyword_1_1_2());
-		match_ConstraintBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstraintBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getConstraintBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getConstraintBodyAccess().getSemicolonKeyword_0()));
-		match_ConstraintDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstraintDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getConstraintDeclarationAccess().getRedefinesKeyword_2_0_1()));
 		match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getSemicolonKeyword_0()));
 		match_Documentation_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDocumentationAccess().getCommentKeyword_0_0());
 		match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getRightCurlyBracketKeyword_1_1_2()));
@@ -99,26 +93,79 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_NonPortStructureUsageMember_ValueKeyword_1_4_0_q = new TokenAlias(false, true, grammarAccess.getNonPortStructureUsageMemberAccess().getValueKeyword_1_4_0());
 		match_NonPortStructureUsageMember_ValueKeyword_1_5_1_q = new TokenAlias(false, true, grammarAccess.getNonPortStructureUsageMemberAccess().getValueKeyword_1_5_1());
 		match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
-		match_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAliasKeyword_10_0_1()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getImportKeyword_10_0_0()));
+		match_PackagedDefinitionMember_AliasKeyword_12_0_1_or_ImportKeyword_12_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAliasKeyword_12_0_1()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getImportKeyword_12_0_0()));
 		match_PackagedUsageMember_ValueKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getValueKeyword_2_0());
 		match_PackagedUsageMember_ValueKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getValueKeyword_3_1());
-		match_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getAnyKeyword_0_1_1()));
-		match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getColonGreaterThanSignGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getRedefinesKeyword_0_1()));
+		match_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getAnyKeyword_0_1_1()));
+		match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q = new TokenAlias(false, true, grammarAccess.getRequirementConstraintUsageAccess().getAsKeyword_0_0_0_2());
+		match_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q = new TokenAlias(false, true, grammarAccess.getRequirementConstraintUsageAccess().getConstraintKeyword_0_1_0());
+		match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getRequirementConstraintUsageAccess().getConstraintKeyword_0_1_0()));
+		match_SatisfyRequirementUsage_AsKeyword_0_0_0_2_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getAsKeyword_0_0_0_2());
+		match_SatisfyRequirementUsage_RequirementKeyword_0_1_0_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeyword_0_1_0());
+		match_SatisfyRequirementUsage_TypePart_RequirementKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeyword_0_1_0()));
 		match_SendActionNodeDeclaration_OfKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getSendActionNodeDeclarationAccess().getOfKeyword_3_1());
-		match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSubsetsAccess().getSubsetsKeyword_0_1()));
 		match_SuccessionDeclaration_FirstKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_2());
-		match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSuperclassingListAccess().getColonGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getSuperclassingListAccess().getSpecializesKeyword_0_1()));
 		match_TransitionStep_FirstKeyword_1_2_q = new TokenAlias(false, true, grammarAccess.getTransitionStepAccess().getFirstKeyword_1_2());
-		match_TypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getColonKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1()));
-		match_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getUsageDeclarationAccess().getColonGreaterThanSignGreaterThanSignKeyword_2_0_0()), new TokenAlias(false, false, grammarAccess.getUsageDeclarationAccess().getRedefinesKeyword_2_0_1()));
+		match_TypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1()));
 		match_ValueDeclaration_ValueKeyword_1_q = new TokenAlias(false, true, grammarAccess.getValueDeclarationAccess().getValueKeyword_1());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getRedefinesKeywordRule())
+			return getRedefinesKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSpecializesKeywordRule())
+			return getSpecializesKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSubsetsKeywordRule())
+			return getSubsetsKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getTypedByKeywordRule())
+			return getTypedByKeywordToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * RedefinesKeyword :
+	 * 	':>>' | 'redefines'
+	 * ;
+	 */
+	protected String getRedefinesKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ":>>";
+	}
+	
+	/**
+	 * SpecializesKeyword :
+	 * 	':>' | 'specializes'
+	 * ;
+	 */
+	protected String getSpecializesKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ":>";
+	}
+	
+	/**
+	 * SubsetsKeyword :
+	 * 	':>' | 'subsets'
+	 * ;
+	 */
+	protected String getSubsetsKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ":>";
+	}
+	
+	/**
+	 * TypedByKeyword :
+	 * 	':' | 'typed' 'by'
+	 * ;
+	 */
+	protected String getTypedByKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ":";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -126,16 +173,14 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_ActionUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1.equals(syntax))
-				emit_ActionUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ActivityBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
+			if (match_ActivityBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_ActivityBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AssertConstraintUsage_ByKeyword_0_0_2_q.equals(syntax))
-				emit_AssertConstraintUsage_ByKeyword_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AssertConstraintUsage_ConstraintKeyword_1_0_q.equals(syntax))
-				emit_AssertConstraintUsage_ConstraintKeyword_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AssertConstraintUsage_TypePart_ConstraintKeyword_1_0_or___ColonKeyword_0_0_AnyKeyword_0_1_1__.equals(syntax))
-				emit_AssertConstraintUsage_TypePart_ConstraintKeyword_1_0_or___ColonKeyword_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssertConstraintUsage_AsKeyword_0_0_0_2_q.equals(syntax))
+				emit_AssertConstraintUsage_AsKeyword_0_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssertConstraintUsage_ConstraintKeyword_0_1_0_q.equals(syntax))
+				emit_AssertConstraintUsage_ConstraintKeyword_0_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssertConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
+				emit_AssertConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AssociationBlockBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_AssociationBlockBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AssociationEndMember_RefKeyword_1_2_1_q.equals(syntax))
@@ -152,18 +197,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p.equals(syntax))
 				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_6_0__p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BindingConnector_OfKeyword_0_2_q.equals(syntax))
-				emit_BindingConnector_OfKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1.equals(syntax))
-				emit_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BindingConnector_AsKeyword_0_2_q.equals(syntax))
+				emit_BindingConnector_AsKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q.equals(syntax))
 				emit_ConjugatedInterfaceEndMember_PortKeyword_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q.equals(syntax))
 				emit_ConjugatedInterfaceEndMember_PortKeyword_1_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConstraintBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__.equals(syntax))
-				emit_ConstraintBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConstraintDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1.equals(syntax))
-				emit_ConstraintDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Documentation_CommentKeyword_0_0_q.equals(syntax))
@@ -186,50 +225,40 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_NonPortStructureUsageMember_ValueKeyword_1_5_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__.equals(syntax))
 				emit_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0.equals(syntax))
-				emit_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedDefinitionMember_AliasKeyword_12_0_1_or_ImportKeyword_12_0_0.equals(syntax))
+				emit_PackagedDefinitionMember_AliasKeyword_12_0_1_or_ImportKeyword_12_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedUsageMember_ValueKeyword_2_0_q.equals(syntax))
 				emit_PackagedUsageMember_ValueKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedUsageMember_ValueKeyword_3_1_q.equals(syntax))
 				emit_PackagedUsageMember_ValueKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q.equals(syntax))
-				emit_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1.equals(syntax))
-				emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q.equals(syntax))
+				emit_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q.equals(syntax))
+				emit_RequirementConstraintUsage_AsKeyword_0_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q.equals(syntax))
+				emit_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
+				emit_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SatisfyRequirementUsage_AsKeyword_0_0_0_2_q.equals(syntax))
+				emit_SatisfyRequirementUsage_AsKeyword_0_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SatisfyRequirementUsage_RequirementKeyword_0_1_0_q.equals(syntax))
+				emit_SatisfyRequirementUsage_RequirementKeyword_0_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SatisfyRequirementUsage_TypePart_RequirementKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
+				emit_SatisfyRequirementUsage_TypePart_RequirementKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SendActionNodeDeclaration_OfKeyword_3_1_q.equals(syntax))
 				emit_SendActionNodeDeclaration_OfKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1.equals(syntax))
-				emit_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuccessionDeclaration_FirstKeyword_0_2_q.equals(syntax))
 				emit_SuccessionDeclaration_FirstKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1.equals(syntax))
-				emit_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TransitionStep_FirstKeyword_1_2_q.equals(syntax))
 				emit_TransitionStep_FirstKeyword_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q.equals(syntax))
-				emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1.equals(syntax))
-				emit_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q.equals(syntax))
+				emit_TypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ValueDeclaration_ValueKeyword_1_q.equals(syntax))
 				emit_ValueDeclaration_ValueKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     ':>>' | 'redefines'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'ref' 'action' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isAbstract?='abstract' 'ref' 'action' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isComposite?='action' (ambiguity) ownedRelationship_comp+=Redefinition
-	 */
-	protected void emit_ActionUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 	/**
 	 * Ambiguous syntax:
 	 *     ';' | ('{' '}')
@@ -261,12 +290,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'by'?
+	 *     'as'?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) ownedRelationship_comp+=Subset
 	 */
-	protected void emit_AssertConstraintUsage_ByKeyword_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AssertConstraintUsage_AsKeyword_0_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -275,22 +304,22 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'constraint'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ':' ownedRelationship_comp+=FeatureTyping
-	 *     (rule start) (ambiguity) (':' 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) (TypedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) TypedByKeyword ownedRelationship_comp+=FeatureTyping
 	 */
-	protected void emit_AssertConstraintUsage_ConstraintKeyword_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AssertConstraintUsage_ConstraintKeyword_0_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     (':' 'any') | 'constraint'
+	 *     (TypedByKeyword 'any') | 'constraint'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ActionParameterMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 */
-	protected void emit_AssertConstraintUsage_TypePart_ConstraintKeyword_1_0_or___ColonKeyword_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AssertConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -422,23 +451,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'of'?
+	 *     'as'?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
 	 */
-	protected void emit_BindingConnector_OfKeyword_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ':>>' | 'redefines'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=Redefinition
-	 */
-	protected void emit_ConjugatePortUsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_BindingConnector_AsKeyword_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -469,38 +487,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 *     isNonunique?='nonunique' (ambiguity) (rule end)
-	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
-	 */
-	protected void emit_ConstraintBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ':>>' | 'redefines'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=Redefinition
-	 */
-	protected void emit_ConstraintDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ';' | ('{' '}')
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) ':' 'any' (ambiguity) (rule start)
+	 *     (rule start) TypedByKeyword 'any' (ambiguity) (rule start)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
@@ -508,8 +495,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ItemFlowEndMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=SnapshotFeatureMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=TimeSliceFeatureMember (ambiguity) (rule end)
 	 *     ownedMembership_comp+=ConjugatedPortDefinitionMember (ambiguity) (rule end)
+	 *     ownedMembership_comp+=LifeClassMembership (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
@@ -666,7 +655,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=PackageElementVisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
 	 */
-	protected void emit_PackagedDefinitionMember_AliasKeyword_10_0_1_or_ImportKeyword_10_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackagedDefinitionMember_AliasKeyword_12_0_1_or_ImportKeyword_12_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -698,40 +687,83 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     (':' 'any')?
+	 *     (TypedByKeyword 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
-	protected void emit_ParameterTypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ':>>' | 'redefines'
+	 *     'as'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     (rule start) 'action' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     (rule start) 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     (rule start) 'state' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isAbstract?='abstract' 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     name=Name (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=Subset (ambiguity) ownedRelationship_comp+=Redefinition
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=Subset
 	 */
-	protected void emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_RequirementConstraintUsage_AsKeyword_0_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'constraint'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (TypedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) TypedByKeyword ownedRelationship_comp+=FeatureTyping
+	 */
+	protected void emit_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'constraint' | (TypedByKeyword 'any')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ActionParameterMember
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=EmptyReturnParameterMember
+	 */
+	protected void emit_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'as'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedRelationship_comp+=Subset
+	 */
+	protected void emit_SatisfyRequirementUsage_AsKeyword_0_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'requirement'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (TypedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) TypedByKeyword ownedRelationship_comp+=FeatureTyping
+	 */
+	protected void emit_SatisfyRequirementUsage_RequirementKeyword_0_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (TypedByKeyword 'any') | 'requirement'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ActionParameterMember
+	 *     (rule start) (ambiguity) 'by' ownedFeatureMembership_comp+=SatisfactionConnectorMember
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=EmptyReturnParameterMember
+	 */
+	protected void emit_SatisfyRequirementUsage_TypePart_RequirementKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -748,53 +780,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     ':>' | 'subsets'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     (rule start) 'action' (ambiguity) ownedRelationship_comp+=Subset
-	 *     (rule start) 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     (rule start) 'state' (ambiguity) ownedRelationship_comp+=Subset
-	 *     isAbstract?='abstract' 'ref' 'action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     isComposite?='action' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=Subset
-	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset
-	 *     name=Name (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=ConjugatedPortTyping (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=Subset (ambiguity) ownedRelationship_comp+=Subset
-	 */
-	protected void emit_Subsets_ColonGreaterThanSignKeyword_0_0_or_SubsetsKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
 	 *     'first'?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
 	 */
 	protected void emit_SuccessionDeclaration_FirstKeyword_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ':>' | 'specializes'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     name=Name (ambiguity) ownedRelationship_comp+=Superclassing
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Superclassing
-	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Superclassing
-	 */
-	protected void emit_SuperclassingList_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -811,12 +802,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     (':' 'any')?
+	 *     (TypedByKeyword 'any')?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'constraint'? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'ref' 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) 'requirement'? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'state' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'succession' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'transition' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -825,19 +817,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?='action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     reqId=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
-	protected void emit_TypePart___ColonKeyword_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ':>>' | 'redefines'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=Redefinition
-	 */
-	protected void emit_UsageDeclaration_ColonGreaterThanSignGreaterThanSignKeyword_2_0_0_or_RedefinesKeyword_2_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_TypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

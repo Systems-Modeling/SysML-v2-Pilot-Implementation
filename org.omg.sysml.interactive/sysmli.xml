@@ -14,7 +14,12 @@
   <property name="sysmlv2api.jar" refid="sysmlv2api-id"/> 
 
   <target name="create_jar">
-    <jar destfile="${jar.file}">
+    <concat destfile="${dir.classes}/plugin.properties" fixlastline="yes" eol="unix">
+      <fileset dir="${dir.libs}">
+        <include name="*/plugin.properties"/>
+      </fileset>
+    </concat>
+    <jar destfile="${jar.file}" update="true">
       <manifest>
         <attribute name="Main-Class" value="${main.class}" />
       </manifest>

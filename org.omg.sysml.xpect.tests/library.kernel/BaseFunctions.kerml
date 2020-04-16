@@ -19,7 +19,7 @@ package BaseFunctions {
 	function ','(x: Anything, seq: Anything[0..*]): Anything[0..*];
 
 	abstract function 'allInstances'(): Object[0..*] {
-		abstract feature type: all Object;
+		abstract feature all type: Object;
 	}
 	
 	abstract function 'instanceof'(x: Anything): Boolean {

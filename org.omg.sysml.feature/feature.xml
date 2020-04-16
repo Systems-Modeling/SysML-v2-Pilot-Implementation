@@ -2,7 +2,7 @@
 <feature
       id="org.omg.sysml.feature"
       label="SysML v2 Feature"
-      version="0.2.0.qualifier"
+      version="0.3.0.qualifier"
       provider-name="SysML v2 Submission Team">
 
    <description url="http://www.example.com/description">
@@ -10,17 +10,24 @@
    </description>
 
    <copyright>
-      Copyright (c) 2019 Model Drive Solutions, Inc.
-Copyright (c) 2019 California Institute of Technology (Jet Propulsion Laboratory)
-Copyright (c) 2019 IncQuery Labs Ltd.
-Copyright (c) 2019 Itemis
+      Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+Copyright (c) 2019-2020 California Institute of Technology (Jet Propulsion
+Laboratory)
+Copyright (c) 2019-2020 IncQuery Labs Ltd.
+Copyright (c) 2019-2020 Itemis
+Copyright (c) 2019-2020 Maplesoft (Waterloo Maple, Inc.)
+Copyright (c) 2019-2020 Mgnite Inc.
    </copyright>
 
    <license url="">
-      Copyright (c) 2019 Model Drive Solutions, Inc.
-Copyright (c) 2019 California Institute of Technology (Jet Propulsion Laboratory)
-Copyright (c) 2019 IncQuery Labs Ltd.
-Copyright (c) 2019 Itemis
+      SysML v2 Pilot Implementation Licensing Agreement
+
+Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+Copyright (c) 2019-2020 California Institute of Technology (Jet Propulsion Laboratory)
+Copyright (c) 2019-2020 IncQuery Labs Ltd.
+Copyright (c) 2019-2020 Itemis
+Copyright (c) 2019-2020 Maplesoft (Waterloo Maple, Inc.)
+Copyright (c) 2019-2020 Mgnite Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to use and redistribute the Software and to permit persons to whom the Software is furnished to do so, subject to the conditions that the above copyright notice and this permission notice shall be included in all copies of the Software. No permission is granted to modify, merge, and/or sell copies of the Software, or to create derivative works based on the Software.
 

@@ -17,7 +17,7 @@ package RealFunctions {
 	function Max(x: Real, y: Real): Real specializes NumericalFunctions::Max;
 	function Min(x: Real, y: Real): Real specializes NumericalFunctions::Min;
 
-	function '='(x: Real, y: Real): Boolean specializes BaseFunctions::'==';
+	function '=='(x: Real, y: Real): Boolean specializes BaseFunctions::'==';
 	function '!='(x: Real, y: Real): Boolean specializes BaseFunctions::'!=';
 		
 	function Sqrt(x: Real): Real;
@@ -27,6 +27,7 @@ package RealFunctions {
 	
 	function ToString(x: Real): String specializes BaseFunctions::ToString;
 	function ToInteger(x: Real): Integer;
+	function ToRatioanl(x: Real): Rational;
 	function ToReal(x: String): Real;
 	function ToComplex(x: Real): Complex;
 	

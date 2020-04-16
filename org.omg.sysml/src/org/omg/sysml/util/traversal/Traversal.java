@@ -23,8 +23,10 @@
  *****************************************************************************/
 package org.omg.sysml.util.traversal;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.util.traversal.facade.ElementProcessingFacade;
@@ -79,6 +81,25 @@ public class Traversal {
 	 */
 	public void putIdentifier(Element element, Object identifier) {
 		this.elementMap.put(element, identifier);
+	}
+	
+	/**
+	 * Return the set of Elements that have been traversed so far.
+	 * 
+	 * @return	the set of Elements that have been traversed so far
+	 */
+	public Set<Element> getElements() {
+		return this.elementMap.keySet();
+	}
+	
+	/**
+	 * Get the collection of identifiers that have been assigned to the Elements
+	 * that have been traversed so far.
+	 * 
+	 * @return	the collection of identifiers of traversed Elements
+	 */
+	public Collection<Object> getIdentifiers() {
+		return this.elementMap.values();
 	}
 	
 	/**

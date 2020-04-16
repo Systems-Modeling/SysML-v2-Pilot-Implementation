@@ -138,6 +138,7 @@ public interface RequirementUsage extends ConstraintUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Req Id</em>' attribute isn't clear,
@@ -147,7 +148,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_ReqId()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getReqId();
@@ -164,6 +165,7 @@ public interface RequirementUsage extends ConstraintUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
@@ -173,7 +175,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_Text()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getText();

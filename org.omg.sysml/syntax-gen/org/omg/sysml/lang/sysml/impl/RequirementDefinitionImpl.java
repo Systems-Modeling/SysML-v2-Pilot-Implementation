@@ -140,16 +140,21 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 */
 	@Override
 	public String getReqId() {
-		return reqId;
+		return reqId == null? "": reqId;
 	}
+	
+	@Override
+	public void setReqId(String newReqId) {
+		setReqIdGen(unescapeString(newReqId));
+	}
+	
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setReqId(String newReqId) {
+	public void setReqIdGen(String newReqId) {
 		String oldReqId = reqId;
 		reqId = newReqId;
 		if (eNotificationRequired())
@@ -159,13 +164,16 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText() {
-		return text;
+		if (text == null) {
+			setText(getDocumentationText());
+		}
+		return text == null? "": text;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,7 +190,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
 		return owner.getOwnedFeatureMembership().stream().
 				filter(mem->(mem instanceof RequirementConstraintMembership) && ((RequirementConstraintMembership)mem).getKind() == kind).
-				map(mem->((RequirementConstraintMembership)mem).getConstraint());
+				map(mem->((RequirementConstraintMembership)mem).getConstraint()).
+				filter(constraint->constraint != null);
 	}
 
 

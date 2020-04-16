@@ -10,7 +10,7 @@ package 'Action Allocation Example' {
 		ref photos : Picture[*] ordered = takePhoto::picture;
 		
 		perform takePhoto[*] ordered 
-			by takePicture (in scene, out picture);
+			as takePicture (in scene, out picture);
 		
 		part f : AutoFocus {
 			perform takePhoto::focus;			

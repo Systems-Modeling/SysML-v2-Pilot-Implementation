@@ -4,12 +4,13 @@
 package Quantities {
 	
 	/**
-	 * The value of a quantity is a tuple of a magnitude (i.e. the mathematical number value) and a reference to a MeasurementScale.
-	 * The scale may directly reference a MeasurementUnit, which implies an associated measurement scale that is a ratio scale.
+	 * The value of a quantity is a tuple of a number (i.e. mathematical number value) and a reference to a MeasurementReference.
+	 * The reference can be a MeasurementUnit, which implies that the associated measurement scale is a ratio scale,
+	 * or a MeasurementScale, whose specializations represent all possible non-ratio scales.
 	 */
 	abstract value type QuantityValue :> ScalarValues::NumericalValue {
-		value magnitude: ScalarValues::Number;
-		ref scale: UnitsAndScales::MeasurementScale;
+		value num: ScalarValues::Number;
+		ref mRef: UnitsAndScales::MeasurementReference;
 	}
 	
 	/**

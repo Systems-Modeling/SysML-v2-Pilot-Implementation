@@ -19,7 +19,9 @@ package '15.10-Primitive Data Types' {
 	 */
 	import ScalarValues::Real;
 	
-	/* TODO: Move this to the model library. */
+	/* TODO: Move this to the model library.
+	 * (Are "unsigned" types really necessary?)
+	 */
 	value type UnsignedReal :> Real {
 		assert constraint { self >= 0.0 }
 	}

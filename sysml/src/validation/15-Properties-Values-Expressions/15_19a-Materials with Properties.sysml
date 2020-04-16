@@ -1,4 +1,4 @@
-package '15_19-Materials with Properties' {
+package '15_19a-Materials with Properties' {
 	import SI::*;
 	
 	// TODO: Move definition of atomic mass and Da to SI
@@ -36,9 +36,9 @@ package '15_19-Materials with Properties' {
     	value name :>> MeasurementReference::name = "newton per square millimetre";
     }
 
-    block Substance;
-    block Material :> Substance;
-
+    value type Substance;
+	value type Material :> Substance;
+	
 	/*
 	 * The classification of materials into metals and alloys is grossly simplified and not exhaustive.
 	 * A more complete classification would include: ChemicalSubstance, PureMaterial, MixedMaterial,
@@ -46,52 +46,39 @@ package '15_19-Materials with Properties' {
 	 * etc.
 	 */
 
-    block Metal :> Material {
+    value type Metal :> Material {
         value atomicMass: AtomicMassValue[1];
-    }
-
-    individual def Iron :> Metal {
-        value :>> atomicMass = 55.845@[Da];
-    }
-
-    individual def Carbon :> Metal {
-        value atomicMass :>> Metal::atomicMass = 12.011@[Da];
-    }
-
-    individual def Manganese :> Metal {
-        value atomicMass :>> Metal::atomicMass = 54.938@[Da];
     }
 
     value type MassFractionValue :> Real;
 
+	/*
+	 * Value properties bound to specifically constructed compound values.
+	 */
+    value Iron = Metal(atomicMass => 55.845@[Da]);
+    value Carbon = Metal(atomicMass => 12.011@[Da]);
+    value Manganese = Metal(atomicMass => 54.938@[Da]);
+    
     value type MaterialFraction {
         ref material: Material[1]; 
         value massFraction: MassFractionValue[1];
     }
 
-    block Alloy :> Material {
+    value type Alloy :> Material {
         value fractions: MaterialFraction[2..*];
     }
 
- 	/**
-	 * Particular example of high tensile strength steel.
+	/**
+	 * Value property with redefined/added sub-properties.
+	 * (Particular example of high tensile strength steel.)
 	 */
-    individual def Steel_980 :> Alloy {
-        value fraction1 :> fractions {
-        	ref :>> material : Iron;
-        	value :>> massFraction = 0.9862;
-        }
-        
-        value fraction2 :> fractions {
-        	ref :>> material : Carbon;
-        	value :>> massFraction = 0.9862;
-        }
-        
-        value fraction3 :> fractions {
-        	ref :>> material : Manganese;
-        	value :>> massFraction = 0.9862;
-        }
-        
+    value Steel_980 : Alloy {
+    	value :>> fractions = {
+    		MaterialFraction(Iron, 0.9862),
+    		MaterialFraction(Carbon, 0.0018),
+    		MaterialFraction(Manganese, 0.012)
+    	};
         value tensileStrength: TensileStrengthValue = 980@['N/mm²'];
     }
+  
 }

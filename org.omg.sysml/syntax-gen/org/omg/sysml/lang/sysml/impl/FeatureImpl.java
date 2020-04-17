@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
@@ -212,10 +213,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getTypes((Feature)originalType, types, visitedFeatures, isWithDefaults);
 			}
 		}
-		EList<Subsetting> subsettings = isWithDefaults? 
-				feature.getOwnedSubsetting(): 
-				((FeatureImpl)feature).getOwnedSubsettingWithoutDefault();
-		for (Subsetting subsetting: subsettings) {
+		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
 				getTypes(subsettedFeature, types, visitedFeatures, isWithDefaults);
@@ -311,7 +309,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			return feature.isOrdered;
 		} else {
 			visited.add(feature);
-			for (Subsetting subsetting: feature.getOwnedSubsettingWithoutDefault()) {
+			for (Subsetting subsetting: feature.getOwnedSubsetting()) {
 				Feature subsettedFeature = subsetting.getSubsettedFeature();
 				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
 						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
@@ -391,35 +389,19 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithoutDefault();
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//				hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-//				hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
-//				FEATURE_SUBSETTING_DEFAULT);
+		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
-	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String... subsettingDefault) {
-		clearCaches();
-		getComputedRedefinitions();
-		return getOwnedSubsettingWithDefault(subsettingDefault);
-	}
-	
-	public EList<Subsetting> getOwnedSubsettingWithDefault(String... subsettingDefault) {
-		return getOwnedGeneralizationWithDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING, SysMLPackage.eINSTANCE.getSubsetting(), subsettingDefault);
-	}
-	
-	public EList<Subsetting> getOwnedSubsettingWithoutDefault() {
-		return getOwnedGeneralizationWithoutDefault(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-	}
-	
-	public EList<Redefinition> getOwnedRedefinitionsWithoutDefault() {
-		return getOwnedGeneralizationWithoutDefault(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
-	}
+//	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String... subsettingDefault) {
+//		clearCaches();
+//		getComputedRedefinitions();
+//		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
+//	}
 	
 	protected void addSubsetting(String name) {
 		Type type = getDefaultType(name);
 		if (type instanceof Feature && type != this &&
-				!getOwnedSubsettingWithoutDefault().stream().anyMatch(sub->sub.getSubsettedFeature() == type)) {
+				!getOwnedSubsetting().stream().anyMatch(sub->sub.getSubsettedFeature() == type)) {
 			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 			subsetting.setSubsettedFeature((Feature)type);
 			subsetting.setSubsettingFeature(this);
@@ -432,7 +414,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected EList<Subsetting> getComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionsWithoutDefault();
+		EList<Redefinition> ownedRedefinitions = getOwnedRedefinition();
 		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
 			addRedefinitions(redefinitions, ownedRedefinitions);
 		}

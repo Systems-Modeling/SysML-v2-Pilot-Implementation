@@ -208,6 +208,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
 					membership.setOwnedMemberFeature_comp(targetEnd);
 					getOwnedFeatureMembership_comp().add(membership);
+					((ItemFlowEndImpl)targetEnd).addItemFlowEndSubsetting();
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {

@@ -105,19 +105,19 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected void checkSubsetting() {
-		super.checkSubsetting();
-		if (isEnactedPerformance()) {
-			addSubsetting(EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
-		}
-	}
+//	@Override
+//	protected void checkSubsetting() {
+//		super.checkSubsetting();
+//		if (isEnactedPerformance()) {
+//			addSubsetting(EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
+//		}
+//	}
 	
 	@Override
-	protected String getActionSubsettingDefault() {
+	protected String getDefaultSupertype() {
 		return isEnactedPerformance()? 
 				EXHIBIT_STATE_SUBSETTING_PART_DEFAULT:
-				super.getActionSubsettingDefault();
+				super.getDefaultSupertype();
 	}
 	
 	public boolean isEnactedPerformance() {

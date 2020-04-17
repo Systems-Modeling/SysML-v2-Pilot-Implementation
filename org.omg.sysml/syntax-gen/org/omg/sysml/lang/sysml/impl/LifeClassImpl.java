@@ -2,13 +2,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -49,6 +46,11 @@ public class LifeClassImpl extends BlockImpl implements LifeClass {
 			super.basicSetName(LIFE_CLASS_DEFAULT_NAME);
 		}
 		return super.basicGetName();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return LIFE_CLASS_LIFE_SUPERCLASS;
 	}
 	
 //	@Override

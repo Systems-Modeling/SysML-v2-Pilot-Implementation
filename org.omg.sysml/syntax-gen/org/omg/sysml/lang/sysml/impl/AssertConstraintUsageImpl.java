@@ -147,11 +147,18 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	// Additional redefinitions and subsets
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
+	protected String getDefaultSupertype() {
 		return isEnactedPerformance()?
-				getOwnedSubsettingWithComputedRedefinitions(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT):
-				super.getOwnedSubsetting();
+				ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT:
+				super.getDefaultSupertype();
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return isEnactedPerformance()?
+//				getOwnedSubsettingWithComputedRedefinitions(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT):
+//				super.getOwnedSubsetting();
+//	}
 	
 	public boolean isEnactedPerformance() {
 		return StepImpl.isEnactedPerformance(this);

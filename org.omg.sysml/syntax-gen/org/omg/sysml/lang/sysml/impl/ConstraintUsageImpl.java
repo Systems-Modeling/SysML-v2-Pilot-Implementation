@@ -30,7 +30,6 @@ import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -400,12 +399,20 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	// Additional redefinitions and subsets
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
-				isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
-				CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return 
+			isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
+			isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
+			CONSTRAINT_SUBSETTING_BASE_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithComputedRedefinitions(
+//				isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
+//				isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
+//				CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+//	}
 	
 	public boolean isAssumptionConstraint() {
 		return getRequirementConstraintKind() == RequirementConstraintKind.ASSUMPTION;

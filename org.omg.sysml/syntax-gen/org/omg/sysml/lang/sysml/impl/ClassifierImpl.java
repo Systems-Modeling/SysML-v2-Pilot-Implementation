@@ -51,7 +51,7 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	 * @generated NOT
 	 */
 	public EList<Superclassing> getOwnedSuperclassing() {
-		return new DerivedSubsetEObjectEList<>(Superclassing.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP});
+		return new DerivedSubsetEObjectEList<>(Superclassing.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION, new int[] {SysMLPackage.TYPE__OWNED_GENERALIZATION});
 	}
 
 

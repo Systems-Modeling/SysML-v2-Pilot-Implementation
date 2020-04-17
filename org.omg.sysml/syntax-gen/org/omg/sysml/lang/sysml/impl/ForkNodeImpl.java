@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.ForkNode;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -40,8 +38,13 @@ public class ForkNodeImpl extends ControlNodeImpl implements ForkNode {
 	}
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(FORK_NODE_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return FORK_NODE_SUBSETTING_BASE_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithComputedRedefinitions(FORK_NODE_SUBSETTING_BASE_DEFAULT);
+//	}
 	
 } //ForkNodeImpl

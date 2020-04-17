@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -320,22 +319,23 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		return StepImpl.getRelevantFeaturesOf(this);
 	}	
 	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		if (isCheckSubsetting) {
+//			checkSubsetting();
+//			isCheckSubsetting = false;
+//		}
+//		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
+//	}
+//	
+//	protected void checkSubsetting() {
+//		if (isSubperformance()) {
+//			addSubsetting(STATE_SUBSETTING_SUBSTATE_DEFAULT);
+//		} 
+//	}
+	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			checkSubsetting();
-			isCheckSubsetting = false;
-		}
-		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
-	}
-	
-	protected void checkSubsetting() {
-		if (isSubperformance()) {
-			addSubsetting(STATE_SUBSETTING_SUBSTATE_DEFAULT);
-		} 
-	}
-	
-	protected String getActionSubsettingDefault() {
+	protected String getDefaultSupertype() {
 		return isSubperformance()? 
 				STATE_SUBSETTING_SUBSTATE_DEFAULT:
 				STATE_SUBSETTING_BASE_DEFAULT;

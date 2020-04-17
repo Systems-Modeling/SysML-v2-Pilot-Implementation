@@ -25,7 +25,6 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -327,12 +326,19 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				getConnectorEnd().size() > 2? 
-					ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-					CONNECTOR_USAGE_SUBSETTING_DEFAULT);
+	protected String getDefaultSupertype() {
+		return getConnectorEnd().size() > 2? 
+				ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
+				CONNECTOR_USAGE_SUBSETTING_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithDefault(
+//				getConnectorEnd().size() > 2? 
+//					ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
+//					CONNECTOR_USAGE_SUBSETTING_DEFAULT);
+//	}
 	
 	/**
 	 * <!-- begin-user-doc -->

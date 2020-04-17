@@ -12,7 +12,6 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -52,12 +51,19 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				getConnectorEnd().size() > 2? 
-					ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT);
+	protected String getDefaultSupertype() {
+		return getConnectorEnd().size() > 2? 
+				ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
+					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT;
 	}
+	
+//	@Override
+//	public EList<Subsetting> getOwnedSubsetting() {
+//		return getOwnedSubsettingWithDefault(
+//				getConnectorEnd().size() > 2? 
+//					ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
+//					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT);
+//	}
 	
 	/**
 	 * <!-- begin-user-doc -->

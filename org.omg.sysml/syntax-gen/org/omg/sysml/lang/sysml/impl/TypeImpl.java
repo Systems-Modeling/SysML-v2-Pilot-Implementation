@@ -698,7 +698,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			}
 		}
 		Collection<Feature> redefinedFeatures = getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinitionsWithoutDefault().stream()).
+				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
 				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
 		inheritedMemberships.removeIf(membership->redefinedFeatures.contains(membership.getMemberElement()));
 		return inheritedMemberships;

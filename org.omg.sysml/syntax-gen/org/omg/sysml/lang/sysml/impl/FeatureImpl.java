@@ -392,12 +392,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
-//	public EList<Subsetting> getOwnedSubsettingWithComputedRedefinitions(String... subsettingDefault) {
-//		clearCaches();
-//		getComputedRedefinitions();
-//		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
-//	}
-	
 	protected void addSubsetting(String name) {
 		Type type = getDefaultType(name);
 		if (type instanceof Feature && type != this &&
@@ -743,7 +737,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void transform() {
 		super.transform();
-		getOwnedSubsetting();
+		clearCaches();
+		getComputedRedefinitions();
 		getValueConnector();
 	}
 	

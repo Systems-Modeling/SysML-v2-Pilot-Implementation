@@ -62,35 +62,21 @@ package '5-State-based Behavior-1' {
 			 */
 			state 'vehicle states': 'Vehicle States' {
 
-				/**
-				 * The state definition for this usage is implict.
-				 */
 				state 'operational states' {
-					/**
-					 * This empty entry action acts like a start pseudo state.
-					 */
-					entry action initial;
+					entry; then off;
 					
-					transition initial then off;
-				    
+					/**
+					 * This is a shorthad for a state servinf as th source for
+					 * one or more immediately following transitions.
+					 */
 					state off;
-					
-					/**
-					 * The transition definition for a transition usage is always implicit.
-					 * "accept" marks the trigger, "if" the guard and "do" the effect.
-					 */
-					transition 'off-starting'
-						first off
-						accept 'Vehicle Start Signal' 
+					accept 'Vehicle Start Signal' 
 						if vehicle1_c1::'brake pedal depressed'
 						do send 'Start Signal'() to vehicle1_c1::vehicleController
 						then starting;
 						
 					state starting;
-					
-					transition 'starting-on'
-						first starting
-						accept 'Vehicle On Signal'
+					accept 'Vehicle On Signal'
 						then on;
 						
 					state on {
@@ -98,66 +84,41 @@ package '5-State-based Behavior-1' {
 						do 'provide power';
 						exit 'apply parking brake';
 					}
-					
-					transition 'on-off'
-						first on
-						accept 'Vehicle Off Signal'
+					accept 'Vehicle Off Signal'
 						then off;
 				}
 				
 				state 'health states' {
-					entry action initial;
+					entry; then normal;
 					do 'sense temperature' (out temp);
 					
-					transition initial then normal;
-					
 					state normal;
-					
-					transition 'normal-maintenance'
-						first normal
-						accept 'at(vehicle::maintenanceTime)'
+					accept 'at(vehicle::maintenanceTime)'
 						then maintenance;
-					
-					transition 'normal-degraded'
-						first normal
-						accept 'when(temp>vehicle::Tmax)' 
+					accept 'when(temp>vehicle::Tmax)' 
 						do send 'Over Temp'() to vehicle1_c1::vehicleController 
 						then degraded;
 					
 					state maintenance;
-					
-					transition 'maintenance-normal'
-						first maintenance
-						accept 'Return to Normal'
+					accept 'Return to Normal'
 						then normal;
 					
 					state degraded;
-					
-					transition 'degraded-normal'
-						first degraded
-						accept 'Return to Normal'
+					accept 'Return to Normal'
 						then normal;
 				}
 			}
 			
 			state 'controller states': 'Controller States' {
 				state 'operational controller states' {
-					entry action initial; 
-					
-					transition initial then off;
+					entry; then off;
 					
 					state off;
-					
-					transition 'off-on'
-						first off
-						accept 'Start Signal'
+					accept 'Start Signal'
 						then on;
 					
 					state on;
-					
-					transition 'on-off'
-						first on
-						accept 'Off Signal'
+					accept 'Off Signal'
 						then off;
 				}
 			}		

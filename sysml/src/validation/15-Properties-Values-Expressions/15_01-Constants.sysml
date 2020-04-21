@@ -37,14 +37,15 @@ package '15_01-Constants' {
      * TODO: Represent physical constant value error bounds.
      *
      * The reference source is:
-     * CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2010 Recommended Values
-     * See http://www.codata.org/committees-and-groups/fundamental-physical-constants/tgfc-previous-values-and-publications
+     * CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2018 CODATA recommended values
+     * See https://codata.org/initiatives/strategic-programme/fundamental-physical-constants/
+     * For the actual values see https://pml.nist.gov/cuu/Constants/ 
      */
     package 'Fundamental Physical Constants' {
-        value 'fine structure constant': DimensionOneValue = 7.297352569824E-3;
-        value 'electron to proton mass ratio': DimensionOneValue = 5.446170217822E-4;
-        value 'speed of light in vacuum': SpeedValue = 299792458@[m/s];
-    }
+        value 'fine structure constant'      : DimensionOneValue = 7.2973525693E-3;  // 2018 CODATA value 7.2973525693E-3;  uncertainty = 0.0000000011E-3
+        value 'electron to proton mass ratio': DimensionOneValue = 5.44617021487E-4; // 2018 CODATA value 5.44617021487E-4; uncertainty = 0.00000000033E-4 
+        value 'speed of light in vacuum'     : SpeedValue = 299792458@[m/s];         // 2018 CODATA value 299792458 m s^-1; (exact)
+     }
 
     package 'Global Context' {
         value 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@['m/s²'];

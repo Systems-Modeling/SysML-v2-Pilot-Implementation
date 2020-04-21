@@ -11,7 +11,7 @@ package '15_19a-Materials with Properties' {
     
     part Da: AtomicMassUnit = AtomicMassUnit(
     	name => "dalton", 
-    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.6605390666050e-27)
+    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.66053906660e-27)
     );
 
 	// TODO: Move definition of tensile strength and N/mm² to SI

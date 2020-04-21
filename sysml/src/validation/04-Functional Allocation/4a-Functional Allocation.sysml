@@ -23,12 +23,12 @@ package '4a-Functional Allocation' {
 		// The above is semantically equivalent to:
 		
 		ref action 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
-		   subsets '3a-Function-based Behavior'::'provide power', enactedPerformances;		
+		   :> '3a-Function-based Behavior'::'provide power', enactedPerformances;		
 			
 		// For a composite enacted performance within the vehicle, replace the above with:
 		
 		action 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd) 
-		   redefines '3a-Function-based Behavior'::'provide power';
+		   :>> '3a-Function-based Behavior'::'provide power';
 		*/
 		
 		part engine :>> vehicle1_c1::engine {

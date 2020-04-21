@@ -1,145 +1,129 @@
-package '5-State-based Behavior-1' {
+package '5-State-based Behavior-2' {
 	import ScalarValues::*;
+	import ISQ::*;
+	import '3a-Function-based Behavior-1'::*;
 	
 	package Definitions {
-		import ActionDefinitions::*;
-		import StateDefinitions::*;
-		import SignalDefinitions::*;
-		import PartDefinitions::*;
-		
-		package ActionDefinitions {	
-			activity 'Perform Self Test';
-			activity 'Provide Power';
-			activity 'Apply Parking Brake';
-			activity 'Sense Temperature'(out temp: ISQ::TemperatureValue);
+		block VehicleA {
+			perform action 'provide power': 'Provide Power';
+			exhibit state 'vehicle states': 'Vehicle States';
 		}
 		
-		package StateDefinitions {
-			state def 'Vehicle States';
-			state def 'Controller States';			
+		block VehicleController {
+			exhibit state 'controller states': 'Controller States';
 		}
+
+		state def 'Vehicle States';
+		state def 'Controller States';	
+
+		activity 'Perform Self Test';
+		activity 'Apply Parking Brake';
+		activity 'Sense Temperature'(out temp: TemperatureValue);
 		
-		package SignalDefinitions {
-			value type 'Vehicle Start Signal';
-			value type 'Vehicle On Signal';
-			value type 'Vehicle Off Signal';
-			
-			value type 'Start Signal';
-			value type 'Off Signal';
-			value type 'Over Temp';
-			value type 'Return to Normal';
-			
-			value type 'at(vehicle::maintenanceTime)';
-			value type 'when(temp>vehicle::Tmax)';
-		}
+		value type 'Vehicle Start Signal';
+		value type 'Vehicle On Signal';
+		value type 'Vehicle Off Signal';
 		
-		package PartDefinitions {
-			block VehicleA {
-				perform action 'provide power': 'Provide Power';
-				exhibit state 'vehicle states': 'Vehicle States';
-			}
-			
-			block VehicleController;
-		}		
+		value type 'Start Signal';
+		value type 'Off Signal';
+		value type 'Over Temp';
+		value type 'Return to Normal';
+		
+		value type 'at(vehicle::maintenanceTime)';
+		value type 'when(temp>vehicle::Tmax)';
 	}
 	
 	package Usages {
 		import Definitions::*;
+		 
+		action 'perform self test': 'Perform Self Test';
+		action 'apply parking brake': 'Apply Parking Brake';
+		action 'sense temperature': 'Sense Temperature';
 		
-		package Actions {
-			action 'perform self test': 'Perform Self Test';
-			action 'provide power': 'Provide Power';
-			action 'apply parking brake': 'Apply Parking Brake';
-			action 'sense temperature': 'Sense Temperature';
-		}
-		
-		package States {
-			import Actions::*;
-			import Parts::*;
-			
-			/**
-			 * This is a usage of the state definition 'Vehicle States'.
-			 */
-			state 'vehicle states': 'Vehicle States' {
+		state 'vehicle states': 'Vehicle States' {
 
-				state 'operational states' {
-					entry; then off;
-					
-					/**
-					 * This is a shorthad for a state servinf as th source for
-					 * one or more immediately following transitions.
-					 */
-					state off;
-					accept 'Vehicle Start Signal' 
-						if vehicle1_c1::'brake pedal depressed'
-						do send 'Start Signal'() to vehicle1_c1::vehicleController
-						then starting;
-						
-					state starting;
-					accept 'Vehicle On Signal'
-						then on;
-						
-					state on {
-						entry 'perform self test';
-						do 'provide power';
-						exit 'apply parking brake';
-					}
-					accept 'Vehicle Off Signal'
-						then off;
-				}
+			state 'operational states' {
+				entry; then off;
 				
-				state 'health states' {
-					entry; then normal;
-					do 'sense temperature' (out temp);
+				/*
+				 * The following uses a shorthand for a transition whose source 
+				 * is the immediately preceding state.
+				 */
+				state off;
+				accept 'Vehicle Start Signal' 
+					if vehicle1_c1::'brake pedal depressed'
+					do send 'Start Signal'() to vehicle1_c1::vehicleController
+					then starting;
 					
-					state normal;
-					accept 'at(vehicle::maintenanceTime)'
-						then maintenance;
-					accept 'when(temp>vehicle::Tmax)' 
-						do send 'Over Temp'() to vehicle1_c1::vehicleController 
-						then degraded;
+				state starting;
+				accept 'Vehicle On Signal'
+					then on;
 					
-					state maintenance;
-					accept 'Return to Normal'
-						then normal;
-					
-					state degraded;
-					accept 'Return to Normal'
-						then normal;
+				state on {
+					entry 'perform self test';
+					do 'provide power';
+					exit 'apply parking brake';
 				}
+				accept 'Vehicle Off Signal'
+					then off;
 			}
 			
-			state 'controller states': 'Controller States' {
-				state 'operational controller states' {
-					entry; then off;
-					
-					state off;
-					accept 'Start Signal'
-						then on;
-					
-					state on;
-					accept 'Off Signal'
-						then off;
-				}
-			}		
+			state 'health states' {
+				entry; then normal;
+				do 'sense temperature' (out temp);
+				
+				/*
+				 * The shorthand can be used for multiple transitions after
+				 * a single state.
+				 */
+				state normal;
+				accept 'at(vehicle::maintenanceTime)'
+					then maintenance;
+				accept 'when(temp>vehicle::Tmax)' 
+					do send 'Over Temp'() to vehicle1_c1::vehicleController 
+					then degraded;
+				
+				state maintenance;
+				accept 'Return to Normal'
+					then normal;
+				
+				state degraded;
+				accept 'Return to Normal'
+					then normal;
+			}
 		}
 		
-		package Parts {
-			import States::*;
-			
-			part vehicle1_c1: VehicleA {
-				value 'brake pedal depressed': Boolean;
+		state 'controller states': 'Controller States' {
+			state 'operational controller states' {
+				entry; then off;
 				
-				value maintenanceTime: Time::DateTime;
-				value Tmax: ISQ::TemperatureValue;
+				state off;
+				accept 'Start Signal'
+					then on;
 				
-				perform 'provide power' :>> VehicleA::'provide power';
-				exhibit 'vehicle states' :>> VehicleA::'vehicle states';
-					
-				part vehicleController: VehicleController {
-					exhibit 'controller states';
-				}			
+				state on;
+				accept 'Off Signal'
+					then off;
 			}
+		}		
+
+		part vehicle1_c1: VehicleA {
+			port fuelCmdPort {
+				in fuelCmd: FuelCmd;
+			}
+			
+			value 'brake pedal depressed': Boolean;		
+			value maintenanceTime: Time::DateTime;
+			value Tmax: TemperatureValue;
+			
+			perform 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd)
+				:>> VehicleA::'provide power';
+				
+			exhibit 'vehicle states' :>> VehicleA::'vehicle states';
+				
+			part vehicleController: VehicleController {
+				exhibit 'controller states' :>> VehicleController::'controller states';
+			}			
 		}
 	}
 	

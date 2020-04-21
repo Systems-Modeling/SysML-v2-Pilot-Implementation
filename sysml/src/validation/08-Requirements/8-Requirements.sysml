@@ -45,7 +45,7 @@ package '8-Requirements' {
 				
 			part engine_v1: Engine {
 				port :>> drivePwrPort;
-				perform 'provide power'::'generate torque' :>> 'generate torque';
+				perform 'provide power'::'generate torque' :>> Engine::'generate torque';
 			}
 			
 			part transmission: Transmission {
@@ -74,6 +74,10 @@ package '8-Requirements' {
 			
 			value massActual: MassValue;
 			value massReqd: MassValue;
+			
+			/**
+			 * A constraint can be used to formalize a requirement.
+			 */
 			require constraint { massActual <= massReqd }
 		}
 		
@@ -86,7 +90,7 @@ package '8-Requirements' {
 			/* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
 			
 			/**
-			 * This redefinitions binds the vehicle mass to the actual mass.
+			 * This redefinition binds the vehicle mass to the actual mass.
 			 */
 			value :>> massActual: MassValue = vehicle::mass;
 			
@@ -95,6 +99,9 @@ package '8-Requirements' {
 			 */
 			value :>> massReqd = 2000@[kg];
 			
+			/**
+			 * A constraint can also be used to specify an assumption.
+			 */
 			assume constraint fuelConstraint {
 				/* full fuel tank */
 				vehicle::fuelLevel >= vehicle::fuelTankCapacity
@@ -113,7 +120,7 @@ package '8-Requirements' {
 			}
 		}
 		
-		requirement id '2.2' vehicleReliability2: ReliabilityRequirement(vehicle: Vehicle);
+		requirement id '2.2' vehicleReliability2: ReliabilityRequirement (vehicle: Vehicle);
 			
 		requirement id '3.1' drivePowerInterface (drivePwrPort: DrivePwrPort) {
 			/* The engine shall transfer its generated torque to the transmission via the clutch interface. */
@@ -142,7 +149,7 @@ package '8-Requirements' {
 		}
 		
 		requirement 'engine-v1 Specification'(engine: Engine) {
-			/* 
+			/** 
 			 * Here the subjects of the referenced requirements are defined to be specific properties of the
 			 * subject of the group.
 			 */

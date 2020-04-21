@@ -3,6 +3,12 @@ package '1a-Parts Tree' {
 	
 	package Definitions {	
 		block Vehicle {
+			/**
+			 * The 'mass' value property is declared here to be a 
+			 * specialization (subset) of the general 'mass' quantity 
+			 * from the 'ISQ' (International System of Quantities) 
+			 * library model.
+			 */
 			value mass :> ISQ::mass;
 		}		
 		block AxleAssembly;		
@@ -30,7 +36,7 @@ package '1a-Parts Tree' {
 			 * This redefines the 'mass' value property from 'Vehicle' to 
 			 * give it a fixed value.
 			 */		
-			value mass redefines Vehicle::mass = 1000@[kg];
+			value mass redefines Vehicle::mass = 1750@[kg];
 			
 			/**
 			 * 'frontAxleAssembly' is a nested part of part 'vehicle1'.

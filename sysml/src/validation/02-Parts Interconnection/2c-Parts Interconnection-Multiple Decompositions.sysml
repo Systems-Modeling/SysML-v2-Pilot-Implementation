@@ -46,7 +46,8 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			/**
 			 * This combines the definition of a port with a binding
 			 * connector. (It is the same notation used to bind a
-			 * value on a value property.)
+			 * value to a value property or a reference to a reference
+			 * property.)
 			 */
 			port pe = c1::pb;
 		}

@@ -41,7 +41,7 @@ package '3a-Function-based Behavior-2' {
 			);
 			
 			/**
-			 * There is also a shorthand for streaming into a input parameter.
+			 * There is also a shorthand for streaming into an input parameter.
 			 */
 			action 'amplify torque': 'Amplify Torque'(
 				in engineTorque stream from 'generate torque'::engineTorque, 

@@ -19,7 +19,7 @@ package '1c-Parts Tree Redefinition' {
 		private import Definitions::*;
 		
 		part vehicle1: Vehicle {
-			value mass redefines Vehicle::mass = 1000@[kg];
+			value mass redefines Vehicle::mass = 1750@[kg];
 					
 			part frontAxleAssembly: AxleAssembly {
 				part frontAxle: Axle;			

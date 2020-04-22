@@ -14,14 +14,17 @@ package '15_03-Value Expression' {
     	value hubDiameter: LengthValue = 18@['in'];
         value width: LengthValue = 245@[mm];
         value placement: AxisPlacement3DCartesian[0..1];
+        /**
+         * This binds 'outDiameter' to the result of a computed value.
+         * There is no need to mark it as "derived".
+         */
         value outerDiameter = (hubDiameter + 2 * tire::height)@[mm];
         part tire: Tire[1];
     }
     
-
     block Tire {
-    	profileDepth: LengthValue = 6.0@[mm];
+    	value profileDepth: LengthValue = 6.0@[mm];
     	/* TODO: Change profileDepth by adding tolerance: profileDepth: LengthValue = @i{6.0 ± 0.5}@[mm]; */
-    	height: LengthValue = 45@[mm];
+    	value height: LengthValue = 45@[mm];
     }
 }

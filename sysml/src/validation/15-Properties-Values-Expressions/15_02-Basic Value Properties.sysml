@@ -1,11 +1,11 @@
 package '15_02-Basic Value Properties' {
 	import ScalarValues::*;
 	
-	/*
-	 * Real world user models would use quantity types
-	 * from library models.
+	/**
+	 * Real world user models would use a quantity type
+	 * from the library model. A value type is defined
+	 * here to show that it is possible.
 	 */
-
     value type LengthValue :> Real;
 
     block Tire {

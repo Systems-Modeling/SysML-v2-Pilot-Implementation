@@ -1,18 +1,16 @@
 package '15_05-Unification of Expression and Constraint Definition' {
 	import '15_03-Value Expression'::*;
 	
-	constraint def DiscBrakeConstraint {
-		part wheelAssy : WheelAssy[4];
-		
+	constraint def DiscBrakeConstraint(wheelAssy : WheelAssy[4]) {
 		wheelAssy->forAll w: WheelAssy ( 
-			w::discBrakeAssy::radius < w::wheel::outerDiameter
+			2 * w::discBrakeAssy::radius < w::wheel::outerDiameter
 		)
 	}
 	
-	constraint def DiscBrakeFitConstraint_Alt {
-		part discBrakeAssy : DiscBrakeAssy[1];
-		part wheel : Wheel[1];
-		
+	constraint def DiscBrakeFitConstraint_Alt(
+		discBrakeAssy : DiscBrakeAssy[1],
+		wheel : Wheel[1]		
+	) {		
 		2 * discBrakeAssy::radius < wheel::outerDiameter
 	}
 	
@@ -26,9 +24,7 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		 * This constraint is computed, but not asserted. This means a tool can identify 
 		 * when it is violated without the model being inconsistent.
 		 */
-		constraint discBrakeConstraint : DiscBrakeConstraint {
-			part :>> wheelAssy = Vehicle_2::wheelAssy;
-		}
+		constraint discBrakeConstraint : DiscBrakeConstraint(wheelAssy = Vehicle_2::wheelAssy);
 	}
 	
 	block WheelAssy {
@@ -39,10 +35,10 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		 * This constraint is asserted to be true, which means that the model
 		 * is inconsistent if it the constraint is violated.
 		 */
-		assert constraint discBrakeFitConstraint_Alt: DiscBrakeFitConstraint_Alt {
-			part :>> discBrakeAssy = WheelAssy::discBrakeAssy;
-			part :>> wheel = WheelAssy::wheel;
-		}
+		assert constraint discBrakeFitConstraint_Alt: DiscBrakeFitConstraint_Alt(
+			discBrakeAssy = WheelAssy::discBrakeAssy,
+			wheel = WheelAssy::wheel
+		);
 	}
 	
 	block DiscBrakeAssy {

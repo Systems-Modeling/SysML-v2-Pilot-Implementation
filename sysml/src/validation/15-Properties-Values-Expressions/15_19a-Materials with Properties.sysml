@@ -13,7 +13,7 @@ package '15_19a-Materials with Properties' {
     	name => "dalton", 
     	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.66053906660e-27)
     );
-
+    
 	// TODO: Move definition of tensile strength and N/mm² to SI
     block TensileStrengthUnit :> SIDerivedUnit {
 		value lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -50,7 +50,16 @@ package '15_19a-Materials with Properties' {
         value atomicMass: AtomicMassValue[1];
     }
 
-    value type MassFractionValue :> Real;
+    value type Alloy :> Material {
+        value fractions: MaterialFraction[2..*];
+    }
+
+    value type MaterialFraction {
+        ref material: Material[1]; 
+        value massFraction: MassFractionValue[1];
+    }
+
+    value type MassFractionValue :> DimensionOneValue;    
 
 	/*
 	 * Value properties bound to specifically constructed compound values.
@@ -59,15 +68,6 @@ package '15_19a-Materials with Properties' {
     value Carbon = Metal(atomicMass => 12.011@[Da]);
     value Manganese = Metal(atomicMass => 54.938@[Da]);
     
-    value type MaterialFraction {
-        ref material: Material[1]; 
-        value massFraction: MassFractionValue[1];
-    }
-
-    value type Alloy :> Material {
-        value fractions: MaterialFraction[2..*];
-    }
-
 	/**
 	 * Value property with redefined/added sub-properties.
 	 * (Particular example of high tensile strength steel.)

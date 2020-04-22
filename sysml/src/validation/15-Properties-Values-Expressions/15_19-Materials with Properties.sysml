@@ -11,7 +11,7 @@ package '15_19-Materials with Properties' {
     
     part Da: AtomicMassUnit = AtomicMassUnit(
     	name => "dalton", 
-    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.6605390666050e-27)
+    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.66053906660e-27)
     );
 
 	// TODO: Move definition of tensile strength and N/mm² to SI
@@ -50,6 +50,17 @@ package '15_19-Materials with Properties' {
         value atomicMass: AtomicMassValue[1];
     }
 
+    value type MaterialFraction {
+        ref material: Material[1]; 
+        value massFraction: MassFractionValue[1];
+    }
+
+    value type MassFractionValue :> DimensionOneValue;    
+
+    block Alloy :> Material {
+        value fractions: MaterialFraction[2..*];
+    }
+
     individual def Iron :> Metal {
         value :>> atomicMass = 55.845@[Da];
     }
@@ -60,17 +71,6 @@ package '15_19-Materials with Properties' {
 
     individual def Manganese :> Metal {
         value atomicMass :>> Metal::atomicMass = 54.938@[Da];
-    }
-
-    value type MassFractionValue :> Real;
-
-    value type MaterialFraction {
-        ref material: Material[1]; 
-        value massFraction: MassFractionValue[1];
-    }
-
-    block Alloy :> Material {
-        value fractions: MaterialFraction[2..*];
     }
 
  	/**

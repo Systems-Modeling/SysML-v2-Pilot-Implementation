@@ -32,7 +32,7 @@ package '15_07-System of Units and Scales' {
 	 */
 	 
 	 /*
-	  * TODO: Allow to annotate a System Of Units and Scales package with additional information that records its provenance.
+	  * TODO: Allow annotation of a System Of Units and Scales package with additional information that records its provenance.
 	  * TODO: Support explicit identification of the base units.
 	  */
 }

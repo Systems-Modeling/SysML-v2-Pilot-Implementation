@@ -1,6 +1,12 @@
 package '13a-Model Containment' {
-	import '2-Parts Interconnection'::*;
-	// import '8-Requirements';
+	import '2a-Parts Interconnection'::*;
+	import '8-Requirements'::*;
+	
+	requirement BodyAndInteriorRequirements {
+		import MassLimitationRequirement; 
+	}
+	
+	requirement PowerTrainRequirements;
 	
 	/**
 	 * This package is used to represent a top-level "model".
@@ -10,14 +16,13 @@ package '13a-Model Containment' {
 	package 'Vehicle Model' {
 		
 		package 'Vehicle1-Configuration' {			
-			import 'Sports Sedan' as vehicle1_c1;
 			import vehicle1_c1 as 'Sports Sedan';
 			
-			// import 'vehicle-c1 Specification';		
+			import 'vehicle1_c1 Specification Context'::'vehicle1-c1 Specification';		
 		}
 		
 		/**
-		 * This package is used to represent a "model library.
+		 * This package is used to represent a "model library".
 		 * There is no specific syntax for identifying a package
 		 * used in this way.
 		 */
@@ -25,10 +30,13 @@ package '13a-Model Containment' {
 			import VehicleA;			
 			import VehicleSubsystems;
 			
+			//*
 			// The following would transitively import all the
 			// members of the VehicleSubsystems package, rather
 			// then importing the package itself.
-			// import VehicleSubsystems::*;
+			 
+			   import VehicleSubsystems::*;
+			*/
 		}
 		
 		package VehicleSubsystems {
@@ -37,13 +45,13 @@ package '13a-Model Containment' {
 		}
 		
 		package 'Body&Interior' {
-			// import 'Body&Interior Requirements';			
+			import BodyAndInteriorRequirements;			
 		}
 		
 		package PowerTrain {
 			import Engine;
 			import Transmission;
-			// import PowerTrainRequirments;			
+			import PowerTrainRequirements;			
 		}
 	}
 	

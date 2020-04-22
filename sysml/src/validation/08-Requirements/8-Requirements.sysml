@@ -45,7 +45,7 @@ package '8-Requirements' {
 				
 			part engine_v1: Engine {
 				port :>> drivePwrPort;
-				perform 'provide power'::'generate torque' :>> 'generate torque';
+				perform 'provide power'::'generate torque' :>> Engine::'generate torque';
 			}
 			
 			part transmission: Transmission {
@@ -64,30 +64,44 @@ package '8-Requirements' {
 	package 'Vehicle Requirements' {	
 		import 'Vehicle Definitions'::*;
 	
-		// The optional requirement ID  of this requirement ('1') is given after the keyword "id" (using name syntax).
-		// (Note: Full aliasing for the ID has not been implemented yet.)
-		// Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
+		/**
+		 * The optional requirement ID  of this requirement ('1') is given after the keyword "id" (using name syntax).
+		 * Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
+		 */
 		requirement def id '1' MassLimitationRequirement {
 			// The requirement text is given by the first comment in the requirement def body (this note doesn't count).
 			/* The actual mass shall be less than or equal to the required mass. */
 			
 			value massActual: MassValue;
 			value massReqd: MassValue;
+			
+			/**
+			 * A constraint can be used to formalize a requirement.
+			 */
 			require constraint { massActual <= massReqd }
 		}
 		
 		requirement def id '2' ReliabilityRequirement;
 		
-		// The subject of this requirement is redefined to be a "Vehicle".
+		/**
+		 * The subject of this requirement is redefined to be a "Vehicle".
+		 */
 		requirement id '1.1' vehicleMass1: MassLimitationRequirement (vehicle: Vehicle) {
 			/* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
 			
-			// This redefinitions binds the vehicle mass to the actual mass.
+			/**
+			 * This redefinition binds the vehicle mass to the actual mass.
+			 */
 			value :>> massActual: MassValue = vehicle::mass;
 			
-			// This redefinition sets the required mass to 2000 kg.
+			/**
+			 * This redefinition sets the required mass to 2000 kg.
+			 */
 			value :>> massReqd = 2000@[kg];
 			
+			/**
+			 * A constraint can also be used to specify an assumption.
+			 */
 			assume constraint fuelConstraint {
 				/* full fuel tank */
 				vehicle::fuelLevel >= vehicle::fuelTankCapacity
@@ -106,7 +120,7 @@ package '8-Requirements' {
 			}
 		}
 		
-		requirement id '2.2' vehicleReliability2: ReliabilityRequirement(vehicle: Vehicle);
+		requirement id '2.2' vehicleReliability2: ReliabilityRequirement (vehicle: Vehicle);
 			
 		requirement id '3.1' drivePowerInterface (drivePwrPort: DrivePwrPort) {
 			/* The engine shall transfer its generated torque to the transmission via the clutch interface. */
@@ -122,21 +136,31 @@ package '8-Requirements' {
 		import 'vehicle1-c1 Specification'::*;
 		import 'engine-v1 Specification'::*;
 		
-		// This models a "requirement group".
+		/**
+		 * This models a "requirement group" as a requirement that references other requirements.
+		 */
 		requirement 'vehicle1-c1 Specification'(vehicle: Vehicle) {
-			// This is a reference to a requirement defined outside the group.
-			// By default, the subject of the requirement is bound to that of the group.
+			/** 
+			 * This is a reference to a requirement defined outside the group.
+			 * By default, the subject of the requirement is bound to that of the group.
+			 */
 			require vehicleMass1;
 			// ...
 		}
 		
 		requirement 'engine-v1 Specification'(engine: Engine) {
-			// Here the subjects of the referenced requirements are defined to be specific properties of the
-			// subject of the group.
+			/** 
+			 * Here the subjects of the referenced requirements are defined to be specific properties of the
+			 * subject of the group.
+			 */
 			require torqueGeneration(generateTorque = engine::'generate torque');
 			require drivePowerInterface(drivePwrPort = engine::drivePwrPort);
 		}
 		
+		/**
+		 * This asserts that if the assumptions of 'vehicle1-c1 Specification' are true with 'vehicle_c1' as
+		 * the subject, then the required constraints are also true.
+		 */
 		satisfy 'vehicle1-c1 Specification' by vehicle1_c1;
 		satisfy 'engine-v1 Specification' by vehicle1_c1::engine_v1;
 	}

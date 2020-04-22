@@ -1,150 +1,230 @@
 package '5-State-based Behavior-1' {
 	import ScalarValues::*;
+	import ISQ::*;
+	import '3a-Function-based Behavior-1'::*;
 	
 	package Definitions {
-		import ActionDefinitions::*;
-		import StateDefinitions::*;
-		import SignalDefinitions::*;
-		import PartDefinitions::*;
-		
-		package ActionDefinitions {	
-			activity 'Perform Self Test';
-			activity 'Provide Power';
-			activity 'Apply Parking Brake';
-			activity 'Sense Temperature'(out temp: ISQ::TemperatureValue);
+		block VehicleA {
+			/*
+			 * The following declare that 'VehicleA' performs a
+			 * 'provide power' action and exhibits some 'vehicle states',
+			 * without giving details about these behaviors.
+			 */
+			perform action 'provide power': 'Provide Power';
+			exhibit state 'vehicle states': 'Vehicle States';
 		}
 		
-		package StateDefinitions {
-			state def 'Vehicle States';
-			state def 'Controller States';			
+		block VehicleController {
+			exhibit state 'controller states': 'Controller States';
 		}
+
+		/*
+		 * Black box specifications for state definitions may also have
+		 * input and output parameters, like activities, though none
+		 * are used here.
+		 */
+
+		state def 'Vehicle States';
+		state def 'Controller States';	
+
+		activity 'Perform Self Test';
+		activity 'Apply Parking Brake';
+		activity 'Sense Temperature'(out temp: TemperatureValue);
 		
-		package SignalDefinitions {
-			value type 'Vehicle Start Signal';
-			value type 'Vehicle On Signal';
-			value type 'Vehicle Off Signal';
-			
-			value type 'Start Signal';
-			value type 'Off Signal';
-			value type 'Over Temp';
-			value type 'Return to Normal';
-			
-			value type 'at(vehicle::maintenanceTime)';
-			value type 'when(temp>vehicle::Tmax)';
-		}
+		value type 'Vehicle Start Signal';
+		value type 'Vehicle On Signal';
+		value type 'Vehicle Off Signal';
 		
-		package PartDefinitions {
-			block VehicleA {
-				value 'brake pedal depressed': Boolean;
-				
-				value maintenanceTime: Time::DateTime;
-				value Tmax: ISQ::TemperatureValue;
-				
-				ref action 'perform self test': 'Perform Self Test';
-				ref action 'provide power': 'Provide Power';
-				ref action 'apply parking brake': 'Apply Parking Brake';
-				
-				ref action 'sense temperature': 'Sense Temperature'(out temp);
-				
-				ref state 'vehicle states': 'Vehicle States';
-			}
-			
-			block VehicleController {
-				ref state 'controller states': 'Controller States';
-			}
-		}		
+		value type 'Start Signal';
+		value type 'Off Signal';
+		value type 'Over Temp';
+		value type 'Return to Normal';
+		
+		/*
+		 * The following value types are used to fill in for the
+		 * current lack of support for time events and change events,
+		 * respectively.
+		 */
+		 
+		value type 'at(vehicle::maintenanceTime)';
+		value type 'when(temp>vehicle::Tmax)';
 	}
 	
 	package Usages {
 		import Definitions::*;
 		
-		package Actions {
-			action 'perform self test': 'Perform Self Test';
-			action 'provide power': 'Provide Power';
-			action 'apply parking brake': 'Apply Parking Brake';
-			action 'sense temperature': 'Sense Temperature';
-		}
+		/*
+		 * These actions are used enabled in the state usage 
+		 * 'vehicle states', in addition to 'provide power'.
+		 */
+		 
+		action 'perform self test': 'Perform Self Test';
+		action 'apply parking brake': 'Apply Parking Brake';
+		action 'sense temperature': 'Sense Temperature';
 		
-		package States {
-			state 'vehicle states': 'Vehicle States' {
-				ref vehicle : VehicleA;
-				ref control : VehicleController;
+		/**
+		 * This is a usage of the state definition 'Vehicle States'.
+		 * Note that it depends specifically on on the part 'vehicle1_c1'.
+		 */
+		state 'vehicle states': 'Vehicle States' {
 
-				state 'operational states' {
-					entry; then off;
-				    
-					state off;
+			/**
+			 * The state definition for this usage is implicit.
+			 */
+			state 'operational states' {
+				/**
+				 * This empty entry action acts like a start pseudo state.
+				 */
+				entry action initial;
+				
+				transition initial then off;
+			    
+				state off;
+				
+				/**
+				 * The transition definition for a transition usage is always implicit.
+				 * "accept" marks the trigger, "if" the guard and "do" the effect.
+				 * 
+				 * The notation "'Start Signal'()" constructs a specific instance of the
+				 * 'Start Signal' value type to be sent to the 'vehicleController'. If the
+				 * value type had properties, their values would be given as arguments
+				 * inside the parhentheses.
+				 */
+				transition 'off-starting'
+					first off
 					accept 'Vehicle Start Signal' 
-						if vehicle::'brake pedal depressed'
-						do send 'Start Signal'() to control
-						then starting;
-						
-					state starting;
+					if vehicle1_c1::'brake pedal depressed'
+					do send 'Start Signal'() to vehicle1_c1::vehicleController
+					then starting;
+					
+				state starting;
+				
+				transition 'starting-on'
+					first starting
 					accept 'Vehicle On Signal'
-						then on;
-						
-					state on {
-						entry vehicle::'perform self test';
-						do vehicle::'provide power';
-						exit vehicle::'apply parking brake';
-					}
-					accept 'Vehicle Off Signal'
-						then off;
+					then on;
+				
+				/**
+				 * A state may have a "entry" action that is performed on entry into
+				 * the state, a "do" action that is performed while in the state
+				 * and an "exit" action that is performed on exit from the state.
+				 */
+				state on {
+					entry 'perform self test';
+					do 'provide power';
+					exit 'apply parking brake';
 				}
 				
-				state 'health states' {
-					entry; then normal;
-					do vehicle::'sense temperature' (out temp);
-					
-					state normal;
-					accept 'at(vehicle::maintenanceTime)'
-						then maintenance;
-					accept 'when(temp>vehicle::Tmax)' 
-						do send 'Over Temp'() to control 
-						then degraded;
-					
-					state maintenance;
-					accept 'Return to Normal'
-						then normal;
-					
-					state degraded;
-					accept 'Return to Normal'
-						then normal;
-				}
+				transition 'on-off'
+					first on
+					accept 'Vehicle Off Signal'
+					then off;
 			}
 			
-			state 'controller states': 'Controller States' {
-				state 'operational controller states' {
-					entry; then off;
-					
-					state off;
-					accept 'Start Signal'
-						then on;
-					
-					state on;
-					accept 'Off Signal'
-						then off;
-				}
-			}		
+			/**
+			 * 'health states' is by default concurrent with 'operational states'.
+			 */
+			state 'health states' {
+				entry action initial;
+				/**
+				 * State-behavior actions may have input and output parameters.
+				 */
+				do 'sense temperature' (out temp);
+				
+				transition initial then normal;
+				
+				state normal;
+				
+				transition 'normal-maintenance'
+					first normal
+					accept 'at(vehicle::maintenanceTime)' // Should be a time event trigger.
+					then maintenance;
+				
+				transition 'normal-degraded'
+					first normal
+					accept 'when(temp>vehicle::Tmax)' // Should be a change event trigger.
+					do send 'Over Temp'() to vehicle1_c1::vehicleController 
+					then degraded;
+				
+				state maintenance;
+				
+				transition 'maintenance-normal'
+					first maintenance
+					accept 'Return to Normal'
+					then normal;
+				
+				state degraded;
+				
+				transition 'degraded-normal'
+					first degraded
+					accept 'Return to Normal'
+					then normal;
+			}
 		}
 		
-		package Parts {
-			part vehicle1_c1: VehicleA {
-				perform Actions::'perform self test' redefines 'perform self test';
-				perform Actions::'provide power' redefines 'provide power';
-				perform Actions::'apply parking brake' redefines 'apply parking brake';
+		state 'controller states': 'Controller States' {
+			state 'operational controller states' {
+				entry action initial; 
 				
-				perform Actions::'sense temperature' redefines 'sense temperature';
+				transition initial then off;
 				
-				exhibit States::'vehicle states' redefines 'vehicle states' {
-					part redefines vehicle = vehicle1_c1::self;
-					part redefines control = vehicleController;
-				}
-					
-				part vehicleController: VehicleController {
-					exhibit States::'controller states' redefines 'controller states';
-				}			
+				state off;
+				
+				transition 'off-on'
+					first off
+					accept 'Start Signal'
+					then on;
+				
+				state on;
+				
+				transition 'on-off'
+					first on
+					accept 'Off Signal'
+					then off;
 			}
+		}		
+
+		part vehicle1_c1: VehicleA {
+			port fuelCmdPort {
+				in fuelCmd: FuelCmd;
+			}
+			
+			/*
+			 * These value properties are used in the specification for
+			 * 'vehicle states'.
+			 */
+			value 'brake pedal depressed': Boolean;		
+			value maintenanceTime: Time::DateTime;
+			value Tmax: TemperatureValue;
+			
+			/**
+			 * In the context of the 'vehicle1_c1' part, the 'provide power' action
+			 * that is enabled in 'vehicle states' gets its input from the 'fuelCmdPort'.
+			 */
+			perform 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd)
+				:>> VehicleA::'provide power';
+				
+			/**
+			 * This allocates the state usage 'vehicle states' as the detailed
+			 * state-based behavior for 'vehicle1_c1' that fills in the generic
+			 * declaration in 'VehicleA'.
+			 */
+			exhibit 'vehicle states' :>> VehicleA::'vehicle states';
+				
+			//*
+			// The above is semantically equivalent to:
+			
+			ref state 'vehicle states' :> Usages::'vehicle states', enactedPerformances
+				:>> VehicleA::'vehicle states';		
+				
+			// For a composite state performance within the vehicle, replace the above with:
+			
+			action 'vehicle states' :>> Usages::'vehicle states', VehicleA::'vehicle states';
+			*/
+
+			part vehicleController: VehicleController {
+				exhibit 'controller states' :>> VehicleController::'controller states';
+			}			
 		}
 	}
 	

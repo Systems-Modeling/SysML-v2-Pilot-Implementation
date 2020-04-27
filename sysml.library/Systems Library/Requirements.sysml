@@ -26,7 +26,7 @@ package Requirements {
 		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
 		 */
-		!allTrue(assumptions) | allTrue(constraints)	
+		!allTrue(assumptions) | allTrue(constraints)
 	}
 	
 	/**
@@ -36,6 +36,12 @@ package Requirements {
 	 * The subject is the entity that is being check for satisfaction of the required constraints.
 	 */
 	requirement def RequirementCheck(subject: Anything) :> RequirementConstraintCheck {
+		
+		/* Note: assumptions and constraints are redefined here solely to simplify the
+		 * resolution of their qualified names as library elements.
+		 */
+		ref constraint assumptions :>> RequirementConstraintCheck::assumptions;
+		ref constraint constraints :>> RequirementConstraintCheck::constraints;
 		
 		/**
 		 * Nested requirements, which are also required constraints.

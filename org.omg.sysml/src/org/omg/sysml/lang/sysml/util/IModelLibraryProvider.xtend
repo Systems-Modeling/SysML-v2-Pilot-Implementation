@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
   *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,10 +25,9 @@
 package org.omg.sysml.lang.sysml.util
 
 import org.omg.sysml.lang.sysml.Element
-import org.eclipse.emf.ecore.EReference
 
 interface IModelLibraryProvider {
 	
-	def Element getElement(Element context, EReference reference, String name)
+	def Element getElement(Element context, String name)
 	
 }

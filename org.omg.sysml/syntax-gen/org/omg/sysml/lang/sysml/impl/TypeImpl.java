@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.eclipse.xtext.util.Arrays;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Type;
@@ -147,8 +146,6 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	protected static final boolean IS_CONJUGATED_EDEFAULT = false;
 	
-	protected Type defaultType = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -381,17 +378,9 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected Type getDefaultType(String... defaultNames) {
-		String cachedDefaultName = getDefaultSupertype();
-		if (defaultType != null && Arrays.contains(defaultNames, cachedDefaultName)) {
-			return defaultType;
-		}
 		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(
-					this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+			EObject element = SysMLLibraryUtil.getLibraryElement(this, defaultName);
 			if (element instanceof Type) {
-				if (cachedDefaultName.equals(defaultName)) {
-					defaultType = (Type)element;
-				}
 				return (Type)element;
 			}
 		}

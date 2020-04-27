@@ -153,6 +153,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+	
 	/**
 	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
 	 */
@@ -193,7 +194,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		computeImplicitGeneralization();
 		return getTypes(true);
 	}
 	
@@ -205,6 +205,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public static void getTypes(Feature feature, List<Type> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
 		visitedFeatures.add(feature);
+//		((FeatureImpl)feature).computeImplicitGeneralization();
 		getFeatureTypes(feature, types);
 		Conjugation conjugator = feature.getConjugator();
 		if (conjugator != null) {
@@ -346,15 +347,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 //	@Override
-//	public EList<Generalization> getOwnedGeneralization() {
-//		getOwnedSubsetting();
-//		return super.getOwnedGeneralization();
+//	public void computeImplicitGeneralization() {
+//		getComputedRedefinitions();
+//		super.computeImplicitGeneralization();
 //	}
-
-	@Override
-	public void computeImplicitGeneralization() {
-		super.computeImplicitGeneralization();
-	}
 	
 	@Override
 	protected EClass getGeneralizationEClass() {
@@ -382,6 +378,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			forEachOrdered(redefinitions::add);
 		return redefinitions;
 	}
+	
+	public EList<Redefinition> getOwnedRedefinitionWithoutDefault() {
+		return basicGetOwnedGeneralization(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -408,7 +408,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected EList<Subsetting> getComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinition();
+		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionWithoutDefault();
 		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
 			addRedefinitions(redefinitions, ownedRedefinitions);
 		}
@@ -470,9 +470,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * otherwise return the relevant features of the type.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return isEnd()? type.getFeature().stream().
-					filter(f->f.getOwningFeatureMembership() instanceof EndFeatureMembership).
-					collect(Collectors.toList()):
+		return isEnd()? type.getEndFeature():
 					   
 			   // NOTE: This is a temporary measure until connecting to inherited features
 			   // is handled generally.
@@ -575,7 +573,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public EList<FeatureTyping> getTyping() {
 		EList<FeatureTyping> typing = getTypingGen();
 		if (typing.isEmpty()) {
-			getOwnedGeneralizationWithoutDefault(FeatureTyping.class, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE).stream().
+			basicGetOwnedGeneralization(FeatureTyping.class, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE).stream().
 				forEachOrdered(f->((InternalEList<FeatureTyping>)typing).basicAdd(f, null));
 		}
 		return typing;

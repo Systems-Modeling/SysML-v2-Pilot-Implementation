@@ -348,13 +348,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//				isRequirementConstraint()? REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
-//				REQUIREMENT_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	@Override
 	public boolean isRequirementConstraint() {
 		Type owningType = getOwningType();

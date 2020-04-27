@@ -57,14 +57,6 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithDefault(
-//				getConnectorEnd().size() > 2? 
-//					ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-//					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT);
-//	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

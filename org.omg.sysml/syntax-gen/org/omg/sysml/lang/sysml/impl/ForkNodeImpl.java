@@ -42,9 +42,4 @@ public class ForkNodeImpl extends ControlNodeImpl implements ForkNode {
 		return FORK_NODE_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(FORK_NODE_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 } //ForkNodeImpl

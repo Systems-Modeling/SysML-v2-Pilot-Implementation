@@ -153,13 +153,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 				super.getDefaultSupertype();
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return isEnactedPerformance()?
-//				getOwnedSubsettingWithComputedRedefinitions(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT):
-//				super.getOwnedSubsetting();
-//	}
-	
 	public boolean isEnactedPerformance() {
 		return StepImpl.isEnactedPerformance(this);
 	}

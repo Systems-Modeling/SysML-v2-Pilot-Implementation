@@ -42,9 +42,4 @@ public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
 		return JOIN_NODE_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(JOIN_NODE_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 } //JoinNodeImpl

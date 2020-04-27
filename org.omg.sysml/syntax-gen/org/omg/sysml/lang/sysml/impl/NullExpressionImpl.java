@@ -39,11 +39,4 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 		return NULL_EXPRESSION_SUBSETTING_DEFAULT;
 	}
 
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		EList<Subsetting> subsettings = getOwnedSubsettingWithDefault(NULL_EXPRESSION_SUBSETTING_DEFAULT);
-//		getComputedRedefinitions();
-//		return subsettings;
-//	}
-
 } // NullExpressionImpl

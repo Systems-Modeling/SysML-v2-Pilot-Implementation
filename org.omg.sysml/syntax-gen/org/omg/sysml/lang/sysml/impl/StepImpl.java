@@ -115,30 +115,6 @@ public class StepImpl extends FeatureImpl implements Step {
 				STEP_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		if (isCheckSubsetting) {
-//			if (isSubperformance()) {
-//				addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
-//			} 
-//			if (isEnactedPerformance()) {
-//				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
-//			}
-//			if (isIncomingTransfer()) {
-//				addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
-//			}
-//			isCheckSubsetting = false;
-//		}
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//				isSubperformance()? 
-//					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-//				isEnactedPerformance()?
-//					STEP_SUBSETTING_OBJECT_DEFAULT:
-//				isIncomingTransfer()?
-//					STEP_SUBSETTING_TRANSFER_DEFAULT:
-//					STEP_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return getRelevantFeaturesOf(this);

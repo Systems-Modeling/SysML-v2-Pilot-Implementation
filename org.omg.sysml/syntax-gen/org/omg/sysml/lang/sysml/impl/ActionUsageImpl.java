@@ -190,21 +190,6 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 					null;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		if (isCheckSubsetting) {
-//			checkSubsetting();
-//			isCheckSubsetting = false;
-//		}
-//		return getOwnedSubsetting();
-//	}
-//	
-//	protected void checkSubsetting() {
-//		if (isSubperformance()) {
-//			addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);
-//		} 
-//	}
-	
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()? 

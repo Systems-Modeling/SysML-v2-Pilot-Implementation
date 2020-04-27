@@ -141,14 +141,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
 
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//				isSubperformance()?
-//					EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-//					EXPRESSION_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();
@@ -202,6 +194,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			membership.setOwnedMemberParameter_comp(parameter);
 			membership.setMemberName("$result");
 			getOwnedFeatureMembership_comp().add(membership);
+			((FeatureImpl)parameter).computeImplicitGeneralization();
 			outputs.add(parameter);
 		}
 		return outputs;

@@ -319,21 +319,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		return StepImpl.getRelevantFeaturesOf(this);
 	}	
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		if (isCheckSubsetting) {
-//			checkSubsetting();
-//			isCheckSubsetting = false;
-//		}
-//		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
-//	}
-//	
-//	protected void checkSubsetting() {
-//		if (isSubperformance()) {
-//			addSubsetting(STATE_SUBSETTING_SUBSTATE_DEFAULT);
-//		} 
-//	}
-	
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()? 
@@ -345,6 +330,44 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 		return StepImpl.isCompositePerformanceFeature(this);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage getActionOwningUsage() {
+		return getStateOwningUsage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage basicGetActionOwningUsage() {
+		return basicGetStateOwningUsage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActionOwningUsage(Usage newActionOwningUsage) {
+		setStateOwningUsage(newActionOwningUsage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetActionOwningUsage() {
+  		return false;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -464,44 +487,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 				return isSetStateOwningDefinition();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getActionOwningUsage() {
-		return getStateOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetActionOwningUsage() {
-		return basicGetStateOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setActionOwningUsage(Usage newActionOwningUsage) {
-		setStateOwningUsage(newActionOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetActionOwningUsage() {
-  		return false;
 	}
 
 } //StateUsageImpl

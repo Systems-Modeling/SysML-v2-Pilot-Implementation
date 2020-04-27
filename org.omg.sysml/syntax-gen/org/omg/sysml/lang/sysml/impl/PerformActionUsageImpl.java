@@ -106,14 +106,6 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 		throw new UnsupportedOperationException();
 	}
 
-//	@Override
-//	protected void checkSubsetting() {
-//		super.checkSubsetting();
-//		if (isEnactedPerformance()) {
-//			addSubsetting(PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
-//		}
-//	}
-	
 	@Override
 	protected String getDefaultSupertype() {
 		return isEnactedPerformance()? 

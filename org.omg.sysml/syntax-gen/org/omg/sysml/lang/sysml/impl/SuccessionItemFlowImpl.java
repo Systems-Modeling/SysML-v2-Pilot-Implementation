@@ -251,10 +251,4 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithDefault(isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
-//				: SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
-//	}
-
 } // SuccessionItemFlowImpl

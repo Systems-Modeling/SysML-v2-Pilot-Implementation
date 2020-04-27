@@ -185,11 +185,6 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 		return PORT_USAGE_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(PORT_USAGE_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

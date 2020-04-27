@@ -145,14 +145,6 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
 
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//				isSubperformance()?
-//					BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-//					BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	@Override
 	public EList<Feature> getFeature() {
 		getResultConnector();

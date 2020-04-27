@@ -76,10 +76,6 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 		return VALUE_PROPERTY_SUBSETTING_DEFAULT;
 	}
 	
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(VALUE_PROPERTY_SUBSETTING_DEFAULT);
-//	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

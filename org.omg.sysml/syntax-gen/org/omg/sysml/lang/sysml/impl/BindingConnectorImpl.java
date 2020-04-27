@@ -31,6 +31,15 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		super();
 	}
 
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.BINDING_CONNECTOR;
+	}
+
 	@Override
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = super.getRelatedFeature();
@@ -61,23 +70,9 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return relatedFeatures;
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.BINDING_CONNECTOR;
-	}
-
 	@Override
 	protected String getDefaultSupertype() {
 		return BINDING_CONNECTOR_SUBSETTING_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithDefault(BINDING_CONNECTOR_SUBSETTING_DEFAULT);
-//	}
-
 } // BindingConnectorImpl

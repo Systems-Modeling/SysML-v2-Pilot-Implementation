@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -125,21 +124,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		return operand_comp;
 	}
 
-	@Override
-	public EList<FeatureTyping> getTyping() {
-		String operator = getOperator();
-		return operator == null ? super.getTyping()
-				: getOwnedGeneralizationWithDefault(FeatureTyping.class, SysMLPackage.FEATURE__TYPING,
-						SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
-	}
-
-	@Override
-	public EList<Type> getType() {
-		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-		getFeatureTypes(this, types);
-		return types;
-	}
-
 	protected String[] getOperatorQualifiedNames(String op) {
 		// NOTE: This is necessary because of how Xtext constructs the qualified name in
 		// the global scope for an element named '.'.
@@ -160,11 +144,14 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 	
 	@Override
-	public void transform() {
-		super.transform();
-		getTyping();
+	public void computeImplicitGeneralization() {
+		String operator = getOperator();
+		if (operator != null) {
+			addImplicitGeneralization(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
+		}
+		super.computeImplicitGeneralization();
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

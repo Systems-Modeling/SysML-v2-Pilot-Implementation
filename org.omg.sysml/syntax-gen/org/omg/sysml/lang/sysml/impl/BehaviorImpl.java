@@ -15,6 +15,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -80,12 +81,13 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
-		return filterRelevantFeatures(getFeature());
+		return getRelevantFeaturesFor(this);
 	}
 	
-	public static List<Feature> filterRelevantFeatures(List<Feature> features) {
-		return features.stream().filter(feature -> !(feature instanceof Parameter) && feature.isAbstract())
-				.collect(Collectors.toList());
+	public static List<Feature> getRelevantFeaturesFor(Type type) {
+		return type.getFeature().stream().
+				filter(feature -> !(feature instanceof Parameter) && feature.isAbstract()).
+				collect(Collectors.toList());
 	}
 
 	/**

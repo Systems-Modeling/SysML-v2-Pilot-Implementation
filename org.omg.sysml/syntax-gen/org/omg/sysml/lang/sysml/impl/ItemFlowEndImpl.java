@@ -42,28 +42,16 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 		return SysMLPackage.Literals.ITEM_FLOW_END;
 	}
 
-//	@Override
-//	public EList<Generalization> getOwnedGeneralization() {
-//		// Note: Do not add flow end subsettings here, to avoid possible cyclic resolution error
-//		// during traversal of the inheritance hierarchy.
-//		super.getOwnedSubsettingWithComputedRedefinitions();
-//		return super.basicGetOwnedGeneralization();
-//	}
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		addItemFlowEndSubsetting();
+		return super.getOwnedSubsetting();
+	}
 	
 	@Override
 	public void computeImplicitGeneralization() {
-		addItemFlowEndSubsetting();
+		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
 	}
-	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		addItemFlowEndSubsetting();
-//		EList<Subsetting> subsettings = super.getOwnedSubsettingWithComputedRedefinitions();
-//		for (Feature feature : getOwnedFeature()) {
-//			feature.getOwnedSubsetting();
-//		}
-//		return subsettings;
-//	}
 
 	protected void addItemFlowEndSubsetting() {
 		EList<Feature> features = getOwnedFeature();
@@ -74,7 +62,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 				if (feature != null) {
 					Type owner = feature.getOwningType();
 					if (owner instanceof Feature) {
-						Subsetting subsetting = getOwnedSubsetting().stream()
+						Subsetting subsetting = super.getOwnedSubsetting().stream()
 								.filter(sub -> !(sub instanceof Redefinition)).findFirst().orElse(null);
 						if (subsetting == null) {
 							subsetting = SysMLFactory.eINSTANCE.createSubsetting();
@@ -97,5 +85,11 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	public List<Feature> getRelevantFeatures() {
 		return getOwnedFeature();
 	}
-
+	
+	@Override
+	public void transform() {
+		addItemFlowEndSubsetting();
+		super.transform();
+	}
+	
 } // ItemFlowEndImpl

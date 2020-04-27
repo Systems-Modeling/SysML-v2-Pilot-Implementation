@@ -118,6 +118,7 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	
 	@Override
 	public EList<Feature> getFeature() {
+		// TODO: Move to transform.
 		getTargetConnector();
 		return super.getFeature();
 	}

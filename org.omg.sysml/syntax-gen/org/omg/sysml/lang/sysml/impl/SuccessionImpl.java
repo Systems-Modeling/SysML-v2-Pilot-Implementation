@@ -143,12 +143,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		return SUCCESSION_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//					SUCCESSION_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();

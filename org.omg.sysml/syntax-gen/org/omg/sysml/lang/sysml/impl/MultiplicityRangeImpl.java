@@ -158,11 +158,6 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 		return MULTIPLICITY_RANGE_SUBSETTING_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(MULTIPLICITY_RANGE_SUBSETTING_DEFAULT);
-//	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

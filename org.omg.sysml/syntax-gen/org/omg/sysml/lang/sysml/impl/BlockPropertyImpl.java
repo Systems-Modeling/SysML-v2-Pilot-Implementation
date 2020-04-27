@@ -76,10 +76,6 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 		return BLOCK_PROPERTY_SUBSETTING_DEFAULT;
 	}
 	
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(BLOCK_PROPERTY_SUBSETTING_DEFAULT);
-//	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -189,7 +189,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		return features.size() <= i? Optional.empty(): Optional.of(features.get(i));
 	}
 	
-	@Override
 	public EList<Feature> getConnectorEnd() {
 		EList<Feature> ends = super.getConnectorEnd();
 		Type owner = getOwningType();
@@ -250,14 +249,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithDefault(
-//				isSubtransfer()? 
-//					ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
-//					ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	public boolean isSubtransfer() {
 		return StepImpl.isPerformanceFeature(this);
 	}
@@ -265,7 +256,13 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return StepImpl.getRelevantFeaturesOf(this);
-	}	
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getConnectorEnd();
+	}
 	
 	/**
 	 * <!-- begin-user-doc -->

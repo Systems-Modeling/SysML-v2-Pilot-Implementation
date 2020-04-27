@@ -21,7 +21,7 @@ class KerMLDerivedStateComputer implements IDerivedStateComputer {
 	}
 
 	protected def dispatch void computeDerivedState(TypeImpl type) {
-		type.computeImplicitGeneralization
+		// type.computeImplicitGeneralization
 	}
 
 	override void discardDerivedState(DerivedStateAwareResource resource) {

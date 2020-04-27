@@ -34,14 +34,6 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 		return SysMLPackage.Literals.TARGET_END;
 	}
 
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		clearCaches();
-//		getOwnedSubsettingWithDefault();
-//		getComputedRedefinitions();
-//		return getOwnedSubsettingWithoutDefault();
-//	}
-
 	@Override
 	public Type getDefaultType(String... defaultNames) {
 		Type type = this.getOwningType();

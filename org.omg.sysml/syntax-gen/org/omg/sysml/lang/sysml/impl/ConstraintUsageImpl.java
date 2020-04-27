@@ -406,14 +406,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			CONSTRAINT_SUBSETTING_BASE_DEFAULT;
 	}
 	
-//	@Override
-//	public EList<Subsetting> getOwnedSubsetting() {
-//		return getOwnedSubsettingWithComputedRedefinitions(
-//				isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
-//				isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
-//				CONSTRAINT_SUBSETTING_BASE_DEFAULT);
-//	}
-	
 	public boolean isAssumptionConstraint() {
 		return getRequirementConstraintKind() == RequirementConstraintKind.ASSUMPTION;
 	}

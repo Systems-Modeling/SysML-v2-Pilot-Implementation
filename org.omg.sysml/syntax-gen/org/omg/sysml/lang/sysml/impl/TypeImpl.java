@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
+import org.eclipse.xtext.util.Arrays;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Type;
@@ -73,7 +74,8 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  * @generated
  */
 public class TypeImpl extends PackageImpl implements Type {
-	public String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
+	
+	public final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
 
 	/**
 	 * The cached value of the '{@link #getConjugator() <em>Conjugator</em>}' reference.
@@ -144,6 +146,8 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @ordered
 	 */
 	protected static final boolean IS_CONJUGATED_EDEFAULT = false;
+	
+	protected Type defaultType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,35 +285,13 @@ public class TypeImpl extends PackageImpl implements Type {
 		return ownedMembership_comp;
 	}
 
-	public void computeImplicitGeneralization() {
-		if (!isConjugated()) {
-			EClass generalizationEClass = getGeneralizationEClass();
- 			@SuppressWarnings("unchecked")
-			Generalization generalization = getDefaultGeneralization(
-					getOwnedGeneralizationWithoutDefault(
-							(Class<? extends Generalization>)generalizationEClass.getInstanceClass(), 
-							SysMLPackage.TYPE__OWNED_GENERALIZATION),
-					generalizationEClass, getDefaultSupertype());
-			if (generalization != null) {
-				getOwnedRelationship_comp().add(generalization);
-			}
- 		}
-	}
-	
-	protected EClass getGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getGeneralization();
-	}
-	
-	protected String getDefaultSupertype() {
-		return TYPE_GENERALIZATION_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
+		computeImplicitGeneralization();
 		return basicGetOwnedGeneralization();
 	}
 
@@ -325,7 +307,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithoutDefault(Class<T> kind, int featureID) {
+	protected <T extends Generalization> EList<T> basicGetOwnedGeneralization(Class<T> kind, int featureID) {
 		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);
 		for (Generalization generalization: basicGetOwnedGeneralization()) {
 			if (kind.isInstance(generalization)) {
@@ -335,20 +317,44 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String... defaultNames) {
-		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
+	public EList<Generalization> basicGetOwnedGeneralizationWithDefault() {
+		EList<Generalization> generalizations = basicGetOwnedGeneralization();
 		
 		// Do not add a default generalization if the type is conjugated.
 		if (!isConjugated()) {
-			Generalization generalization = getDefaultGeneralization(generalizations, eClass, defaultNames);
+			Generalization generalization = getDefaultGeneralization(generalizations, getGeneralizationEClass(), getDefaultSupertype());
 			if (generalization != null) {
-				generalizations.add((T)generalization);
-				getOwnedRelationship_comp().add(generalization);
+				generalizations.add(generalization);
 			}
 		}
 		
 		return generalizations;
+	}
+	
+	public void computeImplicitGeneralization() {
+		if (!isConjugated()) {
+			addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
+ 		}
+	}
+	
+	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
+		@SuppressWarnings("unchecked")
+		Generalization generalization = getDefaultGeneralization(
+				basicGetOwnedGeneralization(
+						(Class<? extends Generalization>)generalizationEClass.getInstanceClass(), 
+						SysMLPackage.TYPE__OWNED_GENERALIZATION),
+				generalizationEClass, superTypeNames);
+		if (generalization != null) {
+			getOwnedRelationship_comp().add(generalization);
+		}		
+	}
+	
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getGeneralization();
+	}
+	
+	protected String getDefaultSupertype() {
+		return TYPE_GENERALIZATION_DEFAULT;
 	}
 	
 	protected <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
@@ -375,10 +381,17 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected Type getDefaultType(String... defaultNames) {
+		String cachedDefaultName = getDefaultSupertype();
+		if (defaultType != null && Arrays.contains(defaultNames, cachedDefaultName)) {
+			return defaultType;
+		}
 		for (String defaultName: defaultNames) {
 			EObject element = SysMLLibraryUtil.getLibraryElement(
 					this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
 			if (element instanceof Type) {
+				if (cachedDefaultName.equals(defaultName)) {
+					defaultType = (Type)element;
+				}
 				return (Type)element;
 			}
 		}
@@ -818,6 +831,16 @@ public class TypeImpl extends PackageImpl implements Type {
 		addOwnedFeature(connector);
 		return connector;
 	}
+	
+	// Other Methods
+	
+	@Override
+	public void transform() {
+		super.transform();
+		computeImplicitGeneralization();
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

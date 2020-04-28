@@ -194,30 +194,29 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		return getTypes(true);
+		return getTypes();
 	}
 	
-	public EList<Type> getTypes(boolean isWithDefaults) {
+	public EList<Type> getTypes() {
 		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-		getTypes(this, types, new HashSet<Feature>(), isWithDefaults);
+		getTypes(this, types, new HashSet<Feature>());
 		return types;
 	}
 	
-	public static void getTypes(Feature feature, List<Type> types, Set<Feature> visitedFeatures, boolean isWithDefaults) {
+	public static void getTypes(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(feature);
-//		((FeatureImpl)feature).computeImplicitGeneralization();
 		getFeatureTypes(feature, types);
 		Conjugation conjugator = feature.getConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
 			if (originalType instanceof Feature) {
-				getTypes((Feature)originalType, types, visitedFeatures, isWithDefaults);
+				getTypes((Feature)originalType, types, visitedFeatures);
 			}
 		}
 		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
-				getTypes(subsettedFeature, types, visitedFeatures, isWithDefaults);
+				getTypes(subsettedFeature, types, visitedFeatures);
 			}
 		}		
 	}
@@ -345,12 +344,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		ownedTypes.removeAll(this.getReferencedType());
 		return ownedTypes;
 	}
-	
-//	@Override
-//	public void computeImplicitGeneralization() {
-//		getComputedRedefinitions();
-//		super.computeImplicitGeneralization();
-//	}
 	
 	@Override
 	protected EClass getGeneralizationEClass() {
@@ -753,11 +746,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public boolean isObjectFeature() {
-		return getTypes(false).stream().anyMatch(type->type instanceof Class);
+		return getTypes().stream().anyMatch(type->type instanceof Class);
 	}
 	
 	public boolean isValueFeature() {
-		return getTypes(false).stream().anyMatch(type->type instanceof DataType);
+		return getTypes().stream().anyMatch(type->type instanceof DataType);
 	}
 	
 	public boolean hasObjectType() {

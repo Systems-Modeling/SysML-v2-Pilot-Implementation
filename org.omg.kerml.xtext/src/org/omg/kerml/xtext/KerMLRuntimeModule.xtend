@@ -26,5 +26,5 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		KerMLGlobalScopeProvider
 	}
-		
+
 }

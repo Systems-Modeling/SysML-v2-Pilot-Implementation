@@ -10,7 +10,6 @@ import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -140,13 +139,12 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	// Additional redefinitions and subsets
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()?
-					BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-					BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return isSubperformance()?
+				BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
+				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
-	
+
 	@Override
 	public EList<Feature> getFeature() {
 		getResultConnector();

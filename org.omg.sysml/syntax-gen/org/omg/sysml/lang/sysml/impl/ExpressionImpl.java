@@ -21,7 +21,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
@@ -136,13 +135,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()?
-					EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-					EXPRESSION_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return isSubperformance()?
+				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
+				EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
-	
+
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();
@@ -196,6 +194,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			membership.setOwnedMemberParameter_comp(parameter);
 			membership.setMemberName("$result");
 			getOwnedFeatureMembership_comp().add(membership);
+			((FeatureImpl)parameter).computeImplicitGeneralization();
 			outputs.add(parameter);
 		}
 		return outputs;

@@ -13,7 +13,6 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
@@ -202,10 +201,10 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	}
 
 	@Override
-	public EList<Subsetting>  getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(TRANSITION_USAGE_SUBSETTING_DEFAULT);
+	protected String getDefaultSupertype() {
+		return TRANSITION_USAGE_SUBSETTING_DEFAULT;
 	}
-
+	
 	public Stream<Feature> getTransitionFeatures(TransitionFeatureKind kind) {
 		return getOwnedFeatureMembership().stream().
 				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -74,11 +73,10 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(
-				getOwnedEndFeature().size() > 2? 
+	protected String getDefaultSupertype() {
+		return getOwnedEndFeature().size() > 2? 
 					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
-					INTERFACE_DEFINITION_SUPERCLASS_DEFAULT);
+					INTERFACE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

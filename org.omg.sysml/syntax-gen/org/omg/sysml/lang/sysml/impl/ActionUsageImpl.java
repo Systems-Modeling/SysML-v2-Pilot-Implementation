@@ -17,7 +17,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
@@ -192,21 +191,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	}
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			checkSubsetting();
-			isCheckSubsetting = false;
-		}
-		return getOwnedSubsettingWithComputedRedefinitions(getActionSubsettingDefault());
-	}
-	
-	protected void checkSubsetting() {
-		if (isSubperformance()) {
-			addSubsetting(ACTION_SUBSETTING_SUBACTION_DEFAULT);
-		} 
-	}
-	
-	protected String getActionSubsettingDefault() {
+	protected String getDefaultSupertype() {
 		return isSubperformance()? 
 					ACTION_SUBSETTING_SUBACTION_DEFAULT:
 					ACTION_SUBSETTING_BASE_DEFAULT;

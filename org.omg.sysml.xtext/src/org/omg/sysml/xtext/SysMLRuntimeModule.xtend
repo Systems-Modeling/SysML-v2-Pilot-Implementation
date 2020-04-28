@@ -26,5 +26,5 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		SysMLGlobalScopeProvider
 	}
-		
+
 }

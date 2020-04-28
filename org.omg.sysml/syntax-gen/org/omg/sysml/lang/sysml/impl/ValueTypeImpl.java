@@ -2,9 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ValueType;
 
@@ -39,8 +37,8 @@ public class ValueTypeImpl extends DefinitionImpl implements ValueType {
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(VALUE_TYPE_SUPERCLASS_DEFAULT);
+	protected String getDefaultSupertype() {
+		return VALUE_TYPE_SUPERCLASS_DEFAULT;
 	}
 
 } //ValueTypeImpl

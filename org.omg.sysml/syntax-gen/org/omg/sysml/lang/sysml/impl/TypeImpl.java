@@ -73,6 +73,9 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  * @generated
  */
 public class TypeImpl extends PackageImpl implements Type {
+	
+	public final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
+
 	/**
 	 * The cached value of the '{@link #getConjugator() <em>Conjugator</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -142,7 +145,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @ordered
 	 */
 	protected static final boolean IS_CONJUGATED_EDEFAULT = false;
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,6 +288,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
+		computeImplicitGeneralization();
 		return basicGetOwnedGeneralization();
 	}
 
@@ -300,7 +304,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithoutDefault(Class<T> kind, int featureID) {
+	protected <T extends Generalization> EList<T> basicGetOwnedGeneralization(Class<T> kind, int featureID) {
 		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);
 		for (Generalization generalization: basicGetOwnedGeneralization()) {
 			if (kind.isInstance(generalization)) {
@@ -310,23 +314,47 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> getOwnedGeneralizationWithDefault(Class<T> kind, int featureID, EClass eClass, String... defaultNames) {
-		EList<T> generalizations = getOwnedGeneralizationWithoutDefault(kind, featureID);
+	public EList<Generalization> basicGetOwnedGeneralizationWithDefault() {
+		EList<Generalization> generalizations = basicGetOwnedGeneralization();
 		
 		// Do not add a default generalization if the type is conjugated.
 		if (!isConjugated()) {
-			Generalization generalization = getDefaultGeneralization(generalizations, eClass, defaultNames);
+			Generalization generalization = getDefaultGeneralization(generalizations, getGeneralizationEClass(), getDefaultSupertype());
 			if (generalization != null) {
-				generalizations.add((T)generalization);
-				getOwnedRelationship_comp().add(generalization);
+				generalizations.add(generalization);
 			}
 		}
 		
 		return generalizations;
 	}
 	
-	private <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
+	public void computeImplicitGeneralization() {
+		if (!isConjugated()) {
+			addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
+ 		}
+	}
+	
+	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
+		@SuppressWarnings("unchecked")
+		Generalization generalization = getDefaultGeneralization(
+				basicGetOwnedGeneralization(
+						(Class<? extends Generalization>)generalizationEClass.getInstanceClass(), 
+						SysMLPackage.TYPE__OWNED_GENERALIZATION),
+				generalizationEClass, superTypeNames);
+		if (generalization != null) {
+			getOwnedRelationship_comp().add(generalization);
+		}		
+	}
+	
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getGeneralization();
+	}
+	
+	protected String getDefaultSupertype() {
+		return TYPE_GENERALIZATION_DEFAULT;
+	}
+	
+	protected <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
 		Generalization generalization = null;
 		if (generalizations.isEmpty()) {
 			Type general = getDefaultType(defaultNames);
@@ -351,8 +379,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	protected Type getDefaultType(String... defaultNames) {
 		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(
-					this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+			EObject element = SysMLLibraryUtil.getLibraryElement(this, defaultName);
 			if (element instanceof Type) {
 				return (Type)element;
 			}
@@ -673,7 +700,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			}
 		}
 		Collection<Feature> redefinedFeatures = getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinitionsWithoutDefault().stream()).
+				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
 				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
 		inheritedMemberships.removeIf(membership->redefinedFeatures.contains(membership.getMemberElement()));
 		return inheritedMemberships;
@@ -793,6 +820,16 @@ public class TypeImpl extends PackageImpl implements Type {
 		addOwnedFeature(connector);
 		return connector;
 	}
+	
+	// Other Methods
+	
+	@Override
+	public void transform() {
+		super.transform();
+		computeImplicitGeneralization();
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

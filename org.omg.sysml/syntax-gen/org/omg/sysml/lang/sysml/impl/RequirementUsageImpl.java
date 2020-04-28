@@ -20,7 +20,6 @@ import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -343,10 +342,10 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isRequirementConstraint()? REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
-				REQUIREMENT_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return isRequirementConstraint()? 
+				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
+				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	@Override

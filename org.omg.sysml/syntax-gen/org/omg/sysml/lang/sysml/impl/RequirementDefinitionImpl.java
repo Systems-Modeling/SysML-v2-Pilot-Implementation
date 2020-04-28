@@ -19,7 +19,6 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -221,8 +220,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT);
+	protected String getDefaultSupertype() {
+		return REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

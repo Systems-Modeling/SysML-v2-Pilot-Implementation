@@ -10,7 +10,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SourceEnd;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -40,14 +39,6 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SOURCE_END;
-	}
-	
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		clearCaches();
-		getOwnedSubsettingWithDefault();
-		getComputedRedefinitions();
-		return getOwnedSubsettingWithoutDefault();
 	}
 	
 	@Override

@@ -42,8 +42,7 @@ public class AcceptActionUsageImpl extends TransferActionUsageImpl implements Ac
 	@Override
 	protected Feature getContextFeature() {
 		EObject element = SysMLLibraryUtil.getLibraryElement(
-				this, SysMLPackage.eINSTANCE.getSubsetting_SubsettedFeature(), 
-				ACCEPT_ACTION_USAGE_CONTEXT_FEATURE_NAME);
+				this, ACCEPT_ACTION_USAGE_CONTEXT_FEATURE_NAME);
 		return (Feature)element;
 	}
 

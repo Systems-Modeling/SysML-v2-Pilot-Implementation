@@ -2,13 +2,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.PortDefinition;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -139,8 +137,8 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(PORT_DEFINITION_SUPERCLASS_DEFAULT);
+	protected String getDefaultSupertype() {
+		return PORT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
 } //PortDefinitionImpl

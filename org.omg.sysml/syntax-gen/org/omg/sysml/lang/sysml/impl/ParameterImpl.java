@@ -30,8 +30,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ParameterImpl extends FeatureImpl implements Parameter {
 
-//	private boolean redefinitionsNotAdded = true;
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -113,24 +111,5 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 						: ((TypeImpl) type).getOwnedParameters().stream()
 								.filter(p -> !((ParameterImpl) p).isResultParameter()).collect(Collectors.toList());
 	}
-
-//	public void addInheritedFeatureRedefinitions() {
-//		if (redefinitionsNotAdded) {
-//			redefinitionsNotAdded = false;
-//			EList<FeatureTyping> typing = getTyping();
-//			if (!typing.isEmpty()) {
-//				Type type = typing.get(0).getType();
-//				if (type == null) {
-//					redefinitionsNotAdded = true;
-//				} else {
-//					for (Feature inheritedFeature : type.getOwnedFeature()) {
-//						Feature feature = SysMLFactory.eINSTANCE.createFeature();
-//						feature.setName(inheritedFeature.getName());
-//						addOwnedFeature(feature);
-//					}
-//				}
-//			}
-//		}
-//	}
 	
 } // ParameterImpl

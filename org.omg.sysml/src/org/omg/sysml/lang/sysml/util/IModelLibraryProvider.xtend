@@ -28,6 +28,16 @@ import org.omg.sysml.lang.sysml.Element
 
 interface IModelLibraryProvider {
 	
+	/**
+	 * Returns a model element with the given qualified name,
+	 * using the given parameter element as a context for
+	 * the search, e.g. to identify where to look for library model elements.
+	 * 
+	 * <p>
+	 * <strong>Important</strong>: the implementation does only consider qualified
+	 * names calculated from the containment hierarchy. Querying for alternate
+	 * names like relying on generalizations or aliases is not supported here.
+	 */
 	def Element getElement(Element context, String name)
 	
 }

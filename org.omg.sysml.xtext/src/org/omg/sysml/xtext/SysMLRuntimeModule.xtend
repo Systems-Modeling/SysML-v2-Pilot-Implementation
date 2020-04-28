@@ -9,10 +9,6 @@ import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
-import org.eclipse.xtext.resource.IDerivedStateComputer
-import org.omg.sysml.xtext.postprocessor.SysMLDerivedStateComputer
-import org.eclipse.xtext.resource.XtextResource
-import org.eclipse.xtext.resource.DerivedStateAwareResource
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -31,11 +27,4 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 		SysMLGlobalScopeProvider
 	}
 
-	override Class<? extends XtextResource> bindXtextResource() {
-		DerivedStateAwareResource
-	}
-		
-	def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
-		SysMLDerivedStateComputer
-	}
 }

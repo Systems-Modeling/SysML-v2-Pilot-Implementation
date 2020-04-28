@@ -8,7 +8,6 @@ import org.omg.kerml.xpect.tests.generator.KerMLGeneratorTest;
 import org.omg.kerml.xpect.tests.imports.global.KerMLImportGlobalTest;
 import org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest;
 import org.omg.kerml.xpect.tests.linking.KerMLLinkingTest;
-import org.omg.kerml.xpect.tests.parser.KerMLParserTest;
 import org.omg.kerml.xpect.tests.scoping.KerMLScopingTest;
 import org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest;
 import org.omg.kerml.xpect.tests.validation.KerMLValidationTest;
@@ -20,7 +19,7 @@ import org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest;
 		KerMLImportGlobalTest.class, //
 		KerMLImportLocalTest.class, //
 		KerMLLinkingTest.class,//
-		KerMLParserTest.class, //
+//		KerMLParserTest.class, //
 		KerMLScopingTest.class, //
 		KerMLXtextTest.class, //
 		KerMLValidationTest.class, //

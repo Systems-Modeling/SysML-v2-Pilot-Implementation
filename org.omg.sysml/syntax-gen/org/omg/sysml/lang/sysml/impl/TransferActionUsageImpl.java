@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
@@ -101,10 +100,9 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	protected abstract Feature getContextFeature();
 	
-	@Override
-	public EList<Feature> getFeature() {
+	public void transform() {
+		super.transform();
 		getContextConnector();
-		return super.getFeature();
 	}
 	
 	/**

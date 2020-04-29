@@ -8,6 +8,11 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Annotation</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An Annotation is a Relationship between a Comment and the Element that is annotated by that Comment.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

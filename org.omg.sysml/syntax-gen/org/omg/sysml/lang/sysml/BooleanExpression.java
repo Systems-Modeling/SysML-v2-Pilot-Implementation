@@ -40,6 +40,11 @@ public interface BooleanExpression extends Expression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Predicate that types the Expression.</p>
+	 * <p>The Predicate that types the Expression.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Predicate</em>' reference.
 	 * @see #setPredicate(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBooleanExpression_Predicate()

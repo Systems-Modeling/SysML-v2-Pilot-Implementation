@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ReferenceProperty is a non-composite reference to a usage of Block elsewhere in a system. A ReferenceProperty must not be composite. Any nested Properties of a ReferenceProperty must also not be composite (and, therefore, cannot be PartProperties).
+ * <p>A ReferenceProperty is a non-composite reference to a usage of Block elsewhere in a system. A ReferenceProperty must not be composite. Any nested Properties of a ReferenceProperty must also not be composite (and, therefore, cannot be PartProperties).</p>
  * <!-- end-model-doc -->
  *
  *

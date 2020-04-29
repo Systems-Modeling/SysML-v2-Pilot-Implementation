@@ -9,6 +9,10 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Package</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * <p>A Package is an Element that contains other Elements, known as its <tt>members</tt>, via Membership Relationships with those Elements. Some of the <tt>members</tt> of a Package may be owned by the Package. The rest are imported into the Package, either as unowned <tt>memberElements</tt> of owned Memberships of the Package or via Import Relationships with other Packages.</p> 
+ * 
+ * <p>A Package also acts as a namespace for its <tt>members</tt> that consists of the <tt>memberNames</tt> specified by all the Memberships in the Package. If a Membership specifies a <tt>memberName</tt>, then that is the name of the corresponding <tt>memberElement</tt> relative to the namespace defined by the Package. Note that the same Element may be the <tt>memberElement</tt> of multiple Memberships in a Package (though it may be owned at most once), each of which may define a separate alias for the Element relative to the Package namespace.</p>
+ * 
  * membership->forAll(m1 | membership->forAll(m2 | m1 <> m2 implies m1.isDistinguishableFrom(m2)))
  * member = membership.memberElement
  * ownedMember = ownedMembership.ownedMemberElement
@@ -19,12 +23,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMember <em>Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getImportedMembership <em>Imported Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}</li>
  * </ul>
@@ -105,6 +109,10 @@ public interface Package extends Element {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the names of the given <tt>element</tt> as it is known in the namespace defined by this Package.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
 	 * @generated
 	 */
@@ -145,6 +153,10 @@ public interface Package extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned <tt>members</tt> of this Package, derived as the <tt>ownedMemberElements</tt> of the <tt>ownedMemberships</tt> of the Package.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_OwnedMember()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningNamespace
@@ -230,6 +242,10 @@ public interface Package extends Element {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Exclude from the given set <tt>mem</tt> of Memberships those that would not be distinguishable from each other if imported into this Package.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @model ordered="false" memMany="true" memOrdered="false"
 	 * @generated
 	 */
@@ -237,6 +253,10 @@ public interface Package extends Element {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return the publicly visible Memberships of this Package, which includes those <tt>ownedMemberships</tt> that are with a <tt>visibility</tt> of <tt>public</tt> and those <tt>importedMemberships</tt> that where imported via Import Relationships with a <tt>visibility</tt> of <tt>public</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 * @generated
 	 */

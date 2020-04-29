@@ -42,7 +42,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned or inherited Feature of this RequirementDefinition that redefines (directly or indirectly) the "subject" Feature of the base RequirementsDefinition RequirementsCheck from the Systems model library.</p>
+	 * <p>The <p>parameter</p> of this RequirementDefinition that is or redefines (directly or indirectly) the <tt>subject</tt> Parameter of the base RequirementsDefinition RequirementsCheck from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Parameter)
@@ -66,17 +66,19 @@ public interface RequirementDefinition extends ConstraintDefinition {
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Req Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An optional modeler-specified identifier for this RequirementDefinition (used, e.g., to link it to an original requirement text in some source document).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_ReqId()
-	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getReqId();
@@ -93,17 +95,19 @@ public interface RequirementDefinition extends ConstraintDefinition {
 
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An optional textual statement of the requirement represented by this RequirementDefinition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_Text()
-	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getText();
@@ -133,6 +137,9 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <tt>kind</tt> = <tt>requirement</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AssumedConstraint()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -157,6 +164,9 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinitionb. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <tt>kind</tt> = <tt>requirement</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_RequiredConstraint()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

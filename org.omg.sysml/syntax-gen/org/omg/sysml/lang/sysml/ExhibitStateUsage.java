@@ -8,9 +8,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting relationship. 
+ * <p>An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting Relationship.</p>
  * 
- * If the ExhibitStateUsage is owned by a Part, then it also subsets the exhibitedStates property of that Part (as defined in the library model for Part), otherwise it subsets either "states" or "subsubstates", as required for a regular StateUsage.
+ * <p>If the ExhibitStateUsage is owned by a Part, then it also subsets the <tt>exhibitedStates</tt> property of that Part (as defined in the library model for Part), otherwise it subsets either <tt>states</tt> or <tt>subsubstates</tt>, as required for a regular StateUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -34,13 +34,13 @@ public interface ExhibitStateUsage extends StateUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The StateUsage to be exhibited by the ExhibitStateUsage. It is the subsetted element of the first owned Subsetting relationship of the ExhibitStateUsage.</p>
+	 * <p>The StateUsage to be exhibited by the ExhibitStateUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the ExhibitStateUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exhibited State</em>' reference.
 	 * @see #setExhibitedState(StateUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExhibitStateUsage_ExhibitedState()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exhibitStateUsage'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateExhibition'"
 	 * @generated
 	 */
 	StateUsage getExhibitedState();

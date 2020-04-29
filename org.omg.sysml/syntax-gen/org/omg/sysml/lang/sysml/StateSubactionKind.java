@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * A StateSubactionKind indicates whether an Action feature of a State is an entry, do or exit Action.
- * A StateActionKind indicates whether a Action feature of a State is an entry, do or exit Action.
+ * <p>A StateSubactionKind indicates whether the <tt>action</tt> of a StateSubactionMembership is an entry, do or exit action.</p>
+ * <p>A StateActionKind indicates whether a Action feature of a State is an entry, do or exit Action.
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateSubactionKind()
  * @model
@@ -26,6 +26,9 @@ public enum StateSubactionKind implements Enumerator {
 	 * The '<em><b>Entry</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a subaction of a StateUsage is an entry action.</p>
+	 * <!-- end-model-doc -->
 	 * @see #ENTRY_VALUE
 	 * @generated
 	 * @ordered
@@ -36,6 +39,9 @@ public enum StateSubactionKind implements Enumerator {
 	 * The '<em><b>Do</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a subaction of a StateUsage is a do action.</p>
+	 * <!-- end-model-doc -->
 	 * @see #DO_VALUE
 	 * @generated
 	 * @ordered
@@ -46,6 +52,9 @@ public enum StateSubactionKind implements Enumerator {
 	 * The '<em><b>Exit</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a subaction of a StateUsage is an exit action.</p>
+	 * <!-- end-model-doc -->
 	 * @see #EXIT_VALUE
 	 * @generated
 	 * @ordered
@@ -56,6 +65,9 @@ public enum StateSubactionKind implements Enumerator {
 	 * The '<em><b>Entry</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a subaction of a StateUsage is an entry action.</p>
+	 * <!-- end-model-doc -->
 	 * @see #ENTRY
 	 * @model name="entry"
 	 * @generated
@@ -67,6 +79,9 @@ public enum StateSubactionKind implements Enumerator {
 	 * The '<em><b>Do</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a subaction of a StateUsage is a do action.</p>
+	 * <!-- end-model-doc -->
 	 * @see #DO
 	 * @model name="do"
 	 * @generated
@@ -78,6 +93,9 @@ public enum StateSubactionKind implements Enumerator {
 	 * The '<em><b>Exit</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a subaction of a StateUsage is an exit action.</p>
+	 * <!-- end-model-doc -->
 	 * @see #EXIT
 	 * @model name="exit"
 	 * @generated

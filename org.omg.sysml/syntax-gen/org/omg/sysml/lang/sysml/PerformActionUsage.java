@@ -9,10 +9,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A PerformActionUsage is an ActionUsage that represents the performance of an ActionUsage. The ActionUsage to be performed (which may be the PerformActionUsage itself) is related to the PerformActionUsage by a Subsetting relationship. 
+ * <p>A PerformActionUsage is an ActionUsage that represents the performance of an ActionUsage. The ActionUsage to be performed (which may be the PerformActionUsage itself) is related to the PerformActionUsage by a Subsetting relationship.</p>
  * 
- * If the PerformActionUsage is owned by a Part, then it also subsets the performedAction property of that Part (as defined in the library model for Part),
- * otherwise it subsets either "actions" or "subactions", as required for a regular ActionUsage.
+ * <p>If the PerformActionUsage is owned by a Part, then it also subsets the performedAction property of that Part (as defined in the library model for Part),
+ * otherwise it subsets either <tt>actions</tt> or <tt>subactions</tt>, as required for a regular ActionUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -33,12 +33,13 @@ public interface PerformActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage to be performed by the PerformedActionUsage. It is the subsetted element of the first owned Subsetting relationship of the PerformedActionUsage.</p>
+	 * <p>The ActionUsage to be performed by the PerformedActionUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the PerformedActionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Performed Action</em>' reference.
 	 * @see #setPerformedAction(ActionUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPerformActionUsage_PerformedAction()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionPerformance'"
 	 * @generated
 	 */
 	ActionUsage getPerformedAction();

@@ -64,6 +64,10 @@ public interface Membership extends Relationship {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not the Membership of the <tt>memberElement</tt> in the <tt>membershipOwningPackage</tt> is publicly visible outside that Package. Unless the <tt>membershipOwningPackage</tt> is a Type, <tt>visibility</tt> must be either <tt>public</tt> or <tt>private</tt></p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.VisibilityKind
 	 * @see #setVisibility(VisibilityKind)
@@ -233,6 +237,10 @@ public interface Membership extends Relationship {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Membership is distinguishable from a given <tt>other</tt> Membership. By default, this is true if the <tt>memberName</tt> of this Membership is either empty or is different the <tt>memberName</tt> of the <tt>other</tt> Membership, or if the metaclass of the <tt>memberElement</tt> of this Membership is different than the metaclass of the <tt>memberElement</tt> of the <tt>other</tt> Membership. But this may be overridden in specializations of Membership.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"
 	 * @generated
 	 */

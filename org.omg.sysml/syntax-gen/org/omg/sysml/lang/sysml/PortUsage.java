@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A PortUsage is a usage of a PortDefinition. A PortUsage must be owned by a Block, a PortDefinition, a PartProperty or another PortUsage.  Any owned Properties of a PortUsage must not be composite (and, therefore, cannot be PartProperties).
+ * <p>A PortUsage is a usage of a PortDefinition. A PortUsage must be owned by a Block, a PortDefinition, a PartProperty or another PortUsage.  Any <tt>ownedProperties</tt> of a PortUsage must not be composite (and, therefore, cannot be PartProperties).</p>
  * 
- * A PortUsage must subset, directly or indirectly, the PortUsage Part::ports inherited by its owner.
+ * <p>A PortUsage must subset, directly or indirectly, the Feature <tt>PortUsage Part::ports</tt> inherited by its owner.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,6 +42,9 @@ public interface PortUsage extends Usage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The PortDefinition that is the single <tt>type</tt> of this PortUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference.
 	 * @see #setPortDefinition(PortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortDefinition()
@@ -77,6 +80,9 @@ public interface PortUsage extends Usage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this PortUsage is nested (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Owning Usage</em>' reference.
 	 * @see #setPortOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortOwningUsage()
@@ -112,6 +118,9 @@ public interface PortUsage extends Usage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this PortUsage (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Owning Definition</em>' reference.
 	 * @see #setPortOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortOwningDefinition()

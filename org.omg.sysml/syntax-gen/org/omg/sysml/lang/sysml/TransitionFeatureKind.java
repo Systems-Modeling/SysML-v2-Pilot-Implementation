@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * A TransitionActionKind indicates whether a feature of a TransitionUsage is a trigger, guard or effect.
+ * <p>A TransitionActionKind indicates whether the <tt>transitionFeature</tt> of a TransitionFeatureMembership is a trigger, guard or effect.</p>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionFeatureKind()
  * @model
@@ -25,6 +25,9 @@ public enum TransitionFeatureKind implements Enumerator {
 	 * The '<em><b>Trigger</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member Transfer of a TransitionUsage represents a trigger.</p>
+	 * <!-- end-model-doc -->
 	 * @see #TRIGGER_VALUE
 	 * @generated
 	 * @ordered
@@ -35,6 +38,9 @@ public enum TransitionFeatureKind implements Enumerator {
 	 * The '<em><b>Guard</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member Expression of a TransitionUsage represents a guard.</p>
+	 * <!-- end-model-doc -->
 	 * @see #GUARD_VALUE
 	 * @generated
 	 * @ordered
@@ -45,6 +51,9 @@ public enum TransitionFeatureKind implements Enumerator {
 	 * The '<em><b>Effect</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member Step of a TransitionUsage represents an effect.</p>
+	 * <!-- end-model-doc -->
 	 * @see #EFFECT_VALUE
 	 * @generated
 	 * @ordered
@@ -55,6 +64,9 @@ public enum TransitionFeatureKind implements Enumerator {
 	 * The '<em><b>Trigger</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member Transfer of a TransitionUsage represents a trigger.</p>
+	 * <!-- end-model-doc -->
 	 * @see #TRIGGER
 	 * @model name="trigger"
 	 * @generated
@@ -66,6 +78,9 @@ public enum TransitionFeatureKind implements Enumerator {
 	 * The '<em><b>Guard</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member Expression of a TransitionUsage represents a guard.</p>
+	 * <!-- end-model-doc -->
 	 * @see #GUARD
 	 * @model name="guard"
 	 * @generated
@@ -77,6 +92,9 @@ public enum TransitionFeatureKind implements Enumerator {
 	 * The '<em><b>Effect</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member Step of a TransitionUsage represents an effect.</p>
+	 * <!-- end-model-doc -->
 	 * @see #EFFECT
 	 * @model name="effect"
 	 * @generated

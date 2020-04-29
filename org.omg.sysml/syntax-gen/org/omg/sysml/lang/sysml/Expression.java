@@ -39,6 +39,11 @@ public interface Expression extends Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>This is the Function that types the Expression.</p>
+	 * <p>This is the Function that types the Expression.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Function</em>' reference.
 	 * @see #setFunction(Function)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_Function()

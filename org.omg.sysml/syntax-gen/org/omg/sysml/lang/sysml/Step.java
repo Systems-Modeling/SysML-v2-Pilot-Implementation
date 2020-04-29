@@ -8,6 +8,12 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Step</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>Steps are Features for Behaviors and support the steady refinement of behavioral descriptions. Steps can be related in time and serve as sources and targets for object transfers.</p>
+ * 
+ * <p>Steps are Features for Behaviors and support the steady refinement of behavioral descriptions. Steps can be related in time and serve as sources and targets for object transfers.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -36,6 +42,10 @@ public interface Step extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>This is the Behavior that types the Step.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Behavior</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStep_Behavior()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"

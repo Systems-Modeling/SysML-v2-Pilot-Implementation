@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Property is a Usage that represents a measurable or observable attribute, quality or characteristic of a system or part of a system.
+ * <p>A Property is a Usage that represents a measurable or observable attribute, quality or characteristic of a system or part of a system.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,6 +40,9 @@ public interface Property extends Usage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this Property (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Property Owning Definition</em>' reference.
 	 * @see #setPropertyOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getProperty_PropertyOwningDefinition()
@@ -75,6 +78,9 @@ public interface Property extends Usage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this Property is nested (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Property Owning Usage</em>' reference.
 	 * @see #setPropertyOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getProperty_PropertyOwningUsage()

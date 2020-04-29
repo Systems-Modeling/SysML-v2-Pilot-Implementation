@@ -11,7 +11,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An AssertConstraintUsage is a ConstraintUsage that is also an Invariant and, so, is asserted to be true. The asserted ConstraintUsage (which may be the AssertConstraintUsage itself) is related to the AssertConstraintUsage by a Subsetting relationship.</p>
  * 
- * <p>If the AssertConstraintUsage is owned by a Part, then it also subsets the assertedConstraints property of that Part (as defined in the library model for Part), otherwise it subsets "constraintChecks", as required for a regular ConstraintUsage.</p>
+ * <p>If the AssertConstraintUsage is owned by a Part, then it also subsets the <tt>assertedConstraints</tt> property of that Part (as defined in the library model for Part), otherwise it subsets <tt?constraintChecks</tt>, as required for a regular ConstraintUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -31,7 +31,7 @@ public interface AssertConstraintUsage extends ConstraintUsage, Invariant {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage to be performed by the AssertConstraintUsage. It is the subsetted element of the first owned Subsetting relationship of the AssertConstraintUsage.</p>
+	 * <p>The ConstraintUsage to be performed by the AssertConstraintUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the AssertConstraintUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Asserted Constraint</em>' reference.
 	 * @see #setAssertedConstraint(ConstraintUsage)

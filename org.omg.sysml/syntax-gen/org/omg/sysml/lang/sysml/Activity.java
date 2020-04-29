@@ -10,9 +10,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An Activity is a Behavior that defines an action performed by a system or part of a system.
+ * <p>An Activity is a Behavior that defines an action performed by a system or part of a system.</p>
  * 
- * An Activity must subclass, directly or indirectly, the base Activity Action from the Systems model library.
+ * <p>An Activity must subclass, directly or indirectly, the base Activity Action from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,6 +42,9 @@ public interface Activity extends Definition, Behavior {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ActionUsages that are Steps in this Activity, which define the actions that specify the behavior of the Activity.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActivity_Action()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

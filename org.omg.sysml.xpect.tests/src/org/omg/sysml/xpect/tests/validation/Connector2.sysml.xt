@@ -1,0 +1,66 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package P {
+	
+	block A;
+	block B;
+	block C;
+	block D;
+	block E;
+	block F;
+	
+	assoc block AB {
+		ab1 : D[1];
+		ab2 : F[1];
+	}
+	
+	part a : A {
+		
+		part b1 : B[1] {
+			part c : C[1] {
+				part c: C[1]{
+					part d : D[2];
+				}			
+				part d : D[2];
+			}
+			part e: E[1] {
+				part f: F[2];
+			}						
+		}
+		
+		part b2 : B[1] {
+			part c : C[1] {
+				part cc: C[1]{
+					part d : D[2];
+				}			
+				part d : D[2];
+			}
+			part e: E[1] {
+				part f : F[2];
+			}						
+				
+		}
+		link : AB connect b1::c::d to b2::e::f;	
+	}
+	
+}

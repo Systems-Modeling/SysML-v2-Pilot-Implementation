@@ -1,0 +1,80 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/BooleanFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+
+		File {from ="/library.kernel/StatePerformances.kerml"}
+
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/ControlNodes.sysml"}
+		File {from ="/library.systems/States.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Activities.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'Control - Camera' {
+	//import 'Action Decomposition'::*;
+	block Scene;
+	block Image;
+	block Picture;
+	
+	activity Focus(in scene : Scene, out image : Image);
+	activity Shoot(in image : Image, out picture : Picture);	
+	activity TakePicture(in scene : Scene, out picture : Picture);
+		
+	action takePicture : TakePicture (in scene, out picture) {
+		action focus : Focus (
+			in scene = takePicture::scene, 
+			out image
+		);
+		
+		action shoot : Shoot (
+			in image flow from focus::image, 
+			out picture = takePicture::picture
+		);
+	}
+	
+	block Camera;
+	block FocusingSubsystem;
+	block ImagingSubsystem;
+	
+	part camera : Camera {
+		ref view : Scene;
+		part photos : Picture[*];
+				
+		part autoFocus {
+			ref in view : Scene = camera::view;		
+			ref out realImage : Image;
+		}
+		
+		flow autoFocus::realImage to imager::focusedImage;
+		
+		part imager {
+			ref in focusedImage : Image;		
+			ref out photo : Picture :> photos;
+		}
+		
+	}
+}

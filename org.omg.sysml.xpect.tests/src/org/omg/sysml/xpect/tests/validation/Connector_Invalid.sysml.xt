@@ -1,0 +1,38 @@
+//Owning type conformance: The owningType of the subsettingFeature shall conform to the owingType of the subsettedFeature
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package P {
+	block A;
+	block B;
+	block C;
+	block D;
+	
+	part a : A[0..5];
+	part b : B {
+		part c : C[1] {
+			part d : D[5];
+		}
+		// XPECT errors --> "Invalid connector ends - Type of connector and its relatedFeatures do not match" at "P::a[0..1]  to cd => c::d[1];"
+		connect P::a[0..1]  to cd => c::d[1];
+	}
+}
+

@@ -1,6 +1,8 @@
 package BasicGeometry {
-    import SI::*;
-    import RealFunctions::*;
+	private import UnitsAndScales::DimensionOneValue;
+	private import ISQ::LengthValue;
+    private import SI::*;
+    private import RealFunctions::*;
 
     /**
      * Component of Cartesian direction vector with value in interval [-1:1]

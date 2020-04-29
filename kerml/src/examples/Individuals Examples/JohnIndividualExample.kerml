@@ -1,5 +1,5 @@
 package JohnIndividualExample {
-	import Base::*;
+	import Objects::*;
 	
 	/**
 	  This is the class of persons, each of whom has an age.
@@ -7,7 +7,7 @@ package JohnIndividualExample {
 	  (The specialization of Object would normally be left implicit.)
 	*/
 	class Person specializes Object {
-		class Life specializes Person, Base::Life;
+		class Life specializes Person, Occurrences::Life;
 		
 		feature age : ScalarValues::Natural;
 	  
@@ -41,7 +41,7 @@ package JohnIndividualExample {
 	  There is at most one such person.
 	*/
 	class John specializes Person {
-		class all Life specializes John, Base::Life [0..1];
+		class all Life specializes John, Occurrences::Life [0..1];
 	} 
 	
 	/**
@@ -55,7 +55,7 @@ package JohnIndividualExample {
 	  president.
 	*/
 	class Country specializes Object {
-		class all Life specializes Country, Base::Life;
+		class all Life specializes Country, Occurrences::Life;
 
 		feature presidentOfCountry : President[0..1];
 	  
@@ -70,7 +70,7 @@ package JohnIndividualExample {
 	  always has a president who must be at least 35 years old.
 	*/
 	class UnitedStates specializes Country {
-		class all Life specializes UnitedStates, Base::Life [1];
+		class all Life specializes UnitedStates, Occurrences::Life [1];
 	  	feature presidentOfUS[1] redefines presidentOfCountry {
 	   		inv { age >= 35 } 
 	  	}

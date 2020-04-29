@@ -1,4 +1,5 @@
 package '8-Requirements' {
+	import ScalarValues::Real;
 	import ISQ::*;
 	import SI::*;
 	import 'Vehicle Usages'::*;

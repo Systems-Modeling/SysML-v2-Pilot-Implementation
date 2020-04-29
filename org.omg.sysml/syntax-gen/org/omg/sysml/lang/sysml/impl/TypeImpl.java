@@ -74,7 +74,7 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  */
 public class TypeImpl extends PackageImpl implements Type {
 	
-	public final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
+	public static final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
 
 	/**
 	 * The cached value of the '{@link #getConjugator() <em>Conjugator</em>}' reference.

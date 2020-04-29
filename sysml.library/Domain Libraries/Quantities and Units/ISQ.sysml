@@ -2,9 +2,9 @@
  * International system of quantities (ISQ), as defined in ISO/IEC 80000
  */
 package ISQ {
-	import ScalarValues::Real;
-	import Quantities::*;
-	import UnitsAndScales::*;	
+	private import ScalarValues::Real;
+	private import Quantities::*;
+	private import UnitsAndScales::*;	
 	
 	/*
 	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000

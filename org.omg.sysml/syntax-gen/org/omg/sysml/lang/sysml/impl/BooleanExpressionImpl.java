@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpression {
 
-	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::booleanEvaluations";
-	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subBooleanEvaluations";
+	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::booleanEvaluations";
+	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subBooleanEvaluations";
 
 	/**
 	 * The cached value of the BindingConnector from the result of the last

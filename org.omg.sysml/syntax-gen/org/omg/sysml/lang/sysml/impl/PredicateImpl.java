@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PredicateImpl extends FunctionImpl implements Predicate {
 
-	public static final String PREDICATE_SUPERCLASS_DEFAULT = "Base::BooleanEvaluation";
+	public static final String PREDICATE_SUPERCLASS_DEFAULT = "Performances::BooleanEvaluation";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

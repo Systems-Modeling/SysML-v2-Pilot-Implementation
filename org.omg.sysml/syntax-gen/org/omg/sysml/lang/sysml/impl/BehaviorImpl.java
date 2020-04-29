@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class BehaviorImpl extends ClassifierImpl implements Behavior {
 
-	public String BEHAVIOR_SUPERCLASS_DEFAULT = "Base::Performance";
+	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

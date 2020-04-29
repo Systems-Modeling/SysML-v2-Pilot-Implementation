@@ -6,6 +6,7 @@ package AHFNorway {
 	import AHFProfileLib::*;
 	import AHFCoreLib::*;
 	import ScalarValues::*;
+	import Performances::Performance;
 	
 	port def APISService :> SD{
 		serviceDefinition = "APISPullService";

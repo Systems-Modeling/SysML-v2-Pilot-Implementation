@@ -42,8 +42,8 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
-	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Base::evaluations";
-	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subevaluations";
+	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::evaluations";
+	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subevaluations";
 	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
 	
 	/**

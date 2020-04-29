@@ -58,8 +58,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConnectorImpl extends FeatureImpl implements Connector {
 	
-	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Base::links";
-	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Base::binaryLinks";
+	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Objects::links";
+	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Objects::binaryLinks";
 	
 	/**
 	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.

@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
 	public static final String ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::transfers";
-	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subtransfers";
+	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subtransfers";
 
 	/**
 	 * <!-- begin-user-doc -->

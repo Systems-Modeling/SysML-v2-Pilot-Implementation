@@ -22,7 +22,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class LifeClassImpl extends BlockImpl implements LifeClass {
 	
 	public static final String LIFE_CLASS_DEFAULT_NAME = "Life";
-	public static final String LIFE_CLASS_LIFE_SUPERCLASS = "Base::Life";
+	public static final String LIFE_CLASS_LIFE_SUPERCLASS = "Occurrences::Life";
 	
 	/**
 	 * <!-- begin-user-doc -->

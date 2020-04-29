@@ -1,5 +1,5 @@
 package '1c-Parts Tree Redefinition' {
-	import SI::*;
+	import SI::kg;
 	
 	package Definitions {	
 		block Vehicle {
@@ -10,7 +10,7 @@ package '1c-Parts Tree Redefinition' {
 			value mass :> ISQ::mass;
 		}	
 		block FrontAxle :> Axle { 
-			value steeringAngle: Real;
+			value steeringAngle: ScalarValues::Real;
 		}	
 		block Wheel;	
 	}

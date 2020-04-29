@@ -1,5 +1,5 @@
 package '1a-Parts Tree' {
-	import SI::*;
+	import SI::kg;
 	
 	package Definitions {	
 		block Vehicle {
@@ -16,7 +16,7 @@ package '1a-Parts Tree' {
 			value mass :> ISQ::mass;
 		}	
 		block FrontAxle :> Axle { 
-			value steeringAngle: Real;
+			value steeringAngle: ScalarValues::Real;
 		}	
 		block Wheel;	
 	}

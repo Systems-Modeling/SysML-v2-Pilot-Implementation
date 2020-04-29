@@ -1,4 +1,7 @@
 package '15_19a-Materials with Properties' {
+	import ScalarValues::*;
+	import Quantities::*;
+	import UnitsAndScales::*;
 	import SI::*;
 	
 	// TODO: Move definition of atomic mass and Da to SI

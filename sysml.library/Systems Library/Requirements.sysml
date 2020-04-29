@@ -5,7 +5,7 @@ package Requirements {
 	private import Base::Anything;
 	private import ScalarValues::String;
 	private import ControlFunctions::allTrue;
-	private import Constraints::*;
+	private import Constraints::constraintChecks;
 	
 	/**
 	 * RequirementConstraintCheck is the base ConstraintCheck for RequirementCheck, defining the

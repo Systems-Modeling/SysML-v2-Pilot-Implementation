@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -190,8 +189,8 @@ public class StateDefinitionImpl extends ActivityImpl implements StateDefinition
 	}
 
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(STATE_DEFINITION_SUPERCLASS_DEFAULT);
+	protected String getDefaultSupertype() {
+		return STATE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
 	/**

@@ -52,34 +52,31 @@ public class LifeClassImpl extends BlockImpl implements LifeClass {
 	}
 	
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {	
+	protected String getDefaultSupertype() {
+		return LIFE_CLASS_LIFE_SUPERCLASS;
+	}
+	
+	public void addSuperclassing() {	
 		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
-		EList<Superclassing> superclassings = getOwnedSuperclassingWithoutDefault();
-		if (superclassings.size() < 2) {
-			superclassings = getOwnedSuperclassingWithDefault(LIFE_CLASS_LIFE_SUPERCLASS);
-			if (owner instanceof Classifier) {
+		EList<Superclassing> superclassings = getOwnedSuperclassing();
+		if (owner instanceof Classifier) {
+			if (superclassings.size() < 2) {
 				Superclassing superclassing = SysMLFactory.eINSTANCE.createSuperclassing();
 				superclassing.setSuperclass((Classifier)owner);
 				superclassing.setSubclass(this);
 				getOwnedRelationship_comp().add(superclassing);
-			}
-		} else {
-			superclassings.get(0).setSuperclass((Classifier)getDefaultType(LIFE_CLASS_LIFE_SUPERCLASS));
-			if (owner instanceof Classifier) {
+			} else {
 				superclassings.get(1).setSuperclass((Classifier)owner);
 			}
 		}
-		return superclassings;
 	}
 	
-	@Override
-	public Multiplicity basicGetMultiplicity() {
+	public void addMultiplicity() {
 		Multiplicity multiplicity = super.basicGetMultiplicity();
 		if (multiplicity == null || multiplicity.getOwningType() != this) {
 			multiplicity = createSingletonMultiplicity();
 			addOwnedFeature(multiplicity);
 		}
-		return multiplicity;
 	}
 	
 	protected Multiplicity createSingletonMultiplicity() {
@@ -99,7 +96,8 @@ public class LifeClassImpl extends BlockImpl implements LifeClass {
 	@Override
 	public void transform() {
 		super.transform();
-		getMultiplicity();
+		addSuperclassing();
+		addMultiplicity();
 	}
 	
 } //LifeClassImpl

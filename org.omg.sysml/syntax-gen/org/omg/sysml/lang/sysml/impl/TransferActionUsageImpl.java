@@ -88,12 +88,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	}
 
 	@Override
-	protected void checkSubsetting() {
-		addSubsetting(TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT);
-	}
-	
-	@Override
-	protected String getActionSubsettingDefault() {
+	protected String getDefaultSupertype() {
 		return TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT;
 	}
 	

@@ -12,11 +12,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -128,22 +126,13 @@ public class FunctionImpl extends BehaviorImpl implements Function {
   		return false;
 	}
 
-	/**
-	 * If the function has no Superclassings, then create one whose superclass is
-	 * the appropriate default library class.
-	 */
 	@Override
-	public EList<Superclassing> getOwnedSuperclassing() {
-		return getOwnedSuperclassingWithDefault(FUNCTION_SUPERCLASS_DEFAULT);
+	protected String getDefaultSupertype() {
+		return FUNCTION_SUPERCLASS_DEFAULT;
 	}
 
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
-	}
-	
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return filterRelevantFeatures(super.getFeature());
 	}
 	
 	@Override

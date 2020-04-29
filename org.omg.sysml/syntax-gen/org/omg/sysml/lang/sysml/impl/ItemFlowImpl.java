@@ -22,8 +22,7 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
+import  org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -190,7 +189,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		return features.size() <= i? Optional.empty(): Optional.of(features.get(i));
 	}
 	
-	@Override
 	public EList<Feature> getConnectorEnd() {
 		EList<Feature> ends = super.getConnectorEnd();
 		Type owner = getOwningType();
@@ -209,6 +207,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
 					membership.setOwnedMemberFeature_comp(targetEnd);
 					getOwnedFeatureMembership_comp().add(membership);
+					((ItemFlowEndImpl)targetEnd).addItemFlowEndSubsetting();
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {
@@ -244,11 +243,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(
-				isSubtransfer()? 
-					ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
-					ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return isSubtransfer()? 
+				ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
+				ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	public boolean isSubtransfer() {
@@ -258,7 +256,13 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return StepImpl.getRelevantFeaturesOf(this);
-	}	
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getConnectorEnd();
+	}
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
   *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Ed Seidewitz, MDS
+ *  Zoltan Ujhelyi, MDS
  * 
  *****************************************************************************/
 
@@ -26,50 +27,29 @@ package org.omg.kerml.xtext.library
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.emf.common.util.URI
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil
-import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
-import org.omg.kerml.xtext.scoping.KerMLScopeProvider
-import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider
+import org.omg.sysml.lang.sysml.SysMLPackage
 
 @Singleton
 class KerMLLibraryProvider implements IModelLibraryProvider {
 		
-	@Inject
-	KerMLGlobalScopeProvider globalScope
-	
-	@Inject
-	KerMLScopeProvider scopeProvider;
-	
-	@Inject
+ 	@Inject
 	IQualifiedNameConverter nameConverter
 	
-	protected def isModelLibrary(Resource resource) {
-		SysMLLibraryUtil.isModelLibrary(resource)
-	}
+	@Inject
+	ResourceDescriptionsProvider resourceDescriptionProvider
 	
-	protected def fileName(URI uri) {
-		return uri.trimFileExtension.lastSegment
-	}
-	
-	override Element getElement(Element context, EReference reference, String name) {
+	override Element getElement(Element context, String name) {
 		if (context === null) {
 			return null
 		} else {
 			val qname = nameConverter.toQualifiedName(name)
-			val resource = context.eResource();
-			val scope =
-				if (resource.isModelLibrary)
-					scopeProvider.getScope(EcoreUtil2.getRootContainer(context), reference)
-				else 
-					globalScope.getScope(resource, reference, [getEObjectURI.fileName.equals(qname.firstSegment)])
-			val description = scope.getSingleElement(qname)
+			val description = resourceDescriptionProvider.getResourceDescriptions(context.eResource()).
+					getExportedObjects(SysMLPackage.Literals.ELEMENT, qname, false).head
 			return if (description === null) null else
 				EcoreUtil.resolve(description.EObjectOrProxy, context) as Element
 		}

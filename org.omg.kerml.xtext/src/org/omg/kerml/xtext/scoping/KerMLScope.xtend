@@ -41,6 +41,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.Generalization
+import org.omg.sysml.lang.sysml.impl.TypeImpl
 
 class KerMLScope extends AbstractScope {
 	
@@ -219,7 +220,7 @@ class KerMLScope extends AbstractScope {
 					return true
 				}
 			}
-			for (e: pack.ownedGeneralization) {
+			for (e: (pack as TypeImpl).basicGetOwnedGeneralizationWithDefault) {
 				if (!scopeProvider.visited.contains(e)) {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.

@@ -42,6 +42,9 @@ import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.impl.TypeImpl
+import java.util.HashSet
+import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.impl.GeneralizationImpl
 
 class KerMLScope extends AbstractScope {
 	
@@ -49,6 +52,7 @@ class KerMLScope extends AbstractScope {
 	protected EClass referenceType	
 	protected KerMLScopeProvider scopeProvider
 	protected boolean isInsideScope //false if initialized from KerMLGlobalScope
+	protected boolean isRedefinition
 	
 	protected QualifiedName targetqn;
 	protected Map<Element, Set<QualifiedName>> elements
@@ -58,16 +62,17 @@ class KerMLScope extends AbstractScope {
 	protected boolean isShadowing = false;
 	protected Type scopingType
 
-	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, Element element) {
-		this(parent, pack, referenceType, scopeProvider, true, element)
+	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isRedefinition, Element element) {
+		this(parent, pack, referenceType, scopeProvider, true, isRedefinition, element)
 	}
 	
-	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, Element element) {
+	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isRedefinition, Element element) {
 		super(parent, false)
 		this.pack = pack
 		this.referenceType = referenceType
 		this.scopeProvider = scopeProvider
 		this.isInsideScope = isInsideScope
+		this.isRedefinition = isRedefinition
 		this.scopingType = if (element?.owner instanceof Type) element.owner as Type else null
 	}
 	
@@ -112,13 +117,17 @@ class KerMLScope extends AbstractScope {
 		]
 	}
 	
-	protected def void resolve() {	
-		pack.resolve(QualifiedName.create(), false, this.isInsideScope, newHashSet)
+	protected def void resolve() {
+		if (pack instanceof Type && isRedefinition)
+			// For a redefinition within a type, start resolution search with inherited members.
+			pack.gen(QualifiedName.create(), newHashSet, null)
+		else
+			pack.resolve(QualifiedName.create(), false, isInsideScope, newHashSet, newHashSet)
 	}
 	
-	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
-		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited) ||
-		pack.gen(qn, visited) ||
+	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited, Set<Element> redefined) {
+		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited, redefined) ||
+		pack.gen(qn, visited, redefined) ||
 		pack.imp(qn, isInsideScope, visited)
 	}
 	
@@ -133,7 +142,7 @@ class KerMLScope extends AbstractScope {
 		}
 	}
 	
-	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited) {
+	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited, Set<Element> redefined) {
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
@@ -154,9 +163,9 @@ class KerMLScope extends AbstractScope {
 					} finally {
 						scopeProvider.removeVisited(m)
 					}
-					if (elementName !== null && (isInsideScope || 
-						m.visibility == VisibilityKind.PUBLIC || 
-						m.visibility == VisibilityKind.PROTECTED && 
+					if (elementName !== null && !redefined.contains(memberElement) &&
+						(isInsideScope || m.visibility == VisibilityKind.PUBLIC || 
+						 m.visibility == VisibilityKind.PROTECTED && 
 							scopingType !== null && 
 							scopingType.isInheritedProtected(m.membershipOwningPackage))) {
 						val elementqn = qn.append(elementName)
@@ -176,11 +185,11 @@ class KerMLScope extends AbstractScope {
 										// Note: If the resolution is for a single element, search the owned elements first and, if found, do
 										// not search the inherited elements. This avoids a possible cyclic linking error if getting the 
 										// superclass requires proxy resolution.
-										if (memberElement.owned(elementqn, false, false, ownedvisited, visited)) {
+										if (memberElement.owned(elementqn, false, false, ownedvisited, visited, newHashSet)) {
 											return true
 										}
 										
-										if (memberElement.gen(elementqn, visited)) {
+										if (memberElement.gen(elementqn, visited, newHashSet)) {
 											return true;
 										}
 										if (memberElement.imp(elementqn, false, visited)) {
@@ -209,23 +218,28 @@ class KerMLScope extends AbstractScope {
 		return false; 
 	}
 	
-	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited) {
+	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited, Set<Element> redefined) {
 		if (pack instanceof Type) {
-			var conjugator = pack.conjugator
+			val conjugator = pack.conjugator
 			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
 				scopeProvider.addVisited(conjugator)
-				var found = conjugator.originalType.resolveIfUnvisited(qn, false, false, visited)
+				val found = conjugator.originalType.resolveIfUnvisited(qn, false, false, visited, newHashSet)
 				scopeProvider.removeVisited(conjugator)
 				if (found) {
 					return true
 				}
+			}
+			val newRedefined = new HashSet()
+			if (redefined !== null) {
+				newRedefined.addAll(redefined)
+				newRedefined.addAll(pack.redefinedFeatures)
 			}
 			for (e: (pack as TypeImpl).basicGetOwnedGeneralizationWithDefault) {
 				if (!scopeProvider.visited.contains(e)) {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
 					scopeProvider.addVisited(e)
-					var found = e.general.resolveIfUnvisited(qn, false, false, visited)
+					val found = e.general.resolveIfUnvisited(qn, false, false, visited, newRedefined)
 					scopeProvider.removeVisited(e)
 					if (found) {
 						return true
@@ -236,14 +250,22 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 	
+	protected def Set<? extends Element> redefinedFeatures(Type type) {
+		// Note: "Basic" operations are used here to avoid proxy resolution.
+		type.ownedFeature.
+			flatMap[feature|(feature as TypeImpl).basicGetOwnedGeneralization].
+			filter[gen|gen instanceof Redefinition].
+			map[gen|(gen as GeneralizationImpl).basicGetGeneral].toSet
+	}
+	
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				// NOTE: Exclude the import e to avoid possible circular name resolution
 				// when resolving a proxy for e.importedPackage.
 				scopeProvider.addVisited(e)
-				var found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
-					e.importedPackage.resolveIfUnvisited(qn, true, false, visited)
+				val found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
+					e.importedPackage.resolveIfUnvisited(qn, true, false, visited, newHashSet)
 				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
@@ -253,11 +275,11 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 	
-	protected def boolean resolveIfUnvisited(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited) {
+	protected def boolean resolveIfUnvisited(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited, Set<Element> redefined) {
 		var found = false
 		if (pack !== null && !pack.eIsProxy && !visited.contains(pack)) {
 			visited.add(pack)
-			found = pack.resolve(qn, checkIfAdded, isInsideScope, visited)
+			found = pack.resolve(qn, checkIfAdded, isInsideScope, visited, redefined)
 			visited.remove(pack)
 		}
 		found

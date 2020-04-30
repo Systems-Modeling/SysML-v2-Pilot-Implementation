@@ -63,8 +63,8 @@ class KerMLGlobalScope extends AbstractScope {
 	}
 	
 	
-	def IScope alfScope(Package pack) {
-		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false, null)
+	def IScope scopeFor(Package pack) {
+		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false, false, null)
 	}
 	
 	def IEObjectDescription addQualification(IEObjectDescription description, String name) {
@@ -88,7 +88,7 @@ class KerMLGlobalScope extends AbstractScope {
 						result = root;
 					}
 				} else if (root.EObjectOrProxy instanceof Package) {
-					result = alfScope(EcoreUtil.resolve(root.EObjectOrProxy, resource) as Package).
+					result = scopeFor(EcoreUtil.resolve(root.EObjectOrProxy, resource) as Package).
 						getSingleElement(name.skipFirst(1)).addQualification(name.firstSegment)	
 				}
 			}
@@ -105,7 +105,7 @@ class KerMLGlobalScope extends AbstractScope {
 			val element = root.EObjectOrProxy
 			if (element instanceof Package) {
 				allElements = Iterables.concat(allElements, 
-					alfScope(element as Package).allElements.map[addQualification(root.name.firstSegment)]
+					scopeFor(element as Package).allElements.map[addQualification(root.name.firstSegment)]
 				)
 			}
 		}

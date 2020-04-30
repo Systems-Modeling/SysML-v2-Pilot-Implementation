@@ -292,7 +292,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		return basicGetOwnedGeneralization();
 	}
 
-	protected EList<Generalization> basicGetOwnedGeneralization() {
+	public EList<Generalization> basicGetOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		for (Relationship relationship: this.getOwnedRelationship()) {
 			if (relationship instanceof Generalization &&
@@ -699,11 +699,15 @@ public class TypeImpl extends PackageImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedPackages, excludedTypes, includeProtected));
 			}
 		}
-		Collection<Feature> redefinedFeatures = getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
-				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
+		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
 		inheritedMemberships.removeIf(membership->redefinedFeatures.contains(membership.getMemberElement()));
 		return inheritedMemberships;
+	}
+	
+	public Collection<Feature> getRedefinedFeatures() {
+		return getOwnedFeature().stream().
+				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
+				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
 	}
 	
 	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {

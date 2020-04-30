@@ -92,8 +92,8 @@ package Objects {
 	 * selfLinks is a specialization of binaryLinks restricted to type SelfLink.
 	 */
 	abstract feature selfLinks: SelfLink[0..*] nonunique subsets binaryLinks {
-		end feature source: Anything[0..*] nonunique redefines SelfLink::source, binaryLinks::source;
-		end feature target: Anything[0..*] nonunique redefines SelfLink::target, binaryLinks::target;
+		end feature source: Anything[0..*] nonunique redefines SelfLink::self, binaryLinks::source;
+		end feature target: Anything[0..*] nonunique redefines SelfLink::myself, binaryLinks::target;
 	}
 	
 }

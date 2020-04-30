@@ -116,7 +116,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 		return
 			if (context instanceof Package) 
-				context.scopeFor(reference, null)
+				context.scopeFor(reference, null, false)
 			else 
 				super.getScope(context, reference)		
 	}
@@ -133,7 +133,8 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.scopeFor(reference, element)
+			namespace.scopeFor(reference, element,
+				reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature)
 	}
 
 	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
@@ -174,7 +175,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		}
 	}
 	
-	def IScope scopeFor(Package pack, EReference reference, Element element) {
+	def IScope scopeFor(Package pack, EReference reference, Element element, boolean isRedefinition) {
 		val parent = pack.parentPackage
 		val outerscope = 
 			if (parent === null) { // Root Package
@@ -186,10 +187,10 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				 else 
 				 	global
 			} else {
-				parent.scopeFor(reference, element)
+				parent.scopeFor(reference, element, false)
 			}		
 
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this, element)
+		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isRedefinition, element)
 	}
 	
 }

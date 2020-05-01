@@ -8,11 +8,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
 		File {from ="/library.systems/Blocks.sysml"}
 		File {from ="/library.systems/Constraints.sysml"}
-		File {from ="/library.domain/Quantities.sysml"}
-		File {from ="/library.domain/UnitsAndScales.sysml"}
-		File {from ="/library.domain/ISQ.sysml"}
-		File {from ="/library.domain/SI.sysml"}
-		File {from ="/library.domain/SIPrefixes.sysml"}
+		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+		File {from ="/library.domain/Quantities and Units/SI.sysml"}
+		File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -24,11 +24,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
 				File {from ="/library.systems/Blocks.sysml"}
 				File {from ="/library.systems/Constraints.sysml"}
-				File {from ="/library.domain/Quantities.sysml"}
-				File {from ="/library.domain/UnitsAndScales.sysml"}
-				File {from ="/library.domain/ISQ.sysml"}
-				File {from ="/library.domain/SI.sysml"}
-				File {from ="/library.domain/SIPrefixes.sysml"}
+				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				File {from ="/library.domain/Quantities and Units/SI.sysml"}
+				File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
 			}
 		}
 	}

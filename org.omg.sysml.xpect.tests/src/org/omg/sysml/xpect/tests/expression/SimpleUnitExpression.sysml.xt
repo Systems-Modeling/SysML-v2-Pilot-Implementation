@@ -4,9 +4,9 @@
                 File {from ="/library.kernel/Base.kerml"}
                 File {from ="/library.kernel/ScalarFunctions.kerml"}
                 File {from ="/library.systems/Blocks.sysml"}
-                File {from ="/library.domain/Quantities.sysml"}
-                File {from ="/library.domain/ISQ.sysml"}
-                File {from ="/library.domain/SI.sysml"}
+				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+                File {from ="/library.domain/Quantities and Units/SI.sysml"}
         }
         Workspace {
                 JavaProject {
@@ -15,9 +15,9 @@
                                 File {from ="/library.kernel/Base.kerml"}
                 				File {from ="/library.kernel/ScalarFunctions.kerml"}
                 				File {from ="/library.systems/Blocks.sysml"}
-                                File {from ="/library.domain/Quantities.sysml"}
-                                File {from ="/library.domain/ISQ.sysml"}
-                                File {from ="/library.domain/SI.sysml"}
+								File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+				                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				                File {from ="/library.domain/Quantities and Units/SI.sysml"}
                         }
                 }
         }

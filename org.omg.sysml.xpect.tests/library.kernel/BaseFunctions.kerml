@@ -9,14 +9,20 @@ package BaseFunctions {
 	
 	function size(seq: Anything[*]): Natural;
 	function isEmpty(seq: Anything[*]): Boolean;
-	function notEmpty(seq: Anything[0..*]): Boolean;
+	function notEmpty(seq: Anything[0..*]): Boolean {
+		!isEmpty(seq)
+	}
 	
-	function head(seq: Anything[0..*]): Boolean;
-	function tail(seq: Anything[0..*]): Boolean;
-	function last(seq: Anything[0..*]): Boolean;
+	function head(seq: Anything[0..*] ordered): Anything[0..1] {
+		seq[1]
+	}
+	function tail(seq: Anything[0..*] ordered): Anything[0..1];
+	function last(seq: Anything[0..*] ordered): Anything[0..1] {
+		seq[size(seq)]
+	}
 	
-	function '['(seq: Anything[0..*], index: Integer): Anything[0..1];
-	function ','(x: Anything, seq: Anything[0..*]): Anything[0..*];
+	function '['(seq: Anything[0..*] ordered, index: Integer): Anything[0..1];
+	function ','(x: Anything, seq: Anything[0..*] ordered): Anything[0..*] ordered;
 
 	abstract function 'allInstances'(): Object[0..*] {
 		abstract feature all type: Object;

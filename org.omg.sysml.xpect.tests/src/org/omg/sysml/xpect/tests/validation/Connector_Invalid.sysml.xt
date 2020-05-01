@@ -1,4 +1,3 @@
-//Owning type conformance: The owningType of the subsettingFeature shall conform to the owingType of the subsettedFeature
 //* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
@@ -31,7 +30,7 @@ package P {
 		part c : C[1] {
 			part d : D[5];
 		}
-		// XPECT errors --> "Invalid connector ends - Type of connector and its relatedFeatures do not match" at "P::a[0..1]  to cd => c::d[1];"
+		// XPECT errors --> "Invalid Connector - Type of connector and its relatedFeatures do not match" at "P::a[0..1]  to cd => c::d[1];"
 		connect P::a[0..1]  to cd => c::d[1];
 	}
 }

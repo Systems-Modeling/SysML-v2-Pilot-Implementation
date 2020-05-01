@@ -1,4 +1,3 @@
-//Owning type conformance: The owningType of the subsettingFeature shall conform to the owingType of the subsettedFeature
 //* 
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
@@ -55,9 +54,12 @@ package BindingConnectorExample {
 			
 		//redefines - redefines
 		bind b0::p0::myDefIn = b1::p1::myDefIn;
+		bind b1::p1::myDefIn = b0::p0::myDefIn;  
 		bind b0::p0::myDefIn = b1::p1::myDefOut;
 		bind b0::p0::myDefOut = b1::p1::myDefIn;
 		bind b0::p0::myDefOut = b1::p1::myDefOut;
+		bind b1::p1::myDefOut = b0::p0::myDefOut;
+		
 		
 		part b2: B1 {
 			port p2 {
@@ -67,9 +69,12 @@ package BindingConnectorExample {
 		}
 		//redefines - local
 		bind b0::p0::myDefIn = b2::p2::myIn;
-		bind b0::p0::myDefIn = b2::p2::myOut;
-		bind b0::p0::myDefOut = b2::p2::myIn;
+		bind b2::p2::myIn = b0::p0::myDefIn;
+		// XPECT errors --> "Invalid BindingConnector - Each type of the relatedFeature with direction in must have a type of the relatedFeature with direction out that conforms to it" at "b0::p0::myDefIn = b2::p2::myOut;"
+		bind b0::p0::myDefIn = b2::p2::myOut; //OutTypes[Part,Object] InTypes [A, Part, Object] 
+		bind b0::p0::myDefOut = b2::p2::myIn; //OutTypes[A, Part, Object] InTypes [Part, Object]
 		bind b0::p0::myDefOut = b2::p2::myOut;
+		bind b2::p2::myOut = b0::p0::myDefOut;
 		
 		
 		part b3 : B1;
@@ -82,13 +87,17 @@ package BindingConnectorExample {
 				ref in myIn redefines B1::p1::myDefIn;
 			}
 		}
-		// XPECT errors --> "Invalid connector ends - Type of connector and its relatedFeatures do not match" at "b0::p0::myDefIn = b3::p1::myDefIn;"
+		// XPECT errors --> "Invalid Connector - Type of connector and its relatedFeatures do not match" at "b0::p0::myDefIn = b3::p1::myDefIn;"
 		bind b0::p0::myDefIn = b3::p1::myDefIn;
-		// XPECT errors --> "Invalid connector ends - Type of connector and its relatedFeatures do not match" at "b0::p0::myDefIn = b4::p1::myDefIn;"
+		// XPECT errors --> "Invalid Connector - Type of connector and its relatedFeatures do not match" at "b0::p0::myDefIn = b4::p1::myDefIn;"
 		bind b0::p0::myDefIn = b4::p1::myDefIn;
+		// XPECT errors --> "Invalid Connector - Type of connector and its relatedFeatures do not match" at "b4::p1::myDefIn = b0::p0::myDefIn;"
+		bind b4::p1::myDefIn = b0::p0::myDefIn;
 		bind b0::p0::myDefIn = b5::p1::myDefIn;
+		bind b5::p1::myDefIn = b0::p0::myDefIn;
 		bind b0::p0::myDefIn = b5::p1::myIn;
-	
+		bind b5::p1::myIn = b0::p0::myDefIn;
+		
 
 	} 
 }

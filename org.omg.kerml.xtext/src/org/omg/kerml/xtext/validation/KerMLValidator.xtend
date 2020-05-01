@@ -70,11 +70,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	@Check
 	def checkBindingConnector(BindingConnector bc){
 		var rf = bc.relatedFeature
-		if (rf.length !== 2) {
+		if (rf.length !== 2) 
 			return //ignore i.e.,) "bind a to b" which with invalid syntax but picked up there
-		}
-		println("f1: " + rf.get(0).name + " " + rf.get(0).getType().map[name] + " " + rf.get(0).getType())
-		println("f2: " + rf.get(1).name + " " + rf.get(1).getType().map[name] + " " + rf.get(1).getType())
 
 		var inFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
 		val outFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
@@ -86,11 +83,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 				error(INVALID_BINDINGCONNECTOR_ARGUMENT, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR_ARGUMENT)
 		}
 		else { //Binding type conformance
-			rf.map[type].forEach(a|println(a.map[name] + " " + a))
-			
 			var f1types = rf.get(0).type
 			var f2types = rf.get(1).type
-			
 			var usedSupertypes = f1types.stream().map[conformsTo(bc.relatedFeature.get(1).type)].collect(Collectors.toList);
 			var f1superOrsubtypes = newHashSet //collect sub or supertypes for f1
 			f1superOrsubtypes.addAll(usedSupertypes.stream.flatMap[stream].collect(Collectors.toList))

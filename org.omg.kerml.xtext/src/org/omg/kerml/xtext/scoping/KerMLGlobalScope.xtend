@@ -64,7 +64,7 @@ class KerMLGlobalScope extends AbstractScope {
 	
 	
 	def IScope scopeFor(Package pack) {
-		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false, false, null)
+		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false, false, false, null, null)
 	}
 	
 	def IEObjectDescription addQualification(IEObjectDescription description, String name) {

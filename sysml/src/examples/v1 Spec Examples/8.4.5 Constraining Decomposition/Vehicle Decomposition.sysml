@@ -7,7 +7,7 @@ package 'Vehicle Decomposition' {
 		part chs : 'Chassis Assembly'[1] {
 			part rb redefines 'Chassis Assembly'::rb;
 			part redefines w {
-				part lb redefines w::lb;
+				part redefines lb;
 			}
 		}
 		part eng : Engine[1] {

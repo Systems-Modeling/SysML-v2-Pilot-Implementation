@@ -194,6 +194,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
+		getComputedRedefinitions();
 		return getTypes();
 	}
 	
@@ -372,10 +373,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinitions;
 	}
 	
-	public EList<Redefinition> getOwnedRedefinitionWithoutDefault() {
-		return basicGetOwnedGeneralization(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,7 +398,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected EList<Subsetting> getComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionWithoutDefault();
+		EList<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
 			addRedefinitions(redefinitions, ownedRedefinitions);
 		}
@@ -708,6 +705,32 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	// Additional redefinitions and subsets
 	
+	public EList<Subsetting> basicGetOwnedSubsetting() {
+		return basicGetOwnedGeneralization(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+	}
+	
+	public EList<Redefinition> basicGetOwnedRedefinition() {
+		return basicGetOwnedGeneralization(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
+	}
+	
+	public String getEffectiveName() {
+		String name = getName();
+		if (name == null) {
+			Feature namingFeature = getNamingFeature();
+			if (namingFeature != null && namingFeature != this) {
+				name = namingFeature.getName();
+				setName(name);
+			}
+		}
+		return name;
+	}
+	
+	protected Feature getNamingFeature() {
+		List<Redefinition> redefinitions = this.basicGetOwnedRedefinition();
+		return redefinitions.size() != 1? null:
+			redefinitions.get(0).getRedefinedFeature();
+	}
+	
 	public FeatureValue getValuation() {
 		return (FeatureValue)getOwnedFeatureMembership().stream().
 				filter(memb->memb instanceof FeatureValue).
@@ -728,8 +751,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void transform() {
 		super.transform();
-		clearCaches();
 		getComputedRedefinitions();
+		getEffectiveName();
 		getValueConnector();
 	}
 	

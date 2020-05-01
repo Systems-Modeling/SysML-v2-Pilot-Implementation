@@ -34,6 +34,11 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 		return SysMLPackage.Literals.TARGET_END;
 	}
 
+	public void computeImplicitGeneralization() {
+		addImplicitGeneralization();
+		getComputedRedefinitions();
+	}
+	
 	@Override
 	public Type getDefaultType(String... defaultNames) {
 		Type type = this.getOwningType();

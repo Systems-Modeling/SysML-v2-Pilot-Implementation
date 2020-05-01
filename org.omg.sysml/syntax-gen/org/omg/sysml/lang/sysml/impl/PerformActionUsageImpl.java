@@ -95,6 +95,11 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 		}
 		return subsettingPartDefault;
 	}
+	
+	@Override
+	protected Feature getNamingFeature() {
+		return getPerformedAction();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

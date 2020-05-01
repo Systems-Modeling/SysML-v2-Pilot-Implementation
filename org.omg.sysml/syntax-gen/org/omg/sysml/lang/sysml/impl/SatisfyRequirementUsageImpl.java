@@ -199,6 +199,11 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	}
 
 	@Override
+	protected Feature getNamingFeature() {
+		return getSatisfiedRequirement();
+	}
+
+	@Override
 	public void transform() {
 		super.transform();
 		getSatisfyingFeatureConnector();

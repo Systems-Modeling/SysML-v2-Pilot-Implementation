@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -294,7 +295,7 @@ public class TypeImpl extends PackageImpl implements Type {
 
 	public EList<Generalization> basicGetOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		for (Relationship relationship: this.getOwnedRelationship()) {
+		for (Relationship relationship: getOwnedRelationship_comp()) {
 			if (relationship instanceof Generalization &&
 					this.equals(((Generalization)relationship).getSpecific())) {
 				generalizations.add(((Generalization)relationship));
@@ -330,8 +331,12 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
-			addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
+			addImplicitGeneralization();
  		}
+	}
+	
+	protected void addImplicitGeneralization() {
+		addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
@@ -706,8 +711,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public Collection<Feature> getRedefinedFeatures() {
 		return getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
-				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
+				flatMap(feature->((FeatureImpl)feature).basicGetOwnedGeneralizationWithDefault().stream()).
+				filter(Redefinition.class::isInstance).
+				map(redefinition->((Redefinition)redefinition).getRedefinedFeature()).
+				collect(Collectors.toSet());
 	}
 	
 	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
@@ -830,6 +837,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public void transform() {
 		super.transform();
+		clearCaches();
 		computeImplicitGeneralization();
 	}
 	

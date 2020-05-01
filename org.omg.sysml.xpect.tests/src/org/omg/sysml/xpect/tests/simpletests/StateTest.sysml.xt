@@ -33,12 +33,15 @@ package StateTest {
 		
 		transition T
 			first S2
+			//bugs in implementation
 			accept Sig
 			if true
+			//bugs in implementation
 			do send Sig() to S
 			then S1;
 		
 		state S1;
+			//bugs in implementation
 			accept Sig
 			do action D
 			then S2;

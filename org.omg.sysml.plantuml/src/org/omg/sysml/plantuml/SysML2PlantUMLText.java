@@ -65,12 +65,13 @@ import com.google.inject.Inject;
 
 public class SysML2PlantUMLText {
     public enum MODE {
-        MIXED,
-        STRUCTURE,
-        STATE_MACHINE,
-        IBD,
-        ACTIVITY,
-        SEQUENCE
+        Default,
+        Tree,
+        StateMachine,
+        Interconnection,
+        Activity,
+        Sequence,
+        MIXED;
     }
 
     @Inject
@@ -90,23 +91,24 @@ public class SysML2PlantUMLText {
         return linkProvider.getText(eObj);
     }
 
-    private MODE diagramMode = MODE.MIXED;
+    private MODE diagramMode = MODE.Default;
 
-    private void setMode(MODE m) {
-        this.diagramMode = m;
+    public void setMode(MODE m) {
+        if (m != MODE.Default) {
+            this.diagramMode = m;
+        }
     }
 
     private MODE getMode(EObject eObj) {
         if (eObj instanceof StateUsage) {
-            return MODE.STATE_MACHINE;
+            return MODE.StateMachine;
         } else {
-            //return MODE.IBD;
-        	return MODE.MIXED;
+            return MODE.MIXED;
         }
     }
 
     private boolean skipStructure() {
-        return (diagramMode == MODE.STATE_MACHINE);
+        return (diagramMode == MODE.StateMachine);
     }
 
     private static void quote(StringBuilder sb, String s) {
@@ -175,8 +177,8 @@ public class SysML2PlantUMLText {
             sb.append("allow_mixing\n");
         }
 
-        if (diagramMode == MODE.IBD) {
-            sb.append("skinparam linetype polyline\nskinparam linetype ortho\n");
+        if (diagramMode == MODE.Interconnection) {
+            sb.append("skinparam ranksep 10\nskinparam linetype polyline\nskinparam linetype ortho\n");
             sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
         }
         
@@ -437,19 +439,23 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void owned2P(StringBuilder sb, Element e) {
-        StringBuilder sb2 = new StringBuilder();
+    private StringBuilder child2P(Element e) {
+        StringBuilder sb = new StringBuilder();
         if (e instanceof Type) {
             Type parent = (Type) e;
-            featureMembership2P(sb2, parent);
+            featureMembership2P(sb, parent);
         } else if (isPackage(e)) {
-            membership2P(sb2, (org.omg.sysml.lang.sysml.Package) e);
-            flushTexts(sb2);
+            membership2P(sb, (org.omg.sysml.lang.sysml.Package) e);
+            flushTexts(sb);
         }
+        return sb;
+    }
+
+    private void owned2P(StringBuilder sb, Element e) {
         if (skipStructure()) {
-            sb.append(sb2);
+            sb.append(child2P(e));
         } else {
-            closeBlock(sb, sb2);
+            closeBlock(sb, child2P(e));
         }
     }
 
@@ -477,7 +483,7 @@ public class SysML2PlantUMLText {
         addNameWithId(sb, su);
         addLink(sb, su);
         // PlantUML cannot properly render nested states if allow_mixing is enabled
-        if (diagramMode == MODE.STATE_MACHINE) {
+        if (diagramMode == MODE.StateMachine) {
             addMembersInState(sb, su);
         }
         sb.append("\n");
@@ -647,7 +653,7 @@ public class SysML2PlantUMLText {
             String style = " ";
             String name = typ.getName();
             if (typ instanceof Block) {
-                if (diagramMode == MODE.IBD) {
+                if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";
                     style = " <<block>> ";
                 } else {
@@ -655,12 +661,12 @@ public class SysML2PlantUMLText {
                 }
                 addGeneralizations(sb, typ);
             } else if (typ instanceof Class) {
-                if (diagramMode == MODE.IBD) {
+                if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";
                 }
                 addGeneralizations(sb, typ);
             } else if (typ instanceof PartProperty) {
-                if (diagramMode == MODE.IBD) {
+                if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";
                 } else {
                     style = " << (P,lightgreen) >> ";
@@ -670,22 +676,34 @@ public class SysML2PlantUMLText {
                 addConnector(sb, (Connector) typ);
                 return;
             } else if (typ instanceof PortUsage) {
-                if (diagramMode == MODE.IBD) {
-                    keyword = "rectangle ";
-                    // TODO: We need another way to neatly print a name.
-                    // name = " ";
+                if (diagramMode == MODE.Interconnection) {
+                    StringBuilder sb2 = child2P(typ);
+                    if (sb2.length() > 0) {
+                        keyword = "rectangle ";
+                    } else {
+                        keyword = "port ";
+                    }
+
+                    sb.append(keyword);
+                    addNameWithId(sb, typ, name);
+                    sb.append(style);
+                    addLink(sb, typ);
+
+                    closeBlock(sb, sb2);
+                    return;
                 } else {
                     style = " << (O,gray) >> ";
                 }
             } else if (typ instanceof Feature) {
                 addGeneralizations(sb, typ);
-                if (diagramMode == MODE.IBD) {
+                if (diagramMode == MODE.Interconnection) {
                     if (name == null) return;
                     sb.append("rectangle ");
                     Feature f = (Feature) typ;
                     StringBuilder namesb = new StringBuilder();
                     addFeatureText(namesb, f);
                     addNameWithId(sb, f, namesb.toString());
+                    sb.append(" <<port>> ");
                     addLink(sb, f);
                     sb.append('\n');
                     return;
@@ -693,7 +711,7 @@ public class SysML2PlantUMLText {
                     style = " << (F,yellow) >> ";
                 }
             } else {
-                if (diagramMode == MODE.IBD) return;
+                if (diagramMode == MODE.Interconnection) return;
                 style = " << (T,blue) >> ";
             }
             if (name == null) return;
@@ -754,7 +772,7 @@ public class SysML2PlantUMLText {
     private void type2P(StringBuilder sb, Type typ, Type parent) {
         if (typ == null) return;
 
-        if (diagramMode == MODE.IBD) {
+        if (diagramMode == MODE.Interconnection) {
             if (parent instanceof Step) return; // TODO
         } else if ((parent != null) && !skipStructure()) {
             if (typ instanceof PartProperty) {

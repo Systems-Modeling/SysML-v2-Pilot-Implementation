@@ -21,7 +21,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	}
 END_SETUP 
 */
-// XPECT noErrors ---> ""
 package '1a-Parts Tree Simplified' {
 	
 	part rearAxleAssembly {			
@@ -30,7 +29,8 @@ package '1a-Parts Tree Simplified' {
 		part rearWheel_1: Wheel[2] nonunique subsets rearWheel;
 		//subsetting - uniquness conformance is valid if subsetting multiplicity upperBound is less then or equal to 1
 		part rearWheel_2[0..1] nonunique subsets rearWheel;
-		part rearWheel_3[1] nonunique subsets rearWheel;// = rearWheel[1]; //inTypes[Integer, DataValue, Anything] outType[Anything]
+		// XPECT errors --> "Invalid BindingConnector - Each type of the relatedFeature with direction in must have a type of the relatedFeature with direction out that conforms to it" at "rearWheel[1]"
+		part rearWheel_3[1] nonunique subsets rearWheel = rearWheel[1]; //in($index) Types [Integer, DataValue, Anything],  out($result) Type[Anything]
 	}
 	block Wheel;
 }

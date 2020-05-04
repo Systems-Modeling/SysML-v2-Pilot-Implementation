@@ -2,6 +2,8 @@
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/Objects.kerml"}
+                File {from ="/library.kernel/Performances.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
                 File {from ="/library.kernel/ScalarFunctions.kerml"}
                 File {from ="/library.kernel/ControlFunctions.kerml"}
@@ -12,6 +14,8 @@
                         SrcFolder {
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
+                 				File {from ="/library.kernel/Objects.kerml"}
+                				File {from ="/library.kernel/Performances.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
                 				File {from ="/library.kernel/ScalarFunctions.kerml"}
                 				File {from ="/library.kernel/ControlFunctions.kerml"}

@@ -3,12 +3,16 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+        File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+		        File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
 			}
 		}
 	}

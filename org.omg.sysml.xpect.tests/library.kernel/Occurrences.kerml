@@ -1,10 +1,119 @@
 /**
- * This package defines associations between occurrences that assert relationships
- * modeling four-dimensional semantics. [Currently this is primarily time semantics.]
+ * This package defines the concept of occurrences and the associations between them 
+ * that assert relationships modeling four-dimensional semantics. 
+ * [Currently this is primarily time semantics.]
  */
 package Occurrences {
-	private import Base::*;
+	private import Base::Anything;
+	private import Base::things;
+	private import Objects::*;
 	
+	/**
+	 * Occurrence is the most general classifier of entities that have identity and 
+	 * may occur over time.
+	 * 
+	 * The features of Occurrence specify the semantics of portions, slices and
+	 * snapshots of an occurrence over time.
+	 */
+	abstract classifier Occurrence specializes Anything {
+		private import BaseFunctions::size;
+		
+		feature portionOfLife : Life[1] subsets portionOf;
+		
+		feature self : Occurrence[1] redefines Anything::self
+			subsets suboccurrences, portions, portionOf, timeSlices, timeSliceOf;
+		
+		/**
+		 * Occurrences that end no earlier than this occurrence starts.
+		 */
+		feature predecessors: Occurrence[0..*];
+		
+		/**
+		 * Occurrences that start no earlier than this occcurrence ends.
+		 */
+		feature successors: Occurrence[0..*];
+		
+		/**
+		 * Occurrences that start no earlier than and end no later than
+		 * this occurrence, including at least this occurrence.
+		 */
+		feature suboccurrences: Occurrence[1..*];
+		
+		/**
+		 * Occurrences that are portions of this occurrence, including at
+		 * least this occurrence.
+		 */
+		portion feature portions: Occurrence[1..*] subsets suboccurrences;
+		
+		/**
+		 * Occurrences of which this occurrence is a portion, including at
+		 * least this occurrence.
+		 */
+		feature portionOf : Occurrence[1..*];
+		
+		/**
+		 * Portions of an occurrence over some slice of time, including at
+		 * least this occurrence.
+		 */
+		portion feature timeSlices: Occurrence[1..*] subsets portions;
+		
+		/**
+		 * Occurrences of which this occurrence is a time slice, including at
+		 * least this occurrence.
+		 */
+		feature timeSliceOf : Occurrence[1..*] subsets portionOf;
+		
+		/**
+		 * Time slices of an occurrence that happen at a single instant of time
+		 * (i.e., have no duration).
+		 */
+		portion feature snapshots: Occurrence[0..*] subsets timeSlices;
+		
+		/**
+		 * Occurrences of which this occurrence is a snapshot.
+		 */
+		feature snapshotOf : Occurrence[1..*] subsets timeSliceOf;
+		
+		/**
+		 * The snapshot representing the start of the occurrence in time.
+		 */
+		portion feature startShot: Occurrence[1] subsets snapshots;
+		
+		/** 
+		 * The snapshot representing the end of the occurrence in time.
+		 */
+		portion feature endShot: Occurrence[1] subsets snapshots;
+		
+		/**
+		 * Snapshots have no duration.
+		 */
+		composite succession :Occurrences::HappensBefore, SelfLink 
+			first snapshots[1] then snapshots[1];
+		
+		/**
+		 * The startShot happens before all snapshots.
+		 */
+		composite succession startShot[1] then snapshots[0..*];
+		
+		/**
+		 * The endShot happens after all snapshots.
+		 */
+		composite succession snapshots[0..*] then endShot[1];
+		
+		/**
+		 * The incoming transfers targeting this occurrence. 
+		 */
+		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers;
+		binding incomingTransfers::transferTarget[*] = self;
+	}
+	
+	abstract class all Life specializes Occurrence {
+		/**
+		 * Lives are only portions of themselves.
+		 */
+		binding portionOf = self;
+	}
+
 	/**
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.
 	 * That is, the start time of the shorterOccurrence is no earlier than the start time
@@ -63,23 +172,6 @@ package Occurrences {
 		end feature snapshotOf: Occurrence[1..*] redefines Occurrence::snapshotOf, BinaryLink::source;
 		end portion feature snapshot: Occurrence[0..*] redefines Occurrence::snapshots, BinaryLink::target;
 	}
-	
-	/** 
-	 * Involves asserts that the behavior carried out by the involvingPerformance involves the
-	 * involvedObject.
-	 */
-	assoc Involves {
-		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLink::source;
-		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLink::target;
-	}
-	
-	/**
-	 * Performance asserts that the performer enacts the behavior carried out by the performance.
-	 */
-	 assoc Performs specializes Involves {
-	 	end feature performer: Object[0..*] redefines Involves::involvedObject, Performance::performers;
-	 	end feature performance: Performance[0..*] redefines Involves::involvingPerformance subsets Object::enactedPerformances;
-	 }
 	
 	/**
 	 * successions is a specialization of binaryLinks restricted to type HappensBefore.

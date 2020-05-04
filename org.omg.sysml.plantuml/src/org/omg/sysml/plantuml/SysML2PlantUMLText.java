@@ -461,11 +461,11 @@ public class SysML2PlantUMLText {
 
     private String getGeneralizationRelString(Generalization g) {
         if (g instanceof Redefinition) {
-            return " x..|> ";
+            return " --||> ";
         } else if (g instanceof Superclassing) {
             return " --|> ";
         }
-        return " ..|> ";
+        return " --:|> ";
     }
 
     private void addGeneralizations(StringBuilder sb, Type typ) {
@@ -640,6 +640,19 @@ public class SysML2PlantUMLText {
         }
     }
 
+    private String extractName(Element e) {
+        String name = e.getName();
+        if (!(e instanceof Feature)) return name;
+        Feature f = (Feature) e;
+        List<Type> tt = f.getType();
+        if (tt.isEmpty()) return name;
+        Type typ = tt.get(0);
+        if (typ == null) return name;
+        String typeName = typ.getName();
+        if (typeName == null) return typeName;
+        return name + ": " + typeName;
+    }
+
     private void addType(StringBuilder sb, Type typ, Type parent) {
         if (typ instanceof StateUsage) {
             StateUsage su = (StateUsage) typ;
@@ -651,7 +664,7 @@ public class SysML2PlantUMLText {
         if (!skipStructure()) {
             String keyword = "class ";
             String style = " ";
-            String name = typ.getName();
+            String name = extractName(typ);
             if (typ instanceof Block) {
                 if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";

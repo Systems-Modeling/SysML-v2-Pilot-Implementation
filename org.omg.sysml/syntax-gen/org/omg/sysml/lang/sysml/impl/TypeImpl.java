@@ -289,8 +289,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
+		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
-		return basicGetOwnedGeneralization();
+		basicGetOwnedGeneralization().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
+		return generalizations;
 	}
 
 	public EList<Generalization> basicGetOwnedGeneralization() {
@@ -806,11 +808,83 @@ public class TypeImpl extends PackageImpl implements Type {
 
 	// Utility Methods
 	
+	public List<Feature> getAllEndFeatures() {
+		List<Feature> ends = getOwnedEndFeatures();
+		int n = ends.size();
+		for (Generalization generalization: basicGetOwnedGeneralizationWithDefault()) {
+			Type general = generalization.getGeneral();
+			if (general != null) {
+				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures();
+				if (inheritedEnds.size() > n) {
+					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
+				}
+			}
+		}
+		return ends;
+	}
+	
+	public List<Feature> getOwnedEndFeatures() {
+		return getOwnedFeature().stream().
+				filter(Feature::isEnd).
+				collect(Collectors.toList());
+	}
+	
+	public List<Parameter> getAllParameters() {
+		List<Parameter> parameters = getOwnedParameters();
+		int n = parameters.size();
+		for (Generalization generalization: basicGetOwnedGeneralizationWithDefault()) {
+			Type general = generalization.getGeneral();
+			if (general != null) {
+				List<Parameter> inheritedParameters = ((TypeImpl)general).getAllParameters();
+				if (inheritedParameters.size() > n) {
+					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
+				}
+			}
+		}
+		return parameters;
+	}
+	
 	public List<Parameter> getOwnedParameters() {
 		return getOwnedFeature().stream().
 				filter(feature->feature instanceof Parameter).
 				map(feature->(Parameter)feature).
 				collect(Collectors.toList());
+	}
+	
+	public EList<Feature> getOwnedInput() {
+		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (membership instanceof FeatureMembership) {
+				FeatureMembership featureMembership = (FeatureMembership)membership;
+				FeatureDirectionKind direction = featureMembership.getDirection();
+				if (FeatureDirectionKind.IN.equals(direction) || 
+						FeatureDirectionKind.INOUT.equals(direction)) {
+					Feature feature = featureMembership.getOwnedMemberFeature();
+					if (feature != null) {
+						outputs.add(feature);
+					}
+				}
+			}
+		}
+		return outputs;
+	}
+	
+	public EList<Feature> getOwnedOutput() {
+		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (membership instanceof FeatureMembership) {
+				FeatureMembership featureMembership = (FeatureMembership)membership;
+				FeatureDirectionKind direction = featureMembership.getDirection();
+				if (FeatureDirectionKind.OUT.equals(direction) || 
+						FeatureDirectionKind.INOUT.equals(direction)) {
+					Feature feature = featureMembership.getOwnedMemberFeature();
+					if (feature != null) {
+						outputs.add(feature);
+					}
+				}
+			}
+		}
+		return outputs;
 	}
 	
 	public Feature getResult() {

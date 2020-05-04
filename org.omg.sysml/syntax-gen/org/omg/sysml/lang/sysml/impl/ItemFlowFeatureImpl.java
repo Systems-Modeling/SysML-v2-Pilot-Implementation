@@ -45,7 +45,7 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	}
 
 	@Override
-	protected EList<Subsetting> getComputedRedefinitions() {
+	protected void addComputedRedefinitions() {
 		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this,
 				SysMLPackage.FEATURE__OWNED_SUBSETTING);
 		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
@@ -53,7 +53,6 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 		if (n < 2 || ownedRedefinitions.get(1).getRedefinedFeature() == null) {
 			addRedefinitions(redefinitions, ownedRedefinitions.subList(1, n));
 		}
-		return redefinitions;
 	}
 
 	@Override

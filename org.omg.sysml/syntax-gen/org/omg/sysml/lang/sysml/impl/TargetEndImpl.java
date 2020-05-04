@@ -36,7 +36,7 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 
 	public void computeImplicitGeneralization() {
 		addImplicitGeneralization();
-		getComputedRedefinitions();
+		addComputedRedefinitions();
 	}
 	
 	@Override

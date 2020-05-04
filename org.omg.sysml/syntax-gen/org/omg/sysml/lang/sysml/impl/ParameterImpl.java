@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +19,10 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -112,4 +115,25 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 								.filter(p -> !((ParameterImpl) p).isResultParameter()).collect(Collectors.toList());
 	}
 	
+	@Override
+	public List<Redefinition> getComputedRedefinitions() {
+		List<Redefinition> redefinitions = new ArrayList<>();
+		Type type = getOwningType();
+		int i = ((TypeImpl)type).getOwnedParameters().indexOf(this);
+		if (i >= 0) {
+			for (Type general: getGeneralTypes(type)) {
+				List<? extends Feature> features = ((TypeImpl)general).getAllParameters();
+				if (i < features.size()) {
+					Feature redefinedFeature = features.get(i);
+					if (redefinedFeature != null && redefinedFeature != this) {
+						Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+						redefinition.setRedefiningFeature(this);
+						redefinition.setRedefinedFeature(redefinedFeature);
+						redefinitions.add(redefinition);
+					}
+				}
+			}
+		}
+		return redefinitions;
+	}		
 } // ParameterImpl

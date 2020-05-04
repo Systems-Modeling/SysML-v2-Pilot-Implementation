@@ -36,18 +36,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
 
-	@Override
-	protected Feature createFeatureForParameter(Feature parameter, int i) {
-		Feature input = super.createFeatureForParameter(parameter, i);
-		List<? extends Feature> arguments = getArguments();
-		if (i < arguments.size()) {
-			Feature argument = arguments.get(i);
-			addOwnedBindingConnector(
-					argument instanceof Expression ? ((ExpressionImpl) arguments.get(i)).getResult() : argument, input);
-		}
-		return input;
-	}
-
 	public List<? extends Feature> getArguments() {
 		return super.getOwnedFeature();
 	}
@@ -60,5 +48,25 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		int n = features.size();
 		return m >= n ? Collections.emptyList() : features.subList(m, n);
 	}
-
+	
+	protected void addArgumentConnectors() {
+		List<Feature> input = getOwnedInput();
+		List<? extends Feature> arguments = getArguments();
+		for (int i = 0; i < input.size(); i++) {
+			if (i < arguments.size()) {
+				Feature argument = arguments.get(i);
+				addOwnedBindingConnector(
+						argument instanceof Expression ? 
+								((ExpressionImpl) arguments.get(i)).getResult(): 
+								argument, input.get(i));
+			}		
+		}
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		addArgumentConnectors();
+	}
+	
 } // InvocationExpressionImpl

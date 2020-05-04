@@ -28,6 +28,8 @@ package TransitionPerformances {
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
+		end redefines transitionLinkSource;
+
 		succession transitionLinkSource[1] then trigger[*];
 		succession transitionLinkSource[1] then guard[*];
 		

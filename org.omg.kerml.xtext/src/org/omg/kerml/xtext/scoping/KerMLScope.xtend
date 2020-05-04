@@ -271,7 +271,7 @@ class KerMLScope extends AbstractScope {
 	protected def Set<Feature> redefinedFeatures(Type type) {
 		// Note: "Basic" operations are used here to avoid proxy resolution.
 		type.ownedFeature.
-			flatMap[feature|(feature as FeatureImpl).basicGetOwnedRedefinition].
+			flatMap[feature|(feature as FeatureImpl).basicGetOwnedRedefinitionWithComputed].
 			map[redef|(redef as RedefinitionImpl).basicGetRedefinedFeature].toSet
 	}
 	

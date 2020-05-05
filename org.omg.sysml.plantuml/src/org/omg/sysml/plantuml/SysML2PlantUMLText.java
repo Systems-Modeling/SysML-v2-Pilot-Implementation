@@ -42,14 +42,18 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartProperty;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceProperty;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -87,7 +91,10 @@ public class SysML2PlantUMLText {
     }
 
     private String getText(EObject eObj) {
-        if (linkProvider == null) return null;
+        if (eObj == null) return null;
+        if (linkProvider == null) {
+            return eObj.toString();
+        }
         return linkProvider.getText(eObj);
     }
 
@@ -111,13 +118,17 @@ public class SysML2PlantUMLText {
         return (diagramMode == MODE.StateMachine);
     }
 
-    private static void quote(StringBuilder sb, String s) {
+    private static void quote0(StringBuilder sb, String s) {
         if (s.indexOf('"') >= 0) {
             // Replace nonsafe " to ''
             s = s.replace("\"", "''");
         }
-        sb.append('"');
         sb.append(s);
+    }
+
+    private static void quote(StringBuilder sb, String s) {
+        sb.append('"');
+        quote0(sb, s);
         sb.append('"');
     }
 
@@ -277,13 +288,41 @@ public class SysML2PlantUMLText {
     private static class PRelation {
         public final Element src;
         public final Element dest;
-        public final String rel;
+        public final Element rel;
+
+        public String relString() {
+            if (rel instanceof Generalization) {
+                if (rel instanceof Redefinition) {
+                    return " --||> ";
+                } else if (rel instanceof Superclassing) {
+                    return " --|> ";
+                } else {
+                    return " --:|> ";
+                }
+            } else if (rel instanceof Comment) {
+                return " .. ";
+            } else if (rel instanceof TransitionUsage) {
+                return " --> ";
+            } else if (rel instanceof Succession) {
+                return " --> ";
+            } else if (rel instanceof Connector) {
+                return " --- ";
+            } else if (rel instanceof PartProperty) {
+                return " *-- ";
+            } else if (rel instanceof ReferenceProperty) {
+                return " o-- ";
+            } else if (rel instanceof Classifier) {
+                return " +-- ";
+            }
+            throw new IllegalArgumentException("The connector:" + rel + "is not supported.");
+        }
+
         private String description;
         public String getDescription() {
             return description;
         }
 
-        public PRelation(Element src, Element dest, String rel, String description) {
+        public PRelation(Element src, Element dest, Element rel, String description) {
             this.src = src;
             this.dest = dest;
             this.rel = rel;
@@ -297,14 +336,47 @@ public class SysML2PlantUMLText {
 
     private List<PRelation> pRelations = new ArrayList<PRelation>();
 
-    private PRelation addPRelation(Element src, Element dest, String rel, String description) {
+    private PRelation addPRelation(Element src, Element dest, Element rel, String description) {
         PRelation pr = new PRelation(src, dest, rel, description);
         pRelations.add(pr);
         return pr;
     }
 
-    private PRelation addPRelation(Element src, Element dest, String rel) {
+    private PRelation addPRelation(Element src, Element dest, Element rel) {
         return addPRelation(src, dest, rel, null);
+    }
+
+    private void addMultiplicityString(StringBuilder sb, Element e) {
+        if (!(e instanceof Type)) return;
+        Type typ = (Type) e;
+        Multiplicity m = typ.getMultiplicity();
+        if (m instanceof MultiplicityRange) {
+            MultiplicityRange mr = (MultiplicityRange) m;
+            String exl = getText(mr.getLowerBound());
+            String exu = getText(mr.getUpperBound());
+            if (exl == null) {
+                if (exu == null) return;
+                sb.append('"');
+                quote0(sb, exu);
+                sb.append('"');
+                return;
+            }
+            if ((exu == null) || (exl.equals(exu))) {
+                sb.append('"');
+                quote0(sb, exl);
+                sb.append('"');
+                return;
+            }
+            if ("0".equals(exl) && "*".equals(exu)) {
+                sb.append("\"*\"");
+            } else {
+                sb.append('"');
+                quote0(sb, exl);
+                sb.append("..");
+                quote0(sb, exu);
+                sb.append('"');
+            }
+        }
     }
 
     private void flushPRelations(StringBuilder sb) {
@@ -315,7 +387,13 @@ public class SysML2PlantUMLText {
                 && ((pr.dest == null) || checkId(pr.dest))) {
                 if ((pr.src == null) && (pr.dest == null)) continue;
                 addIdStr(sb, pr.src);
-                sb.append(pr.rel);
+
+                addMultiplicityString(sb, pr.src);
+                
+                sb.append(pr.relString());
+
+                addMultiplicityString(sb, pr.dest);
+
                 addIdStr(sb, pr.dest);
                 if (pr.getDescription() != null) {
                     sb.append(" : ");
@@ -375,7 +453,7 @@ public class SysML2PlantUMLText {
             }
         }
         if (e != null) {
-            addPRelation(c, e, "..");
+            addPRelation(c, e, c);
         }
     }
 
@@ -429,12 +507,13 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void closeBlock(StringBuilder sbParent, StringBuilder sbChild) {
+    private void closeBlock(StringBuilder sbParent, StringBuilder sbChild, String endStr) {
         if (sbChild.length() == 0) {
             sbParent.append('\n');
         } else {
             sbParent.append("{\n");
             sbParent.append(sbChild);
+            sbParent.append(endStr);
             sbParent.append("}\n");
         }
     }
@@ -451,29 +530,19 @@ public class SysML2PlantUMLText {
         return sb;
     }
 
-    private void owned2P(StringBuilder sb, Element e) {
+    private void owned2P(StringBuilder sb, Element e, String endStr) {
         if (skipStructure()) {
             sb.append(child2P(e));
         } else {
-            closeBlock(sb, child2P(e));
+            closeBlock(sb, child2P(e), endStr);
         }
-    }
-
-    private String getGeneralizationRelString(Generalization g) {
-        if (g instanceof Redefinition) {
-            return " --||> ";
-        } else if (g instanceof Superclassing) {
-            return " --|> ";
-        }
-        return " --:|> ";
     }
 
     private void addGeneralizations(StringBuilder sb, Type typ) {
         for (Generalization g: typ.getOwnedGeneralization()) {
             Type gt = g.getGeneral();
             if (gt.getName() == null) continue;
-            String rel = getGeneralizationRelString(g);
-            addPRelation(typ, gt, rel);
+            addPRelation(typ, gt, g);
         }
     }
 
@@ -557,7 +626,7 @@ public class SysML2PlantUMLText {
             dest = null;
         }
         if ((src == null) && (dest == null)) return null;
-        return addPRelation(src, dest, "-->", null);
+        return addPRelation(src, dest, ss);
     }
 
     private void addTransition(StringBuilder sb, TransitionUsage tu) {
@@ -571,7 +640,7 @@ public class SysML2PlantUMLText {
         Feature src = tu.getSource();
         Feature tgt = tu.getTarget();
         if ((src != null) && (tgt != null)) {
-            addPRelation(src, tgt, "-->", description);
+            addPRelation(src, tgt, tu, description);
         }
     }
 
@@ -605,7 +674,7 @@ public class SysML2PlantUMLText {
         if (descriptions != null) {
             int size = descriptions.size();
             if (sb2.length() > 0) {
-                closeBlock(sb, sb2);
+                closeBlock(sb, sb2, "");
                 sb.append("state ");
                 addNameWithId(sb, su);
             }
@@ -621,7 +690,7 @@ public class SysML2PlantUMLText {
                 addNameWithId(sb, su);
             }
         } else {
-            closeBlock(sb, sb2);
+            closeBlock(sb, sb2, "");
         }
         flushPRelations(sb);
     }
@@ -635,7 +704,7 @@ public class SysML2PlantUMLText {
             for (int i = 1; i < size; i++) {
                 Element end2 = getEnd(ends.get(i));
                 if (end2 == null) continue;
-                addPRelation(end1, end2, "---", null);
+                addPRelation(end1, end2, c);
             }
         }
     }
@@ -661,7 +730,9 @@ public class SysML2PlantUMLText {
             }
             return;
         }
-        if (!skipStructure()) {
+        if (skipStructure()) {
+            owned2P(sb, typ, "");
+        } else {
             String keyword = "class ";
             String style = " ";
             String name = extractName(typ);
@@ -702,7 +773,7 @@ public class SysML2PlantUMLText {
                     sb.append(style);
                     addLink(sb, typ);
 
-                    closeBlock(sb, sb2);
+                    closeBlock(sb, sb2, "");
                     return;
                 } else {
                     style = " << (O,gray) >> ";
@@ -732,8 +803,13 @@ public class SysML2PlantUMLText {
             addNameWithId(sb, typ, name);
             sb.append(style);
             addLink(sb, typ);
+
+            if (diagramMode == MODE.Interconnection) {
+                owned2P(sb, typ, "");
+            } else {
+                owned2P(sb, typ, "--\n"); // Explicitly add class separator
+            }
         }
-        owned2P(sb, typ);
     }
 
     private void addTypeText(StringBuilder sb, String prefix, Feature f) {
@@ -755,9 +831,9 @@ public class SysML2PlantUMLText {
         return null;
     }
 
-    private void addFeatureText(StringBuilder sb, Feature f) {
+    private boolean addFeatureText(StringBuilder sb, Feature f) {
         String name = f.getName();
-        if (name == null) return;
+        if (name == null) return false;
         sb.append(name);
         addTypeText(sb, ": ", f);
         FeatureValue fv = getFeatureValue(f);
@@ -780,6 +856,7 @@ public class SysML2PlantUMLText {
                 sb.append("//");
             }
         }
+        return true;
     }
 
     private void type2P(StringBuilder sb, Type typ, Type parent) {
@@ -790,13 +867,22 @@ public class SysML2PlantUMLText {
         } else if ((parent != null) && !skipStructure()) {
             if (typ instanceof PartProperty) {
                 sb = newText();
-                addPRelation(parent, typ, "*--");
+                addPRelation(parent, typ, typ);
+            } else if (typ instanceof ReferenceProperty) {
+                ReferenceProperty rp = (ReferenceProperty) typ;
+                for (FeatureTyping ft: rp.getTyping()) {
+                    Type t = ft.getType();
+                    if (t != null) {
+                        addPRelation(parent, t, typ, typ.getName());
+                    }
+                }
+                return;
             } else if (typ instanceof Classifier) {
                 sb = newText();
-                addPRelation(parent, typ, "+--");
+                addPRelation(parent, typ, typ);
             } else if (typ instanceof Feature) {
-                addFeatureText(sb, (Feature) typ);
-                sb.append('\n');
+                if (addFeatureText(sb, (Feature) typ)) sb.append('\n');
+
                 return;
             }
         }
@@ -812,6 +898,6 @@ public class SysML2PlantUMLText {
             sb.append(' ');
             addLink(sb, pkg);
         }
-        owned2P(sb, pkg);
+        owned2P(sb, pkg, "");
     }
 }

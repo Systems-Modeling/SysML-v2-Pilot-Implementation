@@ -58,7 +58,7 @@ package 'Control - Camera' {
 			ref out realImage : Image;
 		}
 		bind autoFocus::realImage = imager::focusedImage;
-		// XPECT errors --> "Invalid BindingConnector - Each type of the relatedFeature with direction in must have a type of the relatedFeature with direction out that conforms to it" at "autoFocus::realImage = imager::focusedImage2;"
+		// XPECT errors --> "Output feature must conform to input feature" at "autoFocus::realImage = imager::focusedImage2;"
 		bind autoFocus::realImage = imager::focusedImage2;
 		
 		part imager {

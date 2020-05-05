@@ -30,7 +30,7 @@ package P {
 		part c : C[1] {
 			part d : D[5];
 		}
-		// XPECT errors --> "Invalid Connector - Type of connector and its relatedFeatures do not match" at "P::a[0..1]  to cd => c::d[1];"
+		// XPECT errors --> "A connector and its related features must have a common context" at "P::a[0..1]  to cd => c::d[1];"
 		connect P::a[0..1]  to cd => c::d[1];
 	}
 }

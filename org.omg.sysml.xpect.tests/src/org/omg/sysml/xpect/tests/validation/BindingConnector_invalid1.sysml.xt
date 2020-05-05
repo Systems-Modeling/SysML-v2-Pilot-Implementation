@@ -49,7 +49,7 @@ package Example3 {
 				ref in fuelReturnIn;
 			}
 		}
-		// XPECT errors --> "Invalid BindingConnector - Each type of the relatedFeature with direction in must have a type of the relatedFeature with direction out that conforms to it" at "myAction::myOut = tankAssy::fuelTankPort::fuelReturnIn;"
+		// XPECT errors --> "Output feature must conform to input feature" at "myAction::myOut = tankAssy::fuelTankPort::fuelReturnIn;"
 		bind myAction::myOut = tankAssy::fuelTankPort::fuelReturnIn; //InTypes[Part, Object], OutTypes[Anything]
         bind tankAssy::fuelTankPort::fuelSupplyOut = myAction::myIn; //InTypes [Anything], OutTypes [Part, Object]
         
@@ -60,7 +60,7 @@ package Example3 {
 				ref in fuelReturnIn redefines FuelTankAssembly::fuelTankPort::fuelReturn;
 			}
 		}
-		// XPECT errors --> "Invalid BindingConnector - Each type of the relatedFeature with direction in must have a type of the relatedFeature with direction out that conforms to it" at "myAction::myOut = tankAssy2::fuelTankPort::fuelReturnIn;"
+		// XPECT errors --> "Output feature must conform to input feature" at "myAction::myOut = tankAssy2::fuelTankPort::fuelReturnIn;"
 		bind myAction::myOut = tankAssy2::fuelTankPort::fuelReturnIn; //InTypes[Fuel, Part, Object], OutTypes[Anything]
         bind tankAssy2::fuelTankPort::fuelSupplyOut = myAction::myIn; //InTypes [Anything], OutTypes [Part, Object]
 		

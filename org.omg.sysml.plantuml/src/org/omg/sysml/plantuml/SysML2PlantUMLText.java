@@ -61,7 +61,6 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -292,12 +291,12 @@ public class SysML2PlantUMLText {
 
         public String relString() {
             if (rel instanceof Generalization) {
-                if (rel instanceof Redefinition) {
+            	if (rel instanceof FeatureTyping) {
+            		return " --:|> ";
+            	} else if (rel instanceof Redefinition) {
                     return " --||> ";
-                } else if (rel instanceof Superclassing) {
-                    return " --|> ";
                 } else {
-                    return " --:|> ";
+                    return " --|> ";
                 }
             } else if (rel instanceof Comment) {
                 return " .. ";

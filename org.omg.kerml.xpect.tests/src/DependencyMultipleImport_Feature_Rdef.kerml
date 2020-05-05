@@ -1,6 +1,6 @@
 package OuterPackage2{
 	import OuterPackage::*;
-	feature C redefines B{
+	feature C subsets B{
 		feature c;
 	}
 }

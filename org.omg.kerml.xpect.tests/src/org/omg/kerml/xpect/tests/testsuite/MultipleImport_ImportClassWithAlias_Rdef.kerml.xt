@@ -23,8 +23,8 @@ package test{
 	//XPECT linkedName at aliass --> OuterPackage.A
 	feature C {
 			//* XPECT scope at aliass---
-		   c.a1, C.c.a1, test.C.c.a1,
-		   C, C.c, aliass, aliass.a1, c, 
+		   C.c.a1, test.C.c.a1,
+		   C, C.c, aliass, aliass.a1,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 		   test.C, test.C.c, test.aliass, test.aliass.a1, 
 	--- */

@@ -25,16 +25,16 @@ package test{
 	}
 	//XPECT linkedName at A --> test.A
 	//* XPECT scope at A ---
-		    A, A.a2, B, B.a2, B.b, 
-		    test.A, test.A.a2, test.B, test.B.a2, test.B.b,
+		    A, A.a2, B, B.b, 
+		    test.A, test.A.a2, test.B, test.B.b,
 		    OuterPackage.A.a1, OuterPackage.B, OuterPackage.A, OuterPackage.B.b, OuterPackage.B.b.a1,
 		--- */
-	feature B redefines A {
+	feature B subsets A {
 		//XPECT linkedName at a2 --> test.A.a2
 		//* XPECT scope at a2 ---
-		    a2, b, 
-		    A, A.a2, B, B.a2, B.b,
-		    test.A, test.A.a2, test.B, test.B.a2, test.B.b, 
+		    a2, 
+		    A, A.a2, B, B.b,
+		    test.A, test.A.a2, test.B, test.B.b, 
 		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, OuterPackage.B.b.a1,
 		--- */
 		feature b redefines a2 {}

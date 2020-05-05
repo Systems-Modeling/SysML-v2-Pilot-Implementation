@@ -149,13 +149,17 @@ class KerMLScope extends AbstractScope {
 		}
 	}
 	
+	protected def boolean isSkip(Element e) {
+		targetqn !== null && e === skip
+	}
+	
 	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited, Set<Element> redefined) {
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
-				if (m !== skip && !scopeProvider.visited.contains(m)) {
+				if (!isSkip(m) && !scopeProvider.visited.contains(m)) {
 					var String elementName
 					var Element memberElement
 					
@@ -253,7 +257,7 @@ class KerMLScope extends AbstractScope {
 				newRedefined.addAll(pack.redefinedFeatures)
 			}
 			for (e: (pack as TypeImpl).basicGetOwnedGeneralizationWithDefault) {
-				if (e != skip && !scopeProvider.visited.contains(e)) {
+				if (!isSkip(e) && !scopeProvider.visited.contains(e)) {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
 					scopeProvider.addVisited(e)
@@ -277,7 +281,7 @@ class KerMLScope extends AbstractScope {
 	
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
 		for (e: pack.ownedImport) {
-			if (e != skip && !scopeProvider.visited.contains(e)) {
+			if (!isSkip(e) && !scopeProvider.visited.contains(e)) {
 				// NOTE: Exclude the import e to avoid possible circular name resolution
 				// when resolving a proxy for e.importedPackage.
 				scopeProvider.addVisited(e)
@@ -296,7 +300,7 @@ class KerMLScope extends AbstractScope {
 		var found = false
 		if (pack !== null && !pack.eIsProxy && !visited.contains(pack)) {
 			visited.add(pack)
-			found = pack.resolve(qn, checkIfAdded, isInsideScope, visited, redefined)
+			found = pack.resolve(qn, checkIfAdded, false, visited, redefined)
 			visited.remove(pack)
 		}
 		found

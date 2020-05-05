@@ -25,30 +25,30 @@ package test{
 	import OuterPackage3::D;
 	//XPECT linkedName at D --> OuterPackage3.D
 	//* XPECT scope at D ---
-	   	   D.b, D.c, D.f, EE.b, EE.c, EE.f, EE.try,  test.D.b, test.D.c, test.D.f, test.EE.b, test.EE.c, test.EE.f, test.EE.try,
-		   D.b.a1, D.f.a1, EE.b.a1, EE.f.a1, EE.try.a1, D, EE, 
-		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, test.D, test.EE,
+	   	   D.c, D.f, EE.c, EE.f, EE.try,  test.D.c, test.D.f, test.EE.c, test.EE.f, test.EE.try,
+		   D.f.a1, EE.f.a1, EE.try.a1, D, EE, 
+		   test.D.f.a1, test.EE.f.a1, test.EE.try.a1, test.D, test.EE,
 		   OuterPackage.A, OuterPackage.A.a1, 
 		   OuterPackage.B,  OuterPackage.B.b,	OuterPackage.B.b.a1, 
 		   OuterPackage2.B, OuterPackage2.B.b,	OuterPackage2.B.b.a1, 
 		   OuterPackage2.C, OuterPackage2.C.b, 	OuterPackage2.C.b.a1, OuterPackage2.C.c,
 		   OuterPackage3.C, OuterPackage3.C.b,  OuterPackage3.C.b.a1, OuterPackage3.C.c,
-		   OuterPackage3.D, OuterPackage3.D.b,  OuterPackage3.D.b.a1, OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
+		   OuterPackage3.D,  OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
 	--- */
-	feature EE redefines D {
+	feature EE subsets D {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---
-		   D.b.a1, D.f.a1,  EE.b.a1,  EE.f.a1,  EE.try.a1, 
-		   test.D.b.a1, test.D.f.a1, test.EE.b.a1, test.EE.f.a1, test.EE.try.a1, 
-		   b.a1, f.a1,try, try.a1,
-		   D, D.b, D.c, D.f, EE, EE.b, EE.c, EE.f, EE.try, b, c, f,
-		   test.D, test.D.b, test.D.c, test.D.f, test.EE, test.EE.b, test.EE.c, test.EE.f, test.EE.try, 
+		   D, D.f.a1,  EE.f.a1,  EE.try.a1, 
+		   test.D.f.a1, test.EE.f.a1, test.EE.try.a1, 
+		   f.a1,
+		   D.c, D.f, EE, EE.c, EE.f, EE.try, c, f,
+		   test.D, test.D.c, test.D.f, test.EE, test.EE.c, test.EE.f, test.EE.try, 
 		   OuterPackage.A, OuterPackage.A.a1, 
 		   OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
 		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
 		   OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.c, OuterPackage2.C.b.a1,
 		   OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c,
-		   OuterPackage3.D, OuterPackage3.D.b, OuterPackage3.D.c, OuterPackage3.D.b.a1, OuterPackage3.D.f, OuterPackage3.D.f.a1,
+		   OuterPackage3.D, OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
 s	--- */
 		feature try redefines b;
 	}

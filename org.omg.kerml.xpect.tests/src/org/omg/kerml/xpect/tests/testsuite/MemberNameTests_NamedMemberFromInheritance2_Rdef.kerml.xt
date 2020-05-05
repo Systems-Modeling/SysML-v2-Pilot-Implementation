@@ -23,14 +23,14 @@ package test{
 	}
 	alias A as AA;
 	//* XPECT scope at AA ---
-	   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.a, B.aa, B.b, B.b_alias,
-	   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, test.B.b, test.B.b_alias,
+	   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.b, B.b_alias,
+	   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.b, test.B.b_alias,
 		--- */
 	//XPECT linkedName at AA --> test.A
 	feature B redefines AA{
 		//* XPECT scope at aa ---
-			   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.a, B.aa, B.b, B.b_alias, a, aa, b, b_alias,
-			   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.a, test.B.aa, test.B.b, test.B.b_alias,
+			   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.b, B.b_alias, a, aa, 
+			   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.b, test.B.b_alias,
 		--- */
 		//XPECT linkedName at aa --> test.A.a
 		feature b redefines aa;

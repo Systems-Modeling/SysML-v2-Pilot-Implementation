@@ -188,7 +188,7 @@ public class SysML2PlantUMLText {
         }
 
         if (diagramMode == MODE.Interconnection) {
-            sb.append("skinparam ranksep 10\nskinparam linetype polyline\nskinparam linetype ortho\n");
+            sb.append("skinparam ranksep 8\nskinparam linetype polyline\nskinparam linetype ortho\n");
             sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
         }
         
@@ -313,7 +313,7 @@ public class SysML2PlantUMLText {
             } else if (rel instanceof Classifier) {
                 return " +-- ";
             }
-            throw new IllegalArgumentException("The connector:" + rel + "is not supported.");
+            throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
         }
 
         private String description;
@@ -387,11 +387,11 @@ public class SysML2PlantUMLText {
                 if ((pr.src == null) && (pr.dest == null)) continue;
                 addIdStr(sb, pr.src);
 
-                addMultiplicityString(sb, pr.src);
+                // addMultiplicityString(sb, pr.src);
                 
                 sb.append(pr.relString());
 
-                addMultiplicityString(sb, pr.dest);
+                addMultiplicityString(sb, pr.rel);
 
                 addIdStr(sb, pr.dest);
                 if (pr.getDescription() != null) {

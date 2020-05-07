@@ -23,12 +23,12 @@ END_SETUP
 */
 package Test {
 	
-	value type A;
+	block A;
 	block B;
 	block C specializes B;
 	
 	part P {
-		value a: A {
+		part a: A {
 			in x: ScalarValues::Integer;
 		}
 		

@@ -38,7 +38,9 @@ import java.util.List
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
-import java.util.ArrayList
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.impl.FeatureImpl
 
 /**
  * This class contains custom validation rules. 
@@ -50,75 +52,83 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector - Connector context'
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
+	
+	@Check
+	def checkElement(Element e) {
+		// Ensure transformations are carried out on an element before checking its contained elements.
+		(e as ElementImpl).transform
+	}
 	 
 	@Check
 	def checkConnector(Connector c){
-		val cowners = getOwnersWhoAreType(c, newArrayList);
-		val relatedFeaturesOwners = c.getRelatedFeature().map[getOwnersWhoAreType(newArrayList)]
-		relatedFeaturesOwners.forEach[s|cowners.retainAll(s)]
-		if (cowners.empty) //no common Types
+		var relatedFeatures = c.relatedFeature
+		
+		// Allow related features that are inherited by the owner of the connector
+		val cOwner = c.owner
+		if (cOwner instanceof Type) {
+			val ownerFeatures = cOwner.inheritedFeature
+			relatedFeatures.removeIf[f|ownerFeatures.contains(f)]
+		}
+		
+		val cPath = c.getFeatureMembershipPath;
+		val relatedFeaturesPath = relatedFeatures.map[getFeatureMembershipPath]
+		relatedFeaturesPath.forEach[s|cPath.retainAll(s)]
+		if (cPath.empty) //no common Types
 			error("A connector and its related features must have a common context", c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
 	}
 	
-	//return element's owner up to (but not including) the first one that is not a Type
-	protected def List<Type> getOwnersWhoAreType(Element e, List<Type> tlist){
- 		var owner = e.getOwner()
-		while(owner instanceof Type && !tlist.contains(owner) ){
-			tlist.add(owner as Type)
-			owner = owner.getOwner
+	//return features's owners up to and including the first one that is not a Feature and an owningType
+	protected def List<Element> getFeatureMembershipPath(Feature f){
+		val ownerList = newArrayList
+ 		var owner = f.owner
+ 		var owningType = f.owningType
+		while(owner instanceof Feature && owner === owningType) {			
+			ownerList.add(owner)
+			owningType = (owner as Feature).owningType
+			owner = owner.owner
 		}
-		return tlist
+		if (owner !== null) {
+			ownerList.add(owner)
+		}
+		return ownerList
 	}
 	
 	@Check
 	def checkBindingConnector(BindingConnector bc){
 		val rf = bc.relatedFeature
-		if (rf.length !== 2) 
-			return //ignore i.e.,) "bind a to b" which with invalid syntax but picked up there
+		if (rf.length !== 2) {
+			return //ignore binding connectors with invalid syntax
+		}
+		
+		// TODO: Remove this after merging with ST6RI-194
+		rf.forEach[f|(f as ElementImpl).transform]
 
+		
 		val inFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
 		val outFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
 		
-		//Argument type conformance
-		if (inFeature !== null && outFeature !== null){
-			val outComformsToIn = inFeature.type.map[conformsFrom(outFeature.type)]
-			if (outComformsToIn.filter[!empty].length != inFeature.type.length)		
+		if (// TEMP: Do not check argument type conformance for feature value connectors.
+			!(bc.owner instanceof Feature && (bc.owner as FeatureImpl).valueConnector === bc) &&
+			
+			inFeature !== null && outFeature !== null){
+			//Argument type conformance
+			val inTypes = inFeature.type
+			val outTypes = outFeature.type
+			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
+			if (outConformsToIn.filter[!empty].length != inTypes.length)		
 				error("Output feature must conform to input feature", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
 		}
-		else { //Binding type conformance
+		else { 
+			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
-			var usedSupertypes = f1types.map[conformsTo(f2types)]
 			
-			val f2typesFiltered = new ArrayList(f2types) // Create a new list to avoid a possible exception when "removeAll" is used
-			f2typesFiltered.removeAll(usedSupertypes.flatten) // Filter f1 supertypes from f2 types
+			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
+			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
 			
-			// for f1
-			for(var i = 0; i < usedSupertypes.length; i++){
-				if (usedSupertypes.get(i).empty) {//no supertype found
-					//check its subtypes
-					var usedSubtypes = f1types.get(i).conformsFrom(f2types)
-					if (usedSubtypes.empty) {
-						error("Binding connector ends must have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
-						return
-					}
-					else
-						f2typesFiltered.removeAll(usedSubtypes) // Filter f1 subtypes from f2 types
-				}
-			}
-			
-			// for f2
-			usedSupertypes = f2typesFiltered.map[conformsTo(f1types)]
-			for(var i = 0; i < usedSupertypes.length; i++){
-				if (usedSupertypes.get(i).empty) {//no supertype found
-					//check its subtypes
-					var usedSubtypes = f2typesFiltered.get(i).conformsFrom(f1types)
-					if (usedSubtypes.empty) {
-						error("Binding connector ends must have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
-						return
-					}
-				}
-			}
+			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
+				f2ConformsTof1.filter[!empty].length != f1types.length)
+				error("Binding connector ends must have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 		}
 	}
 	

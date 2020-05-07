@@ -19,14 +19,19 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	}
 END_SETUP 
 */
+// XPECT noErrors --> ""
 package P {
-	part a;
-	block B {
-		part c {
-			part d;
+	block A;
+	block B;
+	block C;
+	block D;
+	
+	part a : A[0..5];
+	part b : B {
+		part c : C[1] {
+			part d : D[5];
 		}
-		// XPECT errors --> "A connector and its related features must have a common context" at "P::a to c::d;"
-		connect P::a to c::d;
+		connect P::a[0..1]  to cd => c::d[1];
 	}
 }
 

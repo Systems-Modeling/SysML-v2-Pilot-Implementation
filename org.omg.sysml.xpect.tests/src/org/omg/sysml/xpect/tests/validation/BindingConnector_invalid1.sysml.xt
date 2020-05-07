@@ -34,11 +34,7 @@ package Example3 {
 
 	block Vehicle;
 	part vehicle : Vehicle {
-		value type MyInType;
-		value type MyOutType;
-		activity myActivity(in myIn: MyInType, out myOut: MyOutType);
-		
-		action myAction: myActivity(
+		action myAction(
 			in myIn, 
 			out myOut
 		);

@@ -160,7 +160,6 @@ package ConstraintTest {
 	}
 	
 	part vehicle4 :> vehicle {
-		//Invalid BindingConnector error - in($result) Types: [ScalarValue, DataValue, Anything] out($x)Types: [Anything]
 		assert constraint { mass == engine::mass + frontAxleAssembly::mass + rearAxleAssembly::mass }
 		value mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {

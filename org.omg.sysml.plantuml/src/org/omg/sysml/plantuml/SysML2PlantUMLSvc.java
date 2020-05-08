@@ -42,9 +42,15 @@ public class SysML2PlantUMLSvc {
         OptionFlags.getInstance().setDotExecutable(path);
     }
 
+    private SysML2PlantUMLText.MODE mode = SysML2PlantUMLText.MODE.Default;
+
+    public void setView(String view) {
+		mode = SysML2PlantUMLText.MODE.valueOf(view);
+    }
+
     public String getSVG(EObject e) throws IOException {
-        // TODO: Refactor how to setup visualization mode
         s2Text.setupVisualizationEObjects(e);
+        s2Text.setMode(mode);
         String text = s2Text.sysML2PUML(Arrays.asList(e));
         final FileFormatOption ffo = new FileFormatOption(FileFormat.SVG);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();

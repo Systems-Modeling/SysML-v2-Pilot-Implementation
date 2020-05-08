@@ -252,12 +252,17 @@ public class SysMLInteractive extends SysMLUtil {
 		getSysML2PlantUMLSvc().setGraphVizPath(path);
 	}
 
-	public VizResult viz(String name) {
+	public VizResult viz(String name, List<String> views) {
 		this.counter++;
 		try {
 			Element element = this.resolve(name);
             if (element != null) {
-                return new VizResult(getSysML2PlantUMLSvc().getSVG(element));
+                SysML2PlantUMLSvc svc = getSysML2PlantUMLSvc();
+                if (!views.isEmpty()) {
+                    String view = views.get(0);
+                    svc.setView(view);
+                }
+                return new VizResult(svc.getSVG(element));
             } else {
                 return VizResult.unresolvedResult(name);
             }

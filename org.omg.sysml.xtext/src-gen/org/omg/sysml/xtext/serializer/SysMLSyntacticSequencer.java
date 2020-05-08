@@ -392,10 +392,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship_comp+=FeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
@@ -416,10 +416,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship_comp+=FeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
@@ -439,7 +439,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' | '{')+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReference
+	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
 	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}

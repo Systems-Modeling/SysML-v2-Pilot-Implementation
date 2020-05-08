@@ -1693,7 +1693,11 @@ BaseExpression returns SysML::Expression :
 ;
 
 FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
-	ownedFeatureMembership_comp += FeatureReference
+	ownedFeatureMembership_comp += FeatureReferenceMember
+;
+
+FeatureReference returns SysML::Parameter :
+	ownedRelationship_comp += Subset
 ;
 
 InvocationExpression returns SysML::InvocationExpression :
@@ -1777,8 +1781,8 @@ ExpressionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = Expression
 ;
 
-FeatureReference returns SysML::FeatureMembership :
-	memberFeature = [SysML::Feature | QualifiedName ]
+FeatureReferenceMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = FeatureReference
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
@@ -1815,11 +1819,11 @@ QueryNameExpression returns SysML::QueryPathExpression :
     | isDescendants ?= '/'
     | @traversal
     */
-    ownedFeatureMembership_comp += FeatureReference
+    ownedFeatureMembership_comp += FeatureReferenceMember
 ;
 
 QueryHeadExpression returns SysML::QueryPathExpression :
-	'./' ownedFeatureMembership_comp += FeatureReference
+	'./' ownedFeatureMembership_comp += FeatureReferenceMember
 ;        
 
 /* NAMES */

@@ -12,8 +12,7 @@ import org.omg.sysml.xpect.tests.validation.SysMLValidationTests;
 		SysMLSimpleTests.class, //
 		SysMLExpressionTest.class, //
 		SysMLValidationTests.class, //
-		SysMLQueryTest.class,
-		SysMLExpressionTest.class,
+		SysMLQueryTest.class
 })
 @RunWith(Suite.class)
 public class AllSysMLXpectTests {

@@ -101,7 +101,9 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// TODO: Remove this after merging with ST6RI-194
-		rf.forEach[f|(f as ElementImpl).transform]
+		rf.forEach[f|
+			(f as ElementImpl).transform
+		]
 
 		
 		val inFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]

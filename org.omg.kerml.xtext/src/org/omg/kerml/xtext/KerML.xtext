@@ -989,7 +989,11 @@ BaseExpression returns SysML::Expression :
 ;
 
 FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
-	ownedFeatureMembership_comp += FeatureReference
+	ownedFeatureMembership_comp += FeatureReferenceMember
+;
+
+FeatureReference returns SysML::Parameter :
+	ownedRelationship_comp += Subset
 ;
 
 InvocationExpression returns SysML::InvocationExpression :
@@ -1069,8 +1073,8 @@ UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 
 /* EXPRESSION MEMBERSHIPS */
 
-FeatureReference returns SysML::FeatureMembership :
-	memberFeature = [SysML::Feature | QualifiedName ]
+FeatureReferenceMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = FeatureReference
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :

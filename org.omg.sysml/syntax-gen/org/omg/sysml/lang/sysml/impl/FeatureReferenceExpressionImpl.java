@@ -3,7 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
@@ -79,10 +78,9 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 */
 	public Feature basicGetReferent() {
 		if (referent == null) {
-			clearCaches();
-			EList<Feature> feature = getFeature();
-			if (!feature.isEmpty()) {
-				referent = feature.get(0);
+			Feature result = getResult();
+			if (result != null) {
+				referent = ((FeatureImpl)result).getFirstSubsettedFeature().orElse(null);
 			}
 		}
 		return referent;
@@ -98,11 +96,6 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		referent = newReferent;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_REFERENCE_EXPRESSION__REFERENT, oldReferent, referent));
-	}
-
-	@Override
-	public Feature getResult() {
-		return getReferent();
 	}
 
 	/**

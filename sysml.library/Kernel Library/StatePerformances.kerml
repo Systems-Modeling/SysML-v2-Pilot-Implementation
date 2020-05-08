@@ -52,6 +52,8 @@ package StatePerformances {
 		feature transitionLinkSource: StatePerformance 
 			redefines TransitionPerformance::transitionLinkSource {
 			feature accepted[1] redefines StatePerformance::accepted;
+			feature middle redefines StatePerformance::middle;
+			feature exit redefines StatePerformance::exit;
 		}
 		
 		feature trigger redefines TransitionPerformance::trigger {

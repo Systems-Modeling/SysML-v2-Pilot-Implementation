@@ -123,8 +123,11 @@ package Base {
 		/**
 		 * The incoming transfers targeting this occurrence. 
 		 */
-		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers;
-		binding incomingTransfers::transferTarget[*] = self;
+		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+			end feature transferSource redefines Transfers::Transfer::transferSource;
+			end feature transferTarget redefines Transfers::Transfer::transferTarget;
+		}
+		binding incomingTransfers::transferTarget[*] = self; 
 	}
 	
 	abstract class all Life specializes Occurrence {
@@ -251,7 +254,7 @@ package Base {
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of literal expressions.
 	 */				
-	abstract function LiteralEvaluation(): Anything specializes Evaluation;
+	abstract function LiteralEvaluation(): ScalarValues::ScalarValue[1] specializes Evaluation;
 	
 	/**
 	 * NullEvaluation is a specialization of Evaluation for the case of null expressions.

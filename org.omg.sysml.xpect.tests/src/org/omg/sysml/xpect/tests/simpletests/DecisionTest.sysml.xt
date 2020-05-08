@@ -2,28 +2,30 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
 		File {from ="/library.systems/Blocks.sysml"}
 		File {from ="/library.systems/Activities.sysml"}
 		File {from ="/library.systems/ControlNodes.sysml"}
 		File {from ="/library.systems/States.sysml"}
-		File {from ="/library.kernel/Base.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
-		File {from ="/library.kernel/Occurrences.kerml"}
-		File {from ="/library.kernel/ScalarFunctions.kerml"}
 			
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.systems/Blocks.sysml"}
 				File {from ="/library.systems/Activities.sysml"}
 				File {from ="/library.systems/ControlNodes.sysml"}
 				File {from ="/library.systems/States.sysml"}
-				File {from ="/library.kernel/Base.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
-				File {from ="/library.kernel/Occurrences.kerml"}
-				File {from ="/library.kernel/ScalarFunctions.kerml"}
 			}
 		}
 	}
@@ -31,7 +33,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 activity DecisionTest {
-	value x = 1;
+	value x: ScalarValues::Integer = 1;
 	
 	decide 'test x';
 	if x == 1 then A1; 

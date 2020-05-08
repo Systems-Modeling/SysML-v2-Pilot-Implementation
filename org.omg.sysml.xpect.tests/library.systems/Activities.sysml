@@ -69,7 +69,7 @@ package Activities {
 	 * transferActions is the base feature for all TransferAction usages.
 	 * transferActions is a subset of the incomingTransfers of its context.
 	 */
-	abstract action transferActions: TransferAction[0..*] nonunique (context: Occurrence) :> 
+	abstract action transferActions: TransferAction[0..*] (context: Occurrence) :> 
 		Transfers::transfers, actions, transferActions::context::incomingTransfers;
 	
 }

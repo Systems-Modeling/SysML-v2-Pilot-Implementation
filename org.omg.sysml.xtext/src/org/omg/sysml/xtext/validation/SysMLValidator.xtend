@@ -30,12 +30,10 @@ import org.eclipse.xtext.validation.Check
 import org.omg.kerml.xtext.validation.KerMLValidator
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.MultiplicityRange
 import org.omg.sysml.lang.sysml.LiteralInteger
 import org.omg.sysml.lang.sysml.LiteralUnbounded
-import java.util.Set
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.Connector
@@ -71,8 +69,7 @@ class SysMLValidator extends KerMLValidator {
 		var subsettedOwningType = sub.subsettedFeature?.owningType
 		
 		// Due to how connector is implemented, no validation is performed if the owner is a Connector.
-		if ( subsettingOwningType === null || subsettedOwningType === null ||
-			subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
+		if ( subsettingOwningType instanceof Connector || subsettedOwningType instanceof Connector ) 
 			return;
 
 		// Multiplicity conformance
@@ -132,23 +129,5 @@ class SysMLValidator extends KerMLValidator {
 		}
 	}
 	
-	protected def boolean conformsTo(Type subtype, Type supertype) {
-		subtype.conformsTo(supertype, newHashSet);
-	}
 	
-	// Note: Generalizations are allowed to be cyclic.
-	protected def boolean conformsTo(Type subtype, Type supertype, Set<Type> visited) {
-		if (supertype === null || subtype === supertype) {
-			true
-		} else {
-			visited.add(subtype)
-			if (subtype.isConjugated) {
-				var originalType = subtype.ownedConjugator.originalType
-				!visited.contains(originalType) && originalType.conformsTo(supertype)
-			} else {
-				subtype.ownedGeneralization.exists[!visited.contains(general) && general.conformsTo(supertype, visited)]
-			}
-		}
-	}
-
 }

@@ -48,6 +48,7 @@ import org.eclipse.xtext.scoping.IGlobalScopeProvider
 import org.omg.sysml.lang.sysml.QueryPathExpression
 import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
+import org.omg.sysml.lang.sysml.Connector
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -94,19 +95,25 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 					return context.redefiningFeature.scope_owningNamespace(reference)
 			}
 			case SysMLPackage.eINSTANCE.subsetting_SubsettedFeature: {
-				if (context instanceof Subsetting)
-					return context.subsettingFeature.scope_owningNamespace(reference)
+				if (context instanceof Subsetting) {
+				    var subsettingFeature = context.subsettingFeature
+				    var owningType = subsettingFeature?.owningType
+        		    if (owningType instanceof QueryPathExpression) {
+					    return subsettingFeature.scope_QueryPathExpression(owningType as QueryPathExpression, reference)
+        		    } else if (owningType instanceof Connector) {
+        		    	if (owningType.connectorEnd.contains(subsettingFeature)) {
+        		    		return owningType.scope_owningNamespace(reference)
+        		    	}
+        		    }
+					return subsettingFeature.scope_owningNamespace(reference)
+				}
 			}
 			case SysMLPackage.eINSTANCE.membership_MemberElement, 
 			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature,
 			case SysMLPackage.eINSTANCE.parameterMembership_MemberParameter: {
 				if (context instanceof Membership) {
-				    var owningPackage = context.membershipOwningPackage
-        		    if (owningPackage instanceof QueryPathExpression) {
-					    return context.scope_QueryPathExpression(owningPackage as QueryPathExpression, reference)
-        		    } 
-				    return context.scope_Namespace(owningPackage, reference)
-                  }
+				    return context.scope_Namespace(context.membershipOwningPackage, reference)
+                }
 			}
 			case SysMLPackage.eINSTANCE.import_ImportedPackage: {
 				if (context instanceof Import) {

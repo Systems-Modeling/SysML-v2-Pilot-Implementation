@@ -218,7 +218,7 @@ package Base {
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of literal expressions.
 	 */				
-	abstract function LiteralEvaluation(): Anything specializes Evaluation;
+	abstract function LiteralEvaluation(): ScalarValues::ScalarValue[1] specializes Evaluation;
 	
 	/**
 	 * NullEvaluation is a specialization of Evaluation for the case of null expressions.
@@ -291,7 +291,7 @@ package Base {
 	/**
 	 * literalEvaluations is a specialization of evaluations restricted to type LiteralEvaluation.
 	 */
-	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations;
+	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique (): ScalarValues::ScalarValue subsets evaluations;
 	
 	/**
 	 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.

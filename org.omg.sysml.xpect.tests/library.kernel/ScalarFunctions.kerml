@@ -28,7 +28,7 @@ package ScalarFunctions {
 	abstract function '..'(lower: ScalarValue, upper: ScalarValue): ScalarValue[0..*];
 	
 	abstract function sum(collection: ScalarValue[0..*]): ScalarValue;
-	abstract function product(collection: ScalarValue[0..*]);
+	abstract function product(collection: ScalarValue[0..*]): ScalarValue;
 	
 	function sum0(collection: ScalarValue[0..*], zero: ScalarValue): ScalarValue {
 		collection->reduce '+' ?? zero

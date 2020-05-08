@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 import org.omg.sysml.xpect.tests.expression.SysMLExpressionTest;
+import org.omg.sysml.xpect.tests.query.SysMLQueryTest;
 import org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests;
 import org.omg.sysml.xpect.tests.validation.SysMLValidationTests;
 
@@ -11,6 +12,7 @@ import org.omg.sysml.xpect.tests.validation.SysMLValidationTests;
 		SysMLSimpleTests.class, //
 		SysMLExpressionTest.class, //
 		SysMLValidationTests.class, //
+		SysMLQueryTest.class
 })
 @RunWith(Suite.class)
 public class AllSysMLXpectTests {

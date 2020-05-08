@@ -1,0 +1,50 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package BindingConnectorExample {
+	block B0;
+	block B1; 
+	block V;
+	part v : V {
+		part b0 : B0 {
+			port p0 {
+				ref in myIn;
+				ref out myOut;
+			}
+		}
+		part b1 : B1 {
+			port p1 {
+				ref in myIn;
+				ref out myOut;
+			}
+		}
+		//in[Part, Object] out[Part, Object]
+		bind b0::p0::myIn = b1::p1::myOut;
+		bind b0::p0::myOut = b1::p1::myIn;
+		//inin
+		bind b0::p0::myIn = b1::p1::myIn;
+		bind b0::p0::myOut = b1::p1::myOut;
+		//outout
+		bind b0::p0::myIn = b1::p1::myOut;
+		bind b0::p0::myOut = b1::p1::myIn;
+		
+	} 
+}

@@ -18,7 +18,7 @@ package ComplexFunctions {
 	function '/'(x: Complex, y: Complex): Complex specializes NumericalFunctions::'/';
 	function '**'(x: Complex, y: Complex): Complex specializes NumericalFunctions::'**';
 	
-	function '='(x: Complex, y: Complex): Boolean specializes BaseFunctions::'==';
+	function '=='(x: Complex, y: Complex): Boolean specializes BaseFunctions::'==';
 	function '!='(x: Complex, y: Complex): Boolean specializes BaseFunctions::'!=';
 	
 	function ToString(x: Complex): String specializes BaseFunctions::ToString;

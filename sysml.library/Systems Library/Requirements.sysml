@@ -26,7 +26,7 @@ package Requirements {
 		/**
 		 * If all the assumptions are true, then all the required constraints must hold.
 		 */
-		!allTrue(assumptions) | allTrue(constraints)
+		!allTrue(assumptions()) | allTrue(constraints())
 	}
 	
 	/**

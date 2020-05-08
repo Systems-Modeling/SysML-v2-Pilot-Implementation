@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Block;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -63,6 +64,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 
 import com.google.inject.Inject;
 
@@ -115,6 +117,10 @@ public class SysML2PlantUMLText {
 
     private boolean skipStructure() {
         return (diagramMode == MODE.StateMachine);
+    }
+
+    private boolean showsMultiplicity() {
+        return (diagramMode != MODE.Interconnection) && !skipStructure();
     }
 
     private static void quote0(StringBuilder sb, String s) {
@@ -186,9 +192,13 @@ public class SysML2PlantUMLText {
         if (!skipStructure()) {
             sb.append("allow_mixing\n");
         }
+        sb.append("left to right direction\n");
 
         if (diagramMode == MODE.Interconnection) {
-            sb.append("skinparam ranksep 8\nskinparam linetype polyline\nskinparam linetype ortho\n");
+            sb.append("skinparam ranksep 8\n");
+            // sb.append("skinparam linetype polyline\n");
+            sb.append("skinparam linetype ortho\n");
+            // sb.append("skinparam arrowThickness 3\n");
             sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
         }
         
@@ -302,10 +312,12 @@ public class SysML2PlantUMLText {
                 return " .. ";
             } else if (rel instanceof TransitionUsage) {
                 return " --> ";
+            } else if (rel instanceof BindingConnector) {
+                return " -[thickness=5,#red]- ";
             } else if (rel instanceof Succession) {
                 return " --> ";
             } else if (rel instanceof Connector) {
-                return " --- ";
+                return " -[thickness=3,#blue]- ";
             } else if (rel instanceof PartProperty) {
                 return " *-- ";
             } else if (rel instanceof ReferenceProperty) {
@@ -346,6 +358,7 @@ public class SysML2PlantUMLText {
     }
 
     private void addMultiplicityString(StringBuilder sb, Element e) {
+        if (!showsMultiplicity()) return;
         if (!(e instanceof Type)) return;
         Type typ = (Type) e;
         Multiplicity m = typ.getMultiplicity();
@@ -780,15 +793,16 @@ public class SysML2PlantUMLText {
             } else if (typ instanceof Feature) {
                 addGeneralizations(sb, typ);
                 if (diagramMode == MODE.Interconnection) {
+                    if (!(typ instanceof Usage)) return;
                     if (name == null) return;
-                    sb.append("rectangle ");
                     Feature f = (Feature) typ;
                     StringBuilder namesb = new StringBuilder();
                     addFeatureText(namesb, f);
+                    if (namesb.length() == 0) return;
+                    sb.append("rectangle ");
                     addNameWithId(sb, f, namesb.toString());
-                    sb.append(" <<port>> ");
                     addLink(sb, f);
-                    sb.append('\n');
+                    owned2P(sb, typ, "");
                     return;
                 } else {
                     style = " << (F,yellow) >> ";

@@ -228,11 +228,11 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getReqId() {
-		return reqId == null? "": reqId;
+		return reqId;
 	}
 
 	@Override
@@ -255,14 +255,11 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText() {
-		if (text == null) {
-			setText(getDocumentationText());
-		}
-		return text == null? "": text;
+		return text;
 	}
 
 	/**

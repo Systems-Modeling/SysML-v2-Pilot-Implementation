@@ -150,7 +150,8 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @generated
 	 */
 	public boolean isSetBound() {
-		return !getBound().isEmpty();
+		return eIsSet(SysMLPackage.MULTIPLICITY_RANGE__LOWER_BOUND)
+			|| eIsSet(SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND);
 	}
 
 	@Override

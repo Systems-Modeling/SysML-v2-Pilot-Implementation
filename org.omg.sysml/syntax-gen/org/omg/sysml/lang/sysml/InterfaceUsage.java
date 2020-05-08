@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An InterfaceUsage is a Usage of an InterfaceDefinition to represent an interface connecting parts of a system through specific ports.
+ * <p>An InterfaceUsage is a Usage of an InterfaceDefinition to represent an interface connecting parts of a system through specific ports.</p>
  * 
- * An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage "interfaces" from the Systems model libary.
+ * <p>An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage <tt>interfaces<tt> from the Systems model libary.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,11 +40,14 @@ public interface InterfaceUsage extends ConnectionUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The InterfaceDefinition that is the single type of this InterfaceUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interface Definition</em>' reference.
 	 * @see #setInterfaceDefinition(InterfaceDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceUsage_InterfaceDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceConnector'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceUsage'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

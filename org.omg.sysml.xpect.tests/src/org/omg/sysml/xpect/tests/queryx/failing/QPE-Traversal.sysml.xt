@@ -2,8 +2,9 @@
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/Objects.kerml"}
+                File {from ="/library.kernel/Performances.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
-                File {from ="/library.kernel/ScalarFunctions.kerml"}
                 File {from ="/library.kernel/ControlFunctions.kerml"}
                 File {from ="/src/Vehicle.sysml"}
         }
@@ -12,8 +13,9 @@
                         SrcFolder {
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
+                				File {from ="/library.kernel/Objects.kerml"}
+                				File {from ="/library.kernel/Performances.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
-                				File {from ="/library.kernel/ScalarFunctions.kerml"}
                 				File {from ="/library.kernel/ControlFunctions.kerml"}
                                 File {from ="/src/Vehicle.sysml"}
                         }
@@ -27,11 +29,7 @@ package P {
     import ScalarValues::*;
     import Vehicle::*;
 
-    value v1_i: Integer[0..*] = .*/.*[Integer];
+    value v_redefining: Integer = ./vehicle_1/cylinders/@redefining;
 
-    value v2_r: Real[0..*] = .**[Real];
-
-    value v1_i: Integer[0..*] = .*/.*[Integer| ./ < 3];
-
-    value v1_i: Real[0..*] = .*/mass[./ > 3.0];
+    value v_redefined: Integer = ./Vehicle::cylinders/@redefined;
 }

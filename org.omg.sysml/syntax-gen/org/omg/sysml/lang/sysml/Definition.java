@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclasses of Definition. 
+ * <p>A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclasses of Definition. </p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -50,6 +50,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Ports that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPort()
 	 * @see org.omg.sysml.lang.sysml.PortUsage#getPortOwningDefinition
@@ -75,7 +78,8 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The flow Properties of a Definition are the Properties that it features that have a direction specified.
+	 * <p>The <tt>properties</tt> of this Definition that have a non-null <tt>direction</tt>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flow Property</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_FlowProperty()
@@ -102,6 +106,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Properties that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Property</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedProperty()
 	 * @see org.omg.sysml.lang.sysml.Property#getPropertyOwningDefinition
@@ -126,6 +133,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Properties that are <tt>features</tt> of this Definition (not necessarily owned).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Property</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Property()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -151,6 +161,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ActionUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAction()
 	 * @see org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition
@@ -176,6 +189,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The StateUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedState()
 	 * @see org.omg.sysml.lang.sysml.StateUsage#getStateOwningDefinition
@@ -201,6 +217,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConstraintUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConstraint()
 	 * @see org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningDefinition
@@ -225,6 +244,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The TransitionUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Transition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedTransition()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -249,6 +271,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The RequirementUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRequirement()
 	 * @see org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningDefinition
@@ -274,6 +299,9 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usages that are <tt>ownedFeatures</tt> of this Definition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedUsage()
 	 * @see org.omg.sysml.lang.sysml.Usage#getOwningDefinition

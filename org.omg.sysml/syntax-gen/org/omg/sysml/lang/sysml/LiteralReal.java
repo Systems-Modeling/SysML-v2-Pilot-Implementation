@@ -6,6 +6,16 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Literal
  * Real</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An Expression that provides a Real value as a result.</p>
+ * 
+ * <p>A LiteralReal must be typed by a specialization of Evaluation with no input parameters and a single Real value as its result.</p>
+ * <p>An Expression that provides a Real value as a result.</p>
+ * 
+ * <p>A LiteralReal must be typed by a specialization of Evaluation with no input parameters and a single Real value as its result.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

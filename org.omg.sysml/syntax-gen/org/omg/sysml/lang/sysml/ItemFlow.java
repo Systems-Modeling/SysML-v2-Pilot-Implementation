@@ -8,6 +8,16 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Item
  * Flow</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An ItemFlow is a Behavior that represents the transfer of objects or values from one Feature to another. ItemFlows can take finite time to complete.</p>
+ * 
+ * <p>ItemsFlows must be typed by a library Transfer element or one of its specializations.</p>
+ * <p>An ItemFlow is a Behavior that represents the transfer of objects or values from one Feature to another. ItemFlows can take finite time to complete.</p>
+ * 
+ * <p>ItemsFlows must be typed by a library Transfer element or one of its specializations.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -51,6 +61,11 @@ public interface ItemFlow extends Connector, Step {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that receives the ItemFlow.</p>
+	 * 
+	 * <p>The Feature that receives the ItemFlow.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Input Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_TargetInputFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true"
@@ -67,6 +82,11 @@ public interface ItemFlow extends Connector, Step {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that originates the ItemFlow.</p>
+	 * 
+	 * <p>The Feature that originates the ItemFlow.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Output Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_SourceOutputFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true"
@@ -89,6 +109,11 @@ public interface ItemFlow extends Connector, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
+	 * 
+	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
@@ -106,6 +131,11 @@ public interface ItemFlow extends Connector, Step {
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
+	 * 
+	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
@@ -128,6 +158,11 @@ public interface ItemFlow extends Connector, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
+	 * 
+	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFeature()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"

@@ -3,6 +3,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Blocks.sysml"}
@@ -12,6 +14,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+ 		      	File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Blocks.sysml"}
@@ -79,10 +83,10 @@ package BindingConnectorExample {
 		
 		part b3 : B1;
 		part b4 : B1{
-			part p1 redefines B1::p1;
+			port p1 redefines B1::p1;
 		}
 		part b5 : B1{
-			part p1 redefines B1::p1{
+			port p1 redefines B1::p1{
 				ref in myDefIn redefines B1::p1::myDefIn;
 				ref in myIn redefines B1::p1::myDefIn;
 			}

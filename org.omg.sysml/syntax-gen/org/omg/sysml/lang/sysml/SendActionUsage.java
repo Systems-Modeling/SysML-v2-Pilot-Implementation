@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A SendActionUsage is an ActionUsage that is a Transfer of items sent to a specific target. The context Feature of a SendUsageAction is the result of the target Expression for the SendUsageAction.
+ * <p>A SendActionUsage is an ActionUsage that is a Transfer of items sent to a specific target. The <tt>context</tt> Feature of a SendUsageAction is the <tt>result</tt> of the <tt>target</tt> Expression for the SendUsageAction.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,6 +36,7 @@ public interface SendActionUsage extends TransferActionUsage {
 	 * @see #setTarget(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_Target()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sendActionUsage'"
 	 * @generated
 	 */
 	Expression getTarget();

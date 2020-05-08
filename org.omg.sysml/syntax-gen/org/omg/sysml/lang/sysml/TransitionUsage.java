@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A TransitionUsage is a Usage that is also a Step that is typed by the Activity Transition from the Systems model library, or a subclass of it. As such, it is a behavioral Step that represents a transition between ActionUsages or StateUsages.
+ * <p>A TransitionUsage is an ActionUsage that is a behavioral Step representing a transition between ActionUsages or StateUsages.</p>
  * 
- * A TransitionUsage must subset, directly or indirectly, the base TransitionUsage "transitionActions", if it is not a composite feature, or the TransitionUsage "subtransitions" inherited from its owner, if it is a composite feature.
+ * <p>A TransitionUsage must subset, directly or indirectly, the base TransitionUsage <tt>transitionActions</tt>, if it is not a composite feature, or the TransitionUsage <tt>subtransitions</tt> inherited from its owner, if it is a composite feature.</p>
  * 
- * A TransitionUsage may own Features using TransitionFeatureMembership,  corresponding to the triggers, guards and effects of the transition.
+ * <p>A TransitionUsage may by related to some of its <tt>ownedFeatures</tt> using TransitionFeatureMembership Relationships,  corresponding to the triggers, guards and effects of the TransitionUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,7 +42,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The source ActionUsage of this TransitionUsage, derived as the source of the succession for the TransitionUsage.
+	 * <p>The source ActionUsage of this TransitionUsage, derived as the <tt>source</tt> of the <tt>succession</tt> for the TransitionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(ActionUsage)
@@ -68,7 +68,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The target ActionUsage of this TransitionUsage, derived as the target of the succession for the TransitionUsage.
+	 * <p>The target ActionUsage of this TransitionUsage, derived as the <tt>target</tt> of the <tt>succession</tt> for the TransitionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ActionUsage)
@@ -101,7 +101,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The AcceptActionUsage that defines the triggers of this TransitionUsage, derived as the Features of this TransitionUsage owned using a TransitionFeatureMembership of kind "trigger".
+	 * <p>The AcceptActionUsages that define the triggers of this TransitionUsage, derived as the <tt>ownedFeatures</tt> of this TransitionUsage related to it by a TransitionFeatureMembership with <tt>kind</tt> = <tt>trigger</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TriggerAction()
@@ -124,7 +124,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Expressions that define the guards of this TransitionUsage, derived as the Features of the TransitionUsage owned using a TransitionFeatureMembership of kind "guard".
+	 * <p>The Expressions that define the guards of this TransitionUsage, derived as the <tt>ownedFeatures</tt> of this TransitionUsage related to it by a TransitionFeatureMembership with <tt>kind</tt> = <tt>guard</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Guard Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_GuardExpression()
@@ -147,7 +147,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The ActionUsages that define the effects of this TransitionUsage, derived as the Features of the TransitionUsage owned using a TransitionFeatureMembership of kind "effect".
+	 * <p>The ActionUsages that define the effects of this TransitionUsage, derived as the <tt>ownedFeatures</tt> of this TransitionUsage related to it by a TransitionFeatureMembership with <tt>kind</tt> = <tt>effect</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Effect Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_EffectAction()
@@ -169,7 +169,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Succession that is the owned Feature of this TransitionUsage that redefines TransitionPerformance::transitionLink.
+	 * <p>The Succession that is the <tt>ownedFeature</tt> of this TransitionUsage that redefines <tt>TransitionPerformance::transitionLink</tt>.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Succession</em>' reference.
 	 * @see #setSuccession(Succession)
@@ -206,6 +206,9 @@ public interface TransitionUsage extends ActionUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this TransitionUsage is nested.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Owning Usage</em>' reference.
 	 * @see #setTransitionOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TransitionOwningUsage()

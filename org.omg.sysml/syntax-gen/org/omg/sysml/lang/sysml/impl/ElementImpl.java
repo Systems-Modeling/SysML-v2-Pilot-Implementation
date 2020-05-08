@@ -57,10 +57,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
@@ -69,16 +69,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
-	/**
-	 * The cached value of the '{@link #getOwnedRelationship_comp() <em>Owned Relationship comp</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelationship_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Relationship> ownedRelationship_comp;
-
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -108,6 +98,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOwnedRelationship_comp() <em>Owned Relationship comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedRelationship_comp()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Relationship> ownedRelationship_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -552,15 +552,15 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getOwningRelationship();
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return getOwningMembership();
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
-				return getOwnedRelationship_comp();
-			case SysMLPackage.ELEMENT__IDENTIFIER:
-				return getIdentifier();
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				if (resolve) return getOwningNamespace();
 				return basicGetOwningNamespace();
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				return getIdentifier();
 			case SysMLPackage.ELEMENT__NAME:
 				return getName();
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return getOwnedRelationship_comp();
 			case SysMLPackage.ELEMENT__OWNER:
 				if (resolve) return getOwner();
 				return basicGetOwner();
@@ -587,18 +587,18 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
-				getOwnedRelationship_comp().clear();
-				getOwnedRelationship_comp().addAll((Collection<? extends Relationship>)newValue);
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				setOwningNamespace((org.omg.sysml.lang.sysml.Package)newValue);
 				return;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier((String)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				setOwningNamespace((org.omg.sysml.lang.sysml.Package)newValue);
-				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				getOwnedRelationship_comp().clear();
+				getOwnedRelationship_comp().addAll((Collection<? extends Relationship>)newValue);
 				return;
 			case SysMLPackage.ELEMENT__OWNER:
 				setOwner((Element)newValue);
@@ -629,17 +629,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)null);
 				return;
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
-				getOwnedRelationship_comp().clear();
+			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
+				setOwningNamespace((org.omg.sysml.lang.sysml.Package)null);
 				return;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				setOwningNamespace((org.omg.sysml.lang.sysml.Package)null);
-				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				getOwnedRelationship_comp().clear();
 				return;
 			case SysMLPackage.ELEMENT__OWNER:
 				setOwner((Element)null);
@@ -666,14 +666,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getOwningRelationship() != null;
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				return getOwningMembership() != null;
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
-				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
-			case SysMLPackage.ELEMENT__IDENTIFIER:
-				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				return basicGetOwningNamespace() != null;
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case SysMLPackage.ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
 			case SysMLPackage.ELEMENT__OWNER:
 				return basicGetOwner() != null;
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:

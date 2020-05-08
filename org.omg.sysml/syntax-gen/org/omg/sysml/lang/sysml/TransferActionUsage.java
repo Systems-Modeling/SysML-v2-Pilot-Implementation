@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A TransferActionUsage is an ActionUsage that is also an incomingTransfer in a specific context. A TransferActionUsage must not be composite.
+ * <p>A TransferActionUsage is an ActionUsage that is also an <tt>incomingTransfer</tt> in a specific <tt>context</tt>. A TransferActionUsage must not be composite.
  * 
- * A TransferActionUsage must subset, directly or indirectly, the ActionUsage "transferActions" from the Systems model library. This implies that the TransferActionUsage will be typed by the TransferAction from the model library (or a subtype). The TransferActionUsage must bind the "context" parameter of the TransferAction to the actual context for the usage.
+ * <p>A TransferActionUsage must subset, directly or indirectly, the ActionUsage <tt>transferActions</tt> from the Systems model library. This implies that the TransferActionUsage will be typed by TransferAction from the model library (or a subtype). The TransferActionUsage must bind the <tt>context</tt> Parameter of the TransferAction to the actual context for the usage.</p>
  * 
  * 
  * <!-- end-model-doc -->
@@ -34,12 +34,13 @@ public interface TransferActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The context of a TransferActionUsage a Feature specifying the Occurrence of which the TransferActionUsage is an incomingTransfer. It is the target of the binding connector whose source is the redefinition of TransferAction::context by the TransferActionUsage.
+	 * <p>A Feature specifying the Occurrence of which the TransferActionUsage is an <tt>incomingTransfer</tt>. The <tt>context</tt> Feature is the target of a binding connector whose source is the redefinition of <tt>TransferAction::context</tt> by the TransferActionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Context</em>' reference.
 	 * @see #setContext(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransferActionUsage_Context()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='transferActionUsage'"
 	 * @generated
 	 */
 	Feature getContext();

@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpression {
 
-	public static final String LITERAL_EXPRESSION_SUBSETTING_DEFAULT = "Base::literalEvaluations";
+	public static final String LITERAL_EXPRESSION_SUBSETTING_DEFAULT = "Performances::literalEvaluations";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

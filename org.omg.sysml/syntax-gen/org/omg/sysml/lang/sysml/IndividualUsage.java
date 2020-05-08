@@ -8,6 +8,10 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Individual Usage</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An IndividualUsage is a BlockProperty exactly one of whose types is an IndividualDefinition, specifying the usage of the representation individual, or a portion of it, in a certain context.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -38,6 +42,9 @@ public interface IndividualUsage extends BlockProperty {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p.>The one type of the IndividualUsage that is the IndividualDefinition defining the individual thing being represented. (Note that the IndividualUsage may have other types in addition to this that are not IndividualDefinitions.)</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Individual Definition</em>' reference.
 	 * @see #setIndividualDefinition(IndividualDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getIndividualUsage_IndividualDefinition()
@@ -66,6 +73,9 @@ public interface IndividualUsage extends BlockProperty {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this IndividualUsage represents a temporal portion of the entire spacial extent of an individual over some duration of time, as indicated by whether or not it has a <t>timeSliceFeature</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Time Slice</em>' attribute.
 	 * @see #setIsTimeSlice(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getIndividualUsage_IsTimeSlice()
@@ -92,6 +102,9 @@ public interface IndividualUsage extends BlockProperty {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this IndividualUsage represents a temporal portion of the entire spacial extent of an individual at one instance of time, as indicated by whether or not it has a <t>snapshotFeature</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Snapshot</em>' attribute.
 	 * @see #setIsSnapshot(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getIndividualUsage_IsSnapshot()
@@ -124,10 +137,14 @@ public interface IndividualUsage extends BlockProperty {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <tt>An <tt>ownedFeature</tt> of this IndividualUsage that is a redefinition of the Feature <tt>Occurrence::timeSliceOf</tt> and is typed by the <tt>individualDefinition</tt>. An IndividualUsage with such a feature is restricted to represent a time slice of the represented individual.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Time Slice Feature</em>' reference.
 	 * @see #setTimeSliceFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getIndividualUsage_TimeSliceFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='timeSliceUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -157,10 +174,14 @@ public interface IndividualUsage extends BlockProperty {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <tt>An <tt>ownedFeature</tt> of this IndividualUsage that is a redefinition of the Feature <tt>Occurrence::snapshotOf</tt> and is typed by the <tt>individualDefinition</tt>. An IndividualUsage with such a feature is restricted to represent a snapshot of the represented individual.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Snapshot Feature</em>' reference.
 	 * @see #setSnapshotFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getIndividualUsage_SnapshotFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='snapshotUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */

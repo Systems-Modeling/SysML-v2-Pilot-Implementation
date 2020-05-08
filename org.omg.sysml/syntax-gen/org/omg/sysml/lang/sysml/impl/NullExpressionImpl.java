@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
 
-	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Base::nullEvaluations";
+	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Performancs::nullEvaluations";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

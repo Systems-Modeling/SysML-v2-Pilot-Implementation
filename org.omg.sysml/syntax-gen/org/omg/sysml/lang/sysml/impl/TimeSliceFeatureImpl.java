@@ -22,7 +22,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeSliceFeature {
 	
 	public static final String TIME_SLICE_FEATURE_DEFAULT_NAME = "timeSliceOf";	
-	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Base::Occurrence::timeSliceOf";
+	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";
 	
 	/**
 	 * <!-- begin-user-doc -->

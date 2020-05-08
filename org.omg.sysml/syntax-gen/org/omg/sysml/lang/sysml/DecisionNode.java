@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A DecisionNode is a ControlNode that makes a selection from its outgoing Successions. All outgoing Successions must be ConditionalSuccession with a target multiplicity of 0..1. A DecisionNode may have at most one incoming Succession.
+ * <p>A DecisionNode is a ControlNode that makes a selection from its outgoing Successions. All outgoing Successions must be must have a target multiplicity of 0..1 and subset the Feature <tt>DecisionAction::outgoingHBLink</tt>. A DecisionNode may have at most one incoming Succession.</p>
  * 
- * A DecisionNode must subset, directly or indirectly, the ActionUsage Action::decisions, implying that it is typed by DecisionAction from the Systems model library (or a subtype of it). A DecisionAction is constrained to have exactly one successor, which is chosen from among the outgoing ConditionalSuccessions for which the guard is true.
+ * <p>A DecisionNode must subset, directly or indirectly, the ActionUsage <tt>Action::decisions</tt>, implying that it is typed by DecisionAction from the Systems model library (or a subtype of it).</p>
  * <!-- end-model-doc -->
  *
  *

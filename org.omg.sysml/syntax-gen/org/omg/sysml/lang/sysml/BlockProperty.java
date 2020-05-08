@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A BlockProperty is a Usage whose type is a Class. Nominally, if the type is a Block, a BlockProperty is a Usage of that Block within a system. However, non-Block Classes are also allowed, to permit use of Classes from the Kernel Library. A BlockProperty must be a PartProperty or a ReferenceProperty.
+ * <p>A BlockProperty is a Usage whose type is a Class. Nominally, if the type is a Block, a BlockProperty is a Usage of that Block within a system. However, non-Block Classes are also allowed, to permit use of Classes from the Kernel Library. A BlockProperty must be a PartProperty or a ReferenceProperty.</p>
  * 
- * A BlockProperty must subset, directly or indirectly, the base PartProperty "parts" from the Systems model library.
+ * <p>A BlockProperty must subset, directly or indirectly, the base PartProperty <tt>parts</tt> from the Systems model library.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -43,6 +43,9 @@ public interface BlockProperty extends Property {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Classes that are the types of this BlockProperty. Nominally, these are Blocks, but non-Block Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Block</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBlockProperty_Block()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"

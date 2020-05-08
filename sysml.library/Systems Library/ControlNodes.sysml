@@ -2,10 +2,10 @@
  * This package defines the actions of control nodes in activities.
  */
 package ControlNodes {
-	private import Activities::*;
-	private import Occurrences::*;
-	private import ControlPerformances::*;
-	private import TransitionPerformances::*;
+	private import Activities::Action;
+	private import ControlPerformances::MergePerformance;
+	private import ControlPerformances::DecisionPerformance;
+	private import TransitionPerformances::NonStateTransitionPerformance;
 	
 	/**
 	 * A ControlAction is the Action of a control node, which has no inherent behavior.

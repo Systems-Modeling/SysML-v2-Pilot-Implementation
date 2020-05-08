@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ValueType defines types of values that may be used to express information about a system, but cannot be identified as the target of any reference. Any owned Properties of a ValueType must not be composite (and, therefore, cannot be PartProperties).
+ * <p>A ValueType is a Definition and a DataType of values that may be used to express information about a system, but cannot be identified as the target of any reference. Any owned Properties of a ValueType must not be composite (and, therefore, cannot be PartProperties).</p>
  * <!-- end-model-doc -->
  *
  *

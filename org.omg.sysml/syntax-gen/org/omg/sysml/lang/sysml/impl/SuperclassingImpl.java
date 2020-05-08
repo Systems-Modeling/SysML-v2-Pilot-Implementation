@@ -23,8 +23,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSuperclass <em>Superclass</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSubclass <em>Subclass</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getOwningClassifier <em>Owning Classifier</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SuperclassingImpl#getSubclass <em>Subclass</em>}</li>
  * </ul>
  *
  * @generated
@@ -216,12 +216,12 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
 				if (resolve) return getSuperclass();
 				return basicGetSuperclass();
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				if (resolve) return getSubclass();
-				return basicGetSubclass();
 			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
 				if (resolve) return getOwningClassifier();
 				return basicGetOwningClassifier();
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				if (resolve) return getSubclass();
+				return basicGetSubclass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,11 +236,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
 				setSuperclass((Classifier)newValue);
 				return;
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				setSubclass((Classifier)newValue);
-				return;
 			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
 				setOwningClassifier((Classifier)newValue);
+				return;
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				setSubclass((Classifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -256,11 +256,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
 				setSuperclass((Classifier)null);
 				return;
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				setSubclass((Classifier)null);
-				return;
 			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
 				setOwningClassifier((Classifier)null);
+				return;
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				setSubclass((Classifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -275,16 +275,16 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 		switch (featureID) {
 			case SysMLPackage.SUPERCLASSING__GENERAL:
 				return isSetGeneral();
-			case SysMLPackage.SUPERCLASSING__SPECIFIC:
-				return isSetSpecific();
 			case SysMLPackage.SUPERCLASSING__OWNING_TYPE:
 				return isSetOwningType();
+			case SysMLPackage.SUPERCLASSING__SPECIFIC:
+				return isSetSpecific();
 			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
 				return isSetSuperclass();
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				return isSetSubclass();
 			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
 				return isSetOwningClassifier();
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				return isSetSubclass();
 		}
 		return super.eIsSet(featureID);
 	}

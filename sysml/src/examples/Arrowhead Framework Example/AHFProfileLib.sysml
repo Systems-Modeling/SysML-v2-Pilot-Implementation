@@ -4,7 +4,7 @@
 
 package AHFProfileLib {
 	/** Services and (later) functionalities */
-	import Base::*;
+	import Performances::Performance;
 	import ScalarValues::*;
 	
 	port def SD{

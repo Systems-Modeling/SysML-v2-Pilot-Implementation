@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ConnectionUsage is a Connector that is also a Usage. Nominally, if its type is an AssociationBlock, then a ConnectionUsage is a Usage of that AssociationBlock representing a connection between parts of a system. However, non-Block Associations are also allowed, to permit use of Associations from the Kernel Library (such as the default BinaryLink).
+ * <p>A ConnectionUsage is a Connector that is also a Usage. Nominally, if its type is an AssociationBlock, then a ConnectionUsage is a Usage of that AssociationBlock representing a connection between parts of a system. However, non-Block Associations are also allowed, to permit use of Associations from the Kernel Library (such as the default BinaryLink).</p>
  * 
- * A ConnectionUsage must subset the base ConnectionUsage "connections" from the Systems model library.
+ * <p>A ConnectionUsage must subset the base ConnectionUsage <tt>connections</tt> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  *

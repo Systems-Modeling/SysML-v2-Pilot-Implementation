@@ -8,12 +8,18 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Import Condition</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>The ImportCondition links ConditionalImports to the predicate that serves as the criteria for import.</p>
+ * <p>The ImportCondition links ConditionalImports to the predicate that serves as the criteria for import.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getPredicate_comp <em>Predicate comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getConditionalImport <em>Conditional Import</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getPredicate_comp <em>Predicate comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ImportCondition#getPredicate <em>Predicate</em>}</li>
  * </ul>
  *
@@ -38,6 +44,11 @@ public interface ImportCondition extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConditionalImport that may be chosen for element import.</p>
+	 * 
+	 * <p>The ConditionalImport that may be chosen for element import.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conditional Import</em>' container reference.
 	 * @see #setConditionalImport(ConditionalImport)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImportCondition_ConditionalImport()
@@ -73,6 +84,11 @@ public interface ImportCondition extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The criteria by which the import is chosen to be employed.</p>
+	 * <p>The criteria by which the import is chosen to be employed.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Predicate comp</em>' containment reference.
 	 * @see #setPredicate_comp(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImportCondition_Predicate_comp()

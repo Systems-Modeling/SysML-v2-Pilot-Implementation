@@ -14,7 +14,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysml.Class {
 	
-	public static final String CLASS_SUPERCLASS_DEFAULT = "Base::Object";
+	public static final String CLASS_SUPERCLASS_DEFAULT = "Objects::Object";
 	
 	/**
 	 * <!-- begin-user-doc -->

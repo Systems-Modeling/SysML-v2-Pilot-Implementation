@@ -41,6 +41,11 @@ public interface Function extends Behavior {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The set of expressions that represent computational steps or parts of a system of equations within the Function.</p>
+	 * <p>The set of expressions that represent computational steps or parts of a system of equations within the Function.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Expression()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -65,6 +70,11 @@ public interface Function extends Behavior {
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The object or value that is the result of evaluating the Function.</p>
+	 * 
+	 * <p>The object or value that is the result of evaluating the Function.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
 	 * @see #setResult(Parameter)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Result()

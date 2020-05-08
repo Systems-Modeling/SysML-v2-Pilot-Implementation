@@ -3,6 +3,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+        File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
@@ -19,6 +22,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+       			File {from ="/library.kernel/Occurrences.kerml"}
+                File {from ="/library.kernel/Objects.kerml"}
+                File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}

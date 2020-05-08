@@ -22,7 +22,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class SnapshotFeatureImpl extends ReferencePropertyImpl implements SnapshotFeature {
 	
 	public static final String SNAPSHOT_FEATURE_DEFAULT_NAME = "snapshotOf";	
-	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Base::Occurrence::snapshotOf";
+	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -24,7 +24,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class ClassifierImpl extends TypeImpl implements Classifier {
-	public String CLASSIFIER_SUPERCLASS_DEFAULT = "Base::Anything";
+	
+	public static final String CLASSIFIER_SUPERCLASS_DEFAULT = "Base::Anything";
 	
 	/**
 	 * <!-- begin-user-doc -->

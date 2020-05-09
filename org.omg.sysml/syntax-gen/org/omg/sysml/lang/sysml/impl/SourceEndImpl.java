@@ -41,6 +41,11 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 		return SysMLPackage.Literals.SOURCE_END;
 	}
 	
+	public void computeImplicitGeneralization() {
+		addImplicitGeneralization();
+		addComputedRedefinitions();
+	}
+	
 	@Override
 	public Type getDefaultType(String... defaultNames) {
 		Type type = getOwningType();

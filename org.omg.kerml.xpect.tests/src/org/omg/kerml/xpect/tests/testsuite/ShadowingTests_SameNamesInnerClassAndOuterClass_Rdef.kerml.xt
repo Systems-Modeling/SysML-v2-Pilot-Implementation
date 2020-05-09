@@ -25,7 +25,7 @@ package test{
 		    A, A.B, B, 
 		    test.A, test.A.A, test.A.A.B,
 		--- */
-			feature B redefines A{}
+			feature B : A;
 		}
 	}
 }

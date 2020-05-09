@@ -2,10 +2,12 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
@@ -19,6 +21,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
+	
+	protected List<BindingConnector> argumentConnectors;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -36,18 +40,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
 
-	@Override
-	protected Feature createFeatureForParameter(Feature parameter, int i) {
-		Feature input = super.createFeatureForParameter(parameter, i);
-		List<? extends Feature> arguments = getArguments();
-		if (i < arguments.size()) {
-			Feature argument = arguments.get(i);
-			addOwnedBindingConnector(
-					argument instanceof Expression ? ((ExpressionImpl) arguments.get(i)).getResult() : argument, input);
-		}
-		return input;
-	}
-
 	public List<? extends Feature> getArguments() {
 		return super.getOwnedFeature();
 	}
@@ -60,5 +52,29 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		int n = features.size();
 		return m >= n ? Collections.emptyList() : features.subList(m, n);
 	}
-
+	
+	public List<BindingConnector> getArgumentConnectors() {
+		if (argumentConnectors == null) {
+			argumentConnectors = new ArrayList<>();
+			List<Feature> input = getOwnedInput();
+			List<? extends Feature> arguments = getArguments();
+			for (int i = 0; i < input.size(); i++) {
+				if (i < arguments.size()) {
+					Feature argument = arguments.get(i);
+					argumentConnectors.add(addOwnedBindingConnector(
+							argument instanceof Expression ? 
+									((ExpressionImpl) arguments.get(i)).getResult(): 
+									argument, input.get(i)));
+				}		
+			}
+		}
+		return argumentConnectors;
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getArgumentConnectors();
+	}
+	
 } // InvocationExpressionImpl

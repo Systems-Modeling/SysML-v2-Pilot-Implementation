@@ -1,8 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
- * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2018-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018,2019 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,12 +36,9 @@ import org.eclipse.emf.ecore.EReference
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.FeatureTyping
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.Package
-import org.omg.sysml.lang.sysml.Redefinition
-import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
@@ -49,6 +46,7 @@ import org.omg.sysml.lang.sysml.QueryPathExpression
 import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
+import org.omg.sysml.lang.sysml.Subsetting
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -75,72 +73,50 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	}
 	
 	override getScope(EObject context, EReference reference) {
-		switch (reference) {
-			case SysMLPackage.eINSTANCE.featureTyping_Type: {
-				if (context instanceof FeatureTyping)
-					return context.typedFeature.scope_owningNamespace(reference)
-			}
-			case SysMLPackage.eINSTANCE.conjugation_OriginalType: {
-				if (context instanceof Conjugation) {
-					return context.conjugatedType.scope_owningNamespace(reference)
-				}
-			}
-			case SysMLPackage.eINSTANCE.generalization_General, 
-			case SysMLPackage.eINSTANCE.superclassing_Superclass: {
-				if (context instanceof Generalization)
-					return context.specific.scope_owningNamespace(reference)
-			}
-			case SysMLPackage.eINSTANCE.redefinition_RedefinedFeature: {
-				if (context instanceof Redefinition)
-					return context.redefiningFeature.scope_owningNamespace(reference)
-			}
-			case SysMLPackage.eINSTANCE.subsetting_SubsettedFeature: {
-				if (context instanceof Subsetting) {
-				    var subsettingFeature = context.subsettingFeature
-				    var owningType = subsettingFeature?.owningType
-        		    if (owningType instanceof QueryPathExpression) {
-					    return subsettingFeature.scope_QueryPathExpression(owningType as QueryPathExpression, reference)
-        		    } else if (owningType instanceof Connector) {
-        		    	if (owningType.connectorEnd.contains(subsettingFeature)) {
-        		    		return owningType.scope_owningNamespace(reference)
-        		    	}
-        		    }
-					return subsettingFeature.scope_owningNamespace(reference)
-				}
-			}
-			case SysMLPackage.eINSTANCE.membership_MemberElement, 
-			case SysMLPackage.eINSTANCE.featureMembership_MemberFeature,
-			case SysMLPackage.eINSTANCE.parameterMembership_MemberParameter: {
-				if (context instanceof Membership) {
-				    return context.scope_Namespace(context.membershipOwningPackage, reference)
-                }
-			}
-			case SysMLPackage.eINSTANCE.import_ImportedPackage: {
-				if (context instanceof Import) {
-					return context.scope_Namespace(context.importOwningPackage, reference)
-				}
-			}
-		}
-		return
-			if (context instanceof Package) 
-				context.scopeFor(reference, null)
-			else 
-				super.getScope(context, reference)		
+		if (context instanceof Conjugation)
+			context.conjugatedType.scope_owningNamespace(context, reference)
+		else if (context instanceof Subsetting) {
+		    var subsettingFeature = context.subsettingFeature
+		    var owningType = subsettingFeature?.owningType
+		    if (owningType instanceof QueryPathExpression) {
+			    return subsettingFeature.scope_QueryPathExpression(owningType as QueryPathExpression, context, reference)
+		    } else if (owningType instanceof Connector) {
+		    	if (owningType.connectorEnd.contains(subsettingFeature)) {
+		    		return owningType.scope_owningNamespace(context, reference)
+		    	}
+		    }
+			subsettingFeature.scope_owningNamespace(context, reference)
+		} else if (context instanceof Generalization)
+			context.specific.scope_owningNamespace(context, reference)
+		else if (context instanceof Membership) {
+		    var owningPackage = context.membershipOwningPackage
+		    if (owningPackage instanceof QueryPathExpression) {
+			    context.scope_QueryPathExpression(owningPackage as QueryPathExpression, context, reference)
+		    } else 
+		    	context.scope_Namespace(owningPackage, context, reference)
+		} else if (context instanceof Import)
+			context.scope_Namespace(context.importOwningPackage, context, reference)
+		else if (context instanceof Package) 
+			context.scopeFor(reference, null, true, false, null)
+		else 
+			super.getScope(context, reference)
 	}
 	
 	def static Package getParentPackage(Element element) {
 		EcoreUtil2.getContainerOfType(element.eContainer, Package)
 	}
 	
-	def scope_owningNamespace(Element element, EReference reference) {
-		element.scope_Namespace(element?.parentPackage, reference)
+	def scope_owningNamespace(Element element, EObject context, EReference reference) {
+		element.scope_Namespace(element?.parentPackage, context, reference)
 	}
 
-	def scope_Namespace(Element element, Package namespace, EReference reference) {
+	def scope_Namespace(Element element, Package namespace, EObject context, EReference reference) {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.scopeFor(reference, element)
+			namespace.scopeFor(reference, element, true,
+				reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, 
+				if (context instanceof Element) context else null)
 	}
 
 	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
@@ -172,16 +148,15 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		return null
 	}
 
-	def IScope scope_QueryPathExpression(Element element, QueryPathExpression qpe, EReference reference) {
-		var prev = prevQueryPath(qpe);
-		if (prev !== null) {
-			return scope_Namespace(element, prev.referent, reference);
-		} else {
-			return scope_Namespace(element, qpe, reference)
-		}
+	def IScope scope_QueryPathExpression(Element element, QueryPathExpression qpe, EObject context, EReference reference) {
+		var prev = prevQueryPath(qpe)
+		if (prev !== null)
+			element.scope_Namespace(prev.referent, context, reference)
+		else 
+			element.scope_Namespace(qpe, context, reference)
 	}
 	
-	def IScope scopeFor(Package pack, EReference reference, Element element) {
+	def IScope scopeFor(Package pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
 		val parent = pack.parentPackage
 		val outerscope = 
 			if (parent === null) { // Root Package
@@ -193,10 +168,10 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				 else 
 				 	global
 			} else {
-				parent.scopeFor(reference, element)
+				parent.scopeFor(reference, element, false, false, null)
 			}		
 
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this, element)
+		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isFirstScope, isRedefinition, element, skip)
 	}
 	
 }

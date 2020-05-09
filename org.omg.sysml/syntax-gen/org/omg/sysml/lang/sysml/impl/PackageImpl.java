@@ -138,7 +138,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	public EList<Element> getMember() {
 		EList<Element> members = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER);
 		getMembership().stream().
-			map(m->((MembershipImpl)m).getMemberElement()).
+			map(Membership::getMemberElement).
 			filter(m->m != null).forEachOrdered(members::add);	
 		return members;
 	}

@@ -12,7 +12,7 @@ package Inheritance {
 		feature g redefines f;
 	}
 	
-	alias y::f as z;
+	alias y::g as z;
 	
 	feature w subsets y;
 	

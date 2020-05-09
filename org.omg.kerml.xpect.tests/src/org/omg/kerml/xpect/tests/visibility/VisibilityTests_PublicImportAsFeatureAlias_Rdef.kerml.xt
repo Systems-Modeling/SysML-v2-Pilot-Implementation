@@ -33,7 +33,7 @@ package Classes {
 		 VisibilityPackage.c_Public_alias,
 	--- */
 		//XPECT linkedName at aliass --> VisibilityPackage.c_Public.c_public
-		feature feature4 redefines aliass;
+		feature feature4 subsets aliass;
 		//XPECT linkedName at Aliass --> VisibilityPackage.c_Public
 		//* XPECT scope at Aliass ---
 		   aliass, feature4, featurepublic,
@@ -44,7 +44,7 @@ package Classes {
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
 		 VisibilityPackage.c_Public_alias,
 	--- */
-		feature featurepublic redefines Aliass;
+		feature featurepublic subsets Aliass;
 	}
 }
 

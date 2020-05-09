@@ -22,8 +22,8 @@ package test{
 		feature A{
 			//XPECT linkedName at A --> test.A1.A
 			//* XPECT scope at A ---
-			A.B.B, A1.A.B.B, B.B, test.A.A.B.B, test.A1.A.B.B,
-		    A, A.B, A1, A1.A, A1.A.B, B, 
+			A.B.B, A1.A.B.B, test.A.A.B.B, test.A1.A.B.B,
+		    A, A.B, A1, A1.A, A1.A.B, 
 		    test.A, test.A.A, test.A.A.B, test.A1, test.A1.A, test.A1.A.B,
 		--- */
 			feature B redefines A{}

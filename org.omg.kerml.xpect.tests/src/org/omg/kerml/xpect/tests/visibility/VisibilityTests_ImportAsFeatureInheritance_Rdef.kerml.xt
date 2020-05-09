@@ -28,7 +28,7 @@ package Classes {
 	  	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
 	   	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  
 		--- */
-	feature Try redefines c_Public {
+	feature Try subsets c_Public {
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
 		/* XPECT scope at c_public ---
 		feature4, c_public, 
@@ -38,7 +38,7 @@ package Classes {
 	  	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
 	   	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  
 	--- */
-		feature feature4 redefines c_public;
+		feature feature4 subsets c_public;
 	}
 }
 

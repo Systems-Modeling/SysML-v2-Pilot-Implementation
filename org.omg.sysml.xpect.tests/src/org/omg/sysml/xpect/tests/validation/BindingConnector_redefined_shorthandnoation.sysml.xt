@@ -53,10 +53,7 @@ package Example2 {
 			}
 			
 			bind fuelTankPort0::fuelSupply = pump::pumpOut;
-//short-hand redefines syntax not supported yet that causes errors
-			// XPECT errors --> "A connector and its related features must have a common context" at "fuelTankPort0::fuelReturn = tank::fuelIn;"
 			bind fuelTankPort0::fuelReturn = tank::fuelIn;
-			// XPECT errors --> "A connector and its related features must have a common context" at "fuelTankPort::fuelSupply = pump::pumpOut;"
 			bind fuelTankPort::fuelSupply = pump::pumpOut;
 					
 			part pump : FuelPump {

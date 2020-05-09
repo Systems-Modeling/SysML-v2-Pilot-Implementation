@@ -95,6 +95,11 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 		return subsettingPartDefault;
 	}
 
+	@Override
+	protected Feature getNamingFeature() {
+		return getExhibitedState();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

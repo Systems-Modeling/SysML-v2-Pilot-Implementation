@@ -25,7 +25,7 @@ import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
-import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.impl.TypeImpl
 
 /**
  * Customization of the default outline structure.
@@ -103,6 +103,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Type type) {
+		(type as TypeImpl).transform()
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'
@@ -249,7 +250,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def boolean _isLeaf(Type type) {
-		(type as ElementImpl).transform()
+//		(type as ElementImpl).transform()
 		super._isLeaf(type)
 	}
 	

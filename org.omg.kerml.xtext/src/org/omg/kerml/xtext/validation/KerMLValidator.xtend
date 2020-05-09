@@ -39,8 +39,9 @@ import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
+import org.omg.sysml.lang.sysml.InvocationExpression
+import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
 
 /**
  * This class contains custom validation rules. 
@@ -54,9 +55,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
 	
 	@Check
-	def checkElement(Element e) {
-		// Ensure transformations are carried out on an element before checking its contained elements.
-		(e as ElementImpl).transform
+	def checkInvocationExpression(InvocationExpression e) {
+		(e as InvocationExpressionImpl).getArgumentConnectors().forEach[checkBindingConnector]
 	}
 	 
 	@Check
@@ -99,10 +99,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (rf.length !== 2) {
 			return //ignore binding connectors with invalid syntax
 		}
-		
-		// TODO: Remove this after merging with ST6RI-194
-		rf.forEach[f|(f as ElementImpl).transform]
-
 		
 		val inFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
 		val outFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]

@@ -104,8 +104,10 @@ package Occurrences {
 		 * The incoming transfers targeting this occurrence. 
 		 */
 		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
-			end redefines transferTarget = Occurrence::self;
+			end redefines transferSource;
+			end redefines transferTarget;
 		}
+		binding incomingTransfers.transferTarget[*] = self;
 	}
 	
 	abstract class all Life specializes Occurrence {

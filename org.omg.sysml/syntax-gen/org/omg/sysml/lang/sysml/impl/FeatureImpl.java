@@ -796,8 +796,25 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	@Override
-	public void transform() {
+	public Type getDefaultType(String... defaultNames) {
+		Type owningType = getOwningType();
+		if (owningType instanceof BindingConnector) {
+			Feature relatedFeature = ((BindingConnectorImpl)owningType).getRelatedFeatureFor(this);
+			if (relatedFeature != null) {
+				return relatedFeature;
+			}
+		}
+		return super.getDefaultType(defaultNames);
+	}
+	
+	@Override
+	public void computeImplicitGeneralization() {
 		addComputedRedefinitions();
+		super.computeImplicitGeneralization();
+	}
+	
+	@Override
+	public void transform() {
 		super.transform();
 		getEffectiveName();
 		getValueConnector();

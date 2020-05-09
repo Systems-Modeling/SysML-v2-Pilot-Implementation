@@ -18,7 +18,7 @@ package '15_03-Value Expression' {
          * This binds 'outDiameter' to the result of a computed value.
          * There is no need to mark it as "derived".
          */
-        value outerDiameter = (hubDiameter + 2 * tire::height)@[mm];
+        value outerDiameter: LengthValue = (hubDiameter + 2 * tire::height)@[mm];
         part tire: Tire[1];
     }
     

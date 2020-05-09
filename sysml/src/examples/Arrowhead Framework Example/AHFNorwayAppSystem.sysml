@@ -25,7 +25,7 @@ package AHFNorway {
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:~APISService subsets services; // consuming the APISService
 			systemname = "UngerApisClient";
-			address = "Unger_network_ip";
+			address = "Unger_network_ip"; 
 			portno = 0;
 			
 			// Now calling the remote behavior through the port functionality
@@ -35,7 +35,9 @@ package AHFNorway {
 		
 		block APISProducer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
-			port apis:APISService subsets services; // providing the APISService
+			port apis:APISService subsets services { // providing the APISService
+				ref out :>> getAllItems;
+			}
 			port tellu:APISService subsets services; // talking to TellU
 			
 			// specializing the functionality implementation towards REST
@@ -74,9 +76,22 @@ package AHFNorway {
 			}
 		}
 
- 		part telluc:TellUConsumer subsets systems;
- 		part apisp:APISProducer subsets systems;
- 		part apisc:APISConsumer subsets systems;
+ 		part telluc:TellUConsumer subsets systems {
+ 			port redefines serviceDiscovery;
+ 			port redefines tellu;
+ 		}
+ 		part apisp:APISProducer subsets systems {
+  			port redefines serviceDiscovery;
+ 			port redefines apis;
+ 			port redefines tellu;
+ 		}
+ 		part apisc:APISConsumer subsets systems {
+ 			port redefines serviceDiscovery;
+ 			port redefines apis;
+ 		}
+ 		part redefines service_registry {
+ 			port redefines serviceDiscovery;
+ 		}
  		
  		connect apisp::tellu to telluc::tellu; // from TelluCloud to APIS at Prediktor
  		connect apisp::apis to apisc::apis; // from Prediktor to Unger

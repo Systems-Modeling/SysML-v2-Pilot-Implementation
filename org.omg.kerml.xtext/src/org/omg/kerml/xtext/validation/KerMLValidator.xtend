@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
+import org.omg.sysml.lang.sysml.impl.ElementImpl
 
 /**
  * This class contains custom validation rules. 
@@ -53,6 +54,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector - Connector context'
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
+	
+	@Check
+	def checkElement(Element e) {
+		(e as ElementImpl).transform
+	}
 	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {
@@ -100,8 +106,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 			return //ignore binding connectors with invalid syntax
 		}
 		
-		val inFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
-		val outFeature = rf.map[owningFeatureMembership].filter[direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
+		rf.forEach[f|(f as FeatureImpl).transform]
+		
+		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
+		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
 		
 		if (// TEMP: Do not check argument type conformance for feature value connectors.
 			!(bc.owner instanceof Feature && (bc.owner as FeatureImpl).valueConnector === bc) &&
@@ -113,8 +121,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
 			if (outConformsToIn.filter[!empty].length != inTypes.length)		
 				error("Output feature must conform to input feature", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
-		}
-		else { 
+		} else { 
 			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type

@@ -352,6 +352,124 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			   (owningType instanceof RequirementDefinition || 
 			    owningType instanceof RequirementUsage);
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Predicate getConstraintDefinition() {
+		return getRequirementDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Predicate basicGetConstraintDefinition() {
+		return basicGetRequirementDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstraintDefinition(Predicate newConstraintDefinition) {
+		if (newConstraintDefinition != null && !(newConstraintDefinition instanceof RequirementDefinition)) {
+			throw new IllegalArgumentException("newConstraintDefinition must be an instance of RequirementDefinition");
+		}
+		setRequirementDefinition((RequirementDefinition) newConstraintDefinition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConstraintDefinition() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage getConstraintOwningUsage() {
+		return getRequirementOwningUsage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Usage basicGetConstraintOwningUsage() {
+		return basicGetRequirementOwningUsage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstraintOwningUsage(Usage newConstraintOwningUsage) {
+		setRequirementOwningUsage(newConstraintOwningUsage);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConstraintOwningUsage() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Definition getConstraintOwningDefinition() {
+		return getRequirementOwningDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Definition basicGetConstraintOwningDefinition() {
+		return basicGetRequirementOwningDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConstraintOwningDefinition(Definition newConstraintOwningDefinition) {
+		setRequirementOwningDefinition(newConstraintOwningDefinition);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConstraintOwningDefinition() {
+  		return false;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -509,123 +627,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		result.append(text);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Predicate getConstraintDefinition() {
-		return getRequirementDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Predicate basicGetConstraintDefinition() {
-		return basicGetRequirementDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintDefinition(Predicate newConstraintDefinition) {
-		if (newConstraintDefinition != null && !(newConstraintDefinition instanceof RequirementDefinition)) {
-			throw new IllegalArgumentException("newConstraintDefinition must be an instance of RequirementDefinition");
-		}
-		setRequirementDefinition((RequirementDefinition) newConstraintDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintDefinition() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getConstraintOwningUsage() {
-		return getRequirementOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetConstraintOwningUsage() {
-		return basicGetRequirementOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintOwningUsage(Usage newConstraintOwningUsage) {
-		setRequirementOwningUsage(newConstraintOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintOwningUsage() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getConstraintOwningDefinition() {
-		return getRequirementOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition basicGetConstraintOwningDefinition() {
-		return basicGetRequirementOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintOwningDefinition(Definition newConstraintOwningDefinition) {
-		setRequirementOwningDefinition(newConstraintOwningDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintOwningDefinition() {
-  		return false;
 	}
 
 } //RequirementUsageImpl

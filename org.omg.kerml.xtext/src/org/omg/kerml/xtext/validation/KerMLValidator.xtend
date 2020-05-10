@@ -108,20 +108,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 		rf.forEach[f|(f as FeatureImpl).transform]
 		
-		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
-		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
-		
-		if (// TEMP: Do not check argument type conformance for feature value connectors.
-			!(bc.owner instanceof Feature && (bc.owner as FeatureImpl).valueConnector === bc) &&
-			
-			inFeature !== null && outFeature !== null){
-			//Argument type conformance
-			val inTypes = inFeature.type
-			val outTypes = outFeature.type
-			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
-			if (outConformsToIn.filter[!empty].length != inTypes.length)		
-				error("Output feature must conform to input feature", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
-		} else { 
+//		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
+//		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
+//		
+//		if (// TEMP: Do not check argument type conformance for feature value connectors.
+//			!(bc.owner instanceof Feature && (bc.owner as FeatureImpl).valueConnector === bc) &&
+//			
+//			inFeature !== null && outFeature !== null){
+//			//Argument type conformance
+//			val inTypes = inFeature.type
+//			val outTypes = outFeature.type
+//			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
+//			if (outConformsToIn.filter[!empty].length != inTypes.length)		
+//				error("Output feature must conform to input feature", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
+//		} else { 
 			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
@@ -132,7 +132,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
 				f2ConformsTof1.filter[!empty].length != f1types.length)
 				error("Binding connector ends must have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
-		}
+//		}
 	}
 	
 	//return related subtypes

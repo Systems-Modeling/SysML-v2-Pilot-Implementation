@@ -760,14 +760,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	// Additional redefinitions and subsets
 	
+	protected String effectiveName = null;
+	
 	public String getEffectiveName() {
+		return getEffectiveName(new HashSet<Feature>());
+	}
+	
+	public String getEffectiveName(Set<Feature> visited) {
 		String name = getName();
 		if (name == null) {
-			Feature namingFeature = getNamingFeature();
-			if (namingFeature != null && namingFeature != this) {
-				name = namingFeature.getName();
-				setName(name);
+			if (effectiveName == null) {
+				visited.add(this);
+				Feature namingFeature = getNamingFeature();
+				if (namingFeature != null && !visited.contains(namingFeature)) {
+					effectiveName = ((FeatureImpl)namingFeature).getEffectiveName(visited);
+				}
 			}
+			name = effectiveName;
 		}
 		return name;
 	}
@@ -816,7 +825,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void transform() {
 		super.transform();
-		getEffectiveName();
 		getValueConnector();
 	}
 	

@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl
 import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.impl.ElementImpl
 
 class KerMLScope extends AbstractScope {
 	
@@ -65,6 +66,7 @@ class KerMLScope extends AbstractScope {
 	protected boolean findFirst = false;
 	
 	protected boolean isShadowing = false;
+	protected Element element
 	protected Type scopingType
 
 	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
@@ -80,6 +82,7 @@ class KerMLScope extends AbstractScope {
 		this.isFirstScope = isFirstScope
 		this.isRedefinition = isRedefinition
 		this.skip = skip
+		this.element = element
 		this.scopingType = if (element?.owner instanceof Type) element.owner as Type else null
 	}
 	
@@ -170,7 +173,7 @@ class KerMLScope extends AbstractScope {
 					scopeProvider.addVisited(m)
 					try {
 						memberElement = m.memberElement
-						elementName = if (isFirstScope && pack === this.pack) m.memberName else m.effectiveMemberName
+						elementName = if (isFirstScope && pack == this.pack && memberElement === element) m.memberName else m.effectiveMemberName
 					} finally {
 						scopeProvider.removeVisited(m)
 					}
@@ -219,14 +222,8 @@ class KerMLScope extends AbstractScope {
 	}
 	
 	protected def String getEffectiveMemberName(Membership mem) {
-		var name = mem.memberName
-		if (name === null) {
-			val element = mem.memberElement
-			if (element instanceof FeatureImpl) {
-				name = element.effectiveName
-			}
-		}
-		name
+		if (mem.memberName !== null) mem.memberName
+		else (mem.memberElement as ElementImpl)?.effectiveName
 	}
 	
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){

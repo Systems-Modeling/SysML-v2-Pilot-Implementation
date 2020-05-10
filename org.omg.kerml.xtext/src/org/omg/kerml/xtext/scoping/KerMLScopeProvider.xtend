@@ -89,11 +89,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		} else if (context instanceof Generalization)
 			context.specific.scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
-		    var owningPackage = context.membershipOwningPackage
-		    if (owningPackage instanceof QueryPathExpression) {
-			    context.scope_QueryPathExpression(owningPackage as QueryPathExpression, context, reference)
-		    } else 
-		    	context.scope_Namespace(owningPackage, context, reference)
+		    context.scope_Namespace(context.membershipOwningPackage, context, reference)
 		} else if (context instanceof Import)
 			context.scope_Namespace(context.importOwningPackage, context, reference)
 		else if (context instanceof Package) 

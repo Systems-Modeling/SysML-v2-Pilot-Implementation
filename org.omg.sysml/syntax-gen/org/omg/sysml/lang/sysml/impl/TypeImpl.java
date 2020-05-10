@@ -834,7 +834,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		int n = parameters.size();
 		for (Generalization generalization: basicGetOwnedGeneralizationWithDefault()) {
 			Type general = generalization.getGeneral();
-			if (general != null) {
+			if (general != null && general != this) {
 				List<Parameter> inheritedParameters = ((TypeImpl)general).getAllParameters();
 				if (inheritedParameters.size() > n) {
 					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));

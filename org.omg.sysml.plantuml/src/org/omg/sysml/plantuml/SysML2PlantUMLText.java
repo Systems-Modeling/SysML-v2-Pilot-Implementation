@@ -192,13 +192,11 @@ public class SysML2PlantUMLText {
         if (!skipStructure()) {
             sb.append("allow_mixing\n");
         }
-        sb.append("left to right direction\n");
-
+        
         if (diagramMode == MODE.Interconnection) {
             sb.append("skinparam ranksep 8\n");
-            // sb.append("skinparam linetype polyline\n");
-            sb.append("skinparam linetype ortho\n");
-            // sb.append("skinparam arrowThickness 3\n");
+            // Linestyle should be managed by PlantUML Eclipse Plugin
+            // sb.append("skinparam linetype ortho\n");
             sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
         }
         

@@ -1,8 +1,8 @@
 package '15.10-Primitive Data Types' {
 	/*
-	 * The following primitive data types are defined in the normative Kernel model library.
-	 * Any more specialized data types can be declared in user-defined model libraries or
-	 * models as needed.
+	 * Primitive data types are defined in normative model libraries.
+	 * Any more specialized data types can be declared in user-defined 
+	 * model libraries or models as needed.
 	 */
 	 
 	/**
@@ -19,13 +19,16 @@ package '15.10-Primitive Data Types' {
 	 */
 	import ScalarValues::Real;
 	
-	/* TODO: Move this to the model library. */
+	/** TODO: Move this to the model library.
+	 * (To be discussed whether Unsigned value types should really be part of the primitive 
+	 * data / value types. These are more a computer data type concern.)
+	 */
 	value type UnsignedReal :> Real {
-		assert constraint { self >= 0.0 }
+		assert constraint { Real::self >= 0.0 }
 	}
 	
 	/**
-	 * String values that are sequences of characters.
+	 * String values are sequences of characters.
 	 * TODO: Specify any requirements on character encoding.
 	 */
 	import ScalarValues::String;

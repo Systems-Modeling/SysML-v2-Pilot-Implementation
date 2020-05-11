@@ -9,11 +9,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ControlNode is an ActionUsage that does not have any inherent behavior but provides constraints on incoming and outgoing Succession connectors that are used to control other Actions.
+ * <p>A ControlNode is an ActionUsage that does not have any inherent behavior but provides constraints on incoming and outgoing Succession Connectors that are used to control other Actions.</p>
  * 
- * A ControlNode must be a composite owned feature of an Activity or ActionUsage, subsetting, directly or indirectly, the ActionUsage Action::controls. This implies that the ControlNode must be typed by ControlAction from the Systems model library, or a subtype of it.
+ * <p>A ControlNode must be a composite owned feature of an Activity or ActionUsage, subsetting, directly or indirectly, the ActionUsage <tt>Action::controls</tt>. This implies that the ControlNode must be typed by ControlAction from the Systems model library, or a subtype of it.</p>
  * 
- * All outgoing Successions from a ControlNode must have source multiplicity of 1..1. All incoming Succession must have target multiplicity of 1..1.
+ * <p>All outgoing Successions from a ControlNode must have source multiplicity of 1..1. All incoming Succession must have target multiplicity of 1..1.</p>
  * <!-- end-model-doc -->
  *
  *

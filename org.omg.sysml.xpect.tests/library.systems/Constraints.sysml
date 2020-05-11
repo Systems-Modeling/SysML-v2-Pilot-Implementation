@@ -3,8 +3,10 @@
  * SysML language.
  */
 package Constraints {
-	private import Base::*;
-	private import Blocks::*;
+	private import Performances::BooleanEvaluation;
+	private import Performances::booleanEvaluations;
+	private import Blocks::Part;
+	private import Blocks::parts;
 	
 	/**
 	 * ConstraintCheck is the most general class for constraint checking. ConstraintCheck is the base

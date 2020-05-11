@@ -36,7 +36,7 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RequirementUsage that is satisfied by the satisfyingSubject of this SatisfyRequirementUsage. It is the subsetted element of the first owned Subsetting relationship of the SatisfyRequirementUsage.</p>
+	 * <p>The RequirementUsage that is satisfied by the <tt>satisfyingSubject</tt> of this SatisfyRequirementUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the SatisfyRequirementUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfied Requirement</em>' reference.
 	 * @see #setSatisfiedRequirement(RequirementUsage)
@@ -66,6 +66,9 @@ public interface SatisfyRequirementUsage extends RequirementUsage, AssertConstra
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that represents the actual subject that is asserted to satisfy the <tt>satisfiedRequirement</tt>. The <tt>satisfyingFeature</tt> must be the target of a BindingConnector from the <tt>subjectParameter</tt> of the <tt>satisfiedRequirement</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Satisfying Feature</em>' reference.
 	 * @see #setSatisfyingFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSatisfyRequirementUsage_SatisfyingFeature()

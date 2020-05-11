@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -32,7 +31,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionItemFlow {
 
 	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::flows";
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subflows";
+	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subflows";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -114,6 +113,13 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubtransfer() ? 
+				SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT: 
+				SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -243,12 +249,6 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(isSubtransfer() ? SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT
-				: SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT);
 	}
 
 } // SuccessionItemFlowImpl

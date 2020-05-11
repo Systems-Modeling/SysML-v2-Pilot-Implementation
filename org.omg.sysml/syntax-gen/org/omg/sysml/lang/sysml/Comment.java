@@ -7,6 +7,8 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Comment</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * <p>A Comment is a textual annotation attached to a specific Element using an Annotation Relationship.</p>
+ * 
  * commentedElement = annotationForComment.annotatedElement
  * <!-- end-model-doc -->
  *

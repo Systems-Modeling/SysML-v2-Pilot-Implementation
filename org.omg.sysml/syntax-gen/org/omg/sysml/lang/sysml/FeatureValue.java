@@ -39,6 +39,11 @@ public interface FeatureValue extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Expression that provides the value as a result.</p>
+	 * 
+	 * <p>The Expression that provides the value as a result.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value comp</em>' containment reference.
 	 * @see #setValue_comp(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_Value_comp()
@@ -98,6 +103,11 @@ public interface FeatureValue extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature to be provided a value.</p>
+	 * 
+	 * <p>The Feature to be provided a value.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature With Value</em>' reference.
 	 * @see #setFeatureWithValue(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_FeatureWithValue()
@@ -125,6 +135,19 @@ public interface FeatureValue extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The BindingConnector that assigns the result of the Expression to the Feature.</p>
+	 * 
+	 * <p>The valueConnector must be an ownedFeature of the featureWithValue.<br />
+	 * The source of the valueConnector must be the featureWithValue.<br />
+	 * The target of the valueConnector must be result of the value Expression.</p>
+	 * <p>The BindingConnector that assigns the result of the Expression to the Feature.</p>
+	 * 
+	 * <p>The valueConnector must be an ownedFeature of the featureWithValue.<br />
+	 * The source of the valueConnector must be the featureWithValue.<br />
+	 * The target of the valueConnector must be result of the value Expression.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Connector</em>' reference.
 	 * @see #setValueConnector(BindingConnector)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_ValueConnector()

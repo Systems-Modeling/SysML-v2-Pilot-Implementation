@@ -9,6 +9,11 @@ package '6-Individual and Snapshots' {
 			value referenceCoordinateSystem;
 		}
 		
+		/*
+		 * Note that space and time coordinatization have not
+		 * been fully specified yet.
+		 */
+		
 		block VehicleRoadContext {
 			value t : TimeValue;
 		}
@@ -33,6 +38,11 @@ package '6-Individual and Snapshots' {
 	package 'Individual Definitions' {
 		import 'Part Definitions'::*;
 		
+		/*
+		 * An individual definition restricts the instances of a block to
+		 * those that are portions of the same life ("identity").
+		 */
+		 
 		individual def 'Temporal-Spatial Reference_ID1' :> 'Temporal-Spatial Reference';
 		individual def VehicleRoadContext_ID1 :> VehicleRoadContext;
 		individual def VehicleA_ID1 :> VehicleA;
@@ -72,16 +82,34 @@ package '6-Individual and Snapshots' {
 		import 'Individual Definitions'::*;
 		import Values::*;
 		
+		/**
+		 * An individual usage must be typed by an individual definition,
+		 * representing the condition of that individual during some or all
+		 * of its life.
+		 */
 		individual reference : 'Temporal-Spatial Reference_ID1' {
 			snapshot context_t0 : VehicleRoadContext_ID1 {
+				/**
+				 * This is a concise notation for showing the redefinition
+				 * of a value property.
+				 */
 				:>> t = t0;
 				
+				/**
+				 * A snapshot is a kind of individual usage restricted to
+				 * a single instant of time.
+				 */
 				snapshot vehicle_ID1_t0 : VehicleA_ID1 {
 					:>> mass = m;
 					:>> position = p0;
 					:>> velocity = v0;
 					:>> acceleration = a0;
 					
+					/**
+					 * This asserts that the snapshot exhibits the referenced 
+					 * state, which means that the vehicle must me in the state 
+					 * at the time of the snapshot.
+					 */
 					exhibit vehicleStates::on;
 				}
 				

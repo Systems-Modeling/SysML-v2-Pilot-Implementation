@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.omg.sysml.lang.sysml.NullExpression;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -17,7 +15,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
 
-	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Base::nullEvaluations";
+	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Performancs::nullEvaluations";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,10 +35,8 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> subsettings = getOwnedSubsettingWithDefault(NULL_EXPRESSION_SUBSETTING_DEFAULT);
-		getComputedRedefinitions();
-		return subsettings;
+	protected String getDefaultSupertype() {
+		return NULL_EXPRESSION_SUBSETTING_DEFAULT;
 	}
 
 } // NullExpressionImpl

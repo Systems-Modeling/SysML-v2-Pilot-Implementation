@@ -7,12 +7,18 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Conditional Import</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A ConditionalImport is an Import that is based on a specific condition. The condition allows for selective gathering of items from one package to another.</p>
+ * <p>A ConditionalImport is an Import that is based on a specific condition. The condition allows for selective gathering of items from one package to another.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getCondition_comp <em>Condition comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getSelector <em>Selector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getCondition_comp <em>Condition comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -29,6 +35,12 @@ public interface ConditionalImport extends Import {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Predicate that determines what is imported.</p>
+	 * 
+	 * <p>The Predicate that determines what is imported.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Selector</em>' reference.
 	 * @see #setSelector(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConditionalImport_Selector()
@@ -57,6 +69,11 @@ public interface ConditionalImport extends Import {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ImportCondition that links the ConditionalImport to a predicate that is the basis for accepting the import.</p>
+	 * <p>The ImportCondition that links the ConditionalImport to a predicate that is the basis for accepting the import.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Condition comp</em>' containment reference.
 	 * @see #setCondition_comp(ImportCondition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConditionalImport_Condition_comp()

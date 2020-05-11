@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ConjugatedPortDefinition is a PortDefinition that is a PortConjugation of its original PortDefinition. That is, a ConjugatedPortDefinition inherits all the features of the original PortDefinition, but input flowProperties of the original PortDefinition become outputs on the ConjugatedPortDefinition and output flowProperties of the original PortDefinition become inputs on the ConjugatedPortDefinition. Every PortDefinition has exactly one corresponding ConjugatedPortDefinition, whose name is the same as that of the originalPortDefinition, with the character "~" prepended.
+ * <p>A ConjugatedPortDefinition is a PortDefinition that is a PortConjugation of its original PortDefinition. That is, a ConjugatedPortDefinition inherits all the <tt>features</tt> of the original PortDefinition, but input flowProperties of the original PortDefinition become outputs on the ConjugatedPortDefinition and output flowProperties of the original PortDefinition become inputs on the ConjugatedPortDefinition. Every PortDefinition has exactly one corresponding ConjugatedPortDefinition, whose name is the same as that of the originalPortDefinition, with the character <tt>~</tt> prepended.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,6 +40,9 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The PortConjugation that is the <tt>ownedConjugator</tt> of this ConjugatedPortDefinition, linking it its <tt>originalPortDefinition</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port Conjugator</em>' reference.
 	 * @see #setOwnedPortConjugator(PortConjugation)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortDefinition_OwnedPortConjugator()
@@ -72,7 +75,7 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The original PortDefinition for this ConjugatedPortDefinition.
+	 * <p>The original PortDefinition for this ConjugatedPortDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Port Definition</em>' reference.
 	 * @see #setOriginalPortDefinition(PortDefinition)

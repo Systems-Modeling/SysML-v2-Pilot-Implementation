@@ -3,14 +3,22 @@
  * SysML language.
  */
 package Blocks {
-	private import Base::*;
+	private import Base::DataValue;
+	private import Base::dataValues;
+	private import Objects::Object;
+	private import Objects::BinaryLink;
+	private import Objects::objects;
+	private import Objects::links;
 	
 	/**
 	 * Part is the most general class of objects that represent all or a part of a system.
 	 * Part is the base type of all blocks.
 	 */
 	block Part :> Object {
-		ref self: Part :>> Base::self;
+		ref self: Part :>> Object::self;
+		
+		part start: Part :>> Object::startShot;
+		part done: Part :>> Object::endShot;
 		
 		/**
 		 * Ports that are on this part.

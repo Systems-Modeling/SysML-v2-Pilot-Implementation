@@ -2,13 +2,23 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
 		File {from ="/library.systems/Activities.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library.systems./Activities.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+       			File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Activities.sysml"}
 			}
 		}
 	}
@@ -16,7 +26,13 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package ActionTest {
-	action a { 
+	activity A(in x);
+	
+	action a: A { 
 		first start;
+		
+		action b(in y = x);
+		
+		bind x = b::y;
 	}
 }

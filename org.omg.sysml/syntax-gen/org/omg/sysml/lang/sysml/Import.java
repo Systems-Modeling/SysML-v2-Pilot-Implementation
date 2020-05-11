@@ -8,6 +8,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Import</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An Import is a Relationship between an importing Package an imported Package in which the visible member Elements of the imported Package become imported members of the importing Package. An Import may be <em>public,</em> in which case the imported members are &quot;re-exported&quot; as publicly visible members of the importing Package, or it may be <em>private,</em> in which case the imported members are private to the importing Package.</p>
+ * 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -69,6 +74,10 @@ public interface Import extends Relationship {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether the imported members from this Import become public or private members of the <tt>importOwningPackage</tt>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.VisibilityKind
 	 * @see #setVisibility(VisibilityKind)
@@ -134,6 +143,10 @@ public interface Import extends Relationship {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Returns the Memberships of the <tt>importedPackage</tt> whose <tt>memberElements</tt> are to become imported <tt>members</tt> of the <tt>importOwningPackage</tt>. By default, this is the set of publicly visible Memberships of the <tt>importedPackage</tt>, but this may be overridden in specializations of Import</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @model
 	 * @generated
 	 */

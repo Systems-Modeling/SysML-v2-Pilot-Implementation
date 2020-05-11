@@ -1,0 +1,73 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package Example2 {
+	block Fuel;
+	port def FuelOutPort {
+		ref out fuelSupply : Fuel;
+		ref in fuelReturn : Fuel;
+	}
+	block FuelTankAssembly {
+		port fuelTankPort : FuelOutPort;
+	}
+
+	block Vehicle;
+	block FuelPump;
+	block FuelTank;
+	
+	part vehicle : Vehicle {	
+		part tank : FuelTankAssembly {
+			port fuelTankPort0 redefines FuelTankAssembly::fuelTankPort {
+				ref out fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
+				ref in redefines fuelReturn;
+			}
+			port redefines FuelTankAssembly::fuelTankPort {
+				ref out fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
+			}
+			
+			bind fuelTankPort0::fuelSupply = pump::pumpOut;
+//short-hand redefines syntax not supported yet that causes errors
+			// XPECT errors --> "A connector and its related features must have a common context" at "fuelTankPort0::fuelReturn = tank::fuelIn;"
+			bind fuelTankPort0::fuelReturn = tank::fuelIn;
+			// XPECT errors --> "A connector and its related features must have a common context" at "fuelTankPort::fuelSupply = pump::pumpOut;"
+			bind fuelTankPort::fuelSupply = pump::pumpOut;
+					
+			part pump : FuelPump {
+				ref out pumpOut : Fuel;
+				ref in pumpIn : Fuel;
+			}
+			
+			part tank : FuelTank {
+				ref in fuelOut : Fuel;
+				ref in fuelIn : Fuel;
+			}
+		}
+	} 
+}

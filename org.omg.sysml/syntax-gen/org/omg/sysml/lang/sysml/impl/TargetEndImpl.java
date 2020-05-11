@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 
@@ -33,14 +32,6 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.TARGET_END;
-	}
-
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		clearCaches();
-		getOwnedSubsettingWithDefault();
-		getComputedRedefinitions();
-		return getOwnedSubsettingWithoutDefault();
 	}
 
 	@Override

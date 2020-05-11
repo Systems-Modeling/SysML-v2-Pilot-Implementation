@@ -32,13 +32,13 @@ import org.omg.sysml.lang.sysml.Usage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConstraint <em>Nested Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedTransition <em>Nested Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRequirement <em>Nested Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
  *
  * @generated
@@ -233,8 +233,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return getNestedPort();
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				return getNestedAction();
+			case SysMLPackage.USAGE__NESTED_PROPERTY:
+				return getNestedProperty();
 			case SysMLPackage.USAGE__NESTED_STATE:
 				return getNestedState();
 			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
@@ -243,10 +243,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedTransition();
 			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
 				return getNestedRequirement();
-			case SysMLPackage.USAGE__NESTED_PROPERTY:
-				return getNestedProperty();
 			case SysMLPackage.USAGE__PROPERTY:
 				return getProperty();
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				return getNestedAction();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,9 +274,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedPort().clear();
 				getNestedPort().addAll((Collection<? extends PortUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				getNestedAction().clear();
-				getNestedAction().addAll((Collection<? extends ActionUsage>)newValue);
+			case SysMLPackage.USAGE__NESTED_PROPERTY:
+				getNestedProperty().clear();
+				getNestedProperty().addAll((Collection<? extends Property>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_STATE:
 				getNestedState().clear();
@@ -294,13 +294,13 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedRequirement().clear();
 				getNestedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__NESTED_PROPERTY:
-				getNestedProperty().clear();
-				getNestedProperty().addAll((Collection<? extends Property>)newValue);
-				return;
 			case SysMLPackage.USAGE__PROPERTY:
 				getProperty().clear();
 				getProperty().addAll((Collection<? extends Property>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				getNestedAction().clear();
+				getNestedAction().addAll((Collection<? extends ActionUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -326,8 +326,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
 				return;
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				getNestedAction().clear();
+			case SysMLPackage.USAGE__NESTED_PROPERTY:
+				getNestedProperty().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_STATE:
 				getNestedState().clear();
@@ -341,11 +341,11 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
 				getNestedRequirement().clear();
 				return;
-			case SysMLPackage.USAGE__NESTED_PROPERTY:
-				getNestedProperty().clear();
-				return;
 			case SysMLPackage.USAGE__PROPERTY:
 				getProperty().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				getNestedAction().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -367,8 +367,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return !getNestedPort().isEmpty();
-			case SysMLPackage.USAGE__NESTED_ACTION:
-				return !getNestedAction().isEmpty();
+			case SysMLPackage.USAGE__NESTED_PROPERTY:
+				return !getNestedProperty().isEmpty();
 			case SysMLPackage.USAGE__NESTED_STATE:
 				return !getNestedState().isEmpty();
 			case SysMLPackage.USAGE__NESTED_CONSTRAINT:
@@ -377,10 +377,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedTransition().isEmpty();
 			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
 				return !getNestedRequirement().isEmpty();
-			case SysMLPackage.USAGE__NESTED_PROPERTY:
-				return !getNestedProperty().isEmpty();
 			case SysMLPackage.USAGE__PROPERTY:
 				return !getProperty().isEmpty();
+			case SysMLPackage.USAGE__NESTED_ACTION:
+				return !getNestedAction().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

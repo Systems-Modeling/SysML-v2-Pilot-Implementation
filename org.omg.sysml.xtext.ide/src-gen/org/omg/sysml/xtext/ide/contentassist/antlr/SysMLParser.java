@@ -1042,6 +1042,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationship_compAssignment_1(), "rule__BodyExpression__OwnedRelationship_compAssignment_1");
 			builder.put(grammarAccess.getExpressionTypingAccess().getTypeAssignment(), "rule__ExpressionTyping__TypeAssignment");
 			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedFeatureMembership_compAssignment");
+			builder.put(grammarAccess.getFeatureReferenceAccess().getOwnedRelationship_compAssignment(), "rule__FeatureReference__OwnedRelationship_compAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compAssignment_0(), "rule__InvocationExpression__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__PositionalTuple__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__PositionalTuple__OwnedFeatureMembership_compAssignment_1_1");
@@ -1061,7 +1062,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRealLiteralExpressionAccess().getValueAssignment(), "rule__RealLiteralExpression__ValueAssignment");
 			builder.put(grammarAccess.getNaturalLiteralExpressionAccess().getValueAssignment(), "rule__NaturalLiteralExpression__ValueAssignment");
 			builder.put(grammarAccess.getExpressionMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__ExpressionMember__OwnedMemberFeature_compAssignment");
-			builder.put(grammarAccess.getFeatureReferenceAccess().getMemberFeatureAssignment(), "rule__FeatureReference__MemberFeatureAssignment");
+			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__FeatureReferenceMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getTypeReferenceMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__TypeReferenceMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getMemberNameAssignment_0(), "rule__NamedExpressionMember__MemberNameAssignment_0");
 			builder.put(grammarAccess.getNamedExpressionMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__NamedExpressionMember__OwnedMemberFeature_compAssignment_2");

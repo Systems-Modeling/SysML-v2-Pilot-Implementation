@@ -10,11 +10,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A StateUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is a StateDefinition, a StateUsage is a Usage of that StateDefinition within a system. However, non-StateDefinition Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.
+ * <p>A StateUsage is an ActionUsage that is nominally the Usage of a StateDefinition. However, non-StateDefinition Behaviors are also allowed as types, to permit use of Behaviors from the Kernel Library.</p>
  * 
- * A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base StateUsage "stateActions" from the Systems model library, if it is not a composite feature, or the StateUsage "substates" inherited from its owner, if it is a composite feature.
+ * <p>A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base StateUsage <tt>stateActions</tt> from the Systems model library, if it is not a composite feature, or the StateUsage <tt>substates</tt> inherited from its owner, if it is a composite feature.</p>
  * 
- * A StateUsage may have up to three features using StateBehaviorMembership, all of different kinds, corresponding to the entry, do and exit actions of the state.
+ * <p>A StateUsage may be related to up to three of its <tt>ownedFeatures</tt> by StateBehaviorMembership Relationships, all of different <tt>kinds</tt>, corresponding to the entry, do and exit actions of the StateUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -49,6 +49,9 @@ public interface StateUsage extends ActionUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this StateUsage is nested, if any.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State Owning Usage</em>' reference.
 	 * @see #setStateOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_StateOwningUsage()
@@ -84,6 +87,9 @@ public interface StateUsage extends ActionUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Behaviors that are the types of this StateUsage. Nominally, these would be StateDefinitions, but non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_StateDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
@@ -98,7 +104,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The entry ActionUsage of this StateUsage, derived as the member feature of the StateUsage with a StateSubactionMembership of kind "entry"
+	 * <p>The ActionUsage of this StateUsage to be performed on entry to the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>entry</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Entry Action</em>' reference.
 	 * @see #setEntryAction(ActionUsage)
@@ -124,7 +130,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The do ActionUsage of this StateUsage, derived as the member feature of the StateUsage with a StateSubactionMembership of kind "do".
+	 * <p>The ActionUsage of this StateUsage to be performed while in the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>do</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Do Action</em>' reference.
 	 * @see #setDoAction(ActionUsage)
@@ -150,7 +156,7 @@ public interface StateUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The exit ActionUsage of this StateUsage, derived as the member feature of the StateUsage with a StateSubactionMembership of kind "exit".
+	 * <p>The ActionUsage of this StateUsage to be performed on exit from the state specified by the StateUsage. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>exit</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exit Action</em>' reference.
 	 * @see #setExitAction(ActionUsage)
@@ -186,6 +192,9 @@ public interface StateUsage extends ActionUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this StateUsage, if any.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State Owning Definition</em>' reference.
 	 * @see #setStateOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateUsage_StateOwningDefinition()

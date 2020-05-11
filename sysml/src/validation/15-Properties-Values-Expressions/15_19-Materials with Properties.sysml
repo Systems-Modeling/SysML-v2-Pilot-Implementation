@@ -1,4 +1,7 @@
 package '15_19-Materials with Properties' {
+	import ScalarValues::Real;
+	import Quantities::*;
+	import UnitsAndScales::*;
 	import SI::*;
 	
 	// TODO: Move definition of atomic mass and Da to SI
@@ -11,7 +14,7 @@ package '15_19-Materials with Properties' {
     
     part Da: AtomicMassUnit = AtomicMassUnit(
     	name => "dalton", 
-    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.6605390666050e-27)
+    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.66053906660e-27)
     );
 
 	// TODO: Move definition of tensile strength and N/mm² to SI
@@ -37,18 +40,28 @@ package '15_19-Materials with Properties' {
     }
 
     block Substance;
-
     block Material :> Substance;
 
-    value type MassFractionValue;
+	/*
+	 * The classification of materials into metals and alloys is grossly simplified and not exhaustive.
+	 * A more complete classification would include: ChemicalSubstance, PureMaterial, MixedMaterial,
+	 * Class, Ceramic, OrganicMaterial, AnorganicMaterial, Polymer, HybridMaterial, CompositeMaterial,
+	 * etc.
+	 */
+
+    block Metal :> Material {
+        value atomicMass: AtomicMassValue[1];
+    }
 
     value type MaterialFraction {
         ref material: Material[1]; 
-        value massFraction: MassFractionValue;
+        value massFraction: MassFractionValue[1];
     }
 
-    block Metal :> Material {
-        value atomicMass: AtomicMassValue;
+    value type MassFractionValue :> DimensionOneValue;    
+
+    block Alloy :> Material {
+        value fractions: MaterialFraction[2..*];
     }
 
     individual def Iron :> Metal {
@@ -63,10 +76,9 @@ package '15_19-Materials with Properties' {
         value atomicMass :>> Metal::atomicMass = 54.938@[Da];
     }
 
-    block Alloy :> Material {
-        value fractions: MaterialFraction[2..*];
-    }
-
+ 	/**
+	 * Particular example of high tensile strength steel.
+	 */
     individual def Steel_980 :> Alloy {
         value fraction1 :> fractions {
         	ref :>> material : Iron;

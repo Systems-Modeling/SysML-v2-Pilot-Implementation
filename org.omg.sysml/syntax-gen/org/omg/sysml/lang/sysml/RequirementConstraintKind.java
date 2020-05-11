@@ -13,6 +13,9 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Requirement Constraint Kind</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * <p>A RequirementConstraintKind indicates whether a ConstraintUsage is an assumption or a requirement in a RequirementDefinition or RequirementUsage.</p>
+ * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintKind()
  * @model
  * @generated
@@ -22,6 +25,9 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * The '<em><b>Assumption</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an assumption.</p>
+	 * <!-- end-model-doc -->
 	 * @see #ASSUMPTION_VALUE
 	 * @generated
 	 * @ordered
@@ -32,6 +38,9 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * The '<em><b>Requirement</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an requirement.</p>
+	 * <!-- end-model-doc -->
 	 * @see #REQUIREMENT_VALUE
 	 * @generated
 	 * @ordered
@@ -42,6 +51,9 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * The '<em><b>Assumption</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an assumption.</p>
+	 * <!-- end-model-doc -->
 	 * @see #ASSUMPTION
 	 * @model name="assumption"
 	 * @generated
@@ -53,6 +65,9 @@ public enum RequirementConstraintKind implements Enumerator {
 	 * The '<em><b>Requirement</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates that a member ConstraintUsage of a RequirementDefinition or RequirementUsage represents an requirement.</p>
+	 * <!-- end-model-doc -->
 	 * @see #REQUIREMENT
 	 * @model name="requirement"
 	 * @generated

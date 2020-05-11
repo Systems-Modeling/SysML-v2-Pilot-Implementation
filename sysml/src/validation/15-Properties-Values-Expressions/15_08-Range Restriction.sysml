@@ -1,4 +1,5 @@
 package '15_08-Range Restriction' {
+	import UnitsAndScales::*;
 	import SI::*;
 	import '15_01-Constants'::'Mathematical Constants'::pi;
 	
@@ -16,6 +17,7 @@ package '15_08-Range Restriction' {
 		/**
 		 * Tilt angle shall be limited to the range between 50 and 80 degrees (inclusive).
 		 */
-		assert constraint { self >= 50@[deg] & self <= 80@[deg] }
+		value angle = LightBeamTiltAngleValue::self;
+		assert constraint { angle >= 50@[deg] & angle <= 80@[deg] }
 	}
 }

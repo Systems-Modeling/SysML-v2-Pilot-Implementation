@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -23,7 +22,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeSliceFeature {
 	
 	public static final String TIME_SLICE_FEATURE_DEFAULT_NAME = "timeSliceOf";	
-	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Base::Occurrence::timeSliceOf";
+	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,9 +52,9 @@ public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeS
 	}
 	
 	@Override
-	public EList<Type> getType() {
+	public void computeImplicitGeneralization() {
 		IndividualUsageImpl.setTypingFor(this);
-		return super.getType();
+		super.computeImplicitGeneralization();
 	}
 	
 	@Override
@@ -67,12 +66,6 @@ public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeS
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return Collections.singletonList(type == getOwner()? this:
 			   (Feature)getDefaultType(TIME_SLICE_FEATURE_REDEFINED_FEATURE));
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		IndividualUsageImpl.setTypingFor(this);
 	}
 	
 } //TimeSliceFeatureImpl

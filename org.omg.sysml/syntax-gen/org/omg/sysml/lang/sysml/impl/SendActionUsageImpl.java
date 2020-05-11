@@ -5,7 +5,6 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
@@ -87,7 +86,7 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	}
 	
 	public List<Expression> getOwnedExpressions() {
-		return getOwnedFeature().stream().
+		return super.getOwnedFeature().stream().
 				filter(f->f instanceof Expression).
 				map(f->(Expression)f).
 				collect(Collectors.toList());
@@ -100,7 +99,7 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	}
 
 	public ItemFeature getItemFeature() {
-		return getOwnedFeature().stream().
+		return super.getOwnedFeature().stream().
 				filter(f->f instanceof ItemFeature).
 				map(f->(ItemFeature)f).
 				findFirst().orElse(null);
@@ -116,13 +115,12 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 		return targetConnector;
 	}
 	
-	@Override
-	public EList<Feature> getFeature() {
+	public void transform() {
+		super.transform();
 		getTargetConnector();
-		return super.getFeature();
 	}
 	
-	/**
+/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

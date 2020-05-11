@@ -27,7 +27,7 @@ package RealFunctions {
 	
 	function ToString(x: Real): String specializes BaseFunctions::ToString;
 	function ToInteger(x: Real): Integer;
-	function ToRatioanl(x: Real): Rational;
+	function ToRational(x: Real): Rational;
 	function ToReal(x: String): Real;
 	function ToComplex(x: Real): Complex;
 	

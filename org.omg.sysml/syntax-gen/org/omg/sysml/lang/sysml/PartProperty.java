@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A PartProperty is a usage of a Block to represent a composite part of a system. Any FeatureMembership of a PartProperty must be composite, which means a PartProperty cannot be a feature of ValueType or a nested feature of a ReferenceProperty or a ValueProperty.
+ * <p>A PartProperty is a usage of a Block to represent a composite part of a system. Any FeatureMembership of a PartProperty must be composite, which means a PartProperty cannot be a feature of ValueType or a nested feature of a ReferenceProperty or a ValueProperty.</p>
  * <!-- end-model-doc -->
  *
  *

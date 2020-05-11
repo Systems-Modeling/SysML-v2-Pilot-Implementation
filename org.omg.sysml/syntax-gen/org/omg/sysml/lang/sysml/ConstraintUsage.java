@@ -11,7 +11,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A ConstraintUsage is a Usage that is also a BooleanExpression, and, so, is typed by a Predicate. Nominally, if the type is a ConstraintDefinition, a ConstraintUsage is a Usage of that ConstraintDefinition. However, non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
  * 
- * <p>A ConstraintUsage (other than an AssertConstraintUsage owned by a Part) must subset, directly or indirectly, the base ConstraintUsage "constraintChecks" from the Systems model library.</p>
+ * <p>A ConstraintUsage (other than an AssertConstraintUsage owned by a Part) must subset, directly or indirectly, the base ConstraintUsage <tt>constraintChecks</tt> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -42,6 +42,9 @@ public interface ConstraintUsage extends Usage, BooleanExpression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The (single) Predicate the is the type of this Constraint Usage. Nominally, this will be ConstraintDefinition, but non-ConstraintDefinition Predicates are also allowed, to permit use of Predicates from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint Definition</em>' reference.
 	 * @see #setConstraintDefinition(Predicate)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConstraintUsage_ConstraintDefinition()
@@ -77,6 +80,9 @@ public interface ConstraintUsage extends Usage, BooleanExpression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this ConstraintUsage is nested (if any)</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint Owning Usage</em>' reference.
 	 * @see #setConstraintOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConstraintUsage_ConstraintOwningUsage()
@@ -112,6 +118,9 @@ public interface ConstraintUsage extends Usage, BooleanExpression {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this ConstraintUsage (if any)</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint Owning Definition</em>' reference.
 	 * @see #setConstraintOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConstraintUsage_ConstraintOwningDefinition()

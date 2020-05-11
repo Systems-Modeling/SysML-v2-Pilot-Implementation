@@ -2,11 +2,19 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 	ResourceSet {
 		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+ 		File {from ="/library.systems/Blocks.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
 			}
 		}
 	}

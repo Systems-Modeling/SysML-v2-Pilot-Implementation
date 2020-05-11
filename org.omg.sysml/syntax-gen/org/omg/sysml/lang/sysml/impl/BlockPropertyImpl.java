@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.BlockProperty;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -72,8 +71,9 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 		return !getBlock().isEmpty();
 	}
 
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithComputedRedefinitions(BLOCK_PROPERTY_SUBSETTING_DEFAULT);
+	@Override
+	protected String getDefaultSupertype() {
+		return BLOCK_PROPERTY_SUBSETTING_DEFAULT;
 	}
 	
 	/**

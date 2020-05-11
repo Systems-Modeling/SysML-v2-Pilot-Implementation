@@ -8,6 +8,10 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Requirement Constraint Membership</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A RequirementConstraintMembership is a FeatureMembership for an assumed or required ConstraintUsage of a RequirementDefinition or RequirementUsage. The <tt>ownedMemberFeature</tt> of a RequirementConstraintMembership must be a ConstraintUsage.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -31,6 +35,9 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether the RequirementConstraintMembership is for an assumed or required ConstraintUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.RequirementConstraintKind
 	 * @see #setKind(RequirementConstraintKind)
@@ -65,10 +72,14 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConstraintUsage that is the <tt>ownedMemberFeature</tt> of this RequirementConstraintUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint comp</em>' containment reference.
 	 * @see #setConstraint_comp(ConstraintUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_Constraint_comp()
 	 * @model containment="true" required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementConstraintMembership'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

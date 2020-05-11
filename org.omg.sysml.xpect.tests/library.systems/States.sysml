@@ -3,8 +3,11 @@
  * SysML language.
  */
 package States {
-	private import Activities::*;
-	private import StatePerformances::*;
+	private import Activities::Action;
+	private import Activities::TransferAction;
+	private import Activities::actions;
+	private import StatePerformances::StatePerformance;
+	private import StatePerformances::StateTransitionPerformance;
 	
 	/**
 	 * A State is an Action that is also a StatePerformance.

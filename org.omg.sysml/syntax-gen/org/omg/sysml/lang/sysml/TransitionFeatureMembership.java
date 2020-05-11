@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A TransitionFeatureMembership is a FeatureMembership for a trigger, guard or effect of a TransitionUsage. The memberFeature must be a Step. For a trigger, the memberFeature must more specifically be a Transfer, while for a guard it must be an Expression with a result type of Boolean.
+ * <p>A TransitionFeatureMembership is a FeatureMembership for a trigger, guard or effect of a TransitionUsage. The <tt>ownedMemberFeature</tt> must be a Step. For a trigger, the <tt>ownedMemberFeature</tt> must more specifically be a Transfer, while for a guard it must be an Expression with a result type of Boolean.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -35,6 +35,9 @@ public interface TransitionFeatureMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this TransitionFeatureMembership is for a trigger, guard or effect.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.TransitionFeatureKind
 	 * @see #setKind(TransitionFeatureKind)
@@ -66,7 +69,7 @@ public interface TransitionFeatureMembership extends FeatureMembership {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Step that is the memberFeature of this TransitionFeatureMembership.
+	 * <p>The Step that is the <tt>ownedMemberFeature</tt> of this TransitionFeatureMembership.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Feature comp</em>' containment reference.
 	 * @see #setTransitionFeature_comp(Step)

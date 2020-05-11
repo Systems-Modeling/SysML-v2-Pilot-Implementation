@@ -29,6 +29,15 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.BLOCK_EXPRESSION;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
 	protected BlockExpressionImpl() {
 		super();
 	}
@@ -68,15 +77,6 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 			((ConnectorImpl) connector).setRelatedFeature(1, target);
 		}
 		return connector;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.BLOCK_EXPRESSION;
 	}
 
 } // BlockExpressionImpl

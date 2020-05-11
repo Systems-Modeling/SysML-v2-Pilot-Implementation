@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A PortDefinition defines a point at which external entities can connect to and interact with a system or part of a system. Any owned Properties of a PortDefinition must not be composite (and, therefore, cannot be PartProperties).
+ * <p>A PortDefinition defines a point at which external entities can connect to and interact with a system or part of a system. Any <tt>ownedProperties</tt> of a PortDefinition must not be composite (and, therefore, cannot be PartProperties).</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +37,7 @@ public interface PortDefinition extends Definition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The ConjugatedPortDefinition that is conjugate to this PortDefinition.
+	 * <p>The ConjugatedPortDefinition that is conjugate to this PortDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)

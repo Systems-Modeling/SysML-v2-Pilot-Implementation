@@ -11,7 +11,6 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -22,7 +21,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
 
-	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Base::selfLinks";
+	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Objects::selfLinks";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -30,6 +29,15 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	 */
 	protected BindingConnectorImpl() {
 		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.BINDING_CONNECTOR;
 	}
 
 	@Override
@@ -62,18 +70,9 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return relatedFeatures;
 	}
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.BINDING_CONNECTOR;
+	protected String getDefaultSupertype() {
+		return BINDING_CONNECTOR_SUBSETTING_DEFAULT;
 	}
-
-	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		return getOwnedSubsettingWithDefault(BINDING_CONNECTOR_SUBSETTING_DEFAULT);
-	}
-
+	
 } // BindingConnectorImpl

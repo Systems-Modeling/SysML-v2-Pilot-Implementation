@@ -1,5 +1,5 @@
 package NonScalarFuncitons {
-	import BaseFunctions::*;
+	private import Base::Anything;
 	import ScalarValues::*;
 	import NonScalarValues::*;
 	

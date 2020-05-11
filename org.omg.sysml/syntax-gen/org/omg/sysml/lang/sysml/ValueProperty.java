@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ValueProperty is a Property whose type is a DataType. Nominally, if the type is a ValueType, a ValueProperty is a usage of a ValueType to represent the value of some system characteristic. However, non-ValueType DataTypes are also allowed, to permit use of DataTypes from the Kernel Library. A ValueProperty must not be composite. Any nested Properties of a ValueProperty must also not be composite (and, therefore, cannot be PartProperties).
+ * <p>A ValueProperty is a Property whose type is a DataType. Nominally, if the type is a ValueType, a ValueProperty is a usage of a ValueType to represent the value of some system characteristic. However, non-ValueType DataTypes are also allowed, to permit use of DataTypes from the Kernel Library. A ValueProperty must not be composite. Any nested Properties of a ValueProperty must also not be composite (and, therefore, cannot be PartProperties).</p>
  * 
- * A ValueProperty must subset, directly or indirectly, the base ValueProperty "values" from the Systems model library.
+ * <p>A ValueProperty must subset, directly or indirectly, the base ValueProperty <tt>values</tt> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -43,6 +43,9 @@ public interface ValueProperty extends Property {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The DataTypes that are the types of this ValueProperty. Nominally, these are ValueTypes, but non-Block DataTypes are also allowed, to permit use of DataTypes from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Value Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getValueProperty_ValueType()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"

@@ -3,6 +3,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+        File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Blocks.sysml"}
@@ -13,6 +15,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+		        File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Blocks.sysml"}
@@ -30,7 +34,7 @@ package '1a-Parts Tree Simplified' {
 		part rearWheel_1: Wheel[2] nonunique subsets rearWheel;
 		//subsetting - uniquness conformance is valid if subsetting multiplicity upperBound is less then or equal to 1
 		part rearWheel_2[0..1] nonunique subsets rearWheel;
-		part rearWheel_3[1] nonunique subsets rearWheel = rearWheel[1];
+		part rearWheel_3[1] nonunique subsets rearWheel;// = rearWheel[1]; //inTypes[Integer, DataValue, Anything] outType[Anything]
 	}
 	block Wheel;
 }

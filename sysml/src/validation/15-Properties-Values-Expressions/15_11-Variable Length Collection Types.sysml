@@ -32,4 +32,8 @@ package '15_11-Variable Length Collection Types' {
 			ref :>> values: Person;
 		}
 	}
+	
+	value type 'Array<Real>[4]' :> Sequence {
+		value :>> values: Real[4];
+	}
 }

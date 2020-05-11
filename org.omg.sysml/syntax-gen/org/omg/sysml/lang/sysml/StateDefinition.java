@@ -10,9 +10,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A StateDefinition is the Definition of the Behavior of a system or part of a system in a certain state condition.
+ * <p>A StateDefinition is the Definition of the Behavior of a system or part of a system in a certain state condition.</p>
  * 
- * A State Definition must subclass, directly or indirectly, the base StateDefinition StateAction from the Systems model library.
+ * <p>A State Definition must subclass, directly or indirectly, the base StateDefinition StateAction from the Systems model library.</p>
+ * 
+ * <p>A StateDefinition may be related to up to three of its <tt>ownedFeatures</tt> by StateBehaviorMembership Relationships, all of different <tt>kinds</tt>, corresponding to the entry, do and exit actions of the StateDefinition.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -45,6 +47,9 @@ public interface StateDefinition extends Activity {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The StateUsages that are the <tt>steps</tt> of the StateDefinition, which specify the discrete states in the Behavior defined by the StateDefinition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateDefinition_State()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -59,7 +64,7 @@ public interface StateDefinition extends Activity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The entry ActionUsage of this StateDefinition, derived as the member feature of the StateDefinition with a StateSubactionMembership of kind "entry".
+	 * <p>The ActionUsage of this StateDefinition to be performed on entry to the state defined by the StateDefinition. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>entry</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Entry Action</em>' reference.
 	 * @see #setEntryAction(ActionUsage)
@@ -85,7 +90,7 @@ public interface StateDefinition extends Activity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The do ActionUsage of this StateDefinition, derived as the member feature of the StateDefinition with a StateSubactionMembership of kind "do".
+	 * <p>The ActionUsage of this StateDefinition to be performed while in the state defined by the StateDefinition. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>do</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Do Action</em>' reference.
 	 * @see #setDoAction(ActionUsage)
@@ -111,7 +116,7 @@ public interface StateDefinition extends Activity {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The exit ActionUsage of this StateDefinition, derived as the member feature of the StateDefinition with a StateSubactionMembership of kind "exitt".
+	 * <p>The ActionUsage of this StateDefinition to be performed on exit from the state defined by the StateDefinition. This is derived as the owned ActionUsage related to the StateDefinition by a StateSubactionMembership  with <tt>kind</tt> = <tt>exit</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Exit Action</em>' reference.
 	 * @see #setExitAction(ActionUsage)

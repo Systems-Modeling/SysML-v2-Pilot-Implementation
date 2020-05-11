@@ -2,26 +2,32 @@
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/Objects.kerml"}
+                File {from ="/library.kernel/Performances.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
                 File {from ="/library.kernel/ScalarFunctions.kerml"}
-                File {from ="/library.domain/ISQ.sysml"}
-                File {from ="/library.domain/SI.sysml"}
-                File {from ="/library.domain/UnitsAndScales.sysml"}
-                File {from ="/library.domain/USCustomaryUnits.sysml"}
-                File {from ="/library.domain/Quantities.sysml"}
+                File {from ="/library.systems/Blocks.sysml"}
+                File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+              	File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+                File {from ="/library.domain/Quantities and Units/SI.sysml"}
+				File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
         }
         Workspace {
                 JavaProject {
                         SrcFolder {
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
+                                File {from ="/library.kernel/Objects.kerml"}
+                                File {from ="/library.kernel/Performances.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
                 				File {from ="/library.kernel/ScalarFunctions.kerml"}
-                                File {from ="/library.domain/ISQ.sysml"}
-                                File {from ="/library.domain/SI.sysml"}
-                                File {from ="/library.domain/UnitsAndScales.sysml"}
-                                File {from ="/library.domain/USCustomaryUnits.sysml"}
-                                File {from ="/library.domain/Quantities.sysml"}
+                				File {from ="/library.systems/Blocks.sysml"}
+                                File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+               					File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+               					File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+                				File {from ="/library.domain/Quantities and Units/SI.sysml"}
+								File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
                         }
                 }
         }
@@ -47,8 +53,8 @@ package '15_01-Constants' {
      * Should this be in the ISQ library model?
      */
     value type DimensionOneValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-    	ref scale: UnitOfDimensionOne redefines QuantityValue::scale;
+		value magnitude: Real redefines QuantityValue::num;
+    	ref scale: DimensionOneUnit redefines QuantityValue::mRef;
     }
     
     /**
@@ -63,8 +69,8 @@ package '15_01-Constants' {
 		}		
     }
     value type AccelerationValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::magnitude;
-    	ref scale: AccelerationUnit redefines QuantityValue::scale;
+		value magnitude: Real redefines QuantityValue::num;
+    	ref scale: AccelerationUnit redefines QuantityValue::mRef;
     }
 
     /**

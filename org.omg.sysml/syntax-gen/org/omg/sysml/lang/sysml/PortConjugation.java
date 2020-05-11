@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * PortConjugation is a Conjugation relationship is a Conjugation relationship between a PortDefinition and its corresponding ConjugatedPortDefinition. As a result of this relationship, the ConjugatedPortDefinition inherits all the features of the original PortDefinition, but input flowProperties of the original PortDefinition become outputs on the ConjugatedPortDefinition and output flowProperties of the original PortDefinition become inputs on the ConjugatedPortDefinition.
+ * <p>A PortConjugation is a Conjugation Relationship between a PortDefinition and its corresponding ConjugatedPortDefinition. As a result of this Relationship, the ConjugatedPortDefinition inherits all the <tt>features</tt> of the original PortDefinition, but input <tt>flowProperties</tt> of the original PortDefinition become outputs on the ConjugatedPortDefinition and output <tt>flowProperties</tt> of the original PortDefinition become inputs on the ConjugatedPortDefinition.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +36,7 @@ public interface PortConjugation extends Conjugation {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The PortDefinition being conjugated.
+	 * <p>The PortDefinition being conjugated.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Port Definition</em>' reference.
 	 * @see #setOriginalPortDefinition(PortDefinition)
@@ -70,7 +70,7 @@ public interface PortConjugation extends Conjugation {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The ConjugatedPortDefinition that is conjugate to the originalPortDefinition.
+	 * <p>The ConjugatedPortDefinition that is conjugate to the <tt>originalPortDefinition</tt>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)

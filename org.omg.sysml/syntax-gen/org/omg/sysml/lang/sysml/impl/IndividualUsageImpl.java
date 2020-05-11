@@ -211,11 +211,11 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	}
 
 	@Override
-	public EList<Type> getType() {
+	public void computeImplicitGeneralization() {
 		setTypingFor(this);
-		return super.getType();
+		super.computeImplicitGeneralization();
 	}
-	
+		
 	public static void setTypingFor(Feature feature) {
 		Type owningType = feature.getOwningType();
 		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
@@ -235,12 +235,6 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 		}
 	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-		setTypingFor(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

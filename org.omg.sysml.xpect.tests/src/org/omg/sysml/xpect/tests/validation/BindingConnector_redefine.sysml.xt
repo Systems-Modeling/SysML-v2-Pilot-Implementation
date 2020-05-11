@@ -1,0 +1,107 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+ 		      	File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package BindingConnectorExample {
+	block A;
+	port def PortDefOut {
+		ref in myDefIn: A;
+		ref out myDefOut: A;
+	}
+	
+	port def PortDefIn {
+		ref out myDefOut : A;
+		ref in myDefIn : A;
+	}
+	block B0 {
+		port p0 : PortDefOut;
+	}
+	block B1 {
+		port p1 : PortDefIn;
+	}
+	block V;
+	part v : V {
+		part b0 : B0 {
+			port p0 redefines B0::p0 {
+				ref in myDefIn redefines B0::p0::myDefIn;
+				ref out myDefOut redefines B0::p0::myDefOut;
+			}
+		}
+		part b1 : B1 {
+			port p1 redefines B1::p1 {
+				ref in myDefIn redefines B1::p1::myDefIn;
+				ref out myDefOut redefines B1::p1::myDefOut;
+			}
+		}
+			
+		//redefines - redefines
+		bind b0::p0::myDefIn = b1::p1::myDefIn;
+		bind b1::p1::myDefIn = b0::p0::myDefIn;  
+		bind b0::p0::myDefIn = b1::p1::myDefOut;
+		bind b0::p0::myDefOut = b1::p1::myDefIn;
+		bind b0::p0::myDefOut = b1::p1::myDefOut;
+		bind b1::p1::myDefOut = b0::p0::myDefOut;
+		
+		
+		part b2: B1 {
+			port p2 {
+				ref in myIn;
+				ref out myOut;
+			}
+		}
+		//redefines - local
+		bind b0::p0::myDefIn = b2::p2::myIn;
+		bind b2::p2::myIn = b0::p0::myDefIn;
+		// XPECT errors --> "Output feature must conform to input feature" at "b0::p0::myDefIn = b2::p2::myOut;"
+		bind b0::p0::myDefIn = b2::p2::myOut; //OutTypes[Part,Object] InTypes [A, Part, Object] 
+		bind b0::p0::myDefOut = b2::p2::myIn; //OutTypes[A, Part, Object] InTypes [Part, Object]
+		bind b0::p0::myDefOut = b2::p2::myOut;
+		bind b2::p2::myOut = b0::p0::myDefOut;
+		
+		
+		part b3 : B1;
+		part b4 : B1{
+			port p1 redefines B1::p1;
+		}
+		part b5 : B1{
+			port p1 redefines B1::p1{
+				ref in myDefIn redefines B1::p1::myDefIn;
+				ref in myIn redefines B1::p1::myDefIn;
+			}
+		}
+		// XPECT errors --> "A connector and its related features must have a common context" at "b0::p0::myDefIn = b3::p1::myDefIn;"
+		bind b0::p0::myDefIn = b3::p1::myDefIn;
+		// XPECT errors --> "A connector and its related features must have a common context" at "b0::p0::myDefIn = b4::p1::myDefIn;"
+		bind b0::p0::myDefIn = b4::p1::myDefIn;
+		// XPECT errors --> "A connector and its related features must have a common context" at "b4::p1::myDefIn = b0::p0::myDefIn;"
+		bind b4::p1::myDefIn = b0::p0::myDefIn;
+		bind b0::p0::myDefIn = b5::p1::myDefIn;
+		bind b5::p1::myDefIn = b0::p0::myDefIn;
+		bind b0::p0::myDefIn = b5::p1::myIn;
+		bind b5::p1::myIn = b0::p0::myDefIn;
+		
+
+	} 
+}

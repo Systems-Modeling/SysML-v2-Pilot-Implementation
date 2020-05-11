@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A RequirementUsage is a Usage of a RequirementDefinition.</p>
  * 
- * <p>A RequirementUsage (other than a SatisfyRequirementUsage owned by a Part) must subset, directly or indirectly, the base RequirementUsage "requirementChecks" from the Systems model library.</p>
+ * <p>A RequirementUsage (other than a SatisfyRequirementUsage owned by a Part) must subset, directly or indirectly, the base RequirementUsage <tt>requirementChecks</tt> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -48,6 +48,9 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The RequirementDefinition that is the single type of this RequirementUsage.</[>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Requirement Definition</em>' reference.
 	 * @see #setRequirementDefinition(RequirementDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementDefinition()
@@ -83,6 +86,9 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this RequirementUsage is nested (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Requirement Owning Usage</em>' reference.
 	 * @see #setRequirementOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementOwningUsage()
@@ -114,7 +120,7 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned or inherited Feature of this RequirementUsage that redefines (directly or indirectly) the "subject" Feature of the base RequirementsDefinition RequirementsCheck from the Systems model library.</p>
+	 * <p>The <p>parameter</p> of this RequirementUsage that is or redefines (directly or indirectly) the <tt>subject</tt> Parameter of the base RequirementsUsage <tt>requirementsChecks</tt> from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Parameter)
@@ -138,17 +144,19 @@ public interface RequirementUsage extends ConstraintUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Req Id</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An optional modeler-specified identifier for this RequirementUsage (used, e.g., to link it to an original requirement text in some source document).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_ReqId()
-	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getReqId();
@@ -165,17 +173,19 @@ public interface RequirementUsage extends ConstraintUsage {
 
 	/**
 	 * Returns the value of the '<em><b>Text</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An optional textual statement of the requirement represented by this RequirementUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_Text()
-	 * @model default="" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
 	 * @generated
 	 */
 	String getText();
@@ -193,16 +203,26 @@ public interface RequirementUsage extends ConstraintUsage {
 	/**
 	 * Returns the value of the '<em><b>Required Constraint</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConstraintUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Required Constraint</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <tt>kind</tt> = <tt>requirement</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequiredConstraint()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requringRequirement'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<ConstraintUsage> getRequiredConstraint();
@@ -210,16 +230,26 @@ public interface RequirementUsage extends ConstraintUsage {
 	/**
 	 * Returns the value of the '<em><b>Assumed Constraint</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConstraintUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Assumed Constraint</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The owned ConstraintUsages that represent assumptions of this RequirementUsage. These are derived as the ConstraintUsages related to the RequirementUsage by a RequirementConstraintMembership with <tt>kind</tt> = <tt>assumption</tt>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_AssumedConstraint()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constrainingRequirement'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='assumingRequirement'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<ConstraintUsage> getAssumedConstraint();
@@ -239,6 +269,9 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this RequirementUsage (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Requirement Owning Definition</em>' reference.
 	 * @see #setRequirementOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementOwningDefinition()

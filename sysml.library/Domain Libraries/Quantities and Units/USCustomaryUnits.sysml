@@ -4,8 +4,10 @@
  * See https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b
  */
 package USCustomaryUnits {	
-	import SI::*;
-	import RationalFunctions::Rat;
+	private import RationalFunctions::Rat;
+	private import UnitsAndScales::*;
+	import ISQ::*;
+	private import SI::*;
 	
 	part ft: LengthUnit = LengthUnit(name => "foot", unitConversion => ConversionByConvention(referenceUnit => m, conversionFactor => Rat(3048, 10000)));
 	part 'in': LengthUnit = LengthUnit(name => "inch", unitConversion => ConversionByConvention(referenceUnit => ft, conversionFactor => Rat(1, 12)));

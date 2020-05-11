@@ -9,7 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A ConjugatedPortTyping is a FeatureTyping in which the type is derived as the conjugatedPortDefinition of a given PortDefinition.
+ * <p>A ConjugatedPortTyping is a FeatureTyping in which the <tt>type</tt> is derived as the <tt>conjugatedPortDefinition</tt> of a given PortDefinition. A ConjugatedPortTyping allows a PortUsage to by related directly to a PortDefinition, but to be effectively typed by the conjugation of the referenced PortDefinition.</p>
+ * 
+ * <p>Note that ConjugatedPortTyping is a <em>ternary</em> Relationship, with <tt>portDefinition</tt> being a third <tt>relatedElement</tt>, in addition to <tt>typed</tt> and <tt>typedFeature</tt> from FeatureTyping.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -39,6 +41,9 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The PortDefinition whose <tt>conjugatedPortDefinition</tt> is to be the derived <tt>type</tt> of this ConjugatedPortTyping.<p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Port Definition</em>' reference.
 	 * @see #setPortDefinition(PortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortTyping_PortDefinition()
@@ -73,6 +78,9 @@ public interface ConjugatedPortTyping extends FeatureTyping {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <tt>conjugatedPortDefinition</tt> of the <tt>portDefinition</tt> of this ConjugatedPortTyping, which is the derived <tt>type</tt> of the ConjugatedPortTyping considered as a FeatureTyping.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortTyping_ConjugatedPortDefinition()

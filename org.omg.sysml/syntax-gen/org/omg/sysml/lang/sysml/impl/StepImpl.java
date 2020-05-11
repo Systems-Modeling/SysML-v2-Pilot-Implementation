@@ -15,7 +15,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -33,10 +32,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class StepImpl extends FeatureImpl implements Step {
 	
-	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Base::performances";
-	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Base::Performance::subperformances";
-	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Base::Object::enactedPerformances";
-	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Base::Occurrence::incomingTransfers";
+	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Performances::performances";
+	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subperformances";
+	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Objects::Object::enactedPerformances";
+	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Occurrences::Occurrence::incomingTransfers";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -103,29 +102,17 @@ public class StepImpl extends FeatureImpl implements Step {
 	public boolean isSetType() {
   		return false;
 	}
-
+	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
-		if (isCheckSubsetting) {
-			if (isSubperformance()) {
-				addSubsetting(STEP_SUBSETTING_PERFORMANCE_DEFAULT);
-			} 
-			if (isEnactedPerformance()) {
-				addSubsetting(STEP_SUBSETTING_OBJECT_DEFAULT);
-			}
-			if (isIncomingTransfer()) {
-				addSubsetting(STEP_SUBSETTING_TRANSFER_DEFAULT);
-			}
-			isCheckSubsetting = false;
-		}
-		return getOwnedSubsettingWithComputedRedefinitions(
-				isSubperformance()? 
-					STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-				isEnactedPerformance()?
-					STEP_SUBSETTING_OBJECT_DEFAULT:
-				isIncomingTransfer()?
-					STEP_SUBSETTING_TRANSFER_DEFAULT:
-					STEP_SUBSETTING_BASE_DEFAULT);
+	protected String getDefaultSupertype() {
+		return 
+			isSubperformance()? 
+				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+			isEnactedPerformance()?
+				STEP_SUBSETTING_OBJECT_DEFAULT:
+			isIncomingTransfer()?
+				STEP_SUBSETTING_TRANSFER_DEFAULT:
+				STEP_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	@Override

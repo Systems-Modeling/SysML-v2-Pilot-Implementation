@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
@@ -23,7 +22,7 @@ import org.omg.sysml.lang.sysml.Type;
 public class SnapshotFeatureImpl extends ReferencePropertyImpl implements SnapshotFeature {
 	
 	public static final String SNAPSHOT_FEATURE_DEFAULT_NAME = "snapshotOf";	
-	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Base::Occurrence::snapshotOf";
+	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -53,11 +52,11 @@ public class SnapshotFeatureImpl extends ReferencePropertyImpl implements Snapsh
 	}
 	
 	@Override
-	public EList<Type> getType() {
+	public void computeImplicitGeneralization() {
 		IndividualUsageImpl.setTypingFor(this);
-		return super.getType();
+		super.computeImplicitGeneralization();
 	}
-	
+		
 	@Override
 	protected Set<Type> getGeneralTypes(Type type) {
 		return Collections.singleton(null);
@@ -67,12 +66,6 @@ public class SnapshotFeatureImpl extends ReferencePropertyImpl implements Snapsh
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return Collections.singletonList(type == getOwner()? this:
 			   (Feature)getDefaultType(SNAPSHOT_FEATURE_REDEFINED_FEATURE));
-	}
-
-	@Override
-	public void transform() {
-		super.transform();
-		IndividualUsageImpl.setTypingFor(this);
 	}
 
 } //SnapshotFeatureImpl

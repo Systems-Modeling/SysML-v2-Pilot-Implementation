@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Usage is a usage of a Definition. A Usage may only be an owned Feature of a Definition or another Usage.
+ * <p>A Usage is a usage of a Definition. A Usage may only be an <tt>ownedFeature</tt> of a Definition or another Usage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -21,13 +21,13 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint <em>Nested Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedProperty <em>Nested Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -51,6 +51,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usages that are <tt>ownedFeatures</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedUsage()
 	 * @see org.omg.sysml.lang.sysml.Usage#getOwningUsage
@@ -75,6 +78,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this Usage is nested (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Usage</em>' reference.
 	 * @see #setOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningUsage()
@@ -110,6 +116,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this Usage (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Definition</em>' reference.
 	 * @see #setOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningDefinition()
@@ -146,6 +155,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The PortUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedPort()
 	 * @see org.omg.sysml.lang.sysml.PortUsage#getPortOwningUsage
@@ -171,6 +183,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Properties that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Property</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedProperty()
 	 * @see org.omg.sysml.lang.sysml.Property#getPropertyOwningUsage
@@ -196,6 +211,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The StateUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedState()
 	 * @see org.omg.sysml.lang.sysml.StateUsage#getStateOwningUsage
@@ -221,6 +239,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConstraintUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedConstraint()
 	 * @see org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningUsage
@@ -246,6 +267,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The TransitionUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Transition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedTransition()
 	 * @see org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage
@@ -271,6 +295,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The RequirementUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRequirement()
 	 * @see org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningUsage
@@ -295,6 +322,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Properties that are <tt>features</tt> of this Usage (not necessarily owned).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Property</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Property()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -320,6 +350,9 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ActionUsages that are <tt>ownedUsages</tt> of this Usage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Nested Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAction()
 	 * @see org.omg.sysml.lang.sysml.ActionUsage#getActionOwningUsage

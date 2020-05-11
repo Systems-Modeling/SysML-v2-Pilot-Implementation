@@ -11,18 +11,18 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An ActionUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is an Activity, an ActionUsage is a Usage of that Activity (as an action definition) within a system. However, non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.
+ * <p>An ActionUsage is a Usage that is also a Step, and, so, is typed by a Behavior. Nominally, if the type is an Activity, an ActionUsage is a Usage of that Activity (as an action definition) within a system. However, non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
  * 
- * An ActionUsage (other than a PerformActionUsage owned by a Part) must subset, directly or indirectly, either the base ActionUsage "actions" from the Systems model library, if it is not a composite feature, or the ActionUsage "subactions" inherited from its owner, if it is a composite feature.
+ * <p>An ActionUsage (other than a PerformActionUsage owned by a Part) must subset, directly or indirectly, either the base ActionUsage <tt>actions</tt> from the Systems model library, if it is not a composite feature, or the ActionUsage <tt>subactions</tt> inherited from its owner, if it is a composite feature.</p>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActivity <em>Activity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningUsage <em>Action Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningUsage <em>Action Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ActionUsage#getActivity <em>Activity</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage()
@@ -45,6 +45,9 @@ public interface ActionUsage extends Usage, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Definition that owns this ActionUsage (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Owning Definition</em>' reference.
 	 * @see #setActionOwningDefinition(Definition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_ActionOwningDefinition()
@@ -80,6 +83,9 @@ public interface ActionUsage extends Usage, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usage in which this ActionUsage is nested (if any).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Action Owning Usage</em>' reference.
 	 * @see #setActionOwningUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_ActionOwningUsage()
@@ -115,6 +121,9 @@ public interface ActionUsage extends Usage, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Behaviors that are the types of this ActionUsage. Nominally, these would be Activities, but non-Activity Behaviors are also allowed, to permit use of Behaviors from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Activity</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getActionUsage_Activity()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"

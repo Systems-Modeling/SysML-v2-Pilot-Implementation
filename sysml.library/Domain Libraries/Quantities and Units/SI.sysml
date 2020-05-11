@@ -2,10 +2,10 @@
  * International System of (Measurement) Units -- Système International d'Unités (SI), as defined in ISO/IEC 80000
  */
 package SI {
-	import UnitsAndScales::*;
+	private import RationalFunctions::Rat;
+	private import UnitsAndScales::*;
 	import ISQ::*;
 	import SIPrefixes::*;
-	private import RationalFunctions::Rat;
 	
 	/*
 	 * SI simple units needed before creation of base units

@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.Connector
 import java.util.List
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
-import org.omg.sysml.lang.sysml.FeatureDirectionKind
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
@@ -93,8 +92,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 			owningType = (owner as Feature).owningType
 			owner = owner.owner
 		}
-		if (owner !== null) {
+		if (owner instanceof Feature) {
 			ownerList.add(owner)
+		} else if (owner !== null) {
+			// Use "null" as a marker for "package-level" ownership.
+			ownerList.add(null)
 		}
 		return ownerList
 	}

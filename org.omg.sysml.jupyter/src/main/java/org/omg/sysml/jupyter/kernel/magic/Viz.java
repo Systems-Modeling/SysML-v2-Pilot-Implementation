@@ -10,16 +10,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Viz {
-    private static final MagicsArgs VIZ_ARGS = MagicsArgs.builder().required("element").optional("view").onlyKnownKeywords().onlyKnownFlags().build();
+    private static final MagicsArgs VIZ_ARGS
+      = (MagicsArgs.builder().onlyKnownKeywords().onlyKnownFlags()
+         .varargs("element")
+         .keyword("view")
+         .keyword("style")
+         .build());
 
     @LineMagic
     public static DisplayData viz(List<String> args) {
         Map<String, List<String>> vals = VIZ_ARGS.parse(args);
 
-        String element = vals.get("element").get(0);
+        List<String> elements = vals.get("element");
         List<String> views = vals.get("view");
+        List<String> styles = vals.get("style");
 
-        VizResult vr = ISysML.getKernelInstance().getInteractive().viz(element, views);
+        VizResult vr = ISysML.getKernelInstance().getInteractive().viz(elements, views, styles);
         DisplayData dd = new DisplayData();
         if (vr.hasException()) {
             dd.putText(vr.formatException());

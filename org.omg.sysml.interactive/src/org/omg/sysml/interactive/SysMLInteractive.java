@@ -24,6 +24,7 @@
 package org.omg.sysml.interactive;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -252,22 +253,30 @@ public class SysMLInteractive extends SysMLUtil {
 		getSysML2PlantUMLSvc().setGraphVizPath(path);
 	}
 
-	public VizResult viz(String name, List<String> views) {
+	public VizResult viz(List<String> names, List<String> views, List<String> styles) {
 		this.counter++;
+        List<EObject> elements = new ArrayList<EObject>(names.size());
 		try {
-			Element element = this.resolve(name);
-            if (element != null) {
+            for (String name: names) {
+                Element element = this.resolve(name);
+                if (element != null) {
+                    elements.add(element);
+                } else {
+                    return VizResult.unresolvedResult(name);
+                }
+            }
+            if (!elements.isEmpty()) {
                 SysML2PlantUMLSvc svc = getSysML2PlantUMLSvc();
                 if (!views.isEmpty()) {
                     String view = views.get(0);
                     svc.setView(view);
                 }
-                return new VizResult(svc.getSVG(element));
+                return VizResult.svgResult(svc.getSVG(elements, styles));
             } else {
-                return VizResult.unresolvedResult(name);
+                return VizResult.emptyResult();
             }
 		} catch (Exception e) {
-			return new VizResult(e);
+			return VizResult.exceptionResult(e);
 		}
 	}
 

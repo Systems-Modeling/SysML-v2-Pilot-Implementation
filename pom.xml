@@ -27,7 +27,7 @@
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2019-12</eclipse-repository>
-    <plantuml-repository>https://hallvard.github.io/plantuml</plantuml-repository>
+    <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>

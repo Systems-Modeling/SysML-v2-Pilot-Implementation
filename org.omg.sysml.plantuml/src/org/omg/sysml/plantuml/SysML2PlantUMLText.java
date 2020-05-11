@@ -188,7 +188,7 @@ public class SysML2PlantUMLText {
     }
 
     public String sysML2PUML(List<? extends EObject> eObjs) {
-        StringBuilder sb = new StringBuilder("@startuml\n");
+        StringBuilder sb = new StringBuilder();
         if (!skipStructure()) {
             sb.append("allow_mixing\n");
         }
@@ -216,7 +216,6 @@ public class SysML2PlantUMLText {
         if (len == sb.length()) {
             return null;
         }
-        sb.append("\n@enduml");
 
         return sb.toString();
     }

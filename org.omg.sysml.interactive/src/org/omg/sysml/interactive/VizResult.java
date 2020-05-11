@@ -18,7 +18,7 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Ed Seidewitz
+ *  Hisashi Miyashita
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -49,18 +49,31 @@ public class VizResult {
         return svgResult;
     }
 
-    VizResult(String svg) {
+    private VizResult(String svg) {
         this.svgResult = svg;
         this.exception = null;
     }
 
-    VizResult(Exception e) {
+    private VizResult(Exception e) {
         this.exception = e;
         this.svgResult = null;
     }
 
+    public static VizResult svgResult(String svg) {
+        if (svg == null) return emptyResult();
+        return new VizResult(svg);
+    }
+
     public static VizResult unresolvedResult(String name) {
         return new VizResult(new UnresolvedException(name));
+    }
+
+    public static VizResult emptyResult() {
+        return new VizResult("");
+    }
+
+    public static VizResult exceptionResult(Exception e) {
+        return new VizResult(e);
     }
 }
 

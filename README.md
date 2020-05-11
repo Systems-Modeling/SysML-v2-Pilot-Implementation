@@ -69,6 +69,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 ### Prototype SysML Implementation
 
+#### Getting Started
 1. Find the file `org.omg.kerml.xtext/src/org.omg.kerml.xtext/KerML.xtext`, right click on it, and select Run As > Generate Xtext Artifacts, to execute the Xtext generator. Repeat with `org.omg.sysml.xtext/src/org.omg.sysml.xtext/SysML.xtext`
 
 2. Once the generation is complete, right click on project `org.omg.sysml`, and select Run As > Eclipse Application. This should launch a new runtime Eclipse instance.
@@ -91,7 +92,26 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 8. Double clicking on any `.kerml` or `.sysml` file will open it in the generated Xtext KerML or SysML editor.
 9. (Optional) To show SysML diagrams, in Window->Show View->Other... menu, you can enable PlantUML view.
- 
+
+#### Initializing New SysML Model Projects
+
+1. Open the `New` project wizard by selecting File -> New -> Project... menu item.
+
+2. Select `General`/`Project`.
+
+3. Given the project its expected name (and location if necessary), then go to the `Next` page.
+
+4. In the `Project References` page check the `sysml.library` project. This step tells Eclipse which other projects should be visible for resolving cross-references.
+![project wizard](project-wizard.png)
+
+5. Right-click the new project and select Configure->Convert to Xtext project. This step sets up the indexing infrastructure necessary for resolving references between different files.
+
+6. Create any text files with `.kerml` or `.sysml` extensions to start working with a new file.  
+
+** Note:** Adding the project references to an existing project can be done in the project `Properties` dialog available from the popup menu on the project in the `Project References` page.
+
+** Note:** If the Xtext setup (step 5.) was missing, opening the KerML or SysML editor shows a dialog asking to convert the project to an Xtext project. Accepting this has the same results than manually selecting the menu item on the project. 
+
 ## Copyright License Header
 
 #### For new code

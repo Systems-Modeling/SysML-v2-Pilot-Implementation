@@ -25,9 +25,9 @@ package test{
 	import OuterPackage3::D;
 	//XPECT linkedName at D --> OuterPackage3.D
 	//* XPECT scope at D ---
-	   	   D.c, D.f, EE.c, EE.f, EE.try,  test.D.c, test.D.f, test.EE.c, test.EE.f, test.EE.try,
-		   D.f.a1, EE.f.a1, EE.try.a1, D, EE, 
-		   test.D.f.a1, test.EE.f.a1, test.EE.try.a1, test.D, test.EE,
+	   	   D.c, D.f, EE.c, EE.try,  test.D.c, test.D.f, test.EE.c, test.EE.try,
+		   D.f.a1, EE.try.a1, D, EE, 
+		   test.D.f.a1, test.EE.try.a1, test.D, test.EE,
 		   OuterPackage.A, OuterPackage.A.a1, 
 		   OuterPackage.B,  OuterPackage.B.b,	OuterPackage.B.b.a1, 
 		   OuterPackage2.B, OuterPackage2.B.b,	OuterPackage2.B.b.a1, 
@@ -36,20 +36,20 @@ package test{
 		   OuterPackage3.D,  OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
 	--- */
 	feature EE subsets D {
-		//XPECT linkedName at b --> OuterPackage.B.b
-		//* XPECT scope at b ---
-		   D, D.f.a1,  EE.f.a1,  EE.try.a1, 
-		   test.D.f.a1, test.EE.f.a1, test.EE.try.a1, 
+		//XPECT linkedName at D::f --> OuterPackage3.D.f
+		//* XPECT scope at D::f ---
+		   D, D.f.a1,  EE.try.a1, 
+		   test.D.f.a1, test.EE.try.a1, 
 		   f.a1,
-		   D.c, D.f, EE, EE.c, EE.f, EE.try, c, f,
-		   test.D, test.D.c, test.D.f, test.EE, test.EE.c, test.EE.f, test.EE.try, 
+		   D.c, D.f, EE, EE.c, EE.try, c, f,
+		   test.D, test.D.c, test.D.f, test.EE, test.EE.c, test.EE.try, 
 		   OuterPackage.A, OuterPackage.A.a1, 
 		   OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1, 
 		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
 		   OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.c, OuterPackage2.C.b.a1,
 		   OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c,
 		   OuterPackage3.D, OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
-s	--- */
-		feature try redefines b;
+	--- */
+		feature try redefines D::f;
 	}
 }

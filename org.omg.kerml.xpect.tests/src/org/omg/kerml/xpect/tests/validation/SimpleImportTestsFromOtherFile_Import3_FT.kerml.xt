@@ -22,6 +22,6 @@ END_SETUP
 package test {
 	import OuterPackage::*;
 	feature Try : B{
-		feature try : b redefines B::b;
+		feature try : A::a1 redefines B::b;
 	}
 }

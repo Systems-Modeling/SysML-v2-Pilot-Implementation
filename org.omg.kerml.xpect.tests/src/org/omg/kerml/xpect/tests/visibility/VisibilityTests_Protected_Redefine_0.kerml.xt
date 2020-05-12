@@ -26,25 +26,22 @@ package testt {
 	}
 	class A specializes P::PP{
 		feature aa subsets PPP;
-		feature bb redefines PPP;
+		feature bb redefines PPP1;
 		feature cc subsets dd;
 		feature dd;
-		feature ee redefines PPP1;
-		feature ff redefines PPP;
 		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP2'." at "PPP2"
-		feature ff1: A redefines PPP2;
+		feature ee: A redefines PPP2;
 	}
 	class B specializes A {
 	}
 	class C specializes B {
-		feature gg subsets ff;
-		feature ff redefines ff;
+		feature ff subsets aa;
+		feature gg redefines bb;
 		feature hh subsets ii;
 		feature ii;
-		feature jj redefines ee;
-		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP'." at "PPP"
-		feature kk: C redefines PPP;
+		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP1'." at "PPP1"
+		feature jj: C redefines PPP1;
 		//XPECT errors --> "Couldn't resolve reference to Feature 'PPP2'." at "PPP2"
-		feature ll: C redefines PPP2;
+		feature kk: C redefines PPP2;
 	}
 }

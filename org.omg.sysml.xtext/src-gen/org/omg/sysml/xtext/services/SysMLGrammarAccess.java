@@ -2328,8 +2328,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cActionKeyword_1_0_0_0_1 = (Keyword)cGroup_1_0_0_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_0_0_1 = (Assignment)cAlternatives_1_0_0.eContents().get(1);
 		private final Keyword cIsCompositeActionKeyword_1_0_0_1_0 = (Keyword)cIsCompositeAssignment_1_0_0_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
-		private final RuleCall cOwnedMemberFeature_compActionUsageParserRuleCall_1_0_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_0_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_0_1_0 = (RuleCall)cDirectionAssignment_1_0_1.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_0_2 = (Assignment)cGroup_1_0.eContents().get(2);
+		private final RuleCall cOwnedMemberFeature_compActionUsageParserRuleCall_1_0_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_0_2.eContents().get(0);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final Keyword cAbstractKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
@@ -2338,8 +2340,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cActionKeyword_1_1_1_0_1 = (Keyword)cGroup_1_1_1_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
 		private final Keyword cIsCompositeActionKeyword_1_1_1_1_0 = (Keyword)cIsCompositeAssignment_1_1_1_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
-		private final RuleCall cOwnedMemberFeature_compAbstractActionUsageParserRuleCall_1_1_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_1_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_1_2 = (Assignment)cGroup_1_1.eContents().get(2);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_1_2_0 = (RuleCall)cDirectionAssignment_1_1_2.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
+		private final RuleCall cOwnedMemberFeature_compAbstractActionUsageParserRuleCall_1_1_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_1_3.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
 		private final Alternatives cAlternatives_1_2_0 = (Alternatives)cGroup_1_2.eContents().get(0);
 		private final Group cGroup_1_2_0_0 = (Group)cAlternatives_1_2_0.eContents().get(0);
@@ -2347,8 +2351,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStateKeyword_1_2_0_0_1 = (Keyword)cGroup_1_2_0_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_2_0_1 = (Assignment)cAlternatives_1_2_0.eContents().get(1);
 		private final Keyword cIsCompositeStateKeyword_1_2_0_1_0 = (Keyword)cIsCompositeAssignment_1_2_0_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
-		private final RuleCall cOwnedMemberFeature_compStateUsageParserRuleCall_1_2_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_2_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_2_1_0 = (RuleCall)cDirectionAssignment_1_2_1.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_2_2 = (Assignment)cGroup_1_2.eContents().get(2);
+		private final RuleCall cOwnedMemberFeature_compStateUsageParserRuleCall_1_2_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_2_2.eContents().get(0);
 		private final Group cGroup_1_3 = (Group)cAlternatives_1.eContents().get(3);
 		private final Keyword cAbstractKeyword_1_3_0 = (Keyword)cGroup_1_3.eContents().get(0);
 		private final Alternatives cAlternatives_1_3_1 = (Alternatives)cGroup_1_3.eContents().get(1);
@@ -2357,8 +2363,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStateKeyword_1_3_1_0_1 = (Keyword)cGroup_1_3_1_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_3_1_1 = (Assignment)cAlternatives_1_3_1.eContents().get(1);
 		private final Keyword cIsCompositeStateKeyword_1_3_1_1_0 = (Keyword)cIsCompositeAssignment_1_3_1_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_3_2 = (Assignment)cGroup_1_3.eContents().get(2);
-		private final RuleCall cOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_3_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_3_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_3_2 = (Assignment)cGroup_1_3.eContents().get(2);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_3_2_0 = (RuleCall)cDirectionAssignment_1_3_2.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_3_3 = (Assignment)cGroup_1_3.eContents().get(3);
+		private final RuleCall cOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_3_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_3_3.eContents().get(0);
 		private final Group cGroup_1_4 = (Group)cAlternatives_1.eContents().get(4);
 		private final Alternatives cAlternatives_1_4_0 = (Alternatives)cGroup_1_4.eContents().get(0);
 		private final Group cGroup_1_4_0_0 = (Group)cAlternatives_1_4_0.eContents().get(0);
@@ -2366,8 +2374,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cConstraintKeyword_1_4_0_0_1 = (Keyword)cGroup_1_4_0_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_4_0_1 = (Assignment)cAlternatives_1_4_0.eContents().get(1);
 		private final Keyword cIsCompositeConstraintKeyword_1_4_0_1_0 = (Keyword)cIsCompositeAssignment_1_4_0_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
-		private final RuleCall cOwnedMemberFeature_compConstraintUsageParserRuleCall_1_4_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_4_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_4_1_0 = (RuleCall)cDirectionAssignment_1_4_1.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_4_2 = (Assignment)cGroup_1_4.eContents().get(2);
+		private final RuleCall cOwnedMemberFeature_compConstraintUsageParserRuleCall_1_4_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_4_2.eContents().get(0);
 		private final Group cGroup_1_5 = (Group)cAlternatives_1.eContents().get(5);
 		private final Keyword cAbstractKeyword_1_5_0 = (Keyword)cGroup_1_5.eContents().get(0);
 		private final Alternatives cAlternatives_1_5_1 = (Alternatives)cGroup_1_5.eContents().get(1);
@@ -2376,8 +2386,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cConstraintKeyword_1_5_1_0_1 = (Keyword)cGroup_1_5_1_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_5_1_1 = (Assignment)cAlternatives_1_5_1.eContents().get(1);
 		private final Keyword cIsCompositeConstraintKeyword_1_5_1_1_0 = (Keyword)cIsCompositeAssignment_1_5_1_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_5_2 = (Assignment)cGroup_1_5.eContents().get(2);
-		private final RuleCall cOwnedMemberFeature_compAbstractConstraintUsageParserRuleCall_1_5_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_5_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_5_2 = (Assignment)cGroup_1_5.eContents().get(2);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_5_2_0 = (RuleCall)cDirectionAssignment_1_5_2.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_5_3 = (Assignment)cGroup_1_5.eContents().get(3);
+		private final RuleCall cOwnedMemberFeature_compAbstractConstraintUsageParserRuleCall_1_5_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_5_3.eContents().get(0);
 		private final Group cGroup_1_6 = (Group)cAlternatives_1.eContents().get(6);
 		private final Alternatives cAlternatives_1_6_0 = (Alternatives)cGroup_1_6.eContents().get(0);
 		private final Group cGroup_1_6_0_0 = (Group)cAlternatives_1_6_0.eContents().get(0);
@@ -2385,8 +2397,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRequirementKeyword_1_6_0_0_1 = (Keyword)cGroup_1_6_0_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_6_0_1 = (Assignment)cAlternatives_1_6_0.eContents().get(1);
 		private final Keyword cIsCompositeRequirementKeyword_1_6_0_1_0 = (Keyword)cIsCompositeAssignment_1_6_0_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_6_1 = (Assignment)cGroup_1_6.eContents().get(1);
-		private final RuleCall cOwnedMemberFeature_compRequirementUsageParserRuleCall_1_6_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_6_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_6_1 = (Assignment)cGroup_1_6.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_6_1_0 = (RuleCall)cDirectionAssignment_1_6_1.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_6_2 = (Assignment)cGroup_1_6.eContents().get(2);
+		private final RuleCall cOwnedMemberFeature_compRequirementUsageParserRuleCall_1_6_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_6_2.eContents().get(0);
 		private final Group cGroup_1_7 = (Group)cAlternatives_1.eContents().get(7);
 		private final Keyword cAbstractKeyword_1_7_0 = (Keyword)cGroup_1_7.eContents().get(0);
 		private final Alternatives cAlternatives_1_7_1 = (Alternatives)cGroup_1_7.eContents().get(1);
@@ -2395,8 +2409,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRequirementKeyword_1_7_1_0_1 = (Keyword)cGroup_1_7_1_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_7_1_1 = (Assignment)cAlternatives_1_7_1.eContents().get(1);
 		private final Keyword cIsCompositeRequirementKeyword_1_7_1_1_0 = (Keyword)cIsCompositeAssignment_1_7_1_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_7_2 = (Assignment)cGroup_1_7.eContents().get(2);
-		private final RuleCall cOwnedMemberFeature_compAbstractRequirementUsageParserRuleCall_1_7_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_7_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_7_2 = (Assignment)cGroup_1_7.eContents().get(2);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_7_2_0 = (RuleCall)cDirectionAssignment_1_7_2.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_7_3 = (Assignment)cGroup_1_7.eContents().get(3);
+		private final RuleCall cOwnedMemberFeature_compAbstractRequirementUsageParserRuleCall_1_7_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_7_3.eContents().get(0);
 		private final Group cGroup_1_8 = (Group)cAlternatives_1.eContents().get(8);
 		private final Keyword cPerformKeyword_1_8_0 = (Keyword)cGroup_1_8.eContents().get(0);
 		private final Assignment cOwnedMemberFeature_compAssignment_1_8_1 = (Assignment)cGroup_1_8.eContents().get(1);
@@ -2415,27 +2431,35 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberFeature_compSatisfyRequirementUsageParserRuleCall_1_11_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_11_1.eContents().get(0);
 		
 		//BehaviorUsageMember SysML::FeatureMembership:
-		//	DefinitionMemberPrefix (('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=ActionUsage
-		//	| 'abstract' ('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=AbstractActionUsage
-		//	| ('ref' 'state' | isComposite?='state') ownedMemberFeature_comp=StateUsage
-		//	| 'abstract' ('ref' 'state' | isComposite?='state') ownedMemberFeature_comp=AbstractStateUsage
-		//	| ('ref' 'constraint' | isComposite?='constraint') ownedMemberFeature_comp=ConstraintUsage
-		//	| 'abstract' ('ref' 'constraint' | isComposite?='constraint') ownedMemberFeature_comp=AbstractConstraintUsage
-		//	| ('ref' 'requirement' | isComposite?='requirement') ownedMemberFeature_comp=RequirementUsage
-		//	| 'abstract' ('ref' 'requirement' | isComposite?='requirement') ownedMemberFeature_comp=AbstractRequirementUsage
+		//	DefinitionMemberPrefix (('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+		//	ownedMemberFeature_comp=ActionUsage
+		//	| 'abstract' ('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+		//	ownedMemberFeature_comp=AbstractActionUsage
+		//	| ('ref' 'state' | isComposite?='state') direction=FeatureDirection? ownedMemberFeature_comp=StateUsage
+		//	| 'abstract' ('ref' 'state' | isComposite?='state') direction=FeatureDirection?
+		//	ownedMemberFeature_comp=AbstractStateUsage
+		//	| ('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection? ownedMemberFeature_comp=ConstraintUsage
+		//	| 'abstract' ('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection?
+		//	ownedMemberFeature_comp=AbstractConstraintUsage
+		//	| ('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection?
+		//	ownedMemberFeature_comp=RequirementUsage
+		//	| 'abstract' ('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection?
+		//	ownedMemberFeature_comp=AbstractRequirementUsage
 		//	| 'perform' ownedMemberFeature_comp=PerformActionUsage
 		//	| 'exhibit' ownedMemberFeature_comp=ExhibitStateUsage
 		//	| 'assert' ownedMemberFeature_comp=AssertConstraintUsage
 		//	| 'satisfy' ownedMemberFeature_comp=SatisfyRequirementUsage);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//DefinitionMemberPrefix (('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=ActionUsage | 'abstract' ('ref'
-		//'action' | isComposite?='action') ownedMemberFeature_comp=AbstractActionUsage | ('ref' 'state' | isComposite?='state')
-		//ownedMemberFeature_comp=StateUsage | 'abstract' ('ref' 'state' | isComposite?='state')
+		//DefinitionMemberPrefix (('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+		//ownedMemberFeature_comp=ActionUsage | 'abstract' ('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractActionUsage | ('ref' 'state' | isComposite?='state') direction=FeatureDirection?
+		//ownedMemberFeature_comp=StateUsage | 'abstract' ('ref' 'state' | isComposite?='state') direction=FeatureDirection?
 		//ownedMemberFeature_comp=AbstractStateUsage | ('ref' 'constraint' | isComposite?='constraint')
-		//ownedMemberFeature_comp=ConstraintUsage | 'abstract' ('ref' 'constraint' | isComposite?='constraint')
-		//ownedMemberFeature_comp=AbstractConstraintUsage | ('ref' 'requirement' | isComposite?='requirement')
-		//ownedMemberFeature_comp=RequirementUsage | 'abstract' ('ref' 'requirement' | isComposite?='requirement')
+		//direction=FeatureDirection? ownedMemberFeature_comp=ConstraintUsage | 'abstract' ('ref' 'constraint' |
+		//isComposite?='constraint') direction=FeatureDirection? ownedMemberFeature_comp=AbstractConstraintUsage | ('ref'
+		//'requirement' | isComposite?='requirement') direction=FeatureDirection? ownedMemberFeature_comp=RequirementUsage |
+		//'abstract' ('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection?
 		//ownedMemberFeature_comp=AbstractRequirementUsage | 'perform' ownedMemberFeature_comp=PerformActionUsage | 'exhibit'
 		//ownedMemberFeature_comp=ExhibitStateUsage | 'assert' ownedMemberFeature_comp=AssertConstraintUsage | 'satisfy'
 		//ownedMemberFeature_comp=SatisfyRequirementUsage)
@@ -2444,19 +2468,20 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//DefinitionMemberPrefix
 		public RuleCall getDefinitionMemberPrefixParserRuleCall_0() { return cDefinitionMemberPrefixParserRuleCall_0; }
 		
-		//(('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=ActionUsage | 'abstract' ('ref' 'action' |
-		//isComposite?='action') ownedMemberFeature_comp=AbstractActionUsage | ('ref' 'state' | isComposite?='state')
-		//ownedMemberFeature_comp=StateUsage | 'abstract' ('ref' 'state' | isComposite?='state')
-		//ownedMemberFeature_comp=AbstractStateUsage | ('ref' 'constraint' | isComposite?='constraint')
-		//ownedMemberFeature_comp=ConstraintUsage | 'abstract' ('ref' 'constraint' | isComposite?='constraint')
+		//(('ref' 'action' | isComposite?='action') direction=FeatureDirection? ownedMemberFeature_comp=ActionUsage | 'abstract'
+		//('ref' 'action' | isComposite?='action') direction=FeatureDirection? ownedMemberFeature_comp=AbstractActionUsage |
+		//('ref' 'state' | isComposite?='state') direction=FeatureDirection? ownedMemberFeature_comp=StateUsage | 'abstract'
+		//('ref' 'state' | isComposite?='state') direction=FeatureDirection? ownedMemberFeature_comp=AbstractStateUsage | ('ref'
+		//'constraint' | isComposite?='constraint') direction=FeatureDirection? ownedMemberFeature_comp=ConstraintUsage |
+		//'abstract' ('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection?
 		//ownedMemberFeature_comp=AbstractConstraintUsage | ('ref' 'requirement' | isComposite?='requirement')
-		//ownedMemberFeature_comp=RequirementUsage | 'abstract' ('ref' 'requirement' | isComposite?='requirement')
-		//ownedMemberFeature_comp=AbstractRequirementUsage | 'perform' ownedMemberFeature_comp=PerformActionUsage | 'exhibit'
-		//ownedMemberFeature_comp=ExhibitStateUsage | 'assert' ownedMemberFeature_comp=AssertConstraintUsage | 'satisfy'
-		//ownedMemberFeature_comp=SatisfyRequirementUsage)
+		//direction=FeatureDirection? ownedMemberFeature_comp=RequirementUsage | 'abstract' ('ref' 'requirement' |
+		//isComposite?='requirement') direction=FeatureDirection? ownedMemberFeature_comp=AbstractRequirementUsage | 'perform'
+		//ownedMemberFeature_comp=PerformActionUsage | 'exhibit' ownedMemberFeature_comp=ExhibitStateUsage | 'assert'
+		//ownedMemberFeature_comp=AssertConstraintUsage | 'satisfy' ownedMemberFeature_comp=SatisfyRequirementUsage)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=ActionUsage
+		//('ref' 'action' | isComposite?='action') direction=FeatureDirection? ownedMemberFeature_comp=ActionUsage
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//('ref' 'action' | isComposite?='action')
@@ -2477,13 +2502,20 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'action'
 		public Keyword getIsCompositeActionKeyword_1_0_0_1_0() { return cIsCompositeActionKeyword_1_0_0_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_0_1() { return cDirectionAssignment_1_0_1; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_0_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_0_1_0; }
+		
 		//ownedMemberFeature_comp=ActionUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_0_1() { return cOwnedMemberFeature_compAssignment_1_0_1; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_0_2() { return cOwnedMemberFeature_compAssignment_1_0_2; }
 		
 		//ActionUsage
-		public RuleCall getOwnedMemberFeature_compActionUsageParserRuleCall_1_0_1_0() { return cOwnedMemberFeature_compActionUsageParserRuleCall_1_0_1_0; }
+		public RuleCall getOwnedMemberFeature_compActionUsageParserRuleCall_1_0_2_0() { return cOwnedMemberFeature_compActionUsageParserRuleCall_1_0_2_0; }
 		
-		//'abstract' ('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=AbstractActionUsage
+		//'abstract' ('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractActionUsage
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//'abstract'
@@ -2507,13 +2539,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'action'
 		public Keyword getIsCompositeActionKeyword_1_1_1_1_0() { return cIsCompositeActionKeyword_1_1_1_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_1_2() { return cDirectionAssignment_1_1_2; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_1_2_0() { return cDirectionFeatureDirectionEnumRuleCall_1_1_2_0; }
+		
 		//ownedMemberFeature_comp=AbstractActionUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_1_2() { return cOwnedMemberFeature_compAssignment_1_1_2; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_1_3() { return cOwnedMemberFeature_compAssignment_1_1_3; }
 		
 		//AbstractActionUsage
-		public RuleCall getOwnedMemberFeature_compAbstractActionUsageParserRuleCall_1_1_2_0() { return cOwnedMemberFeature_compAbstractActionUsageParserRuleCall_1_1_2_0; }
+		public RuleCall getOwnedMemberFeature_compAbstractActionUsageParserRuleCall_1_1_3_0() { return cOwnedMemberFeature_compAbstractActionUsageParserRuleCall_1_1_3_0; }
 		
-		//('ref' 'state' | isComposite?='state') ownedMemberFeature_comp=StateUsage
+		//('ref' 'state' | isComposite?='state') direction=FeatureDirection? ownedMemberFeature_comp=StateUsage
 		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//('ref' 'state' | isComposite?='state')
@@ -2534,13 +2572,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'state'
 		public Keyword getIsCompositeStateKeyword_1_2_0_1_0() { return cIsCompositeStateKeyword_1_2_0_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_2_1() { return cDirectionAssignment_1_2_1; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_2_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_2_1_0; }
+		
 		//ownedMemberFeature_comp=StateUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_2_1() { return cOwnedMemberFeature_compAssignment_1_2_1; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_2_2() { return cOwnedMemberFeature_compAssignment_1_2_2; }
 		
 		//StateUsage
-		public RuleCall getOwnedMemberFeature_compStateUsageParserRuleCall_1_2_1_0() { return cOwnedMemberFeature_compStateUsageParserRuleCall_1_2_1_0; }
+		public RuleCall getOwnedMemberFeature_compStateUsageParserRuleCall_1_2_2_0() { return cOwnedMemberFeature_compStateUsageParserRuleCall_1_2_2_0; }
 		
-		//'abstract' ('ref' 'state' | isComposite?='state') ownedMemberFeature_comp=AbstractStateUsage
+		//'abstract' ('ref' 'state' | isComposite?='state') direction=FeatureDirection? ownedMemberFeature_comp=AbstractStateUsage
 		public Group getGroup_1_3() { return cGroup_1_3; }
 		
 		//'abstract'
@@ -2564,13 +2608,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'state'
 		public Keyword getIsCompositeStateKeyword_1_3_1_1_0() { return cIsCompositeStateKeyword_1_3_1_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_3_2() { return cDirectionAssignment_1_3_2; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_3_2_0() { return cDirectionFeatureDirectionEnumRuleCall_1_3_2_0; }
+		
 		//ownedMemberFeature_comp=AbstractStateUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_3_2() { return cOwnedMemberFeature_compAssignment_1_3_2; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_3_3() { return cOwnedMemberFeature_compAssignment_1_3_3; }
 		
 		//AbstractStateUsage
-		public RuleCall getOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_3_2_0() { return cOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_3_2_0; }
+		public RuleCall getOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_3_3_0() { return cOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_3_3_0; }
 		
-		//('ref' 'constraint' | isComposite?='constraint') ownedMemberFeature_comp=ConstraintUsage
+		//('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection? ownedMemberFeature_comp=ConstraintUsage
 		public Group getGroup_1_4() { return cGroup_1_4; }
 		
 		//('ref' 'constraint' | isComposite?='constraint')
@@ -2591,13 +2641,20 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'constraint'
 		public Keyword getIsCompositeConstraintKeyword_1_4_0_1_0() { return cIsCompositeConstraintKeyword_1_4_0_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_4_1() { return cDirectionAssignment_1_4_1; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_4_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_4_1_0; }
+		
 		//ownedMemberFeature_comp=ConstraintUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_4_1() { return cOwnedMemberFeature_compAssignment_1_4_1; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_4_2() { return cOwnedMemberFeature_compAssignment_1_4_2; }
 		
 		//ConstraintUsage
-		public RuleCall getOwnedMemberFeature_compConstraintUsageParserRuleCall_1_4_1_0() { return cOwnedMemberFeature_compConstraintUsageParserRuleCall_1_4_1_0; }
+		public RuleCall getOwnedMemberFeature_compConstraintUsageParserRuleCall_1_4_2_0() { return cOwnedMemberFeature_compConstraintUsageParserRuleCall_1_4_2_0; }
 		
-		//'abstract' ('ref' 'constraint' | isComposite?='constraint') ownedMemberFeature_comp=AbstractConstraintUsage
+		//'abstract' ('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractConstraintUsage
 		public Group getGroup_1_5() { return cGroup_1_5; }
 		
 		//'abstract'
@@ -2621,13 +2678,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'constraint'
 		public Keyword getIsCompositeConstraintKeyword_1_5_1_1_0() { return cIsCompositeConstraintKeyword_1_5_1_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_5_2() { return cDirectionAssignment_1_5_2; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_5_2_0() { return cDirectionFeatureDirectionEnumRuleCall_1_5_2_0; }
+		
 		//ownedMemberFeature_comp=AbstractConstraintUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_5_2() { return cOwnedMemberFeature_compAssignment_1_5_2; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_5_3() { return cOwnedMemberFeature_compAssignment_1_5_3; }
 		
 		//AbstractConstraintUsage
-		public RuleCall getOwnedMemberFeature_compAbstractConstraintUsageParserRuleCall_1_5_2_0() { return cOwnedMemberFeature_compAbstractConstraintUsageParserRuleCall_1_5_2_0; }
+		public RuleCall getOwnedMemberFeature_compAbstractConstraintUsageParserRuleCall_1_5_3_0() { return cOwnedMemberFeature_compAbstractConstraintUsageParserRuleCall_1_5_3_0; }
 		
-		//('ref' 'requirement' | isComposite?='requirement') ownedMemberFeature_comp=RequirementUsage
+		//('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection? ownedMemberFeature_comp=RequirementUsage
 		public Group getGroup_1_6() { return cGroup_1_6; }
 		
 		//('ref' 'requirement' | isComposite?='requirement')
@@ -2648,13 +2711,20 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'requirement'
 		public Keyword getIsCompositeRequirementKeyword_1_6_0_1_0() { return cIsCompositeRequirementKeyword_1_6_0_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_6_1() { return cDirectionAssignment_1_6_1; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_6_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_6_1_0; }
+		
 		//ownedMemberFeature_comp=RequirementUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_6_1() { return cOwnedMemberFeature_compAssignment_1_6_1; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_6_2() { return cOwnedMemberFeature_compAssignment_1_6_2; }
 		
 		//RequirementUsage
-		public RuleCall getOwnedMemberFeature_compRequirementUsageParserRuleCall_1_6_1_0() { return cOwnedMemberFeature_compRequirementUsageParserRuleCall_1_6_1_0; }
+		public RuleCall getOwnedMemberFeature_compRequirementUsageParserRuleCall_1_6_2_0() { return cOwnedMemberFeature_compRequirementUsageParserRuleCall_1_6_2_0; }
 		
-		//'abstract' ('ref' 'requirement' | isComposite?='requirement') ownedMemberFeature_comp=AbstractRequirementUsage
+		//'abstract' ('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractRequirementUsage
 		public Group getGroup_1_7() { return cGroup_1_7; }
 		
 		//'abstract'
@@ -2678,11 +2748,17 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'requirement'
 		public Keyword getIsCompositeRequirementKeyword_1_7_1_1_0() { return cIsCompositeRequirementKeyword_1_7_1_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_7_2() { return cDirectionAssignment_1_7_2; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_7_2_0() { return cDirectionFeatureDirectionEnumRuleCall_1_7_2_0; }
+		
 		//ownedMemberFeature_comp=AbstractRequirementUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_7_2() { return cOwnedMemberFeature_compAssignment_1_7_2; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_7_3() { return cOwnedMemberFeature_compAssignment_1_7_3; }
 		
 		//AbstractRequirementUsage
-		public RuleCall getOwnedMemberFeature_compAbstractRequirementUsageParserRuleCall_1_7_2_0() { return cOwnedMemberFeature_compAbstractRequirementUsageParserRuleCall_1_7_2_0; }
+		public RuleCall getOwnedMemberFeature_compAbstractRequirementUsageParserRuleCall_1_7_3_0() { return cOwnedMemberFeature_compAbstractRequirementUsageParserRuleCall_1_7_3_0; }
 		
 		//'perform' ownedMemberFeature_comp=PerformActionUsage
 		public Group getGroup_1_8() { return cGroup_1_8; }
@@ -13593,14 +13669,20 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//BehaviorUsageMember SysML::FeatureMembership:
-	//	DefinitionMemberPrefix (('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=ActionUsage
-	//	| 'abstract' ('ref' 'action' | isComposite?='action') ownedMemberFeature_comp=AbstractActionUsage
-	//	| ('ref' 'state' | isComposite?='state') ownedMemberFeature_comp=StateUsage
-	//	| 'abstract' ('ref' 'state' | isComposite?='state') ownedMemberFeature_comp=AbstractStateUsage
-	//	| ('ref' 'constraint' | isComposite?='constraint') ownedMemberFeature_comp=ConstraintUsage
-	//	| 'abstract' ('ref' 'constraint' | isComposite?='constraint') ownedMemberFeature_comp=AbstractConstraintUsage
-	//	| ('ref' 'requirement' | isComposite?='requirement') ownedMemberFeature_comp=RequirementUsage
-	//	| 'abstract' ('ref' 'requirement' | isComposite?='requirement') ownedMemberFeature_comp=AbstractRequirementUsage
+	//	DefinitionMemberPrefix (('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+	//	ownedMemberFeature_comp=ActionUsage
+	//	| 'abstract' ('ref' 'action' | isComposite?='action') direction=FeatureDirection?
+	//	ownedMemberFeature_comp=AbstractActionUsage
+	//	| ('ref' 'state' | isComposite?='state') direction=FeatureDirection? ownedMemberFeature_comp=StateUsage
+	//	| 'abstract' ('ref' 'state' | isComposite?='state') direction=FeatureDirection?
+	//	ownedMemberFeature_comp=AbstractStateUsage
+	//	| ('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection? ownedMemberFeature_comp=ConstraintUsage
+	//	| 'abstract' ('ref' 'constraint' | isComposite?='constraint') direction=FeatureDirection?
+	//	ownedMemberFeature_comp=AbstractConstraintUsage
+	//	| ('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection?
+	//	ownedMemberFeature_comp=RequirementUsage
+	//	| 'abstract' ('ref' 'requirement' | isComposite?='requirement') direction=FeatureDirection?
+	//	ownedMemberFeature_comp=AbstractRequirementUsage
 	//	| 'perform' ownedMemberFeature_comp=PerformActionUsage
 	//	| 'exhibit' ownedMemberFeature_comp=ExhibitStateUsage
 	//	| 'assert' ownedMemberFeature_comp=AssertConstraintUsage

@@ -6,14 +6,13 @@ package AHFNorway {
 	import AHFProfileLib::*;
 	import AHFCoreLib::*;
 	import ScalarValues::*;
-	import Performances::Performance;
 	
 	port def APISService :> SD{
 		serviceDefinition = "APISPullService";
 		intrfce_protocol = "{JSON}";
 		serviceURL = "pull";
 		// functionalities 
-		ref out getAllItems:Performance; // referring to generic functionality
+		ref action out getAllItems; // referring to generic functionality
 	}
 	
 	value type Subscribe_getAllItems;
@@ -36,17 +35,19 @@ package AHFNorway {
 		block APISProducer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:APISService subsets services { // providing the APISService
-				ref out :>> getAllItems;
+				ref action out :>> getAllItems;
 			}
-			port tellu:APISService subsets services; // talking to TellU
+			port tellu:APISService subsets services { // talking to TellU
+				ref action out :>> getAllItems;
+			}
 			
 			// specializing the functionality implementation towards REST
-			activity RESTGetAllItems(allitms:String) :> Performance {/* Getting all items into the String by REST */}
+			activity RESTGetAllItems(allitms:String) {/* Getting all items into the String by REST */}
 			private action restGetAllItems:RESTGetAllItems() subsets ServiceMethod;
 			bind apis::getAllItems = restGetAllItems;
 			
 			// specializing the functionality implementation towards MQTT
-			state def MQTTGetAllItems :> Performance {/* Getting all items into the String by MQTT */}
+			state def MQTTGetAllItems {/* Getting all items into the String by MQTT */}
 			private state mqttGetAllItems:MQTTGetAllItems();
 			bind tellu::getAllItems = mqttGetAllItems;			
 			

@@ -1,0 +1,41 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+        File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		        File {from ="/library.kernel/Objects.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'Redefinition Example' {
+	
+	part wheel : Wheel;
+	// XPECT errors --> "A package-level feature cannot be redefined" at "wheel"
+	part wheel1 redefines wheel;
+	
+	block B {
+		alias Vehicle::eng as eng1;
+	}
+
+	block Vehicle specializes B {
+		part eng : Engine;
+		// XPECT errors --> "Owner of redefining feature cannot be the same as owner of redefined feature" at "eng1"
+		part smallEng : Engine redefines eng1;
+	}
+	block Engine {
+		part cyl : Cylinder[4..6];
+	}
+	block Cylinder;
+	block Wheel;
+}

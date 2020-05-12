@@ -61,7 +61,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {
-		(e as InvocationExpressionImpl).getArgumentConnectors().forEach[checkBindingConnector]
+		// If an invocation expression already has instantiated argument connectors, then these will be
+		// validated as existing model content. Otherwise, create and validate the argument connectors.
+		if ((e as InvocationExpressionImpl).basicGetArgumentConnectors() === null) {
+			(e as InvocationExpressionImpl).getArgumentConnectors().forEach[checkBindingConnector]
+		}
 	}
 	 
 	@Check
@@ -79,7 +83,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val relatedFeaturesPath = relatedFeatures.map[getFeatureMembershipPath]
 		relatedFeaturesPath.forEach[s|cPath.retainAll(s)]
 		if (cPath.empty) //no common Types
-			error("A connector and its related features must have a common context", c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
+			warning("Connected features should have a common context", c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
 	}
 	
 	//return features's owners up to and including the first one that is not a Feature and an owningType
@@ -92,7 +96,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			owningType = (owner as Feature).owningType
 			owner = owner.owner
 		}
-		if (owner instanceof Feature) {
+		if (owner instanceof Type) {
 			ownerList.add(owner)
 		} else if (owner !== null) {
 			// Use "null" as a marker for "package-level" ownership.
@@ -113,10 +117,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 //		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
 //		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]
 //		
-//		if (// TEMP: Do not check argument type conformance for feature value connectors.
-//			!(bc.owner instanceof Feature && (bc.owner as FeatureImpl).valueConnector === bc) &&
-//			
-//			inFeature !== null && outFeature !== null){
+//		if (inFeature !== null && outFeature !== null){
 //			//Argument type conformance
 //			val inTypes = inFeature.type
 //			val outTypes = outFeature.type
@@ -133,7 +134,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
 				f2ConformsTof1.filter[!empty].length != f1types.length)
-				error("Binding connector ends must have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
+				warning("Bound features should have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
 	}
 	

@@ -20,6 +20,6 @@ END_SETUP
 package test {
 	import OuterPackage::*;
 	class Try specializes B{
-		feature try : b redefines B::b;
+		feature try : A::a1 redefines B::b;
 	}
 }

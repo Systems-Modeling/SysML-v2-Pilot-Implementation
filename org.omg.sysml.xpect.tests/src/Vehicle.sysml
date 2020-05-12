@@ -1,6 +1,6 @@
 package Vehicle {
     block Vehicle {
-        value cylinders: Integer = 3;
+        value cylinders: ScalarValues::Integer = 3;
         value mass: Real = 1000.1;
     }
 

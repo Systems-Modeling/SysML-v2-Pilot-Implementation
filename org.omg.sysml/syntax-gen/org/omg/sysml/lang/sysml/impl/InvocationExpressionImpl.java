@@ -73,6 +73,10 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return argumentConnectors;
 	}
 	
+	public List<BindingConnector> basicGetArgumentConnectors() {
+		return argumentConnectors;
+	}
+	
 	@Override
 	public void transform() {
 		super.transform();

@@ -461,6 +461,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
+	 * Get the effective name for this element, which by default is just its regular name.
+	 */
+	public String getEffectiveName() {
+		return getName();
+	}
+	
+	/**
 	 * Get documentation text for this element, as given by the body of the first owned comment
 	 * annotating the element (if any).
 	 */

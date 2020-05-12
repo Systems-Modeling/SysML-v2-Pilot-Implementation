@@ -38,7 +38,7 @@ package Test1{
 			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
 			   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, OuterPackage.B.b.a1,
 			--- */
-			feature b redefines B; //added this line to see the scope of B
+			feature b subsets B; //added this line to see the scope of B
 		}
 	}
 }

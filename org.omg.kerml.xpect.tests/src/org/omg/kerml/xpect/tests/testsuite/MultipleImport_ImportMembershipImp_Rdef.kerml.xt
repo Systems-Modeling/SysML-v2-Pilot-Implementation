@@ -23,21 +23,21 @@ package test{
 	import OuterPackage2::C;
 	//XPECT linkedName at C --> OuterPackage2.C
 	//* XPECT scope at C ---
-	   		C.b, C.c, Test.b, test.C.b, test.C.c, test.Test.b, test.Test.c, test.Test.try, Test.c, Test.try,
-	   	    C.b.a1, test.C.b.a1, Test.try.a1, test.Test.try.a1, Test.b.a1, test.Test.b.a1,
+	   		C.b, C.c, test.C.b, test.C.c, test.Test.c, test.Test.try, Test.c, Test.try,
+	   	    C.b.a1, test.C.b.a1, Test.try.a1, test.Test.try.a1,
 		    C, Test, test.C, test.Test,
 		 	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,  
 		 	OuterPackage2.A, OuterPackage2.A.a1, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
 		 	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
 
 	--- */
-	feature Test redefines C {
+	feature Test subsets C {
 		//XPECT linkedName at b --> OuterPackage.B.b
 		//* XPECT scope at b ---	
-		    b.a1, try.a1,
-		    C.b.a1, test.C.b.a1, Test.try.a1, test.Test.try.a1, Test.b.a1, test.Test.b.a1,	
-		 	b, c, C, C.b, C.c, Test, Test.b, Test.c, Test.try, try,
-		 	test.C, test.C.b, test.C.c, test.Test, test.Test.b, test.Test.c, test.Test.try,
+		    b.a1, 
+		    C.b.a1, test.C.b.a1, Test.try.a1, test.Test.try.a1,
+		 	b, c, C, C.b, C.c, Test, Test.c, Test.try, 
+		 	test.C, test.C.b, test.C.c, test.Test, test.Test.c, test.Test.try,
 		 	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,  
 		 	OuterPackage2.A, OuterPackage2.A.a1, OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
 		 	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,

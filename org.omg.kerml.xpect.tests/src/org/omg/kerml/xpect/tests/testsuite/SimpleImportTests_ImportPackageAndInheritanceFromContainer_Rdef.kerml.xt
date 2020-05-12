@@ -26,6 +26,6 @@ package test{
  		   a, A, A.a,  A.a.a, test.A.a.a, test.A.a.A, test.A.a.A.a,
  		   test.A, test.A.a, 
 		   --- */
-		feature a redefines A;
+		feature a subsets A;
 	}
 }

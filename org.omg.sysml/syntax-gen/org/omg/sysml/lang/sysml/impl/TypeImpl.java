@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -33,6 +34,7 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -227,7 +229,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public Conjugation basicGetConjugator() {
 		if (conjugator == null) {
-			conjugator = (Conjugation) getOwnedRelationship().stream().
+			conjugator = (Conjugation) getOwnedRelationship_comp().stream().
 					filter(r->r instanceof Conjugation).
 					findFirst().orElse(null);
 		}
@@ -288,13 +290,15 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
+		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
-		return basicGetOwnedGeneralization();
+		basicGetOwnedGeneralization().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
+		return generalizations;
 	}
 
-	protected EList<Generalization> basicGetOwnedGeneralization() {
+	public EList<Generalization> basicGetOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		for (Relationship relationship: this.getOwnedRelationship()) {
+		for (Relationship relationship: getOwnedRelationship_comp()) {
 			if (relationship instanceof Generalization &&
 					this.equals(((Generalization)relationship).getSpecific())) {
 				generalizations.add(((Generalization)relationship));
@@ -314,24 +318,14 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	public EList<Generalization> basicGetOwnedGeneralizationWithDefault() {
-		EList<Generalization> generalizations = basicGetOwnedGeneralization();
-		
-		// Do not add a default generalization if the type is conjugated.
-		if (!isConjugated()) {
-			Generalization generalization = getDefaultGeneralization(generalizations, getGeneralizationEClass(), getDefaultSupertype());
-			if (generalization != null) {
-				generalizations.add(generalization);
-			}
-		}
-		
-		return generalizations;
-	}
-	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
-			addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
+			addImplicitGeneralization();
  		}
+	}
+	
+	protected void addImplicitGeneralization() {
+		addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
@@ -656,9 +650,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return (Multiplicity)getFeature().stream().
+		return getMultiplicity(new HashSet<Type>());
+		
+	}
+	
+	protected Multiplicity getMultiplicity(Set<Type> visited) {
+		Multiplicity multiplicity = (Multiplicity)getOwnedFeature().stream().
 				filter(feature->feature instanceof Multiplicity).
 				findFirst().orElse(null);
+		if (multiplicity == null) {
+			visited.add(this);
+			Type general = getOwnedGeneralization().stream().map(Generalization::getGeneral).findFirst().orElse(null);
+			if (general != null && !visited.contains(general)) { 
+				multiplicity = ((TypeImpl)general).getMultiplicity(visited);
+			}
+		}
+		return multiplicity;
 	}
 
 	/**
@@ -699,11 +706,17 @@ public class TypeImpl extends PackageImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedPackages, excludedTypes, includeProtected));
 			}
 		}
-		Collection<Feature> redefinedFeatures = getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getOwnedRedefinition().stream()).
-				map(redefinition->redefinition.getRedefinedFeature()).collect(Collectors.toSet());
+		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
 		inheritedMemberships.removeIf(membership->redefinedFeatures.contains(membership.getMemberElement()));
 		return inheritedMemberships;
+	}
+	
+	public Collection<Feature> getRedefinedFeatures() {
+		return getOwnedFeature().stream().
+				flatMap(feature->feature.getOwnedGeneralization().stream()).
+				filter(Redefinition.class::isInstance).
+				map(redefinition->((Redefinition)redefinition).getRedefinedFeature()).
+				collect(Collectors.toSet());
 	}
 	
 	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
@@ -795,11 +808,83 @@ public class TypeImpl extends PackageImpl implements Type {
 
 	// Utility Methods
 	
+	public List<Feature> getAllEndFeatures() {
+		List<Feature> ends = getOwnedEndFeatures();
+		int n = ends.size();
+		for (Generalization generalization: getOwnedGeneralization()) {
+			Type general = generalization.getGeneral();
+			if (general != null) {
+				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures();
+				if (inheritedEnds.size() > n) {
+					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
+				}
+			}
+		}
+		return ends;
+	}
+	
+	public List<Feature> getOwnedEndFeatures() {
+		return getOwnedFeature().stream().
+				filter(Feature::isEnd).
+				collect(Collectors.toList());
+	}
+	
+	public List<Parameter> getAllParameters() {
+		List<Parameter> parameters = getOwnedParameters();
+		int n = parameters.size();
+		for (Generalization generalization: getOwnedGeneralization()) {
+			Type general = generalization.getGeneral();
+			if (general != null && general != this) {
+				List<Parameter> inheritedParameters = ((TypeImpl)general).getAllParameters();
+				if (inheritedParameters.size() > n) {
+					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
+				}
+			}
+		}
+		return parameters;
+	}
+	
 	public List<Parameter> getOwnedParameters() {
 		return getOwnedFeature().stream().
 				filter(feature->feature instanceof Parameter).
 				map(feature->(Parameter)feature).
 				collect(Collectors.toList());
+	}
+	
+	public EList<Feature> getOwnedInput() {
+		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (membership instanceof FeatureMembership) {
+				FeatureMembership featureMembership = (FeatureMembership)membership;
+				FeatureDirectionKind direction = featureMembership.getDirection();
+				if (FeatureDirectionKind.IN.equals(direction) || 
+						FeatureDirectionKind.INOUT.equals(direction)) {
+					Feature feature = featureMembership.getOwnedMemberFeature();
+					if (feature != null) {
+						outputs.add(feature);
+					}
+				}
+			}
+		}
+		return outputs;
+	}
+	
+	public EList<Feature> getOwnedOutput() {
+		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		for (Membership membership: this.getOwnedMembership()) {
+			if (membership instanceof FeatureMembership) {
+				FeatureMembership featureMembership = (FeatureMembership)membership;
+				FeatureDirectionKind direction = featureMembership.getDirection();
+				if (FeatureDirectionKind.OUT.equals(direction) || 
+						FeatureDirectionKind.INOUT.equals(direction)) {
+					Feature feature = featureMembership.getOwnedMemberFeature();
+					if (feature != null) {
+						outputs.add(feature);
+					}
+				}
+			}
+		}
+		return outputs;
 	}
 	
 	public Feature getResult() {
@@ -826,6 +911,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public void transform() {
 		super.transform();
+		clearCaches();
 		computeImplicitGeneralization();
 	}
 	

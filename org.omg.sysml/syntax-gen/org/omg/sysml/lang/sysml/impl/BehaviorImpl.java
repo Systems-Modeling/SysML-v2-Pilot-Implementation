@@ -85,7 +85,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	}
 	
 	public static List<Feature> getRelevantFeaturesFor(Type type) {
-		return type.getFeature().stream().
+		return type.getOwnedFeature().stream().
 				filter(feature -> !(feature instanceof Parameter) && feature.isAbstract()).
 				collect(Collectors.toList());
 	}

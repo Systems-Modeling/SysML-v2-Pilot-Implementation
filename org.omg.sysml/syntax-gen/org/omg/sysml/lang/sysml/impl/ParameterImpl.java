@@ -13,6 +13,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
@@ -20,6 +21,7 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -53,10 +55,6 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 		return container instanceof ParameterMembership? 
 				(FeatureMembership)container: 
 			    super.getOwningFeatureMembership();
-	}
-	
-	public boolean isResultParameter() {
-		return ((TypeImpl) getOwningType()).getResult() == this;
 	}
 	
 	@Override
@@ -105,11 +103,37 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	 */
 	@Override
 	public List<? extends Feature> getRelevantFeatures(Type type) {
-		return type == null ? Collections.emptyList()
-				: (isResultParameter() && (type instanceof Function | type instanceof Expression))
-						? Collections.singletonList(((TypeImpl) type).getResult())
-						: ((TypeImpl) type).getOwnedParameters().stream()
+		return type == null? Collections.emptyList():
+			   (isResultParameter() && (type instanceof Function | type instanceof Expression))?
+						Collections.singletonList(((TypeImpl) type).getResult()):
+						getRelevantParameters((TypeImpl)type).stream()
 								.filter(p -> !((ParameterImpl) p).isResultParameter()).collect(Collectors.toList());
 	}
 	
+	protected List<Parameter> getRelevantParameters(TypeImpl type) {
+		return type == getOwningType()? type.getOwnedParameters(): type.getAllParameters();
+	}
+	
+	public boolean isResultParameter() {
+		return getOwningMembership() instanceof ReturnParameterMembership;
+	}
+	
+	public boolean isInputParameter() {
+		FeatureDirectionKind direction = getDirection();
+		return direction == FeatureDirectionKind.IN || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public boolean isOutputParameter() {
+		FeatureDirectionKind direction = getDirection();
+		return direction == FeatureDirectionKind.OUT || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public FeatureDirectionKind getDirection() {
+		Type owningType = getOwningType();
+		if (owningType == null) {
+			return null;
+		} else {
+			return directionFor(owningType);
+		}
+	}
 } // ParameterImpl

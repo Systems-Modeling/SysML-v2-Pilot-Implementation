@@ -4,10 +4,6 @@
 package org.omg.sysml.xtext.scoping
 
 import org.omg.kerml.xtext.scoping.KerMLScopeProvider
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.EReference
-import org.omg.sysml.lang.sysml.SysMLPackage
-import org.omg.sysml.lang.sysml.FeatureTyping
 
 /**
  * This class contains custom scoping description.
@@ -16,13 +12,4 @@ import org.omg.sysml.lang.sysml.FeatureTyping
  * on how and when to use it.
  */
 class SysMLScopeProvider extends KerMLScopeProvider {
-	
-	override getScope(EObject context, EReference reference) {
-		if (reference === SysMLPackage.eINSTANCE.conjugatedPortTyping_PortDefinition &&
-			context instanceof FeatureTyping) 
-			(context as FeatureTyping).typedFeature.scope_owningNamespace(reference)
-		else 
-			super.getScope(context, reference)
-	}
-
 }

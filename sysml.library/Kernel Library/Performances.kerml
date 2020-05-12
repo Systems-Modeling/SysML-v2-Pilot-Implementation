@@ -65,7 +65,7 @@ package Performances {
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of literal expressions.
 	 */				
-	abstract function LiteralEvaluation(): Anything specializes Evaluation;
+	abstract function LiteralEvaluation(): ScalarValues::ScalarValue[1] specializes Evaluation;
 	
 	/**
 	 * NullEvaluation is a specialization of Evaluation for the case of null expressions.

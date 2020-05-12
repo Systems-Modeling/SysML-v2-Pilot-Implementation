@@ -17,14 +17,19 @@ END_SETUP
 //
 // XPECT noErrors ---> ""
 package test{
+	// PackageAlias1 is visible both from the import and at global scope.
 	//* XPECT scope at PackageAlias1 ---
-	    test,
-	   	PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
+	   	PackageAlias1, PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
 	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
 	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
     	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
     	
-    	PackageAlias1, test.PackageAlias1,
+	   	PackageAlias1, PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
+	   	PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.AA.aa_alias,
+	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
+    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
+    	
+	    test, test.PackageAlias1,
     	test.PackageAlias1.A, test.PackageAlias1.A.a, test.PackageAlias1.A.a_alias,
 	   	test.PackageAlias1.AA, test.PackageAlias1.AA.aa, test.PackageAlias1.AA.aa_alias,
 	   	test.PackageAlias1.A_alias, test.PackageAlias1.A_alias.a, test.PackageAlias1.A_alias.a_alias,
@@ -46,8 +51,4 @@ package PackageAlias1{
 	}
 }
 */
-//*
-	missing in scopes are
-   	   	PackageAlias1.A_alias, PackageAlias1.A_alias.a, PackageAlias1.A_alias.a_alias,
-    	PackageAlias1.AA_alias, PackageAlias1.AA_alias.aa, PackageAlias1.AA_alias.aa_alias,
- */
+

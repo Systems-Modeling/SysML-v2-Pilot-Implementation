@@ -111,7 +111,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	public RequirementUsage basicGetSatisfiedRequirement() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = getOwnedSubsetting();		
+		EList<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
 				allMatch(feature->feature == subsettingBaseDefault || 
 				         feature == subsettingPartDefault)) {
@@ -191,11 +191,14 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 				filter(feature->feature instanceof BindingConnector).
 				findFirst().orElse(null);
 		if (connector != null) {
-			RequirementUsage satisfiedRequirement = getSatisfiedRequirement();
-			((ConnectorImpl)connector).setRelatedFeature(0, 
-					satisfiedRequirement == null? null: satisfiedRequirement.getSubjectParameter());
+			((ConnectorImpl)connector).setRelatedFeature(0,getSubjectParameter());
 		}
 		return connector;
+	}
+
+	@Override
+	protected Feature getNamingFeature() {
+		return getSatisfiedRequirement();
 	}
 
 	@Override

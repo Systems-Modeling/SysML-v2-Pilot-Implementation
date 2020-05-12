@@ -24,13 +24,19 @@ package test{
 	}
 	feature inner{
 		import OuterPackage::*;
+	}
+	feature inner1 subsets inner {
 		feature B redefines A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			//* XPECT scope at a1 ---
+		    a1, 
+		    A, A.a1, B, B.b, 
 			inner.A, inner.A.a1, test.inner.A, test.inner.A.a1,
-		    b, a1, 
-		    A, A.a1, B, B.a1, B.b, inner, inner.B, inner.B.a1, inner.B.b,
-		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.a1, test.inner.B.b,
+			inner, inner.B, inner.B.b, inner.B.b.a1,
+			inner1.A, inner1.A.a1, test.inner1.A, test.inner1.A.a1,
+			inner1, inner1.B, inner1.B.b,
+		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.b, test.inner.B.b.a1,
+		    test.inner1, test.inner1.B, test.inner1.B.b,
 		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 		--- */
 			feature b redefines a1{}

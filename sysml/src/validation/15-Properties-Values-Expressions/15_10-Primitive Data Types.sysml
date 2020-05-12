@@ -24,7 +24,8 @@ package '15.10-Primitive Data Types' {
 	 * data / value types. These are more a computer data type concern.)
 	 */
 	value type UnsignedReal :> Real {
-		assert constraint { Real::self >= 0.0 }
+		value x: Real :>> self;
+		assert constraint { x >= 0.0 }
 	}
 	
 	/**

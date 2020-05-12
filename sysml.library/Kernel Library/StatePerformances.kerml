@@ -58,7 +58,7 @@ package StatePerformances {
 		}
 		
 		feature trigger redefines TransitionPerformance::trigger {
-			feature endshot redefines Occurrence::endShot;
+			feature endShot redefines Occurrence::endShot;
 		}
 		
 		binding transitionLinkSource::accepted[0..1] = trigger[1];

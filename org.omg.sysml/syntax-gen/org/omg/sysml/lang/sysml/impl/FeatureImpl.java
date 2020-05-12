@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.DataType;
+import org.omg.sysml.lang.sysml.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -194,10 +195,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		return getTypes();
-	}
-	
-	public EList<Type> getTypes() {
 		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 		getTypes(this, types, new HashSet<Feature>());
 		return types;
@@ -372,10 +369,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinitions;
 	}
 	
-	public EList<Redefinition> getOwnedRedefinitionWithoutDefault() {
-		return basicGetOwnedGeneralization(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -396,16 +389,45 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 	}
 	
+	public EList<Subsetting> basicGetOwnedSubsetting() {
+		return basicGetOwnedGeneralization(Subsetting.class, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+	}
+	
+	public EList<Redefinition> basicGetOwnedRedefinition() {
+		return basicGetOwnedGeneralization(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
+	}
+	
+	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
+		List<Feature> redefinedFeatures = basicGetOwnedRedefinition().stream().
+				map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+				collect(Collectors.toList());
+		if (redefinedFeatures.stream().allMatch(feature->feature == null)) {
+			redefinedFeatures.clear();
+			Type type = getOwningType();
+			int i = ((TypeImpl)type).getOwnedEndFeatures().indexOf(this);
+			if (i >= 0) {
+				for (Type general: getGeneralTypes(type)) {
+					List<? extends Feature> features = getRelevantFeatures(general);
+					if (i < features.size()) {
+						Feature redefinedFeature = features.get(i);
+						if (redefinedFeature != null && redefinedFeature != this) {
+							redefinedFeatures.add(redefinedFeature);
+						}
+					}
+				}
+			}
+		}
+		return redefinedFeatures;
+	}
+	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
-	protected EList<Subsetting> getComputedRedefinitions() {
-		EList<Subsetting> redefinitions = new EObjectEList<Subsetting>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinitionWithoutDefault();
+	protected void addComputedRedefinitions() {
+		EList<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
-			addRedefinitions(redefinitions, ownedRedefinitions);
+			addRedefinitions(ownedRedefinitions);
 		}
-		return redefinitions;
 	}
 	
 	/**
@@ -414,7 +436,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
 	 * overriding getGeneralCategories and getRelevantFeatures.
 	 */
-	protected void addRedefinitions(EList<Subsetting> redefinitions, List<Redefinition> emptyRedefinitions) {
+	protected void addRedefinitions(List<Redefinition> emptyRedefinitions) {
 		Type type = getOwningType();
 		int i = getRelevantFeatures(type).indexOf(this);
 		int j = 0;
@@ -435,7 +457,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 							getOwnedRelationship_comp().add(redefinition);
 						}
 						redefinition.setRedefinedFeature(redefinedFeature);
-						redefinitions.add(redefinition);
 					}
 				}
 			}
@@ -451,7 +472,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * Type (without defaults).
 	 */
 	protected Set<Type> getGeneralTypes(Type type) {
-		return ((TypeImpl)type).basicGetOwnedGeneralization().stream().
+		return type.getOwnedGeneralization().stream().
 				map(gen->((GeneralizationImpl)gen).basicGetGeneral()).
 				filter(gen->gen != null).
 				collect(Collectors.toSet());
@@ -463,7 +484,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * otherwise return the relevant features of the type.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return isEnd()? type.getEndFeature():
+		return isEnd()? ((TypeImpl)type).getAllEndFeatures():
 					   
 			   // NOTE: This is a temporary measure until connecting to inherited features
 			   // is handled generally.
@@ -708,6 +729,33 @@ public class FeatureImpl extends TypeImpl implements Feature {
 
 	// Additional redefinitions and subsets
 	
+	protected String effectiveName = null;
+	
+	public String getEffectiveName() {
+		return getEffectiveName(new HashSet<Feature>());
+	}
+	
+	public String getEffectiveName(Set<Feature> visited) {
+		String name = getName();
+		if (name == null) {
+			if (effectiveName == null) {
+				visited.add(this);
+				Feature namingFeature = getNamingFeature();
+				if (namingFeature != null && !visited.contains(namingFeature)) {
+					effectiveName = ((FeatureImpl)namingFeature).getEffectiveName(visited);
+				}
+			}
+			name = effectiveName;
+		}
+		return name;
+	}
+	
+	protected Feature getNamingFeature() {
+		List<Redefinition> redefinitions = this.basicGetOwnedRedefinition();
+		return redefinitions.size() != 1? null:
+			redefinitions.get(0).getRedefinedFeature();
+	}
+	
 	public FeatureValue getValuation() {
 		return (FeatureValue)getOwnedFeatureMembership().stream().
 				filter(memb->memb instanceof FeatureValue).
@@ -726,10 +774,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	@Override
+	public Type getDefaultType(String... defaultNames) {
+		Type owningType = getOwningType();
+		if (owningType instanceof BindingConnector) {
+			Feature relatedFeature = ((BindingConnectorImpl)owningType).getRelatedFeatureFor(this);
+			if (relatedFeature != null) {
+				return relatedFeature;
+			}
+		}
+		return super.getDefaultType(defaultNames);
+	}
+	
+	@Override
+	public void computeImplicitGeneralization() {
+		addComputedRedefinitions();
+		super.computeImplicitGeneralization();
+	}
+	
+	@Override
 	public void transform() {
 		super.transform();
-		clearCaches();
-		getComputedRedefinitions();
 		getValueConnector();
 	}
 	
@@ -746,11 +810,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public boolean isObjectFeature() {
-		return getTypes().stream().anyMatch(type->type instanceof Class);
+		return getType().stream().anyMatch(type->type instanceof Class);
 	}
 	
 	public boolean isValueFeature() {
-		return getTypes().stream().anyMatch(type->type instanceof DataType);
+		return getType().stream().anyMatch(type->type instanceof DataType);
 	}
 	
 	public boolean hasObjectType() {

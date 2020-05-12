@@ -25,6 +25,7 @@ import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
+import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 
 /**
@@ -36,8 +37,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def String _text(Element element) {
 		var text = element.eClass.name;
-		if (element.name !== null) {
-			text += ' ' + element.name;
+		val name = (element as ElementImpl).effectiveName;
+		if (name !== null) {
+			text += ' ' + name;
 		}
 		text 
 	}
@@ -61,9 +63,10 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def String nameText(Membership membership) {
 		if (membership.memberName !== null)
 			membership.memberName
-		else if (membership.memberElement?.name !== null)
-			membership.memberElement.name
-		else ""
+		else {
+			val name = (membership.memberElement as ElementImpl)?.effectiveName;
+			if (name !== null) name else ""
+		}
 	}
 	
 	def String _text(Membership membership) {
@@ -103,12 +106,14 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Type type) {
+		(type as TypeImpl).transform()
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'
 		}
-		if (type.name !== null) {
-			text += ' ' + type.name;
+		val name = (type as TypeImpl).effectiveName
+		if (name !== null) {
+			text += ' ' + name;
 		}
 		text
 	}
@@ -249,7 +254,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def boolean _isLeaf(Type type) {
-		(type as ElementImpl).transform()
+//		(type as ElementImpl).transform()
 		super._isLeaf(type)
 	}
 	

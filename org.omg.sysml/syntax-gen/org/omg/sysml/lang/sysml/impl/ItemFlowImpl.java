@@ -100,6 +100,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public EList<Classifier> getItemType() {
 		EList<Classifier> itemType = new EObjectEList<Classifier>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
+		getItemFeature().get(0).getType();
 		getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
 			filter(t->t instanceof Classifier).
@@ -211,7 +212,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {
-						EList<Redefinition> redefinitions = endFeatures.get(0).getOwnedRedefinition();
+						EList<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
 						if (!redefinitions.isEmpty()) {
 							Redefinition redefinition = redefinitions.get(0);
 							if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {

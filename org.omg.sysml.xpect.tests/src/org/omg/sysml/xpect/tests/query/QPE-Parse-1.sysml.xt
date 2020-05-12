@@ -3,6 +3,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
 	ResourceSet {
 		ThisFile {}
         File {from ="/library.kernel/Base.kerml"}
+        File {from ="/library.kernel/Occurrences.kerml"}
         File {from ="/library.kernel/Objects.kerml"}
         File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.systems/Blocks.sysml"}
@@ -12,6 +13,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
 			SrcFolder {
 				ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/Occurrences.kerml"}
                 File {from ="/library.kernel/Objects.kerml"}
                 File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.systems/Blocks.sysml"}

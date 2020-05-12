@@ -15,7 +15,7 @@ package AHFCoreLib {
 	block ArrowheadCore_SoSDD :> LocalCloud_SoSDD{
 		block ServiceRegistry :> SysDD {
 			port serviceDiscovery:ServiceDiscovery subsets services;
-			ServiceRegistration subsets ServiceMethod;
+			action ServiceRegistration subsets ServiceMethod;
 		}
 		
 		block Authorization :> SysDD {

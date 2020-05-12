@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -125,9 +126,9 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	protected String[] getOperatorQualifiedNames(String op) {
 		// NOTE: This is necessary because of how Xtext constructs the qualified name in
-		// the global scope for an element named '.'.
+		// the global scope for element named '.' or '..'.
 		// TODO: Remove this if and when possible.
-		final String operator = ".".equals(op) ? "" : op;
+		final String operator = ".".equals(op) ? "" : "..".equals(op)? "'::'": op;
 
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + operator + "'").toArray(String[]::new);
 	}
@@ -140,6 +141,11 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		EList<Expression> operands = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
 		operands.addAll(getOperand_comp());
 		return operands;
+	}
+	
+	@Override
+	public Function getFunction() {
+		return (Function)getDefaultType(getOperatorQualifiedNames(getOperator()));
 	}
 	
 	@Override

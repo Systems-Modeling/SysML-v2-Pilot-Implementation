@@ -70,7 +70,7 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	public StateUsage basicGetExhibitedState() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = getOwnedSubsetting();		
+		EList<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
 				allMatch(feature->feature == subsettingBaseDefault || 
 				         feature == subsettingPartDefault)) {
@@ -93,6 +93,11 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 			subsettingPartDefault = getDefaultType(EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
 		}
 		return subsettingPartDefault;
+	}
+
+	@Override
+	protected Feature getNamingFeature() {
+		return getExhibitedState();
 	}
 
 	/**

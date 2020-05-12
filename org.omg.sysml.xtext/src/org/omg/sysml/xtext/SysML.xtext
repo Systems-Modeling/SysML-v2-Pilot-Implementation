@@ -292,14 +292,14 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 
 BehaviorUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
-	( ('ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
-	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
-	| ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = StateUsage
-	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ownedMemberFeature_comp = AbstractStateUsage
-	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = ConstraintUsage
-	| 'abstract' ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ownedMemberFeature_comp = AbstractConstraintUsage
-	| ( 'ref' 'requirement' | isComposite ?= 'requirement' ) ownedMemberFeature_comp = RequirementUsage
-	| 'abstract' ( 'ref' 'requirement' | isComposite ?= 'requirement' ) ownedMemberFeature_comp = AbstractRequirementUsage
+	( ('ref' 'action' | isComposite ?= 'action' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = ActionUsage
+	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractActionUsage
+	| ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = StateUsage
+	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStateUsage
+	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = ConstraintUsage
+	| 'abstract' ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractConstraintUsage
+	| ( 'ref' 'requirement' | isComposite ?= 'requirement' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = RequirementUsage
+	| 'abstract' ( 'ref' 'requirement' | isComposite ?= 'requirement' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractRequirementUsage
 	| 'perform' ownedMemberFeature_comp = PerformActionUsage
 	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
 	| 'assert' ownedMemberFeature_comp = AssertConstraintUsage

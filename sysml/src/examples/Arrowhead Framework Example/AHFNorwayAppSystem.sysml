@@ -6,14 +6,13 @@ package AHFNorway {
 	import AHFProfileLib::*;
 	import AHFCoreLib::*;
 	import ScalarValues::*;
-	import Performances::Performance;
 	
 	port def APISService :> SD{
 		serviceDefinition = "APISPullService";
 		intrfce_protocol = "{JSON}";
 		serviceURL = "pull";
 		// functionalities 
-		ref out getAllItems:Performance; // referring to generic functionality
+		ref action out getAllItems; // referring to generic functionality
 	}
 	
 	value type Subscribe_getAllItems;
@@ -25,7 +24,7 @@ package AHFNorway {
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:~APISService subsets services; // consuming the APISService
 			systemname = "UngerApisClient";
-			address = "Unger_network_ip";
+			address = "Unger_network_ip"; 
 			portno = 0;
 			
 			// Now calling the remote behavior through the port functionality
@@ -35,16 +34,20 @@ package AHFNorway {
 		
 		block APISProducer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
-			port apis:APISService subsets services; // providing the APISService
-			port tellu:APISService subsets services; // talking to TellU
+			port apis:APISService subsets services { // providing the APISService
+				ref action out :>> getAllItems;
+			}
+			port tellu:APISService subsets services { // talking to TellU
+				ref action out :>> getAllItems;
+			}
 			
 			// specializing the functionality implementation towards REST
-			activity RESTGetAllItems(allitms:String) :> Performance {/* Getting all items into the String by REST */}
+			activity RESTGetAllItems(allitms:String) {/* Getting all items into the String by REST */}
 			private action restGetAllItems:RESTGetAllItems() subsets ServiceMethod;
 			bind apis::getAllItems = restGetAllItems;
 			
 			// specializing the functionality implementation towards MQTT
-			state def MQTTGetAllItems :> Performance {/* Getting all items into the String by MQTT */}
+			state def MQTTGetAllItems {/* Getting all items into the String by MQTT */}
 			private state mqttGetAllItems:MQTTGetAllItems();
 			bind tellu::getAllItems = mqttGetAllItems;			
 			
@@ -74,9 +77,22 @@ package AHFNorway {
 			}
 		}
 
- 		part telluc:TellUConsumer subsets systems;
- 		part apisp:APISProducer subsets systems;
- 		part apisc:APISConsumer subsets systems;
+ 		part telluc:TellUConsumer subsets systems {
+ 			port redefines serviceDiscovery;
+ 			port redefines tellu;
+ 		}
+ 		part apisp:APISProducer subsets systems {
+  			port redefines serviceDiscovery;
+ 			port redefines apis;
+ 			port redefines tellu;
+ 		}
+ 		part apisc:APISConsumer subsets systems {
+ 			port redefines serviceDiscovery;
+ 			port redefines apis;
+ 		}
+ 		part redefines service_registry {
+ 			port redefines serviceDiscovery;
+ 		}
  		
  		connect apisp::tellu to telluc::tellu; // from TelluCloud to APIS at Prediktor
  		connect apisp::apis to apisc::apis; // from Prediktor to Unger

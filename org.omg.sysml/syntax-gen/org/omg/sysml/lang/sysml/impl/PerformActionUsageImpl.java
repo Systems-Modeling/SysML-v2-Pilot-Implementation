@@ -71,7 +71,7 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	public ActionUsage basicGetPerformedAction() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = getOwnedSubsetting();		
+		EList<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
 				allMatch(feature->feature == subsettingBaseDefault || 
 				         feature == subsettingPartDefault)) {
@@ -94,6 +94,11 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 			subsettingPartDefault = getDefaultType(PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
 		}
 		return subsettingPartDefault;
+	}
+	
+	@Override
+	protected Feature getNamingFeature() {
+		return getPerformedAction();
 	}
 
 	/**

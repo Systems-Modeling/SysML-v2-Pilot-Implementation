@@ -4,7 +4,6 @@
 
 package AHFProfileLib {
 	/** Services and (later) functionalities */
-	import Performances::Performance;
 	import ScalarValues::*;
 	
 	port def SD{
@@ -29,7 +28,7 @@ package AHFProfileLib {
 		}
 		
 		block SysDD :> SysD{
-			ServiceMethod:Performance[1..*]; //means behaviors
+			action ServiceMethod[1..*]; //means behaviors
 		}
 	}
 	

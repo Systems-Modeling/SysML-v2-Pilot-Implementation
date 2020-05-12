@@ -74,7 +74,7 @@ package Blocks {
 	 * Value is the most general type of data values that represent value properties of a 
 	 * system or part of a system. Value is the base type of all value types.
 	 */
-	value type Value :> DataValue;
+	alias DataValue as Value;
 	
 	/** 
 	 * parts is the base feature of all part properties.
@@ -94,6 +94,6 @@ package Blocks {
 	/**
 	 * values is the base feature for all value properties.
 	 */
-	abstract value values: Value[0..*] :> dataValues;		
+	alias dataValues as values;		
 
 }

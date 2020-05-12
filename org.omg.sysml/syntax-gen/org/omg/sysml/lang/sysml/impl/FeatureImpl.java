@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.DataType;
+import org.omg.sysml.lang.sysml.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -396,9 +397,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return basicGetOwnedGeneralization(Redefinition.class, SysMLPackage.FEATURE__OWNED_REDEFINITION);
 	}
 	
-	public List<Feature> getRedefinedFeaturesWithComputed() {
+	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
 		List<Feature> redefinedFeatures = basicGetOwnedRedefinition().stream().
-				map(Redefinition::getRedefinedFeature).collect(Collectors.toList());
+				map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+				collect(Collectors.toList());
 		if (redefinedFeatures.stream().allMatch(feature->feature == null)) {
 			redefinedFeatures.clear();
 			Type type = getOwningType();

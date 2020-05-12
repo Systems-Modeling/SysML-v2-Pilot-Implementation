@@ -271,7 +271,7 @@ class KerMLScope extends AbstractScope {
 	protected def Set<Feature> redefinedFeatures(Type type) {
 		// Note: "Basic" operations are used here to avoid proxy resolution.
 		type.ownedFeature.
-			flatMap[feature|(feature as FeatureImpl).redefinedFeaturesWithComputed].toSet
+			flatMap[feature|(feature as FeatureImpl).getRedefinedFeaturesWithComputed(skip)].toSet
 	}
 	
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {

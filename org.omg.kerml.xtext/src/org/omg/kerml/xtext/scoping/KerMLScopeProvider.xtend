@@ -160,11 +160,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				 if (pack.name !== null) 
 				 	// The root scope includes qualified names whose first segment is the name
 				 	// of the root package.
-				 	new KerMLRootScope(global, pack, reference.EReferenceType, this, element)
+				 	new KerMLRootScope(global, pack, reference.EReferenceType, this, element, skip)
 				 else 
 				 	global
 			} else {
-				parent.scopeFor(reference, element, false, false, null)
+				parent.scopeFor(reference, element, false, false, skip)
 			}		
 
 		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isFirstScope, isRedefinition, element, skip)

@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.EClass
 
 class KerMLRootScope extends KerMLScope {
 	
-	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, Element element) {
-		super(parent, pack, referenceType, scopeProvider, true, false, element, null)
+	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, Element element, Element skip) {
+		super(parent, pack, referenceType, scopeProvider, true, false, element, skip)
 	}
 	
 	protected override void resolve() {

@@ -191,9 +191,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 				filter(feature->feature instanceof BindingConnector).
 				findFirst().orElse(null);
 		if (connector != null) {
-			RequirementUsage satisfiedRequirement = getSatisfiedRequirement();
-			((ConnectorImpl)connector).setRelatedFeature(0, 
-					satisfiedRequirement == null? null: satisfiedRequirement.getSubjectParameter());
+			((ConnectorImpl)connector).setRelatedFeature(0,getSubjectParameter());
 		}
 		return connector;
 	}

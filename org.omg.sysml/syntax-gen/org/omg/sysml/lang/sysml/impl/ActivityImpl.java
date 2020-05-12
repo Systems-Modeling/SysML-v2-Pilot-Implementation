@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -101,9 +100,7 @@ public class ActivityImpl extends DefinitionImpl implements Activity {
 	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
-		return getFeature().stream().
-				filter(feature->!(feature instanceof Parameter) && feature.isAbstract()).
-				collect(Collectors.toList());
+		return BehaviorImpl.getRelevantFeaturesFor(this);
 	}
 
 	/**

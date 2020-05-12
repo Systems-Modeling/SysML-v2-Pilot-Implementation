@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -40,9 +39,8 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 	
 	@Override
 	protected List<Multiplicity> getRelevantFeatures(Type type) {
-		return type == getOwningType()? Collections.singletonList(this):
-			   type instanceof Feature? Collections.singletonList(((Feature)type).getMultiplicity()):
-			   Collections.emptyList();
+		return Collections.singletonList(
+				type == getOwningType()? this: type.getMultiplicity());
 	}
 
 } // MultiplicityImpl

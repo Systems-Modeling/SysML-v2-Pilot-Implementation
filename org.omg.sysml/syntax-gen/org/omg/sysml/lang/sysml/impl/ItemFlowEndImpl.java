@@ -51,6 +51,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	@Override
 	public void computeImplicitGeneralization() {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
+		addComputedRedefinitions();
 	}
 
 	protected void addItemFlowEndSubsetting() {
@@ -62,8 +63,8 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 				if (feature != null) {
 					Type owner = feature.getOwningType();
 					if (owner instanceof Feature) {
-						Subsetting subsetting = super.getOwnedSubsetting().stream()
-								.filter(sub -> !(sub instanceof Redefinition)).findFirst().orElse(null);
+						Subsetting subsetting = basicGetOwnedSubsetting().stream().
+								filter(s->!(s instanceof Redefinition)).findFirst().orElse(null);
 						if (subsetting == null) {
 							subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 							subsetting.setSubsettingFeature(this);

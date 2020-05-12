@@ -37,9 +37,8 @@ package UnitsAndScales {
 	 * Representation of a measurement unit that does not depend on any other measurement unit.
 	 */
 	abstract block SimpleUnit :> MeasurementUnit {
-		ref self: SimpleUnit redefines MeasurementUnit::self;
 		value unitPowerFactor: UnitPowerFactor redefines MeasurementUnit::unitPowerFactor {
-			ref unit redefines UnitPowerFactor::unit = self;
+			ref unit redefines UnitPowerFactor::unit = SimpleUnit::self;
 			value exponent redefines UnitPowerFactor::exponent = 1;			
 		}
 	}

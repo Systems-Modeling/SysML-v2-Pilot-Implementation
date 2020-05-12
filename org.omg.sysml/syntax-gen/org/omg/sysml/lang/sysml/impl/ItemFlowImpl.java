@@ -100,6 +100,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public EList<Classifier> getItemType() {
 		EList<Classifier> itemType = new EObjectEList<Classifier>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
+		getItemFeature().get(0).getType();
 		getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
 			filter(t->t instanceof Classifier).

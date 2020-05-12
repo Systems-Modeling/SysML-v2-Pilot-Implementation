@@ -3,7 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -93,8 +92,9 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	public Parameter basicGetResult() {
-		List<Parameter> parameters = getOwnedParameters();
-		return parameters.isEmpty() ? null : parameters.get(parameters.size() - 1);
+		return getAllParameters().stream().
+				filter(p->((ParameterImpl)p).isResultParameter()).
+				findFirst().orElse(null);
 	}
 
 	/**

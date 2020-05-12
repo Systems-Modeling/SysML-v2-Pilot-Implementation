@@ -92,12 +92,12 @@ package '4a-Functional Allocation' {
 			
 			part rearAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle {
 				part leftHalfAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle::leftHalfAxle {
-					port axleToWheelPort :>> vehicle1_c1::rearAxleAssembly::rearAxle::leftHalfAxle::axleToWheelPort {
+					port axleToWheelPort :>> vehicle1_c1::rearAxleAssembly::rearAxle::leftHalfAxle::leftAxleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}
 				part rightHalfAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle::rightHalfAxle {
-					port axleToWheelPort :>> vehicle1_c1::rearAxleAssembly::rearAxle::rightHalfAxle::axleToWheelPort {
+					port axleToWheelPort :>> vehicle1_c1::rearAxleAssembly::rearAxle::rightHalfAxle::rightAxleToWheelPort {
 						out wheelTorque: Torque;
 					}
 				}

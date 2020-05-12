@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -198,11 +197,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		return subjectParameter != null && subjectParameter.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
 	}
 	
-	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER,
-				new int[] { SysMLPackage.TYPE__FEATURE });
-	}	
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,9 +204,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	public Parameter basicGetSubjectParameter() {
 		// Note: The subject parameter is assumed to be the first owned parameter.
-		return (Parameter)getFeature().stream().
-				filter(feature->feature instanceof Parameter).
-				findFirst().orElse(null);
+		return getOwnedParameters().stream().findFirst().orElse(null);
 	}
 
 	/**

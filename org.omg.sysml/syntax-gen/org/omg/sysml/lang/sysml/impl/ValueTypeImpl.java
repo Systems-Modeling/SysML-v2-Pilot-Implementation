@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.ValueType;
  */
 public class ValueTypeImpl extends DefinitionImpl implements ValueType {
 	
-	public static final String VALUE_TYPE_SUPERCLASS_DEFAULT = "Blocks::Value";
+	public static final String VALUE_TYPE_SUPERCLASS_DEFAULT = "Base::DataType";
 
 	/**
 	 * <!-- begin-user-doc -->

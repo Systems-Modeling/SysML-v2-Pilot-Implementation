@@ -45,7 +45,6 @@ import org.omg.sysml.lang.sysml.impl.TypeImpl
 import java.util.HashSet
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
-import org.omg.sysml.lang.sysml.impl.RedefinitionImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 
@@ -253,7 +252,7 @@ class KerMLScope extends AbstractScope {
 				newRedefined.addAll(redefined)
 				newRedefined.addAll(pack.redefinedFeatures)
 			}
-			for (e: (pack as TypeImpl).basicGetOwnedGeneralizationWithDefault) {
+			for (e: (pack as TypeImpl).ownedGeneralization) {
 				if (!isSkip(e) && !scopeProvider.visited.contains(e)) {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
@@ -272,8 +271,7 @@ class KerMLScope extends AbstractScope {
 	protected def Set<Feature> redefinedFeatures(Type type) {
 		// Note: "Basic" operations are used here to avoid proxy resolution.
 		type.ownedFeature.
-			flatMap[feature|(feature as FeatureImpl).basicGetOwnedRedefinitionWithComputed].
-			map[redef|(redef as RedefinitionImpl).basicGetRedefinedFeature].toSet
+			flatMap[feature|(feature as FeatureImpl).redefinedFeaturesWithComputed].toSet
 	}
 	
 	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {

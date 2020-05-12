@@ -2,8 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
@@ -20,7 +20,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 	
-	public static final String ITEM_FLOW_ITEM_FEATURE_NAME = "item";
+	public static final String ITEM_FLOW_ITEM_FEATURE = "Transfers::Transfer::item";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -44,9 +44,7 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return type == getOwner()? ((TypeImpl)type).getRelevantFeatures():
-			   type.getFeature().stream().
-					filter(feature->ITEM_FLOW_ITEM_FEATURE_NAME.equals(feature.getName())).
-					collect(Collectors.toList());
+				Collections.singletonList((Feature)getDefaultType(ITEM_FLOW_ITEM_FEATURE));
 	}
 	
 } //ItemFeatureImpl

@@ -85,6 +85,12 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	public void setContext(Feature newContext) {
 		throw new UnsupportedOperationException();
 	}
+	
+	@Override
+	public void computeImplicitGeneralization() {
+		addImplicitGeneralization();
+		addComputedRedefinitions();
+	}
 
 	@Override
 	protected String getDefaultSupertype() {

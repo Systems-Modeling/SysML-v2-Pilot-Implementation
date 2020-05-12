@@ -2,7 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,16 +13,15 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -57,10 +55,6 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 		return container instanceof ParameterMembership? 
 				(FeatureMembership)container: 
 			    super.getOwningFeatureMembership();
-	}
-	
-	public boolean isResultParameter() {
-		return getOwningMembership() instanceof ReturnParameterMembership;
 	}
 	
 	@Override
@@ -109,37 +103,37 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	 */
 	@Override
 	public List<? extends Feature> getRelevantFeatures(Type type) {
-		return type == null ? Collections.emptyList()
-				: (isResultParameter() && (type instanceof Function | type instanceof Expression))
-						? Collections.singletonList(((TypeImpl) type).getResult())
-						: ((TypeImpl) type).getOwnedParameters().stream()
+		return type == null? Collections.emptyList():
+			   (isResultParameter() && (type instanceof Function | type instanceof Expression))?
+						Collections.singletonList(((TypeImpl) type).getResult()):
+						getRelevantParameters((TypeImpl)type).stream()
 								.filter(p -> !((ParameterImpl) p).isResultParameter()).collect(Collectors.toList());
 	}
 	
-	@Override
-	public List<Redefinition> getComputedRedefinitions() {
-		List<Redefinition> redefinitions = new ArrayList<>();
-		Type type = getOwningType();
-		int i = ((TypeImpl)type).getOwnedParameters().indexOf(this);
-		if (i >= 0) {
-			for (Type general: getGeneralTypes(type)) {
-				List<Parameter> parameters = ((TypeImpl)general).getAllParameters();
-				Parameter redefinedFeature = parameters.stream().
-						filter(p->((ParameterImpl)p).isResultParameter()).
-						findFirst().orElse(null);
-				if (!isResultParameter()) {
-					int j = parameters.indexOf(redefinedFeature);
-					int k = j >= 0 && j <= i? i + 1: i;
-					redefinedFeature = k < parameters.size()? parameters.get(k): null;
-				}
-				if (redefinedFeature != null && redefinedFeature != this) {
-					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-					redefinition.setRedefiningFeature(this);
-					redefinition.setRedefinedFeature(redefinedFeature);
-					redefinitions.add(redefinition);
-				}
-			}
+	protected List<Parameter> getRelevantParameters(TypeImpl type) {
+		return type == getOwningType()? type.getOwnedParameters(): type.getAllParameters();
+	}
+	
+	public boolean isResultParameter() {
+		return getOwningMembership() instanceof ReturnParameterMembership;
+	}
+	
+	public boolean isInputParameter() {
+		FeatureDirectionKind direction = getDirection();
+		return direction == FeatureDirectionKind.IN || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public boolean isOutputParameter() {
+		FeatureDirectionKind direction = getDirection();
+		return direction == FeatureDirectionKind.OUT || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public FeatureDirectionKind getDirection() {
+		Type owningType = getOwningType();
+		if (owningType == null) {
+			return null;
+		} else {
+			return directionFor(owningType);
 		}
-		return redefinitions;
-	}		
+	}
 } // ParameterImpl

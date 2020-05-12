@@ -20,11 +20,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.OperatorExpression;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -158,18 +155,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			addImplicitGeneralization(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralization();
-	}
-	
-	@Override
-	public EList<Generalization> basicGetOwnedGeneralizationWithDefault() {
-		EList<Generalization> generalizations = super.basicGetOwnedGeneralizationWithDefault();
-		String operator = getOperator();
-		if (operator != null) {
-			FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-			typing.setType(getFunction());
-			generalizations.add(typing);
-		}
-		return generalizations;
 	}
 	
 	/**

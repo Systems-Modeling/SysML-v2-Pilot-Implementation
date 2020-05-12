@@ -47,7 +47,9 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		Function function = getFunction();
-		int m = function == null ? 0 : function.getInput().size();
+		int m = function == null ? 0 : 
+			(int)((FunctionImpl)function).getAllParameters().stream().
+				filter(p->((ParameterImpl)p).isInputParameter()).count();
 		List<Feature> features = super.getOwnedFeature();
 		int n = features.size();
 		return m >= n ? Collections.emptyList() : features.subList(m, n);

@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -228,7 +229,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public Conjugation basicGetConjugator() {
 		if (conjugator == null) {
-			conjugator = (Conjugation) getOwnedRelationship().stream().
+			conjugator = (Conjugation) getOwnedRelationship_comp().stream().
 					filter(r->r instanceof Conjugation).
 					findFirst().orElse(null);
 		}
@@ -314,20 +315,6 @@ public class TypeImpl extends PackageImpl implements Type {
 				generalizations.add((T)generalization);
 			}
 		}
-		return generalizations;
-	}
-	
-	public EList<Generalization> basicGetOwnedGeneralizationWithDefault() {
-		EList<Generalization> generalizations = basicGetOwnedGeneralization();
-		
-		// Do not add a default generalization if the type is conjugated.
-		if (!isConjugated()) {
-			Generalization generalization = getDefaultGeneralization(generalizations, getGeneralizationEClass(), getDefaultSupertype());
-			if (generalization != null) {
-				generalizations.add(generalization);
-			}
-		}
-		
 		return generalizations;
 	}
 	
@@ -663,9 +650,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return (Multiplicity)getFeature().stream().
+		return getMultiplicity(new HashSet<Type>());
+		
+	}
+	
+	protected Multiplicity getMultiplicity(Set<Type> visited) {
+		Multiplicity multiplicity = (Multiplicity)getOwnedFeature().stream().
 				filter(feature->feature instanceof Multiplicity).
 				findFirst().orElse(null);
+		if (multiplicity == null) {
+			visited.add(this);
+			Type general = getOwnedGeneralization().stream().map(Generalization::getGeneral).findFirst().orElse(null);
+			if (general != null && !visited.contains(general)) { 
+				multiplicity = ((TypeImpl)general).getMultiplicity(visited);
+			}
+		}
+		return multiplicity;
 	}
 
 	/**
@@ -713,7 +713,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public Collection<Feature> getRedefinedFeatures() {
 		return getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).basicGetOwnedGeneralizationWithDefault().stream()).
+				flatMap(feature->feature.getOwnedGeneralization().stream()).
 				filter(Redefinition.class::isInstance).
 				map(redefinition->((Redefinition)redefinition).getRedefinedFeature()).
 				collect(Collectors.toSet());
@@ -811,7 +811,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public List<Feature> getAllEndFeatures() {
 		List<Feature> ends = getOwnedEndFeatures();
 		int n = ends.size();
-		for (Generalization generalization: basicGetOwnedGeneralizationWithDefault()) {
+		for (Generalization generalization: getOwnedGeneralization()) {
 			Type general = generalization.getGeneral();
 			if (general != null) {
 				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures();
@@ -832,7 +832,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public List<Parameter> getAllParameters() {
 		List<Parameter> parameters = getOwnedParameters();
 		int n = parameters.size();
-		for (Generalization generalization: basicGetOwnedGeneralizationWithDefault()) {
+		for (Generalization generalization: getOwnedGeneralization()) {
 			Type general = generalization.getGeneral();
 			if (general != null && general != this) {
 				List<Parameter> inheritedParameters = ((TypeImpl)general).getAllParameters();

@@ -5,10 +5,12 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -50,8 +52,16 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	public Type getDefaultType(String... defaultNames) {
 		Type type = getOwningType();
 		return type instanceof Feature? 
-				getPreviousFeature((Feature)type): 
+				getSource((Feature)type): 
 				super.getDefaultType(defaultNames);
+	}
+	
+	protected Feature getSource(Feature owningFeature) {
+		Type type = owningFeature.getOwningType();
+		return owningFeature instanceof BindingConnector && 
+			   type instanceof SatisfyRequirementUsage? 
+					((SatisfyRequirementUsage)type).getSubjectParameter(): 
+					getPreviousFeature(owningFeature);
 	}
 	
 	protected static Feature getPreviousFeature(Feature feature) {

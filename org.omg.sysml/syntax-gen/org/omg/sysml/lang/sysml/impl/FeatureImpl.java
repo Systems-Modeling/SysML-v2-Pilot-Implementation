@@ -230,8 +230,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public EList<Type> getReferencedType() {
 		EList<Type> referencedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
-	    referencedTypes.addAll(this.getType());
-		referencedTypes.removeAll(this.getOwnedElement());
+		getType().stream().filter(type->type != null && type.getOwner() != this).forEachOrdered(referencedTypes::add);
 		return referencedTypes;
 	}
 
@@ -337,8 +336,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public EList<Type> getOwnedType() {
 		EList<Type> ownedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
-		ownedTypes.addAll(this.getType());
-		ownedTypes.removeAll(this.getReferencedType());
+		getType().stream().filter(type->type != null && type.getOwner() == this).forEachOrdered(ownedTypes::add);
 		return ownedTypes;
 	}
 	
@@ -425,7 +423,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected void addComputedRedefinitions() {
 		EList<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
-		if (ownedRedefinitions.stream().allMatch(r->r.getRedefinedFeature() == null)) {
+		if (ownedRedefinitions.stream().allMatch(r->((RedefinitionImpl)r).basicGetRedefinedFeature() == null)) {
 			addRedefinitions(ownedRedefinitions);
 		}
 	}
@@ -730,6 +728,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	// Additional redefinitions and subsets
 	
 	protected String effectiveName = null;
+	protected boolean checkEffectiveName = true;
 	
 	public String getEffectiveName() {
 		return getEffectiveName(new HashSet<Feature>());
@@ -738,13 +737,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public String getEffectiveName(Set<Feature> visited) {
 		String name = getName();
 		if (name == null) {
-			if (effectiveName == null) {
+			if (effectiveName == null && checkEffectiveName) {
 				visited.add(this);
 				Feature namingFeature = getNamingFeature();
 				if (namingFeature != null && !visited.contains(namingFeature)) {
 					effectiveName = ((FeatureImpl)namingFeature).getEffectiveName(visited);
 				}
 			}
+			checkEffectiveName = false;
 			name = effectiveName;
 		}
 		return name;
@@ -794,6 +794,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void transform() {
 		super.transform();
+		getEffectiveName();
 		getValueConnector();
 	}
 	

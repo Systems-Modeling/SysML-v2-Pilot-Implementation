@@ -70,11 +70,12 @@ public class SysMLKernel extends BaseKernel {
         }
         else {
             result.getSemanticErrors().forEach(System.err::println);
+            result.getWarnings().forEach(System.out::println);
         }
         if (result.getException() != null) {
             throw result.getException();
         }
-        return new DisplayData(result.getIssues().isEmpty()? result.formatRootElement(): "");
+        return new DisplayData(result.hasErrors()? "": result.formatRootElement());
     }
 
     @Override

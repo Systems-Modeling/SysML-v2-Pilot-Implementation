@@ -2,10 +2,22 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <properties>
+    <revision>0.3.0</revision>
+    <tycho-version>1.6.0</tycho-version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <eclipse-repository>https://download.eclipse.org/releases/2019-12</eclipse-repository>
+    <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
+    <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+  </properties>
+
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.omg.sysml</groupId>
   <artifactId>org.omg.sysml.parent</artifactId>
-  <version>0.3.0</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <modules>
     <module>org.omg.sysml</module>
@@ -22,16 +34,6 @@
     <module>org.omg.sysml.plantuml.feature</module>
     <module>org.omg.sysml.site</module>
   </modules>
-
-  <properties>
-    <tycho-version>1.6.0</tycho-version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <eclipse-repository>https://download.eclipse.org/releases/2019-12</eclipse-repository>
-    <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
-    <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
-  </properties>
 
   <repositories>
     <repository>
@@ -103,6 +105,57 @@
           <strictVersions>false</strictVersions>
         </configuration>
       </plugin>
+
+
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>${maven-antrun-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>set-version</id>
+            <phase>validate</phase>
+            <configuration>
+              <target>
+                <property name="maven-version" value="${project.version}"/>
+                <script language="javascript">
+                  project.setProperty('bundle-version', project.getProperty('maven-version').
+                  replace("-SNAPSHOT", ".qualifier"));
+                </script>
+                <echo> Set the versions to POM: ${maven-version}, Bundle: ${bundle-version} </echo>
+                <!-- Currently no need to change the versions of child poms but left it for future use.
+                <replaceregexp byline="true" flags="i">
+                  <fileset dir="${basedir}">
+                    <include name="*/pom.xml"/>
+                  </fileset>
+                  <regexp pattern="&lt;version>[0-9][^&lt;]*&lt;/version>"/>
+                  <substitution expression="&lt;version>${maven-version}&lt;/version>"/>           
+                </replaceregexp>
+                -->
+                <replaceregexp byline="true" flags="i">
+                  <fileset dir="${basedir}">
+                    <include name="*/META-INF/MANIFEST.MF"/>
+                    <exclude name="org.omg.sysml.uml.ecore.importer*/**/*"/>
+                    <exclude name="org.omg.sysml.plantuml*/**/*"/>
+                  </fileset>
+                  <regexp pattern="Bundle-Version:\s*(.*)"/>
+                  <substitution expression="Bundle-Version: ${bundle-version}"/>
+                </replaceregexp>
+                <replaceregexp byline="false" flags="s">
+                  <fileset dir="${basedir}">
+                    <include name="*/feature.xml"/>
+                  </fileset>
+                  <regexp pattern="&lt;feature([^>]+)(version\s*=\s*&quot;[^&quot;]*&quot;)([^>]+)>"/>
+                  <substitution expression="&lt;feature\1version=&quot;${bundle-version}&quot;\3>"/>
+                </replaceregexp>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 </project>

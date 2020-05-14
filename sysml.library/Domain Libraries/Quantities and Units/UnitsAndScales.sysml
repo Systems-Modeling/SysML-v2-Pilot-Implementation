@@ -2,6 +2,8 @@
  * This package defines the general representations used to construct measurement scale and unit types.
  */
 package UnitsAndScales {
+	private import ScalarValues::*;
+	private import Quantities::QuantityValue;
 
 	/**
 	 * Representation of a measurement reference.
@@ -12,9 +14,9 @@ package UnitsAndScales {
 	 * A MeasurementReference can have zero or more scaleValueDefinition that define particular essential 
 	 * values on a measurement scale.
 	 */
-	abstract block MeasurementReference {
-		value name: ScalarValues::String; 
-		part scaleValueDefinition: ScaleValueDefinition[0..*];
+	abstract value type MeasurementReference :> ScalarValue {
+		value name: String; 
+		value scaleValueDefinition: ScaleValueDefinition[0..*];
 	}
 	
 	/**
@@ -28,17 +30,17 @@ package UnitsAndScales {
 	 * 
 	 * A MeasurementUnit specifies one or more UnitPowerFactors. 
 	 */
-	abstract block MeasurementUnit :> MeasurementReference { 
+	abstract value type MeasurementUnit :> MeasurementReference { 
 		value unitPowerFactor: UnitPowerFactor[1..*] ordered;
-		part unitConversion: UnitConversion[0..1];
+		value unitConversion: UnitConversion[0..1];
 	}
 	
 	/**
 	 * Representation of a measurement unit that does not depend on any other measurement unit.
 	 */
-	abstract block SimpleUnit :> MeasurementUnit {
+	abstract value type SimpleUnit :> MeasurementUnit {
 		value unitPowerFactor: UnitPowerFactor redefines MeasurementUnit::unitPowerFactor {
-			ref unit redefines UnitPowerFactor::unit = SimpleUnit::self;
+			value unit redefines UnitPowerFactor::unit = SimpleUnit::self;
 			value exponent redefines UnitPowerFactor::exponent = 1;			
 		}
 	}
@@ -48,7 +50,7 @@ package UnitsAndScales {
 	 * 
 	 * VIM defines "derived unit" as "measurement unit for a derived quantity", see https://jcgm.bipm.org/vim/en/1.11.html .
 	 */
-	abstract block DerivedUnit :> MeasurementUnit;
+	abstract value type DerivedUnit :> MeasurementUnit;
 	
 	/**
 	 * Representation of a measurement unit power factor
@@ -57,21 +59,21 @@ package UnitsAndScales {
 	 */
 	value type UnitPowerFactor {
 		ref unit: MeasurementUnit;
-		value exponent: ScalarValues::Number;
+		value exponent: Number;
 	}
 	
 	/**
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.  
 	 */
-	abstract block UnitConversion {
+	abstract value type UnitConversion {
 		ref referenceUnit: MeasurementUnit;
-		value conversionFactor: ScalarValues::Number;
+		value conversionFactor: Number;
 	}
 	
 	/**
 	 * Representation of a UnitConversion that is defined according to some convention.
 	 */
-	block ConversionByConvention :> UnitConversion;
+	value type ConversionByConvention :> UnitConversion;
 	
 	/**
 	 * Representation of a UnitConversion that is defined through reference to a named unit prefix associated to a conversion factor 
@@ -81,9 +83,9 @@ package UnitsAndScales {
 	 * 
 	 * Examples: kilometre for conversion factor 1000 with reference unit metre, nanofarad for 1E-9 farad.
 	 */
-	block ConversionByPrefix :> UnitConversion {
+	value type ConversionByPrefix :> UnitConversion {
 		ref prefix: UnitPrefix {
-			value conversionFactor: ScalarValues::Real redefines UnitPrefix::conversionFactor;
+			value conversionFactor: Real redefines UnitPrefix::conversionFactor;
 		}
 		value conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;		
 	}
@@ -91,10 +93,10 @@ package UnitsAndScales {
 	/**
 	 * Representation of a multiple or sub-multiple measurement unit prefix as defined in ISO/IEC 80000-1.
 	 */	
-	block UnitPrefix {
-		value name: ScalarValues::String;
-		value symbol: ScalarValues::String;
-		value conversionFactor: ScalarValues::Integer;
+	value type UnitPrefix {
+		value name: String;
+		value symbol: String;
+		value conversionFactor: Integer;
 	}
 	
 		
@@ -103,22 +105,22 @@ package UnitsAndScales {
 	 * 
 	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a QuantityValue.
 	 */
-	abstract block MeasurementScale :> MeasurementReference {
+	abstract value type MeasurementScale :> MeasurementReference {
 		ref unit: MeasurementUnit;
-		part scaleValueMapping: ScaleValueMapping[0..1];	
+		value scaleValueMapping: ScaleValueMapping[0..1];	
 	}
 	
 	/**
 	 * Representation of an ordinal measurement scale.
 	 */
-	block OrdinalScale :> MeasurementScale;
+	value type OrdinalScale :> MeasurementScale;
 	
 	/**
 	 * Representation of an interval measurement scale.
 	 * 
 	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see MeasurementReference.
 	 */
-	block IntervalScale :> MeasurementScale;
+	value type IntervalScale :> MeasurementScale;
 	
 	/**
 	 * Representation of a ratio measurement scale with a periodic cycle.
@@ -127,8 +129,8 @@ package UnitsAndScales {
 	 * Example: Planar angle with modulus 360 degrees, therefore on such a cyclic ratio scale, 
 	 * an angle of 450 degrees is equivalent to an angle of 90 degrees, and -60 degrees is equivalent to 300 degrees.
 	 */
-	block CyclicRatioScale :> MeasurementScale { 
-		value modulus: ScalarValues::Number;
+	value type CyclicRatioScale :> MeasurementScale { 
+		value modulus: Number;
 	}
 
 	/**
@@ -144,10 +146,10 @@ package UnitsAndScales {
      *   x_ref is a reference quantity,
      *   a is an exponent.
 	 */
-	block LogarithmicScale :> MeasurementScale {
-		value logarithmBase: ScalarValues::Number;
-		value factor: ScalarValues::Number;
-		value exponent: ScalarValues::Number;
+	value type LogarithmicScale :> MeasurementScale {
+		value logarithmBase: Number;
+		value factor: Number;
+		value exponent: Number;
 		value referenceQuantity: Quantities::QuantityValue[0..1];
 	}
 	
@@ -160,7 +162,7 @@ package UnitsAndScales {
 	 * and specify a mappedScaleValue referencing the 
 	 * ScaleValueDefinition (0.01, "absolute thermodynamic temperature of the triple point of water") of the celsius interval scale.
 	 */
-	block ScaleValueMapping {
+	value type ScaleValueMapping {
 		ref referenceScaleValue: ScaleValueDefinition;	
 		ref mappedScaleValue: ScaleValueDefinition;
 	}
@@ -171,11 +173,11 @@ package UnitsAndScales {
 	 * Typically such a particular value is defined by convention.
 	 * Example: The 'kelvin' ratio scale for temperature could have a 
 	 * ScaleValueDefinition(num => 273.16, description => "absolute temperature of the triple point of pure water")
-	 * that is part of the definition of the scale.
+	 * that is value of the definition of the scale.
 	 */
-	block ScaleValueDefinition {
-		value num: ScalarValues::Number;
-		value description: ScalarValues::String;
+	value type ScaleValueDefinition {
+		value num: Number;
+		value description: String;
 	}
 	
 	/**
@@ -188,12 +190,12 @@ package UnitsAndScales {
 	/**
 	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
 	 */
-	block DimensionOneUnit :> DerivedUnit {
-		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
+	value type DimensionOneUnit :> DerivedUnit {
+		value name: String redefines MeasurementScale::name = "unit of dimension one";
 	}
-	value type DimensionOneValue :> Quantities::QuantityValue {
-		value num: ScalarValues::Real redefines Quantities::QuantityValue::num;
-		ref mRef: DimensionOneUnit redefines Quantities::QuantityValue::mRef;
+	value type DimensionOneValue :> QuantityValue {
+		value num: Real redefines QuantityValue::num;
+		ref mRef: DimensionOneUnit redefines QuantityValue::mRef;
 	}
-	part one = DimensionOneUnit();
+	value one = DimensionOneUnit();
 }

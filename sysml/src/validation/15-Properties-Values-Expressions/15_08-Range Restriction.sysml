@@ -9,8 +9,8 @@ package '15_08-Range Restriction' {
 	
 	/* TODO: Define a model library for angular units. */
 	value type PlaneAngleValue :> DimensionOneValue;
-	part deg: DimensionOneUnit {
-		part :>> unitConversion = ConversionByConvention(referenceUnit => one, conversionFactor => pi/180.0);
+	value deg: DimensionOneUnit {
+		value :>> unitConversion = ConversionByConvention(referenceUnit => one, conversionFactor => pi/180.0);
 	}
 	
 	value type LightBeamTiltAngleValue :> PlaneAngleValue {

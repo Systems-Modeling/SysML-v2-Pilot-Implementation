@@ -62,7 +62,7 @@ public class SysMLInteractiveResult {
 	
 	public List<Issue> getSemanticErrors() {
 		return this.getIssues().stream().
-				filter(issue->!issue.isSyntaxError() && issue.getSeverity().equals(Severity.ERROR)).
+				filter(issue->!issue.isSyntaxError() && issue.getSeverity() == Severity.ERROR).
 				collect(Collectors.toList());
 	}
 	
@@ -70,6 +70,14 @@ public class SysMLInteractiveResult {
 		return this.getIssues().stream().
 				filter(issue->issue.getSeverity().equals(Severity.WARNING)).
 				collect(Collectors.toList());
+	}
+	
+	public boolean hasErrors() {
+		return this.getIssues().stream().anyMatch(issue->issue.getSeverity() == Severity.ERROR);
+	}
+	
+	public boolean hasWarnings() {
+		return this.getIssues().stream().anyMatch(issue->issue.getSeverity() == Severity.WARNING);
 	}
 	
 	public Exception getException() {

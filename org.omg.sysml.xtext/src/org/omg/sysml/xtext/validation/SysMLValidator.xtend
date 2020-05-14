@@ -90,7 +90,7 @@ class SysMLValidator extends KerMLValidator {
 			// Lower bound (only check if the Subsetting is a Redefinition): setting must be >= setted
 			if (sub instanceof Redefinition) {
 				if (setting_m_l instanceof LiteralInteger && setted_m_l instanceof LiteralInteger && (setting_m_l as LiteralInteger).value < (setted_m_l as LiteralInteger).value) {
-					error("Redefining feature cannot have smaller multiplicity lower bound", sub, 
+					warning("Redefining feature should not have smaller multiplicity lower bound", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefiningFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE)
 				}
 			}
@@ -98,7 +98,7 @@ class SysMLValidator extends KerMLValidator {
 			// Upper bound: setting must be <= setted
 			if (setting_m_u instanceof LiteralUnbounded && !(setted_m_u instanceof LiteralUnbounded) ||
 				setting_m_u instanceof LiteralInteger && setted_m_u instanceof LiteralInteger && (setting_m_u as LiteralInteger).value > (setted_m_u as LiteralInteger).value) {
-				error("Subsetting/redefining feature cannot have larger multiplicity upper bound", sub, 
+				warning("Subsetting/redefining feature should not have larger multiplicity upper bound", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE)
 			}
 		}
@@ -106,7 +106,7 @@ class SysMLValidator extends KerMLValidator {
 		// Uniqueness conformance
 		if (sub.subsettedFeature !== null && sub.subsettedFeature.unique && sub.subsettingFeature !== null && !sub.subsettingFeature.unique){
 			if (setting_m_u instanceof LiteralUnbounded || (setting_m_u as LiteralInteger).value > 1) {//less than or equal to 1 is ok
-				error("Subsetting/redefining feature cannot be nonunique if subsetted/redefined feature is unique", sub, 
+				warning("Subsetting/redefining feature should not be nonunique if subsetted/redefined feature is unique", sub, 
 						SysMLPackage.eINSTANCE.subsetting_SubsettingFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE)
 			}
 		}
@@ -115,15 +115,15 @@ class SysMLValidator extends KerMLValidator {
 		if (sub instanceof Redefinition) {
 			if (subsettingOwningType == subsettedOwningType){
 				if (subsettingOwningType === null) {
-					error("A package-level feature cannot be redefined", sub, 
+					warning("A package-level feature should not be redefined", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
 				} else {
-					error("Owner of redefining feature cannot be the same as owner of redefined feature", sub, 
+					warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
 						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
 				}
 			}
 			else if (!subsettingOwningType.conformsTo(subsettedOwningType)){
-				error("Owner of redefining feature must be a specialization of owner of redefined feature", sub, 
+				warning("Owner of redefining feature should be a specialization of owner of redefined feature", sub, 
 				SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
 			}
 		}

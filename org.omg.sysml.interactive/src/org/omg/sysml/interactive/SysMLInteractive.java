@@ -175,10 +175,11 @@ public class SysMLInteractive extends SysMLUtil {
 			this.parse(input);
 			List<Issue> issues = this.validate();
 			Element rootElement = this.getRootElement();
-			if (!issues.isEmpty()) {
+			SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, issues);
+			if (result.hasErrors()) {
 				this.removeResource();
 			}
-			return new SysMLInteractiveResult(rootElement, issues);
+			return result;
 		} catch (Exception e) {
 			this.removeResource();
 			return new SysMLInteractiveResult(e);

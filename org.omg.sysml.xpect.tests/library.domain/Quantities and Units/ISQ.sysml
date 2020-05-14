@@ -2,9 +2,9 @@
  * International system of quantities (ISQ), as defined in ISO/IEC 80000
  */
 package ISQ {
-	import ScalarValues::Real;
-	import Quantities::*;
-	import UnitsAndScales::*;	
+	private import ScalarValues::Real;
+	private import Quantities::*;
+	private import UnitsAndScales::*;	
 	
 	/*
 	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000
@@ -15,56 +15,56 @@ package ISQ {
 	 /**
 	  * length
 	  */
-	block LengthUnit :> SimpleUnit {
+	value type LengthUnit :> SimpleUnit {
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: LengthUnit redefines UnitPowerFactor::unit;
+			value unit: LengthUnit redefines UnitPowerFactor::unit;
 		}
 	}
 	value type LengthValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: LengthUnit redefines QuantityValue::mRef;
+		value mRef: LengthUnit redefines QuantityValue::mRef;
 	}	
 	value length: LengthValue :> quantity;
 	
 	 /**
 	  * mass
 	  */
-	block MassUnit :> SimpleUnit { 
+	value type MassUnit :> SimpleUnit { 
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: MassUnit redefines UnitPowerFactor::unit;
+			value unit: MassUnit redefines UnitPowerFactor::unit;
 		}
 	}
 	value type MassValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: MassUnit redefines QuantityValue::mRef;
+		value mRef: MassUnit redefines QuantityValue::mRef;
 	}
 	value mass: MassValue :> quantity;
 
 	 /**
 	  * time
 	  */
-	block TimeUnit :> SimpleUnit { 
+	value type TimeUnit :> SimpleUnit { 
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: TimeUnit redefines UnitPowerFactor::unit;
+			value unit: TimeUnit redefines UnitPowerFactor::unit;
 		}
 	}
 	value type TimeValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: TimeUnit redefines QuantityValue::mRef;
+		value mRef: TimeUnit redefines QuantityValue::mRef;
 	}
 	value time: TimeValue :> quantity;
 	
 	 /**
 	  * electric current
 	  */
-	block ElectricCurrentUnit :> SimpleUnit { 
+	value type ElectricCurrentUnit :> SimpleUnit { 
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: ElectricCurrentUnit redefines UnitPowerFactor::unit;
+			value unit: ElectricCurrentUnit redefines UnitPowerFactor::unit;
 		}
 	}
 	value type ElectricCurrentValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: ElectricCurrentUnit redefines QuantityValue::mRef;
+		value mRef: ElectricCurrentUnit redefines QuantityValue::mRef;
 	}
 	value electricCurrent: ElectricCurrentValue :> quantity;
 	
@@ -72,28 +72,28 @@ package ISQ {
 	 /**
 	  * thermodynamic temperature
 	  */
-	block TemperatureUnit :> SimpleUnit {
+	value type TemperatureUnit :> SimpleUnit {
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: TemperatureUnit redefines UnitPowerFactor::unit;
+			value unit: TemperatureUnit redefines UnitPowerFactor::unit;
 		}
 	}
 	value type TemperatureValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: TemperatureUnit redefines QuantityValue::mRef;
+		value mRef: TemperatureUnit redefines QuantityValue::mRef;
 	}
 	value temperature: TemperatureValue :> quantity;
 	
 	 /**
 	  * amount of substance
 	  */
-	block AmountOfSubstanceUnit :> SimpleUnit { 
+	value type AmountOfSubstanceUnit :> SimpleUnit { 
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
+			value unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
 		}		
 	}
 	value type AmountOfSubstanceValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: AmountOfSubstanceUnit redefines QuantityValue::mRef;
+		value mRef: AmountOfSubstanceUnit redefines QuantityValue::mRef;
 	}
 	value amountOfSubstance: AmountOfSubstanceValue :> quantity;
 			
@@ -101,14 +101,14 @@ package ISQ {
 	 /**
 	  * luminous intensity
 	  */
-	block LuminousIntensityUnit :> SimpleUnit {
+	value type LuminousIntensityUnit :> SimpleUnit {
 		value unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			ref unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
+			value unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
 		}
 	}	
 	value type LuminousIntensityValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: LuminousIntensityUnit redefines QuantityValue::mRef;
+		value mRef: LuminousIntensityUnit redefines QuantityValue::mRef;
 	}
 	value luminousIntensity: LuminousIntensityValue :> quantity;
 	
@@ -117,38 +117,38 @@ package ISQ {
 	 */
 	 
 	/**
-	 * Define abstract super block for all derived units in ISO/IEC 80000
+	 * Define abstract super value type for all derived units in ISO/IEC 80000
 	 * 
 	 * An SI derived unit is always defined in terms of powers of the SI base units.
 	 * As a default all unit power factor exponents are set to zero.
 	 */	 
-	abstract block SIDerivedUnit :> DerivedUnit {
+	abstract value type SIDerivedUnit :> DerivedUnit {
 		value lengthPowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: LengthUnit redefines UnitPowerFactor::unit;
+			value unit: LengthUnit redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 		value massPowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: MassUnit redefines UnitPowerFactor::unit;
+			value unit: MassUnit redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 		value timePowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: TimeUnit redefines UnitPowerFactor::unit;
+			value unit: TimeUnit redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 		value electricCurrentPowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: ElectricCurrentUnit  redefines UnitPowerFactor::unit;
+			value unit: ElectricCurrentUnit  redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 		value temperaturePowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: TemperatureUnit redefines UnitPowerFactor::unit;
+			value unit: TemperatureUnit redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 		value amountOfSubstancePowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
+			value unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 		value luminousIntensityPowerFactor :> MeasurementUnit::unitPowerFactor {
-			ref unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
+			value unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
 			value exponent redefines UnitPowerFactor::exponent = 0;
 		}
 	}	 
@@ -156,7 +156,7 @@ package ISQ {
 	/**
 	 * force
 	 */	
-	block ForceUnit :> SIDerivedUnit {
+	value type ForceUnit :> SIDerivedUnit {
 		value lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = 1;
 		}
@@ -169,14 +169,14 @@ package ISQ {
 	}
 	value type ForceValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: ForceUnit redefines QuantityValue::mRef;
+		value mRef: ForceUnit redefines QuantityValue::mRef;
 	}
 	value force: ForceValue :> quantity;
 	
 	/**
 	 * speed
 	 */
-	block SpeedUnit :> SIDerivedUnit {
+	value type SpeedUnit :> SIDerivedUnit {
 		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = 1;
 		}
@@ -186,14 +186,14 @@ package ISQ {
 	}
 	value type SpeedValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: SpeedUnit redefines QuantityValue::mRef;
+		value mRef: SpeedUnit redefines QuantityValue::mRef;
 	}
 	value speed: SpeedValue :> quantity;
 	
 	/**
 	 * torque
 	 */
-	block TorqueUnit :> SIDerivedUnit {
+	value type TorqueUnit :> SIDerivedUnit {
 		value lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = 2;
 		}
@@ -206,14 +206,14 @@ package ISQ {
 	}
 	value type TorqueValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: TorqueUnit redefines QuantityValue::mRef;
+		value mRef: TorqueUnit redefines QuantityValue::mRef;
 	}
 	value torque: TorqueValue :> quantity;
 	
 	/**
 	 * energy
 	 */
-	block EnergyUnit :> SIDerivedUnit {
+	value type EnergyUnit :> SIDerivedUnit {
 		value lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = 2;
 		}
@@ -226,7 +226,7 @@ package ISQ {
 	}
 	value type EnergyValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: EnergyUnit redefines QuantityValue::mRef;
+		value mRef: EnergyUnit redefines QuantityValue::mRef;
 	}
 	value energy: EnergyValue :> quantity;
 	
@@ -240,7 +240,7 @@ package ISQ {
 	/**
 	 * acceleration
 	 */	
-    block AccelerationUnit :> SIDerivedUnit {
+    value type AccelerationUnit :> SIDerivedUnit {
 		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
 			value exponent redefines UnitPowerFactor::exponent = 1;
 		}
@@ -250,7 +250,7 @@ package ISQ {
     }
     value type AccelerationValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-    	ref mRef: AccelerationUnit redefines QuantityValue::mRef;
+    	value mRef: AccelerationUnit redefines QuantityValue::mRef;
     }
     value acceleration: AccelerationValue :> quantity;
 }

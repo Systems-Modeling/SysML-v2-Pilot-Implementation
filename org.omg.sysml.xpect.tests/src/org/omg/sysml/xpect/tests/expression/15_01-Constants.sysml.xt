@@ -35,6 +35,10 @@ END_SETUP
 */
 
 package '15_01-Constants' {
+	import ScalarValues::*;
+	import Quantities::*;
+	import UnitsAndScales::*;
+	import ISQ::*;
     import SI::*;
     import USCustomaryUnits::*;
 

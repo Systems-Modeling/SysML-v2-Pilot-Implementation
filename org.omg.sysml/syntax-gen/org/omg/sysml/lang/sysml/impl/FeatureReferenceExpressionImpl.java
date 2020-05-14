@@ -2,11 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -25,15 +23,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureReferenceExpressionImpl extends ExpressionImpl implements FeatureReferenceExpression {
 	/**
-	 * The cached value of the '{@link #getReferent() <em>Referent</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getReferent()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature referent;
-
-	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -50,25 +39,14 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		return SysMLPackage.Literals.FEATURE_REFERENCE_EXPRESSION;
 	}
 
-	@Override
-	public Feature getReferent() {
-		return referent == null ? basicGetReferent() : getReferentGen();
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getReferentGen() {
-		if (referent != null && referent.eIsProxy()) {
-			InternalEObject oldReferent = (InternalEObject)referent;
-			referent = (Feature)eResolveProxy(oldReferent);
-			if (referent != oldReferent) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_REFERENCE_EXPRESSION__REFERENT, oldReferent, referent));
-			}
-		}
-		return referent;
+	@Override
+	public Feature getReferent() {
+		Feature referent = basicGetReferent();
+		return referent != null && referent.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)referent) : referent;
 	}
 
 	/**
@@ -77,25 +55,17 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		if (referent == null) {
-			Feature result = getResult();
-			if (result != null) {
-				referent = ((FeatureImpl)result).getFirstSubsettedFeature().orElse(null);
-			}
-		}
-		return referent;
+		Feature result = getResult();
+		return result == null? null: ((FeatureImpl)result).getFirstSubsettedFeature().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setReferent(Feature newReferent) {
-		Feature oldReferent = referent;
-		referent = newReferent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_REFERENCE_EXPRESSION__REFERENT, oldReferent, referent));
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -148,7 +118,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION__REFERENT:
-				return referent != null;
+				return basicGetReferent() != null;
 		}
 		return super.eIsSet(featureID);
 	}

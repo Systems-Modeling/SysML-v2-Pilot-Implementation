@@ -20,6 +20,7 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
 import  org.omg.sysml.lang.sysml.SysMLFactory;
@@ -34,6 +35,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemType <em>Item Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getSourceOutputFeature <em>Source Output Feature</em>}</li>
@@ -90,6 +92,18 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	public boolean isSetBehavior() {
 		return !getBehavior().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Parameter> getParameter() {
+		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -275,6 +289,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		switch (featureID) {
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
 				return getBehavior();
+			case SysMLPackage.ITEM_FLOW__PARAMETER:
+				return getParameter();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				return getItemType();
 			case SysMLPackage.ITEM_FLOW__TARGET_INPUT_FEATURE:
@@ -303,6 +319,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case SysMLPackage.ITEM_FLOW__PARAMETER:
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends Parameter>)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
@@ -343,6 +363,9 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
 				getBehavior().clear();
 				return;
+			case SysMLPackage.ITEM_FLOW__PARAMETER:
+				getParameter().clear();
+				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();
 				return;
@@ -377,6 +400,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return isSetType();
 			case SysMLPackage.ITEM_FLOW__BEHAVIOR:
 				return isSetBehavior();
+			case SysMLPackage.ITEM_FLOW__PARAMETER:
+				return !getParameter().isEmpty();
 			case SysMLPackage.ITEM_FLOW__CONNECTOR_END:
 				return isSetConnectorEnd();
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
@@ -405,6 +430,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		if (baseClass == Step.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.ITEM_FLOW__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
+				case SysMLPackage.ITEM_FLOW__PARAMETER: return SysMLPackage.STEP__PARAMETER;
 				default: return -1;
 			}
 		}
@@ -421,6 +447,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		if (baseClass == Step.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.ITEM_FLOW__BEHAVIOR;
+				case SysMLPackage.STEP__PARAMETER: return SysMLPackage.ITEM_FLOW__PARAMETER;
 				default: return -1;
 			}
 		}

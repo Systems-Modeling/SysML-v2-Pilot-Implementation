@@ -71,7 +71,8 @@ public interface Behavior extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The set of parameters that are applied to or returned from the given Behavior.</p>
+	 * <p>The set of parameters that are applied to or returned from the given Behavior. It is also possible to set a direction for <code>parameter</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Parameter()

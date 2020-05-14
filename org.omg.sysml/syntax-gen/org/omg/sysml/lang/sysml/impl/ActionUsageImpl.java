@@ -15,6 +15,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -30,6 +31,7 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningUsage <em>Action Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActivity <em>Activity</em>}</li>
@@ -63,6 +65,18 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ACTION_USAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Parameter> getParameter() {
+		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -211,6 +225,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		switch (featureID) {
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				return getBehavior();
+			case SysMLPackage.ACTION_USAGE__PARAMETER:
+				return getParameter();
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				if (resolve) return getActionOwningDefinition();
 				return basicGetActionOwningDefinition();
@@ -235,6 +251,10 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
+				return;
+			case SysMLPackage.ACTION_USAGE__PARAMETER:
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends Parameter>)newValue);
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				setActionOwningDefinition((Definition)newValue);
@@ -261,6 +281,9 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				return;
+			case SysMLPackage.ACTION_USAGE__PARAMETER:
+				getParameter().clear();
+				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
 				setActionOwningDefinition((Definition)null);
 				return;
@@ -286,6 +309,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return isSetType();
 			case SysMLPackage.ACTION_USAGE__BEHAVIOR:
 				return isSetBehavior();
+			case SysMLPackage.ACTION_USAGE__PARAMETER:
+				return !getParameter().isEmpty();
 			case SysMLPackage.ACTION_USAGE__OWNING_DEFINITION:
 				return isSetOwningDefinition();
 			case SysMLPackage.ACTION_USAGE__OWNING_USAGE:
@@ -310,6 +335,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		if (baseClass == Step.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.ACTION_USAGE__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
+				case SysMLPackage.ACTION_USAGE__PARAMETER: return SysMLPackage.STEP__PARAMETER;
 				default: return -1;
 			}
 		}
@@ -326,6 +352,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		if (baseClass == Step.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.ACTION_USAGE__BEHAVIOR;
+				case SysMLPackage.STEP__PARAMETER: return SysMLPackage.ACTION_USAGE__PARAMETER;
 				default: return -1;
 			}
 		}

@@ -15,8 +15,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getSuperclass <em>Superclass</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getSubclass <em>Subclass</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing()

@@ -31,8 +31,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportConditionImpl#getConditionalImport <em>Conditional Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportConditionImpl#getPredicate_comp <em>Predicate comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportConditionImpl#getConditionalImport <em>Conditional Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportConditionImpl#getPredicate <em>Predicate</em>}</li>
  * </ul>
  *
@@ -357,10 +357,10 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
-				return basicSetConditionalImport(null, msgs);
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE_COMP:
 				return basicSetPredicate_comp(null, msgs);
+			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
+				return basicSetConditionalImport(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -387,10 +387,10 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
-				return getConditionalImport();
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE_COMP:
 				return getPredicate_comp();
+			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
+				return getConditionalImport();
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
@@ -406,11 +406,11 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
-				setConditionalImport((ConditionalImport)newValue);
-				return;
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE_COMP:
 				setPredicate_comp((Predicate)newValue);
+				return;
+			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
+				setConditionalImport((ConditionalImport)newValue);
 				return;
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE:
 				setPredicate((Predicate)newValue);
@@ -427,11 +427,11 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
-				setConditionalImport((ConditionalImport)null);
-				return;
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE_COMP:
 				setPredicate_comp((Predicate)null);
+				return;
+			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
+				setConditionalImport((ConditionalImport)null);
 				return;
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE:
 				setPredicate((Predicate)null);
@@ -448,18 +448,18 @@ public class ImportConditionImpl extends RelationshipImpl implements ImportCondi
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.IMPORT_CONDITION__OWNING_RELATED_ELEMENT:
-				return isSetOwningRelatedElement();
-			case SysMLPackage.IMPORT_CONDITION__SOURCE:
-				return isSetSource();
 			case SysMLPackage.IMPORT_CONDITION__OWNED_RELATED_ELEMENT_COMP:
 				return isSetOwnedRelatedElement_comp();
 			case SysMLPackage.IMPORT_CONDITION__TARGET:
 				return isSetTarget();
-			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
-				return isSetConditionalImport();
+			case SysMLPackage.IMPORT_CONDITION__OWNING_RELATED_ELEMENT:
+				return isSetOwningRelatedElement();
+			case SysMLPackage.IMPORT_CONDITION__SOURCE:
+				return isSetSource();
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE_COMP:
 				return isSetPredicate_comp();
+			case SysMLPackage.IMPORT_CONDITION__CONDITIONAL_IMPORT:
+				return isSetConditionalImport();
 			case SysMLPackage.IMPORT_CONDITION__PREDICATE:
 				return basicGetPredicate() != null;
 		}

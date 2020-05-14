@@ -13,6 +13,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -26,6 +27,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StepImpl#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.StepImpl#getParameter <em>Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -80,6 +82,18 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	public boolean isSetBehavior() {
 		return !getBehavior().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Parameter> getParameter() {
+		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -177,6 +191,8 @@ public class StepImpl extends FeatureImpl implements Step {
 		switch (featureID) {
 			case SysMLPackage.STEP__BEHAVIOR:
 				return getBehavior();
+			case SysMLPackage.STEP__PARAMETER:
+				return getParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -194,6 +210,10 @@ public class StepImpl extends FeatureImpl implements Step {
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
+			case SysMLPackage.STEP__PARAMETER:
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -208,6 +228,9 @@ public class StepImpl extends FeatureImpl implements Step {
 		switch (featureID) {
 			case SysMLPackage.STEP__BEHAVIOR:
 				getBehavior().clear();
+				return;
+			case SysMLPackage.STEP__PARAMETER:
+				getParameter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -225,6 +248,8 @@ public class StepImpl extends FeatureImpl implements Step {
 				return isSetType();
 			case SysMLPackage.STEP__BEHAVIOR:
 				return isSetBehavior();
+			case SysMLPackage.STEP__PARAMETER:
+				return !getParameter().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

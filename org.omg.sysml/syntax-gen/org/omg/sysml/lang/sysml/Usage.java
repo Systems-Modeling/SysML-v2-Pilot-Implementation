@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConstraint <em>Nested Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedFunction <em>Nested Function</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
@@ -306,6 +307,23 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<RequirementUsage> getNestedRequirement();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Function</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FunctionUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FunctionUsage#getFunctionOwningUsage <em>Function Owning Usage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FunctionUsages that are <code>ownedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Function</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedFunction()
+	 * @see org.omg.sysml.lang.sysml.FunctionUsage#getFunctionOwningUsage
+	 * @model opposite="functionOwningUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	EList<FunctionUsage> getNestedFunction();
 
 	/**
 	 * Returns the value of the '<em><b>Property</b></em>' reference list.

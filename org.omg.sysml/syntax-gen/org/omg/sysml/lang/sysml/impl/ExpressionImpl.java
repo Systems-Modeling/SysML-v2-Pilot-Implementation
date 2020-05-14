@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.Type;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ExpressionImpl#getFunction <em>Function</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ExpressionImpl#getResult <em>Result</em>}</li>
  * </ul>
  *
  * @generated
@@ -210,14 +211,36 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		}
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	public Feature getResult() {
-		return getOutput().stream().
-				filter(out->out instanceof Parameter && ((ParameterImpl)out).
-				isResultParameter()).
-				findFirst().orElse(null);
+	public Parameter getResult() {
+		Parameter result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Parameter basicGetResult() {
+		return getResultParameter();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setResult(Parameter newResult) {
+		throw new UnsupportedOperationException();
+	}
+
 	@Override
 	public List<Parameter> getOwnedParameters() {
 		getInput();
@@ -243,6 +266,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			case SysMLPackage.EXPRESSION__FUNCTION:
 				if (resolve) return getFunction();
 				return basicGetFunction();
+			case SysMLPackage.EXPRESSION__RESULT:
+				if (resolve) return getResult();
+				return basicGetResult();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,6 +284,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			case SysMLPackage.EXPRESSION__FUNCTION:
 				setFunction((Function)newValue);
 				return;
+			case SysMLPackage.EXPRESSION__RESULT:
+				setResult((Parameter)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -272,6 +301,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		switch (featureID) {
 			case SysMLPackage.EXPRESSION__FUNCTION:
 				setFunction((Function)null);
+				return;
+			case SysMLPackage.EXPRESSION__RESULT:
+				setResult((Parameter)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -289,6 +321,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				return isSetBehavior();
 			case SysMLPackage.EXPRESSION__FUNCTION:
 				return isSetFunction();
+			case SysMLPackage.EXPRESSION__RESULT:
+				return basicGetResult() != null;
 		}
 		return super.eIsSet(featureID);
 	}

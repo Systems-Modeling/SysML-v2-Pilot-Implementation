@@ -33,6 +33,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FunctionDefinitionImpl extends ActivityImpl implements FunctionDefinition {
+
+	public String FUNCTION_DEFINITION_SUPERCLASS_DEFAULT = "Functions::FunctionInvocation";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,6 +116,10 @@ public class FunctionDefinitionImpl extends ActivityImpl implements FunctionDefi
 				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
+	protected String getDefaultSupertype() {
+		return ACTIVITY_SUPERCLASS_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

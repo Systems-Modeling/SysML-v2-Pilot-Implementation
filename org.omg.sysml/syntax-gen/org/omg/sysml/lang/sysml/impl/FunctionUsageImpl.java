@@ -36,6 +36,10 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage {
+
+	public static final String FUNCTION_SUBSETTING_BASE_DEFAULT = "Functions::functionDefinitions";
+	public static final String FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT = "Function::FunctionInvocation::subinvocations";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,7 +190,7 @@ public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage 
 	 * @generated NOT
 	 */
 	public Definition basicGetFunctionOwningDefinition() {
-		return super.basicGetOwningDefinition();
+		return super.basicGetActionOwningDefinition();
 	}
 
 	/**
@@ -208,6 +212,13 @@ public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage 
 		return basicGetFunctionOwningDefinition() != null;
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT:
+					FUNCTION_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

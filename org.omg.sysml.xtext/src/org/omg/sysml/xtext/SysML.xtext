@@ -44,11 +44,13 @@ Unit returns SysML::Package :
 	| AssociationBlockUnit
 	| InterfaceDefinitionUnit 
 	| ActivityUnit
+	| FunctionDefinitionUnit
 	| StateDefinitionUnit
 	| ConstraintDefinitionUnit
 	| PartUnit
 	| ValueUnit
 	| ActionUnit
+	| FunctionUnit
 	| StateUnit
 ;
 
@@ -84,6 +86,10 @@ ActivityUnit returns SysML::Activity :
 	UnitPrefix ActivityDeclaration ActivityBody
 ;
 
+FunctionDefinitionUnit returns SysML::FunctionDefinition :
+	UnitPrefix FunctionDefDeclaration FunctionBody
+;
+
 StateDefinitionUnit returns SysML::StateDefinition :
 	UnitPrefix StateDefDeclaration StateBody
 ;
@@ -102,6 +108,10 @@ ValueUnit returns SysML::ValueProperty :
 
 ActionUnit returns SysML::ActionUsage :
 	UnitPrefix ActionDeclaration ActivityBody
+;
+
+FunctionUnit returns SysML::FunctionUsage :
+	UnitPrefix FunctionDeclaration FunctionBody
 ;
 
 StateUnit returns SysML::StateUsage :
@@ -196,6 +206,7 @@ fragment PackagedDefinitionMember returns SysML::Membership :
 	| ownedMemberElement_comp = InterfaceDefinition
 	| ownedMemberElement_comp = PortDefinition
 	| ownedMemberElement_comp = Activity
+    | ownedMemberElement_comp = FunctionDefinition
     | ownedMemberElement_comp = StateDefinition
     | ownedMemberElement_comp = ConstraintDefinition
     | ownedMemberElement_comp = RequirementDefinition
@@ -217,6 +228,8 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'abstract' 'snapshot' ownedMemberElement_comp = AbstractSnapshotUsage
 	| 'action' ownedMemberElement_comp = ActionUsage
 	| 'abstract' 'action' ownedMemberElement_comp = AbstractActionUsage
+	| FunctionKeyword ownedMemberElement_comp = FunctionUsage
+	| 'abstract' FunctionKeyword ownedMemberElement_comp = AbstractFunctionUsage
 	| 'state' ownedMemberElement_comp = StateUsage
 	| 'abstract' 'state' ownedMemberElement_comp = AbstractStateUsage
 	| 'constraint' ownedMemberElement_comp = ConstraintUsage
@@ -294,6 +307,8 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	( ('ref' 'action' | isComposite ?= 'action' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = ActionUsage
 	| 'abstract' ('ref' 'action' | isComposite ?= 'action' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractActionUsage
+	| ('ref' FunctionKeyword | isComposite ?= FunctionKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = FunctionUsage
+	| 'abstract' ('ref' FunctionKeyword | isComposite ?= FunctionKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractFunctionUsage
 	| ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = StateUsage
 	| 'abstract' ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStateUsage
 	| ( 'ref' 'constraint' | isComposite ?= 'constraint' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = ConstraintUsage
@@ -458,6 +473,10 @@ AssociationEndMember returns SysML::EndFeatureMembership :
     | 'abstract' 'end' 'ref'? ownedMemberFeature_comp = AbstractReferenceProperty
     | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
 	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
+	| 'end' ('ref' FunctionKeyword | isComposite ?= FunctionKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = FunctionUsage
+	| 'abstract' 'end' ('ref' FunctionKeyword | isComposite ?= FunctionKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractFunctionUsage
+	| 'end' ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = StateUsage
+	| 'abstract' 'end'('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStateUsage
 	)
 ;
 
@@ -547,7 +566,7 @@ fragment ActivityBody returns SysML::Type :
 ;
 
 fragment AbstractActivityBody returns SysML::Type :
-	  isAbstract ?= ';' | isAbstract ?= '{' ActivityBodyItem* '}'
+	  isAbstract ?= ';' | isAbstract ?= '{' => ActivityBodyItem* '}'
 ;
 
 fragment ActivityBodyItem returns SysML::Type :
@@ -583,6 +602,58 @@ TargetSuccessionMember returns SysML::FeatureMembership :
 
 GuardedSuccessionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = GuardedSuccession ';'
+;
+
+/* FUNCTION DEFINITIONS */
+
+FunctionDefinition returns SysML::FunctionDefinition :
+	FunctionDefDeclaration FunctionBody
+;
+
+fragment FunctionDefDeclaration returns SysML::FunctionDefinition :
+	( isAbstract ?= 'abstract')? FunctionKeyword 'def' name = Name 
+	ParameterList? ReturnParameterPart SuperclassingList?
+;
+
+FunctionKeyword :
+	'function' | 'fn' | 'calc' | 'compute'
+;
+
+fragment ReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += ReturnParameterMember
+;
+
+fragment FunctionBody returns SysML::Type :
+	    ';' 
+	  | '{' => FunctionBodyItem*
+	        ( ownedFeatureMembership_comp += ExpressionMember )?
+	    '}' 
+;
+
+fragment AbstractFunctionBody returns SysML::Type :
+	    isAbstract ?= ';' 
+	  | isAbstract ?= '{' 
+	  		FunctionBodyItem*
+	        ( ownedFeatureMembership_comp += ExpressionMember )?
+	    '}'
+;
+
+fragment FunctionBodyItem returns SysML::Type :
+	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedFeatureMembership_comp += StructureUsageMember
+	| ownedFeatureMembership_comp += InitialNodeMember
+	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
+	  ownedFeatureMembership_comp += ( BehaviorUsageMember | ActivityNodeMember )
+	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
+	| ownedFeatureMembership_comp += GuardedSuccessionMember
+	| ownedImport_comp += Import
+;
+
+/* FUNCTION DEFINITION MEMBERSHIPS */
+
+ReturnParameterMember returns SysML::ReturnParameterMembership :
+	( 'return' )? ( memberName = Name )? ownedMemberParameter_comp = Parameter
 ;
 
 /* STATE DEFINITIONS */
@@ -636,7 +707,7 @@ EmptyActionUsage returns SysML::ActionUsage :
 	{SysML::ActionUsage}
 ;
 
-/* STATE MEMBERSHIPS */
+/* STATE DEFINITION MEMBERSHIPS */
 
 EntryActionMember returns SysML::StateSubactionMembership :
 	DefinitionMemberPrefix kind = EntryActionKind ownedMemberFeature_comp = StateActionUsage
@@ -1246,24 +1317,10 @@ ActionNode returns SysML::ActionUsage :
 ;
 
 ActionNodeDeclaration returns SysML::ActionUsage :
-//	  ActionUsageNodeDeclaration
-//	| PerformActionNodeDeclaration
-//	| 
 	  AcceptActionNodeDeclaration
 	| SendActionNodeDeclaration	
 ;
 
-//ActionUsageNodeDeclaration returns SysML::ActionUsage :
-//    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
-//    ActionUsageDeclaration
-//;
-//
-//PerformActionNodeDeclaration returns SysML::PerformActionUsage :
-//    isComposite ?= 'perform' ( name = Name TypePart? 'as' )? 
-//    ownedRelationship_comp += Subset 
-//    ActionParameterList? SubsettingPart ValuePart?
-//;
-//
 AcceptActionNodeDeclaration returns SysML::AcceptActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember
 	'accept' ( name = Name TypePart? )? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'
@@ -1321,6 +1378,38 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 
 EmptyParameterMember returns SysML::ParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
+;
+
+/* FUNCTIONS */
+
+fragment FunctionDeclaration returns SysML::FunctionUsage :
+    ( isAbstract ?= 'abstract' )? FunctionKeyword 
+	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList FunctionReturnParameterPart )?
+;
+
+FunctionUsage returns SysML::FunctionUsage :
+	FunctionUsageDeclaration FunctionBody
+;
+
+AbstractFunctionUsage returns SysML::FunctionUsage :
+	FunctionUsageDeclaration AbstractFunctionBody
+;
+
+fragment FunctionUsageDeclaration returns SysML::Step :
+	  name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList FunctionReturnParameterPart )?
+	| TypePart SubsettingPart ( ValuePart | ActionParameterList FunctionReturnParameterPart )?
+	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? 
+	  SubsettingPart ( ValuePart | ActionParameterList FunctionReturnParameterPart )? 
+;
+
+fragment FunctionReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += FunctionReturnParameterMember
+;
+
+/* FUNCTION USAGE MEMBERSHIPS */
+
+FunctionReturnParameterMember returns SysML::ReturnParameterMembership :
+	( 'return' )? ( memberName = Name )? ownedMemberParameter_comp = ActionParameter
 ;
 
 /* STATES */

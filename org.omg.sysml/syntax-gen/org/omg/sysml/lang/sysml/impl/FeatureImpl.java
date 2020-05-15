@@ -186,6 +186,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public Membership getOwningMembership() {
 		return super.getOwningMembership();
 	}
+	
+	EList<Type> types = null;
+	
+	@Override
+	public void clearCaches() {
+		super.clearCaches();
+		types = null;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,8 +201,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		EList<Type> types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-		getTypes(this, types, new HashSet<Feature>());
+		if (types == null) {
+			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
+			getTypes(this, types, new HashSet<Feature>());
+		}
 		return types;
 	}
 	
@@ -416,13 +426,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinedFeatures;
 	}
 	
+	boolean isComputeRedefinitions = true;
+	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
 	protected void addComputedRedefinitions() {
 		EList<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
-		if (ownedRedefinitions.stream().allMatch(r->((RedefinitionImpl)r).basicGetRedefinedFeature() == null)) {
+		if (isComputeRedefinitions && ownedRedefinitions.isEmpty() ||
+				ownedRedefinitions.stream().anyMatch(r->((RedefinitionImpl)r).basicGetRedefinedFeature() == null)) {
 			addRedefinitions(ownedRedefinitions);
+			isComputeRedefinitions = false;
 		}
 	}
 	

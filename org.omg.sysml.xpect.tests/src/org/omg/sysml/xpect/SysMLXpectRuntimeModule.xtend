@@ -8,4 +8,8 @@ class SysMLXpectRuntimeModule extends SysMLRuntimeModule {
 		SysMLXpectGlobalScopeProvider
 	}	
 	
+	override bindIModelLLibraryProvider() {
+		SysMLXpectLibraryProvider
+	}
+		
 }

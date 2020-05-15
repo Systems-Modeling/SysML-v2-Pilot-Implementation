@@ -22,13 +22,17 @@
  * 
  *****************************************************************************/
 
-package org.omg.sysml.lang.sysml.util
+package org.omg.sysml.xpect
 
-import org.omg.sysml.lang.sysml.Element
-import org.eclipse.emf.ecore.EReference
+import org.omg.sysml.xtext.library.SysMLLibraryProvider
+import com.google.inject.Singleton
+import org.eclipse.emf.ecore.resource.Resource
 
-interface IModelLibraryProvider {
-	
-	def Element getElement(Element context, EReference reference, String name)
+@Singleton
+class SysMLXpectLibraryProvider extends SysMLLibraryProvider {
+		
+	override isModelLibrary(Resource resource) {
+		!resource.URI.path.endsWith(".xt")
+	}	
 	
 }

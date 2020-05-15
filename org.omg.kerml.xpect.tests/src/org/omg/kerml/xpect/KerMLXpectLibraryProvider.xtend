@@ -22,38 +22,17 @@
  * 
  *****************************************************************************/
 
-package org.omg.sysml.lang.sysml.util
+package org.omg.kerml.xpect
 
-import org.eclipse.xtext.resource.IResourceServiceProvider
-import org.eclipse.emf.ecore.EReference
+import org.omg.kerml.xtext.library.KerMLLibraryProvider
+import com.google.inject.Singleton
 import org.eclipse.emf.ecore.resource.Resource
-import org.omg.sysml.lang.sysml.Element
 
-class SysMLLibraryUtil {
-	
-	public static final String DEFAULT_MODEL_LIBRARY_DIRECTORY = "/resource/sysml.library";
-	
-	static String modelLibraryDirectory = DEFAULT_MODEL_LIBRARY_DIRECTORY;
-	
-	def static setModelLibraryDirectory(String path) {
-		modelLibraryDirectory = path
-	}
-	
-	def static isModelLibrary(Resource resource) {
-		return resource !== null && resource.URI.path.contains(modelLibraryDirectory)
-	}
-	
-	def static IModelLibraryProvider getInstance(Resource resource) {
-		try {
-			IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.getURI)?.get(IModelLibraryProvider)
-		} catch (Exception e) {
-			System.out.println("[SysMLLibraryUtil] Cannot get library provider: " + e)
-			null
-		}
-	}
-	
-	def static Element getLibraryElement(Element context, EReference reference, String name) {		
-		return getInstance(context.eResource)?.getElement(context, reference, name)
-	}
+@Singleton
+class KerMLXpectLibraryProvider extends KerMLLibraryProvider {
+		
+	override isModelLibrary(Resource resource) {
+		!resource.URI.path.endsWith(".xt")
+	}	
 	
 }

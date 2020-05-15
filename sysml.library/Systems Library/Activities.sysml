@@ -14,18 +14,18 @@ package Activities {
 	 * part of a system. Action is the base class of all activities.
 	 */
 	activity Action :> Performance {
-		ref action self: Action :>> Performance::self;
-		ref action incomingTransfers :>> Performance::incomingTransfers;
+		ref action :>> self: Action;
+		ref action :>> incomingTransfers;
 			
 		/**
 		 * The starting snapshot of an action. 
 		 */
-		action start: Action :>> Performance::startShot;
+		action start: Action :>> startShot;
 		
 		/**
 		 * The ending snapshot of an action.
 		 */
-		action done: Action :>> Performance::endShot;
+		action done: Action :>> endShot;
 
 		/**
 		 * The subperformances of this action that are actions. 

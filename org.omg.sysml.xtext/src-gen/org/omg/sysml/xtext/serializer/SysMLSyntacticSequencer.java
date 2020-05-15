@@ -265,10 +265,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'action' (ambiguity) (rule start)
-	 *     (rule start) 'ref' 'action' (ambiguity) (rule start)
-	 *     (rule start) (ambiguity) (rule start)
-	 *     isAbstract?='abstract' 'ref' 'action' (ambiguity) (rule end)
-	 *     isComposite?='action' (ambiguity) (rule end)
+	 *     (rule start) TypedByKeyword 'any' (ambiguity) (rule start)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
@@ -807,14 +804,11 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'constraint'? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
-	 *     (rule start) 'ref' 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'requirement'? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'state' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'succession' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'transition' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' 'ref' 'action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
-	 *     isComposite?='action' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     reqId=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember

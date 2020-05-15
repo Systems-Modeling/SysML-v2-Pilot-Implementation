@@ -11,6 +11,7 @@ package Functions {
 	 * system or part of a system. FunctionInvocation is the base class of all FunctionDefinitions.
 	 */
 	activity FunctionInvocation :> Action, Evaluation {
+		ref action :>> self: FunctionInvocation;
 		
 		/**
 		 * The subactions of this FunctionInvocation that are FunctionInvocations.

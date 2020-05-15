@@ -7343,21 +7343,39 @@ ruleActivityBodyItem[EObject in_current]  returns [EObject current=in_current]
 			)?
 			(
 				(
-					{
-						newCompositeNode(grammarAccess.getActivityBodyItemAccess().getOwnedFeatureMembership_compActivityNodeMemberParserRuleCall_3_1_0());
-					}
-					lv_ownedFeatureMembership_comp_5_0=ruleActivityNodeMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getActivityBodyItemRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getActivityBodyItemAccess().getOwnedFeatureMembership_compBehaviorUsageMemberParserRuleCall_3_1_0_0());
 						}
-						add(
-							$current,
-							"ownedFeatureMembership_comp",
-							lv_ownedFeatureMembership_comp_5_0,
-							"org.omg.sysml.xtext.SysML.ActivityNodeMember");
-						afterParserOrEnumRuleCall();
-					}
+						lv_ownedFeatureMembership_comp_5_1=ruleBehaviorUsageMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getActivityBodyItemRule());
+							}
+							add(
+								$current,
+								"ownedFeatureMembership_comp",
+								lv_ownedFeatureMembership_comp_5_1,
+								"org.omg.sysml.xtext.SysML.BehaviorUsageMember");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getActivityBodyItemAccess().getOwnedFeatureMembership_compActivityNodeMemberParserRuleCall_3_1_0_1());
+						}
+						lv_ownedFeatureMembership_comp_5_2=ruleActivityNodeMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getActivityBodyItemRule());
+							}
+							add(
+								$current,
+								"ownedFeatureMembership_comp",
+								lv_ownedFeatureMembership_comp_5_2,
+								"org.omg.sysml.xtext.SysML.ActivityNodeMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
 			)
 			(
@@ -8109,9 +8127,9 @@ ruleStateBodyItem[EObject in_current]  returns [EObject current=in_current]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getStateBodyItemAccess().getOwnedFeatureMembership_compStateMemberParserRuleCall_2_0_0());
+						newCompositeNode(grammarAccess.getStateBodyItemAccess().getOwnedFeatureMembership_compBehaviorUsageMemberParserRuleCall_2_0_0());
 					}
-					lv_ownedFeatureMembership_comp_2_0=ruleStateMember
+					lv_ownedFeatureMembership_comp_2_0=ruleBehaviorUsageMember
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getStateBodyItemRule());
@@ -8120,7 +8138,7 @@ ruleStateBodyItem[EObject in_current]  returns [EObject current=in_current]
 							$current,
 							"ownedFeatureMembership_comp",
 							lv_ownedFeatureMembership_comp_2_0,
-							"org.omg.sysml.xtext.SysML.StateMember");
+							"org.omg.sysml.xtext.SysML.BehaviorUsageMember");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -8580,139 +8598,6 @@ ruleExitActionKind returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
 		$current.merge(kw);
 		newLeafNode(kw, grammarAccess.getExitActionKindAccess().getExitKeyword());
 	}
-;
-
-// Entry rule entryRuleStateMember
-entryRuleStateMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getStateMemberRule()); }
-	iv_ruleStateMember=ruleStateMember
-	{ $current=$iv_ruleStateMember.current; }
-	EOF;
-
-// Rule StateMember
-ruleStateMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getStateMemberRule());
-			}
-			newCompositeNode(grammarAccess.getStateMemberAccess().getDefinitionMemberPrefixParserRuleCall_0());
-		}
-		this_DefinitionMemberPrefix_0=ruleDefinitionMemberPrefix[$current]
-		{
-			$current = $this_DefinitionMemberPrefix_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			(
-				(
-					(
-						otherlv_1='ref'
-						{
-							newLeafNode(otherlv_1, grammarAccess.getStateMemberAccess().getRefKeyword_1_0_0_0_0());
-						}
-						otherlv_2='state'
-						{
-							newLeafNode(otherlv_2, grammarAccess.getStateMemberAccess().getStateKeyword_1_0_0_0_1());
-						}
-					)
-					    |
-					(
-						(
-							lv_isComposite_3_0='state'
-							{
-								newLeafNode(lv_isComposite_3_0, grammarAccess.getStateMemberAccess().getIsCompositeStateKeyword_1_0_0_1_0());
-							}
-							{
-								if ($current==null) {
-									$current = createModelElement(grammarAccess.getStateMemberRule());
-								}
-								setWithLastConsumed($current, "isComposite", true, "state");
-							}
-						)
-					)
-				)
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getStateMemberAccess().getOwnedMemberFeature_compStateUsageParserRuleCall_1_0_1_0());
-						}
-						lv_ownedMemberFeature_comp_4_0=ruleStateUsage
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getStateMemberRule());
-							}
-							set(
-								$current,
-								"ownedMemberFeature_comp",
-								lv_ownedMemberFeature_comp_4_0,
-								"org.omg.sysml.xtext.SysML.StateUsage");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-			    |
-			(
-				otherlv_5='abstract'
-				{
-					newLeafNode(otherlv_5, grammarAccess.getStateMemberAccess().getAbstractKeyword_1_1_0());
-				}
-				(
-					(
-						otherlv_6='ref'
-						{
-							newLeafNode(otherlv_6, grammarAccess.getStateMemberAccess().getRefKeyword_1_1_1_0_0());
-						}
-						otherlv_7='state'
-						{
-							newLeafNode(otherlv_7, grammarAccess.getStateMemberAccess().getStateKeyword_1_1_1_0_1());
-						}
-					)
-					    |
-					(
-						(
-							lv_isComposite_8_0='state'
-							{
-								newLeafNode(lv_isComposite_8_0, grammarAccess.getStateMemberAccess().getIsCompositeStateKeyword_1_1_1_1_0());
-							}
-							{
-								if ($current==null) {
-									$current = createModelElement(grammarAccess.getStateMemberRule());
-								}
-								setWithLastConsumed($current, "isComposite", true, "state");
-							}
-						)
-					)
-				)
-				(
-					(
-						{
-							newCompositeNode(grammarAccess.getStateMemberAccess().getOwnedMemberFeature_compAbstractStateUsageParserRuleCall_1_1_2_0());
-						}
-						lv_ownedMemberFeature_comp_9_0=ruleAbstractStateUsage
-						{
-							if ($current==null) {
-								$current = createModelElementForParent(grammarAccess.getStateMemberRule());
-							}
-							set(
-								$current,
-								"ownedMemberFeature_comp",
-								lv_ownedMemberFeature_comp_9_0,
-								"org.omg.sysml.xtext.SysML.AbstractStateUsage");
-							afterParserOrEnumRuleCall();
-						}
-					)
-				)
-			)
-		)
-	)
 ;
 
 // Entry rule entryRuleEntryTransitionMember
@@ -14642,19 +14527,17 @@ ruleActionUsageDeclaration[EObject in_current]  returns [EObject current=in_curr
 		)
 		    |
 		(
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getActionUsageDeclarationRule());
-					}
-					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getTypePartParserRuleCall_1_0());
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getActionUsageDeclarationRule());
 				}
-				this_TypePart_5=ruleTypePart[$current]
-				{
-					$current = $this_TypePart_5.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
+				newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getTypePartParserRuleCall_1_0());
+			}
+			this_TypePart_5=ruleTypePart[$current]
+			{
+				$current = $this_TypePart_5.current;
+				afterParserOrEnumRuleCall();
+			}
 			(
 				{
 					if ($current==null) {
@@ -14668,16 +14551,27 @@ ruleActionUsageDeclaration[EObject in_current]  returns [EObject current=in_curr
 					afterParserOrEnumRuleCall();
 				}
 			)?
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getActionUsageDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getSubsettingPartParserRuleCall_1_2());
+			}
+			this_SubsettingPart_7=ruleSubsettingPart[$current]
+			{
+				$current = $this_SubsettingPart_7.current;
+				afterParserOrEnumRuleCall();
+			}
 			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getActionUsageDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getValuePartParserRuleCall_1_2());
+					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getValuePartParserRuleCall_1_3());
 				}
-				this_ValuePart_7=ruleValuePart[$current]
+				this_ValuePart_8=ruleValuePart[$current]
 				{
-					$current = $this_ValuePart_7.current;
+					$current = $this_ValuePart_8.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -14696,7 +14590,7 @@ ruleActionUsageDeclaration[EObject in_current]  returns [EObject current=in_curr
 					{
 						newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getOwnedRelationship_compRedefinitionParserRuleCall_2_1_0());
 					}
-					lv_ownedRelationship_comp_9_0=ruleRedefinition
+					lv_ownedRelationship_comp_10_0=ruleRedefinition
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getActionUsageDeclarationRule());
@@ -14704,7 +14598,7 @@ ruleActionUsageDeclaration[EObject in_current]  returns [EObject current=in_curr
 						add(
 							$current,
 							"ownedRelationship_comp",
-							lv_ownedRelationship_comp_9_0,
+							lv_ownedRelationship_comp_10_0,
 							"org.omg.sysml.xtext.SysML.Redefinition");
 						afterParserOrEnumRuleCall();
 					}
@@ -14717,9 +14611,9 @@ ruleActionUsageDeclaration[EObject in_current]  returns [EObject current=in_curr
 					}
 					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getTypePartParserRuleCall_2_2());
 				}
-				this_TypePart_10=ruleTypePart[$current]
+				this_TypePart_11=ruleTypePart[$current]
 				{
-					$current = $this_TypePart_10.current;
+					$current = $this_TypePart_11.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -14730,22 +14624,33 @@ ruleActionUsageDeclaration[EObject in_current]  returns [EObject current=in_curr
 					}
 					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getActionParameterListParserRuleCall_2_3());
 				}
-				this_ActionParameterList_11=ruleActionParameterList[$current]
+				this_ActionParameterList_12=ruleActionParameterList[$current]
 				{
-					$current = $this_ActionParameterList_11.current;
+					$current = $this_ActionParameterList_12.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getActionUsageDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getSubsettingPartParserRuleCall_2_4());
+			}
+			this_SubsettingPart_13=ruleSubsettingPart[$current]
+			{
+				$current = $this_SubsettingPart_13.current;
+				afterParserOrEnumRuleCall();
+			}
 			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getActionUsageDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getValuePartParserRuleCall_2_4());
+					newCompositeNode(grammarAccess.getActionUsageDeclarationAccess().getValuePartParserRuleCall_2_5());
 				}
-				this_ValuePart_12=ruleValuePart[$current]
+				this_ValuePart_14=ruleValuePart[$current]
 				{
-					$current = $this_ValuePart_12.current;
+					$current = $this_ValuePart_14.current;
 					afterParserOrEnumRuleCall();
 				}
 			)?
@@ -15276,238 +15181,22 @@ ruleActionNodeDeclaration returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getActionNodeDeclarationAccess().getActionUsageNodeDeclarationParserRuleCall_0());
+			newCompositeNode(grammarAccess.getActionNodeDeclarationAccess().getAcceptActionNodeDeclarationParserRuleCall_0());
 		}
-		this_ActionUsageNodeDeclaration_0=ruleActionUsageNodeDeclaration
+		this_AcceptActionNodeDeclaration_0=ruleAcceptActionNodeDeclaration
 		{
-			$current = $this_ActionUsageNodeDeclaration_0.current;
+			$current = $this_AcceptActionNodeDeclaration_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getActionNodeDeclarationAccess().getPerformActionNodeDeclarationParserRuleCall_1());
+			newCompositeNode(grammarAccess.getActionNodeDeclarationAccess().getSendActionNodeDeclarationParserRuleCall_1());
 		}
-		this_PerformActionNodeDeclaration_1=rulePerformActionNodeDeclaration
+		this_SendActionNodeDeclaration_1=ruleSendActionNodeDeclaration
 		{
-			$current = $this_PerformActionNodeDeclaration_1.current;
+			$current = $this_SendActionNodeDeclaration_1.current;
 			afterParserOrEnumRuleCall();
 		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getActionNodeDeclarationAccess().getAcceptActionNodeDeclarationParserRuleCall_2());
-		}
-		this_AcceptActionNodeDeclaration_2=ruleAcceptActionNodeDeclaration
-		{
-			$current = $this_AcceptActionNodeDeclaration_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getActionNodeDeclarationAccess().getSendActionNodeDeclarationParserRuleCall_3());
-		}
-		this_SendActionNodeDeclaration_3=ruleSendActionNodeDeclaration
-		{
-			$current = $this_SendActionNodeDeclaration_3.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRuleActionUsageNodeDeclaration
-entryRuleActionUsageNodeDeclaration returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getActionUsageNodeDeclarationRule()); }
-	iv_ruleActionUsageNodeDeclaration=ruleActionUsageNodeDeclaration
-	{ $current=$iv_ruleActionUsageNodeDeclaration.current; }
-	EOF;
-
-// Rule ActionUsageNodeDeclaration
-ruleActionUsageNodeDeclaration returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				lv_isAbstract_0_0='abstract'
-				{
-					newLeafNode(lv_isAbstract_0_0, grammarAccess.getActionUsageNodeDeclarationAccess().getIsAbstractAbstractKeyword_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getActionUsageNodeDeclarationRule());
-					}
-					setWithLastConsumed($current, "isAbstract", true, "abstract");
-				}
-			)
-		)?
-		(
-			(
-				otherlv_1='ref'
-				{
-					newLeafNode(otherlv_1, grammarAccess.getActionUsageNodeDeclarationAccess().getRefKeyword_1_0_0());
-				}
-				otherlv_2='action'
-				{
-					newLeafNode(otherlv_2, grammarAccess.getActionUsageNodeDeclarationAccess().getActionKeyword_1_0_1());
-				}
-			)
-			    |
-			(
-				(
-					lv_isComposite_3_0='action'
-					{
-						newLeafNode(lv_isComposite_3_0, grammarAccess.getActionUsageNodeDeclarationAccess().getIsCompositeActionKeyword_1_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getActionUsageNodeDeclarationRule());
-						}
-						setWithLastConsumed($current, "isComposite", true, "action");
-					}
-				)
-			)
-		)
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getActionUsageNodeDeclarationRule());
-			}
-			newCompositeNode(grammarAccess.getActionUsageNodeDeclarationAccess().getActionUsageDeclarationParserRuleCall_2());
-		}
-		this_ActionUsageDeclaration_4=ruleActionUsageDeclaration[$current]
-		{
-			$current = $this_ActionUsageDeclaration_4.current;
-			afterParserOrEnumRuleCall();
-		}
-	)
-;
-
-// Entry rule entryRulePerformActionNodeDeclaration
-entryRulePerformActionNodeDeclaration returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPerformActionNodeDeclarationRule()); }
-	iv_rulePerformActionNodeDeclaration=rulePerformActionNodeDeclaration
-	{ $current=$iv_rulePerformActionNodeDeclaration.current; }
-	EOF;
-
-// Rule PerformActionNodeDeclaration
-rulePerformActionNodeDeclaration returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			(
-				lv_isComposite_0_0='perform'
-				{
-					newLeafNode(lv_isComposite_0_0, grammarAccess.getPerformActionNodeDeclarationAccess().getIsCompositePerformKeyword_0_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPerformActionNodeDeclarationRule());
-					}
-					setWithLastConsumed($current, "isComposite", true, "perform");
-				}
-			)
-		)
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getPerformActionNodeDeclarationAccess().getNameNameParserRuleCall_1_0_0());
-					}
-					lv_name_1_0=ruleName
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPerformActionNodeDeclarationRule());
-						}
-						set(
-							$current,
-							"name",
-							lv_name_1_0,
-							"org.omg.sysml.xtext.SysML.Name");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPerformActionNodeDeclarationRule());
-					}
-					newCompositeNode(grammarAccess.getPerformActionNodeDeclarationAccess().getTypePartParserRuleCall_1_1());
-				}
-				this_TypePart_2=ruleTypePart[$current]
-				{
-					$current = $this_TypePart_2.current;
-					afterParserOrEnumRuleCall();
-				}
-			)?
-			otherlv_3='as'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getPerformActionNodeDeclarationAccess().getAsKeyword_1_2());
-			}
-		)?
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getPerformActionNodeDeclarationAccess().getOwnedRelationship_compSubsetParserRuleCall_2_0());
-				}
-				lv_ownedRelationship_comp_4_0=ruleSubset
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPerformActionNodeDeclarationRule());
-					}
-					add(
-						$current,
-						"ownedRelationship_comp",
-						lv_ownedRelationship_comp_4_0,
-						"org.omg.sysml.xtext.SysML.Subset");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPerformActionNodeDeclarationRule());
-				}
-				newCompositeNode(grammarAccess.getPerformActionNodeDeclarationAccess().getActionParameterListParserRuleCall_3());
-			}
-			this_ActionParameterList_5=ruleActionParameterList[$current]
-			{
-				$current = $this_ActionParameterList_5.current;
-				afterParserOrEnumRuleCall();
-			}
-		)?
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getPerformActionNodeDeclarationRule());
-			}
-			newCompositeNode(grammarAccess.getPerformActionNodeDeclarationAccess().getSubsettingPartParserRuleCall_4());
-		}
-		this_SubsettingPart_6=ruleSubsettingPart[$current]
-		{
-			$current = $this_SubsettingPart_6.current;
-			afterParserOrEnumRuleCall();
-		}
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPerformActionNodeDeclarationRule());
-				}
-				newCompositeNode(grammarAccess.getPerformActionNodeDeclarationAccess().getValuePartParserRuleCall_5());
-			}
-			this_ValuePart_7=ruleValuePart[$current]
-			{
-				$current = $this_ValuePart_7.current;
-				afterParserOrEnumRuleCall();
-			}
-		)?
 	)
 ;
 

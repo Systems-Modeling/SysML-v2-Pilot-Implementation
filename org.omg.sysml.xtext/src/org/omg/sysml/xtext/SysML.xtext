@@ -556,7 +556,7 @@ fragment ActivityBodyItem returns SysML::Type :
 	| ownedFeatureMembership_comp += InitialNodeMember
 	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
 	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
-	  ownedFeatureMembership_comp += ActivityNodeMember
+	  ownedFeatureMembership_comp += ( BehaviorUsageMember | ActivityNodeMember )
 	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
 	| ownedFeatureMembership_comp += GuardedSuccessionMember
 	| ownedImport_comp += Import
@@ -618,7 +618,7 @@ fragment StateBodyPart returns SysML::Type :
 fragment StateBodyItem returns SysML::Type :
 	  ownedMembership_comp += NestedDefinitionMember 
 	| ownedFeatureMembership_comp += StructureUsageMember
-	| ownedFeatureMembership_comp += StateMember
+	| ownedFeatureMembership_comp += BehaviorUsageMember
 		( ownedFeatureMembership_comp += TargetTransitionSuccessionMember )*
 	| ownedFeatureMembership_comp += TransitionStepMember
 	| ownedImport_comp += Import
@@ -1204,8 +1204,8 @@ AbstractActionUsage returns SysML::ActionUsage :
 
 fragment ActionUsageDeclaration returns SysML::Step :
 	  name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
-	| TypePart? ActionParameterList? ValuePart?
-	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? ActionParameterList? ValuePart?
+	| TypePart ActionParameterList? SubsettingPart ValuePart?
+	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? ActionParameterList? SubsettingPart ValuePart?
 ;
 
 fragment ActionParameterList returns SysML::Type :
@@ -1246,23 +1246,24 @@ ActionNode returns SysML::ActionUsage :
 ;
 
 ActionNodeDeclaration returns SysML::ActionUsage :
-	  ActionUsageNodeDeclaration
-	| PerformActionNodeDeclaration
-	| AcceptActionNodeDeclaration
+//	  ActionUsageNodeDeclaration
+//	| PerformActionNodeDeclaration
+//	| 
+	  AcceptActionNodeDeclaration
 	| SendActionNodeDeclaration	
 ;
 
-ActionUsageNodeDeclaration returns SysML::ActionUsage :
-    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
-    ActionUsageDeclaration
-;
-
-PerformActionNodeDeclaration returns SysML::PerformActionUsage :
-    isComposite ?= 'perform' ( name = Name TypePart? 'as' )? 
-    ownedRelationship_comp += Subset 
-    ActionParameterList? SubsettingPart ValuePart?
-;
-
+//ActionUsageNodeDeclaration returns SysML::ActionUsage :
+//    ( isAbstract ?= 'abstract' )? ('ref' 'action' | isComposite ?= 'action' )
+//    ActionUsageDeclaration
+//;
+//
+//PerformActionNodeDeclaration returns SysML::PerformActionUsage :
+//    isComposite ?= 'perform' ( name = Name TypePart? 'as' )? 
+//    ownedRelationship_comp += Subset 
+//    ActionParameterList? SubsettingPart ValuePart?
+//;
+//
 AcceptActionNodeDeclaration returns SysML::AcceptActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember
 	'accept' ( name = Name TypePart? )? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'

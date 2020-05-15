@@ -36,6 +36,7 @@ package Requirements {
 	 * The subject is the entity that is being check for satisfaction of the required constraints.
 	 */
 	requirement def RequirementCheck(subject: Anything) :> RequirementConstraintCheck {
+		ref requirement thisRequirement: RequirementCheck :>> self;
 		
 		/* Note: assumptions and constraints are redefined here solely to simplify the
 		 * resolution of their qualified names as library elements.

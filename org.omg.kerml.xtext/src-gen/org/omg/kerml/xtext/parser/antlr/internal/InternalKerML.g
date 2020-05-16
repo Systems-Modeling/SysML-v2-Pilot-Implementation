@@ -8477,28 +8477,15 @@ ruleStepDeclaration[EObject in_current]  returns [EObject current=in_current]
 						afterParserOrEnumRuleCall();
 					}
 				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getStepDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getStepDeclarationAccess().getParameterListParserRuleCall_1_0_2());
-					}
-					this_ParameterList_3=ruleParameterList[$current]
-					{
-						$current = $this_ParameterList_3.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getStepDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getStepDeclarationAccess().getSubsettingPartParserRuleCall_1_0_3());
+					newCompositeNode(grammarAccess.getStepDeclarationAccess().getSubsettingPartParserRuleCall_1_0_2());
 				}
-				this_SubsettingPart_4=ruleSubsettingPart[$current]
+				this_SubsettingPart_3=ruleSubsettingPart[$current]
 				{
-					$current = $this_SubsettingPart_4.current;
+					$current = $this_SubsettingPart_3.current;
 					afterParserOrEnumRuleCall();
 				}
 				(
@@ -8506,11 +8493,23 @@ ruleStepDeclaration[EObject in_current]  returns [EObject current=in_current]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getStepDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getStepDeclarationAccess().getValuePartParserRuleCall_1_0_4());
+						newCompositeNode(grammarAccess.getStepDeclarationAccess().getValuePartParserRuleCall_1_0_3_0());
 					}
-					this_ValuePart_5=ruleValuePart[$current]
+					this_ValuePart_4=ruleValuePart[$current]
 					{
-						$current = $this_ValuePart_5.current;
+						$current = $this_ValuePart_4.current;
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getStepDeclarationRule());
+						}
+						newCompositeNode(grammarAccess.getStepDeclarationAccess().getParameterListParserRuleCall_1_0_3_1());
+					}
+					this_ParameterList_5=ruleParameterList[$current]
+					{
+						$current = $this_ParameterList_5.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -8535,24 +8534,23 @@ ruleStepDeclaration[EObject in_current]  returns [EObject current=in_current]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getStepDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getStepDeclarationAccess().getParameterListParserRuleCall_1_1_1());
+						newCompositeNode(grammarAccess.getStepDeclarationAccess().getValuePartParserRuleCall_1_1_1_0());
 					}
-					this_ParameterList_7=ruleParameterList[$current]
+					this_ValuePart_7=ruleValuePart[$current]
 					{
-						$current = $this_ParameterList_7.current;
+						$current = $this_ValuePart_7.current;
 						afterParserOrEnumRuleCall();
 					}
-				)?
-				(
+					    |
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getStepDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getStepDeclarationAccess().getValuePartParserRuleCall_1_1_2());
+						newCompositeNode(grammarAccess.getStepDeclarationAccess().getParameterListParserRuleCall_1_1_1_1());
 					}
-					this_ValuePart_8=ruleValuePart[$current]
+					this_ParameterList_8=ruleParameterList[$current]
 					{
-						$current = $this_ValuePart_8.current;
+						$current = $this_ParameterList_8.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -8602,29 +8600,39 @@ ruleStepDeclaration[EObject in_current]  returns [EObject current=in_current]
 						afterParserOrEnumRuleCall();
 					}
 				)?
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getStepDeclarationRule());
+					}
+					newCompositeNode(grammarAccess.getStepDeclarationAccess().getSubsettingPartParserRuleCall_1_2_3());
+				}
+				this_SubsettingPart_13=ruleSubsettingPart[$current]
+				{
+					$current = $this_SubsettingPart_13.current;
+					afterParserOrEnumRuleCall();
+				}
 				(
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getStepDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getStepDeclarationAccess().getParameterListParserRuleCall_1_2_3());
-					}
-					this_ParameterList_13=ruleParameterList[$current]
-					{
-						$current = $this_ParameterList_13.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getStepDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getStepDeclarationAccess().getValuePartParserRuleCall_1_2_4());
+						newCompositeNode(grammarAccess.getStepDeclarationAccess().getValuePartParserRuleCall_1_2_4_0());
 					}
 					this_ValuePart_14=ruleValuePart[$current]
 					{
 						$current = $this_ValuePart_14.current;
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getStepDeclarationRule());
+						}
+						newCompositeNode(grammarAccess.getStepDeclarationAccess().getParameterListParserRuleCall_1_2_4_1());
+					}
+					this_ParameterList_15=ruleParameterList[$current]
+					{
+						$current = $this_ParameterList_15.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -8967,39 +8975,15 @@ ruleExpressionDeclaration[EObject in_current]  returns [EObject current=in_curre
 						afterParserOrEnumRuleCall();
 					}
 				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getParameterListParserRuleCall_1_0_2_0());
-					}
-					this_ParameterList_3=ruleParameterList[$current]
-					{
-						$current = $this_ParameterList_3.current;
-						afterParserOrEnumRuleCall();
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getReturnParameterPartParserRuleCall_1_0_2_1());
-					}
-					this_ReturnParameterPart_4=ruleReturnParameterPart[$current]
-					{
-						$current = $this_ReturnParameterPart_4.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getSubsettingPartParserRuleCall_1_0_3());
+					newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getSubsettingPartParserRuleCall_1_0_2());
 				}
-				this_SubsettingPart_5=ruleSubsettingPart[$current]
+				this_SubsettingPart_3=ruleSubsettingPart[$current]
 				{
-					$current = $this_SubsettingPart_5.current;
+					$current = $this_SubsettingPart_3.current;
 					afterParserOrEnumRuleCall();
 				}
 				(
@@ -9007,13 +8991,38 @@ ruleExpressionDeclaration[EObject in_current]  returns [EObject current=in_curre
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getValuePartParserRuleCall_1_0_4());
+						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getValuePartParserRuleCall_1_0_3_0());
 					}
-					this_ValuePart_6=ruleValuePart[$current]
+					this_ValuePart_4=ruleValuePart[$current]
 					{
-						$current = $this_ValuePart_6.current;
+						$current = $this_ValuePart_4.current;
 						afterParserOrEnumRuleCall();
 					}
+					    |
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+							}
+							newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getParameterListParserRuleCall_1_0_3_1_0());
+						}
+						this_ParameterList_5=ruleParameterList[$current]
+						{
+							$current = $this_ParameterList_5.current;
+							afterParserOrEnumRuleCall();
+						}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+							}
+							newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getReturnParameterPartParserRuleCall_1_0_3_1_1());
+						}
+						this_ReturnParameterPart_6=ruleReturnParameterPart[$current]
+						{
+							$current = $this_ReturnParameterPart_6.current;
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)?
 			)
 			    |
@@ -9036,37 +9045,38 @@ ruleExpressionDeclaration[EObject in_current]  returns [EObject current=in_curre
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getParameterListParserRuleCall_1_1_1_0());
+						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getValuePartParserRuleCall_1_1_1_0());
 					}
-					this_ParameterList_8=ruleParameterList[$current]
+					this_ValuePart_8=ruleValuePart[$current]
 					{
-						$current = $this_ParameterList_8.current;
+						$current = $this_ValuePart_8.current;
 						afterParserOrEnumRuleCall();
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+					    |
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+							}
+							newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getParameterListParserRuleCall_1_1_1_1_0());
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getReturnParameterPartParserRuleCall_1_1_1_1());
-					}
-					this_ReturnParameterPart_9=ruleReturnParameterPart[$current]
-					{
-						$current = $this_ReturnParameterPart_9.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+						this_ParameterList_9=ruleParameterList[$current]
+						{
+							$current = $this_ParameterList_9.current;
+							afterParserOrEnumRuleCall();
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getValuePartParserRuleCall_1_1_2());
-					}
-					this_ValuePart_10=ruleValuePart[$current]
-					{
-						$current = $this_ValuePart_10.current;
-						afterParserOrEnumRuleCall();
-					}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+							}
+							newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getReturnParameterPartParserRuleCall_1_1_1_1_1());
+						}
+						this_ReturnParameterPart_10=ruleReturnParameterPart[$current]
+						{
+							$current = $this_ReturnParameterPart_10.current;
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)?
 			)
 			    |
@@ -9114,42 +9124,54 @@ ruleExpressionDeclaration[EObject in_current]  returns [EObject current=in_curre
 						afterParserOrEnumRuleCall();
 					}
 				)?
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+					}
+					newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getSubsettingPartParserRuleCall_1_2_3());
+				}
+				this_SubsettingPart_15=ruleSubsettingPart[$current]
+				{
+					$current = $this_SubsettingPart_15.current;
+					afterParserOrEnumRuleCall();
+				}
 				(
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getParameterListParserRuleCall_1_2_3_0());
+						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getValuePartParserRuleCall_1_2_4_0());
 					}
-					this_ParameterList_15=ruleParameterList[$current]
+					this_ValuePart_16=ruleValuePart[$current]
 					{
-						$current = $this_ParameterList_15.current;
+						$current = $this_ValuePart_16.current;
 						afterParserOrEnumRuleCall();
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+					    |
+					(
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+							}
+							newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getParameterListParserRuleCall_1_2_4_1_0());
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getReturnParameterPartParserRuleCall_1_2_3_1());
-					}
-					this_ReturnParameterPart_16=ruleReturnParameterPart[$current]
-					{
-						$current = $this_ReturnParameterPart_16.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+						this_ParameterList_17=ruleParameterList[$current]
+						{
+							$current = $this_ParameterList_17.current;
+							afterParserOrEnumRuleCall();
 						}
-						newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getValuePartParserRuleCall_1_2_4());
-					}
-					this_ValuePart_17=ruleValuePart[$current]
-					{
-						$current = $this_ValuePart_17.current;
-						afterParserOrEnumRuleCall();
-					}
+						{
+							if ($current==null) {
+								$current = createModelElement(grammarAccess.getExpressionDeclarationRule());
+							}
+							newCompositeNode(grammarAccess.getExpressionDeclarationAccess().getReturnParameterPartParserRuleCall_1_2_4_1_1());
+						}
+						this_ReturnParameterPart_18=ruleReturnParameterPart[$current]
+						{
+							$current = $this_ReturnParameterPart_18.current;
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)?
 			)
 		)
@@ -9296,39 +9318,15 @@ ruleBooleanExpressionDeclaration[EObject in_current]  returns [EObject current=i
 						afterParserOrEnumRuleCall();
 					}
 				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getParameterListParserRuleCall_1_0_2());
-					}
-					this_ParameterList_3=ruleParameterList[$current]
-					{
-						$current = $this_ParameterList_3.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_0_3());
+					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getSubsettingPartParserRuleCall_1_0_2());
 				}
-				this_EmptyReturnParameterPart_4=ruleEmptyReturnParameterPart[$current]
+				this_SubsettingPart_3=ruleSubsettingPart[$current]
 				{
-					$current = $this_EmptyReturnParameterPart_4.current;
-					afterParserOrEnumRuleCall();
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
-					}
-					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getSubsettingPartParserRuleCall_1_0_4());
-				}
-				this_SubsettingPart_5=ruleSubsettingPart[$current]
-				{
-					$current = $this_SubsettingPart_5.current;
+					$current = $this_SubsettingPart_3.current;
 					afterParserOrEnumRuleCall();
 				}
 				(
@@ -9336,14 +9334,37 @@ ruleBooleanExpressionDeclaration[EObject in_current]  returns [EObject current=i
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getValuePartParserRuleCall_1_0_5());
+						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getValuePartParserRuleCall_1_0_3_0());
 					}
-					this_ValuePart_6=ruleValuePart[$current]
+					this_ValuePart_4=ruleValuePart[$current]
 					{
-						$current = $this_ValuePart_6.current;
+						$current = $this_ValuePart_4.current;
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
+						}
+						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getParameterListParserRuleCall_1_0_3_1());
+					}
+					this_ParameterList_5=ruleParameterList[$current]
+					{
+						$current = $this_ParameterList_5.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
+					}
+					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_0_4());
+				}
+				this_EmptyReturnParameterPart_6=ruleEmptyReturnParameterPart[$current]
+				{
+					$current = $this_EmptyReturnParameterPart_6.current;
+					afterParserOrEnumRuleCall();
+				}
 			)
 			    |
 			(
@@ -9365,38 +9386,37 @@ ruleBooleanExpressionDeclaration[EObject in_current]  returns [EObject current=i
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getParameterListParserRuleCall_1_1_1_0());
+						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getValuePartParserRuleCall_1_1_1_0());
 					}
-					this_ParameterList_8=ruleParameterList[$current]
+					this_ValuePart_8=ruleValuePart[$current]
 					{
-						$current = $this_ParameterList_8.current;
+						$current = $this_ValuePart_8.current;
 						afterParserOrEnumRuleCall();
 					}
+					    |
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_1_1_1());
+						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getParameterListParserRuleCall_1_1_1_1());
 					}
-					this_EmptyReturnParameterPart_9=ruleEmptyReturnParameterPart[$current]
+					this_ParameterList_9=ruleParameterList[$current]
 					{
-						$current = $this_EmptyReturnParameterPart_9.current;
+						$current = $this_ParameterList_9.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getValuePartParserRuleCall_1_1_2());
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 					}
-					this_ValuePart_10=ruleValuePart[$current]
-					{
-						$current = $this_ValuePart_10.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
+					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_1_2());
+				}
+				this_EmptyReturnParameterPart_10=ruleEmptyReturnParameterPart[$current]
+				{
+					$current = $this_EmptyReturnParameterPart_10.current;
+					afterParserOrEnumRuleCall();
+				}
 			)
 			    |
 			(
@@ -9443,28 +9463,15 @@ ruleBooleanExpressionDeclaration[EObject in_current]  returns [EObject current=i
 						afterParserOrEnumRuleCall();
 					}
 				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getParameterListParserRuleCall_1_2_3());
-					}
-					this_ParameterList_15=ruleParameterList[$current]
-					{
-						$current = $this_ParameterList_15.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_2_4());
+					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getSubsettingPartParserRuleCall_1_2_3());
 				}
-				this_EmptyReturnParameterPart_16=ruleEmptyReturnParameterPart[$current]
+				this_SubsettingPart_15=ruleSubsettingPart[$current]
 				{
-					$current = $this_EmptyReturnParameterPart_16.current;
+					$current = $this_SubsettingPart_15.current;
 					afterParserOrEnumRuleCall();
 				}
 				(
@@ -9472,14 +9479,37 @@ ruleBooleanExpressionDeclaration[EObject in_current]  returns [EObject current=i
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getValuePartParserRuleCall_1_2_5());
+						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getValuePartParserRuleCall_1_2_4_0());
 					}
-					this_ValuePart_17=ruleValuePart[$current]
+					this_ValuePart_16=ruleValuePart[$current]
 					{
-						$current = $this_ValuePart_17.current;
+						$current = $this_ValuePart_16.current;
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
+						}
+						newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getParameterListParserRuleCall_1_2_4_1());
+					}
+					this_ParameterList_17=ruleParameterList[$current]
+					{
+						$current = $this_ParameterList_17.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getBooleanExpressionDeclarationRule());
+					}
+					newCompositeNode(grammarAccess.getBooleanExpressionDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_1_2_5());
+				}
+				this_EmptyReturnParameterPart_18=ruleEmptyReturnParameterPart[$current]
+				{
+					$current = $this_EmptyReturnParameterPart_18.current;
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
 	)

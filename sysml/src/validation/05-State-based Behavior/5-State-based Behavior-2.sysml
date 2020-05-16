@@ -116,8 +116,7 @@ package '5-State-based Behavior-2' {
 			value maintenanceTime: Time::DateTime;
 			value Tmax: TemperatureValue;
 			
-			perform 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd)
-				:>> VehicleA::'provide power';
+			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort::fuelCmd);
 				
 			exhibit 'vehicle states' :>> VehicleA::'vehicle states';
 				

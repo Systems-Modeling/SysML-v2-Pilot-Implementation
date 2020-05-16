@@ -7,6 +7,7 @@ package Activities {
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import Transfers::Transfer;
+	private import Transfers::transfers;
 	private import ControlNodes::*;
 	
 	/**
@@ -72,7 +73,8 @@ package Activities {
 	 * transferActions is the base feature for all TransferAction usages.
 	 * transferActions is a subset of the incomingTransfers of its context.
 	 */
-	abstract action transferActions: TransferAction[0..*] (context: Occurrence) :> 
-		Transfers::transfers, actions, transferActions::context::incomingTransfers;
+	abstract action transferActions: TransferAction[0..*] :> 
+		transfers, actions, transferActions::context::incomingTransfers
+		(context: Occurrence);
 	
 }

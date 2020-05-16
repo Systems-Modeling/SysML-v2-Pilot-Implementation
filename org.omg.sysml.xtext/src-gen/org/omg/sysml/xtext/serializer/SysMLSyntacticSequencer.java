@@ -338,8 +338,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (TypedByKeyword 'any') | 'constraint'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ActionParameterMember
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=EmptyReturnParameterMember
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
 	 */
 	protected void emit_AssertConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -780,8 +780,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'constraint' | (TypedByKeyword 'any')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ActionParameterMember
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=EmptyReturnParameterMember
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
 	 */
 	protected void emit_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -827,9 +827,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (TypedByKeyword 'any') | 'requirement'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ActionParameterMember
 	 *     (rule start) (ambiguity) 'by' ownedFeatureMembership_comp+=SatisfactionConnectorMember
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=EmptyReturnParameterMember
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
 	 */
 	protected void emit_SatisfyRequirementUsage_TypePart_RequirementKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -581,7 +581,7 @@ fragment ActivityBodyItem returns SysML::Type :
 	| ownedImport_comp += Import
 ;
 
-/* ACTIVITIY MEMBERSHIPS */
+/* ACTIVITY MEMBERSHIPS */
 
 ParameterMember returns SysML::ParameterMembership :
 	( direction = FeatureDirection )? memberName = Name ownedMemberFeature_comp = Parameter
@@ -1262,7 +1262,7 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 
 fragment ActionDeclaration returns SysML::ActionUsage :
     ( isAbstract ?= 'abstract' )? 'action' 
-	name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
+	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList )?
 ;
 
 ActionUsage returns SysML::ActionUsage :
@@ -1274,9 +1274,9 @@ AbstractActionUsage returns SysML::ActionUsage :
 ;
 
 fragment ActionUsageDeclaration returns SysML::Step :
-	  name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
-	| TypePart ActionParameterList? SubsettingPart ValuePart?
-	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? ActionParameterList? SubsettingPart ValuePart?
+	  name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList )?
+	| TypePart SubsettingPart ( ValuePart | ActionParameterList )?
+	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? SubsettingPart ( ValuePart | ActionParameterList )?
 ;
 
 fragment ActionParameterList returns SysML::Type :
@@ -1303,7 +1303,7 @@ PerformActionUsageDeclaration returns SysML::PerformActionUsage :
    	( ( name = Name TypePart? 'as' )? ownedRelationship_comp += Subset 
    	| 'action' ( name = Name )? TypePart?
    	)
-    ActionParameterList? SubsettingPart ValuePart?
+    SubsettingPart ( ValuePart | ActionParameterList )?
 ;
 
 /* ACTIVITY NODES */
@@ -1416,7 +1416,7 @@ FunctionReturnParameterMember returns SysML::ReturnParameterMembership :
 
 fragment StateDeclaration returns SysML::StateUsage :
     ( isAbstract ?= 'abstract' )? 'state' 
-	name = Name TypePart? ActionParameterList? SubsettingPart ValuePart?
+	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList )?
 ;
 
 StateUsage returns SysML::StateUsage :
@@ -1431,7 +1431,7 @@ ExhibitStateUsage returns SysML::ExhibitStateUsage :
     ( ( name = Name TypePart? 'as' )? ownedRelationship_comp += Subset 
     | 'state' ( name = Name )? TypePart?
     )
-    ActionParameterList? SubsettingPart ValuePart?
+    SubsettingPart ( ValuePart | ActionParameterList )?
 	StateBody
 ;
 
@@ -1513,13 +1513,13 @@ AbstractConstraintUsage returns SysML::ConstraintUsage :
 
 fragment ConstraintDeclaration returns SysML::ConstraintUsage :
 	  name = Name TypePart? ConstraintParameterPart
-	| TypePart? ( ActionParameterList EmptyReturnParameterPart )? ValuePart?
+	| TypePart? ( ValuePart | ActionParameterList )? EmptyReturnParameterPart
 	| RedefinesKeyword ownedRelationship_comp += Redefinition 
-		TypePart? ActionParameterList? EmptyReturnParameterPart ValuePart?
+		TypePart?( ValuePart | ActionParameterList )? EmptyReturnParameterPart
 ;
 
 fragment ConstraintParameterPart returns SysML::ConstraintUsage :
-	ActionParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
+	SubsettingPart ( ValuePart | ActionParameterList )? EmptyReturnParameterPart
 ;
 
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
@@ -1556,9 +1556,9 @@ AbstractRequirementUsage returns SysML::RequirementUsage :
 fragment RequirementDeclaration returns SysML::RequirementUsage :
 	( 'id' reqId = Name )? 
 	( name = Name TypePart? ConstraintParameterPart
-	| TypePart? ( ActionParameterList EmptyReturnParameterPart )? ValuePart?
+	| TypePart? ( ValuePart | ActionParameterList )? EmptyReturnParameterPart
 	| RedefinesKeyword ownedRelationship_comp += Redefinition 
-		TypePart? ActionParameterList? EmptyReturnParameterPart ValuePart?
+		TypePart? ( ValuePart | ActionParameterList )? EmptyReturnParameterPart
 	)
 ;
 

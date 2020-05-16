@@ -83,6 +83,6 @@ package Requirements {
 	/**
 	 * requirementChecks is the base feature of all requirement usages.
 	 */
-	requirement requirementChecks: RequirementCheck[0..*] (subject: Anything) :> constraintChecks;
+	requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks (subject: Anything);
 	
 }

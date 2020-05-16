@@ -68,15 +68,12 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	
 	protected Feature getRelatedFeature(InvocationExpressionImpl expression, int argIndex, int endIndex) {
 		if (endIndex == 0) {
-			List<? extends Feature> arguments = expression.getArguments();
+			List<Expression> arguments = expression.getArgument();
 			if (argIndex < arguments.size()) {
-				Feature argument = arguments.get(argIndex);
-				Feature feature = argument instanceof Expression ? ((ExpressionImpl) argument).getResult()
-						: argument;
-				return feature;
+				return arguments.get(argIndex).getResult();
 			}
 		} else if (endIndex == 1) {
-			EList<Feature> inputs = expression.getInput();
+			List<Feature> inputs = expression.getInput();
 			if (argIndex < inputs.size()) {
 				return inputs.get(argIndex);
 			}
@@ -85,7 +82,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	}
 	
 	protected int argIndex(Type expression) {
-		return expression.getOwnedFeature().stream().filter(f -> f instanceof BindingConnector)
+		return expression.getOwnedFeature().stream().filter(f->f instanceof BindingConnector)
 				.collect(Collectors.toList()).indexOf(this);
 	}
 	

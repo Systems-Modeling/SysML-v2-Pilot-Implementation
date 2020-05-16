@@ -12,6 +12,7 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FunctionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -37,6 +38,7 @@ import org.omg.sysml.lang.sysml.Usage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConstraint <em>Owned Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedTransition <em>Owned Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRequirement <em>Owned Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedFunction <em>Owned Function</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
@@ -164,6 +166,16 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @generated NOT
 	 */
 	@Override
+	public EList<FunctionUsage> getOwnedFunction() {
+		return new DerivedEObjectEList<FunctionUsage>(FunctionUsage.class, this, SysMLPackage.DEFINITION__OWNED_FUNCTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Usage> getOwnedUsage() {
 		return new DerivedEObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__OWNED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -194,6 +206,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedTransition();
 			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
 				return getOwnedRequirement();
+			case SysMLPackage.DEFINITION__OWNED_FUNCTION:
+				return getOwnedFunction();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return getOwnedUsage();
 		}
@@ -245,6 +259,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedRequirement().clear();
 				getOwnedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_FUNCTION:
+				getOwnedFunction().clear();
+				getOwnedFunction().addAll((Collection<? extends FunctionUsage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
@@ -288,6 +306,9 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
 				getOwnedRequirement().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_FUNCTION:
+				getOwnedFunction().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				return;
@@ -321,6 +342,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedTransition().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_REQUIREMENT:
 				return !getOwnedRequirement().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_FUNCTION:
+				return !getOwnedFunction().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return !getOwnedUsage().isEmpty();
 		}

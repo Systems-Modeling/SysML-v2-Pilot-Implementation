@@ -52,6 +52,12 @@ public interface OperatorExpression extends InvocationExpression {
 	/**
 	 * Returns the value of the '<em><b>Operand comp</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.InvocationExpression#getArgument() <em>Argument</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operand comp</em>' containment reference list isn't clear,
@@ -62,6 +68,7 @@ public interface OperatorExpression extends InvocationExpression {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getOperatorExpression_Operand_comp()
 	 * @model containment="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='operatorExpression'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Expression> getOperand_comp();

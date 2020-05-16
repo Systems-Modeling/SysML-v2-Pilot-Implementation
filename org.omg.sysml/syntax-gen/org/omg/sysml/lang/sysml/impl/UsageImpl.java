@@ -11,6 +11,7 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.FunctionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -37,6 +38,7 @@ import org.omg.sysml.lang.sysml.Usage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedConstraint <em>Nested Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedTransition <em>Nested Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRequirement <em>Nested Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedFunction <em>Nested Function</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getProperty <em>Property</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  * </ul>
@@ -201,6 +203,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<FunctionUsage> getNestedFunction() {
+		return new DerivedEObjectEList<FunctionUsage>(FunctionUsage.class, this, SysMLPackage.USAGE__NESTED_FUNCTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Property> getProperty() {
 		return new DerivedEObjectEList<Property>(Property.class, this, SysMLPackage.USAGE__PROPERTY, new int[] {SysMLPackage.TYPE__FEATURE});
 	}
@@ -243,6 +255,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedTransition();
 			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
 				return getNestedRequirement();
+			case SysMLPackage.USAGE__NESTED_FUNCTION:
+				return getNestedFunction();
 			case SysMLPackage.USAGE__PROPERTY:
 				return getProperty();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -294,6 +308,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedRequirement().clear();
 				getNestedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_FUNCTION:
+				getNestedFunction().clear();
+				getNestedFunction().addAll((Collection<? extends FunctionUsage>)newValue);
+				return;
 			case SysMLPackage.USAGE__PROPERTY:
 				getProperty().clear();
 				getProperty().addAll((Collection<? extends Property>)newValue);
@@ -341,6 +359,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
 				getNestedRequirement().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_FUNCTION:
+				getNestedFunction().clear();
+				return;
 			case SysMLPackage.USAGE__PROPERTY:
 				getProperty().clear();
 				return;
@@ -377,6 +398,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedTransition().isEmpty();
 			case SysMLPackage.USAGE__NESTED_REQUIREMENT:
 				return !getNestedRequirement().isEmpty();
+			case SysMLPackage.USAGE__NESTED_FUNCTION:
+				return !getNestedFunction().isEmpty();
 			case SysMLPackage.USAGE__PROPERTY:
 				return !getProperty().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ACTION:

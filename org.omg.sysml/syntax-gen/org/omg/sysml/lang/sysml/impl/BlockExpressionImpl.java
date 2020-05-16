@@ -61,7 +61,7 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 			Feature ownedFeature = ownedFeatures.get(i);
 			if (ownedFeature instanceof Expression && !ownedFeature.isAbstract()) {
 				resultConnector = updateBindingConnectorFor(
-						owningType, resultConnector, ((TypeImpl)ownedFeature).getResult(), result);
+						owningType, resultConnector, ((Expression)ownedFeature).getResult(), result);
 				break;
 			}
 		}

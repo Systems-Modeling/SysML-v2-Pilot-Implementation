@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -43,6 +42,8 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getResult <em>Result</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintDefinition <em>Constraint Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningUsage <em>Constraint Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
@@ -80,6 +81,18 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CONSTRAINT_USAGE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Parameter> getParameter() {
+		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -448,14 +461,36 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
 	}
 	
-	@Override 
-	public Feature getResult() {
-		return getOwnedFeatureMembership().stream().
-				filter(mem->mem instanceof ReturnParameterMembership).
-				map(mem->mem.getMemberFeature()).
-				findFirst().orElse(null);
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Parameter getResult() {
+		Parameter result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Parameter basicGetResult() {
+		return getResultParameter();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setResult(Parameter newResult) {
+		throw new UnsupportedOperationException();
+	}
+
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
@@ -479,9 +514,14 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		switch (featureID) {
 			case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR:
 				return getBehavior();
+			case SysMLPackage.CONSTRAINT_USAGE__PARAMETER:
+				return getParameter();
 			case SysMLPackage.CONSTRAINT_USAGE__FUNCTION:
 				if (resolve) return getFunction();
 				return basicGetFunction();
+			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
+				if (resolve) return getResult();
+				return basicGetResult();
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
@@ -511,8 +551,15 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				getBehavior().clear();
 				getBehavior().addAll((Collection<? extends Behavior>)newValue);
 				return;
+			case SysMLPackage.CONSTRAINT_USAGE__PARAMETER:
+				getParameter().clear();
+				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				return;
 			case SysMLPackage.CONSTRAINT_USAGE__FUNCTION:
 				setFunction((Function)newValue);
+				return;
+			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
+				setResult((Parameter)newValue);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)newValue);
@@ -541,8 +588,14 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR:
 				getBehavior().clear();
 				return;
+			case SysMLPackage.CONSTRAINT_USAGE__PARAMETER:
+				getParameter().clear();
+				return;
 			case SysMLPackage.CONSTRAINT_USAGE__FUNCTION:
 				setFunction((Function)null);
+				return;
+			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
+				setResult((Parameter)null);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)null);
@@ -572,8 +625,12 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return isSetType();
 			case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR:
 				return isSetBehavior();
+			case SysMLPackage.CONSTRAINT_USAGE__PARAMETER:
+				return !getParameter().isEmpty();
 			case SysMLPackage.CONSTRAINT_USAGE__FUNCTION:
 				return isSetFunction();
+			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
+				return basicGetResult() != null;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				return isSetPredicate();
 			case SysMLPackage.CONSTRAINT_USAGE__OWNING_USAGE:
@@ -600,12 +657,14 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		if (baseClass == Step.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR: return SysMLPackage.STEP__BEHAVIOR;
+				case SysMLPackage.CONSTRAINT_USAGE__PARAMETER: return SysMLPackage.STEP__PARAMETER;
 				default: return -1;
 			}
 		}
 		if (baseClass == Expression.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONSTRAINT_USAGE__FUNCTION: return SysMLPackage.EXPRESSION__FUNCTION;
+				case SysMLPackage.CONSTRAINT_USAGE__RESULT: return SysMLPackage.EXPRESSION__RESULT;
 				default: return -1;
 			}
 		}
@@ -628,12 +687,14 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		if (baseClass == Step.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.STEP__BEHAVIOR: return SysMLPackage.CONSTRAINT_USAGE__BEHAVIOR;
+				case SysMLPackage.STEP__PARAMETER: return SysMLPackage.CONSTRAINT_USAGE__PARAMETER;
 				default: return -1;
 			}
 		}
 		if (baseClass == Expression.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.EXPRESSION__FUNCTION: return SysMLPackage.CONSTRAINT_USAGE__FUNCTION;
+				case SysMLPackage.EXPRESSION__RESULT: return SysMLPackage.CONSTRAINT_USAGE__RESULT;
 				default: return -1;
 			}
 		}

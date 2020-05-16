@@ -105,7 +105,7 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	public List<? extends Feature> getRelevantFeatures(Type type) {
 		return type == null? Collections.emptyList():
 			   (isResultParameter() && (type instanceof Function | type instanceof Expression))?
-						Collections.singletonList(((TypeImpl) type).getResult()):
+						Collections.singletonList(((TypeImpl) type).getResultParameter()):
 						getRelevantParameters((TypeImpl)type).stream()
 								.filter(p -> !((ParameterImpl) p).isResultParameter()).collect(Collectors.toList());
 	}

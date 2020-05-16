@@ -13,19 +13,19 @@ package States {
 	 * A State is an Action that is also a StatePerformance.
 	 */
 	state def State :> Action, StatePerformance {
-		entry action entryAction :> subactions :>> StatePerformance::'entry';
-		do action doAction: Action :> subactions :>> StatePerformance::'do';
-		exit action exitAction: Action :> subactions :>> StatePerformance::'exit';
+		entry action entryAction :> subactions :>> 'entry';
+		do action doAction: Action :> subactions :>> 'do';
+		exit action exitAction: Action :> subactions :>> 'exit';
 		
-		value isTriggerDuring redefines StatePerformance::isTriggerDuring = true;
-		value isAcceptFirst redefines StatePerformance::isTriggerDuring = true;
+		value :>> isTriggerDuring = true;
+		value :>> isTriggerDuring = true;
 		
 		ref state self: State :>> Action::self;
 		
 		/**
 		 * The subactions of this state that are states.
 		 */
-		state substates: State[0..*] :> states, subactions;
+		state substates: State[0..*] :> states, subactions, middle;
 	}
 	
 	/**

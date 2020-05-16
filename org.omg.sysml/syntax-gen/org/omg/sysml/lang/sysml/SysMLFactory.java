@@ -85,6 +85,15 @@ public interface SysMLFactory extends EFactory {
 	DecisionNode createDecisionNode();
 
 	/**
+	 * Returns a new object of class '<em>Function Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Definition</em>'.
+	 * @generated
+	 */
+	FunctionDefinition createFunctionDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Join Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -535,6 +544,15 @@ public interface SysMLFactory extends EFactory {
 	ConstraintDefinition createConstraintDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Function Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Usage</em>'.
+	 * @generated
+	 */
+	FunctionUsage createFunctionUsage();
+
+	/**
 	 * Returns a new object of class '<em>Connection Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -947,15 +965,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	NullExpression createNullExpression();
-
-	/**
-	 * Returns a new object of class '<em>Sequence Construction Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sequence Construction Expression</em>'.
-	 * @generated
-	 */
-	SequenceConstructionExpression createSequenceConstructionExpression();
 
 	/**
 	 * Returns a new object of class '<em>Feature Reference Expression</em>'.

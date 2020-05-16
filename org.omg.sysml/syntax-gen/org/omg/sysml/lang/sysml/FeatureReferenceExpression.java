@@ -6,6 +6,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature
  * Reference Expression</b></em>'. <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A FeatureReferenceExpression is an Expression whose <code>result</code> is bound a <code>referent</code> Feature. The only <code>members</code> allowed for a FeatureReferenceExpression are the <code>referent</code>, the <code>result</code> and the BindingConnector between them.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>

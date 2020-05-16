@@ -124,6 +124,15 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		return operand_comp;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOperand_comp() {
+		return operand_comp != null && !operand_comp.isEmpty();
+	}
+
 	protected String[] getOperatorQualifiedNames(String op) {
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
@@ -143,6 +152,25 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		return (Function)getDefaultType(getOperatorQualifiedNames(getOperator()));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Expression> getArgument() {
+		return getOperand_comp();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetArgument() {
+  		return false;
+	}
+
 	@Override
 	public void computeImplicitGeneralization() {
 		String operator = getOperator();
@@ -232,10 +260,12 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.OPERATOR_EXPRESSION__ARGUMENT:
+				return isSetArgument();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
-				return operand_comp != null && !operand_comp.isEmpty();
+				return isSetOperand_comp();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				return !getOperand().isEmpty();
 		}

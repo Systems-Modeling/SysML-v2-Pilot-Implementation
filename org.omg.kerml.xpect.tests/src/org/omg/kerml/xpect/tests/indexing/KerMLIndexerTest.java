@@ -29,7 +29,7 @@ import com.google.inject.Inject;
 @RunWith(XpectRunner.class)
 @XpectTestFiles(fileExtensions = "xt")
 @XpectImport({ XtextStandaloneSetup.class, XtextWorkspaceSetup.class })
-public class IndexerTest {
+public class KerMLIndexerTest {
 
 	protected static class EObjectDescriptionToStringMapper implements Function<IEObjectDescription, String> {
 		public String apply(IEObjectDescription desc) {

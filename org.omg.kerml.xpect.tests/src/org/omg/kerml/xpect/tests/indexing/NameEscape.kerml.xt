@@ -1,4 +1,4 @@
-//* XPECT_SETUP org.omg.kerml.xpect.tests.indexing.IndexerTest
+//* XPECT_SETUP org.omg.kerml.xpect.tests.indexing.KerMLIndexerTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library/Base.kerml"}

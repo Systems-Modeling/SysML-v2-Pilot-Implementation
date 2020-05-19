@@ -9,6 +9,9 @@ import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
+import com.google.inject.Binder
+import com.google.inject.name.Names
+import org.eclipse.xtext.validation.CompositeEValidator
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -26,5 +29,7 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		SysMLGlobalScopeProvider
 	}
-
+	def void configureUseEObjectValidator(Binder binder) {
+		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
+	}
 }

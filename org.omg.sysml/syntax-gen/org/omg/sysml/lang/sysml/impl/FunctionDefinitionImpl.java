@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.FunctionDefinition;
@@ -35,6 +36,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FunctionDefinitionImpl extends ActivityImpl implements FunctionDefinition {
 
 	public String FUNCTION_DEFINITION_SUPERCLASS_DEFAULT = "Functions::FunctionInvocation";
+
+	/**
+	 * The cached value of the BindingConnector from the result of the last
+	 * sub-Expression to the result of this FunctionDefinition.
+	 */
+	protected BindingConnector resultConnector = null;
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +128,16 @@ public class FunctionDefinitionImpl extends ActivityImpl implements FunctionDefi
 		return ACTIVITY_SUPERCLASS_DEFAULT;
 	}
 	
+	public BindingConnector getResultConnector() {
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getResultConnector();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

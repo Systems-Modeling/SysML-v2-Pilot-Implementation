@@ -1648,12 +1648,12 @@ ConditionalAndOperator :
 	'&&'
 ;
 
+// Logical Expressions
+
 OrExpression returns SysML::Expression :
 	XorExpression ( {SysML::OperatorExpression.operand_comp += current}  
 		operator = OrOperator operand_comp += XorExpression )*
 ;
-
-// Logical Expressions
 
 OrOperator :
 	'|'
@@ -1723,12 +1723,21 @@ AdditiveOperator :
 ;
 
 MultiplicativeExpression returns SysML::Expression :
-	UnitsExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = MultiplicativeOperator operand_comp += UnitsExpression )*	
+	ExponentiationExpression ( {SysML::OperatorExpression.operand_comp += current}  
+		operator = MultiplicativeOperator operand_comp += ExponentiationExpression )*	
 ;
 
 MultiplicativeOperator :
-	'*' | '/' | '**' 
+	'*' | '/' 
+;
+
+ExponentiationExpression returns SysML::Expression :
+	UnitsExpression ( {SysML::OperatorExpression.operand_comp += current}  
+		operator = ExponentiationOperator operand_comp += UnitsExpression )*		
+;
+
+ExponentiationOperator :
+	'**'
 ;
 
 // Units Expressions

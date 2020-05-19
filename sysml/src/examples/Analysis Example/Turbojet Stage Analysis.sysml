@@ -16,23 +16,23 @@ package 'Turbojet Stage Analysis' {
 	    
 	    // The "in" and "return" direction markers are optional.
 	    function def 'Reversible Adiabatic Compression Density' (rho_1, rho_2, p_1, p_2, gamma) rho_2 {
-	        rho_1 * ((p_2 / p_1)^(1/gamma))
+	        rho_1 * (p_2 / p_1)**(1/gamma)
 	    }
 	    
 	    // Shorthand for "mathematical" function definition (with no steps but the returned expression)
 	    function def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) 
-	    	T_2 = T_1 * ((p_2 / p_1)^((gamma - 1) / gamma));
+	    	T_2 = T_1 * (p_2 / p_1)**((gamma - 1) / gamma);
 	    
 	    // Examples of alternative keywords
 	    
-	    fn def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * (V ^ 2) + P_static;
+	    fn def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V ** 2 + P_static;
 	    
 	    // Showing explicit parameter typing
 	    calc def 'Total Temperature' (T_static : TemperatureValue, Cp : DimensionOneValue, V : VolumeValue) : TemperatureValue 
-	    	= 1/(2 * Cp) * (V ^ 2) + T_static;
+	    	= 1/(2 * Cp) * V ** 2 + T_static;
 	    
 	    compute def 'Total Enthalpy' (h_total, h_static, V) H_total {
-	    	1/2 * (V ^ 2) + h_static
+	    	1/2 * V ** 2 + h_static
 	    }
 	}
 	

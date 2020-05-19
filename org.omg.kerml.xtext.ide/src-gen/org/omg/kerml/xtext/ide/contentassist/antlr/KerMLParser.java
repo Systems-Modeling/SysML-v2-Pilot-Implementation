@@ -329,6 +329,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getGroup_1(), "rule__AdditiveExpression__Group_1__0");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getGroup(), "rule__MultiplicativeExpression__Group__0");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getGroup_1(), "rule__MultiplicativeExpression__Group_1__0");
+			builder.put(grammarAccess.getExponentiationExpressionAccess().getGroup(), "rule__ExponentiationExpression__Group__0");
+			builder.put(grammarAccess.getExponentiationExpressionAccess().getGroup_1(), "rule__ExponentiationExpression__Group_1__0");
 			builder.put(grammarAccess.getUnitsExpressionAccess().getGroup(), "rule__UnitsExpression__Group__0");
 			builder.put(grammarAccess.getUnitsExpressionAccess().getGroup_1(), "rule__UnitsExpression__Group_1__0");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getGroup_1(), "rule__UnaryExpression__Group_1__0");
@@ -599,6 +601,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getOperand_compAssignment_1_2(), "rule__AdditiveExpression__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getOperatorAssignment_1_1(), "rule__MultiplicativeExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compAssignment_1_2(), "rule__MultiplicativeExpression__Operand_compAssignment_1_2");
+			builder.put(grammarAccess.getExponentiationExpressionAccess().getOperatorAssignment_1_1(), "rule__ExponentiationExpression__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getExponentiationExpressionAccess().getOperand_compAssignment_1_2(), "rule__ExponentiationExpression__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getUnitsExpressionAccess().getOperatorAssignment_1_1(), "rule__UnitsExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getUnitsExpressionAccess().getOperand_compAssignment_1_3(), "rule__UnitsExpression__Operand_compAssignment_1_3");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOperatorAssignment_1_1(), "rule__UnaryExpression__OperatorAssignment_1_1");

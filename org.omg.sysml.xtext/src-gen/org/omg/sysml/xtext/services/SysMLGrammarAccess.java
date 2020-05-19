@@ -11665,6 +11665,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand_compXorExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
 		
+		//// Logical Expressions
 		//OrExpression SysML::Expression:
 		//	XorExpression ({SysML::OperatorExpression.operand_comp+=current} operator=OrOperator operand_comp+=XorExpression)*;
 		@Override public ParserRule getRule() { return rule; }
@@ -11697,7 +11698,6 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.OrOperator");
 		private final Keyword cVerticalLineKeyword = (Keyword)rule.eContents().get(1);
 		
-		//// Logical Expressions
 		//OrOperator:
 		//	'|';
 		@Override public ParserRule getRule() { return rule; }
@@ -12063,27 +12063,28 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class MultiplicativeExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MultiplicativeExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cUnitsExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cExponentiationExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperatorMultiplicativeOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperand_compUnitsExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperand_compExponentiationExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
 		
 		//MultiplicativeExpression SysML::Expression:
-		//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
-		//	operand_comp+=UnitsExpression)*;
+		//	ExponentiationExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+		//	operand_comp+=ExponentiationExpression)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
-		//operand_comp+=UnitsExpression)*
+		//ExponentiationExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+		//operand_comp+=ExponentiationExpression)*
 		public Group getGroup() { return cGroup; }
 		
-		//UnitsExpression
-		public RuleCall getUnitsExpressionParserRuleCall_0() { return cUnitsExpressionParserRuleCall_0; }
+		//ExponentiationExpression
+		public RuleCall getExponentiationExpressionParserRuleCall_0() { return cExponentiationExpressionParserRuleCall_0; }
 		
-		//({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator operand_comp+=UnitsExpression)*
+		//({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+		//operand_comp+=ExponentiationExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand_comp+=current}
@@ -12095,24 +12096,23 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//MultiplicativeOperator
 		public RuleCall getOperatorMultiplicativeOperatorParserRuleCall_1_1_0() { return cOperatorMultiplicativeOperatorParserRuleCall_1_1_0; }
 		
-		//operand_comp+=UnitsExpression
+		//operand_comp+=ExponentiationExpression
 		public Assignment getOperand_compAssignment_1_2() { return cOperand_compAssignment_1_2; }
 		
-		//UnitsExpression
-		public RuleCall getOperand_compUnitsExpressionParserRuleCall_1_2_0() { return cOperand_compUnitsExpressionParserRuleCall_1_2_0; }
+		//ExponentiationExpression
+		public RuleCall getOperand_compExponentiationExpressionParserRuleCall_1_2_0() { return cOperand_compExponentiationExpressionParserRuleCall_1_2_0; }
 	}
 	public class MultiplicativeOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MultiplicativeOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cAsteriskKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cSolidusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cAsteriskAsteriskKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//MultiplicativeOperator:
-		//	'*' | '/' | '**';
+		//	'*' | '/';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'*' | '/' | '**'
+		//'*' | '/'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'*'
@@ -12120,9 +12120,58 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'/'
 		public Keyword getSolidusKeyword_1() { return cSolidusKeyword_1; }
+	}
+	public class ExponentiationExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ExponentiationExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cUnitsExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperatorExponentiationOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOperand_compUnitsExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
+		
+		//ExponentiationExpression SysML::Expression:
+		//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator
+		//	operand_comp+=UnitsExpression)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator
+		//operand_comp+=UnitsExpression)*
+		public Group getGroup() { return cGroup; }
+		
+		//UnitsExpression
+		public RuleCall getUnitsExpressionParserRuleCall_0() { return cUnitsExpressionParserRuleCall_0; }
+		
+		//({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator operand_comp+=UnitsExpression)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current}
+		public Action getOperatorExpressionOperand_compAction_1_0() { return cOperatorExpressionOperand_compAction_1_0; }
+		
+		//operator=ExponentiationOperator
+		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		
+		//ExponentiationOperator
+		public RuleCall getOperatorExponentiationOperatorParserRuleCall_1_1_0() { return cOperatorExponentiationOperatorParserRuleCall_1_1_0; }
+		
+		//operand_comp+=UnitsExpression
+		public Assignment getOperand_compAssignment_1_2() { return cOperand_compAssignment_1_2; }
+		
+		//UnitsExpression
+		public RuleCall getOperand_compUnitsExpressionParserRuleCall_1_2_0() { return cOperand_compUnitsExpressionParserRuleCall_1_2_0; }
+	}
+	public class ExponentiationOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ExponentiationOperator");
+		private final Keyword cAsteriskAsteriskKeyword = (Keyword)rule.eContents().get(1);
+		
+		//ExponentiationOperator:
+		//	'**';
+		@Override public ParserRule getRule() { return rule; }
 		
 		//'**'
-		public Keyword getAsteriskAsteriskKeyword_2() { return cAsteriskAsteriskKeyword_2; }
+		public Keyword getAsteriskAsteriskKeyword() { return cAsteriskAsteriskKeyword; }
 	}
 	public class UnitsExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UnitsExpression");
@@ -13825,6 +13874,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final AdditiveOperatorElements pAdditiveOperator;
 	private final MultiplicativeExpressionElements pMultiplicativeExpression;
 	private final MultiplicativeOperatorElements pMultiplicativeOperator;
+	private final ExponentiationExpressionElements pExponentiationExpression;
+	private final ExponentiationOperatorElements pExponentiationOperator;
 	private final UnitsExpressionElements pUnitsExpression;
 	private final UnaryExpressionElements pUnaryExpression;
 	private final UnaryOperatorElements pUnaryOperator;
@@ -14184,6 +14235,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAdditiveOperator = new AdditiveOperatorElements();
 		this.pMultiplicativeExpression = new MultiplicativeExpressionElements();
 		this.pMultiplicativeOperator = new MultiplicativeOperatorElements();
+		this.pExponentiationExpression = new ExponentiationExpressionElements();
+		this.pExponentiationOperator = new ExponentiationOperatorElements();
 		this.pUnitsExpression = new UnitsExpressionElements();
 		this.pUnaryExpression = new UnaryExpressionElements();
 		this.pUnaryOperator = new UnaryOperatorElements();
@@ -17417,6 +17470,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConditionalAndOperatorAccess().getRule();
 	}
 	
+	//// Logical Expressions
 	//OrExpression SysML::Expression:
 	//	XorExpression ({SysML::OperatorExpression.operand_comp+=current} operator=OrOperator operand_comp+=XorExpression)*;
 	public OrExpressionElements getOrExpressionAccess() {
@@ -17427,7 +17481,6 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getOrExpressionAccess().getRule();
 	}
 	
-	//// Logical Expressions
 	//OrOperator:
 	//	'|';
 	public OrOperatorElements getOrOperatorAccess() {
@@ -17568,8 +17621,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MultiplicativeExpression SysML::Expression:
-	//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
-	//	operand_comp+=UnitsExpression)*;
+	//	ExponentiationExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+	//	operand_comp+=ExponentiationExpression)*;
 	public MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
 		return pMultiplicativeExpression;
 	}
@@ -17579,13 +17632,34 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MultiplicativeOperator:
-	//	'*' | '/' | '**';
+	//	'*' | '/';
 	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return pMultiplicativeOperator;
 	}
 	
 	public ParserRule getMultiplicativeOperatorRule() {
 		return getMultiplicativeOperatorAccess().getRule();
+	}
+	
+	//ExponentiationExpression SysML::Expression:
+	//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator
+	//	operand_comp+=UnitsExpression)*;
+	public ExponentiationExpressionElements getExponentiationExpressionAccess() {
+		return pExponentiationExpression;
+	}
+	
+	public ParserRule getExponentiationExpressionRule() {
+		return getExponentiationExpressionAccess().getRule();
+	}
+	
+	//ExponentiationOperator:
+	//	'**';
+	public ExponentiationOperatorElements getExponentiationOperatorAccess() {
+		return pExponentiationOperator;
+	}
+	
+	public ParserRule getExponentiationOperatorRule() {
+		return getExponentiationOperatorAccess().getRule();
 	}
 	
 	//// Units Expressions

@@ -10680,11 +10680,11 @@ ruleMultiplicativeExpression returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getUnitsExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getExponentiationExpressionParserRuleCall_0());
 		}
-		this_UnitsExpression_0=ruleUnitsExpression
+		this_ExponentiationExpression_0=ruleExponentiationExpression
 		{
-			$current = $this_UnitsExpression_0.current;
+			$current = $this_ExponentiationExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -10717,9 +10717,9 @@ ruleMultiplicativeExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compUnitsExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getOperand_compExponentiationExpressionParserRuleCall_1_2_0());
 					}
-					lv_operand_comp_3_0=ruleUnitsExpression
+					lv_operand_comp_3_0=ruleExponentiationExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMultiplicativeExpressionRule());
@@ -10728,7 +10728,7 @@ ruleMultiplicativeExpression returns [EObject current=null]
 							$current,
 							"operand_comp",
 							lv_operand_comp_3_0,
-							"org.omg.kerml.xtext.KerML.UnitsExpression");
+							"org.omg.kerml.xtext.KerML.ExponentiationExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -10764,13 +10764,103 @@ ruleMultiplicativeOperator returns [AntlrDatatypeRuleToken current=new AntlrData
 			$current.merge(kw);
 			newLeafNode(kw, grammarAccess.getMultiplicativeOperatorAccess().getSolidusKeyword_1());
 		}
-		    |
-		kw='**'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getMultiplicativeOperatorAccess().getAsteriskAsteriskKeyword_2());
-		}
 	)
+;
+
+// Entry rule entryRuleExponentiationExpression
+entryRuleExponentiationExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExponentiationExpressionRule()); }
+	iv_ruleExponentiationExpression=ruleExponentiationExpression
+	{ $current=$iv_ruleExponentiationExpression.current; }
+	EOF;
+
+// Rule ExponentiationExpression
+ruleExponentiationExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getUnitsExpressionParserRuleCall_0());
+		}
+		this_UnitsExpression_0=ruleUnitsExpression
+		{
+			$current = $this_UnitsExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndAdd(
+						grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperand_compAction_1_0(),
+						$current);
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperatorExponentiationOperatorParserRuleCall_1_1_0());
+					}
+					lv_operator_2_0=ruleExponentiationOperator
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
+						}
+						set(
+							$current,
+							"operator",
+							lv_operator_2_0,
+							"org.omg.kerml.xtext.KerML.ExponentiationOperator");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getExponentiationExpressionAccess().getOperand_compUnitsExpressionParserRuleCall_1_2_0());
+					}
+					lv_operand_comp_3_0=ruleUnitsExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getExponentiationExpressionRule());
+						}
+						add(
+							$current,
+							"operand_comp",
+							lv_operand_comp_3_0,
+							"org.omg.kerml.xtext.KerML.UnitsExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleExponentiationOperator
+entryRuleExponentiationOperator returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getExponentiationOperatorRule()); }
+	iv_ruleExponentiationOperator=ruleExponentiationOperator
+	{ $current=$iv_ruleExponentiationOperator.current.getText(); }
+	EOF;
+
+// Rule ExponentiationOperator
+ruleExponentiationOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	kw='**'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getExponentiationOperatorAccess().getAsteriskAsteriskKeyword());
+	}
 ;
 
 // Entry rule entryRuleUnitsExpression

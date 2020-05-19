@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.Relationship
 
 /**
  * This class contains custom validation rules. 
@@ -53,6 +54,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector - Connector context'
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
+	public static val INVALID_FEATURE_NO_TYPE = 'Invalid Feature - Mandatory typing'
+	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS = 'Invalid Relationship - Related element minimum validation'
+	
+	@Check
+	def checkFeature(Feature f){
+		if ( f.getType() !== null && f.getType().length == 0)
+			error("Features must have at least one type", f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
+		
+	}
+	@Check
+	def checkRelationship(Relationship r){
+		if ( r.getRelatedElement() !== null && r.getRelatedElement().length < 2)
+			error("Relationships must have at least two related elements", r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)
+	}
 	
 	@Check
 	def checkElement(Element e) {
@@ -128,7 +143,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			//Binding type conformance
 			val f1types = rf.get(0).type
 			val f2types = rf.get(1).type
-			
+			 
 			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
 			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
 			

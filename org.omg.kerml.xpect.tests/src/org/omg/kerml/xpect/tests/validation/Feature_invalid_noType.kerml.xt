@@ -1,0 +1,23 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+		}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package 'Test' {
+	package A {
+		class B{
+			// XPECT errors --> "Features must have at least one type" at "f;"
+			f;
+		}
+	}
+}

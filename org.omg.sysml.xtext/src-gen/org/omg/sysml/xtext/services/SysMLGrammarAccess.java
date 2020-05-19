@@ -4999,7 +4999,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedMemberFeature_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedMemberFeature_compParameterParserRuleCall_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_2.eContents().get(0);
 		
-		///* ACTIVITIY MEMBERSHIPS */ ParameterMember SysML::ParameterMembership:
+		///* ACTIVITY MEMBERSHIPS */ ParameterMember SysML::ParameterMembership:
 		//	direction=FeatureDirection? memberName=Name ownedMemberFeature_comp=Parameter;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5150,20 +5150,45 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FunctionDefinition");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cFunctionDefDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cFunctionBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cFunctionBodyParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cOwnedFeatureMembership_compAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_1_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		///* FUNCTION DEFINITIONS */ FunctionDefinition SysML::FunctionDefinition:
-		//	FunctionDefDeclaration FunctionBody;
+		//	FunctionDefDeclaration (FunctionBody
+		//	| '=' ownedFeatureMembership_comp+=ExpressionMember ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FunctionDefDeclaration FunctionBody
+		//FunctionDefDeclaration (FunctionBody | '=' ownedFeatureMembership_comp+=ExpressionMember ';')
 		public Group getGroup() { return cGroup; }
 		
 		//FunctionDefDeclaration
 		public RuleCall getFunctionDefDeclarationParserRuleCall_0() { return cFunctionDefDeclarationParserRuleCall_0; }
 		
+		//(FunctionBody | '=' ownedFeatureMembership_comp+=ExpressionMember ';')
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
 		//FunctionBody
-		public RuleCall getFunctionBodyParserRuleCall_1() { return cFunctionBodyParserRuleCall_1; }
+		public RuleCall getFunctionBodyParserRuleCall_1_0() { return cFunctionBodyParserRuleCall_1_0; }
+		
+		//'=' ownedFeatureMembership_comp+=ExpressionMember ';'
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_1_1_0() { return cEqualsSignKeyword_1_1_0; }
+		
+		//ownedFeatureMembership_comp+=ExpressionMember
+		public Assignment getOwnedFeatureMembership_compAssignment_1_1_1() { return cOwnedFeatureMembership_compAssignment_1_1_1; }
+		
+		//ExpressionMember
+		public RuleCall getOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0() { return cOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_1_1_2() { return cSemicolonKeyword_1_1_2; }
 	}
 	public class FunctionDefDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FunctionDefDeclaration");
@@ -5313,12 +5338,12 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//fragment AbstractFunctionBody returns SysML::Type:
 		//	isAbstract?=';'
 		//	| isAbstract?='{'
-		//	FunctionBodyItem*
+		//	=> FunctionBodyItem*
 		//	ownedFeatureMembership_comp+=ExpressionMember?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?=';' | isAbstract?='{' FunctionBodyItem* ownedFeatureMembership_comp+=ExpressionMember? '}'
+		//isAbstract?=';' | isAbstract?='{' => FunctionBodyItem* ownedFeatureMembership_comp+=ExpressionMember? '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//isAbstract?=';'
@@ -5327,7 +5352,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//';'
 		public Keyword getIsAbstractSemicolonKeyword_0_0() { return cIsAbstractSemicolonKeyword_0_0; }
 		
-		//isAbstract?='{' FunctionBodyItem* ownedFeatureMembership_comp+=ExpressionMember? '}'
+		//isAbstract?='{' => FunctionBodyItem* ownedFeatureMembership_comp+=ExpressionMember? '}'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//isAbstract?='{'
@@ -5336,7 +5361,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getIsAbstractLeftCurlyBracketKeyword_1_0_0() { return cIsAbstractLeftCurlyBracketKeyword_1_0_0; }
 		
-		//FunctionBodyItem*
+		//=> FunctionBodyItem*
 		public RuleCall getFunctionBodyItemParserRuleCall_1_1() { return cFunctionBodyItemParserRuleCall_1_1; }
 		
 		//ownedFeatureMembership_comp+=ExpressionMember?
@@ -15208,7 +15233,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getActivityBodyItemAccess().getRule();
 	}
 	
-	///* ACTIVITIY MEMBERSHIPS */ ParameterMember SysML::ParameterMembership:
+	///* ACTIVITY MEMBERSHIPS */ ParameterMember SysML::ParameterMembership:
 	//	direction=FeatureDirection? memberName=Name ownedMemberFeature_comp=Parameter;
 	public ParameterMemberElements getParameterMemberAccess() {
 		return pParameterMember;
@@ -15260,7 +15285,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* FUNCTION DEFINITIONS */ FunctionDefinition SysML::FunctionDefinition:
-	//	FunctionDefDeclaration FunctionBody;
+	//	FunctionDefDeclaration (FunctionBody
+	//	| '=' ownedFeatureMembership_comp+=ExpressionMember ';');
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
 		return pFunctionDefinition;
 	}
@@ -15316,7 +15342,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//fragment AbstractFunctionBody returns SysML::Type:
 	//	isAbstract?=';'
 	//	| isAbstract?='{'
-	//	FunctionBodyItem*
+	//	=> FunctionBodyItem*
 	//	ownedFeatureMembership_comp+=ExpressionMember?
 	//	'}';
 	public AbstractFunctionBodyElements getAbstractFunctionBodyAccess() {

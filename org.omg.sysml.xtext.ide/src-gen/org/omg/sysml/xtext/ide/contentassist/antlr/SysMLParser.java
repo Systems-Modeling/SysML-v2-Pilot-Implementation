@@ -93,6 +93,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getActivityBodyItemAccess().getAlternatives(), "rule__ActivityBodyItem__Alternatives");
 			builder.put(grammarAccess.getActivityBodyItemAccess().getOwnedFeatureMembership_compAlternatives_3_1_0(), "rule__ActivityBodyItem__OwnedFeatureMembership_compAlternatives_3_1_0");
 			builder.put(grammarAccess.getTargetSuccessionMemberAccess().getOwnedMemberFeature_compAlternatives_1_0(), "rule__TargetSuccessionMember__OwnedMemberFeature_compAlternatives_1_0");
+			builder.put(grammarAccess.getFunctionDefinitionAccess().getAlternatives_1(), "rule__FunctionDefinition__Alternatives_1");
 			builder.put(grammarAccess.getFunctionKeywordAccess().getAlternatives(), "rule__FunctionKeyword__Alternatives");
 			builder.put(grammarAccess.getFunctionBodyAccess().getAlternatives(), "rule__FunctionBody__Alternatives");
 			builder.put(grammarAccess.getAbstractFunctionBodyAccess().getAlternatives(), "rule__AbstractFunctionBody__Alternatives");
@@ -364,6 +365,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTargetSuccessionMemberAccess().getGroup(), "rule__TargetSuccessionMember__Group__0");
 			builder.put(grammarAccess.getGuardedSuccessionMemberAccess().getGroup(), "rule__GuardedSuccessionMember__Group__0");
 			builder.put(grammarAccess.getFunctionDefinitionAccess().getGroup(), "rule__FunctionDefinition__Group__0");
+			builder.put(grammarAccess.getFunctionDefinitionAccess().getGroup_1_1(), "rule__FunctionDefinition__Group_1_1__0");
 			builder.put(grammarAccess.getFunctionDefDeclarationAccess().getGroup(), "rule__FunctionDefDeclaration__Group__0");
 			builder.put(grammarAccess.getFunctionBodyAccess().getGroup_1(), "rule__FunctionBody__Group_1__0");
 			builder.put(grammarAccess.getAbstractFunctionBodyAccess().getGroup_1(), "rule__AbstractFunctionBody__Group_1__0");
@@ -864,6 +866,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getActivityNodeMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__ActivityNodeMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getTargetSuccessionMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__TargetSuccessionMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getGuardedSuccessionMemberAccess().getOwnedMemberFeature_compAssignment_0(), "rule__GuardedSuccessionMember__OwnedMemberFeature_compAssignment_0");
+			builder.put(grammarAccess.getFunctionDefinitionAccess().getOwnedFeatureMembership_compAssignment_1_1_1(), "rule__FunctionDefinition__OwnedFeatureMembership_compAssignment_1_1_1");
 			builder.put(grammarAccess.getFunctionDefDeclarationAccess().getIsAbstractAssignment_0(), "rule__FunctionDefDeclaration__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getFunctionDefDeclarationAccess().getNameAssignment_3(), "rule__FunctionDefDeclaration__NameAssignment_3");
 			builder.put(grammarAccess.getReturnParameterPartAccess().getOwnedFeatureMembership_compAssignment(), "rule__ReturnParameterPart__OwnedFeatureMembership_compAssignment");

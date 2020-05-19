@@ -1,4 +1,14 @@
 package 'Turbojet Stage Analysis' {
+	import Quantities::QuantityValue;
+	import UnitsAndScales::DimensionOneValue;
+	import ISQ::*;
+	
+	value type VolumeValue :> SIDerivedUnit {
+	   :>> lengthPowerFactor {
+			:>> exponent = 3;
+		}
+	}
+	
 	package 'Thermodynamic Functions' {
 	    function def 'Ideal Gas Law' (in rho, in R_bar, in T) return p {
 	        rho * R_bar * T
@@ -9,18 +19,17 @@ package 'Turbojet Stage Analysis' {
 	        rho_1 * (p_2 / p_1)^(1/gamma)
 	    }
 	    
-	    function def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) T_2 {
-	        T_1 * (p_2 / p_1)^((gamma - 1) / gamma)
-	    }
+	    // Shorthand for "mathematical" function definition (with no steps but the returned expression)
+	    function def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) 
+	    	T_2 = T_1 * (p_2 / p_1)^((gamma - 1) / gamma);
 	    
 	    // Examples of alternative keywords
-	    fn def 'Total Pressure' (P_static, rho, V) P_total {
-	        1/2 * rho * V ^ 2 + P_static
-	    }
 	    
-	    calc def 'Total Temperature' (T_static, Cp, V) T_total {
-	        1/(2 * Cp) * V ^ 2 + T_static
-	    }
+	    fn def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V ^ 2 + P_static;
+	    
+	    // Showing explicit parameter typing
+	    calc def 'Total Temperature' (T_static : TemperatureValue, Cp : DimensionOneValue, V : VolumeValue) : TemperatureValue 
+	    	= 1/(2 * Cp) * V ^ 2 + T_static;
 	    
 	    compute def 'Total Enthalpy' (h_total, h_static, V) H_total {
 	    	1/2 * V ^ 2 + h_static

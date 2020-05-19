@@ -607,7 +607,10 @@ GuardedSuccessionMember returns SysML::FeatureMembership :
 /* FUNCTION DEFINITIONS */
 
 FunctionDefinition returns SysML::FunctionDefinition :
-	FunctionDefDeclaration FunctionBody
+	FunctionDefDeclaration 
+	( FunctionBody 
+	| '=' ownedFeatureMembership_comp += ExpressionMember ';'
+	)
 ;
 
 fragment FunctionDefDeclaration returns SysML::FunctionDefinition :
@@ -633,7 +636,7 @@ fragment FunctionBody returns SysML::Type :
 fragment AbstractFunctionBody returns SysML::Type :
 	    isAbstract ?= ';' 
 	  | isAbstract ?= '{' 
-	  		FunctionBodyItem*
+	  		=> FunctionBodyItem*
 	        ( ownedFeatureMembership_comp += ExpressionMember )?
 	    '}'
 ;

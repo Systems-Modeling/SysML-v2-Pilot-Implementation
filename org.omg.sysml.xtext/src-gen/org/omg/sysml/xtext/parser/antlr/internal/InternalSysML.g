@@ -8449,17 +8449,49 @@ ruleFunctionDefinition returns [EObject current=null]
 			$current = $this_FunctionDefDeclaration_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		{
-			if ($current==null) {
-				$current = createModelElement(grammarAccess.getFunctionDefinitionRule());
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFunctionDefinitionRule());
+				}
+				newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getFunctionBodyParserRuleCall_1_0());
 			}
-			newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getFunctionBodyParserRuleCall_1());
-		}
-		this_FunctionBody_1=ruleFunctionBody[$current]
-		{
-			$current = $this_FunctionBody_1.current;
-			afterParserOrEnumRuleCall();
-		}
+			this_FunctionBody_1=ruleFunctionBody[$current]
+			{
+				$current = $this_FunctionBody_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			(
+				otherlv_2='='
+				{
+					newLeafNode(otherlv_2, grammarAccess.getFunctionDefinitionAccess().getEqualsSignKeyword_1_1_0());
+				}
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0());
+						}
+						lv_ownedFeatureMembership_comp_3_0=ruleExpressionMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+							}
+							add(
+								$current,
+								"ownedFeatureMembership_comp",
+								lv_ownedFeatureMembership_comp_3_0,
+								"org.omg.sysml.xtext.SysML.ExpressionMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				otherlv_4=';'
+				{
+					newLeafNode(otherlv_4, grammarAccess.getFunctionDefinitionAccess().getSemicolonKeyword_1_1_2());
+				}
+			)
+		)
 	)
 ;
 
@@ -8731,6 +8763,7 @@ ruleAbstractFunctionBody[EObject in_current]  returns [EObject current=in_curren
 				)
 			)
 			(
+				(ruleFunctionBodyItem[null])=>
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getAbstractFunctionBodyRule());

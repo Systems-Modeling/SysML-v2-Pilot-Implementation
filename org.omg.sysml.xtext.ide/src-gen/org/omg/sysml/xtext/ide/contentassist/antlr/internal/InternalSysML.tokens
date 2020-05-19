@@ -21,7 +21,7 @@
 ';'=30
 '<'=47
 '<='=49
-'='=109
+'='=106
 '=='=43
 '=>'=116
 '>'=48
@@ -68,7 +68,7 @@
 'from'=118
 'function'=33
 'hastype'=46
-'id'=108
+'id'=109
 'if'=25
 'import'=28
 'in'=63
@@ -95,7 +95,7 @@
 'ref'=84
 'require'=67
 'requirement'=83
-'return'=106
+'return'=107
 'satisfy'=94
 'send'=120
 'snapshot'=79
@@ -104,7 +104,7 @@
 'stream'=42
 'subsets'=39
 'succession'=89
-'then'=107
+'then'=108
 'timeslice'=78
 'to'=115
 'transition'=121

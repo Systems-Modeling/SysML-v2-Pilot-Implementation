@@ -119,6 +119,11 @@ public class SysML2PlantUMLText {
         return (diagramMode == MODE.StateMachine);
     }
 
+    /* If at least in StateMachine mode, ".." comment does not work. */
+    private boolean isDottedComment() {
+        return (diagramMode != MODE.StateMachine);
+    }
+
     private boolean showsMultiplicity() {
         return (diagramMode != MODE.Interconnection) && !skipStructure();
     }
@@ -296,35 +301,6 @@ public class SysML2PlantUMLText {
         public final Element dest;
         public final Element rel;
 
-        public String relString() {
-            if (rel instanceof Generalization) {
-            	if (rel instanceof FeatureTyping) {
-            		return " --:|> ";
-            	} else if (rel instanceof Redefinition) {
-                    return " --||> ";
-                } else {
-                    return " --|> ";
-                }
-            } else if (rel instanceof Comment) {
-                return " .. ";
-            } else if (rel instanceof TransitionUsage) {
-                return " --> ";
-            } else if (rel instanceof BindingConnector) {
-                return " -[thickness=5,#red]- ";
-            } else if (rel instanceof Succession) {
-                return " --> ";
-            } else if (rel instanceof Connector) {
-                return " -[thickness=3,#blue]- ";
-            } else if (rel instanceof PartProperty) {
-                return " *-- ";
-            } else if (rel instanceof ReferenceProperty) {
-                return " o-- ";
-            } else if (rel instanceof Classifier) {
-                return " +-- ";
-            }
-            throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
-        }
-
         private String description;
         public String getDescription() {
             return description;
@@ -337,6 +313,41 @@ public class SysML2PlantUMLText {
             this.description = description;
         }
     }
+
+    private String relString(Element rel) {
+        if (rel instanceof Generalization) {
+            if (rel instanceof FeatureTyping) {
+                return " --:|> ";
+            } else if (rel instanceof Redefinition) {
+                return " --||> ";
+            } else {
+                return " --|> ";
+            }
+        } else if (rel instanceof Comment) {
+            if (isDottedComment()) {
+                return " .. ";
+            } else {
+                return " --> ";
+            }
+        } else if (rel instanceof TransitionUsage) {
+            return " --> ";
+        } else if (rel instanceof BindingConnector) {
+            return " -[thickness=5,#red]- ";
+        } else if (rel instanceof Succession) {
+            return " --> ";
+        } else if (rel instanceof Connector) {
+            return " -[thickness=3,#blue]- ";
+        } else if (rel instanceof PartProperty) {
+            return " *-- ";
+        } else if (rel instanceof ReferenceProperty) {
+            return " o-- ";
+        } else if (rel instanceof Classifier) {
+            return " +-- ";
+        }
+        throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
+    }
+
+
 
     public boolean isValid(PRelation pr) {
         return checkId(pr.src) && checkId(pr.dest);
@@ -399,7 +410,7 @@ public class SysML2PlantUMLText {
 
                 // addMultiplicityString(sb, pr.src);
                 
-                sb.append(pr.relString());
+                sb.append(relString(pr.rel));
 
                 addMultiplicityString(sb, pr.rel);
 
@@ -701,7 +712,6 @@ public class SysML2PlantUMLText {
         } else {
             closeBlock(sb, sb2, "");
         }
-        flushPRelations(sb);
     }
 
     private void addConnector(StringBuilder sb, Connector c) {

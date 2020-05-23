@@ -39,7 +39,7 @@ import org.omg.sysml.lang.sysml.Usage;
 public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage {
 
 	public static final String FUNCTION_SUBSETTING_BASE_DEFAULT = "Functions::functionDefinitions";
-	public static final String FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT = "Function::FunctionInvocation::subinvocations";
+	public static final String FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT = "Functions::FunctionInvocation::subinvocations";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last

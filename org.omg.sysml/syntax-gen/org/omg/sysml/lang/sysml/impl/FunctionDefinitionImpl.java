@@ -125,7 +125,7 @@ public class FunctionDefinitionImpl extends ActivityImpl implements FunctionDefi
 	}
 
 	protected String getDefaultSupertype() {
-		return ACTIVITY_SUPERCLASS_DEFAULT;
+		return FUNCTION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
 	public BindingConnector getResultConnector() {

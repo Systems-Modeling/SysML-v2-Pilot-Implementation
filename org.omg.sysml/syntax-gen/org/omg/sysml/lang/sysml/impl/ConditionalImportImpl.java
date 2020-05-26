@@ -30,8 +30,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConditionalImportImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConditionalImportImpl#getSelector <em>Selector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConditionalImportImpl#getCondition_comp <em>Condition comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConditionalImportImpl#getSelector <em>Selector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConditionalImportImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -241,11 +241,11 @@ public class ConditionalImportImpl extends ImportImpl implements ConditionalImpo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION_COMP:
+				return getCondition_comp();
 			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
 				if (resolve) return getSelector();
 				return basicGetSelector();
-			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION_COMP:
-				return getCondition_comp();
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION:
 				if (resolve) return getCondition();
 				return basicGetCondition();
@@ -261,11 +261,11 @@ public class ConditionalImportImpl extends ImportImpl implements ConditionalImpo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
-				setSelector((Predicate)newValue);
-				return;
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION_COMP:
 				setCondition_comp((ImportCondition)newValue);
+				return;
+			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
+				setSelector((Predicate)newValue);
 				return;
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION:
 				setCondition((ImportCondition)newValue);
@@ -282,11 +282,11 @@ public class ConditionalImportImpl extends ImportImpl implements ConditionalImpo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
-				setSelector((Predicate)null);
-				return;
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION_COMP:
 				setCondition_comp((ImportCondition)null);
+				return;
+			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
+				setSelector((Predicate)null);
 				return;
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION:
 				setCondition((ImportCondition)null);
@@ -305,10 +305,10 @@ public class ConditionalImportImpl extends ImportImpl implements ConditionalImpo
 		switch (featureID) {
 			case SysMLPackage.CONDITIONAL_IMPORT__OWNED_RELATIONSHIP_COMP:
 				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
-			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
-				return basicGetSelector() != null;
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION_COMP:
 				return condition_comp != null;
+			case SysMLPackage.CONDITIONAL_IMPORT__SELECTOR:
+				return basicGetSelector() != null;
 			case SysMLPackage.CONDITIONAL_IMPORT__CONDITION:
 				return basicGetCondition() != null;
 		}

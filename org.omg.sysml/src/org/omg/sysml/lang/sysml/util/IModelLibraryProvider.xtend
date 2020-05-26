@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019-2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019 Model Driven Solutions, Inc.
   *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,19 +25,10 @@
 package org.omg.sysml.lang.sysml.util
 
 import org.omg.sysml.lang.sysml.Element
+import org.eclipse.emf.ecore.EReference
 
 interface IModelLibraryProvider {
 	
-	/**
-	 * Returns a model element with the given qualified name,
-	 * using the given parameter element as a context for
-	 * the search, e.g. to identify where to look for library model elements.
-	 * 
-	 * <p>
-	 * <strong>Important</strong>: the implementation does only consider qualified
-	 * names calculated from the containment hierarchy. Querying for alternate
-	 * names like relying on generalizations or aliases is not supported here.
-	 */
-	def Element getElement(Element context, String name)
+	def Element getElement(Element context, EReference reference, String name)
 	
 }

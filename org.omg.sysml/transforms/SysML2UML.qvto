@@ -348,7 +348,7 @@ mapping SysML::Expression::toValueSpecification(): UML::ValueSpecification
 		SysML::OperatorExpression::toExpression,
 		SysML::InstanceCreationExpression::toExpression,
 //		SysML::SequenceAccessExpression::toExpression,
-		SysML::SequenceConstructionExpression::toExpression,
+//		SysML::SequenceConstructionExpression::toExpression,
 		SysML::FeatureReferenceExpression::toExpression;
 
 mapping SysML::NullExpression::toLiteralNull(): UML::LiteralNull
@@ -419,11 +419,13 @@ mapping SysML::SequenceAccessExpression::toExpression(): UML::Expression
 }
 */
 
+/*
 mapping SysML::SequenceConstructionExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {
 	symbol := 'sequence';
 	operand := self.element->map toValueSpecification();
 }
+*/
 
 mapping SysML::FeatureReferenceExpression::toExpression(): UML::Expression
 	inherits SysML::Element::toNamedElement {

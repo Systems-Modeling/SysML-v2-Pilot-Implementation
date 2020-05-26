@@ -42,6 +42,7 @@ public interface Invariant extends BooleanExpression {
 	 * @see #setAssertionConnector(BindingConnector)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInvariant_AssertionConnector()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='invariant'"
 	 *        annotation="subsets"
 	 * @generated
 	 */

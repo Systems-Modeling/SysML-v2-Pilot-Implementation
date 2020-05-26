@@ -3,10 +3,13 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -17,6 +20,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 /**
  * <!-- begin-user-doc --> An implementation of the model object
  * '<em><b>Invocation Expression</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl#getArgument <em>Argument</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -40,6 +49,76 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Expression> getArgument() {
+		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
+				return getArgument();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
+				getArgument().clear();
+				getArgument().addAll((Collection<? extends Expression>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
+				getArgument().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT:
+				return !getArgument().isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
 	public List<? extends Feature> getArguments() {
 		return super.getOwnedFeature();
 	}
@@ -59,14 +138,11 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		if (argumentConnectors == null) {
 			argumentConnectors = new ArrayList<>();
 			List<Feature> input = getOwnedInput();
-			List<? extends Feature> arguments = getArguments();
+			List<Expression> arguments = getArgument();
 			for (int i = 0; i < input.size(); i++) {
 				if (i < arguments.size()) {
-					Feature argument = arguments.get(i);
 					argumentConnectors.add(addOwnedBindingConnector(
-							argument instanceof Expression ? 
-									((ExpressionImpl) arguments.get(i)).getResult(): 
-									argument, input.get(i)));
+							arguments.get(i).getResult(), input.get(i)));
 				}		
 			}
 		}

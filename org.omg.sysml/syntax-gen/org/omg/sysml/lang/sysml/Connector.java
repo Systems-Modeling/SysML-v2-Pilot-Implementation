@@ -46,7 +46,8 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The relatedFeatures of a Connector are the subsetted Features of the connectorEnds of the Connector.</p>
+	 * <p>The <tt>relatedFeatures</tt> of a Connector are the subsetted Features of the connectorEnds of the Connector.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()

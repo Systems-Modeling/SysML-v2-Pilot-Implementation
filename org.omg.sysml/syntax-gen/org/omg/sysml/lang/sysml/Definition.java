@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConstraint <em>Owned Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedTransition <em>Owned Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement <em>Owned Requirement</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFunction <em>Owned Function</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
@@ -282,6 +283,30 @@ public interface Definition extends Classifier {
 	 * @generated
 	 */
 	EList<RequirementUsage> getOwnedRequirement();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Function</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FunctionUsage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FunctionUsage#getFunctionOwningDefinition <em>Function Owning Definition</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction() <em>Owned Action</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FunctionUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Function</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedFunction()
+	 * @see org.omg.sysml.lang.sysml.FunctionUsage#getFunctionOwningDefinition
+	 * @model opposite="functionOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FunctionUsage> getOwnedFunction();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Usage</b></em>' reference list.

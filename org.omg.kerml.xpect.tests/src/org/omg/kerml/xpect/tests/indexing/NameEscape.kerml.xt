@@ -1,0 +1,27 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.indexing.KerMLIndexerTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//*
+XPECT exportedObjects ---
+	sysml::Package: NameEscape
+	sysml::Function: NameEscape::..
+	sysml::Parameter: NameEscape::..::parameter
+--- */
+
+package NameEscape {
+	
+	function '..'(parameter: Base::Anything): Base::Anything;
+}

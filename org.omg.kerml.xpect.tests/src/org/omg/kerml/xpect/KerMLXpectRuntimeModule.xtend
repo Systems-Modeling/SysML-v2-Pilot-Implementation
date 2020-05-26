@@ -8,4 +8,8 @@ class KerMLXpectRuntimeModule extends KerMLRuntimeModule {
 		KerMLXpectGlobalScopeProvider
 	}	
 	
+	override bindIModelLLibraryProvider() {
+		KerMLXpectLibraryProvider
+	}
+		
 }

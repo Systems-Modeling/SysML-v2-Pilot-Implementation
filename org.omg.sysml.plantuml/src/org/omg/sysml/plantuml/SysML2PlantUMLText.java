@@ -25,9 +25,11 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
@@ -62,9 +64,11 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 import com.google.inject.Inject;
 
@@ -77,6 +81,143 @@ public class SysML2PlantUMLText {
         Activity,
         Sequence,
         MIXED;
+    }
+
+    public static class StyleSwitch {
+        public final StyleRelSwitch styleRelSwitch;
+        public final StyleStereotypeSwitch styleStereotypeSwitch;
+
+        public void setComposite(boolean flag) {
+            if (styleStereotypeSwitch == null) return;
+            styleStereotypeSwitch.setComposite(flag);
+        }
+
+        public StyleSwitch(StyleRelSwitch styleRelSwitch,
+                           StyleStereotypeSwitch styleStereotypeSwitch) {
+            this.styleRelSwitch = styleRelSwitch;
+            this.styleStereotypeSwitch = styleStereotypeSwitch;
+        }
+    }
+
+    public static abstract class StyleRelSwitch extends SysMLSwitch<String> {
+    }
+
+    public static abstract class StyleStereotypeSwitch extends SysMLSwitch<String> {
+        protected boolean isComposite = false;
+        public void setComposite(boolean flag) {
+            this.isComposite = flag;
+        }
+        protected String defaultStr() {
+            return " <<";
+        }
+    }
+
+    public class StyleRelDefaultSwitch extends StyleRelSwitch {
+		@Override
+        public String caseFeatureTyping(FeatureTyping e) {
+            return " --:|> ";
+        }
+
+		@Override
+		public String caseRedefinition(Redefinition object) {
+            return "--||>";
+		}
+
+		@Override
+		public String caseConnector(Connector object) {
+            return " -[thickness=3]- ";
+		}
+
+		@Override
+		public String caseComment(Comment object) {
+            if (isDottedComment()) {
+                return " .. ";
+            } else {
+                return " --> ";
+            }
+		}
+
+		@Override
+		public String caseTransitionUsage(TransitionUsage object) {
+            return "  --> ";
+		}
+
+		@Override
+		public String caseClassifier(Classifier object) {
+            return " +-- ";
+		}
+
+		@Override
+		public String caseReferenceProperty(ReferenceProperty object) {
+            return " o-- ";
+		}
+
+		@Override
+		public String casePartProperty(PartProperty object) {
+            return " *-- ";
+		}
+
+		@Override
+		public String caseBindingConnector(BindingConnector object) {
+            return " -[thickness=5]- ";
+		}
+
+		@Override
+		public String caseGeneralization(Generalization object) {
+            return " --|> ";
+		}
+    }
+
+    public class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
+		@Override
+		public String caseClass(Class object) {
+            if (isComposite) return defaultStr();
+            if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
+            return null;
+		}
+
+		@Override
+		public String casePartProperty(PartProperty object) {
+            if (isComposite) return " ";
+            return " <<part>> ";
+		}
+    }
+
+    private final Set<SysML2PlantUMLStyle> styles = EnumSet.noneOf(SysML2PlantUMLStyle.class);
+    private StyleSwitch styleSwitch;
+    private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new StyleRelDefaultSwitch(),
+                                                                   new StyleStereotypeDefaultSwitch());
+
+    public void addStyle(SysML2PlantUMLStyle style) {
+        styles.add(style);
+        if (style.styleSwitch != null) {
+            styleSwitch = style.styleSwitch;
+        }
+    }
+
+    public void clearStyle() {
+        styles.clear();
+        styleSwitch = null;
+    }
+
+    private String getRelStyle(Element e) {
+        String ret;
+        if ((styleSwitch != null)
+            && (styleSwitch.styleRelSwitch != null)) {
+            ret = styleSwitch.styleRelSwitch.doSwitch(e);
+            if (ret != null) return ret;
+        }
+        return styleDefaultSwitch.styleRelSwitch.doSwitch(e);
+    }
+
+    private String getStereotypeStyle(Element e) {
+        String ret;
+        if ((styleSwitch != null)
+            && (styleSwitch.styleStereotypeSwitch != null)) {
+            ret = styleSwitch.styleStereotypeSwitch.doSwitch(e);
+            if (ret != null) return ret;
+        }
+        return styleDefaultSwitch.styleStereotypeSwitch.doSwitch(e);
     }
 
     @Inject
@@ -115,6 +256,16 @@ public class SysML2PlantUMLText {
         }
     }
 
+    private boolean classicStyle = true;
+
+    public void setClassicStyle(boolean flag) {
+        this.classicStyle = flag;
+    }
+
+    public boolean isClassic() {
+        return !classicStyle;
+    }
+
     private boolean skipStructure() {
         return (diagramMode == MODE.StateMachine);
     }
@@ -122,6 +273,21 @@ public class SysML2PlantUMLText {
     /* If at least in StateMachine mode, ".." comment does not work. */
     private boolean isDottedComment() {
         return (diagramMode != MODE.StateMachine);
+    }
+
+    private boolean isComposite() {
+        return diagramMode == MODE.Interconnection;
+    }
+
+    private void initStyle() {
+        if (styles.isEmpty()) {
+            clearStyle();
+            addStyle(SysML2PlantUMLStyle.DEFAULT);
+        }
+        if (styleSwitch != null) {
+            styleSwitch.setComposite(isComposite());
+        }
+        styleDefaultSwitch.setComposite(isComposite());
     }
 
     private boolean showsMultiplicity() {
@@ -192,18 +358,26 @@ public class SysML2PlantUMLText {
         return setupVisualizationMode(eObj);
     }
 
+    private void addStyleHeader(StringBuilder sb) {
+        for (SysML2PlantUMLStyle style: styles) {
+            sb.append(style.commandStr);
+        }
+        sb.append('\n');
+    }
+
     public String sysML2PUML(List<? extends EObject> eObjs) {
+        initStyle();
         StringBuilder sb = new StringBuilder();
         if (!skipStructure()) {
             sb.append("allow_mixing\n");
         }
-        
+
         if (diagramMode == MODE.Interconnection) {
             sb.append("skinparam ranksep 8\n");
-            // Linestyle should be managed by PlantUML Eclipse Plugin
-            // sb.append("skinparam linetype ortho\n");
             sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
         }
+
+        addStyleHeader(sb);
         
         restTexts.clear();
         idMap.clear();
@@ -224,7 +398,7 @@ public class SysML2PlantUMLText {
 
         return sb.toString();
     }
-
+    
 
     private List<StringBuilder> restTexts = new ArrayList<StringBuilder>();
 
@@ -315,39 +489,12 @@ public class SysML2PlantUMLText {
     }
 
     private String relString(Element rel) {
-        if (rel instanceof Generalization) {
-            if (rel instanceof FeatureTyping) {
-                return " --:|> ";
-            } else if (rel instanceof Redefinition) {
-                return " --||> ";
-            } else {
-                return " --|> ";
-            }
-        } else if (rel instanceof Comment) {
-            if (isDottedComment()) {
-                return " .. ";
-            } else {
-                return " --> ";
-            }
-        } else if (rel instanceof TransitionUsage) {
-            return " --> ";
-        } else if (rel instanceof BindingConnector) {
-            return " -[thickness=5,#red]- ";
-        } else if (rel instanceof Succession) {
-            return " --> ";
-        } else if (rel instanceof Connector) {
-            return " -[thickness=3,#blue]- ";
-        } else if (rel instanceof PartProperty) {
-            return " *-- ";
-        } else if (rel instanceof ReferenceProperty) {
-            return " o-- ";
-        } else if (rel instanceof Classifier) {
-            return " +-- ";
+        String val = getRelStyle(rel);
+        if (val == null) {
+            throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
         }
-        throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
+        return val;
     }
-
-
 
     public boolean isValid(PRelation pr) {
         return checkId(pr.src) && checkId(pr.dest);
@@ -741,6 +888,23 @@ public class SysML2PlantUMLText {
         return name + ": " + typeName;
     }
 
+    private String getStereotypeName(Type typ) {
+        String str = typ.eClass().getName();
+        if (str == null) return "";
+        if (str.isEmpty()) return str;
+
+        return Character.toLowerCase(str.charAt(0)) + str.substring(1);
+    }
+
+    private String styleString(Type typ) {
+        String ret = getStereotypeStyle(typ);
+        if (ret == null) {
+            return " <<(T,blue)" + getStereotypeName(typ) + ">> ";
+        }
+        if (ret.endsWith(" ")) return ret;
+        return ret + getStereotypeName(typ) + ">> ";
+    }
+
     private void addType(StringBuilder sb, Type typ, Type parent) {
         if (typ instanceof StateUsage) {
             StateUsage su = (StateUsage) typ;
@@ -753,14 +917,11 @@ public class SysML2PlantUMLText {
             owned2P(sb, typ, "");
         } else {
             String keyword = "class ";
-            String style = " ";
+            String style = styleString(typ);
             String name = extractName(typ);
             if (typ instanceof Block) {
                 if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";
-                    style = " <<block>> ";
-                } else {
-                    style = " << (B,green) >> ";
                 }
                 addGeneralizations(sb, typ);
             } else if (typ instanceof Class) {
@@ -771,8 +932,6 @@ public class SysML2PlantUMLText {
             } else if (typ instanceof PartProperty) {
                 if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";
-                } else {
-                    style = " << (P,lightgreen) >> ";
                 }
                 addGeneralizations(sb, typ);
             } else if (typ instanceof Connector) {
@@ -794,8 +953,6 @@ public class SysML2PlantUMLText {
 
                     closeBlock(sb, sb2, "");
                     return;
-                } else {
-                    style = " << (O,gray) >> ";
                 }
             } else if (typ instanceof Feature) {
                 addGeneralizations(sb, typ);
@@ -811,12 +968,9 @@ public class SysML2PlantUMLText {
                     addLink(sb, f);
                     owned2P(sb, typ, "");
                     return;
-                } else {
-                    style = " << (F,yellow) >> ";
                 }
             } else {
                 if (diagramMode == MODE.Interconnection) return;
-                style = " << (T,blue) >> ";
             }
             if (name == null) return;
             sb.append(keyword);

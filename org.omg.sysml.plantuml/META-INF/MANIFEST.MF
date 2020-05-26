@@ -7,10 +7,12 @@ Bundle-Version: 0.3.1.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.plantuml
 Import-Package: com.google.inject;version="1.3.0",
- net.sourceforge.plantuml;version="1.2020.06.himi1",
+ net.sourceforge.plantuml;version="1.2020.6.himi1",
  org.eclipse.emf.common,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore,
- org.omg.sysml.lang.sysml
+ org.eclipse.emf.ecore.util,
+ org.omg.sysml.lang.sysml,
+ org.omg.sysml.lang.sysml.util
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: SysML v2 Submission Team

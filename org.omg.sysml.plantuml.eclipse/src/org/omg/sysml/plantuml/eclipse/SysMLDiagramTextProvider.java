@@ -46,6 +46,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
 import org.omg.sysml.plantuml.SysML2PlantUMLText;
 
 import net.sourceforge.plantuml.eclipse.utils.DiagramTextProviderS2;
@@ -142,4 +143,17 @@ public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvi
         Resource res = resourceSet.getResource(uri, true);
         return sysml2PlantUMLText.sysML2PUML(res.getContents());
     }
+
+	@Override
+	public Collection<String> getStyles() {
+		return SysML2PlantUMLStyle.getStyleTitles();
+	}
+
+	@Override
+	public void setStyle(String title) {
+        SysML2PlantUMLStyle s = SysML2PlantUMLStyle.getStyle(title);
+        if (s == null) return;
+        sysml2PlantUMLText.clearStyle();
+        sysml2PlantUMLText.addStyle(s);
+	}
 }

@@ -373,7 +373,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	protected Type getDefaultType(String... defaultNames) {
 		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+			EObject element = SysMLLibraryUtil.getLibraryElement(this, defaultName);
 			if (element instanceof Type) {
 				return (Type)element;
 			}

@@ -49,6 +49,9 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    * To install Xtext into an existing Eclipse 4.12 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
       * http://download.eclipse.org/releases/2019-12
 
+   * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
+     the update site of https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/ with Help > Install New Software.
+
 2. Clone our GitHub repository from the URL below.
    * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
 
@@ -65,7 +68,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
    * [Gradle](https://gradle.org/) is used to build project `org.omg.sysml.jupyter`.
    * [Maven](https://maven.apache.org/) is used to build `org.omg.sysml.interactive\dist\sysmli.jar` (which is used by `org.omg.sysml.jupyter`). 
         * To build the JAR, invoke `mvn clean package` from the base `SysML-v2-Pilot-Implementation` directory. 
-        * If you have [M2Eclipse](https://www.eclipse.org/m2e/) installed (with the Tycho Project Configurators connector), it can also be built using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.
+        * If you have [M2Eclipse](https://www.eclipse.org/m2e/) installed (with the Tycho Project Configurators connector), it can also be built using the launch configuration in `SysML-v2-Pilot-Implementation/launch`.   * [PlantUML]: `ISYSML_GRAPHVIZ_PATH` environment variable needs to point to `dot` executable of GraphViz to use PlantUML
 
 ### Prototype SysML Implementation
 

@@ -58,6 +58,8 @@ particularly if the `Quantities and Units` library is being used. This will be f
 
 This release includes a prototype graphical visualization capability with diagrams rendered using the open source [PlantUML](https://plantuml.com) tooling.
 
+0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions.  You can install it from the update site of https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/ with Help > Install New Software
+
 1. PlantUML visualization requires that [GraphViz](https://www.graphviz.org) be installed. Visit [ https://www.graphviz.org/download/](https://www.graphviz.org/download/) 
 and download the appropriate package for your environment.
 

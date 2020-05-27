@@ -59,13 +59,15 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeature(Feature f){
-		if ( f.getType() !== null && f.getType().length == 0)
+		val types = f.type;
+		if (types !== null && types.isEmpty)
 			error("Features must have at least one type", f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
 		
 	}
 	@Check
 	def checkRelationship(Relationship r){
-		if ( r.getRelatedElement() !== null && r.getRelatedElement().length < 2)
+		val relatedElements = r.getRelatedElement
+		if ( relatedElements !== null && relatedElements.length < 2)
 			error("Relationships must have at least two related elements", r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)
 	}
 	

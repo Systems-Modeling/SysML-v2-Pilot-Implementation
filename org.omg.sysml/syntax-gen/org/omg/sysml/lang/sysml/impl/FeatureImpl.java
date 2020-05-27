@@ -203,31 +203,31 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public EList<Type> getType() {
 		if (types == null) {
 			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
-			getTypes(this, types, new HashSet<Feature>());
+			getTypes(types, new HashSet<Feature>());
 		}
 		return types;
 	}
 	
-	public static void getTypes(Feature feature, List<Type> types, Set<Feature> visitedFeatures) {
-		visitedFeatures.add(feature);
-		getFeatureTypes(feature, types);
-		Conjugation conjugator = feature.getConjugator();
+	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
+		visitedFeatures.add(this);
+		getFeatureTypes(types);
+		Conjugation conjugator = getConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
 			if (originalType instanceof Feature) {
-				getTypes((Feature)originalType, types, visitedFeatures);
+				((FeatureImpl)originalType).getTypes(types, visitedFeatures);
 			}
 		}
-		for (Subsetting subsetting: feature.getOwnedSubsetting()) {
+		for (Subsetting subsetting: getOwnedSubsetting()) {
 			Feature subsettedFeature = subsetting.getSubsettedFeature();
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
-				getTypes(subsettedFeature, types, visitedFeatures);
+				((FeatureImpl)subsettedFeature).getTypes(types, visitedFeatures);
 			}
 		}		
 	}
 	
-	public static void getFeatureTypes(Feature feature, List<Type> types) {
-		types.addAll(feature.getTyping().stream().
+	protected void getFeatureTypes(List<Type> types) {
+		types.addAll(getTyping().stream().
 				map(typing->typing.getType()).filter(type->type != null).collect(Collectors.toList()));
 	}
 

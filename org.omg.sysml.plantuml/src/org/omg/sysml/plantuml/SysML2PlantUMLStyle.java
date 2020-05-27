@@ -47,7 +47,19 @@ public enum SysML2PlantUMLStyle {
             + "skinparam classbackgroundcolor white\n"
             + "skinparam shadowing false\n"
             + "hide circle\n"),
-    PLANTUML("PlantUML Default", " ",
+    STDCOLOR("Standard style with colors",
+             "hide circle\n",
+             new StyleSwitch(new StyleRelSwitch() {
+                 @Override
+                 public String caseConnector(Connector object) {
+                     return " -[thickness=3,#blue]- ";
+                 }
+                 @Override
+                 public String caseBindingConnector(BindingConnector object) {
+                     return " -[thickness=5,#red]- ";
+                 }
+             }, null)),
+    PLANTUML("PlantUML Style", " ",
              new StyleSwitch(new StyleRelSwitch() {
                  @Override
                  public String caseConnector(Connector object) {

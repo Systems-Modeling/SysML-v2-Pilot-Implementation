@@ -9,6 +9,9 @@ import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
+import com.google.inject.Binder
+import com.google.inject.name.Names
+import org.eclipse.xtext.validation.CompositeEValidator
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 
@@ -28,8 +31,12 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		SysMLGlobalScopeProvider
 	}
-
+	
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		KerMLQualifiedNameProvider
+	}
+	
+	def void configureUseEObjectValidator(Binder binder) {
+		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
 	}
 }

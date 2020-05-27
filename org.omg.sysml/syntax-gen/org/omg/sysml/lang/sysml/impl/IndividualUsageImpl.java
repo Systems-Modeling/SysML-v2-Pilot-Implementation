@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -216,6 +218,12 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 		super.computeImplicitGeneralization();
 	}
 		
+	@Override
+	protected void getFeatureTypes(List<Type> types) {
+		setTypingFor(this);
+		super.getFeatureTypes(types);
+	}
+
 	public static void setTypingFor(Feature feature) {
 		Type owningType = feature.getOwningType();
 		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {

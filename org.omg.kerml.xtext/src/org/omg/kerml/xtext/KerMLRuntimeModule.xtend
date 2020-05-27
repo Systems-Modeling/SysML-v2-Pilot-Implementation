@@ -11,6 +11,9 @@ import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
 import org.omg.kerml.xtext.library.KerMLLibraryProvider
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
+import com.google.inject.Binder
+import com.google.inject.name.Names
+import org.eclipse.xtext.validation.CompositeEValidator
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -31,5 +34,9 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		KerMLQualifiedNameProvider
+	}
+	
+	def void configureUseEObjectValidator(Binder binder) {
+		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
 	}
 }

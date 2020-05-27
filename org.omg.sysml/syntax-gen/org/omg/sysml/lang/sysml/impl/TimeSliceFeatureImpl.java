@@ -52,6 +52,12 @@ public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeS
 	}
 	
 	@Override
+	protected void getFeatureTypes(List<Type> types) {
+		IndividualUsageImpl.setTypingFor(this);
+		super.getFeatureTypes(types);
+	}
+
+	@Override
 	public void computeImplicitGeneralization() {
 		IndividualUsageImpl.setTypingFor(this);
 		super.computeImplicitGeneralization();

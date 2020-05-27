@@ -14,6 +14,7 @@ import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import com.google.inject.Binder
 import com.google.inject.name.Names
 import org.eclipse.xtext.validation.CompositeEValidator
+import org.omg.kerml.xtext.scoping.KerMLLinker
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -34,6 +35,10 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 
 	override Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		KerMLQualifiedNameProvider
+	}
+
+	override Class<? extends org.eclipse.xtext.linking.ILinker> bindILinker() {
+		KerMLLinker
 	}
 	
 	def void configureUseEObjectValidator(Binder binder) {

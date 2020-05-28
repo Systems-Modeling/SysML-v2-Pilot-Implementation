@@ -42,7 +42,7 @@ import org.omg.sysml.plantuml.SysML2PlantUMLText.StyleStereotypeSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLText.StyleSwitch;
 
 public enum SysML2PlantUMLStyle {
-    DEFAULT("Standard B&W",
+    DEFAULT("Standard B&&W",
     		"skinparam monochrome true\n"
             + "skinparam classbackgroundcolor white\n"
             + "skinparam shadowing false\n"

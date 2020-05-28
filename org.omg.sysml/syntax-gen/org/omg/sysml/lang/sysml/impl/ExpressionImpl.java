@@ -81,13 +81,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated NOT
 	 */
 	public Function basicGetFunction() {
-		EList<Behavior> behaviors = super.getBehavior();
-		if (behaviors.isEmpty()) {
-			return null;
-		} else {
-			Behavior behavior = behaviors.get(0);
-			return behavior instanceof Function? (Function)behavior: null;
-		}
+		return (Function)super.getBehavior().stream().
+				filter(Function.class::isInstance).
+				findFirst().orElse(null);
 	}
 
 	/**
@@ -168,16 +164,20 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = super.getOwnedInput();
 		if (inputs.isEmpty()) {
-			Function function = getFunction();
-			if (function != null) {
-				for (Feature parameter: function.getInput()) {
-					if (parameter instanceof Parameter && parameter.getOwner() == function) {
+			Type type = getExpressionType();
+			if (type != null) {
+				for (Feature parameter: type.getInput()) {
+					if (parameter instanceof Parameter && parameter.getOwner() == type) {
 						inputs.add(createFeatureForParameter(parameter));
 					}
 				}
 			}
 		}
 		return inputs;
+	}
+	
+	protected Type getExpressionType() {
+		return getFunction();
 	}
 	
 	@Override

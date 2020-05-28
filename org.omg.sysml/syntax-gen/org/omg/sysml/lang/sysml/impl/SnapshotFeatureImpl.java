@@ -52,9 +52,9 @@ public class SnapshotFeatureImpl extends ReferencePropertyImpl implements Snapsh
 	}
 	
 	@Override
-	protected void getFeatureTypes(List<Type> types) {
+	protected List<Type> getFeatureTypes(List<Type> types) {
 		IndividualUsageImpl.setTypingFor(this);
-		super.getFeatureTypes(types);
+		return super.getFeatureTypes(types);
 	}
 
 	@Override

@@ -28,13 +28,11 @@
  *****************************************************************************/
 package org.omg.kerml.xtext.validation
 
-import org.omg.sysml.lang.sysml.Type
-import java.util.Set
+import java.util.List
 import org.eclipse.xtext.validation.Check
-import org.eclipse.emf.common.util.EList
+import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Connector
-import java.util.List
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.Feature
@@ -43,6 +41,7 @@ import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
+import org.omg.sysml.lang.sysml.impl.TypeImpl
 
 /**
  * This class contains custom validation rules. 
@@ -156,35 +155,19 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	//return related subtypes
-	protected def Iterable<Type> conformsFrom(Type supertype, EList<Type> subtypes) 
+	protected def Iterable<Type> conformsFrom(Type supertype, List<Type> subtypes) 
 	{
 		subtypes.filter[subtype|subtype.conformsTo(supertype)]
 	}
 	
 	//return related supertypes
-    protected def Iterable<Type> conformsTo(Type subtype, EList<Type> supertypes) 
+    protected def Iterable<Type> conformsTo(Type subtype, List<Type> supertypes) 
 	{
 		supertypes.filter[supertype|subtype.conformsTo(supertype)]
 	}
 
 	protected def boolean conformsTo(Type subtype, Type supertype) {
-		subtype.conformsTo(supertype, newHashSet);
+		supertype === null || (subtype as TypeImpl).conformsTo(supertype);
 	}
 	
-	// Note: Generalizations are allowed to be cyclic.
-	protected def boolean conformsTo(Type subtype, Type supertype, Set<Type> visited) {
-		if (supertype === null || subtype === supertype) {
-			true
-		} else {
-			visited.add(subtype)
-			if (subtype.isConjugated) {
-				var originalType = subtype.ownedConjugator.originalType	
-				!visited.contains(originalType) && originalType.conformsTo(supertype)
-			} else {
-				subtype.ownedGeneralization.exists[!visited.contains(general) && general.conformsTo(supertype, visited)]
-			}
-		}
-	}
-	
-
 }

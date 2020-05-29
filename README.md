@@ -78,7 +78,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 4. Turn off Project > Build Automatically.
 
-5. Import the projects `kerml`, `sysml` and `sysml.library` into the runtime Eclipse workspace.
+5. Import the projects `kerml`, `sysml` and `sysml.library` into the runtime Eclipse workspace. (See the following section if you wish to create additional projects.)
 
 6. Execute Project > Clean with the following settings:
    * Clean all projects: *Not* selected
@@ -95,22 +95,22 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 #### Initializing New SysML Model Projects
 
-1. Open the `New` project wizard by selecting File -> New -> Project... menu item.
+1. Open the New project wizard by selecting File > New > Project... menu item.
 
-2. Select `General`/`Project`.
+2. Select General/Project.
 
-3. Given the project its expected name (and location if necessary), then go to the `Next` page.
+3. Given the project its expected name (and location if necessary), then press Next.
 
-4. In the `Project References` page check the `sysml.library` project. This step tells Eclipse which other projects should be visible for resolving cross-references.
+4. On the Project References page, check the `sysml.library` project. This step tells Eclipse which other projects should be visible for resolving cross-references.
 ![project wizard](project-wizard.png)
 
-5. Right-click the new project and select Configure->Convert to Xtext project. This step sets up the indexing infrastructure necessary for resolving references between different files.
+5. Right-click the new project and select Configure > Convert to an Xtext project. This step sets up the indexing infrastructure necessary for resolving references between different files.
 
 6. Create any text files with `.kerml` or `.sysml` extensions to start working with a new file.  
 
-** Note:** Adding the project references to an existing project can be done in the project `Properties` dialog available from the popup menu on the project in the `Project References` page.
+** Note:** Adding the project references to an existing project can be done in the project Properties dialog available from the popup menu on the project in the Project References page.
 
-** Note:** If the Xtext setup (step 5.) was missing, opening the KerML or SysML editor shows a dialog asking to convert the project to an Xtext project. Accepting this has the same results than manually selecting the menu item on the project. 
+** Note:** If the Xtext setup (step 5) is missing, opening the KerML or SysML editor shows a dialog asking to convert the project to an Xtext project. Accepting this has the same results as manually selecting the menu item on the project. 
 
 ## Copyright License Header
 

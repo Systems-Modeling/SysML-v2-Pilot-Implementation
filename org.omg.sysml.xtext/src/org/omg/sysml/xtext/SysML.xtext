@@ -229,20 +229,20 @@ fragment PackagedUsageMember returns SysML::Membership :
 
 fragment DefinitionBody returns SysML::Type :
 	  ';' 
-	| '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += NestedUsageMember 
-		| ownedImport_comp += Import
-	)* '}'
+	| '{' DefinitionBodyItem* '}'
 ;
 
 fragment AbstractDefinitionBody returns SysML::Type :
 	  isAbstract ?= ';' 
-	| isAbstract ?= '{' ( 
+	| isAbstract ?= '{' DefinitionBodyItem* '}'
+;
+
+fragment DefinitionBodyItem returns SysML::Type :
 		  ownedMembership_comp += NestedDefinitionMember 
 		| ownedFeatureMembership_comp += NestedUsageMember 
-		| ownedImport_comp += Import
-	)* '}'
+		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
+		  ownedFeatureMembership_comp += IndividualUsageMember
+		| => ownedImport_comp += Import	
 ;
 
 /* DEFINITION MEMBERSHIPS */
@@ -268,12 +268,6 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractReferenceProperty
 	| 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractValueProperty
-	|  ( 'ref' 'individual' | isComposite ?= 'individual') ( direction = FeatureDirection )? ownedMemberFeature_comp = IndividualUsage
-	| 'abstract' ( 'ref' 'individual' | isComposite ?= 'individual') ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractIndividualUsage
-	|  ( 'ref' 'timeslice' | isComposite ?= 'timeslice' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = TimeSliceUsage
-	| 'abstract' ( 'ref' 'timeslice' | isComposite ?= 'timeslice' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractTimeSliceUsage
-	|  ( 'ref' 'snapshot' | isComposite ?= 'snapshot' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = SnapshotUsage
-	| 'abstract' ( 'ref' 'snapshot' | isComposite ?= 'snapshot' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSnapshotUsage
 	| 'link' ownedMemberFeature_comp = ConnectionUsage 
     | 'abstract' 'link' ownedMemberFeature_comp = AbstractConnectionUsage
  	| 'connect' ownedMemberFeature_comp = Connector 
@@ -288,6 +282,18 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	| 'flow' ownedMemberFeature_comp = SuccessionItemFlow 
     | 'abstract' 'flow' ownedMemberFeature_comp = AbstractSuccessionItemFlow
     )
+;
+
+IndividualUsageMember returns SysML::FeatureMembership :
+	DefinitionMemberPrefix
+	(
+	  ( 'ref' 'individual' | isComposite ?= 'individual') ( direction = FeatureDirection )? ownedMemberFeature_comp = IndividualUsage
+	| 'abstract' ( 'ref' 'individual' | isComposite ?= 'individual') ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractIndividualUsage
+	|  ( 'ref' 'timeslice' | isComposite ?= 'timeslice' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = TimeSliceUsage
+	| 'abstract' ( 'ref' 'timeslice' | isComposite ?= 'timeslice' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractTimeSliceUsage
+	|  ( 'ref' 'snapshot' | isComposite ?= 'snapshot' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = SnapshotUsage
+	| 'abstract' ( 'ref' 'snapshot' | isComposite ?= 'snapshot' ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSnapshotUsage
+	)
 ;
 
 BehaviorUsageMember returns SysML::FeatureMembership :
@@ -431,6 +437,8 @@ fragment AssociationBlockBody returns SysML::Type :
 	| '{' (
 		  ownedMembership_comp += NestedDefinitionMember 
 		| ownedFeatureMembership_comp += AssociationUsageMember
+		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
+		  ownedFeatureMembership_comp += IndividualUsageMember
 		| ownedImport_comp += Import
 	  )* '}'
 ;
@@ -440,6 +448,8 @@ fragment AbstractAssociationBlockBody returns SysML::Type :
 	| isAbstract ?= '{' ( 
 		  ownedMembership_comp += NestedDefinitionMember 
 		| ownedFeatureMembership_comp += AssociationUsageMember
+		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
+		  ownedFeatureMembership_comp += IndividualUsageMember
 		| ownedImport_comp += Import
 	)* '}'
 ;
@@ -547,12 +557,14 @@ fragment ActivityBody returns SysML::Type :
 ;
 
 fragment AbstractActivityBody returns SysML::Type :
-	  isAbstract ?= ';' | isAbstract ?= '{' ActivityBodyItem* '}'
+	  isAbstract ?= ';' | isAbstract ?= '{' => ActivityBodyItem* '}'
 ;
 
 fragment ActivityBodyItem returns SysML::Type :
 	  ownedMembership_comp += NestedDefinitionMember 
 	| ownedFeatureMembership_comp += StructureUsageMember
+	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
+	  ownedFeatureMembership_comp += IndividualUsageMember
 	| ownedFeatureMembership_comp += InitialNodeMember
 	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
 	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
@@ -618,6 +630,8 @@ fragment StateBodyPart returns SysML::Type :
 fragment StateBodyItem returns SysML::Type :
 	  ownedMembership_comp += NestedDefinitionMember 
 	| ownedFeatureMembership_comp += StructureUsageMember
+	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
+	  ownedFeatureMembership_comp += IndividualUsageMember
 	| ownedFeatureMembership_comp += StateMember
 		( ownedFeatureMembership_comp += TargetTransitionSuccessionMember )*
 	| ownedFeatureMembership_comp += TransitionStepMember
@@ -704,10 +718,7 @@ fragment AbstractConstraintBody returns SysML::Type :
 ;
 
 fragment ConstraintMembers returns SysML::Type :
-	( ownedMembership_comp += NestedDefinitionMember 
-	| ownedFeatureMembership_comp += NestedUsageMember 
-	| ownedImport_comp += Import
-	)* 
+	DefinitionBodyItem* 
 	( ownedFeatureMembership_comp += ConstraintExpressionMember )?
 ;
 
@@ -743,20 +754,16 @@ fragment RequirementDefParameterList returns SysML::Type :
 ;
 
 fragment RequirementBody returns SysML::Type :
-	  ';' | '{' RequirementMembers '}'
+	  ';' | '{' => RequirementBodyItem* '}'
 ;
 
 fragment AbstractRequirementBody returns SysML::Type :
-	  isAbstract ?= ';' | isAbstract ?= '{' RequirementMembers '}'
+	  isAbstract ?= ';' | isAbstract ?= '{' => RequirementBodyItem* '}'
 ;
 
-fragment RequirementMembers returns SysML::Type :
-	( 
-	  ownedMembership_comp += NestedDefinitionMember 
-	| ownedFeatureMembership_comp += NestedUsageMember 
+fragment RequirementBodyItem returns SysML::Type :
+	  DefinitionBodyItem
 	| ownedFeatureMembership_comp += RequirementConstraintMember
-	| ownedImport_comp += Import
-	)*
 ;
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :

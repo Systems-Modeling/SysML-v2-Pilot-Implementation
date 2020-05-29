@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018-2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2018-2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,14 +29,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.sysml.util.SysMLUtil;
 
 /**
- * This is a utility program for reading one or more KerML source files and writing the corresponding SysML
- * Ecore XMI files. The path for a file or root directory for the Alf source is given as the first argument,
- * which is required. The XMI files are written with a ".sysmlx" extension in the same directory as the 
+ * This is a utility program for reading one or more KerML source files and writing the corresponding KerML
+ * Ecore XMI files. The path for a file or root directory for the KerMNL source is given as the first argument,
+ * which is required. The XMI files are written with a ".kermlx" extension in the same directory as the 
  * corresponding source file. Other arguments may be used to specify paths for library directories. Source
  * files are read from these directories, in order to resolve cross-file proxy references, but no corresponding 
  * XMI files are written for them.
@@ -46,11 +47,11 @@ import org.omg.sysml.util.SysMLUtil;
  */
 public class KerML2XMI extends SysMLUtil {
 	
-	public static final String SYSML_EXTENSION = ".sysmlx";
+	public static final String KERML_XMI_EXTENSION = "kermlx";
 	
 	public KerML2XMI() {
 		super();
-	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(SYSML_EXTENSION, new XMIResourceFactoryImpl());
+	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(KERML_XMI_EXTENSION, new XMIResourceFactoryImpl());
 		KerMLStandaloneSetup.doSetup();
 		this.addExtension(".kerml");
 	}
@@ -75,6 +76,8 @@ public class KerML2XMI extends SysMLUtil {
 	 * @throws 	IOException
 	 */
 	public void write() throws IOException {
+		System.out.println("Resolving proxies...");
+		EcoreUtil.resolveAll(this.resourceSet);
 		Set<Resource> outputResources = new HashSet<Resource>();
 		for (Object object: this.resourceSet.getResources().toArray()) {
 			Resource resource = (Resource)object;
@@ -91,7 +94,7 @@ public class KerML2XMI extends SysMLUtil {
 	
 	/**
 	 * Get an output path to be used for the given input path. By default, this method simply replaces the
-	 * extension on the input path with a SysML extension on the output path. However, this behavior can
+	 * extension on the input path with a KerML XMI extension on the output path. However, this behavior can
 	 * be overridden in subclasses.
 	 * 
 	 * @param 	inputPath		the path of a resource that is to be written to a corresponding output resource
@@ -103,12 +106,12 @@ public class KerML2XMI extends SysMLUtil {
 		if (i >= 0) {
 			outputPath = inputPath.substring(0, i);
 		}
-		return outputPath + SYSML_EXTENSION;
+		return outputPath + "." + KERML_XMI_EXTENSION;
 	}
 	
 	/**
 	 * The main program reads all the KerML resources rooted in the paths given as arguments and then
-	 * writes out SysML XMI files for the resources from the first argument path.
+	 * writes out KerML XMI files for the resources from the first argument path.
 	 * 
 	 * @param 	args	the first argument is a path for reading input resources, while other arguments
 	 * 					are paths for reading library resources

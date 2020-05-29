@@ -28,12 +28,16 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.resource.IResourceDescription.Manager;
+import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -51,15 +55,31 @@ public abstract class SysMLUtil {
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
+	private Optional<Manager> resourceDescriptionManager;
+	// NOTE: index is null if resourceDescriptionManager is Optional#empty
+	private ResourceDescriptionsData index;
 	
-	protected SysMLUtil(ResourceSet resourceSet) {
+	protected SysMLUtil(ResourceSet resourceSet, Optional<IResourceDescription.Manager> resourceDescriptionManager) {
+		this.resourceDescriptionManager = resourceDescriptionManager;
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		this.resourceSet = resourceSet;
+		
+		resourceDescriptionManager.ifPresent(manager -> {
+			index = ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet);
+			if (index == null) {
+				index = new ResourceDescriptionsData(new ArrayList<IResourceDescription>());
+				ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, index);
+			}
+		});
 	}
 	
 	protected SysMLUtil() {
-		this(new ResourceSetImpl());
+		this(new ResourceSetImpl(), Optional.empty());
+	}
+	
+	protected SysMLUtil(IResourceDescription.Manager resourceDescriptionManager) {
+		this(new ResourceSetImpl(), Optional.of(resourceDescriptionManager));
 	}
 	
 	/**
@@ -122,6 +142,9 @@ public abstract class SysMLUtil {
 		if (resource == null) {
 			throw new RuntimeException("Error opening resource: " + path);
 		} else {
+			resourceDescriptionManager.ifPresent(manager -> {
+				index.addDescription(resource.getURI(), manager.getResourceDescription(resource));
+			});
 			return resource;
 		}
 	}

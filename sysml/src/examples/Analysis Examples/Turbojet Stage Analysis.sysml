@@ -37,13 +37,6 @@ package 'Turbojet Stage Analysis' {
 	}
 	
 	package 'Thermodynamics Structure' {
-	    
-	    // need to figure out how to do imports so can get expressions from KerML
-	    
-	    // define specific gas constant here
-	        
-	    // define ideal gas law here
-	    
 	    block 'Ideal Gas Parcel' {
 	        comment
 	            /*
@@ -89,12 +82,9 @@ package 'Turbojet Stage Analysis' {
 	    }
 	    
 	    activity 'Reversible Adiabatic Process' specializes 'Adiabatic Process';
-	    
-	    // TODO: for a stage, invoke conservation laws to justify equations (e.g., V1_axial = V2_axial)
 	}
 	
 	package 'Low-Pressure Compressor Analysis' {
-	    // try to do a full analysis block separate from jet engine design, and then bind the two inside context
 	    
 	    part 'Analysis Context' {
 	        import 'Thermodynamic Functions'::*;

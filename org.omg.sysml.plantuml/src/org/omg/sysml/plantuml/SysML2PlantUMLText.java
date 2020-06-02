@@ -876,9 +876,11 @@ public class SysML2PlantUMLText {
     }
 
     private String extractName(Element e) {
-        String name = e.getName();
-        if (!(e instanceof Feature)) return name;
+        if (!(e instanceof Feature)) {
+            return e.getName();
+        }
         Feature f = (Feature) e;
+        String name = getFeatureName(f);
         List<Type> tt = f.getType();
         if (tt.isEmpty()) return name;
         Type typ = tt.get(0);
@@ -1005,31 +1007,65 @@ public class SysML2PlantUMLText {
         return null;
     }
 
+    private boolean addFeatureValueText(StringBuilder sb, Feature f) {
+        FeatureValue fv = getFeatureValue(f);
+        if (fv == null) return false;
+        String text = getText(fv);
+        if (text == null) return false;
+        sb.append('=');
+        text = text.replace("\r", "");
+        text = text.replace("\n", "\\n");
+        sb.append(text);
+        return true;
+    }
+
+    private Feature getRedefinedFeature(Feature f) {
+        Redefinition rd = getRedefinition(f);
+        if (rd == null) return null;
+        return rd.getRedefinedFeature();
+    }
+
+    private boolean addRedefinedFeatureText(StringBuilder sb, Feature f) {
+        Feature rf = getRedefinedFeature(f);
+        if (rf == null) return false;
+        String name = getFeatureName(rf);
+        if (name == null) return false;
+
+        org.omg.sysml.lang.sysml.Package pkg = rf.getOwningNamespace();
+        String pkgName;
+        if (pkg != null) {
+            pkgName = pkg.getName();
+        } else {
+            pkgName = null;
+        }
+
+        // waved decoration for redefinition
+        sb.append("\\n//:>>");
+        if (pkgName != null) {
+            sb.append(pkgName);
+            sb.append("::");
+        }
+        sb.append(name);
+        sb.append("// ");
+        return true;
+    }
+
+    private String getFeatureName(Feature f) {
+        while (f != null) {
+            String name = f.getName();
+            if (name != null) return name;
+            f = getRedefinedFeature(f);
+        }
+        return null;
+    }
+
     private boolean addFeatureText(StringBuilder sb, Feature f) {
-        String name = f.getName();
+        String name = getFeatureName(f);
         if (name == null) return false;
         sb.append(name);
         addTypeText(sb, ": ", f);
-        FeatureValue fv = getFeatureValue(f);
-        if (fv != null) {
-            String text = getText(fv);
-            if (text != null) {
-                sb.append('=');
-                text = text.replace("\r", "");
-                text = text.replace("\n", "\\n");
-                sb.append(text);
-            }
-        }
-        Redefinition rd = getRedefinition(f);
-        if (rd != null) {
-            String text = getText(rd);
-            if (text != null) {
-                // waved decoration for redefinition
-                sb.append("\\n//:>>");
-                sb.append(text);
-                sb.append("//");
-            }
-        }
+        addFeatureValueText(sb, f);
+        addRedefinedFeatureText(sb, f);
         return true;
     }
 

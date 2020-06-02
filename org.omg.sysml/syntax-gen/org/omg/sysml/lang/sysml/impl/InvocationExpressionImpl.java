@@ -13,11 +13,9 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -50,14 +48,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.INVOCATION_EXPRESSION;
 	}
-	
-	@Override
-	public Function getFunction() {
-		Type type = getExpressionType();
-		return type instanceof Function? (Function)type:
-			   type instanceof Expression? ((Expression)type).getFunction():
-			   (Function)getDefaultType(FunctionImpl.FUNCTION_SUPERCLASS_DEFAULT);
-	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,49 +59,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
 	}
 
-	public List<BindingConnector> getArgumentConnectors() {
-		if (argumentConnectors == null) {
-			argumentConnectors = new ArrayList<>();
-			List<Feature> input = getOwnedInput();
-			List<Expression> arguments = getArgument();
-			for (int i = 0; i < input.size(); i++) {
-				if (i < arguments.size()) {
-					argumentConnectors.add(addOwnedBindingConnector(
-							arguments.get(i).getResult(), input.get(i)));
-				}		
-			}
-		}
-		return argumentConnectors;
-	}
-	
-	public List<BindingConnector> basicGetArgumentConnectors() {
-		return argumentConnectors;
-	}
-	
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		Type type = getExpressionType();
-		int m = type == null ? 0 : 
-			(int)((TypeImpl)type).getAllParameters().stream().
-				filter(p->((ParameterImpl)p).isInputParameter()).count();
-		List<Feature> features = super.getOwnedFeature();
-		int n = features.size();
-		return m >= n ? Collections.emptyList() : features.subList(m, n);
-	}
-	
-	@Override
-	protected Type getExpressionType() {
-		return getTyping().stream().
-				map(FeatureTyping::getType).
-				findFirst().orElse(null);
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		getArgumentConnectors();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -176,4 +123,40 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return super.getOwnedFeature();
 	}
 
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		Function function = getFunction();
+		int m = function == null ? 0 : 
+			(int)((TypeImpl)function).getAllParameters().stream().
+				filter(p->((ParameterImpl)p).isInputParameter()).count();
+		List<Feature> features = super.getOwnedFeature();
+		int n = features.size();
+		return m >= n ? Collections.emptyList() : features.subList(m, n);
+	}
+	
+	public List<BindingConnector> getArgumentConnectors() {
+		if (argumentConnectors == null) {
+			argumentConnectors = new ArrayList<>();
+			List<Feature> input = getOwnedInput();
+			List<Expression> arguments = getArgument();
+			for (int i = 0; i < input.size(); i++) {
+				if (i < arguments.size()) {
+					argumentConnectors.add(addOwnedBindingConnector(
+							arguments.get(i).getResult(), input.get(i)));
+				}		
+			}
+		}
+		return argumentConnectors;
+	}
+	
+	public List<BindingConnector> basicGetArgumentConnectors() {
+		return argumentConnectors;
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getArgumentConnectors();
+	}
+	
 } // InvocationExpressionImpl

@@ -176,4 +176,41 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return super.getOwnedFeature();
 	}
 
+
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		Function function = getFunction();
+		int m = function == null ? 0 : 
+			(int)((TypeImpl)function).getAllParameters().stream().
+				filter(p->((ParameterImpl)p).isInputParameter()).count();
+		List<Feature> features = super.getOwnedFeature();
+		int n = features.size();
+		return m >= n ? Collections.emptyList() : features.subList(m, n);
+	}
+	
+	public List<BindingConnector> getArgumentConnectors() {
+		if (argumentConnectors == null) {
+			argumentConnectors = new ArrayList<>();
+			List<Feature> input = getOwnedInput();
+			List<Expression> arguments = getArgument();
+			for (int i = 0; i < input.size(); i++) {
+				if (i < arguments.size()) {
+					argumentConnectors.add(addOwnedBindingConnector(
+							arguments.get(i).getResult(), input.get(i)));
+				}		
+			}
+		}
+		return argumentConnectors;
+	}
+	
+	public List<BindingConnector> basicGetArgumentConnectors() {
+		return argumentConnectors;
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getArgumentConnectors();
+	}
+	
 } // InvocationExpressionImpl

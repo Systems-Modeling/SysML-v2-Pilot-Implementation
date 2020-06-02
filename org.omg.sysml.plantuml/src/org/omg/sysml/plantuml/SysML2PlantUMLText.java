@@ -68,6 +68,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 import com.google.inject.Inject;
@@ -1050,13 +1051,16 @@ public class SysML2PlantUMLText {
         return true;
     }
 
-    private String getFeatureName(Feature f) {
+    private static String getFeatureName(Feature f) {
+        /*
         while (f != null) {
             String name = f.getName();
             if (name != null) return name;
             f = getRedefinedFeature(f);
         }
         return null;
+        */
+        return ((FeatureImpl) f).getEffectiveName();
     }
 
     private boolean addFeatureText(StringBuilder sb, Feature f) {

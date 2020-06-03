@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescription.Manager;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -55,31 +56,24 @@ public abstract class SysMLUtil {
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
-	private Optional<Manager> resourceDescriptionManager;
-	// NOTE: index is null if resourceDescriptionManager is Optional#empty
-	private ResourceDescriptionsData index;
+	private final ResourceDescriptionsData index;
 	
-	protected SysMLUtil(ResourceSet resourceSet, Optional<IResourceDescription.Manager> resourceDescriptionManager) {
-		this.resourceDescriptionManager = resourceDescriptionManager;
+	protected SysMLUtil(ResourceSet resourceSet) {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		this.resourceSet = resourceSet;
 		
-		resourceDescriptionManager.ifPresent(manager -> {
-			index = ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet);
-			if (index == null) {
-				index = new ResourceDescriptionsData(new ArrayList<IResourceDescription>());
-				ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, index);
-			}
-		});
+		index = Optional.ofNullable(ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet))
+				.orElseGet(() -> {
+					ResourceDescriptionsData newIndex = new ResourceDescriptionsData(new ArrayList<IResourceDescription>());
+					ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, newIndex);
+					return newIndex;
+					
+				});
 	}
 	
 	protected SysMLUtil() {
-		this(new ResourceSetImpl(), Optional.empty());
-	}
-	
-	protected SysMLUtil(IResourceDescription.Manager resourceDescriptionManager) {
-		this(new ResourceSetImpl(), Optional.of(resourceDescriptionManager));
+		this(new ResourceSetImpl());
 	}
 	
 	/**
@@ -138,13 +132,14 @@ public abstract class SysMLUtil {
 	 * @return	the opened resource
 	 */
 	public Resource getResource(final String path) {
-	    final Resource resource = this.resourceSet.getResource(URI.createFileURI(path), true);
+	    URI uri = URI.createFileURI(path);
+		final Resource resource = this.resourceSet.getResource(uri, true);
 		if (resource == null) {
 			throw new RuntimeException("Error opening resource: " + path);
 		} else {
-			resourceDescriptionManager.ifPresent(manager -> {
-				index.addDescription(resource.getURI(), manager.getResourceDescription(resource));
-			});
+			IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
+			Manager manager = resourceServiceProvider.getResourceDescriptionManager();
+			index.addDescription(uri, manager.getResourceDescription(resource));
 			return resource;
 		}
 	}

@@ -27,14 +27,12 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
@@ -88,7 +86,7 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private SysMLInteractive() {
-		super(new InverseOrderedResourceSetImpl(), Optional.of(injector.getInstance(IResourceDescription.Manager.class)));
+		super(new InverseOrderedResourceSetImpl());
 	}
 	
 	public void loadLibrary(String path) {

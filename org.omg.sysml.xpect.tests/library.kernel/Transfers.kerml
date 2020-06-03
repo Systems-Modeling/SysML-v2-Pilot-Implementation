@@ -2,9 +2,12 @@
  * This package defines the transfer interactions used to type item flows.
  */
 package Transfers {
-	private import Base::*;
-	private import ScalarValues::Boolean;
+	private import Base::Anything;
 	private import Occurrences::*;
+	private import Objects::*;
+	private import Performances::Performance;
+	private import Performances::performances;
+	private import ScalarValues::Boolean;
 	private import BaseFunctions::*;
 	
 	/**
@@ -119,7 +122,7 @@ package Transfers {
 	 	end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
 	  	end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
 	  	
-	  	feature self: TransferBefore redefines Base::self;
+	  	feature self: TransferBefore redefines Object::self;
 	  	
 	  	succession transferSource then self;
 	  	succession self then transferTarget;

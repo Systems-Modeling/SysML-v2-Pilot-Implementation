@@ -13,14 +13,21 @@ package States {
 	 * A State is an Action that is also a StatePerformance.
 	 */
 	state def State :> Action, StatePerformance {
-		entry action entryAction :> subactions :>> StatePerformance::'entry';
-		do action doAction: Action :> subactions :>> StatePerformance::'do';
-		exit action exitAction: Action :> subactions :>> StatePerformance::'exit';
+		entry action entryAction :>> 'entry';
+		do action doAction: Action :>> 'do' :> subactions;
+		exit action exitAction: Action :>> 'exit';
 		
-		value isTriggerDuring redefines StatePerformance::isTriggerDuring = true;
-		value isAcceptFirst redefines StatePerformance::isTriggerDuring = true;
+		value :>> isTriggerDuring = true;
+		value :>> isTriggerDuring = true;
 		
-		ref state self: State :>> Action::self;
+		ref state :>> self: State;
+		
+		/**
+		 * The subperformances of this StateAction that are Actions, other than the entry and exit Actions. 
+		 * These <code>subactions</code> all take place in the "middle" of the StatePerformance, that is, 
+		 * after the entry Action and before the exit Action. 
+		 */
+		action :>> subactions :> middle;
 		
 		/**
 		 * The subactions of this state that are states.
@@ -32,9 +39,9 @@ package States {
 	 * A Transition is a StateTransitionPerformance whose transitionLinkSource is an Action.
 	 */
 	activity Transition :> Action, StateTransitionPerformance {
-		ref action trigger: TransferAction :>> StateTransitionPerformance::trigger;
-		ref action effect: Action :>> StateTransitionPerformance::effect;
-		ref action transitionLinkSource: Action :>> StateTransitionPerformance::transitionLinkSource;
+		ref action :>> trigger: TransferAction;
+		ref action :>> effect: Action;
+		ref action :>> transitionLinkSource: Action;
 	}
 	
 	/**

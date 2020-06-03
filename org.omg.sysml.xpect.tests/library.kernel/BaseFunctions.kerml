@@ -1,6 +1,7 @@
 package BaseFunctions {
-	import Base::*;
-	import ScalarValues::*;
+	private import Base::Anything;
+	private import Objects::Object;
+	private import ScalarValues::*;
 	
 	function '=='(x: Anything, y: Anything): Boolean;
 	function '!='(x: Anything, y: Anything): Boolean;

@@ -12,7 +12,9 @@ package Constraints {
 	 * ConstraintCheck is the most general class for constraint checking. ConstraintCheck is the base
 	 * type of all constraint definitions.
 	 */
-	constraint def ConstraintCheck :> BooleanEvaluation, Part;
+	constraint def ConstraintCheck :> BooleanEvaluation, Part {
+		ref constraint thisConstraint: ConstraintCheck :>> self;
+	}
 	
 	/**
 	 * constraintChecks is the base feature of all constraint usages.

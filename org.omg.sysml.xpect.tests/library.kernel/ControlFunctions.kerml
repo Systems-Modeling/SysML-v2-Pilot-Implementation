@@ -1,6 +1,6 @@
 package ControlFunctions {
-	import Base::*;
-	import ScalarValues::*;
+	private import Base::Anything;
+	private import ScalarValues::Boolean;
 	
 	abstract function '?'(test: Boolean): Anything[0..*] {
 		abstract composite expr thenValue[0..1] (): Anything[0..*];

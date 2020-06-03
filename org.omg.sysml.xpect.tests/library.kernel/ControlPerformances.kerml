@@ -1,5 +1,5 @@
 package ControlPerformances {
-	import Occurrences::HappensBefore;
+	private import Occurrences::HappensBefore;
 	
 	behavior DecisionPerformance {
 		/**

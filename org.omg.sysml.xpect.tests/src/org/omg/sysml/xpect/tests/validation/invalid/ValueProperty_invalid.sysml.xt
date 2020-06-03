@@ -1,0 +1,52 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'ValueProperty Example' {
+	port def P;
+	block A {
+		part a: A;
+		port p: P;
+	}
+	block Vehicle {
+		// XPECT errors --> "A value property must be typed by value types." at "a : A;"
+		value a : A;
+		// XPECT errors --> "A value property must be typed by value types." at "b : A::a;"
+		value b : A::a;
+		// XPECT errors --> "A value property must be typed by value types." at "s : P;"
+		value s : P;
+		//XPECT errors --> "A value property must be typed by value types." at "un : A::p;"
+		value un: A::p;
+		//XPECT errors --> "A value property must be typed by value types." at "n : AB;"
+		value n: AB;
+		}
+	assoc block  AB {
+		end : A;
+		end : A;
+	}
+}

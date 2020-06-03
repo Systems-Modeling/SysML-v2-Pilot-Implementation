@@ -1,0 +1,37 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.systems/Activities.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.systems/Activities.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package pkg {
+	block ABlock;
+	activity AnActivity;
+	activity B() {
+		// XPECT errors -->   "An action must be typed by activities." at "a: ABlock;"
+		action a: ABlock;
+		// XPECT errors -->   "An action must be typed by activities." at "b: ABlock, AnActivity;"
+		action b: ABlock, AnActivity;
+	}
+	
+}

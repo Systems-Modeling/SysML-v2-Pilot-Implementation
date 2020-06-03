@@ -1,0 +1,38 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package pkg {
+	constraint def AConstraint;
+	requirement def ARequirement;
+	block ABlock {
+		// XPECT errors ---> "A constraint must be typed by a constraint definition." at "constraint two_types : AConstraint, ABlock;"
+		assert constraint two_types : AConstraint, ABlock;
+		// XPECT errors ---> "A constraint must be typed by a constraint definition." at "constraint aConstraint0 : ABlock;"
+		assert constraint aConstraint0: ABlock;
+		//XPECT errors ---> "A constraint must be typed by a constraint definition." at "constraint aConstraint1 : ARequirement;"
+		assert constraint aConstraint1 : ARequirement;
+	}	
+}

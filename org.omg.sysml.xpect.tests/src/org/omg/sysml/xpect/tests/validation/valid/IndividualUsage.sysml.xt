@@ -1,0 +1,77 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+		File {from ="/library.domain/Quantities and Units/SI.sysml"}
+		
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				File {from ="/library.domain/Quantities and Units/SI.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'Individuals and Roles' {
+	import ScalarValues::*;
+	block Vehicle {
+		value mass : Real;
+		value status : VehicleStatus;
+		
+		part eng : Engine;
+		
+		ref driver : Person;
+	}
+	
+	value type VehicleStatus {
+		gearSetting : Integer;
+		acceleratorPosition : Real;
+	}
+	
+	block Engine;	
+	block Person;
+	
+	block Wheel;
+	
+	individual def Vehicle_1 :> Vehicle {
+		part leftFrontWheel : Wheel;
+		part rightFrontWheel : Wheel;
+	}
+	
+	individual def Wheel_1 :> Wheel;
+	
+	individual vehicle_1 : Vehicle_1 {
+		snapshot vehicle_1_t0 {
+			snapshot leftFrontWheel_t0 : Wheel_1 :>> leftFrontWheel;
+		}
+		
+		snapshot vehicle_1_t1 {
+			snapshot rightFrontWheel_t1 : Wheel_1 :>> rightFrontWheel;
+		}
+		
+		succession vehicle_1_t0 then vehicle_1_t1;
+	}
+}

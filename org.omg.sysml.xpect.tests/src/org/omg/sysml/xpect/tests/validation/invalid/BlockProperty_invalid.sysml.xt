@@ -1,0 +1,51 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package pkg {
+	import ScalarValues::*;
+	block A {
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "areal: Real;"
+		part areal : Real;
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "avalue: aValue;"
+		part avalue: aValue;
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "anaction: anAction;"
+		ref anaction : anAction;
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "aportdef: APortDef;"
+		ref aportdef: APortDef;
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "aport: ABlock::aPort;"
+		ref aport: ABlock::aPort;
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "apart: ABlock::aPart;"
+		ref apart: ABlock::aPart;
+		// XPECT errors --> "A part or reference property must be typed by blocks." at "twoTypes: ABlock, APortDef;"
+		ref twoTypes: ABlock, APortDef;
+	}
+	value aValue: Real;
+	block ABlock {
+		port aPort: APortDef;
+		part aPart: ABlock;
+	}
+	activity AnActivity;
+	action anAction : AnActivity;
+	port def APortDef;
+}

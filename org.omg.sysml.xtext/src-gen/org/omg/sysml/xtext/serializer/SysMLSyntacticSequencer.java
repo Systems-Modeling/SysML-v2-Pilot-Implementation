@@ -52,6 +52,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PackagedUsageMember_ValueKeyword_2_0_q;
 	protected AbstractElementAlias match_PackagedUsageMember_ValueKeyword_3_1_q;
 	protected AbstractElementAlias match_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
+	protected AbstractElementAlias match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q;
 	protected AbstractElementAlias match_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q;
 	protected AbstractElementAlias match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
@@ -97,6 +98,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PackagedUsageMember_ValueKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getValueKeyword_2_0());
 		match_PackagedUsageMember_ValueKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getValueKeyword_3_1());
 		match_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getAnyKeyword_0_1_1()));
+		match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getSemicolonKeyword_0()));
 		match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q = new TokenAlias(false, true, grammarAccess.getRequirementConstraintUsageAccess().getAsKeyword_0_0_0_2());
 		match_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q = new TokenAlias(false, true, grammarAccess.getRequirementConstraintUsageAccess().getConstraintKeyword_0_1_0());
 		match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getTypedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getRequirementConstraintUsageAccess().getConstraintKeyword_0_1_0()));
@@ -233,6 +235,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackagedUsageMember_ValueKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q.equals(syntax))
 				emit_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
+				emit_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q.equals(syntax))
 				emit_RequirementConstraintUsage_AsKeyword_0_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RequirementConstraintUsage_ConstraintKeyword_0_1_0_q.equals(syntax))
@@ -693,6 +697,28 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_ParameterTypePart___TypedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ';' | ('{' '}')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 *     isNonunique?='nonunique' (ambiguity) (rule end)
+	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
+	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
+	 *     reqId=Name (ambiguity) (rule end)
+	 */
+	protected void emit_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

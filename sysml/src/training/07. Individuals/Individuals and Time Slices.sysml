@@ -18,7 +18,7 @@ package 'Individuals and Time Slices' {
 			}			
 		}
 		
-		timeslice bobDriving {
+		then timeslice bobDriving {
 			ref individual :>> driver : Bob;
 		}
 		

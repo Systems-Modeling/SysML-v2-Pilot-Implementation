@@ -1,0 +1,41 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.systems/Activities.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/States.sysml"}
+				File {from ="/library.systems/Activities.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'State Decomposition-1' {
+	
+	block A;
+	value type VT;
+	action ac;
+	//XPECT errors --> "A state must be typed by state definitions." at "s1 : A;"	
+	state s1 : A;
+	//XPECT errors --> "A state must be typed by state definitions." at "s2 : VT;"
+	state s2 : VT;
+	//XPECT errors --> "A state must be typed by state definitions." at "s3 : ac;"
+	state s3 : ac;
+	
+}

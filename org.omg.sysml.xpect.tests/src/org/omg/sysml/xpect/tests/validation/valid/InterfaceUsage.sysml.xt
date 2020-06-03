@@ -1,0 +1,139 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/BooleanFunctions.kerml"}
+		File {from ="/library.kernel/ComplexFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/IntegerFunctions.kerml"}
+		File {from ="/library.kernel/NaturalFunctions.kerml"}
+		File {from ="/library.kernel/NonScalarFunctions.kerml"}
+		File {from ="/library.kernel/NonScalarValues.kerml"}
+		File {from ="/library.kernel/NumericalFunctions.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/RationalFunctions.kerml"}
+		File {from ="/library.kernel/RealFunctions.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/StatePerformances.kerml"}
+		File {from ="/library.kernel/StringFunctions.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/UnlimitedNaturalFunctions.kerml"}
+		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/ControlNodes.sysml"}
+		File {from ="/library.systems/Functions.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.domain/Geometry/BasicGeometry.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+		File {from ="/library.domain/Quantities and Units/SI.sysml"}
+		File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+		File {from ="/library.domain/Quantities and Units/Time.sysml"}
+		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/BooleanFunctions.kerml"}
+				File {from ="/library.kernel/ComplexFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/IntegerFunctions.kerml"}
+				File {from ="/library.kernel/NaturalFunctions.kerml"}
+				File {from ="/library.kernel/NonScalarFunctions.kerml"}
+				File {from ="/library.kernel/NonScalarValues.kerml"}
+				File {from ="/library.kernel/NumericalFunctions.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/RationalFunctions.kerml"}
+				File {from ="/library.kernel/RealFunctions.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/StatePerformances.kerml"}
+				File {from ="/library.kernel/StringFunctions.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/UnlimitedNaturalFunctions.kerml"}
+				File {from ="/library.systems/Activities.sysml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/ControlNodes.sysml"}
+				File {from ="/library.systems/Functions.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
+				File {from ="/library.systems/States.sysml"}
+				File {from ="/library.domain/Geometry/BasicGeometry.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+				File {from ="/library.domain/Quantities and Units/SI.sysml"}
+				File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+				File {from ="/library.domain/Quantities and Units/Time.sysml"}
+				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'Interface Example' {
+	value type Temp;
+	block Fuel;
+
+	port def FuelOutPort {
+		value temperature : Temp;
+		ref out fuelSupply : Fuel;
+		ref in fuelReturn : Fuel;
+	}
+	
+	port def FuelInPort {
+		value temperature : Temp;
+		ref out fuelSupply : Fuel;
+		ref in fuelReturn : Fuel;
+	}
+	
+	block FuelTankAssembly {
+		port fuelTankPort : FuelOutPort;
+	}
+	
+	block Engine {
+		port engineFuelPort : FuelInPort;
+	}
+	
+	block Vehicle;
+	
+	interface def FuelInterface {
+		end supplierPort : FuelOutPort;
+		end consumerPort : FuelInPort;
+	}
+	
+	part vehicle : Vehicle {	
+		part tankAssy : FuelTankAssembly {
+			port redefines fuelTankPort;
+		}
+		
+		part eng : Engine {
+			port redefines engineFuelPort;
+		}
+		interface original: FuelInterface connect 
+			supplierPort => tankAssy::fuelTankPort to 
+			consumerPort => eng::engineFuelPort;
+		
+		interface opposite : FuelInterface connect 
+			consumerPort => eng::engineFuelPort to
+			supplierPort => tankAssy::fuelTankPort; 
+	} 
+}

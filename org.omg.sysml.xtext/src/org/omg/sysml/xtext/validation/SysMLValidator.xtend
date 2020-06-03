@@ -99,86 +99,62 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_FUNCTIONUSAGE = 'Invalid FunctionUsage - invalid type'
 	public static val INVALID_FUNCTIONUSAGE_MSG = 'A function must be typed by a function definition.'
 
-	
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
-		if (! (usg instanceof StateUsage|| usg instanceof FunctionUsage) ){
-			println("==== ActionUsage")
+		if (! (usg instanceof StateUsage|| usg instanceof FunctionUsage) )
 			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_Activity, SysMLValidator.INVALID_ACTIONUSAGE)
-		}
 	}	
 	@Check //All types must be Classes. 
 	def checkBlockPropertyTypes(BlockProperty bp){
-		if (!(bp instanceof IndividualUsage)){
-			println("==== BlockProperty")		
+		if (!(bp instanceof IndividualUsage))	
 			checkAllTypes(bp, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_BLOCKPROPERTY_MSG, SysMLPackage.eINSTANCE.blockProperty_Block, SysMLValidator.INVALID_BLOCKPROPERTY)
-		}
 	}
-	
 	@Check //Must have exactly one type, which is a Predicate.
-	def checkConstraintUsageType(ConstraintUsage usg){
-		if (! (usg instanceof RequirementUsage)){
-			println("==== ConstraintUsage")	
+	def checkConstraintUsageTypes(ConstraintUsage usg){
+		if (! (usg instanceof RequirementUsage))
 			checkOneType(usg, Predicate, SysMLValidator.INVALID_CONSTRINTUSAGE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, SysMLValidator.INVALID_CONSTRINTUSAGE)
-		}
 	}
-	
 	@Check //Must have exactly one type, which is a Function.
-	def checkFunctionUsageType(FunctionUsage usg){
-		println("==== FunctionUsage")	
+	def checkFunctionUsageTypes(FunctionUsage usg){
 		checkOneType(usg, Function, SysMLValidator.INVALID_FUNCTIONUSAGE_MSG, SysMLPackage.eINSTANCE.functionUsage_FunctionDefinition, SysMLValidator.INVALID_FUNCTIONUSAGE)
 	}
 	@Check //Must have exactly one type, which is an IndividualDefinition
-	def checkIndividualUsageType(IndividualUsage usg){
-		println("==== IndividualUsage")	
+	def checkIndividualUsageTypes(IndividualUsage usg){
 		checkOneType(usg, IndividualDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE_MSG, SysMLPackage.eINSTANCE.individualUsage_IndividualDefinition, SysMLValidator.INVALID_INDIVIDUALUSAGE)
 	}
 	@Check //All types must be Associations.
-	def checkConnectionUsage(ConnectionUsage usg){
-		if (!(usg instanceof InterfaceUsage)){
-			println("==== ConnectionUsage")		
+	def checkConnectionUsageTypes(ConnectionUsage usg){
+		if (!(usg instanceof InterfaceUsage))	
 			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_CONNECTIONUSAGE)
-		}
 	}
 	@Check //Must have exactly one type, which is an InterfaceDefinitions.
-	def checkInterfaceUsage(InterfaceUsage usg){
-		println("==== InterfaceUsage")	
+	def checkInterfaceUsageTypes(InterfaceUsage usg){
 		checkOneType(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
 	}
 	@Check //Must have exactly one type, which is a PortDefinition. 
-	def checkPortUsage(PortUsage usg){
-		println("==== PortUsage")	
+	def checkPortUsageTypes(PortUsage usg){
 		checkOneType(usg, PortDefinition, SysMLValidator.INVALID_PORTUSAGE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, SysMLValidator.INVALID_PORTUSAGE)
 	}
 	@Check  //Must have exactly one type, which is a RequirementDefinition. 
-	def checkRequirementUsage(RequirementUsage usg){
-		println("==== RequirementUsage")	
+	def checkRequirementUsageTypes(RequirementUsage usg){
 		checkOneType(usg, RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE_MSG, SysMLPackage.eINSTANCE.requirementUsage_RequirementDefinition, SysMLValidator.INVALID_REQUIREMENTUSAGE)
 	}
 	@Check //All types must be Behaviors.
-	def checkStateDefinition(StateUsage usg){
-		println("==== StateUsage")	
+	def checkStateDefinitionTypes(StateUsage usg){
 		checkAllTypes(usg, Behavior, SysMLValidator.INVALID_STATEUSAGE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, SysMLValidator.INVALID_STATEUSAGE)
 	}
 	@Check //All types must be DataTypes.
-	def checkValueProperty(ValueProperty usg){
-		println("==== ValueProperty")	
+	def checkValuePropertyTypes(ValueProperty usg){
 		checkAllTypes(usg, DataType, SysMLValidator.INVALID_VALUEPROPERTY_MSG, SysMLPackage.eINSTANCE.valueProperty_ValueType, SysMLValidator.INVALID_VALUEPROPERTY)
 	}
 	
 	protected def void checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
-		var types = (f as FeatureImpl).allTypes;
-		System.out.println("======= All: " + f.name + " " + types.length);// + (usg as FeatureImpl).allTypes + " " + (usg as FeatureImpl).allTypes.map[name])
-		types.forEach[z |if (requiredType.isInstance(z)) print("Yes") else print("No") println(" - "  + z.name + " - "+ z);]
-		
-		if (!types.stream.allMatch[u| requiredType.isInstance(u)])
+		if (!(f as FeatureImpl).allTypes.stream.allMatch[u| requiredType.isInstance(u)])
 			error (msg, ref, eId); 
 	}
+	//check types but must have exactly one type
 	protected def void checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
 		var types = (f as FeatureImpl).allTypes;
-		System.out.println("======= One: " + f.name + " " + types.length);// + (usg as FeatureImpl).allTypes + " " + (usg as FeatureImpl).allTypes.map[name])
-		types.forEach[z |if (requiredType.isInstance(z)) print("Yes") else print("No") println(" - "  + z.name + " - "+ z);]
-		
 		if (types.length !== 1 || types.stream.noneMatch[u| requiredType.isInstance(u)])
 			error (msg,ref, eId); 
 	}

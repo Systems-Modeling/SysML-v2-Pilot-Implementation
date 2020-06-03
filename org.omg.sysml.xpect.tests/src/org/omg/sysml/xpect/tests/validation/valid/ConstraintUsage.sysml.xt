@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'Constraint Assertions-1' {
+	constraint def MassConstraint;
+	block Vehicle {
+		assert constraint massConstraint : MassConstraint ;
+		
+		//typed by constraint definition(named ConstraintCheck)
+		assert constraint massConstraint2; 
+		
+		//typed by constraint definition(named null)
+		assert constraint {}
+	}	
+}

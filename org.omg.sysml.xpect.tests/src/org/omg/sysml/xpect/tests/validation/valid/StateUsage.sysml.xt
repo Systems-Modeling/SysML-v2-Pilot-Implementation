@@ -1,0 +1,61 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/StatePerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/States.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/StatePerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.systems/Activities.sysml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/States.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package 'State Decomposition-1' {
+	
+	value type VehicleStartSignal;
+	value type VehicleOnSignal;
+	value type VehicleOffSignal;
+	
+	state def VehicleStates;
+	activity myactivity;
+	state a: myactivity;
+	state vehicleStates : VehicleStates {
+		entry; then off;
+		
+		state off;
+		accept VehicleStartSignal 
+			then starting;
+			
+		state starting;
+		accept VehicleOnSignal
+			then on;
+			
+		state on;
+		accept VehicleOffSignal
+			then off;
+	}
+	
+}

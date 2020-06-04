@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PartProperty;
+import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLText.StyleRelSwitch;
@@ -105,6 +106,12 @@ public enum SysML2PlantUMLStyle {
                  public String caseBlock(Block object) {
                      if (isComposite) return defaultStr();
                      return " << (B,green) >> ";
+                 }
+
+                 @Override
+                 public String casePortUsage(PortUsage object) {
+                     if (isComposite) return " <<port>> ";
+                     return " << (P,blue) port>> ";
                  }
 
                  @Override

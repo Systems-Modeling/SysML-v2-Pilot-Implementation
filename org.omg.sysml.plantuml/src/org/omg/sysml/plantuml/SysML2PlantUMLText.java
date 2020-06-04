@@ -178,6 +178,11 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
+		public String casePortUsage(PortUsage object) {
+            return " <<port>> ";
+		}
+
+		@Override
 		public String casePartProperty(PartProperty object) {
             if (isComposite) return " ";
             return " <<part>> ";
@@ -902,7 +907,11 @@ public class SysML2PlantUMLText {
     private String styleString(Type typ) {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
-            return " <<(T,blue)" + getStereotypeName(typ) + ">> ";
+            if (diagramMode == MODE.Interconnection) {
+                return " <<" + getStereotypeName(typ) + ">> ";
+            } else {
+                return " <<(T,blue)" + getStereotypeName(typ) + ">> ";
+            }
         }
         if (ret.endsWith(" ")) return ret;
         return ret + getStereotypeName(typ) + ">> ";

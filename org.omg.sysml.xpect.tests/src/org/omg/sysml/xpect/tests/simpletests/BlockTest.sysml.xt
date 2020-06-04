@@ -36,7 +36,7 @@ package BlockTest {
 		package P { }
 	}
 	
-	private port def C specializes B {
+	private port def C {
 		private ref in y: B;
 		alias y as z;
 	}

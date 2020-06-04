@@ -61,7 +61,10 @@ package 'Interface Example' {
 		interface original: FuelInterface, FuelInterface2 connect tankAssy::fuelTankPort to	eng::engineFuelPort;
 		//XPECT errors --> "An interface must be typed by an interface definition." at "opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort;"
 		interface opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort;
-		//XPECT errors --> "An interface must be typed by an interface definition." at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+		//*XPECT errors ---
+			"An interface must be typed by an interface definition." at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+			"Features must have at least one type" at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+		---*/
 		interface opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort; 
 		
 	} 

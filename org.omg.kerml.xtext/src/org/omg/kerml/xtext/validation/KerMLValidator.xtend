@@ -58,7 +58,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeature(Feature f){
-		val types = (f as FeatureImpl).allTypes;
+		val types = (f as FeatureImpl).type;
 		if (types !== null && types.isEmpty)
 			error("Features must have at least one type", f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
 		
@@ -142,8 +142,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 //				error("Output feature must conform to input feature", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
 //		} else { 
 			//Binding type conformance
-			val f1types = (rf.get(0) as FeatureImpl).allTypes
-			val f2types = (rf.get(1) as FeatureImpl).allTypes
+			val f1types = (rf.get(0) as FeatureImpl).type
+			val f2types = (rf.get(1) as FeatureImpl).type
 						 
 			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
 			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]

@@ -35,7 +35,10 @@ package 'Requirement Definitions' {
 	
 	//XPECT errors --> "A requirement  must be typed by a requirement definition." at "id '1.0' r10 : R1def, R11def;"
 	requirement id '1.0' r10 : R1def, R11def;
-	//XPECT errors --> "A requirement  must be typed by a requirement definition." at "id '1.1' r11 : Rdef;"
+	/* XPECT errors ---
+		"A requirement  must be typed by a requirement definition." at "id '1.1' r11 : Rdef;"
+		"Features must have at least one type" at "id '1.1' r11 : Rdef;"
+	--- */
 	requirement id '1.1' r11 : Rdef;
 	//XPECT errors --> "A requirement  must be typed by a requirement definition." at "id '1.2' r12 : R2def;"
 	requirement id '1.2' r12 : R2def;

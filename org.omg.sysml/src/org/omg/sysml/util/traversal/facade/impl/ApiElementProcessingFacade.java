@@ -82,9 +82,8 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * 
 	 * @param 	projectName			the name of the project for which Elements are being saved
 	 * @param	basePath			the base path to be used to access the REST end point.
-	 * @throws 	ApiException
 	 */
-	public ApiElementProcessingFacade(String projectName, String basePath) throws ApiException {
+	public ApiElementProcessingFacade(String projectName, String basePath) {
 		this.apiClient.setBasePath(basePath);		
 		this.apiClient.setHttpClient(
 			new OkHttpClient.Builder().
@@ -95,7 +94,11 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 		
 		org.omg.sysml.model.Project project = new org.omg.sysml.model.Project();
 		project.setName(projectName);
-		this.project = projectApi.postProject(project);
+		try {
+			this.project = projectApi.postProject(project);
+		} catch (ApiException e) {
+			throw new RuntimeException(e.getCode() + " " + e.getMessage());
+		}
 	}
 	
 	/**
@@ -178,7 +181,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	 * @return	an Identified object with the given identifier
 	 */
 	protected static Identified identified(UUID identifier) {
-		return new Identified().identifier(identifier);
+		return new Identified().atId(identifier);
 	}
 	
 	/**

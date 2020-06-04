@@ -42,7 +42,6 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
-import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
@@ -222,7 +221,7 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
-	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
+	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
 		processingFacade.setTraversal(new Traversal(processingFacade));

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,7 +27,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
@@ -144,10 +143,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
 	/**
 	 * Initialize the traversal with an ApiProcessingFacade to write to a new repository Project.
-	 * 
-	 * @throws 	ApiException	if there is an error creating the new repository Project.
 	 */
-	protected void initialize() throws ApiException  {
+	protected void initialize()  {
 		String libraryPath = this.getLibraryPath();
 		if (libraryPath != null) {
 			SysMLLibraryUtil.setModelLibraryDirectory(libraryPath);
@@ -188,8 +185,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				
 				this.process();
 			}
-		} catch (ApiException e) {
-			System.out.println("Error: " + e.getCode() + " " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
 		}
 	}
 

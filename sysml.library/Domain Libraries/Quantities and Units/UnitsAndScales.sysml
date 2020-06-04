@@ -58,7 +58,7 @@ package UnitsAndScales {
 	 * Specifies a tuple of a referenced measurement unit and an exponent.
 	 */
 	value type UnitPowerFactor {
-		ref unit: MeasurementUnit;
+		value unit: MeasurementUnit;
 		value exponent: Number;
 	}
 	
@@ -66,7 +66,7 @@ package UnitsAndScales {
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.  
 	 */
 	abstract value type UnitConversion {
-		ref referenceUnit: MeasurementUnit;
+		value referenceUnit: MeasurementUnit;
 		value conversionFactor: Number;
 	}
 	
@@ -84,7 +84,7 @@ package UnitsAndScales {
 	 * Examples: kilometre for conversion factor 1000 with reference unit metre, nanofarad for 1E-9 farad.
 	 */
 	value type ConversionByPrefix :> UnitConversion {
-		ref prefix: UnitPrefix {
+		value prefix: UnitPrefix {
 			value conversionFactor: Real redefines UnitPrefix::conversionFactor;
 		}
 		value conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;		
@@ -106,7 +106,7 @@ package UnitsAndScales {
 	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a QuantityValue.
 	 */
 	abstract value type MeasurementScale :> MeasurementReference {
-		ref unit: MeasurementUnit;
+		value unit: MeasurementUnit;
 		value scaleValueMapping: ScaleValueMapping[0..1];	
 	}
 	
@@ -163,8 +163,8 @@ package UnitsAndScales {
 	 * ScaleValueDefinition (0.01, "absolute thermodynamic temperature of the triple point of water") of the celsius interval scale.
 	 */
 	value type ScaleValueMapping {
-		ref referenceScaleValue: ScaleValueDefinition;	
-		ref mappedScaleValue: ScaleValueDefinition;
+		value referenceScaleValue: ScaleValueDefinition;	
+		value mappedScaleValue: ScaleValueDefinition;
 	}
 	
 	/**
@@ -195,7 +195,7 @@ package UnitsAndScales {
 	}
 	value type DimensionOneValue :> QuantityValue {
 		value num: Real redefines QuantityValue::num;
-		ref mRef: DimensionOneUnit redefines QuantityValue::mRef;
+		value mRef: DimensionOneUnit redefines QuantityValue::mRef;
 	}
 	value one = DimensionOneUnit();
 }

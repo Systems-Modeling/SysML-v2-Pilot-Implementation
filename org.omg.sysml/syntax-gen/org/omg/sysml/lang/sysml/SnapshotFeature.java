@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface SnapshotFeature extends ReferenceProperty {
+public interface SnapshotFeature extends Feature {
 } // SnapshotFeature

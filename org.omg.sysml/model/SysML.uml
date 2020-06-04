@@ -3655,13 +3655,13 @@ otherwise it subsets either &lt;tt>actions&lt;/tt> or &lt;tt>subactions&lt;/tt>,
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="dcc9e03f-3ea5-4c2e-b64c-d08510ea5b85" name="LifeClass" visibility="public">
-    <generalization xmi:id="57d37617-f338-4b2e-862e-229998a561e1" general="16faf4d7-4d1b-4383-baa9-86651cb24e32"/>
+    <generalization xmi:id="57d37617-f338-4b2e-862e-229998a561e1" general="19920a63-7648-49b9-9666-eb0dcfbde515"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="746562c6-581b-463b-8220-817dbe2ea64c" name="TimeSliceFeature" visibility="public">
-    <generalization xmi:id="13eb0dc7-c53e-4eb1-85d5-ae6bac1d237e" general="852535df-5389-48fc-aebf-df612ca720c6"/>
+    <generalization xmi:id="13eb0dc7-c53e-4eb1-85d5-ae6bac1d237e" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="c7acf7b8-b217-47e8-9f16-2132b97877e6" name="SnapshotFeature" visibility="public">
-    <generalization xmi:id="f01f6bb9-42dd-4380-bb50-0439ed780a8b" general="852535df-5389-48fc-aebf-df612ca720c6"/>
+    <generalization xmi:id="f01f6bb9-42dd-4380-bb50-0439ed780a8b" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="292d5155-2874-4a08-a8a9-85888c7782ce" name="IndividualDefinition" visibility="public">
     <ownedComment xmi:id="92e0c756-0a78-4ec4-9508-5a55365ec31a" annotatedElement="292d5155-2874-4a08-a8a9-85888c7782ce">

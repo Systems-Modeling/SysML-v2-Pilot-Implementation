@@ -19,7 +19,7 @@ import org.omg.sysml.lang.sysml.Type;
  *
  * @generated
  */
-public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeSliceFeature {
+public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeature {
 	
 	public static final String TIME_SLICE_FEATURE_DEFAULT_NAME = "timeSliceOf";	
 	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";

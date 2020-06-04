@@ -2434,9 +2434,9 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LifeClass" eSuperTypes="#//Block"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TimeSliceFeature" eSuperTypes="#//ReferenceProperty"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SnapshotFeature" eSuperTypes="#//ReferenceProperty"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LifeClass" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeSliceFeature" eSuperTypes="#//Feature"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SnapshotFeature" eSuperTypes="#//Feature"/>
   <eClassifiers xsi:type="ecore:EClass" name="IndividualDefinition" eSuperTypes="#//Block">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>An IndividualDefinition is a Block that is constrained to represent an individual thing. The instances of an IndividualDefinition include all spatial and temporal portions of the individual being represented, but only one of these can be the complete Life of the individual. All other instances must be portions of the &quot;maximal portion&quot; that is single Life instance, capturing the conception that all of the instances represent one individual with a single &quot;identity&quot;.&lt;/p>"/>

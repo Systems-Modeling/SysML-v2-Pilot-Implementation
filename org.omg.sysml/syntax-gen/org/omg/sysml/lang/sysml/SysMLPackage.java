@@ -53583,7 +53583,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNING_MEMBERSHIP = BLOCK__OWNING_MEMBERSHIP;
+	int LIFE_CLASS__OWNING_MEMBERSHIP = CLASS__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
@@ -53592,7 +53592,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_RELATIONSHIP_COMP = BLOCK__OWNED_RELATIONSHIP_COMP;
+	int LIFE_CLASS__OWNED_RELATIONSHIP_COMP = CLASS__OWNED_RELATIONSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -53601,7 +53601,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNING_RELATIONSHIP = BLOCK__OWNING_RELATIONSHIP;
+	int LIFE_CLASS__OWNING_RELATIONSHIP = CLASS__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -53610,7 +53610,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__IDENTIFIER = BLOCK__IDENTIFIER;
+	int LIFE_CLASS__IDENTIFIER = CLASS__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -53619,7 +53619,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNING_NAMESPACE = BLOCK__OWNING_NAMESPACE;
+	int LIFE_CLASS__OWNING_NAMESPACE = CLASS__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -53628,7 +53628,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__NAME = BLOCK__NAME;
+	int LIFE_CLASS__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -53637,7 +53637,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNER = BLOCK__OWNER;
+	int LIFE_CLASS__OWNER = CLASS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -53646,7 +53646,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_ELEMENT = BLOCK__OWNED_ELEMENT;
+	int LIFE_CLASS__OWNED_ELEMENT = CLASS__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
@@ -53655,7 +53655,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_RELATIONSHIP = BLOCK__OWNED_RELATIONSHIP;
+	int LIFE_CLASS__OWNED_RELATIONSHIP = CLASS__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership comp</b></em>' containment reference list.
@@ -53664,7 +53664,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_MEMBERSHIP_COMP = BLOCK__OWNED_MEMBERSHIP_COMP;
+	int LIFE_CLASS__OWNED_MEMBERSHIP_COMP = CLASS__OWNED_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -53673,7 +53673,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_MEMBER = BLOCK__OWNED_MEMBER;
+	int LIFE_CLASS__OWNED_MEMBER = CLASS__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -53682,7 +53682,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__MEMBERSHIP = BLOCK__MEMBERSHIP;
+	int LIFE_CLASS__MEMBERSHIP = CLASS__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import comp</b></em>' containment reference list.
@@ -53691,7 +53691,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_IMPORT_COMP = BLOCK__OWNED_IMPORT_COMP;
+	int LIFE_CLASS__OWNED_IMPORT_COMP = CLASS__OWNED_IMPORT_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -53700,7 +53700,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__MEMBER = BLOCK__MEMBER;
+	int LIFE_CLASS__MEMBER = CLASS__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -53709,7 +53709,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__IMPORTED_MEMBERSHIP = BLOCK__IMPORTED_MEMBERSHIP;
+	int LIFE_CLASS__IMPORTED_MEMBERSHIP = CLASS__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -53718,7 +53718,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_MEMBERSHIP = BLOCK__OWNED_MEMBERSHIP;
+	int LIFE_CLASS__OWNED_MEMBERSHIP = CLASS__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -53727,7 +53727,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_IMPORT = BLOCK__OWNED_IMPORT;
+	int LIFE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -53736,7 +53736,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_GENERALIZATION = BLOCK__OWNED_GENERALIZATION;
+	int LIFE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -53745,7 +53745,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_FEATURE_MEMBERSHIP_COMP = BLOCK__OWNED_FEATURE_MEMBERSHIP_COMP;
+	int LIFE_CLASS__OWNED_FEATURE_MEMBERSHIP_COMP = CLASS__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -53754,7 +53754,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__FEATURE = BLOCK__FEATURE;
+	int LIFE_CLASS__FEATURE = CLASS__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -53763,7 +53763,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_FEATURE = BLOCK__OWNED_FEATURE;
+	int LIFE_CLASS__OWNED_FEATURE = CLASS__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -53772,7 +53772,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__INPUT = BLOCK__INPUT;
+	int LIFE_CLASS__INPUT = CLASS__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -53781,7 +53781,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OUTPUT = BLOCK__OUTPUT;
+	int LIFE_CLASS__OUTPUT = CLASS__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -53790,7 +53790,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__IS_ABSTRACT = BLOCK__IS_ABSTRACT;
+	int LIFE_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -53799,7 +53799,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__INHERITED_MEMBERSHIP = BLOCK__INHERITED_MEMBERSHIP;
+	int LIFE_CLASS__INHERITED_MEMBERSHIP = CLASS__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
@@ -53808,7 +53808,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__END_FEATURE = BLOCK__END_FEATURE;
+	int LIFE_CLASS__END_FEATURE = CLASS__END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned End Feature</b></em>' reference list.
@@ -53817,7 +53817,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_END_FEATURE = BLOCK__OWNED_END_FEATURE;
+	int LIFE_CLASS__OWNED_END_FEATURE = CLASS__OWNED_END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Sufficient</b></em>' attribute.
@@ -53826,7 +53826,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__IS_SUFFICIENT = BLOCK__IS_SUFFICIENT;
+	int LIFE_CLASS__IS_SUFFICIENT = CLASS__IS_SUFFICIENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
@@ -53835,7 +53835,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_CONJUGATOR = BLOCK__OWNED_CONJUGATOR;
+	int LIFE_CLASS__OWNED_CONJUGATOR = CLASS__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Conjugator</b></em>' reference.
@@ -53844,7 +53844,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__CONJUGATOR = BLOCK__CONJUGATOR;
+	int LIFE_CLASS__CONJUGATOR = CLASS__CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -53853,7 +53853,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__IS_CONJUGATED = BLOCK__IS_CONJUGATED;
+	int LIFE_CLASS__IS_CONJUGATED = CLASS__IS_CONJUGATED;
 
 	/**
 	 * The feature id for the '<em><b>Feature Membership</b></em>' reference list.
@@ -53862,7 +53862,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__FEATURE_MEMBERSHIP = BLOCK__FEATURE_MEMBERSHIP;
+	int LIFE_CLASS__FEATURE_MEMBERSHIP = CLASS__FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -53871,7 +53871,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__INHERITED_FEATURE = BLOCK__INHERITED_FEATURE;
+	int LIFE_CLASS__INHERITED_FEATURE = CLASS__INHERITED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -53880,7 +53880,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__MULTIPLICITY = BLOCK__MULTIPLICITY;
+	int LIFE_CLASS__MULTIPLICITY = CLASS__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -53889,7 +53889,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_FEATURE_MEMBERSHIP = BLOCK__OWNED_FEATURE_MEMBERSHIP;
+	int LIFE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -53898,106 +53898,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_SUPERCLASSING = BLOCK__OWNED_SUPERCLASSING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Port</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_PORT = BLOCK__OWNED_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Flow Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__FLOW_PROPERTY = BLOCK__FLOW_PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Owned Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_PROPERTY = BLOCK__OWNED_PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__PROPERTY = BLOCK__PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Owned Action</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_ACTION = BLOCK__OWNED_ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned State</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_STATE = BLOCK__OWNED_STATE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Constraint</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_CONSTRAINT = BLOCK__OWNED_CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Transition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_TRANSITION = BLOCK__OWNED_TRANSITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Requirement</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_REQUIREMENT = BLOCK__OWNED_REQUIREMENT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Function</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_FUNCTION = BLOCK__OWNED_FUNCTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Usage</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_USAGE = BLOCK__OWNED_USAGE;
+	int LIFE_CLASS__OWNED_SUPERCLASSING = CLASS__OWNED_SUPERCLASSING;
 
 	/**
 	 * The number of structural features of the '<em>Life Class</em>' class.
@@ -54006,7 +53907,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS_FEATURE_COUNT = BLOCK_FEATURE_COUNT + 0;
+	int LIFE_CLASS_FEATURE_COUNT = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -54015,7 +53916,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS___NAMES_OF__ELEMENT = BLOCK___NAMES_OF__ELEMENT;
+	int LIFE_CLASS___NAMES_OF__ELEMENT = CLASS___NAMES_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -54024,7 +53925,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS___EXCLUDE_COLLISIONS__ELIST = BLOCK___EXCLUDE_COLLISIONS__ELIST;
+	int LIFE_CLASS___EXCLUDE_COLLISIONS__ELIST = CLASS___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -54033,7 +53934,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS___PUBLIC_MEMBERSHIPS = BLOCK___PUBLIC_MEMBERSHIPS;
+	int LIFE_CLASS___PUBLIC_MEMBERSHIPS = CLASS___PUBLIC_MEMBERSHIPS;
 
 	/**
 	 * The operation id for the '<em>Direction Of</em>' operation.
@@ -54042,7 +53943,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS___DIRECTION_OF__FEATURE = BLOCK___DIRECTION_OF__FEATURE;
+	int LIFE_CLASS___DIRECTION_OF__FEATURE = CLASS___DIRECTION_OF__FEATURE;
 
 	/**
 	 * The number of operations of the '<em>Life Class</em>' class.
@@ -54051,7 +53952,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS_OPERATION_COUNT = BLOCK_OPERATION_COUNT + 0;
+	int LIFE_CLASS_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
@@ -54060,7 +53961,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNING_MEMBERSHIP = REFERENCE_PROPERTY__OWNING_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__OWNING_MEMBERSHIP = FEATURE__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
@@ -54069,7 +53970,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_RELATIONSHIP_COMP = REFERENCE_PROPERTY__OWNED_RELATIONSHIP_COMP;
+	int TIME_SLICE_FEATURE__OWNED_RELATIONSHIP_COMP = FEATURE__OWNED_RELATIONSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -54078,7 +53979,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNING_RELATIONSHIP = REFERENCE_PROPERTY__OWNING_RELATIONSHIP;
+	int TIME_SLICE_FEATURE__OWNING_RELATIONSHIP = FEATURE__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -54087,7 +53988,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IDENTIFIER = REFERENCE_PROPERTY__IDENTIFIER;
+	int TIME_SLICE_FEATURE__IDENTIFIER = FEATURE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -54096,7 +53997,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNING_NAMESPACE = REFERENCE_PROPERTY__OWNING_NAMESPACE;
+	int TIME_SLICE_FEATURE__OWNING_NAMESPACE = FEATURE__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -54105,7 +54006,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__NAME = REFERENCE_PROPERTY__NAME;
+	int TIME_SLICE_FEATURE__NAME = FEATURE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -54114,7 +54015,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNER = REFERENCE_PROPERTY__OWNER;
+	int TIME_SLICE_FEATURE__OWNER = FEATURE__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -54123,7 +54024,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_ELEMENT = REFERENCE_PROPERTY__OWNED_ELEMENT;
+	int TIME_SLICE_FEATURE__OWNED_ELEMENT = FEATURE__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
@@ -54132,7 +54033,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_RELATIONSHIP = REFERENCE_PROPERTY__OWNED_RELATIONSHIP;
+	int TIME_SLICE_FEATURE__OWNED_RELATIONSHIP = FEATURE__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership comp</b></em>' containment reference list.
@@ -54141,7 +54042,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_MEMBERSHIP_COMP = REFERENCE_PROPERTY__OWNED_MEMBERSHIP_COMP;
+	int TIME_SLICE_FEATURE__OWNED_MEMBERSHIP_COMP = FEATURE__OWNED_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -54150,7 +54051,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_MEMBER = REFERENCE_PROPERTY__OWNED_MEMBER;
+	int TIME_SLICE_FEATURE__OWNED_MEMBER = FEATURE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -54159,7 +54060,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__MEMBERSHIP = REFERENCE_PROPERTY__MEMBERSHIP;
+	int TIME_SLICE_FEATURE__MEMBERSHIP = FEATURE__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import comp</b></em>' containment reference list.
@@ -54168,7 +54069,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_IMPORT_COMP = REFERENCE_PROPERTY__OWNED_IMPORT_COMP;
+	int TIME_SLICE_FEATURE__OWNED_IMPORT_COMP = FEATURE__OWNED_IMPORT_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -54177,7 +54078,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__MEMBER = REFERENCE_PROPERTY__MEMBER;
+	int TIME_SLICE_FEATURE__MEMBER = FEATURE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -54186,7 +54087,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IMPORTED_MEMBERSHIP = REFERENCE_PROPERTY__IMPORTED_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__IMPORTED_MEMBERSHIP = FEATURE__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -54195,7 +54096,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_MEMBERSHIP = REFERENCE_PROPERTY__OWNED_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__OWNED_MEMBERSHIP = FEATURE__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -54204,7 +54105,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_IMPORT = REFERENCE_PROPERTY__OWNED_IMPORT;
+	int TIME_SLICE_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -54213,7 +54114,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_GENERALIZATION = REFERENCE_PROPERTY__OWNED_GENERALIZATION;
+	int TIME_SLICE_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -54222,7 +54123,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = REFERENCE_PROPERTY__OWNED_FEATURE_MEMBERSHIP_COMP;
+	int TIME_SLICE_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -54231,7 +54132,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__FEATURE = REFERENCE_PROPERTY__FEATURE;
+	int TIME_SLICE_FEATURE__FEATURE = FEATURE__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -54240,7 +54141,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_FEATURE = REFERENCE_PROPERTY__OWNED_FEATURE;
+	int TIME_SLICE_FEATURE__OWNED_FEATURE = FEATURE__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -54249,7 +54150,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__INPUT = REFERENCE_PROPERTY__INPUT;
+	int TIME_SLICE_FEATURE__INPUT = FEATURE__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -54258,7 +54159,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OUTPUT = REFERENCE_PROPERTY__OUTPUT;
+	int TIME_SLICE_FEATURE__OUTPUT = FEATURE__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -54267,7 +54168,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_ABSTRACT = REFERENCE_PROPERTY__IS_ABSTRACT;
+	int TIME_SLICE_FEATURE__IS_ABSTRACT = FEATURE__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -54276,7 +54177,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__INHERITED_MEMBERSHIP = REFERENCE_PROPERTY__INHERITED_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__INHERITED_MEMBERSHIP = FEATURE__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
@@ -54285,7 +54186,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__END_FEATURE = REFERENCE_PROPERTY__END_FEATURE;
+	int TIME_SLICE_FEATURE__END_FEATURE = FEATURE__END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned End Feature</b></em>' reference list.
@@ -54294,7 +54195,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_END_FEATURE = REFERENCE_PROPERTY__OWNED_END_FEATURE;
+	int TIME_SLICE_FEATURE__OWNED_END_FEATURE = FEATURE__OWNED_END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Sufficient</b></em>' attribute.
@@ -54303,7 +54204,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_SUFFICIENT = REFERENCE_PROPERTY__IS_SUFFICIENT;
+	int TIME_SLICE_FEATURE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
@@ -54312,7 +54213,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_CONJUGATOR = REFERENCE_PROPERTY__OWNED_CONJUGATOR;
+	int TIME_SLICE_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Conjugator</b></em>' reference.
@@ -54321,7 +54222,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__CONJUGATOR = REFERENCE_PROPERTY__CONJUGATOR;
+	int TIME_SLICE_FEATURE__CONJUGATOR = FEATURE__CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -54330,7 +54231,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_CONJUGATED = REFERENCE_PROPERTY__IS_CONJUGATED;
+	int TIME_SLICE_FEATURE__IS_CONJUGATED = FEATURE__IS_CONJUGATED;
 
 	/**
 	 * The feature id for the '<em><b>Feature Membership</b></em>' reference list.
@@ -54339,7 +54240,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__FEATURE_MEMBERSHIP = REFERENCE_PROPERTY__FEATURE_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__FEATURE_MEMBERSHIP = FEATURE__FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -54348,7 +54249,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__INHERITED_FEATURE = REFERENCE_PROPERTY__INHERITED_FEATURE;
+	int TIME_SLICE_FEATURE__INHERITED_FEATURE = FEATURE__INHERITED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -54357,7 +54258,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__MULTIPLICITY = REFERENCE_PROPERTY__MULTIPLICITY;
+	int TIME_SLICE_FEATURE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -54366,7 +54267,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_FEATURE_MEMBERSHIP = REFERENCE_PROPERTY__OWNED_FEATURE_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -54375,7 +54276,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNING_FEATURE_MEMBERSHIP = REFERENCE_PROPERTY__OWNING_FEATURE_MEMBERSHIP;
+	int TIME_SLICE_FEATURE__OWNING_FEATURE_MEMBERSHIP = FEATURE__OWNING_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
@@ -54384,7 +54285,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNING_TYPE = REFERENCE_PROPERTY__OWNING_TYPE;
+	int TIME_SLICE_FEATURE__OWNING_TYPE = FEATURE__OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>End Owning Type</b></em>' reference.
@@ -54393,7 +54294,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__END_OWNING_TYPE = REFERENCE_PROPERTY__END_OWNING_TYPE;
+	int TIME_SLICE_FEATURE__END_OWNING_TYPE = FEATURE__END_OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
@@ -54402,7 +54303,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__REFERENCED_TYPE = REFERENCE_PROPERTY__REFERENCED_TYPE;
+	int TIME_SLICE_FEATURE__REFERENCED_TYPE = FEATURE__REFERENCED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -54411,7 +54312,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_UNIQUE = REFERENCE_PROPERTY__IS_UNIQUE;
+	int TIME_SLICE_FEATURE__IS_UNIQUE = FEATURE__IS_UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -54420,7 +54321,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_ORDERED = REFERENCE_PROPERTY__IS_ORDERED;
+	int TIME_SLICE_FEATURE__IS_ORDERED = FEATURE__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -54429,7 +54330,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__TYPE = REFERENCE_PROPERTY__TYPE;
+	int TIME_SLICE_FEATURE__TYPE = FEATURE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
@@ -54438,7 +54339,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_TYPE = REFERENCE_PROPERTY__OWNED_TYPE;
+	int TIME_SLICE_FEATURE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -54447,7 +54348,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_REDEFINITION = REFERENCE_PROPERTY__OWNED_REDEFINITION;
+	int TIME_SLICE_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
@@ -54456,7 +54357,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_SUBSETTING = REFERENCE_PROPERTY__OWNED_SUBSETTING;
+	int TIME_SLICE_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -54465,7 +54366,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_COMPOSITE = REFERENCE_PROPERTY__IS_COMPOSITE;
+	int TIME_SLICE_FEATURE__IS_COMPOSITE = FEATURE__IS_COMPOSITE;
 
 	/**
 	 * The feature id for the '<em><b>Typing</b></em>' reference list.
@@ -54474,7 +54375,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__TYPING = REFERENCE_PROPERTY__TYPING;
+	int TIME_SLICE_FEATURE__TYPING = FEATURE__TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is End</b></em>' attribute.
@@ -54483,7 +54384,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_END = REFERENCE_PROPERTY__IS_END;
+	int TIME_SLICE_FEATURE__IS_END = FEATURE__IS_END;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -54492,142 +54393,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__IS_NONUNIQUE = REFERENCE_PROPERTY__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_USAGE = REFERENCE_PROPERTY__NESTED_USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Usage</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNING_USAGE = REFERENCE_PROPERTY__OWNING_USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Definition</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNING_DEFINITION = REFERENCE_PROPERTY__OWNING_DEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Nested Port</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_PORT = REFERENCE_PROPERTY__NESTED_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Nested Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_PROPERTY = REFERENCE_PROPERTY__NESTED_PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Nested State</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_STATE = REFERENCE_PROPERTY__NESTED_STATE;
-
-	/**
-	 * The feature id for the '<em><b>Nested Constraint</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_CONSTRAINT = REFERENCE_PROPERTY__NESTED_CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Nested Transition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_TRANSITION = REFERENCE_PROPERTY__NESTED_TRANSITION;
-
-	/**
-	 * The feature id for the '<em><b>Nested Requirement</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_REQUIREMENT = REFERENCE_PROPERTY__NESTED_REQUIREMENT;
-
-	/**
-	 * The feature id for the '<em><b>Nested Function</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_FUNCTION = REFERENCE_PROPERTY__NESTED_FUNCTION;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__PROPERTY = REFERENCE_PROPERTY__PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Nested Action</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__NESTED_ACTION = REFERENCE_PROPERTY__NESTED_ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Property Owning Definition</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__PROPERTY_OWNING_DEFINITION = REFERENCE_PROPERTY__PROPERTY_OWNING_DEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Property Owning Usage</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__PROPERTY_OWNING_USAGE = REFERENCE_PROPERTY__PROPERTY_OWNING_USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Block</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__BLOCK = REFERENCE_PROPERTY__BLOCK;
+	int TIME_SLICE_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
 
 	/**
 	 * The number of structural features of the '<em>Time Slice Feature</em>' class.
@@ -54636,7 +54402,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE_FEATURE_COUNT = REFERENCE_PROPERTY_FEATURE_COUNT + 0;
+	int TIME_SLICE_FEATURE_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -54645,7 +54411,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE___NAMES_OF__ELEMENT = REFERENCE_PROPERTY___NAMES_OF__ELEMENT;
+	int TIME_SLICE_FEATURE___NAMES_OF__ELEMENT = FEATURE___NAMES_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -54654,7 +54420,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE___EXCLUDE_COLLISIONS__ELIST = REFERENCE_PROPERTY___EXCLUDE_COLLISIONS__ELIST;
+	int TIME_SLICE_FEATURE___EXCLUDE_COLLISIONS__ELIST = FEATURE___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -54663,7 +54429,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE___PUBLIC_MEMBERSHIPS = REFERENCE_PROPERTY___PUBLIC_MEMBERSHIPS;
+	int TIME_SLICE_FEATURE___PUBLIC_MEMBERSHIPS = FEATURE___PUBLIC_MEMBERSHIPS;
 
 	/**
 	 * The operation id for the '<em>Direction Of</em>' operation.
@@ -54672,7 +54438,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE___DIRECTION_OF__FEATURE = REFERENCE_PROPERTY___DIRECTION_OF__FEATURE;
+	int TIME_SLICE_FEATURE___DIRECTION_OF__FEATURE = FEATURE___DIRECTION_OF__FEATURE;
 
 	/**
 	 * The operation id for the '<em>Direction For</em>' operation.
@@ -54681,7 +54447,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE___DIRECTION_FOR__TYPE = REFERENCE_PROPERTY___DIRECTION_FOR__TYPE;
+	int TIME_SLICE_FEATURE___DIRECTION_FOR__TYPE = FEATURE___DIRECTION_FOR__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Time Slice Feature</em>' class.
@@ -54690,7 +54456,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE_OPERATION_COUNT = REFERENCE_PROPERTY_OPERATION_COUNT + 0;
+	int TIME_SLICE_FEATURE_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.
@@ -54699,7 +54465,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNING_MEMBERSHIP = REFERENCE_PROPERTY__OWNING_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__OWNING_MEMBERSHIP = FEATURE__OWNING_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship comp</b></em>' containment reference list.
@@ -54708,7 +54474,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_RELATIONSHIP_COMP = REFERENCE_PROPERTY__OWNED_RELATIONSHIP_COMP;
+	int SNAPSHOT_FEATURE__OWNED_RELATIONSHIP_COMP = FEATURE__OWNED_RELATIONSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Relationship</b></em>' container reference.
@@ -54717,7 +54483,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNING_RELATIONSHIP = REFERENCE_PROPERTY__OWNING_RELATIONSHIP;
+	int SNAPSHOT_FEATURE__OWNING_RELATIONSHIP = FEATURE__OWNING_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -54726,7 +54492,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IDENTIFIER = REFERENCE_PROPERTY__IDENTIFIER;
+	int SNAPSHOT_FEATURE__IDENTIFIER = FEATURE__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Owning Namespace</b></em>' reference.
@@ -54735,7 +54501,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNING_NAMESPACE = REFERENCE_PROPERTY__OWNING_NAMESPACE;
+	int SNAPSHOT_FEATURE__OWNING_NAMESPACE = FEATURE__OWNING_NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -54744,7 +54510,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__NAME = REFERENCE_PROPERTY__NAME;
+	int SNAPSHOT_FEATURE__NAME = FEATURE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -54753,7 +54519,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNER = REFERENCE_PROPERTY__OWNER;
+	int SNAPSHOT_FEATURE__OWNER = FEATURE__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -54762,7 +54528,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_ELEMENT = REFERENCE_PROPERTY__OWNED_ELEMENT;
+	int SNAPSHOT_FEATURE__OWNED_ELEMENT = FEATURE__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Relationship</b></em>' reference list.
@@ -54771,7 +54537,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_RELATIONSHIP = REFERENCE_PROPERTY__OWNED_RELATIONSHIP;
+	int SNAPSHOT_FEATURE__OWNED_RELATIONSHIP = FEATURE__OWNED_RELATIONSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership comp</b></em>' containment reference list.
@@ -54780,7 +54546,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_MEMBERSHIP_COMP = REFERENCE_PROPERTY__OWNED_MEMBERSHIP_COMP;
+	int SNAPSHOT_FEATURE__OWNED_MEMBERSHIP_COMP = FEATURE__OWNED_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -54789,7 +54555,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_MEMBER = REFERENCE_PROPERTY__OWNED_MEMBER;
+	int SNAPSHOT_FEATURE__OWNED_MEMBER = FEATURE__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Membership</b></em>' reference list.
@@ -54798,7 +54564,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__MEMBERSHIP = REFERENCE_PROPERTY__MEMBERSHIP;
+	int SNAPSHOT_FEATURE__MEMBERSHIP = FEATURE__MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import comp</b></em>' containment reference list.
@@ -54807,7 +54573,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_IMPORT_COMP = REFERENCE_PROPERTY__OWNED_IMPORT_COMP;
+	int SNAPSHOT_FEATURE__OWNED_IMPORT_COMP = FEATURE__OWNED_IMPORT_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -54816,7 +54582,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__MEMBER = REFERENCE_PROPERTY__MEMBER;
+	int SNAPSHOT_FEATURE__MEMBER = FEATURE__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Membership</b></em>' reference list.
@@ -54825,7 +54591,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IMPORTED_MEMBERSHIP = REFERENCE_PROPERTY__IMPORTED_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__IMPORTED_MEMBERSHIP = FEATURE__IMPORTED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Membership</b></em>' reference list.
@@ -54834,7 +54600,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_MEMBERSHIP = REFERENCE_PROPERTY__OWNED_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__OWNED_MEMBERSHIP = FEATURE__OWNED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' reference list.
@@ -54843,7 +54609,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_IMPORT = REFERENCE_PROPERTY__OWNED_IMPORT;
+	int SNAPSHOT_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
@@ -54852,7 +54618,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_GENERALIZATION = REFERENCE_PROPERTY__OWNED_GENERALIZATION;
+	int SNAPSHOT_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -54861,7 +54627,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = REFERENCE_PROPERTY__OWNED_FEATURE_MEMBERSHIP_COMP;
+	int SNAPSHOT_FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP = FEATURE__OWNED_FEATURE_MEMBERSHIP_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -54870,7 +54636,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__FEATURE = REFERENCE_PROPERTY__FEATURE;
+	int SNAPSHOT_FEATURE__FEATURE = FEATURE__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature</b></em>' reference list.
@@ -54879,7 +54645,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_FEATURE = REFERENCE_PROPERTY__OWNED_FEATURE;
+	int SNAPSHOT_FEATURE__OWNED_FEATURE = FEATURE__OWNED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' reference list.
@@ -54888,7 +54654,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__INPUT = REFERENCE_PROPERTY__INPUT;
+	int SNAPSHOT_FEATURE__INPUT = FEATURE__INPUT;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
@@ -54897,7 +54663,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OUTPUT = REFERENCE_PROPERTY__OUTPUT;
+	int SNAPSHOT_FEATURE__OUTPUT = FEATURE__OUTPUT;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -54906,7 +54672,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_ABSTRACT = REFERENCE_PROPERTY__IS_ABSTRACT;
+	int SNAPSHOT_FEATURE__IS_ABSTRACT = FEATURE__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Membership</b></em>' reference list.
@@ -54915,7 +54681,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__INHERITED_MEMBERSHIP = REFERENCE_PROPERTY__INHERITED_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__INHERITED_MEMBERSHIP = FEATURE__INHERITED_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>End Feature</b></em>' reference list.
@@ -54924,7 +54690,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__END_FEATURE = REFERENCE_PROPERTY__END_FEATURE;
+	int SNAPSHOT_FEATURE__END_FEATURE = FEATURE__END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Owned End Feature</b></em>' reference list.
@@ -54933,7 +54699,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_END_FEATURE = REFERENCE_PROPERTY__OWNED_END_FEATURE;
+	int SNAPSHOT_FEATURE__OWNED_END_FEATURE = FEATURE__OWNED_END_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Sufficient</b></em>' attribute.
@@ -54942,7 +54708,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_SUFFICIENT = REFERENCE_PROPERTY__IS_SUFFICIENT;
+	int SNAPSHOT_FEATURE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
@@ -54951,7 +54717,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_CONJUGATOR = REFERENCE_PROPERTY__OWNED_CONJUGATOR;
+	int SNAPSHOT_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Conjugator</b></em>' reference.
@@ -54960,7 +54726,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__CONJUGATOR = REFERENCE_PROPERTY__CONJUGATOR;
+	int SNAPSHOT_FEATURE__CONJUGATOR = FEATURE__CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -54969,7 +54735,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_CONJUGATED = REFERENCE_PROPERTY__IS_CONJUGATED;
+	int SNAPSHOT_FEATURE__IS_CONJUGATED = FEATURE__IS_CONJUGATED;
 
 	/**
 	 * The feature id for the '<em><b>Feature Membership</b></em>' reference list.
@@ -54978,7 +54744,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__FEATURE_MEMBERSHIP = REFERENCE_PROPERTY__FEATURE_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__FEATURE_MEMBERSHIP = FEATURE__FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Feature</b></em>' reference list.
@@ -54987,7 +54753,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__INHERITED_FEATURE = REFERENCE_PROPERTY__INHERITED_FEATURE;
+	int SNAPSHOT_FEATURE__INHERITED_FEATURE = FEATURE__INHERITED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Multiplicity</b></em>' reference.
@@ -54996,7 +54762,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__MULTIPLICITY = REFERENCE_PROPERTY__MULTIPLICITY;
+	int SNAPSHOT_FEATURE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
@@ -55005,7 +54771,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_FEATURE_MEMBERSHIP = REFERENCE_PROPERTY__OWNED_FEATURE_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -55014,7 +54780,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNING_FEATURE_MEMBERSHIP = REFERENCE_PROPERTY__OWNING_FEATURE_MEMBERSHIP;
+	int SNAPSHOT_FEATURE__OWNING_FEATURE_MEMBERSHIP = FEATURE__OWNING_FEATURE_MEMBERSHIP;
 
 	/**
 	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
@@ -55023,7 +54789,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNING_TYPE = REFERENCE_PROPERTY__OWNING_TYPE;
+	int SNAPSHOT_FEATURE__OWNING_TYPE = FEATURE__OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>End Owning Type</b></em>' reference.
@@ -55032,7 +54798,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__END_OWNING_TYPE = REFERENCE_PROPERTY__END_OWNING_TYPE;
+	int SNAPSHOT_FEATURE__END_OWNING_TYPE = FEATURE__END_OWNING_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Referenced Type</b></em>' reference list.
@@ -55041,7 +54807,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__REFERENCED_TYPE = REFERENCE_PROPERTY__REFERENCED_TYPE;
+	int SNAPSHOT_FEATURE__REFERENCED_TYPE = FEATURE__REFERENCED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
@@ -55050,7 +54816,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_UNIQUE = REFERENCE_PROPERTY__IS_UNIQUE;
+	int SNAPSHOT_FEATURE__IS_UNIQUE = FEATURE__IS_UNIQUE;
 
 	/**
 	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
@@ -55059,7 +54825,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_ORDERED = REFERENCE_PROPERTY__IS_ORDERED;
+	int SNAPSHOT_FEATURE__IS_ORDERED = FEATURE__IS_ORDERED;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference list.
@@ -55068,7 +54834,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__TYPE = REFERENCE_PROPERTY__TYPE;
+	int SNAPSHOT_FEATURE__TYPE = FEATURE__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' reference list.
@@ -55077,7 +54843,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_TYPE = REFERENCE_PROPERTY__OWNED_TYPE;
+	int SNAPSHOT_FEATURE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -55086,7 +54852,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_REDEFINITION = REFERENCE_PROPERTY__OWNED_REDEFINITION;
+	int SNAPSHOT_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
@@ -55095,7 +54861,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_SUBSETTING = REFERENCE_PROPERTY__OWNED_SUBSETTING;
+	int SNAPSHOT_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -55104,7 +54870,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_COMPOSITE = REFERENCE_PROPERTY__IS_COMPOSITE;
+	int SNAPSHOT_FEATURE__IS_COMPOSITE = FEATURE__IS_COMPOSITE;
 
 	/**
 	 * The feature id for the '<em><b>Typing</b></em>' reference list.
@@ -55113,7 +54879,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__TYPING = REFERENCE_PROPERTY__TYPING;
+	int SNAPSHOT_FEATURE__TYPING = FEATURE__TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is End</b></em>' attribute.
@@ -55122,7 +54888,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_END = REFERENCE_PROPERTY__IS_END;
+	int SNAPSHOT_FEATURE__IS_END = FEATURE__IS_END;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -55131,142 +54897,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__IS_NONUNIQUE = REFERENCE_PROPERTY__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_USAGE = REFERENCE_PROPERTY__NESTED_USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Usage</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNING_USAGE = REFERENCE_PROPERTY__OWNING_USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Owning Definition</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNING_DEFINITION = REFERENCE_PROPERTY__OWNING_DEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Nested Port</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_PORT = REFERENCE_PROPERTY__NESTED_PORT;
-
-	/**
-	 * The feature id for the '<em><b>Nested Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_PROPERTY = REFERENCE_PROPERTY__NESTED_PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Nested State</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_STATE = REFERENCE_PROPERTY__NESTED_STATE;
-
-	/**
-	 * The feature id for the '<em><b>Nested Constraint</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_CONSTRAINT = REFERENCE_PROPERTY__NESTED_CONSTRAINT;
-
-	/**
-	 * The feature id for the '<em><b>Nested Transition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_TRANSITION = REFERENCE_PROPERTY__NESTED_TRANSITION;
-
-	/**
-	 * The feature id for the '<em><b>Nested Requirement</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_REQUIREMENT = REFERENCE_PROPERTY__NESTED_REQUIREMENT;
-
-	/**
-	 * The feature id for the '<em><b>Nested Function</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_FUNCTION = REFERENCE_PROPERTY__NESTED_FUNCTION;
-
-	/**
-	 * The feature id for the '<em><b>Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__PROPERTY = REFERENCE_PROPERTY__PROPERTY;
-
-	/**
-	 * The feature id for the '<em><b>Nested Action</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__NESTED_ACTION = REFERENCE_PROPERTY__NESTED_ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Property Owning Definition</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__PROPERTY_OWNING_DEFINITION = REFERENCE_PROPERTY__PROPERTY_OWNING_DEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Property Owning Usage</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__PROPERTY_OWNING_USAGE = REFERENCE_PROPERTY__PROPERTY_OWNING_USAGE;
-
-	/**
-	 * The feature id for the '<em><b>Block</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__BLOCK = REFERENCE_PROPERTY__BLOCK;
+	int SNAPSHOT_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
 
 	/**
 	 * The number of structural features of the '<em>Snapshot Feature</em>' class.
@@ -55275,7 +54906,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE_FEATURE_COUNT = REFERENCE_PROPERTY_FEATURE_COUNT + 0;
+	int SNAPSHOT_FEATURE_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -55284,7 +54915,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE___NAMES_OF__ELEMENT = REFERENCE_PROPERTY___NAMES_OF__ELEMENT;
+	int SNAPSHOT_FEATURE___NAMES_OF__ELEMENT = FEATURE___NAMES_OF__ELEMENT;
 
 	/**
 	 * The operation id for the '<em>Exclude Collisions</em>' operation.
@@ -55293,7 +54924,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE___EXCLUDE_COLLISIONS__ELIST = REFERENCE_PROPERTY___EXCLUDE_COLLISIONS__ELIST;
+	int SNAPSHOT_FEATURE___EXCLUDE_COLLISIONS__ELIST = FEATURE___EXCLUDE_COLLISIONS__ELIST;
 
 	/**
 	 * The operation id for the '<em>Public Memberships</em>' operation.
@@ -55302,7 +54933,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE___PUBLIC_MEMBERSHIPS = REFERENCE_PROPERTY___PUBLIC_MEMBERSHIPS;
+	int SNAPSHOT_FEATURE___PUBLIC_MEMBERSHIPS = FEATURE___PUBLIC_MEMBERSHIPS;
 
 	/**
 	 * The operation id for the '<em>Direction Of</em>' operation.
@@ -55311,7 +54942,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE___DIRECTION_OF__FEATURE = REFERENCE_PROPERTY___DIRECTION_OF__FEATURE;
+	int SNAPSHOT_FEATURE___DIRECTION_OF__FEATURE = FEATURE___DIRECTION_OF__FEATURE;
 
 	/**
 	 * The operation id for the '<em>Direction For</em>' operation.
@@ -55320,7 +54951,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE___DIRECTION_FOR__TYPE = REFERENCE_PROPERTY___DIRECTION_FOR__TYPE;
+	int SNAPSHOT_FEATURE___DIRECTION_FOR__TYPE = FEATURE___DIRECTION_FOR__TYPE;
 
 	/**
 	 * The number of operations of the '<em>Snapshot Feature</em>' class.
@@ -55329,7 +54960,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE_OPERATION_COUNT = REFERENCE_PROPERTY_OPERATION_COUNT + 0;
+	int SNAPSHOT_FEATURE_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owning Membership</b></em>' container reference.

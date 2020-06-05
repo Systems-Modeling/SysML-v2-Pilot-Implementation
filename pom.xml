@@ -7,7 +7,7 @@
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2019-12</eclipse-repository>
-    <plantuml-repository>https://hallvard.github.io/plantuml</plantuml-repository>
+    <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -135,8 +135,7 @@
                   <fileset dir="${basedir}">
                     <include name="*/META-INF/MANIFEST.MF"/>
                     <exclude name="org.omg.sysml.uml.ecore.importer*/**/*"/>
-                    <exclude name="org.omg.sysml.plantuml*/**/*"/>
-                  </fileset>
+                   </fileset>
                   <regexp pattern="Bundle-Version:\s*(.*)"/>
                   <substitution expression="Bundle-Version: ${bundle-version}"/>
                 </replaceregexp>

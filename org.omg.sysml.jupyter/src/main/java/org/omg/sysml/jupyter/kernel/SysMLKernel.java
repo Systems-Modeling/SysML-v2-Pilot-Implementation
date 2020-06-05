@@ -10,6 +10,7 @@ import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.jupyter.kernel.magic.MyMagicParser;
 import org.omg.sysml.jupyter.kernel.magic.Publish;
 import org.omg.sysml.jupyter.kernel.magic.Show;
+import org.omg.sysml.jupyter.kernel.magic.Viz;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -38,9 +39,12 @@ public class SysMLKernel extends BaseKernel {
 
         Optional.ofNullable(System.getenv(ISysML.API_BASE_PATH_KEY)).ifPresent(interactive::setApiBasePath);
 
+        Optional.ofNullable(System.getenv(ISysML.GRAPHVIZ_PATH_KEY)).ifPresent(interactive::setGraphVizPath);
+
         this.magics = new Magics();
         this.magics.registerMagics(Show.class);
         this.magics.registerMagics(Publish.class);
+        this.magics.registerMagics(Viz.class);
 
         this.magicParser = new MyMagicParser();
     }
@@ -50,8 +54,14 @@ public class SysMLKernel extends BaseKernel {
         List<LineMagicParseContext> contexts = magicParser.parseLineMagics(expr);
         if (!contexts.isEmpty()) {
             LineMagicParseContext ctx = contexts.get(0);
-            String result = magics.applyLineMagic(ctx.getMagicCall().getName(), ctx.getMagicCall().getArgs());
-            return new DisplayData(result);
+            Object result = magics.applyLineMagic(ctx.getMagicCall().getName(), ctx.getMagicCall().getArgs());
+            if (result instanceof DisplayData) {
+                return (DisplayData) result;
+            } else if (result instanceof String) {
+                return new DisplayData((String) result);
+            } else {
+                throw new IllegalArgumentException("Invalid magic command:" + contexts);
+            }
         }
 
         SysMLInteractiveResult result = interactive.eval(expr);

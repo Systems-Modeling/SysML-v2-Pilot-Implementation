@@ -16,8 +16,9 @@ if errorlevel 1 (
 )
 call java -version || goto :error
 
-echo --- Step 3: Installing Python and Jupyter into Conda environment ---
+echo --- Step 3: Installing dependencies into Conda environment ---
 call conda install python=3.* jupyter=1.0.* -y || goto:error
+call conda install graphviz=2.* -c conda-forge -y || goto:error
 
 echo --- Step 4: Testing Python installation ---
 where python
@@ -28,10 +29,12 @@ if errorlevel 1 (
 
 echo --- Step 5: Installing SysML v2 Jupyter kernel ---
 call jupyter kernelspec remove sysml -f
-call python "%~dp0\install.py" --sys-prefix --api-base-path=http://sysml2.intercax.com:9000 %* || goto:error
+for /F usebackq %%A in (`where dot`) do (
+  call python "%~dp0\install.py" --sys-prefix --api-base-path=http://sysml2.intercax.com:9000 "--graphviz-path=%%A%%" %* || goto:error
+)
 
 echo --- Step 6: Installing Jupyter notebook extension for codefolding ---
-call conda install -c conda-forge jupyter_contrib_nbextensions -y || goto:error
+call conda install jupyter_contrib_nbextensions -c conda-forge -y || goto:error
 call jupyter contrib nbextension install --sys-prefix || goto:error
 call jupyter nbextension enable codefolding/main --sys-prefix || goto:error
 

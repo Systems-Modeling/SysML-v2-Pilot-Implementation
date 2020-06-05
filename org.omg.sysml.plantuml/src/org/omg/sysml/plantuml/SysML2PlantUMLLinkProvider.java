@@ -27,7 +27,9 @@ package org.omg.sysml.plantuml;
 import org.eclipse.emf.ecore.EObject;
 
 public interface SysML2PlantUMLLinkProvider {
-	/* Provider must return a proper link string navigatable to eObj.
-	 * It would be embedded in PlantUML text and then in generated diagrams.*/
-	String getLinkString(EObject eObj);
+    /* Provider must return a proper link string navigatable to eObj.
+     * It would be embedded in PlantUML text and then in generated diagrams.*/
+    String getLinkString(EObject eObj);
+
+    String getText(EObject eObj);
 }

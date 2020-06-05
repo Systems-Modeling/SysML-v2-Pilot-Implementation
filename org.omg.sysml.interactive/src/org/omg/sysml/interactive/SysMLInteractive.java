@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,12 +19,14 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Ed Seidewitz
+ *  Ed Seidewitz, MDS
+ *  Hisashi Miyashita, Mgnite
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +34,8 @@ import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.XtextResource;
@@ -46,6 +51,8 @@ import org.omg.sysml.ApiException;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
+import org.omg.sysml.plantuml.SysML2PlantUMLSvc;
 import org.omg.sysml.util.SysMLUtil;
 import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
@@ -75,7 +82,9 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected Traversal traversal;
 	
-	@Inject
+    protected SysML2PlantUMLSvc sysml2PlantUMLSvc;
+
+    @Inject
 	private IGlobalScopeProvider scopeProvider;
 	
 	@Inject
@@ -219,6 +228,60 @@ public class SysMLInteractive extends SysMLUtil {
 					SysMLInteractiveUtil.formatTree(element);
 		} catch (Exception e) {
 			return SysMLInteractiveUtil.formatException(e);
+		}
+	}
+
+    private class LinkProvider implements SysML2PlantUMLLinkProvider {
+        @Override
+        public String getLinkString(EObject eObj) {
+            /* In the future, we can embed a proper link string
+               by implementing this method for interactive diagrams. */
+            return null;
+        }
+
+        @Override
+        public String getText(EObject eObj) {
+            ICompositeNode node = NodeModelUtils.getNode(eObj);
+            if (node == null) return null;
+            return node.getText();
+        }
+    }
+
+    protected SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
+        if (sysml2PlantUMLSvc == null) {
+            sysml2PlantUMLSvc = new SysML2PlantUMLSvc(new LinkProvider());
+        }
+        return sysml2PlantUMLSvc;
+    }
+
+	public void setGraphVizPath(String path) {
+		getSysML2PlantUMLSvc().setGraphVizPath(path);
+	}
+
+	public VizResult viz(List<String> names, List<String> views, List<String> styles) {
+		this.counter++;
+        List<EObject> elements = new ArrayList<EObject>(names.size());
+		try {
+            for (String name: names) {
+                Element element = this.resolve(name);
+                if (element != null) {
+                    elements.add(element);
+                } else {
+                    return VizResult.unresolvedResult(name);
+                }
+            }
+            if (!elements.isEmpty()) {
+                SysML2PlantUMLSvc svc = getSysML2PlantUMLSvc();
+                if (!views.isEmpty()) {
+                    String view = views.get(0);
+                    svc.setView(view);
+                }
+                return VizResult.svgResult(svc.getSVG(elements, styles));
+            } else {
+                return VizResult.emptyResult();
+            }
+		} catch (Exception e) {
+			return VizResult.exceptionResult(e);
 		}
 	}
 	

@@ -62,6 +62,8 @@ Configuring the kernel can be done via environment variables. These can be set o
 | Environment variable | Parameter name | Default | Description |
 |----------------------|----------------|---------|-------------|
 | `ISYSML_LIBRARY_PATH` | `library-path` | `""` | A file path separator delimited list of library path entries that should be available to the user code. **Important:** no matter what OS, this should use forward slash "/" as the file separator.
+| `ISYSML_API_BASE_PATH` | `api-base-path` | `""` | The base path for the API that the model is published to using the %publish magic command.
+| `ISYSML_GRAPHVIZ_PATH` | `graphviz-path` | `""` | The path to the Graphviz dot executable that is used for the %viz magic command.
 
 #### Changing VM options
 

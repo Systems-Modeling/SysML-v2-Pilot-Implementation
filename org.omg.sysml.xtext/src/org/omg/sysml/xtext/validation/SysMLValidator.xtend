@@ -81,23 +81,23 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_BLOCKPROPERTY = 'Invalid Block Property - invalid type'
 	public static val INVALID_BLOCKPROPERTY_MSG = 'A part or reference property must be typed by blocks.'
 	public static val INVALID_CONSTRINTUSAGE = 'Invalid Constraint Usage - invalid type'
-	public static val INVALID_CONSTRINTUSAGE_MSG = 'A constraint must be typed by a constraint definition.'
+	public static val INVALID_CONSTRINTUSAGE_MSG = 'A constraint must be typed by one constraint definition.'
 	public static val INVALID_INDIVIDUALUSAGE = 'Invalid IndividualUsage - invalid type'
-	public static val INVALID_INDIVIDUALUSAGE_MSG = 'An individual must be typed by an individual definition.'
+	public static val INVALID_INDIVIDUALUSAGE_MSG = 'An individual must be typed by one individual definition.'
 	public static val INVALID_CONNECTIONUSAGE = 'Invalid ConnectionUsage - invalid type'
 	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by association blocks.'
 	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
-	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by an interface definition.'
+	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by one interface definition.'
 	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
-	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by a port definition.'
+	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by one port definition.'
 	public static val INVALID_REQUIREMENTUSAGE = 'Invalid RequirementUsage - invalid type'
-	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement  must be typed by a requirement definition.'
+	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement  must be typed by one requirement definition.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
 	public static val INVALID_VALUEPROPERTY = 'Invalid ValueProperty - invalid type'
 	public static val INVALID_VALUEPROPERTY_MSG = 'A value property must be typed by value types.'
 	public static val INVALID_FUNCTIONUSAGE = 'Invalid FunctionUsage - invalid type'
-	public static val INVALID_FUNCTIONUSAGE_MSG = 'A function must be typed by a function definition.'
+	public static val INVALID_FUNCTIONUSAGE_MSG = 'A function must be typed by one function definition.'
 
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
@@ -111,7 +111,7 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //Must have exactly one type, which is a Predicate.
 	def checkConstraintUsageTypes(ConstraintUsage usg){
-		if (! (usg instanceof RequirementUsage))
+		if (!(usg instanceof RequirementUsage))
 			checkOneType(usg, Predicate, SysMLValidator.INVALID_CONSTRINTUSAGE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, SysMLValidator.INVALID_CONSTRINTUSAGE)
 	}
 	@Check //Must have exactly one type, which is a Function.
@@ -152,11 +152,12 @@ class SysMLValidator extends KerMLValidator {
 		if (!(f as FeatureImpl).allTypes.stream.allMatch[u| requiredType.isInstance(u)])
 			error (msg, ref, eId); 
 	}
+	
 	//check types but must have exactly one type
 	protected def void checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
 		var types = (f as FeatureImpl).allTypes;
 		if (types.length !== 1 || types.stream.noneMatch[u| requiredType.isInstance(u)])
-			error (msg,ref, eId); 
+			error (msg, ref, eId); 
 	}
 	
 	@Check

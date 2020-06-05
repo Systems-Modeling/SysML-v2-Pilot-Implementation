@@ -234,7 +234,7 @@ public class SysMLInteractive extends SysMLUtil {
     private class LinkProvider implements SysML2PlantUMLLinkProvider {
         @Override
         public String getLinkString(EObject eObj) {
-            /* In the future, we can embed a some proper link string
+            /* In the future, we can embed a proper link string
                by implementing this method for interactive diagrams. */
             return null;
         }

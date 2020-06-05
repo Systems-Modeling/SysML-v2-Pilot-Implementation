@@ -135,8 +135,7 @@
                   <fileset dir="${basedir}">
                     <include name="*/META-INF/MANIFEST.MF"/>
                     <exclude name="org.omg.sysml.uml.ecore.importer*/**/*"/>
-                    <exclude name="org.omg.sysml.plantuml*/**/*"/>
-                  </fileset>
+                   </fileset>
                   <regexp pattern="Bundle-Version:\s*(.*)"/>
                   <substitution expression="Bundle-Version: ${bundle-version}"/>
                 </replaceregexp>

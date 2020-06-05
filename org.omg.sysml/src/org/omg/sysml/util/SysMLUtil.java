@@ -56,7 +56,7 @@ public abstract class SysMLUtil {
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
-	private final ResourceDescriptionsData index;
+	protected final ResourceDescriptionsData index;
 	
 	protected SysMLUtil(ResourceSet resourceSet) {
 		@SuppressWarnings("unused")

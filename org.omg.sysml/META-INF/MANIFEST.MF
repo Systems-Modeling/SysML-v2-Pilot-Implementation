@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Version: 0.3.2.qualifier
 Bundle-ClassPath: .,
- lib/sysml-v2-api-client-2020-03-all.jar
+ lib/sysml-v2-api-client-2020-05-all.jar
 Bundle-SymbolicName: org.omg.sysml;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,

@@ -43,7 +43,7 @@ package AHFNorway {
 			
 			// specializing the functionality implementation towards REST
 			activity RESTGetAllItems(allitms:String) {/* Getting all items into the String by REST */}
-			private action restGetAllItems:RESTGetAllItems() subsets ServiceMethod;
+			private action restGetAllItems:RESTGetAllItems subsets ServiceMethod;
 			bind apis::getAllItems = restGetAllItems;
 			
 			// specializing the functionality implementation towards MQTT
@@ -90,7 +90,7 @@ package AHFNorway {
  			port redefines serviceDiscovery;
  			port redefines apis;
  		}
- 		part redefines service_registry {
+ 		part service_registry redefines service_registry {
  			port redefines serviceDiscovery;
  		}
  		
@@ -98,7 +98,7 @@ package AHFNorway {
  		connect apisp::apis to apisc::apis; // from Prediktor to Unger
  		
  		// Then we need to connect the application systems to the mandatory systems
- 		connect apisp::serviceDiscovery to service_registry::serviceDiscovery;
+ 		connect apisp::serviceDiscovery to service_registry::serviceDiscovery; 
  		connect apisc::serviceDiscovery to service_registry::serviceDiscovery;
  		connect telluc::serviceDiscovery to service_registry::serviceDiscovery;
  		

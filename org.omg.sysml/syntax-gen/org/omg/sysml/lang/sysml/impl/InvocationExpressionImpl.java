@@ -127,7 +127,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public List<Feature> getRelevantFeatures() {
 		Function function = getFunction();
 		int m = function == null ? 0 : 
-			(int)((FunctionImpl)function).getAllParameters().stream().
+			(int)((TypeImpl)function).getAllParameters().stream().
 				filter(p->((ParameterImpl)p).isInputParameter()).count();
 		List<Feature> features = super.getOwnedFeature();
 		int n = features.size();

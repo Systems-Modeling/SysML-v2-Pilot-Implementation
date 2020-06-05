@@ -736,9 +736,10 @@ AbstractStep returns SysML::Step :
 
 fragment StepDeclaration returns SysML::Step :
 	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? ParameterList? SubsettingPart ValuePart?
-	| TypePart? ParameterList? ValuePart?
-	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ParameterList? ValuePart?
+	( name = Name TypePart? SubsettingPart ( ValuePart | ParameterList )? 
+	| TypePart? ( ValuePart | ParameterList )? 
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart 
+	  ( ValuePart | ParameterList )?
 	)
 ;
 
@@ -780,9 +781,10 @@ AbstractBlockExpression returns SysML::BlockExpression :
 
 fragment ExpressionDeclaration returns SysML::Expression :
 	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? ( ParameterList ReturnParameterPart )? SubsettingPart ValuePart?
-	| TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
-	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ( ParameterList ReturnParameterPart )? ValuePart?
+	( name = Name TypePart? SubsettingPart ( ValuePart | ParameterList ReturnParameterPart )? 
+	| TypePart? ( ValuePart | ParameterList ReturnParameterPart )? 
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart 
+	  ( ValuePart | ParameterList ReturnParameterPart )? 
 	)
 ;
 
@@ -798,9 +800,10 @@ AbstractBooleanExpression returns SysML::BooleanExpression :
 
 fragment BooleanExpressionDeclaration returns SysML::Expression :
 	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
-	| TypePart? ( ParameterList EmptyReturnParameterPart )? ValuePart?
-	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? ParameterList? EmptyReturnParameterPart ValuePart?
+	( name = Name TypePart? SubsettingPart ( ValuePart | ParameterList )? EmptyReturnParameterPart
+	| TypePart? ( ValuePart | ParameterList )? EmptyReturnParameterPart
+	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart 
+	  ( ValuePart | ParameterList )?  EmptyReturnParameterPart
 	)
 ;
 
@@ -853,12 +856,12 @@ ConditionalAndOperator :
 	'&&'
 ;
 
+// Logical Expressions
+
 OrExpression returns SysML::Expression :
 	XorExpression ( {SysML::OperatorExpression.operand_comp += current}  
 		operator = OrOperator operand_comp += XorExpression )*
 ;
-
-// Logical Expressions
 
 OrOperator :
 	'|'
@@ -928,12 +931,21 @@ AdditiveOperator :
 ;
 
 MultiplicativeExpression returns SysML::Expression :
-	UnitsExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = MultiplicativeOperator operand_comp += UnitsExpression )*	
+	ExponentiationExpression ( {SysML::OperatorExpression.operand_comp += current}  
+		operator = MultiplicativeOperator operand_comp += ExponentiationExpression )*	
 ;
 
 MultiplicativeOperator :
-	'*' | '/' | '**' 
+	'*' | '/' 
+;
+
+ExponentiationExpression returns SysML::Expression :
+	UnitsExpression ( {SysML::OperatorExpression.operand_comp += current}  
+		operator = ExponentiationOperator operand_comp += UnitsExpression )*		
+;
+
+ExponentiationOperator :
+	'**'
 ;
 
 // Units Expressions

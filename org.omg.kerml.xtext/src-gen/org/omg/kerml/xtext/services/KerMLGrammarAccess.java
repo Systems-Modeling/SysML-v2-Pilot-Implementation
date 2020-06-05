@@ -4798,13 +4798,15 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_1_0_0_0 = (RuleCall)cNameAssignment_1_0_0.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
-		private final RuleCall cParameterListParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
-		private final RuleCall cSubsettingPartParserRuleCall_1_0_3 = (RuleCall)cGroup_1_0.eContents().get(3);
-		private final RuleCall cValuePartParserRuleCall_1_0_4 = (RuleCall)cGroup_1_0.eContents().get(4);
+		private final RuleCall cSubsettingPartParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
+		private final Alternatives cAlternatives_1_0_3 = (Alternatives)cGroup_1_0.eContents().get(3);
+		private final RuleCall cValuePartParserRuleCall_1_0_3_0 = (RuleCall)cAlternatives_1_0_3.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_1_0_3_1 = (RuleCall)cAlternatives_1_0_3.eContents().get(1);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final RuleCall cTypePartParserRuleCall_1_1_0 = (RuleCall)cGroup_1_1.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_1_1_1 = (RuleCall)cGroup_1_1.eContents().get(1);
-		private final RuleCall cValuePartParserRuleCall_1_1_2 = (RuleCall)cGroup_1_1.eContents().get(2);
+		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
+		private final RuleCall cValuePartParserRuleCall_1_1_1_0 = (RuleCall)cAlternatives_1_1_1.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_1_1_1_1 = (RuleCall)cAlternatives_1_1_1.eContents().get(1);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
 		private final Alternatives cAlternatives_1_2_0 = (Alternatives)cGroup_1_2.eContents().get(0);
 		private final Keyword cColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0 = (Keyword)cAlternatives_1_2_0.eContents().get(0);
@@ -4812,17 +4814,20 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationship_compAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compRedefinitionParserRuleCall_1_2_1_0 = (RuleCall)cOwnedRelationship_compAssignment_1_2_1.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_1_2_2 = (RuleCall)cGroup_1_2.eContents().get(2);
-		private final RuleCall cParameterListParserRuleCall_1_2_3 = (RuleCall)cGroup_1_2.eContents().get(3);
-		private final RuleCall cValuePartParserRuleCall_1_2_4 = (RuleCall)cGroup_1_2.eContents().get(4);
+		private final RuleCall cSubsettingPartParserRuleCall_1_2_3 = (RuleCall)cGroup_1_2.eContents().get(3);
+		private final Alternatives cAlternatives_1_2_4 = (Alternatives)cGroup_1_2.eContents().get(4);
+		private final RuleCall cValuePartParserRuleCall_1_2_4_0 = (RuleCall)cAlternatives_1_2_4.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_1_2_4_1 = (RuleCall)cAlternatives_1_2_4.eContents().get(1);
 		
 		//fragment StepDeclaration returns SysML::Step:
-		//	isSufficient?='all'? (name=Name TypePart? ParameterList? SubsettingPart ValuePart?
-		//	| TypePart? ParameterList? ValuePart?
-		//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? ValuePart?);
+		//	isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList)?
+		//	| TypePart? (ValuePart | ParameterList)?
+		//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isSufficient?='all'? (name=Name TypePart? ParameterList? SubsettingPart ValuePart? | TypePart? ParameterList? ValuePart?
-		//| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? ValuePart?)
+		//isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? | TypePart? (ValuePart |
+		//ParameterList)? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart |
+		//ParameterList)?)
 		public Group getGroup() { return cGroup; }
 		
 		//isSufficient?='all'?
@@ -4831,11 +4836,11 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'all'
 		public Keyword getIsSufficientAllKeyword_0_0() { return cIsSufficientAllKeyword_0_0; }
 		
-		//(name=Name TypePart? ParameterList? SubsettingPart ValuePart? | TypePart? ParameterList? ValuePart? | (':>>' |
-		//'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? ValuePart?)
+		//(name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? | TypePart? (ValuePart | ParameterList)? | (':>>' |
+		//'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//name=Name TypePart? ParameterList? SubsettingPart ValuePart?
+		//name=Name TypePart? SubsettingPart (ValuePart | ParameterList)?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//name=Name
@@ -4847,28 +4852,34 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_0_1() { return cTypePartParserRuleCall_1_0_1; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_1_0_2() { return cParameterListParserRuleCall_1_0_2; }
-		
 		//SubsettingPart
-		public RuleCall getSubsettingPartParserRuleCall_1_0_3() { return cSubsettingPartParserRuleCall_1_0_3; }
+		public RuleCall getSubsettingPartParserRuleCall_1_0_2() { return cSubsettingPartParserRuleCall_1_0_2; }
 		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_0_4() { return cValuePartParserRuleCall_1_0_4; }
+		//(ValuePart | ParameterList)?
+		public Alternatives getAlternatives_1_0_3() { return cAlternatives_1_0_3; }
 		
-		//TypePart? ParameterList? ValuePart?
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_0_3_0() { return cValuePartParserRuleCall_1_0_3_0; }
+		
+		//ParameterList
+		public RuleCall getParameterListParserRuleCall_1_0_3_1() { return cParameterListParserRuleCall_1_0_3_1; }
+		
+		//TypePart? (ValuePart | ParameterList)?
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_1_0() { return cTypePartParserRuleCall_1_1_0; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_1_1_1() { return cParameterListParserRuleCall_1_1_1; }
+		//(ValuePart | ParameterList)?
+		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
 		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_1_2() { return cValuePartParserRuleCall_1_1_2; }
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_1_1_0() { return cValuePartParserRuleCall_1_1_1_0; }
 		
-		//(':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? ValuePart?
+		//ParameterList
+		public RuleCall getParameterListParserRuleCall_1_1_1_1() { return cParameterListParserRuleCall_1_1_1_1; }
+		
+		//(':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?
 		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//(':>>' | 'redefines')
@@ -4889,11 +4900,17 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_2_2() { return cTypePartParserRuleCall_1_2_2; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_1_2_3() { return cParameterListParserRuleCall_1_2_3; }
+		//SubsettingPart
+		public RuleCall getSubsettingPartParserRuleCall_1_2_3() { return cSubsettingPartParserRuleCall_1_2_3; }
 		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_2_4() { return cValuePartParserRuleCall_1_2_4; }
+		//(ValuePart | ParameterList)?
+		public Alternatives getAlternatives_1_2_4() { return cAlternatives_1_2_4; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_2_4_0() { return cValuePartParserRuleCall_1_2_4_0; }
+		
+		//ParameterList
+		public RuleCall getParameterListParserRuleCall_1_2_4_1() { return cParameterListParserRuleCall_1_2_4_1; }
 	}
 	public class InvariantElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Invariant");
@@ -5031,17 +5048,19 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_1_0_0_0 = (RuleCall)cNameAssignment_1_0_0.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final RuleCall cParameterListParserRuleCall_1_0_2_0 = (RuleCall)cGroup_1_0_2.eContents().get(0);
-		private final RuleCall cReturnParameterPartParserRuleCall_1_0_2_1 = (RuleCall)cGroup_1_0_2.eContents().get(1);
-		private final RuleCall cSubsettingPartParserRuleCall_1_0_3 = (RuleCall)cGroup_1_0.eContents().get(3);
-		private final RuleCall cValuePartParserRuleCall_1_0_4 = (RuleCall)cGroup_1_0.eContents().get(4);
+		private final RuleCall cSubsettingPartParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
+		private final Alternatives cAlternatives_1_0_3 = (Alternatives)cGroup_1_0.eContents().get(3);
+		private final RuleCall cValuePartParserRuleCall_1_0_3_0 = (RuleCall)cAlternatives_1_0_3.eContents().get(0);
+		private final Group cGroup_1_0_3_1 = (Group)cAlternatives_1_0_3.eContents().get(1);
+		private final RuleCall cParameterListParserRuleCall_1_0_3_1_0 = (RuleCall)cGroup_1_0_3_1.eContents().get(0);
+		private final RuleCall cReturnParameterPartParserRuleCall_1_0_3_1_1 = (RuleCall)cGroup_1_0_3_1.eContents().get(1);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final RuleCall cTypePartParserRuleCall_1_1_0 = (RuleCall)cGroup_1_1.eContents().get(0);
-		private final Group cGroup_1_1_1 = (Group)cGroup_1_1.eContents().get(1);
-		private final RuleCall cParameterListParserRuleCall_1_1_1_0 = (RuleCall)cGroup_1_1_1.eContents().get(0);
-		private final RuleCall cReturnParameterPartParserRuleCall_1_1_1_1 = (RuleCall)cGroup_1_1_1.eContents().get(1);
-		private final RuleCall cValuePartParserRuleCall_1_1_2 = (RuleCall)cGroup_1_1.eContents().get(2);
+		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
+		private final RuleCall cValuePartParserRuleCall_1_1_1_0 = (RuleCall)cAlternatives_1_1_1.eContents().get(0);
+		private final Group cGroup_1_1_1_1 = (Group)cAlternatives_1_1_1.eContents().get(1);
+		private final RuleCall cParameterListParserRuleCall_1_1_1_1_0 = (RuleCall)cGroup_1_1_1_1.eContents().get(0);
+		private final RuleCall cReturnParameterPartParserRuleCall_1_1_1_1_1 = (RuleCall)cGroup_1_1_1_1.eContents().get(1);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
 		private final Alternatives cAlternatives_1_2_0 = (Alternatives)cGroup_1_2.eContents().get(0);
 		private final Keyword cColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0 = (Keyword)cAlternatives_1_2_0.eContents().get(0);
@@ -5049,21 +5068,23 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationship_compAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compRedefinitionParserRuleCall_1_2_1_0 = (RuleCall)cOwnedRelationship_compAssignment_1_2_1.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_1_2_2 = (RuleCall)cGroup_1_2.eContents().get(2);
-		private final Group cGroup_1_2_3 = (Group)cGroup_1_2.eContents().get(3);
-		private final RuleCall cParameterListParserRuleCall_1_2_3_0 = (RuleCall)cGroup_1_2_3.eContents().get(0);
-		private final RuleCall cReturnParameterPartParserRuleCall_1_2_3_1 = (RuleCall)cGroup_1_2_3.eContents().get(1);
-		private final RuleCall cValuePartParserRuleCall_1_2_4 = (RuleCall)cGroup_1_2.eContents().get(4);
+		private final RuleCall cSubsettingPartParserRuleCall_1_2_3 = (RuleCall)cGroup_1_2.eContents().get(3);
+		private final Alternatives cAlternatives_1_2_4 = (Alternatives)cGroup_1_2.eContents().get(4);
+		private final RuleCall cValuePartParserRuleCall_1_2_4_0 = (RuleCall)cAlternatives_1_2_4.eContents().get(0);
+		private final Group cGroup_1_2_4_1 = (Group)cAlternatives_1_2_4.eContents().get(1);
+		private final RuleCall cParameterListParserRuleCall_1_2_4_1_0 = (RuleCall)cGroup_1_2_4_1.eContents().get(0);
+		private final RuleCall cReturnParameterPartParserRuleCall_1_2_4_1_1 = (RuleCall)cGroup_1_2_4_1.eContents().get(1);
 		
 		//fragment ExpressionDeclaration returns SysML::Expression:
-		//	isSufficient?='all'? (name=Name TypePart? (ParameterList ReturnParameterPart)? SubsettingPart ValuePart?
-		//	| TypePart? (ParameterList ReturnParameterPart)? ValuePart?
-		//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? (ParameterList ReturnParameterPart)?
-		//	ValuePart?);
+		//	isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList ReturnParameterPart)?
+		//	| TypePart? (ValuePart | ParameterList ReturnParameterPart)?
+		//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList
+		//	ReturnParameterPart)?);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isSufficient?='all'? (name=Name TypePart? (ParameterList ReturnParameterPart)? SubsettingPart ValuePart? | TypePart?
-		//(ParameterList ReturnParameterPart)? ValuePart? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart?
-		//(ParameterList ReturnParameterPart)? ValuePart?)
+		//isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList ReturnParameterPart)? | TypePart?
+		//(ValuePart | ParameterList ReturnParameterPart)? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart?
+		//SubsettingPart (ValuePart | ParameterList ReturnParameterPart)?)
 		public Group getGroup() { return cGroup; }
 		
 		//isSufficient?='all'?
@@ -5072,12 +5093,12 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'all'
 		public Keyword getIsSufficientAllKeyword_0_0() { return cIsSufficientAllKeyword_0_0; }
 		
-		//(name=Name TypePart? (ParameterList ReturnParameterPart)? SubsettingPart ValuePart? | TypePart? (ParameterList
-		//ReturnParameterPart)? ValuePart? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? (ParameterList
-		//ReturnParameterPart)? ValuePart?)
+		//(name=Name TypePart? SubsettingPart (ValuePart | ParameterList ReturnParameterPart)? | TypePart? (ValuePart |
+		//ParameterList ReturnParameterPart)? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart?
+		//SubsettingPart (ValuePart | ParameterList ReturnParameterPart)?)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//name=Name TypePart? (ParameterList ReturnParameterPart)? SubsettingPart ValuePart?
+		//name=Name TypePart? SubsettingPart (ValuePart | ParameterList ReturnParameterPart)?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//name=Name
@@ -5089,40 +5110,47 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_0_1() { return cTypePartParserRuleCall_1_0_1; }
 		
-		//(ParameterList ReturnParameterPart)?
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
+		//SubsettingPart
+		public RuleCall getSubsettingPartParserRuleCall_1_0_2() { return cSubsettingPartParserRuleCall_1_0_2; }
+		
+		//(ValuePart | ParameterList ReturnParameterPart)?
+		public Alternatives getAlternatives_1_0_3() { return cAlternatives_1_0_3; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_0_3_0() { return cValuePartParserRuleCall_1_0_3_0; }
+		
+		//ParameterList ReturnParameterPart
+		public Group getGroup_1_0_3_1() { return cGroup_1_0_3_1; }
 		
 		//ParameterList
-		public RuleCall getParameterListParserRuleCall_1_0_2_0() { return cParameterListParserRuleCall_1_0_2_0; }
+		public RuleCall getParameterListParserRuleCall_1_0_3_1_0() { return cParameterListParserRuleCall_1_0_3_1_0; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_1_0_2_1() { return cReturnParameterPartParserRuleCall_1_0_2_1; }
+		public RuleCall getReturnParameterPartParserRuleCall_1_0_3_1_1() { return cReturnParameterPartParserRuleCall_1_0_3_1_1; }
 		
-		//SubsettingPart
-		public RuleCall getSubsettingPartParserRuleCall_1_0_3() { return cSubsettingPartParserRuleCall_1_0_3; }
-		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_0_4() { return cValuePartParserRuleCall_1_0_4; }
-		
-		//TypePart? (ParameterList ReturnParameterPart)? ValuePart?
+		//TypePart? (ValuePart | ParameterList ReturnParameterPart)?
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_1_0() { return cTypePartParserRuleCall_1_1_0; }
 		
-		//(ParameterList ReturnParameterPart)?
-		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+		//(ValuePart | ParameterList ReturnParameterPart)?
+		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_1_1_0() { return cValuePartParserRuleCall_1_1_1_0; }
+		
+		//ParameterList ReturnParameterPart
+		public Group getGroup_1_1_1_1() { return cGroup_1_1_1_1; }
 		
 		//ParameterList
-		public RuleCall getParameterListParserRuleCall_1_1_1_0() { return cParameterListParserRuleCall_1_1_1_0; }
+		public RuleCall getParameterListParserRuleCall_1_1_1_1_0() { return cParameterListParserRuleCall_1_1_1_1_0; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_1_1_1_1() { return cReturnParameterPartParserRuleCall_1_1_1_1; }
+		public RuleCall getReturnParameterPartParserRuleCall_1_1_1_1_1() { return cReturnParameterPartParserRuleCall_1_1_1_1_1; }
 		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_1_2() { return cValuePartParserRuleCall_1_1_2; }
-		
-		//(':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? (ParameterList ReturnParameterPart)? ValuePart?
+		//(':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList
+		//ReturnParameterPart)?
 		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//(':>>' | 'redefines')
@@ -5143,17 +5171,23 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_2_2() { return cTypePartParserRuleCall_1_2_2; }
 		
-		//(ParameterList ReturnParameterPart)?
-		public Group getGroup_1_2_3() { return cGroup_1_2_3; }
+		//SubsettingPart
+		public RuleCall getSubsettingPartParserRuleCall_1_2_3() { return cSubsettingPartParserRuleCall_1_2_3; }
+		
+		//(ValuePart | ParameterList ReturnParameterPart)?
+		public Alternatives getAlternatives_1_2_4() { return cAlternatives_1_2_4; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_2_4_0() { return cValuePartParserRuleCall_1_2_4_0; }
+		
+		//ParameterList ReturnParameterPart
+		public Group getGroup_1_2_4_1() { return cGroup_1_2_4_1; }
 		
 		//ParameterList
-		public RuleCall getParameterListParserRuleCall_1_2_3_0() { return cParameterListParserRuleCall_1_2_3_0; }
+		public RuleCall getParameterListParserRuleCall_1_2_4_1_0() { return cParameterListParserRuleCall_1_2_4_1_0; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_1_2_3_1() { return cReturnParameterPartParserRuleCall_1_2_3_1; }
-		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_2_4() { return cValuePartParserRuleCall_1_2_4; }
+		public RuleCall getReturnParameterPartParserRuleCall_1_2_4_1_1() { return cReturnParameterPartParserRuleCall_1_2_4_1_1; }
 	}
 	public class BooleanExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.BooleanExpression");
@@ -5204,16 +5238,17 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1_0_0 = (Assignment)cGroup_1_0.eContents().get(0);
 		private final RuleCall cNameNameParserRuleCall_1_0_0_0 = (RuleCall)cNameAssignment_1_0_0.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
-		private final RuleCall cParameterListParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
-		private final RuleCall cEmptyReturnParameterPartParserRuleCall_1_0_3 = (RuleCall)cGroup_1_0.eContents().get(3);
-		private final RuleCall cSubsettingPartParserRuleCall_1_0_4 = (RuleCall)cGroup_1_0.eContents().get(4);
-		private final RuleCall cValuePartParserRuleCall_1_0_5 = (RuleCall)cGroup_1_0.eContents().get(5);
+		private final RuleCall cSubsettingPartParserRuleCall_1_0_2 = (RuleCall)cGroup_1_0.eContents().get(2);
+		private final Alternatives cAlternatives_1_0_3 = (Alternatives)cGroup_1_0.eContents().get(3);
+		private final RuleCall cValuePartParserRuleCall_1_0_3_0 = (RuleCall)cAlternatives_1_0_3.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_1_0_3_1 = (RuleCall)cAlternatives_1_0_3.eContents().get(1);
+		private final RuleCall cEmptyReturnParameterPartParserRuleCall_1_0_4 = (RuleCall)cGroup_1_0.eContents().get(4);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final RuleCall cTypePartParserRuleCall_1_1_0 = (RuleCall)cGroup_1_1.eContents().get(0);
-		private final Group cGroup_1_1_1 = (Group)cGroup_1_1.eContents().get(1);
-		private final RuleCall cParameterListParserRuleCall_1_1_1_0 = (RuleCall)cGroup_1_1_1.eContents().get(0);
-		private final RuleCall cEmptyReturnParameterPartParserRuleCall_1_1_1_1 = (RuleCall)cGroup_1_1_1.eContents().get(1);
-		private final RuleCall cValuePartParserRuleCall_1_1_2 = (RuleCall)cGroup_1_1.eContents().get(2);
+		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
+		private final RuleCall cValuePartParserRuleCall_1_1_1_0 = (RuleCall)cAlternatives_1_1_1.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_1_1_1_1 = (RuleCall)cAlternatives_1_1_1.eContents().get(1);
+		private final RuleCall cEmptyReturnParameterPartParserRuleCall_1_1_2 = (RuleCall)cGroup_1_1.eContents().get(2);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
 		private final Alternatives cAlternatives_1_2_0 = (Alternatives)cGroup_1_2.eContents().get(0);
 		private final Keyword cColonGreaterThanSignGreaterThanSignKeyword_1_2_0_0 = (Keyword)cAlternatives_1_2_0.eContents().get(0);
@@ -5221,20 +5256,22 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationship_compAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compRedefinitionParserRuleCall_1_2_1_0 = (RuleCall)cOwnedRelationship_compAssignment_1_2_1.eContents().get(0);
 		private final RuleCall cTypePartParserRuleCall_1_2_2 = (RuleCall)cGroup_1_2.eContents().get(2);
-		private final RuleCall cParameterListParserRuleCall_1_2_3 = (RuleCall)cGroup_1_2.eContents().get(3);
-		private final RuleCall cEmptyReturnParameterPartParserRuleCall_1_2_4 = (RuleCall)cGroup_1_2.eContents().get(4);
-		private final RuleCall cValuePartParserRuleCall_1_2_5 = (RuleCall)cGroup_1_2.eContents().get(5);
+		private final RuleCall cSubsettingPartParserRuleCall_1_2_3 = (RuleCall)cGroup_1_2.eContents().get(3);
+		private final Alternatives cAlternatives_1_2_4 = (Alternatives)cGroup_1_2.eContents().get(4);
+		private final RuleCall cValuePartParserRuleCall_1_2_4_0 = (RuleCall)cAlternatives_1_2_4.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_1_2_4_1 = (RuleCall)cAlternatives_1_2_4.eContents().get(1);
+		private final RuleCall cEmptyReturnParameterPartParserRuleCall_1_2_5 = (RuleCall)cGroup_1_2.eContents().get(5);
 		
 		//fragment BooleanExpressionDeclaration returns SysML::Expression:
-		//	isSufficient?='all'? (name=Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
-		//	| TypePart? (ParameterList EmptyReturnParameterPart)? ValuePart?
-		//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? EmptyReturnParameterPart
-		//	ValuePart?);
+		//	isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart
+		//	| TypePart? (ValuePart | ParameterList)? EmptyReturnParameterPart
+		//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?
+		//	EmptyReturnParameterPart);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isSufficient?='all'? (name=Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart? | TypePart?
-		//(ParameterList EmptyReturnParameterPart)? ValuePart? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition
-		//TypePart? ParameterList? EmptyReturnParameterPart ValuePart?)
+		//isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart |
+		//TypePart? (ValuePart | ParameterList)? EmptyReturnParameterPart | (':>>' | 'redefines')
+		//ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart)
 		public Group getGroup() { return cGroup; }
 		
 		//isSufficient?='all'?
@@ -5243,12 +5280,12 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'all'
 		public Keyword getIsSufficientAllKeyword_0_0() { return cIsSufficientAllKeyword_0_0; }
 		
-		//(name=Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart? | TypePart? (ParameterList
-		//EmptyReturnParameterPart)? ValuePart? | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart?
-		//ParameterList? EmptyReturnParameterPart ValuePart?)
+		//(name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart | TypePart? (ValuePart |
+		//ParameterList)? EmptyReturnParameterPart | (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart?
+		//SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
-		//name=Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
+		//name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart
 		public Group getGroup_1_0() { return cGroup_1_0; }
 		
 		//name=Name
@@ -5260,37 +5297,41 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_0_1() { return cTypePartParserRuleCall_1_0_1; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_1_0_2() { return cParameterListParserRuleCall_1_0_2; }
+		//SubsettingPart
+		public RuleCall getSubsettingPartParserRuleCall_1_0_2() { return cSubsettingPartParserRuleCall_1_0_2; }
+		
+		//(ValuePart | ParameterList)?
+		public Alternatives getAlternatives_1_0_3() { return cAlternatives_1_0_3; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_0_3_0() { return cValuePartParserRuleCall_1_0_3_0; }
+		
+		//ParameterList
+		public RuleCall getParameterListParserRuleCall_1_0_3_1() { return cParameterListParserRuleCall_1_0_3_1; }
 		
 		//EmptyReturnParameterPart
-		public RuleCall getEmptyReturnParameterPartParserRuleCall_1_0_3() { return cEmptyReturnParameterPartParserRuleCall_1_0_3; }
+		public RuleCall getEmptyReturnParameterPartParserRuleCall_1_0_4() { return cEmptyReturnParameterPartParserRuleCall_1_0_4; }
 		
-		//SubsettingPart
-		public RuleCall getSubsettingPartParserRuleCall_1_0_4() { return cSubsettingPartParserRuleCall_1_0_4; }
-		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_0_5() { return cValuePartParserRuleCall_1_0_5; }
-		
-		//TypePart? (ParameterList EmptyReturnParameterPart)? ValuePart?
+		//TypePart? (ValuePart | ParameterList)? EmptyReturnParameterPart
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_1_0() { return cTypePartParserRuleCall_1_1_0; }
 		
-		//(ParameterList EmptyReturnParameterPart)?
-		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+		//(ValuePart | ParameterList)?
+		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_1_1_0() { return cValuePartParserRuleCall_1_1_1_0; }
 		
 		//ParameterList
-		public RuleCall getParameterListParserRuleCall_1_1_1_0() { return cParameterListParserRuleCall_1_1_1_0; }
+		public RuleCall getParameterListParserRuleCall_1_1_1_1() { return cParameterListParserRuleCall_1_1_1_1; }
 		
 		//EmptyReturnParameterPart
-		public RuleCall getEmptyReturnParameterPartParserRuleCall_1_1_1_1() { return cEmptyReturnParameterPartParserRuleCall_1_1_1_1; }
+		public RuleCall getEmptyReturnParameterPartParserRuleCall_1_1_2() { return cEmptyReturnParameterPartParserRuleCall_1_1_2; }
 		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_1_2() { return cValuePartParserRuleCall_1_1_2; }
-		
-		//(':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? EmptyReturnParameterPart ValuePart?
+		//(':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?
+		//EmptyReturnParameterPart
 		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//(':>>' | 'redefines')
@@ -5311,14 +5352,20 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//TypePart?
 		public RuleCall getTypePartParserRuleCall_1_2_2() { return cTypePartParserRuleCall_1_2_2; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_1_2_3() { return cParameterListParserRuleCall_1_2_3; }
+		//SubsettingPart
+		public RuleCall getSubsettingPartParserRuleCall_1_2_3() { return cSubsettingPartParserRuleCall_1_2_3; }
+		
+		//(ValuePart | ParameterList)?
+		public Alternatives getAlternatives_1_2_4() { return cAlternatives_1_2_4; }
+		
+		//ValuePart
+		public RuleCall getValuePartParserRuleCall_1_2_4_0() { return cValuePartParserRuleCall_1_2_4_0; }
+		
+		//ParameterList
+		public RuleCall getParameterListParserRuleCall_1_2_4_1() { return cParameterListParserRuleCall_1_2_4_1; }
 		
 		//EmptyReturnParameterPart
-		public RuleCall getEmptyReturnParameterPartParserRuleCall_1_2_4() { return cEmptyReturnParameterPartParserRuleCall_1_2_4; }
-		
-		//ValuePart?
-		public RuleCall getValuePartParserRuleCall_1_2_5() { return cValuePartParserRuleCall_1_2_5; }
+		public RuleCall getEmptyReturnParameterPartParserRuleCall_1_2_5() { return cEmptyReturnParameterPartParserRuleCall_1_2_5; }
 	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Expression");
@@ -5569,6 +5616,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cOperand_compXorExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
 		
+		//// Logical Expressions
 		//OrExpression SysML::Expression:
 		//	XorExpression ({SysML::OperatorExpression.operand_comp+=current} operator=OrOperator operand_comp+=XorExpression)*;
 		@Override public ParserRule getRule() { return rule; }
@@ -5601,7 +5649,6 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.OrOperator");
 		private final Keyword cVerticalLineKeyword = (Keyword)rule.eContents().get(1);
 		
-		//// Logical Expressions
 		//OrOperator:
 		//	'|';
 		@Override public ParserRule getRule() { return rule; }
@@ -5967,27 +6014,28 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class MultiplicativeExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MultiplicativeExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cUnitsExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cExponentiationExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperatorMultiplicativeOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
 		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOperand_compUnitsExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperand_compExponentiationExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
 		
 		//MultiplicativeExpression SysML::Expression:
-		//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
-		//	operand_comp+=UnitsExpression)*;
+		//	ExponentiationExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+		//	operand_comp+=ExponentiationExpression)*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
-		//operand_comp+=UnitsExpression)*
+		//ExponentiationExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+		//operand_comp+=ExponentiationExpression)*
 		public Group getGroup() { return cGroup; }
 		
-		//UnitsExpression
-		public RuleCall getUnitsExpressionParserRuleCall_0() { return cUnitsExpressionParserRuleCall_0; }
+		//ExponentiationExpression
+		public RuleCall getExponentiationExpressionParserRuleCall_0() { return cExponentiationExpressionParserRuleCall_0; }
 		
-		//({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator operand_comp+=UnitsExpression)*
+		//({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+		//operand_comp+=ExponentiationExpression)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand_comp+=current}
@@ -5999,24 +6047,23 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//MultiplicativeOperator
 		public RuleCall getOperatorMultiplicativeOperatorParserRuleCall_1_1_0() { return cOperatorMultiplicativeOperatorParserRuleCall_1_1_0; }
 		
-		//operand_comp+=UnitsExpression
+		//operand_comp+=ExponentiationExpression
 		public Assignment getOperand_compAssignment_1_2() { return cOperand_compAssignment_1_2; }
 		
-		//UnitsExpression
-		public RuleCall getOperand_compUnitsExpressionParserRuleCall_1_2_0() { return cOperand_compUnitsExpressionParserRuleCall_1_2_0; }
+		//ExponentiationExpression
+		public RuleCall getOperand_compExponentiationExpressionParserRuleCall_1_2_0() { return cOperand_compExponentiationExpressionParserRuleCall_1_2_0; }
 	}
 	public class MultiplicativeOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.MultiplicativeOperator");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cAsteriskKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cSolidusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cAsteriskAsteriskKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		
 		//MultiplicativeOperator:
-		//	'*' | '/' | '**';
+		//	'*' | '/';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'*' | '/' | '**'
+		//'*' | '/'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'*'
@@ -6024,9 +6071,58 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'/'
 		public Keyword getSolidusKeyword_1() { return cSolidusKeyword_1; }
+	}
+	public class ExponentiationExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ExponentiationExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cUnitsExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperatorExponentiationOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOperand_compUnitsExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
+		
+		//ExponentiationExpression SysML::Expression:
+		//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator
+		//	operand_comp+=UnitsExpression)*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator
+		//operand_comp+=UnitsExpression)*
+		public Group getGroup() { return cGroup; }
+		
+		//UnitsExpression
+		public RuleCall getUnitsExpressionParserRuleCall_0() { return cUnitsExpressionParserRuleCall_0; }
+		
+		//({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator operand_comp+=UnitsExpression)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::OperatorExpression.operand_comp+=current}
+		public Action getOperatorExpressionOperand_compAction_1_0() { return cOperatorExpressionOperand_compAction_1_0; }
+		
+		//operator=ExponentiationOperator
+		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		
+		//ExponentiationOperator
+		public RuleCall getOperatorExponentiationOperatorParserRuleCall_1_1_0() { return cOperatorExponentiationOperatorParserRuleCall_1_1_0; }
+		
+		//operand_comp+=UnitsExpression
+		public Assignment getOperand_compAssignment_1_2() { return cOperand_compAssignment_1_2; }
+		
+		//UnitsExpression
+		public RuleCall getOperand_compUnitsExpressionParserRuleCall_1_2_0() { return cOperand_compUnitsExpressionParserRuleCall_1_2_0; }
+	}
+	public class ExponentiationOperatorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ExponentiationOperator");
+		private final Keyword cAsteriskAsteriskKeyword = (Keyword)rule.eContents().get(1);
+		
+		//ExponentiationOperator:
+		//	'**';
+		@Override public ParserRule getRule() { return rule; }
 		
 		//'**'
-		public Keyword getAsteriskAsteriskKeyword_2() { return cAsteriskAsteriskKeyword_2; }
+		public Keyword getAsteriskAsteriskKeyword() { return cAsteriskAsteriskKeyword; }
 	}
 	public class UnitsExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.UnitsExpression");
@@ -7380,6 +7476,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final AdditiveOperatorElements pAdditiveOperator;
 	private final MultiplicativeExpressionElements pMultiplicativeExpression;
 	private final MultiplicativeOperatorElements pMultiplicativeOperator;
+	private final ExponentiationExpressionElements pExponentiationExpression;
+	private final ExponentiationOperatorElements pExponentiationOperator;
 	private final UnitsExpressionElements pUnitsExpression;
 	private final UnaryExpressionElements pUnaryExpression;
 	private final UnaryOperatorElements pUnaryOperator;
@@ -7596,6 +7694,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAdditiveOperator = new AdditiveOperatorElements();
 		this.pMultiplicativeExpression = new MultiplicativeExpressionElements();
 		this.pMultiplicativeOperator = new MultiplicativeOperatorElements();
+		this.pExponentiationExpression = new ExponentiationExpressionElements();
+		this.pExponentiationOperator = new ExponentiationOperatorElements();
 		this.pUnitsExpression = new UnitsExpressionElements();
 		this.pUnaryExpression = new UnaryExpressionElements();
 		this.pUnaryOperator = new UnaryOperatorElements();
@@ -9036,9 +9136,9 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment StepDeclaration returns SysML::Step:
-	//	isSufficient?='all'? (name=Name TypePart? ParameterList? SubsettingPart ValuePart?
-	//	| TypePart? ParameterList? ValuePart?
-	//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? ValuePart?);
+	//	isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList)?
+	//	| TypePart? (ValuePart | ParameterList)?
+	//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?);
 	public StepDeclarationElements getStepDeclarationAccess() {
 		return pStepDeclaration;
 	}
@@ -9119,10 +9219,10 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ExpressionDeclaration returns SysML::Expression:
-	//	isSufficient?='all'? (name=Name TypePart? (ParameterList ReturnParameterPart)? SubsettingPart ValuePart?
-	//	| TypePart? (ParameterList ReturnParameterPart)? ValuePart?
-	//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? (ParameterList ReturnParameterPart)?
-	//	ValuePart?);
+	//	isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList ReturnParameterPart)?
+	//	| TypePart? (ValuePart | ParameterList ReturnParameterPart)?
+	//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList
+	//	ReturnParameterPart)?);
 	public ExpressionDeclarationElements getExpressionDeclarationAccess() {
 		return pExpressionDeclaration;
 	}
@@ -9153,10 +9253,10 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment BooleanExpressionDeclaration returns SysML::Expression:
-	//	isSufficient?='all'? (name=Name TypePart? ParameterList? EmptyReturnParameterPart SubsettingPart ValuePart?
-	//	| TypePart? (ParameterList EmptyReturnParameterPart)? ValuePart?
-	//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? ParameterList? EmptyReturnParameterPart
-	//	ValuePart?);
+	//	isSufficient?='all'? (name=Name TypePart? SubsettingPart (ValuePart | ParameterList)? EmptyReturnParameterPart
+	//	| TypePart? (ValuePart | ParameterList)? EmptyReturnParameterPart
+	//	| (':>>' | 'redefines') ownedRelationship_comp+=Redefinition TypePart? SubsettingPart (ValuePart | ParameterList)?
+	//	EmptyReturnParameterPart);
 	public BooleanExpressionDeclarationElements getBooleanExpressionDeclarationAccess() {
 		return pBooleanExpressionDeclaration;
 	}
@@ -9263,6 +9363,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConditionalAndOperatorAccess().getRule();
 	}
 	
+	//// Logical Expressions
 	//OrExpression SysML::Expression:
 	//	XorExpression ({SysML::OperatorExpression.operand_comp+=current} operator=OrOperator operand_comp+=XorExpression)*;
 	public OrExpressionElements getOrExpressionAccess() {
@@ -9273,7 +9374,6 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getOrExpressionAccess().getRule();
 	}
 	
-	//// Logical Expressions
 	//OrOperator:
 	//	'|';
 	public OrOperatorElements getOrOperatorAccess() {
@@ -9414,8 +9514,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MultiplicativeExpression SysML::Expression:
-	//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
-	//	operand_comp+=UnitsExpression)*;
+	//	ExponentiationExpression ({SysML::OperatorExpression.operand_comp+=current} operator=MultiplicativeOperator
+	//	operand_comp+=ExponentiationExpression)*;
 	public MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
 		return pMultiplicativeExpression;
 	}
@@ -9425,13 +9525,34 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MultiplicativeOperator:
-	//	'*' | '/' | '**';
+	//	'*' | '/';
 	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return pMultiplicativeOperator;
 	}
 	
 	public ParserRule getMultiplicativeOperatorRule() {
 		return getMultiplicativeOperatorAccess().getRule();
+	}
+	
+	//ExponentiationExpression SysML::Expression:
+	//	UnitsExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ExponentiationOperator
+	//	operand_comp+=UnitsExpression)*;
+	public ExponentiationExpressionElements getExponentiationExpressionAccess() {
+		return pExponentiationExpression;
+	}
+	
+	public ParserRule getExponentiationExpressionRule() {
+		return getExponentiationExpressionAccess().getRule();
+	}
+	
+	//ExponentiationOperator:
+	//	'**';
+	public ExponentiationOperatorElements getExponentiationOperatorAccess() {
+		return pExponentiationOperator;
+	}
+	
+	public ParserRule getExponentiationOperatorRule() {
+		return getExponentiationOperatorAccess().getRule();
 	}
 	
 	//// Units Expressions

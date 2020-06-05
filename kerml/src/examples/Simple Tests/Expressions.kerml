@@ -11,8 +11,8 @@ package Expressions {
 	d = x->while q (q > 3) r (r - 1)->reduce s t (s + t)->reduce ScalarFunctions::'+';
 	
 	function w(initial) result specializes ControlFunctions::while {
-		expr condition(v) redefines ControlFunctions::while::condition {v > 3}
-		expr body(u) redefines ControlFunctions::while::body {u - 1}
+		expr condition redefines ControlFunctions::while::condition (v){v > 3}
+		expr body redefines ControlFunctions::while::body (u){u - 1}
 	}
 	
 	xx = x == 1 && y == 2? a:

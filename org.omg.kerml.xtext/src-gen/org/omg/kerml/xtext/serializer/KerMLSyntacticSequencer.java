@@ -870,14 +870,10 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     isSufficient?='all' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedMembership_comp+=ElementAlias 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Redefinition
-	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=Subset (ambiguity) ownedRelationship_comp+=Redefinition
 	 *     ownedRelationship_comp+=UnitAnnotation 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Redefinition
@@ -938,14 +934,10 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=Subset
 	 *     isSufficient?='all' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     name=Name (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedImport_comp+=PackageImport 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedMembership_comp+=ElementAlias 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) ownedRelationship_comp+=Subset
-	 *     ownedRelationship_comp+=Redefinition ':' 'any' (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=Subset (ambiguity) ownedRelationship_comp+=Subset
 	 *     ownedRelationship_comp+=UnitAnnotation 'feature' ':' 'any' (ambiguity) ownedRelationship_comp+=Subset

@@ -201,8 +201,7 @@ package '5-State-based Behavior-1' {
 			 * In the context of the 'vehicle1_c1' part, the 'provide power' action
 			 * that is enabled in 'vehicle states' gets its input from the 'fuelCmdPort'.
 			 */
-			perform 'provide power' (in fuelCmd = fuelCmdPort::fuelCmd)
-				:>> VehicleA::'provide power';
+			perform 'provide power' :>> VehicleA::'provide power' (in fuelCmd = fuelCmdPort::fuelCmd);
 				
 			/**
 			 * This allocates the state usage 'vehicle states' as the detailed

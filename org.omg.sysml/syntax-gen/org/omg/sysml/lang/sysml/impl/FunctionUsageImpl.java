@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
@@ -36,6 +37,17 @@ import org.omg.sysml.lang.sysml.Usage;
  * @generated
  */
 public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage {
+
+	public static final String FUNCTION_SUBSETTING_BASE_DEFAULT = "Functions::functionDefinitions";
+	public static final String FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT = "Functions::FunctionInvocation::subinvocations";
+	
+	/**
+	 * The cached value of the BindingConnector from the result of the last
+	 * sub-Expression to the result of this FunctionUsage.
+	 */
+	protected BindingConnector resultConnector = null;
+
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,7 +198,7 @@ public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage 
 	 * @generated NOT
 	 */
 	public Definition basicGetFunctionOwningDefinition() {
-		return super.basicGetOwningDefinition();
+		return super.basicGetActionOwningDefinition();
 	}
 
 	/**
@@ -206,6 +218,23 @@ public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage 
 	 */
 	public boolean isSetFunctionOwningDefinition() {
 		return basicGetFunctionOwningDefinition() != null;
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT:
+					FUNCTION_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	public BindingConnector getResultConnector() {
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getResultConnector();
 	}
 
 	/**

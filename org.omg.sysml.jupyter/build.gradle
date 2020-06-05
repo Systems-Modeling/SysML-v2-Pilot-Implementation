@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'org.omg.sysml.jupyter.kernel'
-version '2020-03'
+version '2020-05'
 
 sourceCompatibility = 1.8
 
@@ -38,6 +38,9 @@ jupyter {
         }
         string('api-base-path', 'ISYSML_API_BASE_PATH') {
             description = '''The base path for the API that the model is published to using the %publish magic command.'''
+        }
+        string('graphviz-path', 'ISYSML_GRAPHVIZ_PATH') {
+            description = '''The path to the Graphviz dot executable that is used for the %viz magic command.'''
         }
     }
 }

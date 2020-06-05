@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,7 +19,8 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  * 
  * Contributors:
- *  Ed Seidewitz
+ *  Ed Seidewitz, MDS
+ *  Hisashi Miyashita, Mgnite
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -80,7 +82,9 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	protected Traversal traversal;
 	
-	@Inject
+    protected SysML2PlantUMLSvc sysml2PlantUMLSvc;
+
+    @Inject
 	private IGlobalScopeProvider scopeProvider;
 	
 	@Inject
@@ -243,8 +247,7 @@ public class SysMLInteractive extends SysMLUtil {
         }
     }
 
-    private SysML2PlantUMLSvc sysml2PlantUMLSvc;
-    private SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
+    protected SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
         if (sysml2PlantUMLSvc == null) {
             sysml2PlantUMLSvc = new SysML2PlantUMLSvc(new LinkProvider());
         }
@@ -281,8 +284,6 @@ public class SysMLInteractive extends SysMLUtil {
 			return VizResult.exceptionResult(e);
 		}
 	}
-
-
 	
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) throws ApiException {
 		System.out.println("API base path: " + this.apiBasePath);

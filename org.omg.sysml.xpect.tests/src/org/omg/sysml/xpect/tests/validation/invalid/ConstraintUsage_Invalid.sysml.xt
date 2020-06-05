@@ -28,11 +28,11 @@ package pkg {
 	constraint def AConstraint;
 	requirement def ARequirement;
 	block ABlock {
-		// XPECT errors ---> "A constraint must be typed by a constraint definition." at "constraint two_types : AConstraint, ABlock;"
+		// XPECT errors ---> "A constraint must be typed by one constraint definition." at "constraint two_types : AConstraint, ABlock;"
 		assert constraint two_types : AConstraint, ABlock;
-		// XPECT errors ---> "A constraint must be typed by a constraint definition." at "constraint aConstraint0 : ABlock;"
+		// XPECT errors ---> "A constraint must be typed by one constraint definition." at "constraint aConstraint0 : ABlock;"
 		assert constraint aConstraint0: ABlock;
-		//XPECT errors ---> "A constraint must be typed by a constraint definition." at "constraint aConstraint1 : ARequirement;"
+		//XPECT errors ---> "A constraint must be typed by one constraint definition." at "constraint aConstraint1 : ARequirement;"
 		assert constraint aConstraint1 : ARequirement;
 	}	
 }

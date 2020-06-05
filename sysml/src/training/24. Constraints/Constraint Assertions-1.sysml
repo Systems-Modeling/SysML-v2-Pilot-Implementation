@@ -21,11 +21,11 @@ package 'Constraint Assertions-1' {
 		
 		value chassisMass : MassValue;
 		
-		value engine : Engine {
+		part engine : Engine {
 			value mass : MassValue;
 		}
 		
-		value transmission : Engine {
+		part transmission : Engine {
 			value mass : MassValue;
 		}
 	}	

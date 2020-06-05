@@ -58,7 +58,7 @@ package '15_19a-Materials with Properties' {
     }
 
     value type MaterialFraction {
-        ref material: Material[1]; 
+        value material: Material[1]; 
         value massFraction: MassFractionValue[1];
     }
 

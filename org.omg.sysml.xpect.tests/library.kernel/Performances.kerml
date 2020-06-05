@@ -107,7 +107,7 @@ package Performances {
 	/**
 	 * literalEvaluations is a specialization of evaluations restricted to type LiteralEvaluation.
 	 */
-	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique (): ScalarValues::ScalarValue[1] subsets evaluations;
+	abstract expr literalEvaluations: LiteralEvaluation[0..*] nonunique subsets evaluations;
 	
 	/**
 	 * nullEvaluations is a specialization of evaluations restricted to type NullEvaluation.

@@ -1300,8 +1300,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 			case SysMLPackage.LIFE_CLASS: {
 				LifeClass lifeClass = (LifeClass)theEObject;
 				T result = caseLifeClass(lifeClass);
-				if (result == null) result = caseBlock(lifeClass);
-				if (result == null) result = caseDefinition(lifeClass);
 				if (result == null) result = caseClass(lifeClass);
 				if (result == null) result = caseClassifier(lifeClass);
 				if (result == null) result = caseType(lifeClass);
@@ -1313,10 +1311,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 			case SysMLPackage.TIME_SLICE_FEATURE: {
 				TimeSliceFeature timeSliceFeature = (TimeSliceFeature)theEObject;
 				T result = caseTimeSliceFeature(timeSliceFeature);
-				if (result == null) result = caseReferenceProperty(timeSliceFeature);
-				if (result == null) result = caseBlockProperty(timeSliceFeature);
-				if (result == null) result = caseProperty(timeSliceFeature);
-				if (result == null) result = caseUsage(timeSliceFeature);
 				if (result == null) result = caseFeature(timeSliceFeature);
 				if (result == null) result = caseType(timeSliceFeature);
 				if (result == null) result = casePackage(timeSliceFeature);
@@ -1327,10 +1321,6 @@ public class SysMLSwitch<T> extends Switch<T> {
 			case SysMLPackage.SNAPSHOT_FEATURE: {
 				SnapshotFeature snapshotFeature = (SnapshotFeature)theEObject;
 				T result = caseSnapshotFeature(snapshotFeature);
-				if (result == null) result = caseReferenceProperty(snapshotFeature);
-				if (result == null) result = caseBlockProperty(snapshotFeature);
-				if (result == null) result = caseProperty(snapshotFeature);
-				if (result == null) result = caseUsage(snapshotFeature);
 				if (result == null) result = caseFeature(snapshotFeature);
 				if (result == null) result = caseType(snapshotFeature);
 				if (result == null) result = casePackage(snapshotFeature);

@@ -1,8 +1,10 @@
 package TransitionPerformances {
-	private import Base::*;
-	private import ScalarValues::*;
-	private import Occurrences::*;
-	private import Transfers::*;
+	private import ScalarValues::Boolean;
+	private import Occurrences::HappensBefore;
+	private import Performances::Performance;
+	private import Performances::Evaluation;
+	private import Transfers::Transfer;
+	private import ControlFunctions::allTrue;
 	
 	abstract behavior TransitionPerformance(in transitionLinkSource: Performance[1]) {
 		feature trigger: Transfer[*];
@@ -27,6 +29,11 @@ package TransitionPerformances {
 	}
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
+		feature transitionLink redefines TransitionPerformance::transitionLink {
+			end earlier;
+			end later;
+		}
+
 		succession transitionLinkSource[1] then trigger[*];
 		succession transitionLinkSource[1] then guard[*];
 		
@@ -37,6 +44,6 @@ package TransitionPerformances {
 		end feature constrainedHBLink: HappensBefore[0..1];
 		end expr constrainedGuard: Evaluation[*] () result: Boolean;
 		
-		inv { constrainedGuard()->forAll result: Boolean (result) }		
+		inv { allTrue(constrainedGuard()) }
 	}	
 }

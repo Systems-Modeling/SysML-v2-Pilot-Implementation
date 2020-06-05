@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface TimeSliceFeature extends ReferenceProperty {
+public interface TimeSliceFeature extends Feature {
 } // TimeSliceFeature

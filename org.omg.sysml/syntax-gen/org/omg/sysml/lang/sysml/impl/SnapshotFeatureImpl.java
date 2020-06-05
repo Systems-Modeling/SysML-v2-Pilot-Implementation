@@ -19,7 +19,7 @@ import org.omg.sysml.lang.sysml.Type;
  *
  * @generated
  */
-public class SnapshotFeatureImpl extends ReferencePropertyImpl implements SnapshotFeature {
+public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature {
 	
 	public static final String SNAPSHOT_FEATURE_DEFAULT_NAME = "snapshotOf";	
 	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
@@ -52,9 +52,9 @@ public class SnapshotFeatureImpl extends ReferencePropertyImpl implements Snapsh
 	}
 	
 	@Override
-	protected void getFeatureTypes(List<Type> types) {
+	protected List<Type> getFeatureTypes(List<Type> types) {
 		IndividualUsageImpl.setTypingFor(this);
-		super.getFeatureTypes(types);
+		return super.getFeatureTypes(types);
 	}
 
 	@Override

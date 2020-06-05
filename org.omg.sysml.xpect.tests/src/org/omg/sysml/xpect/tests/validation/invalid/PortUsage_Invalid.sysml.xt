@@ -1,0 +1,51 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package 'Port Example' {
+	value type Vt;
+	block B;
+	port def pd1;
+	port def pd2;
+	block FA {
+		/* XPECT errors --- 
+		   	"A port must be typed by a port definition." at "ablock : B;"
+			"Features must have at least one type" at "ablock : B;"
+		--- */
+		port ablock : B;
+		/* XPECT errors --- 
+		   	"A port must be typed by a port definition." at "avaluetype : Vt;"
+			"Features must have at least one type" at "avaluetype : Vt;"
+		--- */
+		port avaluetype : Vt;
+		//XPECT errors --> "A port must be typed by a port definition." at "two_port_def_types : pd1, pd2;"
+		port two_port_def_types: pd1, pd2;
+	}
+	part tank: FA {
+		/* XPECT errors --- 
+		   "A port must be typed by a port definition." at "aport redefines ablock;"
+		   "Features must have at least one type" at "aport redefines ablock;"
+		 --- */
+		port aport redefines ablock;
+	}
+}

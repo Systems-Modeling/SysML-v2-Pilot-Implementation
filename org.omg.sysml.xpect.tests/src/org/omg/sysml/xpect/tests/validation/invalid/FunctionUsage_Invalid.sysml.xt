@@ -1,0 +1,61 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Functions.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Functions.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package pkg {
+	function def 'F1';
+	fn def 'F2';
+	activity B;
+	action bb: B;
+	block A {
+		// XPECT errors --> "A function must be typed by a function definition." at "f1 : F1, F2;"
+	 	function f1 : F1, F2;
+	 	/* XPECT errors --- 
+	 	   "A function must be typed by a function definition." at "f2 : A;"
+	 		"Features must have at least one type" at "f2 : A;"
+		--- */ 
+    	fn f2: A;
+    	/* XPECT errors --- 
+    	   "A function must be typed by a function definition." at "f3 : f2;"
+    		"Features must have at least one type" at "f3 : f2;"
+		--- */ 
+    	calc f3: f2;
+    	/* XPECT errors --- 
+    	   "A function must be typed by a function definition." at "f4 : A::f1;"
+    		"Features must have at least one type" at "f4 : A::f1;"
+		--- */ 
+    	compute f4: A::f1;
+    	/* XPECT errors --- 
+    	   "A function must be typed by a function definition." at "f5 : B;"
+    		"Features must have at least one type" at "f5 : B;"
+		--- */ 
+    	compute f5: B;
+    	/* XPECT errors --- 
+    	   	"A function must be typed by a function definition." at "f6 : bb;"
+    		"Features must have at least one type" at "f6 : bb;"
+		--- */ 
+    	compute f6: bb;
+   	}
+}

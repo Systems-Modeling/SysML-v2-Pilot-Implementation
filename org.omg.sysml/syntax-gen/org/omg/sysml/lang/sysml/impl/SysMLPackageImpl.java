@@ -5387,9 +5387,9 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		requirementConstraintMembershipEClass.getESuperTypes().add(this.getFeatureMembership());
 		satisfyRequirementUsageEClass.getESuperTypes().add(this.getRequirementUsage());
 		satisfyRequirementUsageEClass.getESuperTypes().add(this.getAssertConstraintUsage());
-		lifeClassEClass.getESuperTypes().add(this.getBlock());
-		timeSliceFeatureEClass.getESuperTypes().add(this.getReferenceProperty());
-		snapshotFeatureEClass.getESuperTypes().add(this.getReferenceProperty());
+		lifeClassEClass.getESuperTypes().add(this.getClass_());
+		timeSliceFeatureEClass.getESuperTypes().add(this.getFeature());
+		snapshotFeatureEClass.getESuperTypes().add(this.getFeature());
 		individualDefinitionEClass.getESuperTypes().add(this.getBlock());
 		individualUsageEClass.getESuperTypes().add(this.getBlockProperty());
 

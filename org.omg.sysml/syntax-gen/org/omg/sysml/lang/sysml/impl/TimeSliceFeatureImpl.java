@@ -19,7 +19,7 @@ import org.omg.sysml.lang.sysml.Type;
  *
  * @generated
  */
-public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeSliceFeature {
+public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeature {
 	
 	public static final String TIME_SLICE_FEATURE_DEFAULT_NAME = "timeSliceOf";	
 	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";
@@ -52,9 +52,9 @@ public class TimeSliceFeatureImpl extends ReferencePropertyImpl implements TimeS
 	}
 	
 	@Override
-	protected void getFeatureTypes(List<Type> types) {
+	protected List<Type> getFeatureTypes(List<Type> types) {
 		IndividualUsageImpl.setTypingFor(this);
-		super.getFeatureTypes(types);
+		return super.getFeatureTypes(types);
 	}
 
 	@Override

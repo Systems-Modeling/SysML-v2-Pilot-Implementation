@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FunctionImpl extends BehaviorImpl implements Function {
 
-	public String FUNCTION_SUPERCLASS_DEFAULT = "Performances::Evaluation";
+	public static final String FUNCTION_SUPERCLASS_DEFAULT = "Performances::Evaluation";
 
 	/**
 	 * The cached value of the BindingConnector from the result of the last

@@ -201,16 +201,21 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
+		return getAllTypes();
+	}
+	
+	public EList<Type> getAllTypes() {
 		if (types == null) {
 			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 			getTypes(types, new HashSet<Feature>());
+			removeRedundantTypes(types);
 		}
 		return types;
 	}
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(this);
-		getFeatureTypes(types);
+		types.addAll(getFeatureTypes(types));
 		Conjugation conjugator = getConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
@@ -226,9 +231,20 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}		
 	}
 	
-	protected void getFeatureTypes(List<Type> types) {
-		types.addAll(getTyping().stream().
-				map(typing->typing.getType()).filter(type->type != null).collect(Collectors.toList()));
+	protected List<Type> getFeatureTypes(List<Type> types) {
+		return getTyping().stream().
+				map(typing->typing.getType()).
+				filter(type->type != null).
+				collect(Collectors.toList());
+	}
+	
+	protected static void removeRedundantTypes(List<Type> types) {
+		for (int i = types.size() - 1; i > 0 ; i--) {
+			Type type = types.get(i);
+			if (types.subList(0, i).stream().anyMatch(otherType->((TypeImpl)otherType).conformsTo(type))) {
+				types.remove(i);
+			}
+		}
 	}
 
 	/**

@@ -15,10 +15,10 @@ package Blocks {
 	 * Part is the base type of all blocks.
 	 */
 	block Part :> Object {
-		ref self: Part :>> Object::self;
+		ref :>> self: Part;
 		
-		part start: Part :>> Object::startShot;
-		part done: Part :>> Object::endShot;
+		part start: Part :>> startShot;
+		part done: Part :>> endShot;
 		
 		/**
 		 * Ports that are on this part.
@@ -56,8 +56,8 @@ package Blocks {
 	 * the kernel association SelfLink.)
 	 */
 	assoc block Connection :> BinaryLink, Part { // Need to handle n-ary interfaces.
-		end source: Part[0..*] :>> BinaryLink::source;
-		end target: Part[0..*] :>> BinaryLink::target;
+		end :>> source: Part[0..*];
+		end :>> target: Part[0..*];
 	}
 	
 	/**
@@ -66,8 +66,8 @@ package Blocks {
 	 * interface definitions.
 	 */
 	interface def Interface :> Connection { 
-		end source: Port[0..*] :>> Connection::source;
-		end target: Port[0..*] :>> Connection::target;
+		end :>> source: Port[0..*];
+		end :>> target: Port[0..*];
 	}
 	
 	/**

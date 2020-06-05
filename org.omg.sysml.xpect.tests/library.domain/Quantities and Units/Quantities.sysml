@@ -10,7 +10,7 @@ package Quantities {
 	 */
 	abstract value type QuantityValue :> ScalarValues::NumericalValue {
 		value num: ScalarValues::Number;
-		ref mRef: UnitsAndScales::MeasurementReference;
+		value mRef: UnitsAndScales::MeasurementReference;
 	}
 	
 	/**

@@ -2,7 +2,8 @@
  * This package defines the general representations used to construct measurement scale and unit types.
  */
 package UnitsAndScales {
-	private import ScalarValues::ScalarValue;
+	private import ScalarValues::*;
+	private import Quantities::QuantityValue;
 
 	/**
 	 * Representation of a measurement reference.
@@ -14,7 +15,7 @@ package UnitsAndScales {
 	 * values on a measurement scale.
 	 */
 	abstract value type MeasurementReference :> ScalarValue {
-		value name: ScalarValues::String; 
+		value name: String; 
 		value scaleValueDefinition: ScaleValueDefinition[0..*];
 	}
 	
@@ -57,16 +58,16 @@ package UnitsAndScales {
 	 * Specifies a tuple of a referenced measurement unit and an exponent.
 	 */
 	value type UnitPowerFactor {
-		ref unit: MeasurementUnit;
-		value exponent: ScalarValues::Number;
+		value unit: MeasurementUnit;
+		value exponent: Number;
 	}
 	
 	/**
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.  
 	 */
 	abstract value type UnitConversion {
-		ref referenceUnit: MeasurementUnit;
-		value conversionFactor: ScalarValues::Number;
+		value referenceUnit: MeasurementUnit;
+		value conversionFactor: Number;
 	}
 	
 	/**
@@ -83,8 +84,8 @@ package UnitsAndScales {
 	 * Examples: kilometre for conversion factor 1000 with reference unit metre, nanofarad for 1E-9 farad.
 	 */
 	value type ConversionByPrefix :> UnitConversion {
-		ref prefix: UnitPrefix {
-			value conversionFactor: ScalarValues::Real redefines UnitPrefix::conversionFactor;
+		value prefix: UnitPrefix {
+			value conversionFactor: Real redefines UnitPrefix::conversionFactor;
 		}
 		value conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;		
 	}
@@ -93,9 +94,9 @@ package UnitsAndScales {
 	 * Representation of a multiple or sub-multiple measurement unit prefix as defined in ISO/IEC 80000-1.
 	 */	
 	value type UnitPrefix {
-		value name: ScalarValues::String;
-		value symbol: ScalarValues::String;
-		value conversionFactor: ScalarValues::Integer;
+		value name: String;
+		value symbol: String;
+		value conversionFactor: Integer;
 	}
 	
 		
@@ -105,7 +106,7 @@ package UnitsAndScales {
 	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a QuantityValue.
 	 */
 	abstract value type MeasurementScale :> MeasurementReference {
-		ref unit: MeasurementUnit;
+		value unit: MeasurementUnit;
 		value scaleValueMapping: ScaleValueMapping[0..1];	
 	}
 	
@@ -129,7 +130,7 @@ package UnitsAndScales {
 	 * an angle of 450 degrees is equivalent to an angle of 90 degrees, and -60 degrees is equivalent to 300 degrees.
 	 */
 	value type CyclicRatioScale :> MeasurementScale { 
-		value modulus: ScalarValues::Number;
+		value modulus: Number;
 	}
 
 	/**
@@ -146,9 +147,9 @@ package UnitsAndScales {
      *   a is an exponent.
 	 */
 	value type LogarithmicScale :> MeasurementScale {
-		value logarithmBase: ScalarValues::Number;
-		value factor: ScalarValues::Number;
-		value exponent: ScalarValues::Number;
+		value logarithmBase: Number;
+		value factor: Number;
+		value exponent: Number;
 		value referenceQuantity: Quantities::QuantityValue[0..1];
 	}
 	
@@ -162,8 +163,8 @@ package UnitsAndScales {
 	 * ScaleValueDefinition (0.01, "absolute thermodynamic temperature of the triple point of water") of the celsius interval scale.
 	 */
 	value type ScaleValueMapping {
-		ref referenceScaleValue: ScaleValueDefinition;	
-		ref mappedScaleValue: ScaleValueDefinition;
+		value referenceScaleValue: ScaleValueDefinition;	
+		value mappedScaleValue: ScaleValueDefinition;
 	}
 	
 	/**
@@ -175,8 +176,8 @@ package UnitsAndScales {
 	 * that is value of the definition of the scale.
 	 */
 	value type ScaleValueDefinition {
-		value num: ScalarValues::Number;
-		value description: ScalarValues::String;
+		value num: Number;
+		value description: String;
 	}
 	
 	/**
@@ -190,11 +191,11 @@ package UnitsAndScales {
 	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
 	 */
 	value type DimensionOneUnit :> DerivedUnit {
-		value name: ScalarValues::String redefines MeasurementScale::name = "unit of dimension one";
+		value name: String redefines MeasurementScale::name = "unit of dimension one";
 	}
-	value type DimensionOneValue :> Quantities::QuantityValue {
-		value num: ScalarValues::Real redefines Quantities::QuantityValue::num;
-		ref mRef: DimensionOneUnit redefines Quantities::QuantityValue::mRef;
+	value type DimensionOneValue :> QuantityValue {
+		value num: Real redefines QuantityValue::num;
+		value mRef: DimensionOneUnit redefines QuantityValue::mRef;
 	}
 	value one = DimensionOneUnit();
 }

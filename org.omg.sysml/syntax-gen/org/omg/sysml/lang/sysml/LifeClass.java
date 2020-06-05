@@ -13,5 +13,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface LifeClass extends Block {
+public interface LifeClass extends org.omg.sysml.lang.sysml.Class {
 } // LifeClass

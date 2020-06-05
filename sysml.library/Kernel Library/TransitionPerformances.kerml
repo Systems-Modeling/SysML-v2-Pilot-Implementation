@@ -4,6 +4,7 @@ package TransitionPerformances {
 	private import Performances::Performance;
 	private import Performances::Evaluation;
 	private import Transfers::Transfer;
+	private import ControlFunctions::allTrue;
 	
 	abstract behavior TransitionPerformance(in transitionLinkSource: Performance[1]) {
 		feature trigger: Transfer[*];
@@ -43,6 +44,6 @@ package TransitionPerformances {
 		end feature constrainedHBLink: HappensBefore[0..1];
 		end expr constrainedGuard: Evaluation[*] () result: Boolean;
 		
-		inv { constrainedGuard()->forAll result: Boolean (result) }	
+		inv { allTrue(constrainedGuard()) }
 	}	
 }

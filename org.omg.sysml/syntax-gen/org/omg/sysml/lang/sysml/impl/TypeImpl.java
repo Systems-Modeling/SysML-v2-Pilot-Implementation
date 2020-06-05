@@ -808,6 +808,27 @@ public class TypeImpl extends PackageImpl implements Type {
 
 	// Utility Methods
 	
+	public boolean conformsTo(Type supertype) {
+		return conformsTo(supertype, new HashSet<>());
+	}
+	
+	// Note: Generalizations are allowed to be cyclic.
+	protected boolean conformsTo(Type supertype, Set<Type> visited) {
+		if (this == supertype) {
+			return true;
+		} else {
+			visited.add(this);
+			if (isConjugated()) {
+				Type originalType = getOwnedConjugator().getOriginalType();
+				return !visited.contains(originalType) && ((TypeImpl)originalType).conformsTo(supertype);
+			} else {
+				return getOwnedGeneralization().stream().
+					anyMatch(gen->!visited.contains(gen.getGeneral()) && 
+							((TypeImpl)gen.getGeneral()).conformsTo(supertype, visited));
+			}
+		}
+	}
+	
 	public List<Feature> getAllEndFeatures() {
 		List<Feature> ends = getOwnedEndFeatures();
 		int n = ends.size();
@@ -852,7 +873,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	public EList<Feature> getOwnedInput() {
-		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
 		for (Membership membership: this.getOwnedMembership()) {
 			if (membership instanceof FeatureMembership) {
 				FeatureMembership featureMembership = (FeatureMembership)membership;
@@ -861,12 +882,12 @@ public class TypeImpl extends PackageImpl implements Type {
 						FeatureDirectionKind.INOUT.equals(direction)) {
 					Feature feature = featureMembership.getOwnedMemberFeature();
 					if (feature != null) {
-						outputs.add(feature);
+						inputs.add(feature);
 					}
 				}
 			}
 		}
-		return outputs;
+		return inputs;
 	}
 	
 	public EList<Feature> getOwnedOutput() {

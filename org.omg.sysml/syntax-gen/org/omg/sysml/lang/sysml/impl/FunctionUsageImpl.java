@@ -38,7 +38,7 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class FunctionUsageImpl extends ActionUsageImpl implements FunctionUsage {
 
-	public static final String FUNCTION_SUBSETTING_BASE_DEFAULT = "Functions::functionDefinitions";
+	public static final String FUNCTION_SUBSETTING_BASE_DEFAULT = "Functions::functionInvocations";
 	public static final String FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT = "Functions::FunctionInvocation::subinvocations";
 	
 	/**

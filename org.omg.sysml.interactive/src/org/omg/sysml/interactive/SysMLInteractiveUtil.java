@@ -8,6 +8,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FunctionUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 
@@ -39,7 +40,7 @@ public class SysMLInteractiveUtil {
 	
 	private static void formatTree(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
 		formatElement(buffer, indentation, element, relationship);
-		if (element instanceof Expression) {
+		if (element instanceof Expression && !(element instanceof FunctionUsage)) {
 			for (Element output: ((Expression)element).getOutput()) {
 				if (output.getOwner() == element) {
 					formatElement(buffer, indentation + SysMLInteractiveUtil.INDENT, output, output.getOwningMembership());

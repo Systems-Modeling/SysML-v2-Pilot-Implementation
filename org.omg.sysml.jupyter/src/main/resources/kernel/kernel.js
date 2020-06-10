@@ -25,11 +25,13 @@ var enableMode = function (CodeMirror) {
         return CodeMirror.getMode(config, {
             name: "clike",
             keywords: words("about abstract accept action activity alias allInstances any as assert assoc assume bind block by " +
-                "comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype id if import " +
+                "calc comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype id if import " +
                 "in inout instanceof interface individual join link merge nonunique of ordered out package part perform port private " +
-                "protected public redefines ref require requirement satisfy send snapshot specializes state stream subsets succession then " + 
-                "timeslice to transition type typed value"),
-            defKeywords: words("action activity assoc block constraint def id link individual interface package part port ref requirement " +
+                "protected public redefines ref require requirement return satisfy send snapshot specializes state stream subsets succession then " + 
+                "timeslice to transition type typed value " +
+                "function fn compute" // to be removed in 2020-06
+                ),
+            defKeywords: words("action activity assoc block calc constraint def id link individual interface package part port ref requirement " +
                                "snapshot state timeslice transition type value"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),

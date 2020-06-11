@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -134,11 +135,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 
 	protected String[] getOperatorQualifiedNames(String op) {
-		// NOTE: This is necessary because of how Xtext constructs the qualified name in
-		// the global scope for element named '.' or '..'.
-		// TODO: Remove this if and when possible.
-		//final String operator = ".".equals(op) ? "" : "..".equals(op)? "'::'": op;
-
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 
@@ -175,13 +171,19 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	public boolean isSetArgument() {
   		return false;
 	}
-
+	
 	@Override
-	public void computeImplicitGeneralization() {
+	public EList<FeatureTyping> getTyping() {
 		String operator = getOperator();
 		if (operator != null) {
 			addImplicitGeneralization(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
-		}
+		}		
+		return super.getTyping();
+	}
+
+	@Override
+	public void computeImplicitGeneralization() {
+		getTyping();
 		super.computeImplicitGeneralization();
 	}
 	

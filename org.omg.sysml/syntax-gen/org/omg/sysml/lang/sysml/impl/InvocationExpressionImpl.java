@@ -101,9 +101,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	protected Type getExpressionType() {
-		return getTyping().stream().
-				map(FeatureTyping::getType).
-				findFirst().orElse(null);
+		EList<FeatureTyping> typing = getTyping();
+		return typing.isEmpty()? null: typing.get(0).getType();
 	}
 	
 	@Override

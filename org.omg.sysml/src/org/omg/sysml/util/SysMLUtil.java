@@ -28,12 +28,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.resource.IResourceDescription.Manager;
+import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -51,11 +56,20 @@ public abstract class SysMLUtil {
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
+	protected final ResourceDescriptionsData index;
 	
 	protected SysMLUtil(ResourceSet resourceSet) {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		this.resourceSet = resourceSet;
+		
+		index = Optional.ofNullable(ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet))
+				.orElseGet(() -> {
+					ResourceDescriptionsData newIndex = new ResourceDescriptionsData(new ArrayList<IResourceDescription>());
+					ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, newIndex);
+					return newIndex;
+					
+				});
 	}
 	
 	protected SysMLUtil() {
@@ -118,10 +132,14 @@ public abstract class SysMLUtil {
 	 * @return	the opened resource
 	 */
 	public Resource getResource(final String path) {
-	    final Resource resource = this.resourceSet.getResource(URI.createFileURI(path), true);
+	    URI uri = URI.createFileURI(path);
+		final Resource resource = this.resourceSet.getResource(uri, true);
 		if (resource == null) {
 			throw new RuntimeException("Error opening resource: " + path);
 		} else {
+			IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
+			Manager manager = resourceServiceProvider.getResourceDescriptionManager();
+			index.addDescription(uri, manager.getResourceDescription(resource));
 			return resource;
 		}
 	}

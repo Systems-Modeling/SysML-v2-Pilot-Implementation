@@ -373,7 +373,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	protected Type getDefaultType(String... defaultNames) {
 		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(this, SysMLPackage.eINSTANCE.getGeneralization_General(), defaultName);
+			EObject element = SysMLLibraryUtil.getLibraryElement(this, defaultName);
 			if (element instanceof Type) {
 				return (Type)element;
 			}
@@ -830,12 +830,17 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	public List<Feature> getAllEndFeatures() {
+		return getAllEndFeatures(new HashSet<>());
+	}
+	
+	protected List<Feature> getAllEndFeatures(Set<Type> visited) {
+		visited.add(this);
 		List<Feature> ends = getOwnedEndFeatures();
 		int n = ends.size();
 		for (Generalization generalization: getOwnedGeneralization()) {
 			Type general = generalization.getGeneral();
-			if (general != null) {
-				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures();
+			if (general != null && !visited.contains(general)) {
+				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures(visited);
 				if (inheritedEnds.size() > n) {
 					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
 				}
@@ -851,12 +856,17 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	public List<Parameter> getAllParameters() {
+		return getAllParameters(new HashSet<>());
+	}
+	
+	protected List<Parameter> getAllParameters(Set<Type> visited) {
+		visited.add(this);
 		List<Parameter> parameters = getOwnedParameters();
 		int n = parameters.size();
 		for (Generalization generalization: getOwnedGeneralization()) {
 			Type general = generalization.getGeneral();
-			if (general != null && general != this) {
-				List<Parameter> inheritedParameters = ((TypeImpl)general).getAllParameters();
+			if (general != null && !visited.contains(general)) {
+				List<Parameter> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
 				if (inheritedParameters.size() > n) {
 					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
 				}

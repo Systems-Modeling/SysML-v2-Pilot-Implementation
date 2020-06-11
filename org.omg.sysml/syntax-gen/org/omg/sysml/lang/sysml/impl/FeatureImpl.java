@@ -34,8 +34,10 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Conjugation;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -498,7 +500,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * Type (without defaults).
 	 */
 	protected Set<Type> getGeneralTypes(Type type) {
-		return ((TypeImpl)type).basicGetOwnedGeneralization().stream().
+		return type.getOwnedGeneralization().stream().
 				map(gen->((GeneralizationImpl)gen).basicGetGeneral()).
 				filter(gen->gen != null).
 				collect(Collectors.toSet());
@@ -511,6 +513,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return isEnd()? ((TypeImpl)type).getAllEndFeatures():
+					   
+			   // NOTE: This is a temporary measure until connecting to inherited features
+			   // is handled generally.
+			   getOwningType() instanceof Parameter? 
+					   type.getOwnedFeature().stream().
+					   filter(f->!(f instanceof Multiplicity)).
+					   collect(Collectors.toList()):
+
 			   type != null? ((TypeImpl)type).getRelevantFeatures():
 			   Collections.emptyList();
 	}

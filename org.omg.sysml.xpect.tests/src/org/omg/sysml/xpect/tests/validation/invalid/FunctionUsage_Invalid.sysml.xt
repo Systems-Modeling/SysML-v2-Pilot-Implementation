@@ -34,7 +34,6 @@ package pkg {
 	 	function f1 : F1, F2;
 	 	/* XPECT errors --- 
 	 	   "A function must be typed by one function definition." at "f2 : A;"
-	 		"Features must have at least one type" at "f2 : A;"
 		--- */ 
     	fn f2: A;
     	/* XPECT errors --- 
@@ -54,7 +53,6 @@ package pkg {
     	compute f5: B;
     	/* XPECT errors --- 
     	   	"A function must be typed by one function definition." at "f6 : bb;"
-    		"Features must have at least one type" at "f6 : bb;"
 		--- */ 
     	compute f6: bb;
    	}

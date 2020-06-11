@@ -15,10 +15,8 @@ package 'Individuals and Roles' {
 			snapshot leftFrontWheel_t0 : Wheel_1 :>> leftFrontWheel;
 		}
 		
-		snapshot vehicle_1_t1 {
+		then snapshot vehicle_1_t1 {
 			snapshot rightFrontWheel_t1 : Wheel_1 :>> rightFrontWheel;
 		}
-		
-		succession vehicle_1_t0 then vehicle_1_t1;
 	}
 }

@@ -21,6 +21,7 @@
  * Contributors:
  *  Ed Seidewitz, MDS
  *  Hisashi Miyashita, Mgnite
+ *  Zoltan Ujhelyi, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -32,16 +33,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -164,10 +162,7 @@ public class SysMLInteractive extends SysMLUtil {
 			// Surround input with braces so that it is parsed as an anonymous package.
 			resource.reparse("{\n" + input + "}");
 			
-			URI uri = resource.getURI();
-			IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
-			Manager manager = resourceServiceProvider.getResourceDescriptionManager();
-			index.addDescription(uri, manager.getResourceDescription(resource));
+			this.addResourceToIndex(resource);
 		}
 	}
 	

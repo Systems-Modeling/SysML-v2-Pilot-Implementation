@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Ed Seidewitz
+ *  Zoltan Ujhelyi
  * 
  *****************************************************************************/
 
@@ -63,12 +64,11 @@ public abstract class SysMLUtil {
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		this.resourceSet = resourceSet;
 		
-		index = Optional.ofNullable(ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet))
+		this.index = Optional.ofNullable(ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet))
 				.orElseGet(() -> {
 					ResourceDescriptionsData newIndex = new ResourceDescriptionsData(new ArrayList<IResourceDescription>());
 					ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, newIndex);
-					return newIndex;
-					
+					return newIndex;					
 				});
 	}
 	
@@ -83,6 +83,18 @@ public abstract class SysMLUtil {
 	 */
 	protected void addExtension(String extension) {
 		this.extensions.add(extension);
+	}
+	
+	/**
+	 * Add a resource to the Xtext index.
+	 * 
+	 * @param 	resource		the resource to be added
+	 */
+	protected void addResourceToIndex(Resource resource) {
+		URI uri = resource.getURI();
+		IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
+		Manager manager = resourceServiceProvider.getResourceDescriptionManager();
+		this.index.addDescription(uri, manager.getResourceDescription(resource));		
 	}
 	
 	/**
@@ -137,9 +149,7 @@ public abstract class SysMLUtil {
 		if (resource == null) {
 			throw new RuntimeException("Error opening resource: " + path);
 		} else {
-			IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
-			Manager manager = resourceServiceProvider.getResourceDescriptionManager();
-			index.addDescription(uri, manager.getResourceDescription(resource));
+			this.addResourceToIndex(resource);
 			return resource;
 		}
 	}

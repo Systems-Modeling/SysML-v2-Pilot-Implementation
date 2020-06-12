@@ -160,7 +160,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cDefinitionBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//BlockUnit SysML::Block:
+		//BlockUnit SysML::PartDefinition:
 		//	UnitPrefix BlockDeclaration DefinitionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -183,7 +183,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueTypeDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cDefinitionBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//ValueTypeUnit SysML::ValueType:
+		//ValueTypeUnit SysML::AttributeDefinition:
 		//	UnitPrefix ValueTypeDeclaration DefinitionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -229,7 +229,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssociationBlockDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cAssociationBlockBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//AssociationBlockUnit SysML::AssociationBlock:
+		//AssociationBlockUnit SysML::ConnectionDefinition:
 		//	UnitPrefix AssociationBlockDeclaration AssociationBlockBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -275,7 +275,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cActivityDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cActivityBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//ActivityUnit SysML::Activity:
+		//ActivityUnit SysML::ActionDefinition:
 		//	UnitPrefix ActivityDeclaration ActivityBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -298,7 +298,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionDefDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cFunctionBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//FunctionDefinitionUnit SysML::FunctionDefinition:
+		//FunctionDefinitionUnit SysML::CalculationDefinition:
 		//	UnitPrefix FunctionDefDeclaration FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -367,7 +367,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPartDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cUsageCompletionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//PartUnit SysML::PartProperty:
+		//PartUnit SysML::PartUsage:
 		//	UnitPrefix PartDeclaration UsageCompletion;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -390,7 +390,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cUsageCompletionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//ValueUnit SysML::ValueProperty:
+		//ValueUnit SysML::AttributeUsage:
 		//	UnitPrefix ValueDeclaration UsageCompletion;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -436,7 +436,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cFunctionBodyParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//FunctionUnit SysML::FunctionUsage:
+		//FunctionUnit SysML::CalculationUsage:
 		//	UnitPrefix FunctionDeclaration FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3303,7 +3303,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBlockDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cDefinitionBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* BLOCKS */ Block SysML::Block:
+		///* BLOCKS */ Block SysML::PartDefinition:
 		//	BlockDeclaration DefinitionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3324,7 +3324,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBlockKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cClassifierDeclarationCompletionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//fragment BlockDeclaration returns SysML::Block:
+		//fragment BlockDeclaration returns SysML::PartDefinition:
 		//	isAbstract?='abstract'? 'block' ClassifierDeclarationCompletion;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3349,7 +3349,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueTypeDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cDefinitionBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* VALUE TYPES */ ValueType SysML::ValueType:
+		///* VALUE TYPES */ ValueType SysML::AttributeDefinition:
 		//	ValueTypeDeclaration DefinitionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3371,7 +3371,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final RuleCall cClassifierDeclarationCompletionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//fragment ValueTypeDeclaration returns SysML::ValueType:
+		//fragment ValueTypeDeclaration returns SysML::AttributeDefinition:
 		//	isAbstract?='abstract'? 'value' 'type' ClassifierDeclarationCompletion;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3585,7 +3585,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssociationBlockDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cAssociationBlockBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* ASSOCIATION BLOCKS */ AssociationBlock SysML::AssociationBlock:
+		///* ASSOCIATION BLOCKS */ AssociationBlock SysML::ConnectionDefinition:
 		//	AssociationBlockDeclaration AssociationBlockBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -3607,7 +3607,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBlockKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final RuleCall cClassifierDeclarationCompletionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//fragment AssociationBlockDeclaration returns SysML::AssociationBlock:
+		//fragment AssociationBlockDeclaration returns SysML::ConnectionDefinition:
 		//	isAbstract?='abstract'? 'assoc' 'block' ClassifierDeclarationCompletion;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4772,7 +4772,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cActivityDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cActivityBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* ACTIVITIES */ Activity SysML::Activity:
+		///* ACTIVITIES */ Activity SysML::ActionDefinition:
 		//	ActivityDeclaration ActivityBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -4796,7 +4796,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParameterListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final RuleCall cSuperclassingListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
-		//fragment ActivityDeclaration returns SysML::Activity:
+		//fragment ActivityDeclaration returns SysML::ActionDefinition:
 		//	isAbstract?='abstract'? 'activity' name=Name ParameterList? SuperclassingList?;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -5250,7 +5250,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_1_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
-		///* FUNCTION DEFINITIONS */ FunctionDefinition SysML::FunctionDefinition:
+		///* FUNCTION DEFINITIONS */ FunctionDefinition SysML::CalculationDefinition:
 		//	FunctionDefDeclaration (FunctionBody
 		//	| '=' ownedFeatureMembership_comp+=ExpressionMember ';');
 		@Override public ParserRule getRule() { return rule; }
@@ -5295,7 +5295,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReturnParameterPartParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		private final RuleCall cSuperclassingListParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
-		//fragment FunctionDefDeclaration returns SysML::FunctionDefinition:
+		//fragment FunctionDefDeclaration returns SysML::CalculationDefinition:
 		//	isAbstract?='abstract'? FunctionKeyword 'def' name=Name
 		//	ParameterList? ReturnParameterPart SuperclassingList?;
 		@Override public ParserRule getRule() { return rule; }
@@ -7552,7 +7552,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypePartParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final RuleCall cSubsettingPartParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
-		///* PART PROPERTIES */ fragment PartDeclaration returns SysML::PartProperty:
+		///* PART PROPERTIES */ fragment PartDeclaration returns SysML::PartUsage:
 		//	isAbstract?='abstract'? 'part'
 		//	name=Name TypePart? SubsettingPart;
 		@Override public ParserRule getRule() { return rule; }
@@ -7585,7 +7585,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PartProperty");
 		private final RuleCall cUsageParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//PartProperty SysML::PartProperty:
+		//PartProperty SysML::PartUsage:
 		//	Usage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7596,7 +7596,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AbstractPartProperty");
 		private final RuleCall cAbstractUsageParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//AbstractPartProperty SysML::PartProperty:
+		//AbstractPartProperty SysML::PartUsage:
 		//	AbstractUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7607,7 +7607,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ReferenceProperty");
 		private final RuleCall cUsageParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		///* REFERENCE PROPERTIES */ ReferenceProperty SysML::ReferenceProperty:
+		///* REFERENCE PROPERTIES */ ReferenceProperty SysML::ReferenceUsage:
 		//	Usage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7618,7 +7618,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AbstractReferenceProperty");
 		private final RuleCall cAbstractUsageParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//AbstractReferenceProperty SysML::ReferenceProperty:
+		//AbstractReferenceProperty SysML::ReferenceUsage:
 		//	AbstractUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7636,7 +7636,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTypePartParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final RuleCall cSubsettingPartParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
-		///* VALUE PROPERTIES */ fragment ValueDeclaration returns SysML::ValueProperty:
+		///* VALUE PROPERTIES */ fragment ValueDeclaration returns SysML::AttributeUsage:
 		//	isAbstract?='abstract'? 'value'?
 		//	name=Name TypePart? SubsettingPart;
 		@Override public ParserRule getRule() { return rule; }
@@ -7669,7 +7669,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ValueProperty");
 		private final RuleCall cUsageParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//ValueProperty SysML::ValueProperty:
+		//ValueProperty SysML::AttributeUsage:
 		//	Usage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7680,7 +7680,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AbstractValueProperty");
 		private final RuleCall cAbstractUsageParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
-		//AbstractValueProperty SysML::ValueProperty:
+		//AbstractValueProperty SysML::AttributeUsage:
 		//	AbstractUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -10075,7 +10075,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cActionParameterListParserRuleCall_5_1_0 = (RuleCall)cGroup_5_1.eContents().get(0);
 		private final RuleCall cFunctionReturnParameterPartParserRuleCall_5_1_1 = (RuleCall)cGroup_5_1.eContents().get(1);
 		
-		///* FUNCTIONS */ fragment FunctionDeclaration returns SysML::FunctionUsage:
+		///* FUNCTIONS */ fragment FunctionDeclaration returns SysML::CalculationUsage:
 		//	isAbstract?='abstract'? FunctionKeyword
 		//	name=Name TypePart? SubsettingPart (ValuePart | ActionParameterList FunctionReturnParameterPart)?;
 		@Override public ParserRule getRule() { return rule; }
@@ -10126,7 +10126,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionUsageDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cFunctionBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//FunctionUsage SysML::FunctionUsage:
+		//FunctionUsage SysML::CalculationUsage:
 		//	FunctionUsageDeclaration FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -10145,7 +10145,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFunctionUsageDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cAbstractFunctionBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//AbstractFunctionUsage SysML::FunctionUsage:
+		//AbstractFunctionUsage SysML::CalculationUsage:
 		//	FunctionUsageDeclaration AbstractFunctionBody;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -14425,7 +14425,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPackageUnitAccess().getRule();
 	}
 	
-	//BlockUnit SysML::Block:
+	//BlockUnit SysML::PartDefinition:
 	//	UnitPrefix BlockDeclaration DefinitionBody;
 	public BlockUnitElements getBlockUnitAccess() {
 		return pBlockUnit;
@@ -14435,7 +14435,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getBlockUnitAccess().getRule();
 	}
 	
-	//ValueTypeUnit SysML::ValueType:
+	//ValueTypeUnit SysML::AttributeDefinition:
 	//	UnitPrefix ValueTypeDeclaration DefinitionBody;
 	public ValueTypeUnitElements getValueTypeUnitAccess() {
 		return pValueTypeUnit;
@@ -14455,7 +14455,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getIndividualDefinitionUnitAccess().getRule();
 	}
 	
-	//AssociationBlockUnit SysML::AssociationBlock:
+	//AssociationBlockUnit SysML::ConnectionDefinition:
 	//	UnitPrefix AssociationBlockDeclaration AssociationBlockBody;
 	public AssociationBlockUnitElements getAssociationBlockUnitAccess() {
 		return pAssociationBlockUnit;
@@ -14475,7 +14475,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getInterfaceDefinitionUnitAccess().getRule();
 	}
 	
-	//ActivityUnit SysML::Activity:
+	//ActivityUnit SysML::ActionDefinition:
 	//	UnitPrefix ActivityDeclaration ActivityBody;
 	public ActivityUnitElements getActivityUnitAccess() {
 		return pActivityUnit;
@@ -14485,7 +14485,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getActivityUnitAccess().getRule();
 	}
 	
-	//FunctionDefinitionUnit SysML::FunctionDefinition:
+	//FunctionDefinitionUnit SysML::CalculationDefinition:
 	//	UnitPrefix FunctionDefDeclaration FunctionBody;
 	public FunctionDefinitionUnitElements getFunctionDefinitionUnitAccess() {
 		return pFunctionDefinitionUnit;
@@ -14515,7 +14515,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConstraintDefinitionUnitAccess().getRule();
 	}
 	
-	//PartUnit SysML::PartProperty:
+	//PartUnit SysML::PartUsage:
 	//	UnitPrefix PartDeclaration UsageCompletion;
 	public PartUnitElements getPartUnitAccess() {
 		return pPartUnit;
@@ -14525,7 +14525,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPartUnitAccess().getRule();
 	}
 	
-	//ValueUnit SysML::ValueProperty:
+	//ValueUnit SysML::AttributeUsage:
 	//	UnitPrefix ValueDeclaration UsageCompletion;
 	public ValueUnitElements getValueUnitAccess() {
 		return pValueUnit;
@@ -14545,7 +14545,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getActionUnitAccess().getRule();
 	}
 	
-	//FunctionUnit SysML::FunctionUsage:
+	//FunctionUnit SysML::CalculationUsage:
 	//	UnitPrefix FunctionDeclaration FunctionBody;
 	public FunctionUnitElements getFunctionUnitAccess() {
 		return pFunctionUnit;
@@ -14993,7 +14993,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getSuperclassingAccess().getRule();
 	}
 	
-	///* BLOCKS */ Block SysML::Block:
+	///* BLOCKS */ Block SysML::PartDefinition:
 	//	BlockDeclaration DefinitionBody;
 	public BlockElements getBlockAccess() {
 		return pBlock;
@@ -15003,7 +15003,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getBlockAccess().getRule();
 	}
 	
-	//fragment BlockDeclaration returns SysML::Block:
+	//fragment BlockDeclaration returns SysML::PartDefinition:
 	//	isAbstract?='abstract'? 'block' ClassifierDeclarationCompletion;
 	public BlockDeclarationElements getBlockDeclarationAccess() {
 		return pBlockDeclaration;
@@ -15013,7 +15013,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getBlockDeclarationAccess().getRule();
 	}
 	
-	///* VALUE TYPES */ ValueType SysML::ValueType:
+	///* VALUE TYPES */ ValueType SysML::AttributeDefinition:
 	//	ValueTypeDeclaration DefinitionBody;
 	public ValueTypeElements getValueTypeAccess() {
 		return pValueType;
@@ -15023,7 +15023,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getValueTypeAccess().getRule();
 	}
 	
-	//fragment ValueTypeDeclaration returns SysML::ValueType:
+	//fragment ValueTypeDeclaration returns SysML::AttributeDefinition:
 	//	isAbstract?='abstract'? 'value' 'type' ClassifierDeclarationCompletion;
 	public ValueTypeDeclarationElements getValueTypeDeclarationAccess() {
 		return pValueTypeDeclaration;
@@ -15125,7 +15125,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConjugatedPortDefinitionMemberAccess().getRule();
 	}
 	
-	///* ASSOCIATION BLOCKS */ AssociationBlock SysML::AssociationBlock:
+	///* ASSOCIATION BLOCKS */ AssociationBlock SysML::ConnectionDefinition:
 	//	AssociationBlockDeclaration AssociationBlockBody;
 	public AssociationBlockElements getAssociationBlockAccess() {
 		return pAssociationBlock;
@@ -15135,7 +15135,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssociationBlockAccess().getRule();
 	}
 	
-	//fragment AssociationBlockDeclaration returns SysML::AssociationBlock:
+	//fragment AssociationBlockDeclaration returns SysML::ConnectionDefinition:
 	//	isAbstract?='abstract'? 'assoc' 'block' ClassifierDeclarationCompletion;
 	public AssociationBlockDeclarationElements getAssociationBlockDeclarationAccess() {
 		return pAssociationBlockDeclaration;
@@ -15307,7 +15307,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConjugatedInterfaceEndMemberAccess().getRule();
 	}
 	
-	///* ACTIVITIES */ Activity SysML::Activity:
+	///* ACTIVITIES */ Activity SysML::ActionDefinition:
 	//	ActivityDeclaration ActivityBody;
 	public ActivityElements getActivityAccess() {
 		return pActivity;
@@ -15317,7 +15317,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getActivityAccess().getRule();
 	}
 	
-	//fragment ActivityDeclaration returns SysML::Activity:
+	//fragment ActivityDeclaration returns SysML::ActionDefinition:
 	//	isAbstract?='abstract'? 'activity' name=Name ParameterList? SuperclassingList?;
 	public ActivityDeclarationElements getActivityDeclarationAccess() {
 		return pActivityDeclaration;
@@ -15431,7 +15431,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getGuardedSuccessionMemberAccess().getRule();
 	}
 	
-	///* FUNCTION DEFINITIONS */ FunctionDefinition SysML::FunctionDefinition:
+	///* FUNCTION DEFINITIONS */ FunctionDefinition SysML::CalculationDefinition:
 	//	FunctionDefDeclaration (FunctionBody
 	//	| '=' ownedFeatureMembership_comp+=ExpressionMember ';');
 	public FunctionDefinitionElements getFunctionDefinitionAccess() {
@@ -15442,7 +15442,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionDefinitionAccess().getRule();
 	}
 	
-	//fragment FunctionDefDeclaration returns SysML::FunctionDefinition:
+	//fragment FunctionDefDeclaration returns SysML::CalculationDefinition:
 	//	isAbstract?='abstract'? FunctionKeyword 'def' name=Name
 	//	ParameterList? ReturnParameterPart SuperclassingList?;
 	public FunctionDefDeclarationElements getFunctionDefDeclarationAccess() {
@@ -16158,7 +16158,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getParameterTypePartAccess().getRule();
 	}
 	
-	///* PART PROPERTIES */ fragment PartDeclaration returns SysML::PartProperty:
+	///* PART PROPERTIES */ fragment PartDeclaration returns SysML::PartUsage:
 	//	isAbstract?='abstract'? 'part'
 	//	name=Name TypePart? SubsettingPart;
 	public PartDeclarationElements getPartDeclarationAccess() {
@@ -16169,7 +16169,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPartDeclarationAccess().getRule();
 	}
 	
-	//PartProperty SysML::PartProperty:
+	//PartProperty SysML::PartUsage:
 	//	Usage;
 	public PartPropertyElements getPartPropertyAccess() {
 		return pPartProperty;
@@ -16179,7 +16179,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getPartPropertyAccess().getRule();
 	}
 	
-	//AbstractPartProperty SysML::PartProperty:
+	//AbstractPartProperty SysML::PartUsage:
 	//	AbstractUsage;
 	public AbstractPartPropertyElements getAbstractPartPropertyAccess() {
 		return pAbstractPartProperty;
@@ -16189,7 +16189,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getAbstractPartPropertyAccess().getRule();
 	}
 	
-	///* REFERENCE PROPERTIES */ ReferenceProperty SysML::ReferenceProperty:
+	///* REFERENCE PROPERTIES */ ReferenceProperty SysML::ReferenceUsage:
 	//	Usage;
 	public ReferencePropertyElements getReferencePropertyAccess() {
 		return pReferenceProperty;
@@ -16199,7 +16199,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getReferencePropertyAccess().getRule();
 	}
 	
-	//AbstractReferenceProperty SysML::ReferenceProperty:
+	//AbstractReferenceProperty SysML::ReferenceUsage:
 	//	AbstractUsage;
 	public AbstractReferencePropertyElements getAbstractReferencePropertyAccess() {
 		return pAbstractReferenceProperty;
@@ -16209,7 +16209,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getAbstractReferencePropertyAccess().getRule();
 	}
 	
-	///* VALUE PROPERTIES */ fragment ValueDeclaration returns SysML::ValueProperty:
+	///* VALUE PROPERTIES */ fragment ValueDeclaration returns SysML::AttributeUsage:
 	//	isAbstract?='abstract'? 'value'?
 	//	name=Name TypePart? SubsettingPart;
 	public ValueDeclarationElements getValueDeclarationAccess() {
@@ -16220,7 +16220,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getValueDeclarationAccess().getRule();
 	}
 	
-	//ValueProperty SysML::ValueProperty:
+	//ValueProperty SysML::AttributeUsage:
 	//	Usage;
 	public ValuePropertyElements getValuePropertyAccess() {
 		return pValueProperty;
@@ -16230,7 +16230,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getValuePropertyAccess().getRule();
 	}
 	
-	//AbstractValueProperty SysML::ValueProperty:
+	//AbstractValueProperty SysML::AttributeUsage:
 	//	AbstractUsage;
 	public AbstractValuePropertyElements getAbstractValuePropertyAccess() {
 		return pAbstractValueProperty;
@@ -17054,7 +17054,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getEmptyParameterMemberAccess().getRule();
 	}
 	
-	///* FUNCTIONS */ fragment FunctionDeclaration returns SysML::FunctionUsage:
+	///* FUNCTIONS */ fragment FunctionDeclaration returns SysML::CalculationUsage:
 	//	isAbstract?='abstract'? FunctionKeyword
 	//	name=Name TypePart? SubsettingPart (ValuePart | ActionParameterList FunctionReturnParameterPart)?;
 	public FunctionDeclarationElements getFunctionDeclarationAccess() {
@@ -17065,7 +17065,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionDeclarationAccess().getRule();
 	}
 	
-	//FunctionUsage SysML::FunctionUsage:
+	//FunctionUsage SysML::CalculationUsage:
 	//	FunctionUsageDeclaration FunctionBody;
 	public FunctionUsageElements getFunctionUsageAccess() {
 		return pFunctionUsage;
@@ -17075,7 +17075,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionUsageAccess().getRule();
 	}
 	
-	//AbstractFunctionUsage SysML::FunctionUsage:
+	//AbstractFunctionUsage SysML::CalculationUsage:
 	//	FunctionUsageDeclaration AbstractFunctionBody;
 	public AbstractFunctionUsageElements getAbstractFunctionUsageAccess() {
 		return pAbstractFunctionUsage;

@@ -34,7 +34,7 @@ import org.omg.sysml.lang.sysml.Type;
  *
  * @generated
  */
-public class StateDefinitionImpl extends ActivityImpl implements StateDefinition {
+public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
 
 	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::State";
 	

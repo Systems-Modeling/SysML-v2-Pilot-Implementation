@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A TransferActionUsage is an ActionUsage that is also an <tt>incomingTransfer</tt> in a specific <tt>context</tt>. A TransferActionUsage must not be composite.
+ * <p>A TransferActionUsage is an ActionUsage that is also an <code>incomingTransfer</code> in a specific <code>context</code>. A TransferActionUsage must not be composite.
  * 
- * <p>A TransferActionUsage must subset, directly or indirectly, the ActionUsage <tt>transferActions</tt> from the Systems model library. This implies that the TransferActionUsage will be typed by TransferAction from the model library (or a subtype). The TransferActionUsage must bind the <tt>context</tt> Parameter of the TransferAction to the actual context for the usage.</p>
+ * <p>A TransferActionUsage must subset, directly or indirectly, the ActionUsage <code>transferActions</code> from the Systems model library. This implies that the TransferActionUsage will be typed by TransferAction from the model library (or a subtype). The TransferActionUsage must bind the <code>context</code> Parameter of the TransferAction to the actual context for the usage.</p>
  * 
  * 
  * <!-- end-model-doc -->

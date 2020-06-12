@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConstraintDefinition is a Predicate that defines a constraint that may be asserted to hold on a system or part of a system.</p>
+ * <p>A ConstraintDefinition is a Definition that is also a Predicate that defines a constraint that may be asserted to hold on a system or part of a system.</p>
  * 
  * <p>A ConstraintDefinition must subclass, directly or indirectly, the base ConstraintDefinition ConstraintCheck from the Systems model library.</p>
  * <!-- end-model-doc -->

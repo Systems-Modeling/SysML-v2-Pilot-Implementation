@@ -3,26 +3,27 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
+import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.ValueType;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Value Type</b></em>'.
+ * An implementation of the model object '<em><b>Item Definition</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class ValueTypeImpl extends DefinitionImpl implements ValueType {
-	
-	public static final String VALUE_TYPE_SUPERCLASS_DEFAULT = "Base::DataValue";
+public class ItemDefinitionImpl extends DefinitionImpl implements ItemDefinition {
 
+	public static final String ITEM_DEFINITION_SUPERCLASS_DEFAULT = "Blocks::Part";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValueTypeImpl() {
+	protected ItemDefinitionImpl() {
 		super();
 	}
 
@@ -33,12 +34,12 @@ public class ValueTypeImpl extends DefinitionImpl implements ValueType {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.VALUE_TYPE;
+		return SysMLPackage.Literals.ITEM_DEFINITION;
 	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return VALUE_TYPE_SUPERCLASS_DEFAULT;
+		return ITEM_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-} //ValueTypeImpl
+} //ItemDefinitionImpl

@@ -10,11 +10,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Feature is a Type that represents a relation whose domain is the intersection of its featuringType(s) and whose range is the union of its types. A Feature without any explicitly modeled featuringTypes is implicitly considered to have the (maximal) type Anything from the Base model library as its featuring type.</p>
+ * <p>A Feature is a Type that represents a relation with a domain that is the intersection of its featuringTypes&nbsp;and a range (co-domain) that is the intersection of its types. A Feature&#39;s types include&nbsp;at least Anything (the library superclass of all classifiers), which can be narrowed to other classifiers by redefinition.&nbsp; Features might not have any&nbsp;featuringTypes, whereupon its domain is the same as if it were Anything.</p>
  * 
- * <p>Traditionally, the instances of a relation are given by pairs, the first element of which is from the domain set of the relation and the second element of which is from the range set. Examples include cars with wheels, people with other people and cars with values representing the car length. Naming these relations provies a context about the relationships and attributes they describe at M0.</p>
+ * <p>In the simplest cases, a Feature&#39;s featuringTypes and types&nbsp;are classifiers, leading to its instances being pairs (sequences of length two), with&nbsp;the first element from the domain&nbsp;and the second element&nbsp;from the range. Examples include cars paired with wheels, people with other people, and cars with numbers&nbsp;representing the car length.</p>
  * 
- * <p>However, since Features are themselves Types, it is possible for the domain and/or range Types of a Feature to themselves be Types. As a result, the instances may be pairs whose members are nested pairs, to any level of nesting. Alternatively, these nested pairs may be flattened out into sequences of individuals with length greater than 1. That is, the instances of Features can be interpreted in general as not just pairs, but n-tuples, where n > 1.</p>
+ * <p>Since Features are Types, it is possible for their&nbsp;featuringTypes and types&nbsp;to be Features. In this case, instances are sequences with more than two elements, with the leading elements being instances of the domain features and trailing elements being instances of the range features.</p>
  * 
  * ownedRedefinition = ownedSubsetting->intersection(redefining)
  * referencedType = type - ownedElement
@@ -29,19 +29,19 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -65,6 +65,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The members of <code>type</code> that are not in <code>ownedType</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Referenced Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ReferencedType()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -89,6 +92,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>featuringType</code> values are derived as all Types that have a path through <code>ownedFeatureMembership</code> to <code>ownedMemberFeature</code>.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningType()
@@ -118,6 +124,10 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not values for this Feature must have no duplicates&nbsp;or not.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Unique</em>' attribute.
 	 * @see #setIsUnique(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsUnique()
@@ -145,6 +155,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether an order exists for the values of this Feature or not.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Ordered</em>' attribute.
 	 * @see #setIsOrdered(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsOrdered()
@@ -172,6 +185,10 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Types of a Feature restrict its&nbsp;values to instances that are classified by all the types.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
@@ -196,6 +213,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The elements in <code>type</code> of this Feature that are also owned.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedType()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -220,6 +240,10 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Redefinition relationships that are&nbsp;owned by this Feature, where this feature is the redefining one??.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -245,6 +269,10 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Subsetting relationships that are&nbsp;owned by this Feature, where this feature is the subsetting one??.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
 	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
@@ -269,6 +297,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FeatureMembership that indicates where this Feature will be a <code>memberElement</code> and what its owner will be.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
@@ -297,6 +328,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not the Feature is integral to the definition of the featuringType.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsComposite()
@@ -325,6 +359,10 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FeatureTyping relationships determining the <code>type</code> of this Feature.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Typing()
 	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature
@@ -341,6 +379,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not the Feature is to be treated as an End for an Association. When a Feature is marked as an End, there are additional navigation rules to consider between instances of that Feature's Type and instances of the Types of other Ends of the Association.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is End</em>' attribute.
 	 * @see #setIsEnd(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_IsEnd()
@@ -374,6 +415,9 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Placeholder</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>End Owning Type</em>' reference.
 	 * @see #setEndOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_EndOwningType()

@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementConstraintMembership is a FeatureMembership for an assumed or required ConstraintUsage of a RequirementDefinition or RequirementUsage. The <tt>ownedMemberFeature</tt> of a RequirementConstraintMembership must be a ConstraintUsage.</p>
+ * <p>A RequirementConstraintMembership is a FeatureMembership for an assumed or required ConstraintUsage of a RequirementDefinition or RequirementUsage. The <code>ownedMemberFeature</cpde> of a RequirementConstraintMembership must be a ConstraintUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>

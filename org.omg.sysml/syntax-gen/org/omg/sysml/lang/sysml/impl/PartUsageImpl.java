@@ -6,9 +6,9 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.omg.sysml.lang.sysml.BlockProperty;
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,12 +18,12 @@ import org.omg.sysml.lang.sysml.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.BlockPropertyImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.PartUsageImpl#getPartDefinition <em>Part Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class BlockPropertyImpl extends PropertyImpl implements BlockProperty {
+public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	
 	public static final String BLOCK_PROPERTY_SUBSETTING_DEFAULT = "Blocks::parts";
 
@@ -32,7 +32,7 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BlockPropertyImpl() {
+	protected PartUsageImpl() {
 		super();
 	}
 
@@ -43,7 +43,7 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.BLOCK_PROPERTY;
+		return SysMLPackage.Literals.PART_USAGE;
 	}
 
 	/**
@@ -52,23 +52,14 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	 * @generated NOT
 	 */
 	@Override
-	public EList<org.omg.sysml.lang.sysml.Class> getBlock() {
-		EList<org.omg.sysml.lang.sysml.Class> classes = 
-				new EObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.BLOCK_PROPERTY__BLOCK);
-		super.getType().stream().
-			filter(type->type instanceof org.omg.sysml.lang.sysml.Class).
-			map(type->(org.omg.sysml.lang.sysml.Class)type).
-			forEachOrdered(classes::add);
-		return classes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBlock() {
-		return !getBlock().isEmpty();
+	public EList<PartDefinition> getPartDefinition() {
+		EList<PartDefinition> partDefinitions =
+				new EObjectEList<>(PartDefinition.class, this, SysMLPackage.PART_USAGE__PART_DEFINITION);
+		super.getItemDefinition().stream().
+			filter(PartDefinition.class::isInstance).
+			map(PartDefinition.class::cast).
+			forEachOrdered(partDefinitions::add);
+		return partDefinitions;
 	}
 
 	@Override
@@ -84,8 +75,8 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				return getBlock();
+			case SysMLPackage.PART_USAGE__PART_DEFINITION:
+				return getPartDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -99,9 +90,9 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				getBlock().clear();
-				getBlock().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+			case SysMLPackage.PART_USAGE__PART_DEFINITION:
+				getPartDefinition().clear();
+				getPartDefinition().addAll((Collection<? extends PartDefinition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -115,8 +106,8 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				getBlock().clear();
+			case SysMLPackage.PART_USAGE__PART_DEFINITION:
+				getPartDefinition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -130,33 +121,10 @@ public abstract class BlockPropertyImpl extends PropertyImpl implements BlockPro
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.BLOCK_PROPERTY__TYPE:
-				return isSetType();
-			case SysMLPackage.BLOCK_PROPERTY__BLOCK:
-				return isSetBlock();
+			case SysMLPackage.PART_USAGE__PART_DEFINITION:
+				return !getPartDefinition().isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> block = (EList<Type>)((EList<?>)getBlock());
-		return block;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
 	}
 
 } //BlockPropertyImpl

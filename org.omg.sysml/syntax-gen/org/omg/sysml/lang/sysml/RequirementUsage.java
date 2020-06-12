@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A RequirementUsage is a Usage of a RequirementDefinition.</p>
  * 
- * <p>A RequirementUsage (other than a SatisfyRequirementUsage owned by a Part) must subset, directly or indirectly, the base RequirementUsage <tt>requirementChecks</tt> from the Systems model library.</p>
+ * <p>A RequirementUsage (other than a SatisfyRequirementUsage owned by a Part) must subset, directly or indirectly, the base RequirementUsage <code>requirementChecks</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -20,13 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementDefinition <em>Requirement Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningUsage <em>Requirement Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getSubjectParameter <em>Subject Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getReqId <em>Req Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getText <em>Text</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getAssumedConstraint <em>Assumed Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningDefinition <em>Requirement Owning Definition</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage()
@@ -72,55 +70,18 @@ public interface RequirementUsage extends ConstraintUsage {
 	void setRequirementDefinition(RequirementDefinition value);
 
 	/**
-	 * Returns the value of the '<em><b>Requirement Owning Usage</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningUsage() <em>Constraint Owning Usage</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Requirement Owning Usage</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Usage in which this RequirementUsage is nested (if any).</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Requirement Owning Usage</em>' reference.
-	 * @see #setRequirementOwningUsage(Usage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementOwningUsage()
-	 * @see org.omg.sysml.lang.sysml.Usage#getNestedRequirement
-	 * @model opposite="nestedRequirement" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	Usage getRequirementOwningUsage();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningUsage <em>Requirement Owning Usage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Requirement Owning Usage</em>' reference.
-	 * @see #getRequirementOwningUsage()
-	 * @generated
-	 */
-	void setRequirementOwningUsage(Usage value);
-
-	/**
 	 * Returns the value of the '<em><b>Subject Parameter</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <p>parameter</p> of this RequirementUsage that is or redefines (directly or indirectly) the <tt>subject</tt> Parameter of the base RequirementsUsage <tt>requirementsChecks</tt> from the Systems model library.</p>
+	 * <p>The <p>parameter</p> of this RequirementUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> Parameter of the base RequirementDefinition RequirementCheck from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Parameter)
@@ -253,43 +214,5 @@ public interface RequirementUsage extends ConstraintUsage {
 	 * @generated
 	 */
 	EList<ConstraintUsage> getAssumedConstraint();
-
-	/**
-	 * Returns the value of the '<em><b>Requirement Owning Definition</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement <em>Owned Requirement</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningDefinition() <em>Constraint Owning Definition</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Requirement Owning Definition</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Definition that owns this RequirementUsage (if any).</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Requirement Owning Definition</em>' reference.
-	 * @see #setRequirementOwningDefinition(Definition)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementUsage_RequirementOwningDefinition()
-	 * @see org.omg.sysml.lang.sysml.Definition#getOwnedRequirement
-	 * @model opposite="ownedRequirement" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	Definition getRequirementOwningDefinition();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningDefinition <em>Requirement Owning Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Requirement Owning Definition</em>' reference.
-	 * @see #getRequirementOwningDefinition()
-	 * @generated
-	 */
-	void setRequirementOwningDefinition(Definition value);
 
 } // RequirementUsage

@@ -11,7 +11,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An InterfaceUsage is a Usage of an InterfaceDefinition to represent an interface connecting parts of a system through specific ports.</p>
  * 
- * <p>An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage <tt>interfaces<tt> from the Systems model libary.</p>
+ * <p>An InterfaceUsage must subset, directly or indirectly, the base InterfaceUsage <code>interfaces</code> from the Systems model libary.</p>
  * <!-- end-model-doc -->
  *
  * <p>

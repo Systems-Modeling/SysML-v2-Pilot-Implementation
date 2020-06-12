@@ -36,7 +36,7 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Block;
+import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
@@ -49,14 +49,16 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartProperty;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.ReferenceProperty;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -149,13 +151,18 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
-		public String caseReferenceProperty(ReferenceProperty object) {
+		public String caseReferenceUsage(ReferenceUsage object) {
             return " o-- ";
 		}
 
 		@Override
-		public String casePartProperty(PartProperty object) {
-            return " *-- ";
+		public String caseItemUsage(ItemUsage object) {
+            return isComposite()? " *-- ": " o-- ";
+		}
+
+		@Override
+		public String casePartUsage(PartUsage object) {
+            return isComposite()? " *-- ": " o-- ";
 		}
 
 		@Override
@@ -183,7 +190,13 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
-		public String casePartProperty(PartProperty object) {
+		public String caseItemUsage(ItemUsage object) {
+            if (isComposite) return " ";
+            return " <<item>> ";
+		}
+
+		@Override
+		public String casePartUsage(PartUsage object) {
             if (isComposite) return " ";
             return " <<part>> ";
 		}
@@ -931,7 +944,7 @@ public class SysML2PlantUMLText {
             String keyword = "class ";
             String style = styleString(typ);
             String name = extractName(typ);
-            if (typ instanceof Block) {
+            if (typ instanceof PartDefinition) {
                 if (diagramMode == MODE.Interconnection) {
                     keyword = "rectangle ";
                 }
@@ -1091,8 +1104,8 @@ public class SysML2PlantUMLText {
             if (typ instanceof PartProperty) {
                 sb = newText();
                 addPRelation(parent, typ, typ);
-            } else if (typ instanceof ReferenceProperty) {
-                ReferenceProperty rp = (ReferenceProperty) typ;
+            } else if (typ instanceof ReferenceUsage) {
+                ReferenceUsage rp = (ReferenceUsage) typ;
                 for (FeatureTyping ft: rp.getTyping()) {
                     Type t = ft.getType();
                     if (t != null) {

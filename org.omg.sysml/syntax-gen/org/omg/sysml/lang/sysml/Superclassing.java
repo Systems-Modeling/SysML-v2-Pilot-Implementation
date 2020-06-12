@@ -7,7 +7,8 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Superclassing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Superclassing is Generalization in which both the specific and general Types are Classifiers. Thus, all individual entities that are instances of the specific Classifier, as well as all instances of Features directly or indirectly typed by that Classifier, are asserted to also be instances of the general Classifier.</p>
+ * <p>Superclassing is Generalization in which both the specific and general Types are Classifiers. All individual entities that are instances of the specific Classifier are&nbsp;also instances of the general Classifier.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -38,6 +39,9 @@ public interface Superclassing extends Generalization {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The more general Classifier in the pair linked by Superclassing.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Superclass</em>' reference.
 	 * @see #setSuperclass(Classifier)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_Superclass()
@@ -74,6 +78,9 @@ public interface Superclassing extends Generalization {
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The more specific Classifier in the pair linked by Superclassing.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subclass</em>' reference.
 	 * @see #setSubclass(Classifier)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_Subclass()
@@ -108,6 +115,9 @@ public interface Superclassing extends Generalization {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The more general Classifier in the pair linked by Superclassing and that owns the relationship.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Classifier</em>' reference.
 	 * @see #setOwningClassifier(Classifier)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_OwningClassifier()

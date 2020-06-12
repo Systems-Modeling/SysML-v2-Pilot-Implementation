@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A StateSubactionMembership is a FeatureMembership for an entry, do or exit ActionUsage of a StateDefinition or StateUsage. The <tt>ownedMemberFeature</tt> of a StateSubactionMembership must be an ActiontUsage.</p>
+ * <p>A StateSubactionMembership is a FeatureMembership for an entry, do or exit ActionUsage of a StateDefinition or StateUsage. The <code>ownedMemberFeature</code> of a StateSubactionMembership must be an ActionUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>

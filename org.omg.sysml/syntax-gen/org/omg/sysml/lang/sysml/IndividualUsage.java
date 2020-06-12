@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An IndividualUsage is a BlockProperty exactly one of whose types is an IndividualDefinition, specifying the usage of the representation individual, or a portion of it, in a certain context.</p>
+ * <p>An IndividualUsage is a ItemUsage exactly one of whose types is an IndividualDefinition, specifying the usage of the represented individual, or a portion of it, in a certain context.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -27,14 +27,14 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface IndividualUsage extends BlockProperty {
+public interface IndividualUsage extends ItemUsage {
 	/**
 	 * Returns the value of the '<em><b>Individual Definition</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.BlockProperty#getBlock() <em>Block</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.ItemUsage#getItemDefinition() <em>Item Definition</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

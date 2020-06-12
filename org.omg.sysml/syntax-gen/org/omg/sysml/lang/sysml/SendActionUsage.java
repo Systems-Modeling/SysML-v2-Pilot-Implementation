@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SendActionUsage is an ActionUsage that is a Transfer of items sent to a specific target. The <tt>context</tt> Feature of a SendUsageAction is the <tt>result</tt> of the <tt>target</tt> Expression for the SendUsageAction.</p>
+ * <p>A SendActionUsage is an ActionUsage that is a Transfer of items sent to a specific target. The <code>context</code> Feature of a SendUsageAction is the <code>result</code> of the <code>target</code> Expression for the SendUsageAction.</p>
  * <!-- end-model-doc -->
  *
  * <p>

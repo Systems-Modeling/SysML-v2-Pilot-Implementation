@@ -11,7 +11,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>A MergeNode is a ControlNode that asserts the merging of its incoming Successions. All incoming Successions must have a source multiplicity of 0..1 and subset the Feature <tt>MergeAction::incomingHBLink</tt>. A MergeNode may have at most one outgoing Succession.</p>
  * 
- * <p>A MergeNode must subset, directly or indirectly, the ActionUsage <tt>Action::merges</tt>, implying that it is typed by MergeAction from the Systems model library (or a subtype of it).</p>
+ * <p>A MergeNode must subset, directly or indirectly, the ActionUsage <code>Action::merges</code>, implying that it is typed by MergeAction from the Systems model library (or a subtype of it).</p>
  * <!-- end-model-doc -->
  *
  *

@@ -4,7 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.omg.sysml.lang.sysml.Block;
+import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -14,7 +14,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class BlockImpl extends DefinitionImpl implements Block {
+public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefinition {
 	
 	public static final String BLOCK_SUPERCLASS_DEFAULT = "Blocks::Part";
 	
@@ -23,7 +23,7 @@ public class BlockImpl extends DefinitionImpl implements Block {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BlockImpl() {
+	protected PartDefinitionImpl() {
 		super();
 	}
 
@@ -34,7 +34,7 @@ public class BlockImpl extends DefinitionImpl implements Block {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.BLOCK;
+		return SysMLPackage.Literals.PART_DEFINITION;
 	}
 
 	@Override

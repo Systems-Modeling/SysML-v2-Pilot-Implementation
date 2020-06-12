@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Multiplicity
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.ActionUsage
 import org.omg.sysml.lang.sysml.Behavior
-import org.omg.sysml.lang.sysml.BlockProperty
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.ConstraintUsage
 import org.omg.sysml.lang.sysml.IndividualUsage
@@ -57,11 +56,13 @@ import org.omg.sysml.lang.sysml.RequirementDefinition
 import org.omg.sysml.lang.sysml.RequirementUsage
 import org.omg.sysml.lang.sysml.PortUsage
 import org.omg.sysml.lang.sysml.StateUsage
-import org.omg.sysml.lang.sysml.ValueProperty
 import org.omg.sysml.lang.sysml.DataType
-import org.omg.sysml.lang.sysml.FunctionUsage
 import org.omg.sysml.lang.sysml.Function
-
+import org.omg.sysml.lang.sysml.PartUsage
+import org.omg.sysml.lang.sysml.CalculationUsage
+import org.omg.sysml.lang.sysml.AttributeUsage
+import org.omg.sysml.lang.sysml.ItemUsage
+import org.omg.sysml.lang.sysml.PartDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -77,9 +78,11 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
 	public static val INVALID_ACTIONUSAGE = 'Invalid Action Usage - invalid type'
-	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by activities.'
-	public static val INVALID_BLOCKPROPERTY = 'Invalid Block Property - invalid type'
-	public static val INVALID_BLOCKPROPERTY_MSG = 'A part or reference property must be typed by blocks.'
+	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
+	public static val INVALID_ITEMUSAGE = 'Invalid Item Usage - invalid type'
+	public static val INVALID_ITEMUSAGE_MSG = 'An item usage must be typed by item definitions.'
+	public static val INVALID_PARTUSAGE = 'Invalid Block Property - invalid type'
+	public static val INVALID_PARTUSAGE_MSG = 'A part usage must be typed by item definitions and at least one part definition.'
 	public static val INVALID_CONSTRINTUSAGE = 'Invalid Constraint Usage - invalid type'
 	public static val INVALID_CONSTRINTUSAGE_MSG = 'A constraint must be typed by one constraint definition.'
 	public static val INVALID_INDIVIDUALUSAGE = 'Invalid IndividualUsage - invalid type'
@@ -94,20 +97,25 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement  must be typed by one requirement definition.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
-	public static val INVALID_VALUEPROPERTY = 'Invalid ValueProperty - invalid type'
-	public static val INVALID_VALUEPROPERTY_MSG = 'A value property must be typed by value types.'
-	public static val INVALID_FUNCTIONUSAGE = 'Invalid FunctionUsage - invalid type'
-	public static val INVALID_FUNCTIONUSAGE_MSG = 'A function must be typed by one function definition.'
+	public static val INVALID_ATTRIBUTEUSAGE = 'Invalid attribute usage - invalid type'
+	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute usage must be typed by attribute definitions.'
+	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
+	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
 
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
-		if (! (usg instanceof StateUsage|| usg instanceof FunctionUsage) )
-			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_Activity, SysMLValidator.INVALID_ACTIONUSAGE)
+		if (!(usg instanceof StateUsage|| usg instanceof CalculationUsage) )
+			checkAllTypes(usg, Behavior, SysMLValidator.INVALID_ACTIONUSAGE_MSG, SysMLPackage.eINSTANCE.actionUsage_ActionDefinition, SysMLValidator.INVALID_ACTIONUSAGE)
 	}	
 	@Check //All types must be Classes. 
-	def checkBlockPropertyTypes(BlockProperty bp){
-		if (!(bp instanceof IndividualUsage))	
-			checkAllTypes(bp, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_BLOCKPROPERTY_MSG, SysMLPackage.eINSTANCE.blockProperty_Block, SysMLValidator.INVALID_BLOCKPROPERTY)
+	def checkItemUsageTypes(ItemUsage iu){
+		if (!(iu instanceof IndividualUsage || iu instanceof PartUsage))	
+			checkAllTypes(iu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_ITEMUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_ITEMUSAGE)
+	}
+	@Check //All types must be Classes, at least one must be a PartDefinition. 
+	def checkPartUsageTypes(PartUsage pu){
+		if (checkAllTypes(pu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
+			checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
 	}
 	@Check //Must have exactly one type, which is a Predicate.
 	def checkConstraintUsageTypes(ConstraintUsage usg){
@@ -115,8 +123,8 @@ class SysMLValidator extends KerMLValidator {
 			checkOneType(usg, Predicate, SysMLValidator.INVALID_CONSTRINTUSAGE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, SysMLValidator.INVALID_CONSTRINTUSAGE)
 	}
 	@Check //Must have exactly one type, which is a Function.
-	def checkFunctionUsageTypes(FunctionUsage usg){
-		checkOneType(usg, Function, SysMLValidator.INVALID_FUNCTIONUSAGE_MSG, SysMLPackage.eINSTANCE.functionUsage_FunctionDefinition, SysMLValidator.INVALID_FUNCTIONUSAGE)
+	def checkCalculationUsageTypes(CalculationUsage usg){
+		checkOneType(usg, Function, SysMLValidator.INVALID_CALCULATIONUSAGE_MSG, SysMLPackage.eINSTANCE.calculationUsage_CalculationDefinition, SysMLValidator.INVALID_CALCULATIONUSAGE)
 	}
 	@Check //Must have exactly one type, which is an IndividualDefinition
 	def checkIndividualUsageTypes(IndividualUsage usg){
@@ -144,20 +152,31 @@ class SysMLValidator extends KerMLValidator {
 		checkAllTypes(usg, Behavior, SysMLValidator.INVALID_STATEUSAGE_MSG, SysMLPackage.eINSTANCE.stateUsage_StateDefinition, SysMLValidator.INVALID_STATEUSAGE)
 	}
 	@Check //All types must be DataTypes.
-	def checkValuePropertyTypes(ValueProperty usg){
-		checkAllTypes(usg, DataType, SysMLValidator.INVALID_VALUEPROPERTY_MSG, SysMLPackage.eINSTANCE.valueProperty_ValueType, SysMLValidator.INVALID_VALUEPROPERTY)
+	def checkAttributeUsageTypes(AttributeUsage usg){
+		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
 	}
 	
-	protected def void checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
-		if (!(f as FeatureImpl).allTypes.stream.allMatch[u| requiredType.isInstance(u)])
-			error (msg, ref, eId); 
+	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
+		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
+		if (!check)
+			error (msg, ref, eId)
+		return check;
+	}
+	
+	protected def boolean checkAtLeastOneType(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
+		val check = (f as FeatureImpl).allTypes.exists[u| requiredType.isInstance(u)]
+		if (!check)
+			error (msg, ref, eId)
+		return check
 	}
 	
 	//check types but must have exactly one type
-	protected def void checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
-		var types = (f as FeatureImpl).allTypes;
-		if (types.length !== 1 || types.stream.noneMatch[u| requiredType.isInstance(u)])
-			error (msg, ref, eId); 
+	protected def boolean checkOneType(Feature f, Class<?> requiredType, String msg, EReference ref, String eId){
+		val types = (f as FeatureImpl).allTypes;
+		val check = types.length == 1 && types.exists[u| requiredType.isInstance(u)]
+		if (!check)
+			error (msg, ref, eId)
+		return check
 	}
 	
 	@Check

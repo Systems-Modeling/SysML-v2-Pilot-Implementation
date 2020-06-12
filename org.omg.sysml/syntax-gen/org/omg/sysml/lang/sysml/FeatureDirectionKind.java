@@ -13,13 +13,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * '<em><b>Feature Direction Kind</b></em>', and utility methods for working
  * with them. <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>FeatureDirectionKind enumerates the possible kinds of direction that a Feature may be given as a member of a Type. These include:</p>
+ * <p>FeatureDirectionKind enumerates the possible kinds of direction that a Feature may be given as a member of a Type. See description of its literal values.</p>
  * 
- * <ol>
- * <li><em>in</em> - The value of the Feature relative to a given domain instance is specified externally to that instance but used internally.</li>
- * <li><em>out</em> - The value of the Feature relative to a given domain instance is specified internally to that instance but used externally.</li>
- * <li><em>inout</em> - The value of the Feature relative to a given domain instance is specified externally to that instance and used internally, but may be updated internally, with the updated value made available for use externally.</li>
- * </ol>
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureDirectionKind()
  * @model
@@ -30,6 +25,10 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * The '<em><b>In</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Values&nbsp;of the Feature on each&nbsp;instance of its domain are&nbsp;determined&nbsp;externally to that instance and&nbsp;used internally.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @see #IN_VALUE
 	 * @generated
 	 * @ordered
@@ -40,6 +39,10 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * The '<em><b>Inout</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Values&nbsp;of the Feature on each&nbsp;instance are&nbsp;determined either as&nbsp;<em>in</em> or <em>out</em>&nbsp;directions, or both.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @see #INOUT_VALUE
 	 * @generated
 	 * @ordered
@@ -49,6 +52,10 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * The '<em><b>Out</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Values of the Feature on each instance of its domain are&nbsp;determined internally to that instance and used externally.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @see #OUT_VALUE
 	 * @generated
 	 * @ordered
@@ -63,6 +70,10 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Values&nbsp;of the Feature on each&nbsp;instance of its domain are&nbsp;determined&nbsp;externally to that instance and&nbsp;used internally.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @see #IN
 	 * @model name="in"
 	 * @generated
@@ -78,6 +89,10 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Values&nbsp;of the Feature on each&nbsp;instance are&nbsp;determined either as&nbsp;<em>in</em> or <em>out</em>&nbsp;directions, or both.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @see #INOUT
 	 * @model name="inout"
 	 * @generated
@@ -93,6 +108,10 @@ public enum FeatureDirectionKind implements Enumerator {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Values of the Feature on each instance of its domain are&nbsp;determined internally to that instance and used externally.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @see #OUT
 	 * @model name="out"
 	 * @generated

@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Element is a constituent of a model that may be uniquely identified relative to all other Elements. It may have Relationships with other Elements in the model. Some of these Relationships may imply ownership of certain other Elements, which means that if this Element is deleted from a model, then so are all owned Elements. Conversely, an Element may be owned by another Element. In particular, the owning Element may be a Package that owns this Element through a Membership Relationship.</p>
+ * <p>An Element is a constituent of a model that is uniquely identified relative to all other Elements. It can&nbsp;have Relationships with other Elements. Some of these Relationships might imply ownership of other Elements, which means that if an&nbsp;Element is deleted from a model, then so are are all the Elements it owns.&nbsp;Packages are Elements that own other&nbsp;Elements through a Membership Relationship.</p>
  * 
  * name = if owningNamespace = null then null
  * else owningNamespace.nameOf(self) endif

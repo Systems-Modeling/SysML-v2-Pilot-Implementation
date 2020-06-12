@@ -17,8 +17,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getCondition_comp <em>Condition comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getSelector <em>Selector</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getCondition_comp <em>Condition comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ConditionalImport#getCondition <em>Condition</em>}</li>
  * </ul>
  *

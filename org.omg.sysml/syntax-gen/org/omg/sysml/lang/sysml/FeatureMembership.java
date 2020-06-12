@@ -43,6 +43,10 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates whether values of&nbsp;the Feature are computed from values of other Features.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Derived</em>' attribute.
 	 * @see #setIsDerived(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsDerived()
@@ -70,6 +74,10 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates whether the values of the Feature change after an instance of the Feature&#39;s domain comes into existence.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Read Only</em>' attribute.
 	 * @see #setIsReadOnly(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsReadOnly()
@@ -102,6 +110,9 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>memberFeature</code> indicates a Feature that will have Membership with the FeatureMembership's <code>type</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Feature</em>' reference.
 	 * @see #setMemberFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_MemberFeature()
@@ -137,6 +148,9 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>memberFeature</code> indicates a Feature that will have Membership with the FeatureMembership's <code>type</code> and be owned by that Type.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Feature comp</em>' containment reference.
 	 * @see #setOwnedMemberFeature_comp(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwnedMemberFeature_comp()
@@ -166,6 +180,10 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not values of the Feature are contained in the space and time of instances of the Feature&#39;s domain.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Portion</em>' attribute.
 	 * @see #setIsPortion(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPortion()
@@ -193,6 +211,10 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If true, the Feature will be treated as a &quot;port,&quot; which is visible externally to instances of the Feature&#39;s domain.&nbsp;</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Port</em>' attribute.
 	 * @see #setIsPort(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsPort()
@@ -220,6 +242,12 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Determines how values of the Feature are determined or used, see&nbsp;FeatureDirectionKind.</p>
+	 * 
+	 * <p><mms-cf mms-cf-type="doc" mms-element-id="_18_5_3_12e503d9_1533160651677_936694_42144" non-editable="false">[cf:FeatureDirectionKind.doc]</mms-cf></p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Direction</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
 	 * @see #setDirection(FeatureDirectionKind)
@@ -255,6 +283,9 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Type of which this FeatureMembership will make the Feature a member and owned element.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' container reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
@@ -317,6 +348,9 @@ public interface FeatureMembership extends Membership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether or not the Feature is integral to the definition of the featuringType.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_IsComposite()

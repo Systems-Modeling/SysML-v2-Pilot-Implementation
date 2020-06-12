@@ -43,14 +43,14 @@ import org.omg.sysml.lang.sysml.Type;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
+public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsage {
 	
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
@@ -370,8 +370,8 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 	@Override
 	public EList<Type> getType() {
 		@SuppressWarnings("unchecked")
-		EList<Type> association = (EList<Type>)((EList<?>)getAssociation());
-		return association;
+		EList<Type> itemDefinition = (EList<Type>)((EList<?>)getItemDefinition());
+		return itemDefinition;
 	}
 
 	/**
@@ -477,12 +477,12 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return getAssociation();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				return getOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				return isDirected();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
 				return getConnectorEnd();
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				return getOwnedAssociationType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -523,16 +523,16 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
-				return;
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				setIsDirected((Boolean)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
 				getConnectorEnd().clear();
 				getConnectorEnd().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				getOwnedAssociationType().clear();
+				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -567,14 +567,14 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				getAssociation().clear();
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				return;
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				setIsDirected(IS_DIRECTED_EDEFAULT);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
 				getConnectorEnd().clear();
+				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				getOwnedAssociationType().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -608,12 +608,12 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				return isSetOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
 				return !getConnectorEnd().isEmpty();
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				return isSetOwnedAssociationType();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -640,9 +640,9 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE: return SysMLPackage.CONNECTOR__RELATED_FEATURE;
 				case SysMLPackage.CONNECTION_USAGE__ASSOCIATION: return SysMLPackage.CONNECTOR__ASSOCIATION;
-				case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE;
 				case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED: return SysMLPackage.CONNECTOR__IS_DIRECTED;
 				case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END: return SysMLPackage.CONNECTOR__CONNECTOR_END;
+				case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE;
 				default: return -1;
 			}
 		}
@@ -671,9 +671,9 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 			switch (baseFeatureID) {
 				case SysMLPackage.CONNECTOR__RELATED_FEATURE: return SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE;
 				case SysMLPackage.CONNECTOR__ASSOCIATION: return SysMLPackage.CONNECTION_USAGE__ASSOCIATION;
-				case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE;
 				case SysMLPackage.CONNECTOR__IS_DIRECTED: return SysMLPackage.CONNECTION_USAGE__IS_DIRECTED;
 				case SysMLPackage.CONNECTOR__CONNECTOR_END: return SysMLPackage.CONNECTION_USAGE__CONNECTOR_END;
+				case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE;
 				default: return -1;
 			}
 		}
@@ -731,4 +731,4 @@ public class ConnectionUsageImpl extends UsageImpl implements ConnectionUsage {
 		return result.toString();
 	}
 
-} //ConnectorUsageImpl
+} //ConnectUsageImpl

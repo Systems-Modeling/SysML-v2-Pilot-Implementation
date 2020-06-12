@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.ValueProperty;
+import org.omg.sysml.lang.sysml.AttributeUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,12 +19,12 @@ import org.omg.sysml.lang.sysml.ValueProperty;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ValuePropertyImpl#getValueType <em>Value Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AttributeUsageImpl#getAttributeDefinition <em>Attribute Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
+public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	
 	public static final String VALUE_PROPERTY_SUBSETTING_DEFAULT = "Base::dataValues";
 
@@ -33,7 +33,7 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ValuePropertyImpl() {
+	protected AttributeUsageImpl() {
 		super();
 	}
 
@@ -44,7 +44,7 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.VALUE_PROPERTY;
+		return SysMLPackage.Literals.ATTRIBUTE_USAGE;
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<DataType> getValueType() {
-		EList<DataType> dataTypes = new EObjectEList<DataType>(DataType.class, this, SysMLPackage.VALUE_PROPERTY__VALUE_TYPE);
+	public EList<DataType> getAttributeDefinition() {
+		EList<DataType> dataTypes = new EObjectEList<DataType>(DataType.class, this, SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof DataType).
 			map(type->(DataType)type).
@@ -67,8 +67,29 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetValueType() {
-		return !getValueType().isEmpty();
+	public boolean isSetAttributeDefinition() {
+		return !getAttributeDefinition().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> attributeDefinition = (EList<Type>)((EList<?>)getAttributeDefinition());
+		return attributeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
 	}
 
 	@Override
@@ -84,8 +105,8 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				return getValueType();
+			case SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION:
+				return getAttributeDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -99,9 +120,9 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				getValueType().clear();
-				getValueType().addAll((Collection<? extends DataType>)newValue);
+			case SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION:
+				getAttributeDefinition().clear();
+				getAttributeDefinition().addAll((Collection<? extends DataType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -115,8 +136,8 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				getValueType().clear();
+			case SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION:
+				getAttributeDefinition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -130,33 +151,12 @@ public class ValuePropertyImpl extends PropertyImpl implements ValueProperty {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.VALUE_PROPERTY__TYPE:
+			case SysMLPackage.ATTRIBUTE_USAGE__TYPE:
 				return isSetType();
-			case SysMLPackage.VALUE_PROPERTY__VALUE_TYPE:
-				return isSetValueType();
+			case SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION:
+				return isSetAttributeDefinition();
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> valueType = (EList<Type>)((EList<?>)getValueType());
-		return valueType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-} //ValuePropertyImpl
+} //AttributeUsageImpl

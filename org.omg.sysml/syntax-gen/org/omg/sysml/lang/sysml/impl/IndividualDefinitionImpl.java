@@ -22,7 +22,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class IndividualDefinitionImpl extends BlockImpl implements IndividualDefinition {
+public class IndividualDefinitionImpl extends ItemDefinitionImpl implements IndividualDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

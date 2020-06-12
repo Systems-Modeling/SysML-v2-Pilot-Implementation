@@ -12,7 +12,7 @@ package org.omg.sysml.lang.sysml;
  * <p>A PerformActionUsage is an ActionUsage that represents the performance of an ActionUsage. The ActionUsage to be performed (which may be the PerformActionUsage itself) is related to the PerformActionUsage by a Subsetting relationship.</p>
  * 
  * <p>If the PerformActionUsage is owned by a Part, then it also subsets the performedAction property of that Part (as defined in the library model for Part),
- * otherwise it subsets either <tt>actions</tt> or <tt>subactions</tt>, as required for a regular ActionUsage.</p>
+ * otherwise it subsets either <code>actions</code> or <code>subactions</code>, as required for a regular ActionUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>

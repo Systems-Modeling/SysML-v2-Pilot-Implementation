@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Succession</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Succession is a &quot;temporal Connector,&quot; a relation between Steps with respect to time. Successions classify relations such as &quot;happensBefore&quot; which determine the order of occurrences in time.</p>
+ * <p>A Succession is a  temporal Connector that asserts an ordering of occurrences with respect to time. A Succession must directly or indirectly specialize the Association HappensBefore from the Kernel model library.</p>
  * 
  * <!-- end-model-doc -->
  *

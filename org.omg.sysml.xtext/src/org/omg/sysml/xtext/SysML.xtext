@@ -62,11 +62,11 @@ PackageUnit returns SysML::Package:
     UnitPrefix PackageDeclaration PackageBody 
 ;
 
-BlockUnit returns SysML::Block:
+BlockUnit returns SysML::PartDefinition:
 	UnitPrefix BlockDeclaration DefinitionBody
 ;
 
-ValueTypeUnit returns SysML::ValueType :
+ValueTypeUnit returns SysML::AttributeDefinition :
 	UnitPrefix ValueTypeDeclaration DefinitionBody
 ;
 
@@ -74,7 +74,7 @@ IndividualDefinitionUnit returns SysML::IndividualDefinition :
 	UnitPrefix IndividualDefDeclaration DefinitionBody
 ;
 
-AssociationBlockUnit returns SysML::AssociationBlock :
+AssociationBlockUnit returns SysML::ConnectionDefinition :
 	UnitPrefix AssociationBlockDeclaration AssociationBlockBody
 ;
 
@@ -82,11 +82,11 @@ InterfaceDefinitionUnit returns SysML::InterfaceDefinition :
 	UnitPrefix InterfaceDeclaration InterfaceBody
 ;
 
-ActivityUnit returns SysML::Activity :
+ActivityUnit returns SysML::ActionDefinition :
 	UnitPrefix ActivityDeclaration ActivityBody
 ;
 
-FunctionDefinitionUnit returns SysML::FunctionDefinition :
+FunctionDefinitionUnit returns SysML::CalculationDefinition :
 	UnitPrefix FunctionDefDeclaration FunctionBody
 ;
 
@@ -98,11 +98,11 @@ ConstraintDefinitionUnit returns SysML::ConstraintDefinition :
 	UnitPrefix ConstraintDefDeclaration ConstraintBody
 ;
 
-PartUnit returns SysML::PartProperty :
+PartUnit returns SysML::PartUsage :
 	UnitPrefix PartDeclaration UsageCompletion
 ;
 
-ValueUnit returns SysML::ValueProperty :
+ValueUnit returns SysML::AttributeUsage :
 	UnitPrefix ValueDeclaration UsageCompletion
 ;
 
@@ -110,7 +110,7 @@ ActionUnit returns SysML::ActionUsage :
 	UnitPrefix ActionDeclaration ActivityBody
 ;
 
-FunctionUnit returns SysML::FunctionUsage :
+FunctionUnit returns SysML::CalculationUsage :
 	UnitPrefix FunctionDeclaration FunctionBody
 ;
 
@@ -373,21 +373,21 @@ Superclassing returns SysML::Superclassing:
 
 /* BLOCKS */
 
-Block returns SysML::Block :
+Block returns SysML::PartDefinition :
 	BlockDeclaration DefinitionBody
 ;
 
-fragment BlockDeclaration returns SysML::Block :
+fragment BlockDeclaration returns SysML::PartDefinition :
 	( isAbstract ?= 'abstract' )? 'block' ClassifierDeclarationCompletion
 ;
 
 /* VALUE TYPES */
 
-ValueType returns SysML::ValueType :
+ValueType returns SysML::AttributeDefinition :
 	ValueTypeDeclaration DefinitionBody
 ;
 
-fragment ValueTypeDeclaration returns SysML::ValueType :
+fragment ValueTypeDeclaration returns SysML::AttributeDefinition :
 	( isAbstract ?= 'abstract' )? 'value' 'type' ClassifierDeclarationCompletion
 ;
 
@@ -439,11 +439,11 @@ ConjugatedPortDefinitionMember returns SysML::Membership :
 
 /* ASSOCIATION BLOCKS */
 
-AssociationBlock returns SysML::AssociationBlock :
+AssociationBlock returns SysML::ConnectionDefinition :
 	AssociationBlockDeclaration AssociationBlockBody
 ;
 
-fragment AssociationBlockDeclaration returns SysML::AssociationBlock :
+fragment AssociationBlockDeclaration returns SysML::ConnectionDefinition :
 	( isAbstract ?= 'abstract' )? 'assoc' 'block' ClassifierDeclarationCompletion
 ;
 
@@ -556,11 +556,11 @@ ConjugatedInterfaceEndMember returns SysML::EndFeatureMembership :
 
 /* ACTIVITIES */
 
-Activity returns SysML::Activity :
+Activity returns SysML::ActionDefinition :
 	ActivityDeclaration ActivityBody
 ;
 
-fragment ActivityDeclaration returns SysML::Activity :
+fragment ActivityDeclaration returns SysML::ActionDefinition :
 	( isAbstract ?= 'abstract')? 'activity' name = Name ParameterList? SuperclassingList?
 ;
 
@@ -618,14 +618,14 @@ GuardedSuccessionMember returns SysML::FeatureMembership :
 
 /* FUNCTION DEFINITIONS */
 
-FunctionDefinition returns SysML::FunctionDefinition :
+FunctionDefinition returns SysML::CalculationDefinition :
 	FunctionDefDeclaration 
 	( FunctionBody 
 	| '=' ownedFeatureMembership_comp += ExpressionMember ';'
 	)
 ;
 
-fragment FunctionDefDeclaration returns SysML::FunctionDefinition :
+fragment FunctionDefDeclaration returns SysML::CalculationDefinition :
 	( isAbstract ?= 'abstract')? FunctionKeyword 'def' name = Name 
 	ParameterList? ReturnParameterPart SuperclassingList?
 ;
@@ -972,41 +972,41 @@ fragment ParameterTypePart returns SysML::Parameter :
 
 /* PART PROPERTIES */
 
-fragment PartDeclaration returns SysML::PartProperty :
+fragment PartDeclaration returns SysML::PartUsage :
 	( isAbstract ?= 'abstract' )? 'part' 
 	name = Name TypePart? SubsettingPart
 ;
 
-PartProperty returns SysML::PartProperty :
+PartProperty returns SysML::PartUsage :
 	Usage
 ;
 
-AbstractPartProperty returns SysML::PartProperty :
+AbstractPartProperty returns SysML::PartUsage :
 	AbstractUsage
 ;
 
 /* REFERENCE PROPERTIES */
 
-ReferenceProperty returns SysML::ReferenceProperty :
+ReferenceProperty returns SysML::ReferenceUsage :
 	Usage
 ;
 
-AbstractReferenceProperty returns SysML::ReferenceProperty :
+AbstractReferenceProperty returns SysML::ReferenceUsage :
 	AbstractUsage
 ;
 
 /* VALUE PROPERTIES */
 
-fragment ValueDeclaration returns SysML::ValueProperty :
+fragment ValueDeclaration returns SysML::AttributeUsage :
 	( isAbstract ?= 'abstract' )? 'value'? 
 	name = Name TypePart? SubsettingPart
 ;
 
-ValueProperty returns SysML::ValueProperty :
+ValueProperty returns SysML::AttributeUsage :
 	Usage
 ;
 
-AbstractValueProperty returns SysML::ValueProperty :
+AbstractValueProperty returns SysML::AttributeUsage :
 	AbstractUsage
 ;
 
@@ -1392,16 +1392,16 @@ EmptyParameterMember returns SysML::ParameterMembership :
 
 /* FUNCTIONS */
 
-fragment FunctionDeclaration returns SysML::FunctionUsage :
+fragment FunctionDeclaration returns SysML::CalculationUsage :
     ( isAbstract ?= 'abstract' )? FunctionKeyword 
 	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList FunctionReturnParameterPart )?
 ;
 
-FunctionUsage returns SysML::FunctionUsage :
+FunctionUsage returns SysML::CalculationUsage :
 	FunctionUsageDeclaration FunctionBody
 ;
 
-AbstractFunctionUsage returns SysML::FunctionUsage :
+AbstractFunctionUsage returns SysML::CalculationUsage :
 	FunctionUsageDeclaration AbstractFunctionBody
 ;
 

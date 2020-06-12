@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
@@ -21,7 +20,6 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,13 +30,11 @@ import org.omg.sysml.lang.sysml.Usage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequirementDefinition <em>Requirement Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequirementOwningUsage <em>Requirement Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getReqId <em>Req Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getText <em>Text</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequirementOwningDefinition <em>Requirement Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -153,45 +149,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated
 	 */
 	@Override
-	public Usage getRequirementOwningUsage() {
-		Usage requirementOwningUsage = basicGetRequirementOwningUsage();
-		return requirementOwningUsage != null && requirementOwningUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)requirementOwningUsage) : requirementOwningUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Usage basicGetRequirementOwningUsage() {
-		return super.basicGetConstraintOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setRequirementOwningUsage(Usage newRequirementOwningUsage) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRequirementOwningUsage() {
-		return basicGetRequirementOwningUsage() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Parameter getSubjectParameter() {
 		Parameter subjectParameter = basicGetSubjectParameter();
 		return subjectParameter != null && subjectParameter.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
@@ -291,45 +248,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		return constraints;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getRequirementOwningDefinition() {
-		Definition requirementOwningDefinition = basicGetRequirementOwningDefinition();
-		return requirementOwningDefinition != null && requirementOwningDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)requirementOwningDefinition) : requirementOwningDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Definition basicGetRequirementOwningDefinition() {
-		return super.basicGetConstraintOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setRequirementOwningDefinition(Definition newRequirementOwningDefinition) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetRequirementOwningDefinition() {
-		return basicGetRequirementOwningDefinition() != null;
-	}
-
 	@Override
 	protected String getDefaultSupertype() {
 		return isRequirementConstraint()? 
@@ -392,90 +310,11 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated
 	 */
 	@Override
-	public Usage getConstraintOwningUsage() {
-		return getRequirementOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetConstraintOwningUsage() {
-		return basicGetRequirementOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintOwningUsage(Usage newConstraintOwningUsage) {
-		setRequirementOwningUsage(newConstraintOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintOwningUsage() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getConstraintOwningDefinition() {
-		return getRequirementOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition basicGetConstraintOwningDefinition() {
-		return basicGetRequirementOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraintOwningDefinition(Definition newConstraintOwningDefinition) {
-		setRequirementOwningDefinition(newConstraintOwningDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintOwningDefinition() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				if (resolve) return getRequirementDefinition();
 				return basicGetRequirementDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_USAGE:
-				if (resolve) return getRequirementOwningUsage();
-				return basicGetRequirementOwningUsage();
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
@@ -487,9 +326,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				return getRequiredConstraint();
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				return getAssumedConstraint();
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_DEFINITION:
-				if (resolve) return getRequirementOwningDefinition();
-				return basicGetRequirementOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -505,9 +341,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				setRequirementDefinition((RequirementDefinition)newValue);
-				return;
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_USAGE:
-				setRequirementOwningUsage((Usage)newValue);
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				setSubjectParameter((Parameter)newValue);
@@ -526,9 +359,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				getAssumedConstraint().clear();
 				getAssumedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
 				return;
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_DEFINITION:
-				setRequirementOwningDefinition((Definition)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -543,9 +373,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				setRequirementDefinition((RequirementDefinition)null);
-				return;
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_USAGE:
-				setRequirementOwningUsage((Usage)null);
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				setSubjectParameter((Parameter)null);
@@ -562,9 +389,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				getAssumedConstraint().clear();
 				return;
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_DEFINITION:
-				setRequirementOwningDefinition((Definition)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -579,14 +403,8 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__CONSTRAINT_OWNING_USAGE:
-				return isSetConstraintOwningUsage();
-			case SysMLPackage.REQUIREMENT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				return isSetConstraintOwningDefinition();
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				return isSetRequirementDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_USAGE:
-				return isSetRequirementOwningUsage();
 			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
 				return basicGetSubjectParameter() != null;
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:
@@ -597,8 +415,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				return !getRequiredConstraint().isEmpty();
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				return !getAssumedConstraint().isEmpty();
-			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_OWNING_DEFINITION:
-				return isSetRequirementOwningDefinition();
 		}
 		return super.eIsSet(featureID);
 	}

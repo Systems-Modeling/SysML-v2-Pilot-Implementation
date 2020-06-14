@@ -333,6 +333,15 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Exclude ConstraintUsages from being used as result expressions.
+	 * @return
+	 */
+	@Override
+	public boolean isExpression() {
+		return false;
+	}
+	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}

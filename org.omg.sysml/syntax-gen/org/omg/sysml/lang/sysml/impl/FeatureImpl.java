@@ -856,6 +856,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return getTyping().stream().anyMatch(typing->typing.getType() instanceof DataType);
 	}
 	
+	public boolean isExpression() {
+		return false;
+	}
+
 	public Subsetting createSubsetting() {
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettingFeature(this);

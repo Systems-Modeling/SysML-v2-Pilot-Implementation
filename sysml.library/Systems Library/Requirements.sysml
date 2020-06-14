@@ -35,7 +35,7 @@ package Requirements {
 	 * 
 	 * The subject is the entity that is being check for satisfaction of the required constraints.
 	 */
-	requirement def RequirementCheck(subject: Anything) :> RequirementConstraintCheck {
+	abstract requirement def RequirementCheck(subject: Anything) :> RequirementConstraintCheck {
 		ref requirement thisRequirement: RequirementCheck :>> self;
 		
 		/* Note: assumptions and constraints are redefined here solely to simplify the
@@ -47,7 +47,7 @@ package Requirements {
 		/**
 		 * Nested requirements, which are also required constraints.
 		 */
-		ref requirement subrequirements[0..*] :> requirementChecks, constraints;
+		abstract ref requirement subrequirements[0..*] :> requirementChecks, constraints;
 		
 	}
 	
@@ -83,6 +83,6 @@ package Requirements {
 	/**
 	 * requirementChecks is the base feature of all requirement usages.
 	 */
-	requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks (subject: Anything);
+	abstract requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks (subject: Anything);
 	
 }

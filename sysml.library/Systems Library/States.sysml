@@ -3,16 +3,16 @@
  * SysML language.
  */
 package States {
-	private import Activities::Action;
-	private import Activities::TransferAction;
-	private import Activities::actions;
+	private import Actions::Action;
+	private import Actions::TransferAction;
+	private import Actions::actions;
 	private import StatePerformances::StatePerformance;
 	private import StatePerformances::StateTransitionPerformance;
 	
 	/**
 	 * A State is an Action that is also a StatePerformance.
 	 */
-	state def State :> Action, StatePerformance {
+	abstract state def State :> Action, StatePerformance {
 		entry action entryAction :>> 'entry';
 		do action doAction: Action :>> 'do' :> subactions;
 		exit action exitAction: Action :>> 'exit';
@@ -32,7 +32,7 @@ package States {
 		/**
 		 * The subactions of this state that are states.
 		 */
-		state substates: State[0..*] :> states, subactions;
+		abstract state substates: State[0..*] :> states, subactions;
 	}
 	
 	/**
@@ -45,12 +45,12 @@ package States {
 	}
 	
 	/**
-	 * states is the base feature for all State usages.
+	 * states is the base feature for all StateUsages.
 	 */
-	state states: State[0..*] nonunique :> actions;
+	abstract state states: State[0..*] nonunique :> actions;
 	
 	/**
-	 * transitions is the base feature for all Transition usages.
+	 * transitions is the base feature for all TransitionUsages.
 	 */
-	action transitions: Transition[0..*] nonunique :> actions;
+	abstract action transitions: Transition[0..*] nonunique :> actions;
 }

@@ -240,6 +240,13 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public void setResult(Parameter newResult) {
 		throw new UnsupportedOperationException();
 	}
+	
+	// Utility methods
+	
+	@Override
+	public boolean isExpression() {
+		return true;
+	}
 
 	@Override
 	public List<Parameter> getOwnedParameters() {

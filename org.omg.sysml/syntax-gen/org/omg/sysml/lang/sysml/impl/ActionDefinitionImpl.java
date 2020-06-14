@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -100,7 +101,7 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
-		return BehaviorImpl.getRelevantFeaturesFor(this);
+		return Collections.emptyList();
 	}
 
 	/**

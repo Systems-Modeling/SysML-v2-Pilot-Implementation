@@ -65,9 +65,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	@Check
 	def checkRelationship(Relationship r){
-		val relatedElements = r.getRelatedElement
-		if ( relatedElements !== null && relatedElements.length < 2)
-			error("Relationships must have at least two related elements", r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)
+		// Allow abstract associations and connectors to have less than two ends.
+		if (!(r instanceof Type && (r as Type).isAbstract)) {
+			val relatedElements = r.getRelatedElement
+			if ( relatedElements !== null && relatedElements.length < 2)
+				error("Relationships must have at least two related elements", r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
+		}
 	}
 	
 	@Check

@@ -23,5 +23,5 @@ package Connections {
 	/**
 	 * connections is the base feature of all ConnectionUsages.
 	 */
-	abstract part connections: Connection[0..*] :> binaryLinks;	
+	abstract link connections: Connection[0..*] :> binaryLinks;
 }

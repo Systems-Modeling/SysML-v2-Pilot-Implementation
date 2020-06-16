@@ -9,7 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -32,7 +33,8 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class PortUsageImpl extends UsageImpl implements PortUsage {
 	
-	public static final String PORT_USAGE_SUBSETTING_BASE_DEFAULT = "Parts::Part::ports";
+	public static final String PORT_USAGE_SUBSETTING_BASE_DEFAULT = "Ports::ports";
+	public static final String PORT_USAGE_SUBSETTING_PART_DEFAULT = "Parts::Part::ports";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,7 +204,10 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return PORT_USAGE_SUBSETTING_BASE_DEFAULT;
+		Type owningType = getOwningType();
+		return owningType instanceof PartDefinition || owningType instanceof PartUsage?
+				PORT_USAGE_SUBSETTING_PART_DEFAULT:
+				PORT_USAGE_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	/**

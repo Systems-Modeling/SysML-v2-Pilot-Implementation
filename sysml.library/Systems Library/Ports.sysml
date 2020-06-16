@@ -12,8 +12,8 @@ package Ports {
 	 */
 	abstract port def Port :> Part;
 	
-	//*
+	/**
 	 * ports is the base feature of all PortUsages.
 	 */
-	// abstract port ports : Port[0..*] :> parts;
+	abstract port ports : Port[0..*] :> parts;
 }

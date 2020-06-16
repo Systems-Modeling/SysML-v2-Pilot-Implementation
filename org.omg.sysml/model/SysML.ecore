@@ -1811,7 +1811,7 @@
       <eAnnotations source="subsets" references="#//Element/owningNamespace"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flow" ordered="false" upperBound="-1"
-        eType="#//Usage">
+        eType="#//Usage" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="usageWithFlow"/>
       </eAnnotations>

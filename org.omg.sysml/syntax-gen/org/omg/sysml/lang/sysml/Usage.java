@@ -419,7 +419,7 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Flow</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Flow()
-	 * @model ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='usageWithFlow'"
 	 *        annotation="subsets"
 	 * @generated

@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
@@ -33,7 +32,6 @@ import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -104,15 +102,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
 	/**
-	 * The cached value of the '{@link #getFlow() <em>Flow</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFlow()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Usage> flow;
-	/**
 	 * The cached value of the '{@link #getVariantMembership_comp() <em>Variant Membership comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -154,28 +143,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public NotificationChain basicSetOwningMembership(Membership newOwningMembership, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningMembership, SysMLPackage.USAGE__OWNING_MEMBERSHIP, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			FeatureMembership owningFeatureMembership = getOwningFeatureMembership();
-			if (owningFeatureMembership != null && owningFeatureMembership != newOwningMembership) {
-				setOwningFeatureMembership(null);
-			}
-			VariantMembership owningVariantMembership = getOwningVariantMembership();
-			if (owningVariantMembership != null && owningVariantMembership != newOwningMembership) {
-				setOwningVariantMembership(null);
-			}
-			if (newOwningMembership != null) {
-				Relationship owningRelationship = getOwningRelationship();
-				if (newOwningMembership != owningRelationship) {
-					setOwningRelationship(newOwningMembership);
-				}
-			}
-		}
-		return msgs;
+		return super.basicSetOwningMembership(newOwningMembership, msgs);
 	}
 
 	/**
@@ -358,7 +329,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated 
+	 * @generated
 	 */
 	@Override
 	public void setIsVariation(boolean newIsVariation) {
@@ -433,14 +404,18 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Usage> getFlow() {
-		if (flow == null) {
-			flow = new EObjectResolvingEList<Usage>(Usage.class, this, SysMLPackage.USAGE__FLOW);
-		}
-		return flow;
+		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.USAGE__FLOW);
+		getMembership().stream().
+			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
+			map(membership->((FeatureMembership)membership).getMemberFeature()).
+			filter(Usage.class::isInstance).
+			map(Usage.class::cast).
+			forEachOrdered(flows::add);
+		return flows;
 	}
 
 	/**
@@ -456,12 +431,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public VariantMembership getOwningVariantMembership() {
-		if (eContainerFeatureID() != SysMLPackage.USAGE__OWNING_VARIANT_MEMBERSHIP) return null;
-		return (VariantMembership)eInternalContainer();
+		Membership owningMembership = getOwningMembership();
+		return owningMembership instanceof VariantMembership? (VariantMembership)owningMembership: null;
 	}
 
 	/**
@@ -539,15 +514,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return new DerivedEObjectEList<>(Usage.class, this, SysMLPackage.USAGE__NESTED_USAGE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
-	/**
-	 * The array of subset feature identifiers for the '{@link #getUsage() <em>Usage</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUsage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] USAGE_ESUBSETS = new int[] {SysMLPackage.USAGE__FLOW};
 	/**
 	 * The array of superset feature identifiers for the '{@link #getVariantMembership() <em>Variant Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -1057,7 +1023,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__OWNING_VARIATION_DEFINITION:
 				return basicGetOwningVariationDefinition() != null;
 			case SysMLPackage.USAGE__FLOW:
-				return flow != null && !flow.isEmpty();
+				return !getFlow().isEmpty();
 			case SysMLPackage.USAGE__NESTED_CASE:
 				return !getNestedCase().isEmpty();
 			case SysMLPackage.USAGE__OWNING_VARIANT_MEMBERSHIP:

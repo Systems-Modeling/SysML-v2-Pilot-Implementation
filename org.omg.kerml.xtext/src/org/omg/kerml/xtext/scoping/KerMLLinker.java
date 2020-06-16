@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Zoltan Ujhelyi, MDS
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.kerml.xtext.scoping;
@@ -33,13 +34,21 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class KerMLLinker extends LazyLinker {
 
 	protected void clearReference(EObject obj, EReference ref) {
-		if (Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__SOURCE)
-		 || Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__TARGET)) {
+		if (
 			// The Relationship#source and #target features are overridden
 			// in each subtype to provide specific derived implementations that
 			// are regenerated each time they are accessed so there is no need to
 			// delete them; and as of May 2020, generic references as not supported
 			// in concrete syntax, making it a safe to not clear them during linking.
+			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__SOURCE) || 
+			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__TARGET) ||
+			
+			// The Relationship#relatedElement feature is a derived union in the
+			// abstract syntax model, but it is implemented as a manual derivation,
+			// which is overridden as necessary in subtypes, so there is no need to
+			// delete it.
+			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT)
+		 ) {
 			return;
 		}
 		super.clearReference(obj, ref);

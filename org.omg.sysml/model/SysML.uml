@@ -1895,7 +1895,7 @@ otherwise it subsets either &lt;code>actions&lt;/code> or &lt;code>subactions&lt
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="0352f0a6-3420-470f-a925-93e69dc382f3" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ca9eeefb-73f6-43f3-b499-8b12e296869a" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="ff1e3c1a-7430-4be0-8f41-bee4ac24cab8" name="flow" type="46068009-84f1-4001-a9bb-fc03fd6a381c" subsettedProperty="0dfa6ef9-8b69-40c9-b06e-5997d834a831" association="f4bb0b59-2cdf-47c8-b64f-a8373821e030">
+    <ownedAttribute xmi:id="ff1e3c1a-7430-4be0-8f41-bee4ac24cab8" name="flow" type="46068009-84f1-4001-a9bb-fc03fd6a381c" isDerived="true" subsettedProperty="0dfa6ef9-8b69-40c9-b06e-5997d834a831" association="f4bb0b59-2cdf-47c8-b64f-a8373821e030">
       <ownedComment xmi:id="f7a350c6-c30b-45ad-a59b-25a0e875c32e" annotatedElement="ff1e3c1a-7430-4be0-8f41-bee4ac24cab8">
         <body>&lt;p>The &lt;code>usages&lt;/code> of this Usage that have a non-null &lt;code>direction&lt;/code>.&lt;/p>
 </body>

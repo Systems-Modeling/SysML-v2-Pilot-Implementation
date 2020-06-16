@@ -5,7 +5,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -14,7 +16,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
 			}
 		}
 	}
@@ -22,9 +26,7 @@ END_SETUP
 */
 package 'Individuals and Roles' {
 	
-	block A {
-		part a_1;
-	}
+	block A;
 	block B;
 	
 	individual def A_1 :> A {
@@ -42,8 +44,8 @@ package 'Individuals and Roles' {
 		}
 		
 		snapshot a_1_2 {
-			// XPECT errors --> "An individual must be typed by one individual definition." at "b_2 : A::a_1 :>> b_2;"
-			snapshot b_2 : A::a_1 :>> b_2;
+			// XPECT errors --> "An individual must be typed by one individual definition." at "b_2 : A :>> b_2;"
+			snapshot b_2 : A :>> b_2;
 		}
 	}
 }

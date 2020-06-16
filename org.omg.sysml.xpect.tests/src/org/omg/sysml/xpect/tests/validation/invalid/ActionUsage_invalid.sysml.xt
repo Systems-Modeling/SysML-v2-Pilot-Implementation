@@ -5,9 +5,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 		File {from ="/library.kernel/Base.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
-		File {from ="/library.systems/Blocks.sysml"}
 		File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.systems/Activities.sysml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -16,9 +20,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 				File {from ="/library.kernel/Base.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
 				File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.systems/Activities.sysml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
 			}
 		}
 	}
@@ -28,9 +36,9 @@ package pkg {
 	block ABlock;
 	activity AnActivity;
 	activity B() {
-		// XPECT errors -->   "An action must be typed by activities." at "a: ABlock;"
+		// XPECT errors -->   "An action must be typed by action definitions." at "a: ABlock;"
 		action a: ABlock;
-		// XPECT errors -->   "An action must be typed by activities." at "b: ABlock, AnActivity;"
+		// XPECT errors -->   "An action must be typed by action definitions." at "b: ABlock, AnActivity;"
 		action b: ABlock, AnActivity;
 	}
 	

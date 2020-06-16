@@ -7,7 +7,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/ControlFunctions.kerml"}
-		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -18,7 +19,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
                 File {from ="/library.kernel/Objects.kerml"}
                 File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/ControlFunctions.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
 			}
 		}
 	}

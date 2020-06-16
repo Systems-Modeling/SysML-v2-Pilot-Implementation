@@ -7,8 +7,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
        	File {from ="/library.kernel/Objects.kerml"}
        	File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
-		File {from ="/library.systems/Blocks.sysml"}
-
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -19,7 +21,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
  		      	File {from ="/library.kernel/Objects.kerml"}
  		      	File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
 			}
 		}
 	}
@@ -28,7 +33,6 @@ END_SETUP
 package P {
 	block ABlock;	block B;	block C;	block D;	block E;
 	
-	interface def AA;
 	assoc block AB {
 		end : D[1];
 		end : E[1];
@@ -43,11 +47,10 @@ package P {
 		
 		link ab : AB connect b to c;
 		link bc : AB, BC connect b to c;
-		link :AA connect b to c;
 		
-		// XPECT errors --> "A connection must be typed by association blocks." at ":ABlock connect b to c;"
+		// XPECT errors --> "A connection must be typed by connection definitions." at ":ABlock connect b to c;"
 		link :ABlock connect b to c;
-		// XPECT errors --> "A connection must be typed by association blocks." at ":apart connect b to c;"
+		// XPECT errors --> "A connection must be typed by connection definitions." at ":apart connect b to c;"
 		link :apart connect b to c;
 	}
 	

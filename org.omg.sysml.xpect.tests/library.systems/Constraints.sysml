@@ -5,19 +5,19 @@
 package Constraints {
 	private import Performances::BooleanEvaluation;
 	private import Performances::booleanEvaluations;
-	private import Blocks::Part;
-	private import Blocks::parts;
+	private import Parts::Part;
+	private import Parts::parts;
 	
 	/**
 	 * ConstraintCheck is the most general class for constraint checking. ConstraintCheck is the base
-	 * type of all constraint definitions.
+	 * type of all ConstraintDefinitions.
 	 */
-	constraint def ConstraintCheck :> BooleanEvaluation, Part {
+	abstract constraint def ConstraintCheck :> BooleanEvaluation, Part {
 		ref constraint thisConstraint: ConstraintCheck :>> self;
 	}
 	
 	/**
-	 * constraintChecks is the base feature of all constraint usages.
+	 * constraintChecks is the base feature of all ConstraintUsages.
 	 */
 	abstract constraint constraintChecks: ConstraintCheck[0..*] :> booleanEvaluations, parts;
 		

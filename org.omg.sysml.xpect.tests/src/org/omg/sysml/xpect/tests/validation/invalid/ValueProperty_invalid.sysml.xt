@@ -8,8 +8,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 		File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
-		File {from ="/library.systems/Blocks.sysml"}
-
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Attributes.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -21,7 +23,10 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Attributes.sysml"}
 			}
 		}
 	}
@@ -34,15 +39,15 @@ package 'ValueProperty Example' {
 		port p: P;
 	}
 	block Vehicle {
-		// XPECT errors --> "A value property must be typed by value types." at "a : A;"
+		// XPECT errors --> "An attribute must be typed by attribute definitions." at "a : A;"
 		value a : A;
-		// XPECT errors --> "A value property must be typed by value types." at "b : A::a;"
+		// XPECT errors --> "An attribute must be typed by attribute definitions." at "b : A::a;"
 		value b : A::a;
-		// XPECT errors --> "A value property must be typed by value types." at "s : P;"
+		// XPECT errors --> "An attribute must be typed by attribute definitions." at "s : P;"
 		value s : P;
-		//XPECT errors --> "A value property must be typed by value types." at "un : A::p;"
+		//XPECT errors --> "An attribute must be typed by attribute definitions." at "un : A::p;"
 		value un: A::p;
-		//XPECT errors --> "A value property must be typed by value types." at "n : AB;"
+		//XPECT errors --> "An attribute must be typed by attribute definitions." at "n : AB;"
 		value n: AB;
 		}
 	assoc block  AB {

@@ -7,7 +7,8 @@
                 File {from ="/library.kernel/Performances.kerml"}
                 File {from ="/library.kernel/ScalarValues.kerml"}
                 File {from ="/library.kernel/ControlFunctions.kerml"}
-                File {from ="/library.systems/Blocks.sysml"}
+                File {from ="/library.systems/Items.sysml"}
+                File {from ="/library.systems/Parts.sysml"}
                 File {from ="/src/Vehicle.sysml"}
         }
         Workspace {
@@ -20,7 +21,8 @@
                 				File {from ="/library.kernel/Performances.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
                 				File {from ="/library.kernel/ControlFunctions.kerml"}
-                				File {from ="/library.systems/Blocks.sysml"}
+                				File {from ="/library.systems/Items.sysml"}
+                				File {from ="/library.systems/Parts.sysml"}
                                 File {from ="/src/Vehicle.sysml"}
                         }
                 }

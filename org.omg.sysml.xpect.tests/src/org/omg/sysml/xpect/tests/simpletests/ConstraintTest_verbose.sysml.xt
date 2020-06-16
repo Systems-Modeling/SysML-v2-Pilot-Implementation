@@ -9,7 +9,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
-		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Constraints.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
@@ -28,7 +29,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Constraints.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}

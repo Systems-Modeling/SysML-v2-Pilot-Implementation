@@ -83,22 +83,22 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ITEMUSAGE_MSG = 'An item usage must be typed by item definitions.'
 	public static val INVALID_PARTUSAGE = 'Invalid Block Property - invalid type'
 	public static val INVALID_PARTUSAGE_MSG = 'A part usage must be typed by item definitions and at least one part definition.'
-	public static val INVALID_CONSTRINTUSAGE = 'Invalid Constraint Usage - invalid type'
-	public static val INVALID_CONSTRINTUSAGE_MSG = 'A constraint must be typed by one constraint definition.'
+	public static val INVALID_CONSTRAINTUSAGE = 'Invalid Constraint Usage - invalid type'
+	public static val INVALID_CONSTRAINTUSAGE_MSG = 'A constraint must be typed by one constraint definition.'
 	public static val INVALID_INDIVIDUALUSAGE = 'Invalid IndividualUsage - invalid type'
 	public static val INVALID_INDIVIDUALUSAGE_MSG = 'An individual must be typed by one individual definition.'
 	public static val INVALID_CONNECTIONUSAGE = 'Invalid ConnectionUsage - invalid type'
-	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by association blocks.'
+	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by connection definitions.'
 	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
 	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by one interface definition.'
 	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
 	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by one port definition.'
 	public static val INVALID_REQUIREMENTUSAGE = 'Invalid RequirementUsage - invalid type'
-	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement  must be typed by one requirement definition.'
+	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement must be typed by one requirement definition.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
 	public static val INVALID_ATTRIBUTEUSAGE = 'Invalid attribute usage - invalid type'
-	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute usage must be typed by attribute definitions.'
+	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
 
@@ -114,13 +114,14 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be Classes, at least one must be a PartDefinition. 
 	def checkPartUsageTypes(PartUsage pu){
-		if (checkAllTypes(pu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
-			checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
+		if (!(pu instanceof PortUsage || pu instanceof ConnectionUsage))
+			if (checkAllTypes(pu, org.omg.sysml.lang.sysml.Class, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.itemUsage_ItemDefinition, SysMLValidator.INVALID_PARTUSAGE))
+				checkAtLeastOneType(pu, PartDefinition, SysMLValidator.INVALID_PARTUSAGE_MSG, SysMLPackage.eINSTANCE.partUsage_PartDefinition, SysMLValidator.INVALID_PARTUSAGE)
 	}
 	@Check //Must have exactly one type, which is a Predicate.
 	def checkConstraintUsageTypes(ConstraintUsage usg){
 		if (!(usg instanceof RequirementUsage))
-			checkOneType(usg, Predicate, SysMLValidator.INVALID_CONSTRINTUSAGE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, SysMLValidator.INVALID_CONSTRINTUSAGE)
+			checkOneType(usg, Predicate, SysMLValidator.INVALID_CONSTRAINTUSAGE_MSG, SysMLPackage.eINSTANCE.constraintUsage_ConstraintDefinition, SysMLValidator.INVALID_CONSTRAINTUSAGE)
 	}
 	@Check //Must have exactly one type, which is a Function.
 	def checkCalculationUsageTypes(CalculationUsage usg){

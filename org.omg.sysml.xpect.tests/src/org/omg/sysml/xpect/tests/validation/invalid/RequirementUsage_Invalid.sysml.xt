@@ -2,20 +2,48 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 	ResourceSet {
 		ThisFile {}
-				File {from ="/library.kernel/Base.kerml"}
-				File {from ="/library.kernel/Objects.kerml"}
-				File {from ="/library.kernel/Occurrences.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
-				File {from ="/library.systems/Requirements.sysml"}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Attributes.sysml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Interfaces.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Attributes.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Interfaces.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
 				File {from ="/library.systems/Requirements.sysml"}
 			}
 		}
@@ -33,19 +61,19 @@ package 'Requirement Definitions' {
 	requirement def id '11' R11def;
 	requirement def id '2' R2def  :> Rdef;
 	
-	//XPECT errors --> "A requirement  must be typed by one requirement definition." at "id '1.0' r10 : R1def, R11def;"
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "id '1.0' r10 : R1def, R11def;"
 	requirement id '1.0' r10 : R1def, R11def;
 	/* XPECT errors ---
 		"A requirement  must be typed by one requirement definition." at "id '1.1' r11 : Rdef;"
 		"Features must have at least one type" at "id '1.1' r11 : Rdef;"
 	--- */
 	requirement id '1.1' r11 : Rdef;
-	//XPECT errors --> "A requirement  must be typed by one requirement definition." at "id '1.2' r12 : R2def;"
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "id '1.2' r12 : R2def;"
 	requirement id '1.2' r12 : R2def;
-	//XPECT errors --> "A requirement  must be typed by one requirement definition." at "r13 : A;"
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "r13 : A;"
 	requirement r13 : A;
-	//XPECT errors --> "A requirement  must be typed by one requirement definition." at "r14 : A::a;"
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "r14 : A::a;"
 	requirement r14 : A::a;
-	//XPECT errors --> "A requirement  must be typed by one requirement definition." at "r15 : c;"
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "r15 : c;"
 	requirement r15 : c;
 }

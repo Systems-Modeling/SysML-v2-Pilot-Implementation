@@ -1,5 +1,6 @@
 package 'Calculation Definitions' {
 	import ScalarValues::Real;
+	import RealFunctions::Sqrt;
 	
 	value type PowerValue :> Real;
 	value type MassValue :> Real;
@@ -16,7 +17,7 @@ package 'Calculation Definitions' {
 	}
 	
 	calc def Acceleration (dt : TimeValue, tm : MassValue, tp: PowerValue) : AccelValue { 
-		tp * dt * tp
+		Sqrt(tp / (2 * tm * dt))
 	}
 	
 	calc def Velocity (dt : TimeValue, v0 : VelocityValue, a : AccelValue) : VelocityValue = v0 + a * dt;

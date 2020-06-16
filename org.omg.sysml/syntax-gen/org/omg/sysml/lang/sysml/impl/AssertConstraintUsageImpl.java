@@ -30,7 +30,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements AssertConstraintUsage {
 
-	public static final String ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT = "Blocks::Part::assertedConstraints";
+	public static final String ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT = "Items::Item::assertedConstraints";
 	
 	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;

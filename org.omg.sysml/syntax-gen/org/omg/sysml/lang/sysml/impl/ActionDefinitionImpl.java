@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefinition {
 
-	public String ACTIVITY_SUPERCLASS_DEFAULT = "Activities::Action";
+	public static final String ACTION_DEFINITION_SUPERCLASS_DEFAULT = "Actions::Action";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -93,7 +93,7 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	}
 
 	protected String getDefaultSupertype() {
-		return ACTIVITY_SUPERCLASS_DEFAULT;
+		return ACTION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
 	/**

@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class PortUsageImpl extends UsageImpl implements PortUsage {
 	
-	public static final String PORT_USAGE_SUBSETTING_BASE_DEFAULT = "Blocks::Part::ports";
+	public static final String PORT_USAGE_SUBSETTING_BASE_DEFAULT = "Parts::Part::ports";
 
 	/**
 	 * <!-- begin-user-doc -->

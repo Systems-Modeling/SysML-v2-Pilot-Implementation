@@ -28,7 +28,7 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements InterfaceDefinition {
 
-	public static final String INTERFACE_DEFINITION_SUPERCLASS_DEFAULT = "Blocks::Interface";
+	public static final String INTERFACE_DEFINITION_SUPERCLASS_DEFAULT = "Interfaces::Interface";
 
 	/**
 	 * <!-- begin-user-doc -->

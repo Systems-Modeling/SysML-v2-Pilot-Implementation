@@ -15,7 +15,7 @@ import org.omg.sysml.lang.sysml.AttributeDefinition;
  */
 public class AttributeDefinitionImpl extends DefinitionImpl implements AttributeDefinition {
 	
-	public static final String VALUE_TYPE_SUPERCLASS_DEFAULT = "Base::DataValue";
+	public static final String ATTRIBUTE_DEFINITION_SUPERCLASS_DEFAULT = "Base::DataValue";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -38,7 +38,7 @@ public class AttributeDefinitionImpl extends DefinitionImpl implements Attribute
 
 	@Override
 	protected String getDefaultSupertype() {
-		return VALUE_TYPE_SUPERCLASS_DEFAULT;
+		return ATTRIBUTE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } //AttributeDefinitionImpl

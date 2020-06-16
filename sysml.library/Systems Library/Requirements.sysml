@@ -6,6 +6,10 @@ package Requirements {
 	private import ScalarValues::String;
 	private import ControlFunctions::allTrue;
 	private import Constraints::constraintChecks;
+	private import Parts::Part;
+	private import Actions::Action;
+	private import Interfaces::Interface;
+	private import Attributes::AttributeValue as AttributeValue; // "Alias" needed because of alias reimport bug.
 	
 	/**
 	 * RequirementConstraintCheck is the base ConstraintCheck for RequirementCheck, defining the
@@ -54,31 +58,31 @@ package Requirements {
 	/**
 	 * A functional requirement specifies an action that a system, or part of a system, must perform.
 	 */
-	requirement def FunctionalRequirementCheck(subject: Activities::Action) :> RequirementCheck;
+	requirement def FunctionalRequirementCheck(subject: Action) :> RequirementCheck;
 	
 	/** 
 	 * An interface requirement specifies an interface for connecting systems and system parts, which
 	 * optionally may include item flows across the interface and/or interface constraints.
 	 */
-	requirement def InterfaceRequirementCheck(subject: Blocks::Interface) :> RequirementCheck;
+	requirement def InterfaceRequirementCheck(subject: Interface) :> RequirementCheck;
 	
 	/**
 	 * A performance requirement quantitavely measures the extent to which a system, or a system part, 
 	 * satisfies a required capability or condition.
 	 */
-	requirement def PerformanceRequirementCheck(subject: Blocks::Value) :> RequirementCheck;
+	requirement def PerformanceRequirementCheck(subject: AttributeValue) :> RequirementCheck;
 	
 	/**
 	 * A physical requirement specifies physical characteristics and/or physical constraints of the 
 	 * system, or a system part.
 	 */
-	requirement def PhysicalRequirementCheck(subject: Blocks::Part) :> RequirementCheck;
+	requirement def PhysicalRequirementCheck(subject: Part) :> RequirementCheck;
 	
 	/**
 	 * A design constraint specifies a constraint on the implementation of the system or system part, 
 	 * such as the system must use a commercial off the shelf component.
 	 */
-	requirement def DesignConstraintCheck(subject: Blocks::Part) :> RequirementCheck;
+	requirement def DesignConstraintCheck(subject: Part) :> RequirementCheck;
 	
 	/**
 	 * requirementChecks is the base feature of all requirement usages.

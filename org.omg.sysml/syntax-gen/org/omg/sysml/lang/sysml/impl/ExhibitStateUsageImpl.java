@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStateUsage {
 
-	public static final String EXHIBIT_STATE_SUBSETTING_PART_DEFAULT = "Blocks::Part::exhibitedStates";
+	public static final String EXHIBIT_STATE_SUBSETTING_PART_DEFAULT = "Parts::Part::exhibitedStates";
 
 	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;

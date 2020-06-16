@@ -17,8 +17,8 @@ package Actions {
 	 * part of a system. Action is the base class of all action definitions.
 	 */
 	abstract activity Action :> Performance {
-		ref action :>> self: Action;
-		ref action :>> incomingTransfers;
+		ref action self: Action :>> Performance::self;
+		ref action incomingTransfers :>> Performance::incomingTransfers;
 			
 		/**
 		 * The starting snapshot of an action. 

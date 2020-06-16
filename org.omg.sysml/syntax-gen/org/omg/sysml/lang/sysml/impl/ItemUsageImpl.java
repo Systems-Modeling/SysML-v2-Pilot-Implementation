@@ -26,6 +26,9 @@ import org.omg.sysml.lang.sysml.Type;
  * @generated
  */
 public class ItemUsageImpl extends UsageImpl implements ItemUsage {
+	
+	public static final String ITEM_SUBSETTING_DEFAULT = "Items::items";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,6 +73,11 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 		return !getItemDefinition().isEmpty();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return ITEM_SUBSETTING_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

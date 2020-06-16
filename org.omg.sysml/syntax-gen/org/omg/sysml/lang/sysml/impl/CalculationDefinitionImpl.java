@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class CalculationDefinitionImpl extends ActionDefinitionImpl implements CalculationDefinition {
 
-	public String FUNCTION_DEFINITION_SUPERCLASS_DEFAULT = "Functions::FunctionInvocation";
+	public static final String CALCULATION_DEFINITION_SUPERCLASS_DEFAULT = "Calculations::Calculation";
 
 	/**
 	 * The cached value of the BindingConnector from the result of the last
@@ -146,7 +146,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	}
 
 	protected String getDefaultSupertype() {
-		return FUNCTION_DEFINITION_SUPERCLASS_DEFAULT;
+		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
 	public BindingConnector getResultConnector() {

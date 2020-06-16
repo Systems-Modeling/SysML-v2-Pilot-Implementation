@@ -36,8 +36,8 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::actions";
-	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Action::subactions";
+	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
+	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
 	public static final String STATE_BASE = "States::State";
 	public static final String TRANSITION_BASE = "States::Transition";
 	

@@ -25,7 +25,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	
-	public static final String BLOCK_PROPERTY_SUBSETTING_DEFAULT = "Blocks::parts";
+	public static final String PART_SUBSETTING_DEFAULT = "Parts::parts";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return BLOCK_PROPERTY_SUBSETTING_DEFAULT;
+		return PART_SUBSETTING_DEFAULT;
 	}
 	
 	/**

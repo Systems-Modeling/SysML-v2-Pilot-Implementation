@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ItemDefinitionImpl extends DefinitionImpl implements ItemDefinition {
 
-	public static final String ITEM_DEFINITION_SUPERCLASS_DEFAULT = "Blocks::Part";
+	public static final String ITEM_DEFINITION_SUPERCLASS_DEFAULT = "Items::Item";
 	
 	/**
 	 * <!-- begin-user-doc -->

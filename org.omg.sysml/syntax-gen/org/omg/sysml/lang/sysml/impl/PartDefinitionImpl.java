@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefinition {
 	
-	public static final String BLOCK_SUPERCLASS_DEFAULT = "Blocks::Part";
+	public static final String PART_DEFINITION_SUPERCLASS_DEFAULT = "Parts::Part";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -39,7 +39,7 @@ public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefini
 
 	@Override
 	protected String getDefaultSupertype() {
-		return BLOCK_SUPERCLASS_DEFAULT;
+		return PART_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } //BlockImpl

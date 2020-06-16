@@ -49,6 +49,8 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class ConnectionDefinitionImpl extends PartDefinitionImpl implements ConnectionDefinition {
 
+	public static final String CONNECTION_DEFINITION_SUPERCLASS_DEFAULT = "Connections::Connection";
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -76,8 +78,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement_comp;
-	public static final String ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT = "Blocks::Connection";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -387,7 +387,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	protected String getDefaultSupertype() {
 		return getOwnedEndFeature().size() > 2? 
 					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
-					ASSOCIATION_BLOCK_SUPERCLASS_DEFAULT;
+					CONNECTION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

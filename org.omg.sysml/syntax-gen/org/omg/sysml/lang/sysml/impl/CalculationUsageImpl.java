@@ -34,8 +34,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class CalculationUsageImpl extends ActionUsageImpl implements CalculationUsage {
 
-	public static final String FUNCTION_SUBSETTING_BASE_DEFAULT = "Functions::functionInvocations";
-	public static final String FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT = "Functions::FunctionInvocation::subinvocations";
+	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
+	public static final String CALCULATION_SUBSETTING_SUBINVOCATION_DEFAULT = "Calculations::Calculation::subcalculations";
 	
 	/**
 	 * The cached value of the BindingConnector from the result of the last
@@ -216,8 +216,8 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()? 
-					FUNCTION_SUBSETTING_SUBINVOCATION_DEFAULT:
-					FUNCTION_SUBSETTING_BASE_DEFAULT;
+					CALCULATION_SUBSETTING_SUBINVOCATION_DEFAULT:
+					CALCULATION_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	/**

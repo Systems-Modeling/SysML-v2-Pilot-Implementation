@@ -51,7 +51,9 @@ import org.omg.sysml.lang.sysml.Type;
  * @generated
  */
 public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsage {
-	
+
+	public static final String CONNECTOR_USAGE_SUBSETTING_DEFAULT = "Connections::connections";
+
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -97,7 +99,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @ordered
 	 */
 	protected boolean isDirected = IS_DIRECTED_EDEFAULT;
-	public static final String CONNECTOR_USAGE_SUBSETTING_DEFAULT = "Blocks::connections";
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -291,10 +291,10 @@ StructureUsageMember returns SysML::FeatureMembership :
 	| 'abstract' ReferenceUsageKeyword ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractReferenceUsage
 	| AttributeUsageKeyword? ( direction = FeatureDirection )? ownedMemberFeature_comp = AttributeUsage
 	| 'abstract' AttributeUsageKeyword? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractAttributeUsage
-	| ItemUsageKeyword ownedMemberFeature_comp = ItemUsage
-	| 'abstract' ItemUsageKeyword ownedMemberFeature_comp = AbstractItemUsage
-	| ( 'ref' PartUsageKeyword | isComposite ?= PartUsageKeyword ) ownedMemberFeature_comp = PartUsage
-	| 'abstract' ( 'ref' PartUsageKeyword | isComposite ?= PartUsageKeyword ) ownedMemberFeature_comp = AbstractPartUsage
+	| ItemUsageKeyword ( direction = FeatureDirection )? ownedMemberFeature_comp = ItemUsage
+	| 'abstract' ItemUsageKeyword ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractItemUsage
+	| ( 'ref' PartUsageKeyword | isComposite ?= PartUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = PartUsage
+	| 'abstract' ( 'ref' PartUsageKeyword | isComposite ?= PartUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractPartUsage
 	| isPort ?= PortUsageKeyword ownedMemberFeature_comp = PortUsage
 	| 'abstract' isPort ?= PortUsageKeyword ownedMemberFeature_comp = AbstractPortUsage
 	| ConnectionUsageKeyword ownedMemberFeature_comp = ConnectionUsage 

@@ -1929,13 +1929,17 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedMemberFeature_compAbstractAttributeUsageParserRuleCall_1_3_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_3_3.eContents().get(0);
 		private final Group cGroup_1_4 = (Group)cAlternatives_1.eContents().get(4);
 		private final RuleCall cItemUsageKeywordParserRuleCall_1_4_0 = (RuleCall)cGroup_1_4.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
-		private final RuleCall cOwnedMemberFeature_compItemUsageParserRuleCall_1_4_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_4_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_4_1 = (Assignment)cGroup_1_4.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_4_1_0 = (RuleCall)cDirectionAssignment_1_4_1.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_4_2 = (Assignment)cGroup_1_4.eContents().get(2);
+		private final RuleCall cOwnedMemberFeature_compItemUsageParserRuleCall_1_4_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_4_2.eContents().get(0);
 		private final Group cGroup_1_5 = (Group)cAlternatives_1.eContents().get(5);
 		private final Keyword cAbstractKeyword_1_5_0 = (Keyword)cGroup_1_5.eContents().get(0);
 		private final RuleCall cItemUsageKeywordParserRuleCall_1_5_1 = (RuleCall)cGroup_1_5.eContents().get(1);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_5_2 = (Assignment)cGroup_1_5.eContents().get(2);
-		private final RuleCall cOwnedMemberFeature_compAbstractItemUsageParserRuleCall_1_5_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_5_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_5_2 = (Assignment)cGroup_1_5.eContents().get(2);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_5_2_0 = (RuleCall)cDirectionAssignment_1_5_2.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_5_3 = (Assignment)cGroup_1_5.eContents().get(3);
+		private final RuleCall cOwnedMemberFeature_compAbstractItemUsageParserRuleCall_1_5_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_5_3.eContents().get(0);
 		private final Group cGroup_1_6 = (Group)cAlternatives_1.eContents().get(6);
 		private final Alternatives cAlternatives_1_6_0 = (Alternatives)cGroup_1_6.eContents().get(0);
 		private final Group cGroup_1_6_0_0 = (Group)cAlternatives_1_6_0.eContents().get(0);
@@ -1943,8 +1947,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPartUsageKeywordParserRuleCall_1_6_0_0_1 = (RuleCall)cGroup_1_6_0_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_6_0_1 = (Assignment)cAlternatives_1_6_0.eContents().get(1);
 		private final RuleCall cIsCompositePartUsageKeywordParserRuleCall_1_6_0_1_0 = (RuleCall)cIsCompositeAssignment_1_6_0_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_6_1 = (Assignment)cGroup_1_6.eContents().get(1);
-		private final RuleCall cOwnedMemberFeature_compPartUsageParserRuleCall_1_6_1_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_6_1.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_6_1 = (Assignment)cGroup_1_6.eContents().get(1);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_6_1_0 = (RuleCall)cDirectionAssignment_1_6_1.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_6_2 = (Assignment)cGroup_1_6.eContents().get(2);
+		private final RuleCall cOwnedMemberFeature_compPartUsageParserRuleCall_1_6_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_6_2.eContents().get(0);
 		private final Group cGroup_1_7 = (Group)cAlternatives_1.eContents().get(7);
 		private final Keyword cAbstractKeyword_1_7_0 = (Keyword)cGroup_1_7.eContents().get(0);
 		private final Alternatives cAlternatives_1_7_1 = (Alternatives)cGroup_1_7.eContents().get(1);
@@ -1953,8 +1959,10 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPartUsageKeywordParserRuleCall_1_7_1_0_1 = (RuleCall)cGroup_1_7_1_0.eContents().get(1);
 		private final Assignment cIsCompositeAssignment_1_7_1_1 = (Assignment)cAlternatives_1_7_1.eContents().get(1);
 		private final RuleCall cIsCompositePartUsageKeywordParserRuleCall_1_7_1_1_0 = (RuleCall)cIsCompositeAssignment_1_7_1_1.eContents().get(0);
-		private final Assignment cOwnedMemberFeature_compAssignment_1_7_2 = (Assignment)cGroup_1_7.eContents().get(2);
-		private final RuleCall cOwnedMemberFeature_compAbstractPartUsageParserRuleCall_1_7_2_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_7_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_1_7_2 = (Assignment)cGroup_1_7.eContents().get(2);
+		private final RuleCall cDirectionFeatureDirectionEnumRuleCall_1_7_2_0 = (RuleCall)cDirectionAssignment_1_7_2.eContents().get(0);
+		private final Assignment cOwnedMemberFeature_compAssignment_1_7_3 = (Assignment)cGroup_1_7.eContents().get(3);
+		private final RuleCall cOwnedMemberFeature_compAbstractPartUsageParserRuleCall_1_7_3_0 = (RuleCall)cOwnedMemberFeature_compAssignment_1_7_3.eContents().get(0);
 		private final Group cGroup_1_8 = (Group)cAlternatives_1.eContents().get(8);
 		private final Assignment cIsPortAssignment_1_8_0 = (Assignment)cGroup_1_8.eContents().get(0);
 		private final RuleCall cIsPortPortUsageKeywordParserRuleCall_1_8_0_0 = (RuleCall)cIsPortAssignment_1_8_0.eContents().get(0);
@@ -2030,10 +2038,12 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| 'abstract' ReferenceUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractReferenceUsage
 		//	| AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AttributeUsage
 		//	| 'abstract' AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AbstractAttributeUsage
-		//	| ItemUsageKeyword ownedMemberFeature_comp=ItemUsage
-		//	| 'abstract' ItemUsageKeyword ownedMemberFeature_comp=AbstractItemUsage
-		//	| ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=PartUsage
-		//	| 'abstract' ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=AbstractPartUsage
+		//	| ItemUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=ItemUsage
+		//	| 'abstract' ItemUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemUsage
+		//	| ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) direction=FeatureDirection?
+		//	ownedMemberFeature_comp=PartUsage
+		//	| 'abstract' ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) direction=FeatureDirection?
+		//	ownedMemberFeature_comp=AbstractPartUsage
 		//	| isPort?=PortUsageKeyword ownedMemberFeature_comp=PortUsage
 		//	| 'abstract' isPort?=PortUsageKeyword ownedMemberFeature_comp=AbstractPortUsage
 		//	| ConnectionUsageKeyword ownedMemberFeature_comp=ConnectionUsage
@@ -2055,14 +2065,15 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//'abstract' ReferenceUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractReferenceUsage |
 		//AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AttributeUsage | 'abstract'
 		//AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AbstractAttributeUsage | ItemUsageKeyword
-		//ownedMemberFeature_comp=ItemUsage | 'abstract' ItemUsageKeyword ownedMemberFeature_comp=AbstractItemUsage | ('ref'
-		//PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=PartUsage | 'abstract' ('ref'
-		//PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=AbstractPartUsage | isPort?=PortUsageKeyword
-		//ownedMemberFeature_comp=PortUsage | 'abstract' isPort?=PortUsageKeyword ownedMemberFeature_comp=AbstractPortUsage |
-		//ConnectionUsageKeyword ownedMemberFeature_comp=ConnectionUsage | 'abstract' ConnectionUsageKeyword
-		//ownedMemberFeature_comp=AbstractConnectionUsage | ConnectorKeyword ownedMemberFeature_comp=Connector | 'abstract'
-		//ConnectorKeyword ownedMemberFeature_comp=AbstractConnector | InterfaceUsageKeyword
-		//ownedMemberFeature_comp=InterfaceUsage | 'abstract' InterfaceUsageKeyword
+		//direction=FeatureDirection? ownedMemberFeature_comp=ItemUsage | 'abstract' ItemUsageKeyword direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractItemUsage | ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword)
+		//direction=FeatureDirection? ownedMemberFeature_comp=PartUsage | 'abstract' ('ref' PartUsageKeyword |
+		//isComposite?=PartUsageKeyword) direction=FeatureDirection? ownedMemberFeature_comp=AbstractPartUsage |
+		//isPort?=PortUsageKeyword ownedMemberFeature_comp=PortUsage | 'abstract' isPort?=PortUsageKeyword
+		//ownedMemberFeature_comp=AbstractPortUsage | ConnectionUsageKeyword ownedMemberFeature_comp=ConnectionUsage | 'abstract'
+		//ConnectionUsageKeyword ownedMemberFeature_comp=AbstractConnectionUsage | ConnectorKeyword
+		//ownedMemberFeature_comp=Connector | 'abstract' ConnectorKeyword ownedMemberFeature_comp=AbstractConnector |
+		//InterfaceUsageKeyword ownedMemberFeature_comp=InterfaceUsage | 'abstract' InterfaceUsageKeyword
 		//ownedMemberFeature_comp=AbstractInterfaceUsage | BindingKeyword ownedMemberFeature_comp=BindingConnector |
 		//SuccessionKeyword ownedMemberFeature_comp=Succession | 'abstract' SuccessionKeyword
 		//ownedMemberFeature_comp=AbstractSuccession | ItemFlowKeyword ownedMemberFeature_comp=ItemFlow | 'abstract'
@@ -2078,14 +2089,15 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ReferenceUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractReferenceUsage |
 		//AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AttributeUsage | 'abstract'
 		//AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AbstractAttributeUsage | ItemUsageKeyword
-		//ownedMemberFeature_comp=ItemUsage | 'abstract' ItemUsageKeyword ownedMemberFeature_comp=AbstractItemUsage | ('ref'
-		//PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=PartUsage | 'abstract' ('ref'
-		//PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=AbstractPartUsage | isPort?=PortUsageKeyword
-		//ownedMemberFeature_comp=PortUsage | 'abstract' isPort?=PortUsageKeyword ownedMemberFeature_comp=AbstractPortUsage |
-		//ConnectionUsageKeyword ownedMemberFeature_comp=ConnectionUsage | 'abstract' ConnectionUsageKeyword
-		//ownedMemberFeature_comp=AbstractConnectionUsage | ConnectorKeyword ownedMemberFeature_comp=Connector | 'abstract'
-		//ConnectorKeyword ownedMemberFeature_comp=AbstractConnector | InterfaceUsageKeyword
-		//ownedMemberFeature_comp=InterfaceUsage | 'abstract' InterfaceUsageKeyword
+		//direction=FeatureDirection? ownedMemberFeature_comp=ItemUsage | 'abstract' ItemUsageKeyword direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractItemUsage | ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword)
+		//direction=FeatureDirection? ownedMemberFeature_comp=PartUsage | 'abstract' ('ref' PartUsageKeyword |
+		//isComposite?=PartUsageKeyword) direction=FeatureDirection? ownedMemberFeature_comp=AbstractPartUsage |
+		//isPort?=PortUsageKeyword ownedMemberFeature_comp=PortUsage | 'abstract' isPort?=PortUsageKeyword
+		//ownedMemberFeature_comp=AbstractPortUsage | ConnectionUsageKeyword ownedMemberFeature_comp=ConnectionUsage | 'abstract'
+		//ConnectionUsageKeyword ownedMemberFeature_comp=AbstractConnectionUsage | ConnectorKeyword
+		//ownedMemberFeature_comp=Connector | 'abstract' ConnectorKeyword ownedMemberFeature_comp=AbstractConnector |
+		//InterfaceUsageKeyword ownedMemberFeature_comp=InterfaceUsage | 'abstract' InterfaceUsageKeyword
 		//ownedMemberFeature_comp=AbstractInterfaceUsage | BindingKeyword ownedMemberFeature_comp=BindingConnector |
 		//SuccessionKeyword ownedMemberFeature_comp=Succession | 'abstract' SuccessionKeyword
 		//ownedMemberFeature_comp=AbstractSuccession | ItemFlowKeyword ownedMemberFeature_comp=ItemFlow | 'abstract'
@@ -2172,19 +2184,25 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//AbstractAttributeUsage
 		public RuleCall getOwnedMemberFeature_compAbstractAttributeUsageParserRuleCall_1_3_3_0() { return cOwnedMemberFeature_compAbstractAttributeUsageParserRuleCall_1_3_3_0; }
 		
-		//ItemUsageKeyword ownedMemberFeature_comp=ItemUsage
+		//ItemUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=ItemUsage
 		public Group getGroup_1_4() { return cGroup_1_4; }
 		
 		//ItemUsageKeyword
 		public RuleCall getItemUsageKeywordParserRuleCall_1_4_0() { return cItemUsageKeywordParserRuleCall_1_4_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_4_1() { return cDirectionAssignment_1_4_1; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_4_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_4_1_0; }
+		
 		//ownedMemberFeature_comp=ItemUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_4_1() { return cOwnedMemberFeature_compAssignment_1_4_1; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_4_2() { return cOwnedMemberFeature_compAssignment_1_4_2; }
 		
 		//ItemUsage
-		public RuleCall getOwnedMemberFeature_compItemUsageParserRuleCall_1_4_1_0() { return cOwnedMemberFeature_compItemUsageParserRuleCall_1_4_1_0; }
+		public RuleCall getOwnedMemberFeature_compItemUsageParserRuleCall_1_4_2_0() { return cOwnedMemberFeature_compItemUsageParserRuleCall_1_4_2_0; }
 		
-		//'abstract' ItemUsageKeyword ownedMemberFeature_comp=AbstractItemUsage
+		//'abstract' ItemUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemUsage
 		public Group getGroup_1_5() { return cGroup_1_5; }
 		
 		//'abstract'
@@ -2193,13 +2211,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ItemUsageKeyword
 		public RuleCall getItemUsageKeywordParserRuleCall_1_5_1() { return cItemUsageKeywordParserRuleCall_1_5_1; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_5_2() { return cDirectionAssignment_1_5_2; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_5_2_0() { return cDirectionFeatureDirectionEnumRuleCall_1_5_2_0; }
+		
 		//ownedMemberFeature_comp=AbstractItemUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_5_2() { return cOwnedMemberFeature_compAssignment_1_5_2; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_5_3() { return cOwnedMemberFeature_compAssignment_1_5_3; }
 		
 		//AbstractItemUsage
-		public RuleCall getOwnedMemberFeature_compAbstractItemUsageParserRuleCall_1_5_2_0() { return cOwnedMemberFeature_compAbstractItemUsageParserRuleCall_1_5_2_0; }
+		public RuleCall getOwnedMemberFeature_compAbstractItemUsageParserRuleCall_1_5_3_0() { return cOwnedMemberFeature_compAbstractItemUsageParserRuleCall_1_5_3_0; }
 		
-		//('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=PartUsage
+		//('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) direction=FeatureDirection? ownedMemberFeature_comp=PartUsage
 		public Group getGroup_1_6() { return cGroup_1_6; }
 		
 		//('ref' PartUsageKeyword | isComposite?=PartUsageKeyword)
@@ -2220,13 +2244,20 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//PartUsageKeyword
 		public RuleCall getIsCompositePartUsageKeywordParserRuleCall_1_6_0_1_0() { return cIsCompositePartUsageKeywordParserRuleCall_1_6_0_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_6_1() { return cDirectionAssignment_1_6_1; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_6_1_0() { return cDirectionFeatureDirectionEnumRuleCall_1_6_1_0; }
+		
 		//ownedMemberFeature_comp=PartUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_6_1() { return cOwnedMemberFeature_compAssignment_1_6_1; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_6_2() { return cOwnedMemberFeature_compAssignment_1_6_2; }
 		
 		//PartUsage
-		public RuleCall getOwnedMemberFeature_compPartUsageParserRuleCall_1_6_1_0() { return cOwnedMemberFeature_compPartUsageParserRuleCall_1_6_1_0; }
+		public RuleCall getOwnedMemberFeature_compPartUsageParserRuleCall_1_6_2_0() { return cOwnedMemberFeature_compPartUsageParserRuleCall_1_6_2_0; }
 		
-		//'abstract' ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=AbstractPartUsage
+		//'abstract' ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) direction=FeatureDirection?
+		//ownedMemberFeature_comp=AbstractPartUsage
 		public Group getGroup_1_7() { return cGroup_1_7; }
 		
 		//'abstract'
@@ -2250,11 +2281,17 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//PartUsageKeyword
 		public RuleCall getIsCompositePartUsageKeywordParserRuleCall_1_7_1_1_0() { return cIsCompositePartUsageKeywordParserRuleCall_1_7_1_1_0; }
 		
+		//direction=FeatureDirection?
+		public Assignment getDirectionAssignment_1_7_2() { return cDirectionAssignment_1_7_2; }
+		
+		//FeatureDirection
+		public RuleCall getDirectionFeatureDirectionEnumRuleCall_1_7_2_0() { return cDirectionFeatureDirectionEnumRuleCall_1_7_2_0; }
+		
 		//ownedMemberFeature_comp=AbstractPartUsage
-		public Assignment getOwnedMemberFeature_compAssignment_1_7_2() { return cOwnedMemberFeature_compAssignment_1_7_2; }
+		public Assignment getOwnedMemberFeature_compAssignment_1_7_3() { return cOwnedMemberFeature_compAssignment_1_7_3; }
 		
 		//AbstractPartUsage
-		public RuleCall getOwnedMemberFeature_compAbstractPartUsageParserRuleCall_1_7_2_0() { return cOwnedMemberFeature_compAbstractPartUsageParserRuleCall_1_7_2_0; }
+		public RuleCall getOwnedMemberFeature_compAbstractPartUsageParserRuleCall_1_7_3_0() { return cOwnedMemberFeature_compAbstractPartUsageParserRuleCall_1_7_3_0; }
 		
 		//isPort?=PortUsageKeyword ownedMemberFeature_comp=PortUsage
 		public Group getGroup_1_8() { return cGroup_1_8; }
@@ -15728,10 +15765,12 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//	| 'abstract' ReferenceUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractReferenceUsage
 	//	| AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AttributeUsage
 	//	| 'abstract' AttributeUsageKeyword? direction=FeatureDirection? ownedMemberFeature_comp=AbstractAttributeUsage
-	//	| ItemUsageKeyword ownedMemberFeature_comp=ItemUsage
-	//	| 'abstract' ItemUsageKeyword ownedMemberFeature_comp=AbstractItemUsage
-	//	| ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=PartUsage
-	//	| 'abstract' ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) ownedMemberFeature_comp=AbstractPartUsage
+	//	| ItemUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=ItemUsage
+	//	| 'abstract' ItemUsageKeyword direction=FeatureDirection? ownedMemberFeature_comp=AbstractItemUsage
+	//	| ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) direction=FeatureDirection?
+	//	ownedMemberFeature_comp=PartUsage
+	//	| 'abstract' ('ref' PartUsageKeyword | isComposite?=PartUsageKeyword) direction=FeatureDirection?
+	//	ownedMemberFeature_comp=AbstractPartUsage
 	//	| isPort?=PortUsageKeyword ownedMemberFeature_comp=PortUsage
 	//	| 'abstract' isPort?=PortUsageKeyword ownedMemberFeature_comp=AbstractPortUsage
 	//	| ConnectionUsageKeyword ownedMemberFeature_comp=ConnectionUsage

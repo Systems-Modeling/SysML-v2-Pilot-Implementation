@@ -1,16 +1,16 @@
 package BooleanFunctions {
 	import ScalarValues::*;
 	
-	function '!'(x: Boolean): Boolean specializes ScalarFunctions::'!';
+	function '!' specializes ScalarFunctions::'!' (x: Boolean): Boolean;
 	
-	function '|'(x: Boolean, y: Boolean): Boolean specializes ScalarFunctions::'|';
-	function '^'(x: Boolean, y: Boolean): Boolean specializes ScalarFunctions::'^';
-	function '&'(x: Boolean, y: Boolean): Boolean specializes ScalarFunctions::'&';
+	function '|' specializes ScalarFunctions::'|' (x: Boolean, y: Boolean): Boolean;
+	function '^' specializes ScalarFunctions::'^' (x: Boolean, y: Boolean): Boolean;
+	function '&' specializes ScalarFunctions::'&' (x: Boolean, y: Boolean): Boolean;
 	
-	function '=='(x: Boolean, y: Boolean): Boolean specializes BaseFunctions::'==';
-	function '!='(x: Boolean, y: Boolean): Boolean specializes BaseFunctions::'!=';
+	function '==' specializes BaseFunctions::'==' (x: Boolean, y: Boolean): Boolean;
+	function '!=' specializes BaseFunctions::'!=' (x: Boolean, y: Boolean): Boolean;
 	
-	function ToString(x: Boolean): String specializes BaseFunctions::ToString;
+	function ToString specializes BaseFunctions::ToString (x: Boolean): String;
 	function ToBoolean(x: String): Boolean;
 	
 }

@@ -9,26 +9,26 @@ package ComplexFunctions {
 	function Re(x: Complex): Real;
 	function Im(x: Complex): Real;
 	
-	function Abs(x: Complex): Real specializes NumericalFunctions::Abs;
+	function Abs specializes NumericalFunctions::Abs (x: Complex): Real;
 	function Arg(x: Complex): Real;
 	
-	function '+'(x: Complex, y: Complex[0..1]): Complex specializes NumericalFunctions::'+';
-	function '-'(x: Complex, y: Complex[0..1]): Complex specializes NumericalFunctions::'-';
-	function '*'(x: Complex, y: Complex): Complex specializes NumericalFunctions::'*';
-	function '/'(x: Complex, y: Complex): Complex specializes NumericalFunctions::'/';
-	function '**'(x: Complex, y: Complex): Complex specializes NumericalFunctions::'**';
+	function '+' specializes NumericalFunctions::'+' (x: Complex, y: Complex[0..1]): Complex;
+	function '-' specializes NumericalFunctions::'-' (x: Complex, y: Complex[0..1]): Complex;
+	function '*' specializes NumericalFunctions::'*' (x: Complex, y: Complex): Complex;
+	function '/' specializes NumericalFunctions::'/' (x: Complex, y: Complex): Complex;
+	function '**' specializes NumericalFunctions::'**' (x: Complex, y: Complex): Complex;
 	
-	function '=='(x: Complex, y: Complex): Boolean specializes BaseFunctions::'==';
-	function '!='(x: Complex, y: Complex): Boolean specializes BaseFunctions::'!=';
+	function '==' specializes BaseFunctions::'==' (x: Complex, y: Complex): Boolean;
+	function '!=' specializes BaseFunctions::'!=' (x: Complex, y: Complex): Boolean;
 	
-	function ToString(x: Complex): String specializes BaseFunctions::ToString;
+	function ToString specializes BaseFunctions::ToString (x: Complex): String;
 	function ToComplex(x: String): Complex;
 	
-	function sum(collection: Complex[0..*]): Complex specializes ScalarFunctions::sum {
+	function sum specializes ScalarFunctions::sum (collection: Complex[0..*]): Complex {
 		ScalarFunctions::sum0(collection, Rect(0.0, 0.0))
 	}
 	
-	function product(collection: Complex[0..*]): Complex specializes ScalarFunctions::product {
+	function product specializes ScalarFunctions::product (collection: Complex[0..*]): Complex {
 		ScalarFunctions::product1(collection, Rect(1.0, 0.0))
 	}	
 }

@@ -4412,11 +4412,11 @@ ruleBehaviorDeclarationCompletion[EObject in_current]  returns [EObject current=
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getBehaviorDeclarationCompletionRule());
 				}
-				newCompositeNode(grammarAccess.getBehaviorDeclarationCompletionAccess().getParameterListParserRuleCall_2());
+				newCompositeNode(grammarAccess.getBehaviorDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_2());
 			}
-			this_ParameterList_2=ruleParameterList[$current]
+			this_SpecializationOrConjugation_2=ruleSpecializationOrConjugation[$current]
 			{
-				$current = $this_ParameterList_2.current;
+				$current = $this_SpecializationOrConjugation_2.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -4425,11 +4425,11 @@ ruleBehaviorDeclarationCompletion[EObject in_current]  returns [EObject current=
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getBehaviorDeclarationCompletionRule());
 				}
-				newCompositeNode(grammarAccess.getBehaviorDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_3());
+				newCompositeNode(grammarAccess.getBehaviorDeclarationCompletionAccess().getParameterListParserRuleCall_3());
 			}
-			this_SpecializationOrConjugation_3=ruleSpecializationOrConjugation[$current]
+			this_ParameterList_3=ruleParameterList[$current]
 			{
-				$current = $this_SpecializationOrConjugation_3.current;
+				$current = $this_ParameterList_3.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -4934,11 +4934,24 @@ ruleFunctionDeclaration[EObject in_current]  returns [EObject current=in_current
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFunctionDeclarationRule());
 				}
-				newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getParameterListParserRuleCall_4());
+				newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getSpecializationOrConjugationParserRuleCall_4());
 			}
-			this_ParameterList_4=ruleParameterList[$current]
+			this_SpecializationOrConjugation_4=ruleSpecializationOrConjugation[$current]
 			{
-				$current = $this_ParameterList_4.current;
+				$current = $this_SpecializationOrConjugation_4.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFunctionDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getParameterListParserRuleCall_5());
+			}
+			this_ParameterList_5=ruleParameterList[$current]
+			{
+				$current = $this_ParameterList_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)?
@@ -4946,26 +4959,13 @@ ruleFunctionDeclaration[EObject in_current]  returns [EObject current=in_current
 			if ($current==null) {
 				$current = createModelElement(grammarAccess.getFunctionDeclarationRule());
 			}
-			newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getReturnParameterPartParserRuleCall_5());
+			newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getReturnParameterPartParserRuleCall_6());
 		}
-		this_ReturnParameterPart_5=ruleReturnParameterPart[$current]
+		this_ReturnParameterPart_6=ruleReturnParameterPart[$current]
 		{
-			$current = $this_ReturnParameterPart_5.current;
+			$current = $this_ReturnParameterPart_6.current;
 			afterParserOrEnumRuleCall();
 		}
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getFunctionDeclarationRule());
-				}
-				newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getSpecializationOrConjugationParserRuleCall_6());
-			}
-			this_SpecializationOrConjugation_6=ruleSpecializationOrConjugation[$current]
-			{
-				$current = $this_SpecializationOrConjugation_6.current;
-				afterParserOrEnumRuleCall();
-			}
-		)?
 	)
 ;
 
@@ -5431,6 +5431,19 @@ rulePredicateDeclaration[EObject in_current]  returns [EObject current=in_curren
 			)
 		)
 		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getPredicateDeclarationRule());
+				}
+				newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getSpecializationOrConjugationParserRuleCall_4());
+			}
+			this_SpecializationOrConjugation_4=ruleSpecializationOrConjugation[$current]
+			{
+				$current = $this_SpecializationOrConjugation_4.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		(
 			(
 				(
 					(ruleParameterList[null])=>
@@ -5438,11 +5451,11 @@ rulePredicateDeclaration[EObject in_current]  returns [EObject current=in_curren
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getPredicateDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_4_0_0());
+						newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_5_0_0());
 					}
-					this_ParameterList_4=ruleParameterList[$current]
+					this_ParameterList_5=ruleParameterList[$current]
 					{
-						$current = $this_ParameterList_4.current;
+						$current = $this_ParameterList_5.current;
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -5450,11 +5463,11 @@ rulePredicateDeclaration[EObject in_current]  returns [EObject current=in_curren
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getPredicateDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getReturnParameterPartParserRuleCall_4_0_1());
+					newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getReturnParameterPartParserRuleCall_5_0_1());
 				}
-				this_ReturnParameterPart_5=ruleReturnParameterPart[$current]
+				this_ReturnParameterPart_6=ruleReturnParameterPart[$current]
 				{
-					$current = $this_ReturnParameterPart_5.current;
+					$current = $this_ReturnParameterPart_6.current;
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -5465,11 +5478,11 @@ rulePredicateDeclaration[EObject in_current]  returns [EObject current=in_curren
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getPredicateDeclarationRule());
 						}
-						newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_4_1_0());
+						newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_5_1_0());
 					}
-					this_ParameterList_6=ruleParameterList[$current]
+					this_ParameterList_7=ruleParameterList[$current]
 					{
-						$current = $this_ParameterList_6.current;
+						$current = $this_ParameterList_7.current;
 						afterParserOrEnumRuleCall();
 					}
 				)?
@@ -5477,28 +5490,15 @@ rulePredicateDeclaration[EObject in_current]  returns [EObject current=in_curren
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getPredicateDeclarationRule());
 					}
-					newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_4_1_1());
+					newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5_1_1());
 				}
-				this_EmptyReturnParameterPart_7=ruleEmptyReturnParameterPart[$current]
+				this_EmptyReturnParameterPart_8=ruleEmptyReturnParameterPart[$current]
 				{
-					$current = $this_EmptyReturnParameterPart_7.current;
+					$current = $this_EmptyReturnParameterPart_8.current;
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getPredicateDeclarationRule());
-				}
-				newCompositeNode(grammarAccess.getPredicateDeclarationAccess().getSpecializationOrConjugationParserRuleCall_5());
-			}
-			this_SpecializationOrConjugation_8=ruleSpecializationOrConjugation[$current]
-			{
-				$current = $this_SpecializationOrConjugation_8.current;
-				afterParserOrEnumRuleCall();
-			}
-		)?
 	)
 ;
 

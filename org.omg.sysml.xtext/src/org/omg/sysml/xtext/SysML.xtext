@@ -589,7 +589,7 @@ ActionDefinition returns SysML::ActionDefinition :
 ;
 
 fragment ActionDefDeclaration returns SysML::ActionDefinition :
-	( isAbstract ?= 'abstract')? ActionDefKeyword name = Name ParameterList? SuperclassingList?
+	( isAbstract ?= 'abstract')? ActionDefKeyword name = Name SuperclassingList? ParameterList? 
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -663,7 +663,7 @@ CalculationDefinition returns SysML::CalculationDefinition :
 
 fragment CalculationDefDeclaration returns SysML::CalculationDefinition :
 	( isAbstract ?= 'abstract')? CalculationDefKeyword name = Name 
-	ParameterList? ReturnParameterPart SuperclassingList?
+	SuperclassingList? ParameterList? ReturnParameterPart 
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -718,7 +718,7 @@ StateDefinition returns SysML::StateDefinition :
 ;
 
 fragment StateDefDeclaration returns SysML::StateDefinition :
-	( isAbstract ?= 'abstract')? StateDefKeyword name = Name ParameterList? SuperclassingList?
+	( isAbstract ?= 'abstract')? StateDefKeyword name = Name SuperclassingList? ParameterList? 
 ;
 
 fragment StateDefBody returns SysML::Type :
@@ -821,7 +821,7 @@ ConstraintDefinition returns SysML::ConstraintDefinition :
 
 fragment ConstraintDefDeclaration returns SysML::ConstraintDefinition :
 	( isAbstract ?= 'abstract' )? ConstraintDefKeyword name = Name 
-	ParameterList? EmptyReturnParameterPart SuperclassingList?
+	SuperclassingList? ParameterList? EmptyReturnParameterPart 
 ;
 
 fragment ConstraintDefBody returns SysML::Type :
@@ -867,7 +867,7 @@ RequirementDefinition returns SysML::RequirementDefinition :
 
 fragment RequirementDefDeclaration returns SysML::RequirementDefinition :
 	( isAbstract ?= 'abstract' )? RequirementDefKeyword ( 'id' reqId = Name )? name = Name 
-	RequirementDefParameterList EmptyReturnParameterPart SuperclassingList?
+	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart 
 ;
 
 fragment RequirementDefParameterList returns SysML::Type :

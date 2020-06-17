@@ -39,15 +39,15 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package pkg {
-	function def 'F1';
-	fn def 'F2';
+	calc def 'F1';
+	calc def 'F2';
 	calc def 'F3';
-	compute def 'F4';
+	calc def 'F4';
 	    
 	block A {
-	 	function f1 : F1;
-    	fn f2: F2;
+	 	calc f1 : F1;
+    	calc f2: F2;
     	calc f3: F3;
-    	compute f4: F4;
+    	calc f4: F4;
    	}
 }

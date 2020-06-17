@@ -4934,14 +4934,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cActionDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cSuperclassingListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cSuperclassingListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cParameterListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//fragment ActionDefDeclaration returns SysML::ActionDefinition:
-		//	isAbstract?='abstract'? ActionDefKeyword name=Name ParameterList? SuperclassingList?;
+		//	isAbstract?='abstract'? ActionDefKeyword name=Name SuperclassingList? ParameterList?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? ActionDefKeyword name=Name ParameterList? SuperclassingList?
+		//isAbstract?='abstract'? ActionDefKeyword name=Name SuperclassingList? ParameterList?
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -4959,11 +4959,11 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_3() { return cParameterListParserRuleCall_3; }
-		
 		//SuperclassingList?
-		public RuleCall getSuperclassingListParserRuleCall_4() { return cSuperclassingListParserRuleCall_4; }
+		public RuleCall getSuperclassingListParserRuleCall_3() { return cSuperclassingListParserRuleCall_3; }
+		
+		//ParameterList?
+		public RuleCall getParameterListParserRuleCall_4() { return cParameterListParserRuleCall_4; }
 	}
 	public class ParameterListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ParameterList");
@@ -5461,16 +5461,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCalculationDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cReturnParameterPartParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cSuperclassingListParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cSuperclassingListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cParameterListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cReturnParameterPartParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//fragment CalculationDefDeclaration returns SysML::CalculationDefinition:
 		//	isAbstract?='abstract'? CalculationDefKeyword name=Name
-		//	ParameterList? ReturnParameterPart SuperclassingList?;
+		//	SuperclassingList? ParameterList? ReturnParameterPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? CalculationDefKeyword name=Name ParameterList? ReturnParameterPart SuperclassingList?
+		//isAbstract?='abstract'? CalculationDefKeyword name=Name SuperclassingList? ParameterList? ReturnParameterPart
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -5488,14 +5488,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 		
+		//SuperclassingList?
+		public RuleCall getSuperclassingListParserRuleCall_3() { return cSuperclassingListParserRuleCall_3; }
+		
 		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_3() { return cParameterListParserRuleCall_3; }
+		public RuleCall getParameterListParserRuleCall_4() { return cParameterListParserRuleCall_4; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_4() { return cReturnParameterPartParserRuleCall_4; }
-		
-		//SuperclassingList?
-		public RuleCall getSuperclassingListParserRuleCall_5() { return cSuperclassingListParserRuleCall_5; }
+		public RuleCall getReturnParameterPartParserRuleCall_5() { return cReturnParameterPartParserRuleCall_5; }
 	}
 	public class ReturnParameterPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ReturnParameterPart");
@@ -5805,14 +5805,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStateDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cSuperclassingListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cSuperclassingListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cParameterListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//fragment StateDefDeclaration returns SysML::StateDefinition:
-		//	isAbstract?='abstract'? StateDefKeyword name=Name ParameterList? SuperclassingList?;
+		//	isAbstract?='abstract'? StateDefKeyword name=Name SuperclassingList? ParameterList?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? StateDefKeyword name=Name ParameterList? SuperclassingList?
+		//isAbstract?='abstract'? StateDefKeyword name=Name SuperclassingList? ParameterList?
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -5830,11 +5830,11 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_3() { return cParameterListParserRuleCall_3; }
-		
 		//SuperclassingList?
-		public RuleCall getSuperclassingListParserRuleCall_4() { return cSuperclassingListParserRuleCall_4; }
+		public RuleCall getSuperclassingListParserRuleCall_3() { return cSuperclassingListParserRuleCall_3; }
+		
+		//ParameterList?
+		public RuleCall getParameterListParserRuleCall_4() { return cParameterListParserRuleCall_4; }
 	}
 	public class StateDefBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.StateDefBody");
@@ -6416,16 +6416,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConstraintDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameNameParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cEmptyReturnParameterPartParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cSuperclassingListParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cSuperclassingListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cParameterListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cEmptyReturnParameterPartParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//fragment ConstraintDefDeclaration returns SysML::ConstraintDefinition:
 		//	isAbstract?='abstract'? ConstraintDefKeyword name=Name
-		//	ParameterList? EmptyReturnParameterPart SuperclassingList?;
+		//	SuperclassingList? ParameterList? EmptyReturnParameterPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? ConstraintDefKeyword name=Name ParameterList? EmptyReturnParameterPart SuperclassingList?
+		//isAbstract?='abstract'? ConstraintDefKeyword name=Name SuperclassingList? ParameterList? EmptyReturnParameterPart
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -6443,14 +6443,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 		
+		//SuperclassingList?
+		public RuleCall getSuperclassingListParserRuleCall_3() { return cSuperclassingListParserRuleCall_3; }
+		
 		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_3() { return cParameterListParserRuleCall_3; }
+		public RuleCall getParameterListParserRuleCall_4() { return cParameterListParserRuleCall_4; }
 		
 		//EmptyReturnParameterPart
-		public RuleCall getEmptyReturnParameterPartParserRuleCall_4() { return cEmptyReturnParameterPartParserRuleCall_4; }
-		
-		//SuperclassingList?
-		public RuleCall getSuperclassingListParserRuleCall_5() { return cSuperclassingListParserRuleCall_5; }
+		public RuleCall getEmptyReturnParameterPartParserRuleCall_5() { return cEmptyReturnParameterPartParserRuleCall_5; }
 	}
 	public class ConstraintDefBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConstraintDefBody");
@@ -6660,17 +6660,17 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReqIdNameParserRuleCall_2_1_0 = (RuleCall)cReqIdAssignment_2_1.eContents().get(0);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameNameParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final RuleCall cRequirementDefParameterListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEmptyReturnParameterPartParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cSuperclassingListParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final RuleCall cSuperclassingListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cRequirementDefParameterListParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cEmptyReturnParameterPartParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//fragment RequirementDefDeclaration returns SysML::RequirementDefinition:
 		//	isAbstract?='abstract'? RequirementDefKeyword ('id' reqId=Name)? name=Name
-		//	RequirementDefParameterList EmptyReturnParameterPart SuperclassingList?;
+		//	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? RequirementDefKeyword ('id' reqId=Name)? name=Name RequirementDefParameterList
-		//EmptyReturnParameterPart SuperclassingList?
+		//isAbstract?='abstract'? RequirementDefKeyword ('id' reqId=Name)? name=Name SuperclassingList?
+		//RequirementDefParameterList EmptyReturnParameterPart
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -6700,14 +6700,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
 		
+		//SuperclassingList?
+		public RuleCall getSuperclassingListParserRuleCall_4() { return cSuperclassingListParserRuleCall_4; }
+		
 		//RequirementDefParameterList
-		public RuleCall getRequirementDefParameterListParserRuleCall_4() { return cRequirementDefParameterListParserRuleCall_4; }
+		public RuleCall getRequirementDefParameterListParserRuleCall_5() { return cRequirementDefParameterListParserRuleCall_5; }
 		
 		//EmptyReturnParameterPart
-		public RuleCall getEmptyReturnParameterPartParserRuleCall_5() { return cEmptyReturnParameterPartParserRuleCall_5; }
-		
-		//SuperclassingList?
-		public RuleCall getSuperclassingListParserRuleCall_6() { return cSuperclassingListParserRuleCall_6; }
+		public RuleCall getEmptyReturnParameterPartParserRuleCall_6() { return cEmptyReturnParameterPartParserRuleCall_6; }
 	}
 	public class RequirementDefParameterListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RequirementDefParameterList");
@@ -15884,7 +15884,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment ActionDefDeclaration returns SysML::ActionDefinition:
-	//	isAbstract?='abstract'? ActionDefKeyword name=Name ParameterList? SuperclassingList?;
+	//	isAbstract?='abstract'? ActionDefKeyword name=Name SuperclassingList? ParameterList?;
 	public ActionDefDeclarationElements getActionDefDeclarationAccess() {
 		return pActionDefDeclaration;
 	}
@@ -16030,7 +16030,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//fragment CalculationDefDeclaration returns SysML::CalculationDefinition:
 	//	isAbstract?='abstract'? CalculationDefKeyword name=Name
-	//	ParameterList? ReturnParameterPart SuperclassingList?;
+	//	SuperclassingList? ParameterList? ReturnParameterPart;
 	public CalculationDefDeclarationElements getCalculationDefDeclarationAccess() {
 		return pCalculationDefDeclaration;
 	}
@@ -16135,7 +16135,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment StateDefDeclaration returns SysML::StateDefinition:
-	//	isAbstract?='abstract'? StateDefKeyword name=Name ParameterList? SuperclassingList?;
+	//	isAbstract?='abstract'? StateDefKeyword name=Name SuperclassingList? ParameterList?;
 	public StateDefDeclarationElements getStateDefDeclarationAccess() {
 		return pStateDefDeclaration;
 	}
@@ -16350,7 +16350,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//fragment ConstraintDefDeclaration returns SysML::ConstraintDefinition:
 	//	isAbstract?='abstract'? ConstraintDefKeyword name=Name
-	//	ParameterList? EmptyReturnParameterPart SuperclassingList?;
+	//	SuperclassingList? ParameterList? EmptyReturnParameterPart;
 	public ConstraintDefDeclarationElements getConstraintDefDeclarationAccess() {
 		return pConstraintDefDeclaration;
 	}
@@ -16452,7 +16452,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//fragment RequirementDefDeclaration returns SysML::RequirementDefinition:
 	//	isAbstract?='abstract'? RequirementDefKeyword ('id' reqId=Name)? name=Name
-	//	RequirementDefParameterList EmptyReturnParameterPart SuperclassingList?;
+	//	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart;
 	public RequirementDefDeclarationElements getRequirementDefDeclarationAccess() {
 		return pRequirementDefDeclaration;
 	}

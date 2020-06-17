@@ -19847,31 +19847,31 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__AbstractFunctionBody__Alternatives_1_1"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Alternatives_4"
-    // InternalKerML.g:5668:1: rule__PredicateDeclaration__Alternatives_4 : ( ( ( rule__PredicateDeclaration__Group_4_0__0 ) ) | ( ( rule__PredicateDeclaration__Group_4_1__0 ) ) );
-    public final void rule__PredicateDeclaration__Alternatives_4() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Alternatives_5"
+    // InternalKerML.g:5668:1: rule__PredicateDeclaration__Alternatives_5 : ( ( ( rule__PredicateDeclaration__Group_5_0__0 ) ) | ( ( rule__PredicateDeclaration__Group_5_1__0 ) ) );
+    public final void rule__PredicateDeclaration__Alternatives_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:5672:1: ( ( ( rule__PredicateDeclaration__Group_4_0__0 ) ) | ( ( rule__PredicateDeclaration__Group_4_1__0 ) ) )
+            // InternalKerML.g:5672:1: ( ( ( rule__PredicateDeclaration__Group_5_0__0 ) ) | ( ( rule__PredicateDeclaration__Group_5_1__0 ) ) )
             int alt36=2;
             alt36 = dfa36.predict(input);
             switch (alt36) {
                 case 1 :
-                    // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_4_0__0 ) )
+                    // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_5_0__0 ) )
                     {
-                    // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_4_0__0 ) )
-                    // InternalKerML.g:5674:3: ( rule__PredicateDeclaration__Group_4_0__0 )
+                    // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_5_0__0 ) )
+                    // InternalKerML.g:5674:3: ( rule__PredicateDeclaration__Group_5_0__0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPredicateDeclarationAccess().getGroup_4_0()); 
+                       before(grammarAccess.getPredicateDeclarationAccess().getGroup_5_0()); 
                     }
-                    // InternalKerML.g:5675:3: ( rule__PredicateDeclaration__Group_4_0__0 )
-                    // InternalKerML.g:5675:4: rule__PredicateDeclaration__Group_4_0__0
+                    // InternalKerML.g:5675:3: ( rule__PredicateDeclaration__Group_5_0__0 )
+                    // InternalKerML.g:5675:4: rule__PredicateDeclaration__Group_5_0__0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__PredicateDeclaration__Group_4_0__0();
+                    rule__PredicateDeclaration__Group_5_0__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -19879,7 +19879,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPredicateDeclarationAccess().getGroup_4_0()); 
+                       after(grammarAccess.getPredicateDeclarationAccess().getGroup_5_0()); 
                     }
 
                     }
@@ -19888,19 +19888,19 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:5679:2: ( ( rule__PredicateDeclaration__Group_4_1__0 ) )
+                    // InternalKerML.g:5679:2: ( ( rule__PredicateDeclaration__Group_5_1__0 ) )
                     {
-                    // InternalKerML.g:5679:2: ( ( rule__PredicateDeclaration__Group_4_1__0 ) )
-                    // InternalKerML.g:5680:3: ( rule__PredicateDeclaration__Group_4_1__0 )
+                    // InternalKerML.g:5679:2: ( ( rule__PredicateDeclaration__Group_5_1__0 ) )
+                    // InternalKerML.g:5680:3: ( rule__PredicateDeclaration__Group_5_1__0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getPredicateDeclarationAccess().getGroup_4_1()); 
+                       before(grammarAccess.getPredicateDeclarationAccess().getGroup_5_1()); 
                     }
-                    // InternalKerML.g:5681:3: ( rule__PredicateDeclaration__Group_4_1__0 )
-                    // InternalKerML.g:5681:4: rule__PredicateDeclaration__Group_4_1__0
+                    // InternalKerML.g:5681:3: ( rule__PredicateDeclaration__Group_5_1__0 )
+                    // InternalKerML.g:5681:4: rule__PredicateDeclaration__Group_5_1__0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__PredicateDeclaration__Group_4_1__0();
+                    rule__PredicateDeclaration__Group_5_1__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -19908,7 +19908,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getPredicateDeclarationAccess().getGroup_4_1()); 
+                       after(grammarAccess.getPredicateDeclarationAccess().getGroup_5_1()); 
                     }
 
                     }
@@ -19930,7 +19930,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Alternatives_4"
+    // $ANTLR end "rule__PredicateDeclaration__Alternatives_5"
 
 
     // $ANTLR start "rule__FeatureDeclaration__Alternatives_1"
@@ -20085,7 +20085,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             int alt38=2;
             int LA38_0 = input.LA(1);
 
-            if ( (LA38_0==EOF||(LA38_0>=26 && LA38_0<=27)||(LA38_0>=31 && LA38_0<=32)||LA38_0==34||LA38_0==61||LA38_0==82||(LA38_0>=87 && LA38_0<=89)||LA38_0==93||LA38_0==95||LA38_0==97) ) {
+            if ( (LA38_0==EOF||(LA38_0>=RULE_ID && LA38_0<=RULE_UNRESTRICTED_NAME)||(LA38_0>=26 && LA38_0<=27)||(LA38_0>=31 && LA38_0<=32)||LA38_0==34||LA38_0==61||LA38_0==82||(LA38_0>=87 && LA38_0<=89)||LA38_0==93||LA38_0==95||LA38_0==97) ) {
                 alt38=1;
             }
             else if ( ((LA38_0>=29 && LA38_0<=30)) ) {
@@ -22625,10 +22625,6 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 break;
             case EOF:
             case 26:
-            case 27:
-            case 28:
-            case 29:
-            case 30:
             case 61:
             case 82:
             case 87:
@@ -25071,9 +25067,6 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 case 21:
                 case 26:
                 case 27:
-                case 28:
-                case 29:
-                case 30:
                 case 31:
                 case 32:
                 case 34:
@@ -25160,9 +25153,6 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 case 21:
                 case 26:
                 case 27:
-                case 28:
-                case 29:
-                case 30:
                 case 31:
                 case 32:
                 case 34:
@@ -46480,34 +46470,34 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BehaviorDeclarationCompletion__Group__2__Impl"
-    // InternalKerML.g:13456:1: rule__BehaviorDeclarationCompletion__Group__2__Impl : ( ( ruleParameterList )? ) ;
+    // InternalKerML.g:13456:1: rule__BehaviorDeclarationCompletion__Group__2__Impl : ( ( ruleSpecializationOrConjugation )? ) ;
     public final void rule__BehaviorDeclarationCompletion__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:13460:1: ( ( ( ruleParameterList )? ) )
-            // InternalKerML.g:13461:1: ( ( ruleParameterList )? )
+            // InternalKerML.g:13460:1: ( ( ( ruleSpecializationOrConjugation )? ) )
+            // InternalKerML.g:13461:1: ( ( ruleSpecializationOrConjugation )? )
             {
-            // InternalKerML.g:13461:1: ( ( ruleParameterList )? )
-            // InternalKerML.g:13462:2: ( ruleParameterList )?
+            // InternalKerML.g:13461:1: ( ( ruleSpecializationOrConjugation )? )
+            // InternalKerML.g:13462:2: ( ruleSpecializationOrConjugation )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBehaviorDeclarationCompletionAccess().getParameterListParserRuleCall_2()); 
+               before(grammarAccess.getBehaviorDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_2()); 
             }
-            // InternalKerML.g:13463:2: ( ruleParameterList )?
+            // InternalKerML.g:13463:2: ( ruleSpecializationOrConjugation )?
             int alt148=2;
             int LA148_0 = input.LA(1);
 
-            if ( (LA148_0==82) ) {
+            if ( ((LA148_0>=27 && LA148_0<=30)) ) {
                 alt148=1;
             }
             switch (alt148) {
                 case 1 :
-                    // InternalKerML.g:13463:3: ruleParameterList
+                    // InternalKerML.g:13463:3: ruleSpecializationOrConjugation
                     {
                     pushFollow(FOLLOW_2);
-                    ruleParameterList();
+                    ruleSpecializationOrConjugation();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -46518,7 +46508,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBehaviorDeclarationCompletionAccess().getParameterListParserRuleCall_2()); 
+               after(grammarAccess.getBehaviorDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_2()); 
             }
 
             }
@@ -46575,34 +46565,34 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__BehaviorDeclarationCompletion__Group__3__Impl"
-    // InternalKerML.g:13482:1: rule__BehaviorDeclarationCompletion__Group__3__Impl : ( ( ruleSpecializationOrConjugation )? ) ;
+    // InternalKerML.g:13482:1: rule__BehaviorDeclarationCompletion__Group__3__Impl : ( ( ruleParameterList )? ) ;
     public final void rule__BehaviorDeclarationCompletion__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:13486:1: ( ( ( ruleSpecializationOrConjugation )? ) )
-            // InternalKerML.g:13487:1: ( ( ruleSpecializationOrConjugation )? )
+            // InternalKerML.g:13486:1: ( ( ( ruleParameterList )? ) )
+            // InternalKerML.g:13487:1: ( ( ruleParameterList )? )
             {
-            // InternalKerML.g:13487:1: ( ( ruleSpecializationOrConjugation )? )
-            // InternalKerML.g:13488:2: ( ruleSpecializationOrConjugation )?
+            // InternalKerML.g:13487:1: ( ( ruleParameterList )? )
+            // InternalKerML.g:13488:2: ( ruleParameterList )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getBehaviorDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_3()); 
+               before(grammarAccess.getBehaviorDeclarationCompletionAccess().getParameterListParserRuleCall_3()); 
             }
-            // InternalKerML.g:13489:2: ( ruleSpecializationOrConjugation )?
+            // InternalKerML.g:13489:2: ( ruleParameterList )?
             int alt149=2;
             int LA149_0 = input.LA(1);
 
-            if ( ((LA149_0>=27 && LA149_0<=30)) ) {
+            if ( (LA149_0==82) ) {
                 alt149=1;
             }
             switch (alt149) {
                 case 1 :
-                    // InternalKerML.g:13489:3: ruleSpecializationOrConjugation
+                    // InternalKerML.g:13489:3: ruleParameterList
                     {
                     pushFollow(FOLLOW_2);
-                    ruleSpecializationOrConjugation();
+                    ruleParameterList();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -46613,7 +46603,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getBehaviorDeclarationCompletionAccess().getSpecializationOrConjugationParserRuleCall_3()); 
+               after(grammarAccess.getBehaviorDeclarationCompletionAccess().getParameterListParserRuleCall_3()); 
             }
 
             }
@@ -48614,34 +48604,34 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDeclaration__Group__4__Impl"
-    // InternalKerML.g:14104:1: rule__FunctionDeclaration__Group__4__Impl : ( ( ruleParameterList )? ) ;
+    // InternalKerML.g:14104:1: rule__FunctionDeclaration__Group__4__Impl : ( ( ruleSpecializationOrConjugation )? ) ;
     public final void rule__FunctionDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14108:1: ( ( ( ruleParameterList )? ) )
-            // InternalKerML.g:14109:1: ( ( ruleParameterList )? )
+            // InternalKerML.g:14108:1: ( ( ( ruleSpecializationOrConjugation )? ) )
+            // InternalKerML.g:14109:1: ( ( ruleSpecializationOrConjugation )? )
             {
-            // InternalKerML.g:14109:1: ( ( ruleParameterList )? )
-            // InternalKerML.g:14110:2: ( ruleParameterList )?
+            // InternalKerML.g:14109:1: ( ( ruleSpecializationOrConjugation )? )
+            // InternalKerML.g:14110:2: ( ruleSpecializationOrConjugation )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDeclarationAccess().getParameterListParserRuleCall_4()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getSpecializationOrConjugationParserRuleCall_4()); 
             }
-            // InternalKerML.g:14111:2: ( ruleParameterList )?
+            // InternalKerML.g:14111:2: ( ruleSpecializationOrConjugation )?
             int alt157=2;
             int LA157_0 = input.LA(1);
 
-            if ( (LA157_0==82) ) {
+            if ( ((LA157_0>=27 && LA157_0<=30)) ) {
                 alt157=1;
             }
             switch (alt157) {
                 case 1 :
-                    // InternalKerML.g:14111:3: ruleParameterList
+                    // InternalKerML.g:14111:3: ruleSpecializationOrConjugation
                     {
                     pushFollow(FOLLOW_2);
-                    ruleParameterList();
+                    ruleSpecializationOrConjugation();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -48652,7 +48642,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDeclarationAccess().getParameterListParserRuleCall_4()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getSpecializationOrConjugationParserRuleCall_4()); 
             }
 
             }
@@ -48685,7 +48675,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14123:1: ( rule__FunctionDeclaration__Group__5__Impl rule__FunctionDeclaration__Group__6 )
             // InternalKerML.g:14124:2: rule__FunctionDeclaration__Group__5__Impl rule__FunctionDeclaration__Group__6
             {
-            pushFollow(FOLLOW_65);
+            pushFollow(FOLLOW_64);
             rule__FunctionDeclaration__Group__5__Impl();
 
             state._fsp--;
@@ -48714,28 +48704,45 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDeclaration__Group__5__Impl"
-    // InternalKerML.g:14131:1: rule__FunctionDeclaration__Group__5__Impl : ( ruleReturnParameterPart ) ;
+    // InternalKerML.g:14131:1: rule__FunctionDeclaration__Group__5__Impl : ( ( ruleParameterList )? ) ;
     public final void rule__FunctionDeclaration__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14135:1: ( ( ruleReturnParameterPart ) )
-            // InternalKerML.g:14136:1: ( ruleReturnParameterPart )
+            // InternalKerML.g:14135:1: ( ( ( ruleParameterList )? ) )
+            // InternalKerML.g:14136:1: ( ( ruleParameterList )? )
             {
-            // InternalKerML.g:14136:1: ( ruleReturnParameterPart )
-            // InternalKerML.g:14137:2: ruleReturnParameterPart
+            // InternalKerML.g:14136:1: ( ( ruleParameterList )? )
+            // InternalKerML.g:14137:2: ( ruleParameterList )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDeclarationAccess().getReturnParameterPartParserRuleCall_5()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getParameterListParserRuleCall_5()); 
             }
-            pushFollow(FOLLOW_2);
-            ruleReturnParameterPart();
+            // InternalKerML.g:14138:2: ( ruleParameterList )?
+            int alt158=2;
+            int LA158_0 = input.LA(1);
 
-            state._fsp--;
-            if (state.failed) return ;
+            if ( (LA158_0==82) ) {
+                alt158=1;
+            }
+            switch (alt158) {
+                case 1 :
+                    // InternalKerML.g:14138:3: ruleParameterList
+                    {
+                    pushFollow(FOLLOW_2);
+                    ruleParameterList();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
+
+            }
+
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDeclarationAccess().getReturnParameterPartParserRuleCall_5()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getParameterListParserRuleCall_5()); 
             }
 
             }
@@ -48792,45 +48799,28 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FunctionDeclaration__Group__6__Impl"
-    // InternalKerML.g:14157:1: rule__FunctionDeclaration__Group__6__Impl : ( ( ruleSpecializationOrConjugation )? ) ;
+    // InternalKerML.g:14157:1: rule__FunctionDeclaration__Group__6__Impl : ( ruleReturnParameterPart ) ;
     public final void rule__FunctionDeclaration__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14161:1: ( ( ( ruleSpecializationOrConjugation )? ) )
-            // InternalKerML.g:14162:1: ( ( ruleSpecializationOrConjugation )? )
+            // InternalKerML.g:14161:1: ( ( ruleReturnParameterPart ) )
+            // InternalKerML.g:14162:1: ( ruleReturnParameterPart )
             {
-            // InternalKerML.g:14162:1: ( ( ruleSpecializationOrConjugation )? )
-            // InternalKerML.g:14163:2: ( ruleSpecializationOrConjugation )?
+            // InternalKerML.g:14162:1: ( ruleReturnParameterPart )
+            // InternalKerML.g:14163:2: ruleReturnParameterPart
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDeclarationAccess().getSpecializationOrConjugationParserRuleCall_6()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getReturnParameterPartParserRuleCall_6()); 
             }
-            // InternalKerML.g:14164:2: ( ruleSpecializationOrConjugation )?
-            int alt158=2;
-            int LA158_0 = input.LA(1);
+            pushFollow(FOLLOW_2);
+            ruleReturnParameterPart();
 
-            if ( ((LA158_0>=27 && LA158_0<=30)) ) {
-                alt158=1;
-            }
-            switch (alt158) {
-                case 1 :
-                    // InternalKerML.g:14164:3: ruleSpecializationOrConjugation
-                    {
-                    pushFollow(FOLLOW_2);
-                    ruleSpecializationOrConjugation();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
-
-            }
-
+            state._fsp--;
+            if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDeclarationAccess().getSpecializationOrConjugationParserRuleCall_6()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getReturnParameterPartParserRuleCall_6()); 
             }
 
             }
@@ -48863,7 +48853,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14177:1: ( rule__FunctionBody__Group_1__0__Impl rule__FunctionBody__Group_1__1 )
             // InternalKerML.g:14178:2: rule__FunctionBody__Group_1__0__Impl rule__FunctionBody__Group_1__1
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_65);
             rule__FunctionBody__Group_1__0__Impl();
 
             state._fsp--;
@@ -48942,7 +48932,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14204:1: ( rule__FunctionBody__Group_1__1__Impl rule__FunctionBody__Group_1__2 )
             // InternalKerML.g:14205:2: rule__FunctionBody__Group_1__1__Impl rule__FunctionBody__Group_1__2
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_65);
             rule__FunctionBody__Group_1__1__Impl();
 
             state._fsp--;
@@ -49192,7 +49182,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14231:1: ( rule__FunctionBody__Group_1__2__Impl rule__FunctionBody__Group_1__3 )
             // InternalKerML.g:14232:2: rule__FunctionBody__Group_1__2__Impl rule__FunctionBody__Group_1__3
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_65);
             rule__FunctionBody__Group_1__2__Impl();
 
             state._fsp--;
@@ -49366,7 +49356,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14285:1: ( rule__AbstractFunctionBody__Group_1__0__Impl rule__AbstractFunctionBody__Group_1__1 )
             // InternalKerML.g:14286:2: rule__AbstractFunctionBody__Group_1__0__Impl rule__AbstractFunctionBody__Group_1__1
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_65);
             rule__AbstractFunctionBody__Group_1__0__Impl();
 
             state._fsp--;
@@ -49455,7 +49445,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14312:1: ( rule__AbstractFunctionBody__Group_1__1__Impl rule__AbstractFunctionBody__Group_1__2 )
             // InternalKerML.g:14313:2: rule__AbstractFunctionBody__Group_1__1__Impl rule__AbstractFunctionBody__Group_1__2
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_65);
             rule__AbstractFunctionBody__Group_1__1__Impl();
 
             state._fsp--;
@@ -49705,7 +49695,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14339:1: ( rule__AbstractFunctionBody__Group_1__2__Impl rule__AbstractFunctionBody__Group_1__3 )
             // InternalKerML.g:14340:2: rule__AbstractFunctionBody__Group_1__2__Impl rule__AbstractFunctionBody__Group_1__3
             {
-            pushFollow(FOLLOW_66);
+            pushFollow(FOLLOW_65);
             rule__AbstractFunctionBody__Group_1__2__Impl();
 
             state._fsp--;
@@ -50503,7 +50493,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14582:1: ( rule__PredicateDeclaration__Group__3__Impl rule__PredicateDeclaration__Group__4 )
             // InternalKerML.g:14583:2: rule__PredicateDeclaration__Group__3__Impl rule__PredicateDeclaration__Group__4
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_66);
             rule__PredicateDeclaration__Group__3__Impl();
 
             state._fsp--;
@@ -50592,7 +50582,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14609:1: ( rule__PredicateDeclaration__Group__4__Impl rule__PredicateDeclaration__Group__5 )
             // InternalKerML.g:14610:2: rule__PredicateDeclaration__Group__4__Impl rule__PredicateDeclaration__Group__5
             {
-            pushFollow(FOLLOW_65);
+            pushFollow(FOLLOW_66);
             rule__PredicateDeclaration__Group__4__Impl();
 
             state._fsp--;
@@ -50621,34 +50611,45 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PredicateDeclaration__Group__4__Impl"
-    // InternalKerML.g:14617:1: rule__PredicateDeclaration__Group__4__Impl : ( ( rule__PredicateDeclaration__Alternatives_4 ) ) ;
+    // InternalKerML.g:14617:1: rule__PredicateDeclaration__Group__4__Impl : ( ( ruleSpecializationOrConjugation )? ) ;
     public final void rule__PredicateDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14621:1: ( ( ( rule__PredicateDeclaration__Alternatives_4 ) ) )
-            // InternalKerML.g:14622:1: ( ( rule__PredicateDeclaration__Alternatives_4 ) )
+            // InternalKerML.g:14621:1: ( ( ( ruleSpecializationOrConjugation )? ) )
+            // InternalKerML.g:14622:1: ( ( ruleSpecializationOrConjugation )? )
             {
-            // InternalKerML.g:14622:1: ( ( rule__PredicateDeclaration__Alternatives_4 ) )
-            // InternalKerML.g:14623:2: ( rule__PredicateDeclaration__Alternatives_4 )
+            // InternalKerML.g:14622:1: ( ( ruleSpecializationOrConjugation )? )
+            // InternalKerML.g:14623:2: ( ruleSpecializationOrConjugation )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPredicateDeclarationAccess().getAlternatives_4()); 
+               before(grammarAccess.getPredicateDeclarationAccess().getSpecializationOrConjugationParserRuleCall_4()); 
             }
-            // InternalKerML.g:14624:2: ( rule__PredicateDeclaration__Alternatives_4 )
-            // InternalKerML.g:14624:3: rule__PredicateDeclaration__Alternatives_4
-            {
-            pushFollow(FOLLOW_2);
-            rule__PredicateDeclaration__Alternatives_4();
+            // InternalKerML.g:14624:2: ( ruleSpecializationOrConjugation )?
+            int alt166=2;
+            int LA166_0 = input.LA(1);
 
-            state._fsp--;
-            if (state.failed) return ;
+            if ( ((LA166_0>=27 && LA166_0<=30)) ) {
+                alt166=1;
+            }
+            switch (alt166) {
+                case 1 :
+                    // InternalKerML.g:14624:3: ruleSpecializationOrConjugation
+                    {
+                    pushFollow(FOLLOW_2);
+                    ruleSpecializationOrConjugation();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+
+                    }
+                    break;
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPredicateDeclarationAccess().getAlternatives_4()); 
+               after(grammarAccess.getPredicateDeclarationAccess().getSpecializationOrConjugationParserRuleCall_4()); 
             }
 
             }
@@ -50705,45 +50706,34 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PredicateDeclaration__Group__5__Impl"
-    // InternalKerML.g:14643:1: rule__PredicateDeclaration__Group__5__Impl : ( ( ruleSpecializationOrConjugation )? ) ;
+    // InternalKerML.g:14643:1: rule__PredicateDeclaration__Group__5__Impl : ( ( rule__PredicateDeclaration__Alternatives_5 ) ) ;
     public final void rule__PredicateDeclaration__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14647:1: ( ( ( ruleSpecializationOrConjugation )? ) )
-            // InternalKerML.g:14648:1: ( ( ruleSpecializationOrConjugation )? )
+            // InternalKerML.g:14647:1: ( ( ( rule__PredicateDeclaration__Alternatives_5 ) ) )
+            // InternalKerML.g:14648:1: ( ( rule__PredicateDeclaration__Alternatives_5 ) )
             {
-            // InternalKerML.g:14648:1: ( ( ruleSpecializationOrConjugation )? )
-            // InternalKerML.g:14649:2: ( ruleSpecializationOrConjugation )?
+            // InternalKerML.g:14648:1: ( ( rule__PredicateDeclaration__Alternatives_5 ) )
+            // InternalKerML.g:14649:2: ( rule__PredicateDeclaration__Alternatives_5 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPredicateDeclarationAccess().getSpecializationOrConjugationParserRuleCall_5()); 
+               before(grammarAccess.getPredicateDeclarationAccess().getAlternatives_5()); 
             }
-            // InternalKerML.g:14650:2: ( ruleSpecializationOrConjugation )?
-            int alt166=2;
-            int LA166_0 = input.LA(1);
+            // InternalKerML.g:14650:2: ( rule__PredicateDeclaration__Alternatives_5 )
+            // InternalKerML.g:14650:3: rule__PredicateDeclaration__Alternatives_5
+            {
+            pushFollow(FOLLOW_2);
+            rule__PredicateDeclaration__Alternatives_5();
 
-            if ( ((LA166_0>=27 && LA166_0<=30)) ) {
-                alt166=1;
-            }
-            switch (alt166) {
-                case 1 :
-                    // InternalKerML.g:14650:3: ruleSpecializationOrConjugation
-                    {
-                    pushFollow(FOLLOW_2);
-                    ruleSpecializationOrConjugation();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-
-                    }
-                    break;
+            state._fsp--;
+            if (state.failed) return ;
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPredicateDeclarationAccess().getSpecializationOrConjugationParserRuleCall_5()); 
+               after(grammarAccess.getPredicateDeclarationAccess().getAlternatives_5()); 
             }
 
             }
@@ -50766,23 +50756,23 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PredicateDeclaration__Group__5__Impl"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_0__0"
-    // InternalKerML.g:14659:1: rule__PredicateDeclaration__Group_4_0__0 : rule__PredicateDeclaration__Group_4_0__0__Impl rule__PredicateDeclaration__Group_4_0__1 ;
-    public final void rule__PredicateDeclaration__Group_4_0__0() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_0__0"
+    // InternalKerML.g:14659:1: rule__PredicateDeclaration__Group_5_0__0 : rule__PredicateDeclaration__Group_5_0__0__Impl rule__PredicateDeclaration__Group_5_0__1 ;
+    public final void rule__PredicateDeclaration__Group_5_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14663:1: ( rule__PredicateDeclaration__Group_4_0__0__Impl rule__PredicateDeclaration__Group_4_0__1 )
-            // InternalKerML.g:14664:2: rule__PredicateDeclaration__Group_4_0__0__Impl rule__PredicateDeclaration__Group_4_0__1
+            // InternalKerML.g:14663:1: ( rule__PredicateDeclaration__Group_5_0__0__Impl rule__PredicateDeclaration__Group_5_0__1 )
+            // InternalKerML.g:14664:2: rule__PredicateDeclaration__Group_5_0__0__Impl rule__PredicateDeclaration__Group_5_0__1
             {
             pushFollow(FOLLOW_64);
-            rule__PredicateDeclaration__Group_4_0__0__Impl();
+            rule__PredicateDeclaration__Group_5_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__PredicateDeclaration__Group_4_0__1();
+            rule__PredicateDeclaration__Group_5_0__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50801,12 +50791,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_0__0"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_0__0"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_0__0__Impl"
-    // InternalKerML.g:14671:1: rule__PredicateDeclaration__Group_4_0__0__Impl : ( ( ruleParameterList ) ) ;
-    public final void rule__PredicateDeclaration__Group_4_0__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_0__0__Impl"
+    // InternalKerML.g:14671:1: rule__PredicateDeclaration__Group_5_0__0__Impl : ( ( ruleParameterList ) ) ;
+    public final void rule__PredicateDeclaration__Group_5_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -50818,7 +50808,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14677:2: ( ruleParameterList )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_4_0_0()); 
+               before(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_5_0_0()); 
             }
             // InternalKerML.g:14678:2: ( ruleParameterList )
             // InternalKerML.g:14678:3: ruleParameterList
@@ -50832,7 +50822,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_4_0_0()); 
+               after(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_5_0_0()); 
             }
 
             }
@@ -50852,21 +50842,21 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_0__0__Impl"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_0__0__Impl"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_0__1"
-    // InternalKerML.g:14686:1: rule__PredicateDeclaration__Group_4_0__1 : rule__PredicateDeclaration__Group_4_0__1__Impl ;
-    public final void rule__PredicateDeclaration__Group_4_0__1() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_0__1"
+    // InternalKerML.g:14686:1: rule__PredicateDeclaration__Group_5_0__1 : rule__PredicateDeclaration__Group_5_0__1__Impl ;
+    public final void rule__PredicateDeclaration__Group_5_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14690:1: ( rule__PredicateDeclaration__Group_4_0__1__Impl )
-            // InternalKerML.g:14691:2: rule__PredicateDeclaration__Group_4_0__1__Impl
+            // InternalKerML.g:14690:1: ( rule__PredicateDeclaration__Group_5_0__1__Impl )
+            // InternalKerML.g:14691:2: rule__PredicateDeclaration__Group_5_0__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__PredicateDeclaration__Group_4_0__1__Impl();
+            rule__PredicateDeclaration__Group_5_0__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50885,12 +50875,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_0__1"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_0__1"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_0__1__Impl"
-    // InternalKerML.g:14697:1: rule__PredicateDeclaration__Group_4_0__1__Impl : ( ruleReturnParameterPart ) ;
-    public final void rule__PredicateDeclaration__Group_4_0__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_0__1__Impl"
+    // InternalKerML.g:14697:1: rule__PredicateDeclaration__Group_5_0__1__Impl : ( ruleReturnParameterPart ) ;
+    public final void rule__PredicateDeclaration__Group_5_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -50902,7 +50892,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14703:2: ruleReturnParameterPart
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPredicateDeclarationAccess().getReturnParameterPartParserRuleCall_4_0_1()); 
+               before(grammarAccess.getPredicateDeclarationAccess().getReturnParameterPartParserRuleCall_5_0_1()); 
             }
             pushFollow(FOLLOW_2);
             ruleReturnParameterPart();
@@ -50910,7 +50900,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPredicateDeclarationAccess().getReturnParameterPartParserRuleCall_4_0_1()); 
+               after(grammarAccess.getPredicateDeclarationAccess().getReturnParameterPartParserRuleCall_5_0_1()); 
             }
 
             }
@@ -50930,26 +50920,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_0__1__Impl"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_0__1__Impl"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_1__0"
-    // InternalKerML.g:14713:1: rule__PredicateDeclaration__Group_4_1__0 : rule__PredicateDeclaration__Group_4_1__0__Impl rule__PredicateDeclaration__Group_4_1__1 ;
-    public final void rule__PredicateDeclaration__Group_4_1__0() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_1__0"
+    // InternalKerML.g:14713:1: rule__PredicateDeclaration__Group_5_1__0 : rule__PredicateDeclaration__Group_5_1__0__Impl rule__PredicateDeclaration__Group_5_1__1 ;
+    public final void rule__PredicateDeclaration__Group_5_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14717:1: ( rule__PredicateDeclaration__Group_4_1__0__Impl rule__PredicateDeclaration__Group_4_1__1 )
-            // InternalKerML.g:14718:2: rule__PredicateDeclaration__Group_4_1__0__Impl rule__PredicateDeclaration__Group_4_1__1
+            // InternalKerML.g:14717:1: ( rule__PredicateDeclaration__Group_5_1__0__Impl rule__PredicateDeclaration__Group_5_1__1 )
+            // InternalKerML.g:14718:2: rule__PredicateDeclaration__Group_5_1__0__Impl rule__PredicateDeclaration__Group_5_1__1
             {
-            pushFollow(FOLLOW_67);
-            rule__PredicateDeclaration__Group_4_1__0__Impl();
+            pushFollow(FOLLOW_66);
+            rule__PredicateDeclaration__Group_5_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__PredicateDeclaration__Group_4_1__1();
+            rule__PredicateDeclaration__Group_5_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50968,12 +50958,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_1__0"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_1__0"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_1__0__Impl"
-    // InternalKerML.g:14725:1: rule__PredicateDeclaration__Group_4_1__0__Impl : ( ( ruleParameterList )? ) ;
-    public final void rule__PredicateDeclaration__Group_4_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_1__0__Impl"
+    // InternalKerML.g:14725:1: rule__PredicateDeclaration__Group_5_1__0__Impl : ( ( ruleParameterList )? ) ;
+    public final void rule__PredicateDeclaration__Group_5_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -50985,7 +50975,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14731:2: ( ruleParameterList )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_4_1_0()); 
+               before(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_5_1_0()); 
             }
             // InternalKerML.g:14732:2: ( ruleParameterList )?
             int alt167=2;
@@ -51010,7 +51000,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_4_1_0()); 
+               after(grammarAccess.getPredicateDeclarationAccess().getParameterListParserRuleCall_5_1_0()); 
             }
 
             }
@@ -51030,21 +51020,21 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_1__0__Impl"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_1__0__Impl"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_1__1"
-    // InternalKerML.g:14740:1: rule__PredicateDeclaration__Group_4_1__1 : rule__PredicateDeclaration__Group_4_1__1__Impl ;
-    public final void rule__PredicateDeclaration__Group_4_1__1() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_1__1"
+    // InternalKerML.g:14740:1: rule__PredicateDeclaration__Group_5_1__1 : rule__PredicateDeclaration__Group_5_1__1__Impl ;
+    public final void rule__PredicateDeclaration__Group_5_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14744:1: ( rule__PredicateDeclaration__Group_4_1__1__Impl )
-            // InternalKerML.g:14745:2: rule__PredicateDeclaration__Group_4_1__1__Impl
+            // InternalKerML.g:14744:1: ( rule__PredicateDeclaration__Group_5_1__1__Impl )
+            // InternalKerML.g:14745:2: rule__PredicateDeclaration__Group_5_1__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__PredicateDeclaration__Group_4_1__1__Impl();
+            rule__PredicateDeclaration__Group_5_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -51063,12 +51053,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_1__1"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_1__1"
 
 
-    // $ANTLR start "rule__PredicateDeclaration__Group_4_1__1__Impl"
-    // InternalKerML.g:14751:1: rule__PredicateDeclaration__Group_4_1__1__Impl : ( ruleEmptyReturnParameterPart ) ;
-    public final void rule__PredicateDeclaration__Group_4_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__PredicateDeclaration__Group_5_1__1__Impl"
+    // InternalKerML.g:14751:1: rule__PredicateDeclaration__Group_5_1__1__Impl : ( ruleEmptyReturnParameterPart ) ;
+    public final void rule__PredicateDeclaration__Group_5_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -51080,7 +51070,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14757:2: ruleEmptyReturnParameterPart
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPredicateDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_4_1_1()); 
+               before(grammarAccess.getPredicateDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5_1_1()); 
             }
             pushFollow(FOLLOW_2);
             ruleEmptyReturnParameterPart();
@@ -51088,7 +51078,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPredicateDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_4_1_1()); 
+               after(grammarAccess.getPredicateDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5_1_1()); 
             }
 
             }
@@ -51108,7 +51098,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PredicateDeclaration__Group_4_1__1__Impl"
+    // $ANTLR end "rule__PredicateDeclaration__Group_5_1__1__Impl"
 
 
     // $ANTLR start "rule__Interaction__Group__0"
@@ -51539,7 +51529,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14906:1: ( rule__Feature__Group__0__Impl rule__Feature__Group__1 )
             // InternalKerML.g:14907:2: rule__Feature__Group__0__Impl rule__Feature__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__Feature__Group__0__Impl();
 
             state._fsp--;
@@ -51700,7 +51690,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14960:1: ( rule__AbstractFeature__Group__0__Impl rule__AbstractFeature__Group__1 )
             // InternalKerML.g:14961:2: rule__AbstractFeature__Group__0__Impl rule__AbstractFeature__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractFeature__Group__0__Impl();
 
             state._fsp--;
@@ -52040,7 +52030,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15068:1: ( rule__FeatureDefinition__Group__2__Impl rule__FeatureDefinition__Group__3 )
             // InternalKerML.g:15069:2: rule__FeatureDefinition__Group__2__Impl rule__FeatureDefinition__Group__3
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__FeatureDefinition__Group__2__Impl();
 
             state._fsp--;
@@ -52385,7 +52375,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15176:1: ( rule__FeatureDeclaration__Group_1_0__0__Impl rule__FeatureDeclaration__Group_1_0__1 )
             // InternalKerML.g:15177:2: rule__FeatureDeclaration__Group_1_0__0__Impl rule__FeatureDeclaration__Group_1_0__1
             {
-            pushFollow(FOLLOW_69);
+            pushFollow(FOLLOW_68);
             rule__FeatureDeclaration__Group_1_0__0__Impl();
 
             state._fsp--;
@@ -52558,7 +52548,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15230:1: ( rule__FeatureDeclaration__Group_1_0_1_0__0__Impl rule__FeatureDeclaration__Group_1_0_1_0__1 )
             // InternalKerML.g:15231:2: rule__FeatureDeclaration__Group_1_0_1_0__0__Impl rule__FeatureDeclaration__Group_1_0_1_0__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__FeatureDeclaration__Group_1_0_1_0__0__Impl();
 
             state._fsp--;
@@ -52736,7 +52726,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15284:1: ( rule__FeatureDeclaration__Group_1_1__0__Impl rule__FeatureDeclaration__Group_1_1__1 )
             // InternalKerML.g:15285:2: rule__FeatureDeclaration__Group_1_1__0__Impl rule__FeatureDeclaration__Group_1_1__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__FeatureDeclaration__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -52986,7 +52976,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15365:1: ( rule__FeatureDeclaration__Group_1_2__1__Impl rule__FeatureDeclaration__Group_1_2__2 )
             // InternalKerML.g:15366:2: rule__FeatureDeclaration__Group_1_2__1__Impl rule__FeatureDeclaration__Group_1_2__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__FeatureDeclaration__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -53075,7 +53065,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15392:1: ( rule__FeatureDeclaration__Group_1_2__2__Impl rule__FeatureDeclaration__Group_1_2__3 )
             // InternalKerML.g:15393:2: rule__FeatureDeclaration__Group_1_2__2__Impl rule__FeatureDeclaration__Group_1_2__3
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__FeatureDeclaration__Group_1_2__2__Impl();
 
             state._fsp--;
@@ -53426,7 +53416,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15500:1: ( rule__FeatureCompletion__Group__0__Impl rule__FeatureCompletion__Group__1 )
             // InternalKerML.g:15501:2: rule__FeatureCompletion__Group__0__Impl rule__FeatureCompletion__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__FeatureCompletion__Group__0__Impl();
 
             state._fsp--;
@@ -53604,7 +53594,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15554:1: ( rule__AbstractFeatureCompletion__Group__0__Impl rule__AbstractFeatureCompletion__Group__1 )
             // InternalKerML.g:15555:2: rule__AbstractFeatureCompletion__Group__0__Impl rule__AbstractFeatureCompletion__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractFeatureCompletion__Group__0__Impl();
 
             state._fsp--;
@@ -53782,7 +53772,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15608:1: ( rule__ValuePart__Group__0__Impl rule__ValuePart__Group__1 )
             // InternalKerML.g:15609:2: rule__ValuePart__Group__0__Impl rule__ValuePart__Group__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__ValuePart__Group__0__Impl();
 
             state._fsp--;
@@ -53945,7 +53935,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15662:1: ( rule__TypePart__Group_0__0__Impl rule__TypePart__Group_0__1 )
             // InternalKerML.g:15663:2: rule__TypePart__Group_0__0__Impl rule__TypePart__Group_0__1
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__TypePart__Group_0__0__Impl();
 
             state._fsp--;
@@ -54562,7 +54552,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15851:1: ( rule__MultiplicityPart__Group__0__Impl rule__MultiplicityPart__Group__1 )
             // InternalKerML.g:15852:2: rule__MultiplicityPart__Group__0__Impl rule__MultiplicityPart__Group__1
             {
-            pushFollow(FOLLOW_73);
+            pushFollow(FOLLOW_72);
             rule__MultiplicityPart__Group__0__Impl();
 
             state._fsp--;
@@ -54735,7 +54725,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15905:1: ( rule__Multiplicity__Group__0__Impl rule__Multiplicity__Group__1 )
             // InternalKerML.g:15906:2: rule__Multiplicity__Group__0__Impl rule__Multiplicity__Group__1
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_73);
             rule__Multiplicity__Group__0__Impl();
 
             state._fsp--;
@@ -54814,7 +54804,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15932:1: ( rule__Multiplicity__Group__1__Impl rule__Multiplicity__Group__2 )
             // InternalKerML.g:15933:2: rule__Multiplicity__Group__1__Impl rule__Multiplicity__Group__2
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_73);
             rule__Multiplicity__Group__1__Impl();
 
             state._fsp--;
@@ -54918,7 +54908,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:15959:1: ( rule__Multiplicity__Group__2__Impl rule__Multiplicity__Group__3 )
             // InternalKerML.g:15960:2: rule__Multiplicity__Group__2__Impl rule__Multiplicity__Group__3
             {
-            pushFollow(FOLLOW_75);
+            pushFollow(FOLLOW_74);
             rule__Multiplicity__Group__2__Impl();
 
             state._fsp--;
@@ -55081,7 +55071,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16013:1: ( rule__Multiplicity__Group_1__0__Impl rule__Multiplicity__Group_1__1 )
             // InternalKerML.g:16014:2: rule__Multiplicity__Group_1__0__Impl rule__Multiplicity__Group_1__1
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_75);
             rule__Multiplicity__Group_1__0__Impl();
 
             state._fsp--;
@@ -55429,7 +55419,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16121:1: ( rule__SubsettingPart__Group_0_1__0__Impl rule__SubsettingPart__Group_0_1__1 )
             // InternalKerML.g:16122:2: rule__SubsettingPart__Group_0_1__0__Impl rule__SubsettingPart__Group_0_1__1
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__SubsettingPart__Group_0_1__0__Impl();
 
             state._fsp--;
@@ -55940,7 +55930,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16283:1: ( rule__Subsets__Group__0__Impl rule__Subsets__Group__1 )
             // InternalKerML.g:16284:2: rule__Subsets__Group__0__Impl rule__Subsets__Group__1
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__Subsets__Group__0__Impl();
 
             state._fsp--;
@@ -56447,7 +56437,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16445:1: ( rule__AbstractConnector__Group__0__Impl rule__AbstractConnector__Group__1 )
             // InternalKerML.g:16446:2: rule__AbstractConnector__Group__0__Impl rule__AbstractConnector__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractConnector__Group__0__Impl();
 
             state._fsp--;
@@ -56608,7 +56598,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16499:1: ( rule__ConnectorDeclaration__Group_0__0__Impl rule__ConnectorDeclaration__Group_0__1 )
             // InternalKerML.g:16500:2: rule__ConnectorDeclaration__Group_0__0__Impl rule__ConnectorDeclaration__Group_0__1
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorDeclaration__Group_0__0__Impl();
 
             state._fsp--;
@@ -56704,7 +56694,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16526:1: ( rule__ConnectorDeclaration__Group_0__1__Impl rule__ConnectorDeclaration__Group_0__2 )
             // InternalKerML.g:16527:2: rule__ConnectorDeclaration__Group_0__1__Impl rule__ConnectorDeclaration__Group_0__2
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_77);
             rule__ConnectorDeclaration__Group_0__1__Impl();
 
             state._fsp--;
@@ -56793,7 +56783,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16553:1: ( rule__ConnectorDeclaration__Group_0__2__Impl rule__ConnectorDeclaration__Group_0__3 )
             // InternalKerML.g:16554:2: rule__ConnectorDeclaration__Group_0__2__Impl rule__ConnectorDeclaration__Group_0__3
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorDeclaration__Group_0__2__Impl();
 
             state._fsp--;
@@ -56956,7 +56946,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16607:1: ( rule__ConnectorDeclaration__Group_0_0_0__0__Impl rule__ConnectorDeclaration__Group_0_0_0__1 )
             // InternalKerML.g:16608:2: rule__ConnectorDeclaration__Group_0_0_0__0__Impl rule__ConnectorDeclaration__Group_0_0_0__1
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorDeclaration__Group_0_0_0__0__Impl();
 
             state._fsp--;
@@ -57130,7 +57120,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16661:1: ( rule__ConnectorDeclaration__Group_0_0_1__0__Impl rule__ConnectorDeclaration__Group_0_0_1__1 )
             // InternalKerML.g:16662:2: rule__ConnectorDeclaration__Group_0_0_1__0__Impl rule__ConnectorDeclaration__Group_0_0_1__1
             {
-            pushFollow(FOLLOW_79);
+            pushFollow(FOLLOW_78);
             rule__ConnectorDeclaration__Group_0_0_1__0__Impl();
 
             state._fsp--;
@@ -57310,7 +57300,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16715:1: ( rule__ConnectorDeclaration__Group_1__0__Impl rule__ConnectorDeclaration__Group_1__1 )
             // InternalKerML.g:16716:2: rule__ConnectorDeclaration__Group_1__0__Impl rule__ConnectorDeclaration__Group_1__1
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_79);
             rule__ConnectorDeclaration__Group_1__0__Impl();
 
             state._fsp--;
@@ -57393,7 +57383,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16742:1: ( rule__ConnectorDeclaration__Group_1__1__Impl rule__ConnectorDeclaration__Group_1__2 )
             // InternalKerML.g:16743:2: rule__ConnectorDeclaration__Group_1__1__Impl rule__ConnectorDeclaration__Group_1__2
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorDeclaration__Group_1__1__Impl();
 
             state._fsp--;
@@ -57561,7 +57551,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16796:1: ( rule__ConnectorDeclaration__Group_1__3__Impl rule__ConnectorDeclaration__Group_1__4 )
             // InternalKerML.g:16797:2: rule__ConnectorDeclaration__Group_1__3__Impl rule__ConnectorDeclaration__Group_1__4
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorDeclaration__Group_1__3__Impl();
 
             state._fsp--;
@@ -57640,7 +57630,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16823:1: ( rule__ConnectorDeclaration__Group_1__4__Impl rule__ConnectorDeclaration__Group_1__5 )
             // InternalKerML.g:16824:2: rule__ConnectorDeclaration__Group_1__4__Impl rule__ConnectorDeclaration__Group_1__5
             {
-            pushFollow(FOLLOW_81);
+            pushFollow(FOLLOW_80);
             rule__ConnectorDeclaration__Group_1__4__Impl();
 
             state._fsp--;
@@ -57729,7 +57719,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16850:1: ( rule__ConnectorDeclaration__Group_1__5__Impl rule__ConnectorDeclaration__Group_1__6 )
             // InternalKerML.g:16851:2: rule__ConnectorDeclaration__Group_1__5__Impl rule__ConnectorDeclaration__Group_1__6
             {
-            pushFollow(FOLLOW_81);
+            pushFollow(FOLLOW_80);
             rule__ConnectorDeclaration__Group_1__5__Impl();
 
             state._fsp--;
@@ -57910,7 +57900,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:16904:1: ( rule__ConnectorDeclaration__Group_1_5__0__Impl rule__ConnectorDeclaration__Group_1_5__1 )
             // InternalKerML.g:16905:2: rule__ConnectorDeclaration__Group_1_5__0__Impl rule__ConnectorDeclaration__Group_1_5__1
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorDeclaration__Group_1_5__0__Impl();
 
             state._fsp--;
@@ -58257,7 +58247,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17012:1: ( rule__ConnectorEndMember__Group__0__Impl rule__ConnectorEndMember__Group__1 )
             // InternalKerML.g:17013:2: rule__ConnectorEndMember__Group__0__Impl rule__ConnectorEndMember__Group__1
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__ConnectorEndMember__Group__0__Impl();
 
             state._fsp--;
@@ -58452,7 +58442,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17066:1: ( rule__ConnectorEndMember__Group_0__0__Impl rule__ConnectorEndMember__Group_0__1 )
             // InternalKerML.g:17067:2: rule__ConnectorEndMember__Group_0__0__Impl rule__ConnectorEndMember__Group_0__1
             {
-            pushFollow(FOLLOW_82);
+            pushFollow(FOLLOW_81);
             rule__ConnectorEndMember__Group_0__0__Impl();
 
             state._fsp--;
@@ -58776,7 +58766,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17174:1: ( rule__AbstractBindingConnector__Group__0__Impl rule__AbstractBindingConnector__Group__1 )
             // InternalKerML.g:17175:2: rule__AbstractBindingConnector__Group__0__Impl rule__AbstractBindingConnector__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractBindingConnector__Group__0__Impl();
 
             state._fsp--;
@@ -59033,7 +59023,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17255:1: ( rule__BindingConnectorDeclaration__Group__1__Impl rule__BindingConnectorDeclaration__Group__2 )
             // InternalKerML.g:17256:2: rule__BindingConnectorDeclaration__Group__1__Impl rule__BindingConnectorDeclaration__Group__2
             {
-            pushFollow(FOLLOW_83);
+            pushFollow(FOLLOW_82);
             rule__BindingConnectorDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -59122,7 +59112,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17282:1: ( rule__BindingConnectorDeclaration__Group__2__Impl rule__BindingConnectorDeclaration__Group__3 )
             // InternalKerML.g:17283:2: rule__BindingConnectorDeclaration__Group__2__Impl rule__BindingConnectorDeclaration__Group__3
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__BindingConnectorDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -59285,7 +59275,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17336:1: ( rule__BindingConnectorDeclaration__Group_0_0__0__Impl rule__BindingConnectorDeclaration__Group_0_0__1 )
             // InternalKerML.g:17337:2: rule__BindingConnectorDeclaration__Group_0_0__0__Impl rule__BindingConnectorDeclaration__Group_0_0__1
             {
-            pushFollow(FOLLOW_84);
+            pushFollow(FOLLOW_83);
             rule__BindingConnectorDeclaration__Group_0_0__0__Impl();
 
             state._fsp--;
@@ -59459,7 +59449,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17390:1: ( rule__BindingConnectorDeclaration__Group_0_1__0__Impl rule__BindingConnectorDeclaration__Group_0_1__1 )
             // InternalKerML.g:17391:2: rule__BindingConnectorDeclaration__Group_0_1__0__Impl rule__BindingConnectorDeclaration__Group_0_1__1
             {
-            pushFollow(FOLLOW_85);
+            pushFollow(FOLLOW_84);
             rule__BindingConnectorDeclaration__Group_0_1__0__Impl();
 
             state._fsp--;
@@ -59800,7 +59790,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17498:1: ( rule__AbstractSuccession__Group__0__Impl rule__AbstractSuccession__Group__1 )
             // InternalKerML.g:17499:2: rule__AbstractSuccession__Group__0__Impl rule__AbstractSuccession__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractSuccession__Group__0__Impl();
 
             state._fsp--;
@@ -60057,7 +60047,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17579:1: ( rule__SuccessionDeclaration__Group__1__Impl rule__SuccessionDeclaration__Group__2 )
             // InternalKerML.g:17580:2: rule__SuccessionDeclaration__Group__1__Impl rule__SuccessionDeclaration__Group__2
             {
-            pushFollow(FOLLOW_86);
+            pushFollow(FOLLOW_85);
             rule__SuccessionDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -60146,7 +60136,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17606:1: ( rule__SuccessionDeclaration__Group__2__Impl rule__SuccessionDeclaration__Group__3 )
             // InternalKerML.g:17607:2: rule__SuccessionDeclaration__Group__2__Impl rule__SuccessionDeclaration__Group__3
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__SuccessionDeclaration__Group__2__Impl();
 
             state._fsp--;
@@ -60309,7 +60299,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17660:1: ( rule__SuccessionDeclaration__Group_0_0__0__Impl rule__SuccessionDeclaration__Group_0_0__1 )
             // InternalKerML.g:17661:2: rule__SuccessionDeclaration__Group_0_0__0__Impl rule__SuccessionDeclaration__Group_0_0__1
             {
-            pushFollow(FOLLOW_87);
+            pushFollow(FOLLOW_86);
             rule__SuccessionDeclaration__Group_0_0__0__Impl();
 
             state._fsp--;
@@ -60483,7 +60473,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17714:1: ( rule__SuccessionDeclaration__Group_0_1__0__Impl rule__SuccessionDeclaration__Group_0_1__1 )
             // InternalKerML.g:17715:2: rule__SuccessionDeclaration__Group_0_1__0__Impl rule__SuccessionDeclaration__Group_0_1__1
             {
-            pushFollow(FOLLOW_88);
+            pushFollow(FOLLOW_87);
             rule__SuccessionDeclaration__Group_0_1__0__Impl();
 
             state._fsp--;
@@ -60824,7 +60814,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17822:1: ( rule__AbstractItemFlow__Group__0__Impl rule__AbstractItemFlow__Group__1 )
             // InternalKerML.g:17823:2: rule__AbstractItemFlow__Group__0__Impl rule__AbstractItemFlow__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractItemFlow__Group__0__Impl();
 
             state._fsp--;
@@ -61146,7 +61136,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:17930:1: ( rule__AbstractSuccessionItemFlow__Group__0__Impl rule__AbstractSuccessionItemFlow__Group__1 )
             // InternalKerML.g:17931:2: rule__AbstractSuccessionItemFlow__Group__0__Impl rule__AbstractSuccessionItemFlow__Group__1
             {
-            pushFollow(FOLLOW_68);
+            pushFollow(FOLLOW_67);
             rule__AbstractSuccessionItemFlow__Group__0__Impl();
 
             state._fsp--;
@@ -61396,7 +61386,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18011:1: ( rule__ItemFlowDeclaration__Group__1__Impl rule__ItemFlowDeclaration__Group__2 )
             // InternalKerML.g:18012:2: rule__ItemFlowDeclaration__Group__1__Impl rule__ItemFlowDeclaration__Group__2
             {
-            pushFollow(FOLLOW_78);
+            pushFollow(FOLLOW_77);
             rule__ItemFlowDeclaration__Group__1__Impl();
 
             state._fsp--;
@@ -61648,7 +61638,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18092:1: ( rule__ItemFlowDeclaration__Group_0_0__0__Impl rule__ItemFlowDeclaration__Group_0_0__1 )
             // InternalKerML.g:18093:2: rule__ItemFlowDeclaration__Group_0_0__0__Impl rule__ItemFlowDeclaration__Group_0_0__1
             {
-            pushFollow(FOLLOW_89);
+            pushFollow(FOLLOW_88);
             rule__ItemFlowDeclaration__Group_0_0__0__Impl();
 
             state._fsp--;
@@ -61731,7 +61721,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18119:1: ( rule__ItemFlowDeclaration__Group_0_0__1__Impl rule__ItemFlowDeclaration__Group_0_0__2 )
             // InternalKerML.g:18120:2: rule__ItemFlowDeclaration__Group_0_0__1__Impl rule__ItemFlowDeclaration__Group_0_0__2
             {
-            pushFollow(FOLLOW_79);
+            pushFollow(FOLLOW_78);
             rule__ItemFlowDeclaration__Group_0_0__1__Impl();
 
             state._fsp--;
@@ -62157,7 +62147,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18254:1: ( rule__ItemFlowDeclaration__Group_0_1__1__Impl rule__ItemFlowDeclaration__Group_0_1__2 )
             // InternalKerML.g:18255:2: rule__ItemFlowDeclaration__Group_0_1__1__Impl rule__ItemFlowDeclaration__Group_0_1__2
             {
-            pushFollow(FOLLOW_79);
+            pushFollow(FOLLOW_78);
             rule__ItemFlowDeclaration__Group_0_1__1__Impl();
 
             state._fsp--;
@@ -62716,7 +62706,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18416:1: ( rule__ItemFeatureMember__Group_0__0__Impl rule__ItemFeatureMember__Group_0__1 )
             // InternalKerML.g:18417:2: rule__ItemFeatureMember__Group_0__0__Impl rule__ItemFeatureMember__Group_0__1
             {
-            pushFollow(FOLLOW_90);
+            pushFollow(FOLLOW_89);
             rule__ItemFeatureMember__Group_0__0__Impl();
 
             state._fsp--;
@@ -63053,7 +63043,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18524:1: ( rule__Parameter__Group_1_0__0__Impl rule__Parameter__Group_1_0__1 )
             // InternalKerML.g:18525:2: rule__Parameter__Group_1_0__0__Impl rule__Parameter__Group_1_0__1
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__Parameter__Group_1_0__0__Impl();
 
             state._fsp--;
@@ -63822,7 +63812,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18767:1: ( rule__StepDeclaration__Group_1_0__0__Impl rule__StepDeclaration__Group_1_0__1 )
             // InternalKerML.g:18768:2: rule__StepDeclaration__Group_1_0__0__Impl rule__StepDeclaration__Group_1_0__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__StepDeclaration__Group_1_0__0__Impl();
 
             state._fsp--;
@@ -63911,7 +63901,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18794:1: ( rule__StepDeclaration__Group_1_0__1__Impl rule__StepDeclaration__Group_1_0__2 )
             // InternalKerML.g:18795:2: rule__StepDeclaration__Group_1_0__1__Impl rule__StepDeclaration__Group_1_0__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__StepDeclaration__Group_1_0__1__Impl();
 
             state._fsp--;
@@ -64011,7 +64001,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18821:1: ( rule__StepDeclaration__Group_1_0__2__Impl rule__StepDeclaration__Group_1_0__3 )
             // InternalKerML.g:18822:2: rule__StepDeclaration__Group_1_0__2__Impl rule__StepDeclaration__Group_1_0__3
             {
-            pushFollow(FOLLOW_91);
+            pushFollow(FOLLOW_90);
             rule__StepDeclaration__Group_1_0__2__Impl();
 
             state._fsp--;
@@ -64189,7 +64179,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18875:1: ( rule__StepDeclaration__Group_1_1__0__Impl rule__StepDeclaration__Group_1_1__1 )
             // InternalKerML.g:18876:2: rule__StepDeclaration__Group_1_1__0__Impl rule__StepDeclaration__Group_1_1__1
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__StepDeclaration__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -64473,7 +64463,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18956:1: ( rule__StepDeclaration__Group_1_2__1__Impl rule__StepDeclaration__Group_1_2__2 )
             // InternalKerML.g:18957:2: rule__StepDeclaration__Group_1_2__1__Impl rule__StepDeclaration__Group_1_2__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__StepDeclaration__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -64562,7 +64552,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18983:1: ( rule__StepDeclaration__Group_1_2__2__Impl rule__StepDeclaration__Group_1_2__3 )
             // InternalKerML.g:18984:2: rule__StepDeclaration__Group_1_2__2__Impl rule__StepDeclaration__Group_1_2__3
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__StepDeclaration__Group_1_2__2__Impl();
 
             state._fsp--;
@@ -64662,7 +64652,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19010:1: ( rule__StepDeclaration__Group_1_2__3__Impl rule__StepDeclaration__Group_1_2__4 )
             // InternalKerML.g:19011:2: rule__StepDeclaration__Group_1_2__3__Impl rule__StepDeclaration__Group_1_2__4
             {
-            pushFollow(FOLLOW_91);
+            pushFollow(FOLLOW_90);
             rule__StepDeclaration__Group_1_2__3__Impl();
 
             state._fsp--;
@@ -65834,7 +65824,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19388:1: ( rule__ExpressionDeclaration__Group_1_0__0__Impl rule__ExpressionDeclaration__Group_1_0__1 )
             // InternalKerML.g:19389:2: rule__ExpressionDeclaration__Group_1_0__0__Impl rule__ExpressionDeclaration__Group_1_0__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__ExpressionDeclaration__Group_1_0__0__Impl();
 
             state._fsp--;
@@ -65923,7 +65913,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19415:1: ( rule__ExpressionDeclaration__Group_1_0__1__Impl rule__ExpressionDeclaration__Group_1_0__2 )
             // InternalKerML.g:19416:2: rule__ExpressionDeclaration__Group_1_0__1__Impl rule__ExpressionDeclaration__Group_1_0__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__ExpressionDeclaration__Group_1_0__1__Impl();
 
             state._fsp--;
@@ -66023,7 +66013,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19442:1: ( rule__ExpressionDeclaration__Group_1_0__2__Impl rule__ExpressionDeclaration__Group_1_0__3 )
             // InternalKerML.g:19443:2: rule__ExpressionDeclaration__Group_1_0__2__Impl rule__ExpressionDeclaration__Group_1_0__3
             {
-            pushFollow(FOLLOW_91);
+            pushFollow(FOLLOW_90);
             rule__ExpressionDeclaration__Group_1_0__2__Impl();
 
             state._fsp--;
@@ -66362,7 +66352,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19550:1: ( rule__ExpressionDeclaration__Group_1_1__0__Impl rule__ExpressionDeclaration__Group_1_1__1 )
             // InternalKerML.g:19551:2: rule__ExpressionDeclaration__Group_1_1__0__Impl rule__ExpressionDeclaration__Group_1_1__1
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__ExpressionDeclaration__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -66807,7 +66797,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19685:1: ( rule__ExpressionDeclaration__Group_1_2__1__Impl rule__ExpressionDeclaration__Group_1_2__2 )
             // InternalKerML.g:19686:2: rule__ExpressionDeclaration__Group_1_2__1__Impl rule__ExpressionDeclaration__Group_1_2__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__ExpressionDeclaration__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -66896,7 +66886,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19712:1: ( rule__ExpressionDeclaration__Group_1_2__2__Impl rule__ExpressionDeclaration__Group_1_2__3 )
             // InternalKerML.g:19713:2: rule__ExpressionDeclaration__Group_1_2__2__Impl rule__ExpressionDeclaration__Group_1_2__3
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__ExpressionDeclaration__Group_1_2__2__Impl();
 
             state._fsp--;
@@ -66996,7 +66986,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:19739:1: ( rule__ExpressionDeclaration__Group_1_2__3__Impl rule__ExpressionDeclaration__Group_1_2__4 )
             // InternalKerML.g:19740:2: rule__ExpressionDeclaration__Group_1_2__3__Impl rule__ExpressionDeclaration__Group_1_2__4
             {
-            pushFollow(FOLLOW_91);
+            pushFollow(FOLLOW_90);
             rule__ExpressionDeclaration__Group_1_2__3__Impl();
 
             state._fsp--;
@@ -67841,7 +67831,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20009:1: ( rule__BooleanExpressionDeclaration__Group_1_0__0__Impl rule__BooleanExpressionDeclaration__Group_1_0__1 )
             // InternalKerML.g:20010:2: rule__BooleanExpressionDeclaration__Group_1_0__0__Impl rule__BooleanExpressionDeclaration__Group_1_0__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__BooleanExpressionDeclaration__Group_1_0__0__Impl();
 
             state._fsp--;
@@ -67930,7 +67920,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20036:1: ( rule__BooleanExpressionDeclaration__Group_1_0__1__Impl rule__BooleanExpressionDeclaration__Group_1_0__2 )
             // InternalKerML.g:20037:2: rule__BooleanExpressionDeclaration__Group_1_0__1__Impl rule__BooleanExpressionDeclaration__Group_1_0__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__BooleanExpressionDeclaration__Group_1_0__1__Impl();
 
             state._fsp--;
@@ -68030,7 +68020,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20063:1: ( rule__BooleanExpressionDeclaration__Group_1_0__2__Impl rule__BooleanExpressionDeclaration__Group_1_0__3 )
             // InternalKerML.g:20064:2: rule__BooleanExpressionDeclaration__Group_1_0__2__Impl rule__BooleanExpressionDeclaration__Group_1_0__3
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__BooleanExpressionDeclaration__Group_1_0__2__Impl();
 
             state._fsp--;
@@ -68113,7 +68103,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20090:1: ( rule__BooleanExpressionDeclaration__Group_1_0__3__Impl rule__BooleanExpressionDeclaration__Group_1_0__4 )
             // InternalKerML.g:20091:2: rule__BooleanExpressionDeclaration__Group_1_0__3__Impl rule__BooleanExpressionDeclaration__Group_1_0__4
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__BooleanExpressionDeclaration__Group_1_0__3__Impl();
 
             state._fsp--;
@@ -68291,7 +68281,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20144:1: ( rule__BooleanExpressionDeclaration__Group_1_1__0__Impl rule__BooleanExpressionDeclaration__Group_1_1__1 )
             // InternalKerML.g:20145:2: rule__BooleanExpressionDeclaration__Group_1_1__0__Impl rule__BooleanExpressionDeclaration__Group_1_1__1
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__BooleanExpressionDeclaration__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -68391,7 +68381,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20171:1: ( rule__BooleanExpressionDeclaration__Group_1_1__1__Impl rule__BooleanExpressionDeclaration__Group_1_1__2 )
             // InternalKerML.g:20172:2: rule__BooleanExpressionDeclaration__Group_1_1__1__Impl rule__BooleanExpressionDeclaration__Group_1_1__2
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__BooleanExpressionDeclaration__Group_1_1__1__Impl();
 
             state._fsp--;
@@ -68658,7 +68648,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20252:1: ( rule__BooleanExpressionDeclaration__Group_1_2__1__Impl rule__BooleanExpressionDeclaration__Group_1_2__2 )
             // InternalKerML.g:20253:2: rule__BooleanExpressionDeclaration__Group_1_2__1__Impl rule__BooleanExpressionDeclaration__Group_1_2__2
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__BooleanExpressionDeclaration__Group_1_2__1__Impl();
 
             state._fsp--;
@@ -68747,7 +68737,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20279:1: ( rule__BooleanExpressionDeclaration__Group_1_2__2__Impl rule__BooleanExpressionDeclaration__Group_1_2__3 )
             // InternalKerML.g:20280:2: rule__BooleanExpressionDeclaration__Group_1_2__2__Impl rule__BooleanExpressionDeclaration__Group_1_2__3
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_69);
             rule__BooleanExpressionDeclaration__Group_1_2__2__Impl();
 
             state._fsp--;
@@ -68847,7 +68837,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20306:1: ( rule__BooleanExpressionDeclaration__Group_1_2__3__Impl rule__BooleanExpressionDeclaration__Group_1_2__4 )
             // InternalKerML.g:20307:2: rule__BooleanExpressionDeclaration__Group_1_2__3__Impl rule__BooleanExpressionDeclaration__Group_1_2__4
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__BooleanExpressionDeclaration__Group_1_2__3__Impl();
 
             state._fsp--;
@@ -68930,7 +68920,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20333:1: ( rule__BooleanExpressionDeclaration__Group_1_2__4__Impl rule__BooleanExpressionDeclaration__Group_1_2__5 )
             // InternalKerML.g:20334:2: rule__BooleanExpressionDeclaration__Group_1_2__4__Impl rule__BooleanExpressionDeclaration__Group_1_2__5
             {
-            pushFollow(FOLLOW_67);
+            pushFollow(FOLLOW_91);
             rule__BooleanExpressionDeclaration__Group_1_2__4__Impl();
 
             state._fsp--;
@@ -69365,7 +69355,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20468:1: ( rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2 )
             // InternalKerML.g:20469:2: rule__ConditionalExpression__Group_1__1__Impl rule__ConditionalExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__ConditionalExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -69454,7 +69444,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20495:1: ( rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3 )
             // InternalKerML.g:20496:2: rule__ConditionalExpression__Group_1__2__Impl rule__ConditionalExpression__Group_1__3
             {
-            pushFollow(FOLLOW_90);
+            pushFollow(FOLLOW_89);
             rule__ConditionalExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -69543,7 +69533,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20522:1: ( rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4 )
             // InternalKerML.g:20523:2: rule__ConditionalExpression__Group_1__3__Impl rule__ConditionalExpression__Group_1__4
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__ConditionalExpression__Group_1__3__Impl();
 
             state._fsp--;
@@ -69970,7 +69960,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20657:1: ( rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2 )
             // InternalKerML.g:20658:2: rule__NullCoalescingExpression__Group_1__1__Impl rule__NullCoalescingExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__NullCoalescingExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -70407,7 +70397,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20792:1: ( rule__ConditionalOrExpression__Group_1__1__Impl rule__ConditionalOrExpression__Group_1__2 )
             // InternalKerML.g:20793:2: rule__ConditionalOrExpression__Group_1__1__Impl rule__ConditionalOrExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__ConditionalOrExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -70844,7 +70834,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:20927:1: ( rule__ConditionalAndExpression__Group_1__1__Impl rule__ConditionalAndExpression__Group_1__2 )
             // InternalKerML.g:20928:2: rule__ConditionalAndExpression__Group_1__1__Impl rule__ConditionalAndExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__ConditionalAndExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -71281,7 +71271,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:21062:1: ( rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2 )
             // InternalKerML.g:21063:2: rule__OrExpression__Group_1__1__Impl rule__OrExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__OrExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -71718,7 +71708,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:21197:1: ( rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2 )
             // InternalKerML.g:21198:2: rule__XorExpression__Group_1__1__Impl rule__XorExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__XorExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -72155,7 +72145,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:21332:1: ( rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2 )
             // InternalKerML.g:21333:2: rule__AndExpression__Group_1__1__Impl rule__AndExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__AndExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -72592,7 +72582,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:21467:1: ( rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2 )
             // InternalKerML.g:21468:2: rule__EqualityExpression__Group_1__1__Impl rule__EqualityExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__EqualityExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -73459,7 +73449,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:21737:1: ( rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2 )
             // InternalKerML.g:21738:2: rule__RelationalExpression__Group_1__1__Impl rule__RelationalExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__RelationalExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -73896,7 +73886,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:21872:1: ( rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2 )
             // InternalKerML.g:21873:2: rule__AdditiveExpression__Group_1__1__Impl rule__AdditiveExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__AdditiveExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -74333,7 +74323,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22007:1: ( rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2 )
             // InternalKerML.g:22008:2: rule__MultiplicativeExpression__Group_1__1__Impl rule__MultiplicativeExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__MultiplicativeExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -74770,7 +74760,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22142:1: ( rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2 )
             // InternalKerML.g:22143:2: rule__ExponentiationExpression__Group_1__1__Impl rule__ExponentiationExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__ExponentiationExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -75289,7 +75279,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22304:1: ( rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3 )
             // InternalKerML.g:22305:2: rule__UnitsExpression__Group_1__2__Impl rule__UnitsExpression__Group_1__3
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__UnitsExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -75368,7 +75358,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22331:1: ( rule__UnitsExpression__Group_1__3__Impl rule__UnitsExpression__Group_1__4 )
             // InternalKerML.g:22332:2: rule__UnitsExpression__Group_1__3__Impl rule__UnitsExpression__Group_1__4
             {
-            pushFollow(FOLLOW_75);
+            pushFollow(FOLLOW_74);
             rule__UnitsExpression__Group_1__3__Impl();
 
             state._fsp--;
@@ -75531,7 +75521,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22385:1: ( rule__UnaryExpression__Group_1__0__Impl rule__UnaryExpression__Group_1__1 )
             // InternalKerML.g:22386:2: rule__UnaryExpression__Group_1__0__Impl rule__UnaryExpression__Group_1__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__UnaryExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -76040,7 +76030,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22547:1: ( rule__SequenceAccessExpression__Group_1__1__Impl rule__SequenceAccessExpression__Group_1__2 )
             // InternalKerML.g:22548:2: rule__SequenceAccessExpression__Group_1__1__Impl rule__SequenceAccessExpression__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__SequenceAccessExpression__Group_1__1__Impl();
 
             state._fsp--;
@@ -76129,7 +76119,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22574:1: ( rule__SequenceAccessExpression__Group_1__2__Impl rule__SequenceAccessExpression__Group_1__3 )
             // InternalKerML.g:22575:2: rule__SequenceAccessExpression__Group_1__2__Impl rule__SequenceAccessExpression__Group_1__3
             {
-            pushFollow(FOLLOW_75);
+            pushFollow(FOLLOW_74);
             rule__SequenceAccessExpression__Group_1__2__Impl();
 
             state._fsp--;
@@ -77135,7 +77125,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22878:1: ( rule__BodyExpression__Group_0_0__2__Impl rule__BodyExpression__Group_0_0__3 )
             // InternalKerML.g:22879:2: rule__BodyExpression__Group_0_0__2__Impl rule__BodyExpression__Group_0_0__3
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__BodyExpression__Group_0_0__2__Impl();
 
             state._fsp--;
@@ -77377,7 +77367,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:22959:1: ( rule__BaseExpression__Group_6__0__Impl rule__BaseExpression__Group_6__1 )
             // InternalKerML.g:22960:2: rule__BaseExpression__Group_6__0__Impl rule__BaseExpression__Group_6__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__BaseExpression__Group_6__0__Impl();
 
             state._fsp--;
@@ -77613,7 +77603,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23040:1: ( rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1 )
             // InternalKerML.g:23041:2: rule__InvocationExpression__Group__0__Impl rule__InvocationExpression__Group__1
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_79);
             rule__InvocationExpression__Group__0__Impl();
 
             state._fsp--;
@@ -78146,7 +78136,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23202:1: ( rule__PositionalTuple__Group_1__0__Impl rule__PositionalTuple__Group_1__1 )
             // InternalKerML.g:23203:2: rule__PositionalTuple__Group_1__0__Impl rule__PositionalTuple__Group_1__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__PositionalTuple__Group_1__0__Impl();
 
             state._fsp--;
@@ -78500,7 +78490,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23310:1: ( rule__NamedTuple__Group_1__0__Impl rule__NamedTuple__Group_1__1 )
             // InternalKerML.g:23311:2: rule__NamedTuple__Group_1__0__Impl rule__NamedTuple__Group_1__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__NamedTuple__Group_1__0__Impl();
 
             state._fsp--;
@@ -78831,7 +78821,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23418:1: ( rule__ClassExtentExpression__Group__2__Impl rule__ClassExtentExpression__Group__3 )
             // InternalKerML.g:23419:2: rule__ClassExtentExpression__Group__2__Impl rule__ClassExtentExpression__Group__3
             {
-            pushFollow(FOLLOW_80);
+            pushFollow(FOLLOW_79);
             rule__ClassExtentExpression__Group__2__Impl();
 
             state._fsp--;
@@ -79305,7 +79295,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23580:1: ( rule__SequenceConstructionExpression__Group_1__0__Impl rule__SequenceConstructionExpression__Group_1__1 )
             // InternalKerML.g:23581:2: rule__SequenceConstructionExpression__Group_1__0__Impl rule__SequenceConstructionExpression__Group_1__1
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__SequenceConstructionExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -79720,7 +79710,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23715:1: ( rule__SequenceConstructionExpression__Group_1_2_0__1__Impl rule__SequenceConstructionExpression__Group_1_2_0__2 )
             // InternalKerML.g:23716:2: rule__SequenceConstructionExpression__Group_1_2_0__1__Impl rule__SequenceConstructionExpression__Group_1_2_0__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__SequenceConstructionExpression__Group_1_2_0__1__Impl();
 
             state._fsp--;
@@ -79972,7 +79962,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23796:1: ( rule__SequenceConstructionExpression__Group_1_2_1__1__Impl rule__SequenceConstructionExpression__Group_1_2_1__2 )
             // InternalKerML.g:23797:2: rule__SequenceConstructionExpression__Group_1_2_1__1__Impl rule__SequenceConstructionExpression__Group_1_2_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__SequenceConstructionExpression__Group_1_2_1__1__Impl();
 
             state._fsp--;
@@ -80402,7 +80392,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:23931:1: ( rule__SequenceElementList__Group_1__1__Impl rule__SequenceElementList__Group_1__2 )
             // InternalKerML.g:23932:2: rule__SequenceElementList__Group_1__1__Impl rule__SequenceElementList__Group_1__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__SequenceElementList__Group_1__1__Impl();
 
             state._fsp--;
@@ -80987,7 +80977,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24120:1: ( rule__UnlimitedNaturalLiteralExpression__Group_1__0__Impl rule__UnlimitedNaturalLiteralExpression__Group_1__1 )
             // InternalKerML.g:24121:2: rule__UnlimitedNaturalLiteralExpression__Group_1__0__Impl rule__UnlimitedNaturalLiteralExpression__Group_1__1
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_73);
             rule__UnlimitedNaturalLiteralExpression__Group_1__0__Impl();
 
             state._fsp--;
@@ -81140,7 +81130,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24174:1: ( rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1 )
             // InternalKerML.g:24175:2: rule__NamedExpressionMember__Group__0__Impl rule__NamedExpressionMember__Group__1
             {
-            pushFollow(FOLLOW_82);
+            pushFollow(FOLLOW_81);
             rule__NamedExpressionMember__Group__0__Impl();
 
             state._fsp--;
@@ -81229,7 +81219,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24201:1: ( rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2 )
             // InternalKerML.g:24202:2: rule__NamedExpressionMember__Group__1__Impl rule__NamedExpressionMember__Group__2
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__NamedExpressionMember__Group__1__Impl();
 
             state._fsp--;
@@ -95709,20 +95699,20 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
     // $ANTLR start synpred85_InternalKerML
     public final void synpred85_InternalKerML_fragment() throws RecognitionException {   
-        // InternalKerML.g:5673:2: ( ( ( rule__PredicateDeclaration__Group_4_0__0 ) ) )
-        // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_4_0__0 ) )
+        // InternalKerML.g:5673:2: ( ( ( rule__PredicateDeclaration__Group_5_0__0 ) ) )
+        // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_5_0__0 ) )
         {
-        // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_4_0__0 ) )
-        // InternalKerML.g:5674:3: ( rule__PredicateDeclaration__Group_4_0__0 )
+        // InternalKerML.g:5673:2: ( ( rule__PredicateDeclaration__Group_5_0__0 ) )
+        // InternalKerML.g:5674:3: ( rule__PredicateDeclaration__Group_5_0__0 )
         {
         if ( state.backtracking==0 ) {
-           before(grammarAccess.getPredicateDeclarationAccess().getGroup_4_0()); 
+           before(grammarAccess.getPredicateDeclarationAccess().getGroup_5_0()); 
         }
-        // InternalKerML.g:5675:3: ( rule__PredicateDeclaration__Group_4_0__0 )
-        // InternalKerML.g:5675:4: rule__PredicateDeclaration__Group_4_0__0
+        // InternalKerML.g:5675:3: ( rule__PredicateDeclaration__Group_5_0__0 )
+        // InternalKerML.g:5675:4: rule__PredicateDeclaration__Group_5_0__0
         {
         pushFollow(FOLLOW_2);
-        rule__PredicateDeclaration__Group_4_0__0();
+        rule__PredicateDeclaration__Group_5_0__0();
 
         state._fsp--;
         if (state.failed) return ;
@@ -96540,7 +96530,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     static final String dfa_52s = "\2\uffff\1\2\11\uffff\1\1\113\uffff";
     static final String dfa_53s = "\10\uffff\1\0\117\uffff}>";
     static final String[] dfa_54s = {
-            "\5\2\36\uffff\1\2\24\uffff\1\1",
+            "\1\2\42\uffff\1\2\24\uffff\1\1",
             "\1\6\1\7\54\uffff\1\3\1\4\1\5\32\uffff\1\10",
             "",
             "\1\6\1\7",
@@ -96651,7 +96641,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             this.transition = dfa_54;
         }
         public String getDescription() {
-            return "5668:1: rule__PredicateDeclaration__Alternatives_4 : ( ( ( rule__PredicateDeclaration__Group_4_0__0 ) ) | ( ( rule__PredicateDeclaration__Group_4_1__0 ) ) );";
+            return "5668:1: rule__PredicateDeclaration__Alternatives_5 : ( ( ( rule__PredicateDeclaration__Group_5_0__0 ) ) | ( ( rule__PredicateDeclaration__Group_5_1__0 ) ) );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             TokenStream input = (TokenStream)_input;
@@ -97481,34 +97471,34 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x01C0000000000300L,0x0000000000080000L});
     public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x01C0000000000300L});
     public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0000000003000000L});
-    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000000000300L,0x0000000003840000L});
-    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0000000078000000L});
-    public static final BitSet FOLLOW_66 = new BitSet(new long[]{0xE23FB801A28007E0L,0x0000008823040000L});
-    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000000003840000L});
-    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x2000000004000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x00000005E8000000L,0x0000000003000000L});
-    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x0000000588000000L,0x0000000003000000L});
-    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0xA003B801A08007C0L,0x0000008823040000L});
-    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000200000300L});
-    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000000000000L,0x0000030000000000L});
-    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x00032000008004C0L});
-    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
-    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x8000000180000300L,0x0000008023000000L});
-    public static final BitSet FOLLOW_78 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_79 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_80 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x0000000000000000L,0x0000000000082000L});
-    public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_83 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_84 = new BitSet(new long[]{0x8000000180000300L,0x0000008083000000L});
-    public static final BitSet FOLLOW_85 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_86 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
-    public static final BitSet FOLLOW_87 = new BitSet(new long[]{0x8000000180000300L,0x0000008203000000L});
-    public static final BitSet FOLLOW_88 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    public static final BitSet FOLLOW_89 = new BitSet(new long[]{0x81C0000180000300L,0x0000008083000000L});
-    public static final BitSet FOLLOW_90 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_91 = new BitSet(new long[]{0x0000000000000000L,0x0000000000840000L});
+    public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000078000300L,0x0000000003840000L});
+    public static final BitSet FOLLOW_65 = new BitSet(new long[]{0xE23FB801A28007E0L,0x0000008823040000L});
+    public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x0000000078000000L,0x0000000003840000L});
+    public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x2000000004000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x00000005E8000000L,0x0000000003000000L});
+    public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x0000000588000000L,0x0000000003000000L});
+    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0xA003B801A08007C0L,0x0000008823040000L});
+    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x0000000200000300L});
+    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000000L,0x0000030000000000L});
+    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x00032000008004C0L});
+    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x8000000180000300L,0x0000008023000000L});
+    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_78 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_79 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
+    public static final BitSet FOLLOW_80 = new BitSet(new long[]{0x0000000000000000L,0x0000000000082000L});
+    public static final BitSet FOLLOW_81 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
+    public static final BitSet FOLLOW_82 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_83 = new BitSet(new long[]{0x8000000180000300L,0x0000008083000000L});
+    public static final BitSet FOLLOW_84 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_85 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_86 = new BitSet(new long[]{0x8000000180000300L,0x0000008203000000L});
+    public static final BitSet FOLLOW_87 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_88 = new BitSet(new long[]{0x81C0000180000300L,0x0000008083000000L});
+    public static final BitSet FOLLOW_89 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_90 = new BitSet(new long[]{0x0000000000000000L,0x0000000000840000L});
+    public static final BitSet FOLLOW_91 = new BitSet(new long[]{0x0000000000000000L,0x0000000003840000L});
     public static final BitSet FOLLOW_92 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_93 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_94 = new BitSet(new long[]{0x0000000000008002L});

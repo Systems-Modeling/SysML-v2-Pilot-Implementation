@@ -25777,9 +25777,9 @@ rule__ActionDefDeclaration__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getActionDefDeclarationAccess().getParameterListParserRuleCall_3()); }
-	(ruleParameterList)?
-	{ after(grammarAccess.getActionDefDeclarationAccess().getParameterListParserRuleCall_3()); }
+	{ before(grammarAccess.getActionDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
+	(ruleSuperclassingList)?
+	{ after(grammarAccess.getActionDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
 )
 ;
 finally {
@@ -25803,9 +25803,9 @@ rule__ActionDefDeclaration__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getActionDefDeclarationAccess().getSuperclassingListParserRuleCall_4()); }
-	(ruleSuperclassingList)?
-	{ after(grammarAccess.getActionDefDeclarationAccess().getSuperclassingListParserRuleCall_4()); }
+	{ before(grammarAccess.getActionDefDeclarationAccess().getParameterListParserRuleCall_4()); }
+	(ruleParameterList)?
+	{ after(grammarAccess.getActionDefDeclarationAccess().getParameterListParserRuleCall_4()); }
 )
 ;
 finally {
@@ -27019,9 +27019,9 @@ rule__CalculationDefDeclaration__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCalculationDefDeclarationAccess().getParameterListParserRuleCall_3()); }
-	(ruleParameterList)?
-	{ after(grammarAccess.getCalculationDefDeclarationAccess().getParameterListParserRuleCall_3()); }
+	{ before(grammarAccess.getCalculationDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
+	(ruleSuperclassingList)?
+	{ after(grammarAccess.getCalculationDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
 )
 ;
 finally {
@@ -27046,9 +27046,9 @@ rule__CalculationDefDeclaration__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCalculationDefDeclarationAccess().getReturnParameterPartParserRuleCall_4()); }
-	ruleReturnParameterPart
-	{ after(grammarAccess.getCalculationDefDeclarationAccess().getReturnParameterPartParserRuleCall_4()); }
+	{ before(grammarAccess.getCalculationDefDeclarationAccess().getParameterListParserRuleCall_4()); }
+	(ruleParameterList)?
+	{ after(grammarAccess.getCalculationDefDeclarationAccess().getParameterListParserRuleCall_4()); }
 )
 ;
 finally {
@@ -27072,9 +27072,9 @@ rule__CalculationDefDeclaration__Group__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getCalculationDefDeclarationAccess().getSuperclassingListParserRuleCall_5()); }
-	(ruleSuperclassingList)?
-	{ after(grammarAccess.getCalculationDefDeclarationAccess().getSuperclassingListParserRuleCall_5()); }
+	{ before(grammarAccess.getCalculationDefDeclarationAccess().getReturnParameterPartParserRuleCall_5()); }
+	ruleReturnParameterPart
+	{ after(grammarAccess.getCalculationDefDeclarationAccess().getReturnParameterPartParserRuleCall_5()); }
 )
 ;
 finally {
@@ -27721,9 +27721,9 @@ rule__StateDefDeclaration__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getStateDefDeclarationAccess().getParameterListParserRuleCall_3()); }
-	(ruleParameterList)?
-	{ after(grammarAccess.getStateDefDeclarationAccess().getParameterListParserRuleCall_3()); }
+	{ before(grammarAccess.getStateDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
+	(ruleSuperclassingList)?
+	{ after(grammarAccess.getStateDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
 )
 ;
 finally {
@@ -27747,9 +27747,9 @@ rule__StateDefDeclaration__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getStateDefDeclarationAccess().getSuperclassingListParserRuleCall_4()); }
-	(ruleSuperclassingList)?
-	{ after(grammarAccess.getStateDefDeclarationAccess().getSuperclassingListParserRuleCall_4()); }
+	{ before(grammarAccess.getStateDefDeclarationAccess().getParameterListParserRuleCall_4()); }
+	(ruleParameterList)?
+	{ after(grammarAccess.getStateDefDeclarationAccess().getParameterListParserRuleCall_4()); }
 )
 ;
 finally {
@@ -29044,9 +29044,9 @@ rule__ConstraintDefDeclaration__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConstraintDefDeclarationAccess().getParameterListParserRuleCall_3()); }
-	(ruleParameterList)?
-	{ after(grammarAccess.getConstraintDefDeclarationAccess().getParameterListParserRuleCall_3()); }
+	{ before(grammarAccess.getConstraintDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
+	(ruleSuperclassingList)?
+	{ after(grammarAccess.getConstraintDefDeclarationAccess().getSuperclassingListParserRuleCall_3()); }
 )
 ;
 finally {
@@ -29071,9 +29071,9 @@ rule__ConstraintDefDeclaration__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConstraintDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_4()); }
-	ruleEmptyReturnParameterPart
-	{ after(grammarAccess.getConstraintDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_4()); }
+	{ before(grammarAccess.getConstraintDefDeclarationAccess().getParameterListParserRuleCall_4()); }
+	(ruleParameterList)?
+	{ after(grammarAccess.getConstraintDefDeclarationAccess().getParameterListParserRuleCall_4()); }
 )
 ;
 finally {
@@ -29097,9 +29097,9 @@ rule__ConstraintDefDeclaration__Group__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getConstraintDefDeclarationAccess().getSuperclassingListParserRuleCall_5()); }
-	(ruleSuperclassingList)?
-	{ after(grammarAccess.getConstraintDefDeclarationAccess().getSuperclassingListParserRuleCall_5()); }
+	{ before(grammarAccess.getConstraintDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5()); }
+	ruleEmptyReturnParameterPart
+	{ after(grammarAccess.getConstraintDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5()); }
 )
 ;
 finally {
@@ -29611,9 +29611,9 @@ rule__RequirementDefDeclaration__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRequirementDefDeclarationAccess().getRequirementDefParameterListParserRuleCall_4()); }
-	ruleRequirementDefParameterList
-	{ after(grammarAccess.getRequirementDefDeclarationAccess().getRequirementDefParameterListParserRuleCall_4()); }
+	{ before(grammarAccess.getRequirementDefDeclarationAccess().getSuperclassingListParserRuleCall_4()); }
+	(ruleSuperclassingList)?
+	{ after(grammarAccess.getRequirementDefDeclarationAccess().getSuperclassingListParserRuleCall_4()); }
 )
 ;
 finally {
@@ -29638,9 +29638,9 @@ rule__RequirementDefDeclaration__Group__5__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRequirementDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5()); }
-	ruleEmptyReturnParameterPart
-	{ after(grammarAccess.getRequirementDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_5()); }
+	{ before(grammarAccess.getRequirementDefDeclarationAccess().getRequirementDefParameterListParserRuleCall_5()); }
+	ruleRequirementDefParameterList
+	{ after(grammarAccess.getRequirementDefDeclarationAccess().getRequirementDefParameterListParserRuleCall_5()); }
 )
 ;
 finally {
@@ -29664,9 +29664,9 @@ rule__RequirementDefDeclaration__Group__6__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRequirementDefDeclarationAccess().getSuperclassingListParserRuleCall_6()); }
-	(ruleSuperclassingList)?
-	{ after(grammarAccess.getRequirementDefDeclarationAccess().getSuperclassingListParserRuleCall_6()); }
+	{ before(grammarAccess.getRequirementDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_6()); }
+	ruleEmptyReturnParameterPart
+	{ after(grammarAccess.getRequirementDefDeclarationAccess().getEmptyReturnParameterPartParserRuleCall_6()); }
 )
 ;
 finally {

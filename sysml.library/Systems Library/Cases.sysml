@@ -12,12 +12,12 @@ package Cases {
 	 * 
 	 * It's parameter is the subject that was investigated by this Case.
 	 */
-	abstract calc def Case(subject[1])result[0..*] :> Calculation {
+	abstract calc def Case :> Calculation (subject[1]) result[0..*] {
 		
 		/**
 		 * A check of whether the objective RequirementUsage was satisfied for this Case.
 		 */
-		requirement objective[1](subject = Case::result);
+		requirement objective[1] (subject = Case::result);
 		
 		/**
 		 * Other Cases carried out as part of the performance of this Case.

@@ -64,7 +64,7 @@ package Actions {
 	/**
 	 * A TransferAction is an Action that is also a Transfer in a given context.
 	 */
-	abstract action def TransferAction (context: Occurrence) :> Transfer, Action;
+	abstract action def TransferAction :> Transfer, Action (context: Occurrence);
 	
 	/**
 	 * actions is the base feature for all Action usages.

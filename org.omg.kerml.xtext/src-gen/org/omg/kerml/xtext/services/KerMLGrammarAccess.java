@@ -2542,14 +2542,14 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsSufficientAllKeyword_0_0 = (Keyword)cIsSufficientAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cSpecializationOrConjugationParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cSpecializationOrConjugationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cParameterListParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//fragment BehaviorDeclarationCompletion returns SysML::Behavior:
-		//	isSufficient?='all'? name=Name ParameterList? SpecializationOrConjugation?;
+		//	isSufficient?='all'? name=Name SpecializationOrConjugation? ParameterList?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isSufficient?='all'? name=Name ParameterList? SpecializationOrConjugation?
+		//isSufficient?='all'? name=Name SpecializationOrConjugation? ParameterList?
 		public Group getGroup() { return cGroup; }
 		
 		//isSufficient?='all'?
@@ -2564,11 +2564,11 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_1_0() { return cNameNameParserRuleCall_1_0; }
 		
-		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_2() { return cParameterListParserRuleCall_2; }
-		
 		//SpecializationOrConjugation?
-		public RuleCall getSpecializationOrConjugationParserRuleCall_3() { return cSpecializationOrConjugationParserRuleCall_3; }
+		public RuleCall getSpecializationOrConjugationParserRuleCall_2() { return cSpecializationOrConjugationParserRuleCall_2; }
+		
+		//ParameterList?
+		public RuleCall getParameterListParserRuleCall_3() { return cParameterListParserRuleCall_3; }
 	}
 	public class ParameterListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ParameterList");
@@ -2832,17 +2832,17 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsSufficientAllKeyword_2_0 = (Keyword)cIsSufficientAssignment_2.eContents().get(0);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameNameParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cReturnParameterPartParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cSpecializationOrConjugationParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final RuleCall cSpecializationOrConjugationParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cParameterListParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cReturnParameterPartParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//fragment FunctionDeclaration returns SysML::Function:
 		//	isAbstract?='abstract'? 'function' isSufficient?='all'?
-		//	name=Name ParameterList? ReturnParameterPart SpecializationOrConjugation?;
+		//	name=Name SpecializationOrConjugation? ParameterList? ReturnParameterPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? 'function' isSufficient?='all'? name=Name ParameterList? ReturnParameterPart
-		//SpecializationOrConjugation?
+		//isAbstract?='abstract'? 'function' isSufficient?='all'? name=Name SpecializationOrConjugation? ParameterList?
+		//ReturnParameterPart
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -2866,14 +2866,14 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
 		
+		//SpecializationOrConjugation?
+		public RuleCall getSpecializationOrConjugationParserRuleCall_4() { return cSpecializationOrConjugationParserRuleCall_4; }
+		
 		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_4() { return cParameterListParserRuleCall_4; }
+		public RuleCall getParameterListParserRuleCall_5() { return cParameterListParserRuleCall_5; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_5() { return cReturnParameterPartParserRuleCall_5; }
-		
-		//SpecializationOrConjugation?
-		public RuleCall getSpecializationOrConjugationParserRuleCall_6() { return cSpecializationOrConjugationParserRuleCall_6; }
+		public RuleCall getReturnParameterPartParserRuleCall_6() { return cReturnParameterPartParserRuleCall_6; }
 	}
 	public class ReturnParameterPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ReturnParameterPart");
@@ -3110,22 +3110,22 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cIsSufficientAllKeyword_2_0 = (Keyword)cIsSufficientAssignment_2.eContents().get(0);
 		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cNameNameParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
-		private final RuleCall cParameterListParserRuleCall_4_0_0 = (RuleCall)cGroup_4_0.eContents().get(0);
-		private final RuleCall cReturnParameterPartParserRuleCall_4_0_1 = (RuleCall)cGroup_4_0.eContents().get(1);
-		private final Group cGroup_4_1 = (Group)cAlternatives_4.eContents().get(1);
-		private final RuleCall cParameterListParserRuleCall_4_1_0 = (RuleCall)cGroup_4_1.eContents().get(0);
-		private final RuleCall cEmptyReturnParameterPartParserRuleCall_4_1_1 = (RuleCall)cGroup_4_1.eContents().get(1);
-		private final RuleCall cSpecializationOrConjugationParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cSpecializationOrConjugationParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
+		private final Group cGroup_5_0 = (Group)cAlternatives_5.eContents().get(0);
+		private final RuleCall cParameterListParserRuleCall_5_0_0 = (RuleCall)cGroup_5_0.eContents().get(0);
+		private final RuleCall cReturnParameterPartParserRuleCall_5_0_1 = (RuleCall)cGroup_5_0.eContents().get(1);
+		private final Group cGroup_5_1 = (Group)cAlternatives_5.eContents().get(1);
+		private final RuleCall cParameterListParserRuleCall_5_1_0 = (RuleCall)cGroup_5_1.eContents().get(0);
+		private final RuleCall cEmptyReturnParameterPartParserRuleCall_5_1_1 = (RuleCall)cGroup_5_1.eContents().get(1);
 		
 		//fragment PredicateDeclaration returns SysML::Predicate:
-		//	isAbstract?='abstract'? 'predicate' isSufficient?='all'? name=Name (=> ParameterList ReturnParameterPart |
-		//	ParameterList? EmptyReturnParameterPart) SpecializationOrConjugation?;
+		//	isAbstract?='abstract'? 'predicate' isSufficient?='all'? name=Name SpecializationOrConjugation? (=> ParameterList
+		//	ReturnParameterPart | ParameterList? EmptyReturnParameterPart);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isAbstract?='abstract'? 'predicate' isSufficient?='all'? name=Name (=> ParameterList ReturnParameterPart |
-		//ParameterList? EmptyReturnParameterPart) SpecializationOrConjugation?
+		//isAbstract?='abstract'? 'predicate' isSufficient?='all'? name=Name SpecializationOrConjugation? (=> ParameterList
+		//ReturnParameterPart | ParameterList? EmptyReturnParameterPart)
 		public Group getGroup() { return cGroup; }
 		
 		//isAbstract?='abstract'?
@@ -3149,29 +3149,29 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 		//Name
 		public RuleCall getNameNameParserRuleCall_3_0() { return cNameNameParserRuleCall_3_0; }
 		
+		//SpecializationOrConjugation?
+		public RuleCall getSpecializationOrConjugationParserRuleCall_4() { return cSpecializationOrConjugationParserRuleCall_4; }
+		
 		//(=> ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart)
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 		
 		//=> ParameterList ReturnParameterPart
-		public Group getGroup_4_0() { return cGroup_4_0; }
+		public Group getGroup_5_0() { return cGroup_5_0; }
 		
 		//=> ParameterList
-		public RuleCall getParameterListParserRuleCall_4_0_0() { return cParameterListParserRuleCall_4_0_0; }
+		public RuleCall getParameterListParserRuleCall_5_0_0() { return cParameterListParserRuleCall_5_0_0; }
 		
 		//ReturnParameterPart
-		public RuleCall getReturnParameterPartParserRuleCall_4_0_1() { return cReturnParameterPartParserRuleCall_4_0_1; }
+		public RuleCall getReturnParameterPartParserRuleCall_5_0_1() { return cReturnParameterPartParserRuleCall_5_0_1; }
 		
 		//ParameterList? EmptyReturnParameterPart
-		public Group getGroup_4_1() { return cGroup_4_1; }
+		public Group getGroup_5_1() { return cGroup_5_1; }
 		
 		//ParameterList?
-		public RuleCall getParameterListParserRuleCall_4_1_0() { return cParameterListParserRuleCall_4_1_0; }
+		public RuleCall getParameterListParserRuleCall_5_1_0() { return cParameterListParserRuleCall_5_1_0; }
 		
 		//EmptyReturnParameterPart
-		public RuleCall getEmptyReturnParameterPartParserRuleCall_4_1_1() { return cEmptyReturnParameterPartParserRuleCall_4_1_1; }
-		
-		//SpecializationOrConjugation?
-		public RuleCall getSpecializationOrConjugationParserRuleCall_5() { return cSpecializationOrConjugationParserRuleCall_5; }
+		public RuleCall getEmptyReturnParameterPartParserRuleCall_5_1_1() { return cEmptyReturnParameterPartParserRuleCall_5_1_1; }
 	}
 	public class EmptyReturnParameterPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.EmptyReturnParameterPart");
@@ -8405,7 +8405,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment BehaviorDeclarationCompletion returns SysML::Behavior:
-	//	isSufficient?='all'? name=Name ParameterList? SpecializationOrConjugation?;
+	//	isSufficient?='all'? name=Name SpecializationOrConjugation? ParameterList?;
 	public BehaviorDeclarationCompletionElements getBehaviorDeclarationCompletionAccess() {
 		return pBehaviorDeclarationCompletion;
 	}
@@ -8491,7 +8491,7 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//fragment FunctionDeclaration returns SysML::Function:
 	//	isAbstract?='abstract'? 'function' isSufficient?='all'?
-	//	name=Name ParameterList? ReturnParameterPart SpecializationOrConjugation?;
+	//	name=Name SpecializationOrConjugation? ParameterList? ReturnParameterPart;
 	public FunctionDeclarationElements getFunctionDeclarationAccess() {
 		return pFunctionDeclaration;
 	}
@@ -8569,8 +8569,8 @@ public class KerMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//fragment PredicateDeclaration returns SysML::Predicate:
-	//	isAbstract?='abstract'? 'predicate' isSufficient?='all'? name=Name (=> ParameterList ReturnParameterPart |
-	//	ParameterList? EmptyReturnParameterPart) SpecializationOrConjugation?;
+	//	isAbstract?='abstract'? 'predicate' isSufficient?='all'? name=Name SpecializationOrConjugation? (=> ParameterList
+	//	ReturnParameterPart | ParameterList? EmptyReturnParameterPart);
 	public PredicateDeclarationElements getPredicateDeclarationAccess() {
 		return pPredicateDeclaration;
 	}

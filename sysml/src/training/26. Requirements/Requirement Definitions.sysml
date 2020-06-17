@@ -17,7 +17,7 @@ package 'Requirement Definitions' {
 		value fuelFullMass: MassValue;
 	}
 	
-	requirement def id '1' VehicleMassLimitationRequirement (vehicle : Vehicle) :> MassLimitationRequirement {
+	requirement def id '1' VehicleMassLimitationRequirement :> MassLimitationRequirement (vehicle : Vehicle) {
 		/* The total mass of a vehicle shall be less than or equal to the required mass. */
 		
 		value redefines massActual = vehicle::dryMass + vehicle::fuelMass;

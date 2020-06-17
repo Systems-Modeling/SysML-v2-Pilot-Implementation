@@ -14,9 +14,9 @@ package UnitsAndScales {
 	 * A MeasurementReference can have zero or more scaleValueDefinition that define particular essential 
 	 * values on a measurement scale.
 	 */
-	abstract value type MeasurementReference :> ScalarValue {
-		value name: String; 
-		value scaleValueDefinition: ScaleValueDefinition[0..*];
+	abstract attribute def MeasurementReference :> ScalarValue {
+		attribute name: String; 
+		attribute scaleValueDefinition: ScaleValueDefinition[0..*];
 	}
 	
 	/**
@@ -30,18 +30,18 @@ package UnitsAndScales {
 	 * 
 	 * A MeasurementUnit specifies one or more UnitPowerFactors. 
 	 */
-	abstract value type MeasurementUnit :> MeasurementReference { 
-		value unitPowerFactor: UnitPowerFactor[1..*] ordered;
-		value unitConversion: UnitConversion[0..1];
+	abstract attribute def MeasurementUnit :> MeasurementReference { 
+		attribute unitPowerFactor: UnitPowerFactor[1..*] ordered;
+		attribute unitConversion: UnitConversion[0..1];
 	}
 	
 	/**
 	 * Representation of a measurement unit that does not depend on any other measurement unit.
 	 */
-	abstract value type SimpleUnit :> MeasurementUnit {
-		value unitPowerFactor: UnitPowerFactor redefines MeasurementUnit::unitPowerFactor {
-			value unit redefines UnitPowerFactor::unit = SimpleUnit::self;
-			value exponent redefines UnitPowerFactor::exponent = 1;			
+	abstract attribute def SimpleUnit :> MeasurementUnit {
+		attribute unitPowerFactor: UnitPowerFactor redefines MeasurementUnit::unitPowerFactor {
+			attribute unit redefines UnitPowerFactor::unit = SimpleUnit::self;
+			attribute exponent redefines UnitPowerFactor::exponent = 1;			
 		}
 	}
 	
@@ -50,30 +50,30 @@ package UnitsAndScales {
 	 * 
 	 * VIM defines "derived unit" as "measurement unit for a derived quantity", see https://jcgm.bipm.org/vim/en/1.11.html .
 	 */
-	abstract value type DerivedUnit :> MeasurementUnit;
+	abstract attribute def DerivedUnit :> MeasurementUnit;
 	
 	/**
 	 * Representation of a measurement unit power factor
 	 * 
 	 * Specifies a tuple of a referenced measurement unit and an exponent.
 	 */
-	value type UnitPowerFactor {
-		value unit: MeasurementUnit;
-		value exponent: Number;
+	attribute def UnitPowerFactor {
+		attribute unit: MeasurementUnit;
+		attribute exponent: Number;
 	}
 	
 	/**
 	 * Representation of the linear conversion relationship between one measurement unit and another measurement unit, that acts as a reference.  
 	 */
-	abstract value type UnitConversion {
-		value referenceUnit: MeasurementUnit;
-		value conversionFactor: Number;
+	abstract attribute def UnitConversion {
+		attribute referenceUnit: MeasurementUnit;
+		attribute conversionFactor: Number;
 	}
 	
 	/**
 	 * Representation of a UnitConversion that is defined according to some convention.
 	 */
-	value type ConversionByConvention :> UnitConversion;
+	attribute def ConversionByConvention :> UnitConversion;
 	
 	/**
 	 * Representation of a UnitConversion that is defined through reference to a named unit prefix associated to a conversion factor 
@@ -83,20 +83,20 @@ package UnitsAndScales {
 	 * 
 	 * Examples: kilometre for conversion factor 1000 with reference unit metre, nanofarad for 1E-9 farad.
 	 */
-	value type ConversionByPrefix :> UnitConversion {
-		value prefix: UnitPrefix {
-			value conversionFactor: Real redefines UnitPrefix::conversionFactor;
+	attribute def ConversionByPrefix :> UnitConversion {
+		attribute prefix: UnitPrefix {
+			attribute conversionFactor: Real redefines UnitPrefix::conversionFactor;
 		}
-		value conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;		
+		attribute conversionFactor redefines UnitConversion::conversionFactor = prefix::conversionFactor;		
 	}
 
 	/**
 	 * Representation of a multiple or sub-multiple measurement unit prefix as defined in ISO/IEC 80000-1.
 	 */	
-	value type UnitPrefix {
-		value name: String;
-		value symbol: String;
-		value conversionFactor: Integer;
+	attribute def UnitPrefix {
+		attribute name: String;
+		attribute symbol: String;
+		attribute conversionFactor: Integer;
 	}
 	
 		
@@ -105,22 +105,22 @@ package UnitsAndScales {
 	 * 
 	 * Note: A ratio scale is implied by direct use of a MeasurementUnit as the mRef in a QuantityValue.
 	 */
-	abstract value type MeasurementScale :> MeasurementReference {
-		value unit: MeasurementUnit;
-		value scaleValueMapping: ScaleValueMapping[0..1];	
+	abstract attribute def MeasurementScale :> MeasurementReference {
+		attribute unit: MeasurementUnit;
+		attribute scaleValueMapping: ScaleValueMapping[0..1];	
 	}
 	
 	/**
 	 * Representation of an ordinal measurement scale.
 	 */
-	value type OrdinalScale :> MeasurementScale;
+	attribute def OrdinalScale :> MeasurementScale;
 	
 	/**
 	 * Representation of an interval measurement scale.
 	 * 
 	 * The offset of one interval measurement scale w.r.t. another interval or ratio scale is defined through a scaleValueMapping, see MeasurementReference.
 	 */
-	value type IntervalScale :> MeasurementScale;
+	attribute def IntervalScale :> MeasurementScale;
 	
 	/**
 	 * Representation of a ratio measurement scale with a periodic cycle.
@@ -129,8 +129,8 @@ package UnitsAndScales {
 	 * Example: Planar angle with modulus 360 degrees, therefore on such a cyclic ratio scale, 
 	 * an angle of 450 degrees is equivalent to an angle of 90 degrees, and -60 degrees is equivalent to 300 degrees.
 	 */
-	value type CyclicRatioScale :> MeasurementScale { 
-		value modulus: Number;
+	attribute def CyclicRatioScale :> MeasurementScale { 
+		attribute modulus: Number;
 	}
 
 	/**
@@ -146,11 +146,11 @@ package UnitsAndScales {
      *   x_ref is a reference quantity,
      *   a is an exponent.
 	 */
-	value type LogarithmicScale :> MeasurementScale {
-		value logarithmBase: Number;
-		value factor: Number;
-		value exponent: Number;
-		value referenceQuantity: Quantities::QuantityValue[0..1];
+	attribute def LogarithmicScale :> MeasurementScale {
+		attribute logarithmBase: Number;
+		attribute factor: Number;
+		attribute exponent: Number;
+		attribute referenceQuantity: Quantities::QuantityValue[0..1];
 	}
 	
 	/**
@@ -162,9 +162,9 @@ package UnitsAndScales {
 	 * and specify a mappedScaleValue referencing the 
 	 * ScaleValueDefinition (0.01, "absolute thermodynamic temperature of the triple point of water") of the celsius interval scale.
 	 */
-	value type ScaleValueMapping {
-		value referenceScaleValue: ScaleValueDefinition;	
-		value mappedScaleValue: ScaleValueDefinition;
+	attribute def ScaleValueMapping {
+		attribute referenceScaleValue: ScaleValueDefinition;	
+		attribute mappedScaleValue: ScaleValueDefinition;
 	}
 	
 	/**
@@ -175,27 +175,27 @@ package UnitsAndScales {
 	 * ScaleValueDefinition(num => 273.16, description => "absolute temperature of the triple point of pure water")
 	 * that is value of the definition of the scale.
 	 */
-	value type ScaleValueDefinition {
-		value num: Number;
-		value description: String;
+	attribute def ScaleValueDefinition {
+		attribute num: Number;
+		attribute description: String;
 	}
 	
 	/**
 	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
 	 */
-	value type QuantityDimension {
-		value baseUnitPowerFactor: UnitPowerFactor[0..*] ordered;
+	attribute def QuantityDimension {
+		attribute baseUnitPowerFactor: UnitPowerFactor[0..*] ordered;
 	}
 
 	/**
 	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
 	 */
-	value type DimensionOneUnit :> DerivedUnit {
-		value name: String redefines MeasurementScale::name = "unit of dimension one";
+	attribute def DimensionOneUnit :> DerivedUnit {
+		attribute name: String redefines MeasurementScale::name = "unit of dimension one";
 	}
-	value type DimensionOneValue :> QuantityValue {
-		value num: Real redefines QuantityValue::num;
-		value mRef: DimensionOneUnit redefines QuantityValue::mRef;
+	attribute def DimensionOneValue :> QuantityValue {
+		attribute num: Real redefines QuantityValue::num;
+		attribute mRef: DimensionOneUnit redefines QuantityValue::mRef;
 	}
-	value one = DimensionOneUnit();
+	attribute one = DimensionOneUnit();
 }

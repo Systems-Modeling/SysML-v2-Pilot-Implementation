@@ -10,28 +10,26 @@ package 'Turbojet Stage Analysis' {
 	}
 	
 	package 'Thermodynamic Functions' {
-	    function def 'Ideal Gas Law' (in rho, in R_bar, in T) return p {
+	    calc def 'Ideal Gas Law' (in rho, in R_bar, in T) return p {
 	        rho * R_bar * T
 	    }
 	    
 	    // The "in" and "return" direction markers are optional.
-	    function def 'Reversible Adiabatic Compression Density' (rho_1, rho_2, p_1, p_2, gamma) rho_2 {
+	    calc def 'Reversible Adiabatic Compression Density' (rho_1, rho_2, p_1, p_2, gamma) rho_2 {
 	        rho_1 * (p_2 / p_1)**(1/gamma)
 	    }
 	    
 	    // Shorthand for "mathematical" function definition (with no steps but the returned expression)
-	    function def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) 
+	    calc def 'Reversible Adiabatic Compression Temperature' (T_1, p_1, p_2, gamma) 
 	    	T_2 = T_1 * (p_2 / p_1)**((gamma - 1) / gamma);
 	    
-	    // Examples of alternative keywords
-	    
-	    fn def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V ** 2 + P_static;
+	    calc def 'Total Pressure' (P_static, rho, V) = 1/2 * rho * V ** 2 + P_static;
 	    
 	    // Showing explicit parameter typing
 	    calc def 'Total Temperature' (T_static : TemperatureValue, Cp : DimensionOneValue, V : VolumeValue) : TemperatureValue 
 	    	= 1/(2 * Cp) * V ** 2 + T_static;
 	    
-	    compute def 'Total Enthalpy' (h_total, h_static, V) H_total {
+	    calc def 'Total Enthalpy' (h_total, h_static, V) H_total {
 	    	1/2 * V ** 2 + h_static
 	    }
 	}
@@ -91,14 +89,14 @@ package 'Turbojet Stage Analysis' {
 	        
 	        part 'Inlet Gas' : 'Thermodynamics Structure'::'Moving Ideal Gas Parcel' {
 	        	// Explicit binding notation
-	        	function 'Solve for Pressure1' : 'Ideal Gas Law' (rho, R_bar, T) p;
+	        	calc 'Solve for Pressure1' : 'Ideal Gas Law' (rho, R_bar, T) p;
 	        	bind 'Density' = 'Solve for Pressure1'::rho;
 	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'::R_bar;
 	        	bind 'Static Temperature' = 'Solve for Pressure1'::rho;
 	        	bind 'Static Pressure' = 'Solve for Pressure1'::p;	        	
 	        	
 	        	// Shorthand parameter binding notation (also using optional "in" and "return")
-	            function 'Solve for Pressure2' : 'Ideal Gas Law'(
+	            calc 'Solve for Pressure2' : 'Ideal Gas Law'(
 	                in rho = 'Density',
 	                in R_bar = 'Specific Gas Constant',
 	                in T = 'Static Temperature'
@@ -113,24 +111,21 @@ package 'Turbojet Stage Analysis' {
 	            // Equation as a constraint (note "==")
 	            constraint { 'Static Pressure' == 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature') }
 	            
-	            // Examples of alternative keywords
 	        	// Shorthand parameter binding notation
-	            fn 'Solve for Pressure3' : 'Ideal Gas Law'(
+	        	
+	            calc 'Solve for Pressure3' : 'Ideal Gas Law'(
 	                in rho = 'Density',
 	                in R_bar = 'Specific Gas Constant',
 	                in T = 'Static Temperature'
 	            ) return p = 'Static Pressure';
 	            
-	        	// Shorthand parameter binding notation
 	            calc 'Solve for Pressure4' : 'Ideal Gas Law'(
 	                in rho = 'Density',
 	                in R_bar = 'Specific Gas Constant',
 	                in T = 'Static Temperature'
 	            ) return p = 'Static Pressure';
 	            
-	        	// Shorthand parameter binding notation 
-	        	// (this one may work for a computation, distinct from a "mathematical function")
-	            compute 'Solve for Pressure5' : 'Ideal Gas Law'(
+	            calc 'Solve for Pressure5' : 'Ideal Gas Law'(
 	                in rho = 'Density',
 	                in R_bar = 'Specific Gas Constant',
 	                in T = 'Static Temperature'

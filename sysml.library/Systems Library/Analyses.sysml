@@ -32,7 +32,7 @@ package Analyses {
 	/**
 	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
 	 */
-	activity AnalysisAction;
+	action def AnalysisAction;
 	
 	/**
 	 * analysisCases is the base feature of all AnalysisCaseUsages.

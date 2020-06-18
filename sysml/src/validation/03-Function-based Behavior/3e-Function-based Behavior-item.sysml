@@ -22,11 +22,11 @@ package '3e-Function-based Behavior-item' {
 					/**
 					 * Note: The "flows" of an action should be considered to be its parameters.
 					 */
-					item in 'vehicle assy without transmission or engine' : VehicleAssembly;
+					in item 'vehicle assy without transmission or engine' : VehicleAssembly;
 					/** Note: A part can be treated as an item. */
-					item in transmission : Transmission;
+					in item transmission : Transmission;
 					
-					item out 'vehicle assy without engine' : VehicleAssembly = 'vehicle assy without transmission or engine' {
+					out item 'vehicle assy without engine' : VehicleAssembly = 'vehicle assy without transmission or engine' {
 						/** Note: An item can become a part of something else. */
 						part transmission : Transmission = 'assemble transmission into vehicle'::transmission;
 					}
@@ -36,12 +36,12 @@ package '3e-Function-based Behavior-item' {
 				    to 'assemble engine into vehicle'::'vehicle assy without engine';
 				
 				action 'assemble engine into vehicle' {
-					item in 'vehicle assy without engine' : VehicleAssembly {
+					in item 'vehicle assy without engine' : VehicleAssembly {
 						part transmission : Transmission;
 					}
-					item in engine : Engine;
+					in item engine : Engine;
 					
-					item out assembledVehicle : AssembledVehicle = 'vehicle assy without engine' {
+					out item assembledVehicle : AssembledVehicle = 'vehicle assy without engine' {
 						part engine : Engine = 'assemble engine into vehicle'::engine;
 					}
 				}
@@ -50,7 +50,7 @@ package '3e-Function-based Behavior-item' {
 			bind 'assemble vehicle'::'assemble engine into vehicle'::assembledVehicle = vehicle;
 			
 			/**
-			 * Note: An item in one context can become a part in an other.
+			 * Note: An in item one context can become a part in an other.
 			 */
 			part vehicle : Vehicle {
 				part transmission: Transmission;

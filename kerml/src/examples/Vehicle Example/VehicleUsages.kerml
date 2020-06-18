@@ -88,12 +88,12 @@ package VehicleUsages {
 	/** Further specialized configuration with a connector to a deeply-nested port. **/
 	feature vehicle_C3 redefines vehicle_C2 {
 		composite transmission: Transmission {
-			port out drive: DriveIF;
+			out port drive: DriveIF;
 		}
 		
 		composite rearAxleAssembly redefines vehicle_C2::rearAxleAssembly {
 			composite rearAxle redefines vehicle_C2::rearAxleAssembly::rearAxle {
-				port in drive: DriveIF;
+				in port drive: DriveIF;
 			}
 		}
 		

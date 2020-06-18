@@ -12,7 +12,7 @@ package AHFNorway {
 		intrfce_protocol = "{JSON}";
 		serviceURL = "pull";
 		// functionalities 
-		ref action out getAllItems; // referring to generic functionality
+		out ref action getAllItems; // referring to generic functionality
 	}
 	
 	value type Subscribe_getAllItems;
@@ -35,10 +35,10 @@ package AHFNorway {
 		block APISProducer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:APISService subsets services { // providing the APISService
-				ref action out :>> getAllItems;
+				out ref action :>> getAllItems;
 			}
 			port tellu:APISService subsets services { // talking to TellU
-				ref action out :>> getAllItems;
+				out ref action :>> getAllItems;
 			}
 			
 			// specializing the functionality implementation towards REST

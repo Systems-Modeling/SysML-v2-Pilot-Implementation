@@ -20,15 +20,15 @@ package RoomModel {
         package Port_Definitions{
             port def EntryWay_to_Classroom {
                 //flow properties
-                ref in student:Student;
-                ref in teacher:Teacher;
-                ref in furniture:Furniture;
-                ref in air:Air;
+                in ref student:Student;
+                in ref teacher:Teacher;
+                in ref furniture:Furniture;
+                in ref air:Air;
             }
             port def EntryWay_to_Storageroom {
                 //flow properties
-                ref in furniture:  Furniture;
-                ref in air: Air;
+                in ref furniture:  Furniture;
+                in ref air: Air;
             }
         }
         package Flow_Definitions {
@@ -48,28 +48,28 @@ package RoomModel {
         part roomContext{
             part c:Classroom {
             	port classEntry redefines Classroom::classEntry {
-	                ref in student redefines Classroom::classEntry::student;
-	                ref in teacher redefines Classroom::classEntry::teacher;
-	                ref in furniture redefines Classroom::classEntry::furniture;
-	                ref in air redefines Classroom::classEntry::air;            		
+	                in ref student redefines Classroom::classEntry::student;
+	                in ref teacher redefines Classroom::classEntry::teacher;
+	                in ref furniture redefines Classroom::classEntry::furniture;
+	                in ref air redefines Classroom::classEntry::air;            		
             	}
             }
             part s:Storageroom {
             	port storageEntry redefines Storageroom::storageEntry{ 
-	                ref in furniture redefines Storageroom::storageEntry::furniture;
-	                ref in air redefines Storageroom::storageEntry::air;
+	                in ref furniture redefines Storageroom::storageEntry::furniture;
+	                in ref air redefines Storageroom::storageEntry::air;
             	}
             }
             part h:Hallway {
                 port hallExit_to_Classroom redefines Hallway::hallExit_to_Classroom {
-	                ref out student redefines Hallway::hallExit_to_Classroom::student;
-	                ref out teacher redefines Hallway::hallExit_to_Classroom::teacher;
-	                ref out furniture redefines Hallway::hallExit_to_Classroom::furniture;
-	                ref out air redefines Hallway::hallExit_to_Classroom::air;            		
+	                out ref student redefines Hallway::hallExit_to_Classroom::student;
+	                out ref teacher redefines Hallway::hallExit_to_Classroom::teacher;
+	                out ref furniture redefines Hallway::hallExit_to_Classroom::furniture;
+	                out ref air redefines Hallway::hallExit_to_Classroom::air;            		
                }
                 port hallExit_to_Storageroom redefines Hallway::hallExit_to_Storageroom {
-	                ref out furniture redefines Hallway::hallExit_to_Storageroom::furniture;
-	                ref out air redefines Hallway::hallExit_to_Storageroom::air;
+	                out ref furniture redefines Hallway::hallExit_to_Storageroom::furniture;
+	                out ref air redefines Hallway::hallExit_to_Storageroom::air;
                 }           	
             }
             

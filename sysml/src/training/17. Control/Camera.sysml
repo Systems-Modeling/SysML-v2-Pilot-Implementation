@@ -10,15 +10,15 @@ package Camera {
 		part photos : Picture[*];
 				
 		part autoFocus {
-			ref in view : Scene = camera::view;		
-			ref out realImage : Image;
+			in ref view : Scene = camera::view;		
+			out ref realImage : Image;
 		}
 		
 		flow autoFocus::realImage to imager::focusedImage;
 		
 		part imager {
-			ref in focusedImage : Image;		
-			ref out photo : Picture :> photos;
+			in ref focusedImage : Image;		
+			out ref photo : Picture :> photos;
 		}
 		
 	}

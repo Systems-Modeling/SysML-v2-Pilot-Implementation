@@ -8,7 +8,7 @@ package '3d-Function-based Behavior-item' {
 		item def Fuel;
 		
 		port def FuelPort {
-			item out fuel: Fuel;
+			out item fuel: Fuel;
 		}
 				
 		part def Pump {
@@ -46,7 +46,7 @@ package '3d-Function-based Behavior-item' {
 				 * for the stream to work;
 				 */
 				port :>> fuelOutPort {
-					item out :>> fuel;
+					out item :>> fuel;
 				}
 			}
 			
@@ -58,11 +58,11 @@ package '3d-Function-based Behavior-item' {
 			
 			part pump : Pump {
 				port :>> fuelInPort {
-					item in :>> fuel;
+					in item :>> fuel;
 				}
 				
 				port :>> fuelOutPort {
-					item out :>> fuel;
+					out item :>> fuel;
 				}
 				
 				perform action pumpFuel (
@@ -76,7 +76,7 @@ package '3d-Function-based Behavior-item' {
 			
 			part vehicle : Vehicle {
 				port :>> fuelInPort {
-					item in :>> fuel;
+					in item :>> fuel;
 				}
 				
 				/** 

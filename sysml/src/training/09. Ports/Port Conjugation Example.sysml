@@ -6,8 +6,8 @@ package 'Port Conjugation Example' {
 	
 	port def FuelPort {
 		value temperature : Temp;
-		ref out fuelSupply : Fuel;
-		ref in fuelReturn : Fuel;
+		out ref fuelSupply : Fuel;
+		in ref fuelReturn : Fuel;
 	}
 	
 	block FuelTank {

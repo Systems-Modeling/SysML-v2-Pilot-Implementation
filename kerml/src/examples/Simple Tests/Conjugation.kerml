@@ -1,6 +1,6 @@
 package Conjugation {
 	class A {
-		feature in f;
+		in feature f;
 	}
 	
 	class B conjugates A;

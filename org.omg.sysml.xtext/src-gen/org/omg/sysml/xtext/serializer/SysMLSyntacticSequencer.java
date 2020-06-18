@@ -23,9 +23,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SysMLGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_ActionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_AssertConstraintUsage_AsKeyword_1_0_0_2_q;
-	protected AbstractElementAlias match_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_1_1_0_q;
-	protected AbstractElementAlias match_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
+	protected AbstractElementAlias match_AssertConstraintUsage_AsKeyword_2_0_0_2_q;
+	protected AbstractElementAlias match_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_2_1_0_q;
+	protected AbstractElementAlias match_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
 	protected AbstractElementAlias match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_q;
 	protected AbstractElementAlias match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______;
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a;
@@ -55,9 +55,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
 	protected AbstractElementAlias match_RequirementDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ReturnParameterMember_ReturnKeyword_0_q;
-	protected AbstractElementAlias match_SatisfyRequirementUsage_AsKeyword_1_0_0_2_q;
-	protected AbstractElementAlias match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_1_1_0_q;
-	protected AbstractElementAlias match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
+	protected AbstractElementAlias match_SatisfyRequirementUsage_AsKeyword_2_0_0_2_q;
+	protected AbstractElementAlias match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_2_1_0_q;
+	protected AbstractElementAlias match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
 	protected AbstractElementAlias match_SendNodeDeclaration_OfKeyword_3_1_q;
 	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_2_q;
 	protected AbstractElementAlias match_TransitionStep_FirstKeyword_1_2_q;
@@ -67,9 +67,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SysMLGrammarAccess) access;
 		match_ActionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getActionDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getActionDefBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getActionDefBodyAccess().getSemicolonKeyword_0()));
-		match_AssertConstraintUsage_AsKeyword_1_0_0_2_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getAsKeyword_1_0_0_2());
-		match_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_1_1_0_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_1_1_0());
-		match_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getAssertConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_1_1_0()));
+		match_AssertConstraintUsage_AsKeyword_2_0_0_2_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getAsKeyword_2_0_0_2());
+		match_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_2_1_0_q = new TokenAlias(false, true, grammarAccess.getAssertConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_2_1_0());
+		match_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getAssertConstraintUsageAccess().getConstraintUsageKeywordParserRuleCall_2_1_0()));
 		match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getAttributeUsageAccess().getAttributeUsageKeywordParserRuleCall_1());
 		match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______ = new AlternativeAlias(false, false, new GroupAlias(false, false, new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0())), new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_1_3())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())))), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())));
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_6_0()));
@@ -99,9 +99,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_RequirementConstraintUsage_TypePart_ConstraintKeyword_0_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getRequirementConstraintUsageAccess().getConstraintKeyword_0_1_0()));
 		match_RequirementDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRequirementDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRequirementDefBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRequirementDefBodyAccess().getSemicolonKeyword_0()));
 		match_ReturnParameterMember_ReturnKeyword_0_q = new TokenAlias(false, true, grammarAccess.getReturnParameterMemberAccess().getReturnKeyword_0());
-		match_SatisfyRequirementUsage_AsKeyword_1_0_0_2_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getAsKeyword_1_0_0_2());
-		match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_1_1_0_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeywordParserRuleCall_1_1_0());
-		match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeywordParserRuleCall_1_1_0()));
+		match_SatisfyRequirementUsage_AsKeyword_2_0_0_2_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getAsKeyword_2_0_0_2());
+		match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_2_1_0_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeywordParserRuleCall_2_1_0());
+		match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeywordParserRuleCall_2_1_0()));
 		match_SendNodeDeclaration_OfKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getSendNodeDeclarationAccess().getOfKeyword_3_1());
 		match_SuccessionDeclaration_FirstKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_2());
 		match_TransitionStep_FirstKeyword_1_2_q = new TokenAlias(false, true, grammarAccess.getTransitionStepAccess().getFirstKeyword_1_2());
@@ -628,12 +628,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_ActionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_ActionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AssertConstraintUsage_AsKeyword_1_0_0_2_q.equals(syntax))
-				emit_AssertConstraintUsage_AsKeyword_1_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_1_1_0_q.equals(syntax))
-				emit_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
-				emit_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssertConstraintUsage_AsKeyword_2_0_0_2_q.equals(syntax))
+				emit_AssertConstraintUsage_AsKeyword_2_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_2_1_0_q.equals(syntax))
+				emit_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_2_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
+				emit_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_q.equals(syntax))
 				emit_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_6_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______.equals(syntax))
@@ -692,12 +692,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_RequirementDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ReturnParameterMember_ReturnKeyword_0_q.equals(syntax))
 				emit_ReturnParameterMember_ReturnKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SatisfyRequirementUsage_AsKeyword_1_0_0_2_q.equals(syntax))
-				emit_SatisfyRequirementUsage_AsKeyword_1_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_1_1_0_q.equals(syntax))
-				emit_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
-				emit_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SatisfyRequirementUsage_AsKeyword_2_0_0_2_q.equals(syntax))
+				emit_SatisfyRequirementUsage_AsKeyword_2_0_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_2_1_0_q.equals(syntax))
+				emit_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_2_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__.equals(syntax))
+				emit_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SendNodeDeclaration_OfKeyword_3_1_q.equals(syntax))
 				emit_SendNodeDeclaration_OfKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuccessionDeclaration_FirstKeyword_0_2_q.equals(syntax))
@@ -717,13 +717,16 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'perform' ActionKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
-	 *     (rule start) ActionKeyword (ambiguity) (rule start)
 	 *     (rule start) ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
+	 *     isAbstract?='abstract' 'perform' ActionKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'perform' ActionKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ActionParameterFlowMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ActionParameterMember ')' (ambiguity) (rule end)
@@ -747,8 +750,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'assert' (ambiguity) ownedRelationship_comp+=Subset
+	 *     isAbstract?='abstract' 'assert' (ambiguity) ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' 'assert' (ambiguity) ownedRelationship_comp+=Subset
 	 */
-	protected void emit_AssertConstraintUsage_AsKeyword_1_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AssertConstraintUsage_AsKeyword_2_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -759,8 +764,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'assert' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'assert' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isAbstract?='abstract' 'assert' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'assert' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isVariation?='variation' 'assert' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'assert' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
 	 */
-	protected void emit_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AssertConstraintUsage_ConstraintUsageKeywordParserRuleCall_2_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -771,8 +780,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'assert' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) 'assert' (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isAbstract?='abstract' 'assert' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isAbstract?='abstract' 'assert' (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' 'assert' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' 'assert' (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
 	 */
-	protected void emit_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AssertConstraintUsage_TypePart_ConstraintUsageKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -788,6 +801,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
@@ -801,12 +815,27 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule end)
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     isVariation?='variation' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '=' ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule end)
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' (ambiguity) name=Name
 	 */
 	protected void emit_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -921,6 +950,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?=CalculationUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' CalculationUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' CalculationUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=CalculationReturnParameterMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
@@ -955,6 +986,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' ConnectionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isVariation?='variation' ConnectionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
@@ -977,6 +1009,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) DefinedByKeyword 'any' (ambiguity) (rule start)
+	 *     (rule start) AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
@@ -987,6 +1020,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -995,10 +1030,24 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' PortUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ReferenceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' PortUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' PortUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' ReferenceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
@@ -1034,7 +1083,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ActionKeyword (ambiguity) (rule start)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
@@ -1086,6 +1134,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
@@ -1110,6 +1159,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
@@ -1132,6 +1182,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' InterfaceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
+	 *     isVariation?='variation' InterfaceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
@@ -1194,6 +1245,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
@@ -1208,6 +1260,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule end)
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
@@ -1215,6 +1268,21 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     isVariation?='variation' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '=' ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule end)
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword '~' ownedRelationship_comp+=ConjugatedPortTyping
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' (ambiguity) name=Name
 	 */
 	protected void emit_PortEndUsage_PortUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1229,6 +1297,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) PortUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' PortUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' PortUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' PortUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' PortUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
@@ -1248,6 +1318,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule start)
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
@@ -1261,12 +1332,27 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule end)
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     isVariation?='variation' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '=' ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedFeatureMembership_comp+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedImport_comp+=Import
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' (';' | ('{' '}')) (rule end)
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword 'any' SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' (ambiguity) name=Name
 	 */
 	protected void emit_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1337,8 +1423,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'satisfy' (ambiguity) ownedRelationship_comp+=Subset
+	 *     isAbstract?='abstract' 'satisfy' (ambiguity) ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' 'satisfy' (ambiguity) ownedRelationship_comp+=Subset
 	 */
-	protected void emit_SatisfyRequirementUsage_AsKeyword_1_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_SatisfyRequirementUsage_AsKeyword_2_0_0_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1349,8 +1437,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'satisfy' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'satisfy' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isAbstract?='abstract' 'satisfy' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'satisfy' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     isVariation?='variation' 'satisfy' (ambiguity) (DefinedByKeyword 'any')? ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'satisfy' (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
 	 */
-	protected void emit_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_2_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1362,8 +1454,14 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'satisfy' (ambiguity) 'by' ownedFeatureMembership_comp+=SatisfactionConnectorMember
 	 *     (rule start) 'satisfy' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
 	 *     (rule start) 'satisfy' (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isAbstract?='abstract' 'satisfy' (ambiguity) 'by' ownedFeatureMembership_comp+=SatisfactionConnectorMember
+	 *     isAbstract?='abstract' 'satisfy' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isAbstract?='abstract' 'satisfy' (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     isVariation?='variation' 'satisfy' (ambiguity) 'by' ownedFeatureMembership_comp+=SatisfactionConnectorMember
+	 *     isVariation?='variation' 'satisfy' (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     isVariation?='variation' 'satisfy' (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
 	 */
-	protected void emit_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_1_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_2_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1424,6 +1522,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) ActionKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) ActionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) AttributeUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) AttributeUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) BindingKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -1443,6 +1542,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) SuccessionKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) TransitionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'assert' ConstraintUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'exhibit' StateUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'perform' ActionKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' ActionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -1452,7 +1554,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' StateUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'satisfy' RequirementKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' ActionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' AttributeUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' AttributeUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' ConnectionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -1479,6 +1583,35 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?=SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=StateUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'assert' ConstraintUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'exhibit' StateUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'perform' ActionKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' ActionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' RequirementUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' StateUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'satisfy' RequirementKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' ActionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' AttributeUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' AttributeUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' ConnectionUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' ItemUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' PartUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' ReferenceUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' ReferenceUsageKeyword? (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' RequirementUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' StateUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     reqId=Name (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember

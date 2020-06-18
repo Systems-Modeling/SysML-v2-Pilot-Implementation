@@ -97,6 +97,7 @@ import org.omg.sysml.lang.sysml.TargetEnd;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.xtext.services.SysMLGrammarAccess;
 
 @SuppressWarnings("all")
@@ -114,20 +115,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		if (epackage == SysMLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case SysMLPackage.ACCEPT_ACTION_USAGE:
-				if (rule == grammarAccess.getStateActionUsageRule()
-						|| rule == grammarAccess.getTransferNodeRule()
-						|| rule == grammarAccess.getEffectBehaviorUsageRule()) {
-					sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart(context, (AcceptActionUsage) semanticObject); 
+				if (rule == grammarAccess.getActionNodeRule()) {
+					sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart_UsagePrefix(context, (AcceptActionUsage) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getActionNodeRule()) {
-					sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart(context, (AcceptActionUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPerformedActionUsageRule()
-						|| rule == grammarAccess.getTransferNodeDeclarationRule()
-						|| rule == grammarAccess.getAcceptNodeDeclarationRule()) {
-					sequence_AcceptNodeDeclaration_MultiplicityPart_TypePart(context, (AcceptActionUsage) semanticObject); 
+				else if (rule == grammarAccess.getAcceptNodeRule()) {
+					sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart_UsagePrefix(context, (AcceptActionUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTriggerStepRule()) {
@@ -148,28 +141,36 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.ACTION_USAGE:
-				if (rule == grammarAccess.getUnitRule()) {
-					sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (ActionUsage) semanticObject); 
+				if (rule == grammarAccess.getStateActionUsageRule()
+						|| rule == grammarAccess.getEffectBehaviorUsageRule()) {
+					sequence_AcceptNodeDeclaration_ActionDefBodyItem_ActionParameterList_EmptyActionUsage_MultiplicityPart_PerformActionUsageDeclaration_Redefines_SendNodeDeclaration_Subsets_SubsettingPart_TypePart_ValuePart(context, (ActionUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPerformedActionUsageRule()) {
+					sequence_AcceptNodeDeclaration_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_SendNodeDeclaration_Subsets_SubsettingPart_TypePart_ValuePart(context, (ActionUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getUnitRule()) {
+					sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (ActionUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getActionUnitRule()) {
-					sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (ActionUsage) semanticObject); 
+					sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (ActionUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getConnectionEndElementRule()
 						|| rule == grammarAccess.getActionRefUsageRule()) {
-					sequence_ActionDefBodyItem_ActionParameterList_ActionRefUsage_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (ActionUsage) semanticObject); 
+					sequence_ActionDefBodyItem_ActionParameterList_ActionRefUsage_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ActionUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()
 						|| rule == grammarAccess.getActionUsageRule()) {
-					sequence_ActionDefBodyItem_ActionParameterList_ActionUsage_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (ActionUsage) semanticObject); 
+					sequence_ActionDefBodyItem_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ActionUsage) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getStateActionUsageRule()
-						|| rule == grammarAccess.getEmptyActionUsageRule()
-						|| rule == grammarAccess.getEffectBehaviorUsageRule()) {
+				else if (rule == grammarAccess.getEmptyActionUsageRule()) {
 					sequence_EmptyActionUsage(context, (ActionUsage) semanticObject); 
 					return; 
 				}
@@ -189,43 +190,46 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.ASSERT_CONSTRAINT_USAGE:
-				if (rule == grammarAccess.getNondirectionalBehaviorUsageElementRule()) {
-					sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (AssertConstraintUsage) semanticObject); 
+				if (rule == grammarAccess.getNondirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()) {
+					sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (AssertConstraintUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getAssertConstraintUsageRule()) {
-					sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (AssertConstraintUsage) semanticObject); 
+					sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (AssertConstraintUsage) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.ATTRIBUTE_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()
 						|| rule == grammarAccess.getAttributeDefinitionRule()) {
-					sequence_AttributeDefDeclaration_ClassifierDeclarationCompletion_DefinitionBodyItem_SuperclassingList(context, (AttributeDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList(context, (AttributeDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_AttributeDefDeclaration_ClassifierDeclarationCompletion_DefinitionBodyItem_SuperclassingList_UnitPrefix(context, (AttributeDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (AttributeDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getAttributeDefinitionUnitRule()) {
-					sequence_AttributeDefDeclaration_ClassifierDeclarationCompletion_DefinitionBodyItem_SuperclassingList_UnitPrefix(context, (AttributeDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (AttributeDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.ATTRIBUTE_USAGE:
 				if (rule == grammarAccess.getUnitRule()) {
-					sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (AttributeUsage) semanticObject); 
+					sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (AttributeUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getAttributeUnitRule()) {
-					sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (AttributeUsage) semanticObject); 
+					sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (AttributeUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()
 						|| rule == grammarAccess.getDirectionalStructureUsageElementRule()
-						|| rule == grammarAccess.getAttributeUsageRule()) {
-					sequence_AttributeUsage_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (AttributeUsage) semanticObject); 
+						|| rule == grammarAccess.getVariantUsageElementRule()
+						|| rule == grammarAccess.getAttributeUsageRule()
+						|| rule == grammarAccess.getAttributeVariantUsageRule()) {
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (AttributeUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -263,22 +267,23 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				else break;
 			case SysMLPackage.CALCULATION_USAGE:
 				if (rule == grammarAccess.getUnitRule()) {
-					sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (CalculationUsage) semanticObject); 
+					sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (CalculationUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getCalculationUnitRule()) {
-					sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (CalculationUsage) semanticObject); 
+					sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (CalculationUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getConnectionEndElementRule()
 						|| rule == grammarAccess.getCalculationRefUsageRule()) {
-					sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationRefUsage_CalculationReturnParameterPart_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (CalculationUsage) semanticObject); 
+					sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationRefUsage_CalculationReturnParameterPart_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (CalculationUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()
 						|| rule == grammarAccess.getCalculationUsageRule()) {
-					sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_CalculationUsage_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (CalculationUsage) semanticObject); 
+					sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (CalculationUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -302,66 +307,65 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SysMLPackage.CONNECTION_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()
 						|| rule == grammarAccess.getConnectionDefinitionRule()) {
-					sequence_ClassifierDeclarationCompletion_ConnectionDefBody_ConnectionDefDeclaration_SuperclassingList(context, (ConnectionDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_ConnectionDefBody_DefinitionPrefix_SuperclassingList(context, (ConnectionDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_ConnectionDefBody_ConnectionDefDeclaration_SuperclassingList_UnitPrefix(context, (ConnectionDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_ConnectionDefBody_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (ConnectionDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConnectionDefinitionUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_ConnectionDefBody_ConnectionDefDeclaration_SuperclassingList_UnitPrefix(context, (ConnectionDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_ConnectionDefBody_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (ConnectionDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.CONNECTION_USAGE:
-				if (rule == grammarAccess.getConnectionUsageRule()) {
-					sequence_ConnectionDefBody_ConnectionUsage_ConnectorPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration(context, (ConnectionUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedUsageElementRule()
-						|| rule == grammarAccess.getNondirectionalStructureUsageElementRule()) {
-					sequence_ConnectionDefBody_ConnectionUsage_Connector_ConnectorPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration(context, (ConnectionUsage) semanticObject); 
+				if (rule == grammarAccess.getPackagedUsageElementRule()
+						|| rule == grammarAccess.getNondirectionalStructureUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
+						|| rule == grammarAccess.getConnectionUsageRule()) {
+					sequence_ConnectionDefBody_ConnectorPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix(context, (ConnectionUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConnectorRule()) {
-					sequence_ConnectionDefBody_Connector_ConnectorPart(context, (ConnectionUsage) semanticObject); 
+					sequence_ConnectionDefBody_ConnectorPart_UsagePrefix(context, (ConnectionUsage) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.CONSTRAINT_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()) {
-					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList(context, (ConstraintDefinition) semanticObject); 
+					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList(context, (ConstraintDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConstraintDefinitionRule()) {
-					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList(context, (ConstraintDefinition) semanticObject); 
+					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList(context, (ConstraintDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(context, (ConstraintDefinition) semanticObject); 
+					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(context, (ConstraintDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConstraintDefinitionUnitRule()) {
-					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(context, (ConstraintDefinition) semanticObject); 
+					sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(context, (ConstraintDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.CONSTRAINT_USAGE:
-				if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()) {
-					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (ConstraintUsage) semanticObject); 
+				if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()) {
+					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ConstraintUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConstraintRefUsageRule()) {
-					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (ConstraintUsage) semanticObject); 
+					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ConstraintUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()) {
-					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (ConstraintUsage) semanticObject); 
+					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ConstraintUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getConstraintUsageRule()) {
-					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (ConstraintUsage) semanticObject); 
+					sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ConstraintUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getRequirementConstraintUsageRule()) {
@@ -370,14 +374,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.DECISION_NODE:
-				sequence_DecisionNode_MultiplicityPart_TypePart(context, (DecisionNode) semanticObject); 
+				sequence_DecisionNode_MultiplicityPart_TypePart_UsagePrefix(context, (DecisionNode) semanticObject); 
 				return; 
 			case SysMLPackage.END_FEATURE_MEMBERSHIP:
-				if (rule == grammarAccess.getConnectionUsageMemberRule()) {
-					sequence_ConnectionEndMember_DefinitionMemberPrefix(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getConnectionEndMemberRule()) {
+				if (rule == grammarAccess.getConnectionUsageMemberRule()
+						|| rule == grammarAccess.getConnectionEndMemberRule()) {
 					sequence_ConnectionEndMember_DefinitionMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -385,11 +386,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ConnectorEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getInterfaceUsageMemberRule()) {
-					sequence_DefinitionMemberPrefix_InterfaceEndMember(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getInterfaceEndMemberRule()) {
+				else if (rule == grammarAccess.getInterfaceUsageMemberRule()
+						|| rule == grammarAccess.getInterfaceEndMemberRule()) {
 					sequence_DefinitionMemberPrefix_InterfaceEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -411,7 +409,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.EXHIBIT_STATE_USAGE:
-				sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_ValuePart(context, (ExhibitStateUsage) semanticObject); 
+				sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (ExhibitStateUsage) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE:
 				if (rule == grammarAccess.getConnectorEndRule()) {
@@ -564,7 +562,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_FeatureValue(context, (FeatureValue) semanticObject); 
 				return; 
 			case SysMLPackage.FORK_NODE:
-				sequence_ForkNode_MultiplicityPart_TypePart(context, (ForkNode) semanticObject); 
+				sequence_ForkNode_MultiplicityPart_TypePart_UsagePrefix(context, (ForkNode) semanticObject); 
 				return; 
 			case SysMLPackage.IMPORT:
 				sequence_Import(context, (Import) semanticObject); 
@@ -572,69 +570,70 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SysMLPackage.INDIVIDUAL_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()
 						|| rule == grammarAccess.getIndividualDefinitionRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_IndividualDefDeclaration_SuperclassingList(context, (IndividualDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_IndividualDefDeclaration_SuperclassingList(context, (IndividualDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_IndividualDefDeclaration_SuperclassingList_UnitPrefix(context, (IndividualDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_IndividualDefDeclaration_SuperclassingList_UnitPrefix(context, (IndividualDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getIndividualDefinitionUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_IndividualDefDeclaration_SuperclassingList_UnitPrefix(context, (IndividualDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_IndividualDefDeclaration_SuperclassingList_UnitPrefix(context, (IndividualDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.INDIVIDUAL_USAGE:
-				if (rule == grammarAccess.getIndividualUsageElementRule()) {
-					sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
+				if (rule == grammarAccess.getIndividualUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()) {
+					sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getIndividualRefUsageRule()) {
-					sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedUsageElementRule()) {
-					sequence_DefinitionBodyItem_IndividualUsage_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getIndividualUsageRule()) {
-					sequence_DefinitionBodyItem_IndividualUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
+					sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSnapshotRefUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPackagedUsageElementRule()) {
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSnapshotUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTimeSliceRefUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTimeSliceUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_ValuePart(context, (IndividualUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getIndividualUsageRule()) {
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (IndividualUsage) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.INTERFACE_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()
 						|| rule == grammarAccess.getInterfaceDefinitionRule()) {
-					sequence_ClassifierDeclarationCompletion_InterfaceDeclaration_InterfaceDefBody_SuperclassingList(context, (InterfaceDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionPrefix_InterfaceDefBody_SuperclassingList(context, (InterfaceDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_InterfaceDeclaration_InterfaceDefBody_SuperclassingList_UnitPrefix(context, (InterfaceDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionPrefix_InterfaceDefBody_SuperclassingList_UnitPrefix(context, (InterfaceDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getInterfaceDefinitionUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_InterfaceDeclaration_InterfaceDefBody_SuperclassingList_UnitPrefix(context, (InterfaceDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionPrefix_InterfaceDefBody_SuperclassingList_UnitPrefix(context, (InterfaceDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.INTERFACE_USAGE:
-				sequence_ConnectorPart_InterfaceDefBody_InterfaceUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration(context, (InterfaceUsage) semanticObject); 
+				sequence_ConnectorPart_InterfaceDefBody_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix(context, (InterfaceUsage) semanticObject); 
 				return; 
 			case SysMLPackage.INVOCATION_EXPRESSION:
 				sequence_InvocationExpression_NamedTuple_PositionalTuple(context, (InvocationExpression) semanticObject); 
@@ -642,15 +641,15 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SysMLPackage.ITEM_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()
 						|| rule == grammarAccess.getItemDefinitionRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_ItemDefDeclaration_SuperclassingList(context, (ItemDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList(context, (ItemDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_ItemDefDeclaration_SuperclassingList_UnitPrefix(context, (ItemDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (ItemDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getItemDefinitionUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_ItemDefDeclaration_SuperclassingList_UnitPrefix(context, (ItemDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (ItemDefinition) semanticObject); 
 					return; 
 				}
 				else break;
@@ -686,23 +685,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SysMLPackage.ITEM_USAGE:
 				if (rule == grammarAccess.getUnitRule()) {
-					sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (ItemUsage) semanticObject); 
+					sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (ItemUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getItemUnitRule()) {
-					sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (ItemUsage) semanticObject); 
+					sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (ItemUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()
 						|| rule == grammarAccess.getDirectionalStructureUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getConnectionEndElementRule()
 						|| rule == grammarAccess.getItemUsageRule()) {
-					sequence_DefinitionBodyItem_ItemUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (ItemUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (ItemUsage) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.JOIN_NODE:
-				sequence_JoinNode_MultiplicityPart_TypePart(context, (JoinNode) semanticObject); 
+				sequence_JoinNode_MultiplicityPart_TypePart_UsagePrefix(context, (JoinNode) semanticObject); 
 				return; 
 			case SysMLPackage.LIFE_CLASS:
 				sequence_LifeClass(context, (LifeClass) semanticObject); 
@@ -789,7 +789,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.MERGE_NODE:
-				sequence_MergeNode_MultiplicityPart_TypePart(context, (MergeNode) semanticObject); 
+				sequence_MergeNode_MultiplicityPart_TypePart_UsagePrefix(context, (MergeNode) semanticObject); 
 				return; 
 			case SysMLPackage.MULTIPLICITY_RANGE:
 				sequence_Multiplicity(context, (MultiplicityRange) semanticObject); 
@@ -907,72 +907,52 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SysMLPackage.PART_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()
 						|| rule == grammarAccess.getPartDefinitionRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PartDefDeclaration_SuperclassingList(context, (PartDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList(context, (PartDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PartDefDeclaration_SuperclassingList_UnitPrefix(context, (PartDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (PartDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPartDefinitionUnitRule()) {
-					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PartDefDeclaration_SuperclassingList_UnitPrefix(context, (PartDefinition) semanticObject); 
+					sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(context, (PartDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.PART_USAGE:
 				if (rule == grammarAccess.getUnitRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (PartUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (PartUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPartUnitRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (PartUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (PartUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getDirectionalStructureUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getConnectionEndElementRule()
 						|| rule == grammarAccess.getPartRefUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_PartRefUsage_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (PartUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_PartRefUsage_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (PartUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()
 						|| rule == grammarAccess.getPartUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_PartUsage_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (PartUsage) semanticObject); 
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (PartUsage) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.PERFORM_ACTION_USAGE:
-				if (rule == grammarAccess.getNondirectionalBehaviorUsageElementRule()
-						|| rule == grammarAccess.getStateActionUsageRule()
-						|| rule == grammarAccess.getPerformActionUsageRule()
-						|| rule == grammarAccess.getEffectBehaviorUsageRule()) {
-					sequence_ActionDefBodyItem_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (PerformActionUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPerformedActionUsageRule()
-						|| rule == grammarAccess.getPerformActionUsageDeclarationRule()) {
-					sequence_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(context, (PerformActionUsage) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_ActionDefBodyItem_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (PerformActionUsage) semanticObject); 
+				return; 
 			case SysMLPackage.PORT_CONJUGATION:
 				sequence_PortConjugation(context, (PortConjugation) semanticObject); 
 				return; 
 			case SysMLPackage.PORT_DEFINITION:
-				sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PortDeclaration_SuperclassingList(context, (PortDefinition) semanticObject); 
+				sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_PortDefDeclaration_SuperclassingList(context, (PortDefinition) semanticObject); 
 				return; 
 			case SysMLPackage.PORT_USAGE:
-				if (rule == grammarAccess.getPortEndUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_PortEndUsage_PortTypePart_PortUsageDeclaration_Redefines_Subsets_SubsettingPart_ValuePart(context, (PortUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedUsageElementRule()
-						|| rule == grammarAccess.getNondirectionalStructureUsageElementRule()
-						|| rule == grammarAccess.getConnectionEndElementRule()
-						|| rule == grammarAccess.getPortUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_PortTypePart_PortUsage_PortUsageDeclaration_Redefines_Subsets_SubsettingPart_ValuePart(context, (PortUsage) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_DefinitionBodyItem_MultiplicityPart_PortTypePart_PortUsageDeclaration_Redefines_Subsets_SubsettingPart_UsagePrefix_ValuePart(context, (PortUsage) semanticObject); 
+				return; 
 			case SysMLPackage.QUERY_PATH_EXPRESSION:
 				if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getConditionalExpressionRule()
@@ -1036,14 +1016,19 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Redefinition(context, (Redefinition) semanticObject); 
 				return; 
 			case SysMLPackage.REFERENCE_USAGE:
-				if (rule == grammarAccess.getConnectionEndElementRule()
-						|| rule == grammarAccess.getReferenceEndUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceEndUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (ReferenceUsage) semanticObject); 
+				if (rule == grammarAccess.getVariantUsageElementRule()) {
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceVariantUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (ReferenceUsage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getReferenceVariantUsageRule()) {
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceVariantUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (ReferenceUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getDirectionalStructureUsageElementRule()
-						|| rule == grammarAccess.getReferenceUsageRule()) {
-					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(context, (ReferenceUsage) semanticObject); 
+						|| rule == grammarAccess.getConnectionEndElementRule()
+						|| rule == grammarAccess.getReferenceUsageRule()
+						|| rule == grammarAccess.getReferenceEndUsageRule()) {
+					sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(context, (ReferenceUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1052,29 +1037,30 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SysMLPackage.REQUIREMENT_DEFINITION:
 				if (rule == grammarAccess.getPackagedDefinitionElementRule()) {
-					sequence_DefinitionBodyItem_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(context, (RequirementDefinition) semanticObject); 
+					sequence_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(context, (RequirementDefinition) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getRequirementDefinitionRule()) {
-					sequence_DefinitionBodyItem_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(context, (RequirementDefinition) semanticObject); 
+					sequence_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(context, (RequirementDefinition) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.REQUIREMENT_USAGE:
-				if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()) {
-					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (RequirementUsage) semanticObject); 
+				if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()) {
+					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (RequirementUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getRequirementRefUsageRule()) {
-					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (RequirementUsage) semanticObject); 
+					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (RequirementUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()) {
-					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (RequirementUsage) semanticObject); 
+					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (RequirementUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getRequirementUsageRule()) {
-					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (RequirementUsage) semanticObject); 
+					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (RequirementUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1097,33 +1083,23 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.SATISFY_REQUIREMENT_USAGE:
-				if (rule == grammarAccess.getNondirectionalBehaviorUsageElementRule()) {
-					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (SatisfyRequirementUsage) semanticObject); 
+				if (rule == grammarAccess.getNondirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()) {
+					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (SatisfyRequirementUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getSatisfyRequirementUsageRule()) {
-					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (SatisfyRequirementUsage) semanticObject); 
+					sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (SatisfyRequirementUsage) semanticObject); 
 					return; 
 				}
 				else break;
 			case SysMLPackage.SEND_ACTION_USAGE:
-				if (rule == grammarAccess.getStateActionUsageRule()
-						|| rule == grammarAccess.getActionNodeRule()
-						|| rule == grammarAccess.getEffectBehaviorUsageRule()) {
-					sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart(context, (SendActionUsage) semanticObject); 
+				if (rule == grammarAccess.getActionNodeRule()) {
+					sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart_UsagePrefix(context, (SendActionUsage) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getTransferNodeRule()) {
-					sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart(context, (SendActionUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPerformedActionUsageRule()) {
-					sequence_MultiplicityPart_SendNodeDeclaration_TypePart(context, (SendActionUsage) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTransferNodeDeclarationRule()
-						|| rule == grammarAccess.getSendNodeDeclarationRule()) {
-					sequence_MultiplicityPart_SendNodeDeclaration_TypePart(context, (SendActionUsage) semanticObject); 
+				else if (rule == grammarAccess.getSendNodeRule()) {
+					sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart_UsagePrefix(context, (SendActionUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1168,22 +1144,23 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				else break;
 			case SysMLPackage.STATE_USAGE:
 				if (rule == grammarAccess.getDirectionalBehaviorUsageElementRule()
+						|| rule == grammarAccess.getVariantUsageElementRule()
 						|| rule == grammarAccess.getConnectionEndElementRule()
 						|| rule == grammarAccess.getStateRefUsageRule()) {
-					sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_StateRefUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_StateRefUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getPackagedUsageElementRule()
 						|| rule == grammarAccess.getStateUsageRule()) {
-					sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_StateUsage_Subsets_SubsettingPart_TypePart_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getUnitRule()) {
-					sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getStateUnitRule()) {
-					sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(context, (StateUsage) semanticObject); 
+					sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(context, (StateUsage) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1191,11 +1168,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Subset(context, (Subsetting) semanticObject); 
 				return; 
 			case SysMLPackage.SUCCESSION:
-				if (rule == grammarAccess.getNondirectionalStructureUsageElementRule()) {
-					sequence_ConnectionDefBody_MultiplicityPart_Succession_SuccessionDeclaration_TypePart(context, (Succession) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSuccessionRule()) {
+				if (rule == grammarAccess.getNondirectionalStructureUsageElementRule()
+						|| rule == grammarAccess.getSuccessionRule()) {
 					sequence_ConnectionDefBody_MultiplicityPart_Succession_SuccessionDeclaration_TypePart(context, (Succession) semanticObject); 
 					return; 
 				}
@@ -1271,6 +1245,9 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					return; 
 				}
 				else break;
+			case SysMLPackage.VARIANT_MEMBERSHIP:
+				sequence_DefinitionMemberPrefix_VariantUsageMember(context, (VariantMembership) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
@@ -1278,22 +1255,101 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     StateActionUsage returns AcceptActionUsage
-	 *     TransferNode returns AcceptActionUsage
-	 *     EffectBehaviorUsage returns AcceptActionUsage
+	 *     StateActionUsage returns ActionUsage
+	 *     EffectBehaviorUsage returns ActionUsage
 	 *
 	 * Constraint:
 	 *     (
+	 *         (
+	 *             (
+	 *                 (
+	 *                     name=Name | 
+	 *                     name=Name | 
+	 *                     (ownedFeatureMembership_comp+=EmptyParameterMember name=Name) | 
+	 *                     (ownedFeatureMembership_comp+=EmptyParameterMember ownedFeatureMembership_comp+=EmptyItemFeatureMember name=Name)
+	 *                 )? 
+	 *                 (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *                 (
+	 *                     (
+	 *                         (
+	 *                             (
+	 *                                 ownedRelationship_comp+=Subset? 
+	 *                                 ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *                                 (
+	 *                                     ownedFeatureMembership_comp+=FeatureValue | 
+	 *                                     (
+	 *                                         ownedFeatureMembership_comp+=ActionParameterMember 
+	 *                                         ownedFeatureMembership_comp+=ActionParameterFlowMember? 
+	 *                                         (ownedFeatureMembership_comp+=ActionParameterMember ownedFeatureMembership_comp+=ActionParameterFlowMember?)*
+	 *                                     )
+	 *                                 )?
+	 *                             ) | 
+	 *                             ownedFeatureMembership_comp+=ItemFeatureMember
+	 *                         ) 
+	 *                         ownedFeatureMembership_comp+=GuardedSuccessionMember?
+	 *                     ) | 
+	 *                     (
+	 *                         ownedFeatureMembership_comp+=ExpressionMember 
+	 *                         ownedFeatureMembership_comp+=ExpressionMember 
+	 *                         ownedFeatureMembership_comp+=GuardedSuccessionMember?
+	 *                     )
+	 *                 )
+	 *             ) | 
+	 *             (
+	 *                 ownedFeatureMembership_comp+=EmptyParameterMember 
+	 *                 ownedFeatureMembership_comp+=ItemFeatureMember 
+	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember?
+	 *             ) | 
+	 *             (
+	 *                 ownedFeatureMembership_comp+=EmptyParameterMember 
+	 *                 ownedFeatureMembership_comp+=EmptyItemFeatureMember 
+	 *                 ownedFeatureMembership_comp+=ExpressionMember 
+	 *                 ownedFeatureMembership_comp+=ExpressionMember 
+	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember?
+	 *             )
+	 *         ) 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
+	 *                 (
+	 *                     ownedFeatureMembership_comp+=EmptySuccessionMember? 
+	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
+	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember*
+	 *                 ) | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             ownedFeatureMembership_comp+=GuardedSuccessionMember?
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_AcceptNodeDeclaration_ActionDefBodyItem_ActionParameterList_EmptyActionUsage_MultiplicityPart_PerformActionUsageDeclaration_Redefines_SendNodeDeclaration_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ActionNode returns AcceptActionUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         ownedFeatureMembership_comp+=EmptyParameterMember 
 	 *         (
 	 *             name=Name 
-	 *             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping?)? 
 	 *             (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)?
 	 *         )? 
 	 *         ownedFeatureMembership_comp+=ItemFeatureMember 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
@@ -1308,7 +1364,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart(ISerializationContext context, AcceptActionUsage semanticObject) {
+	protected void sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart_UsagePrefix(ISerializationContext context, AcceptActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1318,20 +1374,22 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     ActionNode returns AcceptActionUsage
+	//     AcceptNode returns AcceptActionUsage
 	//
 	// Constraint:
 	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         ownedFeatureMembership_comp+=EmptyParameterMember 
 	//         (
 	//             name=Name 
-	//             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping?)? 
+	//             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//             (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)?
 	//         )? 
 	//         ownedFeatureMembership_comp+=ItemFeatureMember 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	//                 ownedImport_comp+=Import
@@ -1346,26 +1404,50 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart(ISerializationContext context, AcceptActionUsage semanticObject) { }
+	// protected void sequence_AcceptNodeDeclaration_ActionDefBodyItem_MultiplicityPart_TypePart_UsagePrefix(ISerializationContext context, AcceptActionUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
-	 *     PerformedActionUsage returns AcceptActionUsage
-	 *     TransferNodeDeclaration returns AcceptActionUsage
-	 *     AcceptNodeDeclaration returns AcceptActionUsage
+	 *     PerformedActionUsage returns ActionUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedFeatureMembership_comp+=EmptyParameterMember 
 	 *         (
-	 *             name=Name 
+	 *             (
+	 *                 name=Name | 
+	 *                 name=Name | 
+	 *                 (ownedFeatureMembership_comp+=EmptyParameterMember name=Name) | 
+	 *                 (ownedFeatureMembership_comp+=EmptyParameterMember ownedFeatureMembership_comp+=EmptyItemFeatureMember name=Name)
+	 *             )? 
 	 *             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *             (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)?
-	 *         )? 
-	 *         ownedFeatureMembership_comp+=ItemFeatureMember
+	 *             (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *             (
+	 *                 (
+	 *                     ownedRelationship_comp+=Subset? 
+	 *                     ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *                     (
+	 *                         ownedFeatureMembership_comp+=FeatureValue | 
+	 *                         (
+	 *                             ownedFeatureMembership_comp+=ActionParameterMember 
+	 *                             ownedFeatureMembership_comp+=ActionParameterFlowMember? 
+	 *                             (ownedFeatureMembership_comp+=ActionParameterMember ownedFeatureMembership_comp+=ActionParameterFlowMember?)*
+	 *                         )
+	 *                     )?
+	 *                 ) | 
+	 *                 ownedFeatureMembership_comp+=ItemFeatureMember | 
+	 *                 (ownedFeatureMembership_comp+=ExpressionMember ownedFeatureMembership_comp+=ExpressionMember)
+	 *             )
+	 *         ) | 
+	 *         (ownedFeatureMembership_comp+=EmptyParameterMember ownedFeatureMembership_comp+=ItemFeatureMember) | 
+	 *         (
+	 *             ownedFeatureMembership_comp+=EmptyParameterMember 
+	 *             ownedFeatureMembership_comp+=EmptyItemFeatureMember 
+	 *             ownedFeatureMembership_comp+=ExpressionMember 
+	 *             ownedFeatureMembership_comp+=ExpressionMember
+	 *         )
 	 *     )
 	 */
-	protected void sequence_AcceptNodeDeclaration_MultiplicityPart_TypePart(ISerializationContext context, AcceptActionUsage semanticObject) {
+	protected void sequence_AcceptNodeDeclaration_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_SendNodeDeclaration_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1377,10 +1459,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         (
 	 *             ownedFeatureMembership_comp+=FeatureValue | 
@@ -1393,6 +1475,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
@@ -1407,7 +1490,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
+	protected void sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1422,7 +1505,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -1438,6 +1521,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedMembership_comp+=NestedDefinitionMember? 
 	//         (
 	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	//                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
@@ -1453,7 +1537,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )*
 	//     )
 	//
-	// protected void sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, ActionUsage semanticObject) { }
+	// protected void sequence_ActionDeclaration_ActionDefBodyItem_ActionParameterList_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, ActionUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1469,6 +1553,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
@@ -1503,6 +1588,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
@@ -1525,12 +1611,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     DirectionalBehaviorUsageElement returns ActionUsage
+	 *     VariantUsageElement returns ActionUsage
 	 *     ConnectionEndElement returns ActionUsage
 	 *     ActionRefUsage returns ActionUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=ActionUsageKeyword? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
@@ -1544,9 +1631,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (ownedFeatureMembership_comp+=ActionParameterMember ownedFeatureMembership_comp+=ActionParameterFlowMember?)*
 	 *             )
 	 *         )? 
-	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         ownedFeatureMembership_comp+=GuardedSuccessionMember? 
 	 *         (
 	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
@@ -1555,14 +1644,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
 	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember*
 	 *                 ) | 
-	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *             ownedFeatureMembership_comp+=GuardedSuccessionMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ActionDefBodyItem_ActionParameterList_ActionRefUsage_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
+	protected void sequence_ActionDefBodyItem_ActionParameterList_ActionRefUsage_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1574,7 +1662,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -1587,9 +1675,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (ownedFeatureMembership_comp+=ActionParameterMember ownedFeatureMembership_comp+=ActionParameterFlowMember?)*
 	 *             )
 	 *         )? 
-	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         ownedFeatureMembership_comp+=GuardedSuccessionMember? 
 	 *         (
 	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
@@ -1598,14 +1688,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
 	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember*
 	 *                 ) | 
-	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *             ownedFeatureMembership_comp+=GuardedSuccessionMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ActionDefBodyItem_ActionParameterList_ActionUsage_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
+	protected void sequence_ActionDefBodyItem_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1613,15 +1702,15 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     NondirectionalBehaviorUsageElement returns PerformActionUsage
-	 *     StateActionUsage returns PerformActionUsage
+	 *     VariantUsageElement returns PerformActionUsage
 	 *     PerformActionUsage returns PerformActionUsage
-	 *     EffectBehaviorUsage returns PerformActionUsage
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | name=Name)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ownedRelationship_comp+=Subset? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         (
@@ -1635,6 +1724,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
@@ -1649,19 +1739,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionDefBodyItem_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, PerformActionUsage semanticObject) {
+	protected void sequence_ActionDefBodyItem_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, PerformActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     StateActionUsage returns SendActionUsage
 	 *     ActionNode returns SendActionUsage
-	 *     EffectBehaviorUsage returns SendActionUsage
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         ownedFeatureMembership_comp+=EmptyParameterMember 
 	 *         ownedFeatureMembership_comp+=EmptyItemFeatureMember 
 	 *         (
@@ -1674,6 +1763,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
@@ -1688,7 +1778,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart(ISerializationContext context, SendActionUsage semanticObject) {
+	protected void sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart_UsagePrefix(ISerializationContext context, SendActionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1698,10 +1788,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
 	//
 	// Contexts:
-	//     TransferNode returns SendActionUsage
+	//     SendNode returns SendActionUsage
 	//
 	// Constraint:
 	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         ownedFeatureMembership_comp+=EmptyParameterMember 
 	//         ownedFeatureMembership_comp+=EmptyItemFeatureMember 
 	//         (
@@ -1714,6 +1805,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	//                 ownedImport_comp+=Import
@@ -1728,7 +1820,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart(ISerializationContext context, SendActionUsage semanticObject) { }
+	// protected void sequence_ActionDefBodyItem_MultiplicityPart_SendNodeDeclaration_TypePart_UsagePrefix(ISerializationContext context, SendActionUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1787,12 +1879,13 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     DirectionalBehaviorUsageElement returns StateUsage
+	 *     VariantUsageElement returns StateUsage
 	 *     ConnectionEndElement returns StateUsage
 	 *     StateRefUsage returns StateUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=StateUsageKeyword? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
@@ -1809,20 +1902,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedFeatureMembership_comp+=EntryActionMember ownedFeatureMembership_comp+=EntryTransitionMember*)? 
 	 *         ownedFeatureMembership_comp+=DoActionMember? 
 	 *         ownedFeatureMembership_comp+=ExitActionMember? 
-	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         ownedFeatureMembership_comp+=StructureUsageMember? 
 	 *         (
 	 *             (
-	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 (ownedFeatureMembership_comp+=BehaviorUsageMember ownedFeatureMembership_comp+=TargetTransitionSuccessionMember*) | 
 	 *                 ownedFeatureMembership_comp+=TransitionStepMember | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *             ownedFeatureMembership_comp+=StructureUsageMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_StateRefUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, StateUsage semanticObject) {
+	protected void sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_StateRefUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1834,7 +1928,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -1850,20 +1944,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedFeatureMembership_comp+=EntryActionMember ownedFeatureMembership_comp+=EntryTransitionMember*)? 
 	 *         ownedFeatureMembership_comp+=DoActionMember? 
 	 *         ownedFeatureMembership_comp+=ExitActionMember? 
-	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         ownedFeatureMembership_comp+=StructureUsageMember? 
 	 *         (
 	 *             (
-	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 (ownedFeatureMembership_comp+=BehaviorUsageMember ownedFeatureMembership_comp+=TargetTransitionSuccessionMember*) | 
 	 *                 ownedFeatureMembership_comp+=TransitionStepMember | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *             ownedFeatureMembership_comp+=StructureUsageMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_StateUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, StateUsage semanticObject) {
+	protected void sequence_ActionParameterList_ActionUsageDeclaration_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1871,15 +1966,16 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     NondirectionalBehaviorUsageElement returns AssertConstraintUsage
+	 *     VariantUsageElement returns AssertConstraintUsage
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | name=Name)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedRelationship_comp+=Subset? 
-	 *         (ownedRelationship_comp+=Redefinition+ ownedRelationship_comp+=Redefinition?)? 
-	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset? (ownedRelationship_comp+=Redefinition+ ownedRelationship_comp+=Redefinition?)?)* 
+	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset?) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition?))* 
 	 *         (
 	 *             ownedFeatureMembership_comp+=FeatureValue | 
 	 *             (
@@ -1891,13 +1987,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	 *         ownedFeatureMembership_comp+=TrueLiteralMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, AssertConstraintUsage semanticObject) {
+	protected void sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, AssertConstraintUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1911,6 +2012,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         (name=Name | name=Name)? 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -1927,13 +2029,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	//         ownedFeatureMembership_comp+=TrueLiteralMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+ 
 	//         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	//     )
 	//
-	// protected void sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, AssertConstraintUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_AssertConstraintUsage_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, AssertConstraintUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1942,10 +2049,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         (
 	 *             ownedFeatureMembership_comp+=FeatureValue | 
@@ -1961,21 +2068,22 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
-	 *                 (
-	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
-	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember* 
-	 *                     ownedFeatureMembership_comp+=EmptySuccessionMember?
-	 *                 ) | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*)?
+	 *             (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*)? 
+	 *             (
+	 *                 ownedFeatureMembership_comp+=EmptySuccessionMember? 
+	 *                 (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
+	 *                 ownedFeatureMembership_comp+=TargetSuccessionMember*
+	 *             )?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, CalculationUsage semanticObject) {
+	protected void sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, CalculationUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1990,7 +2098,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -2009,6 +2117,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedMembership_comp+=NestedDefinitionMember? 
 	//         (
 	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
 	//                 (
@@ -2024,17 +2133,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedFeatureMembership_comp+=ExpressionMember?
 	//     )
 	//
-	// protected void sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, CalculationUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_CalculationDeclaration_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, CalculationUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
 	 *     DirectionalBehaviorUsageElement returns CalculationUsage
+	 *     VariantUsageElement returns CalculationUsage
 	 *     ConnectionEndElement returns CalculationUsage
 	 *     CalculationRefUsage returns CalculationUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=CalculationUsageKeyword? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
@@ -2051,10 +2161,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *             )
 	 *         )? 
-	 *         ownedImport_comp+=Import? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
 	 *                 (
@@ -2062,14 +2172,15 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
 	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember*
 	 *                 ) | 
-	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember
+	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
+	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedImport_comp+=Import?
+	 *             ownedMembership_comp+=NestedDefinitionMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationRefUsage_CalculationReturnParameterPart_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, CalculationUsage semanticObject) {
+	protected void sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationRefUsage_CalculationReturnParameterPart_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, CalculationUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2081,7 +2192,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -2097,10 +2208,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *             )
 	 *         )? 
-	 *         ownedImport_comp+=Import? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*) | 
 	 *                 (
@@ -2108,14 +2219,15 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
 	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember*
 	 *                 ) | 
-	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember
+	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
+	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedImport_comp+=Import?
+	 *             ownedMembership_comp+=NestedDefinitionMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_CalculationUsage_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, CalculationUsage semanticObject) {
+	protected void sequence_ActionParameterList_CalculationDefBody_CalculationDefBodyItem_CalculationReturnParameterPart_CalculationUsageDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, CalculationUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2123,10 +2235,11 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     DirectionalBehaviorUsageElement returns ConstraintUsage
+	 *     VariantUsageElement returns ConstraintUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=ConstraintUsageKeyword? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
@@ -2142,13 +2255,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )? 
 	 *         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) {
+	protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2162,12 +2280,16 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         isComposite?=ConstraintUsageKeyword? 
 	//         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	//         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	//         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	//         (
+	//             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	//             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	//         )* 
 	//         (
 	//             ownedFeatureMembership_comp+=FeatureValue | 
 	//             (
@@ -2178,13 +2300,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )? 
 	//         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+ 
 	//         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	//     )
 	//
-	// protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintRefUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2192,7 +2319,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -2207,13 +2334,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )? 
 	 *         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) {
+	protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2227,11 +2359,15 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	//         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	//         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	//         (
+	//             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	//             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	//         )* 
 	//         (
 	//             ownedFeatureMembership_comp+=FeatureValue | 
 	//             (
@@ -2242,13 +2378,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )? 
 	//         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+ 
 	//         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	//     )
 	//
-	// protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_ConstraintUsage_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_ConstraintDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ConstraintUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2271,7 +2412,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )? 
 	 *         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ConstraintExpressionMember?
@@ -2285,16 +2431,17 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     NondirectionalBehaviorUsageElement returns SatisfyRequirementUsage
+	 *     VariantUsageElement returns SatisfyRequirementUsage
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | name=Name)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedRelationship_comp+=Subset? 
 	 *         ownedFeatureMembership_comp+=SatisfactionConnectorMember? 
-	 *         (ownedRelationship_comp+=Redefinition+ ownedRelationship_comp+=Redefinition?)? 
-	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset? (ownedRelationship_comp+=Redefinition+ ownedRelationship_comp+=Redefinition?)?)* 
+	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset?) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition?))* 
 	 *         (
 	 *             ownedFeatureMembership_comp+=FeatureValue | 
 	 *             (
@@ -2308,6 +2455,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 ownedImport_comp+=Import | 
 	 *                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -2316,7 +2464,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, SatisfyRequirementUsage semanticObject) {
+	protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, SatisfyRequirementUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2330,6 +2478,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         (name=Name | name=Name)? 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -2349,6 +2498,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 ownedImport_comp+=Import | 
 	//                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -2357,15 +2507,16 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, SatisfyRequirementUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_InvariantPart_MultiplicityPart_Redefines_RequirementDefBodyItem_SatisfyRequirementUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, SatisfyRequirementUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
 	 *     DirectionalBehaviorUsageElement returns RequirementUsage
+	 *     VariantUsageElement returns RequirementUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=RequirementUsageKeyword? 
 	 *         reqId=Name? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
@@ -2384,6 +2535,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 ownedImport_comp+=Import | 
 	 *                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -2392,7 +2544,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, RequirementUsage semanticObject) {
+	protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, RequirementUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2406,13 +2558,17 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         isComposite?=RequirementUsageKeyword? 
 	//         reqId=Name? 
 	//         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	//         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	//         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	//         (
+	//             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	//             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	//         )* 
 	//         (
 	//             ownedFeatureMembership_comp+=FeatureValue | 
 	//             (
@@ -2425,6 +2581,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 ownedImport_comp+=Import | 
 	//                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -2433,7 +2590,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, RequirementUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementRefUsage_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, RequirementUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2441,7 +2598,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         reqId=Name? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
@@ -2459,6 +2616,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 ownedImport_comp+=Import | 
 	 *                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -2467,7 +2625,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, RequirementUsage semanticObject) {
+	protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, RequirementUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2481,12 +2639,16 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         reqId=Name? 
 	//         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	//         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	//         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	//         (
+	//             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	//             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	//         )* 
 	//         (
 	//             ownedFeatureMembership_comp+=FeatureValue | 
 	//             (
@@ -2499,6 +2661,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 ownedImport_comp+=Import | 
 	//                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -2507,18 +2670,20 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_RequirementUsage_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, RequirementUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_DefinitionBodyItem_EmptyReturnParameterPart_MultiplicityPart_Redefines_RequirementDeclaration_RequirementDefBodyItem_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, RequirementUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
 	 *     NondirectionalBehaviorUsageElement returns ExhibitStateUsage
+	 *     VariantUsageElement returns ExhibitStateUsage
 	 *     ExhibitStateUsage returns ExhibitStateUsage
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | name=Name)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ownedRelationship_comp+=Subset? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         (
@@ -2535,6 +2700,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=TransitionStepMember | 
 	 *                 ownedImport_comp+=Import
@@ -2544,34 +2710,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, ExhibitStateUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PerformedActionUsage returns PerformActionUsage
-	 *     PerformActionUsageDeclaration returns PerformActionUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         (name=Name | name=Name)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ownedRelationship_comp+=Subset? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         (
-	 *             ownedFeatureMembership_comp+=FeatureValue | 
-	 *             (
-	 *                 ownedFeatureMembership_comp+=ActionParameterMember 
-	 *                 ownedFeatureMembership_comp+=ActionParameterFlowMember? 
-	 *                 (ownedFeatureMembership_comp+=ActionParameterMember ownedFeatureMembership_comp+=ActionParameterFlowMember?)*
-	 *             )
-	 *         )?
-	 *     )
-	 */
-	protected void sequence_ActionParameterList_MultiplicityPart_PerformActionUsageDeclaration_Redefines_Subsets_SubsettingPart_TypePart_ValuePart(ISerializationContext context, PerformActionUsage semanticObject) {
+	protected void sequence_ActionParameterList_ExhibitStateUsage_MultiplicityPart_Redefines_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UsagePrefix_ValuePart(ISerializationContext context, ExhibitStateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2583,10 +2722,10 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         (
 	 *             ownedFeatureMembership_comp+=FeatureValue | 
@@ -2602,6 +2741,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=TransitionStepMember | 
 	 *                 ownedImport_comp+=Import
@@ -2611,7 +2751,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) {
+	protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2626,7 +2766,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -2645,6 +2785,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedMembership_comp+=NestedDefinitionMember? 
 	//         (
 	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	//                 (ownedFeatureMembership_comp+=BehaviorUsageMember ownedFeatureMembership_comp+=TargetTransitionSuccessionMember*) | 
@@ -2655,7 +2796,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )*
 	//     )
 	//
-	// protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) { }
+	// protected void sequence_ActionParameterList_MultiplicityPart_Redefines_StateDeclaration_StateDefBodyItem_StateDefBodyPart_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, StateUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -2819,19 +2960,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, AttributeUsage semanticObject) {
+	protected void sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, AttributeUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2846,7 +2992,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -2855,6 +3001,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedMembership_comp+=NestedDefinitionMember? 
 	//         (
 	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	//                 ownedImport_comp+=Import
@@ -2863,100 +3010,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )*
 	//     )
 	//
-	// protected void sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, AttributeUsage semanticObject) { }
-	
-	/**
-	 * Contexts:
-	 *     PackagedDefinitionElement returns AttributeDefinition
-	 *     AttributeDefinition returns AttributeDefinition
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_AttributeDefDeclaration_ClassifierDeclarationCompletion_DefinitionBodyItem_SuperclassingList(ISerializationContext context, AttributeDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Unit returns AttributeDefinition
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_AttributeDefDeclaration_ClassifierDeclarationCompletion_DefinitionBodyItem_SuperclassingList_UnitPrefix(ISerializationContext context, AttributeDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     AttributeDefinitionUnit returns AttributeDefinition
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
-	//         name=Name 
-	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	//         )+
-	//     )
-	//
-	// protected void sequence_AttributeDefDeclaration_ClassifierDeclarationCompletion_DefinitionBodyItem_SuperclassingList_UnitPrefix(ISerializationContext context, AttributeDefinition semanticObject) { }
-	
-	/**
-	 * Contexts:
-	 *     PackagedUsageElement returns AttributeUsage
-	 *     DirectionalStructureUsageElement returns AttributeUsage
-	 *     AttributeUsage returns AttributeUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
-	 *         (
-	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_AttributeUsage_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, AttributeUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
+	// protected void sequence_AttributeDeclaration_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, AttributeUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3013,7 +3067,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
@@ -3157,16 +3216,17 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (
 	 *                     (
 	 *                         ownedMembership_comp+=NestedDefinitionMember | 
+	 *                         ownedMembership_comp+=VariantUsageMember | 
 	 *                         ownedFeatureMembership_comp+=StructureUsageMember | 
-	 *                         (
-	 *                             (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
-	 *                             ownedFeatureMembership_comp+=TargetSuccessionMember* 
-	 *                             ownedFeatureMembership_comp+=EmptySuccessionMember?
-	 *                         ) | 
 	 *                         ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                         ownedImport_comp+=Import
 	 *                     )? 
-	 *                     (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*)?
+	 *                     (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*)? 
+	 *                     (
+	 *                         ownedFeatureMembership_comp+=EmptySuccessionMember? 
+	 *                         (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
+	 *                         ownedFeatureMembership_comp+=TargetSuccessionMember*
+	 *                     )?
 	 *                 )+ 
 	 *                 ownedFeatureMembership_comp+=ExpressionMember?
 	 *             )
@@ -3198,6 +3258,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//                 (
 	//                     (
 	//                         ownedMembership_comp+=NestedDefinitionMember | 
+	//                         ownedMembership_comp+=VariantUsageMember | 
 	//                         ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                         ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	//                         ownedImport_comp+=Import
@@ -3231,16 +3292,17 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
-	 *                 (
-	 *                     (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
-	 *                     ownedFeatureMembership_comp+=TargetSuccessionMember* 
-	 *                     ownedFeatureMembership_comp+=EmptySuccessionMember?
-	 *                 ) | 
 	 *                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*)?
+	 *             (ownedFeatureMembership_comp+=InitialNodeMember ownedFeatureMembership_comp+=TargetSuccessionMember*)? 
+	 *             (
+	 *                 ownedFeatureMembership_comp+=EmptySuccessionMember? 
+	 *                 (ownedFeatureMembership_comp+=BehaviorUsageMember | ownedFeatureMembership_comp+=ActionNodeMember) 
+	 *                 ownedFeatureMembership_comp+=TargetSuccessionMember*
+	 *             )?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ExpressionMember?
 	 *     )
@@ -3268,6 +3330,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	//                 ownedFeatureMembership_comp+=GuardedSuccessionMember | 
 	//                 ownedImport_comp+=Import
@@ -3315,16 +3378,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=ConnectionUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_ConnectionDefBody_ConnectionDefDeclaration_SuperclassingList(ISerializationContext context, ConnectionDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_ConnectionDefBody_DefinitionPrefix_SuperclassingList(ISerializationContext context, ConnectionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3336,16 +3404,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=ConnectionUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_ConnectionDefBody_ConnectionDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, ConnectionDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_ConnectionDefBody_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, ConnectionDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3360,16 +3433,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=ConnectionUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+
 	//     )
 	//
-	// protected void sequence_ClassifierDeclarationCompletion_ConnectionDefBody_ConnectionDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, ConnectionDefinition semanticObject) { }
+	// protected void sequence_ClassifierDeclarationCompletion_ConnectionDefBody_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, ConnectionDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3378,17 +3456,22 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         ownedMembership_comp+=LifeClassMembership 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_IndividualDefDeclaration_SuperclassingList(ISerializationContext context, IndividualDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_IndividualDefDeclaration_SuperclassingList(ISerializationContext context, IndividualDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3400,17 +3483,22 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         ownedMembership_comp+=LifeClassMembership 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_IndividualDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, IndividualDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_IndividualDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, IndividualDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3425,17 +3513,75 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	//         ownedMembership_comp+=LifeClassMembership 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+
 	//     )
 	//
-	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_IndividualDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, IndividualDefinition semanticObject) { }
+	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_IndividualDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, IndividualDefinition semanticObject) { }
+	
+	/**
+	 * Contexts:
+	 *     PackagedDefinitionElement returns PortDefinition
+	 *     PortDefinition returns PortDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         name=Name 
+	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
+	 *         ownedMembership_comp+=ConjugatedPortDefinitionMember 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_PortDefDeclaration_SuperclassingList(ISerializationContext context, PortDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackagedDefinitionElement returns AttributeDefinition
+	 *     AttributeDefinition returns AttributeDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         name=Name 
+	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList(ISerializationContext context, AttributeDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -3444,19 +3590,102 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_ItemDefDeclaration_SuperclassingList(ISerializationContext context, ItemDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList(ISerializationContext context, ItemDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	/**
+	 * Contexts:
+	 *     PackagedDefinitionElement returns PartDefinition
+	 *     PartDefinition returns PartDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         name=Name 
+	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList(ISerializationContext context, PartDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Unit returns AttributeDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         ownedRelationship_comp+=PrefixAnnotation? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         name=Name 
+	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, AttributeDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     AttributeDefinitionUnit returns AttributeDefinition
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship_comp+=PrefixAnnotation* 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
+	//         name=Name 
+	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
+	//         (
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
+	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	//         )+
+	//     )
+	//
+	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, AttributeDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3465,16 +3694,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_ItemDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, ItemDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, ItemDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3489,37 +3723,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+
 	//     )
 	//
-	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_ItemDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, ItemDefinition semanticObject) { }
-	
-	/**
-	 * Contexts:
-	 *     PackagedDefinitionElement returns PartDefinition
-	 *     PartDefinition returns PartDefinition
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PartDefDeclaration_SuperclassingList(ISerializationContext context, PartDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
+	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, ItemDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3528,16 +3746,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PartDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, PartDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, PartDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3552,38 +3775,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+
 	//     )
 	//
-	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PartDefDeclaration_SuperclassingList_UnitPrefix(ISerializationContext context, PartDefinition semanticObject) { }
-	
-	/**
-	 * Contexts:
-	 *     PackagedDefinitionElement returns PortDefinition
-	 *     PortDefinition returns PortDefinition
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         name=Name 
-	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	 *         ownedMembership_comp+=ConjugatedPortDefinitionMember 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_PortDeclaration_SuperclassingList(ISerializationContext context, PortDefinition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
+	// protected void sequence_ClassifierDeclarationCompletion_DefinitionBodyItem_DefinitionPrefix_SuperclassingList_UnitPrefix(ISerializationContext context, PartDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3592,13 +3798,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	 *         (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=InterfaceUsageMember | ownedImport_comp+=Import)*
+	 *         (
+	 *             ownedMembership_comp+=NestedDefinitionMember | 
+	 *             ownedMembership_comp+=VariantUsageMember | 
+	 *             ownedFeatureMembership_comp+=InterfaceUsageMember | 
+	 *             ownedImport_comp+=Import
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_InterfaceDeclaration_InterfaceDefBody_SuperclassingList(ISerializationContext context, InterfaceDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionPrefix_InterfaceDefBody_SuperclassingList(ISerializationContext context, InterfaceDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3610,13 +3821,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	 *         (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=InterfaceUsageMember | ownedImport_comp+=Import)*
+	 *         (
+	 *             ownedMembership_comp+=NestedDefinitionMember | 
+	 *             ownedMembership_comp+=VariantUsageMember | 
+	 *             ownedFeatureMembership_comp+=InterfaceUsageMember | 
+	 *             ownedImport_comp+=Import
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_ClassifierDeclarationCompletion_InterfaceDeclaration_InterfaceDefBody_SuperclassingList_UnitPrefix(ISerializationContext context, InterfaceDefinition semanticObject) {
+	protected void sequence_ClassifierDeclarationCompletion_DefinitionPrefix_InterfaceDefBody_SuperclassingList_UnitPrefix(ISerializationContext context, InterfaceDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3631,13 +3847,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
-	//         (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=InterfaceUsageMember | ownedImport_comp+=Import)*
+	//         (
+	//             ownedMembership_comp+=NestedDefinitionMember | 
+	//             ownedMembership_comp+=VariantUsageMember | 
+	//             ownedFeatureMembership_comp+=InterfaceUsageMember | 
+	//             ownedImport_comp+=Import
+	//         )*
 	//     )
 	//
-	// protected void sequence_ClassifierDeclarationCompletion_InterfaceDeclaration_InterfaceDefBody_SuperclassingList_UnitPrefix(ISerializationContext context, InterfaceDefinition semanticObject) { }
+	// protected void sequence_ClassifierDeclarationCompletion_DefinitionPrefix_InterfaceDefBody_SuperclassingList_UnitPrefix(ISerializationContext context, InterfaceDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3702,11 +3923,14 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     PackagedUsageElement returns ConnectionUsage
+	 *     NondirectionalStructureUsageElement returns ConnectionUsage
+	 *     VariantUsageElement returns ConnectionUsage
 	 *     ConnectionUsage returns ConnectionUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -3719,75 +3943,19 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 ownedFeatureMembership_comp+=ConnectorEndMember*
 	 *             )
 	 *         )? 
-	 *         ownedMembership_comp+=NestedDefinitionMember? 
-	 *         (
-	 *             (
-	 *                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedMembership_comp+=NestedDefinitionMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_ConnectionDefBody_ConnectionUsage_ConnectorPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration(ISerializationContext context, ConnectionUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackagedUsageElement returns ConnectionUsage
-	 *     NondirectionalStructureUsageElement returns ConnectionUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         (
-	 *             (
-	 *                 isAbstract?='abstract'? 
-	 *                 (
-	 *                     (ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember) | 
-	 *                     (
-	 *                         ownedFeatureMembership_comp+=ConnectorEndMember 
-	 *                         ownedFeatureMembership_comp+=ConnectorEndMember 
-	 *                         ownedFeatureMembership_comp+=ConnectorEndMember*
-	 *                     )
-	 *                 ) 
-	 *                 ownedImport_comp+=Import
-	 *             ) | 
-	 *             (
-	 *                 isAbstract?='abstract'? 
-	 *                 (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *                 (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *                 ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *                 (
-	 *                     ownedImport_comp+=Import | 
-	 *                     (
-	 *                         (
-	 *                             (ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember) | 
-	 *                             (
-	 *                                 ownedFeatureMembership_comp+=ConnectorEndMember 
-	 *                                 ownedFeatureMembership_comp+=ConnectorEndMember 
-	 *                                 ownedFeatureMembership_comp+=ConnectorEndMember*
-	 *                             )
-	 *                         ) 
-	 *                         ownedImport_comp+=Import
-	 *                     )
-	 *                 )?
-	 *             )
-	 *         ) 
+	 *         ownedMembership_comp+=VariantUsageMember? 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
 	 *                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedImport_comp+=Import
+	 *             ownedMembership_comp+=VariantUsageMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_ConnectionDefBody_ConnectionUsage_Connector_ConnectorPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration(ISerializationContext context, ConnectionUsage semanticObject) {
+	protected void sequence_ConnectionDefBody_ConnectorPart_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix(ISerializationContext context, ConnectionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3798,7 +3966,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (
 	 *             (ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember) | 
 	 *             (
@@ -3808,12 +3976,17 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             )
 	 *         ) 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=ConnectionUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_ConnectionDefBody_Connector_ConnectorPart(ISerializationContext context, ConnectionUsage semanticObject) {
+	protected void sequence_ConnectionDefBody_ConnectorPart_UsagePrefix(ISerializationContext context, ConnectionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3821,17 +3994,23 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     NondirectionalStructureUsageElement returns Succession
+	 *     Succession returns Succession
 	 *
 	 * Constraint:
 	 *     (
 	 *         isAbstract?='abstract'? 
 	 *         name=Name? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping?)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=ConnectionUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=ConnectionUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
@@ -3841,52 +4020,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	}
 	
 	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     Succession returns Succession
-	//
-	// Constraint:
-	//     (
-	//         isAbstract?='abstract'? 
-	//         name=Name? 
-	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	//         ownedFeatureMembership_comp+=ConnectorEndMember 
-	//         ownedFeatureMembership_comp+=ConnectorEndMember 
-	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=ConnectionUsageMember | ownedImport_comp+=Import)? 
-	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	//         )+
-	//     )
-	//
-	// protected void sequence_ConnectionDefBody_MultiplicityPart_Succession_SuccessionDeclaration_TypePart(ISerializationContext context, Succession semanticObject) { }
-	
 	/**
 	 * Contexts:
 	 *     ConnectionUsageMember returns EndFeatureMembership
+	 *     ConnectionEndMember returns EndFeatureMembership
 	 *
 	 * Constraint:
-	 *     (ownedRelationship_comp+=PrefixAnnotation? visibility=VisibilityIndicator? ownedMemberFeature_comp=ConnectionEndElement)
+	 *     (ownedRelationship_comp+=PrefixAnnotation* visibility=VisibilityIndicator? ownedMemberFeature_comp=ConnectionEndElement)
 	 */
 	protected void sequence_ConnectionEndMember_DefinitionMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     ConnectionEndMember returns EndFeatureMembership
-	//
-	// Constraint:
-	//     (ownedRelationship_comp+=PrefixAnnotation* visibility=VisibilityIndicator? ownedMemberFeature_comp=ConnectionEndElement)
-	//
-	// protected void sequence_ConnectionEndMember_DefinitionMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3916,11 +4061,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Contexts:
 	 *     PackagedUsageElement returns InterfaceUsage
 	 *     NondirectionalStructureUsageElement returns InterfaceUsage
+	 *     VariantUsageElement returns InterfaceUsage
 	 *     InterfaceUsage returns InterfaceUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -3933,11 +4079,14 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 ownedFeatureMembership_comp+=ConnectorEndMember*
 	 *             )
 	 *         )? 
-	 *         ownedImport_comp+=Import? 
-	 *         ((ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=InterfaceUsageMember)? ownedImport_comp+=Import?)*
+	 *         ownedFeatureMembership_comp+=InterfaceUsageMember? 
+	 *         (
+	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedMembership_comp+=VariantUsageMember | ownedImport_comp+=Import)? 
+	 *             ownedFeatureMembership_comp+=InterfaceUsageMember?
+	 *         )*
 	 *     )
 	 */
-	protected void sequence_ConnectorPart_InterfaceDefBody_InterfaceUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration(ISerializationContext context, InterfaceUsage semanticObject) {
+	protected void sequence_ConnectorPart_InterfaceDefBody_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix(ISerializationContext context, InterfaceUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3948,19 +4097,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing?)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList(ISerializationContext context, ConstraintDefinition semanticObject) {
+	protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList(ISerializationContext context, ConstraintDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3974,19 +4128,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	//         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	//         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+ 
 	//         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	//     )
 	//
-	// protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList(ISerializationContext context, ConstraintDefinition semanticObject) { }
+	// protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList(ISerializationContext context, ConstraintDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -3995,19 +4154,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing?)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+ 
 	 *         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	 *     )
 	 */
-	protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(ISerializationContext context, ConstraintDefinition semanticObject) {
+	protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(ISerializationContext context, ConstraintDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4022,19 +4186,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
 	//         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	//         ownedFeatureMembership_comp+=EmptyReturnParameterMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+ 
 	//         ownedFeatureMembership_comp+=ConstraintExpressionMember?
 	//     )
 	//
-	// protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(ISerializationContext context, ConstraintDefinition semanticObject) { }
+	// protected void sequence_ConstraintDefDeclaration_ConstraintDefMembers_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_ParameterList_SuperclassingList_UnitPrefix(ISerializationContext context, ConstraintDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -4056,6 +4225,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?='decide' 
 	 *         (
 	 *             name=Name 
@@ -4064,7 +4234,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )?
 	 *     )
 	 */
-	protected void sequence_DecisionNode_MultiplicityPart_TypePart(ISerializationContext context, DecisionNode semanticObject) {
+	protected void sequence_DecisionNode_MultiplicityPart_TypePart_UsagePrefix(ISerializationContext context, DecisionNode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4087,7 +4257,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         reqId=Name? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing?)? 
@@ -4100,6 +4270,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 ownedImport_comp+=Import | 
 	 *                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -4108,7 +4279,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(ISerializationContext context, RequirementDefinition semanticObject) {
+	protected void sequence_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(ISerializationContext context, RequirementDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4122,7 +4293,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//
 	// Constraint:
 	//     (
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         reqId=Name? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=Superclassing ownedRelationship_comp+=Superclassing*)? 
@@ -4135,6 +4306,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         (
 	//             (
 	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 ownedImport_comp+=Import | 
 	//                 ownedFeatureMembership_comp+=RequirementConstraintMember
@@ -4143,37 +4315,40 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )+
 	//     )
 	//
-	// protected void sequence_DefinitionBodyItem_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(ISerializationContext context, RequirementDefinition semanticObject) { }
+	// protected void sequence_DefinitionBodyItem_DefinitionPrefix_EmptyReturnParameterPart_RequirementDefBodyItem_RequirementDefDeclaration_RequirementDefParameterList_SuperclassingList(ISerializationContext context, RequirementDefinition semanticObject) { }
 	
 	/**
 	 * Contexts:
 	 *     IndividualUsageElement returns IndividualUsage
+	 *     VariantUsageElement returns IndividualUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         (
-	 *             (isAbstract?='abstract'? isComposite?=IndividualUsageKeyword?) | 
-	 *             (isAbstract?='abstract'? isComposite?=TimeSliceKeyword?) | 
-	 *             (isAbstract?='abstract'? isComposite?=SnapshotKeyword?)
-	 *         ) 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (isComposite?=IndividualUsageKeyword | isComposite?=TimeSliceKeyword | isComposite?=SnapshotKeyword)? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	 *         (
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	 *         )* 
 	 *         (ownedFeatureMembership_comp+=TimeSliceFeatureMember | ownedFeatureMembership_comp+=TimeSliceFeatureMember)? 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
+	 *             ownedMembership_comp+=NestedDefinitionMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4184,77 +4359,21 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=IndividualUsageKeyword? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
 	 *         (
-	 *             (
-	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedMembership_comp+=NestedDefinitionMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackagedUsageElement returns IndividualUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         (isAbstract?='abstract' | isAbstract?='abstract' | isAbstract?='abstract')? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
-	 *         (
-	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
-	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)?
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
 	 *         )* 
-	 *         (ownedFeatureMembership_comp+=TimeSliceFeatureMember | ownedFeatureMembership_comp+=SnapshotFeatureMember)? 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
-	 *         (
-	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_IndividualUsage_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     IndividualUsage returns IndividualUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
 	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 ownedImport_comp+=Import
@@ -4263,7 +4382,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_IndividualUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_IndividualRefUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4275,19 +4394,24 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, ItemUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, ItemUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4302,7 +4426,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -4311,6 +4435,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedMembership_comp+=NestedDefinitionMember? 
 	//         (
 	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	//                 ownedImport_comp+=Import
@@ -4319,7 +4444,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )*
 	//     )
 	//
-	// protected void sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, ItemUsage semanticObject) { }
+	// protected void sequence_DefinitionBodyItem_ItemDeclaration_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, ItemUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -4332,7 +4457,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (
 	 *                 name=Name? 
 	 *                 (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping?)? 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *                 (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *             ) | 
 	 *             ownedFeatureMembership_comp+=EmptyItemFeatureMember
@@ -4340,7 +4465,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	 *         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
@@ -4372,7 +4502,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	//         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+
 	//     )
@@ -4390,7 +4525,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (
 	 *                 name=Name? 
 	 *                 (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping?)? 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *                 (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *             ) | 
 	 *             ownedFeatureMembership_comp+=EmptyItemFeatureMember
@@ -4398,7 +4533,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	 *         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
@@ -4430,7 +4570,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	//         ownedFeatureMembership_comp+=ItemFlowEndMember 
 	//         (
-	//             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	//             (
+	//                 ownedMembership_comp+=NestedDefinitionMember | 
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 ownedImport_comp+=Import
+	//             )? 
 	//             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	//         )+
 	//     )
@@ -4439,55 +4584,29 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     PackagedUsageElement returns ItemUsage
-	 *     DirectionalStructureUsageElement returns ItemUsage
-	 *     ConnectionEndElement returns ItemUsage
-	 *     ItemUsage returns ItemUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
-	 *         (
-	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_ItemUsage_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, ItemUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Unit returns PartUsage
 	 *
 	 * Constraint:
 	 *     (
 	 *         ownedRelationship_comp+=PrefixAnnotation? 
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         name=Name 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
 	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
 	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
 	 *         )+
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, PartUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, PartUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4502,7 +4621,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	// Constraint:
 	//     (
 	//         ownedRelationship_comp+=PrefixAnnotation* 
-	//         isAbstract?='abstract'? 
+	//         (isAbstract?='abstract' | isVariation?='variation')? 
 	//         name=Name 
 	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
@@ -4511,6 +4630,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         ownedMembership_comp+=NestedDefinitionMember? 
 	//         (
 	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
 	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	//                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	//                 ownedImport_comp+=Import
@@ -4519,35 +4639,404 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//         )*
 	//     )
 	//
-	// protected void sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_ValuePart(ISerializationContext context, PartUsage semanticObject) { }
+	// protected void sequence_DefinitionBodyItem_MultiplicityPart_PartDeclaration_Redefines_Subsets_SubsettingPart_TypePart_UnitPrefix_UsagePrefix_ValuePart(ISerializationContext context, PartUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
 	 *     DirectionalStructureUsageElement returns PartUsage
+	 *     VariantUsageElement returns PartUsage
 	 *     ConnectionEndElement returns PartUsage
 	 *     PartRefUsage returns PartUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?=PartUsageKeyword? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
+	 *             ownedMembership_comp+=NestedDefinitionMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_PartRefUsage_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, PartUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_PartRefUsage_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, PartUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackagedUsageElement returns PortUsage
+	 *     NondirectionalStructureUsageElement returns PortUsage
+	 *     VariantUsageElement returns PortUsage
+	 *     ConnectionEndElement returns PortUsage
+	 *     PortUsage returns PortUsage
+	 *     PortEndUsage returns PortUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         ((ownedRelationship_comp+=FeatureTyping | ownedRelationship_comp+=ConjugatedPortTyping) ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_PortTypePart_PortUsageDeclaration_Redefines_Subsets_SubsettingPart_UsagePrefix_ValuePart(ISerializationContext context, PortUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     VariantUsageElement returns ReferenceUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (((isAbstract?='abstract' | isVariation?='variation')? (name=Name | ownedRelationship_comp+=Redefinition)?) | name=Name)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (
+	 *             ownedFeatureMembership_comp+=FeatureValue | 
+	 *             (
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered'? isNonunique?='nonunique'?)* isOrdered?='ordered'?)? 
+	 *                 ownedRelationship_comp+=Subset? 
+	 *                 (
+	 *                     ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))+ 
+	 *                     ownedFeatureMembership_comp+=FeatureValue
+	 *                 )?
+	 *             ) | 
+	 *             (
+	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
+	 *                 isOrdered?='ordered'? 
+	 *                 ownedFeatureMembership_comp+=FeatureValue
+	 *             )
+	 *         )? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceVariantUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     ReferenceVariantUsage returns ReferenceUsage
+	//
+	// Constraint:
+	//     (
+	//         (((isAbstract?='abstract' | isVariation?='variation')? (name=Name | ownedRelationship_comp+=Redefinition)?) | name=Name)? 
+	//         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	//         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	//         ownedRelationship_comp+=Subset? 
+	//         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	//         ownedFeatureMembership_comp+=FeatureValue? 
+	//         ownedMembership_comp+=NestedDefinitionMember? 
+	//         (
+	//             (
+	//                 ownedMembership_comp+=VariantUsageMember | 
+	//                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	//                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	//                 ownedImport_comp+=Import
+	//             )? 
+	//             ownedMembership_comp+=NestedDefinitionMember?
+	//         )*
+	//     )
+	//
+	// protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceVariantUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) { }
+	
+	/**
+	 * Contexts:
+	 *     SnapshotRefUsage returns IndividualUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isComposite?=SnapshotKeyword? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	 *         (
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	 *         )* 
+	 *         ownedFeatureMembership_comp+=TimeSliceFeatureMember 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackagedUsageElement returns IndividualUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	 *         (
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	 *         )* 
+	 *         (ownedFeatureMembership_comp+=TimeSliceFeatureMember | ownedFeatureMembership_comp+=SnapshotFeatureMember)? 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SnapshotUsage returns IndividualUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	 *         (
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	 *         )* 
+	 *         ownedFeatureMembership_comp+=SnapshotFeatureMember 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TimeSliceRefUsage returns IndividualUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         isComposite?=TimeSliceKeyword? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	 *         (
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	 *         )* 
+	 *         ownedFeatureMembership_comp+=TimeSliceFeatureMember 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TimeSliceUsage returns IndividualUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)? 
+	 *         (
+	 *             (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*)? 
+	 *             (ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*)?
+	 *         )* 
+	 *         ownedFeatureMembership_comp+=TimeSliceFeatureMember 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
+	 *         )+
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackagedUsageElement returns AttributeUsage
+	 *     DirectionalStructureUsageElement returns AttributeUsage
+	 *     VariantUsageElement returns AttributeUsage
+	 *     AttributeUsage returns AttributeUsage
+	 *     AttributeVariantUsage returns AttributeUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, AttributeUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     IndividualUsage returns IndividualUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     PackagedUsageElement returns ItemUsage
+	 *     DirectionalStructureUsageElement returns ItemUsage
+	 *     VariantUsageElement returns ItemUsage
+	 *     ConnectionEndElement returns ItemUsage
+	 *     ItemUsage returns ItemUsage
+	 *
+	 * Constraint:
+	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
+	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
+	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
+	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
+	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
+	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
+	 *         (
+	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
+	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
+	 *                 ownedImport_comp+=Import
+	 *             )? 
+	 *             ownedMembership_comp+=NestedDefinitionMember?
+	 *         )*
+	 *     )
+	 */
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, ItemUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4559,43 +5048,16 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
-	 *         (
-	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_PartUsage_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, PartUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PortEndUsage returns PortUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         ((ownedRelationship_comp+=FeatureTyping | ownedRelationship_comp+=ConjugatedPortTyping) ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
 	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 ownedImport_comp+=Import
@@ -4604,67 +5066,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_PortEndUsage_PortTypePart_PortUsageDeclaration_Redefines_Subsets_SubsettingPart_ValuePart(ISerializationContext context, PortUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     PackagedUsageElement returns PortUsage
-	 *     NondirectionalStructureUsageElement returns PortUsage
-	 *     ConnectionEndElement returns PortUsage
-	 *     PortUsage returns PortUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         ((ownedRelationship_comp+=FeatureTyping | ownedRelationship_comp+=ConjugatedPortTyping) ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
-	 *         (
-	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_PortTypePart_PortUsage_PortUsageDeclaration_Redefines_Subsets_SubsettingPart_ValuePart(ISerializationContext context, PortUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     ConnectionEndElement returns ReferenceUsage
-	 *     ReferenceEndUsage returns ReferenceUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
-	 *         (
-	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
-	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
-	 *                 ownedImport_comp+=Import
-	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
-	 *         )*
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceEndUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, PartUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4672,126 +5074,31 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     DirectionalStructureUsageElement returns ReferenceUsage
+	 *     ConnectionEndElement returns ReferenceUsage
 	 *     ReferenceUsage returns ReferenceUsage
+	 *     ReferenceEndUsage returns ReferenceUsage
 	 *
 	 * Constraint:
 	 *     (
-	 *         isAbstract?='abstract'? 
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
 	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
 	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
 	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
 	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         ownedFeatureMembership_comp+=NestedUsageMember? 
+	 *         ownedMembership_comp+=NestedDefinitionMember? 
 	 *         (
 	 *             (
-	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
+	 *                 ownedFeatureMembership_comp+=NestedUsageMember | 
 	 *                 (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember) | 
 	 *                 ownedImport_comp+=Import
 	 *             )? 
-	 *             ownedFeatureMembership_comp+=NestedUsageMember?
+	 *             ownedMembership_comp+=NestedDefinitionMember?
 	 *         )*
 	 *     )
 	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_ReferenceUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     SnapshotRefUsage returns IndividualUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         isComposite?=SnapshotKeyword? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=TimeSliceFeatureMember 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotRefUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     SnapshotUsage returns IndividualUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=SnapshotFeatureMember 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_SnapshotUsage_Subsets_SubsettingPart_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TimeSliceRefUsage returns IndividualUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         isComposite?=TimeSliceKeyword? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=TimeSliceFeatureMember 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceRefUsage_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     TimeSliceUsage returns IndividualUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         isAbstract?='abstract'? 
-	 *         (name=Name | ownedRelationship_comp+=Redefinition)? 
-	 *         (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	 *         (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)? 
-	 *         ((ownedRelationship_comp+=Subset ownedRelationship_comp+=Subset*) | (ownedRelationship_comp+=Redefinition ownedRelationship_comp+=Redefinition*))* 
-	 *         ownedFeatureMembership_comp+=TimeSliceFeatureMember 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
-	 *         (
-	 *             (ownedMembership_comp+=NestedDefinitionMember | ownedFeatureMembership_comp+=NestedUsageMember | ownedImport_comp+=Import)? 
-	 *             (ownedFeatureMembership_comp+=EmptySuccessionMember? ownedFeatureMembership_comp+=IndividualUsageMember)?
-	 *         )+
-	 *     )
-	 */
-	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TimeSliceUsage_TypePart_UsageDeclaration_ValuePart(ISerializationContext context, IndividualUsage semanticObject) {
+	protected void sequence_DefinitionBodyItem_MultiplicityPart_Redefines_Subsets_SubsettingPart_TypePart_UsageDeclaration_UsagePrefix_ValuePart(ISerializationContext context, ReferenceUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -4875,26 +5182,15 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     InterfaceUsageMember returns EndFeatureMembership
+	 *     InterfaceEndMember returns EndFeatureMembership
 	 *
 	 * Constraint:
-	 *     (ownedRelationship_comp+=PrefixAnnotation? visibility=VisibilityIndicator? ownedMemberFeature_comp=PortEndUsage)
+	 *     (ownedRelationship_comp+=PrefixAnnotation* visibility=VisibilityIndicator? ownedMemberFeature_comp=PortEndUsage)
 	 */
 	protected void sequence_DefinitionMemberPrefix_InterfaceEndMember(ISerializationContext context, EndFeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     InterfaceEndMember returns EndFeatureMembership
-	//
-	// Constraint:
-	//     (ownedRelationship_comp+=PrefixAnnotation* visibility=VisibilityIndicator? ownedMemberFeature_comp=PortEndUsage)
-	//
-	// protected void sequence_DefinitionMemberPrefix_InterfaceEndMember(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -4990,6 +5286,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     VariantUsageMember returns VariantMembership
+	 *
+	 * Constraint:
+	 *     (ownedRelationship_comp+=PrefixAnnotation* visibility=VisibilityIndicator? ownedVariantUsage_comp=VariantUsageElement)
+	 */
+	protected void sequence_DefinitionMemberPrefix_VariantUsageMember(ISerializationContext context, VariantMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Documentation returns Comment
 	 *
 	 * Constraint:
@@ -5023,9 +5331,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     StateActionUsage returns ActionUsage
 	 *     EmptyActionUsage returns ActionUsage
-	 *     EffectBehaviorUsage returns ActionUsage
 	 *
 	 * Constraint:
 	 *     {ActionUsage}
@@ -5377,6 +5683,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?='fork' 
 	 *         (
 	 *             name=Name 
@@ -5385,7 +5692,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )?
 	 *     )
 	 */
-	protected void sequence_ForkNode_MultiplicityPart_TypePart(ISerializationContext context, ForkNode semanticObject) {
+	protected void sequence_ForkNode_MultiplicityPart_TypePart_UsagePrefix(ISerializationContext context, ForkNode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -5626,6 +5933,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?='join' 
 	 *         (
 	 *             name=Name 
@@ -5634,7 +5942,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )?
 	 *     )
 	 */
-	protected void sequence_JoinNode_MultiplicityPart_TypePart(ISerializationContext context, JoinNode semanticObject) {
+	protected void sequence_JoinNode_MultiplicityPart_TypePart_UsagePrefix(ISerializationContext context, JoinNode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -5677,6 +5985,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         (isAbstract?='abstract' | isVariation?='variation')? 
 	 *         isComposite?='merge' 
 	 *         (
 	 *             name=Name 
@@ -5685,7 +5994,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )?
 	 *     )
 	 */
-	protected void sequence_MergeNode_MultiplicityPart_TypePart(ISerializationContext context, MergeNode semanticObject) {
+	protected void sequence_MergeNode_MultiplicityPart_TypePart_UsagePrefix(ISerializationContext context, MergeNode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -5719,51 +6028,6 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	/**
-	 * Contexts:
-	 *     PerformedActionUsage returns SendActionUsage
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedFeatureMembership_comp+=EmptyParameterMember 
-	 *         ownedFeatureMembership_comp+=EmptyItemFeatureMember 
-	 *         (
-	 *             name=Name 
-	 *             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping?)? 
-	 *             (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)?
-	 *         )? 
-	 *         ownedFeatureMembership_comp+=ExpressionMember 
-	 *         ownedFeatureMembership_comp+=ExpressionMember
-	 *     )
-	 */
-	protected void sequence_MultiplicityPart_SendNodeDeclaration_TypePart(ISerializationContext context, SendActionUsage semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     TransferNodeDeclaration returns SendActionUsage
-	//     SendNodeDeclaration returns SendActionUsage
-	//
-	// Constraint:
-	//     (
-	//         ownedFeatureMembership_comp+=EmptyParameterMember 
-	//         ownedFeatureMembership_comp+=EmptyItemFeatureMember 
-	//         (
-	//             name=Name 
-	//             (ownedRelationship_comp+=FeatureTyping ownedRelationship_comp+=FeatureTyping*)? 
-	//             (ownedFeatureMembership_comp+=MultiplicityMember (isOrdered?='ordered' | isNonunique?='nonunique')*)?
-	//         )? 
-	//         ownedFeatureMembership_comp+=ExpressionMember 
-	//         ownedFeatureMembership_comp+=ExpressionMember
-	//     )
-	//
-	// protected void sequence_MultiplicityPart_SendNodeDeclaration_TypePart(ISerializationContext context, SendActionUsage semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -6065,6 +6329,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=TransitionStepMember | 
 	 *                 ownedImport_comp+=Import
@@ -6097,6 +6362,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (
 	 *             (
 	 *                 ownedMembership_comp+=NestedDefinitionMember | 
+	 *                 ownedMembership_comp+=VariantUsageMember | 
 	 *                 ownedFeatureMembership_comp+=StructureUsageMember | 
 	 *                 ownedFeatureMembership_comp+=TransitionStepMember | 
 	 *                 ownedImport_comp+=Import

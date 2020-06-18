@@ -48,8 +48,9 @@ Unit returns SysML::Package :
 	| CalculationDefinitionUnit
 	| StateDefinitionUnit
 	| ConstraintDefinitionUnit
-	| PartUnit
 	| AttributeUnit
+	| ItemUnit
+	| PartUnit
 	| ActionUnit
 	| CalculationUnit
 	| StateUnit
@@ -103,12 +104,16 @@ ConstraintDefinitionUnit returns SysML::ConstraintDefinition :
 	UnitPrefix ConstraintDefDeclaration ConstraintDefBody
 ;
 
-PartUnit returns SysML::PartUsage :
-	UnitPrefix PartDeclaration UsageCompletion
-;
-
 AttributeUnit returns SysML::AttributeUsage :
 	UnitPrefix AttributeDeclaration UsageCompletion
+;
+
+ItemUnit returns SysML::ItemUsage :
+	UnitPrefix ItemDeclaration UsageCompletion
+;
+
+PartUnit returns SysML::PartUsage :
+	UnitPrefix PartDeclaration UsageCompletion
 ;
 
 ActionUnit returns SysML::ActionUsage :

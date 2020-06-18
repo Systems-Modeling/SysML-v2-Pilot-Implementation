@@ -42,11 +42,12 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCalculationDefinitionUnitParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		private final RuleCall cStateDefinitionUnitParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
 		private final RuleCall cConstraintDefinitionUnitParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cPartUnitParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cAttributeUnitParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cActionUnitParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cCalculationUnitParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cStateUnitParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cAttributeUnitParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cItemUnitParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cPartUnitParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cActionUnitParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cCalculationUnitParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cStateUnitParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
 		
 		///* UNITS */ Unit SysML::Package:
 		//	AnonymousPackage
@@ -61,8 +62,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| CalculationDefinitionUnit
 		//	| StateDefinitionUnit
 		//	| ConstraintDefinitionUnit
-		//	| PartUnit
 		//	| AttributeUnit
+		//	| ItemUnit
+		//	| PartUnit
 		//	| ActionUnit
 		//	| CalculationUnit
 		//	| StateUnit;
@@ -70,8 +72,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//AnonymousPackage | PackageUnit | AttributeDefinitionUnit | ItemDefinitionUnit | PartDefinitionUnit |
 		//IndividualDefinitionUnit | ConnectionDefinitionUnit | InterfaceDefinitionUnit | ActionDefinitionUnit |
-		//CalculationDefinitionUnit | StateDefinitionUnit | ConstraintDefinitionUnit | PartUnit | AttributeUnit | ActionUnit |
-		//CalculationUnit | StateUnit
+		//CalculationDefinitionUnit | StateDefinitionUnit | ConstraintDefinitionUnit | AttributeUnit | ItemUnit | PartUnit |
+		//ActionUnit | CalculationUnit | StateUnit
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//AnonymousPackage
@@ -110,20 +112,23 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ConstraintDefinitionUnit
 		public RuleCall getConstraintDefinitionUnitParserRuleCall_11() { return cConstraintDefinitionUnitParserRuleCall_11; }
 		
-		//PartUnit
-		public RuleCall getPartUnitParserRuleCall_12() { return cPartUnitParserRuleCall_12; }
-		
 		//AttributeUnit
-		public RuleCall getAttributeUnitParserRuleCall_13() { return cAttributeUnitParserRuleCall_13; }
+		public RuleCall getAttributeUnitParserRuleCall_12() { return cAttributeUnitParserRuleCall_12; }
+		
+		//ItemUnit
+		public RuleCall getItemUnitParserRuleCall_13() { return cItemUnitParserRuleCall_13; }
+		
+		//PartUnit
+		public RuleCall getPartUnitParserRuleCall_14() { return cPartUnitParserRuleCall_14; }
 		
 		//ActionUnit
-		public RuleCall getActionUnitParserRuleCall_14() { return cActionUnitParserRuleCall_14; }
+		public RuleCall getActionUnitParserRuleCall_15() { return cActionUnitParserRuleCall_15; }
 		
 		//CalculationUnit
-		public RuleCall getCalculationUnitParserRuleCall_15() { return cCalculationUnitParserRuleCall_15; }
+		public RuleCall getCalculationUnitParserRuleCall_16() { return cCalculationUnitParserRuleCall_16; }
 		
 		//StateUnit
-		public RuleCall getStateUnitParserRuleCall_16() { return cStateUnitParserRuleCall_16; }
+		public RuleCall getStateUnitParserRuleCall_17() { return cStateUnitParserRuleCall_17; }
 	}
 	public class AnonymousPackageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnonymousPackage");
@@ -389,29 +394,6 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ConstraintDefBody
 		public RuleCall getConstraintDefBodyParserRuleCall_2() { return cConstraintDefBodyParserRuleCall_2; }
 	}
-	public class PartUnitElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PartUnit");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cUnitPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cPartDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final RuleCall cUsageCompletionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		
-		//PartUnit SysML::PartUsage:
-		//	UnitPrefix PartDeclaration UsageCompletion;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//UnitPrefix PartDeclaration UsageCompletion
-		public Group getGroup() { return cGroup; }
-		
-		//UnitPrefix
-		public RuleCall getUnitPrefixParserRuleCall_0() { return cUnitPrefixParserRuleCall_0; }
-		
-		//PartDeclaration
-		public RuleCall getPartDeclarationParserRuleCall_1() { return cPartDeclarationParserRuleCall_1; }
-		
-		//UsageCompletion
-		public RuleCall getUsageCompletionParserRuleCall_2() { return cUsageCompletionParserRuleCall_2; }
-	}
 	public class AttributeUnitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AttributeUnit");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -431,6 +413,52 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//AttributeDeclaration
 		public RuleCall getAttributeDeclarationParserRuleCall_1() { return cAttributeDeclarationParserRuleCall_1; }
+		
+		//UsageCompletion
+		public RuleCall getUsageCompletionParserRuleCall_2() { return cUsageCompletionParserRuleCall_2; }
+	}
+	public class ItemUnitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ItemUnit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cUnitPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cItemDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cUsageCompletionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//ItemUnit SysML::ItemUsage:
+		//	UnitPrefix ItemDeclaration UsageCompletion;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//UnitPrefix ItemDeclaration UsageCompletion
+		public Group getGroup() { return cGroup; }
+		
+		//UnitPrefix
+		public RuleCall getUnitPrefixParserRuleCall_0() { return cUnitPrefixParserRuleCall_0; }
+		
+		//ItemDeclaration
+		public RuleCall getItemDeclarationParserRuleCall_1() { return cItemDeclarationParserRuleCall_1; }
+		
+		//UsageCompletion
+		public RuleCall getUsageCompletionParserRuleCall_2() { return cUsageCompletionParserRuleCall_2; }
+	}
+	public class PartUnitElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PartUnit");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cUnitPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cPartDeclarationParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cUsageCompletionParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//PartUnit SysML::PartUsage:
+		//	UnitPrefix PartDeclaration UsageCompletion;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//UnitPrefix PartDeclaration UsageCompletion
+		public Group getGroup() { return cGroup; }
+		
+		//UnitPrefix
+		public RuleCall getUnitPrefixParserRuleCall_0() { return cUnitPrefixParserRuleCall_0; }
+		
+		//PartDeclaration
+		public RuleCall getPartDeclarationParserRuleCall_1() { return cPartDeclarationParserRuleCall_1; }
 		
 		//UsageCompletion
 		public RuleCall getUsageCompletionParserRuleCall_2() { return cUsageCompletionParserRuleCall_2; }
@@ -14480,8 +14508,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final CalculationDefinitionUnitElements pCalculationDefinitionUnit;
 	private final StateDefinitionUnitElements pStateDefinitionUnit;
 	private final ConstraintDefinitionUnitElements pConstraintDefinitionUnit;
-	private final PartUnitElements pPartUnit;
 	private final AttributeUnitElements pAttributeUnit;
+	private final ItemUnitElements pItemUnit;
+	private final PartUnitElements pPartUnit;
 	private final ActionUnitElements pActionUnit;
 	private final CalculationUnitElements pCalculationUnit;
 	private final StateUnitElements pStateUnit;
@@ -14886,8 +14915,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pCalculationDefinitionUnit = new CalculationDefinitionUnitElements();
 		this.pStateDefinitionUnit = new StateDefinitionUnitElements();
 		this.pConstraintDefinitionUnit = new ConstraintDefinitionUnitElements();
-		this.pPartUnit = new PartUnitElements();
 		this.pAttributeUnit = new AttributeUnitElements();
+		this.pItemUnit = new ItemUnitElements();
+		this.pPartUnit = new PartUnitElements();
 		this.pActionUnit = new ActionUnitElements();
 		this.pCalculationUnit = new CalculationUnitElements();
 		this.pStateUnit = new StateUnitElements();
@@ -15311,8 +15341,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//	| CalculationDefinitionUnit
 	//	| StateDefinitionUnit
 	//	| ConstraintDefinitionUnit
-	//	| PartUnit
 	//	| AttributeUnit
+	//	| ItemUnit
+	//	| PartUnit
 	//	| ActionUnit
 	//	| CalculationUnit
 	//	| StateUnit;
@@ -15444,16 +15475,6 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getConstraintDefinitionUnitAccess().getRule();
 	}
 	
-	//PartUnit SysML::PartUsage:
-	//	UnitPrefix PartDeclaration UsageCompletion;
-	public PartUnitElements getPartUnitAccess() {
-		return pPartUnit;
-	}
-	
-	public ParserRule getPartUnitRule() {
-		return getPartUnitAccess().getRule();
-	}
-	
 	//AttributeUnit SysML::AttributeUsage:
 	//	UnitPrefix AttributeDeclaration UsageCompletion;
 	public AttributeUnitElements getAttributeUnitAccess() {
@@ -15462,6 +15483,26 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getAttributeUnitRule() {
 		return getAttributeUnitAccess().getRule();
+	}
+	
+	//ItemUnit SysML::ItemUsage:
+	//	UnitPrefix ItemDeclaration UsageCompletion;
+	public ItemUnitElements getItemUnitAccess() {
+		return pItemUnit;
+	}
+	
+	public ParserRule getItemUnitRule() {
+		return getItemUnitAccess().getRule();
+	}
+	
+	//PartUnit SysML::PartUsage:
+	//	UnitPrefix PartDeclaration UsageCompletion;
+	public PartUnitElements getPartUnitAccess() {
+		return pPartUnit;
+	}
+	
+	public ParserRule getPartUnitRule() {
+		return getPartUnitAccess().getRule();
 	}
 	
 	//ActionUnit SysML::ActionUsage:

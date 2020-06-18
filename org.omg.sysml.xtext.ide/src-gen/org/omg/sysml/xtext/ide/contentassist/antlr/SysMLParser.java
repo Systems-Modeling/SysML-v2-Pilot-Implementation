@@ -197,8 +197,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCalculationDefinitionUnitAccess().getGroup(), "rule__CalculationDefinitionUnit__Group__0");
 			builder.put(grammarAccess.getStateDefinitionUnitAccess().getGroup(), "rule__StateDefinitionUnit__Group__0");
 			builder.put(grammarAccess.getConstraintDefinitionUnitAccess().getGroup(), "rule__ConstraintDefinitionUnit__Group__0");
-			builder.put(grammarAccess.getPartUnitAccess().getGroup(), "rule__PartUnit__Group__0");
 			builder.put(grammarAccess.getAttributeUnitAccess().getGroup(), "rule__AttributeUnit__Group__0");
+			builder.put(grammarAccess.getItemUnitAccess().getGroup(), "rule__ItemUnit__Group__0");
+			builder.put(grammarAccess.getPartUnitAccess().getGroup(), "rule__PartUnit__Group__0");
 			builder.put(grammarAccess.getActionUnitAccess().getGroup(), "rule__ActionUnit__Group__0");
 			builder.put(grammarAccess.getCalculationUnitAccess().getGroup(), "rule__CalculationUnit__Group__0");
 			builder.put(grammarAccess.getStateUnitAccess().getGroup(), "rule__StateUnit__Group__0");

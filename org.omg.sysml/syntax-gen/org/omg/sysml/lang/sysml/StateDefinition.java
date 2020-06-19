@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>A State Definition must subclass, directly or indirectly, the base StateDefinition StateAction from the Systems model library.</p>
  * 
- * <p>A StateDefinition may be related to up to three of its <tt>ownedFeatures</tt> by StateBehaviorMembership Relationships, all of different <tt>kinds</tt>, corresponding to the entry, do and exit actions of the StateDefinition.</p>
+ * <p>A StateDefinition may be related to up to three of its <cpde>ownedFeatures</cpde> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateDefinition.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface StateDefinition extends Activity {
+public interface StateDefinition extends ActionDefinition {
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StateUsage}.

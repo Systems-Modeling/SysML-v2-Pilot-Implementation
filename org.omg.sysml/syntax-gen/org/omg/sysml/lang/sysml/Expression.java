@@ -7,9 +7,8 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An Expression is a single computational step within a Function. These can be interpretated as one side of a mathematical equation, a full equation (which can evaluate to true or false), or a software expression (which evaluates to some data type).
+ * <p>An Expression is a single computational step within a Function. These can be interpreted as one side of a mathematical equation, a full equation (which can evaluate to true or false), or a software expression (which evaluates to some data type). Expressions can be typed by Functions, which supports parameterization. Expressions return one <code>result</code>.</p>
  * 
- * Expressions can be typed by Functions, which supports parameterization.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -41,7 +40,7 @@ public interface Expression extends Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>This is the Function that types the Expression.</p>
+	 * <p>The Function that types the Expression.</p>
 	 * <p>This is the Function that types the Expression.</p>
 	 * 
 	 * <!-- end-model-doc -->
@@ -80,6 +79,9 @@ public interface Expression extends Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The object or value that is the result of evaluating the Expression, derived as the <code>parameter</code> related to the Expression by a ReturnParameterMembership.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
 	 * @see #setResult(Parameter)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_Result()

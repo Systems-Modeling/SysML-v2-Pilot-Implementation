@@ -7,11 +7,7 @@ package org.omg.sysml.lang.sysml;
  * Typing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureTyping is Generalization in which the specific Type is a Feature. The general Type of a FeatureTyping is asserted to be a subset of the range of the typedFeature.</p>
- * 
- * <p>Note, however, that the union of the Types explicitly related to a Feature does not necessarily define the entire range of the Feature. The complete set of <em>types of a Feature</em> include types inherited from Features it subsets, if any, as well as those explicitly specified through FeatureTyping relationships. The range of a Feature is defined to be the union of <em>all</em> the types of the Feature.</p>
- * 
- * <p>If no types are explicitly given for a Feature, either through FeatureTyping or via Subsetting, then the Feature is considered to always have at least the (maximal) type Anything from the Base model library as its single type.</p> 
+ * <p>FeatureTyping is Generalization in which the specific Type is a Feature. This means the range of the typedFeature is a subset of the set of&nbsp;instances of the general Type.&nbsp; Because of this,&nbsp;the range of the Feature might be narrower than the intersection of Types related to a Feature via FeatureTypings, for example due to additional constraints on the Feature.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -42,6 +38,9 @@ public interface FeatureTyping extends Generalization {
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Type that is being applied by this FeatureTyping.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_Type()
@@ -76,6 +75,9 @@ public interface FeatureTyping extends Generalization {
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that has its Type determined by this FeatureTyping.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Typed Feature</em>' reference.
 	 * @see #setTypedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_TypedFeature()

@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Classifier is a Type whose instances include individual entities from the universe of discourse, such as cars, ships or people. However, since FeatureTyping is a kind of Generalization, every Feature typed by a Classifier (directly or indirectly) is semantically a subtype of that Classifier. Therefore, instances of such Features are also instances of the Classifier.</p>
- *     
- * <p>Thus, like Features, instances of a Classifier can also, in general, be interpreted as n-tuples. Unlike a Feature, however, the instances of a Classifier include the case of n=1, that is, individual entities. Indeed, for every n-tuple that is an instance of a Classifier, the n-th member of the n-tuple must also be an entity that is also individually an instance of the Classifier (essentially due to the semantics of FeatureTyping).</p>
+ * <p>A Classifier is a Type whose instances include individual things, such as cars, ships or people, and all relations (navigations) to those things via Features. To support this, FeatureTyping is a kind of Generalization, so every Feature typed by a Classifier is&nbsp;a specialization of that Classifier (instances of such Features are also instances of the Classifier).</p>
+ * 
+ * <p>Like Features, instances of a Classifier can also be interpreted as n-tuples. Unlike a Feature, however, the instances of a Classifier include the case of n=1, that is, individual entities. Ffor every n-tuple that is an instance of a Classifier, the n-th member of the n-tuple must also be an entity that is also individually an instance of the Classifier (because FeatureTyping is a kind of Generalization).</p>
  * 
  * ownedSuperclassings = ownedGeneralizations->intersection(superclassing)
  * <!-- end-model-doc -->
@@ -47,6 +47,9 @@ public interface Classifier extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The relationship leading from the <code>subclass</code> to a more general Classifier and is owned by the <code>subclass</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Superclassing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier_OwnedSuperclassing()
 	 * @see org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier

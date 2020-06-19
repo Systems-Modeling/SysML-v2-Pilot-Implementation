@@ -11,7 +11,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An AssertConstraintUsage is a ConstraintUsage that is also an Invariant and, so, is asserted to be true. The asserted ConstraintUsage (which may be the AssertConstraintUsage itself) is related to the AssertConstraintUsage by a Subsetting relationship.</p>
  * 
- * <p>If the AssertConstraintUsage is owned by a Part, then it also subsets the <tt>assertedConstraints</tt> property of that Part (as defined in the library model for Part), otherwise it subsets <tt?constraintChecks</tt>, as required for a regular ConstraintUsage.</p>
+ * <p>If the AssertConstraintUsage is owned by a Part, then it also subsets the <code>assertedConstraints</code> property of that Part (as defined in the library model for Part), otherwise it subsets <code>constraintChecks</code>, as required for a regular ConstraintUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>

@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 
-	public static final String MERGE_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::merges";
+	public static final String MERGE_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::merges";
 
 	/**
 	 * <!-- begin-user-doc -->

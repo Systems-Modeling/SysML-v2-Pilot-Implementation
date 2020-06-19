@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PortDefinition defines a point at which external entities can connect to and interact with a system or part of a system. Any <tt>ownedProperties</tt> of a PortDefinition must not be composite (and, therefore, cannot be PartProperties).</p>
+ * <p>A PortDefinition defines a point at which external entities can connect to and interact with a system or part of a system. Any <code>ownedUsages</code> of a PortDefinition must not be composite.</p>
  * <!-- end-model-doc -->
  *
  * <p>

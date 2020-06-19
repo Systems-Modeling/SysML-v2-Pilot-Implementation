@@ -62,11 +62,11 @@ PackageUnit returns SysML::Package:
     UnitPrefix PackageDeclaration PackageBody 
 ;
 
-BlockUnit returns SysML::Block:
+BlockUnit returns SysML::PartDefinition:
 	UnitPrefix BlockDeclaration DefinitionBody
 ;
 
-ValueTypeUnit returns SysML::ValueType :
+ValueTypeUnit returns SysML::AttributeDefinition :
 	UnitPrefix ValueTypeDeclaration DefinitionBody
 ;
 
@@ -74,7 +74,7 @@ IndividualDefinitionUnit returns SysML::IndividualDefinition :
 	UnitPrefix IndividualDefDeclaration DefinitionBody
 ;
 
-AssociationBlockUnit returns SysML::AssociationBlock :
+AssociationBlockUnit returns SysML::ConnectionDefinition :
 	UnitPrefix AssociationBlockDeclaration AssociationBlockBody
 ;
 
@@ -82,11 +82,11 @@ InterfaceDefinitionUnit returns SysML::InterfaceDefinition :
 	UnitPrefix InterfaceDeclaration InterfaceBody
 ;
 
-ActivityUnit returns SysML::Activity :
+ActivityUnit returns SysML::ActionDefinition :
 	UnitPrefix ActivityDeclaration ActivityBody
 ;
 
-FunctionDefinitionUnit returns SysML::FunctionDefinition :
+FunctionDefinitionUnit returns SysML::CalculationDefinition :
 	UnitPrefix FunctionDefDeclaration FunctionBody
 ;
 
@@ -98,11 +98,11 @@ ConstraintDefinitionUnit returns SysML::ConstraintDefinition :
 	UnitPrefix ConstraintDefDeclaration ConstraintBody
 ;
 
-PartUnit returns SysML::PartProperty :
+PartUnit returns SysML::PartUsage :
 	UnitPrefix PartDeclaration UsageCompletion
 ;
 
-ValueUnit returns SysML::ValueProperty :
+ValueUnit returns SysML::AttributeUsage :
 	UnitPrefix ValueDeclaration UsageCompletion
 ;
 
@@ -110,7 +110,7 @@ ActionUnit returns SysML::ActionUsage :
 	UnitPrefix ActionDeclaration ActivityBody
 ;
 
-FunctionUnit returns SysML::FunctionUsage :
+FunctionUnit returns SysML::CalculationUsage :
 	UnitPrefix FunctionDeclaration FunctionBody
 ;
 
@@ -226,6 +226,14 @@ fragment PackagedUsageMember returns SysML::Membership :
 	| 'abstract' 'timeslice' ownedMemberElement_comp = AbstractTimeSliceUsage
 	| 'snapshot' ownedMemberElement_comp = SnapshotUsage
 	| 'abstract' 'snapshot' ownedMemberElement_comp = AbstractSnapshotUsage
+	| 'port' ownedMemberElement_comp = PortUsage
+	| 'abstract' 'port' ownedMemberElement_comp = AbstractPortUsage
+	| 'link' ownedMemberElement_comp = ConnectionUsage 
+    | 'abstract' 'link' ownedMemberElement_comp = AbstractConnectionUsage
+ 	| 'connect' ownedMemberElement_comp = Connector 
+    | 'abstract' 'connect' ownedMemberElement_comp = AbstractConnector
+	| 'interface' ownedMemberElement_comp = InterfaceUsage
+	| 'abstract' 'interface' ownedMemberElement_comp = AbstractInterfaceUsage
 	| 'action' ownedMemberElement_comp = ActionUsage
 	| 'abstract' 'action' ownedMemberElement_comp = AbstractActionUsage
 	| FunctionKeyword ownedMemberElement_comp = FunctionUsage
@@ -269,10 +277,6 @@ NestedUsageMember returns SysML::FeatureMembership :
 ;
 
 StructureUsageMember returns SysML::FeatureMembership :
-	NonPortStructureUsageMember | PortMember | ConjugatedPortMember
-;
-
-NonPortStructureUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
 	(
 	  isComposite ?= 'part' ownedMemberFeature_comp = PartProperty
@@ -281,6 +285,8 @@ NonPortStructureUsageMember returns SysML::FeatureMembership :
 	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractReferenceProperty
 	| 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = ValueProperty
 	| 'abstract' 'value'? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractValueProperty
+	| isPort ?= 'port' ownedMemberFeature_comp = PortUsage
+	| 'abstract' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
 	| 'link' ownedMemberFeature_comp = ConnectionUsage 
     | 'abstract' 'link' ownedMemberFeature_comp = AbstractConnectionUsage
  	| 'connect' ownedMemberFeature_comp = Connector 
@@ -328,20 +334,6 @@ BehaviorUsageMember returns SysML::FeatureMembership :
 	)
 ;
 
-PortMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix
-	( isPort ?= 'port' ownedMemberFeature_comp = PortUsage
-	| 'abstract' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
-	)
-;
-
-ConjugatedPortMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix
-	( isPort ?= 'port' ownedMemberFeature_comp = ConjugatedPortUsage
-	| 'abstract' isPort ?= 'port' ownedMemberFeature_comp = AbstractConjugatedPortUsage
-	)
-;
-
 enum FeatureDirection returns SysML::FeatureDirectionKind :
 	in = 'in' | out = 'out' | inout = 'inout'
 ;
@@ -373,21 +365,21 @@ Superclassing returns SysML::Superclassing:
 
 /* BLOCKS */
 
-Block returns SysML::Block :
+Block returns SysML::PartDefinition :
 	BlockDeclaration DefinitionBody
 ;
 
-fragment BlockDeclaration returns SysML::Block :
+fragment BlockDeclaration returns SysML::PartDefinition :
 	( isAbstract ?= 'abstract' )? 'block' ClassifierDeclarationCompletion
 ;
 
 /* VALUE TYPES */
 
-ValueType returns SysML::ValueType :
+ValueType returns SysML::AttributeDefinition :
 	ValueTypeDeclaration DefinitionBody
 ;
 
-fragment ValueTypeDeclaration returns SysML::ValueType :
+fragment ValueTypeDeclaration returns SysML::AttributeDefinition :
 	( isAbstract ?= 'abstract' )? 'value' 'type' ClassifierDeclarationCompletion
 ;
 
@@ -439,11 +431,11 @@ ConjugatedPortDefinitionMember returns SysML::Membership :
 
 /* ASSOCIATION BLOCKS */
 
-AssociationBlock returns SysML::AssociationBlock :
+AssociationBlock returns SysML::ConnectionDefinition :
 	AssociationBlockDeclaration AssociationBlockBody
 ;
 
-fragment AssociationBlockDeclaration returns SysML::AssociationBlock :
+fragment AssociationBlockDeclaration returns SysML::ConnectionDefinition :
 	( isAbstract ?= 'abstract' )? 'assoc' 'block' ClassifierDeclarationCompletion
 ;
 
@@ -472,7 +464,7 @@ fragment AbstractAssociationBlockBody returns SysML::Type :
 /* ASSOCIATION BLOCK MEMBERSHIPS */
 
 AssociationUsageMember returns SysML::FeatureMembership :
-	NestedUsageMember | AssociationEndMember | EndPortMember | ConjugatedEndPortMember
+	NestedUsageMember | AssociationEndMember
 ;
 
 AssociationEndMember returns SysML::EndFeatureMembership :
@@ -481,26 +473,14 @@ AssociationEndMember returns SysML::EndFeatureMembership :
     | 'abstract' 'end' isComposite ?= 'part' ownedMemberFeature_comp = AbstractPartProperty
     | 'end' 'ref'? ownedMemberFeature_comp = ReferenceProperty
     | 'abstract' 'end' 'ref'? ownedMemberFeature_comp = AbstractReferenceProperty
+	| 'end' isPort ?= 'port' ownedMemberFeature_comp = PortUsage
+	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
     | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
 	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
 	| 'end' ('ref' FunctionKeyword | isComposite ?= FunctionKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = FunctionUsage
 	| 'abstract' 'end' ('ref' FunctionKeyword | isComposite ?= FunctionKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractFunctionUsage
 	| 'end' ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = StateUsage
 	| 'abstract' 'end'('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStateUsage
-	)
-;
-
-EndPortMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix
-	( 'end' isPort ?= 'port' ownedMemberFeature_comp = PortUsage
-	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
-	)
-;
-
-ConjugatedEndPortMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix
-	( 'end' isPort ?= 'port' ownedMemberFeature_comp = ConjugatedPortUsage
-	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractConjugatedPortUsage
 	)
 ;
 
@@ -535,7 +515,7 @@ fragment AbstractInterfaceBody returns SysML::Type :
 /* INTERFACE DEFINITION MEMBERSHIPS */
 
 InterfaceUsageMember returns SysML::FeatureMembership :
-	NestedUsageMember | InterfaceEndMember | ConjugatedInterfaceEndMember
+	NestedUsageMember | InterfaceEndMember
 ;
 
 InterfaceEndMember returns SysML::EndFeatureMembership :
@@ -546,21 +526,13 @@ InterfaceEndMember returns SysML::EndFeatureMembership :
 	)
 ;
 
-ConjugatedInterfaceEndMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix
-    (
-      isPort ?= 'end' 'port'? ownedMemberFeature_comp = ConjugatedPortUsage
-    | 'abstract' isPort ?= 'end' 'port'? ownedMemberFeature_comp = AbstractConjugatedPortUsage
-	)
-;
-
 /* ACTIVITIES */
 
-Activity returns SysML::Activity :
+Activity returns SysML::ActionDefinition :
 	ActivityDeclaration ActivityBody
 ;
 
-fragment ActivityDeclaration returns SysML::Activity :
+fragment ActivityDeclaration returns SysML::ActionDefinition :
 	( isAbstract ?= 'abstract')? 'activity' name = Name ParameterList? SuperclassingList?
 ;
 
@@ -618,14 +590,14 @@ GuardedSuccessionMember returns SysML::FeatureMembership :
 
 /* FUNCTION DEFINITIONS */
 
-FunctionDefinition returns SysML::FunctionDefinition :
+FunctionDefinition returns SysML::CalculationDefinition :
 	FunctionDefDeclaration 
 	( FunctionBody 
 	| '=' ownedFeatureMembership_comp += ExpressionMember ';'
 	)
 ;
 
-fragment FunctionDefDeclaration returns SysML::FunctionDefinition :
+fragment FunctionDefDeclaration returns SysML::CalculationDefinition :
 	( isAbstract ?= 'abstract')? FunctionKeyword 'def' name = Name 
 	ParameterList? ReturnParameterPart SuperclassingList?
 ;
@@ -891,13 +863,13 @@ FeatureValue returns SysML::FeatureValue :
 ;
 
 fragment TypePart returns SysML::Feature :
-	  TypedByKeyword ( ownedRelationship_comp += FeatureTyping ( ',' ownedRelationship_comp += FeatureTyping )* 
+	  DefinedByKeyword ( ownedRelationship_comp += FeatureTyping ( ',' ownedRelationship_comp += FeatureTyping )* 
 	  	    | 'any' ) MultiplicityPart?
 	| MultiplicityPart
 ;
 
-TypedByKeyword :
-	':' | 'typed' 'by'
+DefinedByKeyword :
+	':' | 'defined' 'by'
 ;
 
 FeatureTyping returns SysML::FeatureTyping :
@@ -966,47 +938,47 @@ Parameter returns SysML::Parameter :
 ;
 
 fragment ParameterTypePart returns SysML::Parameter :
-	TypedByKeyword ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
+	DefinedByKeyword ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
 	  | MultiplicityPart	
 ;
 
 /* PART PROPERTIES */
 
-fragment PartDeclaration returns SysML::PartProperty :
+fragment PartDeclaration returns SysML::PartUsage :
 	( isAbstract ?= 'abstract' )? 'part' 
 	name = Name TypePart? SubsettingPart
 ;
 
-PartProperty returns SysML::PartProperty :
+PartProperty returns SysML::PartUsage :
 	Usage
 ;
 
-AbstractPartProperty returns SysML::PartProperty :
+AbstractPartProperty returns SysML::PartUsage :
 	AbstractUsage
 ;
 
 /* REFERENCE PROPERTIES */
 
-ReferenceProperty returns SysML::ReferenceProperty :
+ReferenceProperty returns SysML::ReferenceUsage :
 	Usage
 ;
 
-AbstractReferenceProperty returns SysML::ReferenceProperty :
+AbstractReferenceProperty returns SysML::ReferenceUsage :
 	AbstractUsage
 ;
 
 /* VALUE PROPERTIES */
 
-fragment ValueDeclaration returns SysML::ValueProperty :
+fragment ValueDeclaration returns SysML::AttributeUsage :
 	( isAbstract ?= 'abstract' )? 'value'? 
 	name = Name TypePart? SubsettingPart
 ;
 
-ValueProperty returns SysML::ValueProperty :
+ValueProperty returns SysML::AttributeUsage :
 	Usage
 ;
 
-AbstractValueProperty returns SysML::ValueProperty :
+AbstractValueProperty returns SysML::AttributeUsage :
 	AbstractUsage
 ;
 
@@ -1061,29 +1033,23 @@ SnapshotFeatureMember returns SysML::FeatureMembership :
 /* PORT USAGE */
 
 PortUsage returns SysML::PortUsage :
-	Usage
+	PortUsageDeclaration UsageCompletion
 ;
 
 AbstractPortUsage returns SysML::PortUsage :
-	AbstractUsage
+	PortUsageDeclaration AbstractUsageCompletion
 ;
 
-ConjugatedPortUsage returns SysML::PortUsage :
-	ConjugatePortUsageDeclaration UsageCompletion
+fragment PortUsageDeclaration returns SysML::Usage :
+	  name = Name PortTypePart? SubsettingPart
+	| PortTypePart SubsettingPart
+	| RedefinesKeyword ownedRelationship_comp += Redefinition PortTypePart? SubsettingPart
 ;
 
-AbstractConjugatedPortUsage returns SysML::PortUsage :
-	ConjugatePortUsageDeclaration AbstractUsageCompletion
-;
-
-fragment ConjugatePortUsageDeclaration returns SysML::Usage :
-	  name = Name ConjugatePortTypePart MultiplicityPart? SubsettingPart
-	| ConjugatePortTypePart MultiplicityPart? SubsettingPart
-	| RedefinesKeyword ownedRelationship_comp += Redefinition ConjugatePortTypePart MultiplicityPart SubsettingPart
-;
-
-fragment ConjugatePortTypePart returns SysML::Feature :
-	TypedByKeyword '~' ownedRelationship_comp += ConjugatedPortTyping
+fragment PortTypePart returns SysML::Feature :
+	  DefinedByKeyword ( ( ownedRelationship_comp += FeatureTyping | '~' ownedRelationship_comp += ConjugatedPortTyping ) 
+	  	( ',' ownedRelationship_comp += FeatureTyping )* | 'any' ) MultiplicityPart?
+	| MultiplicityPart
 ;
 
 ConjugatedPortTyping returns SysML::ConjugatedPortTyping :
@@ -1101,11 +1067,11 @@ AbstractConnector returns SysML::ConnectionUsage :
 ;
 
 ConnectionUsage returns SysML::ConnectionUsage :
-	UsageDeclaration 'connect' ConnectionPart AssociationBlockBody
+	UsageDeclaration ( 'connect' ConnectionPart )? AssociationBlockBody
 ;
 
 AbstractConnectionUsage returns SysML::ConnectionUsage :
-	UsageDeclaration 'connect' ConnectionPart AbstractAssociationBlockBody
+	UsageDeclaration ( 'connect' ConnectionPart )? AbstractAssociationBlockBody
 ;
 
 fragment ConnectionPart returns SysML::ConnectionUsage :
@@ -1152,11 +1118,15 @@ EmptyTargetEndMember returns SysML::EndFeatureMembership :
 /* INTERFACE CONNECTORS */
 
 InterfaceUsage returns SysML::InterfaceUsage :	 
-	UsageDeclaration 'connect' ConnectionPart InterfaceBody	  
+	InterfaceUsageDeclaration InterfaceBody
 ;
 
 AbstractInterfaceUsage returns SysML::InterfaceUsage :
-	UsageDeclaration 'connect' ConnectionPart  AbstractInterfaceBody
+	InterfaceUsageDeclaration AbstractInterfaceBody	
+;
+
+InterfaceUsageDeclaration returns SysML::InterfaceUsage :
+	UsageDeclaration ( 'connect' ConnectionPart )? | ConnectionPart
 ;
 
 /* BINDING CONNECTORS */
@@ -1253,7 +1223,7 @@ ItemFlowFeature returns SysML::ItemFlowFeature :
 /* ITEM FLOW MEMBERSHIPS */
 
 ItemFeatureMember returns SysML::FeatureMembership :
-	( memberName = Name TypedByKeyword )? ownedMemberFeature_comp = ItemFeatureTyping
+	( memberName = Name DefinedByKeyword )? ownedMemberFeature_comp = ItemFeatureTyping
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
@@ -1392,16 +1362,16 @@ EmptyParameterMember returns SysML::ParameterMembership :
 
 /* FUNCTIONS */
 
-fragment FunctionDeclaration returns SysML::FunctionUsage :
+fragment FunctionDeclaration returns SysML::CalculationUsage :
     ( isAbstract ?= 'abstract' )? FunctionKeyword 
 	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList FunctionReturnParameterPart )?
 ;
 
-FunctionUsage returns SysML::FunctionUsage :
+FunctionUsage returns SysML::CalculationUsage :
 	FunctionUsageDeclaration FunctionBody
 ;
 
-AbstractFunctionUsage returns SysML::FunctionUsage :
+AbstractFunctionUsage returns SysML::CalculationUsage :
 	FunctionUsageDeclaration AbstractFunctionBody
 ;
 

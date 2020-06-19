@@ -71,7 +71,7 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The object or value that is the result of evaluating the Function.</p>
+	 * <p>The object or value that is the result of evaluating the Function, derived as the <code>parameter</code> related to the Function by a ReturnParameterMembership.</p>
 	 * 
 	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <!-- end-model-doc -->

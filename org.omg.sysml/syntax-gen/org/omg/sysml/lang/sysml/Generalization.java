@@ -9,17 +9,18 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Generalization is a Relationship between two Types that asserts that any instance of the specific type is also an instance of the general Type. Special cases of Generalization include</p>
+ * <p>Generalization is a Relationship between two Types indicating that any instance of the specific type is also an instance of the general Type. This means instances of the special Type form a subset of instances of the general Type, which might be the same set. Special cases of Generalization include</p>
  * 
  * <ol>
- * <li>Subclassing, in which the related Types are both Classifiers,</li>
- * <li>Subsetting , in which the related Types are both Features, and</li>
- * <li>FeatureTyping, in which the specific Type is a Feature and the general Type can be either a Classifier or a Feature.</li>
+ * 	<li>Subclassing, in which the related Types are both Classifiers,</li>
+ * 	<li>Subsetting , in which the related Types are both Features, and</li>
+ * 	<li>FeatureTyping, in which the specific Type is a Feature and the general Type can be either a Classifier or a Feature.</li>
  * </ol>
  * 
  * <p>A Generalization is not allowed with a specific Type that is a Classifier and a general Type that is a Feature. This is because a Classifier always includes instances that are individual entities, which an never be instances of a Feature.</p>
  * 
- * <p>The specific Type of a Generalization can also not be a conjugated Type.</p>
+ * <p>The specific Type of a Generalization cannot&nbsp;be a conjugated Type.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -50,6 +51,10 @@ public interface Generalization extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A Type with&nbsp;a&nbsp;superset of all instances of the specific Type, which might be the same set.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>General</em>' reference.
 	 * @see #setGeneral(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_General()
@@ -84,6 +89,10 @@ public interface Generalization extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A Type with&nbsp;a&nbsp;subset of all instances of the general Type, which might be the same set.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specific</em>' reference.
 	 * @see #setSpecific(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_Specific()
@@ -121,6 +130,9 @@ public interface Generalization extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Type that owns this Generalization.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_OwningType()

@@ -18,7 +18,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,7 +27,6 @@ import org.omg.sysml.lang.sysml.Usage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTransitionOwningUsage <em>Transition Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionUsageImpl#getTriggerAction <em>Trigger Action</em>}</li>
@@ -133,73 +131,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getTransitionOwningUsage() {
-		Usage transitionOwningUsage = basicGetTransitionOwningUsage();
-		return transitionOwningUsage != null && transitionOwningUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)transitionOwningUsage) : transitionOwningUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Usage basicGetTransitionOwningUsage() {
-		return super.basicGetOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setTransitionOwningUsage(Usage newTransitionOwningUsage) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getOwningUsage() {
-		return getActionOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetOwningUsage() {
-		return basicGetActionOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningUsage(Usage newOwningUsage) {
-		setActionOwningUsage(newOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningUsage() {
-  		return false;
-	}
-
 	@Override
 	protected String getDefaultSupertype() {
 		return TRANSITION_USAGE_SUBSETTING_DEFAULT;
@@ -297,21 +228,9 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetTransitionOwningUsage() {
-		return basicGetTransitionOwningUsage() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				if (resolve) return getTransitionOwningUsage();
-				return basicGetTransitionOwningUsage();
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
 				if (resolve) return getSource();
 				return basicGetSource();
@@ -340,9 +259,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				setTransitionOwningUsage((Usage)newValue);
-				return;
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
 				setSource((ActionUsage)newValue);
 				return;
@@ -376,9 +292,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				setTransitionOwningUsage((Usage)null);
-				return;
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
 				setSource((ActionUsage)null);
 				return;
@@ -409,10 +322,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
-			case SysMLPackage.TRANSITION_USAGE__TRANSITION_OWNING_USAGE:
-				return isSetTransitionOwningUsage();
 			case SysMLPackage.TRANSITION_USAGE__SOURCE:
 				return basicGetSource() != null;
 			case SysMLPackage.TRANSITION_USAGE__TARGET:

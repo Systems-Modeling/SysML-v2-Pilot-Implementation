@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.Type;
  *
  * @generated
  */
-public class IndividualUsageImpl extends BlockPropertyImpl implements IndividualUsage {
+public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsage {
 	/**
 	 * The default value of the '{@link #isTimeSlice() <em>Is Time Slice</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -92,8 +92,8 @@ public class IndividualUsageImpl extends BlockPropertyImpl implements Individual
 	 * @generated NOT
 	 */
 	public IndividualDefinition basicGetIndividualDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> blocks = super.getBlock();
-		return (IndividualDefinition)blocks.stream().
+		EList<org.omg.sysml.lang.sysml.Class> items = super.getItemDefinition();
+		return (IndividualDefinition)items.stream().
 				filter(type->type instanceof IndividualDefinition).
 				findFirst().orElse(null);
 	}

@@ -28,7 +28,7 @@ import org.omg.sysml.lang.sysml.TransferActionUsage;
  */
 public abstract class TransferActionUsageImpl extends ActionUsageImpl implements TransferActionUsage {
 	
-	public static final String TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT = "Activities::transferActions";
+	public static final String TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT = "Actions::transferActions";
 	
 	/**
 	 * The cached value of the BindingConnector from the appropriate context Feature to the context 

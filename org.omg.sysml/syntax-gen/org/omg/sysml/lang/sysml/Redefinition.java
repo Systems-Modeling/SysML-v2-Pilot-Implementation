@@ -7,7 +7,8 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Redefinition</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Redefinition is a Subsetting in which, in addition, the redefining Feature replaces the redefinedFeature in the context of the owningNamespace of the redefiningFeature. Redefinition is only allowed if the owningNamespace of the redefiningFeature is its owningType and the redefinedFeature would have been inherited into the owningNamespace if it had not been redefined.</p>
+ * <p>Redefinition is a Subsetting that&nbsp;requires the redefinedFeature and the&nbsp;redefiningFeature to have the same values (on each instance of the owningType /domain ??&nbsp;&nbsp;of the redefiningFeature).&nbsp;&nbsp;This means any restrictions on the redefiningFeature, such as type or multiplicity, also apply to the redefinedFeature (on each instance of the owningType of the redefining Feature), and vice versa.&nbsp; The redefinedFeature might have&nbsp;values for instances of the owningType of the redefiningFeature, but only as instances of the owningType of the redefinedFeature that happen to also be instances of the owningType of the redefiningFeature.&nbsp; This is supported by the constraints on the domains of the redefining and redefinedFeature inherited from&nbsp;Subsetting.&nbsp; However, these constraints are narrowed for Redefinition to require the owningTypes of the redefining and redefinedFeatures to be different and the redefinedFeature to&nbsp;not be imported into the owningNamespace of the redefiningFeature [violates subsetting constraint??].&nbsp; This&nbsp;enables&nbsp;the redefiningFeature to have the same name as the redefinedFeature if desired.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,6 +38,9 @@ public interface Redefinition extends Subsetting {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that is redefining another Feature linked by this Redefinition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefining Feature</em>' reference.
 	 * @see #setRedefiningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_RedefiningFeature()
@@ -71,6 +75,9 @@ public interface Redefinition extends Subsetting {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that is redefined by another Feature linked by this Redefinition.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefined Feature</em>' reference.
 	 * @see #setRedefinedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRedefinition_RedefinedFeature()

@@ -1,23 +1,23 @@
 //* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
         ResourceSet {
-                ThisFile {}
-                File {from ="/library.kernel/Base.kerml"}
-                File {from ="/library.kernel/Objects.kerml"}
-                File {from ="/library.kernel/Performances.kerml"}
-                File {from ="/library.kernel/ScalarValues.kerml"}
-                File {from ="/library.kernel/ScalarFunctions.kerml"}
+            ThisFile {}
+            File {from ="/library.kernel/Base.kerml"}
+            File {from ="/library.kernel/Objects.kerml"}
+            File {from ="/library.kernel/Performances.kerml"}
+            File {from ="/library.kernel/ScalarValues.kerml"}
+            File {from ="/library.kernel/ScalarFunctions.kerml"}
         }
         Workspace {
-                JavaProject {
-                        SrcFolder {
-                                ThisFile {}
-                                File {from ="/library.kernel/Base.kerml"}
-                                File {from ="/library.kernel/Objects.kerml"}
-                                File {from ="/library.kernel/Performances.kerml"}
-                                File {from ="/library.kernel/ScalarValues.kerml"}
-                				File {from ="/library.kernel/ScalarFunctions.kerml"}
-                        }
+            JavaProject {
+                SrcFolder {
+                    ThisFile {}
+                    File {from ="/library.kernel/Base.kerml"}
+                    File {from ="/library.kernel/Objects.kerml"}
+                    File {from ="/library.kernel/Performances.kerml"}
+                    File {from ="/library.kernel/ScalarValues.kerml"}
+    				File {from ="/library.kernel/ScalarFunctions.kerml"}
                 }
+            }
         }
 END_SETUP
 */

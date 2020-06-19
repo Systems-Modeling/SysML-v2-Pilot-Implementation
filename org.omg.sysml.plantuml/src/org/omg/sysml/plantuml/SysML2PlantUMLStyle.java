@@ -30,13 +30,14 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Block;
+import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.PartProperty;
+import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Property;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLText.StyleRelSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLText.StyleStereotypeSwitch;
@@ -97,13 +98,20 @@ public enum SysML2PlantUMLStyle {
                  }
 
                  @Override
-                 public String caseProperty(Property object) {
+                 public String caseItemDefinition(ItemDefinition object) {
                      if (isComposite) return defaultStr();
-                     return " <<(P,lightgreen)";
+                     return " << (B,green) >> ";
                  }
 
                  @Override
-                 public String caseBlock(Block object) {
+                 public String caseItemUsage(ItemUsage object) {
+                     if (isComposite) return "  ";
+                     return " << (P,limegreen) >> ";
+                 }
+
+                 
+                 @Override
+                 public String casePartDefinition(PartDefinition object) {
                      if (isComposite) return defaultStr();
                      return " << (B,green) >> ";
                  }
@@ -115,9 +123,9 @@ public enum SysML2PlantUMLStyle {
                  }
 
                  @Override
-                 public String casePartProperty(PartProperty object) {
-                     if (isComposite) return " ";
-                     return " << (P,limegreen) >> ";
+                 public String casePartUsage(PartUsage object) {
+                     if (isComposite) return " <<part>> ";
+                     return " << (P,limegreen) part>> ";
                  }
              })),
     TB(null, "top to bottom direction\n"),

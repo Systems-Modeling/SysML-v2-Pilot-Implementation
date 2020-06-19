@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
 
-	public static final String JOIN_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::joins";
+	public static final String JOIN_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::joins";
 
 	/**
 	 * <!-- begin-user-doc -->

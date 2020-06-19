@@ -9,9 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConjugatedPortTyping is a FeatureTyping in which the <tt>type</tt> is derived as the <tt>conjugatedPortDefinition</tt> of a given PortDefinition. A ConjugatedPortTyping allows a PortUsage to by related directly to a PortDefinition, but to be effectively typed by the conjugation of the referenced PortDefinition.</p>
+ * <p>A ConjugatedPortTyping is a FeatureTyping in which the <code>type</code> is derived as the <code>conjugatedPortDefinition</code> of a given PortDefinition. A ConjugatedPortTyping allows a PortUsage to by related directly to a PortDefinition, but to be effectively typed by the conjugation of the referenced PortDefinition.</p>
  * 
- * <p>Note that ConjugatedPortTyping is a <em>ternary</em> Relationship, with <tt>portDefinition</tt> being a third <tt>relatedElement</tt>, in addition to <tt>typed</tt> and <tt>typedFeature</tt> from FeatureTyping.</p>
+ * <p>Note that ConjugatedPortTyping is a <em>ternary</em> Relationship, with <code>portDefinition</code> being a third <code>relatedElement</code>, in addition to <code>type</code> and <code>typedFeature</code> from FeatureTyping.</p>
  * <!-- end-model-doc -->
  *
  * <p>

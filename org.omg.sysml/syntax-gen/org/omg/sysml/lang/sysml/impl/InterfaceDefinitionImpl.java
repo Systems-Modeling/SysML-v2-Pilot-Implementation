@@ -8,10 +8,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,9 +26,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class InterfaceDefinitionImpl extends AssociationBlockImpl implements InterfaceDefinition {
+public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements InterfaceDefinition {
 
-	public static final String INTERFACE_DEFINITION_SUPERCLASS_DEFAULT = "Blocks::Interface";
+	public static final String INTERFACE_DEFINITION_SUPERCLASS_DEFAULT = "Interfaces::Interface";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,8 +133,8 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INTERFACE_DEFINITION__ASSOCIATION_END:
-				return isSetAssociationEnd();
+			case SysMLPackage.INTERFACE_DEFINITION__CONNECTION_END:
+				return isSetConnectionEnd();
 			case SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END:
 				return isSetInterfaceEnd();
 		}
@@ -147,9 +147,9 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	 * @generated
 	 */
 	@Override
-	public EList<Feature> getAssociationEnd() {
+	public EList<Usage> getConnectionEnd() {
 		@SuppressWarnings("unchecked")
-		EList<Feature> interfaceEnd = (EList<Feature>)((EList<?>)getInterfaceEnd());
+		EList<Usage> interfaceEnd = (EList<Usage>)((EList<?>)getInterfaceEnd());
 		return interfaceEnd;
 	}
 
@@ -158,7 +158,7 @@ public class InterfaceDefinitionImpl extends AssociationBlockImpl implements Int
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetAssociationEnd() {
+	public boolean isSetConnectionEnd() {
   		return false;
 	}
 

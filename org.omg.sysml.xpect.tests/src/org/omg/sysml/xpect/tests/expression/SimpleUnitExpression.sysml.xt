@@ -1,31 +1,33 @@
 //* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
         ResourceSet {
-                ThisFile {}
-                File {from ="/library.kernel/Base.kerml"}
-                File {from ="/library.kernel/Objects.kerml"}
-                File {from ="/library.kernel/Performances.kerml"}
-                File {from ="/library.kernel/ScalarValues.kerml"}
-                File {from ="/library.kernel/ScalarFunctions.kerml"}
-                File {from ="/library.systems/Blocks.sysml"}
-				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-                File {from ="/library.domain/Quantities and Units/SI.sysml"}
+            ThisFile {}
+            File {from ="/library.kernel/Base.kerml"}
+            File {from ="/library.kernel/Objects.kerml"}
+            File {from ="/library.kernel/Performances.kerml"}
+            File {from ="/library.kernel/ScalarValues.kerml"}
+            File {from ="/library.kernel/ScalarFunctions.kerml"}
+            File {from ="/library.systems/Items.sysml"}
+            File {from ="/library.systems/Parts.sysml"}
+			File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+            File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+            File {from ="/library.domain/Quantities and Units/SI.sysml"}
         }
         Workspace {
-                JavaProject {
-                        SrcFolder {
-                                ThisFile {}
-                                File {from ="/library.kernel/Base.kerml"}
-                                File {from ="/library.kernel/Objects.kerml"}
-                                File {from ="/library.kernel/Performances.kerml"}
-                				File {from ="/library.kernel/ScalarValues.kerml"}
-                				File {from ="/library.kernel/ScalarFunctions.kerml"}
-                				File {from ="/library.systems/Blocks.sysml"}
-								File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-				                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-				                File {from ="/library.domain/Quantities and Units/SI.sysml"}
-                        }
+            JavaProject {
+                SrcFolder {
+                    ThisFile {}
+                    File {from ="/library.kernel/Base.kerml"}
+                    File {from ="/library.kernel/Objects.kerml"}
+                    File {from ="/library.kernel/Performances.kerml"}
+    				File {from ="/library.kernel/ScalarValues.kerml"}
+    				File {from ="/library.kernel/ScalarFunctions.kerml"}
+    				File {from ="/library.systems/Items.sysml"}
+    				File {from ="/library.systems/Parts.sysml"}
+					File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+	                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+	                File {from ="/library.domain/Quantities and Units/SI.sysml"}
                 }
+            }
         }
 END_SETUP
 */

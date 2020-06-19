@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ForkNodeImpl extends ControlNodeImpl implements ForkNode {
 
-	public static final String FORK_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::forks";
+	public static final String FORK_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::forks";
 
 	/**
 	 * <!-- begin-user-doc -->

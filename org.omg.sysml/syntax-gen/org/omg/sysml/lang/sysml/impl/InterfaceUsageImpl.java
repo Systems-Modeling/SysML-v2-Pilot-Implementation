@@ -29,7 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class InterfaceUsageImpl extends ConnectionUsageImpl implements InterfaceUsage {
 	
-	public static final String INTERFACE_CONNECTOR_SUBSETTING_DEFAULT = "Blocks::interfaces";
+	public static final String INTERFACE_CONNECTOR_SUBSETTING_DEFAULT = "Interfaces::interfaces";
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -6,11 +6,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
 		File {from ="/library.kernel/Occurrences.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
-		File {from ="/library.systems/Blocks.sysml"}
-
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -20,9 +23,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
-				File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
 			}
 		}
 	}

@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  */
 public class AcceptActionUsageImpl extends TransferActionUsageImpl implements AcceptActionUsage {
 	
-	public static final String ACCEPT_ACTION_USAGE_CONTEXT_FEATURE_NAME = "Activities::Action::self";
+	public static final String ACCEPT_ACTION_USAGE_CONTEXT_FEATURE_NAME = "Actions::Action::self";
 	
 	/**
 	 * <!-- begin-user-doc -->

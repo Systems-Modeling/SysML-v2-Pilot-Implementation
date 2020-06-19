@@ -17,5 +17,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface PartProperty extends BlockProperty {
+public interface PartProperty extends PartUsage {
 } // PartProperty

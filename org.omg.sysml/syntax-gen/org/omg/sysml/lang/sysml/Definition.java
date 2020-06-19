@@ -10,24 +10,40 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclasses of Definition. </p>
+ * <p>A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclasses of Definition.</p>
+ * 
+ * <p>Normally, a Definition has owned Usages that model <code>features</code> of the thing being defined. A Definition may also have other Definitions nested in it, but this has no semantic significance, other than the nested namespace scoping resulting from the Definition being considered as a Package for any nested Definitions.</p>
+ * 
+ * <p>However, if a Definition has <code>isVariation</code> = true, then it represents a <em>variation point</em> Definition. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Definition by VariantMembership Relationships. Rather than being <code>features</code> of the Definition, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for an abstract Usage of the variation point Definition.</p>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariant <em>Variant</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowProperty <em>Flow Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedProperty <em>Owned Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getProperty <em>Property</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction <em>Owned Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlow <em>Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedState <em>Owned State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConstraint <em>Owned Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedTransition <em>Owned Transition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement <em>Owned Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedFunction <em>Owned Function</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCalculation <em>Owned Calculation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#isVariation <em>Is Variation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAnalysisCase <em>Owned Analysis Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase <em>Owned Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedReference <em>Owned Reference</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAction <em>Owned Action</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection <em>Owned Connection</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedItem <em>Owned Item</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart <em>Owned Part</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedIndividual <em>Owned Individual</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedInterface <em>Owned Interface</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()
@@ -38,7 +54,6 @@ public interface Definition extends Classifier {
 	/**
 	 * Returns the value of the '<em><b>Owned Port</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.PortUsage#getPortOwningDefinition <em>Port Owning Definition</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -52,76 +67,44 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Ports that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <p>The PortUsages that are <code>ownedUsages</code> of this Definition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPort()
-	 * @see org.omg.sysml.lang.sysml.PortUsage#getPortOwningDefinition
-	 * @model opposite="portOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='portOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<PortUsage> getOwnedPort();
 
 	/**
-	 * Returns the value of the '<em><b>Flow Property</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Property}.
+	 * Returns the value of the '<em><b>Flow</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getProperty() <em>Property</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Flow Property</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>properties</tt> of this Definition that have a non-null <tt>direction</tt>.</p>
+	 * <p>The <code>usages</code> of this Definition that have a non-null <code>direction</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Flow Property</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_FlowProperty()
+	 * @return the value of the '<em>Flow</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Flow()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definitionWithFlow'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Property> getFlowProperty();
+	EList<Usage> getFlow();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Property</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Property}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Property#getPropertyOwningDefinition <em>Property Owning Definition</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Property</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Properties that are <tt>ownedUsages</tt> of this Definition.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Property</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedProperty()
-	 * @see org.omg.sysml.lang.sysml.Property#getPropertyOwningDefinition
-	 * @model opposite="propertyOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<Property> getOwnedProperty();
-
-	/**
-	 * Returns the value of the '<em><b>Property</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Property}.
+	 * Returns the value of the '<em><b>Usage</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -129,27 +112,22 @@ public interface Definition extends Classifier {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Properties that are <tt>features</tt> of this Definition (not necessarily owned).</p>
+	 * <p>The Usages that are <code>features</code> of this Definition (not necessarily owned).</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Property</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Property()
+	 * @return the value of the '<em>Usage</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Usage()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definitionWithProperty'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Property> getProperty();
+	EList<Usage> getUsage();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Action</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ActionUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition <em>Action Owning Definition</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -163,21 +141,182 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsages that are <tt>ownedUsages</tt> of this Definition.</p>
+	 * <p>The ActionUsages that are <code>ownedUsages</code> of this Definition.</code>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAction()
-	 * @see org.omg.sysml.lang.sysml.ActionUsage#getActionOwningDefinition
-	 * @model opposite="actionOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='actionOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<ActionUsage> getOwnedAction();
 
 	/**
+	 * Returns the value of the '<em><b>Owned Connection</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConnectionUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConnectionUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Connection</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConnection()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connectionOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ConnectionUsage> getOwnedConnection();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Item</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ItemUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Item</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Item</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedItem()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='itemOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ItemUsage> getOwnedItem();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Part</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PartUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedItem() <em>Owned Item</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The PartUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Part</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedPart()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='partOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<PartUsage> getOwnedPart();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Individual</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.IndividualUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedItem() <em>Owned Item</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <>The IndividualUsages that are <code>ownedUsages</code> of this Definition.>/p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Individual</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedIndividual()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='individualOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<IndividualUsage> getOwnedIndividual();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Interface</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.InterfaceUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection() <em>Owned Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The InterfaceUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Interface</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedInterface()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='interfaceOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<InterfaceUsage> getOwnedInterface();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Attribute</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AttributeUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The AttributeUsages that are <code>ownedUsages</code> of this Definition.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Attribute</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAttribute()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='attributeOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<AttributeUsage> getOwnedAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Variant Membership</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Variant Membership</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_VariantMembership()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<VariantMembership> getVariantMembership();
+
+	/**
 	 * Returns the value of the '<em><b>Owned State</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StateUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.StateUsage#getStateOwningDefinition <em>State Owning Definition</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -195,8 +334,8 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned State</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedState()
-	 * @see org.omg.sysml.lang.sysml.StateUsage#getStateOwningDefinition
-	 * @model opposite="stateOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -205,7 +344,6 @@ public interface Definition extends Classifier {
 	/**
 	 * Returns the value of the '<em><b>Owned Constraint</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConstraintUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -223,8 +361,8 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedConstraint()
-	 * @see org.omg.sysml.lang.sysml.ConstraintUsage#getConstraintOwningDefinition
-	 * @model opposite="constraintOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='constraintOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -251,6 +389,7 @@ public interface Definition extends Classifier {
 	 * @return the value of the '<em>Owned Transition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedTransition()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='transitionOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -259,7 +398,6 @@ public interface Definition extends Classifier {
 	/**
 	 * Returns the value of the '<em><b>Owned Requirement</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RequirementUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningDefinition <em>Requirement Owning Definition</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -277,17 +415,16 @@ public interface Definition extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Requirement</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRequirement()
-	 * @see org.omg.sysml.lang.sysml.RequirementUsage#getRequirementOwningDefinition
-	 * @model opposite="requirementOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	EList<RequirementUsage> getOwnedRequirement();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Function</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FunctionUsage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FunctionUsage#getFunctionOwningDefinition <em>Function Owning Definition</em>}'.
+	 * Returns the value of the '<em><b>Owned Calculation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CalculationUsage}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -297,16 +434,110 @@ public interface Definition extends Classifier {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FunctionUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <p>The CalculationUsages that are <code>ownedUsages</code> of this Definition.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Function</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedFunction()
-	 * @see org.omg.sysml.lang.sysml.FunctionUsage#getFunctionOwningDefinition
-	 * @model opposite="functionOwningDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 * @return the value of the '<em>Owned Calculation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedCalculation()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='calculationOwningDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<FunctionUsage> getOwnedFunction();
+	EList<CalculationUsage> getOwnedCalculation();
+
+	/**
+	 * Returns the value of the '<em><b>Is Variation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Definition is for a variation point or not. If true, then all the <code>memberships</code> of the Definition must be VariantMemberships.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Variation</em>' attribute.
+	 * @see #setIsVariation(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_IsVariation()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isVariation();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Definition#isVariation <em>Is Variation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Variation</em>' attribute.
+	 * @see #isVariation()
+	 * @generated
+	 */
+	void setIsVariation(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Analysis Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AnalysisCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase() <em>Owned Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The AnalysisCaseUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Analysis Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAnalysisCase()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='analysisCaseOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<AnalysisCaseUsage> getOwnedAnalysisCase();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedCalculation() <em>Owned Calculation</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The CaseUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedCase()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='caseOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<CaseUsage> getOwnedCase();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Reference</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ReferenceUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage() <em>Owned Usage</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ReferenceUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Reference</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedReference()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referenceOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ReferenceUsage> getOwnedReference();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Usage</b></em>' reference list.
@@ -317,6 +548,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -325,7 +557,7 @@ public interface Definition extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Usages that are <tt>ownedFeatures</tt> of this Definition.</p>
+	 * <p>The Usages that are <code>ownedFeatures</code> of this Definition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Usage</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedUsage()
@@ -335,5 +567,46 @@ public interface Definition extends Classifier {
 	 * @generated
 	 */
 	EList<Usage> getOwnedUsage();
+
+	/**
+	 * Returns the value of the '<em><b>Variant</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getOwningVariationDefinition <em>Owning Variation Definition</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMember() <em>Owned Member</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Usages which represent the variants of this Definition as a variation point Definition, if <code>isVariation</code> = true. If <code>isVariation</code> = false, the there must be no <code>variants</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Variant</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Variant()
+	 * @see org.omg.sysml.lang.sysml.Usage#getOwningVariationDefinition
+	 * @model opposite="owningVariationDefinition" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Usage> getVariant();
+
+	/**
+	 * Returns the value of the '<em><b>Variant Membership comp</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.VariantMembership#getOwningVariationDefinition <em>Owning Variation Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedMemberships</code> of this Definition that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>memberships</code> of the Definition. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Variant Membership comp</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_VariantMembership_comp()
+	 * @see org.omg.sysml.lang.sysml.VariantMembership#getOwningVariationDefinition
+	 * @model opposite="owningVariationDefinition" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<VariantMembership> getVariantMembership_comp();
 
 } // Definition

@@ -10,10 +10,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Type is a descriptor of a set, giving criteria for things being members of the set, known as the <em>instances</em> of the type. For example, the set of real numbers, the set of all wheeled vehicles, the set of all occurring actions, and so on.</p>
+ * <p>A Type gives&nbsp;criteria for things to be of a particular kind, which are its&nbsp;<em>instances</em>. For example, RealNumber as a type has real numbers as its instances, WheeledVehicle has&nbsp;particular wheeled vehicles as instances, each with a unique&nbsp;identification number, OperatingProcess has instances of processes being carried out, and so on.&nbsp; See isSufficient.</p>
  * 
- * <p>Both Classifiers and Features are kinds of Types. A Classifier fundamentally represents a set of individual things, while a Feature represents a relation between such things. However, because Features can be nested, a Feature can also represent a contextualized relations and relations between other Features, to any level.</p> 
- * 
+ * <p>Both Classifiers and Features are kinds of Types. A Classifier represents a set of individual things, while a Feature represents a relation between such things and/or other (nested and nesting) Features.</p>
  * 
  * ownedGeneralization->asSet() = specificOfGeneralization->intersection(ownedElement)
  * <!-- end-model-doc -->
@@ -24,14 +23,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getConjugator <em>Conjugator</em>}</li>
@@ -64,6 +63,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Generalizations owned by this Type.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Generalization</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedGeneralization()
 	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningType
@@ -83,6 +85,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>All FeatureMemberships that have the Type as source and are owned by it. Each FeatureMembership identifies a Feature of the Type.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature Membership comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeatureMembership_comp()
 	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwningType
@@ -119,7 +125,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * If the given feature is a feature of this type, then return its effective direction relative to this type.
+	 * <p>If the given feature is a feature of this type, then return its direction relative to this type, taking conjugation into account.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" featureRequired="true" featureOrdered="false"
 	 * @generated
@@ -143,6 +150,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The result of&nbsp;navigating from <code>ownedFeatureMembership</code> to that FeatureMembership&#39;s <code>ownedMemberFeature</code> attribute values.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getOwningType
@@ -167,6 +178,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The result of navigating from <code>featureMembership</code> to that FeatureMembership&#39;s <code>memberFeature</code> property values.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Feature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -191,6 +206,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>All&nbsp;<code>features</code>&nbsp;identified by&nbsp;FeatureMemberships that have&nbsp;an &quot;in&quot; ??or inout?? <code>direction</code>. See FeatureDirectionKind.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Input</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Input()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -215,6 +234,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>All&nbsp;<code>features</code> identified by&nbsp;FeatureMemberships that have&nbsp;&quot;out&quot; ??or inout?? <code>direction</code>. See FeatureDirectionKind.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Output</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Output()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -233,6 +256,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates whether instances of this Type must also be instances of at least one of its specialized Types.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Abstract</em>' attribute.
 	 * @see #setIsAbstract(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsAbstract()
@@ -266,6 +293,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Placeholder</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inherited Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedMembership()
 	 * @model transient="true" volatile="true" derived="true"
@@ -290,6 +320,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The result of navigating from <code>featureMembership</code> to that EndFeatureMembership&#39;s <code>memberFeature</code> property values.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>End Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_EndFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -309,7 +343,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Type is to be interpreted as including all M0 things that meet the constraints (logically speaking) of the type. That is, whether the constraints specified for the Type are not only <em>necessary</em> for inclusion of an instance in the Type, but are also <em>sufficient</em> to <em>require</em> inclusion.</p>
+	 * <p>A Type&nbsp;gives conditions that must be met by its instances, but when isSufficient is false or absent, things meeting those conditions might not be instances of the type.&nbsp; For example, a type Car that is not sufficient could require every instance to have four wheels, but not all four wheeled things would need to be cars.&nbsp; If isSufficient is true, conditions on a Type are enough for things to be its instances.&nbsp; For example, if the type Car were sufficient, all four-wheeled things would be instances of it.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Sufficient</em>' attribute.
 	 * @see #setIsSufficient(boolean)
@@ -346,6 +381,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedConjugator</code> attribute references the Conjugation that defines the Type that is also owned by it.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Conjugator</em>' reference.
 	 * @see #setOwnedConjugator(Conjugation)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedConjugator()
@@ -375,6 +413,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>conjugator</code> attribute references the Conjugation that defines the Type.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugator</em>' reference.
 	 * @see #setConjugator(Conjugation)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_Conjugator()
@@ -402,6 +443,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Indicates whether this Type is is conjugated.&nbsp; See Conjugation.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Conjugated</em>' attribute.
 	 * @see #setIsConjugated(boolean)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_IsConjugated()
@@ -429,6 +474,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>All FeatureMemberships that have the Type as source. Each FeatureMembership identifies a Feature of the Type.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_FeatureMembership()
 	 * @model transient="true" volatile="true" derived="true"
@@ -452,6 +501,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Placeholder</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inherited Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -511,6 +563,10 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The result of navigating from <code>ownedFeatureMembership</code> to that EndFeatureMembership&#39;s <code>ownedMemberFeature</code> attribute values.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned End Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedEndFeature()
 	 * @see org.omg.sysml.lang.sysml.Feature#getEndOwningType

@@ -10,7 +10,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>An ExhibitStateUsage is a StateUsage that represents the exhibiting of a StateUsage. The StateUsage to be exhibited (which may be the ExhibitStateUsage itself) is related to the ExhibitStateUsage by a Subsetting Relationship.</p>
  * 
- * <p>If the ExhibitStateUsage is owned by a Part, then it also subsets the <tt>exhibitedStates</tt> property of that Part (as defined in the library model for Part), otherwise it subsets either <tt>states</tt> or <tt>subsubstates</tt>, as required for a regular StateUsage.</p>
+ * <p>If the ExhibitStateUsage is owned by a Part, then it also subsets the <code>exhibitedStates</cpde> property of that Part (as defined in the library model for Part), otherwise it subsets either <code>states</code> or <code>substates</cpde>, as required for a regular StateUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>

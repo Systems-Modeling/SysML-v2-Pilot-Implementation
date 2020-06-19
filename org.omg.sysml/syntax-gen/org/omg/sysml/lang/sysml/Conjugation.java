@@ -42,6 +42,9 @@ public interface Conjugation extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Type in the model to be conjugated.</P>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Type</em>' reference.
 	 * @see #setOriginalType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugation_OriginalType()
@@ -77,6 +80,9 @@ public interface Conjugation extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Type that is the result of applying Conjugation to the <code>originalType</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Type</em>' reference.
 	 * @see #setConjugatedType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugation_ConjugatedType()
@@ -114,6 +120,9 @@ public interface Conjugation extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Type that is the result of applying Conjugation to the <code>originalType</code> that also owns the Conjugation.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugation_OwningType()

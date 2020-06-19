@@ -38,11 +38,12 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <p>parameter</p> of this RequirementDefinition that is or redefines (directly or indirectly) the <tt>subject</tt> Parameter of the base RequirementsDefinition RequirementsCheck from the Systems model library.</p>
+	 * <p>The <p>parameter</p> of this RequirementDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> Parameter of the base RequirementDefinition RequirementCheck from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Parameter)

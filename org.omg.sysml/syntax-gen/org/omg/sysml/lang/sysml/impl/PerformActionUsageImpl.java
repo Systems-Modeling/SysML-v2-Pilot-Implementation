@@ -28,7 +28,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
 
-	public static final String PERFORM_ACTION_SUBSETTING_PART_DEFAULT = "Blocks::Part::performedActions";
+	public static final String PERFORM_ACTION_SUBSETTING_PART_DEFAULT = "Parts::Part::performedActions";
 
 	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;

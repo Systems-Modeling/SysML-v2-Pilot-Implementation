@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An InterfaceDefinition is an AssociationBlock all of whose ends are PortUsages, defining an interface between elements that interact through such ports.</p>
+ * <p>An InterfaceDefinition is a ConnectionDefinition all of whose ends are PortUsages, defining an interface between elements that interact through such ports.</p>
  * 
  * <p>An InterfaceDefinition must subclass, directly or indirectly, the base InterfaceDefinition Interface from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface InterfaceDefinition extends AssociationBlock {
+public interface InterfaceDefinition extends ConnectionDefinition {
 	/**
 	 * Returns the value of the '<em><b>Interface End</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortUsage}.
@@ -34,7 +34,7 @@ public interface InterfaceDefinition extends AssociationBlock {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Association#getAssociationEnd() <em>Association End</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.ConnectionDefinition#getConnectionEnd() <em>Connection End</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

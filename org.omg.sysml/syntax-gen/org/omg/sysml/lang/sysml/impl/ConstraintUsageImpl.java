@@ -17,7 +17,6 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -32,7 +31,6 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,8 +43,6 @@ import org.omg.sysml.lang.sysml.Usage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getResult <em>Result</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintDefinition <em>Constraint Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningUsage <em>Constraint Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintOwningDefinition <em>Constraint Owning Definition</em>}</li>
  * </ul>
  *
  * @generated
@@ -134,84 +130,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 */
 	public boolean isSetConstraintDefinition() {
 		return basicGetConstraintDefinition() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getConstraintOwningUsage() {
-		Usage constraintOwningUsage = basicGetConstraintOwningUsage();
-		return constraintOwningUsage != null && constraintOwningUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)constraintOwningUsage) : constraintOwningUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Usage basicGetConstraintOwningUsage() {
-		return super.basicGetOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setConstraintOwningUsage(Usage newConstraintOwningUsage) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintOwningUsage() {
-		return basicGetConstraintOwningUsage() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getConstraintOwningDefinition() {
-		Definition constraintOwningDefinition = basicGetConstraintOwningDefinition();
-		return constraintOwningDefinition != null && constraintOwningDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)constraintOwningDefinition) : constraintOwningDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Definition basicGetConstraintOwningDefinition() {
-		return super.basicGetOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setConstraintOwningDefinition(Definition newConstraintOwningDefinition) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraintOwningDefinition() {
-		return basicGetConstraintOwningDefinition() != null;
 	}
 
 	/**
@@ -333,82 +251,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
   		return false;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getOwningUsage() {
-		return getConstraintOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetOwningUsage() {
-		return basicGetConstraintOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningUsage(Usage newOwningUsage) {
-		setConstraintOwningUsage(newOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningUsage() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getOwningDefinition() {
-		return getConstraintOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition basicGetOwningDefinition() {
-		return basicGetConstraintOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningDefinition(Definition newOwningDefinition) {
-		setConstraintOwningDefinition(newOwningDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningDefinition() {
-  		return false;
-	}
-
 	// Additional redefinitions and subsets
 
 	@Override
@@ -491,6 +333,15 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Exclude ConstraintUsages from being used as result expressions.
+	 * @return
+	 */
+	@Override
+	public boolean isExpression() {
+		return false;
+	}
+	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
@@ -528,12 +379,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				if (resolve) return getConstraintDefinition();
 				return basicGetConstraintDefinition();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				if (resolve) return getConstraintOwningUsage();
-				return basicGetConstraintOwningUsage();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				if (resolve) return getConstraintOwningDefinition();
-				return basicGetConstraintOwningDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -567,12 +412,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				setConstraintDefinition((Predicate)newValue);
 				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				setConstraintOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				setConstraintOwningDefinition((Definition)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -603,12 +442,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				setConstraintDefinition((Predicate)null);
 				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				setConstraintOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				setConstraintOwningDefinition((Definition)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -633,16 +466,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return basicGetResult() != null;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				return isSetPredicate();
-			case SysMLPackage.CONSTRAINT_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
-			case SysMLPackage.CONSTRAINT_USAGE__OWNING_DEFINITION:
-				return isSetOwningDefinition();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_USAGE:
-				return isSetConstraintOwningUsage();
-			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_OWNING_DEFINITION:
-				return isSetConstraintOwningDefinition();
 		}
 		return super.eIsSet(featureID);
 	}

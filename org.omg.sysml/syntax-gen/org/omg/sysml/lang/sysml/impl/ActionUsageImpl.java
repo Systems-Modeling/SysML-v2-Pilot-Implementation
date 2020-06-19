@@ -8,11 +8,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Parameter;
@@ -21,7 +19,6 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,17 +29,15 @@ import org.omg.sysml.lang.sysml.Usage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningDefinition <em>Action Owning Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionOwningUsage <em>Action Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActivity <em>Activity</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ActionUsageImpl#getActionDefinition <em>Action Definition</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Activities::actions";
-	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Activities::Action::subactions";
+	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
+	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
 	public static final String STATE_BASE = "States::State";
 	public static final String TRANSITION_BASE = "States::Transition";
 	
@@ -82,90 +77,11 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getActionOwningDefinition() {
-		Definition actionOwningDefinition = basicGetActionOwningDefinition();
-		return actionOwningDefinition != null && actionOwningDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)actionOwningDefinition) : actionOwningDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Definition basicGetActionOwningDefinition() {
-		return super.basicGetOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public void setActionOwningDefinition(Definition newActionOwningDefinition) {
-		super.setOwningDefinition(newActionOwningDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetActionOwningDefinition() {
-		return basicGetActionOwningDefinition() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getActionOwningUsage() {
-		Usage actionOwningUsage = basicGetActionOwningUsage();
-		return actionOwningUsage != null && actionOwningUsage.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)actionOwningUsage) : actionOwningUsage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Usage basicGetActionOwningUsage() {
-		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Usage? (Usage)owningType: null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setActionOwningUsage(Usage newActionOwningUsage) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetActionOwningUsage() {
-		return basicGetActionOwningUsage() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Behavior> getActivity() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTIVITY);
+	public EList<Behavior> getActionDefinition() {
+		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTION_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
@@ -178,8 +94,47 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetActivity() {
-		return !getActivity().isEmpty();
+	public boolean isSetActionDefinition() {
+		return !getActionDefinition().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getType() {
+		@SuppressWarnings("unchecked")
+		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
+		return behavior;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Behavior> getBehavior() {
+		return getActionDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetBehavior() {
+  		return false;
 	}
 
 	@Override
@@ -227,14 +182,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return getBehavior();
 			case SysMLPackage.ACTION_USAGE__PARAMETER:
 				return getParameter();
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				if (resolve) return getActionOwningDefinition();
-				return basicGetActionOwningDefinition();
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
-				if (resolve) return getActionOwningUsage();
-				return basicGetActionOwningUsage();
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				return getActivity();
+			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:
+				return getActionDefinition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -256,15 +205,9 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				getParameter().clear();
 				getParameter().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				setActionOwningDefinition((Definition)newValue);
-				return;
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
-				setActionOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				getActivity().clear();
-				getActivity().addAll((Collection<? extends Behavior>)newValue);
+			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:
+				getActionDefinition().clear();
+				getActionDefinition().addAll((Collection<? extends Behavior>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -284,14 +227,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			case SysMLPackage.ACTION_USAGE__PARAMETER:
 				getParameter().clear();
 				return;
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				setActionOwningDefinition((Definition)null);
-				return;
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
-				setActionOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				getActivity().clear();
+			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:
+				getActionDefinition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -311,16 +248,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return isSetBehavior();
 			case SysMLPackage.ACTION_USAGE__PARAMETER:
 				return !getParameter().isEmpty();
-			case SysMLPackage.ACTION_USAGE__OWNING_DEFINITION:
-				return isSetOwningDefinition();
-			case SysMLPackage.ACTION_USAGE__OWNING_USAGE:
-				return isSetOwningUsage();
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_DEFINITION:
-				return isSetActionOwningDefinition();
-			case SysMLPackage.ACTION_USAGE__ACTION_OWNING_USAGE:
-				return isSetActionOwningUsage();
-			case SysMLPackage.ACTION_USAGE__ACTIVITY:
-				return isSetActivity();
+			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:
+				return isSetActionDefinition();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -357,121 +286,6 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Type> getType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> behavior = (EList<Type>)((EList<?>)getBehavior());
-		return behavior;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Behavior> getBehavior() {
-		return getActivity();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetBehavior() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition getOwningDefinition() {
-		return getActionOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Definition basicGetOwningDefinition() {
-		return basicGetActionOwningDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningDefinition(Definition newOwningDefinition) {
-		setActionOwningDefinition(newOwningDefinition);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningDefinition() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage getOwningUsage() {
-		return getActionOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Usage basicGetOwningUsage() {
-		return basicGetActionOwningUsage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningUsage(Usage newOwningUsage) {
-		setActionOwningUsage(newOwningUsage);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningUsage() {
-  		return false;
 	}
 
 } //ActionImpl

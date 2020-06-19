@@ -5,27 +5,30 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 		File {from ="/library.kernel/Base.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
-		File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.systems/Activities.sysml"}
-		File {from ="/library.systems/Blocks.sysml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Interfaces.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-					File {from ="/library.kernel/Base.kerml"}
-					File {from ="/library.kernel/Objects.kerml"}
-					File {from ="/library.kernel/Occurrences.kerml"}
-					File {from ="/library.kernel/Performances.kerml"}
-					File {from ="/library.systems/Activities.sysml"}
-					File {from ="/library.systems/Blocks.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Interfaces.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
 package 'Interface Example' {
-	value type Temp;
 	block Fuel;
 
 	port def FuelOutPort ;
@@ -57,13 +60,13 @@ package 'Interface Example' {
 			port redefines engineFuelPort;
 		}
 		interface fi: FuelInterface connect tankAssy::fuelTankPort to	eng::engineFuelPort;
-		//XPECT errors --> "An interface must be typed by one interface definition." at "original: FuelInterface, FuelInterface2 connect tankAssy::fuelTankPort to	eng::engineFuelPort;"
+		//XPECT errors --> "An interface must be typed by one interface definition." at "original: FuelInterface, FuelInterface2 connect tankAssy::fuelTankPort to	eng::engineFuelPort"
 		interface original: FuelInterface, FuelInterface2 connect tankAssy::fuelTankPort to	eng::engineFuelPort;
-		//XPECT errors --> "An interface must be typed by one interface definition." at "opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+		//XPECT errors --> "An interface must be typed by one interface definition." at "opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort"
 		interface opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort;
 		//*XPECT errors ---
-			"An interface must be typed by one interface definition." at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
-			"Features must have at least one type" at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+			"An interface must be typed by one interface definition." at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort"
+			"Features must have at least one type" at "opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort"
 		---*/
 		interface opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort; 
 		

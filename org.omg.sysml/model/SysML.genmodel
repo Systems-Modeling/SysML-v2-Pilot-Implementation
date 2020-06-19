@@ -43,60 +43,32 @@
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//FeatureDirectionKind/inout"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//FeatureDirectionKind/out"/>
     </genEnums>
-    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="SysML.ecore#//TransitionFeatureKind">
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//TransitionFeatureKind/trigger"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//TransitionFeatureKind/guard"/>
-      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//TransitionFeatureKind/effect"/>
-    </genEnums>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="SysML.ecore#//StateSubactionKind">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//StateSubactionKind/entry"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//StateSubactionKind/do"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//StateSubactionKind/exit"/>
     </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="SysML.ecore#//TransitionFeatureKind">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//TransitionFeatureKind/trigger"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//TransitionFeatureKind/guard"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//TransitionFeatureKind/effect"/>
+    </genEnums>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="SysML.ecore#//RequirementConstraintKind">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//RequirementConstraintKind/assumption"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SysML.ecore#//RequirementConstraintKind/requirement"/>
     </genEnums>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//BlockExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Expression">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Association">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Expression/function"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/relatedType"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Expression/result"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/owningConnector"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/associationEnd"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Step">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Class"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Classifier">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Step/behavior"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Step/parameter"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Feature">
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
-          ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningFeatureMembership"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/endOwningType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/referencedType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isUnique"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isOrdered"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/type"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedRedefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedSubsetting"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isComposite"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/typing"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isEnd"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isNonunique"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="SysML.ecore#//Feature/directionFor">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="SysML.ecore#//Feature/directionFor/type"/>
-      </genOperations>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Classifier/ownedSuperclassing"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Type">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
@@ -104,9 +76,11 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/ownedFeatureMembership_comp"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/feature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/ownedFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/ownedEndFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/feature"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/input"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -116,8 +90,6 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/inheritedMembership"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/endFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Type/ownedEndFeature"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Type/isSufficient"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
           ecoreFeature="ecore:EReference SysML.ecore#//Type/ownedConjugator"/>
@@ -240,15 +212,34 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureMembership/ownedMemberFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Conjugation">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Feature">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Conjugation/originalType"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/referencedType"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Conjugation/conjugatedType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference SysML.ecore#//Conjugation/owningType"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isUnique"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isOrdered"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/type"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedRedefinition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/ownedSubsetting"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference SysML.ecore#//Feature/owningFeatureMembership"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isComposite"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/typing"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isEnd"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Feature/endOwningType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Feature/isNonunique"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="SysML.ecore#//Feature/directionFor">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="SysML.ecore#//Feature/directionFor/type"/>
+      </genOperations>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Multiplicity"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Redefinition">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Redefinition/redefiningFeature"/>
@@ -269,16 +260,15 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureTyping/typedFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Behavior">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Conjugation">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Behavior/step"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Conjugation/originalType"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Behavior/parameter"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Conjugation/conjugatedType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference SysML.ecore#//Conjugation/owningType"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Classifier">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Classifier/ownedSuperclassing"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Multiplicity"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Superclassing">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Superclassing/superclass"/>
@@ -287,13 +277,42 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Superclassing/owningClassifier"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Parameter"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Function">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Connector">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Function/expression"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/relatedFeature"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Function/result"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/association"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Connector/isDirected"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/connectorEnd"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/ownedAssociationType"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="SysML.ecore#//Connector/path">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="SysML.ecore#//Connector/path/relatedFeature"/>
+      </genOperations>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ParameterMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ParameterMembership/memberParameter"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ParameterMembership/ownedMemberParameter_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ParameterMembership/ownedMemberParameter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Parameter"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Behavior">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Behavior/step"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Behavior/parameter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Step">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Step/behavior"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Step/parameter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ReturnParameterMembership"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryQualifierExpression"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//OperatorExpression">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//OperatorExpression/operator"/>
@@ -306,94 +325,76 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InvocationExpression/argument"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//InstanceCreationExpression">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Expression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InstanceCreationExpression/instantiatedType"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Expression/function"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Expression/result"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryPathStepExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Function">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Function/expression"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Function/result"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryPathExpression"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//FeatureReferenceExpression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureReferenceExpression/referent"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//InstanceCreationExpression">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InstanceCreationExpression/instantiatedType"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//BlockExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//QueryPathStepExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralBoolean">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralBoolean/value"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//NullExpression"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralString">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralString/value"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Invariant">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Invariant/assertionConnector"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralUnbounded"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralReal">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralReal/value"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralInteger">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralInteger/value"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Predicate"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//BooleanExpression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//BooleanExpression/predicate"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Predicate"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Invariant">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Invariant/assertionConnector"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//BindingConnector"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Connector">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/relatedFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/association"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/ownedAssociationType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Connector/isDirected"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Connector/connectorEnd"/>
-      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="SysML.ecore#//Connector/path">
-        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="SysML.ecore#//Connector/path/relatedFeature"/>
-      </genOperations>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Association">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/relatedType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/owningConnector"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Association/associationEnd"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Class"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralReal">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralReal/value"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//NullExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralBoolean">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralBoolean/value"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralUnbounded"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LiteralInteger">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//LiteralInteger/value"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConditionalImport">
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ConditionalImport/condition_comp"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConditionalImport/selector"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
-          ecoreFeature="ecore:EReference SysML.ecore#//ConditionalImport/condition"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ImportCondition">
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ImportCondition/predicate_comp"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//FeatureValue">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
-          ecoreFeature="ecore:EReference SysML.ecore#//ImportCondition/conditionalImport"/>
+          ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/featureWithValue"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ImportCondition/predicate"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/valueConnector"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/value_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/value"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//MultiplicityRange">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//MultiplicityRange/lowerBound"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//MultiplicityRange/upperBound"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//MultiplicityRange/bound"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemFlowFeature"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemFeature"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemFlowEnd"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemFlowFeature"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SuccessionItemFlow"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Succession">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/transitionStep"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/triggerStep"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/effectStep"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/guardExpression"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Interaction"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemFlow">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ItemFlow/itemType"/>
@@ -408,104 +409,57 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ItemFlow/itemFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Interaction"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//DataType"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//FeatureValue">
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
-          ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/featureWithValue"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SuccessionItemFlow"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Succession">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/valueConnector"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/transitionStep"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/triggerStep"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/effectStep"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Succession/guardExpression"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//DataType"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ImportCondition">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference SysML.ecore#//ImportCondition/conditionalImport"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/value_comp"/>
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ImportCondition/predicate_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ImportCondition/predicate"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConditionalImport">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConditionalImport/selector"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//FeatureValue/value"/>
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ConditionalImport/condition_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference SysML.ecore#//ConditionalImport/condition"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//TargetEnd"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ReturnParameterMembership"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ParameterMembership">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ParameterMembership/memberParameter"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//ParameterMembership/ownedMemberParameter_comp"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ParameterMembership/ownedMemberParameter"/>
-    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SourceEnd"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//MultiplicityRange">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//TimeSliceFeature"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LifeClass"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SnapshotFeature"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//IndividualDefinition">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//MultiplicityRange/lowerBound"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//MultiplicityRange/upperBound"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//MultiplicityRange/bound"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualDefinition/lifeClass"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Ownership">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Ownership/owningSource"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Ownership/ownedTarget_comp"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Ownership/ownedTarget"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Comment">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Comment/body"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Comment/commentedElement"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Comment/annotationForComment"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Annotation">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Annotation/annotatedElement"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Annotation/annotatingComment"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//EndFeatureMembership"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ActionUsage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ActionUsage/actionOwningDefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ActionUsage/actionOwningUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ActionUsage/activity"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//Usage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningDefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedPort"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedProperty"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedState"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedConstraint"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedTransition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedRequirement"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedFunction"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/property"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedAction"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemDefinition"/>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//Definition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedUsage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/variant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/variantMembership_comp"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedPort"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/flowProperty"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/flow"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedProperty"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/property"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedAction"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/usage"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedState"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -515,17 +469,93 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedRequirement"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedFunction"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedCalculation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Definition/isVariation"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedUsage"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedAnalysisCase"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedCase"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedReference"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedAction"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedConnection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedItem"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedPart"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedIndividual"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedInterface"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Definition/ownedAttribute"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference SysML.ecore#//Definition/variantMembership"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//Usage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedUsage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningUsage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedPort"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedAction"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedState"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedConstraint"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedTransition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedRequirement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedCalculation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Usage/isVariation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningVariationDefinition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/flow"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedCase"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningVariantMembership"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/variantMembership_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningVariationUsage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/variant"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedAnalysisCase"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/usage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedReference"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedConnection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedItem"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedPart"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedIndividual"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedInterface"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/nestedAttribute"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Usage/owningDefinition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
+          ecoreFeature="ecore:EReference SysML.ecore#//Usage/variantMembership"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PortUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PortUsage/portDefinition"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PortUsage/portOwningUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PortUsage/portOwningDefinition"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PortDefinition">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -543,15 +573,11 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PortConjugation/conjugatedPortDefinition"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//Property">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ActionUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Property/propertyOwningDefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Property/propertyOwningUsage"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ActionUsage/actionDefinition"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//StateUsage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//StateUsage/stateOwningUsage"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//StateUsage/stateDefinition"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -560,20 +586,12 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//StateUsage/doAction"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//StateUsage/exitAction"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//StateUsage/stateOwningDefinition"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConstraintUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConstraintUsage/constraintDefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConstraintUsage/constraintOwningUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConstraintUsage/constraintOwningDefinition"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//TransitionUsage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//TransitionUsage/transitionOwningUsage"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//TransitionUsage/source"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -596,8 +614,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementUsage/requirementDefinition"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementUsage/requirementOwningUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementUsage/subjectParameter"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//RequirementUsage/reqId"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//RequirementUsage/text"/>
@@ -605,8 +621,6 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementUsage/requiredConstraint"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementUsage/assumedConstraint"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementUsage/requirementOwningDefinition"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//RequirementDefinition">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -619,58 +633,114 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//RequirementDefinition/requiredConstraint"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConstraintDefinition"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//FunctionUsage">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//CalculationUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FunctionUsage/functionDefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FunctionUsage/functionOwningUsage"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FunctionUsage/functionOwningDefinition"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CalculationUsage/calculationDefinition"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Activity">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//CaseUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Activity/action"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CaseUsage/objectiveRequirement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CaseUsage/subjectParameter"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CaseUsage/caseDefinition"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ValueType"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ValueProperty">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//CaseDefinition">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ValueProperty/valueType"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CaseDefinition/objectiveRequirement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CaseDefinition/subjectParameter"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//CalculationDefinition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//CalculationDefinition/calculationUsage"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ActionDefinition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ActionDefinition/action"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//VariantMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference SysML.ecore#//VariantMembership/owningVariationDefinition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference SysML.ecore#//VariantMembership/owningVariationUsage"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//VariantMembership/ownedVariantUsage_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//VariantMembership/ownedVariantUsage"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AnalysisCaseUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AnalysisCaseUsage/analysisAction"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AnalysisCaseUsage/analysisCaseDefinition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AnalysisCaseUsage/resultExpression"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AnalysisCaseDefinition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AnalysisCaseDefinition/analysisAction"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AnalysisCaseDefinition/resultExpression"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ReferenceUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ReferenceUsage/referenceType"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConnectionUsage"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PartUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PartUsage/partDefinition"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ItemUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ItemUsage/itemDefinition"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PartDefinition"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//IndividualUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualUsage/individualDefinition"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//IndividualUsage/isTimeSlice"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//IndividualUsage/isSnapshot"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualUsage/timeSliceFeature"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualUsage/snapshotFeature"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//InterfaceUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InterfaceUsage/interfaceDefinition"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//InterfaceDefinition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InterfaceDefinition/interfaceEnd"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConnectionDefinition">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConnectionDefinition/connectionEnd"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AttributeUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AttributeUsage/attributeDefinition"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//ControlNode"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//MergeNode"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//DecisionNode"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PerformActionUsage">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PerformActionUsage/performedAction"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SendActionUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//SendActionUsage/target"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PerformActionUsage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//PerformActionUsage/performedAction"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConnectionUsage"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//InterfaceDefinition">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InterfaceDefinition/interfaceEnd"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AssociationBlock"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Block"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//InterfaceUsage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//InterfaceUsage/interfaceDefinition"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//JoinNode"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ForkNode"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ConjugatedPortTyping">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConjugatedPortTyping/portDefinition"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ConjugatedPortTyping/conjugatedPortDefinition"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//TransitionFeatureMembership">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//TransitionFeatureMembership/kind"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//TransitionFeatureMembership/transitionFeature_comp"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//TransitionFeatureMembership/transitionFeature"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ExhibitStateUsage">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ExhibitStateUsage/exhibitedState"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//StateSubactionMembership">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//StateSubactionMembership/kind"/>
@@ -689,25 +759,18 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//StateDefinition/exitAction"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AssertConstraintUsage">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//TransitionFeatureMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//TransitionFeatureMembership/kind"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//TransitionFeatureMembership/transitionFeature_comp"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AssertConstraintUsage/assertedConstraint"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//TransitionFeatureMembership/transitionFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//BlockProperty">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ExhibitStateUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//BlockProperty/block"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ExhibitStateUsage/exhibitedState"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//PartProperty"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ReferenceProperty"/>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SysML.ecore#//ControlNode"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//MergeNode"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ForkNode"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//JoinNode"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//DecisionNode"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//FunctionDefinition">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//FunctionDefinition/functionInvocation"/>
-    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AttributeDefinition"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//RequirementConstraintMembership">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//RequirementConstraintMembership/kind"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
@@ -721,23 +784,42 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//SatisfyRequirementUsage/satisfyingFeature"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//LifeClass"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//TimeSliceFeature"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SnapshotFeature"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//IndividualDefinition">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//AssertConstraintUsage">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualDefinition/lifeClass"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//AssertConstraintUsage/assertedConstraint"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//IndividualUsage">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//SubjectMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//SubjectMembership/ownedSubjectParameter_comp"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualUsage/individualDefinition"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//IndividualUsage/isTimeSlice"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//IndividualUsage/isSnapshot"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualUsage/timeSliceFeature"/>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//IndividualUsage/snapshotFeature"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//SubjectMembership/ownedSubjectParameter"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//ObjectiveMembership">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//ObjectiveMembership/ownedObjectiveRequirement"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Ownership">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Ownership/owningSource"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference SysML.ecore#//Ownership/ownedTarget_comp"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Ownership/ownedTarget"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Annotation">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Annotation/annotatingComment"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Annotation/annotatedElement"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//Comment">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SysML.ecore#//Comment/body"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Comment/commentedElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference SysML.ecore#//Comment/annotationForComment"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="SysML.ecore#//EndFeatureMembership"/>
   </genPackages>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Types" basePackage="org.omg.sysml.lang"
       disposableProviderFactory="true" ecorePackage="types.ecore#/">

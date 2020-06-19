@@ -49,6 +49,24 @@ public interface SysMLFactory extends EFactory {
 	AssertConstraintUsage createAssertConstraintUsage();
 
 	/**
+	 * Returns a new object of class '<em>Subject Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Subject Membership</em>'.
+	 * @generated
+	 */
+	SubjectMembership createSubjectMembership();
+
+	/**
+	 * Returns a new object of class '<em>Objective Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Objective Membership</em>'.
+	 * @generated
+	 */
+	ObjectiveMembership createObjectiveMembership();
+
+	/**
 	 * Returns a new object of class '<em>Accept Action Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,15 +101,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	DecisionNode createDecisionNode();
-
-	/**
-	 * Returns a new object of class '<em>Function Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Definition</em>'.
-	 * @generated
-	 */
-	FunctionDefinition createFunctionDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Join Node</em>'.
@@ -445,15 +454,6 @@ public interface SysMLFactory extends EFactory {
 	ActionUsage createActionUsage();
 
 	/**
-	 * Returns a new object of class '<em>Activity</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Activity</em>'.
-	 * @generated
-	 */
-	Activity createActivity();
-
-	/**
 	 * Returns a new object of class '<em>Exhibit State Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -461,6 +461,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ExhibitStateUsage createExhibitStateUsage();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Definition</em>'.
+	 * @generated
+	 */
+	AttributeDefinition createAttributeDefinition();
 
 	/**
 	 * Returns a new object of class '<em>State Subaction Membership</em>'.
@@ -481,15 +490,6 @@ public interface SysMLFactory extends EFactory {
 	ConjugatedPortTyping createConjugatedPortTyping();
 
 	/**
-	 * Returns a new object of class '<em>Value Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Type</em>'.
-	 * @generated
-	 */
-	ValueType createValueType();
-
-	/**
 	 * Returns a new object of class '<em>Individual Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -508,6 +508,15 @@ public interface SysMLFactory extends EFactory {
 	IndividualDefinition createIndividualDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Item Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Definition</em>'.
+	 * @generated
+	 */
+	ItemDefinition createItemDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Interface Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -517,13 +526,22 @@ public interface SysMLFactory extends EFactory {
 	InterfaceDefinition createInterfaceDefinition();
 
 	/**
-	 * Returns a new object of class '<em>Block</em>'.
+	 * Returns a new object of class '<em>Connection Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Block</em>'.
+	 * @return a new object of class '<em>Connection Definition</em>'.
 	 * @generated
 	 */
-	Block createBlock();
+	ConnectionDefinition createConnectionDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Usage</em>'.
+	 * @generated
+	 */
+	AttributeUsage createAttributeUsage();
 
 	/**
 	 * Returns a new object of class '<em>Interface Usage</em>'.
@@ -544,13 +562,85 @@ public interface SysMLFactory extends EFactory {
 	ConstraintDefinition createConstraintDefinition();
 
 	/**
-	 * Returns a new object of class '<em>Function Usage</em>'.
+	 * Returns a new object of class '<em>Case Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Usage</em>'.
+	 * @return a new object of class '<em>Case Definition</em>'.
 	 * @generated
 	 */
-	FunctionUsage createFunctionUsage();
+	CaseDefinition createCaseDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Calculation Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Calculation Definition</em>'.
+	 * @generated
+	 */
+	CalculationDefinition createCalculationDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Action Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Definition</em>'.
+	 * @generated
+	 */
+	ActionDefinition createActionDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Calculation Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Calculation Usage</em>'.
+	 * @generated
+	 */
+	CalculationUsage createCalculationUsage();
+
+	/**
+	 * Returns a new object of class '<em>Case Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Case Usage</em>'.
+	 * @generated
+	 */
+	CaseUsage createCaseUsage();
+
+	/**
+	 * Returns a new object of class '<em>Variant Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variant Membership</em>'.
+	 * @generated
+	 */
+	VariantMembership createVariantMembership();
+
+	/**
+	 * Returns a new object of class '<em>Analysis Case Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Analysis Case Usage</em>'.
+	 * @generated
+	 */
+	AnalysisCaseUsage createAnalysisCaseUsage();
+
+	/**
+	 * Returns a new object of class '<em>Analysis Case Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Analysis Case Definition</em>'.
+	 * @generated
+	 */
+	AnalysisCaseDefinition createAnalysisCaseDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Reference Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Reference Usage</em>'.
+	 * @generated
+	 */
+	ReferenceUsage createReferenceUsage();
 
 	/**
 	 * Returns a new object of class '<em>Connection Usage</em>'.
@@ -562,22 +652,31 @@ public interface SysMLFactory extends EFactory {
 	ConnectionUsage createConnectionUsage();
 
 	/**
-	 * Returns a new object of class '<em>Association Block</em>'.
+	 * Returns a new object of class '<em>Part Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Association Block</em>'.
+	 * @return a new object of class '<em>Part Usage</em>'.
 	 * @generated
 	 */
-	AssociationBlock createAssociationBlock();
+	PartUsage createPartUsage();
 
 	/**
-	 * Returns a new object of class '<em>Reference Property</em>'.
+	 * Returns a new object of class '<em>Item Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reference Property</em>'.
+	 * @return a new object of class '<em>Item Usage</em>'.
 	 * @generated
 	 */
-	ReferenceProperty createReferenceProperty();
+	ItemUsage createItemUsage();
+
+	/**
+	 * Returns a new object of class '<em>Part Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Part Definition</em>'.
+	 * @generated
+	 */
+	PartDefinition createPartDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Satisfy Requirement Usage</em>'.
@@ -587,24 +686,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	SatisfyRequirementUsage createSatisfyRequirementUsage();
-
-	/**
-	 * Returns a new object of class '<em>Part Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Part Property</em>'.
-	 * @generated
-	 */
-	PartProperty createPartProperty();
-
-	/**
-	 * Returns a new object of class '<em>Value Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Property</em>'.
-	 * @generated
-	 */
-	ValueProperty createValueProperty();
 
 	/**
 	 * Returns a new object of class '<em>Class</em>'.

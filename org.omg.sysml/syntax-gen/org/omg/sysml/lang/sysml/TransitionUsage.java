@@ -13,16 +13,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A TransitionUsage is an ActionUsage that is a behavioral Step representing a transition between ActionUsages or StateUsages.</p>
  * 
- * <p>A TransitionUsage must subset, directly or indirectly, the base TransitionUsage <tt>transitionActions</tt>, if it is not a composite feature, or the TransitionUsage <tt>subtransitions</tt> inherited from its owner, if it is a composite feature.</p>
+ * <p>A TransitionUsage must subset, directly or indirectly, the base TransitionUsage <code>transitionActions</code>, if it is not a composite feature, or the TransitionUsage <code>subtransitions</code> inherited from its owner, if it is a composite feature.</p>
  * 
- * <p>A TransitionUsage may by related to some of its <tt>ownedFeatures</tt> using TransitionFeatureMembership Relationships,  corresponding to the triggers, guards and effects of the TransitionUsage.</p>
+ * <p>A TransitionUsage may by related to some of its <code>ownedFeatures</code> using TransitionFeatureMembership Relationships, corresponding to the triggers, guards and effects of the TransitionUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage <em>Transition Owning Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TransitionUsage#getTriggerAction <em>Trigger Action</em>}</li>
@@ -101,7 +100,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The AcceptActionUsages that define the triggers of this TransitionUsage, derived as the <tt>ownedFeatures</tt> of this TransitionUsage related to it by a TransitionFeatureMembership with <tt>kind</tt> = <tt>trigger</tt>.</p>
+	 * <p>The AcceptActionUsages that define the triggers of this TransitionUsage, derived as the <code>ownedFeatures</code> of this TransitionUsage related to it by a TransitionFeatureMembership with <code>kind</code> = <code>trigger</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Action</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TriggerAction()
@@ -124,7 +123,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expressions that define the guards of this TransitionUsage, derived as the <tt>ownedFeatures</tt> of this TransitionUsage related to it by a TransitionFeatureMembership with <tt>kind</tt> = <tt>guard</tt>.</p>
+	 * <p>The Expressions that define the guards of this TransitionUsage, derived as the <code>ownedFeatures</code> of this TransitionUsage related to it by a TransitionFeatureMembership with <code>kind</code> = <code>guard</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Guard Expression</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_GuardExpression()
@@ -169,7 +168,7 @@ public interface TransitionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Succession that is the <tt>ownedFeature</tt> of this TransitionUsage that redefines <tt>TransitionPerformance::transitionLink</tt>.
+	 * <p>The Succession that is the <code>ownedFeature</code> of this TransitionUsage that redefines <code>TransitionPerformance::transitionLink</code>.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Succession</em>' reference.
 	 * @see #setSuccession(Succession)
@@ -190,42 +189,4 @@ public interface TransitionUsage extends ActionUsage {
 	 * @generated
 	 */
 	void setSuccession(Succession value);
-
-	/**
-	 * Returns the value of the '<em><b>Transition Owning Usage</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getNestedTransition <em>Nested Transition</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage() <em>Owning Usage</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Transition Owning Usage</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Usage in which this TransitionUsage is nested.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Transition Owning Usage</em>' reference.
-	 * @see #setTransitionOwningUsage(Usage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTransitionUsage_TransitionOwningUsage()
-	 * @see org.omg.sysml.lang.sysml.Usage#getNestedTransition
-	 * @model opposite="nestedTransition" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	Usage getTransitionOwningUsage();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.TransitionUsage#getTransitionOwningUsage <em>Transition Owning Usage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transition Owning Usage</em>' reference.
-	 * @see #getTransitionOwningUsage()
-	 * @generated
-	 */
-	void setTransitionOwningUsage(Usage value);
 } // TransitionStep

@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class DecisionNodeImpl extends ControlNodeImpl implements DecisionNode {
 
-	public static final String DECISION_NODE_SUBSETTING_BASE_DEFAULT = "Activities::Action::decisions";
+	public static final String DECISION_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::decisions";
 
 	/**
 	 * <!-- begin-user-doc -->

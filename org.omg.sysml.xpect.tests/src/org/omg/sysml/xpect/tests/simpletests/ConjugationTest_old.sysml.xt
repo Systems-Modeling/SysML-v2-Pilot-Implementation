@@ -1,4 +1,4 @@
-//*
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
@@ -7,7 +7,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
        	File {from ="/library.kernel/Objects.kerml"}
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
- 		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Interfaces.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -18,31 +20,46 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
- 				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Interfaces.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package BlockTest {
+package ConjugationTest {
+	port def P;
 	
-	part f: A;
-
-	public part def A {
-		part b: B;
-		protected port c: C;
+	block B {
+		port p1: P;
+		port p2: ~P;
 	}
 	
-	abstract part def B {
-		public abstract part a: A;
-		port x: ~C;
-		package P { }
+	assoc block A {
+		end port p1: P;
+		end port p2: ~P;
 	}
 	
-	private port def C {
-		private ref in y: B;
-		alias y as z;
+	interface def I {
+		end p1: P;
+		end p2: ~P;
+	}
+	
+	block B1 {
+		part p {
+			port p1: P;
+			port p2: ~P;		
+		}
+		link a: A connect p::p1 to p::p2 {
+			port p3: P;
+			port p4: ~P;
+		}
+		interface i: I connect p::p1 to p::p2 {
+			port p3: P;
+			port p4: ~P;
+		}
 	}
 	
 }

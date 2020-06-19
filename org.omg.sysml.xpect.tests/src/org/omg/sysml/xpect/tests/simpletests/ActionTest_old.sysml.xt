@@ -1,4 +1,4 @@
-//*
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
@@ -9,6 +9,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/ControlPerformances.kerml"}
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
 		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
@@ -25,6 +26,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/ControlPerformances.kerml"}
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
 				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -35,18 +37,14 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-action def ControlNodeTest {
-	action A1;
-	then J;
+package ActionTest {
+	activity A(in x);
 	
-	action A2;
-	then J;
-	
-	join J;
-	then fork F;
-	then B1;
-	then B2;
+	action a: A { 
+		first start;
 		
-	action B1;
-	action B2;
+		action b(in y = x);
+		
+		bind x = b::y;
+	}
 }

@@ -7,9 +7,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
        	File {from ="/library.kernel/Objects.kerml"}
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
-		File {from ="/library.systems/Ports.sysml"}
-		File {from ="/library.systems/Connections.sysml"}
-		File {from ="/library.systems/Interfaces.sysml"}
+ 		File {from ="/library.systems/Ports.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -20,46 +18,31 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
-				File {from ="/library.systems/Ports.sysml"}
-				File {from ="/library.systems/Connections.sysml"}
-				File {from ="/library.systems/Interfaces.sysml"}
+ 				File {from ="/library.systems/Ports.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package ConjugationTest {
-	port def P;
+package BlockTest {
 	
-	part def B {
-		port p1: P;
-		port p2: ~P;
+	part f: A;
+
+	public block A {
+		part b: B;
+		protected port c: C;
 	}
 	
-	connection def A {
-		end port p1: P;
-		end port p2: ~P;
+	abstract block B {
+		public abstract part a: A;
+		port x: ~C;
+		package P { }
 	}
 	
-	interface def I {
-		end p1: P;
-		end p2: ~P;
-	}
-	
-	part def B1 {
-		part p {
-			port p1: P;
-			port p2: ~P;		
-		}
-		connection a: A connect p::p1 to p::p2 {
-			port p3: P;
-			port p4: ~P;
-		}
-		interface i: I connect p::p1 to p::p2 {
-			port p3: P;
-			port p4: ~P;
-		}
+	private port def C {
+		private ref in y: B;
+		alias y as z;
 	}
 	
 }

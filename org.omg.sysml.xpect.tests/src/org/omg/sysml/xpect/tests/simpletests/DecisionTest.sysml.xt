@@ -1,42 +1,49 @@
-//*
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
-		ThisFile {} 
-		File {from ="/library.systems/Actions.sysml"}
-		File {from ="/library.systems/Items.sysml"}
-		File {from ="/library.systems/Parts.sysml"}
-		File {from ="/library.systems/States.sysml"}
+		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
-		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.kernel/ScalarFunctions.kerml"}
-		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
 		File {from ="/library.kernel/StatePerformances.kerml"}
 		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+			
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
-				ThisFile {} 
-				File {from ="/library.systems/Actions.sysml"}
-				File {from ="/library.systems/Items.sysml"}
-				File {from ="/library.systems/Parts.sysml"}
-				File {from ="/library.systems/States.sysml"}
+				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
-				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/ScalarFunctions.kerml"}
-				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
 				File {from ="/library.kernel/StatePerformances.kerml"}
 				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/States.sysml"}
 			}
 		}
 	}
-END_SETUP
+END_SETUP 
 */
 // XPECT noErrors ---> ""
 action def DecisionTest {

@@ -1,4 +1,4 @@
-//*
+//* 
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
@@ -25,7 +25,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package BlockTest {
+package PartTest {
 	
 	part f: A;
 
@@ -41,9 +41,8 @@ package BlockTest {
 	}
 	
 	private port def C {
-		private ref in y: A, B;
-		import y as z1;
-		alias y as z2;
+		private ref in y: B;
+		alias y as z;
 	}
 	
 }

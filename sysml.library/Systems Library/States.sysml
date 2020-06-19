@@ -17,8 +17,8 @@ package States {
 		do action doAction: Action :>> 'do' :> subactions;
 		exit action exitAction: Action :>> 'exit';
 		
-		value :>> isTriggerDuring = true;
-		value :>> isTriggerDuring = true;
+		attribute :>> isTriggerDuring = true;
+		attribute :>> isAcceptFirst = true;
 		
 		ref state :>> self: State;
 		
@@ -38,7 +38,7 @@ package States {
 	/**
 	 * A Transition is a StateTransitionPerformance whose transitionLinkSource is an Action.
 	 */
-	activity Transition :> Action, StateTransitionPerformance {
+	action def Transition :> Action, StateTransitionPerformance {
 		ref action :>> trigger: TransferAction;
 		ref action :>> effect: Action;
 		ref action :>> transitionLinkSource: Action;

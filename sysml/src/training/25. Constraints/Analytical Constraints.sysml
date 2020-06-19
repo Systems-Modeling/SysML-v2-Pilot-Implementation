@@ -1,7 +1,7 @@
 package 'Analytical Constraints' {
 	import 'Calculation Definitions'::*;
 	
-	activity StraightLineVehicleDynamics (
+	action def StraightLineVehicleDynamics (
 		in dt : TimeValue,
 		in whlpwr : PowerValue,
 		in Cd : Real,
@@ -14,7 +14,7 @@ package 'Analytical Constraints' {
 		out x_f : LengthValue ) {
 			
 		assert constraint {
-			value tp : PowerValue;
+			attribute tp : PowerValue;
 			
 			tp == Power(whlpwr, Cd, Cf, tm, (v_i + v_f)/2) &
 			a_f == Acceleration(dt, tm, tp) &

@@ -1,9 +1,9 @@
 package Camera {
 	import 'Action Decomposition'::*;
 	
-	block Camera;
-	block FocusingSubsystem;
-	block ImagingSubsystem;
+	part def Camera;
+	part def FocusingSubsystem;
+	part def ImagingSubsystem;
 	
 	part camera : Camera {
 		ref view : Scene;

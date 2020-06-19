@@ -2,15 +2,15 @@ package 'Parts Example-1' {
 	
 	// Definitions
 	
-	block Vehicle {
+	part def Vehicle {
 		part eng : Engine;
 	}
 	
-	block Engine {
+	part def Engine {
 		part cyl : Cylinder[4..6];
 	}
 	
-	block Cylinder;
+	part def Cylinder;
 	
 	// Usages
 	

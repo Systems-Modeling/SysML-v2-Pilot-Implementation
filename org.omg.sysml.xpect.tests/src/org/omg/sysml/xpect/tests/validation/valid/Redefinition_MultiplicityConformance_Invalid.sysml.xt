@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -20,10 +20,10 @@ END_SETUP
 */
 package 'Redefinition Example' {
 
-	block Engine {
+	part def Engine {
 		part cyl : Cylinder[4..6];
 	}
-	block SmallEngine :> Engine {
+	part def SmallEngine :> Engine {
 		// XPECT warnings --> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "cyl"
 		part redefines cyl[7];
 		//* XPECT warnings ---
@@ -32,11 +32,11 @@ package 'Redefinition Example' {
 		--- */
 		part mycyl: Cylinder[1..8] redefines cyl;
 	}
-	block BigEngine :> Engine {
+	part def BigEngine :> Engine {
 		// XPECT warnings --> "Redefining feature should not have smaller multiplicity lower bound" at "cyl"
 		part redefines cyl[1..6];
 		part bcyl: Cylinder[*];
 	}
 
-	block Cylinder;
+	part def Cylinder;
 }

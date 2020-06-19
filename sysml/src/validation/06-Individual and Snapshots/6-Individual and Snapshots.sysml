@@ -4,9 +4,9 @@ package '6-Individual and Snapshots' {
 	import ISQ::*;
 	
 	package 'Part Definitions' {	
-		block 'Temporal-Spatial Reference' {
-			value referenceTime : DateTime;
-			value referenceCoordinateSystem;
+		part def 'Temporal-Spatial Reference' {
+			attribute referenceTime : DateTime;
+			attribute referenceCoordinateSystem;
 		}
 		
 		/*
@@ -14,24 +14,24 @@ package '6-Individual and Snapshots' {
 		 * been fully specified yet.
 		 */
 		
-		block VehicleRoadContext {
-			value t : TimeValue;
+		part def VehicleRoadContext {
+			attribute t : TimeValue;
 		}
 		
-		block VehicleA {
-			value mass : MassValue;
-			value position : Real;
-			value velocity : Real;
-			value acceleration : Real;
+		part def VehicleA {
+			attribute mass : MassValue;
+			attribute position : Real;
+			attribute velocity : Real;
+			attribute acceleration : Real;
 			exhibit state vehicleStates {
 				state on;
 				state off;
 			}
 		}
 		
-		block Road {
-			value angle : Real;
-			value surfaceFriction : Real;
+		part def Road {
+			attribute angle : Real;
+			attribute surfaceFriction : Real;
 		}
 	}
 	
@@ -39,7 +39,7 @@ package '6-Individual and Snapshots' {
 		import 'Part Definitions'::*;
 		
 		/*
-		 * An individual definition restricts the instances of a block to
+		 * An individual definition restricts the instances of a part def to
 		 * those that are portions of the same life ("identity").
 		 */
 		 
@@ -51,31 +51,31 @@ package '6-Individual and Snapshots' {
 	}
 	
 	package Values {	
-		value t0 : TimeValue;
-		value t1 : TimeValue;
-		value tn : TimeValue;
+		attribute t0 : TimeValue;
+		attribute t1 : TimeValue;
+		attribute tn : TimeValue;
 		
-		value m : MassValue;
+		attribute m : MassValue;
 		
-		value p0 : Real;
-		value p1 : Real;
-		value pn : Real;
+		attribute p0 : Real;
+		attribute p1 : Real;
+		attribute pn : Real;
 		
-		value v0 : Real;
-		value v1 : Real;
-		value vn : Real;
+		attribute v0 : Real;
+		attribute v1 : Real;
+		attribute vn : Real;
 		
-		value a0 : Real;
-		value a1 : Real;
-		value an : Real;
+		attribute a0 : Real;
+		attribute a1 : Real;
+		attribute an : Real;
 		
-		value theta0 : Real;
-		value theta1 : Real;
-		value thetan : Real;
+		attribute theta0 : Real;
+		attribute theta1 : Real;
+		attribute thetan : Real;
 		
-		value sf0 : Real;
-		value sf1 : Real;
-		value sfn : Real;
+		attribute sf0 : Real;
+		attribute sf1 : Real;
+		attribute sfn : Real;
 	}
 	
 	package 'Individuals and Snapshots' {
@@ -91,7 +91,7 @@ package '6-Individual and Snapshots' {
 			snapshot context_t0 : VehicleRoadContext_ID1 {
 				/**
 				 * This is a concise notation for showing the redefinition
-				 * of a value property.
+				 * of a attribute property.
 				 */
 				:>> t = t0;
 				

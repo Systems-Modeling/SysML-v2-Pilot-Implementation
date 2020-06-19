@@ -1,20 +1,20 @@
 package 'Port Conjugation Example' {
 	
-	value type Temp;
+	attribute def Temp;
 	
-	block Fuel;
+	part def Fuel;
 	
 	port def FuelPort {
-		value temperature : Temp;
+		attribute temperature : Temp;
 		ref out fuelSupply : Fuel;
 		ref in fuelReturn : Fuel;
 	}
 	
-	block FuelTank {
+	part def FuelTank {
 		port fuelTankPort : FuelPort;
 	}
 	
-	block Engine {
+	part def Engine {
 		port engineFuelPort : ~FuelPort;
 	}
 }

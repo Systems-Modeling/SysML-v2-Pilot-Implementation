@@ -2,16 +2,16 @@ package 'Calculation Definitions' {
 	import ScalarValues::Real;
 	import RealFunctions::Sqrt;
 	
-	value type PowerValue :> Real;
-	value type MassValue :> Real;
-	value type AccelValue :> Real;
-	value type VelocityValue :> Real;
-	value type LengthValue :> Real;
-	value type TimeValue :> Real;
+	attribute def PowerValue :> Real;
+	attribute def MassValue :> Real;
+	attribute def AccelValue :> Real;
+	attribute def VelocityValue :> Real;
+	attribute def LengthValue :> Real;
+	attribute def TimeValue :> Real;
 	
 	calc def Power (whlpwr : PowerValue, Cd : Real, Cf : Real, tm : MassValue, v : VelocityValue ) : PowerValue {
-		value drag = Cd * v;
-		value friction = Cf * tm * v;
+		attribute drag = Cd * v;
+		attribute friction = Cf * tm * v;
 		
 		whlpwr - drag - friction
 	}

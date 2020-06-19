@@ -8,14 +8,14 @@ package VehicleIndividuals {
 		 * This is an individual Vehicle with a mass of 1800 kg.
 		 */
 		individual def Vehicle1 :> Vehicle {
-			value redefines mass = 1800@[kg];
+			attribute redefines mass = 1800@[kg];
 		}
 		
 		/**
 		 * This is an individual Vehicle with a mass of 1700 kg.
 		 */
 		individual def Vehicle2 :> Vehicle {
-			value redefines mass = 1700@[kg];
+			attribute redefines mass = 1700@[kg];
 		}
 		
 		individual def AxleAssembly1 :> AxleAssembly;
@@ -27,15 +27,15 @@ package VehicleIndividuals {
 	package IndividualSnapshots {
 		import IndividualDefinitions::*;
 	
-		value t0: DateTime;
-		value t1: DateTime;
+		attribute t0: DateTime;
+		attribute t1: DateTime;
 		
 		/**
 		 * This is a snapshot of Vehicle1 at time t0;
 		 */
 		snapshot vehicle1_t0: Vehicle1 {
 			// Note: Timestamping of snapshots is not yet formalized.
-			value t = t0;
+			attribute t = t0;
 		}
 		
 		/**
@@ -45,7 +45,7 @@ package VehicleIndividuals {
 		timeslice vehicle1_t0_t1: Vehicle1 {
 			snapshot :>> start = vehicle1_t0;
 			snapshot :>> done {
-				value t = t1;
+				attribute t = t1;
 			}
 		}	
 	}

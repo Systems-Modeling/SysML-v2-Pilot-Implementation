@@ -2,12 +2,12 @@ package VehicleMasses {
 	import ScalarValues::*;
 	import MassRollup::*;
 	
-	block CarPart :> MassedThing {			
-		value serialNumber: String;
+	part def CarPart :> MassedThing {			
+		attribute serialNumber: String;
 	}
 	
 	part car: CarPart :> compositeThing {	
-		value vin redefines serialNumber;
+		attribute vin redefines serialNumber;
 		
 		part carParts: CarPart[*] redefines subcomponents;
 		

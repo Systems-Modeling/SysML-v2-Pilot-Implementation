@@ -1,11 +1,11 @@
 package '1d-Parts Tree with Reference' {
 	
 	package Definitions {
-		block Vehicle;
-		block Trailer;
-		block TrailerHitch;
-		block HitchBall;
-		block TrailerCoupler;
+		part def Vehicle;
+		part def Trailer;
+		part def TrailerHitch;
+		part def HitchBall;
+		part def TrailerCoupler;
 	}
 	
 	package Usages {

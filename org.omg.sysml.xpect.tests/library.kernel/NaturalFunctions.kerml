@@ -1,21 +1,21 @@
 package NaturalFunctions {
 	import ScalarValues::*;
 	
-	function '+'(x: Natural, y: Natural[0..1]): Natural specializes IntegerFunctions::'+';
-	function '*'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'*';
-	function '/'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'/';
-	function '%'(x: Natural, y: Natural): Natural specializes IntegerFunctions::'%';
+	function '+' specializes IntegerFunctions::'+' (x: Natural, y: Natural[0..1]): Natural;
+	function '*' specializes IntegerFunctions::'*' (x: Natural, y: Natural): Natural;
+	function '/' specializes IntegerFunctions::'/' (x: Natural, y: Natural): Natural;
+	function '%' specializes IntegerFunctions::'%' (x: Natural, y: Natural): Natural;
 	
-	function '<'(x: Natural, y: Natural): Boolean specializes IntegerFunctions::'<', UnlimitedNaturalFunctions::'<';
-	function '>'(x: Natural, y: Natural): Boolean specializes IntegerFunctions::'>', UnlimitedNaturalFunctions::'>';
-	function '<='(x: Natural, y: Natural): Boolean specializes IntegerFunctions::'<=', UnlimitedNaturalFunctions::'<=';
-	function '>='(x: Natural, y: Natural): Boolean specializes IntegerFunctions::'>=', UnlimitedNaturalFunctions::'>=';	
+	function '<' specializes IntegerFunctions::'<', UnlimitedNaturalFunctions::'<' (x: Natural, y: Natural): Boolean;
+	function '>' specializes IntegerFunctions::'>', UnlimitedNaturalFunctions::'>' (x: Natural, y: Natural): Boolean;
+	function '<=' specializes IntegerFunctions::'<=', UnlimitedNaturalFunctions::'<=' (x: Natural, y: Natural): Boolean;
+	function '>=' specializes IntegerFunctions::'>=', UnlimitedNaturalFunctions::'>=' (x: Natural, y: Natural): Boolean;	
 
-	function Max(x: Natural, y: Natural): Natural specializes IntegerFunctions::Max, UnlimitedNaturalFunctions::Max;
+	function Max specializes IntegerFunctions::Max, UnlimitedNaturalFunctions::Max (x: Natural, y: Natural): Natural;
 
-	function '=='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes IntegerFunctions::'==', UnlimitedNaturalFunctions::'=';
-	function '/='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes IntegerFunctions::'!=', UnlimitedNaturalFunctions::'!=';
+	function '==' specializes IntegerFunctions::'==', UnlimitedNaturalFunctions::'=' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
+	function '/=' specializes IntegerFunctions::'!=', UnlimitedNaturalFunctions::'!=' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
 	
-	function ToString(x: Natural): String specializes IntegerFunctions::ToString, UnlimitedNaturalFunctions::ToString;
+	function ToString specializes IntegerFunctions::ToString, UnlimitedNaturalFunctions::ToString (x: Natural): String;
 	function ToNatural(x: String): Natural;
 }	

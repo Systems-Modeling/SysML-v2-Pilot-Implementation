@@ -1,0 +1,48 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+ 		File {from ="/library.systems/Items.sysml"}
+ 		File {from ="/library.systems/Parts.sysml"}
+ 		File {from ="/library.systems/Ports.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+ 				File {from ="/library.systems/Ports.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package BlockTest {
+	
+	part f: A;
+
+	public block A {
+		part b: B;
+		protected port c: C;
+	}
+	
+	abstract block B {
+		public abstract part a: A;
+		port x: ~C;
+		package P { }
+	}
+	
+	private port def C {
+		private ref in y: B;
+		alias y as z;
+	}
+	
+}

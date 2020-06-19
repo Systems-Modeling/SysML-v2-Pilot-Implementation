@@ -65,7 +65,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFunctionBodyAccess().getAlternatives_1_1(), "rule__FunctionBody__Alternatives_1_1");
 			builder.put(grammarAccess.getAbstractFunctionBodyAccess().getAlternatives(), "rule__AbstractFunctionBody__Alternatives");
 			builder.put(grammarAccess.getAbstractFunctionBodyAccess().getAlternatives_1_1(), "rule__AbstractFunctionBody__Alternatives_1_1");
-			builder.put(grammarAccess.getPredicateDeclarationAccess().getAlternatives_4(), "rule__PredicateDeclaration__Alternatives_4");
+			builder.put(grammarAccess.getPredicateDeclarationAccess().getAlternatives_5(), "rule__PredicateDeclaration__Alternatives_5");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1(), "rule__FeatureDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1_0_1(), "rule__FeatureDeclaration__Alternatives_1_0_1");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1_2_0(), "rule__FeatureDeclaration__Alternatives_1_2_0");
@@ -221,8 +221,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getReturnParameterMemberAccess().getGroup(), "rule__ReturnParameterMember__Group__0");
 			builder.put(grammarAccess.getPredicateAccess().getGroup(), "rule__Predicate__Group__0");
 			builder.put(grammarAccess.getPredicateDeclarationAccess().getGroup(), "rule__PredicateDeclaration__Group__0");
-			builder.put(grammarAccess.getPredicateDeclarationAccess().getGroup_4_0(), "rule__PredicateDeclaration__Group_4_0__0");
-			builder.put(grammarAccess.getPredicateDeclarationAccess().getGroup_4_1(), "rule__PredicateDeclaration__Group_4_1__0");
+			builder.put(grammarAccess.getPredicateDeclarationAccess().getGroup_5_0(), "rule__PredicateDeclaration__Group_5_0__0");
+			builder.put(grammarAccess.getPredicateDeclarationAccess().getGroup_5_1(), "rule__PredicateDeclaration__Group_5_1__0");
 			builder.put(grammarAccess.getInteractionAccess().getGroup(), "rule__Interaction__Group__0");
 			builder.put(grammarAccess.getInteractionDeclarationAccess().getGroup(), "rule__InteractionDeclaration__Group__0");
 			builder.put(grammarAccess.getFeatureAccess().getGroup(), "rule__Feature__Group__0");

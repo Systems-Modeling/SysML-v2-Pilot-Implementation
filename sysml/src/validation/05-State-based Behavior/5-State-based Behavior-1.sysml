@@ -4,7 +4,7 @@ package '5-State-based Behavior-1' {
 	import '3a-Function-based Behavior-1'::*;
 	
 	package Definitions {
-		block VehicleA {
+		part def VehicleA {
 			/*
 			 * The following declare that 'VehicleA' performs a
 			 * 'provide power' action and exhibits some 'vehicle states',
@@ -14,7 +14,7 @@ package '5-State-based Behavior-1' {
 			exhibit state 'vehicle states': 'Vehicle States';
 		}
 		
-		block VehicleController {
+		part def VehicleController {
 			exhibit state 'controller states': 'Controller States';
 		}
 
@@ -27,27 +27,27 @@ package '5-State-based Behavior-1' {
 		state def 'Vehicle States';
 		state def 'Controller States';	
 
-		activity 'Perform Self Test';
-		activity 'Apply Parking Brake';
-		activity 'Sense Temperature'(out temp: TemperatureValue);
+		action def 'Perform Self Test';
+		action def 'Apply Parking Brake';
+		action def 'Sense Temperature'(out temp: TemperatureValue);
 		
-		value type 'Vehicle Start Signal';
-		value type 'Vehicle On Signal';
-		value type 'Vehicle Off Signal';
+		attribute def 'Vehicle Start Signal';
+		attribute def 'Vehicle On Signal';
+		attribute def 'Vehicle Off Signal';
 		
-		value type 'Start Signal';
-		value type 'Off Signal';
-		value type 'Over Temp';
-		value type 'Return to Normal';
+		attribute def 'Start Signal';
+		attribute def 'Off Signal';
+		attribute def 'Over Temp';
+		attribute def 'Return to Normal';
 		
 		/*
-		 * The following value types are used to fill in for the
+		 * The following attribute defs are used to fill in for the
 		 * current lack of support for time events and change events,
 		 * respectively.
 		 */
 		 
-		value type 'at(vehicle::maintenanceTime)';
-		value type 'when(temp>vehicle::Tmax)';
+		attribute def 'at(vehicle::maintenanceTime)';
+		attribute def 'when(temp>vehicle::Tmax)';
 	}
 	
 	package Usages {
@@ -86,8 +86,8 @@ package '5-State-based Behavior-1' {
 				 * "accept" marks the trigger, "if" the guard and "do" the effect.
 				 * 
 				 * The notation "'Start Signal'()" constructs a specific instance of the
-				 * 'Start Signal' value type to be sent to the 'vehicleController'. If the
-				 * value type had properties, their values would be given as arguments
+				 * 'Start Signal' attribute def to be sent to the 'vehicleController'. If the
+				 * attribute def had properties, their values would be given as arguments
 				 * inside the parhentheses.
 				 */
 				transition 'off-starting'
@@ -190,12 +190,12 @@ package '5-State-based Behavior-1' {
 			}
 			
 			/*
-			 * These value properties are used in the specification for
+			 * These attribute properties are used in the specification for
 			 * 'vehicle states'.
 			 */
-			value 'brake pedal depressed': Boolean;		
-			value maintenanceTime: Time::DateTime;
-			value Tmax: TemperatureValue;
+			attribute 'brake pedal depressed': Boolean;		
+			attribute maintenanceTime: Time::DateTime;
+			attribute Tmax: TemperatureValue;
 			
 			/**
 			 * In the context of the 'vehicle1_c1' part, the 'provide power' action

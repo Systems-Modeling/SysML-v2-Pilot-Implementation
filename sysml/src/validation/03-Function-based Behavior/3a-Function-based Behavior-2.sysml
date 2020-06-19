@@ -7,19 +7,19 @@ package '3a-Function-based Behavior-2' {
 		
 		// VALUE TYPES
 		
-		value type FuelCmd;
+		attribute def FuelCmd;
 		
-		value type EngineStart;
-		value type EngineOff;
+		attribute def EngineStart;
+		attribute def EngineOff;
 		
 		// ACTIVITIES
 		
-		activity 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
-		activity 'Amplify Torque'(in engineTorque: Torque, out transmissionTorque: Torque);
-		activity 'Transfer Torque'(in transmissionTorque: Torque, out driveshaftTorque: Torque);
-		activity 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
+		action def 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
+		action def 'Amplify Torque'(in engineTorque: Torque, out transmissionTorque: Torque);
+		action def 'Transfer Torque'(in transmissionTorque: Torque, out driveshaftTorque: Torque);
+		action def 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
 		
-		activity 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
+		action def 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	}
 	

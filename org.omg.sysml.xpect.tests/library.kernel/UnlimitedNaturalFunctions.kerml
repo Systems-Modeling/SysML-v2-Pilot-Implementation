@@ -1,18 +1,18 @@
 package UnlimitedNaturalFunctions {
 	import ScalarValues::*;
 	
-	function '<'(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes NumericalFunctions::'<';
-	function '>'(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes NumericalFunctions::'>';
-	function '<='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes NumericalFunctions::'<=';
-	function '>='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes NumericalFunctions::'>=';	
+	function '<' specializes NumericalFunctions::'<' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
+	function '>' specializes NumericalFunctions::'>' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
+	function '<=' specializes NumericalFunctions::'<=' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
+	function '>=' specializes NumericalFunctions::'>=' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;	
 
-	function Max(x: UnlimitedNatural, y: UnlimitedNatural): UnlimitedNatural specializes NumericalFunctions::Min;
-	function Min(x: UnlimitedNatural, y: UnlimitedNatural): UnlimitedNatural specializes NumericalFunctions::Max;
+	function Max specializes NumericalFunctions::Min (x: UnlimitedNatural, y: UnlimitedNatural): UnlimitedNatural;
+	function Min specializes NumericalFunctions::Max (x: UnlimitedNatural, y: UnlimitedNatural): UnlimitedNatural;
 
-	function '='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes BaseFunctions::'==';
-	function '!='(x: UnlimitedNatural, y: UnlimitedNatural): Boolean specializes BaseFunctions::'!=';
+	function '=' specializes BaseFunctions::'==' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
+	function '!=' specializes BaseFunctions::'!=' (x: UnlimitedNatural, y: UnlimitedNatural): Boolean;
 	
-	function ToString(x: UnlimitedNatural): String specializes BaseFunctions::ToString;
+	function ToString specializes BaseFunctions::ToString (x: UnlimitedNatural): String;
 	function ToNatural(x: UnlimitedNatural): Natural;
 	function ToUnlimitedNatural(x: String): UnlimitedNatural;
 }

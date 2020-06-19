@@ -3,37 +3,37 @@ package MassConstraintExample {
 	import SI::*;
 	import ScalarFunctions::*;
 	
-	block Engine {
-		value m :> mass;
+	part def Engine {
+		attribute m :> mass;
 	}
 	
-	block Transmission {
-		value m :> mass;
+	part def Transmission {
+		attribute m :> mass;
 	}
 	
-	block Vehicle {
-		value m : MassValue = eng::m + trans::m;
+	part def Vehicle {
+		attribute m : MassValue = eng::m + trans::m;
 		
 		part eng : Engine {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 		
 		part trans : Transmission {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 	}
 	
-	block Vehicle {
+	part def Vehicle {
 		assert constraint { m == eng::m + trans::m }
 		
-		value m : MassValue;
+		attribute m : MassValue;
 		
 		part eng : Engine {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 		
 		part trans : Transmission {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 	}
 	
@@ -44,20 +44,20 @@ package MassConstraintExample {
 		totalMass == sum(partMasses)
 	}
 	
-	block Vehicle {
+	part def Vehicle {
 		assert constraint massConstraint : MassConstraint (
 			totalMass = m, 
 			partMasses = {eng::m, trans::m}
 		);
 		
-		value m : MassValue;
+		attribute m : MassValue;
 		
 		part eng {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 		
 		part trans {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 	}
 	
@@ -72,20 +72,20 @@ package MassConstraintExample {
 		totalMass == sum(partMasses)
 	}
 	
-	block Vehicle {
+	part def Vehicle {
 		assert mc (
 			totalMass = m, 
 			partMasses = {eng::m, trans::m}
 		);
 		
-		value m : MassValue;
+		attribute m : MassValue;
 		
 		part eng : Engine {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 		
 		part trans : Transmission {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 	}
 	
@@ -96,20 +96,20 @@ package MassConstraintExample {
 		mass <= maxMass
 	}
 	
-	block Vehicle {
+	part def Vehicle {
 		assert constraint ml : MassLimit (
 			mass = m, 
 			maxMass = 2500@[kg]
 		);
 		
-		value m : MassValue = eng::m + trans::m;
+		attribute m : MassValue = eng::m + trans::m;
 		
 		part eng : Engine {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 		
 		part trans : Transmission {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 	}	
 	

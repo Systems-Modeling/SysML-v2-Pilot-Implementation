@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -21,7 +21,7 @@ END_SETUP
 // XPECT noErrors ---> ""
 package 'Subsetting Example' {
 	
-	block Vehicle {
+	part def Vehicle {
 		part parts : VehiclePart[*];
 		//checking A conforms to B (same)		
 		part eng : Engine subsets parts;
@@ -29,22 +29,22 @@ package 'Subsetting Example' {
 		part wheels : Wheel[4] :> parts;
 	}
 	
-	abstract block VehiclePart;
-	block Engine :> VehiclePart;
-	block Transmission :> VehiclePart;
-	block Wheel :> VehiclePart;
+	abstract part def VehiclePart;
+	part def Engine :> VehiclePart;
+	part def Transmission :> VehiclePart;
+	part def Wheel :> VehiclePart;
 	
-	block SmallVehicle :> Vehicle {
+	part def SmallVehicle :> Vehicle {
 		//checking A conforms to B (direct specialization)
 		part smallEng : SmallEngine subsets eng;
 	}
-	block SmallEngine :> Engine {}
+	part def SmallEngine :> Engine {}
 	
-	block SmallSmallVehicle :> SmallVehicle {
+	part def SmallSmallVehicle :> SmallVehicle {
 		//checking A conforms to B (indirect specialization)
 		part smallsmallEng : SmallSmallEngine subsets eng;
 	}
-	block SmallSmallEngine :> Engine {}
+	part def SmallSmallEngine :> Engine {}
 	
 	
 }

@@ -10,13 +10,13 @@ package VehicleDefinitions {
 	
 	/* BLOCKS */
 	
-	block Vehicle;	
-	block Transmission;	
-	block AxleAssembly;
-	block Axle;	
-	block Wheel;
-	block Lugbolt {
-		value tighteningTorque :> ISQ::torque;
+	part def Vehicle;	
+	part def Transmission;	
+	part def AxleAssembly;
+	part def Axle;	
+	part def Wheel;
+	part def Lugbolt {
+		attribute tighteningTorque :> ISQ::torque;
 	}
 	
 	/* INTERFACE BLOCKS */

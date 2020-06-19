@@ -2,32 +2,32 @@ package Packets {
 	private import ScalarValues::*;
 	private import Time::DateTime;
 	
-	value 'packet header' { }
+	attribute 'packet header' { }
 	
-	value 'packet data field' {	
-		value 'packet secondary header' redefines 'packet header';
-		value 'user data field';
+	attribute 'packet data field' {	
+		attribute 'packet secondary header' redefines 'packet header';
+		attribute 'user data field';
 	}
 	
-	block 'Data Packet' {
-		value 'packet primary header' redefines 'packet header' {
-			value 'packet version number': Integer;
-			value 'packet identification': String;
-			value 'packet data length': Integer;
+	part def 'Data Packet' {
+		attribute 'packet primary header' redefines 'packet header' {
+			attribute 'packet version number': Integer;
+			attribute 'packet identification': String;
+			attribute 'packet data length': Integer;
 		}
-		value redefines 'packet data field';
+		attribute redefines 'packet data field';
 	}
 	
-	block 'Thermal Data Packet' :> 'Data Packet' {
-		value 'packet data field' redefines Packets::'packet data field'{
-			value 'packet secondary header' redefines 'packet header' {
-				value 'packet timestamp': DateTime;
-				value 'telemetry packet type': String;
+	part def 'Thermal Data Packet' :> 'Data Packet' {
+		attribute 'packet data field' redefines Packets::'packet data field'{
+			attribute 'packet secondary header' redefines 'packet header' {
+				attribute 'packet timestamp': DateTime;
+				attribute 'telemetry packet type': String;
 			}
 			
-			value 'user data field' redefines Packets::'packet data field'::'user data field' {
-				value timestamp: DateTime;
-				value temperature: Real;
+			attribute 'user data field' redefines Packets::'packet data field'::'user data field' {
+				attribute timestamp: DateTime;
+				attribute temperature: Real;
 			}
 		}
 	}

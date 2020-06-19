@@ -1,4 +1,4 @@
-//* XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+//* XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLTests
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
@@ -35,11 +35,11 @@ package P {
     import ScalarValues::*;
     import Vehicle::*;
 
-    value v1_cylinders: Integer = ./vehicle_1/cylinders;
+    attribute v1_cylinders: Integer = ./vehicle_1/cylinders;
 
-    value v1_mass: Real = ./vehicle_1/mass;
+    attribute v1_mass: Real = ./vehicle_1/mass;
 
-    value v_cylinders: Integer = ./Vehicle::cylinders;
+    attribute v_cylinders: Integer = ./Vehicle::cylinders;
 
-    value v2_mass: Real = ./vehicle_1a/mass;
+    attribute v2_mass: Real = ./vehicle_1a/mass;
 }

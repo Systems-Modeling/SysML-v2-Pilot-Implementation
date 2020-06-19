@@ -1,26 +1,26 @@
 package 'Port Example' {
 	
-	value type Temp;
+	attribute def Temp;
 	
-	block Fuel;
+	part def Fuel;
 	
 	port def FuelOutPort {
-		value temperature : Temp;
+		attribute temperature : Temp;
 		ref out fuelSupply : Fuel;
 		ref in fuelReturn : Fuel;
 	}
 	
 	port def FuelInPort {
-		value temperature : Temp;
+		attribute temperature : Temp;
 		ref out fuelSupply : Fuel;
 		ref in fuelReturn : Fuel;
 	}
 	
-	block FuelTankAssembly {
+	part def FuelTankAssembly {
 		port fuelTankPort : FuelOutPort;
 	}
 	
-	block Engine {
+	part def Engine {
 		port engineFuelPort : FuelInPort;
 	}
 }

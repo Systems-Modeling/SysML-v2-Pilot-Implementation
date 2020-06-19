@@ -12,7 +12,7 @@ package '15.10-Primitive Data Types' {
 	
 	import ScalarValues::Natural;
 	/** Mathematically, unsigned integers are just natural numbers (non-negative integers). */
-	value type UnsignedInteger :> Natural;
+	attribute def UnsignedInteger :> Natural;
 	
 	/**
 	 * The unqualified Real is signed, in line with real numbers in mathematics.
@@ -20,22 +20,22 @@ package '15.10-Primitive Data Types' {
 	import ScalarValues::Real;
 	
 	/** TODO: Move this to the model library.
-	 * (To be discussed whether Unsigned value types should really be part of the primitive 
-	 * data / value types. These are more a computer data type concern.)
+	 * (To be discussed whether Unsigned attribute defs should really be part of the primitive 
+	 * data / attribute defs. These are more a computer data type concern.)
 	 */
-	value type UnsignedReal :> Real {
-		value x: Real :>> self;
+	attribute def UnsignedReal :> Real {
+		attribute x: Real :>> self;
 		assert constraint { x >= 0.0 }
 	}
 	
 	/**
-	 * String values are sequences of characters.
+	 * String attributes are sequences of characters.
 	 * TODO: Specify any requirements on character encoding.
 	 */
 	import ScalarValues::String;
 	
 	/**
-	 * Boolean type has two legal values: true, false.
+	 * Boolean type has two legal attributes: true, false.
 	 */
 	import ScalarValues::Boolean;
 	

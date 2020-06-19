@@ -1,8 +1,8 @@
 package 'State Definition Example-2' {
 	
-	value type VehicleStartSignal;
-	value type VehicleOnSignal;
-	value type VehicleOffSignal;
+	attribute def VehicleStartSignal;
+	attribute def VehicleOnSignal;
+	attribute def VehicleOffSignal;
 		
 	state def VehicleStates {
 		entry; then off;

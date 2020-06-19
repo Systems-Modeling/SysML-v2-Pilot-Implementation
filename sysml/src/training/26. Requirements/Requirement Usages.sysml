@@ -3,7 +3,7 @@ package 'Requirement Usages' {
 	import 'Requirement Definitions'::*;
 	
 	requirement id '1.1' fullVehicleMassLimit : VehicleMassLimitationRequirement(vehicle: Vehicle) {
-		value :>> massReqd = 2000@[kg];
+		attribute :>> massReqd = 2000@[kg];
 		
 		assume constraint {
 			/* Full tank is full. */
@@ -12,7 +12,7 @@ package 'Requirement Usages' {
 	}
 	
 	requirement id '1.2' emptyVehicleMassLimit : VehicleMassLimitationRequirement(vehicle: Vehicle) {
-		value :>> massReqd = 1500@[kg];
+		attribute :>> massReqd = 1500@[kg];
 		
 		assume constraint {
 			/* Full tank is empty. */

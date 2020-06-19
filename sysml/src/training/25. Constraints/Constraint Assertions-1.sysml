@@ -3,8 +3,8 @@ package 'Constraint Assertions-1' {
 	import SI::*;
 	import ScalarFunctions::*;
 	
-	block Engine;
-	block Transmission;
+	part def Engine;
+	part def Transmission;
 	
 	constraint def MassConstraint (
 		partMasses : MassValue[0..*],
@@ -13,20 +13,20 @@ package 'Constraint Assertions-1' {
 		sum(partMasses) <= massLimit
 	}
 	
-	block Vehicle {
+	part def Vehicle {
 		assert constraint massConstraint : MassConstraint (
 			partMasses = {chassisMass, engine::mass, transmission::mass},
 			massLimit = 2500@[kg]
 		);
 		
-		value chassisMass : MassValue;
+		attribute chassisMass : MassValue;
 		
 		part engine : Engine {
-			value mass : MassValue;
+			attribute mass : MassValue;
 		}
 		
 		part transmission : Engine {
-			value mass : MassValue;
+			attribute mass : MassValue;
 		}
 	}	
 }

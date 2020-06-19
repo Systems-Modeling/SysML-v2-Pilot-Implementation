@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
@@ -26,8 +26,8 @@ END_SETUP
 */
 package 'Individuals and Roles' {
 	
-	block A;
-	block B;
+	part def A;
+	part def B;
 	
 	individual def A_1 :> A {
 		part b_1 : B;

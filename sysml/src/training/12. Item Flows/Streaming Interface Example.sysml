@@ -1,7 +1,7 @@
 package 'Streaming Interface Example' {
 	import 'Port Example'::*;
 	
-	block Vehicle;
+	part def Vehicle;
 	
 	interface def FuelInterface {
 		end supplierPort : FuelOutPort {

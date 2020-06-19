@@ -1,6 +1,6 @@
 package 'Subsetting Example' {
 	
-	block Vehicle {
+	part def Vehicle {
 		part parts : VehiclePart[*];
 		
 		part eng : Engine subsets parts;
@@ -8,8 +8,8 @@ package 'Subsetting Example' {
 		part wheels : Wheel[4] :> parts;
 	}
 	
-	abstract block VehiclePart;
-	block Engine :> VehiclePart;
-	block Transmission :> VehiclePart;
-	block Wheel :> VehiclePart;
+	abstract part def VehiclePart;
+	part def Engine :> VehiclePart;
+	part def Transmission :> VehiclePart;
+	part def Wheel :> VehiclePart;
 }

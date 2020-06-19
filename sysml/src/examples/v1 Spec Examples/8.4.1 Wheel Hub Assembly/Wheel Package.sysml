@@ -6,7 +6,7 @@ package 'Wheel Package' {
 	
 	pressure = force / length^2; 
 	
-	block WheelHubAssembly {
+	part def WheelHubAssembly {
 		part wheel: WheelAssembly[1];
 		part lugBoltJoints: LugBoltJoint[5] {
 			ref redefines threadedHole subsets hub::h;
@@ -15,7 +15,7 @@ package 'Wheel Package' {
 		part hub: Hub[1];
 	}
 	
-	block WheelAssembly {
+	part def WheelAssembly {
 		inflationPressure :> pressure;
 		
 		part t: Tire[1] {
@@ -25,10 +25,10 @@ package 'Wheel Package' {
 			part rim redefines Wheel::rim;
 		}		
 				
-		link : PressureSeat connect t::bead to w::rim;		
+		connection : PressureSeat connect t::bead to w::rim;		
 	}
 	
-	block Tire {
+	part def Tire {
 		tireSpecification : ScalarValues::String;
 		
 		part bead : TireBead[2];
@@ -36,14 +36,14 @@ package 'Wheel Package' {
 		action mountTire;
 	}
 	
-	block TireBead;
+	part def TireBead;
 	
-	assoc block PressureSeat {
+	connection def PressureSeat {
 		end : TireBead[1];
 		end : TireMountingRim[1];
 	}
 	
-	block Wheel {
+	part def Wheel {
 		diameter :> length;
 		width :> length;
 		
@@ -53,26 +53,26 @@ package 'Wheel Package' {
 		part mountingHoles : LugBoltMountingHole[5];
 	}
 	
-	assoc block BandMount {
+	connection def BandMount {
 		end : Wheel[1];
 		end : WirelessTirePressureMonitor[1];
 	}
 	
-	block WirelessTirePressureMonitor {
+	part def WirelessTirePressureMonitor {
 		action transmitPressure;
 	}
 	
-	block TireMountingRim;
+	part def TireMountingRim;
 	
-	block InflationValve;
+	part def InflationValve;
 	
-	block BalanceWeight;
+	part def BalanceWeight;
 	
-	block LugBoltMountingHole {
+	part def LugBoltMountingHole {
 		lugBoltSize :> length;
 	}
 	
-	block LugBoltJoint {
+	part def LugBoltJoint {
 		torque :> ISQ::torque;
 		boltTension :> force;
 		
@@ -80,11 +80,11 @@ package 'Wheel Package' {
 		ref threadedHole: LugBoltThreadableHole[1];
 	}
 	
-	block Hub {
+	part def Hub {
 		part h: LugBoltThreadableHole[5];
 	}
 	
-	block LugBoltThreadableHole {
+	part def LugBoltThreadableHole {
 		lugBoltSize :> length;
 		threadSize :> length;
 	}

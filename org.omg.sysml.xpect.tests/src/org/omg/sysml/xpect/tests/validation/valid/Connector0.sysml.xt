@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -32,11 +32,11 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package P {
-	block A;
-	block B;
-	block C;
-	block D;
-	block E {
+	part def A;
+	part def B;
+	part def C;
+	part def D;
+	part def E {
 		part a : A[0..5];
 		part b : B {
 			part c : C[1] {

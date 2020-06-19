@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -33,14 +33,14 @@ END_SETUP
 // XPECT noErrors ---> ""
 package P {
 	
-	block A;
-	block B;
-	block C;
-	block D;
-	block E;
-	block F;
+	part def A;
+	part def B;
+	part def C;
+	part def D;
+	part def E;
+	part def F;
 	
-	assoc block AB {
+	connection def AB {
 		end : D[1];
 		end : F[1];
 	}
@@ -71,7 +71,7 @@ package P {
 			}						
 				
 		}
-		link : AB connect b1::c::d to b2::e::f;	
+		connection : AB connect b1::c::d to b2::e::f;	
 	}
 	
 }

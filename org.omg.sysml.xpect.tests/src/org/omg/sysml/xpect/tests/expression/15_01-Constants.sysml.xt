@@ -1,4 +1,5 @@
-//* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
         ResourceSet {
                 ThisFile {}
                     File {from ="/library.kernel/Base.kerml"}
@@ -35,7 +36,7 @@
         }
 END_SETUP
 */
-
+// XPECT noErrors ---> ""
 package '15_01-Constants' {
 	import ScalarValues::*;
 	import Quantities::*;
@@ -51,31 +52,31 @@ package '15_01-Constants' {
      Note: There should be a way to mark these as "invariant" 
      */
     package 'Mathematical Constants' {
-        value e: Real = 2.71828182845904523536;
-        value pi: Real = 3.14159265358979323846;
+        attribute e: Real = 2.71828182845904523536;
+        attribute pi: Real = 3.14159265358979323846;
     }
 
     /**
      * Should this be in the ISQ library model?
      */
-    value type DimensionOneValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::num;
-    	value scale: DimensionOneUnit redefines QuantityValue::mRef;
+    attribute def DimensionOneValue :> QuantityValue {
+		attribute magnitude: Real redefines QuantityValue::num;
+    	attribute scale: DimensionOneUnit redefines QuantityValue::mRef;
     }
     
     /**
      * Should this ibe in the ISQ library model?
      */
-    block AccelerationUnit :> SIDerivedUnit {
-		value lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = 1;
+    part def AccelerationUnit :> SIDerivedUnit {
+		attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+			attribute exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		value timePowerFactor :> SIDerivedUnit::timePowerFactor {
-			value exponent redefines UnitPowerFactor::exponent = -2;
+		attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
+			attribute exponent redefines UnitPowerFactor::exponent = -2;
 		}		
     }
-    value type AccelerationValue :> QuantityValue {
-		value magnitude: Real redefines QuantityValue::num;
+    attribute def AccelerationValue :> QuantityValue {
+		attribute magnitude: Real redefines QuantityValue::num;
     	ref scale: AccelerationUnit redefines QuantityValue::mRef;
     }
 
@@ -88,17 +89,17 @@ package '15_01-Constants' {
      CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2010 Recommended Values - See http://www.codata.org/committees-and-groups/fundamental-physical-constants/tgfc-previous-values-and-publications
      */
     package 'Fundamental Physical Constants' {
-        value 'fine structure constant': DimensionOneValue = 7.297352569824E-3;
-        value 'electron to proton mass ratio': DimensionOneValue = 5.446170217822E-4;
-        value 'speed of light in vacuum': SpeedValue = 299792458@[m/s];
+        attribute 'fine structure constant': DimensionOneValue = 7.297352569824E-3;
+        attribute 'electron to proton mass ratio': DimensionOneValue = 5.446170217822E-4;
+        attribute 'speed of light in vacuum': SpeedValue = 299792458@[m/s];
     }
 
     package 'Global Context' {
-        value 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@[m/(s^2)];
+        attribute 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@[m/(s^2)];
     }
 
     package 'Model X Context' {
-        value 'amplifier gain': DimensionOneValue = 3.5;
+        attribute 'amplifier gain': DimensionOneValue = 3.5;
     }
 
 }

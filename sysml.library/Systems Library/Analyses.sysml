@@ -14,7 +14,7 @@ package Analyses {
 	 * 
 	 * The result of this AnalysisCase is bound to the result of the resultEvaluation.
 	 */
-	calc def AnalysisCase(subject[1]) result[0..*] :> Case {
+	calc def AnalysisCase :> Case (subject[1]) result[0..*] {
 		
 		/**
 		 * The subactions of this AnalysisCase that are AnalysisActions.
@@ -32,7 +32,7 @@ package Analyses {
 	/**
 	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
 	 */
-	activity AnalysisAction;
+	action def AnalysisAction;
 	
 	/**
 	 * analysisCases is the base feature of all AnalysisCaseUsages.

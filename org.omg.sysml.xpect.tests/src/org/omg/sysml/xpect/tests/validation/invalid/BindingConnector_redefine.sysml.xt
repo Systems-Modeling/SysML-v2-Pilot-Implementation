@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -31,7 +31,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 END_SETUP 
 */
 package BindingConnectorExample {
-	block A;
+	part def A;
 	port def PortDefOut {
 		ref in myDefIn: A;
 		ref out myDefOut: A;
@@ -41,13 +41,13 @@ package BindingConnectorExample {
 		ref out myDefOut : A;
 		ref in myDefIn : A;
 	}
-	block B0 {
+	part def B0 {
 		port p0 : PortDefOut;
 	}
-	block B1 {
+	part def B1 {
 		port p1 : PortDefIn;
 	}
-	block V;
+	part def V;
 	part v : V {
 		part b0 : B0 {
 			port p0 redefines B0::p0 {
@@ -110,4 +110,4 @@ package BindingConnectorExample {
 		
 
 	} 
-}
+} 

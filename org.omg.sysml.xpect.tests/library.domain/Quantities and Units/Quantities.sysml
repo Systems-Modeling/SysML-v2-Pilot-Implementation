@@ -8,9 +8,9 @@ package Quantities {
 	 * The reference can be a MeasurementUnit, which implies that the associated measurement scale is a ratio scale,
 	 * or a MeasurementScale, whose specializations represent all possible non-ratio scales.
 	 */
-	abstract value type QuantityValue :> ScalarValues::NumericalValue {
-		value num: ScalarValues::Number;
-		value mRef: UnitsAndScales::MeasurementReference;
+	abstract attribute def QuantityValue :> ScalarValues::NumericalValue {
+		attribute num: ScalarValues::Number;
+		attribute mRef: UnitsAndScales::MeasurementReference;
 	}
 	
 	/**
@@ -18,5 +18,5 @@ package Quantities {
 	 * properties of SysML objects. Each quantity feature is a specialization of the root feature 'quantity' and, so, 
 	 * must be typed by a QuantityValue, i.e. the range of a quantity feature is a suitable specialization of QuantityValue.
 	 */
-	value quantity: QuantityValue;
+	attribute quantity: QuantityValue;
 }

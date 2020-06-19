@@ -3,21 +3,21 @@ package '15_02-Basic Value Properties' {
 	
 	/**
 	 * Real world user models would use a quantity type
-	 * from the library model. A value type is defined
+	 * from the library model. A attribute def is defined
 	 * here to show that it is possible.
 	 */
-    value type LengthValue :> Real;
+    attribute def LengthValue :> Real;
 
-    block Tire {
-    	value manufacturer: String;
-        value hubDiameter: LengthValue;
-        value width: Integer;
+    part def Tire {
+    	attribute manufacturer: String;
+        attribute hubDiameter: LengthValue;
+        attribute width: Integer;
     }
     
     part frenchTire: Tire {
-    	value :>> manufacturer = "Michelin";
-    	value :>> hubDiameter = 18.0;
-    	value :>> width = 245;
+    	attribute :>> manufacturer = "Michelin";
+    	attribute :>> hubDiameter = 18.0;
+    	attribute :>> width = 245;
     }
     
 }

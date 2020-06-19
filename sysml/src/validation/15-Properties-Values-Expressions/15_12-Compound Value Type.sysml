@@ -4,27 +4,27 @@ package '15_12-Compound Value Type' {
 	/*
 	 * Real world user models would use quantity and vector types
 	 * from library models. They are included here for the purpose
-	 * of showing how such value types can be defined.
+	 * of showing how such attribute defs can be defined.
 	 */
 
-    value type PositionVector {
-        value x: Real[1];
-        value y: Real[1];
-        value z: Real[1];
+    attribute def PositionVector {
+        attribute x: Real[1];
+        attribute y: Real[1];
+        attribute z: Real[1];
     }
     
-    value type LengthValue :> Real;
+    attribute def LengthValue :> Real;
 
-    value type TireInfo {
-    	value manufacturer: String;
-        value hubDiameter: LengthValue;
-        value width: Integer;
-        value placement: PositionVector[0..1];
+    attribute def TireInfo {
+    	attribute manufacturer: String;
+        attribute hubDiameter: LengthValue;
+        attribute width: Integer;
+        attribute placement: PositionVector[0..1];
     }
     
-    value frenchTireInfo: TireInfo {
-    	value :>> manufacturer = "Michelin";
-    	value :>> hubDiameter = 18.0;
-    	value :>> width = 245;
+    attribute frenchTireInfo: TireInfo {
+    	attribute :>> manufacturer = "Michelin";
+    	attribute :>> hubDiameter = 18.0;
+    	attribute :>> width = 245;
     }
 }

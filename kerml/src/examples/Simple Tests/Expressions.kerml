@@ -10,7 +10,7 @@ package Expressions {
 	c = x->collect xx (xx + 1); 
 	d = x->while q (q > 3) r (r - 1)->reduce s t (s + t)->reduce ScalarFunctions::'+';
 	
-	function w(initial) result specializes ControlFunctions::while {
+	function w specializes ControlFunctions::while (initial) result {
 		expr condition redefines ControlFunctions::while::condition (v){v > 3}
 		expr body redefines ControlFunctions::while::body (u){u - 1}
 	}

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -11,7 +11,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
-		File {from ="/library.systems/Attributes.sysml"}
+
 	}
 	Workspace {
 		JavaProject {
@@ -26,32 +26,18 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
-				File {from ="/library.systems/Attributes.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
-package 'ValueProperty Example' {
-	port def P;
-	block A {
-		part a: A;
-		port p: P;
+// XPECT noErrors ---> ""
+package 'Blocks Example' {
+	part def Vehicle {
+		part eng : Engine;
+		ref driver : Person; 
+		part driver2; //typed by Block (named Part)
 	}
-	block Vehicle {
-		// XPECT errors --> "An attribute must be typed by attribute definitions." at "a : A;"
-		value a : A;
-		// XPECT errors --> "An attribute must be typed by attribute definitions." at "b : A::a;"
-		value b : A::a;
-		// XPECT errors --> "An attribute must be typed by attribute definitions." at "s : P;"
-		value s : P;
-		//XPECT errors --> "An attribute must be typed by attribute definitions." at "un : A::p;"
-		value un: A::p;
-		//XPECT errors --> "An attribute must be typed by attribute definitions." at "n : AB;"
-		value n: AB;
-		}
-	assoc block  AB {
-		end : A;
-		end : A;
-	}
+	part def Engine;	
+	part def Person;
 }

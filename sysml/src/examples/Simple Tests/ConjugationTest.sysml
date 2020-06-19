@@ -1,12 +1,12 @@
 package ConjugationTest {
 	port def P;
 	
-	block B {
+	part def B {
 		port p1: P;
 		port p2: ~P;
 	}
 	
-	assoc block A {
+	connection def A {
 		end port p1: P;
 		end port p2: ~P;
 	}
@@ -16,13 +16,13 @@ package ConjugationTest {
 		end p2: ~P;
 	}
 	
-	block B1 {
+	part def B1 {
 		part p {
 			port p1: P;
 			port p2: ~P;		
 		}
 	
-		link a: A connect p::p1 to p::p2 {
+		connection a: A connect p::p1 to p::p2 {
 			end port p3: P;
 			end port p4: ~P;
 		}

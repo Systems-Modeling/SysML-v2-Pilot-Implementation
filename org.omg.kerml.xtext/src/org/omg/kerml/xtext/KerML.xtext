@@ -369,7 +369,7 @@ fragment BehaviorDeclaration returns SysML::Behavior :
 ;
 
 fragment BehaviorDeclarationCompletion returns SysML::Behavior :
-	(isSufficient ?= 'all' )? name = Name ParameterList? SpecializationOrConjugation?
+	(isSufficient ?= 'all' )? name = Name SpecializationOrConjugation? ParameterList?
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -416,7 +416,7 @@ Function returns SysML::Function :
 
 fragment FunctionDeclaration returns SysML::Function :
 	( isAbstract ?= 'abstract' )? 'function' (isSufficient ?= 'all' )? 
-	name = Name ParameterList? ReturnParameterPart SpecializationOrConjugation?
+	name = Name SpecializationOrConjugation? ParameterList? ReturnParameterPart
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -460,9 +460,8 @@ Predicate returns SysML::Predicate :
 ;
 
 fragment PredicateDeclaration returns SysML::Predicate :
-	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? name = Name 
-	( => ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart ) 
-	SpecializationOrConjugation?
+	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? name = Name  SpecializationOrConjugation?
+	( => ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart )
 ;
 
 fragment EmptyReturnParameterPart returns SysML::Type :

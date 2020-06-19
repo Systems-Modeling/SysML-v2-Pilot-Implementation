@@ -1,5 +1,5 @@
-activity DecisionTest {
-	value x = 1;
+action def DecisionTest {
+	attribute x = 1;
 	
 	decide 'test x';
 	if x == 1 then A1; 

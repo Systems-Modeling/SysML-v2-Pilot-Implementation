@@ -1,17 +1,17 @@
 package 'Connectors Example' {
 	
-	block WheelHubAssembly;
-	block WheelAssembly;
-	block Tire;
-	block TireBead;
-	block Wheel;
-	block TireMountingRim;
-	block LugBoltMountingHole;
-	block Hub;
-	block LugBoltThreadableHole;
-	block LugBoltJoint;
+	part def WheelHubAssembly;
+	part def WheelAssembly;
+	part def Tire;
+	part def TireBead;
+	part def Wheel;
+	part def TireMountingRim;
+	part def LugBoltMountingHole;
+	part def Hub;
+	part def LugBoltThreadableHole;
+	part def LugBoltJoint;
 	
-	assoc block PressureSeat {
+	connection def PressureSeat {
 		end : TireBead[1];
 		end : TireMountingRim[1];
 	}
@@ -26,7 +26,7 @@ package 'Connectors Example' {
 				part rim : TireMountingRim[2];
 				part mountingHoles : LugBoltMountingHole[5];
 			}						
-			link : PressureSeat connect t::bead to w::rim;		
+			connection : PressureSeat connect t::bead to w::rim;		
 		}
 		
 		part lugBoltJoints : LugBoltJoint[0..5];

@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		}
@@ -15,7 +15,7 @@ END_SETUP
 
 package 'Test' {
 	package A {
-		block B{
+		part def B{
 			// XPECT errors --> "Features must have at least one type" at "f;"
 			f;
 		}

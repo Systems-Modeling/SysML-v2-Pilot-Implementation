@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -52,7 +52,7 @@ END_SETUP
 */
 package 'Requirement Definitions' {
 	
-	block A {
+	part def A {
 		part a;
 	}
 	constraint def Rdef;
@@ -68,12 +68,18 @@ package 'Requirement Definitions' {
 		"Features must have at least one type" at "id '1.1' r11 : Rdef;"
 	--- */
 	requirement id '1.1' r11 : Rdef;
-	//XPECT errors --> "A requirement must be typed by one requirement definition." at "id '1.2' r12 : R2def;"
-	requirement id '1.2' r12 : R2def;
-	//XPECT errors --> "A requirement must be typed by one requirement definition." at "r13 : A;"
+	//XPECT errors --> "A requirement must be typed by one requirement definition." at "id '1.2' r12 : R1def, R2def;"
+	requirement id '1.2' r12 : R1def, R2def;
+	//*XPECT errors ---
+		"A requirement must be typed by one requirement definition." at "r13 : A;"
+	---*/
 	requirement r13 : A;
-	//XPECT errors --> "A requirement must be typed by one requirement definition." at "r14 : A::a;"
+	//*XPECT errors ---
+		"A requirement must be typed by one requirement definition." at "r14 : A::a;"
+	---*/
 	requirement r14 : A::a;
-	//XPECT errors --> "A requirement must be typed by one requirement definition." at "r15 : c;"
+	//*XPECT errors ---
+		"A requirement must be typed by one requirement definition." at "r15 : c;"
+	---*/
 	requirement r15 : c;
 }

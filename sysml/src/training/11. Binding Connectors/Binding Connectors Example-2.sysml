@@ -1,9 +1,9 @@
 package 'Binding Connectors Example-2' {
 	import 'Port Example'::*;
 	
-	block Vehicle;
-	block FuelPump;
-	block FuelTank;
+	part def Vehicle;
+	part def FuelPump;
+	part def FuelTank;
 	
 	part vehicle : Vehicle {	
 		part tank : FuelTankAssembly {

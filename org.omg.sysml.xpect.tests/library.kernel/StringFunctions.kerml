@@ -1,18 +1,18 @@
 package StringFunctions {
 	import ScalarValues::*;
 	
-	function '+'(x: String, y:String): String specializes ScalarFunctions::'+';
+	function '+' specializes ScalarFunctions::'+' (x: String, y:String): String;
 	
 	function Size(x: String): Natural;
 	function Substring(x: String, lower: Integer, upper: Integer): String;
 	
-	function '<'(x: String, y: String): Boolean specializes ScalarFunctions::'<';
-	function '>'(x: String, y: String): Boolean specializes ScalarFunctions::'>';
-	function '<='(x: String, y: String): Boolean specializes ScalarFunctions::'<=';
-	function '>='(x: String, y: String): Boolean specializes ScalarFunctions::'>=';
+	function '<' specializes ScalarFunctions::'<' (x: String, y: String): Boolean;
+	function '>' specializes ScalarFunctions::'>' (x: String, y: String): Boolean;
+	function '<=' specializes ScalarFunctions::'<=' (x: String, y: String): Boolean;
+	function '>=' specializes ScalarFunctions::'>=' (x: String, y: String): Boolean;
 
-	function '='(x: String, y: String): Boolean specializes BaseFunctions::'==';
-	function '!='(x: String, y: String): Boolean specializes BaseFunctions::'!=';
+	function '=' specializes BaseFunctions::'==' (x: String, y: String): Boolean;
+	function '!=' specializes BaseFunctions::'!=' (x: String, y: String): Boolean;
 	
-	function ToString(x: String): String specializes BaseFunctions::ToString;	
+	function ToString specializes BaseFunctions::ToString (x: String): String;	
 }

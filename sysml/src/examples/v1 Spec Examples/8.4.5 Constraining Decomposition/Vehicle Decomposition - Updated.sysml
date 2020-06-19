@@ -6,21 +6,21 @@ package 'Vehicle Decomposition - Updated' {
 	
 	// Blocks
 	
-	block Vehicle;
+	part def Vehicle;
 	
-	block 'Chassis Assembly';
+	part def 'Chassis Assembly';
 	
-	block Wheel;
+	part def Wheel;
 	
-	block LugBolt;
+	part def LugBolt;
 	
-	block RollBar;
-	block HeavyRollBar :> RollBar;
-	block LightRollBar :> RollBar;
+	part def RollBar;
+	part def HeavyRollBar :> RollBar;
+	part def LightRollBar :> RollBar;
 	
-	block Engine;
+	part def Engine;
 	
-	block Cylinder;
+	part def Cylinder;
 	
 	// Parts
 	

@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -40,8 +40,8 @@ END_SETUP
 */
 package 'State Decomposition-1' {
 	
-	block A;
-	value type VT;
+	part def A;
+	attribute def VT;
 	action ac;
 	//XPECT errors --> "A state must be typed by state definitions." at "s1 : A;"	
 	state s1 : A;

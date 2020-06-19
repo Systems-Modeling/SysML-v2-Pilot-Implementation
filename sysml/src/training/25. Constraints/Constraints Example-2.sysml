@@ -3,30 +3,30 @@ package 'Constraints Example-2' {
 	import SI::*;
 	import ScalarFunctions::*;
 	
-	block Engine;
-	block Transmission;
+	part def Engine;
+	part def Transmission;
 	
 	constraint def MassConstraint {
-		value partMasses : MassValue[0..*];
-		value massLimit : MassValue;
+		attribute partMasses : MassValue[0..*];
+		attribute massLimit : MassValue;
 			
 		sum(partMasses) <= massLimit
 	}
 	
-	block Vehicle {
+	part def Vehicle {
 		constraint massConstraint : MassConstraint {
 			redefines partMasses = {chassisMass, engine::mass, transmission::mass};
 			redefines massLimit = 2500@[kg];
 		}
 		
-		value chassisMass : MassValue;
+		attribute chassisMass : MassValue;
 		
 		part engine : Engine {
-			value mass : MassValue;
+			attribute mass : MassValue;
 		}
 		
 		part transmission : Engine {
-			value mass : MassValue;
+			attribute mass : MassValue;
 		}
 	}
 }

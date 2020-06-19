@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -21,13 +21,13 @@ END_SETUP
 // XPECT noErrors ---> ""
 package 'Redefinition Example' {
 	
-	block A :> C;
+	part def A :> C;
 	
-	block B {
+	part def B {
 		part a: A;
 	}
 	
-	block C :> A, B {
+	part def C :> A, B {
 		part a redefines B::a;
 	}
 

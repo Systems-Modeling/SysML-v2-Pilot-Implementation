@@ -8,26 +8,26 @@ package '3a-Function-based Behavior-1' {
 		 */
 		import ISQ::TorqueValue as Torque;
 		
-		value type FuelCmd;
+		attribute def FuelCmd;
 		
 		/*
 		 * There is no special construct for modeling "signals". Data to be
-		 * transmitted asynchronously can simply be modeled using value types.
+		 * transmitted asynchronously can simply be modeled using attribute defs.
 		 */
 		
-		value type EngineStart;
-		value type EngineOff;
+		attribute def EngineStart;
+		attribute def EngineOff;
 		
 		/*
 		 * Black box specifications for activities include their inputs and outputs.
 		 */
 		
-		activity 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
-		activity 'Amplify Torque'(in engineTorque: Torque, out transmissionTorque: Torque);
-		activity 'Transfer Torque'(in transmissionTorque: Torque, out driveshaftTorque: Torque);
-		activity 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
+		action def 'Generate Torque'(in fuelCmd: FuelCmd, out engineTorque: Torque);
+		action def 'Amplify Torque'(in engineTorque: Torque, out transmissionTorque: Torque);
+		action def 'Transfer Torque'(in transmissionTorque: Torque, out driveshaftTorque: Torque);
+		action def 'Distribute Torque'(in driveShaftTorque: Torque, out wheelTorque1: Torque, out wheelTorque2: Torque);
 		
-		activity 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
+		action def 'Provide Power'(in fuelCmd: FuelCmd, out wheelTorque1: Torque, out wheelTorque2: Torque);
 	
 	}
 	
@@ -48,7 +48,7 @@ package '3a-Function-based Behavior-1' {
 			
 			/**
 			 * The parameters on an action act as its "pins". They automatically 
-			 * redefine the corresponding parameters from the activity that types
+			 * redefine the corresponding parameters from the action def that types
 			 * the action.
 			 */
 			action 'generate torque': 'Generate Torque'(
@@ -111,7 +111,7 @@ package '3a-Function-based Behavior-1' {
 			 * An accept action accepts an incoming transfer of some item
 			 * from outside an action, in this case the "signal" 'EngineStart'.
 			 * Note that 'engineStarted' is the name of the action, while
-			 * 'engineStart' is the name of the received signal value.
+			 * 'engineStart' is the name of the received signal attribute.
 			 */
 			accept engineStarted (engineStart: EngineStart);			
 			succession engineStarted then engineStopped;

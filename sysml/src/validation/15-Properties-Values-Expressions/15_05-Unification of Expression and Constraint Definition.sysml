@@ -14,9 +14,9 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		2 * discBrakeAssy::radius < wheel::outerDiameter
 	}
 	
-	block Vehicle_2 {
-		value mass : MassValue[1] = 1200@[kg];
-		value length : LengthValue[1] = 4.82@[m];
+	part def Vehicle_2 {
+		attribute mass : MassValue[1] = 1200@[kg];
+		attribute length : LengthValue[1] = 4.82@[m];
 		
 		part wheelAssy : WheelAssy[4];
 		
@@ -27,7 +27,7 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		constraint discBrakeConstraint : DiscBrakeConstraint(wheelAssy = Vehicle_2::wheelAssy);
 	}
 	
-	block WheelAssy {
+	part def WheelAssy {
 		part wheel : Wheel[1];
 		part discBrakeAssy : DiscBrakeAssy[1];
 		
@@ -41,7 +41,7 @@ package '15_05-Unification of Expression and Constraint Definition' {
 		);
 	}
 	
-	block DiscBrakeAssy {
-		value radius : LengthValue[1] = 95@[mm];
+	part def DiscBrakeAssy {
+		attribute radius : LengthValue[1] = 95@[mm];
 	}
 }

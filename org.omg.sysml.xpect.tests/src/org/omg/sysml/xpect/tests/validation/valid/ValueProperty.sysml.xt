@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -36,18 +36,18 @@ END_SETUP
 package 'Blocks Example' {
 	import ScalarValues::*;
 	
-	block Vehicle {
-		value status : VehicleStatus;
-		value b : Boolean;
-		value s : String;
-		value un: UnlimitedNatural;
-		value n: Natural;
-		value r: Rational;
-		value re: Real;	
-		value c: Complex;
+	part def Vehicle {
+		attribute status : VehicleStatus;
+		attribute b : Boolean;
+		attribute s : String;
+		attribute un: UnlimitedNatural;
+		attribute n: Natural;
+		attribute r: Rational;
+		attribute re: Real;	
+		attribute c: Complex;
 	}
 	
-	value type VehicleStatus {
+	attribute def VehicleStatus {
 		gearSetting : Integer;
 		acceleratorPosition : Real;
 	}

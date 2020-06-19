@@ -2,12 +2,12 @@ package BlockTest {
 	
 	part f: A;
 
-	public block A {
+	public part def A {
 		part b: B;
 		protected port c: C;
 	}
 	
-	abstract block B {
+	abstract part def B {
 		public abstract part a: A;
 		port x: ~C;
 		package P { }

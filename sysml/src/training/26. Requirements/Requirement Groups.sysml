@@ -2,7 +2,7 @@ package 'Requirement Groups' {
 	import 'Requirement Definitions'::*;
 	import 'Requirement Usages'::*;
 	
-	block Engine {
+	part def Engine {
 		port clutchPort: ClutchPort;
 		perform action generateTorque: GenerateTorque;
 	}

@@ -16,23 +16,23 @@ package AHFProfileLib {
 	
 	/** System of Systems */
 	
-	block Arrowhead_SoSD {
+	part def Arrowhead_SoSD {
 	
 		/** System definitions */
 	
-		block SysD {
+		part def SysD {
 			port services: SD[1..*];
 			systemname: String;
 			address: String;
 			portno: Integer;
 		}
 		
-		block SysDD :> SysD{
+		part def SysDD :> SysD{
 			action ServiceMethod[1..*]; //means behaviors
 		}
 	}
 	
-	block LocalCloud_SoSDD :> Arrowhead_SoSD {
+	part def LocalCloud_SoSDD :> Arrowhead_SoSD {
 		part systems:SysD[1..*];
 	}	
 

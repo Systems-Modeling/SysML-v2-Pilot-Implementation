@@ -5,13 +5,13 @@ package RoomModel {
         import Flow_Definitions::*;
         package Part_Definitions{
             // Rooms
-            block Classroom {
+            part def Classroom {
                 port classEntry: EntryWay_to_Classroom;
             }
-            block Storageroom {
+            part def Storageroom {
                 port storageEntry: EntryWay_to_Storageroom;
             }
-            block Hallway {
+            part def Hallway {
                 // conjugate ports with ~
                 port hallExit_to_Classroom: ~EntryWay_to_Classroom;
                 port hallExit_to_Storageroom: ~EntryWay_to_Storageroom;
@@ -33,10 +33,10 @@ package RoomModel {
         }
         package Flow_Definitions {
                 //  Conveyed items between Hallway, Classroom, and Storageroom
-                block Air;
-                block Furniture;
-                block Student;
-                block Teacher;
+                part def Air;
+                part def Furniture;
+                part def Student;
+                part def Teacher;
         }
     }
     package Room_Configuration{

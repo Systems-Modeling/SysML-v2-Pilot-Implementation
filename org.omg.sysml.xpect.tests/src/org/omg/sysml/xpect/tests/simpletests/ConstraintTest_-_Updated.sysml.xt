@@ -1,0 +1,182 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {} 
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Analyses.sysml"}
+		File {from ="/library.systems/Attributes.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Cases.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Interfaces.sysml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
+		File {from ="/library.systems/States.sysml"}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/BooleanFunctions.kerml"}
+		File {from ="/library.kernel/ComplexFunctions.kerml"}
+		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/IntegerFunctions.kerml"}
+		File {from ="/library.kernel/NaturalFunctions.kerml"}
+		File {from ="/library.kernel/NonScalarFunctions.kerml"}
+		File {from ="/library.kernel/NonScalarValues.kerml"}
+		File {from ="/library.kernel/NumericalFunctions.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/RationalFunctions.kerml"}
+		File {from ="/library.kernel/RealFunctions.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/StatePerformances.kerml"}
+		File {from ="/library.kernel/StringFunctions.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/UnlimitedNaturalFunctions.kerml"}
+		File {from ="/library.domain/Geometry/BasicGeometry.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+		File {from ="/library.domain/Quantities and Units/SI.sysml"}
+		File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+		File {from ="/library.domain/Quantities and Units/Time.sysml"}
+		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {} 
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Analyses.sysml"}
+				File {from ="/library.systems/Attributes.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Cases.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Interfaces.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
+				File {from ="/library.systems/States.sysml"}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/BooleanFunctions.kerml"}
+				File {from ="/library.kernel/ComplexFunctions.kerml"}
+				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/IntegerFunctions.kerml"}
+				File {from ="/library.kernel/NaturalFunctions.kerml"}
+				File {from ="/library.kernel/NonScalarFunctions.kerml"}
+				File {from ="/library.kernel/NonScalarValues.kerml"}
+				File {from ="/library.kernel/NumericalFunctions.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/RationalFunctions.kerml"}
+				File {from ="/library.kernel/RealFunctions.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.kernel/StatePerformances.kerml"}
+				File {from ="/library.kernel/StringFunctions.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/UnlimitedNaturalFunctions.kerml"}
+				File {from ="/library.domain/Geometry/BasicGeometry.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+				File {from ="/library.domain/Quantities and Units/SI.sysml"}
+				File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+				File {from ="/library.domain/Quantities and Units/Time.sysml"}
+				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+// XPECT noErrors ---> ""
+package ConstraintTest {
+	import ISQ::MassValue;
+	import SI::kg;
+	import ScalarFunctions::sum;
+	
+	constraint def MassAnalysis {
+		attribute totalMass: MassValue;
+		attribute componentMasses: MassValue[0..*];		
+
+		totalMass == sum(componentMasses)
+	}
+	
+	part def Component {
+		attribute mass: MassValue;
+	}
+	
+	part vehicle : Component {	
+		part engine : Component;
+		part frontAxleAssembly : Component;
+		part rearAxleAssembly : Component;	
+	}
+		
+	part vehicle1a :> vehicle {
+		assert constraint massAnalysis : MassAnalysis {
+			attribute redefines totalMass;
+			attribute redefines componentMasses;
+		}
+		
+		bind massAnalysis::totalMass = mass;
+		bind massAnalysis::componentMasses[1] = engine::mass;
+		bind massAnalysis::componentMasses[1] = frontAxleAssembly::mass;
+		bind massAnalysis::componentMasses[1] = rearAxleAssembly::mass;
+	}
+	
+	part vehicle1b :> vehicle {		
+		assert constraint massAnalysis : MassAnalysis {
+			attribute redefines totalMass = mass;
+			attribute redefines componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
+		}	
+	}
+		
+	constraint def MassAnalysis2 (totalMass : MassValue, componentMasses: MassValue[0..*]) {
+		totalMass == sum(componentMasses)
+	}
+	
+	part vehicle2a :> vehicle {
+		assert constraint massConstraint : MassAnalysis2 (totalMass, componentMasses);
+		
+		bind massConstraint::totalMass = mass;
+		bind massConstraint::componentMasses[1] = engine::mass;
+		bind massConstraint::componentMasses[1] = frontAxleAssembly::mass;
+		bind massConstraint::componentMasses[1] = rearAxleAssembly::mass;
+	}
+		
+	part vehicle2b :> vehicle {
+		assert constraint massAnalysis2 : MassAnalysis2 (
+			totalMass = mass,
+			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
+		);
+	}
+	
+	constraint def MassAnalysis3 (totalMass : MassValue, componentMasses: MassValue[0..*]);
+	
+	constraint massAnalysis3 : MassAnalysis3 (totalMass : MassValue, componentMasses: MassValue[0..*]) {
+		totalMass == sum(componentMasses)
+	}
+	
+	part vehicle3 :> vehicle {
+		assert massAnalysis3 (
+			totalMass = mass,
+			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
+		);
+	}
+	
+	part vehicle4 :> vehicle {
+		assert constraint { mass == engine::mass + frontAxleAssembly::mass + rearAxleAssembly::mass }
+	}
+	
+}

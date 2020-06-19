@@ -1,10 +1,10 @@
 package 'State Actions' {
 	
-	value type VehicleStartSignal;
-	value type VehicleOnSignal;
-	value type VehicleOffSignal;
+	attribute def VehicleStartSignal;
+	attribute def VehicleOnSignal;
+	attribute def VehicleOffSignal;
 	
-	block Vehicle;
+	part def Vehicle;
 	
 	action performSelfTest(in vehicle : Vehicle);
 	

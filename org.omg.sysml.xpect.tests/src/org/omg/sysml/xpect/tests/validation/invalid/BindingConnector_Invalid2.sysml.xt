@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -43,6 +43,5 @@ package '1a-Parts Tree Simplified' {
 		// XPECT warnings --> "Bound features should have conforming types" at "rearWheel[rearWheel]"
 		part rearWheel_3[1] subsets rearWheel = rearWheel[rearWheel];
 	}
-	block Wheel;
+	part def Wheel;
 }
-

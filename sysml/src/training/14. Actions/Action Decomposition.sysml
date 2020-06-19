@@ -1,11 +1,11 @@
 package 'Action Decomposition' {
-	block Scene;
-	block Image;
-	block Picture;
+	part def Scene;
+	part def Image;
+	part def Picture;
 	
-	activity Focus(in scene : Scene, out image : Image);
-	activity Shoot(in image : Image, out picture : Picture);	
-	activity TakePicture(in scene : Scene, out picture : Picture);
+	action def Focus(in scene : Scene, out image : Image);
+	action def Shoot(in image : Image, out picture : Picture);	
+	action def TakePicture(in scene : Scene, out picture : Picture);
 		
 	action takePicture : TakePicture (in scene, out picture) {
 		action focus : Focus (

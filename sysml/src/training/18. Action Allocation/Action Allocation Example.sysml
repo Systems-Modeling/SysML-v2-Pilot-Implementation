@@ -1,9 +1,9 @@
 package 'Action Allocation Example' {
 	import 'Action Decomposition'::*;
 	
-	block Camera;
-	block AutoFocus;
-	block Imager;
+	part def Camera;
+	part def AutoFocus;
+	part def Imager;
 	
 	part camera : Camera {
 		ref views : Scene[*] ordered = takePhoto::scene;

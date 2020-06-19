@@ -12,17 +12,17 @@ package AHFCoreLib {
 		publickey:String; // just as examples
 	}
 	
-	block ArrowheadCore_SoSDD :> LocalCloud_SoSDD{
-		block ServiceRegistry :> SysDD {
+	part def ArrowheadCore_SoSDD :> LocalCloud_SoSDD{
+		part def ServiceRegistry :> SysDD {
 			port serviceDiscovery:ServiceDiscovery subsets services;
 			action ServiceRegistration subsets ServiceMethod;
 		}
 		
-		block Authorization :> SysDD {
+		part def Authorization :> SysDD {
 			port autorize:Authorize subsets services;
 		}
 		
-		block Orchestration :> SysDD; // short for now
+		part def Orchestration :> SysDD; // short for now
 		
 		part service_registry:ServiceRegistry subsets systems;
 		part authorization:Authorization subsets systems;

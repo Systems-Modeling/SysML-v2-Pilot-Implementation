@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -27,29 +27,29 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 END_SETUP 
 */
 package 'Port Example' {
-	value type Vt;
-	block B;
+	attribute def Vt;
+	part def B;
 	port def pd1;
 	port def pd2;
-	block FA {
+	part def FA {
 		/* XPECT errors --- 
-		   	"A port must be typed by one port definition." at "ablock : B;"
-			"Features must have at least one type" at "ablock : B;"
+		   	"A port must be typed by one port definition." at "p1 : B;"
+			"Features must have at least one type" at "p1 : B;"
 		--- */
-		port ablock : B;
+		port p1 : B;
 		/* XPECT errors --- 
-		   	"A port must be typed by one port definition." at "avaluetype : Vt;"
-			"Features must have at least one type" at "avaluetype : Vt;"
+		   	"A port must be typed by one port definition." at "p2 : Vt;"
+			"Features must have at least one type" at "p2 : Vt;"
 		--- */
-		port avaluetype : Vt;
+		port p2 : Vt;
 		//XPECT errors --> "A port must be typed by one port definition." at "two_port_def_types : pd1, pd2;"
 		port two_port_def_types: pd1, pd2;
 	}
 	part tank: FA {
 		/* XPECT errors --- 
-		   "A port must be typed by one port definition." at "aport redefines ablock;"
-		   "Features must have at least one type" at "aport redefines ablock;"
+		   "A port must be typed by one port definition." at "pp redefines p1;"
+		   "Features must have at least one type" at "pp redefines p1;"
 		 --- */
-		port aport redefines ablock;
+		port pp redefines p1;
 	}
 }

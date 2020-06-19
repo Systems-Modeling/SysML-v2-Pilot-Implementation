@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -36,7 +36,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package StateTest {
-	value type Sig;
+	attribute def Sig;
 	
 	action act;
 	

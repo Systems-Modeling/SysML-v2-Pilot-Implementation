@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -36,11 +36,11 @@ END_SETUP
 */
 package pkg {
 	import ScalarValues::*;
-	block A {
+	part def A {
 		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "areal: Real;"
 		part areal: Real;
-		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "avalue: aValue;"
-		part avalue: aValue;
+		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "aattribute: aValue;"
+		part aattribute: aValue;
 		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "anaction: anAction;"
 		part anaction: anAction;
 		/* XPECT errors ---	
@@ -61,12 +61,12 @@ package pkg {
 		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "twoTypes: ABlock, APortDef;"
 		part twoTypes: ABlock, APortDef;
 	}
-	value aValue: Real;
-	block ABlock {
+	attribute aValue: Real;
+	part def ABlock {
 		port aPort: APortDef;
 		part aPart: ABlock;
 	}
-	activity AnActivity;
+	action def AnActivity;
 	action anAction : AnActivity;
 	port def APortDef;
 }

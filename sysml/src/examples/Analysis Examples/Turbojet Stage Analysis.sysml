@@ -3,7 +3,7 @@ package 'Turbojet Stage Analysis' {
 	import UnitsAndScales::DimensionOneValue;
 	import ISQ::*;
 	
-	value type VolumeValue :> SIDerivedUnit {
+	attribute def VolumeValue :> SIDerivedUnit {
 	   :>> lengthPowerFactor {
 			:>> exponent = 3;
 		}
@@ -35,42 +35,42 @@ package 'Turbojet Stage Analysis' {
 	}
 	
 	package 'Thermodynamics Structure' {
-	    block 'Ideal Gas Parcel' {
+	    part def 'Ideal Gas Parcel' {
 	        comment
 	            /*
 	            The parcel is an infinitesimal volume used to analyze points in a flow
 	            */
-	        value 'Molar Mass';
-	        value 'Density';
-	        value 'Pressure';
-	        value 'Temperature';
-	        value 'Enthalpy';
-	        value 'Specific Gas Constant';
+	        attribute 'Molar Mass';
+	        attribute 'Density';
+	        attribute 'Pressure';
+	        attribute 'Temperature';
+	        attribute 'Enthalpy';
+	        attribute 'Specific Gas Constant';
 	    }
 	    
-	    block 'Moving Ideal Gas Parcel' specializes 'Ideal Gas Parcel' {
+	    part def 'Moving Ideal Gas Parcel' specializes 'Ideal Gas Parcel' {
 	        comment about 'Stagnation Pressure'
 	            /*
 	            Stagnation pressure is the pressure of the parcel if the kinetic energy defined by its
 	            velocity in a given coordinate frame is converted to gas internal energy through deceleration
 	            to a velocity that matches the current frame.
 	            */
-	        value 'Stagnation Pressure';
-	        value 'Stagnation Temperature';
-	        value 'Stagnation Enthalpy';
+	        attribute 'Stagnation Pressure';
+	        attribute 'Stagnation Temperature';
+	        attribute 'Stagnation Enthalpy';
 	        
 	        comment about 'Static Pressure'
 	            /*
 	            Static pressure is the pressure of the parcel as it moves
 	            */
-	        value 'Static Pressure' redefines 'Ideal Gas Parcel'::'Pressure';
-	        value 'Static Temperature' redefines 'Ideal Gas Parcel'::'Temperature';
-	        value 'Static Enthalpy' redefines 'Ideal Gas Parcel'::'Enthalpy';
+	        attribute 'Static Pressure' redefines 'Ideal Gas Parcel'::'Pressure';
+	        attribute 'Static Temperature' redefines 'Ideal Gas Parcel'::'Temperature';
+	        attribute 'Static Enthalpy' redefines 'Ideal Gas Parcel'::'Enthalpy';
 	    }
 	    
-	    activity 'Thermodynamic Process'; // need start and end shots to show beginning and end values
+	    action def 'Thermodynamic Process'; // need start and end shots to show beginning and end attributes
 	    
-	    activity 'Adiabatic Process' specializes 'Thermodynamic Process' {
+	    action def 'Adiabatic Process' specializes 'Thermodynamic Process' {
 	        /*
 	        Thermodynamic process typically have their states defined at beginning and end
 	        of the process (since these starts are path-independent)
@@ -79,7 +79,7 @@ package 'Turbojet Stage Analysis' {
 	        action 'Stage 2' :>> done;
 	    }
 	    
-	    activity 'Reversible Adiabatic Process' specializes 'Adiabatic Process';
+	    action def 'Reversible Adiabatic Process' specializes 'Adiabatic Process';
 	}
 	
 	package 'Low-Pressure Compressor Analysis' {
@@ -103,7 +103,7 @@ package 'Turbojet Stage Analysis' {
 	            ) return p = 'Static Pressure';
 	            
 	            // Invocation expression notation
-	            value :>> 'Static Pressure' = 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature');
+	            attribute :>> 'Static Pressure' = 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature');
 
 	            // Equation as binding (possible future notation) 
 	            // eqn 'Static Pressure' = 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature');

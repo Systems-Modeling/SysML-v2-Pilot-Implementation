@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -29,16 +29,16 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 END_SETUP 
 */
 package 'Interface Example' {
-	block Fuel;
+	part def Fuel;
 
 	port def FuelOutPort ;
 	port def FuelInPort;
 	
-	block FuelTankAssembly {
+	part def FuelTankAssembly {
 		port fuelTankPort : FuelOutPort;
 	}
 	
-	block Engine {
+	part def Engine {
 		port engineFuelPort : FuelInPort;
 	}
 	interface def FuelInterface {
@@ -50,7 +50,7 @@ package 'Interface Example' {
 		end consumerPort : FuelInPort;
 	}
 	
-	block Vehicle;
+	part def Vehicle;
 	part vehicle : Vehicle {	
 		part tankAssy : FuelTankAssembly {
 			port redefines fuelTankPort;

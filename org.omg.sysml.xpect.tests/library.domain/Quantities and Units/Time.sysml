@@ -1,4 +1,4 @@
 package Time {
-	value type DateTime specializes ScalarValues::ScalarValue;
+	attribute def DateTime specializes ScalarValues::ScalarValue;
 }
 		

@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -34,23 +34,23 @@ END_SETUP
 */
 package 'ValueProperty Example' {
 	port def P;
-	block A {
+	part def A {
 		part a: A;
 		port p: P;
 	}
-	block Vehicle {
+	part def Vehicle {
 		// XPECT errors --> "An attribute must be typed by attribute definitions." at "a : A;"
-		value a : A;
+		attribute a : A;
 		// XPECT errors --> "An attribute must be typed by attribute definitions." at "b : A::a;"
-		value b : A::a;
+		attribute b : A::a;
 		// XPECT errors --> "An attribute must be typed by attribute definitions." at "s : P;"
-		value s : P;
+		attribute s : P;
 		//XPECT errors --> "An attribute must be typed by attribute definitions." at "un : A::p;"
-		value un: A::p;
+		attribute un: A::p;
 		//XPECT errors --> "An attribute must be typed by attribute definitions." at "n : AB;"
-		value n: AB;
+		attribute n: AB;
 		}
-	assoc block  AB {
+	connection def  AB {
 		end : A;
 		end : A;
 	}

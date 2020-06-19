@@ -16,7 +16,7 @@ package Actions {
 	 * Action is the most general class of performances of action definitions in a system or 
 	 * part of a system. Action is the base class of all action definitions.
 	 */
-	abstract activity Action :> Performance {
+	abstract action def Action :> Performance {
 		ref action self: Action :>> Performance::self;
 		ref action incomingTransfers :>> Performance::incomingTransfers;
 			
@@ -41,22 +41,22 @@ package Actions {
 		abstract action controls : ControlAction[0..*] :> subactions;
 		
 		/**
-		 * The control actions of this activity that are merge actions.
+		 * The control actions of this action def that are merge actions.
 		 */
 		abstract action merges : MergeAction[0..*] :> controls;
 		
 		/**
-		 * The control actions of this activity that are decision actions.
+		 * The control actions of this action def that are decision actions.
 		 */
 		abstract action decisions : DecisionAction :> controls;
 		
 		/**
-		 * The control actions of this activity that are join actions.
+		 * The control actions of this action def that are join actions.
 		 */
 		abstract action joins: JoinAction :> controls;
 		
 		/**
-		 * The control actions of this activity that are fork actions.
+		 * The control actions of this action def that are fork actions.
 		 */
 		abstract action forks: ForkAction :> controls;		
 	}
@@ -64,7 +64,7 @@ package Actions {
 	/**
 	 * A TransferAction is an Action that is also a Transfer in a given context.
 	 */
-	abstract activity TransferAction (context: Occurrence) :> Transfer, Action;
+	abstract action def TransferAction :> Transfer, Action (context: Occurrence);
 	
 	/**
 	 * actions is the base feature for all Action usages.
@@ -82,7 +82,7 @@ package Actions {
 	/**
 	 * A ControlAction is the Action of a control node, which has no inherent behavior.
 	 */
-	abstract activity ControlAction :> Action {
+	abstract action def ControlAction :> Action {
 		/**
 		 * A ControlAction is instantaneous.
 		 */
@@ -95,7 +95,7 @@ package Actions {
 	 * Note: Incoming sucession connectors to a MergeAction must have source multiplicity 
 	 * 0..1 and subset the incomingHBLink feature inherited from MergePerformance.
 	 */
-	activity MergeAction :> ControlAction, MergePerformance;
+	action def MergeAction :> ControlAction, MergePerformance;
 	
 	/** 
 	 * A DecisionAction is the ControlAction for a decision node.
@@ -105,7 +105,7 @@ package Actions {
 	 * If an outgoing succession has a guard, it should have a transitionStep typed by 
 	 * DecisionTransition.
 	 */
-	activity DecisionAction :> ControlAction, DecisionPerformance;
+	action def DecisionAction :> ControlAction, DecisionPerformance;
 	
 	/**
 	 * A JoinAction is the ControlAction for a JoinNode.
@@ -113,7 +113,7 @@ package Actions {
 	 * Note: Join behavior results from requiring that the source multiplicity of all
 	 * incoming succession connectors be 1..1.
 	 */
-	activity JoinAction :> ControlAction;
+	action def JoinAction :> ControlAction;
 	
 	/**
 	 * A ForkAction is the ControlAction for a ForkNode.
@@ -121,13 +121,13 @@ package Actions {
 	 * Note: Fork behavior results from requiring that the target multiplicity of all
 	 * outgoing succession connectors be 1..1.
 	 */
-	activity ForkAction :> ControlAction;
+	action def ForkAction :> ControlAction;
 	
 	/**
 	 * A DecisionTransitionPerformance is a NonStateTransitionPerformance that has a
 	 * single guard, but no trigger or effects.
 	 */
-	activity DecisionTransition :> NonStateTransitionPerformance {
+	action def DecisionTransition :> NonStateTransitionPerformance {
 		ref action trigger[0..0] redefines NonStateTransitionPerformance::trigger;
 		ref action guard[1] redefines NonStateTransitionPerformance::guard;
 		ref action effect[0..0] redefines NonStateTransitionPerformance::effect;

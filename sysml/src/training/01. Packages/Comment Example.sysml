@@ -9,7 +9,7 @@ package 'Comment Example' {
 	 * annotating an explicitly specified element. 
 	 */
 	 
-	block Automobile;
+	part def Automobile;
 	
 	/**
 	 * This is a documentary comment, annotating the

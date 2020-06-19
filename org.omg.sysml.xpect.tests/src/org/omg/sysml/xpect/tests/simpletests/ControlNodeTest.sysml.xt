@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -35,7 +35,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-activity ControlNodeTest {
+action def ControlNodeTest {
 	action A1;
 	then J;
 	

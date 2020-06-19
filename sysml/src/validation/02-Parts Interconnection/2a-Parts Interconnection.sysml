@@ -30,45 +30,45 @@ package '2a-Parts Interconnection' {
 	
 		// Blocks
 	
-		block VehicleA { 
+		part def VehicleA { 
 			port fuelCmdPort: FuelCmdPort;
 			port vehicleToRoadPort: VehicleToRoadPort;
 		}
 		
-		block AxleAssembly;		
-		block RearAxleAssembly :> AxleAssembly { 
+		part def AxleAssembly;		
+		part def RearAxleAssembly :> AxleAssembly { 
 			port shaftPort_d: ShaftPort_d;
 		}
 		
-		block Axle;
-		block RearAxle :> Axle;
+		part def Axle;
+		part def RearAxle :> Axle;
 		
-		block HalfAxle { 
+		part def HalfAxle { 
 			port axleToDiffPort: AxlePort;
 			port axleToWheelPort: AxleToWheelPort;
 		}
 		
-		block Engine { 
+		part def Engine { 
 			port fuelCmdPort: FuelCmdPort;
 			port drivePwrPort: DrivePwrPort;
 		}
 	
-		block Transmission { 
+		part def Transmission { 
 			port clutchPort: ClutchPort;
 			port shaftPort_a: ShaftPort_a;
 		}
 		
-		block Driveshaft { 
+		part def Driveshaft { 
 			port shaftPort_b: ShaftPort_b;
 			port shaftPort_c: ShaftPort_c;
 		}	
 		
 		/**
-		 * Ports do not have to be defined on blocks.
+		 * Ports do not have to be defined on part defs.
 		 * They can be added directly to their usages.
 		 */
-		block Differential;
-		block Wheel;
+		part def Differential;
+		part def Wheel;
 		
 		// Interface Definitions
 		
@@ -154,8 +154,8 @@ package '2a-Parts Interconnection' {
 				
 				part differential: Differential {
 					/**
-					 * If the block has no ports, then they can be defined directly in
-					 * a usage of the block.
+					 * If the part def has no ports, then they can be defined directly in
+					 * a usage of the part def.
 					 */
 					port shaftPort_d: ShaftPort_d;
 					port leftDiffPort: DiffPort;

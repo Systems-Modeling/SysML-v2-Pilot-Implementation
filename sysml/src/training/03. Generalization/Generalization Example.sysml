@@ -1,19 +1,19 @@
 package 'Generalization Example' {
 
-	abstract block Vehicle;
+	abstract part def Vehicle;
 	
-	block HumanDrivenVehicle specializes Vehicle {
+	part def HumanDrivenVehicle specializes Vehicle {
 		ref driver : Person;
 	}
 	
-	block PoweredVehicle :> Vehicle {
+	part def PoweredVehicle :> Vehicle {
 		part eng : Engine;
 	}
 	
-	block HumanDrivenPoweredVehicle :> 
+	part def HumanDrivenPoweredVehicle :> 
 		HumanDrivenVehicle, PoweredVehicle;
 	
-	block Engine;	
-	block Person;
+	part def Engine;	
+	part def Person;
 	
 }

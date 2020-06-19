@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -41,13 +41,11 @@ END_SETUP
 // XPECT noErrors ---> ""
 package 'State Decomposition-1' {
 	
-	value type VehicleStartSignal;
-	value type VehicleOnSignal;
-	value type VehicleOffSignal;
+	attribute def VehicleStartSignal;
+	attribute def VehicleOnSignal;
+	attribute def VehicleOffSignal;
 	
 	state def VehicleStates;
-	activity myactivity;
-	state a: myactivity;
 	state vehicleStates : VehicleStates {
 		entry; then off;
 		
@@ -63,5 +61,4 @@ package 'State Decomposition-1' {
 		accept VehicleOffSignal
 			then off;
 	}
-	
 }

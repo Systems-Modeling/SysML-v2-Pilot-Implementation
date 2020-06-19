@@ -5,9 +5,9 @@ package 'Packet Usage' {
 	part packet1: 'Thermal Data Packet';
 	part packet2: 'Thermal Data Packet';
 	part packet3: 'Thermal Data Packet' {
-		value 'special data field' redefines 'packet data field'{
-			value 'user data field' {
-				value 'special data': Real;
+		attribute 'special data field' redefines 'packet data field'{
+			attribute 'user data field' {
+				attribute 'special data': Real;
 			}
 		}
 	}

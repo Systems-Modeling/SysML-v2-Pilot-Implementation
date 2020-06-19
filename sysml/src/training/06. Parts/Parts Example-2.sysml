@@ -2,9 +2,9 @@ package 'Parts Example-2' {
 	
 	// Definitions
 	
-	block Vehicle;	
-	block Engine;	
-	block Cylinder;
+	part def Vehicle;	
+	part def Engine;	
+	part def Cylinder;
 	
 	// Usages
 	

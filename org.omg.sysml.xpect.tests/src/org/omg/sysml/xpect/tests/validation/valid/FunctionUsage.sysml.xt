@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -44,7 +44,7 @@ package pkg {
 	calc def 'F3';
 	calc def 'F4';
 	    
-	block A {
+	part def A {
 	 	calc f1 : F1;
     	calc f2: F2;
     	calc f3: F3;

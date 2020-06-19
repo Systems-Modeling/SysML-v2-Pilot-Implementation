@@ -1,5 +1,5 @@
 package StateTest {
-	value type Sig;
+	attribute def Sig;
 	
 	action act;
 	

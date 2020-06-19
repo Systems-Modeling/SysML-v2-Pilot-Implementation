@@ -1,20 +1,20 @@
 package 'Blocks Example' {
 	import ScalarValues::*;
 	
-	block Vehicle {
-		value mass : Real;
-		value status : VehicleStatus;
+	part def Vehicle {
+		attribute mass : Real;
+		attribute status : VehicleStatus;
 		
 		part eng : Engine;
 		
 		ref driver : Person;
 	}
 	
-	value type VehicleStatus {
+	attribute def VehicleStatus {
 		gearSetting : Integer;
 		acceleratorPosition : Real;
 	}
 	
-	block Engine;	
-	block Person;
+	part def Engine;	
+	part def Person;
 }

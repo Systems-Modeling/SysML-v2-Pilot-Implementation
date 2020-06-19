@@ -1,8 +1,8 @@
 package 'State Decomposition-1' {
 	
-	value type VehicleStartSignal;
-	value type VehicleOnSignal;
-	value type VehicleOffSignal;
+	attribute def VehicleStartSignal;
+	attribute def VehicleOnSignal;
+	attribute def VehicleOffSignal;
 	
 	state def VehicleStates;
 		

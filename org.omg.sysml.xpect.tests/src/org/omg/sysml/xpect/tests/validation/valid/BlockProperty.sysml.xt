@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -33,11 +33,11 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package 'Blocks Example' {
-	block Vehicle {
+	part def Vehicle {
 		part eng : Engine;
 		ref driver : Person; 
 		part driver2; //typed by Block (named Part)
 	}
-	block Engine;	
-	block Person;
+	part def Engine;	
+	part def Person;
 }

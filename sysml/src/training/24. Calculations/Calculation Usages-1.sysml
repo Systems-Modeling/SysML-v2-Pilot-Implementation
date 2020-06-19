@@ -1,11 +1,11 @@
 package 'Calculation Usages-1' {
 	import 'Calculation Definitions'::*;
 	
-	block VehicleDynamics {
-		value C_d : Real;
-		value C_f : Real;
-		value wheelPower : PowerValue;
-		value mass : MassValue;
+	part def VehicleDynamics {
+		attribute C_d : Real;
+		attribute C_f : Real;
+		attribute wheelPower : PowerValue;
+		attribute mass : MassValue;
 		
 		action straightLineDynamics(
 			in delta_t : TimeValue,

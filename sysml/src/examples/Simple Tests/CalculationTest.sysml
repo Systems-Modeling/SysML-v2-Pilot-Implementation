@@ -3,14 +3,14 @@ package CalculationExample {
 	import ScalarFunctions::*;
 	
 	part vehicle {
-		value m : MassValue;
+		attribute m : MassValue;
 		
 		part eng {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 		
 		part trans {
-			value m : MassValue;
+			attribute m : MassValue;
 		}
 	}
 	

@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -35,13 +35,13 @@ END_SETUP
 
 package 'Control - Camera' {
 	//import 'Action Decomposition'::*;
-	block Scene;
-	block Image;
-	block Picture;
+	part def Scene;
+	part def Image;
+	part def Picture;
 	
-	activity Focus(in scene : Scene, out image : Image);
-	activity Shoot(in image : Image, out picture : Picture);	
-	activity TakePicture(in scene : Scene, out picture : Picture);
+	action def Focus(in scene : Scene, out image : Image);
+	action def Shoot(in image : Image, out picture : Picture);	
+	action def TakePicture(in scene : Scene, out picture : Picture);
 		
 	action takePicture : TakePicture (in scene, out picture) {
 		action focus : Focus (
@@ -55,10 +55,10 @@ package 'Control - Camera' {
 		);
 	}
 	
-	block Camera;
-	block FocusingSubsystem;
-	block ImagingSubsystem;
-	block Image2;
+	part def Camera;
+	part def FocusingSubsystem;
+	part def ImagingSubsystem;
+	part def Image2;
 	part camera : Camera {
 		ref view : Scene;
 		part photos : Picture[*];

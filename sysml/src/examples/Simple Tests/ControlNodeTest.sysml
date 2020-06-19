@@ -1,4 +1,4 @@
-activity ControlNodeTest {
+action def ControlNodeTest {
 	action A1;
 	then J;
 	

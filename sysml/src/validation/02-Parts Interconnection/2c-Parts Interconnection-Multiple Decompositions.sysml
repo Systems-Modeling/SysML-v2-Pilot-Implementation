@@ -1,31 +1,31 @@
 package '2c-Parts Interconnection-Multiple Decompositions' {
 	
-	block A1;
+	part def A1;
 	
-	block B11 {
+	part def B11 {
 		port pe;
 	}
-	block B12 {
+	part def B12 {
 		port pf;
 	}
-	block B21 {
+	part def B21 {
 		port pg;
 	}
-	block B22 {
+	part def B22 {
 		port ph;
 	}
 	
-	block C1 {
+	part def C1 {
 		port pa;
 		port pb;
 	}	
-	block C2 {
+	part def C2 {
 		port pc;
 	}
-	block C3 {
+	part def C3 {
 		port pd;
 	}
-	block C4;
+	part def C4;
 	
 	/**
 	 * Decomposition 1 - Subsystems b11, b12
@@ -46,7 +46,7 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			/**
 			 * This combines the definition of a port with a binding
 			 * connector. (It is the same notation used to bind a
-			 * value to a value property or a reference to a reference
+			 * attribute to a attribute property or a reference to a reference
 			 * property.)
 			 */
 			port pe = c1::pb;

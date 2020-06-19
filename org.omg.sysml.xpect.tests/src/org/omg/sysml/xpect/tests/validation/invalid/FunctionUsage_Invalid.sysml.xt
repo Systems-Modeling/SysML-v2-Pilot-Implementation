@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -37,9 +37,9 @@ END_SETUP
 package pkg {
 	calc def 'F1';
 	calc def 'F2';
-	activity B;
+	action def B;
 	action bb: B;
-	block A {
+	part def A {
 		// XPECT errors --> "A calculation must be typed by one calculation definition." at "f1 : F1, F2;"
 	 	calc f1 : F1, F2;
 	 	/* XPECT errors --- 

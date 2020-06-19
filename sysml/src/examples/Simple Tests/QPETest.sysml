@@ -2,7 +2,7 @@ package Q {
   part f {
   	part a;
   }
-  block C {
+  part def C {
     part g = ./f/a; 
   }
 }

@@ -1,4 +1,4 @@
-package 'Activity Example-1' {
+package 'Action Definition Example-1' {
 	part def Scene;
 	part def Image;
 	part def Picture;

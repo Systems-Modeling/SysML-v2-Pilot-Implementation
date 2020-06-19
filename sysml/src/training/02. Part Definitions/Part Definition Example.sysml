@@ -1,4 +1,4 @@
-package 'Blocks Example' {
+package 'Part Definition Example' {
 	import ScalarValues::*;
 	
 	part def Vehicle {

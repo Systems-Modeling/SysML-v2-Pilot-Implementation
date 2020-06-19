@@ -1,4 +1,4 @@
-package BlockTest {
+package PartTest {
 	
 	part f: A;
 

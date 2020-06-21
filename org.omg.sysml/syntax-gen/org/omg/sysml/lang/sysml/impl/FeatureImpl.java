@@ -241,9 +241,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected static void removeRedundantTypes(List<Type> types) {
-		for (int i = types.size() - 1; i > 0 ; i--) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
 			Type type = types.get(i);
-			if (types.subList(0, i).stream().anyMatch(otherType->((TypeImpl)otherType).conformsTo(type))) {
+			if (types.stream().anyMatch(otherType->otherType != type && ((TypeImpl)otherType).conformsTo(type))) {
 				types.remove(i);
 			}
 		}

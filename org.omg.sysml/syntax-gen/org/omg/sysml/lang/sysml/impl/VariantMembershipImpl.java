@@ -133,12 +133,12 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Definition getOwningVariationDefinition() {
-		if (eContainerFeatureID() != SysMLPackage.VARIANT_MEMBERSHIP__OWNING_VARIATION_DEFINITION) return null;
-		return (Definition)eInternalContainer();
+		org.omg.sysml.lang.sysml.Package owningPackage = super.getMembershipOwningPackage();
+		return owningPackage instanceof Definition && ((Definition)owningPackage).isVariation()? (Definition)owningPackage: null;
 	}
 
 	/**
@@ -185,12 +185,12 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Usage getOwningVariationUsage() {
-		if (eContainerFeatureID() != SysMLPackage.VARIANT_MEMBERSHIP__OWNING_VARIATION_USAGE) return null;
-		return (Usage)eInternalContainer();
+		org.omg.sysml.lang.sysml.Package owningPackage = super.getMembershipOwningPackage();
+		return owningPackage instanceof Usage && ((Usage)owningPackage).isVariation()? (Usage)owningPackage: null;
 	}
 
 	/**

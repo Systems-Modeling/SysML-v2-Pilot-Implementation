@@ -105,8 +105,8 @@ package VehicleVariabilityModel {
 		        }
 		        
 		        assert constraint {
-		            (engine == '4cylEngine' & transmission == manualTransmission) ^
-		            (engine == '6cylEngine' & transmission == automaticTransmission)
+		            (engine == '4cylEngine' & transmission == transmission::manualTransmission) ^
+		            (engine == '6cylEngine' & transmission == transmission::automaticTransmission)
 		        }
 		        
 		        // Variation point on variant multiplicity (inherited multiplicity is [0..1]) 
@@ -135,8 +135,12 @@ package VehicleVariabilityModel {
 		        }
 		        
 			    assert constraint {
-			        (generateTorque == generateTorque4Cyl & amplifyTorque == amplifyTorqueManual) ^
-			        (generateTorque == generateTorque6Cyl & amplifyTorque == amplifyTorqueAutomatic)
+			        (generateTorque == generateTorque::generateTorque4Cyl & 
+			        	amplifyTorque == amplifyTorque::amplifyTorqueManual
+			        ) ^
+			        (generateTorque == generateTorque::generateTorque6Cyl & 
+			        	amplifyTorque == amplifyTorque::amplifyTorqueAutomatic
+			        )
 			    }		   
 		    }		    
 		}
@@ -148,13 +152,13 @@ package VehicleVariabilityModel {
 		// Vehicle instance model
 		
 	    part vehicle4Cyl :> PartsTree::vehicleFamily {
-	        part :>> engine = '4cylEngine';
-	        part :>> transmission = manualTransmission;
+	        part :>> engine = engine::'4cylEngine';
+	        part :>> transmission = transmission::manualTransmission;
 	        part :>> sunroof = sunroof::withoutSunroof;
 	        
 	        perform action :>> providePowerFamily {
-	            action :>> generateTorque = generateTorque4Cyl;
-	            action :>> amplifyTorque = amplifyTorqueManual;
+	            action :>> generateTorque = generateTorque::generateTorque4Cyl;
+	            action :>> amplifyTorque = amplifyTorque::amplifyTorqueManual;
 	        }
 	    }
 	}

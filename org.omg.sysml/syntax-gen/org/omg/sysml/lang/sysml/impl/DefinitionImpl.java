@@ -402,6 +402,11 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		}
 		return variantMembership_comp;
 	}
+	
+	@Override
+	public boolean isAbstract() {
+		return isVariation() || super.isAbstract();
+	}
 
 	// Additional subsets
 	

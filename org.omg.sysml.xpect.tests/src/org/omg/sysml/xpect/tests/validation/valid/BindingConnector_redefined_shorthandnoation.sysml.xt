@@ -35,8 +35,8 @@ END_SETUP
 package Example2 {
 	part def Fuel;
 	port def FuelOutPort {
-		ref out fuelSupply : Fuel;
-		ref in fuelReturn : Fuel;
+		out ref fuelSupply : Fuel;
+		in ref fuelReturn : Fuel;
 	}
 	part def FuelTankAssembly {
 		port fuelTankPort : FuelOutPort;
@@ -49,11 +49,11 @@ package Example2 {
 	part vehicle : Vehicle {	
 		part tank : FuelTankAssembly {
 			port fuelTankPort0 redefines FuelTankAssembly::fuelTankPort {
-				ref out fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
-				ref in redefines fuelReturn;
+				out ref fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
+				in ref redefines fuelReturn;
 			}
 			port redefines FuelTankAssembly::fuelTankPort {
-				ref out fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
+				out ref fuelSupply redefines FuelTankAssembly::fuelTankPort::fuelSupply;
 			}
 			
 			bind fuelTankPort0::fuelSupply = pump::pumpOut;
@@ -61,13 +61,13 @@ package Example2 {
 			bind fuelTankPort::fuelSupply = pump::pumpOut;
 					
 			part pump : FuelPump {
-				ref out pumpOut : Fuel;
-				ref in pumpIn : Fuel;
+				out ref pumpOut : Fuel;
+				in ref pumpIn : Fuel;
 			}
 			
 			part tank : FuelTank {
-				ref in fuelOut : Fuel;
-				ref in fuelIn : Fuel;
+				in ref fuelOut : Fuel;
+				in ref fuelIn : Fuel;
 			}
 		}
 	} 

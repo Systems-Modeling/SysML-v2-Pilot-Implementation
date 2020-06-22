@@ -12,8 +12,8 @@ package TransitionPerformances {
 		step effect[*];
 
 		feature transitionLink: HappensBefore[0..1] {
-			end earlier redefines earlierOccurrence;
-			end later redefines laterOccurrence;
+			end feature earlier redefines earlierOccurrence;
+			end feature later redefines laterOccurrence;
 		}
 		
 		binding transitionLink::earlier[0..1] = transitionLinkSource[1];
@@ -30,8 +30,8 @@ package TransitionPerformances {
 	
 	behavior NonStateTransitionPerformance specializes TransitionPerformance {
 		feature transitionLink redefines TransitionPerformance::transitionLink {
-			end earlier;
-			end later;
+			end feature earlier;
+			end feature later;
 		}
 
 		succession transitionLinkSource[1] then trigger[*];

@@ -36,14 +36,14 @@ package BindingConnectorExample {
 	part v : V {
 		part b0 : B0 {
 			port p0 {
-				ref in myIn;
-				ref out myOut;
+				in ref myIn;
+				out ref myOut;
 			}
 		}
 		part b1 : B1 {
 			port p1 {
-				ref in myIn;
-				ref out myOut;
+				in ref myIn;
+				out ref myOut;
 			}
 		}
 		//in[Part, Object] out[Part, Object]

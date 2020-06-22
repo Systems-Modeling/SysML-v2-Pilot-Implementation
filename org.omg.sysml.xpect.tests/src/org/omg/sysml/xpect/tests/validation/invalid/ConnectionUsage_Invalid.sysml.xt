@@ -48,9 +48,9 @@ package P {
 		connection ab : AB connect b to c;
 		connection bc : AB, BC connect b to c;
 		
-		// XPECT errors --> "A connection must be typed by connection definitions." at ":ABlock connect b to c;"
+		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :ABlock connect b to c;"
 		connection :ABlock connect b to c;
-		// XPECT errors --> "A connection must be typed by connection definitions." at ":apart connect b to c;"
+		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :apart connect b to c;"
 		connection :apart connect b to c;
 	}
 }

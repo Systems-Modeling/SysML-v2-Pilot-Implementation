@@ -2,23 +2,23 @@ package '1a-Parts Tree' {
 	import SI::kg;
 	
 	package Definitions {	
-		block Vehicle {
+		part def Vehicle {
 			/**
-			 * The 'mass' value property is declared here to be a 
+			 * The 'mass' attribute property is declared here to be a 
 			 * specialization (subset) of the general 'mass' quantity 
 			 * from the 'ISQ' (International System of Quantities) 
 			 * library model.
 			 */
-			value mass :> ISQ::mass;
+			attribute mass :> ISQ::mass;
 		}		
-		block AxleAssembly;		
-		block Axle { 
-			value mass :> ISQ::mass;
+		part def AxleAssembly;		
+		part def Axle { 
+			attribute mass :> ISQ::mass;
 		}	
-		block FrontAxle :> Axle { 
-			value steeringAngle: ScalarValues::Real;
+		part def FrontAxle :> Axle { 
+			attribute steeringAngle: ScalarValues::Real;
 		}	
-		block Wheel;	
+		part def Wheel;	
 	}
 	
 	package Usages {
@@ -33,10 +33,10 @@ package '1a-Parts Tree' {
 		 */
 		part vehicle1: Vehicle {
 			/**
-			 * This redefines the 'mass' value property from 'Vehicle' to 
-			 * give it a fixed value.
+			 * This redefines the 'mass' attribute property from 'Vehicle' to 
+			 * give it a fixed attribute.
 			 */		
-			value mass redefines Vehicle::mass = 1750@[kg];
+			attribute mass redefines Vehicle::mass = 1750@[kg];
 			
 			/**
 			 * 'frontAxleAssembly' is a nested part of part 'vehicle1'.
@@ -73,9 +73,9 @@ package '1a-Parts Tree' {
 		part vehicle1_c1: Vehicle {	
 			
 			/**
-			 * The mass value has been modified.
+			 * The mass attribute has been modified.
 			 */
-			value mass redefines Vehicle::mass = 2000@[kg];
+			attribute mass redefines Vehicle::mass = 2000@[kg];
 	
 			part frontAxleAssembly: AxleAssembly {
 				

@@ -1,4 +1,5 @@
-//* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
         ResourceSet {
             ThisFile {}
             File {from ="/library.kernel/Base.kerml"}
@@ -31,12 +32,11 @@
         }
 END_SETUP
 */
-
 // XPECT noErrors ---> ""
 package P {
     import SI::*;
-    block Vehicle {
-        value mass:MassValue = 1200@[kg];
+    part def Vehicle {
+        attribute mass:MassValue = 1200@[kg];
     }
 }
 

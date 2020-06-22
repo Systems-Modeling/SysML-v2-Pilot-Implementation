@@ -27,7 +27,7 @@ package VehicleUsages {
 		part frontAxleAssembly: AxleAssembly {
 			part frontWheel[2] redefines narrowRimWheel {
 				part lugbolt[4] redefines narrowRimWheel::lugbolt {
-					value tighteningTorque redefines Lugbolt::tighteningTorque = T1;
+					attribute tighteningTorque redefines Lugbolt::tighteningTorque = T1;
 				}
 			}
 			part frontAxle: Axle;
@@ -35,7 +35,7 @@ package VehicleUsages {
 		part rearAxleAssembly: VehicleDefinitions::AxleAssembly {
 			part rearWheel[2] redefines wideRimWheel {
 				part lugbolt[6] redefines wideRimWheel::lugbolt {
-					value tighteningTorque redefines Lugbolt::tighteningTorque = T2;
+					attribute tighteningTorque redefines Lugbolt::tighteningTorque = T2;
 				}
 			}
 			part rearAxle: Axle;			

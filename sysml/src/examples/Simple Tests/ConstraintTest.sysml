@@ -4,14 +4,14 @@ package ConstraintTest {
 	import ScalarFunctions::sum;
 	
 	constraint def MassAnalysis {
-		value totalMass: MassValue;
-		value componentMasses: MassValue[0..*];		
+		attribute totalMass: MassValue;
+		attribute componentMasses: MassValue[0..*];		
 
 		totalMass == sum(componentMasses)
 	}
 	
-	block Component {
-		value mass: MassValue;
+	part def Component {
+		attribute mass: MassValue;
 	}
 	
 	part vehicle : Component {	
@@ -22,8 +22,8 @@ package ConstraintTest {
 		
 	part vehicle1a :> vehicle {
 		assert constraint massAnalysis : MassAnalysis {
-			value redefines totalMass;
-			value redefines componentMasses;
+			attribute redefines totalMass;
+			attribute redefines componentMasses;
 		}
 		
 		bind massAnalysis::totalMass = mass;
@@ -34,8 +34,8 @@ package ConstraintTest {
 	
 	part vehicle1b :> vehicle {		
 		assert constraint massAnalysis : MassAnalysis {
-			value redefines totalMass = mass;
-			value redefines componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
+			attribute redefines totalMass = mass;
+			attribute redefines componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
 		}	
 	}
 		

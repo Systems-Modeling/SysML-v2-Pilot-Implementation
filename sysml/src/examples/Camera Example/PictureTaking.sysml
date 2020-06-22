@@ -1,8 +1,8 @@
 package PictureTaking {
-	block Exposure;
+	part def Exposure;
 	
-	activity Focus(out xrsl: Exposure);
-	activity Shoot(in xsf: Exposure);	
+	action def Focus(out xrsl: Exposure);
+	action def Shoot(in xsf: Exposure);	
 		
 	action takePicture() {		
 		action focus: Focus[1] (out xrsl);	

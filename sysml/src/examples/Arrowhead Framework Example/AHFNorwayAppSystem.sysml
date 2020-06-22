@@ -15,12 +15,12 @@ package AHFNorway {
 		out ref action getAllItems; // referring to generic functionality
 	}
 	
-	value type Subscribe_getAllItems;
-	value type Return_AllItems {itms:String;}
+	attribute def Subscribe_getAllItems;
+	attribute def Return_AllItems {itms:String;}
 	
-	block AHFNorway_SoSD :> ArrowheadCore_SoSDD {
+	part def AHFNorway_SoSD :> ArrowheadCore_SoSDD {
 		
-		block APISConsumer :> SysDD{
+		part def APISConsumer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:~APISService subsets services; // consuming the APISService
 			systemname = "UngerApisClient";
@@ -32,7 +32,7 @@ package AHFNorway {
 			perform apis::getAllItems(out consumeditems);
 		}
 		
-		block APISProducer :> SysDD{
+		part def APISProducer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:APISService subsets services { // providing the APISService
 				out ref action :>> getAllItems;
@@ -42,7 +42,7 @@ package AHFNorway {
 			}
 			
 			// specializing the functionality implementation towards REST
-			activity RESTGetAllItems(allitms:String) {/* Getting all items into the String by REST */}
+			action def RESTGetAllItems(allitms:String) {/* Getting all items into the String by REST */}
 			private action restGetAllItems:RESTGetAllItems subsets ServiceMethod;
 			bind apis::getAllItems = restGetAllItems;
 			
@@ -56,7 +56,7 @@ package AHFNorway {
 			portno = 6565;
 		}
 		
-		block TellUConsumer :> SysDD{
+		part def TellUConsumer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port tellu:~APISService subsets services;
 			systemname = "TellUClient";

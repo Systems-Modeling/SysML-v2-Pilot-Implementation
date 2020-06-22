@@ -3,7 +3,7 @@
  */
 package 'Vehicle Decomposition' {
 	
-	block Vehicle {
+	part def Vehicle {
 		part chs : 'Chassis Assembly'[1] {
 			part rb redefines 'Chassis Assembly'::rb;
 			part redefines w {
@@ -19,34 +19,34 @@ package 'Vehicle Decomposition' {
 		ref lugBoltBR[24..32] = chs::w::lb;
 	}
 	
-	block 'Chassis Assembly' {
+	part def 'Chassis Assembly' {
 		part w : Wheel[4];
 		part rb : RollBar[0..1];
 	}
 	
-	block Wheel {
+	part def Wheel {
 		part lb : LugBolt[6..10];
 	}
 	
-	block LugBolt;
+	part def LugBolt;
 	
-	block RollBar;
-	block HeavyRollBar :> RollBar;
-	block LightRollBar :> RollBar;
+	part def RollBar;
+	part def HeavyRollBar :> RollBar;
+	part def LightRollBar :> RollBar;
 	
-	block Engine {
+	part def Engine {
 		part cyl : Cylinder[4..8];
 	}
 	
-	block Cylinder;
+	part def Cylinder;
 	
-	block 'Vehicle Model 1' :> Vehicle {
+	part def 'Vehicle Model 1' :> Vehicle {
 		ref redefines cylinderBR[4];
 		ref redefines rollBarBR : LightRollBar[*];
 		ref redefines lugBoltBR[24];
 	}
 	
-	block 'Vehicle Model 2' :> Vehicle {
+	part def 'Vehicle Model 2' :> Vehicle {
 		ref redefines cylinderBR[6..8];
 		ref redefines rollBarBR[0];
 		ref redefines lugBoltBR[24..28]; // 6..7 per wheel

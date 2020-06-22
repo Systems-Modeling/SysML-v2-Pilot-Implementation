@@ -1,15 +1,15 @@
 package 'Transition Actions' {
 	
-	value type VehicleStartSignal;
-	value type VehicleOnSignal;
-	value type VehicleOffSignal;
+	attribute def VehicleStartSignal;
+	attribute def VehicleOnSignal;
+	attribute def VehicleOffSignal;
 	
-	value type ControllerStartSignal;
+	attribute def ControllerStartSignal;
 	
-	block Vehicle {
+	part def Vehicle {
 		brakePedalDepressed : ScalarValues::Boolean;
 	}
-	block VehicleController;
+	part def VehicleController;
 	
 	action performSelfTest(in vehicle : Vehicle);
 	

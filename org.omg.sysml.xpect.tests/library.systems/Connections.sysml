@@ -15,7 +15,7 @@ package Connections {
 	 * (Note that this does not include BindinConnectors, which are typed by
 	 * the kernel Association SelfLink.)
 	 */
-	abstract assoc block Connection :> BinaryLink, Part { // Need to handle n-ary connections.
+	abstract connection def Connection :> BinaryLink, Part { // Need to handle n-ary connections.
 		end :>> source: Part[0..*];
 		end :>> target: Part[0..*];
 	}
@@ -23,5 +23,5 @@ package Connections {
 	/**
 	 * connections is the base feature of all ConnectionUsages.
 	 */
-	abstract link connections: Connection[0..*] :> binaryLinks;
+	abstract connection connections: Connection[0..*] :> binaryLinks;
 }

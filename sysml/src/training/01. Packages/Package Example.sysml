@@ -1,7 +1,7 @@
 package 'Package Example' {
 	private import ScalarValues::*;
 	 
-	block Automobile;
+	part def Automobile;
 	
 	alias Automobile as Car;	                         
 	

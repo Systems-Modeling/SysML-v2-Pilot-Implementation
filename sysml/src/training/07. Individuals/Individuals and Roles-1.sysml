@@ -1,7 +1,7 @@
 package 'Individuals and Roles' {
-	import 'Blocks Example'::*;
+	import 'Part Definition Example'::*;
 	
-	block Wheel;
+	part def Wheel;
 	
 	individual def Vehicle_1 :> Vehicle {
 		part leftFrontWheel : Wheel;

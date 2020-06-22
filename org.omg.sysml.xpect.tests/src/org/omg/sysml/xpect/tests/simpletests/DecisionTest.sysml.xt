@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -46,8 +46,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-activity DecisionTest {
-	value x: ScalarValues::Integer = 1;
+action def DecisionTest {
+	attribute x: ScalarValues::Integer = 1;
 	
 	decide 'test x';
 	if x == 1 then A1; 

@@ -1,14 +1,14 @@
 package 'Decision Example' {
 	import ScalarValues::*;
 	
-	value type BatteryCharged;
+	attribute def BatteryCharged;
 	
 	part battery;
 	part powerSystem;
 	
-	activity AddCharge (in charge : Real);
+	action def AddCharge (in charge : Real);
 	
-	activity ChargeBattery {
+	action def ChargeBattery {
 		first start;
 
 		then merge continueCharging;

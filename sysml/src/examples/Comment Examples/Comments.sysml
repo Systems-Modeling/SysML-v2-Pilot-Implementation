@@ -5,7 +5,7 @@ package Comments {
 	comment doc_doc about doc /* Other Comment about Comment */
 	
 	comment /** Documention Comment on Block */
-	block C {
+	part def C {
 		comment /* Comment in Block */
 		comment about Comments /* Comment about Package */
 	}

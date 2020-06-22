@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -31,13 +31,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 END_SETUP 
 */
 package P {
-	block ABlock;	block B;	block C;	block D;	block E;
+	part def ABlock;	part def B;	part def C;	part def D;	part def E;
 	
-	assoc block AB {
+	connection def AB {
 		end : D[1];
 		end : E[1];
 	}
-	assoc block BC {
+	connection def BC {
 		end : B[1];
 		end : C[1];
 	}
@@ -45,15 +45,13 @@ package P {
 		part b : B[1];
 		part c: C[1];
 		
-		link ab : AB connect b to c;
-		link bc : AB, BC connect b to c;
+		connection ab : AB connect b to c;
+		connection bc : AB, BC connect b to c;
 		
 		// XPECT errors --> "A connection must be typed by connection definitions." at ":ABlock connect b to c;"
-		link :ABlock connect b to c;
+		connection :ABlock connect b to c;
 		// XPECT errors --> "A connection must be typed by connection definitions." at ":apart connect b to c;"
-		link :apart connect b to c;
+		connection :apart connect b to c;
 	}
-	
-	
 }
 

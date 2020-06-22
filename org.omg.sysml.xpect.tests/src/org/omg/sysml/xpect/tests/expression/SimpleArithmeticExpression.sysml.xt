@@ -1,5 +1,6 @@
-//* XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLExpressionTest
-        ResourceSet {
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
+       ResourceSet {
             ThisFile {}
             File {from ="/library.kernel/Base.kerml"}
             File {from ="/library.kernel/Objects.kerml"}
@@ -21,12 +22,11 @@
         }
 END_SETUP
 */
-
 // XPECT noErrors ---> ""
 package P {
-    block Vehicle {
+    part def Vehicle {
         import ScalarValues::*;
-        value a: Integer = 5;
-        value b: Integer = 5 * a;
+        attribute a: Integer = 5;
+        attribute b: Integer = 5 * a;
     }
 }

@@ -1,16 +1,16 @@
 package '15_04-Logical Expressions' {
 	import ScalarValues::*;
 	
-	block Engine;
-	block '4CylEngine' :> Engine;
-	block '6CylEngine' :> Engine;
+	part def Engine;
+	part def '4CylEngine' :> Engine;
+	part def '6CylEngine' :> Engine;
 	
-	block Transmission;
-	block ManualTransmission :> Transmission;
-	block AutomaticTransmission :> Transmission;
+	part def Transmission;
+	part def ManualTransmission :> Transmission;
+	part def AutomaticTransmission :> Transmission;
 	
-	block Vehicle {
-		value isHighPerformance: Boolean;
+	part def Vehicle {
+		attribute isHighPerformance: Boolean;
 		
 		part engine: Engine[1];
 		part transmission: Transmission[1];

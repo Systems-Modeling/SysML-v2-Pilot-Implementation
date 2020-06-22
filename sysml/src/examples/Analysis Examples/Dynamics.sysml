@@ -1,12 +1,12 @@
 package Dynamics {
 	import ScalarValues::Real;
 	
-	value type PowerValue :> Real;
-	value type MassValue :> Real;
-	value type AccelValue :> Real;
-	value type VelocityValue :> Real;
-	value type LengthValue :> Real;
-	value type TimeValue :> Real;
+	attribute def PowerValue :> Real;
+	attribute def MassValue :> Real;
+	attribute def AccelValue :> Real;
+	attribute def VelocityValue :> Real;
+	attribute def LengthValue :> Real;
+	attribute def TimeValue :> Real;
 	
 	// Function definitions
 	
@@ -26,9 +26,9 @@ package Dynamics {
 	calc def Position (dt : TimeValue, x0 : LengthValue, v : VelocityValue) : LengthValue = x0 + v * dt;
 	
 
-	// Analysis activity
+	// Analysis action def
 	
-	activity StraightLineVehicleDynamics (
+	action def StraightLineVehicleDynamics (
 		in dt : TimeValue,
 		in whlpwr : PowerValue,
 		in Cd : Real,
@@ -41,7 +41,7 @@ package Dynamics {
 		out x_out : LengthValue ) {
 			
 		assert constraint {
-			value tp : PowerValue;
+			attribute tp : PowerValue;
 			
 			tp == Power(whlpwr, Cd, Cf, tm, v_in) &
 			a_out == Acceleration(dt, tm, tp) &
@@ -54,10 +54,10 @@ package Dynamics {
 	// Analysis actions
 	
 	action dyn1 : StraightLineVehicleDynamics {
-		value tp : PowerValue = Power(whlpwr, Cd, Cf, tm, v_in);
-		value a : AccelValue = Acceleration(dt, tm, tp);
-		value v : VelocityValue = Velocity(dt, v_in, a);
-		value x : LengthValue = Position(dt, x_in, v_in);
+		attribute tp : PowerValue = Power(whlpwr, Cd, Cf, tm, v_in);
+		attribute a : AccelValue = Acceleration(dt, tm, tp);
+		attribute v : VelocityValue = Velocity(dt, v_in, a);
+		attribute x : LengthValue = Position(dt, x_in, v_in);
 		
 		bind a_out = a;
 		bind v_out = v;

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -38,7 +38,7 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package ActionTest {
-	activity A(in x);
+	action def A(in x);
 	
 	action a: A { 
 		first start;

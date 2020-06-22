@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLSimpleTests
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -49,14 +49,14 @@ package ConstraintTest {
 	import ScalarFunctions::sum;
 	
 	constraint def MassAnalysis {
-		value totalMass: MassValue;
-		value componentMasses: MassValue[0..*];		
+		attribute totalMass: MassValue;
+		attribute componentMasses: MassValue[0..*];		
 
 		totalMass == sum(componentMasses)
 	}
 	
-	block Component {
-		value mass: MassValue;
+	part def Component {
+		attribute mass: MassValue;
 	}
 	
 	part vehicle : Component {	
@@ -66,18 +66,18 @@ package ConstraintTest {
 	}
 	part vehicle1a :> vehicle {
 		assert constraint massAnalysis : MassAnalysis {
-			value totalMass redefines MassAnalysis::totalMass;
-			value componentMasses redefines MassAnalysis::componentMasses;
+			attribute totalMass redefines MassAnalysis::totalMass;
+			attribute componentMasses redefines MassAnalysis::componentMasses;
 		}
-		value mass redefines vehicle::mass;
+		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
-			value mass redefines vehicle::engine::mass;
+			attribute mass redefines vehicle::engine::mass;
 		}
 		part frontAxleAssembly redefines vehicle::frontAxleAssembly {
-			value mass redefines vehicle::frontAxleAssembly::mass;
+			attribute mass redefines vehicle::frontAxleAssembly::mass;
 		}
 		part rearAxleAssembly redefines vehicle::rearAxleAssembly {
-			value mass redefines vehicle::rearAxleAssembly::mass;
+			attribute mass redefines vehicle::rearAxleAssembly::mass;
 		}
 		
 		bind massAnalysis::totalMass = mass;
@@ -87,18 +87,18 @@ package ConstraintTest {
 	}
 	part vehicle1b :> vehicle {
 		assert constraint massAnalysis : MassAnalysis {
-			value totalMass redefines MassAnalysis::totalMass = mass;
-			value componentMasses redefines MassAnalysis::componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
+			attribute totalMass redefines MassAnalysis::totalMass = mass;
+			attribute componentMasses redefines MassAnalysis::componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass};		
 		}	
-		value mass redefines vehicle::mass;
+		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
-			value mass redefines vehicle::engine::mass;
+			attribute mass redefines vehicle::engine::mass;
 		}
 		part frontAxleAssembly redefines vehicle::frontAxleAssembly {
-			value mass redefines vehicle::frontAxleAssembly::mass;
+			attribute mass redefines vehicle::frontAxleAssembly::mass;
 		}
 		part rearAxleAssembly redefines vehicle::rearAxleAssembly {
-			value mass redefines vehicle::rearAxleAssembly::mass;
+			attribute mass redefines vehicle::rearAxleAssembly::mass;
 		}
 		
 	}
@@ -110,15 +110,15 @@ package ConstraintTest {
 	part vehicle2a :> vehicle {
 		assert constraint massConstraint : MassAnalysis2 (totalMass, componentMasses);
 		
-		value mass redefines vehicle::mass;
+		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
-			value mass redefines vehicle::engine::mass;
+			attribute mass redefines vehicle::engine::mass;
 		}
 		part frontAxleAssembly redefines vehicle::frontAxleAssembly {
-			value mass redefines vehicle::frontAxleAssembly::mass;
+			attribute mass redefines vehicle::frontAxleAssembly::mass;
 		}
 		part rearAxleAssembly redefines vehicle::rearAxleAssembly {
-			value mass redefines vehicle::rearAxleAssembly::mass;
+			attribute mass redefines vehicle::rearAxleAssembly::mass;
 		}
 		
 		bind massConstraint::totalMass = mass;
@@ -132,15 +132,15 @@ package ConstraintTest {
 			totalMass = mass,
 			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
 		);
-		value mass redefines vehicle::mass;
+		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
-			value mass redefines vehicle::engine::mass;
+			attribute mass redefines vehicle::engine::mass;
 		}
 		part frontAxleAssembly redefines vehicle::frontAxleAssembly {
-			value mass redefines vehicle::frontAxleAssembly::mass;
+			attribute mass redefines vehicle::frontAxleAssembly::mass;
 		}
 		part rearAxleAssembly redefines vehicle::rearAxleAssembly {
-			value mass redefines vehicle::rearAxleAssembly::mass;
+			attribute mass redefines vehicle::rearAxleAssembly::mass;
 		}
 	}
 	
@@ -155,29 +155,29 @@ package ConstraintTest {
 			totalMass = mass,
 			componentMasses = {engine::mass, frontAxleAssembly::mass, rearAxleAssembly::mass}
 		);
-		value mass redefines vehicle::mass;
+		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
-			value mass redefines vehicle::engine::mass;
+			attribute mass redefines vehicle::engine::mass;
 		}
 		part frontAxleAssembly redefines vehicle::frontAxleAssembly {
-			value mass redefines vehicle::frontAxleAssembly::mass;
+			attribute mass redefines vehicle::frontAxleAssembly::mass;
 		}
 		part rearAxleAssembly redefines vehicle::rearAxleAssembly {
-			value mass redefines vehicle::rearAxleAssembly::mass;
+			attribute mass redefines vehicle::rearAxleAssembly::mass;
 		}
 	}
 	
 	part vehicle4 :> vehicle {
 		assert constraint { mass == engine::mass + frontAxleAssembly::mass + rearAxleAssembly::mass }
-		value mass redefines vehicle::mass;
+		attribute mass redefines vehicle::mass;
 		part engine redefines vehicle::engine {
-			value mass redefines vehicle::engine::mass;
+			attribute mass redefines vehicle::engine::mass;
 		}
 		part frontAxleAssembly redefines vehicle::frontAxleAssembly {
-			value mass redefines vehicle::frontAxleAssembly::mass;
+			attribute mass redefines vehicle::frontAxleAssembly::mass;
 		}
 		part rearAxleAssembly redefines vehicle::rearAxleAssembly {
-			value mass redefines vehicle::rearAxleAssembly::mass;
+			attribute mass redefines vehicle::rearAxleAssembly::mass;
 		}
 	}
 	

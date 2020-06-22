@@ -2,12 +2,12 @@ package 'Derivation Constraints' {
 	import 'Constraints Example-1'::*;
 	
 	part vehicle1 : Vehicle {
-		value totalMass : MassValue;			
+		attribute totalMass : MassValue;			
 		assert constraint {totalMass == chassisMass + engine::mass + transmission::mass}	
 	}
 	
 	part vehicle2 : Vehicle {
-		value totalMass : MassValue = chassisMass + engine::mass + transmission::mass;
+		attribute totalMass : MassValue = chassisMass + engine::mass + transmission::mass;
 	}
 	
 	constraint def Dynamics (

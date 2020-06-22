@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -32,7 +32,7 @@ END_SETUP
 */
 package P {
 	part a;
-	block B {
+	part def B {
 		part c {
 			part d;
 		}
@@ -40,4 +40,3 @@ package P {
 		connect P::a to c::d;
 	}
 }
-

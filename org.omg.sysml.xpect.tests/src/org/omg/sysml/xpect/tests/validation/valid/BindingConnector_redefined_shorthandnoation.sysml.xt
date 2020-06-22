@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -33,18 +33,18 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package Example2 {
-	block Fuel;
+	part def Fuel;
 	port def FuelOutPort {
 		ref out fuelSupply : Fuel;
 		ref in fuelReturn : Fuel;
 	}
-	block FuelTankAssembly {
+	part def FuelTankAssembly {
 		port fuelTankPort : FuelOutPort;
 	}
 
-	block Vehicle;
-	block FuelPump;
-	block FuelTank;
+	part def Vehicle;
+	part def FuelPump;
+	part def FuelTank;
 	
 	part vehicle : Vehicle {	
 		part tank : FuelTankAssembly {

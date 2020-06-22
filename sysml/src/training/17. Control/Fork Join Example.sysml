@@ -1,14 +1,14 @@
 package 'Fork Join Example' {
 	import ScalarValues::*;
 	
-	value type TurnKeyToOn;
-	value type BrakePressure;
+	attribute def TurnKeyToOn;
+	attribute def BrakePressure;
 	
-	activity MonitorBrakePedal(out brakePressure : BrakePressure);
-	activity MonitorTraction(out modulationFrequency : Real);
-	activity Braking(in brakePressure : BrakePressure, in modulationFrequency : Real);
+	action def MonitorBrakePedal(out brakePressure : BrakePressure);
+	action def MonitorTraction(out modulationFrequency : Real);
+	action def Braking(in brakePressure : BrakePressure, in modulationFrequency : Real);
 	
-	activity Brake {
+	action def Brake {
 		accept (TurnKeyToOn);
 		
 		then fork;

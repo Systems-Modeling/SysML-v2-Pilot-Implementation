@@ -1,4 +1,5 @@
-block Camera {
+part def Camera {
+	import PictureTaking::*;
 	
 	perform takePicture[*] as PictureTaking::takePicture;
 	

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLQueryTest
+XPECT_SETUP org.omg.sysml.xpect.tests.query.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -29,7 +29,7 @@ END_SETUP
 
 // XPECT noErrors ---> ""
 package P {
-	block C;
+	part def C;
 	part Q : C {
 		part z : C;
 		part R : C {

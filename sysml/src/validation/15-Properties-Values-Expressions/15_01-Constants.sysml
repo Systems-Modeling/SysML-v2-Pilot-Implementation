@@ -14,16 +14,16 @@ package '15_01-Constants' {
      * Standard mathematical constants
      * 
      * Irrational constants cannot be represented exactly with finite precision.
-     * However, they can be required to be implemented with a value that is accurate
+     * However, they can be required to be implemented with a attribute that is accurate
      * to at least a certain precision.
      * 
      * (The decimal literals here should be interpreted as being fixed point and exact.)
      */
     package 'Mathematical Constants' {
-        value e: Real {
+        attribute e: Real {
         	assert constraint { Round(e * 1E20) == 271828182845904523536.0 }
         }
-        value pi: Real {
+        attribute pi: Real {
         	assert constraint { Round(pi * 1E20) == 314159265358979323846.0 }
         }
     }
@@ -31,8 +31,8 @@ package '15_01-Constants' {
     /**
      * Standard fundamental physical constants
      * 
-     * Physical constants have a standard measured value to a finite precision.
-     * TODO: Represent physical constant value error bounds.
+     * Physical constants have a standard measured attribute to a finite precision.
+     * TODO: Represent physical constant attribute error bounds.
      *
      * The reference source is:
      * CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2018 CODATA recommended values
@@ -40,16 +40,16 @@ package '15_01-Constants' {
      * For the actual values see https://pml.nist.gov/cuu/Constants/ 
      */
     package 'Fundamental Physical Constants' {
-        value 'fine structure constant'      : DimensionOneValue = 7.2973525693E-3;  // 2018 CODATA value 7.2973525693E-3;  uncertainty = 0.0000000011E-3
-        value 'electron to proton mass ratio': DimensionOneValue = 5.44617021487E-4; // 2018 CODATA value 5.44617021487E-4; uncertainty = 0.00000000033E-4 
-        value 'speed of light in vacuum'     : SpeedValue = 299792458@[m/s];         // 2018 CODATA value 299792458 m s^-1; (exact)
+        attribute 'fine structure constant'      : DimensionOneValue = 7.2973525693E-3;  // 2018 CODATA attribute 7.2973525693E-3;  uncertainty = 0.0000000011E-3
+        attribute 'electron to proton mass ratio': DimensionOneValue = 5.44617021487E-4; // 2018 CODATA attribute 5.44617021487E-4; uncertainty = 0.00000000033E-4 
+        attribute 'speed of light in vacuum'     : SpeedValue = 299792458@[m/s];         // 2018 CODATA attribute 299792458 m s^-1; (exact)
      }
 
     package 'Global Context' {
-        value 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@['m/s²'];
+        attribute 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@['m/s²'];
     }
 
     package 'Model X Context' {
-        value 'amplifier gain': DimensionOneValue = 3.5;
+        attribute 'amplifier gain': DimensionOneValue = 3.5;
     }
 }

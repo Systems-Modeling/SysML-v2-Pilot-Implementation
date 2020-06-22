@@ -6,18 +6,18 @@ package '8-Requirements' {
 	import 'Vehicle Requirements'::*;
 	
 	package 'Vehicle Definitions' {
-		block Vehicle {
-			value mass: MassValue;
-			value fuelLevel: Real;
-			value fuelTankCapacity: Real;
+		part def Vehicle {
+			attribute mass: MassValue;
+			attribute fuelLevel: Real;
+			attribute fuelTankCapacity: Real;
 		}
 		
-		block Engine {
+		part def Engine {
 			port drivePwrPort: DrivePwrPort;
 			perform action 'generate torque': 'Generate Torque';
 		}
 		
-		block Transmission {
+		part def Transmission {
 			port clutchPort: ClutchPort;
 		}
 		
@@ -29,7 +29,7 @@ package '8-Requirements' {
 			end clutchPort: ClutchPort;
 		}
 	
-		activity 'Generate Torque';
+		action def 'Generate Torque';
 	}
 	
 	package 'Vehicle Usages' {
@@ -41,7 +41,7 @@ package '8-Requirements' {
 		}
 		
 		part vehicle1_c1: Vehicle {
-			value :>> mass = 2000@[kg];
+			attribute :>> mass = 2000@[kg];
 			perform 'provide power';
 				
 			part engine_v1: Engine {
@@ -58,7 +58,7 @@ package '8-Requirements' {
 		}
 		
 		part vehicle1_c2: Vehicle {
-			value :>> mass = 2500@[kg];
+			attribute :>> mass = 2500@[kg];
 		}
 	}
 	
@@ -73,8 +73,8 @@ package '8-Requirements' {
 			// The requirement text is given by the first comment in the requirement def body (this note doesn't count).
 			/* The actual mass shall be less than or equal to the required mass. */
 			
-			value massActual: MassValue;
-			value massReqd: MassValue;
+			attribute massActual: MassValue;
+			attribute massReqd: MassValue;
 			
 			/**
 			 * A constraint can be used to formalize a requirement.
@@ -93,12 +93,12 @@ package '8-Requirements' {
 			/**
 			 * This redefinition binds the vehicle mass to the actual mass.
 			 */
-			value :>> massActual: MassValue = vehicle::mass;
+			attribute :>> massActual: MassValue = vehicle::mass;
 			
 			/**
 			 * This redefinition sets the required mass to 2000 kg.
 			 */
-			value :>> massReqd = 2000@[kg];
+			attribute :>> massReqd = 2000@[kg];
 			
 			/**
 			 * A constraint can also be used to specify an assumption.
@@ -112,8 +112,8 @@ package '8-Requirements' {
 		requirement id '2.1' vehicleMass2: MassLimitationRequirement (vehicle: Vehicle) {
 			/* The vehicle mass shall be less than or equal to 2500 kg when the fuel tank is empty. */
 			
-			value :>> massActual: MassValue = vehicle::mass;
-			value :>> massReqd = 2500@[kg];
+			attribute :>> massActual: MassValue = vehicle::mass;
+			attribute :>> massReqd = 2500@[kg];
 		
 			assume constraint fuelConstraint {
 				/* empty fuel tank */

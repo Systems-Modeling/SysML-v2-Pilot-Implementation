@@ -10,55 +10,55 @@ package 'Wheel Package - Updated' {
 	
 	// Blocks
 	
-	block WheelHubAssembly;
-	block WheelAssembly {
+	part def WheelHubAssembly;
+	part def WheelAssembly {
 		inflationPressure :> pressure;
 	}
 	
-	block Tire {
+	part def Tire {
 		tireSpecification : ScalarValues::String;		
 		action mountTire; // Should be operation
 	}
 	
-	block TireBead;
+	part def TireBead;
 	
-	assoc block PressureSeat {
+	connection def PressureSeat {
 		end : TireBead[1];
 		end : TireMountingRim[1];
 	}
 	
-	block Wheel {
+	part def Wheel {
 		diameter :> length;
 		width :> length;		
 	}
 	
-	assoc block BandMount {
+	connection def BandMount {
 		end : Wheel[1];
 		end : WirelessTirePressureMonitor[1];
 	}
 	
-	block WirelessTirePressureMonitor {
+	part def WirelessTirePressureMonitor {
 		action transmitPressure; // Should be operation
 	}
 	
-	block TireMountingRim;
+	part def TireMountingRim;
 	
-	block InflationValve;
+	part def InflationValve;
 	
-	block BalanceWeight;
+	part def BalanceWeight;
 	
-	block LugBoltMountingHole {
+	part def LugBoltMountingHole {
 		lugBoltSize :> length;
 	}
 	
-	block LugBoltJoint {
+	part def LugBoltJoint {
 		torque :> ISQ::torque;
 		boltTension :> force;
 	}
 	
-	block Hub;
+	part def Hub;
 	
-	block LugBoltThreadableHole {
+	part def LugBoltThreadableHole {
 		lugBoltSize :> length;
 		threadSize :> length;
 	}
@@ -76,7 +76,7 @@ package 'Wheel Package - Updated' {
 				part weight : BalanceWeight[0..6];
 				part mountingHoles : LugBoltMountingHole[5];
 			}						
-			link : PressureSeat connect t::bead to w::rim;		
+			connection : PressureSeat connect t::bead to w::rim;		
 		}
 		part lugBoltJoints: LugBoltJoint[5] {					
 			ref mountingHole: LugBoltMountingHole[1] subsets hub::h;

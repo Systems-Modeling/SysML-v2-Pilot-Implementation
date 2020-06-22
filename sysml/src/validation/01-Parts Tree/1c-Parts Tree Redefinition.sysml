@@ -2,24 +2,24 @@ package '1c-Parts Tree Redefinition' {
 	import SI::kg;
 	
 	package Definitions {	
-		block Vehicle {
-			value mass :> ISQ::mass;
+		part def Vehicle {
+			attribute mass :> ISQ::mass;
 		}		
-		block AxleAssembly;		
-		block Axle { 
-			value mass :> ISQ::mass;
+		part def AxleAssembly;		
+		part def Axle { 
+			attribute mass :> ISQ::mass;
 		}	
-		block FrontAxle :> Axle { 
-			value steeringAngle: ScalarValues::Real;
+		part def FrontAxle :> Axle { 
+			attribute steeringAngle: ScalarValues::Real;
 		}	
-		block Wheel;	
+		part def Wheel;	
 	}
 		
 	package Usages {
 		private import Definitions::*;
 		
 		part vehicle1: Vehicle {
-			value mass redefines Vehicle::mass = 1750@[kg];
+			attribute mass redefines Vehicle::mass = 1750@[kg];
 					
 			part frontAxleAssembly: AxleAssembly {
 				part frontAxle: Axle;			
@@ -38,10 +38,10 @@ package '1c-Parts Tree Redefinition' {
 		 */
 		part vehicle1_c1 :> vehicle1 {
 			/**
-			 * The mass is further redefined to give it a new value
+			 * The mass is further redefined to give it a new attribute
 			 * for 'vehicle1_c1'.
 			 */
-			value mass redefines vehicle1::mass = 2000@[kg];
+			attribute mass redefines vehicle1::mass = 2000@[kg];
 					
 			part frontAxleAssembly_c1 redefines frontAxleAssembly {
 				/**

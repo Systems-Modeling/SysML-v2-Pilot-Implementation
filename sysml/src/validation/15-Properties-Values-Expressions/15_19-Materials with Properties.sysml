@@ -5,10 +5,10 @@ package '15_19-Materials with Properties' {
 	import SI::*;
 	
 	// TODO: Move definition of atomic mass and Da to SI
-	block AtomicMassUnit :> MassUnit;
+	part def AtomicMassUnit :> MassUnit;
         
-    value type AtomicMassValue :> QuantityValue {
-		value num: Real :>> QuantityValue::num;
+    attribute def AtomicMassValue :> QuantityValue {
+		attribute num: Real :>> QuantityValue::num;
     	ref mRef: AtomicMassUnit :>> QuantityValue::mRef;
     }
     
@@ -18,29 +18,28 @@ package '15_19-Materials with Properties' {
     );
 
 	// TODO: Move definition of tensile strength and N/mm² to SI
-    block TensileStrengthUnit :> SIDerivedUnit {
-		value lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-			value exponent :>> UnitPowerFactor::exponent = -1;
+    part def TensileStrengthUnit :> SIDerivedUnit {
+		attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
+			attribute exponent :>> UnitPowerFactor::exponent = -1;
 		}
-		value massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-			value exponent :>> UnitPowerFactor::exponent = 1;
+		attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
+			attribute exponent :>> UnitPowerFactor::exponent = 1;
 		}
-		value timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-			value exponent :>> UnitPowerFactor::exponent = -2;
+		attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
+			attribute exponent :>> UnitPowerFactor::exponent = -2;
 		}
     }
     
-    value type TensileStrengthValue :> QuantityValue {
-		value num: Real redefines QuantityValue::num;
+    attribute def TensileStrengthValue :> QuantityValue {
+		attribute num: Real redefines QuantityValue::num;
     	ref mRef: TensileStrengthUnit redefines QuantityValue::mRef;
     }
-    
     part 'N/mm²': TensileStrengthUnit = N / mm**2 {
-    	value name :>> MeasurementReference::name = "newton per square millimetre";
+    	attribute name :>> MeasurementReference::name = "newton per square millimetre";
     }
 
-    block Substance;
-    block Material :> Substance;
+    part def Substance;
+    part def Material :> Substance;
 
 	/*
 	 * The classification of materials into metals and alloys is grossly simplified and not exhaustive.
@@ -49,52 +48,52 @@ package '15_19-Materials with Properties' {
 	 * etc.
 	 */
 
-    block Metal :> Material {
-        value atomicMass: AtomicMassValue[1];
+    part def Metal :> Material {
+        attribute atomicMass: AtomicMassValue[1];
     }
 
-    value type MaterialFraction {
+    attribute def MaterialFraction {
         ref material: Material[1]; 
-        value massFraction: MassFractionValue[1];
+        attribute massFraction: MassFractionValue[1];
     }
 
-    value type MassFractionValue :> DimensionOneValue;    
+    attribute def MassFractionValue :> DimensionOneValue;    
 
-    block Alloy :> Material {
-        value fractions: MaterialFraction[2..*];
+    part def Alloy :> Material {
+        attribute fractions: MaterialFraction[2..*];
     }
 
     individual def Iron :> Metal {
-        value :>> atomicMass = 55.845@[Da];
+        attribute :>> atomicMass = 55.845@[Da];
     }
 
     individual def Carbon :> Metal {
-        value atomicMass :>> Metal::atomicMass = 12.011@[Da];
+        attribute atomicMass :>> Metal::atomicMass = 12.011@[Da];
     }
 
     individual def Manganese :> Metal {
-        value atomicMass :>> Metal::atomicMass = 54.938@[Da];
+        attribute atomicMass :>> Metal::atomicMass = 54.938@[Da];
     }
 
  	/**
 	 * Particular example of high tensile strength steel.
 	 */
     individual def Steel_980 :> Alloy {
-        value fraction1 :> fractions {
+        attribute fraction1 :> fractions {
         	ref :>> material : Iron;
-        	value :>> massFraction = 0.9862;
+        	attribute :>> massFraction = 0.9862;
         }
         
-        value fraction2 :> fractions {
+        attribute fraction2 :> fractions {
         	ref :>> material : Carbon;
-        	value :>> massFraction = 0.9862;
+        	attribute :>> massFraction = 0.9862;
         }
         
-        value fraction3 :> fractions {
+        attribute fraction3 :> fractions {
         	ref :>> material : Manganese;
-        	value :>> massFraction = 0.9862;
+        	attribute :>> massFraction = 0.9862;
         }
         
-        value tensileStrength: TensileStrengthValue = 980@['N/mm²'];
+        attribute tensileStrength: TensileStrengthValue = 980@['N/mm²'];
     }
 }

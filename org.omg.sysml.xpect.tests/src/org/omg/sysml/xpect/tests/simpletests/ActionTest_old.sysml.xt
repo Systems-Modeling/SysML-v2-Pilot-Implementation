@@ -1,43 +1,50 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLValidationTests
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
-
+		File {from ="/library.systems/Actions.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
-		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-package 'Blocks Example' {
-	block Vehicle {
-		part eng : Engine;
-		ref driver : Person; 
-		part driver2; //typed by Block (named Part)
+package ActionTest {
+	activity A(in x);
+	
+	action a: A { 
+		first start;
+		
+		action b(in y = x);
+		
+		bind x = b::y;
 	}
-	block Engine;	
-	block Person;
 }

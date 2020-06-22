@@ -1,5 +1,5 @@
-//* 
-XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -33,9 +33,9 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
 END_SETUP 
 */
 package pkg {
-	block ABlock;
-	activity AnActivity;
-	activity B() {
+	part def ABlock;
+	action def AnActivity;
+	action def B() {
 		// XPECT errors -->   "An action must be typed by action definitions." at "a: ABlock;"
 		action a: ABlock;
 		// XPECT errors -->   "An action must be typed by action definitions." at "b: ABlock, AnActivity;"

@@ -19,3 +19,8 @@ hs_err_pid*
 # Tycho build target
 target
 
+# VS Code settings
+.vscode/
+
+# JetBrains IDE settings
+.idea/

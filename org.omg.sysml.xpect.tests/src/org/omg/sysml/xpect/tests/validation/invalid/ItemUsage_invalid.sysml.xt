@@ -1,0 +1,71 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLInvalidationTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package pkg {
+	import ScalarValues::*;
+	item def A {
+		// XPECT errors --> "An item usage must be typed by item definitions." at "areal: Real;"
+		item areal: Real;
+		// XPECT errors --> "An item usage must be typed by item definitions." at "avalue: aValue;"
+		item avalue: aValue;
+		// XPECT errors --> "An item usage must be typed by item definitions." at "anaction: anAction;"
+		item anaction: anAction;
+		/* XPECT errors ---	
+		 	"An item usage must be typed by item definitions." at "aportdef: APortDef;"
+		 	"Features must have at least one type" at "aportdef: APortDef;"
+		--- */ 
+		item aportdef: APortDef;
+		/* XPECT errors ---
+		 	"An item usage must be typed by item definitions." at "aport: ABlock::aPort;"
+		 	"Features must have at least one type" at "aport: ABlock::aPort;"
+		--- */
+		item aport: ABlock::aPort;
+		/* XPECT errors ---
+		 "An item usage must be typed by item definitions." at "apart: ABlock::aPart;"
+		 "Features must have at least one type" at "apart: ABlock::aPart;"
+		--- */
+		item apart: ABlock::aPart;
+		// XPECT errors --> "An item usage must be typed by item definitions." at "twoTypes: ABlock, APortDef;"
+		item twoTypes: ABlock, APortDef;
+	}
+	attribute aValue: Real;
+	part def ABlock {
+		port aPort: APortDef;
+		part aPart: ABlock;
+	}
+	action anAction;
+	port def APortDef;
+}

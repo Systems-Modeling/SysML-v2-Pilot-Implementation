@@ -35,20 +35,20 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_CalculationDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__;
 	protected AbstractElementAlias match_CalculationReturnParameterMember_ReturnKeyword_0_q;
 	protected AbstractElementAlias match_ConnectionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_ConnectionEndMember_RefKeyword_1_2_1_q;
-	protected AbstractElementAlias match_ConnectionEndMember_RefKeyword_1_3_2_q;
+	protected AbstractElementAlias match_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_0_1_q;
+	protected AbstractElementAlias match_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_1_2_q;
 	protected AbstractElementAlias match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_Documentation_CommentKeyword_0_0_q;
 	protected AbstractElementAlias match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q;
 	protected AbstractElementAlias match_GuardedSuccession_FirstKeyword_1_2_q;
 	protected AbstractElementAlias match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
 	protected AbstractElementAlias match_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_InterfaceEndMember_PortKeyword_1_0_1_q;
-	protected AbstractElementAlias match_InterfaceEndMember_PortKeyword_1_1_2_q;
+	protected AbstractElementAlias match_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_0_1_q;
+	protected AbstractElementAlias match_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_1_2_q;
 	protected AbstractElementAlias match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__;
-	protected AbstractElementAlias match_PackagedDefinitionMember_AliasKeyword_13_0_1_or_ImportKeyword_13_0_0;
-	protected AbstractElementAlias match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_2_0_q;
-	protected AbstractElementAlias match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_3_1_q;
+	protected AbstractElementAlias match_PackagedDefinitionMember_AliasKeyword_14_0_1_or_ImportKeyword_14_0_0;
+	protected AbstractElementAlias match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_0_0_q;
+	protected AbstractElementAlias match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_1_1_q;
 	protected AbstractElementAlias match_ParameterTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
 	protected AbstractElementAlias match_PortTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
 	protected AbstractElementAlias match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q;
@@ -60,8 +60,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_0_1_0_q;
 	protected AbstractElementAlias match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_0_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__;
 	protected AbstractElementAlias match_SendNodeDeclaration_OfKeyword_3_1_q;
-	protected AbstractElementAlias match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_4_0_q;
-	protected AbstractElementAlias match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_5_1_q;
+	protected AbstractElementAlias match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_2_0_q;
+	protected AbstractElementAlias match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_3_1_q;
 	protected AbstractElementAlias match_SuccessionDeclaration_FirstKeyword_0_2_q;
 	protected AbstractElementAlias match_TransitionStep_FirstKeyword_1_2_q;
 	protected AbstractElementAlias match_TypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
@@ -82,20 +82,20 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_CalculationDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getCalculationDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getCalculationDefBodyAccess().getRightCurlyBracketKeyword_1_3())), new TokenAlias(false, false, grammarAccess.getCalculationDefBodyAccess().getSemicolonKeyword_0()));
 		match_CalculationReturnParameterMember_ReturnKeyword_0_q = new TokenAlias(false, true, grammarAccess.getCalculationReturnParameterMemberAccess().getReturnKeyword_0());
 		match_ConnectionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getConnectionDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getConnectionDefBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getConnectionDefBodyAccess().getSemicolonKeyword_0()));
-		match_ConnectionEndMember_RefKeyword_1_2_1_q = new TokenAlias(false, true, grammarAccess.getConnectionEndMemberAccess().getRefKeyword_1_2_1());
-		match_ConnectionEndMember_RefKeyword_1_3_2_q = new TokenAlias(false, true, grammarAccess.getConnectionEndMemberAccess().getRefKeyword_1_3_2());
+		match_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_0_1_q = new TokenAlias(false, true, grammarAccess.getConnectionEndMemberAccess().getReferenceUsageKeywordParserRuleCall_1_0_1());
+		match_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_1_2_q = new TokenAlias(false, true, grammarAccess.getConnectionEndMemberAccess().getReferenceUsageKeywordParserRuleCall_1_1_2());
 		match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getSemicolonKeyword_0()));
 		match_Documentation_CommentKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDocumentationAccess().getCommentKeyword_0_0());
 		match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getRightCurlyBracketKeyword_1_1_2()));
 		match_GuardedSuccession_FirstKeyword_1_2_q = new TokenAlias(false, true, grammarAccess.getGuardedSuccessionAccess().getFirstKeyword_1_2());
 		match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getImportAccess().getFullStopKeyword_3_0_1_1()));
 		match_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInterfaceDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getInterfaceDefBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getInterfaceDefBodyAccess().getSemicolonKeyword_0()));
-		match_InterfaceEndMember_PortKeyword_1_0_1_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_0_1());
-		match_InterfaceEndMember_PortKeyword_1_1_2_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortKeyword_1_1_2());
+		match_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_0_1_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortUsageKeywordParserRuleCall_1_0_1());
+		match_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_1_2_q = new TokenAlias(false, true, grammarAccess.getInterfaceEndMemberAccess().getPortUsageKeywordParserRuleCall_1_1_2());
 		match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
-		match_PackagedDefinitionMember_AliasKeyword_13_0_1_or_ImportKeyword_13_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAliasKeyword_13_0_1()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getImportKeyword_13_0_0()));
-		match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_2_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_2_0());
-		match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_3_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_3_1());
+		match_PackagedDefinitionMember_AliasKeyword_14_0_1_or_ImportKeyword_14_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAliasKeyword_14_0_1()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getImportKeyword_14_0_0()));
+		match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_0_0_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_0_0());
+		match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_1_1_q = new TokenAlias(false, true, grammarAccess.getPackagedUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_1_1());
 		match_ParameterTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getParameterTypePartAccess().getAnyKeyword_0_1_1()));
 		match_PortTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPortTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getPortTypePartAccess().getAnyKeyword_0_1_1()));
 		match_RequirementConstraintUsage_AsKeyword_0_0_0_2_q = new TokenAlias(false, true, grammarAccess.getRequirementConstraintUsageAccess().getAsKeyword_0_0_0_2());
@@ -107,8 +107,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_SatisfyRequirementUsage_RequirementKeywordParserRuleCall_0_1_0_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeywordParserRuleCall_0_1_0());
 		match_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_0_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getSatisfyRequirementUsageAccess().getRequirementKeywordParserRuleCall_0_1_0()));
 		match_SendNodeDeclaration_OfKeyword_3_1_q = new TokenAlias(false, true, grammarAccess.getSendNodeDeclarationAccess().getOfKeyword_3_1());
-		match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_4_0_q = new TokenAlias(false, true, grammarAccess.getStructureUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_1_4_0());
-		match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_5_1_q = new TokenAlias(false, true, grammarAccess.getStructureUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_1_5_1());
+		match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_2_0_q = new TokenAlias(false, true, grammarAccess.getStructureUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_1_2_0());
+		match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_3_1_q = new TokenAlias(false, true, grammarAccess.getStructureUsageMemberAccess().getAttributeUsageKeywordParserRuleCall_1_3_1());
 		match_SuccessionDeclaration_FirstKeyword_0_2_q = new TokenAlias(false, true, grammarAccess.getSuccessionDeclarationAccess().getFirstKeyword_0_2());
 		match_TransitionStep_FirstKeyword_1_2_q = new TokenAlias(false, true, grammarAccess.getTransitionStepAccess().getFirstKeyword_1_2());
 		match_TypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getTypePartAccess().getAnyKeyword_0_1_1()));
@@ -158,8 +158,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 			return getInterfaceKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getInterfaceUsageKeywordRule())
 			return getInterfaceUsageKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getItemDefKeywordRule())
+			return getItemDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getItemFlowKeywordRule())
 			return getItemFlowKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getItemUsageKeywordRule())
+			return getItemUsageKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getPartDefKeywordRule())
 			return getPartDefKeywordToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getPartUsageKeywordRule())
@@ -433,6 +437,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
+	 * ItemDefKeyword :
+	 * 	ItemKeyword 'def'
+	 * ;
+	 */
+	protected String getItemDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "item def";
+	}
+	
+	/**
 	 * ItemFlowKeyword :
 	 * 	'stream'
 	 * ;
@@ -441,6 +456,17 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "stream";
+	}
+	
+	/**
+	 * ItemUsageKeyword :
+	 * 	ItemKeyword
+	 * ;
+	 */
+	protected String getItemUsageKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "item";
 	}
 	
 	/**
@@ -684,10 +710,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_CalculationReturnParameterMember_ReturnKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ConnectionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_ConnectionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConnectionEndMember_RefKeyword_1_2_1_q.equals(syntax))
-				emit_ConnectionEndMember_RefKeyword_1_2_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_ConnectionEndMember_RefKeyword_1_3_2_q.equals(syntax))
-				emit_ConnectionEndMember_RefKeyword_1_3_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_0_1_q.equals(syntax))
+				emit_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_1_2_q.equals(syntax))
+				emit_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Documentation_CommentKeyword_0_0_q.equals(syntax))
@@ -700,18 +726,18 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_InterfaceEndMember_PortKeyword_1_0_1_q.equals(syntax))
-				emit_InterfaceEndMember_PortKeyword_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_InterfaceEndMember_PortKeyword_1_1_2_q.equals(syntax))
-				emit_InterfaceEndMember_PortKeyword_1_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_0_1_q.equals(syntax))
+				emit_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_0_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_1_2_q.equals(syntax))
+				emit_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_1_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__.equals(syntax))
 				emit_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackagedDefinitionMember_AliasKeyword_13_0_1_or_ImportKeyword_13_0_0.equals(syntax))
-				emit_PackagedDefinitionMember_AliasKeyword_13_0_1_or_ImportKeyword_13_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_2_0_q.equals(syntax))
-				emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_3_1_q.equals(syntax))
-				emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedDefinitionMember_AliasKeyword_14_0_1_or_ImportKeyword_14_0_0.equals(syntax))
+				emit_PackagedDefinitionMember_AliasKeyword_14_0_1_or_ImportKeyword_14_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_0_0_q.equals(syntax))
+				emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_1_1_q.equals(syntax))
+				emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ParameterTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q.equals(syntax))
 				emit_ParameterTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PortTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q.equals(syntax))
@@ -734,10 +760,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_SatisfyRequirementUsage_TypePart_RequirementKeywordParserRuleCall_0_1_0_or___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SendNodeDeclaration_OfKeyword_3_1_q.equals(syntax))
 				emit_SendNodeDeclaration_OfKeyword_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_4_0_q.equals(syntax))
-				emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_5_1_q.equals(syntax))
-				emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_5_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_2_0_q.equals(syntax))
+				emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_3_1_q.equals(syntax))
+				emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_3_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuccessionDeclaration_FirstKeyword_0_2_q.equals(syntax))
 				emit_SuccessionDeclaration_FirstKeyword_0_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TransitionStep_FirstKeyword_1_2_q.equals(syntax))
@@ -962,27 +988,27 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'ref'?
+	 *     ReferenceUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'end' (ambiguity) ownedMemberFeature_comp=ReferenceUsage
 	 *     ownedRelationship_comp+=PrefixAnnotation 'end' (ambiguity) ownedMemberFeature_comp=ReferenceUsage
 	 *     visibility=VisibilityIndicator 'end' (ambiguity) ownedMemberFeature_comp=ReferenceUsage
 	 */
-	protected void emit_ConnectionEndMember_RefKeyword_1_2_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'ref'?
+	 *     ReferenceUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'abstract' 'end' (ambiguity) ownedMemberFeature_comp=AbstractReferenceUsage
 	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract' 'end' (ambiguity) ownedMemberFeature_comp=AbstractReferenceUsage
 	 *     visibility=VisibilityIndicator 'abstract' 'end' (ambiguity) ownedMemberFeature_comp=AbstractReferenceUsage
 	 */
-	protected void emit_ConnectionEndMember_RefKeyword_1_3_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_ConnectionEndMember_ReferenceUsageKeywordParserRuleCall_1_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1092,23 +1118,23 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'port'?
+	 *     PortUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     isPort?='end' (ambiguity) ownedMemberFeature_comp=PortUsage
 	 */
-	protected void emit_InterfaceEndMember_PortKeyword_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'port'?
+	 *     PortUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     isPort?='end' (ambiguity) ownedMemberFeature_comp=AbstractPortUsage
 	 */
-	protected void emit_InterfaceEndMember_PortKeyword_1_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_InterfaceEndMember_PortUsageKeywordParserRuleCall_1_1_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1134,7 +1160,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=PackageElementVisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
 	 */
-	protected void emit_PackagedDefinitionMember_AliasKeyword_13_0_1_or_ImportKeyword_13_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackagedDefinitionMember_AliasKeyword_14_0_1_or_ImportKeyword_14_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1147,7 +1173,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation (ambiguity) ownedMemberElement_comp=AttributeUsage
 	 *     visibility=PackageElementVisibilityIndicator (ambiguity) ownedMemberElement_comp=AttributeUsage
 	 */
-	protected void emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1160,7 +1186,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedRelationship_comp+=PrefixAnnotation 'abstract' (ambiguity) ownedMemberElement_comp=AbstractAttributeUsage
 	 *     visibility=PackageElementVisibilityIndicator 'abstract' (ambiguity) ownedMemberElement_comp=AbstractAttributeUsage
 	 */
-	protected void emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_3_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_PackagedUsageMember_AttributeUsageKeywordParserRuleCall_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1306,7 +1332,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator (ambiguity) direction=FeatureDirection
 	 *     visibility=VisibilityIndicator (ambiguity) ownedMemberFeature_comp=AttributeUsage
 	 */
-	protected void emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1322,7 +1348,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     visibility=VisibilityIndicator 'abstract' (ambiguity) direction=FeatureDirection
 	 *     visibility=VisibilityIndicator 'abstract' (ambiguity) ownedMemberFeature_comp=AbstractAttributeUsage
 	 */
-	protected void emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_5_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_StructureUsageMember_AttributeUsageKeywordParserRuleCall_1_3_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

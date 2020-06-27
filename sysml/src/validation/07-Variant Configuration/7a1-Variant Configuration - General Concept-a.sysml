@@ -50,7 +50,12 @@ package '7a1-Variant Configuration - General Concept-a' {
 			}
 		}
 		
-		connect subsystemA::part3::p1[0..1] to subsystemB::part5::p2[1];
+		variation connect subsystemA::part3::p1[0..1] to subsystemB::part5::p2[1];
+		
+		assert constraint {
+			subsystemA != subsystemA::subsystem2 | 
+			subsystemB == subsystemB::subsystem3
+		}
 		
 	}
 	

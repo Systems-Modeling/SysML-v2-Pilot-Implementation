@@ -1,5 +1,7 @@
 package '7a-Variant Configuration - General Concept' {
 	
+	part def Vehicle;
+	
 	part part1;
 	part part2;
 	part part3;
@@ -7,7 +9,7 @@ package '7a-Variant Configuration - General Concept' {
 	part part5;
 	part part6;
 	
-	part anyVehicleConfig {
+	abstract part anyVehicleConfig : Vehicle {
 		
 		variation part subsystemA {
 			variant part subsystem1 {
@@ -31,6 +33,11 @@ package '7a-Variant Configuration - General Concept' {
 			}
 		}
 		
+		assert constraint {
+			subsystemA != subsystemA::subsystem2 | 
+			subsystemB == subsystemB::subsystem3
+		}
+		
 	}
 	
 	part vehicleConfigA :> anyVehicleConfig {		
@@ -40,7 +47,7 @@ package '7a-Variant Configuration - General Concept' {
 	
 	part VehicleConfigB :> anyVehicleConfig {
 		part :>> subsystemA = subsystemA::subsystem2;
-		part :>> subsystemB = subsystemB::subsystem4;
+		part :>> subsystemB = subsystemB::subsystem3;
 	}
 	
 }

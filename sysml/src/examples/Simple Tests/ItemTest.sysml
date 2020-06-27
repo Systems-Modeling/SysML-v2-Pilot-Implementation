@@ -12,12 +12,12 @@ package ItemTest {
 	}
 	
 	private part def C {
-		private ref in y: A, B;
+		private in ref y: A, B;
 	}
 	
 	port def P {
-		item in a1: A;
-		item out a2: A;
+		in item a1: A;
+		out item a2: A;
 	}
 	
 }

@@ -34,17 +34,17 @@ package 'Individuals and Roles' {
 		part b_2 : B;
 	}
 	individual def B_1 :> B;
-	//XPECT errors --> "An individual must be typed by one individual definition." at "two_types : A_1, B_1;"
+	//XPECT errors --> "An individual must be typed by one individual definition." at "individual two_types : A_1, B_1;"
 	individual two_types : A_1, B_1;
 
 	individual a_1 : A_1 {
 		snapshot a_1_1 {
-			// XPECT errors -->	"An individual must be typed by one individual definition." at "b_1 : B :>> b_1;"
+			// XPECT errors -->	"An individual must be typed by one individual definition." at "snapshot b_1 : B :>> b_1;"
 			snapshot b_1 : B :>> b_1;
 		}
 		
 		snapshot a_1_2 {
-			// XPECT errors --> "An individual must be typed by one individual definition." at "b_2 : A :>> b_2;"
+			// XPECT errors --> "An individual must be typed by one individual definition." at "snapshot b_2 : A :>> b_2;"
 			snapshot b_2 : A :>> b_2;
 		}
 	}

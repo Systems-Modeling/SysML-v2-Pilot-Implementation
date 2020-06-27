@@ -39,15 +39,15 @@ package 'ValueProperty Example' {
 		port p: P;
 	}
 	part def Vehicle {
-		// XPECT errors --> "An attribute must be typed by attribute definitions." at "a : A;"
+		// XPECT errors --> "An attribute must be typed by attribute definitions." at "attribute a : A;"
 		attribute a : A;
-		// XPECT errors --> "An attribute must be typed by attribute definitions." at "b : A::a;"
+		// XPECT errors --> "An attribute must be typed by attribute definitions." at "attribute b : A::a;"
 		attribute b : A::a;
-		// XPECT errors --> "An attribute must be typed by attribute definitions." at "s : P;"
+		// XPECT errors --> "An attribute must be typed by attribute definitions." at "attribute s : P;"
 		attribute s : P;
-		//XPECT errors --> "An attribute must be typed by attribute definitions." at "un : A::p;"
+		//XPECT errors --> "An attribute must be typed by attribute definitions." at "attribute un : A::p;"
 		attribute un: A::p;
-		//XPECT errors --> "An attribute must be typed by attribute definitions." at "n : AB;"
+		//XPECT errors --> "An attribute must be typed by attribute definitions." at "attribute n : AB;"
 		attribute n: AB;
 		}
 	connection def  AB {

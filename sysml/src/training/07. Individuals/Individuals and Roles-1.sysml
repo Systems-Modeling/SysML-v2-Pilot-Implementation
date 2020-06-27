@@ -1,5 +1,5 @@
 package 'Individuals and Roles' {
-	import 'Blocks Example'::*;
+	import 'Part Definition Example'::*;
 	
 	part def Wheel;
 	

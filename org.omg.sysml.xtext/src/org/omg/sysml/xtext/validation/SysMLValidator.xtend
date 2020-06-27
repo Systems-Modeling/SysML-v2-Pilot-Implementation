@@ -63,6 +63,9 @@ import org.omg.sysml.lang.sysml.CalculationUsage
 import org.omg.sysml.lang.sysml.AttributeUsage
 import org.omg.sysml.lang.sysml.ItemUsage
 import org.omg.sysml.lang.sysml.PartDefinition
+import org.omg.sysml.lang.sysml.Usage
+import org.omg.sysml.lang.sysml.Definition
+import org.omg.sysml.lang.sysml.VariantMembership
 
 /**
  * This class contains custom validation rules. 
@@ -77,6 +80,12 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
 	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	
+	public static val INVALID_USAGE_VARIANT = 'Invalid Usage - invalid variant'
+	public static val INVALID_USAGE_VARIANT_MSG = 'A variant must be an owned member of a variation.'
+	public static val INVALID_USAGE_VARIATION = 'Invalid Usage - invalid variation'
+	public static val INVALID_USAGE_VARIATION_MSG = 'A variation must only have variant owned members.'
+	
 	public static val INVALID_ACTIONUSAGE = 'Invalid Action Usage - invalid type'
 	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
 	public static val INVALID_ITEMUSAGE = 'Invalid Item Usage - invalid type'
@@ -101,6 +110,28 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
+	
+	@Check
+	def checkUsage(Usage usage) {
+		val owningMembership = usage.owningMembership;
+		val owningPackage = owningMembership?.membershipOwningPackage;
+		
+		if (owningMembership instanceof VariantMembership) {
+			// A variant Usage must be owned by a variation
+			if (!owningPackage.isVariation) {
+				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
+			}
+		// A variation must not own non-variant Usages
+		} else if (owningPackage.isVariation) {
+				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
+		}
+	}
+	
+	def boolean isVariation(org.omg.sysml.lang.sysml.Package p) {
+		if (p instanceof Definition) p.isVariation
+		else if (p instanceof Usage) p.isVariation
+		else false
+	}
 
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){

@@ -51,9 +51,9 @@ package Test {
 			in y;
 		}
 		
-		// XPECT warnings --> "Bound features should have conforming types" at "a = b;"
+		// XPECT warnings --> "Bound features should have conforming types" at "bind a = b;"
 		bind a = b;
-		// TBD errors --> "Output feature must conform to input feature" at "a.x = b.x;"
+		// TBD errors --> "Output feature must conform to input feature" at "bind a.x = b.x;"
 		bind a.x = b.x;
 		
 		bind b = c;

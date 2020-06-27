@@ -64,17 +64,17 @@ package 'Control - Camera' {
 		part photos : Picture[*];
 				
 		part autoFocus {
-			ref in view : Scene = camera::view;		
-			ref out realImage : Image;
+			in ref view : Scene = camera::view;		
+			out ref realImage : Image;
 		}
 		bind autoFocus::realImage = imager::focusedImage;
-		// XPECT warnings --> "Bound features should have conforming types" at "autoFocus::realImage = imager::focusedImage2;"
+		// XPECT warnings --> "Bound features should have conforming types" at "bind autoFocus::realImage = imager::focusedImage2;"
 		bind autoFocus::realImage = imager::focusedImage2;
 		
 		part imager {
-			ref in focusedImage : Image;		
-			ref in focusedImage2 : Image2;		
-			ref out photo : Picture :> photos;
+			in ref focusedImage : Image;		
+			in ref focusedImage2 : Image2;		
+			out ref photo : Picture :> photos;
 		}
 		
 	}

@@ -56,6 +56,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSpecializesKeywordAccess().getAlternatives(), "rule__SpecializesKeyword__Alternatives");
 			builder.put(grammarAccess.getAttributeDefKeywordAccess().getAlternatives(), "rule__AttributeDefKeyword__Alternatives");
 			builder.put(grammarAccess.getPartDefKeywordAccess().getAlternatives(), "rule__PartDefKeyword__Alternatives");
+			builder.put(grammarAccess.getPortDefKeywordAccess().getAlternatives(), "rule__PortDefKeyword__Alternatives");
 			builder.put(grammarAccess.getConnectionDefKeywordAccess().getAlternatives(), "rule__ConnectionDefKeyword__Alternatives");
 			builder.put(grammarAccess.getConnectionDefBodyAccess().getAlternatives(), "rule__ConnectionDefBody__Alternatives");
 			builder.put(grammarAccess.getConnectionDefBodyAccess().getAlternatives_1_1(), "rule__ConnectionDefBody__Alternatives_1_1");
@@ -95,6 +96,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterTypePartAccess().getAlternatives_0_1(), "rule__ParameterTypePart__Alternatives_0_1");
 			builder.put(grammarAccess.getReferenceVariantUsageAccess().getAlternatives(), "rule__ReferenceVariantUsage__Alternatives");
 			builder.put(grammarAccess.getAttributeUsageKeywordAccess().getAlternatives(), "rule__AttributeUsageKeyword__Alternatives");
+			builder.put(grammarAccess.getItemRefUsageAccess().getAlternatives_1(), "rule__ItemRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getPartRefUsageAccess().getAlternatives_1(), "rule__PartRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getIndividualRefUsageAccess().getAlternatives_1(), "rule__IndividualRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getTimeSliceRefUsageAccess().getAlternatives_1(), "rule__TimeSliceRefUsage__Alternatives_1");
@@ -226,7 +228,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getIndividualDefKeywordAccess().getGroup(), "rule__IndividualDefKeyword__Group__0");
 			builder.put(grammarAccess.getIndividualDefinitionAccess().getGroup(), "rule__IndividualDefinition__Group__0");
 			builder.put(grammarAccess.getIndividualDefDeclarationAccess().getGroup(), "rule__IndividualDefDeclaration__Group__0");
-			builder.put(grammarAccess.getPortDefKeywordAccess().getGroup(), "rule__PortDefKeyword__Group__0");
+			builder.put(grammarAccess.getPortDefKeywordAccess().getGroup_0(), "rule__PortDefKeyword__Group_0__0");
+			builder.put(grammarAccess.getPortDefKeywordAccess().getGroup_1(), "rule__PortDefKeyword__Group_1__0");
 			builder.put(grammarAccess.getPortDefinitionAccess().getGroup(), "rule__PortDefinition__Group__0");
 			builder.put(grammarAccess.getPortDefDeclarationAccess().getGroup(), "rule__PortDefDeclaration__Group__0");
 			builder.put(grammarAccess.getConnectionDefKeywordAccess().getGroup_0(), "rule__ConnectionDefKeyword__Group_0__0");
@@ -330,6 +333,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAttributeVariantUsageAccess().getGroup(), "rule__AttributeVariantUsage__Group__0");
 			builder.put(grammarAccess.getItemDeclarationAccess().getGroup(), "rule__ItemDeclaration__Group__0");
 			builder.put(grammarAccess.getItemUsageAccess().getGroup(), "rule__ItemUsage__Group__0");
+			builder.put(grammarAccess.getItemRefUsageAccess().getGroup(), "rule__ItemRefUsage__Group__0");
+			builder.put(grammarAccess.getItemRefUsageAccess().getGroup_1_0(), "rule__ItemRefUsage__Group_1_0__0");
 			builder.put(grammarAccess.getPartDeclarationAccess().getGroup(), "rule__PartDeclaration__Group__0");
 			builder.put(grammarAccess.getPartUsageAccess().getGroup(), "rule__PartUsage__Group__0");
 			builder.put(grammarAccess.getPartRefUsageAccess().getGroup(), "rule__PartRefUsage__Group__0");
@@ -708,6 +713,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getReferenceVariantUsageAccess().getOwnedRelationship_compAssignment_1_1(), "rule__ReferenceVariantUsage__OwnedRelationship_compAssignment_1_1");
 			builder.put(grammarAccess.getAttributeDeclarationAccess().getNameAssignment_2(), "rule__AttributeDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getItemDeclarationAccess().getNameAssignment_2(), "rule__ItemDeclaration__NameAssignment_2");
+			builder.put(grammarAccess.getItemRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ItemRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getPartDeclarationAccess().getNameAssignment_2(), "rule__PartDeclaration__NameAssignment_2");
 			builder.put(grammarAccess.getPartRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__PartRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getIndividualRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__IndividualRefUsage__IsCompositeAssignment_1_1");

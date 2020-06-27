@@ -1347,17 +1347,17 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cReferenceUsageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cAttributeUsageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cItemUsageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cItemRefUsageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cPartRefUsageParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//DirectionalStructureUsageElement SysML::Usage:
 		//	ReferenceUsage
 		//	| AttributeUsage
-		//	| ItemUsage
+		//	| ItemRefUsage
 		//	| PartRefUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ReferenceUsage | AttributeUsage | ItemUsage | PartRefUsage
+		//ReferenceUsage | AttributeUsage | ItemRefUsage | PartRefUsage
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ReferenceUsage
@@ -1366,8 +1366,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeUsage
 		public RuleCall getAttributeUsageParserRuleCall_1() { return cAttributeUsageParserRuleCall_1; }
 		
-		//ItemUsage
-		public RuleCall getItemUsageParserRuleCall_2() { return cItemUsageParserRuleCall_2; }
+		//ItemRefUsage
+		public RuleCall getItemRefUsageParserRuleCall_2() { return cItemRefUsageParserRuleCall_2; }
 		
 		//PartRefUsage
 		public RuleCall getPartRefUsageParserRuleCall_3() { return cPartRefUsageParserRuleCall_3; }
@@ -1517,7 +1517,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cReferenceVariantUsageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cAttributeVariantUsageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cItemUsageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cItemRefUsageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cPartRefUsageParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cPortUsageParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cConnectionUsageParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
@@ -1530,7 +1530,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//VariantUsageElement SysML::Usage:
 		//	ReferenceVariantUsage
 		//	| AttributeVariantUsage
-		//	| ItemUsage
+		//	| ItemRefUsage
 		//	| PartRefUsage
 		//	| PortUsage
 		//	| ConnectionUsage
@@ -1541,7 +1541,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| NondirectionalBehaviorUsageElement;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ReferenceVariantUsage | AttributeVariantUsage | ItemUsage | PartRefUsage | PortUsage | ConnectionUsage | Connector |
+		//ReferenceVariantUsage | AttributeVariantUsage | ItemRefUsage | PartRefUsage | PortUsage | ConnectionUsage | Connector |
 		//InterfaceUsage | IndividualUsageElement | DirectionalBehaviorUsageElement | NondirectionalBehaviorUsageElement
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -1551,8 +1551,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//AttributeVariantUsage
 		public RuleCall getAttributeVariantUsageParserRuleCall_1() { return cAttributeVariantUsageParserRuleCall_1; }
 		
-		//ItemUsage
-		public RuleCall getItemUsageParserRuleCall_2() { return cItemUsageParserRuleCall_2; }
+		//ItemRefUsage
+		public RuleCall getItemRefUsageParserRuleCall_2() { return cItemRefUsageParserRuleCall_2; }
 		
 		//PartRefUsage
 		public RuleCall getPartRefUsageParserRuleCall_3() { return cPartRefUsageParserRuleCall_3; }
@@ -2258,22 +2258,38 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class PortDefKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PortDefKeyword");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cPortKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cDefKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final RuleCall cPortKeywordParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Keyword cDefKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cInterfaceKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cBlockKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		
 		//PortDefKeyword:
-		//	PortKeyword 'def';
+		//	PortKeyword 'def' | 'interface' 'block';
 		@Override public ParserRule getRule() { return rule; }
 		
+		//PortKeyword 'def' | 'interface' 'block'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//PortKeyword 'def'
-		public Group getGroup() { return cGroup; }
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//PortKeyword
-		public RuleCall getPortKeywordParserRuleCall_0() { return cPortKeywordParserRuleCall_0; }
+		public RuleCall getPortKeywordParserRuleCall_0_0() { return cPortKeywordParserRuleCall_0_0; }
 		
 		//'def'
-		public Keyword getDefKeyword_1() { return cDefKeyword_1; }
+		public Keyword getDefKeyword_0_1() { return cDefKeyword_0_1; }
+		
+		//'interface' 'block'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'interface'
+		public Keyword getInterfaceKeyword_1_0() { return cInterfaceKeyword_1_0; }
+		
+		//'block'
+		public Keyword getBlockKeyword_1_1() { return cBlockKeyword_1_1; }
 	}
 	public class PortDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PortDefinition");
@@ -2554,7 +2570,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConnectionEndElement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cReferenceEndUsageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cItemUsageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cItemRefUsageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPartRefUsageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cPortUsageParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cActionRefUsageParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
@@ -2563,7 +2579,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ConnectionEndElement SysML::Feature:
 		//	ReferenceEndUsage
-		//	| ItemUsage
+		//	| ItemRefUsage
 		//	| PartRefUsage
 		//	| PortUsage
 		//	| ActionRefUsage
@@ -2571,14 +2587,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| StateRefUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ReferenceEndUsage | ItemUsage | PartRefUsage | PortUsage | ActionRefUsage | CalculationRefUsage | StateRefUsage
+		//ReferenceEndUsage | ItemRefUsage | PartRefUsage | PortUsage | ActionRefUsage | CalculationRefUsage | StateRefUsage
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//ReferenceEndUsage
 		public RuleCall getReferenceEndUsageParserRuleCall_0() { return cReferenceEndUsageParserRuleCall_0; }
 		
-		//ItemUsage
-		public RuleCall getItemUsageParserRuleCall_1() { return cItemUsageParserRuleCall_1; }
+		//ItemRefUsage
+		public RuleCall getItemRefUsageParserRuleCall_1() { return cItemRefUsageParserRuleCall_1; }
 		
 		//PartRefUsage
 		public RuleCall getPartRefUsageParserRuleCall_2() { return cPartRefUsageParserRuleCall_2; }
@@ -5718,6 +5734,49 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ItemUsageKeyword
 		public RuleCall getItemUsageKeywordParserRuleCall_1() { return cItemUsageKeywordParserRuleCall_1; }
+		
+		//Usage
+		public RuleCall getUsageParserRuleCall_2() { return cUsageParserRuleCall_2; }
+	}
+	public class ItemRefUsageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ItemRefUsage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cUsagePrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cRefKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final RuleCall cItemUsageKeywordParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
+		private final Assignment cIsCompositeAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cIsCompositeItemUsageKeywordParserRuleCall_1_1_0 = (RuleCall)cIsCompositeAssignment_1_1.eContents().get(0);
+		private final RuleCall cUsageParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//ItemRefUsage SysML::ItemUsage:
+		//	UsagePrefix? ('ref' ItemUsageKeyword | isComposite?=ItemUsageKeyword) Usage;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//UsagePrefix? ('ref' ItemUsageKeyword | isComposite?=ItemUsageKeyword) Usage
+		public Group getGroup() { return cGroup; }
+		
+		//UsagePrefix?
+		public RuleCall getUsagePrefixParserRuleCall_0() { return cUsagePrefixParserRuleCall_0; }
+		
+		//('ref' ItemUsageKeyword | isComposite?=ItemUsageKeyword)
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//'ref' ItemUsageKeyword
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//'ref'
+		public Keyword getRefKeyword_1_0_0() { return cRefKeyword_1_0_0; }
+		
+		//ItemUsageKeyword
+		public RuleCall getItemUsageKeywordParserRuleCall_1_0_1() { return cItemUsageKeywordParserRuleCall_1_0_1; }
+		
+		//isComposite?=ItemUsageKeyword
+		public Assignment getIsCompositeAssignment_1_1() { return cIsCompositeAssignment_1_1; }
+		
+		//ItemUsageKeyword
+		public RuleCall getIsCompositeItemUsageKeywordParserRuleCall_1_1_0() { return cIsCompositeItemUsageKeywordParserRuleCall_1_1_0; }
 		
 		//Usage
 		public RuleCall getUsageParserRuleCall_2() { return cUsageParserRuleCall_2; }
@@ -12487,6 +12546,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final ItemUsageKeywordElements pItemUsageKeyword;
 	private final ItemDeclarationElements pItemDeclaration;
 	private final ItemUsageElements pItemUsage;
+	private final ItemRefUsageElements pItemRefUsage;
 	private final PartUsageKeywordElements pPartUsageKeyword;
 	private final PartDeclarationElements pPartDeclaration;
 	private final PartUsageElements pPartUsage;
@@ -12890,6 +12950,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pItemUsageKeyword = new ItemUsageKeywordElements();
 		this.pItemDeclaration = new ItemDeclarationElements();
 		this.pItemUsage = new ItemUsageElements();
+		this.pItemRefUsage = new ItemRefUsageElements();
 		this.pPartUsageKeyword = new PartUsageKeywordElements();
 		this.pPartDeclaration = new PartDeclarationElements();
 		this.pPartUsage = new PartUsageElements();
@@ -13581,7 +13642,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//DirectionalStructureUsageElement SysML::Usage:
 	//	ReferenceUsage
 	//	| AttributeUsage
-	//	| ItemUsage
+	//	| ItemRefUsage
 	//	| PartRefUsage;
 	public DirectionalStructureUsageElementElements getDirectionalStructureUsageElementAccess() {
 		return pDirectionalStructureUsageElement;
@@ -13650,7 +13711,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//VariantUsageElement SysML::Usage:
 	//	ReferenceVariantUsage
 	//	| AttributeVariantUsage
-	//	| ItemUsage
+	//	| ItemRefUsage
 	//	| PartRefUsage
 	//	| PortUsage
 	//	| ConnectionUsage
@@ -13984,7 +14045,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PortDefKeyword:
-	//	PortKeyword 'def';
+	//	PortKeyword 'def' | 'interface' 'block';
 	public PortDefKeywordElements getPortDefKeywordAccess() {
 		return pPortDefKeyword;
 	}
@@ -14102,7 +14163,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ConnectionEndElement SysML::Feature:
 	//	ReferenceEndUsage
-	//	| ItemUsage
+	//	| ItemRefUsage
 	//	| PartRefUsage
 	//	| PortUsage
 	//	| ActionRefUsage
@@ -15202,6 +15263,16 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getItemUsageRule() {
 		return getItemUsageAccess().getRule();
+	}
+	
+	//ItemRefUsage SysML::ItemUsage:
+	//	UsagePrefix? ('ref' ItemUsageKeyword | isComposite?=ItemUsageKeyword) Usage;
+	public ItemRefUsageElements getItemRefUsageAccess() {
+		return pItemRefUsage;
+	}
+	
+	public ParserRule getItemRefUsageRule() {
+		return getItemRefUsageAccess().getRule();
 	}
 	
 	///* PART USAGES */ PartUsageKeyword:

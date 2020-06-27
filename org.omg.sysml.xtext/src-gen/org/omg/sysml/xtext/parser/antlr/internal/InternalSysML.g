@@ -2528,11 +2528,11 @@ ruleDirectionalStructureUsageElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getDirectionalStructureUsageElementAccess().getItemUsageParserRuleCall_2());
+			newCompositeNode(grammarAccess.getDirectionalStructureUsageElementAccess().getItemRefUsageParserRuleCall_2());
 		}
-		this_ItemUsage_2=ruleItemUsage
+		this_ItemRefUsage_2=ruleItemRefUsage
 		{
-			$current = $this_ItemUsage_2.current;
+			$current = $this_ItemRefUsage_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -2834,11 +2834,11 @@ ruleVariantUsageElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getVariantUsageElementAccess().getItemUsageParserRuleCall_2());
+			newCompositeNode(grammarAccess.getVariantUsageElementAccess().getItemRefUsageParserRuleCall_2());
 		}
-		this_ItemUsage_2=ruleItemUsage
+		this_ItemRefUsage_2=ruleItemRefUsage
 		{
-			$current = $this_ItemUsage_2.current;
+			$current = $this_ItemRefUsage_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -4206,21 +4206,36 @@ rulePortDefKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRule
 	leaveRule();
 }:
 	(
-		{
-			newCompositeNode(grammarAccess.getPortDefKeywordAccess().getPortKeywordParserRuleCall_0());
-		}
-		this_PortKeyword_0=rulePortKeyword
-		{
-			$current.merge(this_PortKeyword_0);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
-		kw='def'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getPortDefKeywordAccess().getDefKeyword_1());
-		}
+		(
+			{
+				newCompositeNode(grammarAccess.getPortDefKeywordAccess().getPortKeywordParserRuleCall_0_0());
+			}
+			this_PortKeyword_0=rulePortKeyword
+			{
+				$current.merge(this_PortKeyword_0);
+			}
+			{
+				afterParserOrEnumRuleCall();
+			}
+			kw='def'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getPortDefKeywordAccess().getDefKeyword_0_1());
+			}
+		)
+		    |
+		(
+			kw='interface'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getPortDefKeywordAccess().getInterfaceKeyword_1_0());
+			}
+			kw='block'
+			{
+				$current.merge(kw);
+				newLeafNode(kw, grammarAccess.getPortDefKeywordAccess().getBlockKeyword_1_1());
+			}
+		)
 	)
 ;
 
@@ -4756,11 +4771,11 @@ ruleConnectionEndElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getConnectionEndElementAccess().getItemUsageParserRuleCall_1());
+			newCompositeNode(grammarAccess.getConnectionEndElementAccess().getItemRefUsageParserRuleCall_1());
 		}
-		this_ItemUsage_1=ruleItemUsage
+		this_ItemRefUsage_1=ruleItemRefUsage
 		{
-			$current = $this_ItemUsage_1.current;
+			$current = $this_ItemRefUsage_1.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -10616,6 +10631,84 @@ ruleItemUsage returns [EObject current=null]
 		this_Usage_2=ruleUsage[$current]
 		{
 			$current = $this_Usage_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleItemRefUsage
+entryRuleItemRefUsage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getItemRefUsageRule()); }
+	iv_ruleItemRefUsage=ruleItemRefUsage
+	{ $current=$iv_ruleItemRefUsage.current; }
+	EOF;
+
+// Rule ItemRefUsage
+ruleItemRefUsage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getItemRefUsageRule());
+				}
+				newCompositeNode(grammarAccess.getItemRefUsageAccess().getUsagePrefixParserRuleCall_0());
+			}
+			this_UsagePrefix_0=ruleUsagePrefix[$current]
+			{
+				$current = $this_UsagePrefix_0.current;
+				afterParserOrEnumRuleCall();
+			}
+		)?
+		(
+			(
+				otherlv_1='ref'
+				{
+					newLeafNode(otherlv_1, grammarAccess.getItemRefUsageAccess().getRefKeyword_1_0_0());
+				}
+				{
+					newCompositeNode(grammarAccess.getItemRefUsageAccess().getItemUsageKeywordParserRuleCall_1_0_1());
+				}
+				ruleItemUsageKeyword
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getItemRefUsageAccess().getIsCompositeItemUsageKeywordParserRuleCall_1_1_0());
+					}
+					lv_isComposite_3_0=ruleItemUsageKeyword
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getItemRefUsageRule());
+						}
+						set(
+							$current,
+							"isComposite",
+							true,
+							"org.omg.sysml.xtext.SysML.ItemUsageKeyword");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getItemRefUsageRule());
+			}
+			newCompositeNode(grammarAccess.getItemRefUsageAccess().getUsageParserRuleCall_2());
+		}
+		this_Usage_4=ruleUsage[$current]
+		{
+			$current = $this_Usage_4.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

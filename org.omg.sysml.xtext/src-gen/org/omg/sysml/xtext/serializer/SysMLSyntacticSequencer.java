@@ -446,7 +446,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * PortDefKeyword :
-	 * 	PortKeyword 'def'
+	 * 	PortKeyword 'def' | 'interface' 'block'
 	 * ;
 	 */
 	protected String getPortDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
@@ -1006,6 +1006,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
+	 *     (rule start) 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) DefinedByKeyword 'any' (ambiguity) (rule start)
@@ -1019,6 +1020,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) ReferenceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     (rule start) ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1032,10 +1034,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isComposite?=ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1512,6 +1516,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'ref' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'ref' ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) 'ref' ItemUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'ref' PartUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'ref' RequirementUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -1549,6 +1554,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'ref' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' RequirementUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -1578,6 +1584,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isComposite?=CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isComposite?=ItemUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=PartUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=RequirementUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isComposite?=SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
@@ -1590,6 +1597,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' 'ref' CalculationUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' 'ref' ConstraintUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' 'ref' RequirementUsageKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember

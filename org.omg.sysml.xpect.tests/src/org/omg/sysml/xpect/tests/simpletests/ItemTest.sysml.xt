@@ -39,7 +39,7 @@ package ItemTest {
 	}
 	
 	private part def C {
-		private in ref y: A, B;
+		private in ref item y: A, B;
 	}
 	
 	port def P {

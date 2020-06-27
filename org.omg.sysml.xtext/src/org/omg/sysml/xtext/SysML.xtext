@@ -271,7 +271,7 @@ fragment DefinitionBodyItem returns SysML::Type :
 DirectionalStructureUsageElement returns SysML::Usage :
 	  ReferenceUsage
 	| AttributeUsage
-	| ItemUsage
+	| ItemRefUsage
 	| PartRefUsage
 ;
 
@@ -310,7 +310,7 @@ NondirectionalBehaviorUsageElement returns SysML::Usage :
 VariantUsageElement returns SysML::Usage :
 	  ReferenceVariantUsage
 	| AttributeVariantUsage
-	| ItemUsage
+	| ItemRefUsage
 	| PartRefUsage
 	| PortUsage
 	| ConnectionUsage
@@ -472,7 +472,7 @@ PortKeyword :
 ;
 
 PortDefKeyword :
-	PortKeyword 'def'
+	PortKeyword 'def' | 'interface' 'block'
 ;
 
 PortDefinition returns SysML::PortDefinition :
@@ -530,7 +530,7 @@ fragment ConnectionDefBody returns SysML::Type :
 
 ConnectionEndElement returns SysML::Feature :
 	  ReferenceEndUsage
-	| ItemUsage
+	| ItemRefUsage
 	| PartRefUsage
 	| PortUsage
 	| ActionRefUsage
@@ -1063,6 +1063,10 @@ fragment ItemDeclaration returns SysML::ItemUsage :
 
 ItemUsage returns SysML::ItemUsage :
 	UsagePrefix? ItemUsageKeyword Usage
+;
+
+ItemRefUsage returns SysML::ItemUsage :
+	UsagePrefix? ( 'ref' ItemUsageKeyword | isComposite ?= ItemUsageKeyword ) Usage
 ;
 
 /* PART USAGES */

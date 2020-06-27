@@ -61,9 +61,9 @@ package VariabilityModel {
 
     part c {
         variation part d : D {
-			// XPECT errors --> "A variation must only have variant owned members." at "d1;"
-        	d1;
-        	variant d2;
+			// XPECT errors --> "A variation must only have variant owned members." at "part d1;"
+        	part d1;
+        	variant part d2;
         }
         
         action f {

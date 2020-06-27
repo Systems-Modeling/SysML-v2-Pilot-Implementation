@@ -42,7 +42,7 @@
 'any'=61
 'as'=25
 'assert'=97
-'assoc'=42
+'assoc'=43
 'assume'=132
 'attribute'=32
 'bind'=81
@@ -51,14 +51,14 @@
 'calc'=50
 'comment'=14
 'connect'=77
-'connection'=41
+'connection'=42
 'constraint'=58
 'decide'=92
 'def'=33
 'defined'=63
 'do'=55
 'else'=83
-'end'=43
+'end'=44
 'entry'=54
 'exhibit'=95
 'exit'=56
@@ -75,7 +75,7 @@
 'individual'=39
 'inout'=131
 'instanceof'=108
-'interface'=44
+'interface'=41
 'item'=36
 'join'=93
 'link'=78

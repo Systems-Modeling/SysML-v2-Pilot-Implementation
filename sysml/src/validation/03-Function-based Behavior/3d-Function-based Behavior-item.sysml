@@ -65,14 +65,14 @@ package '3d-Function-based Behavior-item' {
 					item out :>> fuel;
 				}
 				
-				perform action pumpFuel (
+				perform action pumpFuel : PumpFuel (
 					in fuelIn = fuelInPort::fuel,
 					out fuelOut = fuelOutPort::fuel
 				);
 			}
 			
 			stream fuel : Fuel
-				from pump::fuelOutPort::fuel to pump::fuelInPort::fuel;
+				from pump::fuelOutPort::fuel to vehicle::fuelInPort::fuel;
 			
 			part vehicle : Vehicle {
 				port :>> fuelInPort {

@@ -128,6 +128,11 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
+		public String caseSuccession(Succession s) {
+            return " --> ";
+		}
+
+		@Override
 		public String caseConnectionUsage(ConnectionUsage object) {
             return " -[thickness=3]- ";
 		}
@@ -566,30 +571,41 @@ public class SysML2PlantUMLText {
         }
     }
 
+    private boolean outputPRelation(StringBuilder sb, PRelation pr) {
+        if (!(((pr.src == null) || checkId(pr.src))
+              && ((pr.dest == null) || checkId(pr.dest)))) return false;
+        if ((pr.src == null) && (pr.dest == null)) return true;
+        addIdStr(sb, pr.src);
+
+        // addMultiplicityString(sb, pr.src);
+                
+        sb.append(relString(pr.rel));
+
+        addMultiplicityString(sb, pr.rel);
+
+        addIdStr(sb, pr.dest);
+        if (pr.getDescription() != null) {
+            sb.append(" : ");
+            sb.append(pr.getDescription());
+        }
+        sb.append('\n');
+
+        return true;
+    }
+
+    private void outputPRelations(StringBuilder sb, List<PRelation> prs) {
+        for (PRelation pr: prs) {
+            outputPRelation(sb, pr);
+        }
+    }
+
     private void flushPRelations(StringBuilder sb) {
         List<PRelation> rest = new ArrayList<PRelation>();
 
         for (PRelation pr: pRelations) {
-            if (((pr.src == null) || checkId(pr.src))
-                && ((pr.dest == null) || checkId(pr.dest))) {
-                if ((pr.src == null) && (pr.dest == null)) continue;
-                addIdStr(sb, pr.src);
-
-                // addMultiplicityString(sb, pr.src);
-                
-                sb.append(relString(pr.rel));
-
-                addMultiplicityString(sb, pr.rel);
-
-                addIdStr(sb, pr.dest);
-                if (pr.getDescription() != null) {
-                    sb.append(" : ");
-                    sb.append(pr.getDescription());
-                }
-                sb.append('\n');
-                continue;
+            if (!outputPRelation(sb, pr)) {
+                rest.add(pr);
             }
-            rest.add(pr);
         }
         pRelations = rest;
     }
@@ -790,7 +806,7 @@ public class SysML2PlantUMLText {
         return sb.toString();
     }
 
-    private PRelation addSuccession(Succession ss) {
+    private void addSuccession(Succession ss, List<PRelation> initTransitions) {
         Element src = null;
         Element dest = null;
         for (FeatureMembership fm2: ss.getOwnedFeatureMembership()) {
@@ -812,8 +828,12 @@ public class SysML2PlantUMLText {
         if (!(dest instanceof StateUsage)) {
             dest = null;
         }
-        if ((src == null) && (dest == null)) return null;
-        return addPRelation(src, dest, ss);
+        if ((src == null) && (dest == null)) return;
+        if ((src == null) || (dest == null)) {
+            initTransitions.add(new PRelation(src, dest, ss, null));
+        } else {
+            addPRelation(src, dest, ss);
+        }
     }
 
     private void addTransition(StringBuilder sb, TransitionUsage tu) {
@@ -834,6 +854,8 @@ public class SysML2PlantUMLText {
     private void addMembersInState(StringBuilder sb, StateUsage su) {
         StringBuilder sb2 = new StringBuilder();
         List<String> descriptions = null;
+
+        List<PRelation> initTransitions = new ArrayList<PRelation>();
         for (FeatureMembership fm: su.getOwnedFeatureMembership()) {
             Feature f = fm.getMemberFeature();
             if (fm instanceof StateSubactionMembership) {
@@ -854,13 +876,14 @@ public class SysML2PlantUMLText {
                 } else if (f instanceof TransitionUsage) {
                     addTransition(sb2, (TransitionUsage) f);
                 } else if (f instanceof Succession) {
-                    addSuccession((Succession) f);
+                    addSuccession((Succession) f, initTransitions);
                 }
             }
         }
         if (descriptions != null) {
             int size = descriptions.size();
             if (sb2.length() > 0) {
+                outputPRelations(sb2, initTransitions);
                 closeBlock(sb, sb2, "");
                 sb.append("state ");
                 addNameWithId(sb, su);
@@ -877,6 +900,7 @@ public class SysML2PlantUMLText {
                 addNameWithId(sb, su);
             }
         } else {
+            outputPRelations(sb2, initTransitions);
             closeBlock(sb, sb2, "");
         }
     }

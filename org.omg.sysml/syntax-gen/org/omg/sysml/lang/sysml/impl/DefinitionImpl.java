@@ -386,7 +386,11 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
 		EList<VariantMembership> variantMemberships = new EObjectEList<>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP);
-		variantMemberships.addAll(getVariantMembership_comp());
+		super.getOwnedMembership().stream().
+			filter(VariantMembership.class::isInstance).
+			map(VariantMembership.class::cast).
+			forEachOrdered(variantMemberships::add);
+			variantMemberships.addAll(getVariantMembership_comp());
 		return variantMemberships;
 	}
 
@@ -407,17 +411,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	public boolean isAbstract() {
 		return isVariation() || super.isAbstract();
 	}
-
-	// Additional subsets
-	
-	@Override
-	public EList<Membership> getOwnedMembership() {
-		EList<Membership> ownedMemberships = super.getOwnedMembership();
-		ownedMemberships.addAll(getVariantMembership());
-		return ownedMemberships;
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

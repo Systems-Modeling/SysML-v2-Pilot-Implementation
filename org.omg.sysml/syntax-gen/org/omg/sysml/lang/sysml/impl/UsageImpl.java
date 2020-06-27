@@ -348,12 +348,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Definition getOwningVariationDefinition() {
-		Definition owningVariationDefinition = basicGetOwningVariationDefinition();
-		return owningVariationDefinition != null && owningVariationDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)owningVariationDefinition) : owningVariationDefinition;
+		Definition owningDefinition = getOwningDefinition();
+		return owningDefinition != null && owningDefinition.isVariation()? owningDefinition: null;
 	}
 
 	/**
@@ -393,8 +393,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	public Usage basicGetOwningVariationUsage() {
-		VariantMembership variantMembership = getOwningVariantMembership();
-		return variantMembership == null? null: variantMembership.getOwningVariationUsage();
+		Usage owningUsage = getOwningUsage();
+		return owningUsage != null && owningUsage.isVariation()? owningUsage: null;
 	}
 
 	/**
@@ -618,6 +618,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
 		EList<VariantMembership> variantMemberships = new EObjectEList<>(VariantMembership.class, this, SysMLPackage.USAGE__VARIANT_MEMBERSHIP);
+		super.getOwnedMembership().stream().
+			filter(VariantMembership.class::isInstance).
+			map(VariantMembership.class::cast).
+			forEachOrdered(variantMemberships::add);
 		variantMemberships.addAll(getVariantMembership_comp());
 		return variantMemberships;
 	}
@@ -635,20 +639,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return variantMembership_comp;
 	}
 
-	// Additional subsets and overrides
-	
-	@Override
-	public EList<Membership> getOwnedMembership() {
-		EList<Membership> ownedMemberships = super.getOwnedMembership();
-		ownedMemberships.addAll(getVariantMembership());
-		return ownedMemberships;
-	}
+	// Additional overrides
 	
 	@Override
 	public boolean isAbstract() {
 		return isVariation() || super.isAbstract();
 	}
 
+	@Override
 	protected Feature getNamingFeature() {
 		if (getOwningVariantMembership() != null) {
 			Feature subsettedFeature = getFirstSubsettedFeature().orElse(null);

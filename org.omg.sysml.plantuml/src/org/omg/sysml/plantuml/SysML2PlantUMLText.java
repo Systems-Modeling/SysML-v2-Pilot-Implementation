@@ -36,10 +36,10 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartProperty;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
@@ -127,7 +128,7 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
-		public String caseConnector(Connector object) {
+		public String caseConnectionUsage(ConnectionUsage object) {
             return " -[thickness=3]- ";
 		}
 
@@ -156,13 +157,13 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
-		public String caseItemUsage(ItemUsage object) {
-            return isComposite()? " *-- ": " o-- ";
+		public String caseItemUsage(ItemUsage itemUsage) {
+            return itemUsage.isComposite() ? " *-- ": " o-- ";
 		}
 
 		@Override
-		public String casePartUsage(PartUsage object) {
-            return isComposite()? " *-- ": " o-- ";
+		public String casePartUsage(PartUsage partUsage) {
+            return partUsage.isComposite() ? " *-- ": " o-- ";
 		}
 
 		@Override
@@ -1101,7 +1102,7 @@ public class SysML2PlantUMLText {
         if (diagramMode == MODE.Interconnection) {
             if (parent instanceof Step) return; // TODO
         } else if ((parent != null) && !skipStructure()) {
-            if (typ instanceof PartProperty) {
+            if (typ instanceof PartUsage) {
                 sb = newText();
                 addPRelation(parent, typ, typ);
             } else if (typ instanceof ReferenceUsage) {

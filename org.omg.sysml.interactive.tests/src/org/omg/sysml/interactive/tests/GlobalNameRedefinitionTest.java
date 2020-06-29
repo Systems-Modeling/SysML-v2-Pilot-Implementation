@@ -30,4 +30,29 @@ public class GlobalNameRedefinitionTest {
 		assertNotEquals(id1, id2);
 		assertEquals(id2, resolvedIdentifier);
 	}
+	
+	@Test
+	public void testRedefinitionShadowingMultidigitFiles() throws Exception {
+		SysMLInteractive instance = SysMLInteractive.createInstance();
+		instance.loadLibrary(System.getProperty(SYSML_LIBRARY_PATH_KEY));
+		
+		// This is used to ensure later requests will get identifiers 9 and 10
+		for (int i=1; i<9; i++) {
+			instance.eval("x = 1;");
+		}
+		
+		SysMLInteractiveResult result1 = instance.eval("y = 1;");
+		System.out.println(result1);
+		String id1 = result1.getRootElement().getOwnedElement().get(0).getIdentifier();
+		
+		SysMLInteractiveResult result2 = instance.eval("y = 2;");
+		System.out.println(result2);
+		String id2 = result2.getRootElement().getOwnedElement().get(0).getIdentifier();
+		
+		System.out.println(instance.show("y"));
+		String resolvedIdentifier = instance.resolve("y").getIdentifier();
+		
+		assertNotEquals(id1, id2);
+		assertEquals(id2, resolvedIdentifier);
+	}
 }

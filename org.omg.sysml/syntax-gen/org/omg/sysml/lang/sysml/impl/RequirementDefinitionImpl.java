@@ -164,10 +164,13 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText() {
+		if (text == null) {
+			setText(getDocumentationText());
+		}
 		return text;
 	}
 	

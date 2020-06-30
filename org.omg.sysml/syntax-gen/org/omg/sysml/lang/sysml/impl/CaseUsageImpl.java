@@ -31,6 +31,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
+
+	public static final String CASE_SUBSETTING_BASE_DEFAULT = "Cases::cases";
+	public static final String CASE_SUBSETTING_SUBCASE_DEFAULT = "Cases::Case::subcases";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,6 +201,13 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
   		return false;
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					CASE_SUBSETTING_SUBCASE_DEFAULT:
+					CASE_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

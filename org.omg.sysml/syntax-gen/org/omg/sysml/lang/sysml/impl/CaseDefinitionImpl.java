@@ -28,6 +28,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class CaseDefinitionImpl extends CalculationDefinitionImpl implements CaseDefinition {
+
+	public static final String CASE_DEFINITION_SUPERCLASS_DEFAULT = "Cases::Case";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,6 +116,11 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return CASE_DEFINITION_SUPERCLASS_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

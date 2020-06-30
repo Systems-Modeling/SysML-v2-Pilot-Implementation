@@ -5,6 +5,7 @@
 package Analyses {
 	private import Performances::Evaluation;
 	private import Performances::evaluations;
+	private import Calculations::Calculation;
 	private import Cases::Case;
 	private import Cases::cases;
 	
@@ -14,8 +15,16 @@ package Analyses {
 	 * 
 	 * The result of this AnalysisCase is bound to the result of the resultEvaluation.
 	 */
-	calc def AnalysisCase :> Case (subject[1]) result[0..*] {
+	abstract analysis case def AnalysisCase :> Case () result[0..*] {
+		ref analysis case :>> self : AnalysisCase;		
 		
+		subj :>> subject;
+
+		/**
+		 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.
+		 */
+		abstract ref analysis case subanalysisCases : Case[0..*] :> analysisCases, subcases;
+	
 		/**
 		 * The subactions of this AnalysisCase that are AnalysisActions.
 		 */
@@ -30,12 +39,18 @@ package Analyses {
 	}
 	
 	/**
+	 * analysisCases is the base feature of all AnalysisCaseUsages.
+	 */
+	abstract analysis case analysisCases : AnalysisCase[0..*] :> cases;
+	
+	/**
 	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.
 	 */
 	action def AnalysisAction;
 	
 	/**
-	 * analysisCases is the base feature of all AnalysisCaseUsages.
+	 * An AnalysisCalculation is a specialized kind of Calculation inteded to be used in a step of an AnalysisCase.
 	 */
-	calc analysisCases : AnalysisCase[0..*] :> cases;
+	calc def AnalysisCalculation :> Calculation, AnalysisAction;
+	
 }

@@ -95,7 +95,7 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private SysMLInteractive() {
-		super(new InverseOrderedResourceSetImpl());
+		super(new StrictShadowingResourceDescriptionData(new ArrayList<>()));
 	}
 	
 	public void loadLibrary(String path) {

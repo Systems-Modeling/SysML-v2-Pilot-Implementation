@@ -27,21 +27,14 @@ package org.omg.sysml.util;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
@@ -59,59 +52,24 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  */
 public abstract class SysMLUtil {
-	
+
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
 	protected final ResourceDescriptionsData index;
 	
-	protected SysMLUtil(ResourceSet resourceSet) {
-		@SuppressWarnings("unused")
-		SysMLPackage sysml = SysMLPackage.eINSTANCE;
-		this.resourceSet = resourceSet;
-		
-		this.index = Optional.ofNullable(ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet))
-				.orElseGet(() -> {
-					ResourceDescriptionsData newIndex = new ResourceDescriptionsData(new ArrayList<IResourceDescription>()) {
-						
-						// This override ensures elements registered at a later point have priority
-						@SuppressWarnings("unchecked")
-						protected void registerDescription(IResourceDescription description, Map<QualifiedName, Object> target) {
-							for(IEObjectDescription object: description.getExportedObjects()) {
-								QualifiedName lowerCase = object.getName().toLowerCase();
-								Object existing = target.put(lowerCase, description);
-								if (existing != null && existing != description) {
-									Set<IResourceDescription> set = null;
-									if (existing instanceof IResourceDescription) {
-										// Insert an ordered set into the inverse mapping to ensure lookup uses the appropriate shadowing order
-										Comparator<IResourceDescription> comparator = new Comparator<IResourceDescription>() {
-
-											@Override
-											public int compare(IResourceDescription o1, IResourceDescription o2) {
-												// TODO find a better algorithm to compare the resource descriptions as
-												// this breaks when the number of digits change in the URIs (e.g.,
-												// comparing 9.sysml to 10.sysml produces an unexpected result here)
-												return o2.getURI().toString().compareTo(o1.getURI().toString());
-											}
-										};
-										set = new TreeSet<IResourceDescription>(comparator);
-										set.add((IResourceDescription)existing);
-									} else {
-										set = (Set<IResourceDescription>) existing;
-									}
-									set.add(description);
-									target.put(lowerCase, set);
-								}
-							}
-						}
-					};
-					ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, newIndex);
-					return newIndex;					
-				});
+	protected SysMLUtil() {
+		this(new ResourceDescriptionsData(new ArrayList<>()));
 	}
 	
-	protected SysMLUtil() {
-		this(new ResourceSetImpl());
+	protected SysMLUtil(ResourceDescriptionsData resourceDescriptionData) {
+		@SuppressWarnings("unused")
+		SysMLPackage sysml = SysMLPackage.eINSTANCE;
+		this.resourceSet = new ResourceSetImpl();
+		
+
+		index = resourceDescriptionData;
+		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, index);
 	}
 	
 	/**

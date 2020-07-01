@@ -24,6 +24,7 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -407,10 +408,20 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		return variantMembership_comp;
 	}
 	
+	// Additional Overrides
+	
 	@Override
 	public boolean isAbstract() {
 		return isVariation() || super.isAbstract();
 	}
+	
+	// Utility methods
+	
+	public Parameter getSubjectParameter() {
+		return null;
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

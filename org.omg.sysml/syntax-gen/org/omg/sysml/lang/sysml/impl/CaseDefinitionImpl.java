@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -11,7 +13,9 @@ import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,9 +71,9 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public Parameter basicGetSubjectParameter() {
-		return (Parameter)getFeatureMembership().stream().
-				filter(SubjectMembership.class::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
+		return getOwnedParameters().stream().
+				map(ParameterImpl.class::cast).
+				filter(ParameterImpl::isSubjectParameter).
 				findFirst().orElse(null);
 	}
 
@@ -120,6 +124,31 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	protected String getDefaultSupertype() {
 		return CASE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
+	
+	// Additional overrides
+	
+	@Override
+	public List<Parameter> getOwnedParameters() {
+		addSubjectParameterTo(this);
+		return super.getOwnedParameters();
+	}
+	
+	public static void addSubjectParameterTo(Type type) {
+		if (!type.getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
+			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+			membership.setOwnedSubjectParameter_comp(parameter);
+			type.getOwnedFeatureMembership_comp().add(membership);
+		}
+	}
+	
+	@Override
+	public void transform() {
+		addSubjectParameterTo(this);
+		super.transform();
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

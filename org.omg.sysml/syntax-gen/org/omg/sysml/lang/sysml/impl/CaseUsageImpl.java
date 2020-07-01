@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -12,7 +14,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -104,9 +105,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public Parameter basicGetSubjectParameter() {
-		return (Parameter)getFeatureMembership().stream().
-				filter(SubjectMembership.class::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
+		return getOwnedParameters().stream().
+				map(ParameterImpl.class::cast).
+				filter(ParameterImpl::isSubjectParameter).
 				findFirst().orElse(null);
 	}
 
@@ -207,6 +208,22 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 					CASE_SUBSETTING_SUBCASE_DEFAULT:
 					CASE_SUBSETTING_BASE_DEFAULT;
 	}
+	
+	// Additional overrides
+	
+	@Override
+	public List<Parameter> getOwnedParameters() {
+		CaseDefinitionImpl.addSubjectParameterTo(this);
+		return super.getOwnedParameters();
+	}
+	
+	@Override
+	public void transform() {
+		CaseDefinitionImpl.addSubjectParameterTo(this);
+		super.transform();
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

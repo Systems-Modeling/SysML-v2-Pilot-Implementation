@@ -1,0 +1,52 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Cases.sysml"}
+		File {from ="/library.systems/Analyses.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Cases.sysml"}
+				File {from ="/library.systems/Analyses.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+package pkg {
+	case def C1;
+	analysis case def AC1;
+	part def B {
+	 	case c1: C1;
+    	analysis case ac1: AC1;
+   	}
+}

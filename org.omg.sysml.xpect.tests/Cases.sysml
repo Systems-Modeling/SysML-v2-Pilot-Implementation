@@ -12,8 +12,13 @@ package Cases {
 	 * 
 	 * It's parameter is the subject that was investigated by this Case.
 	 */
-	abstract case def Case :> Calculation (subject[1]) result[0..*] {
+	abstract case def Case :> Calculation () result[0..*] {
 		ref case :>> self : Case;
+		
+		/**
+		 * The subject that was investigated by this Case.
+		 */
+		subj subject[1];
 		
 		/**
 		 * A check of whether the objective RequirementUsage was satisfied for this Case.

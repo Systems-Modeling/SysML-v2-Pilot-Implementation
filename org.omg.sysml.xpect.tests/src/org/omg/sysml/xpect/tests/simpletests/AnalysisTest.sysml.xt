@@ -14,8 +14,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Cases.sysml"}
+		File {from ="/library.systems/Analyses.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -33,37 +37,47 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 		 		File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Cases.sysml"}
+				File {from ="/library.systems/Analyses.sysml"}
 			}
 		}
 	}
 END_SETUP
 */
 // XPECT noErrors ---> ""
-package CalculationExample {
-	part vehicle {
-		attribute m: ScalarValues::Real;
-		
-		part eng {
-			attribute m: ScalarValues::Real;
-		}
-		
-		part trans {
-			attribute m: ScalarValues::Real;
-		}
+package AnalysisTest {
+
+	part def V { 
+		attribute m;
 	}
 	
-	calc def MassSum (
-		partMasses: ScalarValues::Real[0..*] )
-		totalMass: ScalarValues::Real 
-	{
-		ScalarFunctions::sum(partMasses)
+	part vv : V;
+	
+	requirement def AnalysisObjective {
+		/* ... */
+	}
+
+	analysis case def AnalysisCase(v : V) {
+		obj objective : AnalysisObjective;
+		
+		v::m
 	}
 	
-	calc ms: MassSum (
-		totalMass = vehicle::m)
-		partMasses = {vehicle::eng::m, vehicle::trans::m};
+	analysis case def AnalysisPlan(v : V) {		
+		obj {
+			/* ... */
+		}
 		
-	calc c;
+		analysis case analysisCase : AnalysisCase () return m;
+	}
+	
+	part analysisContext {
+		analysis case analysisPlan : AnalysisPlan (
+			v = vv
+		);
+	}
 }

@@ -66,8 +66,8 @@ public abstract class SysMLUtil {
 		@SuppressWarnings("unused")
 		SysMLPackage sysml = SysMLPackage.eINSTANCE;
 		this.resourceSet = new ResourceSetImpl();
-		index = resourceDescriptionData;
-		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, index);
+		this.index = resourceDescriptionData;
+		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(this.resourceSet, this.index);
 	}
 	
 	/**

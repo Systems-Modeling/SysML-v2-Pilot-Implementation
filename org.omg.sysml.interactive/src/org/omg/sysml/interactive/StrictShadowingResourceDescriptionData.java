@@ -23,17 +23,26 @@
  *****************************************************************************/
 package org.omg.sysml.interactive;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
+
 /**
  * A specialized Xtext index implementation for interactive parsing environment
  * that supports overriding previously indexed elements by overwriting previous
- * entries with new ones.
+ * entries with new ones. It also allows indexed element naming to be case
+ * sensitive.
  * </p>
  * <b>NOTE</b> Reparsing an earlier file might change the built model, as it is
  * possible that a name at a later point refers to a different model element.
@@ -45,8 +54,18 @@ import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
  * objects in the model, as only the later one will be kept.
  */
 public class StrictShadowingResourceDescriptionData extends ResourceDescriptionsData {
-	StrictShadowingResourceDescriptionData(Iterable<IResourceDescription> descriptions) {
-		super(descriptions);
+	
+	protected final Map<URI, IResourceDescription> resourceDescriptionMap;
+	protected final Map<QualifiedName, Object> lookupMap;
+	
+	public StrictShadowingResourceDescriptionData() {
+		this(new LinkedHashMap<>(), new LinkedHashMap<>());
+	}
+
+	protected StrictShadowingResourceDescriptionData(Map<URI, IResourceDescription> resourceDescriptionMap, Map<QualifiedName, Object> lookupMap) {
+		super(resourceDescriptionMap, lookupMap);
+		this.resourceDescriptionMap = resourceDescriptionMap;
+		this.lookupMap = lookupMap;
 	}
 
 	/**
@@ -55,8 +74,52 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 	@Override
 	protected void registerDescription(IResourceDescription description, Map<QualifiedName, Object> target) {
 		for(IEObjectDescription object: description.getExportedObjects()) {
-			QualifiedName lowerCase = object.getName().toLowerCase();
-			target.put(lowerCase, description);
+			target.put(object.getName(), description);
 		}
 	}
+	
+	
+    public void removeDescription(URI uri) {
+		IResourceDescription oldDescription = resourceDescriptionMap.remove(uri);
+		if (oldDescription != null) {
+			for(IEObjectDescription object: oldDescription.getExportedObjects()) {
+				QualifiedName objectName = object.getName(); // Removed "toLowerCase()"
+				Object existing = lookupMap.get(objectName);
+				if (existing == oldDescription) {
+					lookupMap.remove(objectName);
+				} else if (existing instanceof Set<?>) {
+					Set<?> casted = (Set<?>) existing;
+					if (casted.remove(oldDescription)) {
+						if (casted.size() == 1) {
+							lookupMap.put(objectName, casted.iterator().next());
+						} else if (casted.isEmpty()) {
+							lookupMap.remove(objectName);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public Iterable<IEObjectDescription> getExportedObjects(final EClass type, final QualifiedName qualifiedName, final boolean ignoreCase) {
+		Object existing = lookupMap.get(qualifiedName); // Removed "toLowerCase()"
+		if (existing instanceof IResourceDescription) {
+			return ((IResourceDescription) existing).getExportedObjects(type, qualifiedName, ignoreCase);
+		} else if (existing instanceof Set<?>) {
+			@SuppressWarnings("unchecked")
+			Set<IResourceDescription> casted = (Set<IResourceDescription>) existing;
+			return Iterables.concat(Iterables.transform(casted, new Function<IResourceDescription, Iterable<IEObjectDescription>>() {
+				@Override
+				public Iterable<IEObjectDescription> apply(IResourceDescription from) {
+					if (from != null) {
+						return from.getExportedObjects(type, qualifiedName, ignoreCase);
+					}
+					return Collections.emptyList();
+				}
+			}));
+		}
+		return Collections.emptyList();
+	}
+	
 }

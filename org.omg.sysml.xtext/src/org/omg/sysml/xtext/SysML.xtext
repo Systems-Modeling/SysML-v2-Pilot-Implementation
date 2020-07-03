@@ -955,7 +955,13 @@ CaseDefinition returns SysML::CaseDefinition :
 
 fragment CaseDefDeclaration returns SysML::CaseDefinition :
 	DefinitionPrefix? CaseDefKeyword name = Name 
-	SuperclassingList? ParameterList? ReturnParameterPart 
+	SuperclassingList? SubjectParameterList ReturnParameterPart 
+;
+
+fragment SubjectParameterList returns SysML::Type :
+	  ownedFeatureMembership_comp += EmptySubjectParameterMember
+	| '(' ownedFeatureMembership_comp += EmptySubjectParameterMember ')'
+	| '(' ownedFeatureMembership_comp += SubjectParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
 ;
 
 fragment CaseDefBody returns SysML::Type :
@@ -967,14 +973,14 @@ fragment CaseDefBody returns SysML::Type :
 
 fragment CaseDefBodyItem returns SysML::Type :
 	  CalculationDefBodyItem
-	| ownedFeatureMembership_comp += SubjectParameterMember 
+//	| ownedFeatureMembership_comp += SubjectParameterMember 
 	| ownedFeatureMembership_comp += ObjectiveMember
 	
 ;
 
-SubjectParameter returns SysML::Parameter :
-	{SysML::Parameter} UsageDeclaration? ValuePart?
-;
+//SubjectParameter returns SysML::Parameter :
+//	{SysML::Parameter} UsageDeclaration? ValuePart?
+//;
 
 ObjectiveRequirementUsage returns SysML::RequirementUsage :
 	RequirementUsageDeclaration RequirementDefBody
@@ -982,8 +988,20 @@ ObjectiveRequirementUsage returns SysML::RequirementUsage :
 
 /* CASE DEFINITION MEMBERSHIPS */
 
+//SubjectParameterMember returns SysML::SubjectMembership :
+//	DefinitionMemberPrefix 'subj' ownedSubjectParameter_comp = SubjectParameter ';'
+//;
+
+EmptySubjectParameterMember returns SysML::SubjectMembership :
+	ownedSubjectParameter_comp = EmptyParameter
+;
+
 SubjectParameterMember returns SysML::SubjectMembership :
-	DefinitionMemberPrefix 'subj' ownedSubjectParameter_comp = SubjectParameter ';'
+	( direction = InDirection )? memberName = Name ownedSubjectParameter_comp = Parameter
+;
+
+InDirection returns SysML::FeatureDirectionKind :
+	'in'
 ;
 
 ObjectiveMember returns SysML::ObjectiveMembership :
@@ -1002,7 +1020,7 @@ AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
 
 fragment AnalysisCaseDefDeclaration returns SysML::AnalysisCaseDefinition :
 	DefinitionPrefix? AnalysisCaseDefKeyword name = Name 
-	SuperclassingList? ParameterList? ReturnParameterPart 
+	SuperclassingList? SubjectParameterList ReturnParameterPart 
 ;
 
 /* USAGES */

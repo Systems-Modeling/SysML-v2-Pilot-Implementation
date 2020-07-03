@@ -84,6 +84,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementDefBodyAccess().getAlternatives(), "rule__RequirementDefBody__Alternatives");
 			builder.put(grammarAccess.getRequirementDefBodyItemAccess().getAlternatives(), "rule__RequirementDefBodyItem__Alternatives");
 			builder.put(grammarAccess.getRequirementConstraintUsageAccess().getAlternatives_0(), "rule__RequirementConstraintUsage__Alternatives_0");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getAlternatives(), "rule__SubjectParameterList__Alternatives");
 			builder.put(grammarAccess.getCaseDefBodyAccess().getAlternatives(), "rule__CaseDefBody__Alternatives");
 			builder.put(grammarAccess.getCaseDefBodyItemAccess().getAlternatives(), "rule__CaseDefBodyItem__Alternatives");
 			builder.put(grammarAccess.getUsagePrefixAccess().getAlternatives(), "rule__UsagePrefix__Alternatives");
@@ -315,8 +316,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCaseDefKeywordAccess().getGroup(), "rule__CaseDefKeyword__Group__0");
 			builder.put(grammarAccess.getCaseDefinitionAccess().getGroup(), "rule__CaseDefinition__Group__0");
 			builder.put(grammarAccess.getCaseDefDeclarationAccess().getGroup(), "rule__CaseDefDeclaration__Group__0");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getGroup_1(), "rule__SubjectParameterList__Group_1__0");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getGroup_2(), "rule__SubjectParameterList__Group_2__0");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getGroup_2_2(), "rule__SubjectParameterList__Group_2_2__0");
 			builder.put(grammarAccess.getCaseDefBodyAccess().getGroup_1(), "rule__CaseDefBody__Group_1__0");
-			builder.put(grammarAccess.getSubjectParameterAccess().getGroup(), "rule__SubjectParameter__Group__0");
 			builder.put(grammarAccess.getObjectiveRequirementUsageAccess().getGroup(), "rule__ObjectiveRequirementUsage__Group__0");
 			builder.put(grammarAccess.getSubjectParameterMemberAccess().getGroup(), "rule__SubjectParameterMember__Group__0");
 			builder.put(grammarAccess.getObjectiveMemberAccess().getGroup(), "rule__ObjectiveMember__Group__0");
@@ -716,9 +719,15 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementConstraintMemberAccess().getKindAssignment_1(), "rule__RequirementConstraintMember__KindAssignment_1");
 			builder.put(grammarAccess.getRequirementConstraintMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__RequirementConstraintMember__OwnedMemberFeature_compAssignment_2");
 			builder.put(grammarAccess.getCaseDefDeclarationAccess().getNameAssignment_2(), "rule__CaseDefDeclaration__NameAssignment_2");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__SubjectParameterList__OwnedFeatureMembership_compAssignment_0");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__SubjectParameterList__OwnedFeatureMembership_compAssignment_1_1");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getOwnedFeatureMembership_compAssignment_2_1(), "rule__SubjectParameterList__OwnedFeatureMembership_compAssignment_2_1");
+			builder.put(grammarAccess.getSubjectParameterListAccess().getOwnedFeatureMembership_compAssignment_2_2_1(), "rule__SubjectParameterList__OwnedFeatureMembership_compAssignment_2_2_1");
 			builder.put(grammarAccess.getCaseDefBodyAccess().getOwnedFeatureMembership_compAssignment_1_2(), "rule__CaseDefBody__OwnedFeatureMembership_compAssignment_1_2");
 			builder.put(grammarAccess.getCaseDefBodyItemAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__CaseDefBodyItem__OwnedFeatureMembership_compAssignment_1");
-			builder.put(grammarAccess.getCaseDefBodyItemAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__CaseDefBodyItem__OwnedFeatureMembership_compAssignment_2");
+			builder.put(grammarAccess.getEmptySubjectParameterMemberAccess().getOwnedSubjectParameter_compAssignment(), "rule__EmptySubjectParameterMember__OwnedSubjectParameter_compAssignment");
+			builder.put(grammarAccess.getSubjectParameterMemberAccess().getDirectionAssignment_0(), "rule__SubjectParameterMember__DirectionAssignment_0");
+			builder.put(grammarAccess.getSubjectParameterMemberAccess().getMemberNameAssignment_1(), "rule__SubjectParameterMember__MemberNameAssignment_1");
 			builder.put(grammarAccess.getSubjectParameterMemberAccess().getOwnedSubjectParameter_compAssignment_2(), "rule__SubjectParameterMember__OwnedSubjectParameter_compAssignment_2");
 			builder.put(grammarAccess.getObjectiveMemberAccess().getOwnedObjectiveRequirement_compAssignment_2(), "rule__ObjectiveMember__OwnedObjectiveRequirement_compAssignment_2");
 			builder.put(grammarAccess.getAnalysisCaseDefDeclarationAccess().getNameAssignment_2(), "rule__AnalysisCaseDefDeclaration__NameAssignment_2");

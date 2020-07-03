@@ -44,7 +44,7 @@
 'as'=25
 'assert'=101
 'assoc'=43
-'assume'=136
+'assume'=135
 'attribute'=32
 'bind'=85
 'block'=38
@@ -71,11 +71,11 @@
 'from'=91
 'hastype'=113
 'id'=60
-'if'=138
+'if'=137
 'import'=16
-'in'=133
+'in'=62
 'individual'=39
-'inout'=135
+'inout'=134
 'instanceof'=112
 'interface'=41
 'item'=36
@@ -87,7 +87,7 @@
 'obj'=63
 'of'=90
 'ordered'=69
-'out'=134
+'out'=133
 'package'=21
 'part'=37
 'perform'=92
@@ -97,7 +97,7 @@
 'public'=130
 'redefines'=76
 'ref'=77
-'require'=137
+'require'=136
 'requirement'=59
 'return'=52
 'satisfy'=102
@@ -106,7 +106,6 @@
 'specializes'=31
 'state'=53
 'stream'=88
-'subj'=62
 'subsets'=74
 'succession'=86
 'then'=57
@@ -171,7 +170,6 @@ T__134=134
 T__135=135
 T__136=136
 T__137=137
-T__138=138
 T__14=14
 T__15=15
 T__16=16

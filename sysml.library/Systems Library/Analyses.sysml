@@ -15,11 +15,9 @@ package Analyses {
 	 * 
 	 * The result of this AnalysisCase is bound to the result of the resultEvaluation.
 	 */
-	abstract analysis case def AnalysisCase :> Case () result[0..*] {
+	abstract analysis case def AnalysisCase :> Case (subject[1]) result[0..*] {
 		ref analysis case :>> self : AnalysisCase;		
 		
-		subj :>> subject;
-
 		/**
 		 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.
 		 */

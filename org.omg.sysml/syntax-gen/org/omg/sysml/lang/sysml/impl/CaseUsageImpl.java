@@ -14,6 +14,8 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -213,13 +215,21 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	
 	@Override
 	public List<Parameter> getOwnedParameters() {
-		CaseDefinitionImpl.addSubjectParameterTo(this);
+		addSubjectParameter();
 		return super.getOwnedParameters();
 	}
 	
+	public void addSubjectParameter() {
+		if (!getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
+			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+			membership.setOwnedSubjectParameter_comp(parameter);
+			getOwnedFeatureMembership_comp().add(membership);
+		}
+	}
 	@Override
 	public void transform() {
-		CaseDefinitionImpl.addSubjectParameterTo(this);
+		addSubjectParameter();
 		super.transform();
 	}
 	

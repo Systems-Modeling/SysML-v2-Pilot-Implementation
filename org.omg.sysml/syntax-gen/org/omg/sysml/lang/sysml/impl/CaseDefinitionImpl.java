@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -12,10 +10,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -127,26 +122,26 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	
 	// Additional overrides
 	
-	@Override
-	public List<Parameter> getOwnedParameters() {
-		addSubjectParameterTo(this);
-		return super.getOwnedParameters();
-	}
-	
-	public static void addSubjectParameterTo(Type type) {
-		if (!type.getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
-			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
-			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-			membership.setOwnedSubjectParameter_comp(parameter);
-			type.getOwnedFeatureMembership_comp().add(membership);
-		}
-	}
-	
-	@Override
-	public void transform() {
-		addSubjectParameterTo(this);
-		super.transform();
-	}
+//	@Override
+//	public List<Parameter> getOwnedParameters() {
+//		addSubjectParameterTo(this);
+//		return super.getOwnedParameters();
+//	}
+//	
+//	public static void addSubjectParameterTo(Type type) {
+//		if (!type.getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
+//			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+//			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+//			membership.setOwnedSubjectParameter_comp(parameter);
+//			type.getOwnedFeatureMembership_comp().add(membership);
+//		}
+//	}
+//	
+//	@Override
+//	public void transform() {
+//		addSubjectParameterTo(this);
+//		super.transform();
+//	}
 	
 	//
 	

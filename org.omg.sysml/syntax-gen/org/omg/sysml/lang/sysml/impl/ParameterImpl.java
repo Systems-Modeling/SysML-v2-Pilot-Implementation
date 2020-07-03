@@ -23,6 +23,8 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -77,22 +79,33 @@ public class ParameterImpl extends FeatureImpl implements Parameter {
 	/**
 	 * Return the relevant subject parameter to which this parameter should be bound.
 	 */
-	protected Parameter getRelevantSubjectParameter() {
-		return isUsageSubjectParameter()? getSubjectParameterOf(((Feature)getOwningType()).getOwningType()): null;
-	}
-	
-	protected boolean isUsageSubjectParameter() {
+	public Parameter getRelevantSubjectParameter() {
 		Type owningType = getOwningType();
-		if (owningType.isAbstract()) {
-			return false;
-		} else if (owningType instanceof ConstraintUsage && ((ConstraintUsageImpl)owningType).isRequirement()) {
-			// This parameter is itself effectively the subject parameter of a requirement if it is the first parameter
-			// of a ConstraintUsage that is effectively a requirement usage (i.e., is typed by a RequirementDefinition).
-			List<Parameter> parameters = ((TypeImpl)owningType).getOwnedParameters();
-			return !parameters.isEmpty() && parameters.get(0) == this;
-		} else {
-			return owningType instanceof Feature && isSubjectParameter();
+		
+		if (!owningType.isAbstract()) {
+			if (owningType instanceof ConstraintUsage && ((ConstraintUsageImpl)owningType).isRequirement()) {
+				// This parameter is itself effectively the subject parameter of a requirement if it is the first parameter
+				// of a ConstraintUsage that is effectively a requirement usage (i.e., is typed by a RequirementDefinition).
+				List<Parameter> parameters = ((TypeImpl)owningType).getOwnedParameters();
+				if (!parameters.isEmpty() && parameters.get(0) == this) {
+					owningType = ((Feature)owningType).getOwningType();
+					if (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage) {
+						// The subject parameter to be bound to this parameter is the first parameter of the
+						// RequirementDefinition or RequirementUsage.
+						parameters = ((TypeImpl)owningType).getOwnedParameters();
+						if (!parameters.isEmpty()) {
+							return parameters.get(0);
+						}
+					}
+				}
+			} else if (owningType instanceof CaseUsage && isSubjectParameter()) {
+				owningType = ((Feature)owningType).getOwningType();
+				if (owningType instanceof CaseDefinition || owningType instanceof CaseUsage) {
+					return getSubjectParameterOf(owningType);
+				}
+			}
 		}
+		return null;
 	}
 	
 	protected static Parameter getSubjectParameterOf(Type type) {

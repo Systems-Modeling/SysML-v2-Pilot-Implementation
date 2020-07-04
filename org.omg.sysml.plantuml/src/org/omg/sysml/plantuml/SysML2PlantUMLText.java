@@ -62,6 +62,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
@@ -749,14 +750,14 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void addState(StringBuilder sb, StateUsage su) {
-        if (su instanceof ExhibitStateUsage) return;
+    private void addState(StringBuilder sb, Type st) {
+        if (st instanceof ExhibitStateUsage) return;
         sb.append("state ");
-        addNameWithId(sb, su);
-        addLink(sb, su);
+        addNameWithId(sb, st);
+        addLink(sb, st);
         // PlantUML cannot properly render nested states if allow_mixing is enabled
         if (diagramMode == MODE.StateMachine) {
-            addMembersInState(sb, su);
+            addMembersInState(sb, st);
         }
         sb.append("\n");
     }
@@ -793,14 +794,20 @@ public class SysML2PlantUMLText {
         sb.append("**");
         sb.append(sam.getKind().getName());
         sb.append("**/ ");
-        for (Subsetting ss: pau.getOwnedSubsetting()) {
-            Feature f = ss.getSubsettedFeature();
-            if (f instanceof ActionUsage) {
-                if (!(ss instanceof Redefinition)) {
-                    sb.append(f.getName());
-                    sb.append(' ');
+
+        String name = pau.getName();
+        if ((name == null) || (name.isEmpty())) {
+            for (Subsetting ss: pau.getOwnedSubsetting()) {
+                Feature f = ss.getSubsettedFeature();
+                if (f instanceof ActionUsage) {
+                    if (!(ss instanceof Redefinition)) {
+                        sb.append(f.getName());
+                        sb.append(' ');
+                    }
                 }
             }
+        } else {
+            sb.append(name);
         }
         if (sb.length() == 0) return null;
         return sb.toString();
@@ -851,12 +858,12 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void addMembersInState(StringBuilder sb, StateUsage su) {
+    private void addMembersInState(StringBuilder sb, Type st) {
         StringBuilder sb2 = new StringBuilder();
         List<String> descriptions = null;
 
         List<PRelation> initTransitions = new ArrayList<PRelation>();
-        for (FeatureMembership fm: su.getOwnedFeatureMembership()) {
+        for (FeatureMembership fm: st.getOwnedFeatureMembership()) {
             Feature f = fm.getMemberFeature();
             if (fm instanceof StateSubactionMembership) {
                 if (f instanceof PerformActionUsage) {
@@ -872,7 +879,7 @@ public class SysML2PlantUMLText {
                 }
             } else {
                 if (f instanceof StateUsage) {
-                    addState(sb2, (StateUsage) f);
+                    addState(sb2, f);
                 } else if (f instanceof TransitionUsage) {
                     addTransition(sb2, (TransitionUsage) f);
                 } else if (f instanceof Succession) {
@@ -886,7 +893,7 @@ public class SysML2PlantUMLText {
                 outputPRelations(sb2, initTransitions);
                 closeBlock(sb, sb2, "");
                 sb.append("state ");
-                addNameWithId(sb, su);
+                addNameWithId(sb, st);
             }
             int i = 0;
             for (;;) {
@@ -897,7 +904,7 @@ public class SysML2PlantUMLText {
                 if (i >= size) break;
 
                 sb.append("state ");
-                addNameWithId(sb, su);
+                addNameWithId(sb, st);
             }
         } else {
             outputPRelations(sb2, initTransitions);
@@ -959,9 +966,14 @@ public class SysML2PlantUMLText {
         if (typ instanceof StateUsage) {
             StateUsage su = (StateUsage) typ;
             if ((parent == null) || (su.isComposite())) {
-                addState(sb, (StateUsage) typ);
+                addState(sb, su);
             }
             return;
+        } else if (typ instanceof StateDefinition) {
+            if (diagramMode == MODE.StateMachine) {
+                addState(sb, typ);
+                return;
+            }
         }
         if (skipStructure()) {
             owned2P(sb, typ, "");

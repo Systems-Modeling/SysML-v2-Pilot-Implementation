@@ -32,8 +32,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -48,7 +46,6 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
@@ -56,13 +53,10 @@ import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartProperty;
 import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.SourceEnd;
-import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -225,7 +219,7 @@ public class SysML2PlantUMLText {
         styleSwitch = null;
     }
 
-    private String getRelStyle(Element e) {
+    String getRelStyle(Element e) {
         String ret;
         if ((styleSwitch != null)
             && (styleSwitch.styleRelSwitch != null)) {
@@ -235,7 +229,7 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleRelSwitch.doSwitch(e);
     }
 
-    private String getStereotypeStyle(Element e) {
+    String getStereotypeStyle(Element e) {
         String ret;
         if ((styleSwitch != null)
             && (styleSwitch.styleStereotypeSwitch != null)) {
@@ -252,12 +246,12 @@ public class SysML2PlantUMLText {
 
     private final SysML2PlantUMLLinkProvider linkProvider;
 
-    private String getLinkStr(EObject eObj) {
+    String getLinkStr(EObject eObj) {
         if (linkProvider == null) return null;
         return linkProvider.getLinkString(eObj);
     }
 
-    private String getText(EObject eObj) {
+    String getText(EObject eObj) {
         if (eObj == null) return null;
         if (linkProvider == null) {
             return eObj.toString();
@@ -268,8 +262,21 @@ public class SysML2PlantUMLText {
     private MODE diagramMode = MODE.Default;
 
     public void setMode(MODE m) {
-        if (m != MODE.Default) {
+        if ((m != null) && (m != MODE.Default)) {
             this.diagramMode = m;
+        }
+    }
+
+    private Visitor getVisitor() {
+        switch (diagramMode) {
+        case StateMachine:
+            return new VStateMachine();
+        case Interconnection:
+            return new VComposite();
+        case Tree:
+			return new VTree();
+		default:
+			return new VTree();
         }
     }
 
@@ -409,18 +416,29 @@ public class SysML2PlantUMLText {
         pRelations.clear();
         int len = sb.length();
 
-        for (EObject eObj : eObjs) {
-            if (eObj instanceof Element) {
-                element2P(sb, (Element) eObj, null);
+        Visitor v = getVisitor();
+        if (v != null) {
+            v.setSysML2PlantUMLText(this);
+            for (EObject eObj : eObjs) {
+                if (eObj instanceof Element) {
+                    v.visit((Element) eObj);
+                }
             }
-        }
-        flushTexts(sb);
-        flushPRelations(sb);
+            sb.append(v.getString());
+        } else {
+            for (EObject eObj : eObjs) {
+                if (eObj instanceof Element) {
+                    element2P(sb, (Element) eObj, null);
+                }
+            }
+            flushTexts(sb);
+            flushPRelations(sb);
 
-        if (len == sb.length()) {
-            return null;
-        }
+            if (len == sb.length()) {
+                return null;
+            }
 
+        }
         return sb.toString();
     }
     
@@ -442,11 +460,11 @@ public class SysML2PlantUMLText {
 
     private Map<Element, Integer> idMap = new HashMap<Element, Integer>();
 
-    private boolean checkId(Element e) {
+    boolean checkId(Element e) {
         return idMap.containsKey(e);
     }
 
-    private Integer getId(Element e) {
+    Integer getId(Element e) {
         Integer ii = idMap.get(e);
         
         if (ii == null) {
@@ -495,25 +513,7 @@ public class SysML2PlantUMLText {
         addNameWithId(sb, e, e.getName());
     }
 
-    private static class PRelation {
-        public final Element src;
-        public final Element dest;
-        public final Element rel;
-
-        private String description;
-        public String getDescription() {
-            return description;
-        }
-
-        public PRelation(Element src, Element dest, Element rel, String description) {
-            this.src = src;
-            this.dest = dest;
-            this.rel = rel;
-            this.description = description;
-        }
-    }
-
-    private String relString(Element rel) {
+    String relString(Element rel) {
         String val = getRelStyle(rel);
         if (val == null) {
             throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
@@ -591,12 +591,6 @@ public class SysML2PlantUMLText {
         sb.append('\n');
 
         return true;
-    }
-
-    private void outputPRelations(StringBuilder sb, List<PRelation> prs) {
-        for (PRelation pr: prs) {
-            outputPRelation(sb, pr);
-        }
     }
 
     private void flushPRelations(StringBuilder sb) {
@@ -754,10 +748,6 @@ public class SysML2PlantUMLText {
         sb.append("state ");
         addNameWithId(sb, su);
         addLink(sb, su);
-        // PlantUML cannot properly render nested states if allow_mixing is enabled
-        if (diagramMode == MODE.StateMachine) {
-            addMembersInState(sb, su);
-        }
         sb.append("\n");
     }
 
@@ -769,140 +759,10 @@ public class SysML2PlantUMLText {
         return null;
     }
 
-    private String convertToDescription(AcceptActionUsage aau) {
-        StringBuilder sb = new StringBuilder();
-        for (FeatureMembership fm: aau.getOwnedFeatureMembership()) {
-            Feature f = fm.getMemberFeature();
-            if (f instanceof ItemFeature) {
-                addTypeText(sb, "", f);
-            }
-        }
-        if (sb.length() == 0) return null;
-        return sb.toString();
-    }
-
     private Redefinition getRedefinition(Feature f) {
         List<Redefinition> rs = f.getOwnedRedefinition();
         if (rs.isEmpty()) return null;
         return rs.get(0);
-    }
-
-    private String convertToDescription(StateSubactionMembership sam, PerformActionUsage pau) {
-        StringBuilder sb = new StringBuilder();
-        // Bold
-        sb.append("**");
-        sb.append(sam.getKind().getName());
-        sb.append("**/ ");
-        for (Subsetting ss: pau.getOwnedSubsetting()) {
-            Feature f = ss.getSubsettedFeature();
-            if (f instanceof ActionUsage) {
-                if (!(ss instanceof Redefinition)) {
-                    sb.append(f.getName());
-                    sb.append(' ');
-                }
-            }
-        }
-        if (sb.length() == 0) return null;
-        return sb.toString();
-    }
-
-    private void addSuccession(Succession ss, List<PRelation> initTransitions) {
-        Element src = null;
-        Element dest = null;
-        for (FeatureMembership fm2: ss.getOwnedFeatureMembership()) {
-            Feature f2 = fm2.getMemberFeature();
-            if (f2 instanceof SourceEnd) {
-                if (src == null) {
-                    src = getEnd(f2);
-                }
-            } else {
-                if (dest == null) {
-                    dest = getEnd(f2);
-                }
-            }
-        }
-
-        if (!(src instanceof StateUsage)) {
-            src = null;
-        }
-        if (!(dest instanceof StateUsage)) {
-            dest = null;
-        }
-        if ((src == null) && (dest == null)) return;
-        if ((src == null) || (dest == null)) {
-            initTransitions.add(new PRelation(src, dest, ss, null));
-        } else {
-            addPRelation(src, dest, ss);
-        }
-    }
-
-    private void addTransition(StringBuilder sb, TransitionUsage tu) {
-        String description  = null;
-        for (FeatureMembership fm: tu.getOwnedFeatureMembership()) {
-            Feature f = fm.getMemberFeature();
-            if (f instanceof AcceptActionUsage) {
-                description = convertToDescription((AcceptActionUsage) f);
-            }
-        }
-        Feature src = tu.getSource();
-        Feature tgt = tu.getTarget();
-        if ((src != null) && (tgt != null)) {
-            addPRelation(src, tgt, tu, description);
-        }
-    }
-
-    private void addMembersInState(StringBuilder sb, StateUsage su) {
-        StringBuilder sb2 = new StringBuilder();
-        List<String> descriptions = null;
-
-        List<PRelation> initTransitions = new ArrayList<PRelation>();
-        for (FeatureMembership fm: su.getOwnedFeatureMembership()) {
-            Feature f = fm.getMemberFeature();
-            if (fm instanceof StateSubactionMembership) {
-                if (f instanceof PerformActionUsage) {
-                	StateSubactionMembership sam = (StateSubactionMembership) fm;
-                    PerformActionUsage pau = (PerformActionUsage) f;
-                    String desc = convertToDescription(sam, pau);
-                    if (desc != null) {
-                        if (descriptions == null) {
-                            descriptions = new ArrayList<String>();
-                        }
-                        descriptions.add(desc);
-                    }
-                }
-            } else {
-                if (f instanceof StateUsage) {
-                    addState(sb2, (StateUsage) f);
-                } else if (f instanceof TransitionUsage) {
-                    addTransition(sb2, (TransitionUsage) f);
-                } else if (f instanceof Succession) {
-                    addSuccession((Succession) f, initTransitions);
-                }
-            }
-        }
-        if (descriptions != null) {
-            int size = descriptions.size();
-            if (sb2.length() > 0) {
-                outputPRelations(sb2, initTransitions);
-                closeBlock(sb, sb2, "");
-                sb.append("state ");
-                addNameWithId(sb, su);
-            }
-            int i = 0;
-            for (;;) {
-                sb.append(" : ");
-                sb.append(descriptions.get(i));
-                sb.append('\n');
-                i++;
-                if (i >= size) break;
-
-                sb.append("state ");
-                addNameWithId(sb, su);
-            }
-        } else {
-            outputPRelations(sb2, initTransitions);
-            closeBlock(sb, sb2, "");
-        }
     }
 
     private void addConnector(StringBuilder sb, Connector c) {
@@ -942,7 +802,7 @@ public class SysML2PlantUMLText {
         return Character.toLowerCase(str.charAt(0)) + str.substring(1);
     }
 
-    private String styleString(Type typ) {
+    String styleString(Type typ) {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
             if (diagramMode == MODE.Interconnection) {

@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMembers extends VDefault {
     private List<String> descriptions = null;
@@ -51,14 +52,20 @@ public class VStateMembers extends VDefault {
         sb.append("**");
         sb.append(sam.getKind().getName());
         sb.append("**/ ");
-        for (Subsetting ss: pau.getOwnedSubsetting()) {
-            Feature f = ss.getSubsettedFeature();
-            if (f instanceof ActionUsage) {
-                if (!(ss instanceof Redefinition)) {
-                    sb.append(f.getName());
-                    sb.append(' ');
+
+        String name = pau.getName();
+        if ((name == null) || (name.isEmpty())) {
+            for (Subsetting ss: pau.getOwnedSubsetting()) {
+                Feature f = ss.getSubsettedFeature();
+                if (f instanceof ActionUsage) {
+                    if (!(ss instanceof Redefinition)) {
+                        sb.append(f.getName());
+                        sb.append(' ');
+                    }
                 }
             }
+        } else {
+            sb.append(name);
         }
         if (sb.length() == 0) return null;
         return sb.toString();
@@ -67,12 +74,11 @@ public class VStateMembers extends VDefault {
     private void addDescription(StateSubactionMembership ssm,
                                 PerformActionUsage pau) {
         String desc = convertToDescription(ssm, pau);
-        if (desc != null) {
-            if (descriptions == null) {
-                descriptions = new ArrayList<String>();
-            }
-            descriptions.add(desc);
+        if (desc == null) return;
+        if (descriptions == null) {
+            descriptions = new ArrayList<String>();
         }
+        descriptions.add(desc);
     }
 
     @Override
@@ -97,15 +103,15 @@ public class VStateMembers extends VDefault {
         return ret;
     }
 
-    public String startStateUsage(StateUsage su) {
-        traverse(su);
+    public String startStateUsage(Type typ) {
+        traverse(typ);
         if (descriptions != null) {
             int size = descriptions.size();
             if (length() > 0) {
                 outputPRelations(initTransitions);
                 closeBlock("");
                 append("state ");
-                addNameWithId(su);
+                addNameWithId(typ);
             }
             int i = 0;
             for (;;) {
@@ -116,7 +122,7 @@ public class VStateMembers extends VDefault {
                 if (i >= size) break;
 
                 append("state ");
-                addNameWithId(su);
+                addNameWithId(typ);
             }
             flush();
         } else {

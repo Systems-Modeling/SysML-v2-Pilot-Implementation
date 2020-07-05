@@ -25,18 +25,30 @@
 package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
+import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMachine extends VDefault {
+    private void addState(Type typ) {
+        append("state ");
+        addNameWithId(typ);
+        addLink(typ);
+        VStateMembers v = new VStateMembers(this);
+        v.startStateUsage(typ);
+        append("\n");
+    }
+
     @Override
     public String caseStateUsage(StateUsage su) {
         if (su instanceof ExhibitStateUsage) return "";
-        append("state ");
-        addNameWithId(su);
-        addLink(su);
-        VStateMembers v = new VStateMembers(this);
-        v.startStateUsage(su);
-        append("\n");
+        addState(su);
+        return getString();
+    }
+    
+
+    public String caseStateDefinition(StateDefinition sd) {
+        addState(sd);
         return getString();
     }
     

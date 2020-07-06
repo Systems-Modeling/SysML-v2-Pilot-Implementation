@@ -26,7 +26,6 @@ package org.omg.sysml.interactive;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -34,9 +33,6 @@ import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
 
 /**
  * A specialized Xtext index implementation for interactive parsing environment
@@ -78,7 +74,11 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 		}
 	}
 	
-	
+	/**
+	 * Simplified implementation: lookupMap will never contain a set because of the
+	 * overridden {@linkplain #registerDescription(IResourceDescription, Map)}, and
+	 * case insensitive search was updated.
+	 */
     public void removeDescription(URI uri) {
 		IResourceDescription oldDescription = resourceDescriptionMap.remove(uri);
 		if (oldDescription != null) {
@@ -87,37 +87,21 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 				Object existing = lookupMap.get(objectName);
 				if (existing == oldDescription) {
 					lookupMap.remove(objectName);
-				} else if (existing instanceof Set<?>) {
-					Set<?> casted = (Set<?>) existing;
-					if (casted.remove(oldDescription)) {
-						if (casted.size() == 1) {
-							lookupMap.put(objectName, casted.iterator().next());
-						} else if (casted.isEmpty()) {
-							lookupMap.remove(objectName);
-						}
-					}
 				}
 			}
 		}
 	}
 	
+	/**
+	 * Simplified implementation: lookupMap will never contain a set because of the
+	 * overridden {@linkplain #registerDescription(IResourceDescription, Map)}, and
+	 * case insensitive search was updated.
+	 */
 	@Override
 	public Iterable<IEObjectDescription> getExportedObjects(final EClass type, final QualifiedName qualifiedName, final boolean ignoreCase) {
 		Object existing = lookupMap.get(qualifiedName); // Removed "toLowerCase()"
 		if (existing instanceof IResourceDescription) {
 			return ((IResourceDescription) existing).getExportedObjects(type, qualifiedName, ignoreCase);
-		} else if (existing instanceof Set<?>) {
-			@SuppressWarnings("unchecked")
-			Set<IResourceDescription> casted = (Set<IResourceDescription>) existing;
-			return Iterables.concat(Iterables.transform(casted, new Function<IResourceDescription, Iterable<IEObjectDescription>>() {
-				@Override
-				public Iterable<IEObjectDescription> apply(IResourceDescription from) {
-					if (from != null) {
-						return from.getExportedObjects(type, qualifiedName, ignoreCase);
-					}
-					return Collections.emptyList();
-				}
-			}));
 		}
 		return Collections.emptyList();
 	}

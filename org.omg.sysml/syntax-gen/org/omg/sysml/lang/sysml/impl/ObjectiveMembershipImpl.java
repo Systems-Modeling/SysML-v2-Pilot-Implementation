@@ -23,6 +23,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ObjectiveMembershipImpl#getOwnedObjectiveRequirement_comp <em>Owned Objective Requirement comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ObjectiveMembershipImpl#getOwnedObjectiveRequirement <em>Owned Objective Requirement</em>}</li>
  * </ul>
  *
@@ -30,15 +31,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements ObjectiveMembership {
 	/**
-	 * The cached value of the '{@link #getOwnedObjectiveRequirement() <em>Owned Objective Requirement</em>}' reference.
+	 * The cached value of the '{@link #getOwnedObjectiveRequirement_comp() <em>Owned Objective Requirement comp</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedObjectiveRequirement()
+	 * @see #getOwnedObjectiveRequirement_comp()
 	 * @generated
 	 * @ordered
 	 */
-	protected RequirementUsage ownedObjectiveRequirement;
-
+	protected RequirementUsage ownedObjectiveRequirement_comp;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,16 +64,8 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	 * @generated
 	 */
 	@Override
-	public RequirementUsage getOwnedObjectiveRequirement() {
-		if (ownedObjectiveRequirement != null && ownedObjectiveRequirement.eIsProxy()) {
-			InternalEObject oldOwnedObjectiveRequirement = (InternalEObject)ownedObjectiveRequirement;
-			ownedObjectiveRequirement = (RequirementUsage)eResolveProxy(oldOwnedObjectiveRequirement);
-			if (ownedObjectiveRequirement != oldOwnedObjectiveRequirement) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT, oldOwnedObjectiveRequirement, ownedObjectiveRequirement));
-			}
-		}
-		return ownedObjectiveRequirement;
+	public RequirementUsage getOwnedObjectiveRequirement_comp() {
+		return ownedObjectiveRequirement_comp;
 	}
 
 	/**
@@ -81,8 +73,14 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementUsage basicGetOwnedObjectiveRequirement() {
-		return ownedObjectiveRequirement;
+	public NotificationChain basicSetOwnedObjectiveRequirement_comp(RequirementUsage newOwnedObjectiveRequirement_comp, NotificationChain msgs) {
+		RequirementUsage oldOwnedObjectiveRequirement_comp = ownedObjectiveRequirement_comp;
+		ownedObjectiveRequirement_comp = newOwnedObjectiveRequirement_comp;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP, oldOwnedObjectiveRequirement_comp, newOwnedObjectiveRequirement_comp);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -91,11 +89,18 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	 * @generated
 	 */
 	@Override
-	public void setOwnedObjectiveRequirement(RequirementUsage newOwnedObjectiveRequirement) {
-		RequirementUsage oldOwnedObjectiveRequirement = ownedObjectiveRequirement;
-		ownedObjectiveRequirement = newOwnedObjectiveRequirement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT, oldOwnedObjectiveRequirement, ownedObjectiveRequirement));
+	public void setOwnedObjectiveRequirement_comp(RequirementUsage newOwnedObjectiveRequirement_comp) {
+		if (newOwnedObjectiveRequirement_comp != ownedObjectiveRequirement_comp) {
+			NotificationChain msgs = null;
+			if (ownedObjectiveRequirement_comp != null)
+				msgs = ((InternalEObject)ownedObjectiveRequirement_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP, null, msgs);
+			if (newOwnedObjectiveRequirement_comp != null)
+				msgs = ((InternalEObject)newOwnedObjectiveRequirement_comp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP, null, msgs);
+			msgs = basicSetOwnedObjectiveRequirement_comp(newOwnedObjectiveRequirement_comp, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP, newOwnedObjectiveRequirement_comp, newOwnedObjectiveRequirement_comp));
 	}
 
 	/**
@@ -103,8 +108,52 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedObjectiveRequirement() {
-		return ownedObjectiveRequirement != null;
+	public boolean isSetOwnedObjectiveRequirement_comp() {
+		return ownedObjectiveRequirement_comp != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RequirementUsage getOwnedObjectiveRequirement() {
+		RequirementUsage ownedObjectiveRequirement = basicGetOwnedObjectiveRequirement();
+		return ownedObjectiveRequirement != null && ownedObjectiveRequirement.eIsProxy() ? (RequirementUsage)eResolveProxy((InternalEObject)ownedObjectiveRequirement) : ownedObjectiveRequirement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public RequirementUsage basicGetOwnedObjectiveRequirement() {
+		return getOwnedObjectiveRequirement_comp();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setOwnedObjectiveRequirement(RequirementUsage newOwnedObjectiveRequirement) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP:
+				return basicSetOwnedObjectiveRequirement_comp(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -115,6 +164,8 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP:
+				return getOwnedObjectiveRequirement_comp();
 			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT:
 				if (resolve) return getOwnedObjectiveRequirement();
 				return basicGetOwnedObjectiveRequirement();
@@ -130,6 +181,9 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP:
+				setOwnedObjectiveRequirement_comp((RequirementUsage)newValue);
+				return;
 			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT:
 				setOwnedObjectiveRequirement((RequirementUsage)newValue);
 				return;
@@ -145,6 +199,9 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP:
+				setOwnedObjectiveRequirement_comp((RequirementUsage)null);
+				return;
 			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT:
 				setOwnedObjectiveRequirement((RequirementUsage)null);
 				return;
@@ -162,8 +219,10 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 		switch (featureID) {
 			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
 				return isSetOwnedMemberFeature_comp();
+			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP:
+				return isSetOwnedObjectiveRequirement_comp();
 			case SysMLPackage.OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT:
-				return isSetOwnedObjectiveRequirement();
+				return basicGetOwnedObjectiveRequirement() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -175,7 +234,7 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 	 */
 	@Override
 	public Feature getOwnedMemberFeature_comp() {
-		return getOwnedObjectiveRequirement();
+		return getOwnedObjectiveRequirement_comp();
 	}
 
 	/**
@@ -187,8 +246,7 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof RequirementUsage)) {
 			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of RequirementUsage");
 		}
-		setOwnedObjectiveRequirement((RequirementUsage) newOwnedMemberFeature_comp);
-		return msgs;
+		return basicSetOwnedObjectiveRequirement_comp((RequirementUsage) newOwnedMemberFeature_comp, msgs);
 	}
 
 	/**
@@ -200,7 +258,7 @@ public class ObjectiveMembershipImpl extends FeatureMembershipImpl implements Ob
 		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof RequirementUsage)) {
 			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of RequirementUsage");
 		}
-		setOwnedObjectiveRequirement((RequirementUsage) newOwnedMemberFeature_comp);
+		setOwnedObjectiveRequirement_comp((RequirementUsage) newOwnedMemberFeature_comp);
 	}
 
 	/**

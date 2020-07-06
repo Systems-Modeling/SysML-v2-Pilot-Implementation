@@ -1074,8 +1074,18 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getObjectiveMembership_OwnedObjectiveRequirement() {
+	public EReference getObjectiveMembership_OwnedObjectiveRequirement_comp() {
 		return (EReference)objectiveMembershipEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getObjectiveMembership_OwnedObjectiveRequirement() {
+		return (EReference)objectiveMembershipEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5714,6 +5724,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(subjectMembershipEClass, SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER);
 
 		objectiveMembershipEClass = createEClass(OBJECTIVE_MEMBERSHIP);
+		createEReference(objectiveMembershipEClass, OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP);
 		createEReference(objectiveMembershipEClass, OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT);
 
 		ownershipEClass = createEClass(OWNERSHIP);
@@ -6439,7 +6450,8 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getSubjectMembership_OwnedSubjectParameter(), this.getParameter(), null, "ownedSubjectParameter", null, 1, 1, SubjectMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectiveMembershipEClass, ObjectiveMembership.class, "ObjectiveMembership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getObjectiveMembership_OwnedObjectiveRequirement(), this.getRequirementUsage(), null, "ownedObjectiveRequirement", null, 1, 1, ObjectiveMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getObjectiveMembership_OwnedObjectiveRequirement_comp(), this.getRequirementUsage(), null, "ownedObjectiveRequirement_comp", null, 1, 1, ObjectiveMembership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getObjectiveMembership_OwnedObjectiveRequirement(), this.getRequirementUsage(), null, "ownedObjectiveRequirement", null, 1, 1, ObjectiveMembership.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(ownershipEClass, Ownership.class, "Ownership", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOwnership_OwningSource(), this.getElement(), null, "owningSource", null, 1, 1, Ownership.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -7015,7 +7027,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//ParameterMembership/ownedMemberParameter_comp")
 		   });
 		addAnnotation
-		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		  (getObjectiveMembership_OwnedObjectiveRequirement_comp(),
 		   source,
 		   new String[] {
 		   },
@@ -9090,7 +9102,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			   "body", "owningSubjectMembership"
 		   });
 		addAnnotation
-		  (getObjectiveMembership_OwnedObjectiveRequirement(),
+		  (getObjectiveMembership_OwnedObjectiveRequirement_comp(),
 		   source,
 		   new String[] {
 			   "body", "owningObjectiveMembership"

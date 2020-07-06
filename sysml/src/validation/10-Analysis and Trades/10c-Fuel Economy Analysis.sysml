@@ -1,0 +1,159 @@
+package '10c-Fuel Economy Analysis' {
+	import ScalarValues::*;
+	import Quantities::*;
+	import ISQ::*;
+	import USCustomaryUnits::*;
+	
+	attribute volume : QuantityValue = length ** 3;
+	attribute distancePerVolume : QuantityValue = length / volume;
+	
+	attribute gallon : QuantityValue = 231.0 * 'in' ** 3;
+	
+	package FuelEconomyRequirementsModel {
+		
+		requirement def FuelEconomyRequirement {
+			attribute actualFuelEconomy :> distancePerVolume;
+			attribute requiredFuelEconomy :> distancePerVolume;
+			
+			require constraint { actualFuelEconomy >= requiredFuelEconomy }
+		}
+		
+		requirement cityFuelEconomyRequirement : FuelEconomyRequirement {
+			:>> requiredFuelEconomy = 25@[mi/gallon];
+		}
+		
+		requirement highwayFuelEconomyRequirement : FuelEconomyRequirement {
+			:>> requiredFuelEconomy = 30@[mi/gallon];
+		}
+		
+	}
+		
+	package VehicleDesignModel {
+		
+		part def Vehicle {
+			attribute fuelEconomy_city :> distancePerVolume;
+			attribute fuelEconomy_highway :> distancePerVolume;
+			
+			attribute cargoWeight : MassValue;
+		}
+		
+		part def Engine;
+		part def Transmission;
+		
+		part vehicle1_c1 : Vehicle {
+			part engine : Engine;
+			part transmission : Transmission {
+				exhibit state transmissionState {
+					state '1stGear';
+					state '2ndGear';
+					state '3rdGear';
+					state '4thGear';
+				}
+			}
+		}
+		
+	}
+	
+	package FuelEconomyAnalysisModel {
+		import VehicleDesignModel::*;
+		import FuelEconomyRequirementsModel::*;
+		
+		attribute def ScenarioState {
+			position : LengthValue;
+			velocity : SpeedValue;
+			acceleration : AccelerationValue;
+			inclineAngle : Real;
+		}
+		
+		abstract calc def NominalScenario (t : TimeValue) : ScenarioState;
+		calc cityScenario : NominalScenario;
+		calc highwayScenario : NominalScenario;
+		
+		analysis def FuelEconomyAnalysis (vehicle : Vehicle) calculatedFuelEconomy : QuantityValue {
+			in ref calc scenario : NominalScenario;
+			in ref requirement fuelEconomyRequirement : FuelEconomyRequirement;
+			
+			objective fuelEconomyAnalysisObjective {
+				/*
+				 * The objective of this analysis is to determine whether the
+				 * current vehicle design configuration can satisfy the fuel
+				 * economy requirement.
+				 */
+				 
+				 assume constraint {
+				 	/* wheelDiameter == 33 inches
+				 	 * drive train efficiency == 0.4
+				 	 */
+				 }
+				 
+				 require fuelEconomyRequirement {
+				 	:>> actualFuelEconomy = calculatedFuelEconomy;
+				 }
+			}
+			
+			action dynamicsAnalysis {
+				/*
+				 * Solve for the required engine power as a function of time
+				 * to support the nominal scenarios.
+				 * 
+				 * Note: Vehicle force = power/speed
+				 * Note: EngineRPM * EngineGearRatio/WheelRPM = constant
+				 */
+			}
+			
+			action fuelConsumptionAnalysis {
+				/*
+				 * Solve the engine equations to determine how much fuel is
+				 * consumed. The engine RPM is a function of the speed of the
+				 * vehicle and the gear state.
+				 */
+			}
+		}
+		
+		requirement vehicleFuelEconomyRequirementsGroup (vehicle : Vehicle) {
+			
+			requirement vehicleFuelEconomyRequirement_city :> cityFuelEconomyRequirement {
+				/* The vehicle shall provide a fuel economy that is greater than or equal to
+				 * 25 miles per gallon for the nominal city driving scenarios.
+				 */
+				 
+				:>> actualFuelEconomy = vehicle::fuelEconomy_city;
+				
+				assume constraint { vehicle::cargoWeight == 1000@[lb] }
+			}
+
+			requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
+				/* The vehicle shall provide a fuel economy that is greater than or equal to
+				 * 30 miles per gallon for the nominal highway driving scenarios.
+				 */
+				
+				:>> actualFuelEconomy = vehicle::fuelEconomy_highway;
+				
+				assume constraint { vehicle::cargoWeight == 1000@[lb] }
+			}
+
+		}
+
+		part analysisContext {
+			
+			analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
+				part :>> vehicle = vehicle1_c1;
+				calc :>> scenario = cityScenario;
+				requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
+			} cityFuelEconomy = vehicle1_c1_analysized::fuelEconomy_city;
+			
+			analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
+				part :>> vehicle = vehicle1_c1;
+				calc :>> scenario = highwayScenario;
+				requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
+			} highwayFuelEconomy = vehicle1_c1_analysized::fuelEconomy_highway;
+			
+			part vehicle1_c1_analysized :> vehicle1_c1 {
+				
+			}			
+			
+			satisfy vehicleFuelEconomyRequirementsGroup by vehicle1_c1_analysized;
+		}
+		
+	}
+}

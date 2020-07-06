@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -702,6 +703,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		getTyping();
 		getOwnedSubsetting();
 		super.transform();
+	}
+	
+	// Utility methods
+	
+	public Parameter getSubjectParameter() {
+		return null;
 	}
 	
 	//

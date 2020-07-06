@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Zoltan Ujhelyi
+ *  Ed Seidewitz
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive;
@@ -66,6 +67,7 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 
 	/**
 	 * Simplified implementation: if a new element is found with a name that was already indexed, simply overwrite the previous entry. 
+	 * Also allow case-sensitive naming.
 	 */
 	@Override
 	protected void registerDescription(IResourceDescription description, Map<QualifiedName, Object> target) {
@@ -77,7 +79,7 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 	/**
 	 * Simplified implementation: lookupMap will never contain a set because of the
 	 * overridden {@linkplain #registerDescription(IResourceDescription, Map)}, and
-	 * case insensitive search was updated.
+	 * allow case-sensitive name search.
 	 */
     public void removeDescription(URI uri) {
 		IResourceDescription oldDescription = resourceDescriptionMap.remove(uri);
@@ -95,7 +97,7 @@ public class StrictShadowingResourceDescriptionData extends ResourceDescriptions
 	/**
 	 * Simplified implementation: lookupMap will never contain a set because of the
 	 * overridden {@linkplain #registerDescription(IResourceDescription, Map)}, and
-	 * case insensitive search was updated.
+	 * allow case-sensitive name search.
 	 */
 	@Override
 	public Iterable<IEObjectDescription> getExportedObjects(final EClass type, final QualifiedName qualifiedName, final boolean ignoreCase) {

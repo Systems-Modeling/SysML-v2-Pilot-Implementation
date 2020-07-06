@@ -69,11 +69,11 @@ package '10c-Fuel Economy Analysis' {
 		calc cityScenario : NominalScenario;
 		calc highwayScenario : NominalScenario;
 		
-		analysis case def FuelEconomyAnalysis (vehicle : Vehicle) calculatedFuelEconomy : QuantityValue {
+		analysis def FuelEconomyAnalysis (vehicle : Vehicle) calculatedFuelEconomy : QuantityValue {
 			in ref calc scenario : NominalScenario;
 			in ref requirement fuelEconomyRequirement : FuelEconomyRequirement;
 			
-			obj fuelEconomyAnalysisObjective {
+			objective fuelEconomyAnalysisObjective {
 				/*
 				 * The objective of this analysis is to determine whether the
 				 * current vehicle design configuration can satisfy the fuel
@@ -136,13 +136,13 @@ package '10c-Fuel Economy Analysis' {
 
 		part analysisContext {
 			
-			analysis case cityFuelEconomyAnalysis : FuelEconomyAnalysis {
+			analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
 				part :>> vehicle = vehicle1_c1;
 				calc :>> scenario = cityScenario;
 				requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
 			} cityFuelEconomy = vehicle1_c1_analysized::fuelEconomy_city;
 			
-			analysis case highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
+			analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
 				part :>> vehicle = vehicle1_c1;
 				calc :>> scenario = highwayScenario;
 				requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;

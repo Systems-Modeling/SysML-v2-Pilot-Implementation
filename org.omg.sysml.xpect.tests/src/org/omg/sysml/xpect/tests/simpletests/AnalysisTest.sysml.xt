@@ -61,22 +61,22 @@ package AnalysisTest {
 		/* ... */
 	}
 
-	analysis case def AnalysisCase(v : V) {
-		obj objective : AnalysisObjective;
+	analysis def AnalysisCase(v : V) {
+		objective obj : AnalysisObjective;
 		
 		v::m
 	}
 	
-	analysis case def AnalysisPlan(v : V) {		
-		obj {
+	analysis def AnalysisPlan(v : V) {
+		objective {
 			/* ... */
 		}
 		
-		analysis case analysisCase : AnalysisCase () return m;
+		analysis analysisCase : AnalysisCase () return m;
 	}
 	
 	part analysisContext {
-		analysis case analysisPlan : AnalysisPlan (
+		analysis analysisPlan : AnalysisPlan (
 			v = vv
 		);
 	}

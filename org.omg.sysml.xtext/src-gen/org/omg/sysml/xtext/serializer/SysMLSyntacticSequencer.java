@@ -236,24 +236,24 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * AnalysisCaseDefKeyword :
-	 * 	'analysis' CaseDefKeyword
+	 * 	AnalysisCaseKeyword 'def'
 	 * ;
 	 */
 	protected String getAnalysisCaseDefKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "analysis case def";
+		return "analysis def";
 	}
 	
 	/**
 	 * AnalysisCaseUsageKeyword :
-	 * 	'analysis' CaseKeyword
+	 * 	AnalysisCaseKeyword
 	 * ;
 	 */
 	protected String getAnalysisCaseUsageKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "analysis case";
+		return "analysis";
 	}
 	
 	/**
@@ -1112,7 +1112,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1132,7 +1131,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)

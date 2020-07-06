@@ -509,7 +509,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCaseUsageAccess().getGroup(), "rule__CaseUsage__Group__0");
 			builder.put(grammarAccess.getCaseRefUsageAccess().getGroup(), "rule__CaseRefUsage__Group__0");
 			builder.put(grammarAccess.getCaseRefUsageAccess().getGroup_1_0(), "rule__CaseRefUsage__Group_1_0__0");
-			builder.put(grammarAccess.getAnalysisCaseUsageKeywordAccess().getGroup(), "rule__AnalysisCaseUsageKeyword__Group__0");
 			builder.put(grammarAccess.getAnalysisCaseDeclarationAccess().getGroup(), "rule__AnalysisCaseDeclaration__Group__0");
 			builder.put(grammarAccess.getAnalysisCaseUsageAccess().getGroup(), "rule__AnalysisCaseUsage__Group__0");
 			builder.put(grammarAccess.getAnalysisCaseRefUsageAccess().getGroup(), "rule__AnalysisCaseRefUsage__Group__0");

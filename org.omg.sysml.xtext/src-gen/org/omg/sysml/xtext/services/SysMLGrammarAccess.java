@@ -5264,7 +5264,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedSubjectParameter_compEmptyParameterParserRuleCall_0 = (RuleCall)cOwnedSubjectParameter_compAssignment.eContents().get(0);
 		
 		///* CASE DEFINITION MEMBERSHIPS */ //SubjectParameterMember returns SysML::SubjectMembership :
-		////	DefinitionMemberPrefix 'subj' ownedSubjectParameter_comp = SubjectParameter ';'
+		////	DefinitionMemberPrefix 'subject' ownedSubjectParameter_comp = SubjectParameter ';'
 		////;
 		//EmptySubjectParameterMember SysML::SubjectMembership:
 		//	ownedSubjectParameter_comp=EmptyParameter;
@@ -5326,22 +5326,22 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ObjectiveMember");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cDefinitionMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Keyword cObjKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cObjectiveKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOwnedObjectiveRequirement_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedObjectiveRequirement_compObjectiveRequirementUsageParserRuleCall_2_0 = (RuleCall)cOwnedObjectiveRequirement_compAssignment_2.eContents().get(0);
 		
 		//ObjectiveMember SysML::ObjectiveMembership:
-		//	DefinitionMemberPrefix 'obj' ownedObjectiveRequirement_comp=ObjectiveRequirementUsage;
+		//	DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp=ObjectiveRequirementUsage;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//DefinitionMemberPrefix 'obj' ownedObjectiveRequirement_comp=ObjectiveRequirementUsage
+		//DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp=ObjectiveRequirementUsage
 		public Group getGroup() { return cGroup; }
 		
 		//DefinitionMemberPrefix
 		public RuleCall getDefinitionMemberPrefixParserRuleCall_0() { return cDefinitionMemberPrefixParserRuleCall_0; }
 		
-		//'obj'
-		public Keyword getObjKeyword_1() { return cObjKeyword_1; }
+		//'objective'
+		public Keyword getObjectiveKeyword_1() { return cObjectiveKeyword_1; }
 		
 		//ownedObjectiveRequirement_comp=ObjectiveRequirementUsage
 		public Assignment getOwnedObjectiveRequirement_compAssignment_2() { return cOwnedObjectiveRequirement_compAssignment_2; }
@@ -5349,24 +5349,35 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//ObjectiveRequirementUsage
 		public RuleCall getOwnedObjectiveRequirement_compObjectiveRequirementUsageParserRuleCall_2_0() { return cOwnedObjectiveRequirement_compObjectiveRequirementUsageParserRuleCall_2_0; }
 	}
+	public class AnalysisCaseKeywordElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnalysisCaseKeyword");
+		private final Keyword cAnalysisKeyword = (Keyword)rule.eContents().get(1);
+		
+		///* ANALYSIS CASE DEFINITIONS */ AnalysisCaseKeyword:
+		//	'analysis';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'analysis'
+		public Keyword getAnalysisKeyword() { return cAnalysisKeyword; }
+	}
 	public class AnalysisCaseDefKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnalysisCaseDefKeyword");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cAnalysisKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cCaseDefKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cAnalysisCaseKeywordParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cDefKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		///* ANALYSIS CASE DEFINITIONS */ AnalysisCaseDefKeyword:
-		//	'analysis' CaseDefKeyword;
+		//AnalysisCaseDefKeyword:
+		//	AnalysisCaseKeyword 'def';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'analysis' CaseDefKeyword
+		//AnalysisCaseKeyword 'def'
 		public Group getGroup() { return cGroup; }
 		
-		//'analysis'
-		public Keyword getAnalysisKeyword_0() { return cAnalysisKeyword_0; }
+		//AnalysisCaseKeyword
+		public RuleCall getAnalysisCaseKeywordParserRuleCall_0() { return cAnalysisCaseKeywordParserRuleCall_0; }
 		
-		//CaseDefKeyword
-		public RuleCall getCaseDefKeywordParserRuleCall_1() { return cCaseDefKeywordParserRuleCall_1; }
+		//'def'
+		public Keyword getDefKeyword_1() { return cDefKeyword_1; }
 	}
 	public class AnalysisCaseDefinitionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnalysisCaseDefinition");
@@ -11014,22 +11025,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class AnalysisCaseUsageKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnalysisCaseUsageKeyword");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cAnalysisKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cCaseKeywordParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cAnalysisCaseKeywordParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		///* ANALYSIS CASE USAGES */ AnalysisCaseUsageKeyword:
-		//	'analysis' CaseKeyword;
+		//	AnalysisCaseKeyword;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'analysis' CaseKeyword
-		public Group getGroup() { return cGroup; }
-		
-		//'analysis'
-		public Keyword getAnalysisKeyword_0() { return cAnalysisKeyword_0; }
-		
-		//CaseKeyword
-		public RuleCall getCaseKeywordParserRuleCall_1() { return cCaseKeywordParserRuleCall_1; }
+		//AnalysisCaseKeyword
+		public RuleCall getAnalysisCaseKeywordParserRuleCall() { return cAnalysisCaseKeywordParserRuleCall; }
 	}
 	public class AnalysisCaseDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.AnalysisCaseDeclaration");
@@ -13480,6 +13483,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final SubjectParameterMemberElements pSubjectParameterMember;
 	private final InDirectionElements pInDirection;
 	private final ObjectiveMemberElements pObjectiveMember;
+	private final AnalysisCaseKeywordElements pAnalysisCaseKeyword;
 	private final AnalysisCaseDefKeywordElements pAnalysisCaseDefKeyword;
 	private final AnalysisCaseDefinitionElements pAnalysisCaseDefinition;
 	private final AnalysisCaseDefDeclarationElements pAnalysisCaseDefDeclaration;
@@ -13916,6 +13920,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSubjectParameterMember = new SubjectParameterMemberElements();
 		this.pInDirection = new InDirectionElements();
 		this.pObjectiveMember = new ObjectiveMemberElements();
+		this.pAnalysisCaseKeyword = new AnalysisCaseKeywordElements();
 		this.pAnalysisCaseDefKeyword = new AnalysisCaseDefKeywordElements();
 		this.pAnalysisCaseDefinition = new AnalysisCaseDefinitionElements();
 		this.pAnalysisCaseDefDeclaration = new AnalysisCaseDefDeclarationElements();
@@ -16092,7 +16097,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* CASE DEFINITION MEMBERSHIPS */ //SubjectParameterMember returns SysML::SubjectMembership :
-	////	DefinitionMemberPrefix 'subj' ownedSubjectParameter_comp = SubjectParameter ';'
+	////	DefinitionMemberPrefix 'subject' ownedSubjectParameter_comp = SubjectParameter ';'
 	////;
 	//EmptySubjectParameterMember SysML::SubjectMembership:
 	//	ownedSubjectParameter_comp=EmptyParameter;
@@ -16125,7 +16130,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ObjectiveMember SysML::ObjectiveMembership:
-	//	DefinitionMemberPrefix 'obj' ownedObjectiveRequirement_comp=ObjectiveRequirementUsage;
+	//	DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp=ObjectiveRequirementUsage;
 	public ObjectiveMemberElements getObjectiveMemberAccess() {
 		return pObjectiveMember;
 	}
@@ -16134,8 +16139,18 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getObjectiveMemberAccess().getRule();
 	}
 	
-	///* ANALYSIS CASE DEFINITIONS */ AnalysisCaseDefKeyword:
-	//	'analysis' CaseDefKeyword;
+	///* ANALYSIS CASE DEFINITIONS */ AnalysisCaseKeyword:
+	//	'analysis';
+	public AnalysisCaseKeywordElements getAnalysisCaseKeywordAccess() {
+		return pAnalysisCaseKeyword;
+	}
+	
+	public ParserRule getAnalysisCaseKeywordRule() {
+		return getAnalysisCaseKeywordAccess().getRule();
+	}
+	
+	//AnalysisCaseDefKeyword:
+	//	AnalysisCaseKeyword 'def';
 	public AnalysisCaseDefKeywordElements getAnalysisCaseDefKeywordAccess() {
 		return pAnalysisCaseDefKeyword;
 	}
@@ -17960,7 +17975,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///* ANALYSIS CASE USAGES */ AnalysisCaseUsageKeyword:
-	//	'analysis' CaseKeyword;
+	//	AnalysisCaseKeyword;
 	public AnalysisCaseUsageKeywordElements getAnalysisCaseUsageKeywordAccess() {
 		return pAnalysisCaseUsageKeyword;
 	}

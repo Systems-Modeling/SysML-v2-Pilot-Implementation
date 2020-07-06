@@ -15,13 +15,13 @@ package Analyses {
 	 * 
 	 * The result of this AnalysisCase is bound to the result of the resultEvaluation.
 	 */
-	abstract analysis case def AnalysisCase :> Case (subject[1]) result[0..*] {
-		ref analysis case :>> self : AnalysisCase;		
+	abstract analysis def AnalysisCase :> Case (subject[1]) result[0..*] {
+		ref analysis :>> self : AnalysisCase;		
 		
 		/**
 		 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.
 		 */
-		abstract ref analysis case subanalysisCases : Case[0..*] :> analysisCases, subcases;
+		abstract ref analysis subanalysisCases : Case[0..*] :> analysisCases, subcases;
 	
 		/**
 		 * The subactions of this AnalysisCase that are AnalysisActions.
@@ -39,7 +39,7 @@ package Analyses {
 	/**
 	 * analysisCases is the base feature of all AnalysisCaseUsages.
 	 */
-	abstract analysis case analysisCases : AnalysisCase[0..*] :> cases;
+	abstract analysis analysisCases : AnalysisCase[0..*] :> cases;
 	
 	/**
 	 * An AnalysisAction is a specialized kind of Action intended to be used as a step in an AnalysisCase.

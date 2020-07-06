@@ -10,26 +10,26 @@ package AnalysisTest {
 		/* ... */
 	}
 
-	analysis case def AnalysisCase(v : V) {
+	analysis def AnalysisCase(v : V) {
 		
-		obj objective : AnalysisObjective(
+		objective obj : AnalysisObjective(
 			subject = result
 		);
 		
 		v::m
 	}
 	
-	analysis case def AnalysisPlan(v : V) {
+	analysis def AnalysisPlan(v : V) {
 		
-		obj {
+		objective {
 			/* ... */
 		}
 		
-		analysis case analysisCase : AnalysisCase () return mass;
+		analysis analysisCase : AnalysisCase () return mass;
 	}
 	
 	part analysisContext {
-		analysis case analysisPlan : AnalysisPlan (
+		analysis analysisPlan : AnalysisPlan (
 			v = vv
 		);
 	}

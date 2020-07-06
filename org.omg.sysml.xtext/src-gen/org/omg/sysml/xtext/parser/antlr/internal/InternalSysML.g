@@ -9928,9 +9928,9 @@ ruleObjectiveMember returns [EObject current=null]
 			$current = $this_DefinitionMemberPrefix_0.current;
 			afterParserOrEnumRuleCall();
 		}
-		otherlv_1='obj'
+		otherlv_1='objective'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getObjectiveMemberAccess().getObjKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getObjectiveMemberAccess().getObjectiveKeyword_1());
 		}
 		(
 			(
@@ -9954,6 +9954,28 @@ ruleObjectiveMember returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleAnalysisCaseKeyword
+entryRuleAnalysisCaseKeyword returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getAnalysisCaseKeywordRule()); }
+	iv_ruleAnalysisCaseKeyword=ruleAnalysisCaseKeyword
+	{ $current=$iv_ruleAnalysisCaseKeyword.current.getText(); }
+	EOF;
+
+// Rule AnalysisCaseKeyword
+ruleAnalysisCaseKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	kw='analysis'
+	{
+		$current.merge(kw);
+		newLeafNode(kw, grammarAccess.getAnalysisCaseKeywordAccess().getAnalysisKeyword());
+	}
+;
+
 // Entry rule entryRuleAnalysisCaseDefKeyword
 entryRuleAnalysisCaseDefKeyword returns [String current=null]:
 	{ newCompositeNode(grammarAccess.getAnalysisCaseDefKeywordRule()); }
@@ -9970,20 +9992,20 @@ ruleAnalysisCaseDefKeyword returns [AntlrDatatypeRuleToken current=new AntlrData
 	leaveRule();
 }:
 	(
-		kw='analysis'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getAnalysisCaseDefKeywordAccess().getAnalysisKeyword_0());
+			newCompositeNode(grammarAccess.getAnalysisCaseDefKeywordAccess().getAnalysisCaseKeywordParserRuleCall_0());
 		}
+		this_AnalysisCaseKeyword_0=ruleAnalysisCaseKeyword
 		{
-			newCompositeNode(grammarAccess.getAnalysisCaseDefKeywordAccess().getCaseDefKeywordParserRuleCall_1());
-		}
-		this_CaseDefKeyword_1=ruleCaseDefKeyword
-		{
-			$current.merge(this_CaseDefKeyword_1);
+			$current.merge(this_AnalysisCaseKeyword_0);
 		}
 		{
 			afterParserOrEnumRuleCall();
+		}
+		kw='def'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getAnalysisCaseDefKeywordAccess().getDefKeyword_1());
 		}
 	)
 ;
@@ -20941,23 +20963,16 @@ ruleAnalysisCaseUsageKeyword returns [AntlrDatatypeRuleToken current=new AntlrDa
 @after {
 	leaveRule();
 }:
-	(
-		kw='analysis'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getAnalysisCaseUsageKeywordAccess().getAnalysisKeyword_0());
-		}
-		{
-			newCompositeNode(grammarAccess.getAnalysisCaseUsageKeywordAccess().getCaseKeywordParserRuleCall_1());
-		}
-		this_CaseKeyword_1=ruleCaseKeyword
-		{
-			$current.merge(this_CaseKeyword_1);
-		}
-		{
-			afterParserOrEnumRuleCall();
-		}
-	)
+	{
+		newCompositeNode(grammarAccess.getAnalysisCaseUsageKeywordAccess().getAnalysisCaseKeywordParserRuleCall());
+	}
+	this_AnalysisCaseKeyword_0=ruleAnalysisCaseKeyword
+	{
+		$current.merge(this_AnalysisCaseKeyword_0);
+	}
+	{
+		afterParserOrEnumRuleCall();
+	}
 ;
 
 

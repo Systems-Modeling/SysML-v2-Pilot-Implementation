@@ -18,7 +18,7 @@ package Cases {
 		/**
 		 * A check of whether the objective RequirementUsage was satisfied for this Case.
 		 */
-		obj objective[1] (subject = Case::result);
+		objective 'objective'[1] (subject = Case::result);
 		
 		/**
 		 * Other Cases carried out as part of the performance of this Case.

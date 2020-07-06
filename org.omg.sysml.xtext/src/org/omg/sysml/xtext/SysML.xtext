@@ -989,7 +989,7 @@ ObjectiveRequirementUsage returns SysML::RequirementUsage :
 /* CASE DEFINITION MEMBERSHIPS */
 
 //SubjectParameterMember returns SysML::SubjectMembership :
-//	DefinitionMemberPrefix 'subj' ownedSubjectParameter_comp = SubjectParameter ';'
+//	DefinitionMemberPrefix 'subject' ownedSubjectParameter_comp = SubjectParameter ';'
 //;
 
 EmptySubjectParameterMember returns SysML::SubjectMembership :
@@ -1005,13 +1005,17 @@ InDirection returns SysML::FeatureDirectionKind :
 ;
 
 ObjectiveMember returns SysML::ObjectiveMembership :
-	DefinitionMemberPrefix 'obj' ownedObjectiveRequirement_comp = ObjectiveRequirementUsage
+	DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp = ObjectiveRequirementUsage
 ;
 
 /* ANALYSIS CASE DEFINITIONS */
 
+AnalysisCaseKeyword :
+	'analysis'
+;
+
 AnalysisCaseDefKeyword :
-	'analysis' CaseDefKeyword
+	AnalysisCaseKeyword 'def'
 ;
 
 AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
@@ -1877,7 +1881,7 @@ CaseRefUsage returns SysML::CaseUsage :
 /* ANALYSIS CASE USAGES */
 
 AnalysisCaseUsageKeyword :
-	'analysis' CaseKeyword
+	AnalysisCaseKeyword
 ;
 
 fragment AnalysisCaseDeclaration returns SysML::AnalysisCaseUsage :

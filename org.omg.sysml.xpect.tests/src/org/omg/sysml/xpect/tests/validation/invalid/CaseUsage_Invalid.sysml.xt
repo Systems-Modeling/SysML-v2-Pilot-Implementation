@@ -45,8 +45,8 @@ END_SETUP
 package pkg {
 	case def C1;
 	case def C2;
-	analysis case def AC1;
-	analysis case def AC2;
+	analysis def AC1;
+	analysis def AC2;
 	part def A;
 	part def B {
 		// XPECT errors --> "A case must be typed by one case definition." at "case c1: C1, C2;"
@@ -54,13 +54,13 @@ package pkg {
 	 	// XPECT errors ---> "A case must be typed by one case definition." at "case c2: A;"
     	case c2: A;
  	 	//* XPECT errors ---
- 	 	    "An analysis case must be typed by one analysis case definition." at "analysis case ac1: C1;"
- 	 	    "Features must have at least one type" at "analysis case ac1: C1;"
+ 	 	    "An analysis case must be typed by one analysis case definition." at "analysis ac1: C1;"
+ 	 	    "Features must have at least one type" at "analysis ac1: C1;"
  	 	--- */
-    	analysis case ac1: C1;
- 	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis case ac2: AC1, AC2;"
-    	analysis case ac2: AC1, AC2;
- 	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis case ac3: B;"
-    	analysis case ac3: B;
+    	analysis ac1: C1;
+ 	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis ac2: AC1, AC2;"
+    	analysis ac2: AC1, AC2;
+ 	 	// XPECT errors ---> "An analysis case must be typed by one analysis case definition." at "analysis ac3: B;"
+    	analysis ac3: B;
    	}
 }

@@ -41,9 +41,9 @@ package '10a-Analysis' {
 			/* ... */
 		}
 	
-		analysis case def MassAnalysisCase(vehicle : Vehicle) {
+		analysis def MassAnalysisCase(vehicle : Vehicle) {
 			
-			obj objective : MassAnalysisObjective(
+			objective : MassAnalysisObjective(
 				mass = result
 			);
 			
@@ -51,9 +51,9 @@ package '10a-Analysis' {
 			vehicle::mass
 		}
 		
-		analysis case def AnalysisPlan(vehicle : Vehicle) {
+		analysis def AnalysisPlan(vehicle : Vehicle) {
 			
-			obj {
+			objective {
 				/* ... */
 			}
 			
@@ -61,11 +61,11 @@ package '10a-Analysis' {
 			 * By default, the subject of a nested analysis case bound to that
 			 * of its containing analysis case or analysis case definition.
 			 */
-			analysis case massAnalysisCase : MassAnalysisCase () return mass;
+			analysis massAnalysisCase : MassAnalysisCase () return mass;
 		}
 		
 		part massAnalysisContext {
-			analysis case analysisPlan : AnalysisPlan (
+			analysis analysisPlan : AnalysisPlan (
 				vehicle = VehicleDesignModel::vehicle
 			);
 		}

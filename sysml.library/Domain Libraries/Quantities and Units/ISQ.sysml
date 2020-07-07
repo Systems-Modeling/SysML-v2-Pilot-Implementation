@@ -4,7 +4,10 @@
 package ISQ {
 	private import ScalarValues::Real;
 	private import Quantities::*;
-	private import UnitsAndScales::*;	
+	private import UnitsAndScales::*;
+
+    // Temporary import from generated package
+    import ISO_80000_03_SpaceAndTime::LengthUnit, LengthValue, length, TimeUnit, TimeValue, time, AccelerationUnit, AccelerationValue, acceleration;
 	
 	/*
 	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000
@@ -15,16 +18,16 @@ package ISQ {
 	 /**
 	  * length
 	  */
-	attribute def LengthUnit :> SimpleUnit {
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: LengthUnit redefines UnitPowerFactor::unit;
-		}
-	}
-	attribute def LengthValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: LengthUnit redefines QuantityValue::mRef;
-	}	
-	attribute length: LengthValue :> quantity;
+	// attribute def LengthUnit :> SimpleUnit {
+	// 	attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+	// 		attribute unit: LengthUnit redefines UnitPowerFactor::unit;
+	// 	}
+	// }
+	// attribute def LengthValue :> QuantityValue {
+	// 	attribute num: Real redefines QuantityValue::num;
+	// 	attribute mRef: LengthUnit redefines QuantityValue::mRef;
+	// }	
+	// attribute length: LengthValue :> quantity;
 	
 	 /**
 	  * mass
@@ -43,16 +46,16 @@ package ISQ {
 	 /**
 	  * time
 	  */
-	attribute def TimeUnit :> SimpleUnit { 
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: TimeUnit redefines UnitPowerFactor::unit;
-		}
-	}
-	attribute def TimeValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: TimeUnit redefines QuantityValue::mRef;
-	}
-	attribute time: TimeValue :> quantity;
+	// attribute def TimeUnit :> SimpleUnit { 
+	// 	attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
+	// 		attribute unit: TimeUnit redefines UnitPowerFactor::unit;
+	// 	}
+	// }
+	// attribute def TimeValue :> QuantityValue {
+	// 	attribute num: Real redefines QuantityValue::num;
+	// 	attribute mRef: TimeUnit redefines QuantityValue::mRef;
+	// }
+	// attribute time: TimeValue :> quantity;
 	
 	 /**
 	  * electric current
@@ -240,17 +243,17 @@ package ISQ {
 	/**
 	 * acceleration
 	 */	
-    attribute def AccelerationUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = -2;
-		}		
-    }
-    attribute def AccelerationValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-    	attribute mRef: AccelerationUnit redefines QuantityValue::mRef;
-    }
-    attribute acceleration: AccelerationValue :> quantity;
+    // attribute def AccelerationUnit :> SIDerivedUnit {
+	// 	attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+	// 		attribute exponent redefines UnitPowerFactor::exponent = 1;
+	// 	}
+	// 	attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
+	// 		attribute exponent redefines UnitPowerFactor::exponent = -2;
+	// 	}		
+    // }
+    // attribute def AccelerationValue :> QuantityValue {
+	// 	attribute num: Real redefines QuantityValue::num;
+    // 	attribute mRef: AccelerationUnit redefines QuantityValue::mRef;
+    // }
+    // attribute acceleration: AccelerationValue :> quantity;
 }

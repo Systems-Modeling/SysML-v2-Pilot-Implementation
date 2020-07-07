@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -365,6 +366,9 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public static SysMLInteractive createInstance() {
 		if (injector == null) {
+			// Note: An EPackage must be registered to be sure the correctly configured
+			// CompositeEValidator is used.
+			EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
 			KerMLStandaloneSetup.doSetup();
 			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}

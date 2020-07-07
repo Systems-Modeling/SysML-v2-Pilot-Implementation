@@ -1,13 +1,14 @@
 package '10c-Fuel Economy Analysis' {
 	import ScalarValues::*;
 	import Quantities::*;
+	import UnitsAndScales::*;
 	import ISQ::*;
 	import USCustomaryUnits::*;
 	
 	attribute volume : QuantityValue = length ** 3;
 	attribute distancePerVolume : QuantityValue = length / volume;
 	
-	attribute gallon : QuantityValue = 231.0 * 'in' ** 3;
+	attribute gallon : MeasurementUnit = 231.0 * 'in' ** 3;
 	
 	package FuelEconomyRequirementsModel {
 		
@@ -148,9 +149,7 @@ package '10c-Fuel Economy Analysis' {
 				requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
 			} highwayFuelEconomy = vehicle1_c1_analysized::fuelEconomy_highway;
 			
-			part vehicle1_c1_analysized :> vehicle1_c1 {
-				
-			}			
+			part vehicle1_c1_analysized :> vehicle1_c1;			
 			
 			satisfy vehicleFuelEconomyRequirementsGroup by vehicle1_c1_analysized;
 		}

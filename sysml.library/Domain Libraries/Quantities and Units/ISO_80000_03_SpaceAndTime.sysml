@@ -1,7 +1,9 @@
-package ISO_80000_03_Space_and_Time {
-    /*
-     * Generated 2020-07-07T22:33:19Z by sysml_v2_quantities_units_generator.py
-     */
+/**
+ * International System of Quantities and Units
+ * Generated 2020-07-08T11:01:10Z by sysml_v2_quantities_units_generator.py
+ * from ISO-80000-03 "Space and Time" source at https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
+ */
+package ISO_80000_03_SpaceAndTime {
     private import ScalarValues::Real;
     private import Quantities::*;
     private import UnitsAndScales::*;    
@@ -257,7 +259,7 @@ package ISO_80000_03_Space_and_Time {
      * quantity dimension: 1
      * measurement unit(s): sr, 1
      * definition: measure of a conical geometric figure, called solid angle, formed by all rays, originating from a common point, called the vertex of the solid angle, and passing through the points of a closed, non-self-intersecting curve in space considered as the border of a surface
-     * remarks: The differential solid angular measure expressed in spherical coordinates (ISO 80000-2) is given by: `d Ω = A/r^2 * sin(thη * d thη * d φ)` where `A` is area, `r` is radius, `θ `and `φ` are spherical coordinates.
+     * remarks: The differential solid angular measure expressed in spherical coordinates (ISO 80000-2) is given by: `dΩ = A/r^2 * sin(θ * dθ * dφ)` where `A` is area, `r` is radius, `θ` and `φ` are spherical coordinates.
      */
     attribute def SolidAngularMeasureUnit :> DimensionOneUnit {
     }

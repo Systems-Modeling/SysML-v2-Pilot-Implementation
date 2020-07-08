@@ -5,8 +5,6 @@ package ISQ {
 	private import ScalarValues::Real;
 	private import Quantities::*;
 	private import UnitsAndScales::*;
-
-    // Temporary import from generated package
     import ISQSpaceTime::*;
 	
 	/*
@@ -240,9 +238,9 @@ package ISQ {
 	attribute kineticEnergy :> energy;
 	attribute potentialEnergy :> energy;
 	
-	///**
-	// * acceleration
-	// */	
+	// /**
+	//  * acceleration
+	//  */	
     // attribute def AccelerationUnit :> SIDerivedUnit {
 	// 	attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
 	// 		attribute exponent redefines UnitPowerFactor::exponent = 1;

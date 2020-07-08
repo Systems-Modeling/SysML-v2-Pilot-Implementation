@@ -1,13 +1,12 @@
 /**
  * International System of Quantities
- * Generated 2020-07-08T11:01:10Z by sysml_v2_quantities_units_generator.py
  * from ISO-80000-03 "Space and Time" source at https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  */
 package ISQSpaceTime {
     private import ScalarValues::Real;
     private import Quantities::*;
     private import UnitsAndScales::*;
-    private import ISQ::*;    
+    private import ISQ::SIDerivedUnit;
 
     /**    
      * source: ISO-80000-03 item 3‑1.1 length

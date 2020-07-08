@@ -7,7 +7,6 @@ package USCustomaryUnits {
 	private import RationalFunctions::Rat;
 	private import UnitsAndScales::*;
 	import ISQ::*;
-	import ISQSpaceTime::*;
 	private import SI::*;
 	
 	attribute ft: LengthUnit = LengthUnit(name => "foot", unitConversion => ConversionByConvention(referenceUnit => m, conversionFactor => Rat(3048, 10000)));

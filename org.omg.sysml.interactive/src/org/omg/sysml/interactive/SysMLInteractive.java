@@ -112,6 +112,7 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Quantities" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/UnitsAndScales" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQ" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQSpaceTime" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SIPrefixes" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SI" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/USCustomaryUnits" + SYSML_EXTENSION, false, SYSML_EXTENSION);
@@ -162,8 +163,6 @@ public class SysMLInteractive extends SysMLUtil {
 		if (resource != null) {
 			// Surround input with braces so that it is parsed as an anonymous package.
 			resource.reparse("{\n" + input + "}");
-			
-			this.addResourceToIndex(resource);
 		}
 	}
 	
@@ -190,6 +189,8 @@ public class SysMLInteractive extends SysMLUtil {
 			SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, issues);
 			if (result.hasErrors()) {
 				this.removeResource();
+			} else {
+				this.addResourceToIndex(resource);
 			}
 			return result;
 		} catch (Exception e) {

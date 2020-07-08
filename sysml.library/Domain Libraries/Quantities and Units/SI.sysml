@@ -6,7 +6,6 @@ package SI {
     private import UnitsAndScales::*;
     import ISQ::*;
     import SIPrefixes::*;
-    private import ISO_80000_03_SpaceAndTime::*;
     
     /*
      * SI simple units needed before creation of base units

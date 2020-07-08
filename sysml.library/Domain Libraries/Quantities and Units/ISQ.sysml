@@ -7,7 +7,7 @@ package ISQ {
 	private import UnitsAndScales::*;
 
     // Temporary import from generated package
-    import ISO_80000_03_SpaceAndTime::LengthUnit, LengthValue, length, TimeUnit, TimeValue, time, AccelerationUnit, AccelerationValue, acceleration;
+    import ISQSpaceTime::*;
 	
 	/*
 	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000
@@ -240,9 +240,9 @@ package ISQ {
 	attribute kineticEnergy :> energy;
 	attribute potentialEnergy :> energy;
 	
-	/**
-	 * acceleration
-	 */	
+	///**
+	// * acceleration
+	// */	
     // attribute def AccelerationUnit :> SIDerivedUnit {
 	// 	attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
 	// 		attribute exponent redefines UnitPowerFactor::exponent = 1;

@@ -1,0 +1,25 @@
+{
+    "name": "sysml",
+    "displayName": "SysML",
+    "description": "OMG Systems Modeling Language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.45.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "sysml",
+            "aliases": ["sysml", "SysML"],
+            "extensions": [".sysml"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "sysml",
+            "scopeName": "source.sysml",
+            "path": "./syntaxes/sysml.tmLanguage.json"
+        }]
+    }
+}

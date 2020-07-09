@@ -1,0 +1,25 @@
+{
+    "name": "kerml",
+    "displayName": "KerML",
+    "description": "OMG Kernel Modeling Language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.45.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "kerml",
+            "aliases": ["kerml", "KerML"],
+            "extensions": [".kerml"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "kerml",
+            "scopeName": "source.kerml",
+            "path": "./syntaxes/kerml.tmLanguage.json"
+        }]
+    }
+}

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "KerML",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#quoted-variables"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        { "match": "\\b(about|abstract|alias|all|allInstances|any|as|assoc|behavior|binding|bool|class|classifier|comment|composite|conjugates|connector|datatype|end|expr|false|feature|first|flow|from|function|hastype|import|in|inout|instanceof|interaction|inv|is|nonunique|null|of|ordered|out|package|packaged|port|portion|predicate|private|protected|public|redefines|specializes|step|stream|subsets|succession|then|to|true)\\b", "name": "keyword.other.kerml" },
+        { "match": "(&|&&|\\?|\\?\\?|\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
+        { "match": "(!|!=|\\<|\\<=|=|==|=\\>|\\>|\\>=)", "name": "keyword.operator.comparison.kerml" },
+        { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.kerml" },
+        { "match": "(\\-\\>|\\.\\.|:|::|:\\>|:\\>\\>|@|~)", "name": "keyword.operator.other.kerml" }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.kerml",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.kerml",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "quoted-variables": {
+      "patterns": [{ "match": "\\b(\\'[^']+\\')\\b", "name": "variable.name.quoted.kerml" }]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.kerml"
+            }
+          },
+          "match": "/\\*\\*/",
+          "name": "comment.block.empty.kerml"
+        },
+        {
+          "include": "#comments-inline"
+        }
+      ]
+    },
+    "comments-inline": {
+      "patterns": [
+        {
+          "begin": "/\\*",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.kerml"
+            }
+          },
+          "end": "\\*/",
+          "name": "comment.block.kerml"
+        },
+        {
+          "begin": "(^[ \\t]+)?(?=//)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.kerml"
+            }
+          },
+          "end": "(?!\\G)",
+          "patterns": [
+            {
+              "begin": "//",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.comment.kerml"
+                }
+              },
+              "end": "\\n",
+              "name": "comment.line.double-slash.kerml"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.kerml"
+}

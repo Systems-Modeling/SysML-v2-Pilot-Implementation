@@ -1,0 +1,95 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SysML",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#quoted-variables"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        { "match": "\\b(about|abstract|accept|action|activity|alias|allInstances|analysis|any|as|assert|assoc|assume|attribute|bind|block|by|calc|case|comment|connect|connection|constraint|decide|def|defined|do|else|end|entry|exhibit|exit|false|first|flow|fork|from|hastype|id|if|import|in|individual|inout|instanceof|interface|item|join|link|merge|nonunique|null|objective|of|ordered|out|package|part|perform|port|private|protected|public|redefines|ref|require|requirement|return|satisfy|send|snapshot|specializes|state|stream|subject|subsets|succession|then|timeslice|to|transition|true|type|value|variant|variation)\\b", "name": "keyword.other.sysml" },
+        { "match": "(&|&&|\\?|\\?\\?|\\^|\\||\\|\\|)", "name": "keyword.operator.logical.sysml" },
+        { "match": "(!|!=|\\<|\\<=|=|==|=\\>|\\>|\\>=)", "name": "keyword.operator.comparison.sysml" },
+        { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.sysml" },
+        { "match": "(\\-\\>|\\.\\.|\\./|:|::|:\\>|:\\>\\>|@|~)", "name": "keyword.operator.other.sysml" }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.sysml",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.sysml",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "quoted-variables": {
+      "patterns": [{ "match": "\\b(\\'[^']+\\')\\b", "name": "variable.name.quoted.sysml" }]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.sysml"
+            }
+          },
+          "match": "/\\*\\*/",
+          "name": "comment.block.empty.sysml"
+        },
+        {
+          "include": "#comments-inline"
+        }
+      ]
+    },
+    "comments-inline": {
+      "patterns": [
+        {
+          "begin": "/\\*",
+          "captures": {
+            "0": {
+              "name": "punctuation.definition.comment.sysml"
+            }
+          },
+          "end": "\\*/",
+          "name": "comment.block.sysml"
+        },
+        {
+          "begin": "(^[ \\t]+)?(?=//)",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.whitespace.comment.leading.sysml"
+            }
+          },
+          "end": "(?!\\G)",
+          "patterns": [
+            {
+              "begin": "//",
+              "beginCaptures": {
+                "0": {
+                  "name": "punctuation.definition.comment.sysml"
+                }
+              },
+              "end": "\\n",
+              "name": "comment.line.double-slash.sysml"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "scopeName": "source.sysml"
+}

@@ -34,12 +34,12 @@ package 'Streaming Example' {
 	
 	part def  A {
 		part def B {
-			ref out myOut;
+			out ref myOut;
 		}
 		part def C {
-			ref in myIn;
+			in ref myIn;
 		}
-		// XPECT errors --> "Relationships must have at least two related elements" at "XXX from B::myOut to C::myIn;"
+		// XPECT errors --> "Relationships must have at least two related elements" at "stream XXX from B::myOut to C::myIn;"
 		//* XPECT warnings --- 
 			"Owner of redefining feature should be a specialization of owner of redefined feature" at "B::myOut"
 			"Owner of redefining feature should be a specialization of owner of redefined feature" at "C::myIn"

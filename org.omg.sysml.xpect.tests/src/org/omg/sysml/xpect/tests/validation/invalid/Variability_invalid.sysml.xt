@@ -1,0 +1,75 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package VariabilityModel {
+
+	part def B;
+	part b1 : B;
+	part b2 : B;
+
+    variation attribute def AttributeChoices {
+    	variant attribute a1;
+		// XPECT errors --> "A variation must only have variant owned members." at "attribute a2;"
+    	attribute a2;
+    }
+
+    part def PartChoices :> B {
+		// XPECT errors --> "A variant must be an owned member of a variation." at "b1;"
+        variant b1;
+		// XPECT errors --> "A variant must be an owned member of a variation." at "b2;"
+        variant b2;
+    }
+    
+    part def D;
+    part d1 : D;
+    part d2 : D;
+
+    part c {
+        variation part d : D {
+			// XPECT errors --> "A variation must only have variant owned members." at "part d1;"
+        	part d1;
+        	variant part d2;
+        }
+        
+        action f {
+			// XPECT errors --> "A variant must be an owned member of a variation." at "action f1;"
+        	variant action f1;
+        	action f2;
+        }       
+    }
+}

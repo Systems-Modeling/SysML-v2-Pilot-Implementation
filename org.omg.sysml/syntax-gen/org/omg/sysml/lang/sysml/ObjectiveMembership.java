@@ -16,6 +16,7 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.ObjectiveMembership#getOwnedObjectiveRequirement_comp <em>Owned Objective Requirement comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ObjectiveMembership#getOwnedObjectiveRequirement <em>Owned Objective Requirement</em>}</li>
  * </ul>
  *
@@ -25,7 +26,7 @@ package org.omg.sysml.lang.sysml;
  */
 public interface ObjectiveMembership extends FeatureMembership {
 	/**
-	 * Returns the value of the '<em><b>Owned Objective Requirement</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Objective Requirement comp</b></em>' containment reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -37,12 +38,34 @@ public interface ObjectiveMembership extends FeatureMembership {
 	 * <!-- begin-model-doc -->
 	 * <p>The RequirementUsage that is the <p>ownedMemberFeature</p> of this RequirementUsage.</p>
 	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Objective Requirement comp</em>' containment reference.
+	 * @see #setOwnedObjectiveRequirement_comp(RequirementUsage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getObjectiveMembership_OwnedObjectiveRequirement_comp()
+	 * @model containment="true" required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningObjectiveMembership'"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	RequirementUsage getOwnedObjectiveRequirement_comp();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ObjectiveMembership#getOwnedObjectiveRequirement_comp <em>Owned Objective Requirement comp</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Objective Requirement comp</em>' containment reference.
+	 * @see #getOwnedObjectiveRequirement_comp()
+	 * @generated
+	 */
+	void setOwnedObjectiveRequirement_comp(RequirementUsage value);
+
+	/**
+	 * Returns the value of the '<em><b>Owned Objective Requirement</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owned Objective Requirement</em>' reference.
 	 * @see #setOwnedObjectiveRequirement(RequirementUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getObjectiveMembership_OwnedObjectiveRequirement()
-	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningObjectiveMembership'"
-	 *        annotation="redefines"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	RequirementUsage getOwnedObjectiveRequirement();

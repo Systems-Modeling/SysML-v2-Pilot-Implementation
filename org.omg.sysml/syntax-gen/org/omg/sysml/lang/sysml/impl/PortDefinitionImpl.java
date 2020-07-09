@@ -24,7 +24,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition {
 
-	public String PORT_DEFINITION_SUPERCLASS_DEFAULT = "Ports::Port";
+	public static final String PORT_DEFINITION_SUPERCLASS_DEFAULT = "Ports::Port";
 	
 	/**
 	 * <!-- begin-user-doc -->

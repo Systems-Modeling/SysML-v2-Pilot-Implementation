@@ -6,14 +6,14 @@ package 'Port Example' {
 	
 	port def FuelOutPort {
 		attribute temperature : Temp;
-		ref out fuelSupply : Fuel;
-		ref in fuelReturn : Fuel;
+		out ref fuelSupply : Fuel;
+		in ref fuelReturn : Fuel;
 	}
 	
 	port def FuelInPort {
 		attribute temperature : Temp;
-		ref out fuelSupply : Fuel;
-		ref in fuelReturn : Fuel;
+		out ref fuelSupply : Fuel;
+		in ref fuelReturn : Fuel;
 	}
 	
 	part def FuelTankAssembly {

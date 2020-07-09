@@ -115,8 +115,14 @@ public class SysMLInteractiveResult {
 			return this.formatException();
 		} else {
 			List<Issue> syntaxErrors = this.getSyntaxErrors();
-			return this.getIssues().isEmpty()? this.formatRootElement():
-				   SysMLInteractiveUtil.formatList(syntaxErrors.isEmpty()? this.getSemanticErrors(): syntaxErrors);
+			if (!syntaxErrors.isEmpty()) {
+				return SysMLInteractiveUtil.formatList(syntaxErrors);
+			} else {
+				List<Issue> semanticErrors = this.getSemanticErrors();
+				List<Issue> warnings = this.getWarnings();
+				String msgs = SysMLInteractiveUtil.formatList(semanticErrors) + SysMLInteractiveUtil.formatList(warnings);
+				return semanticErrors.isEmpty()? msgs + this.formatRootElement(): msgs;
+			}
 		}
 	}
 

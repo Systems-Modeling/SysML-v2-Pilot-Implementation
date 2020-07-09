@@ -8,11 +8,11 @@ package '15_11-Variable Length Collection Types' {
 	/* TODO: Define syntactic sugar for instantiating collection types. */
 	
 	attribute def 'Bag<SparePart>' :> Bag {
-		ref :>> values: SparePart;
+		ref part :>> values: SparePart;
 	}
 	
 	attribute def 'Sequence<Integer>' :> Sequence {
-		value :>> values: Integer;
+		attribute :>> values: Integer;
 	}
 	
 	attribute def 'List<Integer>' :> List {
@@ -20,20 +20,20 @@ package '15_11-Variable Length Collection Types' {
 	}
 	
 	attribute def 'Set<String>' :> Set {
-		value :>> values: String;
+		attribute :>> values: String;
 	}
 	
 	attribute def 'OrderedSet<Person>' :> OrderedSet {
-		ref :>> values: Person;
+		ref part :>> values: Person;
 	}
 	
 	attribute def 'Sequence<Set<Person>>' :> Sequence {
-		value :>> values: Set {
-			ref :>> values: Person;
+		attribute :>> values: Set {
+			ref part :>> values: Person;
 		}
 	}
 	
 	attribute def 'Array<Real>[4]' :> Sequence {
-		value :>> values: Real[4];
+		attribute :>> values: Real[4];
 	}
 }

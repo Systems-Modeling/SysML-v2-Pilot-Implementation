@@ -34,10 +34,8 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Conjugation;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -241,9 +239,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected static void removeRedundantTypes(List<Type> types) {
-		for (int i = types.size() - 1; i > 0 ; i--) {
+		for (int i = types.size() - 1; i >= 0 ; i--) {
 			Type type = types.get(i);
-			if (types.subList(0, i).stream().anyMatch(otherType->((TypeImpl)otherType).conformsTo(type))) {
+			if (types.stream().anyMatch(otherType->otherType != type && ((TypeImpl)otherType).conformsTo(type))) {
 				types.remove(i);
 			}
 		}
@@ -428,14 +426,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (redefinedFeatures.stream().allMatch(feature->feature == null)) {
 			redefinedFeatures.clear();
 			Type type = getOwningType();
-			int i = ((TypeImpl)type).getOwnedEndFeatures().indexOf(this);
-			if (i >= 0) {
-				for (Type general: getGeneralTypes(type)) {
-					List<? extends Feature> features = getRelevantFeatures(general);
-					if (i < features.size()) {
-						Feature redefinedFeature = features.get(i);
-						if (redefinedFeature != null && redefinedFeature != this) {
-							redefinedFeatures.add(redefinedFeature);
+			if (type != null) {
+				int i = ((TypeImpl)type).getOwnedEndFeatures().indexOf(this);
+				if (i >= 0) {
+					for (Type general: getGeneralTypes(type)) {
+						List<? extends Feature> features = getRelevantFeatures(general);
+						if (i < features.size()) {
+							Feature redefinedFeature = features.get(i);
+							if (redefinedFeature != null && redefinedFeature != this) {
+								redefinedFeatures.add(redefinedFeature);
+							}
 						}
 					}
 				}
@@ -513,14 +513,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return isEnd()? ((TypeImpl)type).getAllEndFeatures():
-					   
-			   // NOTE: This is a temporary measure until connecting to inherited features
-			   // is handled generally.
-			   getOwningType() instanceof Parameter? 
-					   type.getOwnedFeature().stream().
-					   filter(f->!(f instanceof Multiplicity)).
-					   collect(Collectors.toList()):
-
 			   type != null? ((TypeImpl)type).getRelevantFeatures():
 			   Collections.emptyList();
 	}
@@ -758,7 +750,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	// Additional redefinitions and subsets
 	
 	protected String effectiveName = null;
-	protected boolean checkEffectiveName = true;
 	
 	public String getEffectiveName() {
 		return getEffectiveName(new HashSet<Feature>());
@@ -767,14 +758,13 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public String getEffectiveName(Set<Feature> visited) {
 		String name = getName();
 		if (name == null) {
-			if (effectiveName == null && checkEffectiveName) {
+			if (effectiveName == null) {
 				visited.add(this);
 				Feature namingFeature = getNamingFeature();
 				if (namingFeature != null && !visited.contains(namingFeature)) {
 					effectiveName = ((FeatureImpl)namingFeature).getEffectiveName(visited);
 				}
 			}
-			checkEffectiveName = false;
 			name = effectiveName;
 		}
 		return name;

@@ -29,18 +29,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescription.Manager;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsData;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+
 
 /**
  * This is a utility base class for reading SysML v2 files into an EMF resource set.
@@ -53,27 +52,22 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  */
 public abstract class SysMLUtil {
-	
+
 	protected final ResourceSet resourceSet;
 	protected final Set<Resource> inputResources = new HashSet<Resource>();
 	protected final List<String> extensions = new ArrayList<String>();
 	protected final ResourceDescriptionsData index;
 	
-	protected SysMLUtil(ResourceSet resourceSet) {
-		@SuppressWarnings("unused")
-		SysMLPackage sysml = SysMLPackage.eINSTANCE;
-		this.resourceSet = resourceSet;
-		
-		this.index = Optional.ofNullable(ResourceDescriptionsData.ResourceSetAdapter.findResourceDescriptionsData(resourceSet))
-				.orElseGet(() -> {
-					ResourceDescriptionsData newIndex = new ResourceDescriptionsData(new ArrayList<IResourceDescription>());
-					ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(resourceSet, newIndex);
-					return newIndex;					
-				});
+	protected SysMLUtil() {
+		this(new ResourceDescriptionsData(new ArrayList<>()));
 	}
 	
-	protected SysMLUtil() {
-		this(new ResourceSetImpl());
+	protected SysMLUtil(ResourceDescriptionsData resourceDescriptionData) {
+		@SuppressWarnings("unused")
+		SysMLPackage sysml = SysMLPackage.eINSTANCE;
+		this.resourceSet = new ResourceSetImpl();
+		this.index = resourceDescriptionData;
+		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(this.resourceSet, this.index);
 	}
 	
 	/**

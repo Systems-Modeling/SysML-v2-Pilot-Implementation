@@ -24,15 +24,14 @@ var enableMode = function (CodeMirror) {
     CodeMirror.defineMode("sysml", function (config) {
         return CodeMirror.getMode(config, {
             name: "clike",
-            keywords: words("about abstract accept action activity alias allInstances any as assert assoc assume bind block by " +
-                "calc comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype id if import " +
-                "in inout instanceof interface individual join link merge nonunique of ordered out package part perform port private " +
+            keywords: words("about abstract accept action activity alias allInstances analysis any as assert assoc assume attribute bind block by " +
+                "calc case comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype id if import " +
+                "in inout instanceof interface individual item join link merge nonunique objective of ordered out package part perform port private " +
                 "protected public redefines ref require requirement return satisfy send snapshot specializes state stream subsets succession then " + 
-                "timeslice to transition type typed value " +
-                "function fn compute" // to be removed in 2020-06
+                "timeslice to transition type typed value variant variation"
                 ),
-            defKeywords: words("action activity assoc block calc constraint def id link individual interface package part port ref requirement " +
-                               "snapshot state timeslice transition type value"),
+            defKeywords: words("action activity analysis assoc attribute block calc case constraint def id link individual interface item package " +
+                               "objective part port ref requirement snapshot state timeslice transition type value"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,

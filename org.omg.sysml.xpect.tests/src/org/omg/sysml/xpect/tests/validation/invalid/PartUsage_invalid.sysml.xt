@@ -37,28 +37,28 @@ END_SETUP
 package pkg {
 	import ScalarValues::*;
 	part def A {
-		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "areal: Real;"
+		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "part areal: Real;"
 		part areal: Real;
-		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "aattribute: aValue;"
+		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "part aattribute: aValue;"
 		part aattribute: aValue;
-		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "anaction: anAction;"
+		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "part anaction: anAction;"
 		part anaction: anAction;
 		/* XPECT errors ---	
-		 	"A part usage must be typed by item definitions and at least one part definition." at "aportdef: APortDef;"
-		 	"Features must have at least one type" at "aportdef: APortDef;"
+		 	"A part usage must be typed by item definitions and at least one part definition." at "part aportdef: APortDef;"
+		 	"Features must have at least one type" at "part aportdef: APortDef;"
 		--- */ 
 		part aportdef: APortDef;
 		/* XPECT errors ---
-		 	"A part usage must be typed by item definitions and at least one part definition." at "aport: ABlock::aPort;"
-		 	"Features must have at least one type" at "aport: ABlock::aPort;"
+		 	"A part usage must be typed by item definitions and at least one part definition." at "part aport: ABlock::aPort;"
+		 	"Features must have at least one type" at "part aport: ABlock::aPort;"
 		--- */
 		part aport: ABlock::aPort;
 		/* XPECT errors ---
-		 "A part usage must be typed by item definitions and at least one part definition." at "apart: ABlock::aPart;"
-		 "Features must have at least one type" at "apart: ABlock::aPart;"
+		 "A part usage must be typed by item definitions and at least one part definition." at "part apart: ABlock::aPart;"
+		 "Features must have at least one type" at "part apart: ABlock::aPart;"
 		--- */
 		part apart: ABlock::aPart;
-		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "twoTypes: ABlock, APortDef;"
+		// XPECT errors --> "A part usage must be typed by item definitions and at least one part definition." at "part twoTypes: ABlock, APortDef;"
 		part twoTypes: ABlock, APortDef;
 	}
 	attribute aValue: Real;

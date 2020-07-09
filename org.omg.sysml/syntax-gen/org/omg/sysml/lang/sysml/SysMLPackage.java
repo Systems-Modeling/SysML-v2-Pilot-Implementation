@@ -64123,13 +64123,22 @@ public interface SysMLPackage extends EPackage {
 	int OBJECTIVE_MEMBERSHIP__OWNED_MEMBER_FEATURE = FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE;
 
 	/**
+	 * The feature id for the '<em><b>Owned Objective Requirement comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Owned Objective Requirement</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 0;
+	int OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Objective Membership</em>' class.
@@ -64138,7 +64147,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OBJECTIVE_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 1;
+	int OBJECTIVE_MEMBERSHIP_FEATURE_COUNT = FEATURE_MEMBERSHIP_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -65106,6 +65115,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getObjectiveMembership();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.ObjectiveMembership#getOwnedObjectiveRequirement_comp <em>Owned Objective Requirement comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Objective Requirement comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.ObjectiveMembership#getOwnedObjectiveRequirement_comp()
+	 * @see #getObjectiveMembership()
+	 * @generated
+	 */
+	EReference getObjectiveMembership_OwnedObjectiveRequirement_comp();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.ObjectiveMembership#getOwnedObjectiveRequirement <em>Owned Objective Requirement</em>}'.
@@ -69613,6 +69633,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OBJECTIVE_MEMBERSHIP = eINSTANCE.getObjectiveMembership();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Objective Requirement comp</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OBJECTIVE_MEMBERSHIP__OWNED_OBJECTIVE_REQUIREMENT_COMP = eINSTANCE.getObjectiveMembership_OwnedObjectiveRequirement_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Objective Requirement</b></em>' reference feature.

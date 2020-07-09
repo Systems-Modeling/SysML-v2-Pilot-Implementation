@@ -1,19 +1,15 @@
 package StateTest {
 	attribute def Sig;
+	attribute def Exit;
+	
+	part p;
 	
 	action act;
 	
-	state S {
-		entry action A;
+	state def S {
+		entry action A; then S1;
 		do action B;
 		exit act;
-		
-		transition T
-			first S2
-			accept Sig
-			if true
-			do send Sig() to S
-			then S1;
 		
 		state S1;
 			accept Sig
@@ -21,6 +17,13 @@ package StateTest {
 			then S2;
 		
 		state S2;
+		accept Exit then done;
 		
+		transition T
+			first S2
+			accept Sig
+			if true
+			do send Sig() to p
+			then S1;		
 	}
 }

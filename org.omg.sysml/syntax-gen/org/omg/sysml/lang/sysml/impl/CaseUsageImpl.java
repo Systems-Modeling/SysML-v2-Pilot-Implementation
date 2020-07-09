@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -13,6 +15,7 @@ import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -31,6 +34,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
+
+	public static final String CASE_SUBSETTING_BASE_DEFAULT = "Cases::cases";
+	public static final String CASE_SUBSETTING_SUBCASE_DEFAULT = "Cases::Case::subcases";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,9 +107,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public Parameter basicGetSubjectParameter() {
-		return (Parameter)getFeatureMembership().stream().
-				filter(SubjectMembership.class::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
+		return getOwnedParameters().stream().
+				map(ParameterImpl.class::cast).
+				filter(ParameterImpl::isSubjectParameter).
 				findFirst().orElse(null);
 	}
 
@@ -197,6 +204,37 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
   		return false;
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					CASE_SUBSETTING_SUBCASE_DEFAULT:
+					CASE_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	// Additional overrides
+	
+	@Override
+	public List<Parameter> getOwnedParameters() {
+		addSubjectParameter();
+		return super.getOwnedParameters();
+	}
+	
+	public void addSubjectParameter() {
+		if (!getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
+			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+			membership.setOwnedSubjectParameter_comp(parameter);
+			getOwnedFeatureMembership_comp().add(membership);
+		}
+	}
+	@Override
+	public void transform() {
+		addSubjectParameter();
+		super.transform();
+	}
+	
+	//
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

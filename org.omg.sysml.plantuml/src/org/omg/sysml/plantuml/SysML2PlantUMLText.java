@@ -36,10 +36,10 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
@@ -53,6 +53,7 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
+import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartProperty;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
@@ -61,6 +62,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
@@ -127,7 +129,12 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
-		public String caseConnector(Connector object) {
+		public String caseSuccession(Succession s) {
+            return " --> ";
+		}
+
+		@Override
+		public String caseConnectionUsage(ConnectionUsage object) {
             return " -[thickness=3]- ";
 		}
 
@@ -156,13 +163,13 @@ public class SysML2PlantUMLText {
 		}
 
 		@Override
-		public String caseItemUsage(ItemUsage object) {
-            return isComposite()? " *-- ": " o-- ";
+		public String caseItemUsage(ItemUsage itemUsage) {
+            return itemUsage.isComposite() ? " *-- ": " o-- ";
 		}
 
 		@Override
-		public String casePartUsage(PartUsage object) {
-            return isComposite()? " *-- ": " o-- ";
+		public String casePartUsage(PartUsage partUsage) {
+            return partUsage.isComposite() ? " *-- ": " o-- ";
 		}
 
 		@Override
@@ -565,30 +572,41 @@ public class SysML2PlantUMLText {
         }
     }
 
+    private boolean outputPRelation(StringBuilder sb, PRelation pr) {
+        if (!(((pr.src == null) || checkId(pr.src))
+              && ((pr.dest == null) || checkId(pr.dest)))) return false;
+        if ((pr.src == null) && (pr.dest == null)) return true;
+        addIdStr(sb, pr.src);
+
+        // addMultiplicityString(sb, pr.src);
+                
+        sb.append(relString(pr.rel));
+
+        addMultiplicityString(sb, pr.rel);
+
+        addIdStr(sb, pr.dest);
+        if (pr.getDescription() != null) {
+            sb.append(" : ");
+            sb.append(pr.getDescription());
+        }
+        sb.append('\n');
+
+        return true;
+    }
+
+    private void outputPRelations(StringBuilder sb, List<PRelation> prs) {
+        for (PRelation pr: prs) {
+            outputPRelation(sb, pr);
+        }
+    }
+
     private void flushPRelations(StringBuilder sb) {
         List<PRelation> rest = new ArrayList<PRelation>();
 
         for (PRelation pr: pRelations) {
-            if (((pr.src == null) || checkId(pr.src))
-                && ((pr.dest == null) || checkId(pr.dest))) {
-                if ((pr.src == null) && (pr.dest == null)) continue;
-                addIdStr(sb, pr.src);
-
-                // addMultiplicityString(sb, pr.src);
-                
-                sb.append(relString(pr.rel));
-
-                addMultiplicityString(sb, pr.rel);
-
-                addIdStr(sb, pr.dest);
-                if (pr.getDescription() != null) {
-                    sb.append(" : ");
-                    sb.append(pr.getDescription());
-                }
-                sb.append('\n');
-                continue;
+            if (!outputPRelation(sb, pr)) {
+                rest.add(pr);
             }
-            rest.add(pr);
         }
         pRelations = rest;
     }
@@ -732,14 +750,14 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void addState(StringBuilder sb, StateUsage su) {
-        if (su instanceof ExhibitStateUsage) return;
+    private void addState(StringBuilder sb, Type st) {
+        if (st instanceof ExhibitStateUsage) return;
         sb.append("state ");
-        addNameWithId(sb, su);
-        addLink(sb, su);
+        addNameWithId(sb, st);
+        addLink(sb, st);
         // PlantUML cannot properly render nested states if allow_mixing is enabled
         if (diagramMode == MODE.StateMachine) {
-            addMembersInState(sb, su);
+            addMembersInState(sb, st);
         }
         sb.append("\n");
     }
@@ -776,20 +794,26 @@ public class SysML2PlantUMLText {
         sb.append("**");
         sb.append(sam.getKind().getName());
         sb.append("**/ ");
-        for (Subsetting ss: pau.getOwnedSubsetting()) {
-            Feature f = ss.getSubsettedFeature();
-            if (f instanceof ActionUsage) {
-                if (!(ss instanceof Redefinition)) {
-                    sb.append(f.getName());
-                    sb.append(' ');
+
+        String name = pau.getName();
+        if ((name == null) || (name.isEmpty())) {
+            for (Subsetting ss: pau.getOwnedSubsetting()) {
+                Feature f = ss.getSubsettedFeature();
+                if (f instanceof ActionUsage) {
+                    if (!(ss instanceof Redefinition)) {
+                        sb.append(f.getName());
+                        sb.append(' ');
+                    }
                 }
             }
+        } else {
+            sb.append(name);
         }
         if (sb.length() == 0) return null;
         return sb.toString();
     }
 
-    private PRelation addSuccession(Succession ss) {
+    private void addSuccession(Succession ss, List<PRelation> initTransitions) {
         Element src = null;
         Element dest = null;
         for (FeatureMembership fm2: ss.getOwnedFeatureMembership()) {
@@ -811,8 +835,12 @@ public class SysML2PlantUMLText {
         if (!(dest instanceof StateUsage)) {
             dest = null;
         }
-        if ((src == null) && (dest == null)) return null;
-        return addPRelation(src, dest, ss);
+        if ((src == null) && (dest == null)) return;
+        if ((src == null) || (dest == null)) {
+            initTransitions.add(new PRelation(src, dest, ss, null));
+        } else {
+            addPRelation(src, dest, ss);
+        }
     }
 
     private void addTransition(StringBuilder sb, TransitionUsage tu) {
@@ -830,10 +858,12 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private void addMembersInState(StringBuilder sb, StateUsage su) {
+    private void addMembersInState(StringBuilder sb, Type st) {
         StringBuilder sb2 = new StringBuilder();
         List<String> descriptions = null;
-        for (FeatureMembership fm: su.getOwnedFeatureMembership()) {
+
+        List<PRelation> initTransitions = new ArrayList<PRelation>();
+        for (FeatureMembership fm: st.getOwnedFeatureMembership()) {
             Feature f = fm.getMemberFeature();
             if (fm instanceof StateSubactionMembership) {
                 if (f instanceof PerformActionUsage) {
@@ -849,20 +879,21 @@ public class SysML2PlantUMLText {
                 }
             } else {
                 if (f instanceof StateUsage) {
-                    addState(sb2, (StateUsage) f);
+                    addState(sb2, f);
                 } else if (f instanceof TransitionUsage) {
                     addTransition(sb2, (TransitionUsage) f);
                 } else if (f instanceof Succession) {
-                    addSuccession((Succession) f);
+                    addSuccession((Succession) f, initTransitions);
                 }
             }
         }
         if (descriptions != null) {
             int size = descriptions.size();
             if (sb2.length() > 0) {
+                outputPRelations(sb2, initTransitions);
                 closeBlock(sb, sb2, "");
                 sb.append("state ");
-                addNameWithId(sb, su);
+                addNameWithId(sb, st);
             }
             int i = 0;
             for (;;) {
@@ -873,9 +904,10 @@ public class SysML2PlantUMLText {
                 if (i >= size) break;
 
                 sb.append("state ");
-                addNameWithId(sb, su);
+                addNameWithId(sb, st);
             }
         } else {
+            outputPRelations(sb2, initTransitions);
             closeBlock(sb, sb2, "");
         }
     }
@@ -934,9 +966,14 @@ public class SysML2PlantUMLText {
         if (typ instanceof StateUsage) {
             StateUsage su = (StateUsage) typ;
             if ((parent == null) || (su.isComposite())) {
-                addState(sb, (StateUsage) typ);
+                addState(sb, su);
             }
             return;
+        } else if (typ instanceof StateDefinition) {
+            if (diagramMode == MODE.StateMachine) {
+                addState(sb, typ);
+                return;
+            }
         }
         if (skipStructure()) {
             owned2P(sb, typ, "");
@@ -1101,7 +1138,7 @@ public class SysML2PlantUMLText {
         if (diagramMode == MODE.Interconnection) {
             if (parent instanceof Step) return; // TODO
         } else if ((parent != null) && !skipStructure()) {
-            if (typ instanceof PartProperty) {
+            if (typ instanceof PartUsage) {
                 sb = newText();
                 addPRelation(parent, typ, typ);
             } else if (typ instanceof ReferenceUsage) {

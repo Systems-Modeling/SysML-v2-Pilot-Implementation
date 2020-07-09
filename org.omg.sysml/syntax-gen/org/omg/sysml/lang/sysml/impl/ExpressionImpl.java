@@ -245,7 +245,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public boolean isExpression() {
-		return true;
+		// Don't allow a feature value to be a result expression.
+		return !(getOwningFeatureMembership() instanceof FeatureValue);
 	}
 
 	@Override

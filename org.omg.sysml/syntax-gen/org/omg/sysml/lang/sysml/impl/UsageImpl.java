@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -21,19 +22,25 @@ import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -342,12 +349,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Definition getOwningVariationDefinition() {
-		Definition owningVariationDefinition = basicGetOwningVariationDefinition();
-		return owningVariationDefinition != null && owningVariationDefinition.eIsProxy() ? (Definition)eResolveProxy((InternalEObject)owningVariationDefinition) : owningVariationDefinition;
+		Definition owningDefinition = getOwningDefinition();
+		return owningDefinition != null && owningDefinition.isVariation()? owningDefinition: null;
 	}
 
 	/**
@@ -387,8 +394,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	public Usage basicGetOwningVariationUsage() {
-		VariantMembership variantMembership = getOwningVariantMembership();
-		return variantMembership == null? null: variantMembership.getOwningVariationUsage();
+		Usage owningUsage = getOwningUsage();
+		return owningUsage != null && owningUsage.isVariation()? owningUsage: null;
 	}
 
 	/**
@@ -612,6 +619,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
 		EList<VariantMembership> variantMemberships = new EObjectEList<>(VariantMembership.class, this, SysMLPackage.USAGE__VARIANT_MEMBERSHIP);
+		super.getOwnedMembership().stream().
+			filter(VariantMembership.class::isInstance).
+			map(VariantMembership.class::cast).
+			forEachOrdered(variantMemberships::add);
 		variantMemberships.addAll(getVariantMembership_comp());
 		return variantMemberships;
 	}
@@ -629,13 +640,75 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return variantMembership_comp;
 	}
 
-	// Additional subsets
+	// Additional overrides
 	
 	@Override
-	public EList<Membership> getOwnedMembership() {
-		EList<Membership> ownedMemberships = super.getOwnedMembership();
-		ownedMemberships.addAll(getVariantMembership());
-		return ownedMemberships;
+	public boolean isAbstract() {
+		return isVariation() || super.isAbstract();
+	}
+
+	@Override
+	protected Feature getNamingFeature() {
+		if (getOwningVariantMembership() != null) {
+			Feature subsettedFeature = getFirstSubsettedFeature().orElse(null);
+			if (subsettedFeature != getOwningVariationUsage()) {
+				return subsettedFeature;
+			}
+		}
+		return super.getNamingFeature();
+	}
+	
+	@Override
+	public EList<FeatureTyping> getTyping() {
+		EList<FeatureTyping> typings = super.getTyping();
+		Definition variationDefinition = getOwningVariationDefinition();
+		if (variationDefinition != null) {
+			if (!typings.stream().anyMatch(s->s.getType() == variationDefinition)) {
+				FeatureTyping typing = typings.stream().
+						filter(s->s.getType() == null).findFirst().orElse(null);
+				if (typing == null) {
+					typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+					((FeatureTypingImpl)typing).basicSetTypedFeature(this, null);
+					getOwnedRelationship_comp().add(typing);
+					typings.add(typing);
+				}
+				typing.setType(variationDefinition);
+			}
+		}
+		return typings;
+	}
+	
+	@Override
+	public EList<Subsetting> getOwnedSubsetting() {
+		EList<Subsetting> subsettings = super.basicGetOwnedSubsetting();
+		Usage variationUsage = getOwningVariationUsage();
+		if (variationUsage != null) {
+			if (!subsettings.stream().anyMatch(s->s.getSubsettedFeature() == variationUsage)) {
+				Subsetting subsetting = subsettings.stream().
+						filter(s->!(s instanceof Redefinition) && s.getSubsettedFeature() == null).
+						findFirst().orElse(null);
+				if (subsetting == null) {
+					subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+					subsetting.setSubsettingFeature(this);
+					getOwnedRelationship_comp().add(subsetting);
+				}
+				subsetting.setSubsettedFeature(variationUsage);
+			}
+		}
+		return super.getOwnedSubsetting();
+	}
+	
+	@Override
+	public void transform() {
+		getTyping();
+		getOwnedSubsetting();
+		super.transform();
+	}
+	
+	// Utility methods
+	
+	public Parameter getSubjectParameter() {
+		return null;
 	}
 	
 	//

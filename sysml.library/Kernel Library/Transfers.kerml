@@ -20,14 +20,14 @@ package Transfers {
 		 * The entity whose output is the source of the items to be transferred.
 		 */
 		end feature transferSource: Occurrence[0..*] redefines BinaryLink::source {
-			feature out sourceOutput: Occurrence[0..*];
+			out feature sourceOutput: Occurrence[0..*];
 		}
 		
 		/**
 		 * The entity whose input is the target of the items to be transferred.
 		 */
 		end feature transferTarget: Occurrence[0..*] redefines BinaryLink::target {
-			feature in targetInput: Occurrence[0..*];
+			in feature targetInput: Occurrence[0..*];
 		}
 		
 		/**

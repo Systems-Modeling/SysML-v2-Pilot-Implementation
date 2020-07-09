@@ -29,8 +29,8 @@ END_SETUP
 package 'Port Example' {
 	part def ABlock;
 	port def OutPort {
-		ref out anout : ABlock;
-		ref in ain : ABlock;
+		out ref anout : ABlock;
+		in ref ain : ABlock;
 	}
 	port def InPort;
 	part def ABlock1 {
@@ -41,8 +41,8 @@ package 'Port Example' {
 	}
 	part tank: ABlock1 {
 		port aredefinedport redefines aport {
-			ref in redefines anout;
-			ref out redefines ain;
+			in ref redefines anout;
+			out ref redefines ain;
 		}	
 	}
 }

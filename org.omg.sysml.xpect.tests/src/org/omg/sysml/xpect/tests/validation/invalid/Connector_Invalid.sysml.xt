@@ -36,7 +36,7 @@ package P {
 		part c {
 			part d;
 		}
-		// XPECT warnings --> "Connected features should have a common context" at "P::a to c::d;"
+		// XPECT warnings --> "Connected features should have a common context" at "connect P::a to c::d;"
 		connect P::a to c::d;
 	}
 }

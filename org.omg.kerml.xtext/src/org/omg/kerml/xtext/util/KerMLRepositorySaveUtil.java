@@ -186,7 +186,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				this.process();
 			}
 		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println("Error: " + e);
 		}
 	}
 

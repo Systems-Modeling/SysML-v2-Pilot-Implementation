@@ -104,8 +104,8 @@ package Occurrences {
 		 * The incoming transfers targeting this occurrence. 
 		 */
 		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
-			end redefines transferSource;
-			end redefines transferTarget;
+			end feature redefines transferSource;
+			end feature redefines transferTarget;
 		}
 		binding incomingTransfers.transferTarget[*] = self;
 	}

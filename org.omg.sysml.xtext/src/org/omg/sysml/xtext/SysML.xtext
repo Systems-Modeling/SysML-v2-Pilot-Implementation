@@ -38,20 +38,29 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 Unit returns SysML::Package :
 	  AnonymousPackage
 	| PackageUnit 
-	| PartDefinitionUnit
 	| AttributeDefinitionUnit
+	| ItemDefinitionUnit
+	| PartDefinitionUnit
 	| IndividualDefinitionUnit
 	| ConnectionDefinitionUnit
 	| InterfaceDefinitionUnit 
 	| ActionDefinitionUnit
-	| CalclulationDefinitionUnit
+	| CalculationDefinitionUnit
 	| StateDefinitionUnit
 	| ConstraintDefinitionUnit
-	| PartUnit
+	| RequirementDefinitionUnit
+	| CaseDefinitionUnit
+	| AnalysisCaseDefinitionUnit
 	| AttributeUnit
+	| ItemUnit
+	| PartUnit
 	| ActionUnit
 	| CalculationUnit
 	| StateUnit
+	| ConstraintUnit
+	| RequirementUnit
+	| CaseUnit
+	| AnalysisCaseUnit
 ;
 
 AnonymousPackage returns SysML::Package :
@@ -62,12 +71,16 @@ PackageUnit returns SysML::Package:
     UnitPrefix PackageDeclaration PackageBody 
 ;
 
-PartDefinitionUnit returns SysML::PartDefinition:
-	UnitPrefix PartDefDeclaration DefinitionBody
-;
-
 AttributeDefinitionUnit returns SysML::AttributeDefinition :
 	UnitPrefix AttributeDefDeclaration DefinitionBody
+;
+
+ItemDefinitionUnit returns SysML::ItemDefinition:
+	UnitPrefix ItemDefDeclaration DefinitionBody
+;
+
+PartDefinitionUnit returns SysML::PartDefinition:
+	UnitPrefix PartDefDeclaration DefinitionBody
 ;
 
 IndividualDefinitionUnit returns SysML::IndividualDefinition :
@@ -79,14 +92,14 @@ ConnectionDefinitionUnit returns SysML::ConnectionDefinition :
 ;
 
 InterfaceDefinitionUnit returns SysML::InterfaceDefinition :
-	UnitPrefix InterfaceDeclaration InterfaceDefBody
+	UnitPrefix InterfaceDefDeclaration InterfaceDefBody
 ;
 
 ActionDefinitionUnit returns SysML::ActionDefinition :
 	UnitPrefix ActionDefDeclaration ActionDefBody
 ;
 
-CalclulationDefinitionUnit returns SysML::CalculationDefinition :
+CalculationDefinitionUnit returns SysML::CalculationDefinition :
 	UnitPrefix CalculationDefDeclaration CalculationDefBody
 ;
 
@@ -98,12 +111,28 @@ ConstraintDefinitionUnit returns SysML::ConstraintDefinition :
 	UnitPrefix ConstraintDefDeclaration ConstraintDefBody
 ;
 
-PartUnit returns SysML::PartUsage :
-	UnitPrefix PartDeclaration UsageCompletion
+RequirementDefinitionUnit returns SysML::RequirementDefinition :
+	UnitPrefix RequirementDefDeclaration RequirementDefBody
+;
+
+CaseDefinitionUnit returns SysML::CaseDefinition :
+	UnitPrefix CaseDefDeclaration CaseDefBody
+;
+
+AnalysisCaseDefinitionUnit returns SysML::AnalysisCaseDefinition :
+	UnitPrefix AnalysisCaseDefDeclaration CaseDefBody
 ;
 
 AttributeUnit returns SysML::AttributeUsage :
 	UnitPrefix AttributeDeclaration UsageCompletion
+;
+
+ItemUnit returns SysML::ItemUsage :
+	UnitPrefix ItemDeclaration UsageCompletion
+;
+
+PartUnit returns SysML::PartUsage :
+	UnitPrefix PartDeclaration UsageCompletion
 ;
 
 ActionUnit returns SysML::ActionUsage :
@@ -116,6 +145,22 @@ CalculationUnit returns SysML::CalculationUsage :
 
 StateUnit returns SysML::StateUsage :
 	UnitPrefix StateDeclaration StateDefBody
+;
+
+ConstraintUnit returns SysML::ConstraintUsage :
+	UnitPrefix ConstraintDeclaration ConstraintDefBody
+;
+
+RequirementUnit returns SysML::RequirementUsage :
+	UnitPrefix RequirementDeclaration RequirementDefBody
+;
+
+CaseUnit returns SysML::CaseUsage :
+	UnitPrefix CaseDeclaration CaseDefBody
+;
+
+AnalysisCaseUnit returns SysML::AnalysisCaseUsage :
+	UnitPrefix AnalysisCaseDeclaration CaseDefBody
 ;
 
 fragment UnitPrefix returns SysML::Package :
@@ -183,13 +228,58 @@ fragment PackageBody returns SysML::Package :
 	'{' ( ownedMembership_comp += PackageMember | ownedImport_comp += Import )* '}'
 ;
 
+PackagedDefinitionElement returns SysML::Element :
+	  Package
+	| AttributeDefinition
+	| ItemDefinition
+	| PartDefinition
+	| IndividualDefinition
+	| ConnectionDefinition
+	| InterfaceDefinition
+	| PortDefinition
+	| ActionDefinition
+	| CalculationDefinition
+	| StateDefinition
+	| ConstraintDefinition
+	| RequirementDefinition
+	| CaseDefinition
+	| AnalysisCaseDefinition
+	| Comment
+;
+	
+PackagedUsageElement returns SysML::Usage :
+	  AttributeUsage
+	| ItemUsage
+	| PartUsage
+	| IndividualUsage
+	| TimeSliceUsage
+	| SnapshotUsage
+	| PortUsage
+	| ConnectionUsage
+	| Connector
+	| InterfaceUsage
+	| ActionUsage
+	| CalculationUsage
+	| StateUsage
+	| ConstraintUsage
+	| RequirementUsage
+	| CaseUsage
+	| AnalysisCaseUsage
+;
+
 /* PACKAGE MEMBERSHIPS */
 
 PackageMember returns SysML::Membership : 
-	PackageMemberPrefix	
-	( PackagedDefinitionMember 
-	| PackagedUsageMember
-	)
+	PackageMemberPrefix	( PackagedDefinitionMember | PackagedUsageMember )
+;
+
+fragment PackagedDefinitionMember returns SysML::Membership :
+	ownedMemberElement_comp = PackagedDefinitionElement
+	| ( 'import' | 'alias' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
+;
+
+fragment PackagedUsageMember returns SysML::Membership:
+	ownedMemberElement_comp = PackagedUsageElement
 ;
 
 fragment PackageMemberPrefix returns SysML::Membership :
@@ -197,73 +287,79 @@ fragment PackageMemberPrefix returns SysML::Membership :
     ( visibility = PackageElementVisibilityIndicator )?		
 ;
 
-fragment PackagedDefinitionMember returns SysML::Membership :
-	( ownedMemberElement_comp = Package
-	| ownedMemberElement_comp = PartDefinition
-	| ownedMemberElement_comp = AttributeDefinition
-	| ownedMemberElement_comp = IndividualDefinition
-	| ownedMemberElement_comp = ConnectionDefinition
-	| ownedMemberElement_comp = InterfaceDefinition
-	| ownedMemberElement_comp = PortDefinition
-	| ownedMemberElement_comp = ActionDefinition
-    | ownedMemberElement_comp = CalculationDefinition
-    | ownedMemberElement_comp = StateDefinition
-    | ownedMemberElement_comp = ConstraintDefinition
-    | ownedMemberElement_comp = RequirementDefinition
-	| ownedMemberElement_comp = Comment
-	| ( 'import' | 'alias' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
-	)
-;
-
-fragment PackagedUsageMember returns SysML::Membership :
-	  PartUsageKeyword ownedMemberElement_comp = PartUsage
-	| 'abstract' PartUsageKeyword ownedMemberElement_comp = AbstractPartUsage
-	| AttributeUsageKeyword? ownedMemberElement_comp = AttributeUsage
-	| 'abstract' AttributeUsageKeyword? ownedMemberElement_comp = AbstractAttributeUsage
-	| IndividualUsageKeyword ownedMemberElement_comp = IndividualUsage
-	| 'abstract' IndividualUsageKeyword ownedMemberElement_comp = AbstractIndividualUsage
-	| TimeSliceKeyword ownedMemberElement_comp = TimeSliceUsage
-	| 'abstract' TimeSliceKeyword ownedMemberElement_comp = AbstractTimeSliceUsage
-	| SnapshotKeyword ownedMemberElement_comp = SnapshotUsage
-	| 'abstract' SnapshotKeyword ownedMemberElement_comp = AbstractSnapshotUsage
-	| PortKeyword ownedMemberElement_comp = PortUsage
-	| 'abstract' PortUsageKeyword ownedMemberElement_comp = AbstractPortUsage
-	| ConnectionKeyword ownedMemberElement_comp = ConnectionUsage 
-    | 'abstract' ConnectionUsageKeyword ownedMemberElement_comp = AbstractConnectionUsage
- 	| ConnectorKeyword ownedMemberElement_comp = Connector 
-    | 'abstract' ConnectorKeyword ownedMemberElement_comp = AbstractConnector
-	| InterfaceKeyword ownedMemberElement_comp = InterfaceUsage
-	| 'abstract' InterfaceUsageKeyword ownedMemberElement_comp = AbstractInterfaceUsage
-	| ActionKeyword ownedMemberElement_comp = ActionUsage
-	| 'abstract' ActionUsageKeyword ownedMemberElement_comp = AbstractActionUsage
-	| CalculationKeyword ownedMemberElement_comp = CalculationUsage
-	| 'abstract' CalculationUsageKeyword ownedMemberElement_comp = AbstractCalculationUsage
-	| StateUsageKeyword ownedMemberElement_comp = StateUsage
-	| 'abstract' StateUsageKeyword ownedMemberElement_comp = AbstractStateUsage
-	| ConstraintUsageKeyword ownedMemberElement_comp = ConstraintUsage
-	| 'abstract' ConstraintUsageKeyword ownedMemberElement_comp = AbstractConstraintUsage
-	| RequirementUsageKeyword ownedMemberElement_comp = RequirementUsage
-	| 'abstract' RequirementUsageKeyword ownedMemberElement_comp = AbstractRequirementUsage
-;
-
 /* DEFINITIONS */
+
+fragment DefinitionPrefix returns SysML::Definition :
+	isAbstract ?= 'abstract' | isVariation ?= 'variation'
+;
 
 fragment DefinitionBody returns SysML::Type :
 	  ';' 
 	| '{' DefinitionBodyItem* '}'
 ;
 
-fragment AbstractDefinitionBody returns SysML::Type :
-	  isAbstract ?= ';' 
-	| isAbstract ?= '{' DefinitionBodyItem* '}'
+fragment DefinitionBodyItem returns SysML::Type :
+	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedMembership_comp += VariantUsageMember
+	| ownedFeatureMembership_comp += NestedUsageMember 
+	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
+	  ownedFeatureMembership_comp += IndividualUsageMember
+	| => ownedImport_comp += Import	
 ;
 
-fragment DefinitionBodyItem returns SysML::Type :
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += NestedUsageMember 
-		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-		  ownedFeatureMembership_comp += IndividualUsageMember
-		| => ownedImport_comp += Import	
+DirectionalStructureUsageElement returns SysML::Usage :
+	  ReferenceUsage
+	| AttributeUsage
+	| ItemRefUsage
+	| PartRefUsage
+;
+
+NondirectionalStructureUsageElement returns SysML::Feature :
+	  PortUsage
+	| ConnectionUsage
+	| Connector
+	| InterfaceUsage
+	| BindingConnector
+	| Succession
+	| ItemFlow
+	| SuccessionItemFlow
+;
+
+IndividualUsageElement returns SysML::Usage :
+	  IndividualRefUsage
+	| TimeSliceRefUsage
+	| SnapshotRefUsage
+;
+
+DirectionalBehaviorUsageElement returns SysML::Usage :
+	  ActionRefUsage
+	| CalculationRefUsage
+	| StateRefUsage
+	| ConstraintRefUsage
+	| RequirementRefUsage
+	| CaseRefUsage
+	| AnalysisCaseRefUsage
+;
+
+NondirectionalBehaviorUsageElement returns SysML::Usage :
+	  PerformActionUsage
+	| ExhibitStateUsage
+	| AssertConstraintUsage
+	| SatisfyRequirementUsage
+;
+
+VariantUsageElement returns SysML::Usage :
+	  ReferenceVariantUsage
+	| AttributeVariantUsage
+	| ItemRefUsage
+	| PartRefUsage
+	| PortUsage
+	| ConnectionUsage
+	| Connector
+	| InterfaceUsage
+	| IndividualUsageElement
+	| DirectionalBehaviorUsageElement
+	| NondirectionalBehaviorUsageElement
 ;
 
 /* DEFINITION MEMBERSHIPS */
@@ -272,75 +368,39 @@ NestedDefinitionMember returns SysML::Membership :
 	DefinitionMemberPrefix PackagedDefinitionMember
 ;
 
+VariantUsageMember returns SysML::VariantMembership :
+	DefinitionMemberPrefix 'variant' ownedVariantUsage_comp = VariantUsageElement
+;
+
 NestedUsageMember returns SysML::FeatureMembership :
 	StructureUsageMember | BehaviorUsageMember
 ;
 
 StructureUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
-	(
-	  isComposite ?= PartUsageKeyword ownedMemberFeature_comp = PartUsage
-	| 'abstract' isComposite ?= PartUsageKeyword ownedMemberFeature_comp = AbstractPartUsage
-	| ReferenceUsageKeyword ( direction = FeatureDirection )? ownedMemberFeature_comp = ReferenceUsage
-	| 'abstract' 'ref' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractReferenceUsage
-	| AttributeUsageKeyword? ( direction = FeatureDirection )? ownedMemberFeature_comp = AttributeUsage
-	| 'abstract' AttributeUsageKeyword? ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractAttributeUsage
-	| isPort ?= PortUsageKeyword ownedMemberFeature_comp = PortUsage
-	| 'abstract' isPort ?= PortUsageKeyword ownedMemberFeature_comp = AbstractPortUsage
-	| ConnectionUsageKeyword ownedMemberFeature_comp = ConnectionUsage 
-    | 'abstract' ConnectionUsageKeyword ownedMemberFeature_comp = AbstractConnectionUsage
- 	| ConnectorKeyword ownedMemberFeature_comp = Connector 
-    | 'abstract' ConnectorKeyword ownedMemberFeature_comp = AbstractConnector
-	| InterfaceUsageKeyword ownedMemberFeature_comp = InterfaceUsage
-	| 'abstract' InterfaceUsageKeyword ownedMemberFeature_comp = AbstractInterfaceUsage
-    | BindingKeyword ownedMemberFeature_comp = BindingConnector
-	| SuccessionKeyword ownedMemberFeature_comp = Succession 
-    | 'abstract' SuccessionKeyword ownedMemberFeature_comp = AbstractSuccession
-	| ItemFlowKeyword ownedMemberFeature_comp = ItemFlow 
-    | 'abstract' ItemFlowKeyword ownedMemberFeature_comp = AbstractItemFlow
-	| SuccessionItemFlowKeyword ownedMemberFeature_comp = SuccessionItemFlow 
-    | 'abstract' SuccessionItemFlowKeyword ownedMemberFeature_comp = AbstractSuccessionItemFlow
+	( ( direction = FeatureDirection )? ownedMemberFeature_comp = DirectionalStructureUsageElement
+	| ownedMemberFeature_comp = NondirectionalStructureUsageElement
     )
 ;
 
 IndividualUsageMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix
-	(
-	  ( 'ref' IndividualUsageKeyword | isComposite ?= IndividualUsageKeyword) ( direction = FeatureDirection )? ownedMemberFeature_comp = IndividualUsage
-	| 'abstract' ( 'ref' IndividualUsageKeyword | isComposite ?= IndividualUsageKeyword) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractIndividualUsage
-	|  ( 'ref' TimeSliceKeyword | isComposite ?= TimeSliceKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = TimeSliceUsage
-	| 'abstract' ( 'ref' TimeSliceKeyword | isComposite ?= TimeSliceKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractTimeSliceUsage
-	|  ( 'ref' SnapshotKeyword | isComposite ?= SnapshotKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = SnapshotUsage
-	| 'abstract' ( 'ref' SnapshotKeyword | isComposite ?= SnapshotKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSnapshotUsage
-	)
+	DefinitionMemberPrefix ownedMemberFeature_comp = IndividualUsageElement
 ;
 
 BehaviorUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix
-	( ('ref' ActionUsageKeyword | isComposite ?= ActionUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = ActionUsage
-	| 'abstract' ('ref' ActionUsageKeyword | isComposite ?= ActionUsageKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractActionUsage
-	| ('ref' CalculationUsageKeyword | isComposite ?= CalculationUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = CalculationUsage
-	| 'abstract' ('ref' CalculationUsageKeyword | isComposite ?= CalculationUsageKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractCalculationUsage
-	| ('ref' StateUsageKeyword | isComposite ?= StateUsageKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = StateUsage
-	| 'abstract' ('ref' StateUsageKeyword | isComposite ?= StateUsageKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStateUsage
-	| ( 'ref' ConstraintUsageKeyword | isComposite ?= ConstraintUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = ConstraintUsage
-	| 'abstract' ( 'ref' ConstraintUsageKeyword | isComposite ?= ConstraintUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractConstraintUsage
-	| ( 'ref' RequirementUsageKeyword | isComposite ?= RequirementUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = RequirementUsage
-	| 'abstract' ( 'ref' RequirementUsageKeyword | isComposite ?= RequirementUsageKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractRequirementUsage
-	| 'perform' ownedMemberFeature_comp = PerformActionUsage
-	| 'exhibit' ownedMemberFeature_comp = ExhibitStateUsage
-	| 'assert' ownedMemberFeature_comp = AssertConstraintUsage
-	| 'satisfy' ownedMemberFeature_comp = SatisfyRequirementUsage
-	)
-;
-
-enum FeatureDirection returns SysML::FeatureDirectionKind :
-	in = 'in' | out = 'out' | inout = 'inout'
+	( ( direction = FeatureDirection )? ownedMemberFeature_comp = DirectionalBehaviorUsageElement
+	| ownedMemberFeature_comp = NondirectionalBehaviorUsageElement
+    )
 ;
 
 fragment DefinitionMemberPrefix returns SysML::Membership :
 	( ownedRelationship_comp += PrefixAnnotation )*
     ( visibility = VisibilityIndicator )?
+;
+
+enum FeatureDirection returns SysML::FeatureDirectionKind :
+	in = 'in' | out = 'out' | inout = 'inout'
 ;
 
 /* CLASSIFIERS */
@@ -363,24 +423,6 @@ Superclassing returns SysML::Superclassing:
 	superclass = [SysML::Classifier | QualifiedName]
 ;
 
-/* PART DEFINITIONS */
-
-PartKeyword :
-	'part'
-;
-
-PartDefKeyword :
-	PartKeyword 'def' | 'block'
-;
-
-PartDefinition returns SysML::PartDefinition :
-	PartDefDeclaration DefinitionBody
-;
-
-fragment PartDefDeclaration returns SysML::PartDefinition :
-	( isAbstract ?= 'abstract' )? PartDefKeyword ClassifierDeclarationCompletion
-;
-
 /* ATTRIBUTE DEFINITIONS */
 
 AttributeKeyword :
@@ -396,7 +438,43 @@ AttributeDefinition returns SysML::AttributeDefinition :
 ;
 
 fragment AttributeDefDeclaration returns SysML::AttributeDefinition :
-	( isAbstract ?= 'abstract' )? AttributeDefKeyword ClassifierDeclarationCompletion
+	DefinitionPrefix? AttributeDefKeyword ClassifierDeclarationCompletion
+;
+
+/* ITEM DEFINITIONS */
+
+ItemKeyword :
+	'item'
+;
+
+ItemDefKeyword :
+	ItemKeyword 'def'
+;
+
+ItemDefinition returns SysML::ItemDefinition :
+	ItemDefDeclaration DefinitionBody
+;
+
+fragment ItemDefDeclaration returns SysML::ItemDefinition :
+	DefinitionPrefix? ItemDefKeyword ClassifierDeclarationCompletion
+;
+
+/* PART DEFINITIONS */
+
+PartKeyword :
+	'part'
+;
+
+PartDefKeyword :
+	PartKeyword 'def' | 'block'
+;
+
+PartDefinition returns SysML::PartDefinition :
+	PartDefDeclaration DefinitionBody
+;
+
+fragment PartDefDeclaration returns SysML::PartDefinition :
+	DefinitionPrefix? PartDefKeyword ClassifierDeclarationCompletion
 ;
 
 /* INDIVIDUAL DEFINITIONS */
@@ -414,7 +492,7 @@ IndividualDefinition returns SysML::IndividualDefinition :
 ;
 
 fragment IndividualDefDeclaration returns SysML::IndividualDefinition :
-	( isAbstract ?= 'abstract' )? IndividualDefKeyword ClassifierDeclarationCompletion
+	DefinitionPrefix? IndividualDefKeyword ClassifierDeclarationCompletion
 	ownedMembership_comp += LifeClassMembership
 ;
 
@@ -435,15 +513,15 @@ PortKeyword :
 ;
 
 PortDefKeyword :
-	PortKeyword 'def'
+	PortKeyword 'def' | 'interface' 'block'
 ;
 
 PortDefinition returns SysML::PortDefinition :
-	PortDeclaration DefinitionBody
+	PortDefDeclaration DefinitionBody
 ;
 
-fragment PortDeclaration returns SysML::PortDefinition :
-	( isAbstract ?= 'abstract' )? PortDefKeyword ClassifierDeclarationCompletion
+fragment PortDefDeclaration returns SysML::PortDefinition :
+	DefinitionPrefix? PortDefKeyword ClassifierDeclarationCompletion
 	ownedMembership_comp += ConjugatedPortDefinitionMember
 ;
 
@@ -476,13 +554,14 @@ ConnectionDefinition returns SysML::ConnectionDefinition :
 ;
 
 fragment ConnectionDefDeclaration returns SysML::ConnectionDefinition :
-	( isAbstract ?= 'abstract' )? ConnectionDefKeyword ClassifierDeclarationCompletion
+	DefinitionPrefix? ConnectionDefKeyword ClassifierDeclarationCompletion
 ;
 
 fragment ConnectionDefBody returns SysML::Type :
 	  ';'
 	| '{' (
 		  ownedMembership_comp += NestedDefinitionMember 
+		| ownedMembership_comp += VariantUsageMember
 		| ownedFeatureMembership_comp += ConnectionUsageMember
 		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
 		  ownedFeatureMembership_comp += IndividualUsageMember
@@ -490,15 +569,14 @@ fragment ConnectionDefBody returns SysML::Type :
 	  )* '}'
 ;
 
-fragment AbstractConnectionDefBody returns SysML::Type :
-	  isAbstract ?= ';'
-	| isAbstract ?= '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += ConnectionUsageMember
-		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-		  ownedFeatureMembership_comp += IndividualUsageMember
-		| ownedImport_comp += Import
-	)* '}'
+ConnectionEndElement returns SysML::Feature :
+	  ReferenceEndUsage
+	| ItemRefUsage
+	| PartRefUsage
+	| PortUsage
+	| ActionRefUsage
+	| CalculationRefUsage
+	| StateRefUsage
 ;
 
 /* CONNECTION DEFINITION MEMBERSHIPS */
@@ -508,20 +586,7 @@ ConnectionUsageMember returns SysML::FeatureMembership :
 ;
 
 ConnectionEndMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix
-    ( 'end' isComposite ?= 'part' ownedMemberFeature_comp = PartUsage 
-    | 'abstract' 'end' isComposite ?= 'part' ownedMemberFeature_comp = AbstractPartUsage
-    | 'end' 'ref'? ownedMemberFeature_comp = ReferenceUsage
-    | 'abstract' 'end' 'ref'? ownedMemberFeature_comp = AbstractReferenceUsage
-	| 'end' isPort ?= 'port' ownedMemberFeature_comp = PortUsage
-	| 'abstract' 'end' isPort ?= 'port' ownedMemberFeature_comp = AbstractPortUsage
-    | 'end' ( 'ref' 'action' | isComposite ?= 'action' ) ownedMemberFeature_comp = ActionUsage
-	| 'abstract' 'end'('ref' 'action' | isComposite ?= 'action' )  ownedMemberFeature_comp = AbstractActionUsage
-	| 'end' ('ref' CalculationKeyword | isComposite ?= CalculationKeyword ) ( direction = FeatureDirection )? ownedMemberFeature_comp = CalculationUsage
-	| 'abstract' 'end' ('ref' CalculationKeyword | isComposite ?= CalculationKeyword )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractCalculationUsage
-	| 'end' ('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = StateUsage
-	| 'abstract' 'end'('ref' 'state' | isComposite ?= 'state' )  ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStateUsage
-	)
+	DefinitionMemberPrefix 'end' ownedMemberFeature_comp = ConnectionEndElement
 ;
 
 /* INTERFACE DEFINITIONS */
@@ -535,26 +600,18 @@ InterfaceDefKeyword :
 ;
 
 InterfaceDefinition returns SysML::InterfaceDefinition :
-	InterfaceDeclaration InterfaceDefBody
+	InterfaceDefDeclaration InterfaceDefBody
 ;
 
-fragment InterfaceDeclaration returns SysML::InterfaceDefinition :
-	( isAbstract ?= 'abstract' )? InterfaceDefKeyword ClassifierDeclarationCompletion
+fragment InterfaceDefDeclaration returns SysML::InterfaceDefinition :
+	DefinitionPrefix? InterfaceDefKeyword ClassifierDeclarationCompletion
 ;
 
 fragment InterfaceDefBody returns SysML::Type :
 	  ';'
 	| '{' ( 
 		  ownedMembership_comp += NestedDefinitionMember 
-		| ownedFeatureMembership_comp += InterfaceUsageMember
-		| ownedImport_comp += Import
-	)* '}'
-;
-
-fragment AbstractInterfaceDefBody returns SysML::Type :
-	  isAbstract ?= ';'
-	| isAbstract ?= '{' ( 
-		  ownedMembership_comp += NestedDefinitionMember 
+		| ownedMembership_comp += VariantUsageMember
 		| ownedFeatureMembership_comp += InterfaceUsageMember
 		| ownedImport_comp += Import
 	)* '}'
@@ -567,11 +624,7 @@ InterfaceUsageMember returns SysML::FeatureMembership :
 ;
 
 InterfaceEndMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix
-    (
-      isPort ?= 'end' 'port'? ownedMemberFeature_comp = PortUsage
-    | 'abstract' isPort ?= 'end' 'port'? ownedMemberFeature_comp = AbstractPortUsage
-	)
+	DefinitionMemberPrefix 'end' ownedMemberFeature_comp = PortEndUsage
 ;
 
 /* ACTION DEFINITIONS */
@@ -589,7 +642,7 @@ ActionDefinition returns SysML::ActionDefinition :
 ;
 
 fragment ActionDefDeclaration returns SysML::ActionDefinition :
-	( isAbstract ?= 'abstract')? ActionDefKeyword name = Name SuperclassingList? ParameterList? 
+	DefinitionPrefix? ActionDefKeyword name = Name SuperclassingList? ParameterList? 
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -603,12 +656,9 @@ fragment ActionDefBody returns SysML::Type :
 	  | '{' => ActionDefBodyItem* '}' 
 ;
 
-fragment AbstractActionDefBody returns SysML::Type :
-	  isAbstract ?= ';' | isAbstract ?= '{' => ActionDefBodyItem* '}'
-;
-
 fragment ActionDefBodyItem returns SysML::Type :
 	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedMembership_comp += VariantUsageMember
 	| ownedFeatureMembership_comp += StructureUsageMember
 	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
 	  ownedFeatureMembership_comp += IndividualUsageMember
@@ -662,7 +712,7 @@ CalculationDefinition returns SysML::CalculationDefinition :
 ;
 
 fragment CalculationDefDeclaration returns SysML::CalculationDefinition :
-	( isAbstract ?= 'abstract')? CalculationDefKeyword name = Name 
+	DefinitionPrefix? CalculationDefKeyword name = Name 
 	SuperclassingList? ParameterList? ReturnParameterPart 
 ;
 
@@ -677,16 +727,9 @@ fragment CalculationDefBody returns SysML::Type :
 	    '}' 
 ;
 
-fragment AbstractCalculationDefBody returns SysML::Type :
-	    isAbstract ?= ';' 
-	  | isAbstract ?= '{' 
-	  		=> CalculationDefBodyItem*
-	        ( ownedFeatureMembership_comp += ExpressionMember )?
-	    '}'
-;
-
 fragment CalculationDefBodyItem returns SysML::Type :
 	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedMembership_comp += VariantUsageMember
 	| ownedFeatureMembership_comp += StructureUsageMember
 	| ownedFeatureMembership_comp += InitialNodeMember
 	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
@@ -697,7 +740,7 @@ fragment CalculationDefBodyItem returns SysML::Type :
 	| ownedImport_comp += Import
 ;
 
-/* FUNCTION DEFINITION MEMBERSHIPS */
+/* CALCULATION DEFINITION MEMBERSHIPS */
 
 ReturnParameterMember returns SysML::ReturnParameterMembership :
 	( 'return' )? ( memberName = Name )? ownedMemberParameter_comp = Parameter
@@ -725,10 +768,6 @@ fragment StateDefBody returns SysML::Type :
 	';' | '{' StateDefBodyPart '}'
 ;
 
-fragment AbstractStateDefBody returns SysML::Type :
-	isAbstract ?= ';' | isAbstract ?= '{' StateDefBodyPart '}'
-;
-
 fragment StateDefBodyPart returns SysML::Type :
 	( ownedFeatureMembership_comp += EntryActionMember
 	  ( ownedFeatureMembership_comp += EntryTransitionMember )*
@@ -743,6 +782,7 @@ fragment StateDefBodyPart returns SysML::Type :
 
 fragment StateDefBodyItem returns SysML::Type :
 	  ownedMembership_comp += NestedDefinitionMember 
+	| ownedMembership_comp += VariantUsageMember
 	| ownedFeatureMembership_comp += StructureUsageMember
 	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
 	  ownedFeatureMembership_comp += IndividualUsageMember
@@ -820,16 +860,12 @@ ConstraintDefinition returns SysML::ConstraintDefinition :
 ;
 
 fragment ConstraintDefDeclaration returns SysML::ConstraintDefinition :
-	( isAbstract ?= 'abstract' )? ConstraintDefKeyword name = Name 
+	DefinitionPrefix? ConstraintDefKeyword name = Name 
 	SuperclassingList? ParameterList? EmptyReturnParameterPart 
 ;
 
 fragment ConstraintDefBody returns SysML::Type :
 	  ';' | '{'  ConstraintDefMembers '}'
-;
-
-fragment AbstractConstraintDefBody returns SysML::Type :
-	  isAbstract ?= ';' | isAbstract ?= '{' ConstraintDefMembers '}'
 ;
 
 fragment ConstraintDefMembers returns SysML::Type :
@@ -866,7 +902,7 @@ RequirementDefinition returns SysML::RequirementDefinition :
 ;
 
 fragment RequirementDefDeclaration returns SysML::RequirementDefinition :
-	( isAbstract ?= 'abstract' )? RequirementDefKeyword ( 'id' reqId = Name )? name = Name 
+	DefinitionPrefix? RequirementDefKeyword ( 'id' reqId = Name )? name = Name 
 	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart 
 ;
 
@@ -878,10 +914,6 @@ fragment RequirementDefParameterList returns SysML::Type :
 
 fragment RequirementDefBody returns SysML::Type :
 	  ';' | '{' => RequirementDefBodyItem* '}'
-;
-
-fragment AbstractRequirementDefBody returns SysML::Type :
-	  isAbstract ?= ';' | isAbstract ?= '{' => RequirementDefBodyItem* '}'
 ;
 
 fragment RequirementDefBodyItem returns SysML::Type :
@@ -907,17 +939,105 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 	assumption = 'assume' | requirement = 'require'
 ;
 
+/* CASE DEFINITIONS */
+
+CaseKeyword :
+	'case'
+;
+
+CaseDefKeyword :
+	CaseKeyword 'def'
+;
+
+CaseDefinition returns SysML::CaseDefinition :
+	CaseDefDeclaration CaseDefBody
+;
+
+fragment CaseDefDeclaration returns SysML::CaseDefinition :
+	DefinitionPrefix? CaseDefKeyword name = Name 
+	SuperclassingList? SubjectParameterList ReturnParameterPart 
+;
+
+fragment SubjectParameterList returns SysML::Type :
+	  ownedFeatureMembership_comp += EmptySubjectParameterMember
+	| '(' ownedFeatureMembership_comp += EmptySubjectParameterMember ')'
+	| '(' ownedFeatureMembership_comp += SubjectParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
+;
+
+fragment CaseDefBody returns SysML::Type :
+	    ';' 
+	  | '{' => CaseDefBodyItem*
+	        ( ownedFeatureMembership_comp += ExpressionMember )?
+	    '}' 
+;
+
+fragment CaseDefBodyItem returns SysML::Type :
+	  CalculationDefBodyItem
+//	| ownedFeatureMembership_comp += SubjectParameterMember 
+	| ownedFeatureMembership_comp += ObjectiveMember
+	
+;
+
+//SubjectParameter returns SysML::Parameter :
+//	{SysML::Parameter} UsageDeclaration? ValuePart?
+//;
+
+ObjectiveRequirementUsage returns SysML::RequirementUsage :
+	RequirementUsageDeclaration RequirementDefBody
+;
+
+/* CASE DEFINITION MEMBERSHIPS */
+
+//SubjectParameterMember returns SysML::SubjectMembership :
+//	DefinitionMemberPrefix 'subject' ownedSubjectParameter_comp = SubjectParameter ';'
+//;
+
+EmptySubjectParameterMember returns SysML::SubjectMembership :
+	ownedSubjectParameter_comp = EmptyParameter
+;
+
+SubjectParameterMember returns SysML::SubjectMembership :
+	( direction = InDirection )? memberName = Name ownedSubjectParameter_comp = Parameter
+;
+
+InDirection returns SysML::FeatureDirectionKind :
+	'in'
+;
+
+ObjectiveMember returns SysML::ObjectiveMembership :
+	DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp = ObjectiveRequirementUsage
+;
+
+/* ANALYSIS CASE DEFINITIONS */
+
+AnalysisCaseKeyword :
+	'analysis'
+;
+
+AnalysisCaseDefKeyword :
+	AnalysisCaseKeyword 'def'
+;
+
+AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
+	AnalysisCaseDefDeclaration CaseDefBody
+;
+
+fragment AnalysisCaseDefDeclaration returns SysML::AnalysisCaseDefinition :
+	DefinitionPrefix? AnalysisCaseDefKeyword name = Name 
+	SuperclassingList? SubjectParameterList ReturnParameterPart 
+;
+
 /* USAGES */
+
+fragment UsagePrefix returns SysML::Usage :
+	isAbstract ?= 'abstract' | isVariation ?= 'variation'
+;
 
 fragment Usage returns SysML::Usage :
 	UsageDeclaration UsageCompletion
 ;
 
-fragment AbstractUsage returns SysML::Usage :
-	UsageDeclaration AbstractUsageCompletion
-;
-
-fragment UsageDeclaration returns SysML::Usage :
+fragment UsageDeclaration returns SysML::Feature :
 	  name = Name TypePart? SubsettingPart
 	| TypePart SubsettingPart
 	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? SubsettingPart
@@ -925,10 +1045,6 @@ fragment UsageDeclaration returns SysML::Usage :
 
 fragment UsageCompletion returns SysML::Usage :
 	ValuePart? DefinitionBody
-;
-
-fragment AbstractUsageCompletion returns SysML::Usage :
-	ValuePart? AbstractDefinitionBody
 ;
 
 fragment ValuePart returns SysML::Feature :
@@ -955,7 +1071,11 @@ FeatureTyping returns SysML::FeatureTyping :
 
 fragment MultiplicityPart returns SysML::Feature :
 	ownedFeatureMembership_comp += MultiplicityMember 
-	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )	
+	// Not using an unordered group here to avoid possible problems
+	// with semantics predicates elsewhere.
+	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'? 
+	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	)?
 ;
 
 Multiplicity returns SysML::MultiplicityRange :
@@ -1019,25 +1139,6 @@ fragment ParameterTypePart returns SysML::Parameter :
 	  | MultiplicityPart	
 ;
 
-/* PART USAGES */
-
-PartUsageKeyword :
-	PartKeyword
-;
-
-fragment PartDeclaration returns SysML::PartUsage :
-	( isAbstract ?= 'abstract' )? PartUsageKeyword 
-	name = Name TypePart? SubsettingPart
-;
-
-PartUsage returns SysML::PartUsage :
-	Usage
-;
-
-AbstractPartUsage returns SysML::PartUsage :
-	AbstractUsage
-;
-
 /* REFERENCE USAGES */
 
 ReferenceKeyword :
@@ -1049,11 +1150,18 @@ ReferenceUsageKeyword :
 ;
 
 ReferenceUsage returns SysML::ReferenceUsage :
-	Usage
+	UsagePrefix? ReferenceUsageKeyword Usage
 ;
 
-AbstractReferenceUsage returns SysML::ReferenceUsage :
-	AbstractUsage
+ReferenceEndUsage returns SysML::ReferenceUsage :
+	UsagePrefix? ReferenceUsageKeyword? Usage
+;
+
+// TODO: Find a better way to handle variant references that using ReferenceUsage.
+ReferenceVariantUsage returns SysML::ReferenceUsage :
+	  ReferenceUsage
+	| ( name = Name TypePart? 'as' )? ownedRelationship_comp += Subset 
+	  SubsettingPart DefinitionBody
 ;
 
 /* ATTRIBUTE USAGES */
@@ -1063,16 +1171,54 @@ AttributeUsageKeyword :
 ;
 
 fragment AttributeDeclaration returns SysML::AttributeUsage :
-	( isAbstract ?= 'abstract' )? AttributeUsageKeyword 
+	UsagePrefix? AttributeUsageKeyword 
 	name = Name TypePart? SubsettingPart
 ;
 
 AttributeUsage returns SysML::AttributeUsage :
-	Usage
+	UsagePrefix? AttributeUsageKeyword? Usage
 ;
 
-AbstractAttributeUsage returns SysML::AttributeUsage :
-	AbstractUsage
+AttributeVariantUsage returns SysML::AttributeUsage :
+	UsagePrefix? AttributeUsageKeyword Usage
+;
+
+/* ITEM USAGES */
+
+ItemUsageKeyword :
+	ItemKeyword
+;
+
+fragment ItemDeclaration returns SysML::ItemUsage :
+	UsagePrefix? ItemUsageKeyword 
+	name = Name TypePart? SubsettingPart
+;
+
+ItemUsage returns SysML::ItemUsage :
+	UsagePrefix? ItemUsageKeyword Usage
+;
+
+ItemRefUsage returns SysML::ItemUsage :
+	UsagePrefix? ( 'ref' ItemUsageKeyword | isComposite ?= ItemUsageKeyword ) Usage
+;
+
+/* PART USAGES */
+
+PartUsageKeyword :
+	PartKeyword
+;
+
+fragment PartDeclaration returns SysML::PartUsage :
+	UsagePrefix? PartUsageKeyword 
+	name = Name TypePart? SubsettingPart
+;
+
+PartUsage returns SysML::PartUsage :
+	UsagePrefix? PartUsageKeyword Usage
+;
+
+PartRefUsage returns SysML::PartUsage :
+	UsagePrefix? ( 'ref' PartUsageKeyword | isComposite ?= PartUsageKeyword ) Usage
 ;
 
 /* INDIVIDUAL USAGES */
@@ -1090,21 +1236,23 @@ SnapshotKeyword :
 ;
 
 IndividualUsage returns SysML::IndividualUsage :
-	Usage
+	UsagePrefix? IndividualUsageKeyword Usage
 ;
 
-AbstractIndividualUsage returns SysML::IndividualUsage :
-	AbstractUsage
+IndividualRefUsage returns SysML::IndividualUsage :
+	UsagePrefix? ( 'ref' IndividualUsageKeyword | isComposite ?= IndividualUsageKeyword ) Usage
 ;
 
 TimeSliceUsage returns SysML::IndividualUsage :
+	UsagePrefix? TimeSliceKeyword
 	UsageDeclaration ownedFeatureMembership_comp += TimeSliceFeatureMember 
 	UsageCompletion
 ;
 
-AbstractTimeSliceUsage returns SysML::IndividualUsage :
-	UsageDeclaration ownedFeatureMembership_comp += TimeSliceFeatureMember
-	AbstractUsageCompletion
+TimeSliceRefUsage returns SysML::IndividualUsage :
+	UsagePrefix? ( 'ref' TimeSliceKeyword | isComposite ?= TimeSliceKeyword ) 
+	UsageDeclaration ownedFeatureMembership_comp += TimeSliceFeatureMember 
+	UsageCompletion
 ;
 
 TimeSliceFeature returns SysML::TimeSliceFeature :
@@ -1112,13 +1260,15 @@ TimeSliceFeature returns SysML::TimeSliceFeature :
 ;
 
 SnapshotUsage returns SysML::IndividualUsage :
+	UsagePrefix? SnapshotKeyword
 	UsageDeclaration ownedFeatureMembership_comp += SnapshotFeatureMember 
 	UsageCompletion
 ;
 
-AbstractSnapshotUsage returns SysML::IndividualUsage :
-	UsageDeclaration ownedFeatureMembership_comp += SnapshotFeatureMember
-	AbstractUsageCompletion
+SnapshotRefUsage returns SysML::IndividualUsage :
+	UsagePrefix? ( 'ref' SnapshotKeyword | isComposite ?= SnapshotKeyword ) 
+	UsageDeclaration ownedFeatureMembership_comp += TimeSliceFeatureMember 
+	UsageCompletion
 ;
 
 SnapshotFeature returns SysML::SnapshotFeature :
@@ -1142,11 +1292,11 @@ PortUsageKeyword :
 ;
 
 PortUsage returns SysML::PortUsage :
-	PortUsageDeclaration UsageCompletion
+	UsagePrefix? PortUsageKeyword PortUsageDeclaration UsageCompletion
 ;
 
-AbstractPortUsage returns SysML::PortUsage :
-	PortUsageDeclaration AbstractUsageCompletion
+PortEndUsage returns SysML::PortUsage :
+	UsagePrefix? PortUsageKeyword? PortUsageDeclaration UsageCompletion
 ;
 
 fragment PortUsageDeclaration returns SysML::Usage :
@@ -1172,11 +1322,7 @@ ConnectorKeyword :
 ;
 
 Connector returns SysML::ConnectionUsage :
-	ConnectorPart ConnectionDefBody
-;
-
-AbstractConnector returns SysML::ConnectionUsage :
-	ConnectorPart AbstractConnectionDefBody
+	UsagePrefix? ConnectorKeyword ConnectorPart ConnectionDefBody
 ;
 
 ConnectionUsageKeyword :
@@ -1184,11 +1330,7 @@ ConnectionUsageKeyword :
 ;
 
 ConnectionUsage returns SysML::ConnectionUsage :
-	UsageDeclaration ( ConnectorKeyword ConnectorPart )? ConnectionDefBody
-;
-
-AbstractConnectionUsage returns SysML::ConnectionUsage :
-	UsageDeclaration ( ConnectorKeyword ConnectorPart )? AbstractConnectionDefBody
+	UsagePrefix? ConnectionUsageKeyword UsageDeclaration ( ConnectorKeyword ConnectorPart )? ConnectionDefBody
 ;
 
 fragment ConnectorPart returns SysML::ConnectionUsage :
@@ -1203,7 +1345,7 @@ ConnectorEnd returns SysML::Feature :
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} (  ownedFeatureMembership_comp += MultiplicityMember )?
+	{SysML::SourceEnd} ( ownedFeatureMembership_comp += MultiplicityMember )?
 ;
 
 EmptySourceEnd returns SysML::Feature :
@@ -1239,14 +1381,10 @@ InterfaceUsageKeyword :
 ;
 
 InterfaceUsage returns SysML::InterfaceUsage :	 
-	InterfaceUsageDeclaration InterfaceDefBody
+	UsagePrefix? InterfaceUsageKeyword InterfaceUsageDeclaration InterfaceDefBody
 ;
 
-AbstractInterfaceUsage returns SysML::InterfaceUsage :
-	InterfaceUsageDeclaration AbstractInterfaceDefBody	
-;
-
-InterfaceUsageDeclaration returns SysML::InterfaceUsage :
+fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
 	UsageDeclaration ( ConnectorKeyword ConnectorPart )? | ConnectorPart
 ;
 
@@ -1257,9 +1395,9 @@ BindingKeyword :
 ;
 
 BindingConnector returns SysML::BindingConnector :
-	( ( name = Name )? TypePart? 'as')?
-	  ownedFeatureMembership_comp += ConnectorEndMember '=' ownedFeatureMembership_comp += ConnectorEndMember
-	  DefinitionBody	
+	BindingKeyword ( ( name = Name )? TypePart? 'as' )?
+	ownedFeatureMembership_comp += ConnectorEndMember '=' ownedFeatureMembership_comp += ConnectorEndMember
+	DefinitionBody	
 ;
 
 /* SUCCESSIONS */
@@ -1269,11 +1407,7 @@ SuccessionKeyword :
 ;
 
 Succession returns SysML::Succession :
-	SuccessionDeclaration ';'
-;
-
-AbstractSuccession returns SysML::Succession :
-	SuccessionDeclaration isAbstract ?= ';'
+	( isAbstract ?= 'abstract' )? SuccessionKeyword SuccessionDeclaration ConnectionDefBody
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
@@ -1312,11 +1446,7 @@ ItemFlowKeyword :
 ;
 
 ItemFlow returns SysML::ItemFlow :
-	ItemFlowDeclaration DefinitionBody
-;
-
-AbstractItemFlow returns SysML::ItemFlow :
-	ItemFlowDeclaration AbstractDefinitionBody
+	( isAbstract ?= 'abstract' )? ItemFlowKeyword ItemFlowDeclaration DefinitionBody
 ;
 
 SuccessionItemFlowKeyword :
@@ -1324,11 +1454,7 @@ SuccessionItemFlowKeyword :
 ;
 
 SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	ItemFlowDeclaration DefinitionBody
-;
-
-AbstractSuccessionItemFlow returns SysML::SuccessionItemFlow :
-	ItemFlowDeclaration AbstractDefinitionBody
+	( isAbstract ?= 'abstract' )? SuccessionItemFlowKeyword ItemFlowDeclaration DefinitionBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
@@ -1382,16 +1508,16 @@ ActionUsageKeyword :
 ;
 
 fragment ActionDeclaration returns SysML::ActionUsage :
-    ( isAbstract ?= 'abstract' )? ActionKeyword 
+    UsagePrefix? ActionUsageKeyword 
 	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList )?
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	{SysML::ActionUsage} ActionUsageDeclaration ActionDefBody
+	UsagePrefix? ActionUsageKeyword ActionUsageDeclaration ActionDefBody
 ;
 
-AbstractActionUsage returns SysML::ActionUsage :
-	ActionUsageDeclaration AbstractActionDefBody
+ActionRefUsage returns SysML::ActionUsage :
+	UsagePrefix? ( 'ref' ActionUsageKeyword | isComposite ?= ActionUsageKeyword ) ActionUsageDeclaration ActionDefBody
 ;
 
 fragment ActionUsageDeclaration returns SysML::Step :
@@ -1418,10 +1544,10 @@ ActionParameterFlow returns SysML::ItemFlow :
 ;
 
 PerformActionUsage returns SysML::PerformActionUsage :
-	PerformActionUsageDeclaration ActionDefBody
+	UsagePrefix? 'perform' PerformActionUsageDeclaration ActionDefBody
 ;
 
-PerformActionUsageDeclaration returns SysML::PerformActionUsage :
+fragment PerformActionUsageDeclaration returns SysML::ActionUsage :
    	( ( name = Name TypePart? 'as' )? ownedRelationship_comp += Subset 
    	| ActionKeyword ( name = Name )? TypePart?
    	)
@@ -1431,24 +1557,23 @@ PerformActionUsageDeclaration returns SysML::PerformActionUsage :
 /* ACTION NODES */
 
 ActionNode returns SysML::ActionUsage :
-	  TransferNode | ControlNode
+	  SendNode | AcceptNode | ControlNode
 ;
 
-TransferNode returns SysML::ActionUsage :
-	TransferNodeDeclaration ActionDefBody
+AcceptNode returns SysML::AcceptActionUsage :
+	UsagePrefix? AcceptNodeDeclaration ActionDefBody
 ;
 
-TransferNodeDeclaration returns SysML::ActionUsage :
-	  AcceptNodeDeclaration
-	| SendNodeDeclaration	
-;
-
-AcceptNodeDeclaration returns SysML::AcceptActionUsage :
+fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember
 	'accept' ( name = Name TypePart? )? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'
 ;
 
-SendNodeDeclaration returns SysML::SendActionUsage :
+SendNode returns SysML::SendActionUsage :
+	UsagePrefix? SendNodeDeclaration ActionDefBody
+;
+
+fragment SendNodeDeclaration returns SysML::ActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
 	'send' ( ( name = Name TypePart? )? 'of')? ownedFeatureMembership_comp += ExpressionMember 
 	'to' ownedFeatureMembership_comp += ExpressionMember
@@ -1462,19 +1587,19 @@ ControlNode returns SysML::ControlNode :
 ;
 
 MergeNode returns SysML::MergeNode :
-	{SysML::MergeNode} isComposite ?= 'merge' ( name = Name TypePart? )? ';'
+	UsagePrefix? isComposite ?= 'merge' ( name = Name TypePart? )? ';'
 ;
 
 DecisionNode returns SysML::DecisionNode :
-	{SysML::DecisionNode} isComposite ?= 'decide' ( name = Name TypePart? )? ';'
+	UsagePrefix? isComposite ?= 'decide' ( name = Name TypePart? )? ';'
 ;
 
 JoinNode returns SysML::JoinNode :
-	{SysML::JoinNode} isComposite ?= 'join' ( name = Name TypePart? )? ';'
+	UsagePrefix? isComposite ?= 'join' ( name = Name TypePart? )? ';'
 ;
 
 ForkNode returns SysML::ForkNode :
-	{SysML::ForkNode} isComposite ?= 'fork' ( name = Name TypePart? )? ';'
+	UsagePrefix? isComposite ?= 'fork' ( name = Name TypePart? )? ';'
 ;
 
 EmptyParameter returns SysML::Parameter :
@@ -1499,7 +1624,7 @@ EmptySuccessionMember returns SysML::FeatureMembership :
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
-	ownedMemberFeature_comp = EmptyParameter
+	ownedMemberParameter_comp = EmptyParameter
 ;
 
 /* CALCULATION USAGES */
@@ -1509,30 +1634,29 @@ CalculationUsageKeyword :
 ;
 
 fragment CalculationDeclaration returns SysML::CalculationUsage :
-    ( isAbstract ?= 'abstract' )? CalculationUsageKeyword 
-	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList CalculationReturnParameterPart )?
+    UsagePrefix? CalculationUsageKeyword 
+	name = Name TypePart? CalculationParameterPart
 ;
 
 CalculationUsage returns SysML::CalculationUsage :
-	CalculationUsageDeclaration CalculationDefBody
+	UsagePrefix? CalculationUsageKeyword CalculationUsageDeclaration CalculationDefBody
 ;
 
-AbstractCalculationUsage returns SysML::CalculationUsage :
-	CalculationUsageDeclaration AbstractCalculationDefBody
+CalculationRefUsage returns SysML::CalculationUsage :
+	UsagePrefix? ( 'ref' CalculationUsageKeyword | isComposite ?= CalculationUsageKeyword ) CalculationUsageDeclaration CalculationDefBody
 ;
 
 fragment CalculationUsageDeclaration returns SysML::Step :
-	  name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList CalculationReturnParameterPart )?
-	| TypePart SubsettingPart ( ValuePart | ActionParameterList CalculationReturnParameterPart )?
-	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? 
-	  SubsettingPart ( ValuePart | ActionParameterList CalculationReturnParameterPart )? 
+	  name = Name TypePart? CalculationParameterPart
+	| TypePart CalculationParameterPart
+	| RedefinesKeyword ownedRelationship_comp += Redefinition TypePart? CalculationParameterPart	   
 ;
 
-fragment CalculationReturnParameterPart returns SysML::Type :
-	ownedFeatureMembership_comp += CalculationReturnParameterMember
+fragment CalculationParameterPart returns SysML::Feature :
+	SubsettingPart ( ValuePart | ActionParameterList ownedFeatureMembership_comp += CalculationReturnParameterMember )?
 ;
 
-/* FUNCTION USAGE MEMBERSHIPS */
+/* CALCULATION MEMBERSHIPS */
 
 CalculationReturnParameterMember returns SysML::ReturnParameterMembership :
 	( 'return' )? ( memberName = Name )? ownedMemberParameter_comp = ActionParameter
@@ -1545,19 +1669,20 @@ StateUsageKeyword :
 ;
 
 fragment StateDeclaration returns SysML::StateUsage :
-    ( isAbstract ?= 'abstract' )? StateUsageKeyword 
+    UsagePrefix? StateUsageKeyword 
 	name = Name TypePart? SubsettingPart ( ValuePart | ActionParameterList )?
 ;
 
 StateUsage returns SysML::StateUsage :
-	{SysML::StateUsage} ActionUsageDeclaration StateDefBody
+	UsagePrefix? StateUsageKeyword ActionUsageDeclaration StateDefBody
 ;
 
-AbstractStateUsage returns SysML::StateUsage :
-	{SysML::StateUsage} ActionUsageDeclaration AbstractStateDefBody
+StateRefUsage returns SysML::StateUsage :
+	UsagePrefix? ( 'ref' StateUsageKeyword | isComposite ?= StateUsageKeyword ) ActionUsageDeclaration StateDefBody
 ;
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
+    UsagePrefix? 'exhibit' 
     ( ( name = Name TypePart? 'as' )? ownedRelationship_comp += Subset 
     | StateUsageKeyword ( name = Name )? TypePart?
     )
@@ -1641,15 +1766,20 @@ ConstraintUsageKeyword :
 	ConstraintKeyword
 ;
 
-ConstraintUsage returns SysML::ConstraintUsage :
-	ConstraintDeclaration ConstraintDefBody
-;
-
-AbstractConstraintUsage returns SysML::ConstraintUsage :
-	ConstraintDeclaration AbstractConstraintDefBody
-;
-
 fragment ConstraintDeclaration returns SysML::ConstraintUsage :
+    UsagePrefix? ConstraintUsageKeyword 
+	name = Name TypePart? ConstraintParameterPart
+;
+
+ConstraintUsage returns SysML::ConstraintUsage :
+	UsagePrefix? ConstraintUsageKeyword ConstraintUsageDeclaration ConstraintDefBody
+;
+
+ConstraintRefUsage returns SysML::ConstraintUsage :
+	UsagePrefix? ( 'ref' ConstraintUsageKeyword | isComposite ?= ConstraintUsageKeyword ) ConstraintUsageDeclaration ConstraintDefBody
+;
+
+fragment ConstraintUsageDeclaration returns SysML::ConstraintUsage :
 	  name = Name TypePart? ConstraintParameterPart
 	| TypePart? ( ValuePart | ActionParameterList )? EmptyReturnParameterPart
 	| RedefinesKeyword ownedRelationship_comp += Redefinition 
@@ -1661,6 +1791,7 @@ fragment ConstraintParameterPart returns SysML::ConstraintUsage :
 ;
 
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
+	UsagePrefix? 'assert'
     ( ( ( name = Name )? TypePart? 'as' )? ownedRelationship_comp += Subset 
     | ConstraintUsageKeyword ( name = Name )? TypePart? 
     )
@@ -1687,15 +1818,20 @@ RequirementUsageKeyword :
 	RequirementKeyword
 ;
 
-RequirementUsage returns SysML::RequirementUsage :
-	RequirementDeclaration RequirementDefBody
-;
-
-AbstractRequirementUsage returns SysML::RequirementUsage :
-	RequirementDeclaration AbstractRequirementDefBody
-;
-
 fragment RequirementDeclaration returns SysML::RequirementUsage :
+    UsagePrefix? RequirementUsageKeyword 
+	( 'id' reqId = Name )? name = Name TypePart? ConstraintParameterPart
+;
+
+RequirementUsage returns SysML::RequirementUsage :
+	UsagePrefix? RequirementUsageKeyword RequirementUsageDeclaration RequirementDefBody
+;
+
+RequirementRefUsage returns SysML::RequirementUsage :
+	UsagePrefix? ( 'ref' RequirementUsageKeyword | isComposite ?= RequirementUsageKeyword ) RequirementUsageDeclaration RequirementDefBody
+;
+
+fragment RequirementUsageDeclaration returns SysML::RequirementUsage :
 	( 'id' reqId = Name )? 
 	( name = Name TypePart? ConstraintParameterPart
 	| TypePart? ( ValuePart | ActionParameterList )? EmptyReturnParameterPart
@@ -1705,11 +1841,12 @@ fragment RequirementDeclaration returns SysML::RequirementUsage :
 ;
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
-     ( ( ( name = Name )? TypePart? 'as' )? ownedRelationship_comp += Subset 
-     | RequirementKeyword ( name = Name )? TypePart? 
-     )
-     ( 'by' ownedFeatureMembership_comp += SatisfactionConnectorMember )?
-     ConstraintParameterPart InvariantPart RequirementDefBody
+	UsagePrefix? 'satisfy'
+	( ( ( name = Name )? TypePart? 'as' )? ownedRelationship_comp += Subset 
+    | RequirementKeyword ( name = Name )? TypePart? 
+    )
+    ( 'by' ownedFeatureMembership_comp += SatisfactionConnectorMember )?
+    ConstraintParameterPart InvariantPart RequirementDefBody
 ;
 
 SatisfactionConnector returns SysML::BindingConnector :
@@ -1720,6 +1857,44 @@ SatisfactionConnector returns SysML::BindingConnector :
 
 SatisfactionConnectorMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = SatisfactionConnector
+;
+
+/* CASE USAGES */
+
+CaseUsageKeyword :
+	CaseKeyword
+;
+
+fragment CaseDeclaration returns SysML::CaseUsage :
+    UsagePrefix? CaseUsageKeyword 
+	name = Name TypePart? CalculationParameterPart
+;
+
+CaseUsage returns SysML::CaseUsage :
+	UsagePrefix? CaseUsageKeyword CalculationUsageDeclaration CaseDefBody
+;
+
+CaseRefUsage returns SysML::CaseUsage :
+	UsagePrefix? ( 'ref' CaseUsageKeyword | isComposite ?= CaseUsageKeyword ) CalculationUsageDeclaration CaseDefBody
+;
+
+/* ANALYSIS CASE USAGES */
+
+AnalysisCaseUsageKeyword :
+	AnalysisCaseKeyword
+;
+
+fragment AnalysisCaseDeclaration returns SysML::AnalysisCaseUsage :
+    UsagePrefix? AnalysisCaseUsageKeyword 
+	name = Name TypePart? CalculationParameterPart
+;
+
+AnalysisCaseUsage returns SysML::AnalysisCaseUsage :
+	UsagePrefix? AnalysisCaseUsageKeyword CalculationUsageDeclaration CaseDefBody
+;
+
+AnalysisCaseRefUsage returns SysML::AnalysisCaseUsage :
+	UsagePrefix? ( 'ref' AnalysisCaseUsageKeyword | isComposite ?= AnalysisCaseUsageKeyword ) CalculationUsageDeclaration CaseDefBody
 ;
 
 /* EXPRESSIONS */

@@ -33,13 +33,13 @@ END_SETUP
 package BindingConnectorExample {
 	part def A;
 	port def PortDefOut {
-		ref in myDefIn: A;
-		ref out myDefOut: A;
+		in ref myDefIn: A;
+		out ref myDefOut: A;
 	}
 	
 	port def PortDefIn {
-		ref out myDefOut : A;
-		ref in myDefIn : A;
+		out ref myDefOut : A;
+		in ref myDefIn : A;
 	}
 	part def B0 {
 		port p0 : PortDefOut;
@@ -51,14 +51,14 @@ package BindingConnectorExample {
 	part v : V {
 		part b0 : B0 {
 			port p0 redefines B0::p0 {
-				ref in myDefIn redefines B0::p0::myDefIn;
-				ref out myDefOut redefines B0::p0::myDefOut;
+				in ref myDefIn redefines B0::p0::myDefIn;
+				out ref myDefOut redefines B0::p0::myDefOut;
 			}
 		}
 		part b1 : B1 {
 			port p1 redefines B1::p1 {
-				ref in myDefIn redefines B1::p1::myDefIn;
-				ref out myDefOut redefines B1::p1::myDefOut;
+				in ref myDefIn redefines B1::p1::myDefIn;
+				out ref myDefOut redefines B1::p1::myDefOut;
 			}
 		}
 			
@@ -73,8 +73,8 @@ package BindingConnectorExample {
 		
 		part b2: B1 {
 			port p2 {
-				ref in myIn;
-				ref out myOut;
+				in ref myIn;
+				out ref myOut;
 			}
 		}
 		//redefines - local
@@ -93,15 +93,15 @@ package BindingConnectorExample {
 		}
 		part b5 : B1{
 			port p1 redefines B1::p1{
-				ref in myDefIn redefines B1::p1::myDefIn;
-				ref in myIn redefines B1::p1::myDefIn;
+				in ref myDefIn redefines B1::p1::myDefIn;
+				in ref myIn redefines B1::p1::myDefIn;
 			}
 		}
-		// XPECT warnings --> "Connected features should have a common context" at "b0::p0::myDefIn = b3::p1::myDefIn;"
+		// XPECT warnings --> "Connected features should have a common context" at "bind b0::p0::myDefIn = b3::p1::myDefIn;"
 		bind b0::p0::myDefIn = b3::p1::myDefIn;
-		// XPECT warnings --> "Connected features should have a common context" at "b0::p0::myDefIn = b4::p1::myDefIn;"
+		// XPECT warnings --> "Connected features should have a common context" at "bind b0::p0::myDefIn = b4::p1::myDefIn;"
 		bind b0::p0::myDefIn = b4::p1::myDefIn;
-		// XPECT warnings --> "Connected features should have a common context" at "b4::p1::myDefIn = b0::p0::myDefIn;"
+		// XPECT warnings --> "Connected features should have a common context" at "bind b4::p1::myDefIn = b0::p0::myDefIn;"
 		bind b4::p1::myDefIn = b0::p0::myDefIn;
 		bind b0::p0::myDefIn = b5::p1::myDefIn;
 		bind b5::p1::myDefIn = b0::p0::myDefIn;

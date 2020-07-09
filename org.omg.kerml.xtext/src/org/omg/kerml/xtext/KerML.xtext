@@ -172,7 +172,7 @@ fragment PackageBody returns SysML::Package :
 	'{' ( ownedMembership_comp += PackageMember | ownedImport_comp += PackageImport )* '}'
 ;
 
-NonFeature returns SysML::Element:
+PackagedNonFeatureElement returns SysML::Element :
 	  Package 
 	| Classifier 
 	| Class
@@ -183,6 +183,19 @@ NonFeature returns SysML::Element:
 	| Function
 	| Predicate
 	| Comment
+;
+
+PackagedFeatureElement returns SysML::Feature :
+	  Feature
+	| Step
+	| BlockExpression
+	| BooleanExpression
+	| Invariant
+	| Connector
+	| BindingConnector
+	| Succession
+	| ItemFlow
+	| SuccessionItemFlow
 ;
 
 /* PACKAGE MEMBERSHIPS */
@@ -197,21 +210,12 @@ fragment PackageMemberPrefix returns SysML::Membership :
 ;
 
 fragment NonFeatureMemberElement returns SysML::Membership :
-	  ownedMemberElement_comp = NonFeature
+	  ownedMemberElement_comp = PackagedNonFeatureElement
 	| ( 'alias' | 'import' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 ;
 
 fragment PackageFeatureMemberElement returns SysML::Membership :
-	  'feature'? ownedMemberElement_comp = Feature
-	| 'abstract' 'feature'? ownedMemberElement_comp = AbstractFeature
-	| 'step' ownedMemberElement_comp = Step
-	| 'abstract' 'step' ownedMemberElement_comp = AbstractStep
-	| 'expr' ownedMemberElement_comp = BlockExpression
-	| 'abstract' 'expr' ownedMemberElement_comp = AbstractBlockExpression
-	| 'bool' ownedMemberElement_comp = BooleanExpression
-	| 'abstract' 'bool' ownedMemberElement_comp = AbstractBooleanExpression
-	| 'inv' ownedMemberElement_comp = Invariant
-	| 'abstract' 'inv' ownedMemberElement_comp = AbstractInvariant
+	  ownedMemberElement_comp = PackagedFeatureElement
 ;
 
 /* TYPES */
@@ -219,15 +223,6 @@ fragment PackageFeatureMemberElement returns SysML::Membership :
 fragment TypeBody returns SysML::Type :
 	';' | 
 	'{' ( 
-		  ownedMembership_comp += NonFeatureTypeMember 
-		| ownedFeatureMembership_comp += FeatureTypeMember 
-		| ownedImport_comp += PackageImport
-	)* '}'
-;
-
-fragment AbstractTypeBody returns SysML::Type :
-	isAbstract ?= ';' | 
-	isAbstract ?= '{' ( 
 		  ownedMembership_comp += NonFeatureTypeMember 
 		| ownedFeatureMembership_comp += FeatureTypeMember 
 		| ownedImport_comp += PackageImport
@@ -245,48 +240,18 @@ FeatureTypeMember returns SysML::FeatureMembership :
 ;
 
 FeatureMember returns SysML::FeatureMembership :
-	TypeMemberPrefix 
-	( FeatureMemberFlags FeatureMemberElement
-	| 'abstract' FeatureMemberFlags AbstractFeatureMemberElement
+	TypeMemberPrefix FeatureMemberFlags 
+	( ownedMemberFeature_comp = PackagedFeatureElement
+	| 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
-	TypeMemberPrefix
-	( 'end' FeatureMemberFlags FeatureMemberElement
-	| 'abstract' 'end' FeatureMemberFlags AbstractFeatureMemberElement
-	)
-;
-
-fragment FeatureMemberElement returns SysML::FeatureMembership :
-      'feature'? ( direction = FeatureDirection )? ownedMemberFeature_comp = Feature 
-    | 'feature'? ( direction = FeatureDirection )? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
- 	| 'connector' ( direction = FeatureDirection )? ownedMemberFeature_comp = Connector
-    | 'binding' ( direction = FeatureDirection )? ownedMemberFeature_comp = BindingConnector
-	| 'step' ( direction = FeatureDirection )? ownedMemberFeature_comp = Step
-	| 'expr' ( direction = FeatureDirection )? ownedMemberFeature_comp = BlockExpression
-	| 'bool' ( direction = FeatureDirection )? ownedMemberFeature_comp = BooleanExpression
-	| 'inv' ( direction = FeatureDirection )? ownedMemberFeature_comp = Invariant
-	| 'succession' ( direction = FeatureDirection )? ownedMemberFeature_comp = Succession 
-	| 'stream' ( direction = FeatureDirection )? ownedMemberFeature_comp = ItemFlow 
-	| 'flow' ( direction = FeatureDirection )? ownedMemberFeature_comp = SuccessionItemFlow
-;
-
-fragment AbstractFeatureMemberElement returns SysML::FeatureMembership :
-      'feature' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractFeature
-    | 'connector' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractConnector
-    | 'binding' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractBindingConnector
-    | 'step' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractStep
-    | 'expr' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractBlockExpression
-    | 'bool' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractBooleanExpression
-    | 'inv' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractInvariant
-    | 'succession' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSuccession
-    | 'stream' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractItemFlow
-    | 'flow' ( direction = FeatureDirection )? ownedMemberFeature_comp = AbstractSuccessionItemFlow
+	TypeMemberPrefix 'end' FeatureMemberFlags ownedMemberFeature_comp = PackagedFeatureElement
 ;
 
 fragment FeatureMemberFlags returns SysML::FeatureMembership :
-	( isComposite ?= 'composite' | isPortion ?= 'portion' )? ( isPort ?= 'port' )?
+	( direction = FeatureDirection )? ( isComposite ?= 'composite' | isPortion ?= 'portion' )? ( isPort ?= 'port' )?
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -379,17 +344,8 @@ fragment ParameterList returns SysML::Type :
 fragment BehaviorBody returns SysML::Type :
 	';'| 
 	'{' ( 
-		  ownedMembership_comp += NonFeatureBehaviorMember 
-		| ownedFeatureMembership_comp += FeatureBehaviorMember
-		| ownedRelationship_comp += PackageImport
-	)* '}'
-;
-
-fragment AbstractBehaviorBody returns SysML::Type :
-	isAbstract ?= ';'| 
-	isAbstract ?= '{' ( 
-		  ownedMembership_comp += NonFeatureBehaviorMember 
-		| ownedFeatureMembership_comp += FeatureBehaviorMember
+		  ownedMembership_comp += NonFeatureTypeMember 
+		| ownedFeatureMembership_comp += FeatureTypeMember
 		| ownedRelationship_comp += PackageImport
 	)* '}'
 ;
@@ -398,14 +354,6 @@ fragment AbstractBehaviorBody returns SysML::Type :
 
 ParameterMember returns SysML::ParameterMembership :
 	( direction = FeatureDirection )? memberName = Name ownedMemberParameter_comp = Parameter
-;
-
-NonFeatureBehaviorMember returns SysML::Membership :
-	NonFeatureTypeMember
-;
-
-FeatureBehaviorMember returns SysML::FeatureMembership :
-	FeatureTypeMember
 ;
 
 /* FUNCTIONS */
@@ -426,18 +374,8 @@ fragment ReturnParameterPart returns SysML::Type :
 fragment FunctionBody returns SysML::Type :
 	  ';'
 	| '{' ( 
-		  ownedMembership_comp += NonFeatureBehaviorMember 
-		| ownedFeatureMembership_comp += FeatureBehaviorMember
-		| ownedRelationship_comp += PackageImport
-		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
-	  '}'
-;
-
-fragment AbstractFunctionBody returns SysML::Type :
-	  isAbstract ?= ';'
-	| isAbstract ?= '{' ( 
-		  ownedMembership_comp += NonFeatureBehaviorMember 
-		| ownedFeatureMembership_comp += FeatureBehaviorMember
+		  ownedMembership_comp += NonFeatureTypeMember 
+		| ownedFeatureMembership_comp += FeatureTypeMember
 		| ownedRelationship_comp += PackageImport
 		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
 	  '}'
@@ -491,15 +429,11 @@ fragment InteractionDeclaration returns SysML::Interaction :
 /* FEATURES */
 
 Feature returns SysML::Feature :
-	FeatureDeclaration FeatureCompletion
-;
-
-AbstractFeature returns SysML::Feature :
-	FeatureDeclaration AbstractFeatureCompletion
+	FeatureDefinition
 ;
 
 fragment FeatureDefinition returns SysML::Feature :
-	( isAbstract ?= 'abstract' )? 'feature' FeatureDeclaration FeatureCompletion
+	( isAbstract ?= 'abstract' )? 'feature'? FeatureDeclaration FeatureCompletion
 ;
 
 fragment FeatureDeclaration returns SysML::Feature :
@@ -520,10 +454,6 @@ FeatureConjugation returns SysML::Conjugation :
 
 fragment FeatureCompletion returns SysML::Feature :
 	ValuePart? TypeBody
-;
-
-fragment AbstractFeatureCompletion returns SysML::Feature :
-	ValuePart? AbstractTypeBody
 ;
 
 fragment ValuePart returns SysML::Feature :
@@ -594,11 +524,7 @@ UnlimitedNaturalLiteralMember returns SysML::FeatureMembership :
 /* CONNECTORS */
 
 Connector returns SysML::Connector :	 
-	ConnectorDeclaration TypeBody	  
-;
-
-AbstractConnector returns SysML::Connector :
-	ConnectorDeclaration AbstractTypeBody
+	( isAbstract ?= 'abstract' )? 'connector' ConnectorDeclaration TypeBody	  
 ;
 
 fragment ConnectorDeclaration returns SysML::Connector :
@@ -624,11 +550,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 /* BINDING CONNECTORS */
 
 BindingConnector returns SysML::BindingConnector :
-	BindingConnectorDeclaration TypeBody	
-;
-
-AbstractBindingConnector returns SysML::BindingConnector :
-	BindingConnectorDeclaration AbstractTypeBody	
+	( isAbstract ?= 'abstract' )? 'binding' BindingConnectorDeclaration TypeBody	
 ;
 
 fragment BindingConnectorDeclaration returns SysML::BindingConnector :
@@ -639,11 +561,7 @@ fragment BindingConnectorDeclaration returns SysML::BindingConnector :
 /* SUCCESSIONS */
 
 Succession returns SysML::Succession :
-	SuccessionDeclaration TypeBody
-;
-
-AbstractSuccession returns SysML::Succession :
-	SuccessionDeclaration AbstractTypeBody
+	( isAbstract ?= 'abstract' )? 'succession' SuccessionDeclaration TypeBody
 ;
 
 fragment SuccessionDeclaration returns SysML::Succession :
@@ -654,19 +572,11 @@ fragment SuccessionDeclaration returns SysML::Succession :
 /* ITEM FLOWS */
 
 ItemFlow returns SysML::ItemFlow :
-	ItemFlowDeclaration TypeBody
-;
-
-AbstractItemFlow returns SysML::ItemFlow :
-	ItemFlowDeclaration AbstractTypeBody
+	( isAbstract ?= 'abstract' )? 'stream' ItemFlowDeclaration TypeBody
 ;
 
 SuccessionItemFlow returns SysML::SuccessionItemFlow :
-	ItemFlowDeclaration TypeBody
-;
-
-AbstractSuccessionItemFlow returns SysML::SuccessionItemFlow :
-	ItemFlowDeclaration AbstractTypeBody
+	( isAbstract ?= 'abstract' )? 'flow' ItemFlowDeclaration TypeBody
 ;
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
@@ -694,7 +604,6 @@ ItemFlowEnd returns SysML::ItemFlowEnd :
 ItemFlowFeature returns SysML::ItemFlowFeature :
 	ownedRelationship_comp += Redefinition
 ;
-
 
 /* ITEM FLOW MEMBERSHIPS */
 
@@ -726,11 +635,7 @@ Parameter returns SysML::Parameter :
 /* STEPS */
 
 Step returns SysML::Step :
-	StepDeclaration BehaviorBody
-;
-
-AbstractStep returns SysML::Step :
-	StepDeclaration AbstractBehaviorBody
+	( isAbstract ?= 'abstract' )? 'step' StepDeclaration BehaviorBody
 ;
 
 fragment StepDeclaration returns SysML::Step :
@@ -745,11 +650,7 @@ fragment StepDeclaration returns SysML::Step :
 /* INVARIANTS */
 
 Invariant returns SysML::Invariant :
-	BooleanExpressionDeclaration InvariantPart FunctionBody
-;
-
-AbstractInvariant returns SysML::Invariant :
-	BooleanExpressionDeclaration InvariantPart AbstractFunctionBody
+	( isAbstract ?= 'abstract' )? 'inv' BooleanExpressionDeclaration InvariantPart FunctionBody
 ;
 
 fragment InvariantPart returns SysML::Invariant :
@@ -771,11 +672,7 @@ TrueLiteralMember returns SysML::FeatureMembership :
 // Block Expressions
 
 BlockExpression returns SysML::BlockExpression :
-	ExpressionDeclaration FunctionBody
-;
-
-AbstractBlockExpression returns SysML::BlockExpression :
-	ExpressionDeclaration AbstractFunctionBody
+	( isAbstract ?= 'abstract' )? 'expr' ExpressionDeclaration FunctionBody
 ;
 
 fragment ExpressionDeclaration returns SysML::Expression :
@@ -790,11 +687,7 @@ fragment ExpressionDeclaration returns SysML::Expression :
 // Boolean Expressions
 
 BooleanExpression returns SysML::BooleanExpression :
-	BooleanExpressionDeclaration FunctionBody
-;
-
-AbstractBooleanExpression returns SysML::BooleanExpression :
-	BooleanExpressionDeclaration AbstractFunctionBody
+	( isAbstract ?= 'abstract' )? 'bool' BooleanExpressionDeclaration FunctionBody
 ;
 
 fragment BooleanExpressionDeclaration returns SysML::Expression :

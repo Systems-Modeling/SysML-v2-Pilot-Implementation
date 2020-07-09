@@ -63,6 +63,13 @@ import org.omg.sysml.lang.sysml.CalculationUsage
 import org.omg.sysml.lang.sysml.AttributeUsage
 import org.omg.sysml.lang.sysml.ItemUsage
 import org.omg.sysml.lang.sysml.PartDefinition
+import org.omg.sysml.lang.sysml.Usage
+import org.omg.sysml.lang.sysml.Definition
+import org.omg.sysml.lang.sysml.VariantMembership
+import org.omg.sysml.lang.sysml.CaseUsage
+import org.omg.sysml.lang.sysml.CaseDefinition
+import org.omg.sysml.lang.sysml.AnalysisCaseUsage
+import org.omg.sysml.lang.sysml.AnalysisCaseDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -77,6 +84,12 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SUBSETTING_MULTIPLICITYCONFORMANCE = 'Invalid Subsetting - Multiplicity conformance'
 	public static val INVALID_REDEFINITION_MULTIPLICITYCONFORMANCE = 'Invalid Redefinition - Multiplicity conformance'
 	public static val INVALID_SUBSETTING_UNIQUENESS_CONFORMANCE = 'Invalid Subsetting - Uniqueness conformance'
+	
+	public static val INVALID_USAGE_VARIANT = 'Invalid Usage - invalid variant'
+	public static val INVALID_USAGE_VARIANT_MSG = 'A variant must be an owned member of a variation.'
+	public static val INVALID_USAGE_VARIATION = 'Invalid Usage - invalid variation'
+	public static val INVALID_USAGE_VARIATION_MSG = 'A variation must only have variant owned members.'
+	
 	public static val INVALID_ACTIONUSAGE = 'Invalid Action Usage - invalid type'
 	public static val INVALID_ACTIONUSAGE_MSG = 'An action must be typed by action definitions.'
 	public static val INVALID_ITEMUSAGE = 'Invalid Item Usage - invalid type'
@@ -101,6 +114,32 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
+	public static val INVALID_CASEUSAGE = 'Invalid CaseUsage - invalid type'
+	public static val INVALID_CASEUSAGE_MSG = 'A case must be typed by one case definition.'
+	public static val INVALID_ANALYSISCASEUSAGE = 'Invalid AnalysisCaseUsage - invalid type'
+	public static val INVALID_ANALYSISCASEUSAGE_MSG = 'An analysis case must be typed by one analysis case definition.'
+	
+	@Check
+	def checkUsage(Usage usage) {
+		val owningMembership = usage.owningMembership;
+		val owningPackage = owningMembership?.membershipOwningPackage;
+		
+		if (owningMembership instanceof VariantMembership) {
+			// A variant Usage must be owned by a variation
+			if (!owningPackage.isVariation) {
+				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
+			}
+		// A variation must not own non-variant Usages
+		} else if (owningPackage.isVariation) {
+				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
+		}
+	}
+	
+	def boolean isVariation(org.omg.sysml.lang.sysml.Package p) {
+		if (p instanceof Definition) p.isVariation
+		else if (p instanceof Usage) p.isVariation
+		else false
+	}
 
 	@Check //All types must be Behaviors
 	def checkActionUsageTypes(ActionUsage usg){
@@ -125,7 +164,17 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //Must have exactly one type, which is a Function.
 	def checkCalculationUsageTypes(CalculationUsage usg){
-		checkOneType(usg, Function, SysMLValidator.INVALID_CALCULATIONUSAGE_MSG, SysMLPackage.eINSTANCE.calculationUsage_CalculationDefinition, SysMLValidator.INVALID_CALCULATIONUSAGE)
+		if (!(usg instanceof CaseUsage))
+			checkOneType(usg, Function, SysMLValidator.INVALID_CALCULATIONUSAGE_MSG, SysMLPackage.eINSTANCE.calculationUsage_CalculationDefinition, SysMLValidator.INVALID_CALCULATIONUSAGE)
+	}
+	@Check //Must have exactly one type, which is a CaseDefinition.
+	def checkCaseUsageTypes(CaseUsage usg){
+		if (!(usg instanceof AnalysisCaseUsage))
+			checkOneType(usg, CaseDefinition, SysMLValidator.INVALID_CASEUSAGE_MSG, SysMLPackage.eINSTANCE.caseUsage_CaseDefinition, SysMLValidator.INVALID_CASEUSAGE)
+	}
+	@Check //Must have exactly one type, which is an AnalysisCaseDefinition.
+	def checkAnalysisCaseUsageTypes(AnalysisCaseUsage usg){
+		checkOneType(usg, AnalysisCaseDefinition, SysMLValidator.INVALID_ANALYSISCASEUSAGE_MSG, SysMLPackage.eINSTANCE.analysisCaseUsage_AnalysisCaseDefinition, SysMLValidator.INVALID_ANALYSISCASEUSAGE)
 	}
 	@Check //Must have exactly one type, which is an IndividualDefinition
 	def checkIndividualUsageTypes(IndividualUsage usg){

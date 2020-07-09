@@ -41,7 +41,7 @@ package BlockTest {
 	}
 	
 	private port def C {
-		private ref in y: B;
+		private in ref y: B;
 		alias y as z;
 	}
 	

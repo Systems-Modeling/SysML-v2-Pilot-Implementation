@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -95,7 +96,7 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	@Inject
 	private SysMLInteractive() {
-		super(new InverseOrderedResourceSetImpl());
+		super(new StrictShadowingResourceDescriptionData());
 	}
 	
 	public void loadLibrary(String path) {
@@ -111,6 +112,7 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Quantities" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/UnitsAndScales" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQ" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQSpaceTime" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SIPrefixes" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SI" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/USCustomaryUnits" + SYSML_EXTENSION, false, SYSML_EXTENSION);
@@ -161,8 +163,6 @@ public class SysMLInteractive extends SysMLUtil {
 		if (resource != null) {
 			// Surround input with braces so that it is parsed as an anonymous package.
 			resource.reparse("{\n" + input + "}");
-			
-			this.addResourceToIndex(resource);
 		}
 	}
 	
@@ -189,6 +189,8 @@ public class SysMLInteractive extends SysMLUtil {
 			SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, issues);
 			if (result.hasErrors()) {
 				this.removeResource();
+			} else {
+				this.addResourceToIndex(resource);
 			}
 			return result;
 		} catch (Exception e) {
@@ -365,6 +367,9 @@ public class SysMLInteractive extends SysMLUtil {
 	
 	public static SysMLInteractive createInstance() {
 		if (injector == null) {
+			// Note: An EPackage must be registered to be sure the correctly configured
+			// CompositeEValidator is used.
+			EPackage.Registry.INSTANCE.put(SysMLPackage.eNS_URI, SysMLPackage.eINSTANCE);
 			KerMLStandaloneSetup.doSetup();
 			injector = new SysMLStandaloneSetup().createInjectorAndDoEMFRegistration();
 		}

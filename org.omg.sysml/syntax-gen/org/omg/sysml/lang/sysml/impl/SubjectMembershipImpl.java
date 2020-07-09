@@ -126,24 +126,19 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Parameter basicGetOwnedSubjectParameter() {
-		// TODO: implement this method to return the 'Owned Subject Parameter' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return getOwnedSubjectParameter_comp();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwnedSubjectParameter(Parameter newOwnedSubjectParameter) {
-		// TODO: implement this method to set the 'Owned Subject Parameter' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

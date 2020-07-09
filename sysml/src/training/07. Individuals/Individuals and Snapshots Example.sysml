@@ -1,5 +1,5 @@
 package 'Individuals and Snapshots Example' {
-	import 'Blocks Example'::*;
+	import 'Part Definition Example'::*;
 	
 	individual def PhysicalContext;
 	individual def Vehicle_1 :> Vehicle;

@@ -1,0 +1,20 @@
+<filetype binary="false" description="OMG Systems Modeling Language" name="SysML">
+  <highlighting>
+    <options>
+      <option name="LINE_COMMENT" value="//" />
+      <option name="COMMENT_START" value="/*" />
+      <option name="COMMENT_END" value="*/" />
+      <option name="HEX_PREFIX" value="" />
+      <option name="NUM_POSTFIXES" value="" />
+      <option name="HAS_BRACES" value="true" />
+      <option name="HAS_BRACKETS" value="true" />
+      <option name="HAS_PARENS" value="true" />
+      <option name="HAS_STRING_ESCAPES" value="true" />
+    </options>
+    <keywords keywords="about;abstract;accept;action;activity;alias;allInstances;analysis;any;as;assert;assoc;assume;attribute;bind;block;by;calc;case;comment;connect;connection;constraint;decide;def;defined;do;else;end;entry;exhibit;exit;false;first;flow;fork;from;hastype;id;if;import;in;individual;inout;instanceof;interface;item;join;link;merge;nonunique;null;objective;of;ordered;out;package;part;perform;port;private;protected;public;redefines;ref;require;requirement;return;satisfy;send;snapshot;specializes;state;stream;subject;subsets;succession;then;timeslice;to;transition;true;type;value;variant;variation" ignore_case="false" />
+    <keywords2 keywords="!;!=;&amp;;&amp;&amp;;*;**;+;-;-&gt;;..;./;/;:;::;:&gt;;:&gt;&gt;;&lt;;&lt;=;=;==;=&gt;;&gt;;&gt;=;?;??;@;^;|;||;~" />
+  </highlighting>
+  <extensionMap>
+    <mapping ext="sysml" />
+  </extensionMap>
+</filetype>

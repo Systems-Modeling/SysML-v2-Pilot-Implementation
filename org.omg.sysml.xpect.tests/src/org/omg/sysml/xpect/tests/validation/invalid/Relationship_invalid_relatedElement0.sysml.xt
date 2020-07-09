@@ -35,16 +35,16 @@ package BindingConnectorExample {
 	part v : V {
 		part b0 : B0 {
 			port p0 {
-				ref in myIn;
+				in ref myIn;
 			}
 		}
 		part b1 : B1 {
 			port p1 {
-				ref out myOut;
+				out ref myOut;
 			}
 		}
 		//* XPECT errors --- 
-		"Relationships must have at least two related elements" at "b0::p0::myIn to b1::p1::myOut;"
+		"Relationships must have at least two related elements" at "bind b0::p0::myIn to b1::p1::myOut;"
 		"mismatched input 'to' expecting '='" at "to"
 		--- */
 		bind b0::p0::myIn to b1::p1::myOut;

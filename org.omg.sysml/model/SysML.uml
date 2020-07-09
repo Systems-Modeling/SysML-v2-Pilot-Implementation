@@ -3272,7 +3272,7 @@ otherwise it subsets either &lt;code>actions&lt;/code> or &lt;code>subactions&lt
       <body>&lt;p>An ObjectiveMembership is a FeatureMembership that indicates that its &lt;code>ownedObjectiveRequirement&lt;/code> is the objective RequirementUsage for its &lt;code>owningType&lt;/code>. The &lt;code>owningType&lt;/code> of an ObjectiveMembership must be a CaseDefinition or CaseUsage.&lt;/p></body>
     </ownedComment>
     <generalization xmi:id="21ca038b-1023-4660-bf2c-9ca02c6f613b" general="387c1ace-4ad1-44eb-b8b5-bfe420975a97"/>
-    <ownedAttribute xmi:id="ad0ec492-b924-4601-9167-1c2b93596ef8" name="ownedObjectiveRequirement" visibility="public" type="7248aae3-2934-47cd-bf16-f9aca7f25ad7" redefinedProperty="077a3948-ff80-405a-b769-123a0a235d1f" association="997c7363-92e6-4eca-b1ee-633babfc076f">
+    <ownedAttribute xmi:id="ad0ec492-b924-4601-9167-1c2b93596ef8" name="ownedObjectiveRequirement" visibility="public" type="7248aae3-2934-47cd-bf16-f9aca7f25ad7" aggregation="composite" redefinedProperty="077a3948-ff80-405a-b769-123a0a235d1f" association="997c7363-92e6-4eca-b1ee-633babfc076f">
       <ownedComment xmi:id="c5b62098-247f-4ea8-bd73-8105b3bc544f" annotatedElement="ad0ec492-b924-4601-9167-1c2b93596ef8">
         <body>&lt;p>The RequirementUsage that is the &lt;p>ownedMemberFeature&lt;/p> of this RequirementUsage.&lt;/p></body>
       </ownedComment>

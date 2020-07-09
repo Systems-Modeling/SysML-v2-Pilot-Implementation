@@ -43,11 +43,11 @@ package 'State Decomposition-1' {
 	part def A;
 	attribute def VT;
 	action ac;
-	//XPECT errors --> "A state must be typed by state definitions." at "s1 : A;"	
+	//XPECT errors --> "A state must be typed by state definitions." at "state s1 : A;"	
 	state s1 : A;
-	//XPECT errors --> "A state must be typed by state definitions." at "s2 : VT;"
+	//XPECT errors --> "A state must be typed by state definitions." at "state s2 : VT;"
 	state s2 : VT;
-	//XPECT errors --> "A state must be typed by state definitions." at "s3 : ac;"
+	//XPECT errors --> "A state must be typed by state definitions." at "state s3 : ac;"
 	state s3 : ac;
 	
 }

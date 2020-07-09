@@ -2,35 +2,39 @@
 XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	ResourceSet {
 		ThisFile {} 
-		File {from ="/library.systems/Items.sysml"}
- 		File {from ="/library.systems/Parts.sysml"}
  		File {from ="/library.kernel/Base.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
-		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.systems/Items.sysml"}
+ 		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {} 
-				File {from ="/library.systems/Items.sysml"}
-		 		File {from ="/library.systems/Parts.sysml"}
 		 		File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
-				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.systems/Items.sysml"}
+		 		File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
 			}
 		}
 	}
@@ -38,29 +42,28 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package CalculationExample {
-	import ISQ::*;
-	import ScalarFunctions::*;
-	
 	part vehicle {
-		attribute m : MassValue;
+		attribute m: ScalarValues::Real;
 		
 		part eng {
-			attribute m : MassValue;
+			attribute m: ScalarValues::Real;
 		}
 		
 		part trans {
-			attribute m : MassValue;
+			attribute m: ScalarValues::Real;
 		}
 	}
 	
 	calc def MassSum (
-		partMasses : MassValue[0..*] )
-		totalMass : MassValue 
+		partMasses: ScalarValues::Real[0..*] )
+		totalMass: ScalarValues::Real 
 	{
-		sum(partMasses)
+		ScalarFunctions::sum(partMasses)
 	}
 	
 	calc ms: MassSum (
 		totalMass = vehicle::m)
 		partMasses = {vehicle::eng::m, vehicle::trans::m};
+		
+	calc c;
 }

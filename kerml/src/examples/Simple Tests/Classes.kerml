@@ -5,7 +5,7 @@ package Classes {
 
 	public class A {
 		feature b: B;
-		protected port in c: C;
+		protected in port c: C;
 	}
 	
 	abstract class B {

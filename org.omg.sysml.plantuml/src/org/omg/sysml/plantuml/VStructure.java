@@ -115,11 +115,20 @@ public abstract class VStructure extends VDefault {
         String name = getFeatureName(f);
         List<Type> tt = f.getType();
         if (tt.isEmpty()) return name;
-        Type typ = tt.get(0);
-        if (typ == null) return name;
-        String typeName = typ.getName();
-        if (typeName == null) return typeName;
-        return name + ": " + typeName;
+        StringBuilder sb = new StringBuilder();
+        for (Type typ: tt) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            if (typ == null) continue;
+            String typeName = typ.getName();
+            if (typeName == null) continue;
+            sb.append(typeName);
+        }
+        if (sb.length() == 0) return name;
+        sb.insert(0, ": ");
+        sb.insert(0, name);
+        return sb.toString();
     }
 
     protected void addGeneralizations(Type typ) {

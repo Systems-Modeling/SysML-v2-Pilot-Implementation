@@ -30,8 +30,17 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class KerMLLinker extends LazyLinker {
+
+	@Override
+	protected void clearReferences(EObject obj) {
+		super.clearReferences(obj);
+		if (obj instanceof TypeImpl) {
+			((TypeImpl) obj).cleanImplicitGeneralization();
+		}
+	}
 
 	protected void clearReference(EObject obj, EReference ref) {
 		if (

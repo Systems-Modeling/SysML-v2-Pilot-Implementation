@@ -5,28 +5,28 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
@@ -318,10 +319,16 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
+	private Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
+	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
 			addImplicitGeneralization();
  		}
+	}
+	
+	public void cleanImplicitGeneralization() {
+		implicitGeneralizations.clear();
 	}
 	
 	protected void addImplicitGeneralization() {
@@ -329,6 +336,11 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
+		//doComputeImplicitGeneralization(generalizationEClass, superTypeNames);
+		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> doComputeImplicitGeneralization(eClass, superTypeNames));
+	}
+
+	private Generalization doComputeImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
 		@SuppressWarnings("unchecked")
 		Generalization generalization = getDefaultGeneralization(
 				basicGetOwnedGeneralization(
@@ -337,7 +349,9 @@ public class TypeImpl extends PackageImpl implements Type {
 				generalizationEClass, superTypeNames);
 		if (generalization != null) {
 			getOwnedRelationship_comp().add(generalization);
-		}		
+			return generalization;
+		}
+		return null;
 	}
 	
 	protected EClass getGeneralizationEClass() {

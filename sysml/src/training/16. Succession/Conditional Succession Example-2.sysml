@@ -1,4 +1,4 @@
-package 'Conditional Succession Example' {
+package 'Conditional Succession Example-2' {
 	part def Scene;
 	part def Image {
 		isWellFocused: ScalarValues::Boolean;
@@ -15,8 +15,7 @@ package 'Conditional Succession Example' {
 			out image
 		);
 		
-		succession focus 
-			if focus::image::isWellFocused then shoot;
+		if focus::image::isWellFocused then shoot;
 		
 		action shoot: Shoot (
 			in image stream from focus::image, 

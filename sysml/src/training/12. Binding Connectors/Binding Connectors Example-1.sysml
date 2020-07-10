@@ -8,21 +8,21 @@ package 'Binding Connectors Example-1' {
 	part vehicle : Vehicle {	
 		part tank : FuelTankAssembly {
 			port redefines fuelTankPort {
-				out ref redefines fuelSupply;
-				in ref redefines fuelReturn;
+				out ref item redefines fuelSupply;
+				in ref item redefines fuelReturn;
 			}
 			
 			bind fuelTankPort::fuelSupply = pump::pumpOut;
 			bind fuelTankPort::fuelReturn = tank::fuelIn;
 			
 			part pump : FuelPump {
-				out ref pumpOut : Fuel;
-				in ref pumpIn : Fuel;
+				out ref item pumpOut : Fuel;
+				in ref item pumpIn : Fuel;
 			}
 			
 			part tank : FuelTank {
-				out ref fuelOut : Fuel;
-				in ref fuelIn : Fuel;
+				out ref item fuelOut : Fuel;
+				in ref item fuelIn : Fuel;
 			}
 		}
 	} 

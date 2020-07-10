@@ -1,4 +1,4 @@
-package 'Connectors Example' {
+package 'Connections Example' {
 	
 	part def WheelHubAssembly;
 	part def WheelAssembly;

@@ -11,15 +11,15 @@ package 'Streaming Example' {
 	part vehicle : Vehicle {
 		part tankAssy : FuelTankAssembly {
 			port fuelTankPort {
-				out ref fuelSupply;
-				in ref fuelReturn;
+				out ref item fuelSupply;
+				in ref item fuelReturn;
 			}
 		}
 		
 		part eng : Engine {
 			port engineFuelPort {
-				in ref fuelSupply;
-				out ref fuelReturn;
+				in ref item fuelSupply;
+				out ref item fuelReturn;
 			}
 		}
 		

@@ -15,9 +15,9 @@ package 'Calculation Usages-1' {
 			out x_out : LengthValue
 		) {
 			calc acc : Acceleration (
-				dt = delta_t, 
-				tm = mass, 
-				tp = Power(wheelPower, C_d, C_f, mass, v_in)
+				tp = Power(wheelPower, C_d, C_f, mass, v_in),
+				tm = mass,
+				v = v_in
 			) return a;
 			
 			calc vel : Velocity (

@@ -15,7 +15,7 @@ package 'Calculation Usages-2' {
 		calc updateState(delta_t : TimeValue, currState : DynamicState) : DynamicState {
 			attribute totalPower : PowerValue = Power(wheelPower, C_d, C_f, mass, currState::v);
 			attribute newState : DynamicState {
-				:>> v = Velocity(delta_t, currState::v, Acceleration(delta_t, mass, totalPower));
+				:>> v = Velocity(delta_t, currState::v, Acceleration(totalPower, mass, currState::v));
 				:>> x = Position(delta_t, currState::x, currState::v);
 			}
 			

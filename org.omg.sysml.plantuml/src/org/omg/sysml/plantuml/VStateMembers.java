@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -43,7 +44,14 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMembers extends VDefault {
     private List<String> descriptions = null;
-    private List<PRelation> initTransitions = null;
+    private List<PRelation> entryExitTransitions = null;
+
+    private void addEntryExitTransitions(PRelation pr) {
+        if (entryExitTransitions == null) {
+            entryExitTransitions = new ArrayList<PRelation>();
+        }
+        entryExitTransitions.add(pr);
+    }
 
     private String convertToDescription(StateSubactionMembership sam,
                                         PerformActionUsage pau) {
@@ -108,7 +116,7 @@ public class VStateMembers extends VDefault {
         if (descriptions != null) {
             int size = descriptions.size();
             if (length() > 0) {
-                outputPRelations(initTransitions);
+                outputPRelations(entryExitTransitions);
                 closeBlock("");
                 append("state ");
                 addNameWithId(typ);
@@ -126,7 +134,7 @@ public class VStateMembers extends VDefault {
             }
             flush();
         } else {
-            outputPRelations(initTransitions);
+            outputPRelations(entryExitTransitions);
             closeBlock("");
         }
         return "";
@@ -142,12 +150,26 @@ public class VStateMembers extends VDefault {
         return v.traverse(aau);
     }
 
+    private boolean isDoneAction(Feature f) {
+        if (!(f instanceof ActionUsage)) return false;
+        if (!("done".equals(f.getName()))) return false;
+        ActionUsage au = (ActionUsage) f;
+        for (Behavior b: au.getActionDefinition()) {
+            if ("Action".equals(b.getName())) return true;
+        }
+        return false;
+    }
+
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
         String description = convertToDescription(tu);
         Feature src = tu.getSource();
         Feature tgt = tu.getTarget();
-        if ((src != null) && (tgt != null)) {
+    	if (isDoneAction(tgt)) tgt = null;
+        if ((src == null) && (tgt == null)) return "";
+        if ((src == null) || (tgt == null)) {
+            addEntryExitTransitions(new PRelation(src, tgt, tu, description));
+        } else {
             addPRelation(src, tgt, tu, description);
         }
         return "";
@@ -178,10 +200,7 @@ public class VStateMembers extends VDefault {
         }
         if ((src == null) && (dest == null)) return "";
         if ((src == null) || (dest == null)) {
-            if (initTransitions == null) {
-                initTransitions = new ArrayList<PRelation>();
-            }
-            initTransitions.add(new PRelation(src, dest, su, null));
+            addEntryExitTransitions(new PRelation(src, dest, su, null));
         } else {
             addPRelation(src, dest, su);
         }

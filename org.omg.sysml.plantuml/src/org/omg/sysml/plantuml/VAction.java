@@ -24,41 +24,39 @@
 
 package org.omg.sysml.plantuml;
 
-import org.omg.sysml.lang.sysml.ExhibitStateUsage;
-import org.omg.sysml.lang.sysml.StateDefinition;
-import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class VStateMachine extends VDefault {
-    private void addState(Type typ) {
+public class VAction extends VDefault {
+    private void addAction(Type typ) {
         append("state ");
         addNameWithId(typ);
         addLink(typ);
-        VStateMembers v = new VStateMembers(this);
-        v.startStateUsage(typ);
+        VActionMembers v = new VActionMembers(this);
+        v.startAction(typ);
         append("\n");
     }
 
-    @Override
-    public String caseStateUsage(StateUsage su) {
-        if (su instanceof ExhibitStateUsage) return "";
-        addState(su);
-        return getString();
-    }
-    
 
     @Override
-    public String caseStateDefinition(StateDefinition sd) {
-        addState(sd);
+    public String caseActionDefinition(ActionDefinition ad) {
+        addAction(ad);
         return getString();
     }
-    
-    public VStateMachine(Visitor prev) {
+
+    @Override
+    public String caseActionUsage(ActionUsage au) {
+        addAction(au);
+        return getString();
+    }
+
+    public VAction(Visitor prev) {
     	super(prev);
         setShowsMultiplicity(false);
     }
 
-    public VStateMachine() {
+    public VAction() {
         setShowsMultiplicity(false);
     }
 }

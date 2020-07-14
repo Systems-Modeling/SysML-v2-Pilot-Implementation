@@ -24,11 +24,30 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VDefault extends VTraverser {
+    protected void addConnector(Connector c) {
+        List<Feature> ends = c.getConnectorEnd();
+        int size = ends.size();
+        if (size >= 2) {
+            Element end1 = getEnd(ends.get(0));
+            if (end1 == null) return;
+            for (int i = 1; i < size; i++) {
+                Element end2 = getEnd(ends.get(i));
+                if (end2 == null) continue;
+                addPRelation(end1, end2, c);
+            }
+        }
+    }
+
     @Override
     public String caseAnnotation(Annotation a) {
         Comment c = a.getAnnotatingComment();

@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
@@ -107,7 +108,11 @@ public class SysML2PlantUMLText {
 
 		@Override
 		public String caseSuccession(Succession s) {
-            return " --> ";
+            if (diagramMode == MODE.Activity) {
+                return " ..> ";
+            } else {
+                return " --> ";
+            }
 		}
 
 		@Override
@@ -142,6 +147,11 @@ public class SysML2PlantUMLText {
 		@Override
 		public String caseItemUsage(ItemUsage itemUsage) {
             return itemUsage.isComposite() ? " *-- ": " o-- ";
+		}
+
+		@Override
+		public String caseItemFlow(ItemFlow itemFlow) {
+            return " --> ";
 		}
 
 		@Override
@@ -280,6 +290,8 @@ public class SysML2PlantUMLText {
             return new VComposite();
         case Tree:
 			return new VTree();
+        case Activity:
+			return new VAction();
 		default:
 			return new VTree();
         }
@@ -304,12 +316,12 @@ public class SysML2PlantUMLText {
     }
 
     private boolean skipStructure() {
-        return (diagramMode == MODE.StateMachine);
+        return ((diagramMode == MODE.StateMachine) || (diagramMode == MODE.Activity));
     }
 
     /* If at least in StateMachine mode, ".." comment does not work. */
     private boolean isDottedComment() {
-        return (diagramMode != MODE.StateMachine);
+        return ((diagramMode != MODE.StateMachine) && (diagramMode != MODE.Activity));
     }
 
     private boolean isComposite() {

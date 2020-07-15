@@ -25,11 +25,10 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -51,7 +50,9 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLSwitch;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleStereotypeSwitch;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
 import com.google.inject.Inject;
 
@@ -64,35 +65,6 @@ public class SysML2PlantUMLText {
         Activity,
         Sequence,
         MIXED;
-    }
-
-    public static class StyleSwitch {
-        public final StyleRelSwitch styleRelSwitch;
-        public final StyleStereotypeSwitch styleStereotypeSwitch;
-
-        public void setComposite(boolean flag) {
-            if (styleStereotypeSwitch == null) return;
-            styleStereotypeSwitch.setComposite(flag);
-        }
-
-        public StyleSwitch(StyleRelSwitch styleRelSwitch,
-                           StyleStereotypeSwitch styleStereotypeSwitch) {
-            this.styleRelSwitch = styleRelSwitch;
-            this.styleStereotypeSwitch = styleStereotypeSwitch;
-        }
-    }
-
-    public static abstract class StyleRelSwitch extends SysMLSwitch<String> {
-    }
-
-    public static abstract class StyleStereotypeSwitch extends SysMLSwitch<String> {
-        protected boolean isComposite = false;
-        public void setComposite(boolean flag) {
-            this.isComposite = flag;
-        }
-        protected String defaultStr() {
-            return " <<";
-        }
     }
 
     public class StyleRelDefaultSwitch extends StyleRelSwitch {
@@ -108,11 +80,7 @@ public class SysML2PlantUMLText {
 
 		@Override
 		public String caseSuccession(Succession s) {
-            if (diagramMode == MODE.Activity) {
-                return " ..> ";
-            } else {
-                return " --> ";
-            }
+            return " --> ";
 		}
 
 		@Override
@@ -122,11 +90,7 @@ public class SysML2PlantUMLText {
 
 		@Override
 		public String caseComment(Comment object) {
-            if (isDottedComment()) {
-                return " .. ";
-            } else {
-                return " --> ";
-            }
+            return " .. ";
 		}
 
 		@Override
@@ -173,7 +137,6 @@ public class SysML2PlantUMLText {
     public class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
 		@Override
 		public String caseClass(Class object) {
-            if (isComposite) return defaultStr();
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
 		}
@@ -185,18 +148,16 @@ public class SysML2PlantUMLText {
 
 		@Override
 		public String caseItemUsage(ItemUsage object) {
-            if (isComposite) return " ";
             return " <<item>> ";
 		}
 
 		@Override
 		public String casePartUsage(PartUsage object) {
-            if (isComposite) return " ";
             return " <<part>> ";
 		}
     }
 
-    private final Set<SysML2PlantUMLStyle> styles = EnumSet.noneOf(SysML2PlantUMLStyle.class);
+    private final Collection<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private StyleSwitch styleSwitch;
     private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new StyleRelDefaultSwitch(),
                                                                    new StyleStereotypeDefaultSwitch());
@@ -213,8 +174,22 @@ public class SysML2PlantUMLText {
         styleSwitch = null;
     }
 
+    private SysML2PlantUMLStyle getVisitorStyle() {
+        if (currentVisitor == null) return null;
+        return currentVisitor.getStyle();
+    }
+
+    /* used by Visitor */
     String getRelStyle(Element e) {
         String ret;
+        SysML2PlantUMLStyle vStyle = getVisitorStyle();
+        if (vStyle != null) {
+            StyleSwitch ss = vStyle.styleSwitch;
+            if ((ss != null) && (ss.styleRelSwitch != null)) {
+                ret = ss.styleRelSwitch.doSwitch(e);
+                if (ret != null) return ret;
+            }
+        }
         if ((styleSwitch != null)
             && (styleSwitch.styleRelSwitch != null)) {
             ret = styleSwitch.styleRelSwitch.doSwitch(e);
@@ -223,8 +198,17 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleRelSwitch.doSwitch(e);
     }
 
+    /* used by Visitor */
     String getStereotypeStyle(Element e) {
         String ret;
+        SysML2PlantUMLStyle vStyle = getVisitorStyle();
+        if (vStyle != null) {
+            StyleSwitch ss = vStyle.styleSwitch;
+            if ((ss != null) && (ss.styleStereotypeSwitch != null)) {
+                ret = ss.styleStereotypeSwitch.doSwitch(e);
+                if (ret != null) return ret;
+            }
+        }
         if ((styleSwitch != null)
             && (styleSwitch.styleStereotypeSwitch != null)) {
             ret = styleSwitch.styleStereotypeSwitch.doSwitch(e);
@@ -282,7 +266,7 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private Visitor getVisitor() {
+    private Visitor createVisitor() {
         switch (diagramMode) {
         case StateMachine:
             return new VStateMachine();
@@ -297,6 +281,13 @@ public class SysML2PlantUMLText {
         }
     }
 
+    private Visitor currentVisitor;
+    private Visitor initVisitor() {
+        Visitor v = createVisitor();
+        this.currentVisitor = v;
+        return v;
+    }
+
     private MODE getMode(EObject eObj) {
         if (eObj instanceof StateUsage) {
             return MODE.StateMachine;
@@ -305,38 +296,11 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private boolean classicStyle = true;
-
-    public void setClassicStyle(boolean flag) {
-        this.classicStyle = flag;
-    }
-
-    public boolean isClassic() {
-        return !classicStyle;
-    }
-
-    private boolean skipStructure() {
-        return ((diagramMode == MODE.StateMachine) || (diagramMode == MODE.Activity));
-    }
-
-    /* If at least in StateMachine mode, ".." comment does not work. */
-    private boolean isDottedComment() {
-        return ((diagramMode != MODE.StateMachine) && (diagramMode != MODE.Activity));
-    }
-
-    private boolean isComposite() {
-        return diagramMode == MODE.Interconnection;
-    }
-
     private void initStyle() {
         if (styles.isEmpty()) {
             clearStyle();
-            addStyle(SysML2PlantUMLStyle.DEFAULT);
+            addStyle(SysML2PlantUMLStyle.getDefault());
         }
-        if (styleSwitch != null) {
-            styleSwitch.setComposite(isComposite());
-        }
-        styleDefaultSwitch.setComposite(isComposite());
     }
 
     private static boolean isPackage(EObject eObj) {
@@ -390,6 +354,10 @@ public class SysML2PlantUMLText {
     }
 
     private void addStyleHeader(StringBuilder sb) {
+        SysML2PlantUMLStyle s = getVisitorStyle();
+        if (s != null) {
+            sb.append(s.commandStr);
+        }
         for (SysML2PlantUMLStyle style: styles) {
             sb.append(style.commandStr);
         }
@@ -398,22 +366,14 @@ public class SysML2PlantUMLText {
 
     public String sysML2PUML(List<? extends EObject> eObjs) {
         initStyle();
+        Visitor v = initVisitor();
+        v.setSysML2PlantUMLText(this);
         StringBuilder sb = new StringBuilder();
-        if (!skipStructure()) {
-            sb.append("allow_mixing\n");
-        }
-
-        if (diagramMode == MODE.Interconnection) {
-            sb.append("skinparam ranksep 8\n");
-            sb.append("skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n");
-        }
 
         addStyleHeader(sb);
         
         idMap.clear();
 
-        Visitor v = getVisitor();
-        v.setSysML2PlantUMLText(this);
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
                 v.visit((Element) eObj);
@@ -423,7 +383,6 @@ public class SysML2PlantUMLText {
         return sb.toString();
     }
     
-
     private Map<Element, Integer> idMap = new HashMap<Element, Integer>();
 
     boolean checkId(Element e) {
@@ -439,13 +398,5 @@ public class SysML2PlantUMLText {
         }
 
         return ii;
-    }
-
-    String relString(Element rel) {
-        String val = getRelStyle(rel);
-        if (val == null) {
-            throw new IllegalArgumentException("The edge:" + rel + "is not supported.");
-        }
-        return val;
     }
 }

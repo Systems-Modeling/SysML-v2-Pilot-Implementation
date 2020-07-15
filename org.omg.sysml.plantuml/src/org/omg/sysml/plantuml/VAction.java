@@ -26,9 +26,29 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
 public class VAction extends VDefault {
+    private static final SysML2PlantUMLStyle style
+    = new SysML2PlantUMLStyle
+    ("VAction",
+      null,
+     "skinparam ranksep 8\n",
+     new StyleSwitch(new StyleRelSwitch() {
+		@Override
+		public String caseSuccession(Succession s) {
+            return " ..> ";
+		}
+    }, null));
+
+    @Override 
+    protected SysML2PlantUMLStyle getStyle() {
+        return style;
+    }
+
     private void addAction(Type typ) {
         append("state ");
         addNameWithId(typ);

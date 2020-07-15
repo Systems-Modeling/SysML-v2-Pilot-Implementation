@@ -25,14 +25,46 @@
 package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleStereotypeSwitch;
+import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
 public class VComposite extends VStructure {
+    private static final SysML2PlantUMLStyle style
+    = new SysML2PlantUMLStyle
+    ("VComposite",
+      null,
+     "skinparam ranksep 8\n"
+     + "skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n",
+     new StyleSwitch(null, new StyleStereotypeSwitch() {
+         @Override
+         public String caseElement(Element object) {
+             return defaultStr();
+         }
+         @Override
+         public String caseItemUsage(ItemUsage object) {
+             return " ";
+         }
+
+         @Override
+         public String casePartUsage(PartUsage object) {
+             return " ";
+         }
+     }));
+
+    @Override 
+    protected SysML2PlantUMLStyle getStyle() {
+        return style;
+    }
+
     private String getFeatureText(Feature f) {
         VComposite v = new VComposite(this);
         v.addFeatureText(f);

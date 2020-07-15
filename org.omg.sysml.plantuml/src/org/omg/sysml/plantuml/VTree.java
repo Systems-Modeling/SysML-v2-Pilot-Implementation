@@ -35,6 +35,17 @@ import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VTree extends VStructure {
+    private static final SysML2PlantUMLStyle style
+    = new SysML2PlantUMLStyle
+    ("VTree",
+      null,
+     "allow_mixing\n", null);
+
+    @Override 
+    protected SysML2PlantUMLStyle getStyle() {
+        return style;
+    }
+
     private final Element parent;
 
     private void addRel(Type typ, Element rel, String text) {

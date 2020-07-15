@@ -48,6 +48,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         this.showsMultiplicity = flag;
     }
 
+    protected SysML2PlantUMLStyle getStyle() {
+        return null;
+    }
+
     private List<Visitor> contexts;
     private final Visitor prev;
     
@@ -63,6 +67,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     protected void append(Object o) {
         sb.append(o);
+    }
+
+    protected void append(String str, int st, int end) {
+        sb.append(str, st, end);
     }
 
     private void addContext(Visitor v) {
@@ -195,33 +203,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
         } else {
             append("Eid");
             append(getId(e));
-        }
-    }
-
-    protected void addTrimmedBody(String str) {
-        int len = str.length();
-        int st = -1;
-        int end = -1;
-        for (int i = 0; i < len; i++) {
-            char c = str.charAt(i);
-            if (Character.isWhitespace(c)) {
-                if (end < 0) end = i;
-            } else {
-                if (st < 0) st = i;
-                end = -1;
-            }
-            if (c == '\n') {
-                if (st >= 0) {
-                    if (end < 0) end = i;
-                    sb.append(str, st, end);
-                }
-                sb.append('\n');
-                st = end = -1;
-            }
-        }
-        if (st >= 0) {
-            if (end < 0) end = len;
-            sb.append(str, st, end);
         }
     }
 

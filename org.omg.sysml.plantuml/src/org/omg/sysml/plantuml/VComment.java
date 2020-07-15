@@ -33,6 +33,33 @@ public class VComment extends Visitor {
     	super(v, true);
 	}
 
+    private void addTrimmedBody(String str) {
+        int len = str.length();
+        int st = -1;
+        int end = -1;
+        for (int i = 0; i < len; i++) {
+            char c = str.charAt(i);
+            if (Character.isWhitespace(c)) {
+                if (end < 0) end = i;
+            } else {
+                if (st < 0) st = i;
+                end = -1;
+            }
+            if (c == '\n') {
+                if (st >= 0) {
+                    if (end < 0) end = i;
+                    append(str, st, end);
+                }
+                append('\n');
+                st = end = -1;
+            }
+        }
+        if (st >= 0) {
+            if (end < 0) end = len;
+            append(str, st, end);
+        }
+    }
+
 	public void addComment(Comment c, Annotation a) {
         if (checkId(c)) return;
         append("note as ");

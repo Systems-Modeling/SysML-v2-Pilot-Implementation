@@ -335,23 +335,25 @@ public class TypeImpl extends PackageImpl implements Type {
 		addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
+	@Override
+	public EList<Relationship> getOwnedRelationship() {
+		computeImplicitGeneralization();
+		EList<Relationship> relationships = super.getOwnedRelationship();
+		relationships.addAll(implicitGeneralizations.values());
+		return relationships;
+	}
+
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
 		//doComputeImplicitGeneralization(generalizationEClass, superTypeNames);
 		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> doComputeImplicitGeneralization(eClass, superTypeNames));
 	}
 
 	private Generalization doComputeImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		@SuppressWarnings("unchecked")
-		Generalization generalization = getDefaultGeneralization(
+		return getDefaultGeneralization(
 				basicGetOwnedGeneralization(
 						(Class<? extends Generalization>)generalizationEClass.getInstanceClass(), 
 						SysMLPackage.TYPE__OWNED_GENERALIZATION),
 				generalizationEClass, superTypeNames);
-		if (generalization != null) {
-			getOwnedRelationship_comp().add(generalization);
-			return generalization;
-		}
-		return null;
 	}
 	
 	protected EClass getGeneralizationEClass() {

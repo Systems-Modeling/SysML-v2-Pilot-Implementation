@@ -67,6 +67,19 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * Overridden to avoid circular dependency between Type::conjugator and ConjugatedPortDefinition::ownedPortConjugator
+	 * 
+	 * TODO check whether this approach is correct 
+	 * <!-- end-user-doc -->
+	 * @generated NOT 
+	 */
+	@Override
+	public boolean isConjugated() {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */

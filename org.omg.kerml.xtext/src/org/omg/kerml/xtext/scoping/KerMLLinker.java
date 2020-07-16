@@ -29,7 +29,9 @@ import java.util.Objects;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
+import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class KerMLLinker extends LazyLinker {
@@ -56,7 +58,11 @@ public class KerMLLinker extends LazyLinker {
 			// abstract syntax model, but it is implemented as a manual derivation,
 			// which is overridden as necessary in subtypes, so there is no need to
 			// delete it.
-			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT)
+			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT) ||
+			// Cleaning the derived subsets of Feature#typing in OperatorExpression and Usage might cause linking during cleaning
+			// TODO check for side-effects in editor
+			(Objects.equals(ref, SysMLPackage.Literals.FEATURE__TYPING) 
+					&& (obj instanceof OperatorExpression || obj instanceof Usage))
 		 ) {
 			return;
 		}

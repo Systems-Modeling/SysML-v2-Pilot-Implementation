@@ -319,7 +319,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		return generalizations;
 	}
 	
-	private Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
+	protected Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
 	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {

@@ -63,19 +63,6 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	@Override
 	public PortConjugation getOwnedPortConjugator() {
 		return ownedPortConjugator == null? basicGetOwnedPortConjugator(): getOwnedPortConjugatorGen();
-	}	
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * Overridden to avoid circular dependency between Type::conjugator and ConjugatedPortDefinition::ownedPortConjugator
-	 * 
-	 * TODO check whether this approach is correct 
-	 * <!-- end-user-doc -->
-	 * @generated NOT 
-	 */
-	@Override
-	public boolean isConjugated() {
-		return true;
 	}
 
 	/**
@@ -102,7 +89,10 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
 		if (ownedPortConjugator == null) {
-			ownedPortConjugator = (PortConjugation) getOwnedRelationship().stream().
+			// Using the _comp reference results in default generalization not considered -
+			// this is not a problem for ConjugatedPortDefinition but might be problematic
+			// for subclasses overriding getOwnedRelationship()
+			ownedPortConjugator = (PortConjugation) getOwnedRelationship_comp().stream().
 					filter(r->r instanceof PortConjugation).
 					findFirst().orElse(null);
 		}

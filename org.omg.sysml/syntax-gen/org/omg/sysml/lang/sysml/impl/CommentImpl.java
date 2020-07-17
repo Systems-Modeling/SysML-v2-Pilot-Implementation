@@ -89,12 +89,38 @@ public class CommentImpl extends ElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT 
 	 */
 	@Override
 	public void setBody(String newBody) {
 		String oldBody = body;
+		
+		System.out.println("=============");
+		System.out.println(newBody);
+		
+		System.out.println("--------------");
+		String newLine = System.getProperty("line.separator");
+		//last replaceFirst also takes care of multiline's first line after removing /** or /*
+		//for example " /**     D<space>" will be "D<space>"
+		newBody = newBody.replace("/**", "").replace("/*", "").replace("*/", "").replaceFirst("^\\s*", ""); 
+		
+		
+		
+		//java 11 lines
+		String[] lines = newBody.split(newLine);
+		StringBuilder builder2 = new StringBuilder();
+		if ( lines.length == 1 ) 
+			builder2.append(lines[0].replaceFirst("^\\s*\\*\\s*", ""));
+		else {
+			for (int i = 0; i < lines.length; i++) {
+				String s = lines[i].replaceFirst("^\\s*\\*\\s*", "");
+				builder2 = (s.isEmpty() || s.trim().length() == 0) ? builder2 : builder2.append(s).append(newLine);
+			}
+		}
+		newBody = builder2.toString();
+		
 		body = newBody;
+		System.out.println("\"" + body + "\"");
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__BODY, oldBody, body));
 	}

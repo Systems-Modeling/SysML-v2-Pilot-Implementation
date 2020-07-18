@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -53,17 +52,19 @@ public class VStateMembers extends VDefault {
         entryExitTransitions.add(pr);
     }
 
-    private String convertToDescription(StateSubactionMembership sam,
-                                        PerformActionUsage pau) {
+    private String convertToDescription(StateSubactionMembership sam) {
+        ActionUsage au = sam.getAction();
+        if (au == null) return null;
+
         StringBuilder sb = new StringBuilder();
         // Bold
         sb.append("**");
         sb.append(sam.getKind().getName());
         sb.append("**/ ");
 
-        String name = pau.getName();
+        String name = au.getName();
         if ((name == null) || (name.isEmpty())) {
-            for (Subsetting ss: pau.getOwnedSubsetting()) {
+            for (Subsetting ss: au.getOwnedSubsetting()) {
                 Feature f = ss.getSubsettedFeature();
                 if (f instanceof ActionUsage) {
                     if (!(ss instanceof Redefinition)) {
@@ -79,9 +80,8 @@ public class VStateMembers extends VDefault {
         return sb.toString();
     }
 
-    private void addDescription(StateSubactionMembership ssm,
-                                PerformActionUsage pau) {
-        String desc = convertToDescription(ssm, pau);
+    private void addDescription(StateSubactionMembership ssm) {
+        String desc = convertToDescription(ssm);
         if (desc == null) return;
         if (descriptions == null) {
             descriptions = new ArrayList<String>();
@@ -96,10 +96,7 @@ public class VStateMembers extends VDefault {
 
     @Override
     public String caseStateSubactionMembership(StateSubactionMembership ssm) {
-        ActionUsage au = ssm.getAction();
-        if (au instanceof PerformActionUsage) {
-            addDescription(ssm, (PerformActionUsage) au);
-        }
+        addDescription(ssm);
         return "";
     }
 

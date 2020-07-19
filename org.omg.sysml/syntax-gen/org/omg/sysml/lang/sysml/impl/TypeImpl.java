@@ -294,6 +294,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
 		basicGetOwnedGeneralization().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
+		generalizations.addAll(implicitGeneralizations.values());
 		return generalizations;
 	}
 
@@ -348,6 +349,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> doComputeImplicitGeneralization(eClass, superTypeNames));
 	}
 
+	@SuppressWarnings("unchecked")
 	private Generalization doComputeImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
 		return getDefaultGeneralization(
 				basicGetOwnedGeneralization(

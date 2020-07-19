@@ -29,6 +29,7 @@ import java.util.List;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -53,6 +54,12 @@ public class VCompartment extends VStructure {
 	@Override
     public String caseReferenceUsage(ReferenceUsage pu) {
         rest.add(pu);
+        return "";
+    }
+
+    @Override
+    public String caseMembership(Membership m) {
+        rest.add(m.getMemberElement());
         return "";
     }
 

@@ -31,8 +31,10 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VStateMachine extends VDefault {
     private void addState(Type typ) {
+    	String name = getName(typ);
+    	if (name == null) return;
         append("state ");
-        addNameWithId(typ);
+        addNameWithId(typ, name);
         addLink(typ);
         VStateMembers v = new VStateMembers(this);
         v.startStateUsage(typ);

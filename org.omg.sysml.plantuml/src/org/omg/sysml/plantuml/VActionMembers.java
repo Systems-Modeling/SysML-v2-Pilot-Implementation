@@ -26,8 +26,10 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ForkNode;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
@@ -36,6 +38,7 @@ import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VActionMembers extends VDefault {
@@ -44,7 +47,7 @@ public class VActionMembers extends VDefault {
         String name = f.getName();
         if (name == null) return;
         append("state ");
-        addNameWithId(f);
+        addNameWithId(f, name);
         append(stereotype);
         append(' ');
         addLink(f);
@@ -85,6 +88,25 @@ public class VActionMembers extends VDefault {
         return f;
     }
 
+    @Override
+    public String caseSuccession(Succession su) {
+        Element src = null;
+        Element dest = null;
+        // We should use getSource() and getTarget() but they are not work so far.
+        for (FeatureMembership fm2: su.getOwnedFeatureMembership()) {
+            Feature f2 = fm2.getMemberFeature();
+            if (src == null) {
+                src = getEnd(f2);
+            } else if (dest == null) {
+                dest = getEnd(f2);
+            } else {
+                break;
+            }
+        }
+        if ((src == null) || (dest == null)) return "";
+        addPRelation(src, dest, su);
+        return "";
+    }
 
     @Override
     public String caseConnector(Connector c) {

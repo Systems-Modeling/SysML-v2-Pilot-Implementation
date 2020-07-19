@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleStereotypeSwitch;
@@ -89,13 +90,18 @@ public class VComposite extends VStructure {
     public String caseStateUsage(StateUsage su) {
         String name = extractName(su);
         if (name == null) return "";
-        addPUMLLine(su, "state ", name);
+        addPUMLLine(su, "rectangle ", name);
         append('\n');
         return "";
     }
 
     @Override
     public String caseParameter(Parameter p) {
+        return "";
+    }
+
+    @Override
+    public String caseSuccession(Succession su) {
         return "";
     }
 
@@ -116,7 +122,7 @@ public class VComposite extends VStructure {
 
         String keyword;
         if (ret.isEmpty()) {
-            keyword = "port ";
+            keyword = "portin ";
         } else {
             keyword = "rectangle ";
         }

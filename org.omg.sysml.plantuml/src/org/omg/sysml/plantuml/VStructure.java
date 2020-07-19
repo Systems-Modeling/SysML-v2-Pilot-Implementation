@@ -33,13 +33,8 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public abstract class VStructure extends VDefault {
-    protected static String getFeatureName(Feature f) {
-        return ((FeatureImpl) f).getEffectiveName();
-    }
-
     private static FeatureValue getFeatureValue(Feature f) {
         // TODO: Multiple Feature Value.
         for (FeatureMembership fm: f.getOwnedFeatureMembership()) {

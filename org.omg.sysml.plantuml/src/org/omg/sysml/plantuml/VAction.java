@@ -50,8 +50,10 @@ public class VAction extends VDefault {
     }
 
     private void addAction(Type typ) {
+    	String name = getName(typ);
+    	if (name == null) return;
         append("state ");
-        addNameWithId(typ);
+        addNameWithId(typ, name);
         addLink(typ);
         VActionMembers v = new VActionMembers(this);
         v.startAction(typ);

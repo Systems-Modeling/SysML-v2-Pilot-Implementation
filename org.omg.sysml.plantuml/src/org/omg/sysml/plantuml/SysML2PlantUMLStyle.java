@@ -211,7 +211,7 @@ public class SysML2PlantUMLStyle {
     }
 
     public static SysML2PlantUMLStyle get(String name) {
-        SysML2PlantUMLStyle s = styles.get(name);
+        SysML2PlantUMLStyle s = styles.get(name.toUpperCase());
         if (s != null) return s;
 
         throw new IllegalArgumentException("Invalid Style: "

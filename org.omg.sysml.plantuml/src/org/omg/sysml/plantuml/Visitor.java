@@ -168,10 +168,6 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append(' ');
     }
 
-    protected void addNameWithId(Element e) {
-        addNameWithId(e, e.getName());
-    }
-
     private static void closeBlockInternal(StringBuilder sbParent,
                                            StringBuilder sbChild,
                                            String endStr) {

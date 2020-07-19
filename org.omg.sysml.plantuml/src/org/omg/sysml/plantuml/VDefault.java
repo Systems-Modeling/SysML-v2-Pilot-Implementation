@@ -32,8 +32,21 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class VDefault extends VTraverser {
+    protected static String getFeatureName(Feature f) {
+        return ((FeatureImpl) f).getEffectiveName();
+    }
+
+    protected static String getName(Type typ) {
+        if (typ instanceof Feature) {
+            return getFeatureName((Feature) typ);
+        } else {
+            return typ.getName();
+        }
+    }
+
     protected void addConnector(Connector c) {
         List<Feature> ends = c.getConnectorEnd();
         int size = ends.size();
@@ -43,7 +56,7 @@ public class VDefault extends VTraverser {
             for (int i = 1; i < size; i++) {
                 Element end2 = getEnd(ends.get(i));
                 if (end2 == null) continue;
-                addPRelation(end1, end2, c);
+                addPRelation(end2, end1, c);
             }
         }
     }
@@ -62,11 +75,6 @@ public class VDefault extends VTraverser {
     public String caseComment(Comment c) {
         VComment v = new VComment(this);
         v.addComment(c, null);
-        return "";
-    }
-
-    @Override
-    public String caseType(Type c) {
         return "";
     }
 

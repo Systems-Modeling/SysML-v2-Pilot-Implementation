@@ -110,13 +110,14 @@ public class VStateMembers extends VDefault {
 
     public String startStateUsage(Type typ) {
         traverse(typ);
-        if (descriptions != null) {
+        String name = getName(typ);
+        if ((name != null) && (descriptions != null)) {
             int size = descriptions.size();
             if (length() > 0) {
                 outputPRelations(entryExitTransitions);
                 closeBlock("");
                 append("state ");
-                addNameWithId(typ);
+                addNameWithId(typ, name);
             }
             int i = 0;
             for (;;) {
@@ -127,7 +128,7 @@ public class VStateMembers extends VDefault {
                 if (i >= size) break;
 
                 append("state ");
-                addNameWithId(typ);
+                addNameWithId(typ, name);
             }
             flush();
         } else {

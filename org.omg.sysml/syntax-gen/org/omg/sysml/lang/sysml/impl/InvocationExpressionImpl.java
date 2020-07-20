@@ -72,7 +72,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public List<BindingConnector> getArgumentConnectors() {
 		if (argumentConnectors == null) {
 			argumentConnectors = new ArrayList<>();
-			List<Feature> input = getOwnedInput();
+			List<Feature> input = getInput();
 			List<Expression> arguments = getArgument();
 			for (int i = 0; i < input.size(); i++) {
 				if (i < arguments.size()) {

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.NotifyingListImpl;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -619,6 +620,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (typing.isEmpty()) {
 			basicGetOwnedGeneralization(FeatureTyping.class, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE).stream().
 				forEachOrdered(f->((InternalEList<FeatureTyping>)typing).basicAdd(f, null));
+			FeatureTyping implicitTyping = (FeatureTyping)implicitGeneralizations.get(SysMLPackage.eINSTANCE.getFeatureTyping());
+			if (implicitTyping != null) {
+				((NotifyingListImpl<FeatureTyping>)typing).basicAdd(implicitTyping, null);
+			}
 		}
 		return typing;
 	}

@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 
@@ -73,10 +72,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 	}
 	
-	@Check
-	def checkElement(Element e) {
-		(e as ElementImpl).transform
-	}
+//	@Check
+//	def checkElement(Element e) {
+//		(e as ElementImpl).transform
+//	}
 	
 	@Check
 	def checkInvocationExpression(InvocationExpression e) {

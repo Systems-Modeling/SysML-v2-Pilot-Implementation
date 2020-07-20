@@ -24,6 +24,7 @@
 
 package org.omg.sysml.plantuml;
 
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 
@@ -42,6 +43,11 @@ public abstract class VTraverser extends Visitor {
     @Override
     public String caseMembership(Membership m) {
         return visit(m.getMemberElement());
+    }
+
+    @Override
+    public String caseFeatureMembership(FeatureMembership fm) {
+        return visit(fm.getMemberFeature());
     }
 
     @Override

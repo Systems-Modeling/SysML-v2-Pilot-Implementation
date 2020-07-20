@@ -29,7 +29,9 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -74,9 +76,18 @@ public class VTree extends VStructure {
         return "";
     }
 
-
     @Override
     public String caseConnector(Connector c) {
+        return "";
+    }
+
+    @Override
+    public String caseExpression(Expression e) {
+        return "";
+    }
+
+    @Override
+    public String caseMultiplicity(Multiplicity m) {
         return "";
     }
 

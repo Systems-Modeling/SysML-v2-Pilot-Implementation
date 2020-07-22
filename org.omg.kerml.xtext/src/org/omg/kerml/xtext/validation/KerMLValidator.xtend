@@ -42,6 +42,8 @@ import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
+import org.omg.sysml.lang.sysml.Membership
+import org.eclipse.emf.common.util.EList
 
 /**
  * This class contains custom validation rules. 
@@ -51,16 +53,53 @@ import org.omg.sysml.lang.sysml.impl.TypeImpl
 class KerMLValidator extends AbstractKerMLValidator {
 
 	public static val INVALID_CONNECTOR_END__CONTEXT = 'Invalid Connector - Connector context'
+	public static val INVALID_CONNECTOR_END__CONTEXT_MSG = "Connected features should have a common context"
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE = 'Invalid BindingConnector - Argument type conformance'
+	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG = "Output feature must conform to input feature"
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
+	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG = "Bound features should have conforming types"
 	public static val INVALID_FEATURE_NO_TYPE = 'Invalid Feature - Mandatory typing'
+	public static val INVALID_FEATURE_NO_TYPE_MSG = "Features must have at least one type"
 	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS = 'Invalid Relationship - Related element minimum validation'
+	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG = "Relationships must have at least two related elements"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishability"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate member name1"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate member name2"
+	
+	
+	@Check
+	def checkMembership(Membership mem){
+		println("==checking membership " + mem.memberName);
+		
+		//println("this: " + mem)
+		var others = mem.membershipOwningPackage.ownedMembership;
+		println("others before: " + others.map[memberName])
+		others.remove(mem);
+		println("others after: " + others.map[memberName])
+		
+		others.forEach[m|
+			println(m);
+			if (m !== mem && !mem.isDistinguishableFrom(m))
+				warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+		]
+		println("owning pkg: " + mem.membershipOwningPackage + " " + mem.membershipOwningPackage.name);
+		if (mem.membershipOwningPackage instanceof Type){
+			println("getInheritedMembership: "  + (mem.membershipOwningPackage as Type).inheritedMembership.map[memberName]);
+			println((mem.membershipOwningPackage as Type).inheritedMembership.containsAll(others));
+			println("others: " + others.map[memberName])
+			}
+		
+		if (mem.membershipOwningPackage instanceof Type && !(mem.membershipOwningPackage as Type).inheritedMembership.containsAll(others))
+		 	warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+		
+	}
+	
 	
 	@Check
 	def checkFeature(Feature f){
 		val types = (f as FeatureImpl).type;
 		if (types !== null && types.isEmpty)
-			error("Features must have at least one type", f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
+			error(INVALID_FEATURE_NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
 		
 	}
 	@Check
@@ -69,7 +108,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
 			if ( relatedElements !== null && relatedElements.length < 2)
-				error("Relationships must have at least two related elements", r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
+				error(INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
 		}
 	}
 	
@@ -102,7 +141,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val relatedFeaturesPath = relatedFeatures.map[getFeatureMembershipPath]
 		relatedFeaturesPath.forEach[s|cPath.retainAll(s)]
 		if (cPath.empty) //no common Types
-			warning("Connected features should have a common context", c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
+			warning(INVALID_CONNECTOR_END__CONTEXT_MSG, c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
 	}
 	
 	//return features's owners up to and including the first one that is not a Feature and an owningType
@@ -142,7 +181,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 //			val outTypes = outFeature.type
 //			val outConformsToIn = inTypes.map[conformsFrom(outTypes)]
 //			if (outConformsToIn.filter[!empty].length != inTypes.length)		
-//				error("Output feature must conform to input feature", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
+//				error(INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
 //		} else { 
 			//Binding type conformance
 			val f1types = (rf.get(0) as FeatureImpl).type
@@ -153,7 +192,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
 				f2ConformsTof1.filter[!empty].length != f1types.length)
-				warning("Bound features should have conforming types", bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
+				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
 	}
 	

@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -96,40 +94,22 @@ public class CommentImpl extends ElementImpl implements Comment {
 	@Override
 	public void setBody(String newBody) {
 		String oldBody = body;
-		
-		System.out.println("=============");
-		System.out.println(newBody);
-		
-		System.out.println("--------------");
-		String newLine = System.getProperty("line.separator");
-		//last replaceFirst also takes care of multiline's first line after removing /** or /*
-		//for example " /**     D<space>" will be "D<space>"
-		newBody = newBody.replace("/**", "").replace("/*", "").replace("*/", "").replaceFirst("^\\s*\\n*", ""); 
-		
-		
-		
-		//java 11 lines
-		String[] lines = newBody.split(newLine);
-		System.out.println("#lines: " + lines.length);
-		
+		// \* - a literal *
+		newBody = newBody.replaceFirst("/\\*\\*", "").replaceFirst("/\\*", "").replaceFirst("^\\s*", "");
+		newBody = newBody.endsWith("*/") ? newBody.substring(0, newBody.length()-2) : newBody;
+		String[] lines = newBody.split("\\r?\\n");
 		if ( lines.length == 1 ) 
 			body = lines[0];
 		else {
 			StringBuilder builder2 = new StringBuilder();
 			for (int i = 0; i < lines.length; i++) {
-				System.out.println(i + "(" + lines[i].length() + ") ----" +  lines[i]);
-				String s = lines[i].replaceFirst("^\\s*", "");
-				System.out.println("length after remove white spaces before *" + s.length());
-				System.out.println("isEmpty: " + s.isEmpty());
-				s = s.startsWith("*") ? s = s.replaceFirst("\\*\\s*", "") : s;
+				String s = lines[i].replaceFirst("^\\s*", ""); //strip initial white space(not include line breaks) - by splitting no line breaks at the end
+				s = s.startsWith("*") ? (s.startsWith("* ")? s.replaceFirst("\\*\\s{1}", "") : s.replaceFirst("\\*", "")) : s;
 				//add simply back new Line
-				builder2 = (i != 0 ) ? builder2.append(newLine).append(s): builder2.append(s);
-				//if add newLine back in front of s if the line is not empty and i != 0
-				//builder2 = s.isEmpty() ? builder2 : ((i != 0 ) ? builder2.append(newLine).append(s): builder2.append(s));
+				builder2 = (i != 0 ) ? builder2.append("\n").append(s): builder2.append(s);
 			}
 			body = builder2.toString();
 		}
-		System.out.println("\"" + body + "\"");
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__BODY, oldBody, body));
 	}

@@ -10,9 +10,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +38,7 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated
 	 * @ordered
 	 */
-	protected Parameter ownedSubjectParameter_comp;
+	protected Usage ownedSubjectParameter_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -64,7 +65,7 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated
 	 */
 	@Override
-	public Parameter getOwnedSubjectParameter_comp() {
+	public Usage getOwnedSubjectParameter_comp() {
 		return ownedSubjectParameter_comp;
 	}
 
@@ -73,8 +74,8 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedSubjectParameter_comp(Parameter newOwnedSubjectParameter_comp, NotificationChain msgs) {
-		Parameter oldOwnedSubjectParameter_comp = ownedSubjectParameter_comp;
+	public NotificationChain basicSetOwnedSubjectParameter_comp(Usage newOwnedSubjectParameter_comp, NotificationChain msgs) {
+		Usage oldOwnedSubjectParameter_comp = ownedSubjectParameter_comp;
 		ownedSubjectParameter_comp = newOwnedSubjectParameter_comp;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER_COMP, oldOwnedSubjectParameter_comp, newOwnedSubjectParameter_comp);
@@ -89,7 +90,7 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated
 	 */
 	@Override
-	public void setOwnedSubjectParameter_comp(Parameter newOwnedSubjectParameter_comp) {
+	public void setOwnedSubjectParameter_comp(Usage newOwnedSubjectParameter_comp) {
 		if (newOwnedSubjectParameter_comp != ownedSubjectParameter_comp) {
 			NotificationChain msgs = null;
 			if (ownedSubjectParameter_comp != null)
@@ -118,9 +119,9 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated
 	 */
 	@Override
-	public Parameter getOwnedSubjectParameter() {
-		Parameter ownedSubjectParameter = basicGetOwnedSubjectParameter();
-		return ownedSubjectParameter != null && ownedSubjectParameter.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)ownedSubjectParameter) : ownedSubjectParameter;
+	public Usage getOwnedSubjectParameter() {
+		Usage ownedSubjectParameter = basicGetOwnedSubjectParameter();
+		return ownedSubjectParameter != null && ownedSubjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)ownedSubjectParameter) : ownedSubjectParameter;
 	}
 
 	/**
@@ -128,7 +129,7 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetOwnedSubjectParameter() {
+	public Usage basicGetOwnedSubjectParameter() {
 		return getOwnedSubjectParameter_comp();
 	}
 
@@ -138,7 +139,7 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated NOT
 	 */
 	@Override
-	public void setOwnedSubjectParameter(Parameter newOwnedSubjectParameter) {
+	public void setOwnedSubjectParameter(Usage newOwnedSubjectParameter) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -182,10 +183,10 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER_COMP:
-				setOwnedSubjectParameter_comp((Parameter)newValue);
+				setOwnedSubjectParameter_comp((Usage)newValue);
 				return;
 			case SysMLPackage.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER:
-				setOwnedSubjectParameter((Parameter)newValue);
+				setOwnedSubjectParameter((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -200,10 +201,10 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER_COMP:
-				setOwnedSubjectParameter_comp((Parameter)null);
+				setOwnedSubjectParameter_comp((Usage)null);
 				return;
 			case SysMLPackage.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER:
-				setOwnedSubjectParameter((Parameter)null);
+				setOwnedSubjectParameter((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -233,7 +234,7 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated
 	 */
 	@Override
-	public Parameter getOwnedMemberParameter_comp() {
+	public Feature getOwnedMemberParameter_comp() {
 		return getOwnedSubjectParameter_comp();
 	}
 
@@ -242,8 +243,11 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberParameter_comp(Parameter newOwnedMemberParameter_comp, NotificationChain msgs) {
-		return basicSetOwnedSubjectParameter_comp(newOwnedMemberParameter_comp, msgs);
+	public NotificationChain basicSetOwnedMemberParameter_comp(Feature newOwnedMemberParameter_comp, NotificationChain msgs) {
+		if (newOwnedMemberParameter_comp != null && !(newOwnedMemberParameter_comp instanceof Usage)) {
+			throw new IllegalArgumentException("newOwnedMemberParameter_comp must be an instance of Usage");
+		}
+		return basicSetOwnedSubjectParameter_comp((Usage) newOwnedMemberParameter_comp, msgs);
 	}
 
 	/**
@@ -251,8 +255,11 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMemberParameter_comp(Parameter newOwnedMemberParameter_comp) {
-		setOwnedSubjectParameter_comp(newOwnedMemberParameter_comp);
+	public void setOwnedMemberParameter_comp(Feature newOwnedMemberParameter_comp) {
+		if (newOwnedMemberParameter_comp != null && !(newOwnedMemberParameter_comp instanceof Usage)) {
+			throw new IllegalArgumentException("newOwnedMemberParameter_comp must be an instance of Usage");
+		}
+		setOwnedSubjectParameter_comp((Usage) newOwnedMemberParameter_comp);
 	}
 
 	/**

@@ -78,9 +78,9 @@ package '7b-Variant Configurations' {
 	package VariabilityModel {
 		part anyVehicleConfig :> vehicle {
 			
-			variation satisfy requirement engineRqtChoice by engineChoice {
-				variant satisfy highPerformance as highPerformanceRequirement;
-				variant satisfy normalPerformance as normalPerformanceRequirement;
+			variation requirement engineRqtChoice : EnginePerformanceRequirement {
+				variant highPerformanceRequirement;
+				variant normalPerformanceRequirement;
 			}
 			
 			variation part engineChoice :>> engine {
@@ -88,8 +88,10 @@ package '7b-Variant Configurations' {
 				variant part '6cylEngine' : '6CylEngine';
 			}
 			
+			satisfy engineRqtChoice by engineChoice;
+			
 			assert constraint 'engine choice constraint' {
-				engineRqtChoice == engineRqtChoice::highPerformance? 
+				engineRqtChoice == engineRqtChoice::highPerformanceRequirement? 
 					engineChoice == engineChoice::'6cylEngine':
 					engineChoice == engineChoice::'4cylEngine'
 			}

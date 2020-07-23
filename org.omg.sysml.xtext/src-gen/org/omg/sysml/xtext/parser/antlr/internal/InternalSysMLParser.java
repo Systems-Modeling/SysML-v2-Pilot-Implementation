@@ -32634,7 +32634,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               				current = forceCreateModelElement(
-              					grammarAccess.getParameterAccess().getParameterAction_0(),
+              					grammarAccess.getParameterAccess().getReferenceUsageAction_0(),
               					current);
               			
             }
@@ -46931,7 +46931,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               				current = forceCreateModelElement(
-              					grammarAccess.getActionParameterAccess().getParameterAction_0(),
+              					grammarAccess.getActionParameterAccess().getReferenceUsageAction_0(),
               					current);
               			
             }
@@ -50356,7 +50356,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               			current = forceCreateModelElement(
-              				grammarAccess.getEmptyParameterAccess().getParameterAction(),
+              				grammarAccess.getEmptyParameterAccess().getReferenceUsageAction(),
               				current);
               		
             }

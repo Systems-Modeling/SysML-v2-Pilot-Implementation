@@ -9,12 +9,12 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -74,10 +74,10 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(Parameter.class, this, 
-				SysMLPackage.ACTION_DEFINITION__PARAMETER, 
-				new int[] {SysMLPackage.TYPE__FEATURE});
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 				return;
 			case SysMLPackage.ACTION_DEFINITION__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.ACTION_DEFINITION__ACTION:
 				getAction().clear();

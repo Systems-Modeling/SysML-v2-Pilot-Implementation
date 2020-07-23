@@ -70,7 +70,7 @@ public interface Expression extends Step {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOutput() <em>Output</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -79,18 +79,15 @@ public interface Expression extends Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The object or value that is the result of evaluating the Expression, derived as the <code>parameter</code> related to the Expression by a ReturnParameterMembership.</p>
-	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
-	 * @see #setResult(Parameter)
+	 * @see #setResult(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_Result()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computingExpresion'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computingExpression'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Parameter getResult();
+	Feature getResult();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Expression#getResult <em>Result</em>}' reference.
@@ -100,5 +97,5 @@ public interface Expression extends Step {
 	 * @see #getResult()
 	 * @generated
 	 */
-	void setResult(Parameter value);
+	void setResult(Feature value);
 } // Expression

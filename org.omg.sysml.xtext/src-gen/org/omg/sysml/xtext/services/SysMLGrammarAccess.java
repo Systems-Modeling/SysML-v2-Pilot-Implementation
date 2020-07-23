@@ -5242,7 +5242,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRequirementUsageDeclarationParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final RuleCall cRequirementDefBodyParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		////SubjectParameter returns SysML::Parameter :
+		////SubjectParameter returns SysML::Usage :
 		////	{SysML::Parameter} UsageDeclaration? ValuePart?
 		////;
 		//ObjectiveRequirementUsage SysML::RequirementUsage:
@@ -6064,18 +6064,18 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class ParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Parameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cParameterAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cReferenceUsageAction_0 = (Action)cGroup.eContents().get(0);
 		private final RuleCall cParameterTypePartParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* PARAMETERS */ Parameter SysML::Parameter:
-		//	{SysML::Parameter} ParameterTypePart?;
+		///* PARAMETERS */ Parameter SysML::Usage:
+		//	{SysML::ReferenceUsage} ParameterTypePart?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Parameter} ParameterTypePart?
+		//{SysML::ReferenceUsage} ParameterTypePart?
 		public Group getGroup() { return cGroup; }
 		
-		//{SysML::Parameter}
-		public Action getParameterAction_0() { return cParameterAction_0; }
+		//{SysML::ReferenceUsage}
+		public Action getReferenceUsageAction_0() { return cReferenceUsageAction_0; }
 		
 		//ParameterTypePart?
 		public RuleCall getParameterTypePartParserRuleCall_1() { return cParameterTypePartParserRuleCall_1; }
@@ -6092,7 +6092,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMultiplicityPartParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final RuleCall cMultiplicityPartParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//fragment ParameterTypePart returns SysML::Parameter:
+		//fragment ParameterTypePart returns SysML::Usage:
 		//	DefinedByKeyword (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
 		//	| MultiplicityPart;
 		@Override public ParserRule getRule() { return rule; }
@@ -8563,19 +8563,19 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class ActionParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ActionParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cParameterAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cReferenceUsageAction_0 = (Action)cGroup.eContents().get(0);
 		private final RuleCall cParameterTypePartParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final RuleCall cValuePartParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//ActionParameter SysML::Parameter:
-		//	{SysML::Parameter} ParameterTypePart? ValuePart?;
+		//ActionParameter SysML::Usage:
+		//	{SysML::ReferenceUsage} ParameterTypePart? ValuePart?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Parameter} ParameterTypePart? ValuePart?
+		//{SysML::ReferenceUsage} ParameterTypePart? ValuePart?
 		public Group getGroup() { return cGroup; }
 		
-		//{SysML::Parameter}
-		public Action getParameterAction_0() { return cParameterAction_0; }
+		//{SysML::ReferenceUsage}
+		public Action getReferenceUsageAction_0() { return cReferenceUsageAction_0; }
 		
 		//ParameterTypePart?
 		public RuleCall getParameterTypePartParserRuleCall_1() { return cParameterTypePartParserRuleCall_1; }
@@ -9157,14 +9157,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	public class EmptyParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyParameter");
-		private final Action cParameterAction = (Action)rule.eContents().get(1);
+		private final Action cReferenceUsageAction = (Action)rule.eContents().get(1);
 		
-		//EmptyParameter SysML::Parameter:
-		//	{SysML::Parameter};
+		//EmptyParameter SysML::Usage:
+		//	{SysML::ReferenceUsage};
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Parameter}
-		public Action getParameterAction() { return cParameterAction; }
+		//{SysML::ReferenceUsage}
+		public Action getReferenceUsageAction() { return cReferenceUsageAction; }
 	}
 	public class ActionParameterMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ActionParameterMember");
@@ -12276,7 +12276,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedRelationship_compAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compSubsetParserRuleCall_0 = (RuleCall)cOwnedRelationship_compAssignment.eContents().get(0);
 		
-		//FeatureReference SysML::Parameter:
+		//FeatureReference SysML::ReferenceUsage:
 		//	ownedRelationship_comp+=Subset;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -16083,7 +16083,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getCaseDefBodyItemAccess().getRule();
 	}
 	
-	////SubjectParameter returns SysML::Parameter :
+	////SubjectParameter returns SysML::Usage :
 	////	{SysML::Parameter} UsageDeclaration? ValuePart?
 	////;
 	//ObjectiveRequirementUsage SysML::RequirementUsage:
@@ -16397,8 +16397,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getUnlimitedNaturalLiteralMemberAccess().getRule();
 	}
 	
-	///* PARAMETERS */ Parameter SysML::Parameter:
-	//	{SysML::Parameter} ParameterTypePart?;
+	///* PARAMETERS */ Parameter SysML::Usage:
+	//	{SysML::ReferenceUsage} ParameterTypePart?;
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -16407,7 +16407,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getParameterAccess().getRule();
 	}
 	
-	//fragment ParameterTypePart returns SysML::Parameter:
+	//fragment ParameterTypePart returns SysML::Usage:
 	//	DefinedByKeyword (ownedRelationship_comp+=FeatureTyping | 'any') MultiplicityPart?
 	//	| MultiplicityPart;
 	public ParameterTypePartElements getParameterTypePartAccess() {
@@ -17264,8 +17264,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getActionParameterListAccess().getRule();
 	}
 	
-	//ActionParameter SysML::Parameter:
-	//	{SysML::Parameter} ParameterTypePart? ValuePart?;
+	//ActionParameter SysML::Usage:
+	//	{SysML::ReferenceUsage} ParameterTypePart? ValuePart?;
 	public ActionParameterElements getActionParameterAccess() {
 		return pActionParameter;
 	}
@@ -17413,8 +17413,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getForkNodeAccess().getRule();
 	}
 	
-	//EmptyParameter SysML::Parameter:
-	//	{SysML::Parameter};
+	//EmptyParameter SysML::Usage:
+	//	{SysML::ReferenceUsage};
 	public EmptyParameterElements getEmptyParameterAccess() {
 		return pEmptyParameter;
 	}
@@ -18408,7 +18408,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		return getFeatureReferenceExpressionAccess().getRule();
 	}
 	
-	//FeatureReference SysML::Parameter:
+	//FeatureReference SysML::ReferenceUsage:
 	//	ownedRelationship_comp+=Subset;
 	public FeatureReferenceElements getFeatureReferenceAccess() {
 		return pFeatureReference;

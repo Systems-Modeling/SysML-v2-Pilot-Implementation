@@ -76,21 +76,22 @@ public interface Function extends Behavior {
 	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
-	 * @see #setResult(Parameter)
+	 * @see #setResult(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_Result()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='computingFunction'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Parameter getResult();
+	Feature getResult();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Result</em>' reference.
 	 * @see #getResult()
 	 * @generated
 	 */
-	void setResult(Parameter value);
+	void setResult(Feature value);
 } // Function

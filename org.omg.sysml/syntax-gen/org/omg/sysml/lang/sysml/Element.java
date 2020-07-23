@@ -11,12 +11,13 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Element is a constituent of a model that is uniquely identified relative to all other Elements. It can&nbsp;have Relationships with other Elements. Some of these Relationships might imply ownership of other Elements, which means that if an&nbsp;Element is deleted from a model, then so are are all the Elements it owns.&nbsp;Packages are Elements that own other&nbsp;Elements through a Membership Relationship.</p>
+ * <p>An Element is a constituent of a model that is uniquely identified relative to all other Elements. It can have Relationships with other Elements. Some of these Relationships might imply ownership of other Elements, which means that if an Element is deleted from a model, then so are all the Elements that it owns.</p>
  * 
  * name = if owningNamespace = null then null
  * else owningNamespace.nameOf(self) endif
  * ownedElement = ownedRelationship.ownedRelatedElement
  * owner = owningRelationship.owningRelatedElement
+ * documentingComment = documentation.documentingComment
  * <!-- end-model-doc -->
  *
  * <p>
@@ -31,7 +32,15 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation_comp <em>Documentation comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp <em>Owned Annotation comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentationComment <em>Documentation Comment</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasId <em>Alias Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getHumanId <em>Human Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement()
@@ -94,7 +103,7 @@ public interface Element extends EObject {
 	 * @return the value of the '<em>Owned Relationship comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedRelationship_comp()
 	 * @see org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement
-	 * @model opposite="owningRelatedElement" containment="true" ordered="false"
+	 * @model opposite="owningRelatedElement" containment="true"
 	 * @generated
 	 */
 	EList<Relationship> getOwnedRelationship_comp();
@@ -186,6 +195,133 @@ public interface Element extends EObject {
 	EList<Element> getOwnedElement();
 
 	/**
+	 * Returns the value of the '<em><b>Documentation comp</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Documentation}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement <em>Owning Documented Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedAnnotations</code> of this Element that are Documentation.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Documentation comp</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Documentation_comp()
+	 * @see org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement
+	 * @model opposite="owningDocumentedElement" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Documentation> getDocumentation_comp();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Annotation comp</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Annotation}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Element that are Annotations.</code>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Annotation comp</em>' containment reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedAnnotation_comp()
+	 * @see org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement
+	 * @model opposite="owningAnnotatedElement" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<Annotation> getOwnedAnnotation_comp();
+
+	/**
+	 * Returns the value of the '<em><b>Documentation Comment</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Comment}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Comments that document this Element, derived as the <code>documentingComments</code> of the <code>documentation</code> of the Element.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Documentation Comment</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_DocumentationComment()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='documentedElement'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Comment> getDocumentationComment();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Textual Representation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TextualRepresentation}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>textualRepresentations</code> that are <code>ownedElements</code> of this Element.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Textual Representation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedTextualRepresentation()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningRepresentedElement'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<TextualRepresentation> getOwnedTextualRepresentation();
+
+	/**
+	 * Returns the value of the '<em><b>Alias Id</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Various alternative identifiers for this Element. Generally, these will be set by tools, but one of them (the <code>humanId</code>), in particular, may be set by the modeler.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Alias Id</em>' attribute list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_AliasId()
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @generated
+	 */
+	EList<String> getAliasId();
+
+	/**
+	 * Returns the value of the '<em><b>Human Id</b></em>' attribute.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getAliasId() <em>Alias Id</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An identifier for this Element that is set by the modeler. It is the responsibility of the modeler to maintain the uniqueness of this identifier within a model or relative to some other context. The <code>modeledId</code> essentially acts as an alias for an Element that is specifically tied to that Element, rather than being a name for it in the context of some explicit namespace.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Human Id</em>' attribute.
+	 * @see #setHumanId(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_HumanId()
+	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	String getHumanId();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getHumanId <em>Human Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Human Id</em>' attribute.
+	 * @see #getHumanId()
+	 * @generated
+	 */
+	void setHumanId(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Owner</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}'.
 	 * <!-- begin-user-doc -->
@@ -225,25 +361,14 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The globally unique identifier for this Element.
+	 * <p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
-	 * @see #setIdentifier(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
 	String getIdentifier();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Identifier</em>' attribute.
-	 * @see #getIdentifier()
-	 * @generated
-	 */
-	void setIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -254,7 +379,7 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The primary name of this Element. If the Element is owned by a Package, then its <tt>name</tt> is derived as the <tt>memberName</tt> of the <tt>owningMembership</tt>.</p>
+	 * <p>The primary name of this Element. If the Element is owned by a Package, then its <code>name</code> is derived as the <code>memberName</code> of the <code>owningMembership</code> of the Element.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
@@ -290,5 +415,51 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	EList<Relationship> getOwnedRelationship();
+
+	/**
+	 * Returns the value of the '<em><b>Documentation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Documentation}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp() <em>Owned Annotation comp</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Documentation</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Documentation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Documentation()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Documentation> getDocumentation();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Annotation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Annotation}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Annotation</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Annotation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwnedAnnotation()
+	 * @model transient="true" volatile="true" derived="true"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Annotation> getOwnedAnnotation();
 	
 } // Element

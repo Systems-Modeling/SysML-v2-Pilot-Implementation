@@ -7,10 +7,11 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Interaction;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -62,9 +63,10 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 * @generated NOT // derived, inherited from Behavior
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.INTERACTION__PARAMETER,
-				new int[] { SysMLPackage.TYPE__FEATURE });
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.FUNCTION__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -96,7 +98,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 				return;
 			case SysMLPackage.INTERACTION__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

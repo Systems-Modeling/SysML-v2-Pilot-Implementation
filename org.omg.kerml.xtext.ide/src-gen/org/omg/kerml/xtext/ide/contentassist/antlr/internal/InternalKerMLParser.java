@@ -4901,7 +4901,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:1502:3: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEmptyParameterAccess().getParameterAction()); 
+               before(grammarAccess.getEmptyParameterAccess().getFeatureAction()); 
             }
             // InternalKerML.g:1503:3: ()
             // InternalKerML.g:1503:4: 
@@ -4909,7 +4909,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEmptyParameterAccess().getParameterAction()); 
+               after(grammarAccess.getEmptyParameterAccess().getFeatureAction()); 
             }
 
             }
@@ -50777,7 +50777,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:14828:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterAccess().getParameterAction_0()); 
+               before(grammarAccess.getParameterAccess().getFeatureAction_0()); 
             }
             // InternalKerML.g:14829:2: ()
             // InternalKerML.g:14829:3: 
@@ -50785,7 +50785,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterAccess().getParameterAction_0()); 
+               after(grammarAccess.getParameterAccess().getFeatureAction_0()); 
             }
 
             }

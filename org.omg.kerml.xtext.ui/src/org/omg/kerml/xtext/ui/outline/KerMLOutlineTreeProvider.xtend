@@ -37,6 +37,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def String _text(Element element) {
 		var text = element.eClass.name;
+		if (element.humanId !== null) {
+			text += ' id ' + element.humanId
+		}
 		val name = (element as ElementImpl).effectiveName;
 		if (name !== null) {
 			text += ' ' + name;
@@ -110,6 +113,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'
+		}
+		if (type.humanId !== null) {
+			text += ' id ' + type.humanId
 		}
 		val name = (type as TypeImpl).effectiveName
 		if (name !== null) {

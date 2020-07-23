@@ -34,6 +34,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -649,7 +650,7 @@ public class SysML2PlantUMLText {
         addTrimmedBody(sb, c.getBody());
         sb.append("\nend note ");
         sb.append('\n');
-        Element e = c.getCommentedElement();
+        Element e = c.getAnnotatedElement().get(0);
         if (e == null) {
             if (parent instanceof Annotation) {
                 Annotation a = (Annotation) parent;
@@ -662,9 +663,9 @@ public class SysML2PlantUMLText {
     }
 
     private void annotation2P(StringBuilder sb, Annotation a, Element parent) {
-        Comment c = a.getAnnotatingComment();
-        if (c == null) return;
-        comment2P(sb, c, a);
+        AnnotatingElement c = a.getAnnotatingElement();
+        if (!(c instanceof Comment)) return;
+        comment2P(sb, (Comment)c, a);
     }
 
     private void element2P(StringBuilder sb, Element e, Type parent) {

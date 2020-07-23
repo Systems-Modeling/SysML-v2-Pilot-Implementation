@@ -21,7 +21,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
@@ -85,8 +84,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.CONSTRAINT_USAGE__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -286,11 +285,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * at least one owned Parameter (to redefine the requirement subject parameter).
 	 */
 	@Override
-	public List<Parameter> getOwnedParameters() {
-		List<Parameter> parameters = super.getOwnedParameters();
+	public List<Feature> getOwnedParameters() {
+		List<Feature> parameters = super.getOwnedParameters();
 		// Note: A ConstraintUsage will always have at least a return Parameter.
 		if (parameters.size() < 2 && isRequirement() ) {
-			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			Feature parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 			ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 			membership.setOwnedMemberParameter_comp(parameter);
 			getOwnedFeatureMembership_comp().add(0, membership);
@@ -309,9 +308,9 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated
 	 */
 	@Override
-	public Parameter getResult() {
-		Parameter result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
+	public Feature getResult() {
+		Feature result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
 	}
 	
 	/**
@@ -319,7 +318,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetResult() {
+	public Feature basicGetResult() {
 		return getResultParameter();
 	}
 
@@ -329,7 +328,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setResult(Parameter newResult) {
+	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -398,13 +397,13 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__FUNCTION:
 				setFunction((Function)newValue);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
-				setResult((Parameter)newValue);
+				setResult((Feature)newValue);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)newValue);
@@ -434,7 +433,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				setFunction((Function)null);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
-				setResult((Parameter)null);
+				setResult((Feature)null);
 				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)null);

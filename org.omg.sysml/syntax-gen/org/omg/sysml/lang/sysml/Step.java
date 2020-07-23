@@ -58,7 +58,7 @@ public interface Step extends Feature {
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Parameter}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -78,6 +78,6 @@ public interface Step extends Feature {
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Parameter> getParameter();
+	EList<Feature> getParameter();
 
 } // Step

@@ -19,11 +19,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getSubjectParameter <em>Subject Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getReqId <em>Req Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getText <em>Text</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getRequiredConstraint <em>Required Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getSubjectParameter <em>Subject Parameter</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition()
@@ -43,17 +43,17 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <p>parameter</p> of this RequirementDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> Parameter of the base RequirementDefinition RequirementCheck from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this RequirementDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base RequirementDefinition RequirementCheck from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
-	 * @see #setSubjectParameter(Parameter)
+	 * @see #setSubjectParameter(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_SubjectParameter()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredRequirementDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Parameter getSubjectParameter();
+	Usage getSubjectParameter();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementDefinition#getSubjectParameter <em>Subject Parameter</em>}' reference.
@@ -63,10 +63,16 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @see #getSubjectParameter()
 	 * @generated
 	 */
-	void setSubjectParameter(Parameter value);
+	void setSubjectParameter(Usage value);
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getHumanId() <em>Human Id</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Req Id</em>' attribute isn't clear,
@@ -74,12 +80,13 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional modeler-specified identifier for this RequirementDefinition (used, e.g., to link it to an original requirement text in some source document).</p>
+	 * <p>An optional modeler-specified identifier for this RequirementDefinition (used, e.g., to link it to an original requirement text in some source document), derived as the <code>modeledId</code> for the RequirementDefinition.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Req Id</em>' attribute.
 	 * @see #setReqId(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_ReqId()
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	String getReqId();
@@ -95,7 +102,8 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	void setReqId(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Text</b></em>' attribute.
+	 * Returns the value of the '<em><b>Text</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
@@ -103,25 +111,14 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An optional textual statement of the requirement represented by this RequirementDefinition.</p>
+	 * <p>An optional textual statement of the requirement represented by this RequirementDefinition, derived as the <code>bodies<code> of the <code>documentaryComments</code> of the RequirementDefinition.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Text</em>' attribute.
-	 * @see #setText(String)
+	 * @return the value of the '<em>Text</em>' attribute list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_Text()
-	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false"
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	String getText();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementDefinition#getText <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Text</em>' attribute.
-	 * @see #getText()
-	 * @generated
-	 */
-	void setText(String value);
+	EList<String> getText();
 
 	/**
 	 * Returns the value of the '<em><b>Assumed Constraint</b></em>' reference list.

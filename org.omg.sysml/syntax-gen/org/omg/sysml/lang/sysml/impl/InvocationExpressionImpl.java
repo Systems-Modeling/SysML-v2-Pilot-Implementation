@@ -93,7 +93,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		Type type = getExpressionType();
 		int m = type == null ? 0 : 
 			(int)((TypeImpl)type).getAllParameters().stream().
-				filter(p->((ParameterImpl)p).isInputParameter()).count();
+				filter(p->((FeatureImpl)p).isInput()).count();
 		List<Feature> features = super.getOwnedFeature();
 		int n = features.size();
 		return m >= n ? Collections.emptyList() : features.subList(m, n);

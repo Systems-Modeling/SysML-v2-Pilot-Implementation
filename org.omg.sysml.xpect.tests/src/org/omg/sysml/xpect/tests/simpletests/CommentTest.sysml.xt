@@ -25,29 +25,41 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 END_SETUP 
 */
 // XPECT noErrors ---> ""
-   /** double star - one line comment */
-   /** double star - one line comment with spaces after              */
-   /** */
-   /** star - one line comment throw errors */
+ 
+  /** AAA */
+  //a lexical comment ("note") is not a part of model
 package Comments {
-	/* star - one line ok here */
-/** AAA */
-/**
- * AAAA
- * BBBB
- */	
+	// inside package
+	/**
+*AAA
+ * BBB*/	
+ /**
+    *
+    *
+    * AAA  ***   
+    *BBB
+    								*/
+
    /**
  *       AAAA
  *       BBBB           */	
  /* AAAA
- * BBBB
+ 
+ 
+  * BBBB
  *
  * CCCC
  */
  /*
- * AAAA\n not doing anything 
+ * AAAA
  * BBBB
+ *    CCC DDD    
  */
+	
+	/** double star - one line comment */
+   /** double star - one line comment with spaces after              */
+   /** */
+	/* one start comment is allowed only inside a package */
 	comment doc_about_doc /** Comment about Comment */
 	comment doc /* Named Comment */	
 	comment doc_doc about doc /* Other Comment about Comment */
@@ -58,4 +70,6 @@ package Comments {
 		comment about Comments /* Comment about Package */
 		
 	}
+	/* abc */
+	part def A;
 }

@@ -43,7 +43,6 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
-import org.eclipse.emf.common.util.EList
 
 /**
  * This class contains custom validation rules. 
@@ -71,26 +70,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	def checkMembership(Membership mem){
 		println("==checking membership " + mem.memberName);
 		
-		//println("this: " + mem)
-		var others = mem.membershipOwningPackage.ownedMembership;
-		println("others before: " + others.map[memberName])
-		others.remove(mem);
-		println("others after: " + others.map[memberName])
-		
-		others.forEach[m|
-			println(m);
+		mem.membershipOwningPackage.ownedMembership.forEach[m|
 			if (m !== mem && !mem.isDistinguishableFrom(m))
 				warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 		]
-		println("owning pkg: " + mem.membershipOwningPackage + " " + mem.membershipOwningPackage.name);
 		if (mem.membershipOwningPackage instanceof Type){
-			println("getInheritedMembership: "  + (mem.membershipOwningPackage as Type).inheritedMembership.map[memberName]);
-			println((mem.membershipOwningPackage as Type).inheritedMembership.containsAll(others));
-			println("others: " + others.map[memberName])
-			}
-		
-		if (mem.membershipOwningPackage instanceof Type && !(mem.membershipOwningPackage as Type).inheritedMembership.containsAll(others))
-		 	warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+			(mem.membershipOwningPackage as Type).inheritedMembership.forEach[m|
+				if (!mem.isDistinguishableFrom(m)){
+					println("!!!: " + m.memberName)
+					warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+				}
+			]
+		} 
 		
 	}
 	

@@ -7,7 +7,7 @@ package 'Part Definition Example' {
 		
 		part eng : Engine;
 		
-		ref driver : Person;
+		ref part driver : Person;
 	}
 	
 	attribute def VehicleStatus {

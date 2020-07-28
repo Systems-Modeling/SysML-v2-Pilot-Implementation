@@ -3,7 +3,7 @@ package 'Generalization Example' {
 	abstract part def Vehicle;
 	
 	part def HumanDrivenVehicle specializes Vehicle {
-		ref driver : Person;
+		ref part driver : Person;
 	}
 	
 	part def PoweredVehicle :> Vehicle {

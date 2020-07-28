@@ -214,37 +214,43 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return addPRelation(src, dest, rel, null);
     }
 
-    private void addMultiplicityString(Element e) {
-        if (!showsMultiplicity) return;
-        if (!(e instanceof Type)) return;
+    private MultiplicityRange getEffectiveMultiplicityRange(Element e) {
+        if (!(e instanceof Type)) return null;
         Type typ = (Type) e;
         Multiplicity m = typ.getMultiplicity();
-        if (m instanceof MultiplicityRange) {
-            MultiplicityRange mr = (MultiplicityRange) m;
-            String exl = getText(mr.getLowerBound());
-            String exu = getText(mr.getUpperBound());
-            if (exl == null) {
-                if (exu == null) return;
-                sb.append('"');
-                quote0(exu);
-                sb.append('"');
-                return;
-            }
-            if ((exu == null) || (exl.equals(exu))) {
-                append('"');
-                quote0(exl);
-                append('"');
-                return;
-            }
-            if ("0".equals(exl) && "*".equals(exu)) {
-                append("\"*\"");
-            } else {
-                append('"');
-                quote0(exl);
-                append("..");
-                quote0(exu);
-                append('"');
-            }
+        if (!(m instanceof MultiplicityRange)) return null;
+        if (!typ.equals(m.getOwner())) return null;
+        return (MultiplicityRange) m;
+    }
+
+    private void addMultiplicityString(Element e) {
+        if (!showsMultiplicity) return;
+        MultiplicityRange mr = getEffectiveMultiplicityRange(e);
+        if (mr == null) return;
+
+        String exl = getText(mr.getLowerBound());
+        String exu = getText(mr.getUpperBound());
+        if (exl == null) {
+            if (exu == null) return;
+            sb.append('"');
+            quote0(exu);
+            sb.append('"');
+            return;
+        }
+        if ((exu == null) || (exl.equals(exu))) {
+            append('"');
+            quote0(exl);
+            append('"');
+            return;
+        }
+        if ("0".equals(exl) && "*".equals(exu)) {
+            append("\"*\"");
+        } else {
+            append('"');
+            quote0(exl);
+            append("..");
+            quote0(exu);
+            append('"');
         }
     }
 

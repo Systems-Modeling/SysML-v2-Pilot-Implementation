@@ -93,23 +93,32 @@ public class CommentImpl extends ElementImpl implements Comment {
 	 */
 	@Override
 	public void setBody(String newBody) {
-		String oldBody = body;
 		// \* - a literal *
 		newBody = newBody.replaceFirst("/\\*\\*", "").replaceFirst("/\\*", "").replaceFirst("^\\s*", "");
 		newBody = newBody.endsWith("*/") ? newBody.substring(0, newBody.length()-2) : newBody;
 		String[] lines = newBody.split("\\r?\\n");
 		if ( lines.length == 1 ) 
-			body = lines[0];
+			newBody = lines[0];
 		else {
-			StringBuilder builder2 = new StringBuilder();
+			StringBuilder builder = new StringBuilder();
 			for (int i = 0; i < lines.length; i++) {
 				String s = lines[i].replaceFirst("^\\s*", ""); //strip initial white space(not include line breaks) - by splitting no line breaks at the end
 				s = s.startsWith("*") ? (s.startsWith("* ")? s.replaceFirst("\\*\\s{1}", "") : s.replaceFirst("\\*", "")) : s;
 				//add simply back new Line
-				builder2 = (i != 0 ) ? builder2.append("\n").append(s): builder2.append(s);
+				builder = (i != 0 ) ? builder.append("\n").append(s): builder.append(s);
 			}
-			body = builder2.toString();
+			newBody = builder.toString();
 		}
+		setBodyGen(newBody);
+	}
+	
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBodyGen(String newBody) {
+		String oldBody = body;
+		body = newBody;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.COMMENT__BODY, oldBody, body));
 	}

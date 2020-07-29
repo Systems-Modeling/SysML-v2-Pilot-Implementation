@@ -27,5 +27,5 @@ package Classes {
 	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_protect'." at "c_Public::c_protect"
 	feature e : c_Public::c_protect;
 	//XPECT errors --> "Couldn't resolve reference to Type 'c_Public::c_packagee'." at "c_Public::c_packagee"
-	feature e : c_Public::c_packagee;
+	feature f : c_Public::c_packagee;
 }

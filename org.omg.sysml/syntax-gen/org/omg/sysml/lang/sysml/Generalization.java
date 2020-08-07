@@ -9,15 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Generalization is a Relationship between two Types indicating that any instance of the specific type is also an instance of the general Type. This means instances of the special Type form a subset of instances of the general Type, which might be the same set. Special cases of Generalization include</p>
- * 
- * <ol>
- * 	<li>Subclassing, in which the related Types are both Classifiers,</li>
- * 	<li>Subsetting , in which the related Types are both Features, and</li>
- * 	<li>FeatureTyping, in which the specific Type is a Feature and the general Type can be either a Classifier or a Feature.</li>
- * </ol>
- * 
- * <p>A Generalization is not allowed with a specific Type that is a Classifier and a general Type that is a Feature. This is because a Classifier always includes instances that are individual entities, which an never be instances of a Feature.</p>
+ * <p>Generalization is a Relationship between two Types that requires all sequences of the specific type to also be sequences of the&nbsp;general Type (the set of sequences of the specific Type is a <em>subset</em> of those of the general Type, which might be the same set).</p>
  * 
  * <p>The specific Type of a Generalization cannot&nbsp;be a conjugated Type.</p>
  * 
@@ -59,7 +51,7 @@ public interface Generalization extends Relationship {
 	 * @see #setGeneral(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_General()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='speciallization'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='specialization'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

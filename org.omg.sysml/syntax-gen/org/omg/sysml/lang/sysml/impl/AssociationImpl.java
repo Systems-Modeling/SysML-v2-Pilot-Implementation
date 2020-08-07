@@ -8,15 +8,16 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Connector;
@@ -32,14 +33,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningConnector <em>Owning Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getAssociationEnd <em>Association End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSourceType <em>Source Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTargetType <em>Target Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -49,22 +50,6 @@ public class AssociationImpl extends ClassImpl implements Association {
 	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Objects::Link";
 	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Objects::BinaryLink";
 
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> target;
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> source;
 	/**
 	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -161,10 +146,18 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		if (target == null) {
-			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__TARGET);
-		}
-		return target;
+		@SuppressWarnings("unchecked")
+		EList<Element> targetType = (EList<Element>)((EList<?>)getTargetType());
+		return targetType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
 	}
 
 	/**
@@ -173,10 +166,21 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	@Override
 	public EList<Element> getSource() {
-		if (source == null) {
-			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__SOURCE);
+		EList<Element> source = new UniqueEList<Element>();
+		Type sourceType = getSourceType();
+		if (sourceType != null) {
+			source.add(sourceType);
 		}
-		return source;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
 	}
 
 	/**
@@ -192,11 +196,22 @@ public class AssociationImpl extends ClassImpl implements Association {
 	}
 
 	/**
+	 * The array of subset feature identifiers for the '{@link #getRelatedType() <em>Related Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_TYPE_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__SOURCE_TYPE, SysMLPackage.ASSOCIATION__TARGET_TYPE};
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetRelatedType() {
-		return !getRelatedType().isEmpty();
+		return isSetSourceType()
+			|| isSetTargetType();
 	}
 
 	/**
@@ -246,6 +261,81 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	public boolean isSetAssociationEnd() {
 		return !getAssociationEnd().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getSourceType() {
+		Type sourceType = basicGetSourceType();
+		return sourceType != null && sourceType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)sourceType) : sourceType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type basicGetSourceType() {
+		return getSourceTypeOf(this);
+	}
+	
+	public static Type getSourceTypeOf(Association association) {
+		EList<Type> relatedType = association.getRelatedType();
+		return relatedType.size() == 2? relatedType.get(0): null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setSourceType(Type newSourceType) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSourceType() {
+		return basicGetSourceType() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Type> getTargetType() {
+		EList<Type> targetType = new EObjectEList<>(Type.class, this, SysMLPackage.ASSOCIATION__TARGET_TYPE);
+		addTargetTypes(this, targetType);
+		return targetType;
+	}
+	
+	public static void addTargetTypes(Association association, EList<Type> targetTypes) {
+		EList<Type> relatedTypes = association.getRelatedType();
+		if (relatedTypes.size() == 2) {
+			targetTypes.add(relatedTypes.get(1));
+		} else {
+			targetTypes.addAll(relatedTypes);
+		}
+	}
+
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTargetType() {
+		return !getTargetType().isEmpty();
 	}
 
 	/**
@@ -374,6 +464,11 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return basicGetOwningConnector();
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				return getAssociationEnd();
+			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
+				if (resolve) return getSourceType();
+				return basicGetSourceType();
+			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
+				return getTargetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -405,16 +500,19 @@ public class AssociationImpl extends ClassImpl implements Association {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
-				getRelatedType().clear();
-				getRelatedType().addAll((Collection<? extends Type>)newValue);
-				return;
 			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
 				setOwningConnector((Connector)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				getAssociationEnd().clear();
 				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
+				setSourceType((Type)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
+				getTargetType().clear();
+				getTargetType().addAll((Collection<? extends Type>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -442,14 +540,17 @@ public class AssociationImpl extends ClassImpl implements Association {
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
-				getRelatedType().clear();
-				return;
 			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
 				setOwningConnector((Connector)null);
 				return;
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				getAssociationEnd().clear();
+				return;
+			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
+				setSourceType((Type)null);
+				return;
+			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
+				getTargetType().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -465,23 +566,27 @@ public class AssociationImpl extends ClassImpl implements Association {
 			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return isSetRelatedElement();
 			case SysMLPackage.ASSOCIATION__TARGET:
-				return target != null && !target.isEmpty();
+				return isSetTarget();
 			case SysMLPackage.ASSOCIATION__SOURCE:
-				return source != null && !source.isEmpty();
+				return isSetSource();
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
 				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				return !getOwnedRelatedElement().isEmpty();
-			case SysMLPackage.ASSOCIATION__END_FEATURE:
-				return isSetEndFeature();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return isSetRelatedType();
+			case SysMLPackage.ASSOCIATION__END_FEATURE:
+				return isSetEndFeature();
 			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
 				return basicGetOwningConnector() != null;
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				return isSetAssociationEnd();
+			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
+				return isSetSourceType();
+			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
+				return isSetTargetType();
 		}
 		return super.eIsSet(featureID);
 	}

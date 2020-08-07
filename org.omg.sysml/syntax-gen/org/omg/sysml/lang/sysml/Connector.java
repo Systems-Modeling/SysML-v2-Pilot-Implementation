@@ -22,6 +22,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getSourceFeature <em>Source Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getTargetFeature <em>Target Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
@@ -39,6 +41,7 @@ public interface Connector extends Feature, Relationship {
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
+	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Related Feature</em>' reference list isn't clear,
@@ -51,8 +54,9 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_RelatedFeature()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='connector'"
+	 *        annotation="union"
 	 *        annotation="redefines"
 	 * @generated
 	 */
@@ -143,6 +147,76 @@ public interface Connector extends Feature, Relationship {
 	 * @generated
 	 */
 	EList<Feature> getConnectorEnd();
+
+	/**
+	 * Returns the value of the '<em><b>Source Feature</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature() <em>Related Feature</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The source <code>relatedFeature</code> for this Connector. If this is a binary Connector, then the <code>sourceFeature</code> is the first <code>relatedFeature</code>, and the first end Feature of the Connector must redefine the <code>source</code> Feature of the Connector binaryLinks from the Kernel Library. If this Cpmmectpr is not binary, then it has no <code>sourceFeature</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Source Feature</em>' reference.
+	 * @see #setSourceFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_SourceFeature()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sourceConnector'"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Feature getSourceFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Connector#getSourceFeature <em>Source Feature</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Feature</em>' reference.
+	 * @see #getSourceFeature()
+	 * @generated
+	 */
+	void setSourceFeature(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Feature</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature() <em>Related Feature</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The target <code>relatedFeatires</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>. If this is a binary Connector, then the end Features corresponding to the <code>relatedFeatures</code> must all redefine the <code>target</code> Feature of the Connector binaryLinks from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Target Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_TargetFeature()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetConnector'"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Feature> getTargetFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference list.

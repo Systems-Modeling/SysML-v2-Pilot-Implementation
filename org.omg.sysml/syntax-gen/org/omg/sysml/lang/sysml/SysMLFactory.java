@@ -166,6 +166,15 @@ public interface SysMLFactory extends EFactory {
 	Relationship createRelationship();
 
 	/**
+	 * Returns a new object of class '<em>Documentation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Documentation</em>'.
+	 * @generated
+	 */
+	Documentation createDocumentation();
+
+	/**
 	 * Returns a new object of class '<em>Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,6 +209,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Predicate createPredicate();
+
+	/**
+	 * Returns a new object of class '<em>Result Expression Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Result Expression Membership</em>'.
+	 * @generated
+	 */
+	ResultExpressionMembership createResultExpressionMembership();
 
 	/**
 	 * Returns a new object of class '<em>Transition Usage</em>'.
@@ -335,15 +353,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Superclassing createSuperclassing();
-
-	/**
-	 * Returns a new object of class '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Parameter</em>'.
-	 * @generated
-	 */
-	Parameter createParameter();
 
 	/**
 	 * Returns a new object of class '<em>Association</em>'.
@@ -751,6 +760,15 @@ public interface SysMLFactory extends EFactory {
 	Comment createComment();
 
 	/**
+	 * Returns a new object of class '<em>Textual Representation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Textual Representation</em>'.
+	 * @generated
+	 */
+	TextualRepresentation createTextualRepresentation();
+
+	/**
 	 * Returns a new object of class '<em>Annotation</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -758,6 +776,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Annotation createAnnotation();
+
+	/**
+	 * Returns a new object of class '<em>Annotating Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Annotating Element</em>'.
+	 * @generated
+	 */
+	AnnotatingElement createAnnotatingElement();
 
 	/**
 	 * Returns a new object of class '<em>Interaction</em>'.
@@ -769,33 +796,6 @@ public interface SysMLFactory extends EFactory {
 	Interaction createInteraction();
 
 	/**
-	 * Returns a new object of class '<em>Import Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import Condition</em>'.
-	 * @generated
-	 */
-	ImportCondition createImportCondition();
-
-	/**
-	 * Returns a new object of class '<em>Conditional Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Import</em>'.
-	 * @generated
-	 */
-	ConditionalImport createConditionalImport();
-
-	/**
-	 * Returns a new object of class '<em>Ownership</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ownership</em>'.
-	 * @generated
-	 */
-	Ownership createOwnership();
-
-	/**
 	 * Returns a new object of class '<em>Life Class</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -803,6 +803,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	LifeClass createLifeClass();
+
+	/**
+	 * Returns a new object of class '<em>Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dependency</em>'.
+	 * @generated
+	 */
+	Dependency createDependency();
 
 	/**
 	 * Returns a new object of class '<em>Time Slice Feature</em>'.

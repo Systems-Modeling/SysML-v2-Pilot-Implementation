@@ -43,7 +43,9 @@ public interface InterfaceDefinition extends ConnectionDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortUsages that are the <tt>associationEnds</p> of this InterfaceDefinition.</p>
+	 * <p>The PortUsages that are the <code>associationEnds</code> of this InterfaceDefinition.
+	 * 
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Interface End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getInterfaceDefinition_InterfaceEnd()

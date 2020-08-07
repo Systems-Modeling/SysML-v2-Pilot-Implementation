@@ -6815,9 +6815,9 @@ ruleEmptyParameter
 	}
 	:
 	(
-		{ before(grammarAccess.getEmptyParameterAccess().getParameterAction()); }
+		{ before(grammarAccess.getEmptyParameterAccess().getReferenceUsageAction()); }
 		()
-		{ after(grammarAccess.getEmptyParameterAccess().getParameterAction()); }
+		{ after(grammarAccess.getEmptyParameterAccess().getReferenceUsageAction()); }
 	)
 ;
 finally {
@@ -26322,9 +26322,9 @@ rule__Parameter__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getParameterAccess().getParameterAction_0()); }
+	{ before(grammarAccess.getParameterAccess().getReferenceUsageAction_0()); }
 	()
-	{ after(grammarAccess.getParameterAccess().getParameterAction_0()); }
+	{ after(grammarAccess.getParameterAccess().getReferenceUsageAction_0()); }
 )
 ;
 finally {
@@ -33126,9 +33126,9 @@ rule__ActionParameter__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getActionParameterAccess().getParameterAction_0()); }
+	{ before(grammarAccess.getActionParameterAccess().getReferenceUsageAction_0()); }
 	()
-	{ after(grammarAccess.getActionParameterAccess().getParameterAction_0()); }
+	{ after(grammarAccess.getActionParameterAccess().getReferenceUsageAction_0()); }
 )
 ;
 finally {

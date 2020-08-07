@@ -138,7 +138,8 @@ public interface IndividualUsage extends ItemUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <tt>An <tt>ownedFeature</tt> of this IndividualUsage that is a redefinition of the Feature <tt>Occurrence::timeSliceOf</tt> and is typed by the <tt>individualDefinition</tt>. An IndividualUsage with such a feature is restricted to represent a time slice of the represented individual.</p>
+	 * <p>An <code>ownedFeature</code> of this IndividualUsage that is a redefinition of the Feature <code>Occurrence::timeSliceOf</code> and is typed by the <code>individualDefinition</code>. An IndividualUsage with such a feature is restricted to represent a time slice of the represented individual.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Time Slice Feature</em>' reference.
 	 * @see #setTimeSliceFeature(Feature)
@@ -175,7 +176,8 @@ public interface IndividualUsage extends ItemUsage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <tt>An <tt>ownedFeature</tt> of this IndividualUsage that is a redefinition of the Feature <tt>Occurrence::snapshotOf</tt> and is typed by the <tt>individualDefinition</tt>. An IndividualUsage with such a feature is restricted to represent a snapshot of the represented individual.</p>
+	 * <p>An <code>ownedFeature</code> of this IndividualUsage that is a redefinition of the Feature <code>Occurrence::snapshotOf</code> and is typed by the <code>individualDefinition</code>. An IndividualUsage with such a feature is restricted to represent a snapshot of the represented individual.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Snapshot Feature</em>' reference.
 	 * @see #setSnapshotFeature(Feature)

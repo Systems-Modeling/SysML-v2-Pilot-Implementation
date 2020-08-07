@@ -7,7 +7,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Superclassing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Superclassing is Generalization in which both the specific and general Types are Classifiers. All individual entities that are instances of the specific Classifier are&nbsp;also instances of the general Classifier.</p>
+ * <p>Superclassing is Generalization in which both the specific and general Types are Classifiers. This means all sequences&nbsp;of the specific Classifier are&nbsp;also sequences of the general Classifier.</p>
  * 
  * <!-- end-model-doc -->
  *

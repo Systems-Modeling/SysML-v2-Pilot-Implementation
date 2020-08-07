@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,14 +10,15 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Parameter;
-import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,9 +93,9 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	@Override
 	public EList<Parameter> getParameter() {
-		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+		List<Parameter> parameters = new ArrayList<>();
 		parameters.addAll(getAllParameters());
-		return parameters;
+		return new UnmodifiableEList<Parameter>(this, SysMLPackage.eINSTANCE.getBehavior_Parameter(), parameters.size(), parameters.toArray());
 	}
 
 	/**

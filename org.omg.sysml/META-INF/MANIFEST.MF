@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.mwe2.launch;bundle-version="2.9.1",
  org.eclipse.xtext.xtext.generator;bundle-version="2.12.0",
  org.eclipse.m2m.qvt.oml,
- org.eclipse.uml2.uml.resources
+ org.eclipse.uml2.uml.resources,
+ org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml,
  org.omg.sysml.lang.sysml,

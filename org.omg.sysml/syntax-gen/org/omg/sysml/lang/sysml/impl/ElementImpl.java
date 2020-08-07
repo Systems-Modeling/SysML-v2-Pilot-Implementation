@@ -23,7 +23,11 @@
  *****************************************************************************/
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -34,11 +38,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Comment;
@@ -367,10 +370,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated NOT
 	 */
 	public BasicEList<Element> getOwnedElement() {
-		BasicEList<Element> ownedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
-		ownedElements.addAllUnique(getOwnedRelationship().stream().
-				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
-		return ownedElements;
+		Set<Element> ownedElements = new LinkedHashSet<>();
+		ownedElements.addAll(getOwnedRelationship().stream()
+				.flatMap(relationship -> relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
+		return new UnmodifiableEList<Element>(this, SysMLPackage.eINSTANCE.getElement_OwnedElement(),
+				ownedElements.size(), ownedElements.toArray());
 	}
 
 	/**
@@ -437,9 +441,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Relationship> getOwnedRelationship() {
-		EList<Relationship> ownedRelationships = new EObjectEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP);
+		List<Relationship> ownedRelationships = new ArrayList<>();
 		ownedRelationships.addAll(getOwnedRelationship_comp());
-		return ownedRelationships;
+		return new UnmodifiableEList<Relationship>(this, SysMLPackage.eINSTANCE.getElement_OwnedRelationship(),
+				ownedRelationships.size(), ownedRelationships.toArray());
 	}
 
 	// Additional

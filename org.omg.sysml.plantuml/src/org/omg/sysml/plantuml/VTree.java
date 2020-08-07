@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -68,11 +67,6 @@ public class VTree extends VStructure {
 
     @Override
     public String caseAttributeUsage(AttributeUsage au) {
-        return "";
-    }
-
-    @Override
-    public String caseParameter(Parameter p) {
         return "";
     }
 

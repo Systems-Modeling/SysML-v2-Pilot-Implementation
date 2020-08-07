@@ -63,8 +63,8 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseAnnotation(Annotation a) {
-        Comment c = a.getAnnotatingComment();
-        if (c != null) {
+        List<Comment> cs = a.getDocumentationComment();
+        for (Comment c: cs) {
             VComment v = new VComment(this);
             v.addComment(c, a);
         }

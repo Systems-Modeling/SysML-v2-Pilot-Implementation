@@ -24,6 +24,8 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
@@ -70,14 +72,9 @@ public class VComment extends Visitor {
         append("\nend note ");
         append('\n');
 
-        Element e = c.getCommentedElement();
-        if (e == null) {
-            if (a != null) {
-                e = a.getAnnotatedElement();
-            }
-        }
-        if (e != null) {
-            addPRelation(c, e, c);
+        List<Element> es = c.getAnnotatedElement();
+        for (Element e: es) {
+        	addPRelation(c, e, c);
         }
     }
 }

@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -92,11 +91,6 @@ public class VComposite extends VStructure {
         if (name == null) return "";
         addPUMLLine(su, "rectangle ", name);
         append('\n');
-        return "";
-    }
-
-    @Override
-    public String caseParameter(Parameter p) {
         return "";
     }
 

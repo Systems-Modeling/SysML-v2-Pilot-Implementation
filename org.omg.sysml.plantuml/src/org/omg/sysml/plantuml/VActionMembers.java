@@ -35,7 +35,6 @@ import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.JoinNode;
 import org.omg.sysml.lang.sysml.MergeNode;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Succession;
@@ -56,7 +55,7 @@ public class VActionMembers extends VDefault {
 
     public String caseParameterMembership(ParameterMembership pm) {
         FeatureDirectionKind fdk = pm.getDirection();
-        Parameter p = pm.getMemberParameter();
+        Feature p = pm.getMemberParameter();
         switch (fdk) {
         case IN:
             addNode(p, "<<inputpin>>");
@@ -83,7 +82,7 @@ public class VActionMembers extends VDefault {
         ItemFlowFeature iff = (ItemFlowFeature) f;
         for (Redefinition r: iff.getOwnedRedefinition()) {
             Feature f2 = r.getRedefinedFeature();
-            if (f2 instanceof Parameter) return f2;
+            if (f2 != null) return f2;
         }
         return f;
     }

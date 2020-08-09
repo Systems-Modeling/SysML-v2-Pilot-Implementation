@@ -65,10 +65,10 @@ package 'Interface Example' {
 		//XPECT errors --> "An interface must be typed by one interface definition." at "interface opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort;"
 		interface opposite : Fuel connect eng::engineFuelPort to tankAssy::fuelTankPort;
 		//*XPECT errors ---
-			"An interface must be typed by one interface definition." at "interface opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
-			"Features must have at least one type" at "interface opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+			"An interface must be typed by one interface definition." at "interface opposite1 : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
+			"Features must have at least one type" at "interface opposite1 : fi connect eng::engineFuelPort to tankAssy::fuelTankPort;"
 		---*/
-		interface opposite : fi connect eng::engineFuelPort to tankAssy::fuelTankPort; 
+		interface opposite1 : fi connect eng::engineFuelPort to tankAssy::fuelTankPort; 
 		
 	} 
 }

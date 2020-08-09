@@ -178,10 +178,10 @@ package ISQ {
 	 * speed
 	 */
 	attribute def SpeedUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+		attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
 			attribute exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
+		attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
 			attribute exponent redefines UnitPowerFactor::exponent = -1;
 		}		
 	}

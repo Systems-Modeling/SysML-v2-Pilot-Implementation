@@ -735,11 +735,11 @@ public class TypeImpl extends PackageImpl implements Type {
 	}	
 	
 	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = getInheritedMembership(excludedPackages, excludedTypes, includeProtected);
-		nonPrivateMembership.addAll(super.getPublicMembership(excludedPackages, excludedTypes));
+		EList<Membership> nonPrivateMembership = super.getPublicMembership(excludedPackages, excludedTypes);
 		if (includeProtected) {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
+		nonPrivateMembership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
 		return nonPrivateMembership;
 	}
 	
@@ -815,6 +815,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	// Utility Methods
+	
+	public List<Feature> getPublicFeatures() {
+		return publicMemberships().stream().
+				filter(FeatureMembership.class::isInstance).
+				map(FeatureMembership.class::cast).
+				map(FeatureMembership::getMemberFeature).
+				collect(Collectors.toList());
+	}
 	
 	public boolean conformsTo(Type supertype) {
 		return conformsTo(supertype, new HashSet<>());

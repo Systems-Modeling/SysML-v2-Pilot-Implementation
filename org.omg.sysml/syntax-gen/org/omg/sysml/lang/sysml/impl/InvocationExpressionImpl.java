@@ -16,6 +16,8 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -67,6 +69,48 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public EList<Expression> getArgument() {
 		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
+	}
+	
+	@Override
+	public EList<Feature> getInput() {
+		EList<Feature> inputs = super.getOwnedInput();
+		if (inputs.isEmpty()) {
+			Type type = getExpressionType();
+			if (type instanceof Function || type instanceof Expression) {
+				return super.getInput();
+			} else if (type != null) {
+				List<Feature> typeFeatures = (((TypeImpl)type).getPublicFeatures());
+				for (Expression argument: getArgument()) {
+					Feature typeFeature = getFeatureForArgument(typeFeatures, argument);
+					if (typeFeature == null) {
+						break;
+					}
+					Feature feature = createFeatureForParameter(typeFeature);
+					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+					redefinition.setRedefinedFeature(typeFeature);
+					redefinition.setRedefiningFeature(feature);
+					feature.getOwnedRelationship_comp().add(redefinition);
+				}
+			}
+		}
+		return inputs;
+	}
+	
+	protected static Feature getFeatureForArgument(List<Feature> typeFeatures, Feature argument) {
+		Feature feature = null;
+		if (!typeFeatures.isEmpty()) {
+			String name = argument.getName();
+			if (name == null) {
+				feature = typeFeatures.get(0);
+				typeFeatures.remove(0);
+			} else {
+				feature = typeFeatures.stream().filter(f->name.equals(f.getName())).findFirst().orElse(null);
+				if (feature != null) {
+					typeFeatures.remove(feature);
+				}
+			}
+		}
+		return feature;
 	}
 
 	public List<BindingConnector> getArgumentConnectors() {

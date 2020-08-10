@@ -112,7 +112,7 @@ package pkg {
 	}
 	part def B {}
 	part a : A {
-		//XPECT warnings --> "Duplicate member name2" at "part b: B;"
+		//XPECT warnings --> "Duplicate of inherited member name" at "b"
 		part b: B;
 		part redefines c;
 	}

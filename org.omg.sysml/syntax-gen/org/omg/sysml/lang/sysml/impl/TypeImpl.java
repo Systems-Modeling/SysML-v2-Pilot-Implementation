@@ -34,7 +34,6 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Parameter;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -706,16 +705,25 @@ public class TypeImpl extends PackageImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedPackages, excludedTypes, includeProtected));
 			}
 		}
-		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
-		inheritedMemberships.removeIf(membership->redefinedFeatures.contains(membership.getMemberElement()));
+		removeRedefinedFeatures(inheritedMemberships);
 		return inheritedMemberships;
+	}
+	
+	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
+		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
+		memberships.removeIf(membership->{
+			if (!(membership instanceof FeatureMembership)) {
+				return false;
+			} else {
+				Collection<Feature> otherRedefinedFeatures = ((FeatureImpl)membership.getMemberElement()).getAllRedefinedFeatures();
+				return otherRedefinedFeatures.stream().anyMatch(redefinedFeatures::contains);
+			}
+		});		
 	}
 	
 	public Collection<Feature> getRedefinedFeatures() {
 		return getOwnedFeature().stream().
-				flatMap(feature->feature.getOwnedGeneralization().stream()).
-				filter(Redefinition.class::isInstance).
-				map(redefinition->((Redefinition)redefinition).getRedefinedFeature()).
+				flatMap(feature->((FeatureImpl)feature).getAllRedefinedFeatures().stream()).
 				collect(Collectors.toSet());
 	}
 	
@@ -727,11 +735,11 @@ public class TypeImpl extends PackageImpl implements Type {
 	}	
 	
 	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = getInheritedMembership(excludedPackages, excludedTypes, includeProtected);
-		nonPrivateMembership.addAll(super.getPublicMembership(excludedPackages, excludedTypes));
+		EList<Membership> nonPrivateMembership = super.getPublicMembership(excludedPackages, excludedTypes);
 		if (includeProtected) {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
+		nonPrivateMembership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
 		return nonPrivateMembership;
 	}
 	
@@ -807,6 +815,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	// Utility Methods
+	
+	public List<Feature> getPublicFeatures() {
+		return publicMemberships().stream().
+				filter(FeatureMembership.class::isInstance).
+				map(FeatureMembership.class::cast).
+				map(FeatureMembership::getMemberFeature).
+				collect(Collectors.toList());
+	}
 	
 	public boolean conformsTo(Type supertype) {
 		return conformsTo(supertype, new HashSet<>());

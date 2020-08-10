@@ -17,7 +17,6 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 END_SETUP 
 */
 
-// XPECT noErrors ---> ""
 package test{				
 	feature A{
 		feature a2{}
@@ -26,6 +25,7 @@ package test{
 		import OuterPackage::*;
 	}
 	feature inner1 subsets inner {
+		//XPECT warnings --> "Duplicate of inherited member name" at "B"
 		feature B redefines A {
 			//XPECT linkedName at a1 --> OuterPackage.A.a1
 			//* XPECT scope at a1 ---

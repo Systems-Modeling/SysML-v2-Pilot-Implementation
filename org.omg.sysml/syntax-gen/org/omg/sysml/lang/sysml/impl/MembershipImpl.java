@@ -451,9 +451,19 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	public boolean isDistinguishableFrom(Membership other) {
 		// TODO Implement full distinguishibility test.
-		String name = this.getMemberName();
-		String otherName = other.getMemberName();
-		return name == null? otherName != null: !name.equals(otherName);
+		String name = this.getMemberEffectiveName();
+		return name == null || !name.equals(((MembershipImpl)other).getMemberEffectiveName());
+	}
+	
+	public String getMemberEffectiveName() {
+		String name = getMemberName();
+		if (name == null) {
+			Element memberElement = getMemberElement();
+			if (memberElement != null) {
+				name = ((ElementImpl)memberElement).getEffectiveName();
+			}
+		}
+		return name;
 	}
 
 	/**

@@ -865,6 +865,27 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public Optional<Feature> getFirstSubsettedFeature() {
 		return getFirstSubsetting().map(Subsetting::getSubsettedFeature);
 	}
+	
+	/**
+	 * Return a set including this Feature and all Features that it redefines directly or indirectly.
+	 */
+	public Set<Feature> getAllRedefinedFeatures() {
+		Set<Feature> redefinedFeatures = new HashSet<>();
+		addAllRedefinedFeatures(redefinedFeatures, new HashSet<>());
+		return redefinedFeatures;
+	}
+	
+	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures, Set<Feature> visited) {
+		redefinedFeatures.add(this);
+		getOwnedRedefinition().stream().forEach(redefinition->{
+			visited.add(this);
+			Feature redefinedFeature = redefinition.getRedefinedFeature();
+			if (!visited.contains(redefinedFeature)) {
+				((FeatureImpl)redefinedFeature).addAllRedefinedFeatures(redefinedFeatures, visited);
+			}
+		});
+	}
+	
 
 	//
 	

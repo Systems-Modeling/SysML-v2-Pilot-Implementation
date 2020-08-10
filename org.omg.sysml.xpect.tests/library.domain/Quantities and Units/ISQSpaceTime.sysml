@@ -685,3 +685,4 @@ package ISQSpaceTime {
     attribute propagationCoefficient: AttenuationValue :> attenuation;
 
 }
+

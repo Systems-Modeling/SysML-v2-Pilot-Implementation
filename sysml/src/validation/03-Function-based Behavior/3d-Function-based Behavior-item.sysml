@@ -51,9 +51,9 @@ package '3d-Function-based Behavior-item' {
 			}
 			
 			/**
-			 * Note: Explicitly notating "fuel : Fuel" is optional.
+			 * Note: Explicitly notating that the stream is "of fuel : Fuel" is optional.
 			 */
-			stream fuel : Fuel 
+			stream of fuel : Fuel 
 				from storageTank::fuelOutPort::fuel to pump::fuelInPort::fuel;
 			
 			part pump : Pump {
@@ -71,7 +71,7 @@ package '3d-Function-based Behavior-item' {
 				);
 			}
 			
-			stream fuel : Fuel
+			stream of fuel : Fuel
 				from pump::fuelOutPort::fuel to vehicle::fuelInPort::fuel;
 			
 			part vehicle : Vehicle {

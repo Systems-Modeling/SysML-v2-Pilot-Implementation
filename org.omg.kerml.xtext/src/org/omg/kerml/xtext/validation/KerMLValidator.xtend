@@ -62,26 +62,27 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS = 'Invalid Relationship - Related element minimum validation'
 	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG = "Relationships must have at least two related elements"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishability"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate member name1"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate member name2"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	
 	
 	@Check
 	def checkMembership(Membership mem){
-		println("==checking membership " + mem.memberName);
-		
-		mem.membershipOwningPackage.ownedMembership.forEach[m|
-			if (m !== mem && !mem.isDistinguishableFrom(m))
-				warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+//		println("==checking membership " + mem.memberName);
+
+		val pack = mem.membershipOwningPackage;		
+		pack.ownedMembership.forEach[m|
+			if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m))
+				warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 		]
-		if (mem.membershipOwningPackage instanceof Type){
-			(mem.membershipOwningPackage as Type).inheritedMembership.forEach[m|
-				if (!mem.isDistinguishableFrom(m)){
-					println("!!!: " + m.memberName)
-					warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_OwnedMemberElement, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+		if (pack instanceof Type){
+			pack.inheritedMembership.forEach[m|
+				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
+//					println("!!!: " + m.memberName)
+					warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
 			]
-		} 
+		}
 		
 	}
 	

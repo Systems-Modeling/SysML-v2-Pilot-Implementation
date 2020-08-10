@@ -49,7 +49,7 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			 * attribute to a attribute property or a reference to a reference
 			 * property.)
 			 */
-			port pe = c1::pb;
+			port :>> pe = c1::pb;
 		}
 		
 		part b12: B12 {
@@ -59,7 +59,7 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			
 			part c4: C4;
 			
-			port pf = c3::pd;
+			port :>> pf = c3::pd;
 		}
 		
 		connect b11::pe to b12::pf;
@@ -86,7 +86,7 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			
 			connect c1::pb to c3::pd;
 			
-			port pg = c1::pa;
+			port :>> pg = c1::pa;
 		}
 		
 		part b22: B22 {
@@ -96,7 +96,7 @@ package '2c-Parts Interconnection-Multiple Decompositions' {
 			
 			ref c4: C4 = a11::b12::c4;
 			
-			port ph = c2::pc;
+			port :>> ph = c2::pc;
 		}
 	}
 }

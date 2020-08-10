@@ -11,6 +11,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 	File {from ="/library.systems/Parts.sysml"}
                     File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
                		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+               		File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
                		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
                 	File {from ="/library.domain/Quantities and Units/SI.sysml"}
 					File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
@@ -28,6 +29,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 				File {from ="/library.systems/Parts.sysml"}
                                 File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
                					File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+               					File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
                					File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
                 				File {from ="/library.domain/Quantities and Units/SI.sysml"}
 								File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
@@ -56,22 +58,16 @@ package '15_01-Constants' {
         attribute pi: Real = 3.14159265358979323846;
     }
 
-    /**
-     * Should this be in the ISQ library model?
-     */
     attribute def DimensionOneValue :> QuantityValue {
 		attribute magnitude: Real redefines QuantityValue::num;
     	attribute scale: DimensionOneUnit redefines QuantityValue::mRef;
     }
     
-    /**
-     * Should this ibe in the ISQ library model?
-     */
-    part def AccelerationUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
+    attribute def AccelerationUnit :> SIDerivedUnit {
+		attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
 			attribute exponent redefines UnitPowerFactor::exponent = 1;
 		}
-		attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
+		attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
 			attribute exponent redefines UnitPowerFactor::exponent = -2;
 		}		
     }

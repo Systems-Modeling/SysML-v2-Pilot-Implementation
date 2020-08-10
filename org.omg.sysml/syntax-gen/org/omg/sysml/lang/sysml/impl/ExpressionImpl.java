@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -239,6 +240,15 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	public void setResult(Parameter newResult) {
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public Collection<Feature> getRedefinedFeatures() {
+		// Note: Ensures that all owned inputs and outputs are computed
+		// before checking for redefined features.
+		getInput();
+		getOutput();
+		return super.getRedefinedFeatures();
 	}
 	
 	// Utility methods

@@ -68,8 +68,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMembership(Membership mem){
-//		println("==checking membership " + mem.memberName);
-
 		val pack = mem.membershipOwningPackage;		
 		pack.ownedMembership.forEach[m|
 			if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m))
@@ -78,7 +76,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (pack instanceof Type){
 			pack.inheritedMembership.forEach[m|
 				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
-//					println("!!!: " + m.memberName)
 					warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 				}
 			]

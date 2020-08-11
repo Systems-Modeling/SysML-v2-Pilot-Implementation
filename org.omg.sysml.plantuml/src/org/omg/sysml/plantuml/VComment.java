@@ -72,8 +72,8 @@ public class VComment extends Visitor {
         append("\nend note ");
         append('\n');
 
-        List<Element> es = c.getAnnotatedElement();
-        for (Element e: es) {
+        Element e = a.getAnnotatedElement();
+        if (e != null) {
         	addPRelation(c, e, c);
         }
     }

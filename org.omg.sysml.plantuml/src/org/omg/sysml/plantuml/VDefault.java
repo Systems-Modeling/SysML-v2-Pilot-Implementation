@@ -26,6 +26,7 @@ package org.omg.sysml.plantuml;
 
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
@@ -63,8 +64,9 @@ public class VDefault extends VTraverser {
 
     @Override
     public String caseAnnotation(Annotation a) {
-        List<Comment> cs = a.getDocumentationComment();
-        for (Comment c: cs) {
+        AnnotatingElement ae = a.getAnnotatingElement();
+        if (ae instanceof Comment) {
+            Comment c = (Comment) ae;
             VComment v = new VComment(this);
             v.addComment(c, a);
         }

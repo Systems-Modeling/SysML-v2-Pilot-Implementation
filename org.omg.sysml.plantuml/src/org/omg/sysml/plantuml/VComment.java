@@ -71,7 +71,8 @@ public class VComment extends Visitor {
         addTrimmedBody(c.getBody());
         append("\nend note ");
         append('\n');
-
+        
+        if (a == null) return;
         Element e = a.getAnnotatedElement();
         if (e != null) {
         	addPRelation(c, e, c);

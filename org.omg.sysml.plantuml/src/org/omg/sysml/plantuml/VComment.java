@@ -24,8 +24,6 @@
 
 package org.omg.sysml.plantuml;
 
-import java.util.List;
-
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;

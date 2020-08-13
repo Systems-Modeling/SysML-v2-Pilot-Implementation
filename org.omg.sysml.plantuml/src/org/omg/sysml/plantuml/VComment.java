@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,12 +20,14 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
 package org.omg.sysml.plantuml;
 
-import org.omg.sysml.lang.sysml.Annotation;
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 
@@ -60,7 +63,7 @@ public class VComment extends Visitor {
         }
     }
 
-	public void addComment(Comment c, Annotation a) {
+	public void addComment(Comment c) {
         if (checkId(c)) return;
         append("note as ");
         addIdStr(c);
@@ -70,10 +73,9 @@ public class VComment extends Visitor {
         append("\nend note ");
         append('\n');
         
-        if (a == null) return;
-        Element e = a.getAnnotatedElement();
-        if (e != null) {
-        	addPRelation(c, e, c);
+        List<Element> e = c.getAnnotatedElement();
+        if (!e.isEmpty()) {
+        	addPRelation(c, e.get(0), c);
         }
     }
 }

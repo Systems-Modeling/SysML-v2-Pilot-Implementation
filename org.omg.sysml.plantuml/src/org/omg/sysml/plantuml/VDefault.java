@@ -1,6 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation, PlantUML Visualization
  * Copyright (c) 2020 Mgnite Inc.
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +20,7 @@
  * 
  * Contributors:
  *  Hisashi Miyashita, Mgnite Inc.
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 
@@ -68,7 +70,7 @@ public class VDefault extends VTraverser {
         if (ae instanceof Comment) {
             Comment c = (Comment) ae;
             VComment v = new VComment(this);
-            v.addComment(c, a);
+            v.addComment(c);
         }
         return "";
     }
@@ -76,7 +78,7 @@ public class VDefault extends VTraverser {
     @Override
     public String caseComment(Comment c) {
         VComment v = new VComment(this);
-        v.addComment(c, null);
+        v.addComment(c);
         return "";
     }
 

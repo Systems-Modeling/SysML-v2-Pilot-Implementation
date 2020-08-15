@@ -298,8 +298,8 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	
 	// Note: The excludedCategories parameter is need when this operation is overridden in class Type.
 	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes) {
-		EList<Membership> publicMembership = this.getImportedMembership(excludedPackages, excludedTypes, true);
-		publicMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PUBLIC));
+		EList<Membership> publicMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
+		publicMembership.addAll(this.getImportedMembership(excludedPackages, excludedTypes, true));
 		return publicMembership;
 	}
 

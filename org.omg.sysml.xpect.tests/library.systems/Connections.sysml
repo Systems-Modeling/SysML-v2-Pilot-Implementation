@@ -5,6 +5,7 @@
 package Connections {
 	private import Objects::BinaryLink;
 	private import Objects::binaryLinks;
+	private import Items::Item;
 	private import Parts::Part;
 	private import Parts::parts;
 
@@ -16,8 +17,8 @@ package Connections {
 	 * the kernel Association SelfLink.)
 	 */
 	abstract connection def Connection :> BinaryLink, Part { // Need to handle n-ary connections.
-		end :>> source: Part[0..*];
-		end :>> target: Part[0..*];
+		end :>> source: Item[0..*];
+		end :>> target: Item[0..*];
 	}
 	
 	/**

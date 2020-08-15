@@ -8,9 +8,9 @@ package AHFNorway {
 	import ScalarValues::*;
 	
 	port def APISService :> SD{
-		serviceDefinition = "APISPullService";
-		intrfce_protocol = "{JSON}";
-		serviceURL = "pull";
+		:>> serviceDefinition = "APISPullService";
+		:>> intrfce_protocol = "{JSON}";
+		:>> serviceURL = "pull";
 		// functionalities 
 		out ref action getAllItems; // referring to generic functionality
 	}
@@ -23,9 +23,9 @@ package AHFNorway {
 		part def APISConsumer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:~APISService subsets services; // consuming the APISService
-			systemname = "UngerApisClient";
-			address = "Unger_network_ip"; 
-			portno = 0;
+			:>> systemname = "UngerApisClient";
+			:>> address = "Unger_network_ip"; 
+			:>> portno = 0;
 			
 			// Now calling the remote behavior through the port functionality
 			consumeditems:String;
@@ -51,17 +51,17 @@ package AHFNorway {
 			private state mqttGetAllItems:MQTTGetAllItems();
 			bind tellu::getAllItems = mqttGetAllItems;			
 			
-			systemname = "PrediktorApisServer";
-			address = "Prediktor_network_ip";
-			portno = 6565;
+			:>> systemname = "PrediktorApisServer";
+			:>> address = "Prediktor_network_ip";
+			:>> portno = 6565;
 		}
 		
 		part def TellUConsumer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port tellu:~APISService subsets services;
-			systemname = "TellUClient";
-			address = "Prediktor_network_ip";
-			portno = 1;
+			:>> systemname = "TellUClient";
+			:>> address = "Prediktor_network_ip";
+			:>> portno = 1;
 			
 			// Now sending signal to the remote behavior through the port functionality
 			state MQTT_TellU {

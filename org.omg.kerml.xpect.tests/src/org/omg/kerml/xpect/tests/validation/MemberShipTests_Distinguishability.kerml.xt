@@ -1,0 +1,59 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+package test{
+	//* XPECT warnings ---
+	 "Duplicate member name1" at "class A {}"
+	 "Duplicate member name1" at "class A {}"
+	 "Duplicate member name1" at "class A {}"
+	--- */ 
+	class A {}
+	//* XPECT warnings ---
+	    "Duplicate member name1" at "package A{  		class A {}  		alias A as A_alias;  	}"
+	    "Duplicate member name1" at "package A{  		class A {}  		alias A as A_alias;  	}"
+	    "Duplicate member name1" at "package A{  		class A {}  		alias A as A_alias;  	}"
+	    --- */
+	package A{
+		class A {}
+		alias A as A_alias;
+	}
+	//* XPECT warnings ---
+		"Duplicate member name1" at "package A{}"
+		"Duplicate member name1" at "package A{}"
+		"Duplicate member name1" at "package A{}"
+	---	*/
+	package A{}
+	//* XPECT warnings --- 
+	   "Duplicate member name1" at "feature A: A::A_alias;"
+	   "Duplicate member name1" at "feature A: A::A_alias;"
+	   "Duplicate member name1" at "feature A: A::A_alias;"
+	--- */
+	feature A: A::A_alias;
+	feature B: A::A_alias;
+	
+	class C {
+		class D {}
+		class F {}
+	}
+	class D :> C {
+		// XPECT warnings --> "Duplicate member name2" at "class D {}"
+		class D {}
+	}
+	class E :> D {
+		// XPECT warnings --> "Duplicate member name2" at "class F {}"
+		class F {}
+	}
+	
+
+}

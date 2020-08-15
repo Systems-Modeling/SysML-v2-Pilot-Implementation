@@ -9,11 +9,10 @@ package SIPrefixes {
 	 * 
 	 * See also https://en.wikipedia.org/wiki/Unit_prefix
 	 */
-	attribute yocto = UnitPrefix(name => "yocto", symbol => "y",  conversionFactor => 1E-27);
-	attribute zepto = UnitPrefix(name => "zepto", symbol => "z",  conversionFactor => 1E-24);
-	attribute atto  = UnitPrefix(name => "atto",  symbol => "a",  conversionFactor => 1E-21);
-	attribute femto = UnitPrefix(name => "femto", symbol => "f",  conversionFactor => 1E-18);
-	attribute nano  = UnitPrefix(name => "nano",  symbol => "n",  conversionFactor => 1E-15);
+	attribute yocto = UnitPrefix(name => "yocto", symbol => "y",  conversionFactor => 1E-24);
+	attribute zepto = UnitPrefix(name => "zepto", symbol => "z",  conversionFactor => 1E-21);
+	attribute atto  = UnitPrefix(name => "atto",  symbol => "a",  conversionFactor => 1E-18);
+	attribute femto = UnitPrefix(name => "femto", symbol => "f",  conversionFactor => 1E-15);
 	attribute pico  = UnitPrefix(name => "pico",  symbol => "p",  conversionFactor => 1E-12);
 	attribute nano  = UnitPrefix(name => "nano",  symbol => "n",  conversionFactor => 1E-9);
 	attribute micro = UnitPrefix(name => "micro", symbol => "μ",  conversionFactor => 1E-6);

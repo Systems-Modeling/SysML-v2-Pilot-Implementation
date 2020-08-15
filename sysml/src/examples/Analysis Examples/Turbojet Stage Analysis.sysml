@@ -15,7 +15,7 @@ package 'Turbojet Stage Analysis' {
 	    }
 	    
 	    // The "in" and "return" direction markers are optional.
-	    calc def 'Reversible Adiabatic Compression Density' (rho_1, rho_2, p_1, p_2, gamma) rho_2 {
+	    calc def 'Reversible Adiabatic Compression Density' (rho_1, p_1, p_2, gamma) rho_2 {
 	        rho_1 * (p_2 / p_1)**(1/gamma)
 	    }
 	    

@@ -314,7 +314,7 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 		EList<Membership> importedMembership = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__IMPORTED_MEMBERSHIP);
 		Collection<Membership> nonpublicMembership = onlyPublic? new HashSet<Membership>(): null;
 		for (Import _import: this.getOwnedImport()) {
-			if (!excludedPackages.contains(_import.getImportedPackage())) {
+			if (!excludedPackages.contains(_import.getImportOwningPackage())) {
 				((ImportImpl)_import).importMembership(importedMembership, nonpublicMembership, excludedPackages, excludedTypes);
 			}
 		}

@@ -662,8 +662,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>annotatedElement&lt;/code> of this Annotation, when it is also its &lt;code>owningRelatedElement&lt;/code>."/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Relationship/owningRelatedElement"/>
-      <eAnnotations source="subsets" references="#//Annotation/annotatedElement"/>
+      <eAnnotations source="subsets" references="#//Annotation/annotatedElement #//Relationship/owningRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotatingElement" eSuperTypes="#//Element">

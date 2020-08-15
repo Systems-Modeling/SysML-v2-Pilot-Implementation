@@ -4353,7 +4353,7 @@ otherwise it subsets either &lt;code>actions&lt;/code> or &lt;code>subactions&lt
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f1ff28c1-5ef9-4468-a040-5a5e698247c6" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1a7b2906-a046-494a-a23d-3ac8cbfeaf48" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="2388a6c0-e1b5-4a97-ac6a-1aafd4f32147" name="owningAnnotatedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" redefinedProperty="53d1b371-a5c5-4812-87a8-a61e672f7314" subsettedProperty="9cb24139-400c-4446-9029-caa031ce7380" association="3e23c631-5451-41e4-a047-5d4795c11d60">
+    <ownedAttribute xmi:id="2388a6c0-e1b5-4a97-ac6a-1aafd4f32147" name="owningAnnotatedElement" visibility="public" type="fff854cf-ff36-41d3-94f6-fb13f8063186" subsettedProperty="9cb24139-400c-4446-9029-caa031ce7380 53d1b371-a5c5-4812-87a8-a61e672f7314" association="3e23c631-5451-41e4-a047-5d4795c11d60">
       <ownedComment xmi:id="7d02d6fe-9ab0-4728-9f03-eeca59d93ffb" annotatedElement="2388a6c0-e1b5-4a97-ac6a-1aafd4f32147">
         <body>&lt;p>The &lt;code>annotatedElement&lt;/code> of this Annotation, when it is also its &lt;code>owningRelatedElement&lt;/code>.</body>
       </ownedComment>

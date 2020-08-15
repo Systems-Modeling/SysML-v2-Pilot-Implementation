@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getAnnotatingElement <em>Annotating Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AnnotationImpl#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  * </ul>
@@ -265,6 +266,12 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 					setAnnotatedElement(newOwningAnnotatedElement);
 				}
 			}
+			if (newOwningAnnotatedElement != null) {
+				Element owningRelatedElement = getOwningRelatedElement();
+				if (newOwningAnnotatedElement != owningRelatedElement) {
+					setOwningRelatedElement(newOwningAnnotatedElement);
+				}
+			}
 		}
 		return msgs;
 	}
@@ -289,15 +296,6 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT, newOwningAnnotatedElement, newOwningAnnotatedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningAnnotatedElement() {
-		return getOwningAnnotatedElement() != null;
 	}
 
 	/**
@@ -331,7 +329,8 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 */
 	@Override
 	public Element getOwningRelatedElement() {
-		return getOwningAnnotatedElement();
+		if (eContainerFeatureID() != SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
 	}
 
 	/**
@@ -340,7 +339,15 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * @generated
 	 */
 	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		return basicSetOwningAnnotatedElement(newOwningRelatedElement, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT, msgs);
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			Element owningAnnotatedElement = getOwningAnnotatedElement();
+			if (owningAnnotatedElement != null && owningAnnotatedElement != newOwningRelatedElement) {
+				setOwningAnnotatedElement(null);
+			}
+		}
+		return msgs;
 	}
 
 	/**
@@ -348,17 +355,21 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		setOwningAnnotatedElement(newOwningRelatedElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningRelatedElement() {
-  		return false;
+		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningRelatedElement != null)
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 
 	/**
@@ -393,6 +404,10 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				if (annotatingElement != null)
 					msgs = ((InternalEObject)annotatingElement).eInverseRemove(this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION, AnnotatingElement.class, msgs);
@@ -413,6 +428,8 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				return basicSetAnnotatingElement(null, msgs);
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
@@ -429,6 +446,8 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP, Element.class, msgs);
 		}
@@ -507,16 +526,16 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 		switch (featureID) {
 			case SysMLPackage.ANNOTATION__ANNOTATED_ELEMENT:
 				return isSetAnnotatedElement();
+			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
 			case SysMLPackage.ANNOTATION__SOURCE:
 				return isSetSource();
 			case SysMLPackage.ANNOTATION__TARGET:
 				return isSetTarget();
-			case SysMLPackage.ANNOTATION__OWNING_RELATED_ELEMENT:
-				return isSetOwningRelatedElement();
 			case SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT:
 				return isSetAnnotatingElement();
 			case SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT:
-				return isSetOwningAnnotatedElement();
+				return getOwningAnnotatedElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

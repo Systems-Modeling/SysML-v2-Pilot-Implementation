@@ -107,11 +107,6 @@ public interface Annotation extends Relationship {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement() <em>Annotated Element</em>}'</li>
-	 * </ul>
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -124,7 +119,6 @@ public interface Annotation extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_OwningAnnotatedElement()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp
 	 * @model opposite="ownedAnnotation_comp" transient="false" ordered="false"
-	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated
 	 */

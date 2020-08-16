@@ -793,11 +793,13 @@ fragment StateDefBodyItem returns SysML::Type :
 ;
 
 StateActionUsage returns SysML::ActionUsage :
-	  EmptyActionUsage ';' | PerformedActionUsage ActionDefBody
+	EmptyActionUsage ';' | PerformedActionUsage ActionDefBody
 ;
 
 PerformedActionUsage returns SysML::ActionUsage :
-	PerformActionUsageDeclaration | AcceptNodeDeclaration | SendNodeDeclaration
+	  {SysML::PerformActionUsage} PerformActionUsageDeclaration 
+	| {SysML::AcceptActionUsage} AcceptNodeDeclaration 
+	| {SysML::SendActionUsage} SendNodeDeclaration
 ;
 
 EmptyActionUsage returns SysML::ActionUsage :

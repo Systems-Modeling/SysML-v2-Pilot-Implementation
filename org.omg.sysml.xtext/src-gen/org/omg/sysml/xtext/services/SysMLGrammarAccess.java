@@ -4196,25 +4196,52 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	public class PerformedActionUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PerformedActionUsage");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPerformActionUsageDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cAcceptNodeDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSendNodeDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cPerformActionUsageAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final RuleCall cPerformActionUsageDeclarationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cAcceptActionUsageAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final RuleCall cAcceptNodeDeclarationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Action cSendActionUsageAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final RuleCall cSendNodeDeclarationParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		
 		//PerformedActionUsage SysML::ActionUsage:
-		//	PerformActionUsageDeclaration | AcceptNodeDeclaration | SendNodeDeclaration;
+		//	{SysML::PerformActionUsage} PerformActionUsageDeclaration
+		//	| {SysML::AcceptActionUsage} AcceptNodeDeclaration
+		//	| {SysML::SendActionUsage} SendNodeDeclaration;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//PerformActionUsageDeclaration | AcceptNodeDeclaration | SendNodeDeclaration
+		//{SysML::PerformActionUsage} PerformActionUsageDeclaration | {SysML::AcceptActionUsage} AcceptNodeDeclaration |
+		//{SysML::SendActionUsage} SendNodeDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//{SysML::PerformActionUsage} PerformActionUsageDeclaration
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//{SysML::PerformActionUsage}
+		public Action getPerformActionUsageAction_0_0() { return cPerformActionUsageAction_0_0; }
+		
 		//PerformActionUsageDeclaration
-		public RuleCall getPerformActionUsageDeclarationParserRuleCall_0() { return cPerformActionUsageDeclarationParserRuleCall_0; }
+		public RuleCall getPerformActionUsageDeclarationParserRuleCall_0_1() { return cPerformActionUsageDeclarationParserRuleCall_0_1; }
+		
+		//{SysML::AcceptActionUsage} AcceptNodeDeclaration
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::AcceptActionUsage}
+		public Action getAcceptActionUsageAction_1_0() { return cAcceptActionUsageAction_1_0; }
 		
 		//AcceptNodeDeclaration
-		public RuleCall getAcceptNodeDeclarationParserRuleCall_1() { return cAcceptNodeDeclarationParserRuleCall_1; }
+		public RuleCall getAcceptNodeDeclarationParserRuleCall_1_1() { return cAcceptNodeDeclarationParserRuleCall_1_1; }
+		
+		//{SysML::SendActionUsage} SendNodeDeclaration
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//{SysML::SendActionUsage}
+		public Action getSendActionUsageAction_2_0() { return cSendActionUsageAction_2_0; }
 		
 		//SendNodeDeclaration
-		public RuleCall getSendNodeDeclarationParserRuleCall_2() { return cSendNodeDeclarationParserRuleCall_2; }
+		public RuleCall getSendNodeDeclarationParserRuleCall_2_1() { return cSendNodeDeclarationParserRuleCall_2_1; }
 	}
 	public class EmptyActionUsageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyActionUsage");
@@ -15697,7 +15724,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PerformedActionUsage SysML::ActionUsage:
-	//	PerformActionUsageDeclaration | AcceptNodeDeclaration | SendNodeDeclaration;
+	//	{SysML::PerformActionUsage} PerformActionUsageDeclaration
+	//	| {SysML::AcceptActionUsage} AcceptNodeDeclaration
+	//	| {SysML::SendActionUsage} SendNodeDeclaration;
 	public PerformedActionUsageElements getPerformedActionUsageAccess() {
 		return pPerformedActionUsage;
 	}

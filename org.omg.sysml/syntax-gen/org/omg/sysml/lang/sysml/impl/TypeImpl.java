@@ -782,10 +782,12 @@ public class TypeImpl extends PackageImpl implements Type {
 
 	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages,
 			Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> membership = getOwnedMembership();
+		List<Membership> membership = new ArrayList<>();
+		membership.addAll(getOwnedMembership());
 		membership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
 		membership.addAll(getImportedMembership(excludedPackages, excludedTypes, includeProtected));
-		return membership;
+		return new UnmodifiableEList<Membership>(this, SysMLPackage.eINSTANCE.getPackage_OwnedMembership(), membership.size(),
+				membership.toArray());
 	}
 
 	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages,

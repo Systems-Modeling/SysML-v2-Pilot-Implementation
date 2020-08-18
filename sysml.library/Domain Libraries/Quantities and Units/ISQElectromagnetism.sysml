@@ -1,6 +1,5 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard IEC-80000-06:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *

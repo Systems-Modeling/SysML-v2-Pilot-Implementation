@@ -33,32 +33,32 @@ package ISQ {
 	 */	 
 	abstract attribute def SIDerivedUnit :> DerivedUnit {
 		attribute lengthPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: LengthUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: LengthUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute massPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: MassUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: MassUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute timePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: TimeUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: TimeUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute electricCurrentPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: ElectricCurrentUnit  redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: ElectricCurrentUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute temperaturePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: TemperatureUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: TemperatureUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute amountOfSubstancePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: AmountOfSubstanceUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute luminousIntensityPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: LuminousIntensityUnit;
+			attribute redefines exponent = 0;
 		}
 	}	 
 }

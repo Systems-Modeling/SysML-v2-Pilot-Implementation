@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-14T11:04:34Z by sysml_v2_quantities_units_generator.py
+ * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard ISO-80000-03:2019 "Space and Time"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  *
@@ -249,10 +249,7 @@ package ISQSpaceTime {
      * definition: measure of a geometric figure, called plane angle, formed by two rays, called the sides of the plane angle, emanating from a common point, called the vertex of the plane angle
      * remarks: The angular measure is given by: `α = s/r` where `s` denotes the arc length (item 3-1.7) of the included arc of a circle, centred at the vertex of the plane angle, and `r` the radius (item 3-1.6) of that circle. Other symbols are also used.
      */
-    attribute def AngularMeasureUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def AngularMeasureUnit :> DimensionOneUnit {
     }
     attribute def AngularMeasureValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -296,10 +293,7 @@ package ISQSpaceTime {
      * definition: measure of a conical geometric figure, called solid angle, formed by all rays, originating from a common point, called the vertex of the solid angle, and passing through the points of a closed, non-self-intersecting curve in space considered as the border of a surface
      * remarks: The differential solid angular measure expressed in spherical coordinates (ISO 80000-2) is given by: `dΩ = A/r^2 * sin(θ * dθ * dφ)` where `A` is area, `r` is radius, `θ` and `φ` are spherical coordinates.
      */
-    attribute def SolidAngularMeasureUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def SolidAngularMeasureUnit :> DimensionOneUnit {
     }
     attribute def SolidAngularMeasureValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -307,29 +301,29 @@ package ISQSpaceTime {
     }
     attribute solidAngularMeasure: SolidAngularMeasureValue :> quantity;
 
-    /**
-     * source: item 3-9 duration, time
+    /**    
+     * source: item 3-9 time, duration
      * symbol(s): t
      * application domain: General
-     * name: Duration
+     * name: Time
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: measure of the time difference between two events
      * remarks: Duration is often just called time. Time is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Duration is a measure of a time interval.
      */
-    attribute def DurationUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
+    attribute def TimeUnit :> SimpleUnit {
+        attribute unitPowerFactor :>> SimpleUnit::unitPowerFactor {
+            attribute unit: TimeUnit :>> UnitPowerFactor::unit;
         }
     }
-    attribute def DurationValue :> QuantityValue {
+    attribute def TimeValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: DurationUnit :>> QuantityValue::mRef;
-    }
-    attribute duration: DurationValue :> quantity;
-
-    alias DurationValue as TimeValue;
+        attribute mRef: TimeUnit :>> QuantityValue::mRef;
+    }    
     attribute time: TimeValue :> quantity;
+
+    alias TimeValue as DurationValue;
+    attribute duration: DurationValue :> quantity;
 
     /**
      * source: item 3-10.1 velocity
@@ -449,46 +443,27 @@ package ISQSpaceTime {
      * source: item 3-14 period duration, period
      * symbol(s): T
      * application domain: General
-     * name: PeriodDuration
+     * name: PeriodDuration (specializes Time)
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: duration (item 3-9) of one cycle of a periodic event
      * remarks: A periodic event is an event that occurs regularly with a fixed time interval.
      */
-    attribute def PeriodDurationUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def PeriodDurationValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: PeriodDurationUnit :>> QuantityValue::mRef;
-    }
-    attribute periodDuration: PeriodDurationValue :> quantity;
+    attribute periodDuration: TimeValue :> time;
 
-    alias PeriodDurationValue as PeriodValue;
-    attribute period: PeriodValue :> quantity;
+    alias periodDuration as period;
 
     /**
      * source: item 3-15 time constant
      * symbol(s): τ, T
      * application domain: General
-     * name: TimeConstant
+     * name: TimeConstant (specializes Time)
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: parameter characterizing the response to a step input of a first-order, linear time-invariant system
      * remarks: If a quantity is a function of the duration (item 3-9) expressed by: `F(t) prop e^(-t/τ)` where `t` denotes the duration (item 3-9), then `τ` denotes the time constant. Here the time constant `τ` applies to an exponentially decaying quantity.
      */
-    attribute def TimeConstantUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def TimeConstantValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: TimeConstantUnit :>> QuantityValue::mRef;
-    }
-    attribute timeConstant: TimeConstantValue :> quantity;
+    attribute timeConstant: TimeValue :> time;
 
     /**
      * source: item 3-16 rotation
@@ -500,10 +475,7 @@ package ISQSpaceTime {
      * definition: number of revolutions
      * remarks: `N` is the number (not necessarily an integer) of revolutions, for example, of a rotating body about a given axis. Its value is given by: `N = φ/(2 π)` where `φ` denotes the measure of rotational displacement (item 3-6).
      */
-    attribute def RotationUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RotationUnit :> DimensionOneUnit {
     }
     attribute def RotationValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -569,22 +541,13 @@ package ISQSpaceTime {
      * source: item 3-19 wavelength
      * symbol(s): λ
      * application domain: General
-     * name: Wavelength
+     * name: Wavelength (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: length (item 3-1.1) of the repetition interval of a wave
      * remarks: 
      */
-    attribute def WavelengthUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def WavelengthValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: WavelengthUnit :>> QuantityValue::mRef;
-    }
-    attribute wavelength: WavelengthValue :> quantity;
+    attribute wavelength: LengthValue :> length;
 
     /**
      * source: item 3-20 repetency, wavenumber
@@ -727,10 +690,7 @@ package ISQSpaceTime {
      * definition: product of damping coefficient (item 3-24) and period duration (item 3-14)
      * remarks: 
      */
-    attribute def LogarithmicDecrementUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LogarithmicDecrementUnit :> DimensionOneUnit {
     }
     attribute def LogarithmicDecrementValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -748,10 +708,7 @@ package ISQSpaceTime {
      * definition: gradual decrease in magnitude (ISO 80000-2) of any kind of flux through a medium
      * remarks: If a quantity is a function of distance (item 3-1.8) expressed by: `f(x) prop e^(-α x)` where `x` denotes distance (item 3-1.8), then `α` denotes attenuation. The inverse of attenuation is called attenuation length.
      */
-    attribute def AttenuationUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def AttenuationUnit :> DimensionOneUnit {
     }
     attribute def AttenuationValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -766,24 +723,36 @@ package ISQSpaceTime {
      * source: item 3-26.2 phase coefficient
      * symbol(s): β
      * application domain: General
-     * name: PhaseCoefficient (specializes Attenuation)
+     * name: PhaseCoefficient
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: change of phase angle (item 3-7) with the length (item 3-1.1) along the path travelled by a plane wave
      * remarks: If a quantity is a function of distance expressed by: `f(x) prop cos(β(x-x_0))` where `x` denotes distance (item 3-1.8), then `β` denotes the phase coefficient.
      */
-    attribute phaseCoefficient: AttenuationValue :> attenuation;
+    attribute def PhaseCoefficientUnit :> DimensionOneUnit {
+    }
+    attribute def PhaseCoefficientValue :> QuantityValue {
+        attribute num: Real :>> QuantityValue::num;
+        attribute mRef: PhaseCoefficientUnit :>> QuantityValue::mRef;
+    }
+    attribute phaseCoefficient: PhaseCoefficientValue :> quantity;
 
     /**
      * source: item 3-26.3 propagation coefficient
      * symbol(s): γ
      * application domain: General
-     * name: PropagationCoefficient (specializes Attenuation)
+     * name: PropagationCoefficient
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: measure of the change of amplitude and phase angle (item 3-7) of a plane wave propagating in a given direction
      * remarks: The propagation coefficient is given by: `γ = α + iβ` where `α` denotes attenuation (item 3-26.1) and `β` the phase coefficient (item 3-26.2) of a plane wave.
      */
-    attribute propagationCoefficient: AttenuationValue :> attenuation;
+    attribute def PropagationCoefficientUnit :> DimensionOneUnit {
+    }
+    attribute def PropagationCoefficientValue :> QuantityValue {
+        attribute num: Real :>> QuantityValue::num;
+        attribute mRef: PropagationCoefficientUnit :>> QuantityValue::mRef;
+    }
+    attribute propagationCoefficient: PropagationCoefficientValue :> quantity;
 
 }

@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-14T11:04:34Z by sysml_v2_quantities_units_generator.py
+ * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard IEC-80000-06:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *
@@ -514,10 +514,7 @@ package ISQElectromagnetism {
      * definition: `ε_r = ε / ε_0` where `ε` is permittivity (item 6-14.2) and `ε_0` is the electric constant (item 6-14.1)
      * remarks: See IEC 60050-121, item 121-12-13.
      */
-    attribute def RelativePermittivityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativePermittivityUnit :> DimensionOneUnit {
     }
     attribute def RelativePermittivityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -535,10 +532,7 @@ package ISQElectromagnetism {
      * definition: `vec(P) = ε_0 χ vec(E)` where `vec(P)` is electric polarization (item 6-7), `ε_0` is the electric constant (item 6-14. 1) and `vec(E)` is electric field strength (item 6-10)
      * remarks: `χ = ε_r - 1`. The definition applies to an isotropic medium. For an anisotropic medium, electric susceptibility is a second order tensor. See IEC 60050-121, item 121-12-19.
      */
-    attribute def ElectricSusceptibilityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ElectricSusceptibilityUnit :> DimensionOneUnit {
     }
     attribute def ElectricSusceptibilityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -598,43 +592,25 @@ package ISQElectromagnetism {
      * source: item 6-19.1 displacement current
      * symbol(s): I_D
      * application domain: General
-     * name: DisplacementCurrent
+     * name: DisplacementCurrent (specializes ElectricCurrent)
      * quantity dimension: I^1
      * measurement unit(s): A
      * definition: `I = int_S vec(J_D) * vec(e_n) dA` over a surface `S`, where `vec(J_D)` is displacement current density (item 6-18) en `vec(e_n) dA` is the vector surface element (ISO 80000-3 item 3-3)
      * remarks: See IEC 60050-121, item 121-11-43.
      */
-    attribute def DisplacementCurrentUnit :> SIDerivedUnit {
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def DisplacementCurrentValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: DisplacementCurrentUnit :>> QuantityValue::mRef;
-    }
-    attribute displacementCurrent: DisplacementCurrentValue :> quantity;
+    attribute displacementCurrent: ElectricCurrentValue :> electricCurrent;
 
     /**
      * source: item 6-19.2 total current
      * symbol(s): I_(tot), I_t
      * application domain: General
-     * name: TotalCurrent
+     * name: TotalCurrent (specializes ElectricCurrent)
      * quantity dimension: I^1
      * measurement unit(s): A
      * definition: `I_(tot) = I + I_D` where `I` is electric current (item 6-1) and `I_D` is displacement current (item 6-19.1)
      * remarks: See IEC 60050-121, item 121-11-45.
      */
-    attribute def TotalCurrentUnit :> SIDerivedUnit {
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def TotalCurrentValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: TotalCurrentUnit :>> QuantityValue::mRef;
-    }
-    attribute totalCurrent: TotalCurrentValue :> quantity;
+    attribute totalCurrent: ElectricCurrentValue :> electricCurrent;
 
     /**
      * source: item 6-20 total current density
@@ -898,10 +874,7 @@ package ISQElectromagnetism {
      * definition: `μ_r = μ / μ_0`  where `μ` is permeability (item 6-24) and `μ_0` is the magnetic constant (item 6-26.1)
      * remarks: See IEC 60050-121, item 121-12-29.
      */
-    attribute def RelativePermeabilityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativePermeabilityUnit :> DimensionOneUnit {
     }
     attribute def RelativePermeabilityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -919,10 +892,7 @@ package ISQElectromagnetism {
      * definition: `vec(M) = κ vec(H)` where `vec(M)` is magnetization (item 6-24) and `vec(H)` is magnetic field strength (item 6-25)
      * remarks: `κ = μ_r - 1` This definition applies to an isotropic medium. For an anisotropic medium magnetic susceptibility is a second order tensor. See IEC 60050-121, item 121-12-37.
      */
-    attribute def MagneticSusceptibilityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MagneticSusceptibilityUnit :> DimensionOneUnit {
     }
     attribute def MagneticSusceptibilityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1180,43 +1150,25 @@ package ISQElectromagnetism {
      * source: item 6-37.1 scalar magnetic potential
      * symbol(s): V_m, φ
      * application domain: General
-     * name: ScalarMagneticPotential
+     * name: ScalarMagneticPotential (specializes ElectricCurrent)
      * quantity dimension: I^1
      * measurement unit(s): A
      * definition: for an irrotational magnetic field strength `vec(H) =  - nabla V_m` where `vec(H)` is magnetic field strength (item 6-25)
      * remarks: The magnetic scalar potential is not unique since any constant scalar field can be added to it without changing its gradient. See IEC 60050-121, item 121-11-58.
      */
-    attribute def ScalarMagneticPotentialUnit :> SIDerivedUnit {
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def ScalarMagneticPotentialValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ScalarMagneticPotentialUnit :>> QuantityValue::mRef;
-    }
-    attribute scalarMagneticPotential: ScalarMagneticPotentialValue :> quantity;
+    attribute scalarMagneticPotential: ElectricCurrentValue :> electricCurrent;
 
     /**
      * source: item 6-37.2 magnetic tension
      * symbol(s): U_m
      * application domain: General
-     * name: MagneticTension
+     * name: MagneticTension (specializes ElectricCurrent)
      * quantity dimension: I^1
      * measurement unit(s): A
      * definition: `U_m = int_(vec(r_a) (C))^(vec(r_b)) vec(H) * d(vec(r))` where `vec(H)` is magnetic field strength (item 6-25) and `vec(r)` is position vector (ISO 80000-3, item 3-1.11) along a given curve `C` from point `a` to point `b`
      * remarks: For an irrotational magnetic field strength this quantity is equal to the magnetic potential difference. See IEC 60050-121, item121-11-57.
      */
-    attribute def MagneticTensionUnit :> SIDerivedUnit {
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def MagneticTensionValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: MagneticTensionUnit :>> QuantityValue::mRef;
-    }
-    attribute magneticTension: MagneticTensionValue :> quantity;
+    attribute magneticTension: ElectricCurrentValue :> electricCurrent;
 
     /**
      * source: item 6-37.3 magnetomotive force
@@ -1243,22 +1195,13 @@ package ISQElectromagnetism {
      * source: item 6-37.4 current linkage
      * symbol(s): Θ
      * application domain: General
-     * name: CurrentLinkage
+     * name: CurrentLinkage (specializes ElectricCurrent)
      * quantity dimension: I^1
      * measurement unit(s): A
      * definition: net electric current (item 6-1) through a surface delimited by a closed loop
      * remarks: When `Θ` results from `N` (item 6-38) equal electric currents `I` (item 6-1 ), then `Θ = N I`. See IEC 60050-121 , item 121 -11-46.
      */
-    attribute def CurrentLinkageUnit :> SIDerivedUnit {
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def CurrentLinkageValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: CurrentLinkageUnit :>> QuantityValue::mRef;
-    }
-    attribute currentLinkage: CurrentLinkageValue :> quantity;
+    attribute currentLinkage: ElectricCurrentValue :> electricCurrent;
 
     /**
      * source: item 6-38 number of turns in a winding
@@ -1270,10 +1213,7 @@ package ISQElectromagnetism {
      * definition: number of turns in a winding (same as the quantity name)
      * remarks: N may be non-integer number, see ISO 80000-3, item 3-14.
      */
-    attribute def NumberOfTurnsInAWindingUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NumberOfTurnsInAWindingUnit :> DimensionOneUnit {
     }
     attribute def NumberOfTurnsInAWindingValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1414,10 +1354,7 @@ package ISQElectromagnetism {
      * definition: for inductive coupling between two inductive elements `k = |L_(mn)| / sqrt(L_m L_n)` where `L_m` and `L_n` are their self inductances (item 6-41 .1 ), and `L_(mn)` is their mutual inductance (item 6-41.2)
      * remarks: See IEC 60050-131 , item 131-12-41.
      */
-    attribute def CouplingFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def CouplingFactorUnit :> DimensionOneUnit {
     }
     attribute def CouplingFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1435,10 +1372,7 @@ package ISQElectromagnetism {
      * definition: `σ = 1 - k^2` where `k` is the coupling factor (item 6-42 .1)
      * remarks: See IEC 60050-131 , item 131-12-42.
      */
-    attribute def LeakageFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LeakageFactorUnit :> DimensionOneUnit {
     }
     attribute def LeakageFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1618,22 +1552,13 @@ package ISQElectromagnetism {
      * source: item 6-49 electric current phasor
      * symbol(s): underline(I)
      * application domain: General
-     * name: ElectricCurrentPhasor
+     * name: ElectricCurrentPhasor (specializes ElectricCurrent)
      * quantity dimension: I^1
      * measurement unit(s): A
      * definition: when `i = hat(I) cos(ωt + α)`, where `i` is the electric current (item 6-1 ), `ω` is angular frequency (ISO 80000-3, item 3-16), `t` is time (ISO 80000-3, item 3-7), and `α` is initial phase (ISO 80000-3, item 3-5), then `underline(l) = I e^(jα)`
      * remarks: `underline(l)` is the complex representation of the electric current `i = hat(I) cos(ωt + α)`. `j` is the imaginary unit.
      */
-    attribute def ElectricCurrentPhasorUnit :> SIDerivedUnit {
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def ElectricCurrentPhasorValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ElectricCurrentPhasorUnit :>> QuantityValue::mRef;
-    }
-    attribute electricCurrentPhasor: ElectricCurrentPhasorValue :> quantity;
+    attribute electricCurrentPhasor: ElectricCurrentValue :> electricCurrent;
 
     /**
      * source: item 6-50 voltage phasor
@@ -1822,34 +1747,16 @@ package ISQElectromagnetism {
     attribute complexAdmittance: ComplexAdmittanceValue :> quantity;
 
     /**
-     * source: item 6-52.2 conductance (for alternating current)
+     * source: item 6-52.2 conductance for alternating current
      * symbol(s): G
      * application domain: General
-     * name: Conductance(ForAlternatingCurrent)
+     * name: ConductanceForAlternatingCurrent (specializes Conductance)
      * quantity dimension: L^-2*M^-1*T^3*I^2
      * measurement unit(s): S
      * definition: `G = "Re" underline(Y)` where I is admittance (item 6-52.1)
      * remarks: See IEC 60050-131, item 131-12-53.
      */
-    attribute def Conductance(ForAlternatingCurrent)Unit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 3;
-        }
-        attribute electricCurrentPowerFactor :>> SIDerivedUnit::electricCurrentPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-    }
-    attribute def Conductance(ForAlternatingCurrent)Value :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: Conductance(ForAlternatingCurrent)Unit :>> QuantityValue::mRef;
-    }
-    attribute conductance(ForAlternatingCurrent): Conductance(ForAlternatingCurrent)Value :> quantity;
+    attribute conductanceForAlternatingCurrent: ConductanceValue :> conductance;
 
     /**
      * source: item 6-52.3 susceptance
@@ -1921,10 +1828,7 @@ package ISQElectromagnetism {
      * definition: for non-radiating systems, if `underline(Z) = R + jX`, then `Q = |X|/R` where `underline(Z)` is impedance (item 6-51. 1), `R` is resistance (item 6-51 .2), and `X` is reactance (item 6-51.3)
      * remarks: 
      */
-    attribute def QualityFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def QualityFactorUnit :> DimensionOneUnit {
     }
     attribute def QualityFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1942,10 +1846,7 @@ package ISQElectromagnetism {
      * definition: `d = 1/Q` where `Q` quality factor (item 6-53)
      * remarks: It is also named dissipation factor.
      */
-    attribute def LossFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LossFactorUnit :> DimensionOneUnit {
     }
     attribute def LossFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2005,10 +1906,7 @@ package ISQElectromagnetism {
      * definition: `λ = |P|/|S|` where `P`  is active power (item 6-56) and `S` is apparent power (item 6-57)
      * remarks: See I EC 60050-131, item 131-11-46.
      */
-    attribute def PowerFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def PowerFactorUnit :> DimensionOneUnit {
     }
     attribute def PowerFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;

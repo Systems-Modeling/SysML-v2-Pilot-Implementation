@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-14T11:04:34Z by sysml_v2_quantities_units_generator.py
+ * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard ISO-80000-04:2019 "Mechanics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-4:ed-2:v1:en
  *
@@ -97,10 +97,7 @@ package ISQMechanics {
      * definition: quotient of mass density of a substance `ρ` and mass density of a reference substance `ρ_0` : `d = ρ/ρ_0`
      * remarks: Conditions and material should be specified for the reference substance.
      */
-    attribute def RelativeMassDensityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeMassDensityUnit :> DimensionOneUnit {
     }
     attribute def RelativeMassDensityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -576,10 +573,7 @@ package ISQMechanics {
      * definition: tensor (ISO 80000-2) quantity representing the deformation of matter caused by stress
      * remarks: Strain tensor is symmetric and has three linear-strain and three shear strain (Cartesian) components.
      */
-    attribute def StrainUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def StrainUnit :> DimensionOneUnit {
     }
     attribute def StrainValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -597,10 +591,7 @@ package ISQMechanics {
      * definition: quotient of change in length `Δ I` (ISO 80000-3) of an object and its length `l` (ISO 80000-3): `ε = (Δ I)/I`
      * remarks: 
      */
-    attribute def RelativeLinearStrainUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeLinearStrainUnit :> DimensionOneUnit {
     }
     attribute def RelativeLinearStrainValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -618,10 +609,7 @@ package ISQMechanics {
      * definition: quotient of parallel displacement `Δ x` (ISO 80000-3) of two surfaces of a layer and the thickness `d` (ISO 80000-3) of the layer: `γ = (Δ x)/d`
      * remarks: 
      */
-    attribute def ShearStrainUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ShearStrainUnit :> DimensionOneUnit {
     }
     attribute def ShearStrainValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -639,10 +627,7 @@ package ISQMechanics {
      * definition: quotient of change in volume `Δ V` (ISO 80000-3) of an object and its volume `V_0` (ISO 80000-3): `θ = (Δ V)/V_0`
      * remarks: 
      */
-    attribute def RelativeVolumeStrainUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeVolumeStrainUnit :> DimensionOneUnit {
     }
     attribute def RelativeVolumeStrainValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -660,10 +645,7 @@ package ISQMechanics {
      * definition: quotient of change in width `Δ b` (width is defined in ISO 80000-3) and change in length `Δ I` (length is defined in ISO 80000-3) of an object: `μ = (Δ b)/(Δ I)`
      * remarks: 
      */
-    attribute def PoissonNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def PoissonNumberUnit :> DimensionOneUnit {
     }
     attribute def PoissonNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -861,10 +843,7 @@ package ISQMechanics {
      * definition: proportionality factor between the maximum magnitude of the tangential component `F_max` of the static friction force (item 4-9.3) and the magnitude of the normal component `N` of the contact force (item 4-9.1) between two bodies at relative rest with respect to each other: `F_max = μ_s * N`
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both.
      */
-    attribute def StaticFrictionCoefficientUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def StaticFrictionCoefficientUnit :> DimensionOneUnit {
     }
     attribute def StaticFrictionCoefficientValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -888,10 +867,7 @@ package ISQMechanics {
      * definition: proportionality factor between the magnitudes of the kinetic friction force, `F_μ` (item 4-9.4) and the normal component `N` of the contact force (item 4-9.1): `F_μ = μ * N`
      * remarks: When it is not necessary to distinguish between dynamic friction factor and static friction factor, the name friction factor may be used for both. The dynamic friction factor `µ` is independent in first approximation of the contact surface.
      */
-    attribute def KineticFrictionFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def KineticFrictionFactorUnit :> DimensionOneUnit {
     }
     attribute def KineticFrictionFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -912,10 +888,7 @@ package ISQMechanics {
      * definition: proportionality factor between the magnitude of the tangential component `F` and the magnitude of the normal component `N` of the force applied to a body rolling on a surface at constant speed: `F = C_(rr) N`
      * remarks: Also known as rolling resistance coefficient, RRC.
      */
-    attribute def RollingResistanceFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RollingResistanceFactorUnit :> DimensionOneUnit {
     }
     attribute def RollingResistanceFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -933,10 +906,7 @@ package ISQMechanics {
      * definition: factor proportional to magnitude `F_D` of the drag force (item 4-9.6) of a body moving in a fluid, dependent on the shape and speed `v` (ISO 80000-3) of a body: `F_D = 1/2 * C_D * ρ * v^2 * A` where `rhp` is mass density (item 4-2) of the fluid and `A` is cross-section area (ISO 80000-3) of the body
      * remarks: 
      */
-    attribute def DragCoefficientUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def DragCoefficientUnit :> DimensionOneUnit {
     }
     attribute def DragCoefficientValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -948,7 +918,7 @@ package ISQMechanics {
     attribute dragFactor: DragFactorValue :> quantity;
 
     /**
-     * source: item 4-24 dynamic viscosity, (viscosity)
+     * source: item 4-24 dynamic viscosity, viscosity
      * symbol(s): η
      * application domain: General
      * name: DynamicViscosity
@@ -974,8 +944,8 @@ package ISQMechanics {
     }
     attribute dynamicViscosity: DynamicViscosityValue :> quantity;
 
-    alias DynamicViscosityValue as (Viscosity)Value;
-    attribute (Viscosity): (Viscosity)Value :> quantity;
+    alias DynamicViscosityValue as ViscosityValue;
+    attribute viscosity: ViscosityValue :> quantity;
 
     /**
      * source: item 4-25 kinematic viscosity
@@ -1173,10 +1143,7 @@ package ISQMechanics {
      * definition: quotient of output power `P_(out)` (item 4-27) from a system and input power `P_("in")` (item 4-27) to this system: `η = P_(out)/P_("in")`
      * remarks: The system must be specified. This quantity is often expressed by the unit percent, symbol %.
      */
-    attribute def EfficiencyUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def EfficiencyUnit :> DimensionOneUnit {
     }
     attribute def EfficiencyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1284,16 +1251,16 @@ package ISQMechanics {
     attribute volumeFlowRate: VolumeFlowRateValue :> quantity;
 
     /**
-     * source: item 4-32 action
+     * source: item 4-32 action quantity
      * symbol(s): S
      * application domain: General
-     * name: Action
+     * name: ActionQuantity
      * quantity dimension: L^2*M^1*T^-1
      * measurement unit(s): J*s, kg*m^2*s^-1
      * definition: time integral of energy `E` over a time interval (`t`_1, `t`_2): `S = int_(t_1)^(t_2) E dt`
      * remarks: The energy may be expressed by a Lagrangian or Hamiltonian function.
      */
-    attribute def ActionUnit :> SIDerivedUnit {
+    attribute def ActionQuantityUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
             attribute exponent :>> UnitPowerFactor::exponent = 2;
         }
@@ -1304,10 +1271,10 @@ package ISQMechanics {
             attribute exponent :>> UnitPowerFactor::exponent = -1;
         }
     }
-    attribute def ActionValue :> QuantityValue {
+    attribute def ActionQuantityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ActionUnit :>> QuantityValue::mRef;
+        attribute mRef: ActionQuantityUnit :>> QuantityValue::mRef;
     }
-    attribute action: ActionValue :> quantity;
+    attribute actionQuantity: ActionQuantityValue :> quantity;
 
 }

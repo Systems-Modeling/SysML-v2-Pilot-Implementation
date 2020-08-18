@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-14T11:04:34Z by sysml_v2_quantities_units_generator.py
+ * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard ISO-80000-10:2019 "Atomic and nuclear physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-10:ed-2:v1:en
  *
@@ -15,6 +15,21 @@ package ISQAtomicNuclear {
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
 
+    private import ISQSpaceTime::LengthValue;
+    private import ISQSpaceTime::length;
+    private import ISQSpaceTime::AreaValue;
+    private import ISQSpaceTime::area;
+    private import ISQSpaceTime::AngularFrequencyValue;
+    private import ISQSpaceTime::angularFrequency;
+    private import ISQSpaceTime::TimeValue;
+    private import ISQSpaceTime::time;
+    private import ISQMechanics::MassValue;
+    private import ISQMechanics::mass;
+    private import ISQThermodynamics::EnergyValue;
+    private import ISQThermodynamics::energy;
+    private import ISQElectromagnetism::ElectricChargeValue;
+    private import ISQElectromagnetism::electricCharge;
+
     /**
      * source: item 10-1.1 atomic number, proton number
      * symbol(s): Z
@@ -25,10 +40,7 @@ package ISQAtomicNuclear {
      * definition: number of protons in an atomic nucleus
      * remarks: A nuclide is a species of atom with specified numbers of protons and neutrons. Nuclides with the same value of `Z` but different values of `N` are called isotopes of an element. The ordinal number of an element in the periodic table is equal to the atomic number. The atomic number equals the quotient of the charge (IEC 80000-6) of the nucleus and the elementary charge (ISO 80000-1).
      */
-    attribute def AtomicNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def AtomicNumberUnit :> DimensionOneUnit {
     }
     attribute def AtomicNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -49,10 +61,7 @@ package ISQAtomicNuclear {
      * definition: number of neutrons in an atomic nucleus
      * remarks: Nuclides with the same value of `N` but different values of `Z` are called isotones. `N` - `Z` is called the neutron excess number.
      */
-    attribute def NeutronNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NeutronNumberUnit :> DimensionOneUnit {
     }
     attribute def NeutronNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -70,10 +79,7 @@ package ISQAtomicNuclear {
      * definition: number of nucleons in an atomic nucleus
      * remarks: `A` = `Z` + `N` Nuclides with the same value of `A` are called isobars.
      */
-    attribute def NucleonNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NucleonNumberUnit :> DimensionOneUnit {
     }
     attribute def NucleonNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -88,25 +94,15 @@ package ISQAtomicNuclear {
      * source: item 10-2 rest mass, proper mass
      * symbol(s): m(X), m_X
      * application domain: General
-     * name: RestMass
+     * name: RestMass (specializes Mass)
      * quantity dimension: M^1
      * measurement unit(s): kg, u, Da
      * definition: for particle X, mass (ISO 80000-4) of that particle at rest in an inertial frame
      * remarks: EXAMPLE `m`(H_2O) for a water molecule, `m_e` for an electron. Rest mass is often denoted `m_0`. 1 u is equal to 1/12 times the mass of a free carbon 12 atom, at rest and in its ground state. 1 Da = 1 u
      */
-    attribute def RestMassUnit :> SIDerivedUnit {
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def RestMassValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: RestMassUnit :>> QuantityValue::mRef;
-    }
-    attribute restMass: RestMassValue :> quantity;
+    attribute restMass: MassValue :> mass;
 
-    alias RestMassValue as ProperMassValue;
-    attribute properMass: ProperMassValue :> quantity;
+    alias restMass as properMass;
 
     /**
      * source: item 10-3 rest energy
@@ -193,10 +189,7 @@ package ISQAtomicNuclear {
      * definition: for a particle, quotient of the electric charge (IEC 80000-6) and the elementary charge (ISO 80000-1)
      * remarks: A particle is said to be electrically neutral if its charge number is equal to zero. The charge number of a particle can be positive, negative, or zero. The state of charge of a particle may be presented as a superscript to the symbol of that particle, e.g. `H^+, He^(++), Al^(3+), Cl^-, S^(--), N^(3-)`.
      */
-    attribute def ChargeNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ChargeNumberUnit :> DimensionOneUnit {
     }
     attribute def ChargeNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -211,22 +204,13 @@ package ISQAtomicNuclear {
      * source: item 10-6 Bohr radius
      * symbol(s): a_0
      * application domain: General
-     * name: BohrRadius
+     * name: BohrRadius (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m, Å
      * definition: radius (ISO 80000-3) of the electron orbital in the hydrogen atom in its ground state in the Bohr model of the atom: `a_0 = (4 π ε_0 ℏ^2)/(m_e e^2)` where `ε_0` is the electric constant (IEC 80000-6), `ℏ` is the reduced Planck constant (ISO 80000-1), `m_e` is the rest mass (item 10-2) of electron, and `e` is the elementary charge (ISO 80000-1)
      * remarks: The radius of the electron orbital in the H atom in its ground state is `a_0` in the Bohr model of the atom. ångström (Å), `1 Å := 10^-10 m`.
      */
-    attribute def BohrRadiusUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def BohrRadiusValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: BohrRadiusUnit :>> QuantityValue::mRef;
-    }
-    attribute bohrRadius: BohrRadiusValue :> quantity;
+    attribute bohrRadius: LengthValue :> length;
 
     /**
      * source: item 10-7 Rydberg constant
@@ -454,10 +438,7 @@ package ISQAtomicNuclear {
      * definition: number describing a particular state of a quantum system
      * remarks: Electron states determine the binding energy `E` = `E`(`n`,`l`,`m`,`j`,`s`,`f`) in an atom. Upper case letters `N`, `L`, `M`, `J`, `S, F` are usually used for the whole system. The spatial probability distribution of an electron is given by │`Ψ`│^2, where `Ψ` is its wave function. For an electron in an H atom in a non-relativistic approximation, the wave function can be presented as: `ψ(r, θ, φ) = R_(nl)(r)*Y_l^m(θ, φ) ` where `r, θ, φ` are spherical coordinates (ISO 80000-2) with respect to the nucleus and to a given (quantization) axis, `R_(nl)(r)` is the radial distribution function, and `Y_l^m(θ, φ) ` are spherical harmonics. In the Bohr model of one-electron atoms, `n`, `l`, and `m` define the possible orbits of an electron about the nucleus.
      */
-    attribute def QuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def QuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def QuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -469,13 +450,19 @@ package ISQAtomicNuclear {
      * source: item 10-13.2 principal quantum number
      * symbol(s): n
      * application domain: General
-     * name: PrincipalQuantumNumber (specializes QuantumNumber)
+     * name: PrincipalQuantumNumber
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: atomic quantum number related to the number `n`-1 of radial nodes of one-electron wave functions
      * remarks: In the Bohr model, `n` = 1,2,…,∞ is related to the binding energy of an electron and the radius of spherical orbits (principal axis of the elliptic orbits). For an electron in an H atom, the semi-classical radius of its orbit is `r_n` = `a_0``n`^2 and its binding energy is `E_n` = `E_H`/`n`^2.
      */
-    attribute principalQuantumNumber: QuantumNumberValue :> quantumNumber;
+    attribute def PrincipalQuantumNumberUnit :> DimensionOneUnit {
+    }
+    attribute def PrincipalQuantumNumberValue :> QuantityValue {
+        attribute num: Real :>> QuantityValue::num;
+        attribute mRef: PrincipalQuantumNumberUnit :>> QuantityValue::mRef;
+    }
+    attribute principalQuantumNumber: PrincipalQuantumNumberValue :> quantity;
 
     /**
      * source: item 10-13.3 orbital angular momentum quantum number
@@ -487,10 +474,7 @@ package ISQAtomicNuclear {
      * definition: atomic quantum number related to the orbital angular momentum `l` of a one-electron state
      * remarks: `abs(l)^2 = ℏ^2 l (l-1)` , `l = 0, 1, …, n-1` where `vec(l)` is the orbital angular momentum and `ℏ` is the reduced Planck constant (ISO 80000-1). If reference is made to a specific particle `i`, the symbol `l_i` is used instead of `l`; if reference is made to the whole system, the symbol `L` is used instead of `l`. An electron in an H atom for `l` = 0 appears as a spherical cloud. In the Bohr model, it is related to the form of the orbit.
      */
-    attribute def OrbitalAngularMomentumQuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def OrbitalAngularMomentumQuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def OrbitalAngularMomentumQuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -508,10 +492,7 @@ package ISQAtomicNuclear {
      * definition: atomic quantum number related to the `z` component `l_z`, `j_z` or `s_z`, of the orbital, total, or spin angular momentum
      * remarks: `l_z = m_l ℏ` , `j_z = m_j ℏ` , and `s_z = m_s ℏ` , with the ranges from `-l` to `l`, from `-j` to `j`, and ±1/2, respectively. `m_i` refers to a specific particle `i`. `M` is used for the whole system. Subscripts `l`, `s`, `j`, etc., as appropriate, indicate the angular momentum involved. `ℏ` is the reduced Planck constant (ISO 80000-1).
      */
-    attribute def MagneticQuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MagneticQuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def MagneticQuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -529,10 +510,7 @@ package ISQAtomicNuclear {
      * definition: characteristic quantum number `s` of a particle, related to its spin (item 10-10), `vec(s)`: `s^2 = ℏ^2 s (s+1)` where `ℏ` is the reduced Planck constant (ISO 80000-1)
      * remarks: Spin quantum numbers of fermions are odd multiples of 1/2, and those of bosons are integers.
      */
-    attribute def SpinQuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def SpinQuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def SpinQuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -550,10 +528,7 @@ package ISQAtomicNuclear {
      * definition: quantum number in an atom describing the magnitude of total angular momentum `vec(J)` (item 10-11)
      * remarks: `j_i` refers to a specific particle `i`; `J` is used for the whole system. The quantum number `J` and the magnitude of total angular momentum `vec(J)` (item 10-11) are different quantities. The two values of `j` are `l`±1/2. (See item 10-13.3.)
      */
-    attribute def TotalAngularMomentumQuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def TotalAngularMomentumQuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def TotalAngularMomentumQuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -571,10 +546,7 @@ package ISQAtomicNuclear {
      * definition: quantum number related to the total angular momentum (item 10-11), `vec(J)`, of a nucleus in any specified state, normally called nuclear spin: `vec(J)^2 = ℏ^2 I (I+1)` where `ℏ` is the reduced Planck constant (ISO 80000-1)
      * remarks: Nuclear spin is composed of spins of the nucleons (protons and neutrons) and their (orbital) motions. In principle there is no upper limit for the nuclear spin quantum number. It has possible values `I` = 0,1,2,… for even `A` and `I = 1/2, 3/2, …` for odd `A`. In nuclear and particle physics, `vec(J)` is often used.
      */
-    attribute def NuclearSpinQuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NuclearSpinQuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def NuclearSpinQuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -592,10 +564,7 @@ package ISQAtomicNuclear {
      * definition: quantum number of an atom describing the inclination of the nuclear spin with respect to a quantization axis given by the magnetic field produced by the orbital electrons
      * remarks: The interval of `F` is │`I`-`J`│, │`I`-`J`│+1, ..., `I`-`J`. This is related to the hyperfine splitting of the atomic energy levels due to the interaction between the electron and nuclear magnetic moments.
      */
-    attribute def HyperfineStructureQuantumNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def HyperfineStructureQuantumNumberUnit :> DimensionOneUnit {
     }
     attribute def HyperfineStructureQuantumNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -604,27 +573,24 @@ package ISQAtomicNuclear {
     attribute hyperfineStructureQuantumNumber: HyperfineStructureQuantumNumberValue :> quantity;
 
     /**
-     * source: item 10-14.1 Landé factor, g factor of atom
+     * source: item 10-14.1 Lande factor, g factor of atom
      * symbol(s): g
      * application domain: General
-     * name: LandéFactor
+     * name: LandeFactor
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of the magnetic dipole moment of an atom, and the product of the total angular momentum quantum number and the Bohr magneton: `g = μ/(J*μ_B)` where `μ` is magnitude of magnetic dipole moment (item 10-9.1), `J` is total angular momentum quantum number (item 10-13.6), and `μ_B` is the Bohr magneton (item 10-9.2)
      * remarks: These quantities are also called `g` values. The Landé factor can be calculated from the expression: `g(L, S, J) = 1 + (g_e -1) xx (J(J+1) + S(S+1) - L(L+1))/(2J(J+1))` where `g_e` is the` g` factor of the electron.
      */
-    attribute def LandéFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LandeFactorUnit :> DimensionOneUnit {
     }
-    attribute def LandéFactorValue :> QuantityValue {
+    attribute def LandeFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: LandéFactorUnit :>> QuantityValue::mRef;
+        attribute mRef: LandeFactorUnit :>> QuantityValue::mRef;
     }
-    attribute landéFactor: LandéFactorValue :> quantity;
+    attribute landeFactor: LandeFactorValue :> quantity;
 
-    alias LandéFactorValue as GFactorOfAtomValue;
+    alias LandeFactorValue as GFactorOfAtomValue;
     attribute gFactorOfAtom: GFactorOfAtomValue :> quantity;
 
     /**
@@ -637,10 +603,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the magnetic dipole moment of an atom, and the product of the nuclear spin quantum number and the nuclear magneton: `g = μ/(I*μ_N)` where `μ` is magnitude of magnetic dipole moment (item 10-9.1), `I` is nuclear spin quantum number (item 10-13.7), and `μ_N` is the nuclear magneton (item 10-9.3)
      * remarks: The `g` factors for nuclei or nucleons are known from measurements.
      */
-    attribute def GFactorOfNucleusOrNuclearParticleUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def GFactorOfNucleusOrNuclearParticleUnit :> DimensionOneUnit {
     }
     attribute def GFactorOfNucleusOrNuclearParticleValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -652,34 +615,34 @@ package ISQAtomicNuclear {
      * source: item 10-15.1 Larmor angular frequency
      * symbol(s): ω_L
      * application domain: General
-     * name: LarmorAngularFrequency
+     * name: LarmorAngularFrequency (specializes AngularFrequency)
      * quantity dimension: T^-1
      * measurement unit(s): rad*s^-1, s^-1
      * definition: angular frequency (ISO 80000-3) of the electron angular momentum (ISO 80000-4) vector precession about the axis of an external magnetic field: `ω_L = e/(2 m_e) B` where `e` is the elementary charge (ISO 80000-1), `m_e` is the rest mass (item 10-2) of electron, and `B` is magnetic flux density (IEC 80000-6)
      * remarks: 
      */
-    attribute def LarmorAngularFrequencyUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -1;
-        }
-    }
-    attribute def LarmorAngularFrequencyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: LarmorAngularFrequencyUnit :>> QuantityValue::mRef;
-    }
-    attribute larmorAngularFrequency: LarmorAngularFrequencyValue :> quantity;
+    attribute larmorAngularFrequency: AngularFrequencyValue :> angularFrequency;
 
     /**
      * source: item 10-15.2 Larmor frequency
      * symbol(s): ν_L
      * application domain: General
-     * name: LarmorFrequency (specializes AngularFrequency)
+     * name: LarmorFrequency
      * quantity dimension: T^-1
      * measurement unit(s): s^-1
      * definition: quotient of Larmor angular frequency (ISO 80000-3) and 2π
      * remarks: 
      */
-    attribute larmorFrequency: AngularFrequencyValue :> angularFrequency;
+    attribute def LarmorFrequencyUnit :> SIDerivedUnit {
+        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
+            attribute exponent :>> UnitPowerFactor::exponent = -1;
+        }
+    }
+    attribute def LarmorFrequencyValue :> QuantityValue {
+        attribute num: Real :>> QuantityValue::num;
+        attribute mRef: LarmorFrequencyUnit :>> QuantityValue::mRef;
+    }
+    attribute larmorFrequency: LarmorFrequencyValue :> quantity;
 
     /**
      * source: item 10-15.3 nuclear precession angular frequency
@@ -718,25 +681,15 @@ package ISQAtomicNuclear {
      * source: item 10-17 gyroradius, Larmor radius
      * symbol(s): r_g, r_L
      * application domain: General
-     * name: Gyroradius
+     * name: Gyroradius (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: radius (ISO 80000-3) of circular movement of a particle with mass (ISO 80000-4), velocity `vec(v)` (ISO 80000-3), and electric charge `q` (IEC 80000-6), moving in a magnetic field with magnetic flux density `vec(B)` (IEC 80000-6): `r_g = (m abs(vec(v) xx vec(B)))/(q B^2)`
      * remarks: 
      */
-    attribute def GyroradiusUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def GyroradiusValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: GyroradiusUnit :>> QuantityValue::mRef;
-    }
-    attribute gyroradius: GyroradiusValue :> quantity;
+    attribute gyroradius: LengthValue :> length;
 
-    alias GyroradiusValue as LarmorRadiusValue;
-    attribute larmorRadius: LarmorRadiusValue :> quantity;
+    alias gyroradius as larmorRadius;
 
     /**
      * source: item 10-18 nuclear quadrupole moment
@@ -763,22 +716,13 @@ package ISQAtomicNuclear {
      * source: item 10-19.1 nuclear radius
      * symbol(s): R
      * application domain: General
-     * name: NuclearRadius
+     * name: NuclearRadius (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: conventional radius (ISO 80000-3) of sphere in which the nuclear matter is included
      * remarks: This quantity is not exactly defined. It is given approximately for nuclei in their ground state by: `R = r_0 A^(1//3)` where `r_0 ~~ 1.2 * 10^-15` m, and `A` is the nucleon number (item 10-1.3). Nuclear radius is usually expressed in femtometres, 1 fm = 10^(-15) m.
      */
-    attribute def NuclearRadiusUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def NuclearRadiusValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: NuclearRadiusUnit :>> QuantityValue::mRef;
-    }
-    attribute nuclearRadius: NuclearRadiusValue :> quantity;
+    attribute nuclearRadius: LengthValue :> length;
 
     /**
      * source: item 10-19.2 electron radius
@@ -796,43 +740,25 @@ package ISQAtomicNuclear {
      * source: item 10-20 Compton wavelength
      * symbol(s): λ_C
      * application domain: General
-     * name: ComptonWavelength
+     * name: ComptonWavelength (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: quotient of the Planck constant and the product of the mass of the particle and the speed of light in vacuum: `λ_C = h / (m c_0)` where `h` is the Planck constant (ISO 80000-1), `m` is the rest mass (item 10-2) of a particle, and `c_0` is the speed of light in vacuum (ISO 80000-1)
      * remarks: The wavelength of electromagnetic radiation scattered from free electrons (Compton scattering) is larger than that of the incident radiation by a maximum of 2`λ_C`.
      */
-    attribute def ComptonWavelengthUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def ComptonWavelengthValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ComptonWavelengthUnit :>> QuantityValue::mRef;
-    }
-    attribute comptonWavelength: ComptonWavelengthValue :> quantity;
+    attribute comptonWavelength: LengthValue :> length;
 
     /**
      * source: item 10-21.1 mass excess
      * symbol(s): Δ
      * application domain: General
-     * name: MassExcess
+     * name: MassExcess (specializes Mass)
      * quantity dimension: M^1
      * measurement unit(s): kg, Da, u
      * definition: difference between the mass of an atom, and the product of its mass number and the unified mass constant: `Δ` = `m_a` - `A` · `m_u` where `m_a` is the rest mass (item 10-2) of the atom, `A` is its nucleon number (item 10-1.3), and `m_u` is the unified atomic mass constant (item 10-4.3)
      * remarks: The mass excess is usually expressed in daltons, 1 Da = 1 u. See item 10-2.
      */
-    attribute def MassExcessUnit :> SIDerivedUnit {
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def MassExcessValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: MassExcessUnit :>> QuantityValue::mRef;
-    }
-    attribute massExcess: MassExcessValue :> quantity;
+    attribute massExcess: MassValue :> mass;
 
     /**
      * source: item 10-21.2 mass defect
@@ -856,10 +782,7 @@ package ISQAtomicNuclear {
      * definition: quotient of mass excess and the unified atomic mass constant: `Δ_r` = `Δ`/`m_u` where `Δ` is mass excess (item 10-21.1), and `m_u` is the unified atomic mass constant (item 10-4.3)
      * remarks: 
      */
-    attribute def RelativeMassExcessUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeMassExcessUnit :> DimensionOneUnit {
     }
     attribute def RelativeMassExcessValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -877,10 +800,7 @@ package ISQAtomicNuclear {
      * definition: quotient of mass defect and the unified atomic mass constant: `B_r` = `B`/`m_u` where `B` is mass defect (item 10-21.2), and `m_u` is the unified atomic mass constant (item 10-4.3)
      * remarks: 
      */
-    attribute def RelativeMassDefectUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeMassDefectUnit :> DimensionOneUnit {
     }
     attribute def RelativeMassDefectValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -898,10 +818,7 @@ package ISQAtomicNuclear {
      * definition: quotient of relative mass excess and the nucleon number: `f` = `Δ_r`/`A` where `Δ_r` is relative mass excess (item 10-22.1), and `A` is the nucleon number (item 10-1.3)
      * remarks: 
      */
-    attribute def PackingFractionUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def PackingFractionUnit :> DimensionOneUnit {
     }
     attribute def PackingFractionValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -919,10 +836,7 @@ package ISQAtomicNuclear {
      * definition: quotient of relative mass defect and the nucleon number: `b` = `B_r`/`A` where `B_r` is relative mass defect (item 10-22.2), and `A` is the nucleon number (item 10-1.3)
      * remarks: 
      */
-    attribute def BindingFractionUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def BindingFractionUnit :> DimensionOneUnit {
     }
     attribute def BindingFractionValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -958,25 +872,15 @@ package ISQAtomicNuclear {
      * source: item 10-25 mean duration of life, mean life time
      * symbol(s): τ
      * application domain: atomic and nuclear physics
-     * name: MeanDurationOfLife
+     * name: MeanDurationOfLife (specializes Time)
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: reciprocal of the decay constant `λ `(item 10-24): `τ = 1/λ`
      * remarks: Mean duration of life is the expected value of the duration of life of an unstable particle or an excited state of a particle when the number of decay events in a short time interval follows a Poisson distribution.
      */
-    attribute def MeanDurationOfLifeUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def MeanDurationOfLifeValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: MeanDurationOfLifeUnit :>> QuantityValue::mRef;
-    }
-    attribute meanDurationOfLife: MeanDurationOfLifeValue :> quantity;
+    attribute meanDurationOfLife: TimeValue :> time;
 
-    alias MeanDurationOfLifeValue as MeanLifeTimeValue;
-    attribute meanLifeTime: MeanLifeTimeValue :> quantity;
+    alias meanDurationOfLife as meanLifeTime;
 
     /**
      * source: item 10-26 level width
@@ -991,25 +895,25 @@ package ISQAtomicNuclear {
     attribute levelWidth: EnergyValue :> energy;
 
     /**
-     * source: item 10-27 activity
+     * source: item 10-27 nuclear activity
      * symbol(s): A
      * application domain: General
-     * name: Activity
+     * name: NuclearActivity
      * quantity dimension: T^-1
      * measurement unit(s): Bq, s^-1
      * definition: differential quotient of `N` with respect to time, where `N` is the mean change in the number of nuclei in a particular energy state due to spontaneous nuclear transformations in a time interval of duration (ISO 80000-3) d`t`: `A = - (dN)/(dt)`
      * remarks: For exponential decay, `A` = `λN`, where `λ` is the decay constant (item 10-24). The becquerel (Bq) is a special name for second to the power minus one, to be used as the coherent SI unit of activity. In report 85a of the ICRU a definition with an equivalent meaning is given as: The activity, `A`, of an amount of a radionuclide in a particular energy state at a given time is the quotient of -d`N` by d`t`, where d`N` is the mean change in the number of nuclei in that energy state due to spontaneous nuclear transformations in the time interval d`t`: `A = - (dN)/(dt)`. See also section 0.3.
      */
-    attribute def ActivityUnit :> SIDerivedUnit {
+    attribute def NuclearActivityUnit :> SIDerivedUnit {
         attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
             attribute exponent :>> UnitPowerFactor::exponent = -1;
         }
     }
-    attribute def ActivityValue :> QuantityValue {
+    attribute def NuclearActivityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ActivityUnit :>> QuantityValue::mRef;
+        attribute mRef: NuclearActivityUnit :>> QuantityValue::mRef;
     }
-    attribute activity: ActivityValue :> quantity;
+    attribute nuclearActivity: NuclearActivityValue :> quantity;
 
     /**
      * source: item 10-28 specific activity, massic activity
@@ -1096,103 +1000,49 @@ package ISQAtomicNuclear {
      * source: item 10-31 half life
      * symbol(s): T_(1/2)
      * application domain: General
-     * name: HalfLife
+     * name: HalfLife (specializes Time)
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: mean duration (ISO 80000-3) required for the decay of one half of the atoms or nuclei
      * remarks: For exponential decay, `T_(`1/2) = (ln2)/`λ`, where `λ` is the decay constant (item 10-24).
      */
-    attribute def HalfLifeUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def HalfLifeValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: HalfLifeUnit :>> QuantityValue::mRef;
-    }
-    attribute halfLife: HalfLifeValue :> quantity;
+    attribute halfLife: TimeValue :> time;
 
     /**
      * source: item 10-32 alpha disintegration energy
      * symbol(s): Q_α
      * application domain: General
-     * name: AlphaDisintegrationEnergy
+     * name: AlphaDisintegrationEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: sum of the kinetic energy (ISO 80000-4) of the α-particle produced in the disintegration process and the recoil energy (ISO 80000-5) of the product atom in a reference frame in which the emitting nucleus is at rest before its disintegration
      * remarks: The ground-state alpha disintegration energy, `Q_(`α,0), also includes the energy of any nuclear transitions that take place in the daughter produced.
      */
-    attribute def AlphaDisintegrationEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def AlphaDisintegrationEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: AlphaDisintegrationEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute alphaDisintegrationEnergy: AlphaDisintegrationEnergyValue :> quantity;
+    attribute alphaDisintegrationEnergy: EnergyValue :> energy;
 
     /**
      * source: item 10-33 maximum beta- particle energy
      * symbol(s): E_β
      * application domain: General
-     * name: MaximumBetaParticleEnergy
+     * name: MaximumBetaParticleEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: maximum kinetic energy (ISO 80000-4) of the emitted beta particle produced in the nuclear disintegration process
      * remarks: The maximum kinetic energy corresponds to the highest energy of the beta spectrum.
      */
-    attribute def MaximumBetaParticleEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def MaximumBetaParticleEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: MaximumBetaParticleEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute maximumBetaParticleEnergy: MaximumBetaParticleEnergyValue :> quantity;
+    attribute maximumBetaParticleEnergy: EnergyValue :> energy;
 
     /**
      * source: item 10-34 beta disintegration energy
      * symbol(s): Q_β
      * application domain: General
-     * name: BetaDisintegrationEnergy
+     * name: BetaDisintegrationEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: sum of the maximum beta-particle kinetic energy (item 10-33) and the recoil energy (ISO 80000-5) of the atom produced in a reference frame in which the emitting nucleus is at rest before its disintegration
      * remarks: For positron emitters, the energy for the production of the annihilation radiation created in the combination of an electron with the positron is part of the beta disintegration energy. The ground-state beta disintegration energy, `Q_(`β,0), also includes the energy of any nuclear transitions that take place in the daughter product.
      */
-    attribute def BetaDisintegrationEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def BetaDisintegrationEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: BetaDisintegrationEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute betaDisintegrationEnergy: BetaDisintegrationEnergyValue :> quantity;
+    attribute betaDisintegrationEnergy: EnergyValue :> energy;
 
     /**
      * source: item 10-35 internal conversion factor
@@ -1204,10 +1054,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the number of internal conversion electrons and the number of gamma quanta emitted by the radioactive atom in a given transition, where a conversion electron represents an orbital electron emitted through the radioactive decay
      * remarks: The quantity `α`/(`α`+1) is also used and called the internal-conversion fraction. Partial conversion fractions referring to the various electron shells K, L, ... are indicated by `α_K`, `α_L`, …. `α_K`/`α_L` is called the K-to-L internal conversion ratio.
      */
-    attribute def InternalConversionFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def InternalConversionFactorUnit :> DimensionOneUnit {
     }
     attribute def InternalConversionFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1225,10 +1072,7 @@ package ISQAtomicNuclear {
      * definition: differential quotient of `N` with respect to time, where `N` is the number of particles being emitted from an infinitesimally small volume element in the time interval of duration d`t` (ISO 80000-3), and d`t`: `dot(N) = (dN)/(dt)`
      * remarks: Usually the kind of particles is specified, e.g. neutron emission rate or alpha particle emission rate.
      */
-    attribute def ParticleEmissionRateUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ParticleEmissionRateUnit :> DimensionOneUnit {
     }
     attribute def ParticleEmissionRateValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1240,28 +1084,13 @@ package ISQAtomicNuclear {
      * source: item 10-37.1 reaction energy
      * symbol(s): Q
      * application domain: General
-     * name: ReactionEnergy
+     * name: ReactionEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: in a nuclear reaction, sum of the kinetic energies (ISO 80000-4) and photon energies (ISO 80000-5) of the reaction products minus the sum of the kinetic and photon energies of the reactants
      * remarks: For exothermic nuclear reactions, `Q`>0. For endothermic nuclear reactions, `Q`<0.
      */
-    attribute def ReactionEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def ReactionEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ReactionEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute reactionEnergy: ReactionEnergyValue :> quantity;
+    attribute reactionEnergy: EnergyValue :> energy;
 
     /**
      * source: item 10-37.2 resonance energy
@@ -1465,28 +1294,13 @@ package ISQAtomicNuclear {
      * source: item 10-45 radiant energy
      * symbol(s): R
      * application domain: ionizing radiation
-     * name: RadiantEnergy
+     * name: RadiantEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: mean energy (ISO 80000-5), excluding rest energy (item 10-3), of the particles that are emitted, transferred, or received
      * remarks: For particles of energy `E` (excluding rest energy), the radiant energy, `R`, is equal to the product `N·E` where `N` is the number of the particles that are emitted, transferred, or received The distributions, `N_E` and `R_E`, of the particle number and the radiant energy with respect to energy are given by `N_E` = d`N`/d`E` and `R_E` = d`R`/d`E`, respectively, where d`N` is the number of particles with energy between `E` and `E`+d`E`, and d`R` is their radiant energy. The two distributions are related by `R_E` = `E`·`N_E`.
      */
-    attribute def RadiantEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def RadiantEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: RadiantEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute radiantEnergy: RadiantEnergyValue :> quantity;
+    attribute radiantEnergy: EnergyValue :> energy;
 
     /**
      * source: item 10-46 energy fluence
@@ -1654,22 +1468,13 @@ package ISQAtomicNuclear {
      * source: item 10-53 half-value thickness
      * symbol(s): d_(1//2)
      * application domain: General
-     * name: HalfValueThickness
+     * name: HalfValueThickness (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: thickness (ISO 80000-3) of the attenuating layer that reduces the quantity of interest of a unidirectional beam of infinitesimal width to half of its initial value
      * remarks: For exponential attenuation, `d_(`1/2) = ln(2)/`μ`. The quantity of interest is often the air kerma or exposure.
      */
-    attribute def HalfValueThicknessUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def HalfValueThicknessValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: HalfValueThicknessUnit :>> QuantityValue::mRef;
-    }
-    attribute halfValueThickness: HalfValueThicknessValue :> quantity;
+    attribute halfValueThickness: LengthValue :> length;
 
     /**
      * source: item 10-54 total linear stopping power, linear stopping power
@@ -1732,22 +1537,13 @@ package ISQAtomicNuclear {
      * source: item 10-56 mean linear range
      * symbol(s): R, R_l
      * application domain: General
-     * name: MeanLinearRange
+     * name: MeanLinearRange (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: mean total rectified path length (ISO 80000-3) travelled by a particle in the course of slowing down to rest in a given material averaged over a group of particles having the same initial energy (ISO 80000-5)
      * remarks: 
      */
-    attribute def MeanLinearRangeUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def MeanLinearRangeValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: MeanLinearRangeUnit :>> QuantityValue::mRef;
-    }
-    attribute meanLinearRange: MeanLinearRangeValue :> quantity;
+    attribute meanLinearRange: LengthValue :> length;
 
     /**
      * source: item 10-57 mean mass range
@@ -1804,10 +1600,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the total mean charge of all positive ions produced by an ionizing charged particle along its entire path and along the paths of any secondary charged particles, and the elementary charge, `e `(ISO 80000-1)
      * remarks: `N_i = int N_(il) dl` See item 10-58.
      */
-    attribute def TotalIonizationUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def TotalIonizationUnit :> DimensionOneUnit {
     }
     attribute def TotalIonizationValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1969,22 +1762,13 @@ package ISQAtomicNuclear {
      * source: item 10-65 diffusion coefficient for fluence rate
      * symbol(s): D_ϕ, D
      * application domain: General
-     * name: DiffusionCoefficientForFluenceRate
+     * name: DiffusionCoefficientForFluenceRate (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: proportionality constant between the particle current density `vec(J )`(item 10-48) and the gradient of the particle fluence rate `dot(Φ)` (item 10-44): `vec(J) = - vec(D) * nabla Φ`
      * remarks: For a particle of a given speed `v`: `d_Ψ(v) = - J_(v,x)/(del Ψ // del x)` and `vec(v) * vec(D_Ψ)(v) = - vec(D_n)(v)`
      */
-    attribute def DiffusionCoefficientForFluenceRateUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def DiffusionCoefficientForFluenceRateValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: DiffusionCoefficientForFluenceRateUnit :>> QuantityValue::mRef;
-    }
-    attribute diffusionCoefficientForFluenceRate: DiffusionCoefficientForFluenceRateValue :> quantity;
+    attribute diffusionCoefficientForFluenceRate: LengthValue :> length;
 
     /**
      * source: item 10-66 particle source density
@@ -2044,10 +1828,7 @@ package ISQAtomicNuclear {
      * definition: in an infinite medium, the probability that a neutron slowing down will traverse all or some specified portion of the range of resonance energies (item 10-37.2) without being absorbed
      * remarks: 
      */
-    attribute def ResonanceEscapeProbabilityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ResonanceEscapeProbabilityUnit :> DimensionOneUnit {
     }
     attribute def ResonanceEscapeProbabilityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2065,10 +1846,7 @@ package ISQAtomicNuclear {
      * definition: for a neutron of kinetic energy `E` (ISO 80000-4) : `u` = ln(`E_0`/`E`), where `E_0` is a reference energy
      * remarks: Lethargy is also referred to as logarithmic energy decrement.
      */
-    attribute def LethargyUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LethargyUnit :> DimensionOneUnit {
     }
     attribute def LethargyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2086,10 +1864,7 @@ package ISQAtomicNuclear {
      * definition: average value of the increase in lethargy (item 10-69) in elastic collisions between neutrons and nuclei whose kinetic energy (ISO 80000-4) is negligible compared with that of the neutrons
      * remarks: 
      */
-    attribute def AverageLogarithmicEnergyDecrementUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def AverageLogarithmicEnergyDecrementUnit :> DimensionOneUnit {
     }
     attribute def AverageLogarithmicEnergyDecrementValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2101,43 +1876,25 @@ package ISQAtomicNuclear {
      * source: item 10-71 mean free path
      * symbol(s): l, λ
      * application domain: atomic physics
-     * name: MeanFreePath
+     * name: MeanFreePath (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: average distance (ISO 80000-3) that particles travel between two successive specified reactions or processes
      * remarks: See the Remarks for item 10-42.1.
      */
-    attribute def MeanFreePathUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def MeanFreePathValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: MeanFreePathUnit :>> QuantityValue::mRef;
-    }
-    attribute meanFreePath: MeanFreePathValue :> quantity;
+    attribute meanFreePath: LengthValue :> length;
 
     /**
      * source: item 10-72.1 slowing-down area
      * symbol(s): L_s^2, L_(sl)^2
      * application domain: General
-     * name: SlowingDownArea
+     * name: SlowingDownArea (specializes Area)
      * quantity dimension: L^2
      * measurement unit(s): m^2
      * definition: in an infinite homogenous medium, one-sixth of the mean square of the distance (ISO 80000-3) between the neutron source and the point where a neutron reaches a given energy (ISO 80000-5)
      * remarks: 
      */
-    attribute def SlowingDownAreaUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-    }
-    attribute def SlowingDownAreaValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SlowingDownAreaUnit :>> QuantityValue::mRef;
-    }
-    attribute slowingDownArea: SlowingDownAreaValue :> quantity;
+    attribute slowingDownArea: AreaValue :> area;
 
     /**
      * source: item 10-72.2 diffusion area
@@ -2167,22 +1924,13 @@ package ISQAtomicNuclear {
      * source: item 10-73.1 slowing-down length
      * symbol(s): L_s, L_(sl)
      * application domain: General
-     * name: SlowingDownLength
+     * name: SlowingDownLength (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: square root of the slowing down area `L_s^2` (item 10-72.1): `L_s = sqrt(L_s^2)`
      * remarks: 
      */
-    attribute def SlowingDownLengthUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def SlowingDownLengthValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SlowingDownLengthUnit :>> QuantityValue::mRef;
-    }
-    attribute slowingDownLength: SlowingDownLengthValue :> quantity;
+    attribute slowingDownLength: LengthValue :> length;
 
     /**
      * source: item 10-73.2 diffusion length
@@ -2218,10 +1966,7 @@ package ISQAtomicNuclear {
      * definition: average number of fission neutrons, both prompt and delayed, emitted per fission event
      * remarks: 
      */
-    attribute def NeutronYieldPerFissionUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NeutronYieldPerFissionUnit :> DimensionOneUnit {
     }
     attribute def NeutronYieldPerFissionValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2239,10 +1984,7 @@ package ISQAtomicNuclear {
      * definition: average number of fission neutrons, both prompt and delayed, emitted per neutron absorbed in a fissionable nuclide or in a nuclear fuel, as specified
      * remarks: `ν`/`η` is equal to the quotient of the macroscopic cross section for fission and that for absorption, both for neutrons in the fuel material.
      */
-    attribute def NeutronYieldPerAbsorptionUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NeutronYieldPerAbsorptionUnit :> DimensionOneUnit {
     }
     attribute def NeutronYieldPerAbsorptionValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2260,10 +2002,7 @@ package ISQAtomicNuclear {
      * definition: in an infinite medium, the quotient of the mean number of neutrons produced by fission due to neutrons of all energies (ISO 80000-5) and the mean number of neutrons produced by fissions due to thermal neutrons only
      * remarks: The class of neutrons must be specified, e.g. thermal.
      */
-    attribute def FastFissionFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def FastFissionFactorUnit :> DimensionOneUnit {
     }
     attribute def FastFissionFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2281,10 +2020,7 @@ package ISQAtomicNuclear {
      * definition: in an infinite medium, the quotient of the number of thermal neutrons absorbed in a fissionable nuclide or in a nuclear fuel, as specified, and the total number of thermal neutrons absorbed
      * remarks: 
      */
-    attribute def ThermalUtilizationFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ThermalUtilizationFactorUnit :> DimensionOneUnit {
     }
     attribute def ThermalUtilizationFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2302,10 +2038,7 @@ package ISQAtomicNuclear {
      * definition: probability that a neutron will not escape from the reactor during the slowing-down process or while it diffuses as a thermal neutron
      * remarks: 
      */
-    attribute def NonLeakageProbabilityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NonLeakageProbabilityUnit :> DimensionOneUnit {
     }
     attribute def NonLeakageProbabilityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2323,10 +2056,7 @@ package ISQAtomicNuclear {
      * definition: quotient of the total number of fission or fission-dependent neutrons produced in the duration of a time interval and the total number of neutrons lost by absorption and leakage in that duration
      * remarks: 
      */
-    attribute def MultiplicationFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MultiplicationFactorUnit :> DimensionOneUnit {
     }
     attribute def MultiplicationFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2344,10 +2074,7 @@ package ISQAtomicNuclear {
      * definition: multiplication factor (item 10-78.1) for an infinite medium or for an infinite repeating lattice
      * remarks: For a thermal reactor, `k_∞`` = η·ε·p·f`
      */
-    attribute def InfiniteMultiplicationFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def InfiniteMultiplicationFactorUnit :> DimensionOneUnit {
     }
     attribute def InfiniteMultiplicationFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -2359,22 +2086,13 @@ package ISQAtomicNuclear {
      * source: item 10-79 reactor time constant
      * symbol(s): T
      * application domain: General
-     * name: ReactorTimeConstant
+     * name: ReactorTimeConstant (specializes Time)
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: duration (ISO 80000-3) required for the neutron fluence rate (item 10-44) in a reactor to change by the factor e when the fluence rate is rising or falling exponentially
      * remarks: Also called reactor period.
      */
-    attribute def ReactorTimeConstantUnit :> SIDerivedUnit {
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def ReactorTimeConstantValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ReactorTimeConstantUnit :>> QuantityValue::mRef;
-    }
-    attribute reactorTimeConstant: ReactorTimeConstantValue :> quantity;
+    attribute reactorTimeConstant: TimeValue :> time;
 
     /**
      * source: item 10-80.1 energy imparted
@@ -2476,10 +2194,7 @@ package ISQAtomicNuclear {
      * definition: factor in the calculation and measurement of dose equivalent (item 10-83.1), by which the absorbed dose (item 10-81.1) is to be weighted in order to account for different biological effectiveness of radiations, for radiation protection purposes
      * remarks: `Q` is determined by the linear energy transfer (item 10-85) for `Δ -> oo` , `L_∞` (often denoted as `L` or LET), of charged particles passing through a small volume element at this point (the value of `L_∞` refers to water, not to tissue; the difference, however, is small). The relationship between `L` and `Q` is given in ICRP Publication 103 (ICRP, 2007).
      */
-    attribute def QualityFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def QualityFactorUnit :> DimensionOneUnit {
     }
     attribute def QualityFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;

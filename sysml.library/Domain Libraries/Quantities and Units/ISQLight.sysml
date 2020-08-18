@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-14T11:04:34Z by sysml_v2_quantities_units_generator.py
+ * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard ISO-80000-07:2019 "Light"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-7:ed-2:v1:en
  *
@@ -14,6 +14,9 @@ package ISQLight {
     private import Quantities::*;
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
+
+    private import ISQThermodynamics::TemperatureValue;
+    private import ISQThermodynamics::temperature;
 
     /**
      * source: item 7-1.1 speed of light in a medium
@@ -49,10 +52,7 @@ package ISQLight {
      * definition: quotient of speed of light in vacuum (ISO 80000-1) and speed of light in a medium (item 7-1.1)
      * remarks: The value of the refractive index can depend on the frequency, polarization, and direction. The refractive index is expressed by n = c_0/c, where c_()_0 is the speed of light in vacuum and c is the speed of light in the medium. For a medium with absorption, the complex refractive index n is defined by n = n + ik where k is spectral absorption index (IEC 60050-845) and i is imaginary unit. The refractivity is expressed by n -1, where n is refractive index.
      */
-    attribute def RefractiveIndexUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RefractiveIndexUnit :> DimensionOneUnit {
     }
     attribute def RefractiveIndexValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -409,16 +409,16 @@ package ISQLight {
     attribute spectralIrradiance: SpectralIrradianceValue :> quantity;
 
     /**
-     * source: item 7-8.1 radiant exitance DEPRECATED: radiant emittance
+     * source: item 7-8.1 radiant exitance , radiant emittance
      * symbol(s): M_e, (M)
      * application domain: General
-     * name: RadiantExitanceDeprecated:RadiantEmittance
+     * name: RadiantExitance
      * quantity dimension: M^1*T^-3
      * measurement unit(s): W/m^2, kg*s^-3
      * definition: density of exiting radiant flux with respect to area at a point on a real or imaginary surface, expressed by `M_e = (d Φ_e)/(d A)` where Φ_e is radiant flux (item 7-4.1) and A is the area (ISO 80000-3) from which the radiant flux leaves
      * remarks: For Planckian radiation, M_e = σT^()^4 where T is thermodynamic temperature (ISO 80000-5) and σ is the Stefan-Boltzmann constant (ISO 80000-1). The corresponding photometric quantity is “luminous exitance” (item 7-17). The corresponding quantity for photons is “photon exitance” (item 7-24).
      */
-    attribute def RadiantExitanceDeprecated:RadiantEmittanceUnit :> SIDerivedUnit {
+    attribute def RadiantExitanceUnit :> SIDerivedUnit {
         attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
             attribute exponent :>> UnitPowerFactor::exponent = 1;
         }
@@ -426,11 +426,14 @@ package ISQLight {
             attribute exponent :>> UnitPowerFactor::exponent = -3;
         }
     }
-    attribute def RadiantExitanceDeprecated:RadiantEmittanceValue :> QuantityValue {
+    attribute def RadiantExitanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: RadiantExitanceDeprecated:RadiantEmittanceUnit :>> QuantityValue::mRef;
+        attribute mRef: RadiantExitanceUnit :>> QuantityValue::mRef;
     }
-    attribute radiantExitanceDeprecated:RadiantEmittance: RadiantExitanceDeprecated:RadiantEmittanceValue :> quantity;
+    attribute radiantExitance: RadiantExitanceValue :> quantity;
+
+    alias RadiantExitanceValue as RadiantEmittanceValue;
+    attribute radiantEmittance: RadiantEmittanceValue :> quantity;
 
     /**
      * source: item 7-8.2 spectral radiant exitance
@@ -520,10 +523,7 @@ package ISQLight {
      * definition: quotient of radiant flux (item 7-4.1) weighted by the spectral luminous efficiency (item 7-10.2) and the corresponding radiant flux for a specified photometric condition
      * remarks: Luminous efficiency for photopic vision is expressed by `V = (int_0^oo Φ_(e,λ)(λ) V(λ) d λ)/(int_0^oo Φ_(e,λ)(λ) d λ) = K/K_m` where Φ_(e,)_λ is spectral radiant flux (item 7-4.2), V(λ) is spectral luminous efficiency, λ is wavelength, K is luminous efficacy of radiation (item 7-11.1), and K_m is maximum luminous efficacy (item 7-11.3). For scotopic and mesopic vision see 0.4 and 0.5. Symbols for different photometric conditions: V, <for photopic vision>; V′, <for scotopic vision>; V_(mes;m), <for mesopic vision>; V_(10), <for the CIE 10° photopic photometric observer>; V_M, <for the CIE 1988 modified 2° spectral luminous efficiency function for photopic vision>.
      */
-    attribute def LuminousEfficiencyUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LuminousEfficiencyUnit :> DimensionOneUnit {
     }
     attribute def LuminousEfficiencyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -541,10 +541,7 @@ package ISQLight {
      * definition: quotient of the radiant flux (item 7-4.1) at wavelength λ_m and that at wavelength λ, such that both produce equally intense luminous sensations for a specified photometric condition and λ_m is chosen so that the maximum value of this quotient is equal to 1
      * remarks: The spectral luminous efficiency of the human eye depends on a number of factors, particularly the state of visual adaptation and the size and position of the source in the visual field. The photometric condition should be specified (e.g. photopic, scotopic, mesopic). If it is not specified, photopic vision is assumed and the symbol V(λ) is used. For scotopic and mesopic vision see 0.4 and 0.5. Symbols for different photometric conditions: V (λ), <for photopic vision>; V′(λ), <for scotopic vision>; V_(mes;m)(λ), <for mesopic vision>; V_(10)(λ), <for the CIE 10° photopic photometric observer>; V_M(λ), <for the CIE 1988 modified 2° spectral luminous efficiency function for photopic vision>.
      */
-    attribute def SpectralLuminousEfficiencyUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def SpectralLuminousEfficiencyUnit :> DimensionOneUnit {
     }
     attribute def SpectralLuminousEfficiencyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -673,16 +670,16 @@ package ISQLight {
     attribute luminousEfficacyOfASource: LuminousEfficacyOfASourceValue :> quantity;
 
     /**
-     * source: item 7-12 luminous energy DEPRECATED: quantity of light
+     * source: item 7-12 luminous energy, quantity of light
      * symbol(s): Q_v, (Q)
      * application domain: General
-     * name: LuminousEnergyDeprecated:QuantityOfLight
+     * name: LuminousEnergy
      * quantity dimension: T^1*J^1
      * measurement unit(s): lm*s, cd*sr*s
      * definition: energy of electromagnetic waves weighted by the spectral luminous efficiency (item 7-10.2) multiplied by maximum luminous efficacy (item 7-11.3) of a specified photometric condition
      * remarks: Luminous energy for photopic vision is expressed by `Q_v = K_m int_0^oo Q_(e,λ)(λ) V(λ) d λ` where Q_(e,)_λ(λ) is the spectral radiant energy (item 7-2.2) at wavelength λ(ISO 80000-3), V(λ) is spectral luminous efficiency (item 7-10.2), and K_m is maximum luminous efficacy (7-11.3). Luminous energy can be emitted, transferred or received. Luminous energy can be expressed by the time integral of the luminous flux (item 7-13), Φ_v, over a given duration (ISO 80000-3), Δt `Q_v = int_(Δ t) Φ_v dt` The corresponding radiometric quantity is “radiant energy” (item 7-2.1). The corresponding quantity for photons is “photon energy” (item 7-19.2).
      */
-    attribute def LuminousEnergyDeprecated:QuantityOfLightUnit :> SIDerivedUnit {
+    attribute def LuminousEnergyUnit :> SIDerivedUnit {
         attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
             attribute exponent :>> UnitPowerFactor::exponent = 1;
         }
@@ -690,11 +687,14 @@ package ISQLight {
             attribute exponent :>> UnitPowerFactor::exponent = 1;
         }
     }
-    attribute def LuminousEnergyDeprecated:QuantityOfLightValue :> QuantityValue {
+    attribute def LuminousEnergyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: LuminousEnergyDeprecated:QuantityOfLightUnit :>> QuantityValue::mRef;
+        attribute mRef: LuminousEnergyUnit :>> QuantityValue::mRef;
     }
-    attribute luminousEnergyDeprecated:QuantityOfLight: LuminousEnergyDeprecated:QuantityOfLightValue :> quantity;
+    attribute luminousEnergy: LuminousEnergyValue :> quantity;
+
+    alias LuminousEnergyValue as QuantityOfLightValue;
+    attribute quantityOfLight: QuantityOfLightValue :> quantity;
 
     /**
      * source: item 7-13 luminous flux
@@ -811,16 +811,16 @@ package ISQLight {
     attribute luminousExitance: LuminousExitanceValue :> quantity;
 
     /**
-     * source: item 7-18 luminous exposure DEPRECATED: quantity of illumination DEPRECATED: light exposure
+     * source: item 7-18 luminous exposure, quantity of illumination, light exposure
      * symbol(s): H_v, (H)
      * application domain: General
-     * name: LuminousExposureDeprecated:QuantityOfIlluminationDeprecated:LightExposure
+     * name: LuminousExposure
      * quantity dimension: L^-2*T^1*J^1
      * measurement unit(s): lx*s, cd*sr*m^-2*s
      * definition: density of incident luminous energy with respect to area at a point on a real or imaginary surface, expressed by `H_v = (dQ_v)/(dA)` where Q_v is luminous energy (item 7-12) and A is the area on which the luminous energy is incident (ISO 80000-3)
      * remarks: Luminous exposure can be derived from the spectral radiant exposure distribution by `H_v = K_m int_0^∞ H_(e,λ)(λ) V(λ) dλ` where K_m is maximum luminous efficacy (item 7-11.3), H_(e,)_λ(λ) is the spectral radiant exposure (item 7-9.2) at wavelength λ(ISO 80000-3), and V(λ) is spectral luminous efficiency (item 7-10.2). Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. The corresponding radiometric quantity is “radiant exposure” (item 7-9.1). The corresponding quantity for photons is “photon exposure” (item 7-25).
      */
-    attribute def LuminousExposureDeprecated:QuantityOfIlluminationDeprecated:LightExposureUnit :> SIDerivedUnit {
+    attribute def LuminousExposureUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
             attribute exponent :>> UnitPowerFactor::exponent = -2;
         }
@@ -831,11 +831,17 @@ package ISQLight {
             attribute exponent :>> UnitPowerFactor::exponent = 1;
         }
     }
-    attribute def LuminousExposureDeprecated:QuantityOfIlluminationDeprecated:LightExposureValue :> QuantityValue {
+    attribute def LuminousExposureValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: LuminousExposureDeprecated:QuantityOfIlluminationDeprecated:LightExposureUnit :>> QuantityValue::mRef;
+        attribute mRef: LuminousExposureUnit :>> QuantityValue::mRef;
     }
-    attribute luminousExposureDeprecated:QuantityOfIlluminationDeprecated:LightExposure: LuminousExposureDeprecated:QuantityOfIlluminationDeprecated:LightExposureValue :> quantity;
+    attribute luminousExposure: LuminousExposureValue :> quantity;
+
+    alias LuminousExposureValue as QuantityOfIlluminationValue;
+    attribute quantityOfIllumination: QuantityOfIlluminationValue :> quantity;
+
+    alias LuminousExposureValue as LightExposureValue;
+    attribute lightExposure: LightExposureValue :> quantity;
 
     /**
      * source: item 7-19.1 photon number, number of photons
@@ -847,10 +853,7 @@ package ISQLight {
      * definition: quotient of radiant energy and photon energy, expressed by `N_p = Q_e/(h V)` where Q_e is radiant energy (item 7-2.1), h is the Planck constant (ISO 80000-1), and v is the frequency (ISO 80000-3) of the corresponding electromagnetic wave
      * remarks: Photon number can also be expressed by the time integral of the photon flux (item 7-20), Φ_p, over a given duration, Δt, `N_p = int_(Δt) Φ_p dt`
      */
-    attribute def PhotonNumberUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def PhotonNumberUnit :> DimensionOneUnit {
     }
     attribute def PhotonNumberValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1033,10 +1036,7 @@ package ISQLight {
      * definition: amounts of the three reference colour stimuli in the CIE 1931 standard colorimetric system, required to match the colour of the stimulus considered
      * remarks: For a given colour stimulus described by the colour stimulus function `φ_λ(λ)` of a radiometric quantity, `X = k int_0^∞ φ_λ(λ) overline x(λ) dλ`, `Y = k int_0^∞ φ_λ(λ) overline y(λ) dλ`, `Z = k int_0^∞ φ_λ(λ) overline z(λ) dλ`, where `overline x(λ)`, `overline y(λ)`, `overline z(λ)` are the CIE colour-matching functions for the CIE 1931 standard colorimetric observer (2° observer) (item 7-27.1). For sources, `k` may be chosen as `k = K_m` where `K_m` is the maximum luminous efficacy (item 7-11.3) so that `Y = L_v` (item 7-15) and the unit of `X`, `Y`, `Z` is `[cd*m^-2]`. For object colours, `φ_λ(λ)` is given by one of the three products `φ_λ(λ) = S_λ(λ) * {(ρ(λ)), (τ(λ)), (β(λ)):}` where `S_λ(λ)` is the relative spectral distribution of a quantity characterizing the source illuminating the object, `ρ(λ)` is the spectral reflectance, `τ(λ)` is the spectral transmittance, `β(λ)` is the spectral radiance factor, and `k` is chosen to be `k = 100 // int_0^∞ S_λ(λ) overline y(λ) dλ`. Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. In this case, the unit of `X`, `Y`, `Z` is `[1]`.
      */
-    attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverUnit :> DimensionOneUnit {
     }
     attribute def TristimulusValuesForTheCie1931StandardColorimetricObserverValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1054,10 +1054,7 @@ package ISQLight {
      * definition: amounts of the three reference colour stimuli in the CIE 1964 standard colorimetric system, required to match the colour of the stimulus considered
      * remarks: For a given colour stimulus described by the colour stimulus function `φ_λ(λ)` of a radiometric quantity, `X_10 = k int_0^∞ φ_λ(λ) overline x_10(λ) dλ`, `Y_10 = k int_0^∞ φ_λ(λ) overline y_10(λ) dλ`, `Z_10 = k int_0^∞ φ_λ(λ) overline z_10(λ) dλ`, where `overline x_10(λ)` , `overline y_10(λ)` , `overline z_10(λ)` are the CIE colour-matching functions for the CIE 1964 standard colorimetric observer (10° observer) (item 7-27.2). For sources, `k` may be chosen as `k = K_(10)`, where `K_(10)` is the maximum luminous efficacy (item 7-11.3) of the CIE 1964 standard colorimetric observer so that `Y_(10) = L_(10)` and the unit of `X`, `Y`, `Z` is `[cd*m^-2]`. For object colours, `φ_λ(λ)` is given by one of the three products `φ_λ(λ) = S_λ(λ) * {(ρ(λ)), (τ(λ)), (β(λ)):}`, where `S_λ(λ)` is the relative spectral distribution of a quantity characterizing the source illuminating the object, `ρ(λ)` is the spectral reflectance, `τ(λ)` is the spectral transmittance, `β(λ)` is the spectral radiance factor, and `k` is chosen to be `k = 100 // int_0^∞ S_λ(λ) overline y(λ) dλ`. Integral limits can be confined depending on the spectral sensitivity of the detectors used as a sensor. In this case, the unit of `X`, `Y`, `Z` is `[1]`.
      */
-    attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverUnit :> DimensionOneUnit {
     }
     attribute def TristimulusValuesForTheCie1964StandardColorimetricObserverValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1075,10 +1072,7 @@ package ISQLight {
      * definition: functions `overline x(λ)` , `overline y(λ)` , `overline z(λ)` in the CIE 1931 standard colorimetric system
      * remarks: Values of `overline x(λ)` , `overline y(λ)` and `overline z(λ)` are defined in the CIE 1931 standard colorimetric system (2° observer) — applicable to fields of observation of angular opening from 1° to 4°.
      */
-    attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverUnit :> DimensionOneUnit {
     }
     attribute def CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1096,10 +1090,7 @@ package ISQLight {
      * definition: functions `overline x_10(λ)` , `overline y_10(λ)` , `overline z_10(λ)` in the CIE 1964 standard colorimetric system
      * remarks: Values of `overline x_10(λ)` , `overline y_10(λ)` and `overline z_10(λ)` are defined in the CIE 1964 standard colorimetric system (10° observer) — applicable to fields of observation with angles greater than 4°.
      */
-    attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverUnit :> DimensionOneUnit {
     }
     attribute def CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1117,10 +1108,7 @@ package ISQLight {
      * definition: coordinates expressing the quotients of each of a set of three tristimulus values for the CIE 1931 standard colorimetric observer (item 7-26.1) and their sum, expressed by `x = X / (X+Y+Z)` , `y = Y / (X+Y+Z)` , `z = Z / (X+Y+Z)`
      * remarks: Since x + y + z = 1, two variables are sufficient to express chromaticity.
      */
-    attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemUnit :> DimensionOneUnit {
     }
     attribute def ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1138,10 +1126,7 @@ package ISQLight {
      * definition: coordinates expressing the quotients of each of a set of three tristimulus values for the CIE 1964 standard colorimetric observer (item 7-26.2) and their sum, expressed by `x_10 = X_10 / (X_10+Y_10+Z_10)` `y_10 = Y_10 / (X_10+Y_10+Z_10)` `z_10 = Z_10 / (X_10+Y_10+Z_10)`
      * remarks: Since x_(10) + y_(10) + z_(10) = 1, two variables are sufficient to express chromaticity.
      */
-    attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemUnit :> DimensionOneUnit {
     }
     attribute def ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1153,43 +1138,25 @@ package ISQLight {
      * source: item 7-29.1 colour temperature
      * symbol(s): T_c
      * application domain: General
-     * name: ColourTemperature
+     * name: ColourTemperature (specializes Temperature)
      * quantity dimension: Θ^1
      * measurement unit(s): K
      * definition: temperature of a Planckian radiator whose radiation has the same chromaticity as that of a given stimulus
      * remarks: 
      */
-    attribute def ColourTemperatureUnit :> SIDerivedUnit {
-        attribute temperaturePowerFactor :>> SIDerivedUnit::temperaturePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def ColourTemperatureValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ColourTemperatureUnit :>> QuantityValue::mRef;
-    }
-    attribute colourTemperature: ColourTemperatureValue :> quantity;
+    attribute colourTemperature: TemperatureValue :> temperature;
 
     /**
      * source: item 7-29.2 correlated colour temperature
      * symbol(s): T_(cp)
      * application domain: General
-     * name: CorrelatedColourTemperature
+     * name: CorrelatedColourTemperature (specializes Temperature)
      * quantity dimension: Θ^1
      * measurement unit(s): K
      * definition: temperature of a Planckian radiator having the chromaticity nearest the chromaticity associated with the given spectral distribution on a modified 1976 CIE Uniform Chromaticity Scale (UCS) diagram where `u',2/3 v'` are the coordinates of the Planckian locus and the test stimulus
      * remarks: 
      */
-    attribute def CorrelatedColourTemperatureUnit :> SIDerivedUnit {
-        attribute temperaturePowerFactor :>> SIDerivedUnit::temperaturePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def CorrelatedColourTemperatureValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: CorrelatedColourTemperatureUnit :>> QuantityValue::mRef;
-    }
-    attribute correlatedColourTemperature: CorrelatedColourTemperatureValue :> quantity;
+    attribute correlatedColourTemperature: TemperatureValue :> temperature;
 
     /**
      * source: item 7-30.1 emissivity
@@ -1201,10 +1168,7 @@ package ISQLight {
      * definition: quotient of the radiant exitance of a radiator and the radiant exitance of a Planckian radiator at the same temperature, expressed by `ε = M/M_b` where M is the radiant exitance (item 7-8.1) of a thermal radiator and M_b is the radiant exitance of a Planckian radiator at the same temperature (ISO 80000-5)
      * remarks: 
      */
-    attribute def EmissivityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def EmissivityUnit :> DimensionOneUnit {
     }
     attribute def EmissivityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1222,10 +1186,7 @@ package ISQLight {
      * definition: quotient of the radiant exitance of a radiator at a specified wavelength and the radiant exitance of a Planckian radiator at the same temperature and at the same wavelength, expressed by ε(λ) = M(λ) / M_b(λ) where M(λ) is the radiant exitance (item 7-8.1) of a thermal radiator at a specified wavelength and M_b(λ) is the radiant exitance of a Planckian radiator at the same temperature at a specified wavelength (ISO 80000-3)
      * remarks: 
      */
-    attribute def EmissivityAtASpecifiedWavelengthUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def EmissivityAtASpecifiedWavelengthUnit :> DimensionOneUnit {
     }
     attribute def EmissivityAtASpecifiedWavelengthValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1243,10 +1204,7 @@ package ISQLight {
      * definition: quotient of absorbed radiant flux and incident radiant flux, expressed by `α = Φ_a/Φ_m` where Φ_a is absorbed radiant flux (item 7-4.1) and Φ_m is incident radiant flux
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case “spectral” is added before the quantity name. Due to energy conservation, α + ρ + τ = 1 except when polarized radiation is observed, where ρ is reflectance (item 7-31.3) and τ is transmittance (item 7-31.5).
      */
-    attribute def AbsorptanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def AbsorptanceUnit :> DimensionOneUnit {
     }
     attribute def AbsorptanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1264,10 +1222,7 @@ package ISQLight {
      * definition: quotient of absorbed luminous flux and incident luminous flux, expressed by `α_v = Φ_(v,a)/Φ_(v,m)` where Φ_(v,a) is absorbed luminous flux (item 7-13) and Φ_(v,m) is incident luminous flux
      * remarks: From spectral absorptance, α(λ), luminous absorptance can be calculated by `α_v = (int_0^∞ α(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)` where Φ_(e,)_λ(λ) is spectral radiant flux (or relative spectral distribution) of the source, and V(λ) is spectral luminous efficiency (item 7-10.2). See also item 7-31.1.
      */
-    attribute def LuminousAbsorptanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LuminousAbsorptanceUnit :> DimensionOneUnit {
     }
     attribute def LuminousAbsorptanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1285,10 +1240,7 @@ package ISQLight {
      * definition: quotient of reflected radiant flux and incident radiant flux, expressed by `ρ = Φ_r/Φ_m` where Φ_r is reflected radiant flux (item 7-4.1) and Φ_m is incident radiant flux
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case, “spectral” is added before the quantity name. Due to energy conservation, α + ρ + τ = 1 except when polarized radiation is observed, where α is absorptance (item 7-31.1) and τ is transmittance (item 7-31.5).
      */
-    attribute def ReflectanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ReflectanceUnit :> DimensionOneUnit {
     }
     attribute def ReflectanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1306,10 +1258,7 @@ package ISQLight {
      * definition: quotient of reflected luminous flux and incident luminous flux, is expressed by `ρ_v = Φ_(v,r)/Φ_(v,m)` where Φ_(v,r) is reflected luminous flux (item 7-13) and Φ_(v,m) is incident luminous flux
      * remarks: From spectral reflectance, ρ(λ), luminous reflectance can be calculated by `ρ_v = (int_0^∞ ρ(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)` where Φ_(e,)_λ(λ) is spectral radiant flux (or relative spectral distribution) of the source, and V(λ) is spectral luminous efficiency (item 7-10.2). See also item 7-31.3.
      */
-    attribute def LuminousReflectanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LuminousReflectanceUnit :> DimensionOneUnit {
     }
     attribute def LuminousReflectanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1327,10 +1276,7 @@ package ISQLight {
      * definition: quotient of transmitted radiant flux and incident radiant flux, expressed by `τ = Φ_t/Φ_m` where Φ_t is transmitted radiant flux (item 7-4.1) and Φ_m is incident radiant flux
      * remarks: This quantity is also defined spectrally in terms of wavelength, in which case, “spectral” is added before the quantity name. Due to energy conservation, α + ρ + τ = 1 except when polarized radiation is observed, where α is absorptance (item 7-31.1) and ρ is reflectance (item 7-31.3).
      */
-    attribute def TransmittanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def TransmittanceUnit :> DimensionOneUnit {
     }
     attribute def TransmittanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1348,10 +1294,7 @@ package ISQLight {
      * definition: quotient of transmitted luminous flux and incident luminous flux, expressed by `τ_v = Φ_(v,t)/Φ_(v,m)` where Φ_(v,t) is transmitted luminous flux (item 7-13) and Φ_(v,m) is luminous flux of the incident radiation
      * remarks: From the spectral transmittance τ(λ), luminous transmittance can be calculated by `τ_v = (int_0^∞ τ(λ) Φ_(e,λ)(λ) V(λ) dλ)/(int_0^∞ Φ_(e,λ)(λ) V(λ) dλ)` where Φ_(e,)_λ(λ) is the spectral radiant flux (or relative spectral distribution) of the source, and V(λ) is the spectral luminous efficiency (item 7-10.2). See also item 7-31.5.
      */
-    attribute def LuminousTransmittanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LuminousTransmittanceUnit :> DimensionOneUnit {
     }
     attribute def LuminousTransmittanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1369,10 +1312,7 @@ package ISQLight {
      * definition: logarithm to base 10 of the reciprocal of the transmittance, τ (item 7-31.5)
      * remarks: If defined in terms of wavelength, the optical density can be expressed by `A_10(λ) = -log(τ(λ))` where τ(λ) is the transmittance (item 7-31.5) in terms of wavelength. In spectroscopy, the name “absorbance A_(10)” is generally used.
      */
-    attribute def TransmittanceOpticalDensityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def TransmittanceOpticalDensityUnit :> DimensionOneUnit {
     }
     attribute def TransmittanceOpticalDensityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1399,10 +1339,7 @@ package ISQLight {
      * definition: natural (Napierian) logarithm of the reciprocal of the transmittance, τ (item 7-31.5)
      * remarks: If defined in terms of wavelength, the Napierian absorbance can be expressed by `A_n(λ) = B(λ) = -log(τ(λ))` It can also be expressed as `A_n(λ) = I α(λ)` where α is linear absorption coefficient (item 7-35.2) and l is length (ISO 80000-3) traversed.
      */
-    attribute def NapierianAbsorbanceUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def NapierianAbsorbanceUnit :> DimensionOneUnit {
     }
     attribute def NapierianAbsorbanceValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1420,10 +1357,7 @@ package ISQLight {
      * definition: quotient of the radiance of a surface element in a specified direction and the radiance of the perfect reflecting diffuser or perfect transmitting diffuser identically irradiated and viewed, expressed by `β_e = L_(e,n)/L_(e,d)` where L_(e,n) is the radiance (item 7-6.1) of a surface element in a given direction and L_(e,d) is the radiance of the perfect reflecting or transmitting diffuser identically irradiated and viewed
      * remarks: The definition holds for a surface element of a non-self-radiating medium, in a given direction and under specified conditions of irradiation. Radiance factor is equivalent to reflectance factor (item 7-34) or luminance factor (item 7-33.2) when the cone angle is infinitely small, and is equivalent to reflectance (item 7-31.3) when the cone angle is 2π sr. These quantities are also defined spectrally and called spectral radiance factor β(λ) and spectral reflectance factor R(λ). The ideal isotropic (Lambertian) diffuser with reflectance (item 7-31.3) or transmittance (item 7-31.5) equal to 1 is called “perfect diffuser”.
      */
-    attribute def RadianceFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RadianceFactorUnit :> DimensionOneUnit {
     }
     attribute def RadianceFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1441,10 +1375,7 @@ package ISQLight {
      * definition: quotient of the luminance of a surface element in a specified direction and the luminance of the perfect reflecting diffuser or perfect transmitting diffuser identically illuminated and viewed, expressed by `β_v = L_(v,n)/L_(v,d)` where L_(v,n) is the luminance (item 7-15) of a surface element in a given direction and L_(v,d) is the luminance of the perfect reflecting or transmitting diffuser identically illuminated and viewed
      * remarks: The definition holds for a surface element of a non-luminous medium, in a given direction and under specified conditions of irradiation. This quantity is also defined spectrally and is called “spectral luminance factor”. For the analogous radiant quantity “radiance factor”, see item 7-33.1.
      */
-    attribute def LuminanceFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def LuminanceFactorUnit :> DimensionOneUnit {
     }
     attribute def LuminanceFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1462,10 +1393,7 @@ package ISQLight {
      * definition: quotient of the flux reflected in the directions delimited by a given cone with apex at a surface element and the flux reflected in the same directions by a perfect reflecting diffuser identically irradiated or illuminated, expressed by `R = Φ_n/Φ_d` where Φ_n is the flux reflected in the directions delimited by a given cone and Φ_d is the flux reflected in the same directions by an identically irradiated diffuser of reflectance (item 7-31.3) equal to 1
      * remarks: The flux can be a radiant flux (item 7‐4.1) or a luminous flux (item 7‐13). The definition holds for a surface element, for the part of the reflected radiation contained in a given cone with apex at the surface element, and for incident radiation of given spectral composition, polarization and geometric distribution. Reflectance factor is equivalent to radiance factor (item 7-33.1) or luminance factor (item 7-33.2) when the cone angle is infinitely small, and is equivalent to reflectance (item 7-31.3) when the cone angle is 2π sr. These quantities are also defined spectrally and called spectral radiance factor β(λ) and spectral reflectance factor R(λ). The ideal isotropic (Lambertian) diffuser with reflectance (item 7-31.3) or transmittance (item 7-31.5) equal to 1 is called a perfect diffuser.
      */
-    attribute def ReflectanceFactorUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def ReflectanceFactorUnit :> DimensionOneUnit {
     }
     attribute def ReflectanceFactorValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;

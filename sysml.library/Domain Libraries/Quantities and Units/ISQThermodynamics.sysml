@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-08-14T11:04:34Z by sysml_v2_quantities_units_generator.py
+ * Generated on 2020-08-18T01:30:36Z by sysml_v2_quantities_units_generator.py
  * from standard ISO-80000-05:2019 "Thermodynamics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-5:ed-2:v1:en
  *
@@ -15,25 +15,28 @@ package ISQThermodynamics {
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
 
-    /**    
-     * source: item 5-1 thermodynamic temperature
+    /**
+     * source: item 5-1 temperature, thermodynamic temperature
      * symbol(s): T, Θ
      * application domain: General
-     * name: ThermodynamicTemperature
+     * name: Temperature
      * quantity dimension: Θ^1
      * measurement unit(s): K
      * definition: partial derivative of internal energy with respect to entropy at constant volume and constant number of particles in the system: `T = ((partial U)/(partial S))_(V,N)` where U is internal energy (item 5-20.2), S is entropy (item 5-18), V is volume (ISO 80000-3), and N is number of particles
      * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in de grees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted T_(90) and t_(90), respectively (replacing T_(68) and t_(68) defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of T_(90) and t_(90) are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References^[5^],^[6^]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference^[7^].
      */
-    attribute def ThermodynamicTemperatureUnit :> SimpleUnit {
-        attribute unitPowerFactor :>> SimpleUnit::unitPowerFactor {
-            attribute unit: ThermodynamicTemperatureUnit :>> UnitPowerFactor::unit;
+    attribute def TemperatureUnit :> SIDerivedUnit {
+        attribute temperaturePowerFactor :>> SIDerivedUnit::temperaturePowerFactor {
+            attribute exponent :>> UnitPowerFactor::exponent = 1;
         }
     }
-    attribute def ThermodynamicTemperatureValue :> QuantityValue {
+    attribute def TemperatureValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: ThermodynamicTemperatureUnit :>> QuantityValue::mRef;
-    }    
+        attribute mRef: TemperatureUnit :>> QuantityValue::mRef;
+    }
+    attribute temperature: TemperatureValue :> quantity;
+
+    alias TemperatureValue as ThermodynamicTemperatureValue;
     attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> quantity;
 
     /**
@@ -658,10 +661,7 @@ package ISQThermodynamics {
      * definition: quotient of specific heat capacity at constant pressure and specific heat capacity at constant volume: `γ = c_p/c_V` where c_p is specific heat capacity at constant pressure (item 5-16.2) and c_V is specific heat capacity at constant volume (item 5-16.3)
      * remarks: This quantity can also be expressed by `γ = C_p/C_V` where C_p is heat capacity at constant pressure and C_V is heat capacity at constant volume.
      */
-    attribute def RatioOfSpecificHeatCapacitiesUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RatioOfSpecificHeatCapacitiesUnit :> DimensionOneUnit {
     }
     attribute def RatioOfSpecificHeatCapacitiesValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -679,10 +679,7 @@ package ISQThermodynamics {
      * definition: the negative of relative pressure change, divided by relative volume change, at constant entropy: ϰ `= - V/p * ((partial p)/(partial V))_S` where V is volume (ISO 80000-3), p is pressure (ISO 80000-4), and S is entropy (item 5-18)
      * remarks: For an ideal gas, ϰ is equal to γ (item 5-17.1).
      */
-    attribute def IsentropicExponentUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def IsentropicExponentUnit :> DimensionOneUnit {
     }
     attribute def IsentropicExponentValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1123,10 +1120,7 @@ package ISQThermodynamics {
      * definition: quotient of work (ISO 80000-4) delivered by a heat engine and supplied heat: `η = W/Q` where W is work (ISO 80000-4) and Q is heat (item 5-6.1)
      * remarks: 
      */
-    attribute def EfficiencyUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def EfficiencyUnit :> DimensionOneUnit {
     }
     attribute def EfficiencyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1144,10 +1138,7 @@ package ISQThermodynamics {
      * definition: efficiency determined by the quotient of the temperatures of the hot source and the cold sink: `η_max = 1 - T_c/T_h` where T_c is the thermodynamic temperature (item 5-1) of the cold sink and T_h is the thermodynamic temperature (item 5-1) of the hot source
      * remarks: An ideal heat engine operating according to the Carnot process is delivering the maximum efficiency.
      */
-    attribute def MaximumEfficiencyUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MaximumEfficiencyUnit :> DimensionOneUnit {
     }
     attribute def MaximumEfficiencyValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1240,10 +1231,7 @@ package ISQThermodynamics {
      * definition: quotient of mass of water and mass of dry matter: `u = m/m_d` where m is mass (ISO 80000-4) of water and m_d is mass of dry matter
      * remarks: Mass ratio of water to dry matter at saturation is denoted u_(sat).
      */
-    attribute def MassRatioOfWaterToDryMatterUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MassRatioOfWaterToDryMatterUnit :> DimensionOneUnit {
     }
     attribute def MassRatioOfWaterToDryMatterValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1261,10 +1249,7 @@ package ISQThermodynamics {
      * definition: quotient of mass of water vapour and mass of dry gas: `r = m/m_d` where m is mass (ISO 80000-4) of water vapour and m_d is mass of dry gas
      * remarks: Mass ratio of water vapour to dry gas at saturation is denoted r_(sat). Mass ratio of water vapour to dry gas is also called mixing ratio.
      */
-    attribute def MassRatioOfWaterVapourToDryGasUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MassRatioOfWaterVapourToDryGasUnit :> DimensionOneUnit {
     }
     attribute def MassRatioOfWaterVapourToDryGasValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1282,10 +1267,7 @@ package ISQThermodynamics {
      * definition: quantity given by: `w_(H_(2)O) = u/(1+u)` where u is mass ratio of water to dry matter (item 5-29)
      * remarks: 
      */
-    attribute def MassFractionOfWaterUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MassFractionOfWaterUnit :> DimensionOneUnit {
     }
     attribute def MassFractionOfWaterValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1303,10 +1285,7 @@ package ISQThermodynamics {
      * definition: quantity given by: `w_d = 1 - w_(H_(2)O)` where `w_(H_(2)O)` is mass fraction of water (item 5-31)
      * remarks: 
      */
-    attribute def MassFractionOfDryMatterUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def MassFractionOfDryMatterUnit :> DimensionOneUnit {
     }
     attribute def MassFractionOfDryMatterValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1324,10 +1303,7 @@ package ISQThermodynamics {
      * definition: quotient of partial pressure of water vapour and partial pressure at its saturation: `φ = p/p_(sat)` where p is partial pressure (ISO 80000-4) of vapour and p_(sat) is its partial pressure at saturation at the same temperature
      * remarks: Relative humidity is often referred to as RH and expressed in percent. See also remark in item 5-35.
      */
-    attribute def RelativeHumidityUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeHumidityUnit :> DimensionOneUnit {
     }
     attribute def RelativeHumidityValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1345,10 +1321,7 @@ package ISQThermodynamics {
      * definition: quotient of mass concentration of water vapour and mass concentration at its saturation: `φ = v/v_(sat)` where v is mass concentration of water vapour (item 5-28) and v_(sat) is its mass concentration of water vapour at saturation of the same temperature
      * remarks: For water vapour concentrations up to 1 kg/m^3, the relative humidity (item 5-33) is assumed to be equal to relative mass concentration of vapour. For details see Reference ^[8^].
      */
-    attribute def RelativeMassConcentrationOfVapourUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeMassConcentrationOfVapourUnit :> DimensionOneUnit {
     }
     attribute def RelativeMassConcentrationOfVapourValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1366,10 +1339,7 @@ package ISQThermodynamics {
      * definition: quotient of mass ratio of water vapour to dry gas and mass ratio of water vapour to dry gas at saturation: `ψ = r/r_(sat)` where r is mass ratio of water vapour to dry gas (item 5-30) and r_(sat) is its mass ratio of water vapour to dry gas at saturation of the same temperature
      * remarks: This quantity is also used as an approximation of relative humidity (item 5-33).
      */
-    attribute def RelativeMassRatioOfVapourUnit :> SIDerivedUnit {
-        attribute dimensionOnePowerFactor :>> SIDerivedUnit::dimensionOnePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
+    attribute def RelativeMassRatioOfVapourUnit :> DimensionOneUnit {
     }
     attribute def RelativeMassRatioOfVapourValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
@@ -1381,21 +1351,12 @@ package ISQThermodynamics {
      * source: item 5-36 dew-point temperature
      * symbol(s): T_d
      * application domain: General
-     * name: DewPointTemperature
+     * name: DewPointTemperature (specializes Temperature)
      * quantity dimension: Θ^1
      * measurement unit(s): K
      * definition: temperature at which water vapour in the air reaches saturation under isobaric conditions
      * remarks: The corresponding Celsius temperature, denoted t_d, is still called dew-point temperature. The unit for the corresponding Celsius temperature is degree Celsius, symbol °C.
      */
-    attribute def DewPointTemperatureUnit :> SIDerivedUnit {
-        attribute temperaturePowerFactor :>> SIDerivedUnit::temperaturePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-    }
-    attribute def DewPointTemperatureValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: DewPointTemperatureUnit :>> QuantityValue::mRef;
-    }
-    attribute dewPointTemperature: DewPointTemperatureValue :> quantity;
+    attribute dewPointTemperature: TemperatureValue :> temperature;
 
 }

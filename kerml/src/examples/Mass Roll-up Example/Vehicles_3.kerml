@@ -1,4 +1,4 @@
-package Vehicles_2 {
+package Vehicles_3 {
 	import ScalarValues::*;
 	import MassRollup_2::*;
 	
@@ -31,15 +31,15 @@ package Vehicles_2 {
 	import SI::*;
 	feature v: vehicle {
 		feature m redefines CarPart::m = 1000@[kg];
-		composite engine is e;
-		composite transmission is t;
+		composite :>> engine = e;
+		composite :>> transmission = t;
 	}
 	
-	feature e: engine {
+	feature e :> engine {
 		feature m redefines CarPart::m = 100@[kg];
 	}
 	
-	feature t: transmission {
+	feature t :> transmission {
 		feature m redefines CarPart::m = 50@[kg];
 	}
 	

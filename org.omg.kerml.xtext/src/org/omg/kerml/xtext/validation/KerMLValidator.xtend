@@ -43,6 +43,9 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression
+import org.omg.sysml.lang.sysml.LiteralExpression
+import org.omg.sysml.lang.sysml.NullExpression
 
 /**
  * This class contains custom validation rules. 
@@ -68,17 +71,32 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMembership(Membership mem){
-		val pack = mem.membershipOwningPackage;		
-		pack.ownedMembership.forEach[m|
-			if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m))
-				warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
-		]
-		if (pack instanceof Type){
-			pack.inheritedMembership.forEach[m|
-				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
-					warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+		val pack = mem.membershipOwningPackage;	
+		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
+		if (!(pack instanceof InvocationExpression || pack instanceof FeatureReferenceExpression || pack instanceof LiteralExpression || pack instanceof NullExpression ||
+			  pack instanceof BindingConnector
+		)) {
+			pack.ownedMembership.forEach[m|
+				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
+					if (mem.ownedMemberElement !== null) {
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					} else {
+						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					}
 				}
+						
 			]
+			if (pack instanceof Type){
+				pack.inheritedMembership.forEach[m|
+					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
+						if (mem.ownedMemberElement !== null) {
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						} else {
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						}
+					}
+				]
+			}
 		}
 		
 	}

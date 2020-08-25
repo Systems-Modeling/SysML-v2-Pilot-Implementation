@@ -63,7 +63,7 @@ public interface AnalysisCaseDefinition extends CaseDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression used to compute the <code>result</code> of the AnalysisCaseDefinition, derived as the last owned <code>expression</code> of the AnalysisCaseDefinition. The <code>resultExpression></code> must redefine directly or indirectly, the <code>resultEvaluation</code> Expression of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
+	 * <p>The Expression used to compute the <code>result</code> of the AnalysisCaseDefinition, derived as the Expression own via a ResultExpressionMembership. The <code>resultExpression></code> must redefine directly or indirectly, the <code>resultEvaluation</code> Expression of the base AnalysisCaseDefinition AnalysisCase from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result Expression</em>' reference.
 	 * @see #setResultExpression(Expression)

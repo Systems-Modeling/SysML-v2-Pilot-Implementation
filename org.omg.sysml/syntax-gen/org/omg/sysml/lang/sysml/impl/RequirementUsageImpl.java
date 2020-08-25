@@ -12,14 +12,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,11 +31,11 @@ import org.omg.sysml.lang.sysml.Type;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequirementDefinition <em>Requirement Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getReqId <em>Req Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getText <em>Text</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,26 +64,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @ordered
 	 */
 	protected String reqId = REQ_ID_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getText()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TEXT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getText()
-	 * @generated
-	 * @ordered
-	 */
-	protected String text = TEXT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -149,9 +130,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated
 	 */
 	@Override
-	public Parameter getSubjectParameter() {
-		Parameter subjectParameter = basicGetSubjectParameter();
-		return subjectParameter != null && subjectParameter.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
+	public Usage getSubjectParameter() {
+		Usage subjectParameter = basicGetSubjectParameter();
+		return subjectParameter != null && subjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
 	}
 	
 	/**
@@ -159,9 +140,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetSubjectParameter() {
+	public Usage basicGetSubjectParameter() {
 		// Note: The subject parameter is assumed to be the first owned parameter.
-		return getOwnedParameters().stream().findFirst().orElse(null);
+		return (Usage)getOwnedParameters().stream().findFirst().orElse(null);
 	}
 
 	/**
@@ -170,7 +151,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	@Override
-	public void setSubjectParameter(Parameter newSubjectParameter) {
+	public void setSubjectParameter(Usage newSubjectParameter) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -204,27 +185,22 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	@Override
-	public String getText() {
-		if (text == null) {
-			setText(getDocumentationText());
-		}
-		return text;
+	public boolean isSetReqId() {
+		return REQ_ID_EDEFAULT == null ? reqId != null : !REQ_ID_EDEFAULT.equals(reqId);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
-	public void setText(String newText) {
-		String oldText = text;
-		text = newText;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.REQUIREMENT_USAGE__TEXT, oldText, text));
+	public EList<String> getText() {
+		EList<String> text = new EObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
+		getDocumentationComment().stream().map(Comment::getBody).forEachOrdered(text::add);
+		return text;
 	}
 
 	/**
@@ -313,14 +289,39 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated
 	 */
 	@Override
+	public String getHumanId() {
+		return getReqId();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHumanId(String newHumanId) {
+		setReqId(newHumanId);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHumanId() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				if (resolve) return getRequirementDefinition();
 				return basicGetRequirementDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
-				if (resolve) return getSubjectParameter();
-				return basicGetSubjectParameter();
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:
 				return getReqId();
 			case SysMLPackage.REQUIREMENT_USAGE__TEXT:
@@ -329,6 +330,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				return getRequiredConstraint();
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				return getAssumedConstraint();
+			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
+				if (resolve) return getSubjectParameter();
+				return basicGetSubjectParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -345,14 +349,12 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				setRequirementDefinition((RequirementDefinition)newValue);
 				return;
-			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
-				setSubjectParameter((Parameter)newValue);
-				return;
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:
 				setReqId((String)newValue);
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__TEXT:
-				setText((String)newValue);
+				getText().clear();
+				getText().addAll((Collection<? extends String>)newValue);
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT:
 				getRequiredConstraint().clear();
@@ -361,6 +363,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				getAssumedConstraint().clear();
 				getAssumedConstraint().addAll((Collection<? extends ConstraintUsage>)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
+				setSubjectParameter((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -377,20 +382,20 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				setRequirementDefinition((RequirementDefinition)null);
 				return;
-			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
-				setSubjectParameter((Parameter)null);
-				return;
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:
 				setReqId(REQ_ID_EDEFAULT);
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__TEXT:
-				setText(TEXT_EDEFAULT);
+				getText().clear();
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT:
 				getRequiredConstraint().clear();
 				return;
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				getAssumedConstraint().clear();
+				return;
+			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
+				setSubjectParameter((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -406,18 +411,20 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_USAGE__CONSTRAINT_DEFINITION:
 				return isSetConstraintDefinition();
+			case SysMLPackage.REQUIREMENT_USAGE__HUMAN_ID:
+				return isSetHumanId();
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIREMENT_DEFINITION:
 				return isSetRequirementDefinition();
-			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
-				return basicGetSubjectParameter() != null;
 			case SysMLPackage.REQUIREMENT_USAGE__REQ_ID:
-				return REQ_ID_EDEFAULT == null ? reqId != null : !REQ_ID_EDEFAULT.equals(reqId);
+				return isSetReqId();
 			case SysMLPackage.REQUIREMENT_USAGE__TEXT:
-				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+				return !getText().isEmpty();
 			case SysMLPackage.REQUIREMENT_USAGE__REQUIRED_CONSTRAINT:
 				return !getRequiredConstraint().isEmpty();
 			case SysMLPackage.REQUIREMENT_USAGE__ASSUMED_CONSTRAINT:
 				return !getAssumedConstraint().isEmpty();
+			case SysMLPackage.REQUIREMENT_USAGE__SUBJECT_PARAMETER:
+				return basicGetSubjectParameter() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -434,8 +441,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (reqId: ");
 		result.append(reqId);
-		result.append(", text: ");
-		result.append(text);
 		result.append(')');
 		return result.toString();
 	}

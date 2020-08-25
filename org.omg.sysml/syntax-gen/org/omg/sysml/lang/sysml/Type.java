@@ -10,11 +10,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Type gives&nbsp;criteria for things to be of a particular kind, which are its&nbsp;<em>instances</em>. For example, RealNumber as a type has real numbers as its instances, WheeledVehicle has&nbsp;particular wheeled vehicles as instances, each with a unique&nbsp;identification number, OperatingProcess has instances of processes being carried out, and so on.&nbsp; See isSufficient.</p>
+ * <p>Types is the most general element supporting classification.&nbsp; They must be Classifiers or Features.&nbsp; Both give conditions on what&nbsp;they classify, see isSufficient.</p>
  * 
- * <p>Both Classifiers and Features are kinds of Types. A Classifier represents a set of individual things, while a Feature represents a relation between such things and/or other (nested and nesting) Features.</p>
- * 
- * ownedGeneralization->asSet() = specificOfGeneralization->intersection(ownedElement)
+ * ownedGeneralization = generalization->intersection(ownedElement)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -23,14 +21,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getConjugator <em>Conjugator</em>}</li>
@@ -132,6 +130,14 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * @generated
 	 */
 	FeatureDirectionKind directionOf(Feature feature);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false"
+	 * @generated
+	 */
+	EList<Type> allSupertypes();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Feature</b></em>' reference list.
@@ -343,7 +349,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type&nbsp;gives conditions that must be met by its instances, but when isSufficient is false or absent, things meeting those conditions might not be instances of the type.&nbsp; For example, a type Car that is not sufficient could require every instance to have four wheels, but not all four wheeled things would need to be cars.&nbsp; If isSufficient is true, conditions on a Type are enough for things to be its instances.&nbsp; For example, if the type Car were sufficient, all four-wheeled things would be instances of it.</p>
+	 * <p>A Type&nbsp;gives conditions that must be met by whatever it classifies, but when isSufficient is false or absent, things meeting those conditions might not be classified.&nbsp; For example, a type Car that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would need to be cars.&nbsp; If isSufficient is true, all things that meet conditions of a Type must be classified by that Type.&nbsp; For example, if the type Car were sufficient, it would classify all four-wheeled things.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Sufficient</em>' attribute.

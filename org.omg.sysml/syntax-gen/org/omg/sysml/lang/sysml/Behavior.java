@@ -57,7 +57,7 @@ public interface Behavior extends Classifier {
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Parameter}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -81,6 +81,6 @@ public interface Behavior extends Classifier {
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Parameter> getParameter();
+	EList<Feature> getParameter();
 
 } // Behavior

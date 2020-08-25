@@ -17,7 +17,6 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -79,50 +78,49 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			if (type instanceof Function || type instanceof Expression) {
 				return super.getInput();
 			} else if (type != null) {
-				List<Feature> typeFeatures = (((TypeImpl)type).getPublicFeatures());
-				for (Expression argument: getArgument()) {
-					Feature typeFeature = getFeatureForArgument(typeFeatures, argument);
-					if (typeFeature == null) {
-						break;
-					}
-					Feature feature = createFeatureForParameter(typeFeature);
-					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-					redefinition.setRedefinedFeature(typeFeature);
-					redefinition.setRedefiningFeature(feature);
-					feature.getOwnedRelationship_comp().add(redefinition);
+				for (Feature typeFeature: getTypeFeatures()) {
+					inputs.add(createFeatureForParameter(typeFeature));
 				}
 			}
 		}
 		return inputs;
 	}
 	
-	protected static Feature getFeatureForArgument(List<Feature> typeFeatures, Feature argument) {
-		Feature feature = null;
-		if (!typeFeatures.isEmpty()) {
-			String name = argument.getName();
-			if (name == null) {
-				feature = typeFeatures.get(0);
-				typeFeatures.remove(0);
-			} else {
-				feature = typeFeatures.stream().filter(f->name.equals(f.getName())).findFirst().orElse(null);
-				if (feature != null) {
-					typeFeatures.remove(feature);
-				}
+	public List<Feature> getTypeFeatures() {
+		Type type = getExpressionType();
+		List<Feature> typeFeatures = new ArrayList<>();
+		List<Expression> arguments = getArgument();
+		int i = 0;
+		for (Feature typeFeature: (((TypeImpl)type).getPublicFeatures())) {
+			if (i >= arguments.size()) {
+				break;
 			}
+			Expression argument = getArgumentForFeature(arguments, typeFeature, i);
+			if (argument != null) {
+				typeFeatures.add(typeFeature);
+			}
+			i++;
 		}
-		return feature;
+		return typeFeatures;
 	}
-
+	
 	public List<BindingConnector> getArgumentConnectors() {
 		if (argumentConnectors == null) {
 			argumentConnectors = new ArrayList<>();
-			List<Feature> input = getOwnedInput();
 			List<Expression> arguments = getArgument();
-			for (int i = 0; i < input.size(); i++) {
-				if (i < arguments.size()) {
-					argumentConnectors.add(addOwnedBindingConnector(
-							arguments.get(i).getResult(), input.get(i)));
-				}		
+			int i = 0;
+			for (Feature input: getOwnedInput()) {
+				List<Redefinition> redefinitions = input.getOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					Feature feature = redefinitions.get(0).getRedefinedFeature();
+					if (feature != null) {
+						Expression argument = getArgumentForFeature(arguments, feature, i);
+						if (argument != null) {
+							argumentConnectors.add(addOwnedBindingConnector(argument.getResult(), input));
+						}
+					}
+				}
+				i++;
 			}
 		}
 		return argumentConnectors;
@@ -132,19 +130,36 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return argumentConnectors;
 	}
 	
+	protected static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
+		Expression argument = null;
+		if (!arguments.isEmpty()) {
+			argument = arguments.get(0);
+			String argumentName = argument.getName();
+			String featureName = feature.getName();
+			if (argumentName == null || featureName == null) {
+				if (index < arguments.size()) {
+					argument = arguments.get(index);
+				}
+			} else {
+				argument = arguments.stream().filter(a->featureName.equals(a.getName())).findFirst().orElse(null);
+			}
+		}
+		return argument;
+	}
+
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		Type type = getExpressionType();
 		int m = type == null ? 0 : 
 			(int)((TypeImpl)type).getAllParameters().stream().
-				filter(p->((ParameterImpl)p).isInputParameter()).count();
+				filter(p->((FeatureImpl)p).isInput()).count();
 		List<Feature> features = super.getOwnedFeature();
 		int n = features.size();
 		return m >= n ? Collections.emptyList() : features.subList(m, n);
 	}
 	
 	@Override
-	protected Type getExpressionType() {
+	public Type getExpressionType() {
 		EList<FeatureTyping> typing = getTyping();
 		return typing.isEmpty()? null: typing.get(0).getType();
 	}

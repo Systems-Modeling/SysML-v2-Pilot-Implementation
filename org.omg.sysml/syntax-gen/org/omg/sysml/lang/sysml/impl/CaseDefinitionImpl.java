@@ -8,9 +8,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,9 +56,9 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated
 	 */
 	@Override
-	public Parameter getSubjectParameter() {
-		Parameter subjectParameter = basicGetSubjectParameter();
-		return subjectParameter != null && subjectParameter.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
+	public Usage getSubjectParameter() {
+		Usage subjectParameter = basicGetSubjectParameter();
+		return subjectParameter != null && subjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
 	}
 
 	/**
@@ -65,10 +66,11 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetSubjectParameter() {
-		return getOwnedParameters().stream().
-				map(ParameterImpl.class::cast).
-				filter(ParameterImpl::isSubjectParameter).
+	public Usage basicGetSubjectParameter() {
+		return getOwnedFeatureMembership().stream().
+				filter(SubjectMembership.class::isInstance).
+				map(SubjectMembership.class::cast).
+				map(SubjectMembership::getOwnedSubjectParameter).
 				findFirst().orElse(null);
 	}
 
@@ -78,7 +80,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	@Override
-	public void setSubjectParameter(Parameter newSubjectParameter) {
+	public void setSubjectParameter(Usage newSubjectParameter) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -175,7 +177,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 				setObjectiveRequirement((RequirementUsage)newValue);
 				return;
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
-				setSubjectParameter((Parameter)newValue);
+				setSubjectParameter((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -193,7 +195,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 				setObjectiveRequirement((RequirementUsage)null);
 				return;
 			case SysMLPackage.CASE_DEFINITION__SUBJECT_PARAMETER:
-				setSubjectParameter((Parameter)null);
+				setSubjectParameter((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);

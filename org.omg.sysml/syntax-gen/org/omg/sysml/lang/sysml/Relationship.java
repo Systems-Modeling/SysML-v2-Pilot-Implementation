@@ -111,7 +111,7 @@ public interface Relationship extends Element {
 	 * @return the value of the '<em>Owned Related Element comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwnedRelatedElement_comp()
 	 * @see org.omg.sysml.lang.sysml.Element#getOwningRelationship
-	 * @model opposite="owningRelationship" containment="true" ordered="false"
+	 * @model opposite="owningRelationship" containment="true"
 	 * @generated
 	 */
 	EList<Element> getOwnedRelatedElement_comp();
@@ -131,7 +131,7 @@ public interface Relationship extends Element {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_RelatedElement()
-	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='relationship'"
 	 *        annotation="union"
 	 * @generated
@@ -159,8 +159,7 @@ public interface Relationship extends Element {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Target()
-	 * @model ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetRelationship'"
+	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetRelationship'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -186,8 +185,7 @@ public interface Relationship extends Element {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Source()
-	 * @model ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sourceRelationship'"
+	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sourceRelationship'"
 	 *        annotation="subsets"
 	 * @generated
 	 */

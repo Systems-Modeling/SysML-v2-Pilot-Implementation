@@ -19,8 +19,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.CaseUsage#getObjectiveRequirement <em>Objective Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.CaseUsage#getSubjectParameter <em>Subject Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.CaseUsage#getCaseDefinition <em>Case Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.CaseUsage#getSubjectParameter <em>Subject Parameter</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseUsage()
@@ -67,23 +67,23 @@ public interface CaseUsage extends CalculationUsage {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Step#getParameter() <em>Parameter</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getParameter() <em>Parameter</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <p>parameter</p> of this CaseUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> Parameter of the base CaseDefinition Case from the Systems model library.</p>
+	 * <p>The <code>parameter</cpde> of this CaseUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base CaseDefinition Case from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
-	 * @see #setSubjectParameter(Parameter)
+	 * @see #setSubjectParameter(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseUsage_SubjectParameter()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subjectOwningCase'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Parameter getSubjectParameter();
+	Usage getSubjectParameter();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.CaseUsage#getSubjectParameter <em>Subject Parameter</em>}' reference.
@@ -93,7 +93,7 @@ public interface CaseUsage extends CalculationUsage {
 	 * @see #getSubjectParameter()
 	 * @generated
 	 */
-	void setSubjectParameter(Parameter value);
+	void setSubjectParameter(Usage value);
 
 	/**
 	 * Returns the value of the '<em><b>Case Definition</b></em>' reference.

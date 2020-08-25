@@ -14,30 +14,30 @@ END_SETUP
 */
 package test{
 	//* XPECT warnings ---
-	 "Duplicate member name1" at "class A {}"
-	 "Duplicate member name1" at "class A {}"
-	 "Duplicate member name1" at "class A {}"
+	 "Duplicate owned member name" at "A"
+	 "Duplicate owned member name" at "A"
+	 "Duplicate owned member name" at "A"
 	--- */ 
 	class A {}
 	//* XPECT warnings ---
-	    "Duplicate member name1" at "package A{  		class A {}  		alias A as A_alias;  	}"
-	    "Duplicate member name1" at "package A{  		class A {}  		alias A as A_alias;  	}"
-	    "Duplicate member name1" at "package A{  		class A {}  		alias A as A_alias;  	}"
+	    "Duplicate owned member name" at "A"
+	    "Duplicate owned member name" at "A"
+	    "Duplicate owned member name" at "A"
 	    --- */
 	package A{
 		class A {}
 		alias A as A_alias;
 	}
 	//* XPECT warnings ---
-		"Duplicate member name1" at "package A{}"
-		"Duplicate member name1" at "package A{}"
-		"Duplicate member name1" at "package A{}"
+		"Duplicate owned member name" at "A"
+		"Duplicate owned member name" at "A"
+		"Duplicate owned member name" at "A"
 	---	*/
 	package A{}
 	//* XPECT warnings --- 
-	   "Duplicate member name1" at "feature A: A::A_alias;"
-	   "Duplicate member name1" at "feature A: A::A_alias;"
-	   "Duplicate member name1" at "feature A: A::A_alias;"
+	   "Duplicate owned member name" at "A"
+	   "Duplicate owned member name" at "A"
+	   "Duplicate owned member name" at "A"
 	--- */
 	feature A: A::A_alias;
 	feature B: A::A_alias;
@@ -47,11 +47,11 @@ package test{
 		class F {}
 	}
 	class D :> C {
-		// XPECT warnings --> "Duplicate member name2" at "class D {}"
+		// XPECT warnings --> "Duplicate of inherited member name" at "D"
 		class D {}
 	}
 	class E :> D {
-		// XPECT warnings --> "Duplicate member name2" at "class F {}"
+		// XPECT warnings --> "Duplicate of inherited member name" at "F"
 		class F {}
 	}
 	

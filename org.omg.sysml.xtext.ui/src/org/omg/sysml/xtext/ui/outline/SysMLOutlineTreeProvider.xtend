@@ -27,20 +27,6 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 		membership.featurePrefixText + " " + membership.kind + " " + membership.nameText
 	}
 	
-	def String _text(RequirementDefinition requirementDef) {
-		var text = requirementDef.eClass.name;
-		if (requirementDef.isAbstract) {
-			text += ' abstract'
-		}
-		if (requirementDef.reqId !== null) {
-			text += ' "' + requirementDef.reqId + '"'
-		}
-		if (requirementDef.name !== null) {
-			text += ' ' + requirementDef.name
-		}
-		text
-	}
-	
 	def boolean _isLeaf(RequirementDefinition requirementDef) {
 		_isLeaf(requirementDef as Type) && requirementDef.text === null
 	}
@@ -53,20 +39,6 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 			)
 		}
 		super._createChildren(parentNode, requirementDef)
-	}
-	
-	def String _text(RequirementUsage requirement) {
-		var text = requirement.eClass.name;
-		if (requirement.isAbstract) {
-			text += ' abstract'
-		}
-		if (requirement.reqId !== null) {
-			text += ' "' + requirement.reqId + '"'
-		}
-		if (requirement.name !== null) {
-			text += ' ' + requirement.name
-		}
-		text
 	}
 	
 	def boolean _isLeaf(RequirementUsage requirement) {

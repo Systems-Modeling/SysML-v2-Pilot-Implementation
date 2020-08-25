@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -89,9 +89,9 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated
 	 */
 	@Override
-	public Parameter getResult() {
-		Parameter result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
+	public Feature getResult() {
+		Feature result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetResult() {
+	public Feature basicGetResult() {
 		return getResultParameter();
 	}
 
@@ -109,7 +109,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	@Override
-	public void setResult(Parameter newResult) {
+	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -192,7 +192,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 				getExpression().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
-				setResult((Parameter)newValue);
+				setResult((Feature)newValue);
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE:
 				getCalculationUsage().clear();
@@ -214,7 +214,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 				getExpression().clear();
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
-				setResult((Parameter)null);
+				setResult((Feature)null);
 				return;
 			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE:
 				getCalculationUsage().clear();

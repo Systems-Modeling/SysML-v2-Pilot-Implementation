@@ -44,6 +44,15 @@ public class SysML2PlantUMLSvc {
 
     private SysML2PlantUMLText.MODE mode = SysML2PlantUMLText.MODE.Default;
 
+    private static <T extends Enum<?>> String getPossibleValues(Class<T> en) {
+        StringBuilder sb = new StringBuilder();
+        for (T e : en.getEnumConstants()) {
+            sb.append(e.name());
+            sb.append(' ');
+        }
+        return sb.toString();
+    }
+
     public void setView(String view) {
         for (SysML2PlantUMLText.MODE m: SysML2PlantUMLText.MODE.values()) {
             if (m.name().equalsIgnoreCase(view)) {
@@ -53,7 +62,7 @@ public class SysML2PlantUMLSvc {
         }
         throw new IllegalArgumentException("Invalid View: " + view
                                            + " View candidates are: "
-                                           + SysML2PlantUMLStyle.getPossibleValues(SysML2PlantUMLText.MODE.class));
+                                           + getPossibleValues(SysML2PlantUMLText.MODE.class));
     }
 
     private void applyStyle(List<String> styles) {
@@ -67,7 +76,7 @@ public class SysML2PlantUMLSvc {
             }
         }
         if (addDefault) {
-            s2Text.addStyle(SysML2PlantUMLStyle.DEFAULT);
+            s2Text.addStyle(SysML2PlantUMLStyle.getDefault());
         }
     }
 

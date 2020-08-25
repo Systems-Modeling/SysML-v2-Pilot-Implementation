@@ -37,15 +37,20 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
+import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TextualRepresentation;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,14 +61,22 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningRelationship <em>Owning Relationship</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedAnnotation_comp <em>Owned Annotation comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getAliasId <em>Alias Id</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningMembership <em>Owning Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedElement <em>Owned Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentation_comp <em>Documentation comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentationComment <em>Documentation Comment</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getHumanId <em>Human Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentation <em>Documentation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,6 +91,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected EList<Relationship> ownedRelationship_comp;
+
+	/**
+	 * The cached value of the '{@link #getOwnedAnnotation_comp() <em>Owned Annotation comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAnnotation_comp()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Annotation> ownedAnnotation_comp;
+
+	/**
+	 * The cached value of the '{@link #getAliasId() <em>Alias Id</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAliasId()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> aliasId;
 
 	/**
 	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
@@ -108,6 +141,36 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDocumentation_comp() <em>Documentation comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation_comp()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Documentation> documentation_comp;
+
+	/**
+	 * The default value of the '{@link #getHumanId() <em>Human Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHumanId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String HUMAN_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getHumanId() <em>Human Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHumanId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String humanId = HUMAN_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -337,6 +400,42 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	@Override
+	public EList<Annotation> getOwnedAnnotation_comp() {
+		if (ownedAnnotation_comp == null) {
+			ownedAnnotation_comp = new EObjectContainmentWithInverseEList<Annotation>(Annotation.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP, SysMLPackage.ANNOTATION__OWNING_ANNOTATED_ELEMENT);
+		}
+		return ownedAnnotation_comp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<String> getAliasId() {
+		if (aliasId == null) {
+			aliasId = new SubsetSupersetEDataTypeUniqueEList<String>(String.class, this, SysMLPackage.ELEMENT__ALIAS_ID, null, ALIAS_ID_ESUBSETS);
+		}
+		return aliasId;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getAliasId() <em>Alias Id</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAliasId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] ALIAS_ID_ESUBSETS = new int[] {SysMLPackage.ELEMENT__HUMAN_ID};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
 		org.omg.sysml.lang.sysml.Package owningNamespace = basicGetOwningNamespace();
 		return owningNamespace != null && owningNamespace.eIsProxy() ? (org.omg.sysml.lang.sysml.Package)eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
@@ -375,6 +474,81 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Documentation> getDocumentation_comp() {
+		if (documentation_comp == null) {
+			documentation_comp = new EObjectContainmentWithInverseEList<Documentation>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION_COMP, SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT);
+		}
+		return documentation_comp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Comment> getDocumentationComment() {
+		EList<Comment> documentationComments = new EObjectEList<>(Comment.class, this, SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT);
+		getDocumentation().stream().
+			map(Documentation::getDocumentingComment).
+			forEachOrdered(documentationComments::add);
+		return documentationComments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOTe
+	 */
+	@Override
+	public EList<TextualRepresentation> getOwnedTextualRepresentation() {
+		EList<TextualRepresentation> ownedTextualRepresentations = new EObjectEList<>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION);
+		getOwnedAnnotation().stream().
+			map(Annotation::getAnnotatingElement).
+			filter(TextualRepresentation.class::isInstance).
+			map(TextualRepresentation.class::cast).
+			forEachOrdered(ownedTextualRepresentations::add);
+		return ownedTextualRepresentations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getHumanId() {
+		return humanId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setHumanId(String newHumanId) {
+		String oldHumanId = humanId;
+		humanId = newHumanId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__HUMAN_ID, oldHumanId, humanId));
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newHumanId != null) {
+				EList<String> aliasId = getAliasId();
+				if (!aliasId.contains(newHumanId)) {
+					aliasId.add(newHumanId);
+				}
+			}
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * If no identifier has been set, then generate a random UUID and set the identifier to that.
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -387,19 +561,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		return identifier;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIdentifier(String newIdentifier) {
-		String oldIdentifier = identifier;
-		identifier = newIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IDENTIFIER, oldIdentifier, identifier));
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -439,8 +600,54 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	public EList<Relationship> getOwnedRelationship() {
 		EList<Relationship> ownedRelationships = new EObjectEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP);
 		ownedRelationships.addAll(getOwnedRelationship_comp());
+		ownedRelationships.addAll(getOwnedAnnotation());
 		return ownedRelationships;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Documentation> getDocumentation() {
+		EList<Documentation> documentation = new EObjectEList<>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION);
+		documentation.addAll(getDocumentation_comp());
+		return documentation;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getDocumentation() <em>Documentation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] DOCUMENTATION_ESUPERSETS = new int[] {SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Annotation> getOwnedAnnotation() {
+		EList<Annotation> ownedAnnotations = new EObjectEList<>(Annotation.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
+		ownedAnnotations.addAll(getOwnedAnnotation_comp());
+		ownedAnnotations.addAll(getDocumentation());
+		return ownedAnnotations;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedAnnotation() <em>Owned Annotation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedAnnotation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_ANNOTATION_ESUPERSETS = new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP};
 
 	// Additional
 	
@@ -468,14 +675,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
-	 * Get documentation text for this element, as given by the body of the first owned comment
+	 * Get documentation text for this element, as given by the body of the first documentation comment
 	 * annotating the element (if any).
 	 */
 	public String getDocumentationText() {
-		Comment comment = (Comment)getOwnedElement().stream().
-				filter(elm->elm instanceof Comment && ((Comment)elm).getCommentedElement() == this).
+		return getDocumentationComment().stream().
+				map(Comment::getBody).
 				findFirst().orElse(null);
-		return comment == null? null: comment.getBody();
 	}
 	
 	/**
@@ -503,12 +709,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelationship((Relationship)otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAnnotation_comp()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningMembership((Membership)otherEnd, msgs);
-			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDocumentation_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -523,10 +733,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (featureID) {
 			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
 				return basicSetOwningRelationship(null, msgs);
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return basicSetOwningMembership(null, msgs);
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
 				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP:
+				return ((InternalEList<?>)getOwnedAnnotation_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return basicSetOwningMembership(null, msgs);
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMP:
+				return ((InternalEList<?>)getDocumentation_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -557,10 +771,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (featureID) {
 			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
 				return getOwningRelationship();
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return getOwningMembership();
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
 				return getOwnedRelationship_comp();
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP:
+				return getOwnedAnnotation_comp();
+			case SysMLPackage.ELEMENT__ALIAS_ID:
+				return getAliasId();
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return getOwningMembership();
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return getIdentifier();
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
@@ -573,8 +791,20 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwner();
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return getOwnedElement();
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMP:
+				return getDocumentation_comp();
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
+				return getDocumentationComment();
+			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
+				return getOwnedTextualRepresentation();
+			case SysMLPackage.ELEMENT__HUMAN_ID:
+				return getHumanId();
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				return getOwnedRelationship();
+			case SysMLPackage.ELEMENT__DOCUMENTATION:
+				return getDocumentation();
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
+				return getOwnedAnnotation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -591,15 +821,20 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
 				setOwningRelationship((Relationship)newValue);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				setOwningMembership((Membership)newValue);
-				return;
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
 				getOwnedRelationship_comp().clear();
 				getOwnedRelationship_comp().addAll((Collection<? extends Relationship>)newValue);
 				return;
-			case SysMLPackage.ELEMENT__IDENTIFIER:
-				setIdentifier((String)newValue);
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP:
+				getOwnedAnnotation_comp().clear();
+				getOwnedAnnotation_comp().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__ALIAS_ID:
+				getAliasId().clear();
+				getAliasId().addAll((Collection<? extends String>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				setOwningMembership((Membership)newValue);
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((org.omg.sysml.lang.sysml.Package)newValue);
@@ -614,9 +849,32 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				getOwnedElement().clear();
 				getOwnedElement().addAll((Collection<? extends Element>)newValue);
 				return;
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMP:
+				getDocumentation_comp().clear();
+				getDocumentation_comp().addAll((Collection<? extends Documentation>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
+				getDocumentationComment().clear();
+				getDocumentationComment().addAll((Collection<? extends Comment>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
+				getOwnedTextualRepresentation().clear();
+				getOwnedTextualRepresentation().addAll((Collection<? extends TextualRepresentation>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__HUMAN_ID:
+				setHumanId((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				getOwnedRelationship().clear();
 				getOwnedRelationship().addAll((Collection<? extends Relationship>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__DOCUMENTATION:
+				getDocumentation().clear();
+				getDocumentation().addAll((Collection<? extends Documentation>)newValue);
+				return;
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
+				getOwnedAnnotation().addAll((Collection<? extends Annotation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -633,14 +891,17 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
 				setOwningRelationship((Relationship)null);
 				return;
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				setOwningMembership((Membership)null);
-				return;
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
 				getOwnedRelationship_comp().clear();
 				return;
-			case SysMLPackage.ELEMENT__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP:
+				getOwnedAnnotation_comp().clear();
+				return;
+			case SysMLPackage.ELEMENT__ALIAS_ID:
+				getAliasId().clear();
+				return;
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				setOwningMembership((Membership)null);
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((org.omg.sysml.lang.sysml.Package)null);
@@ -654,8 +915,26 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				getOwnedElement().clear();
 				return;
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMP:
+				getDocumentation_comp().clear();
+				return;
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
+				getDocumentationComment().clear();
+				return;
+			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
+				getOwnedTextualRepresentation().clear();
+				return;
+			case SysMLPackage.ELEMENT__HUMAN_ID:
+				setHumanId(HUMAN_ID_EDEFAULT);
+				return;
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				getOwnedRelationship().clear();
+				return;
+			case SysMLPackage.ELEMENT__DOCUMENTATION:
+				getDocumentation().clear();
+				return;
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
+				getOwnedAnnotation().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -671,10 +950,14 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (featureID) {
 			case SysMLPackage.ELEMENT__OWNING_RELATIONSHIP:
 				return getOwningRelationship() != null;
-			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
-				return getOwningMembership() != null;
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP:
 				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION_COMP:
+				return ownedAnnotation_comp != null && !ownedAnnotation_comp.isEmpty();
+			case SysMLPackage.ELEMENT__ALIAS_ID:
+				return aliasId != null && !aliasId.isEmpty();
+			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
+				return getOwningMembership() != null;
 			case SysMLPackage.ELEMENT__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
@@ -685,8 +968,20 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return basicGetOwner() != null;
 			case SysMLPackage.ELEMENT__OWNED_ELEMENT:
 				return !getOwnedElement().isEmpty();
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMP:
+				return documentation_comp != null && !documentation_comp.isEmpty();
+			case SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT:
+				return !getDocumentationComment().isEmpty();
+			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
+				return !getOwnedTextualRepresentation().isEmpty();
+			case SysMLPackage.ELEMENT__HUMAN_ID:
+				return HUMAN_ID_EDEFAULT == null ? humanId != null : !HUMAN_ID_EDEFAULT.equals(humanId);
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
 				return !getOwnedRelationship().isEmpty();
+			case SysMLPackage.ELEMENT__DOCUMENTATION:
+				return !getDocumentation().isEmpty();
+			case SysMLPackage.ELEMENT__OWNED_ANNOTATION:
+				return !getOwnedAnnotation().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -703,6 +998,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
+		result.append(", aliasId: ");
+		result.append(aliasId);
+		result.append(", humanId: ");
+		result.append(humanId);
 		result.append(')');
 		return result.toString();
 	}

@@ -20,7 +20,6 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
 import  org.omg.sysml.lang.sysml.SysMLFactory;
@@ -100,8 +99,8 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -322,7 +321,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return;
 			case SysMLPackage.ITEM_FLOW__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_TYPE:
 				getItemType().clear();

@@ -43,7 +43,6 @@ import org.eclipse.emf.ecore.EClass
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import java.util.HashSet
-import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
@@ -172,7 +171,10 @@ class KerMLScope extends AbstractScope {
 					scopeProvider.addVisited(m)
 					try {
 						memberElement = m.memberElement
-						elementName = if (isFirstScope && pack == this.pack && memberElement === element) m.memberName else m.effectiveMemberName
+						elementName = 
+							if (memberElement !== null && memberElement.eIsProxy) null
+							else if (m.memberName !== null || (isFirstScope && pack == this.pack && memberElement === element)) m.memberName 
+							else (memberElement as ElementImpl)?.effectiveName
 					} finally {
 						scopeProvider.removeVisited(m)
 					}
@@ -219,12 +221,7 @@ class KerMLScope extends AbstractScope {
 		}
 		return false
 	}
-	
-	protected def String getEffectiveMemberName(Membership mem) {
-		if (mem.memberName !== null) mem.memberName
-		else (mem.memberElement as ElementImpl)?.effectiveName
-	}
-	
+		
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){
 		var gs = general.ownedGeneralization
 		for(Generalization g: gs){

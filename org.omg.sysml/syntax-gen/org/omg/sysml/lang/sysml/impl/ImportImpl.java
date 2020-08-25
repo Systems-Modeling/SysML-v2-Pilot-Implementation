@@ -301,7 +301,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 				new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>());
 	}
 
-	// Note: The excludedCategories parameter is needed in case the imported Package
+	// Note: The excludedType parameter is needed in case the imported Package
 	// is a Type that has one or more Generalizations.
 	public EList<Membership> importMembership(EList<Membership> importedMembership,
 			Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages,

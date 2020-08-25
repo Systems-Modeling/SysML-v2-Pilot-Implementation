@@ -4018,7 +4018,7 @@ ruleEmptyParameter returns [EObject current=null]
 	(
 		{
 			$current = forceCreateModelElement(
-				grammarAccess.getEmptyParameterAccess().getParameterAction(),
+				grammarAccess.getEmptyParameterAccess().getFeatureAction(),
 				$current);
 		}
 	)
@@ -6535,7 +6535,7 @@ ruleParameter returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getParameterAccess().getParameterAction_0(),
+					grammarAccess.getParameterAccess().getFeatureAction_0(),
 					$current);
 			}
 		)

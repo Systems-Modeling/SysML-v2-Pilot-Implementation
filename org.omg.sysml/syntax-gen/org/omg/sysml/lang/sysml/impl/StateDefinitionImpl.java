@@ -7,9 +7,10 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Parameter;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -74,9 +75,10 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER,
-				new int[] { SysMLPackage.TYPE__FEATURE });
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**

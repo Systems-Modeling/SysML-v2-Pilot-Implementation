@@ -13,9 +13,9 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -69,9 +69,9 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated
 	 */
 	@Override
-	public Parameter getResult() {
-		Parameter result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
+	public Feature getResult() {
+		Feature result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetResult() {
+	public Feature basicGetResult() {
 		return super.getResultParameter();
 	}
 
@@ -89,7 +89,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated NOT
 	 */
 	@Override
-	public void setResult(Parameter newResult) {
+	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -272,7 +272,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 				setFunction((Function)newValue);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
-				setResult((Parameter)newValue);
+				setResult((Feature)newValue);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
 				setCalculationDefinition((Function)newValue);
@@ -293,7 +293,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 				setFunction((Function)null);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
-				setResult((Parameter)null);
+				setResult((Feature)null);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
 				setCalculationDefinition((Function)null);

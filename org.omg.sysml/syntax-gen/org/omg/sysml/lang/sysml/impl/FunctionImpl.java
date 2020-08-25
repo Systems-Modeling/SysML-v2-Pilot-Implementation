@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -81,9 +81,9 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated
 	 */
 	@Override
-	public Parameter getResult() {
-		Parameter result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
+	public Feature getResult() {
+		Feature result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
 	}
 
 	/**
@@ -91,9 +91,9 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * 
 	 * @generated NOT // derived
 	 */
-	public Parameter basicGetResult() {
+	public Feature basicGetResult() {
 		return getAllParameters().stream().
-				filter(p->((ParameterImpl)p).isResultParameter()).
+				filter(p->((FeatureImpl)p).isResultParameter()).
 				findFirst().orElse(null);
 	}
 
@@ -103,7 +103,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	@Override
-	public void setResult(Parameter newResult) {
+	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -170,7 +170,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				getExpression().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.FUNCTION__RESULT:
-				setResult((Parameter)newValue);
+				setResult((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,7 +187,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 				getExpression().clear();
 				return;
 			case SysMLPackage.FUNCTION__RESULT:
-				setResult((Parameter)null);
+				setResult((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);

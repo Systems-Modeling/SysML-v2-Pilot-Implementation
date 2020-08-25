@@ -793,11 +793,13 @@ fragment StateDefBodyItem returns SysML::Type :
 ;
 
 StateActionUsage returns SysML::ActionUsage :
-	  EmptyActionUsage ';' | PerformedActionUsage ActionDefBody
+	EmptyActionUsage ';' | PerformedActionUsage ActionDefBody
 ;
 
 PerformedActionUsage returns SysML::ActionUsage :
-	PerformActionUsageDeclaration | AcceptNodeDeclaration | SendNodeDeclaration
+	  {SysML::PerformActionUsage} PerformActionUsageDeclaration 
+	| {SysML::AcceptActionUsage} AcceptNodeDeclaration 
+	| {SysML::SendActionUsage} SendNodeDeclaration
 ;
 
 EmptyActionUsage returns SysML::ActionUsage :
@@ -978,7 +980,7 @@ fragment CaseDefBodyItem returns SysML::Type :
 	
 ;
 
-//SubjectParameter returns SysML::Parameter :
+//SubjectParameter returns SysML::Usage :
 //	{SysML::Parameter} UsageDeclaration? ValuePart?
 //;
 
@@ -1130,11 +1132,11 @@ UnlimitedNaturalLiteralMember returns SysML::FeatureMembership :
 
 /* PARAMETERS */
 
-Parameter returns SysML::Parameter :
-	{SysML::Parameter} ParameterTypePart?
+Parameter returns SysML::Usage :
+	{SysML::ReferenceUsage} ParameterTypePart?
 ;
 
-fragment ParameterTypePart returns SysML::Parameter :
+fragment ParameterTypePart returns SysML::Usage :
 	DefinedByKeyword ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
 	  | MultiplicityPart	
 ;
@@ -1533,8 +1535,8 @@ fragment ActionParameterList returns SysML::Type :
 	')'
 ;
 
-ActionParameter returns SysML::Parameter :
-	{SysML::Parameter} ParameterTypePart? ValuePart?
+ActionParameter returns SysML::Usage :
+	{SysML::ReferenceUsage} ParameterTypePart? ValuePart?
 ;
 
 ActionParameterFlow returns SysML::ItemFlow :
@@ -1602,8 +1604,8 @@ ForkNode returns SysML::ForkNode :
 	UsagePrefix? isComposite ?= 'fork' ( name = Name TypePart? )? ';'
 ;
 
-EmptyParameter returns SysML::Parameter :
-	{SysML::Parameter}
+EmptyParameter returns SysML::Usage :
+	{SysML::ReferenceUsage}
 ;
 
 /* ACTION MEMBERSHIPS */
@@ -2096,7 +2098,7 @@ FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
 	ownedFeatureMembership_comp += FeatureReferenceMember
 ;
 
-FeatureReference returns SysML::Parameter :
+FeatureReference returns SysML::ReferenceUsage :
 	ownedRelationship_comp += Subset
 ;
 

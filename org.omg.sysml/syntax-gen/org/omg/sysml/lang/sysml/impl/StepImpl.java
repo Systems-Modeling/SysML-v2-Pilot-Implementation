@@ -13,7 +13,6 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -90,8 +89,8 @@ public class StepImpl extends FeatureImpl implements Step {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -212,7 +211,7 @@ public class StepImpl extends FeatureImpl implements Step {
 				return;
 			case SysMLPackage.STEP__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

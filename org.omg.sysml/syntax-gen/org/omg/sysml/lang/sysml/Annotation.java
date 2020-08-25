@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Annotation is a Relationship between a Comment and the Element that is annotated by that Comment.</p>
+ * <p>An Annotation is a Relationship between an AnnotatingElement and the Element that is annotated by that AnnotatingElement.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -17,8 +17,9 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingComment <em>Annotating Comment</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement <em>Annotated Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation()
@@ -26,6 +27,41 @@ package org.omg.sysml.lang.sysml;
  * @generated
  */
 public interface Annotation extends Relationship {
+	/**
+	 * Returns the value of the '<em><b>Annotating Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation <em>Annotation</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The AnnotatingElement that annotates the <code>annotatedElement</code> of this Annotation.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Annotating Element</em>' reference.
+	 * @see #setAnnotatingElement(AnnotatingElement)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatingElement()
+	 * @see org.omg.sysml.lang.sysml.AnnotatingElement#getAnnotation
+	 * @model opposite="annotation" required="true" ordered="false"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	AnnotatingElement getAnnotatingElement();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement <em>Annotating Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Annotating Element</em>' reference.
+	 * @see #getAnnotatingElement()
+	 * @generated
+	 */
+	void setAnnotatingElement(AnnotatingElement value);
+
 	/**
 	 * Returns the value of the '<em><b>Annotated Element</b></em>' reference.
 	 * <p>
@@ -41,7 +77,7 @@ public interface Annotation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that is annotated by the <tt>annotatingComment</tt> of this Annotation.</p>
+	 * <p>The Element that is annotated by the <code>annotatingElement</code> of this Annotation.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference.
 	 * @see #setAnnotatedElement(Element)
@@ -64,42 +100,38 @@ public interface Annotation extends Relationship {
 	void setAnnotatedElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Annotating Comment</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Comment#getAnnotationForComment <em>Annotation For Comment</em>}'.
+	 * Returns the value of the '<em><b>Owning Annotated Element</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp <em>Owned Annotation comp</em>}'.
 	 * <p>
-	 * This feature redefines the following features:
+	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement() <em>Annotated Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Annotating Comment</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Comment that annotates the <tt>annotatedElement</tt> of this Annotation.</p>
-	 * 
+	 * <p>The <code>annotatedElement</code> of this Annotation, when it is also its <code>owningRelatedElement</code>.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Annotating Comment</em>' reference.
-	 * @see #setAnnotatingComment(Comment)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_AnnotatingComment()
-	 * @see org.omg.sysml.lang.sysml.Comment#getAnnotationForComment
-	 * @model opposite="annotationForComment" required="true" ordered="false"
-	 *        annotation="redefines"
+	 * @return the value of the '<em>Owning Annotated Element</em>' container reference.
+	 * @see #setOwningAnnotatedElement(Element)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_OwningAnnotatedElement()
+	 * @see org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp
+	 * @model opposite="ownedAnnotation_comp" transient="false" ordered="false"
+	 *        annotation="subsets"
 	 * @generated
 	 */
-	Comment getAnnotatingComment();
+	Element getOwningAnnotatedElement();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingComment <em>Annotating Comment</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Annotating Comment</em>' reference.
-	 * @see #getAnnotatingComment()
+	 * @param value the new value of the '<em>Owning Annotated Element</em>' container reference.
+	 * @see #getOwningAnnotatedElement()
 	 * @generated
 	 */
-	void setAnnotatingComment(Comment value);
+	void setOwningAnnotatedElement(Element value);
 
 } // Annotation

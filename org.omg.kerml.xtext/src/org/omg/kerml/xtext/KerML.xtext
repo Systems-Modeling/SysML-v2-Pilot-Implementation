@@ -406,8 +406,8 @@ fragment EmptyReturnParameterPart returns SysML::Type :
 	ownedFeatureMembership_comp += EmptyReturnParameterMember
 ;
 
-EmptyParameter returns SysML::Parameter :
-	{SysML::Parameter}
+EmptyParameter returns SysML::Feature :
+	{SysML::Feature}
 ;
 
 /* PREDICATE MEMBERSHIPS */
@@ -625,8 +625,8 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 
 /* PARAMETERS */
 
-Parameter returns SysML::Parameter :
-	{SysML::Parameter} 	  
+Parameter returns SysML::Feature :
+	{SysML::Feature} 	  
 	( ':' ( ownedRelationship_comp += FeatureTyping | 'any' ) MultiplicityPart?
 	  | MultiplicityPart
 	)?
@@ -896,7 +896,7 @@ FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
 	ownedFeatureMembership_comp += FeatureReferenceMember
 ;
 
-FeatureReference returns SysML::Parameter :
+FeatureReference returns SysML::Feature :
 	ownedRelationship_comp += Subset
 ;
 

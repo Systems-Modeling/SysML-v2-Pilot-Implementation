@@ -176,7 +176,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return inputs;
 	}
 	
-	protected Type getExpressionType() {
+	public Type getExpressionType() {
 		return getFunction();
 	}
 	

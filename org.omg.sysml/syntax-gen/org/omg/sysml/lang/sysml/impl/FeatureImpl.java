@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Class;
@@ -521,19 +522,36 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	/**
-	 * Parameters redefine (owned) Parameters of general Categories, with a result
+	 * Parameters redefine (owned) Parameters of general Types, with a result
 	 * Parameter always redefining the result Parameter of a general Function or
 	 * Expression.
 	 */
 	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
-		return type == null? Collections.emptyList():
-			   isResultParameter() && (type instanceof Function || type instanceof Expression)?
-						Collections.singletonList(((TypeImpl) type).getResultParameter()):
-			   getRelevantParameters((TypeImpl)type);
+		if (type != null) {
+			if (isResultParameter()) {
+				Feature resultParameter = ((TypeImpl)type).getResultParameter();
+				if (resultParameter != null) {
+					return Collections.singletonList(resultParameter);
+				}
+			} else {
+				return  getRelevantParameters((TypeImpl)type);
+			}
+		}
+		return Collections.emptyList();
 	}
 	
 	protected List<Feature> getRelevantParameters(TypeImpl type) {
-		return (type == getOwningType()? type.getOwnedParameters(): type.getAllParameters()).stream().
+		Type owningType = getOwningType();
+		return type == owningType? filterIgnoredParameters(type.getOwnedParameters()): 
+			   owningType instanceof InvocationExpression && 
+			        type == ((InvocationExpressionImpl)owningType).getExpressionType() &&
+			   		!(type instanceof Function || type instanceof Expression)? 
+			   				((InvocationExpressionImpl)owningType).getTypeFeatures():
+			   filterIgnoredParameters(type.getAllParameters());
+	}
+	
+	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
+		return parameters.stream().
 				filter(p -> !((FeatureImpl) p).isIgnoredParameter()).
 				collect(Collectors.toList());
 	}

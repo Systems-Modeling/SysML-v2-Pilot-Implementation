@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -67,15 +68,23 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	}
 	
 	protected Feature getRelatedFeature(InvocationExpressionImpl expression, int argIndex, int endIndex) {
-		if (endIndex == 0) {
-			List<Expression> arguments = expression.getArgument();
-			if (argIndex < arguments.size()) {
-				return arguments.get(argIndex).getResult();
-			}
-		} else if (endIndex == 1) {
-			List<Feature> inputs = expression.getInput();
-			if (argIndex < inputs.size()) {
-				return inputs.get(argIndex);
+		List<Feature> inputs = expression.getInput();
+		if (argIndex < inputs.size()) {
+			Feature input = inputs.get(argIndex);
+			if (endIndex == 0) {
+				List<Redefinition> redefinitions = input.getOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					Feature feature = redefinitions.get(0).getRedefinedFeature();
+					if (feature != null) {
+						List<Expression> arguments = expression.getArgument();
+						Expression argument = InvocationExpressionImpl.getArgumentForFeature(arguments, feature, argIndex);
+						if (argument != null) {
+							return argument.getResult();
+						}
+					}
+				}
+			} else if (endIndex == 1) {
+				return input;
 			}
 		}
 		return null;

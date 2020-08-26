@@ -12,9 +12,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A StateUsage is an ActionUsage that is nominally the Usage of a StateDefinition. However, other kinds of kernel Behaviors are also allowed as types, to permit use of Behaviors from the Kernel Library.</p>
  * 
- * <p>A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base StateUsage <code>stateActions</code> from the Systems model library, if it is not a composite feature, or the StateUsage <code>substates</cpde> inherited from its owner, if it is a composite feature.</p>
+ * <p>A StateUsage (other than an ExhibitStateUsage owned by a Part) must subset, directly or indirectly, either the base StateUsage <code>stateActions</code> from the Systems model library, if it is not a composite feature, or the StateUsage <code>substates</code> inherited from its owner, if it is a composite feature.</p>
  * 
- * <p>A StateUsage may be related to up to three of its <code>ownedFeatures</code> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateUsage.</p>
+ * <p>A <code>StateUsage</code> may be related to up to three of its <code>ownedFeatures</code> by StateBehaviorMembership Relationships, all of different <code>kinds</code>, corresponding to the entry, do and exit actions of the StateUsage.</code></p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

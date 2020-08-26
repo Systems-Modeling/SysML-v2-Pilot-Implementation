@@ -1,0 +1,119 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+File {from ="/library.kernel/BaseFunctions.kerml"}
+File {from ="/library.kernel/BooleanFunctions.kerml"}
+File {from ="/library.kernel/ComplexFunctions.kerml"}
+File {from ="/library.kernel/ControlFunctions.kerml"}
+File {from ="/library.kernel/ControlPerformances.kerml"}
+File {from ="/library.kernel/IntegerFunctions.kerml"}
+File {from ="/library.kernel/NaturalFunctions.kerml"}
+File {from ="/library.kernel/NonScalarFunctions.kerml"}
+File {from ="/library.kernel/NonScalarValues.kerml"}
+File {from ="/library.kernel/NumericalFunctions.kerml"}
+File {from ="/library.kernel/Objects.kerml"}
+File {from ="/library.kernel/Occurrences.kerml"}
+File {from ="/library.kernel/Performances.kerml"}
+File {from ="/library.kernel/RationalFunctions.kerml"}
+File {from ="/library.kernel/RealFunctions.kerml"}
+File {from ="/library.kernel/ScalarFunctions.kerml"}
+File {from ="/library.kernel/ScalarValues.kerml"}
+File {from ="/library.kernel/StatePerformances.kerml"}
+File {from ="/library.kernel/StringFunctions.kerml"}
+File {from ="/library.kernel/Transfers.kerml"}
+File {from ="/library.kernel/TransitionPerformances.kerml"}
+File {from ="/library.kernel/UnlimitedNaturalFunctions.kerml"}
+File {from ="/library.systems/Actions.sysml"}
+File {from ="/library.systems/Analyses.sysml"}
+File {from ="/library.systems/Attributes.sysml"}
+File {from ="/library.systems/Calculations.sysml"}
+File {from ="/library.systems/Cases.sysml"}
+File {from ="/library.systems/Connections.sysml"}
+File {from ="/library.systems/Constraints.sysml"}
+File {from ="/library.systems/Interfaces.sysml"}
+File {from ="/library.systems/Items.sysml"}
+File {from ="/library.systems/Parts.sysml"}
+File {from ="/library.systems/Ports.sysml"}
+File {from ="/library.systems/Requirements.sysml"}
+File {from ="/library.systems/States.sysml"}
+File {from ="/library.domain/Geometry/BasicGeometry.sysml"}
+File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+File {from ="/library.domain/Quantities and Units/SI.sysml"}
+File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+File {from ="/library.domain/Quantities and Units/Time.sysml"}
+File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+File {from ="/library.kernel/BaseFunctions.kerml"}
+File {from ="/library.kernel/BooleanFunctions.kerml"}
+File {from ="/library.kernel/ComplexFunctions.kerml"}
+File {from ="/library.kernel/ControlFunctions.kerml"}
+File {from ="/library.kernel/ControlPerformances.kerml"}
+File {from ="/library.kernel/IntegerFunctions.kerml"}
+File {from ="/library.kernel/NaturalFunctions.kerml"}
+File {from ="/library.kernel/NonScalarFunctions.kerml"}
+File {from ="/library.kernel/NonScalarValues.kerml"}
+File {from ="/library.kernel/NumericalFunctions.kerml"}
+File {from ="/library.kernel/Objects.kerml"}
+File {from ="/library.kernel/Occurrences.kerml"}
+File {from ="/library.kernel/Performances.kerml"}
+File {from ="/library.kernel/RationalFunctions.kerml"}
+File {from ="/library.kernel/RealFunctions.kerml"}
+File {from ="/library.kernel/ScalarFunctions.kerml"}
+File {from ="/library.kernel/ScalarValues.kerml"}
+File {from ="/library.kernel/StatePerformances.kerml"}
+File {from ="/library.kernel/StringFunctions.kerml"}
+File {from ="/library.kernel/Transfers.kerml"}
+File {from ="/library.kernel/TransitionPerformances.kerml"}
+File {from ="/library.kernel/UnlimitedNaturalFunctions.kerml"}
+File {from ="/library.systems/Actions.sysml"}
+File {from ="/library.systems/Analyses.sysml"}
+File {from ="/library.systems/Attributes.sysml"}
+File {from ="/library.systems/Calculations.sysml"}
+File {from ="/library.systems/Cases.sysml"}
+File {from ="/library.systems/Connections.sysml"}
+File {from ="/library.systems/Constraints.sysml"}
+File {from ="/library.systems/Interfaces.sysml"}
+File {from ="/library.systems/Items.sysml"}
+File {from ="/library.systems/Parts.sysml"}
+File {from ="/library.systems/Ports.sysml"}
+File {from ="/library.systems/Requirements.sysml"}
+File {from ="/library.systems/States.sysml"}
+File {from ="/library.domain/Geometry/BasicGeometry.sysml"}
+File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+File {from ="/library.domain/Quantities and Units/SI.sysml"}
+File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+File {from ="/library.domain/Quantities and Units/Time.sysml"}
+File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package pkg {
+	part def A {
+		part b: B;
+		part c: B;
+	}
+	part def B {}
+	part a : A {
+		//XPECT warnings --> "Duplicate of inherited member name" at "b"
+		part b: B;
+		part redefines c;
+	}
+}

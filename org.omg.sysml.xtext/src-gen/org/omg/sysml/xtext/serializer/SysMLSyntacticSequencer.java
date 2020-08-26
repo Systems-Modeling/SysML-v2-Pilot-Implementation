@@ -773,6 +773,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'perform' ActionKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
+	 *     (rule start) ActionKeyword (ambiguity) (rule start)
 	 *     (rule start) ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule start)
 	 *     isAbstract?='abstract' 'perform' ActionKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' ActionUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1112,7 +1113,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1122,7 +1123,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' PortUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ReferenceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
-	 *     isAbstract?='abstract' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isComposite?=PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1131,7 +1132,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' IndividualUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
@@ -1141,7 +1142,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' PortUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' ReferenceUsageKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     isVariation?='variation' ReferenceUsageKeyword? DefinedByKeyword 'any' (ambiguity) (rule end)
-	 *     isVariation?='variation' SnapshotKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
+	 *     isVariation?='variation' TimeSliceKeyword DefinedByKeyword 'any' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
@@ -1177,6 +1178,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '}')?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) ActionKeyword (ambiguity) (rule start)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)

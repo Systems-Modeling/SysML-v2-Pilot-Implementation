@@ -70,6 +70,7 @@ import org.omg.sysml.lang.sysml.CaseUsage
 import org.omg.sysml.lang.sysml.CaseDefinition
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition
+import org.omg.sysml.lang.sysml.ParameterMembership
 
 /**
  * This class contains custom validation rules. 
@@ -129,8 +130,8 @@ class SysMLValidator extends KerMLValidator {
 			if (!owningPackage.isVariation) {
 				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
 			}
-		// A variation must not own non-variant Usages
-		} else if (owningPackage.isVariation) {
+		// A variation must not own non-variant Usages (except for parameters)
+		} else if (owningPackage.isVariation && !(owningMembership instanceof ParameterMembership)) {
 				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
 		}
 	}

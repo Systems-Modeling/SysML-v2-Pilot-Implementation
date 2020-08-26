@@ -3,12 +3,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.ConstraintDefinition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -71,9 +70,10 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * <!-- end-user-doc -->
 	 * @generated NOT // derived
 	 */
-	public EList<Parameter> getParameter() {
-		return new DerivedEObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER,
-				new int[] { SysMLPackage.TYPE__FEATURE });
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
+		parameters.addAll(getAllParameters());
+		return parameters;
 	}
 
 	/**
@@ -102,9 +102,9 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated
 	 */
 	@Override
-	public Parameter getResult() {
-		Parameter result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
+	public Feature getResult() {
+		Feature result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
 	}
 
 	/**
@@ -112,9 +112,10 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * <!-- end-user-doc -->
 	 * @generated NOT // derived
 	 */
-	public Parameter basicGetResult() {
-		List<Parameter> parameters = getOwnedParameters();
-		return parameters.isEmpty() ? null : parameters.get(parameters.size() - 1);
+	public Feature basicGetResult() {
+		return getAllParameters().stream().
+				filter(p->((FeatureImpl)p).isResultParameter()).
+				findFirst().orElse(null);
 	}
 
 	/**
@@ -123,7 +124,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated NOT
 	 */
 	@Override
-	public void setResult(Parameter newResult) {
+	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -200,14 +201,14 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 				return;
 			case SysMLPackage.CONSTRAINT_DEFINITION__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.CONSTRAINT_DEFINITION__EXPRESSION:
 				getExpression().clear();
 				getExpression().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
-				setResult((Parameter)newValue);
+				setResult((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -231,7 +232,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 				getExpression().clear();
 				return;
 			case SysMLPackage.CONSTRAINT_DEFINITION__RESULT:
-				setResult((Parameter)null);
+				setResult((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -13,7 +13,6 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -68,8 +67,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Parameter> getParameter() {
-		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ACTION_USAGE__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -203,7 +202,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 				return;
 			case SysMLPackage.ACTION_USAGE__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.ACTION_USAGE__ACTION_DEFINITION:
 				getActionDefinition().clear();

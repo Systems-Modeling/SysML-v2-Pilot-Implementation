@@ -1499,9 +1499,9 @@ ruleEmptyParameter
 	}
 	:
 	(
-		{ before(grammarAccess.getEmptyParameterAccess().getParameterAction()); }
+		{ before(grammarAccess.getEmptyParameterAccess().getFeatureAction()); }
 		()
-		{ after(grammarAccess.getEmptyParameterAccess().getParameterAction()); }
+		{ after(grammarAccess.getEmptyParameterAccess().getFeatureAction()); }
 	)
 ;
 finally {
@@ -14825,9 +14825,9 @@ rule__Parameter__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getParameterAccess().getParameterAction_0()); }
+	{ before(grammarAccess.getParameterAccess().getFeatureAction_0()); }
 	()
-	{ after(grammarAccess.getParameterAccess().getParameterAction_0()); }
+	{ after(grammarAccess.getParameterAccess().getFeatureAction_0()); }
 )
 ;
 finally {

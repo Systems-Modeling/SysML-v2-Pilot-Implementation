@@ -9,6 +9,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -17,10 +18,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Connector;
@@ -42,8 +43,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
@@ -51,6 +50,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceFeature <em>Source Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getTargetFeature <em>Target Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
@@ -61,24 +62,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Objects::links";
 	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Objects::binaryLinks";
 	
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> target;
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Element> source;
 	/**
 	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -138,16 +121,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		EList<Element> relatedFeature = (EList<Element>)((EList<?>)getRelatedFeature());
 		return relatedFeature;
 	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelatedElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__TARGET, SysMLPackage.CONNECTOR__SOURCE, SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -275,10 +248,18 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		if (target == null) {
-			target = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__TARGET);
-		}
-		return target;
+		@SuppressWarnings("unchecked")
+		EList<Element> targetFeature = (EList<Element>)((EList<?>)getTargetFeature());
+		return targetFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTarget() {
+  		return false;
 	}
 
 	/**
@@ -288,10 +269,21 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	@Override
 	public EList<Element> getSource() {
-		if (source == null) {
-			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__SOURCE);
+		EList<Element> source = new UniqueEList<Element>();
+		Feature sourceFeature = getSourceFeature();
+		if (sourceFeature != null) {
+			source.add(sourceFeature);
 		}
-		return source;
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSource() {
+  		return false;
 	}
 
 	/**
@@ -308,12 +300,33 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 	
 	/**
+	 * The array of subset feature identifiers for the '{@link #getRelatedFeature() <em>Related Feature</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_FEATURE_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__SOURCE_FEATURE, SysMLPackage.CONNECTOR__TARGET_FEATURE};
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getRelatedElement() <em>Related Element</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelatedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__TARGET, SysMLPackage.CONNECTOR__SOURCE, SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT};
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetRelatedFeature() {
-		return !getRelatedFeature().isEmpty();
+		return isSetSourceFeature()
+			|| isSetTargetFeature();
 	}
 
 	/**
@@ -391,6 +404,89 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		return new DerivedConnectorEndList(this);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getSourceFeature() {
+		Feature sourceFeature = basicGetSourceFeature();
+		return sourceFeature != null && sourceFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)sourceFeature) : sourceFeature;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature basicGetSourceFeature() {
+		return getSourceFeatureOf(this);
+	}
+	
+	public static Feature getSourceFeatureOf(Connector connector) {
+		EList<Feature> relatedFeatures = connector.getRelatedFeature();
+		return relatedFeatures.size() == 2? relatedFeatures.get(0): null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSourceFeature(Feature newSourceFeature) {
+		// TODO: implement this method to set the 'Source Feature' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	public static void addSourceFeatures(Connector connector, EList<Feature> sourceFeatures) {
+		EList<Feature> relatedFeatures = connector.getRelatedFeature();
+		if (relatedFeatures.size() == 2) {
+			sourceFeatures.add(relatedFeatures.get(0));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSourceFeature() {
+		return basicGetSourceFeature() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Feature> getTargetFeature() {
+		EList<Feature> targetFeatures = new EObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
+		addTargetFeatures(this, targetFeatures);
+		return targetFeatures;
+	}
+	
+	public static void addTargetFeatures(Connector connector, EList<Feature> targetFeatures) {
+		EList<Feature> relatedFeatures = connector.getRelatedFeature();
+		if (relatedFeatures.size() == 2) {
+			targetFeatures.add(relatedFeatures.get(1));
+		} else {
+			targetFeatures.addAll(relatedFeatures);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTargetFeature() {
+		return !getTargetFeature().isEmpty();
+	}
+
 	public static class DerivedConnectorEndList extends DerivedEObjectEList<Feature> {
 		public DerivedConnectorEndList(InternalEObject owner) {
 			super(Feature.class, owner, SysMLPackage.CONNECTOR__CONNECTOR_END, 
@@ -568,6 +664,11 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return isDirected();
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return getConnectorEnd();
+			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
+				if (resolve) return getSourceFeature();
+				return basicGetSourceFeature();
+			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
+				return getTargetFeature();
 			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
 				return getOwnedAssociationType();
 		}
@@ -602,10 +703,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
-				getRelatedFeature().clear();
-				getRelatedFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
@@ -616,6 +713,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
 				getConnectorEnd().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
+				setSourceFeature((Feature)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
+				getTargetFeature().clear();
+				getTargetFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
 				getOwnedAssociationType().clear();
@@ -648,9 +752,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
-				getRelatedFeature().clear();
-				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
 				return;
@@ -659,6 +760,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				getConnectorEnd().clear();
+				return;
+			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
+				setSourceFeature((Feature)null);
+				return;
+			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
+				getTargetFeature().clear();
 				return;
 			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
 				getOwnedAssociationType().clear();
@@ -678,27 +785,31 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__RELATED_ELEMENT:
 				return isSetRelatedElement();
 			case SysMLPackage.CONNECTOR__TARGET:
-				return target != null && !target.isEmpty();
+				return isSetTarget();
 			case SysMLPackage.CONNECTOR__SOURCE:
-				return source != null && !source.isEmpty();
+				return isSetSource();
 			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
 				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
 			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
 				return !getOwnedRelatedElement().isEmpty();
+			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
+				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__TYPE:
 				return isSetType();
 			case SysMLPackage.CONNECTOR__OWNED_TYPE:
 				return isSetOwnedType();
-			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
-				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return isSetAssociation();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
 				return !getConnectorEnd().isEmpty();
+			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
+				return isSetSourceFeature();
+			case SysMLPackage.CONNECTOR__TARGET_FEATURE:
+				return isSetTargetFeature();
 			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
 				return isSetOwnedAssociationType();
 		}

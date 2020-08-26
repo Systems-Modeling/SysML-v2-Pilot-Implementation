@@ -11,9 +11,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
 		File {from ="/library.systems/Constraints.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 		File {from ="/library.domain/Quantities and Units/SI.sysml"}
 		File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
@@ -31,9 +33,11 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
 				File {from ="/library.systems/Constraints.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 				File {from ="/library.domain/Quantities and Units/SI.sysml"}
 				File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}

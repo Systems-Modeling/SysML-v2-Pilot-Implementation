@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransferActionUsage;
 
@@ -72,7 +71,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	 * @generated NOT
 	 */
 	public Feature basicGetContext() {
-		List<Parameter> parameters = getOwnedParameters();
+		List<Feature> parameters = getOwnedParameters();
 		return parameters.isEmpty()? null: parameters.get(0);
 	}
 

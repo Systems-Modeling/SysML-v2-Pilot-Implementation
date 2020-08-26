@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
@@ -31,15 +32,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation <em>Nested Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningVariationDefinition <em>Owning Variation Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getFlow <em>Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCase <em>Nested Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningVariantMembership <em>Owning Variant Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningVariationUsage <em>Owning Variation Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getUsage <em>Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedReference <em>Nested Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection <em>Nested Connection</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedItem <em>Nested Item</em>}</li>
@@ -47,7 +45,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedIndividual <em>Nested Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute <em>Nested Attribute</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -369,40 +366,6 @@ public interface Usage extends Feature {
 	void setIsVariation(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Variation Definition</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Definition#getVariant <em>Variant</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The variation point Definition that for which this Usage represents a variant, derived as the <code>owningVariationDefinition</code> of the <code>owningVariantMembership</code> of the Usage.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Variation Definition</em>' reference.
-	 * @see #setOwningVariationDefinition(Definition)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningVariationDefinition()
-	 * @see org.omg.sysml.lang.sysml.Definition#getVariant
-	 * @model opposite="variant" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	Definition getOwningVariationDefinition();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#getOwningVariationDefinition <em>Owning Variation Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Variation Definition</em>' reference.
-	 * @see #getOwningVariationDefinition()
-	 * @generated
-	 */
-	void setOwningVariationDefinition(Definition value);
-
-	/**
 	 * Returns the value of the '<em><b>Flow</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
@@ -450,43 +413,8 @@ public interface Usage extends Feature {
 	EList<CaseUsage> getNestedCase();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Variant Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.VariantMembership#getOwnedVariantUsage_comp <em>Owned Variant Usage comp</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningMembership() <em>Owning Membership</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The VariantMembership that owns this Usage, if the Usage represents a variant in the context of some variation point Definition or Usage.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Variant Membership</em>' container reference.
-	 * @see #setOwningVariantMembership(VariantMembership)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningVariantMembership()
-	 * @see org.omg.sysml.lang.sysml.VariantMembership#getOwnedVariantUsage_comp
-	 * @model opposite="ownedVariantUsage_comp" transient="false" ordered="false"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	VariantMembership getOwningVariantMembership();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#getOwningVariantMembership <em>Owning Variant Membership</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Variant Membership</em>' container reference.
-	 * @see #getOwningVariantMembership()
-	 * @generated
-	 */
-	void setOwningVariantMembership(VariantMembership value);
-
-	/**
 	 * Returns the value of the '<em><b>Variant Membership comp</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.VariantMembership#getOwningVariationUsage <em>Owning Variation Usage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
@@ -494,50 +422,15 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant Membership comp</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_VariantMembership_comp()
-	 * @see org.omg.sysml.lang.sysml.VariantMembership#getOwningVariationUsage
-	 * @model opposite="owningVariationUsage" containment="true" ordered="false"
+	 * @model containment="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
 	 * @generated
 	 */
 	EList<VariantMembership> getVariantMembership_comp();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Variation Usage</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}'.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The variation point Usage that for which this Usage represents a variant, derived as the <code>owningVariationUsage</code> of the <code>owningVariantMembership</code> of the Usage.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Variation Usage</em>' reference.
-	 * @see #setOwningVariationUsage(Usage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_OwningVariationUsage()
-	 * @see org.omg.sysml.lang.sysml.Usage#getVariant
-	 * @model opposite="variant" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	Usage getOwningVariationUsage();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Usage#getOwningVariationUsage <em>Owning Variation Usage</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Variation Usage</em>' reference.
-	 * @see #getOwningVariationUsage()
-	 * @generated
-	 */
-	void setOwningVariationUsage(Usage value);
-
-	/**
 	 * Returns the value of the '<em><b>Variant</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Usage#getOwningVariationUsage <em>Owning Variation Usage</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -551,8 +444,8 @@ public interface Usage extends Feature {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Variant()
-	 * @see org.omg.sysml.lang.sysml.Usage#getOwningVariationUsage
-	 * @model opposite="owningVariationUsage" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */

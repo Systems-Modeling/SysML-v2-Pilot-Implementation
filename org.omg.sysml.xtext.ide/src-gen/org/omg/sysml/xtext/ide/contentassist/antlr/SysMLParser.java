@@ -287,6 +287,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getStateDefBodyItemAccess().getGroup_4(), "rule__StateDefBodyItem__Group_4__0");
 			builder.put(grammarAccess.getStateActionUsageAccess().getGroup_0(), "rule__StateActionUsage__Group_0__0");
 			builder.put(grammarAccess.getStateActionUsageAccess().getGroup_1(), "rule__StateActionUsage__Group_1__0");
+			builder.put(grammarAccess.getPerformedActionUsageAccess().getGroup_0(), "rule__PerformedActionUsage__Group_0__0");
+			builder.put(grammarAccess.getPerformedActionUsageAccess().getGroup_1(), "rule__PerformedActionUsage__Group_1__0");
+			builder.put(grammarAccess.getPerformedActionUsageAccess().getGroup_2(), "rule__PerformedActionUsage__Group_2__0");
 			builder.put(grammarAccess.getEntryActionMemberAccess().getGroup(), "rule__EntryActionMember__Group__0");
 			builder.put(grammarAccess.getDoActionMemberAccess().getGroup(), "rule__DoActionMember__Group__0");
 			builder.put(grammarAccess.getExitActionMemberAccess().getGroup(), "rule__ExitActionMember__Group__0");

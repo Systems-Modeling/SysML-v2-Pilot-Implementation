@@ -110,12 +110,36 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.INTERFACE_USAGE__ASSOCIATION:
-				return isSetAssociation();
+			case SysMLPackage.INTERFACE_USAGE__CONNECTION_DEFINITION:
+				return isSetConnectionDefinition();
 			case SysMLPackage.INTERFACE_USAGE__INTERFACE_DEFINITION:
 				return isSetInterfaceDefinition();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Association> getConnectionDefinition() {
+		EList<Association> connectionDefinition = new UniqueEList<Association>();
+		InterfaceDefinition interfaceDefinition = getInterfaceDefinition();
+		if (interfaceDefinition != null) {
+			connectionDefinition.add(interfaceDefinition);
+		}
+		return new UnionEObjectEList<Association>(this, SysMLPackage.Literals.CONNECTION_USAGE__CONNECTION_DEFINITION, connectionDefinition.size(), connectionDefinition.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConnectionDefinition() {
+  		return false;
 	}
 
 	/**
@@ -161,30 +185,6 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	 */
 	public boolean isSetInterfaceDefinition() {
 		return basicGetInterfaceDefinition() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Association> getAssociation() {
-		EList<Association> association = new UniqueEList<Association>();
-		InterfaceDefinition interfaceDefinition = getInterfaceDefinition();
-		if (interfaceDefinition != null) {
-			association.add(interfaceDefinition);
-		}
-		return new UnionEObjectEList<Association>(this, SysMLPackage.Literals.CONNECTOR__ASSOCIATION, association.size(), association.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAssociation() {
-  		return false;
 	}
 
 } //ConnectionImpl

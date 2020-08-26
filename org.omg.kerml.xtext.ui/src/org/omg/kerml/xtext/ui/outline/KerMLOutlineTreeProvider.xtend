@@ -27,6 +27,8 @@ import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.Comment
+import org.omg.sysml.lang.sysml.SysMLPackage
 
 /**
  * Customization of the default outline structure.
@@ -37,6 +39,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def String _text(Element element) {
 		var text = element.eClass.name;
+		if (element.humanId !== null) {
+			text += ' id ' + element.humanId
+		}
 		val name = (element as ElementImpl).effectiveName;
 		if (name !== null) {
 			text += ' ' + name;
@@ -111,6 +116,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (type.isAbstract) {
 			text += ' abstract'
 		}
+		if (type.humanId !== null) {
+			text += ' id ' + type.humanId
+		}
 		val name = (type as TypeImpl).effectiveName
 		if (name !== null) {
 			text += ' ' + name;
@@ -155,6 +163,21 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			)
 		}
 	}
+	
+	def boolean _isLeaf(Comment comment) {
+		comment.body === null && super._isLeaf(comment)
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Comment comment) {
+		if (comment.body !== null) {
+			createEStructuralFeatureNode(parentNode, comment, 
+				SysMLPackage.eINSTANCE.comment_Body, 
+				_image(comment.body), comment.body , true
+			)
+		}
+		super._createChildren(parentNode, comment)
+	}
+	
 
 	def boolean _isLeaf(Membership membership) {
 		false

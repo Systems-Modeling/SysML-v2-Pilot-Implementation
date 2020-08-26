@@ -112,7 +112,13 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Quantities" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/UnitsAndScales" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQ" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQAtomicNuclear" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQChemistryMolecular" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQElectromagnetism" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQLight" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQMechanics" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQSpaceTime" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQThermodynamics" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SIPrefixes" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SI" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/USCustomaryUnits" + SYSML_EXTENSION, false, SYSML_EXTENSION);

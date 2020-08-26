@@ -13,6 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * <p>An Association classifies relations that can occur between objects of a particular Type. It has at least two participant properties to connect Types. The Association itself may have additional properties that describe the relationship itself.</p>
  * 
  * relatedTypes = associationEnd.type
+ * let numend : Natural = associationEnd->size() in
+ *     allSupertypes()->includes(
+ *         if numend = 2 then Kernel Library::BinaryLink
+ *         else Kernel Library::Link)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -22,6 +26,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getOwningConnector <em>Owning Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getAssociationEnd <em>Association End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceType <em>Source Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetType <em>Target Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation()
@@ -38,6 +44,7 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement() <em>Related Element</em>}'</li>
 	 * </ul>
+	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Related Type</em>' reference list isn't clear,
@@ -49,8 +56,9 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model lower="2" transient="true" changeable="false" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='association'"
+	 *        annotation="union"
 	 *        annotation="redefines"
 	 * @generated
 	 */
@@ -117,5 +125,75 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @generated
 	 */
 	EList<Feature> getAssociationEnd();
+
+	/**
+	 * Returns the value of the '<em><b>Source Type</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Association#getRelatedType() <em>Related Type</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The source <code>relatedType</code> for this Association. If this is a binary Association, then the <code>sourceType</code> is the first <code>relatedType</code>, and the first end Feature of the Association must redefine the <code>source</code> Feature of the Association BinaryLink from the Kernel Library. If this Association is not binary, then it has no <code>sourceType</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Source Type</em>' reference.
+	 * @see #setSourceType(Type)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_SourceType()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sourceAssociation'"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Type getSourceType();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Association#getSourceType <em>Source Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source Type</em>' reference.
+	 * @see #getSourceType()
+	 * @generated
+	 */
+	void setSourceType(Type value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Association#getRelatedType() <em>Related Type</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>. If this is a binary Association, then the end Features corresponding to the <code>relatedTypes</code> must all redefine the <code>target</code> Feature of the Association BinaryLink from the Kernel Library.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Target Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetType()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='targetAssociation'"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<Type> getTargetType();
 
 } // Association

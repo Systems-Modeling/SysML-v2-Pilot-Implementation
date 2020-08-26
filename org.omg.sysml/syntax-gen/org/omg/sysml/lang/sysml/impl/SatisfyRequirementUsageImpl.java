@@ -196,10 +196,10 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 		return connector;
 	}
 
-	@Override
-	protected Feature getNamingFeature() {
-		return getSatisfiedRequirement();
-	}
+//	@Override
+//	protected Feature getNamingFeature() {
+//		return getSatisfiedRequirement();
+//	}
 
 	@Override
 	public void transform() {

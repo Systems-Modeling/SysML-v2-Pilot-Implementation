@@ -11584,7 +11584,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               			current = forceCreateModelElement(
-              				grammarAccess.getEmptyParameterAccess().getParameterAction(),
+              				grammarAccess.getEmptyParameterAccess().getFeatureAction(),
               				current);
               		
             }
@@ -18807,7 +18807,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               				current = forceCreateModelElement(
-              					grammarAccess.getParameterAccess().getParameterAction_0(),
+              					grammarAccess.getParameterAccess().getFeatureAction_0(),
               					current);
               			
             }

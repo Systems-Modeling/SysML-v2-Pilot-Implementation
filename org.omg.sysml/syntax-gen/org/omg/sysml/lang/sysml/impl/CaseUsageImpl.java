@@ -9,14 +9,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,8 +28,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseUsageImpl#getObjectiveRequirement <em>Objective Requirement</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseUsageImpl#getCaseDefinition <em>Case Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CaseUsageImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
  * </ul>
  *
  * @generated
@@ -96,9 +97,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated
 	 */
 	@Override
-	public Parameter getSubjectParameter() {
-		Parameter subjectParameter = basicGetSubjectParameter();
-		return subjectParameter != null && subjectParameter.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
+	public Usage getSubjectParameter() {
+		Usage subjectParameter = basicGetSubjectParameter();
+		return subjectParameter != null && subjectParameter.eIsProxy() ? (Usage)eResolveProxy((InternalEObject)subjectParameter) : subjectParameter;
 	}
 
 	/**
@@ -106,10 +107,11 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetSubjectParameter() {
-		return getOwnedParameters().stream().
-				map(ParameterImpl.class::cast).
-				filter(ParameterImpl::isSubjectParameter).
+	public Usage basicGetSubjectParameter() {
+		return getOwnedFeatureMembership().stream().
+				filter(SubjectMembership.class::isInstance).
+				map(SubjectMembership.class::cast).
+				map(SubjectMembership::getOwnedSubjectParameter).
 				findFirst().orElse(null);
 	}
 
@@ -119,7 +121,7 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setSubjectParameter(Parameter newSubjectParameter) {
+	public void setSubjectParameter(Usage newSubjectParameter) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -214,19 +216,20 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	// Additional overrides
 	
 	@Override
-	public List<Parameter> getOwnedParameters() {
+	public List<Feature> getOwnedParameters() {
 		addSubjectParameter();
 		return super.getOwnedParameters();
 	}
 	
 	public void addSubjectParameter() {
 		if (!getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
-			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
 			membership.setOwnedSubjectParameter_comp(parameter);
 			getOwnedFeatureMembership_comp().add(membership);
 		}
 	}
+	
 	@Override
 	public void transform() {
 		addSubjectParameter();
@@ -246,12 +249,12 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 			case SysMLPackage.CASE_USAGE__OBJECTIVE_REQUIREMENT:
 				if (resolve) return getObjectiveRequirement();
 				return basicGetObjectiveRequirement();
-			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
-				if (resolve) return getSubjectParameter();
-				return basicGetSubjectParameter();
 			case SysMLPackage.CASE_USAGE__CASE_DEFINITION:
 				if (resolve) return getCaseDefinition();
 				return basicGetCaseDefinition();
+			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
+				if (resolve) return getSubjectParameter();
+				return basicGetSubjectParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -267,11 +270,11 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 			case SysMLPackage.CASE_USAGE__OBJECTIVE_REQUIREMENT:
 				setObjectiveRequirement((RequirementUsage)newValue);
 				return;
-			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
-				setSubjectParameter((Parameter)newValue);
-				return;
 			case SysMLPackage.CASE_USAGE__CASE_DEFINITION:
 				setCaseDefinition((CaseDefinition)newValue);
+				return;
+			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
+				setSubjectParameter((Usage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -288,11 +291,11 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 			case SysMLPackage.CASE_USAGE__OBJECTIVE_REQUIREMENT:
 				setObjectiveRequirement((RequirementUsage)null);
 				return;
-			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
-				setSubjectParameter((Parameter)null);
-				return;
 			case SysMLPackage.CASE_USAGE__CASE_DEFINITION:
 				setCaseDefinition((CaseDefinition)null);
+				return;
+			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
+				setSubjectParameter((Usage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -310,10 +313,10 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 				return isSetCalculationDefinition();
 			case SysMLPackage.CASE_USAGE__OBJECTIVE_REQUIREMENT:
 				return basicGetObjectiveRequirement() != null;
-			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
-				return basicGetSubjectParameter() != null;
 			case SysMLPackage.CASE_USAGE__CASE_DEFINITION:
 				return isSetCaseDefinition();
+			case SysMLPackage.CASE_USAGE__SUBJECT_PARAMETER:
+				return basicGetSubjectParameter() != null;
 		}
 		return super.eIsSet(featureID);
 	}

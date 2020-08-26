@@ -9,7 +9,6 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -74,7 +73,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 				FeatureMembership membership = memberships.get(i);
 				if (!(membership instanceof TransitionFeatureMembership)) {
 					Feature previousFeature = memberships.get(i).getMemberFeature();
-					if (!(previousFeature instanceof Parameter || 
+					if (!(((FeatureImpl)previousFeature).isParameter() || 
 						  previousFeature instanceof Connector || 
 						  previousFeature instanceof TransitionUsage)) {
 						return previousFeature;

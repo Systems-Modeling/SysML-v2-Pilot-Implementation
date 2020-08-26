@@ -49,7 +49,7 @@ package Example3 {
 			out myOut
 		);
 		
-		part tankAssy : FuelTankAssembly {
+		part tankAssy {
 			port fuelTankPort {
 				out ref fuelSupplyOut;
 				in ref fuelReturnIn;

@@ -2,6 +2,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +18,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -167,7 +167,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			Type type = getExpressionType();
 			if (type != null) {
 				for (Feature parameter: type.getInput()) {
-					if (parameter instanceof Parameter && parameter.getOwner() == type) {
+					if (((FeatureImpl)parameter).isParameter() && parameter.getOwner() == type) {
 						inputs.add(createFeatureForParameter(parameter));
 					}
 				}
@@ -176,7 +176,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return inputs;
 	}
 	
-	protected Type getExpressionType() {
+	public Type getExpressionType() {
 		return getFunction();
 	}
 	
@@ -184,7 +184,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = super.getOwnedOutput();
 		if (outputs.isEmpty()) {
-			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
+			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
 			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter_comp(parameter);
 			membership.setMemberName("$result");
@@ -198,7 +198,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		if (parameter == null) {
 			return null;
 		} else {
-			Feature feature = SysMLFactory.eINSTANCE.createParameter();
+			Feature feature = SysMLFactory.eINSTANCE.createFeature();
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 			membership.setOwnedMemberFeature_comp(feature);
 			membership.setMemberName("$" + parameter.getName());
@@ -217,9 +217,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated
 	 */
 	@Override
-	public Parameter getResult() {
-		Parameter result = basicGetResult();
-		return result != null && result.eIsProxy() ? (Parameter)eResolveProxy((InternalEObject)result) : result;
+	public Feature getResult() {
+		Feature result = basicGetResult();
+		return result != null && result.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)result) : result;
 	}
 	
 	/**
@@ -227,7 +227,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Parameter basicGetResult() {
+	public Feature basicGetResult() {
 		return getResultParameter();
 	}
 	
@@ -237,8 +237,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated NOT
 	 */
 	@Override
-	public void setResult(Parameter newResult) {
+	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public Collection<Feature> getRedefinedFeatures() {
+		// Note: Ensures that all owned inputs and outputs are computed
+		// before checking for redefined features.
+		getInput();
+		getOutput();
+		return super.getRedefinedFeatures();
 	}
 	
 	// Utility methods
@@ -250,7 +259,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 
 	@Override
-	public List<Parameter> getOwnedParameters() {
+	public List<Feature> getOwnedParameters() {
 		getInput();
 		getOutput();
 		return super.getOwnedParameters();
@@ -293,7 +302,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				setFunction((Function)newValue);
 				return;
 			case SysMLPackage.EXPRESSION__RESULT:
-				setResult((Parameter)newValue);
+				setResult((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -311,7 +320,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				setFunction((Function)null);
 				return;
 			case SysMLPackage.EXPRESSION__RESULT:
-				setResult((Parameter)null);
+				setResult((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -11,11 +11,17 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Classifier is a Type whose instances include individual things, such as cars, ships or people, and all relations (navigations) to those things via Features. To support this, FeatureTyping is a kind of Generalization, so every Feature typed by a Classifier is&nbsp;a specialization of that Classifier (instances of such Features are also instances of the Classifier).</p>
+ * <p>Classifier specializes Type for model elements that classify:</p>
  * 
- * <p>Like Features, instances of a Classifier can also be interpreted as n-tuples. Unlike a Feature, however, the instances of a Classifier include the case of n=1, that is, individual entities. Ffor every n-tuple that is an instance of a Classifier, the n-th member of the n-tuple must also be an entity that is also individually an instance of the Classifier (because FeatureTyping is a kind of Generalization).</p>
+ * <ul>
+ * 	<li>Things&nbsp;(in the universe) regardless of how Features relate them.&nbsp; These are&nbsp;sequences of exactly one&nbsp;thing (sequence of length 1).</li>
+ * 	<li>How the above&nbsp;things are related by Features. These are sequences of multiple things (length &gt; 1).</li>
+ * </ul>
  * 
- * ownedSuperclassings = ownedGeneralizations->intersection(superclassing)
+ * <p>Classifiers that classify relationships (sequence length &gt; 1) must also classify the things at the end of those&nbsp;sequences (sequence length =1).&nbsp; Because of this, Classifiers specializing Features cannot classify anything (any sequences).</p>
+ * 
+ * ownedSuperclassing = ownedGeneralization->intersection(superclassing)
+ * allSupertypes()->includes(Kernel Library::Anything)
  * <!-- end-model-doc -->
  *
  * <p>

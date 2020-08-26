@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.impl.NotifyingListImpl;
@@ -33,10 +32,14 @@ import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -52,19 +55,19 @@ import org.omg.sysml.lang.sysml.Element;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningMembership <em>Owning Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getReferencedType <em>Referenced Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -524,8 +527,48 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return isEnd()? ((TypeImpl)type).getAllEndFeatures():
+			   isParameter()? getParameterRelevantFeatures(type):
 			   type != null? ((TypeImpl)type).getRelevantFeatures():
 			   Collections.emptyList();
+	}
+	
+	/**
+	 * Parameters redefine (owned) Parameters of general Types, with a result
+	 * Parameter always redefining the result Parameter of a general Function or
+	 * Expression.
+	 */
+	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
+		if (type != null) {
+			if (isResultParameter()) {
+				Feature resultParameter = ((TypeImpl)type).getResultParameter();
+				if (resultParameter != null) {
+					return Collections.singletonList(resultParameter);
+				}
+			} else {
+				return  getRelevantParameters((TypeImpl)type);
+			}
+		}
+		return Collections.emptyList();
+	}
+	
+	protected List<Feature> getRelevantParameters(TypeImpl type) {
+		Type owningType = getOwningType();
+		return type == owningType? filterIgnoredParameters(type.getOwnedParameters()): 
+			   owningType instanceof InvocationExpression && 
+			        type == ((InvocationExpressionImpl)owningType).getExpressionType() &&
+			   		!(type instanceof Function || type instanceof Expression)? 
+			   				((InvocationExpressionImpl)owningType).getTypeFeatures():
+			   filterIgnoredParameters(type.getAllParameters());
+	}
+	
+	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
+		return parameters.stream().
+				filter(p -> !((FeatureImpl) p).isIgnoredParameter()).
+				collect(Collectors.toList());
+	}
+	
+	protected boolean isIgnoredParameter() {
+		return isResultParameter();
 	}
 	
 	/**
@@ -880,7 +923,54 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public Optional<Feature> getFirstSubsettedFeature() {
 		return getFirstSubsetting().map(Subsetting::getSubsettedFeature);
 	}
+	
+	/**
+	 * Return a set including this Feature and all Features that it redefines directly or indirectly.
+	 */
+	public Set<Feature> getAllRedefinedFeatures() {
+		Set<Feature> redefinedFeatures = new HashSet<>();
+		addAllRedefinedFeatures(redefinedFeatures, new HashSet<>());
+		return redefinedFeatures;
+	}
+	
+	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures, Set<Feature> visited) {
+		redefinedFeatures.add(this);
+		getOwnedRedefinition().stream().forEach(redefinition->{
+			visited.add(this);
+			Feature redefinedFeature = redefinition.getRedefinedFeature();
+			if (!visited.contains(redefinedFeature)) {
+				((FeatureImpl)redefinedFeature).addAllRedefinedFeatures(redefinedFeatures, visited);
+			}
+		});
+	}
+	
+	public boolean isParameter() {
+		return getOwningMembership() instanceof ParameterMembership;
+	}
 
+	public boolean isResultParameter() {
+		return getOwningMembership() instanceof ReturnParameterMembership;
+	}
+	
+	public boolean isInput() {
+		FeatureDirectionKind direction = getDirection();
+		return direction == FeatureDirectionKind.IN || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public boolean isOutputParameter() {
+		FeatureDirectionKind direction = getDirection();
+		return direction == FeatureDirectionKind.OUT || direction == FeatureDirectionKind.INOUT;
+	}
+	
+	public FeatureDirectionKind getDirection() {
+		Type owningType = getOwningType();
+		if (owningType == null) {
+			return null;
+		} else {
+			return directionFor(owningType);
+		}
+	}
+	
 	//
 	
 	/**
@@ -948,11 +1038,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				return getReferencedType();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return getOwningFeatureMembership();
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				if (resolve) return getOwningType();
 				return basicGetOwningType();
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				if (resolve) return getEndOwningType();
+				return basicGetEndOwningType();
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				return getReferencedType();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique();
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -965,17 +1060,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return getOwningFeatureMembership();
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite();
 			case SysMLPackage.FEATURE__TYPING:
 				return getTyping();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd();
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				if (resolve) return getEndOwningType();
-				return basicGetEndOwningType();
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique();
 		}
@@ -991,12 +1081,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				getReferencedType().clear();
-				getReferencedType().addAll((Collection<? extends Type>)newValue);
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)newValue);
 				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				getReferencedType().clear();
+				getReferencedType().addAll((Collection<? extends Type>)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique((Boolean)newValue);
@@ -1020,9 +1116,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
 				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)newValue);
-				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite((Boolean)newValue);
 				return;
@@ -1032,9 +1125,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return;
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd((Boolean)newValue);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)newValue);
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique((Boolean)newValue);
@@ -1051,11 +1141,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				getReferencedType().clear();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				setOwningFeatureMembership((FeatureMembership)null);
 				return;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				setOwningType((Type)null);
+				return;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				setEndOwningType((Type)null);
+				return;
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				getReferencedType().clear();
 				return;
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				setIsUnique(IS_UNIQUE_EDEFAULT);
@@ -1075,9 +1171,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				getOwnedSubsetting().clear();
 				return;
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				setOwningFeatureMembership((FeatureMembership)null);
-				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
 				return;
@@ -1086,9 +1179,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return;
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd(IS_END_EDEFAULT);
-				return;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				setEndOwningType((Type)null);
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
@@ -1107,10 +1197,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		switch (featureID) {
 			case SysMLPackage.FEATURE__OWNING_MEMBERSHIP:
 				return getOwningMembership() != null;
-			case SysMLPackage.FEATURE__REFERENCED_TYPE:
-				return !getReferencedType().isEmpty();
+			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
+				return getOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__OWNING_TYPE:
 				return basicGetOwningType() != null;
+			case SysMLPackage.FEATURE__END_OWNING_TYPE:
+				return basicGetEndOwningType() != null;
+			case SysMLPackage.FEATURE__REFERENCED_TYPE:
+				return !getReferencedType().isEmpty();
 			case SysMLPackage.FEATURE__IS_UNIQUE:
 				return isUnique != IS_UNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__IS_ORDERED:
@@ -1123,16 +1217,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return !getOwnedRedefinition().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return !getOwnedSubsetting().isEmpty();
-			case SysMLPackage.FEATURE__OWNING_FEATURE_MEMBERSHIP:
-				return getOwningFeatureMembership() != null;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				return isComposite() != IS_COMPOSITE_EDEFAULT;
 			case SysMLPackage.FEATURE__TYPING:
 				return typing != null && !typing.isEmpty();
 			case SysMLPackage.FEATURE__IS_END:
 				return isEnd() != IS_END_EDEFAULT;
-			case SysMLPackage.FEATURE__END_OWNING_TYPE:
-				return basicGetEndOwningType() != null;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}

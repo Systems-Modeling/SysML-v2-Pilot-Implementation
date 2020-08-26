@@ -39,17 +39,17 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <p>parameter</p> of this CaseDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> Parameter of the base CaseDefinition Case from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this CaseDefinition that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base CaseDefinition Case from the Systems model library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
-	 * @see #setSubjectParameter(Parameter)
+	 * @see #setSubjectParameter(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCaseDefinition_SubjectParameter()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='subjectOwningCaseDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	Parameter getSubjectParameter();
+	Usage getSubjectParameter();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.CaseDefinition#getSubjectParameter <em>Subject Parameter</em>}' reference.
@@ -59,7 +59,7 @@ public interface CaseDefinition extends CalculationDefinition {
 	 * @see #getSubjectParameter()
 	 * @generated
 	 */
-	void setSubjectParameter(Parameter value);
+	void setSubjectParameter(Usage value);
 
 	/**
 	 * Returns the value of the '<em><b>Objective Requirement</b></em>' reference.

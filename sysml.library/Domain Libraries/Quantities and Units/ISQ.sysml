@@ -6,252 +6,59 @@ package ISQ {
 	private import Quantities::*;
 	private import UnitsAndScales::*;
     import ISQSpaceTime::*;
+    import ISQMechanics::*;
+    import ISQThermodynamics::*;
+    import ISQElectromagnetism::*;
+    import ISQLight::*;
+    import ISQChemistryMolecular::*;
+    import ISQAtomicNuclear::*;
 	
 	/*
-	 * Definition of the seven abstract base units, one for each of the base quantities in ISO/IEC 80000
-	 * 
-	 * Define the following for each: abstract unit type, quantity attribute def, quantity value
-	 */
-	 
-	 /**
-	  * length
-	  */
-	// attribute def LengthUnit :> SimpleUnit {
-	// 	attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-	// 		attribute unit: LengthUnit redefines UnitPowerFactor::unit;
-	// 	}
-	// }
-	// attribute def LengthValue :> QuantityValue {
-	// 	attribute num: Real redefines QuantityValue::num;
-	// 	attribute mRef: LengthUnit redefines QuantityValue::mRef;
-	// }	
-	// attribute length: LengthValue :> quantity;
-	
-	 /**
-	  * mass
-	  */
-	attribute def MassUnit :> SimpleUnit { 
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: MassUnit redefines UnitPowerFactor::unit;
-		}
-	}
-	attribute def MassValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: MassUnit redefines QuantityValue::mRef;
-	}
-	attribute mass: MassValue :> quantity;
-
-	 /**
-	  * time
-	  */
-	// attribute def TimeUnit :> SimpleUnit { 
-	// 	attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-	// 		attribute unit: TimeUnit redefines UnitPowerFactor::unit;
-	// 	}
-	// }
-	// attribute def TimeValue :> QuantityValue {
-	// 	attribute num: Real redefines QuantityValue::num;
-	// 	attribute mRef: TimeUnit redefines QuantityValue::mRef;
-	// }
-	// attribute time: TimeValue :> quantity;
-	
-	 /**
-	  * electric current
-	  */
-	attribute def ElectricCurrentUnit :> SimpleUnit { 
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: ElectricCurrentUnit redefines UnitPowerFactor::unit;
-		}
-	}
-	attribute def ElectricCurrentValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: ElectricCurrentUnit redefines QuantityValue::mRef;
-	}
-	attribute electricCurrent: ElectricCurrentValue :> quantity;
-	
-	
-	 /**
-	  * thermodynamic temperature
-	  */
-	attribute def TemperatureUnit :> SimpleUnit {
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: TemperatureUnit redefines UnitPowerFactor::unit;
-		}
-	}
-	attribute def TemperatureValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: TemperatureUnit redefines QuantityValue::mRef;
-	}
-	attribute temperature: TemperatureValue :> quantity;
-	
-	 /**
-	  * amount of substance
-	  */
-	attribute def AmountOfSubstanceUnit :> SimpleUnit { 
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
-		}		
-	}
-	attribute def AmountOfSubstanceValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: AmountOfSubstanceUnit redefines QuantityValue::mRef;
-	}
-	attribute amountOfSubstance: AmountOfSubstanceValue :> quantity;
-			
-
-	 /**
-	  * luminous intensity
-	  */
-	attribute def LuminousIntensityUnit :> SimpleUnit {
-		attribute unitPowerFactor redefines SimpleUnit::unitPowerFactor {
-			attribute unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
-		}
-	}	
-	attribute def LuminousIntensityValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: LuminousIntensityUnit redefines QuantityValue::mRef;
-	}
-	attribute luminousIntensity: LuminousIntensityValue :> quantity;
-	
-	/*
-	 * Definition of derived quantities and units
+	 * Base units are defined in the ISQ packaged, one for each of the seven base quantities in ISO/IEC 80000
+	 * - length in ISQSpaceTime (ISO 80000-3)
+     * - mass in ISQMechanics (ISO 80000-4)
+     * - duration or time in ISQSpaceTime (ISO 80000-3)
+     * - electric current in ISQElectromagnetism (IEC 80000-6)
+     * - thermodynamic temperature in ISQThermodynamics (ISO 80000-5)
+     * - amount of substance in ISQChemistryMolecular (ISO 80000-9)
+     * - luminous intensity in ISQLight (ISO 80000-7)
 	 */
 	 
 	/**
 	 * Define abstract super attribute def for all derived units in ISO/IEC 80000
 	 * 
 	 * An SI derived unit is always defined in terms of powers of the SI base units.
-	 * As a default all unit power factor exponents are set to zero.
+	 * As a default, the exponents of all unit power factors are set to zero,
+     * effectively making the default equivalent to a DimensionOneUnit.
 	 */	 
 	abstract attribute def SIDerivedUnit :> DerivedUnit {
 		attribute lengthPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: LengthUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: LengthUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute massPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: MassUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: MassUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute timePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: TimeUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: TimeUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute electricCurrentPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: ElectricCurrentUnit  redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: ElectricCurrentUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute temperaturePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: TemperatureUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: TemperatureUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute amountOfSubstancePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: AmountOfSubstanceUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: AmountOfSubstanceUnit;
+			attribute redefines exponent = 0;
 		}
 		attribute luminousIntensityPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute unit: LuminousIntensityUnit redefines UnitPowerFactor::unit;
-			attribute exponent redefines UnitPowerFactor::exponent = 0;
+			attribute redefinesunit: LuminousIntensityUnit;
+			attribute redefines exponent = 0;
 		}
 	}	 
-	 
-	/**
-	 * force
-	 */	
-	attribute def ForceUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute massPowerFactor redefines SIDerivedUnit::massPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor redefines SIDerivedUnit::timePowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = -2;
-		}
-	}
-	attribute def ForceValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: ForceUnit redefines QuantityValue::mRef;
-	}
-	attribute force: ForceValue :> quantity;
-	
-	/**
-	 * speed
-	 */
-	attribute def SpeedUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = -1;
-		}		
-	}
-	attribute def SpeedValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: SpeedUnit redefines QuantityValue::mRef;
-	}
-	attribute speed: SpeedValue :> quantity;
-	
-	/**
-	 * torque
-	 */
-	attribute def TorqueUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 2;
-		}
-		attribute massPowerFactor redefines SIDerivedUnit::massPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor redefines SIDerivedUnit::timePowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = -2;
-		}
-	}
-	attribute def TorqueValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: TorqueUnit redefines QuantityValue::mRef;
-	}
-	attribute torque: TorqueValue :> quantity;
-	
-	/**
-	 * energy
-	 */
-	attribute def EnergyUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor redefines SIDerivedUnit::lengthPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 2;
-		}
-		attribute massPowerFactor redefines SIDerivedUnit::massPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor redefines SIDerivedUnit::timePowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = -2;
-		}
-	}
-	attribute def EnergyValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-		attribute mRef: EnergyUnit redefines QuantityValue::mRef;
-	}
-	attribute energy: EnergyValue :> quantity;
-	
-	/*
-	 * Qualified specializations of basic features, i.e. features adding more specific semantics
-	 */
-	 
-	attribute kineticEnergy :> energy;
-	attribute potentialEnergy :> energy;
-	
-	// /**
-	//  * acceleration
-	//  */	
-    // attribute def AccelerationUnit :> SIDerivedUnit {
-	// 	attribute lengthPowerFactor :> SIDerivedUnit::lengthPowerFactor {
-	// 		attribute exponent redefines UnitPowerFactor::exponent = 1;
-	// 	}
-	// 	attribute timePowerFactor :> SIDerivedUnit::timePowerFactor {
-	// 		attribute exponent redefines UnitPowerFactor::exponent = -2;
-	// 	}		
-    // }
-    // attribute def AccelerationValue :> QuantityValue {
-	// 	attribute num: Real redefines QuantityValue::num;
-    // 	attribute mRef: AccelerationUnit redefines QuantityValue::mRef;
-    // }
-    // attribute acceleration: AccelerationValue :> quantity;
 }

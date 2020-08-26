@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -67,8 +66,8 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	 * 
 	 * @generated NOT // derived
 	 */
-	public EList<Parameter> getParameter() {
-		EList<Parameter> parameters = new EObjectEList<Parameter>(Parameter.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+	public EList<Feature> getParameter() {
+		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -88,7 +87,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	
 	public static List<Feature> getRelevantFeaturesFor(Type type) {
 		return type.getOwnedFeature().stream().
-				filter(feature -> !(feature instanceof Parameter) && feature.isAbstract()).
+				filter(feature -> !((FeatureImpl)feature).isParameter() && feature.isAbstract()).
 				collect(Collectors.toList());
 	}
 
@@ -121,7 +120,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 				return;
 			case SysMLPackage.BEHAVIOR__PARAMETER:
 				getParameter().clear();
-				getParameter().addAll((Collection<? extends Parameter>)newValue);
+				getParameter().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -24,7 +25,6 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Parameter;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -47,9 +47,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariant <em>Variant</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlow <em>Flow</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
@@ -59,7 +56,9 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRequirement <em>Owned Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedCalculation <em>Owned Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#isVariation <em>Is Variation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAnalysisCase <em>Owned Analysis Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedCase <em>Owned Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedReference <em>Owned Reference</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAction <em>Owned Action</em>}</li>
@@ -69,21 +68,13 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedIndividual <em>Owned Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedInterface <em>Owned Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class DefinitionImpl extends ClassifierImpl implements Definition {
-	/**
-	 * The cached value of the '{@link #getVariantMembership_comp() <em>Variant Membership comp</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVariantMembership_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<VariantMembership> variantMembership_comp;
 	/**
 	 * The default value of the '{@link #isVariation() <em>Is Variation</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -102,6 +93,15 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @ordered
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getVariantMembership_comp() <em>Variant Membership comp</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariantMembership_comp()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VariantMembership> variantMembership_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -391,7 +391,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			filter(VariantMembership.class::isInstance).
 			map(VariantMembership.class::cast).
 			forEachOrdered(variantMemberships::add);
-			variantMemberships.addAll(getVariantMembership_comp());
+		variantMemberships.addAll(getVariantMembership_comp());
 		return variantMemberships;
 	}
 
@@ -403,7 +403,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public EList<VariantMembership> getVariantMembership_comp() {
 		if (variantMembership_comp == null) {
-			variantMembership_comp = new EObjectContainmentWithInverseEList<VariantMembership>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP, SysMLPackage.VARIANT_MEMBERSHIP__OWNING_VARIATION_DEFINITION);
+			variantMembership_comp = new EObjectContainmentEList<VariantMembership>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP);
 		}
 		return variantMembership_comp;
 	}
@@ -417,7 +417,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	
 	// Utility methods
 	
-	public Parameter getSubjectParameter() {
+	public Usage getSubjectParameter() {
 		return null;
 	}
 	
@@ -434,8 +434,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		switch (featureID) {
 			case SysMLPackage.DEFINITION__OWNED_MEMBERSHIP_COMP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership_comp()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getVariantMembership_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -464,12 +462,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
-			case SysMLPackage.DEFINITION__VARIANT:
-				return getVariant();
-			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
-				return getVariantMembership_comp();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
 			case SysMLPackage.DEFINITION__FLOW:
@@ -488,8 +480,12 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedCalculation();
 			case SysMLPackage.DEFINITION__IS_VARIATION:
 				return isVariation();
+			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
+				return getVariantMembership_comp();
 			case SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE:
 				return getOwnedAnalysisCase();
+			case SysMLPackage.DEFINITION__VARIANT:
+				return getVariant();
 			case SysMLPackage.DEFINITION__OWNED_CASE:
 				return getOwnedCase();
 			case SysMLPackage.DEFINITION__OWNED_REFERENCE:
@@ -508,6 +504,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedInterface();
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 		}
@@ -523,18 +521,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
-			case SysMLPackage.DEFINITION__VARIANT:
-				getVariant().clear();
-				getVariant().addAll((Collection<? extends Usage>)newValue);
-				return;
-			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
-				getVariantMembership_comp().clear();
-				getVariantMembership_comp().addAll((Collection<? extends VariantMembership>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
@@ -570,9 +556,17 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__IS_VARIATION:
 				setIsVariation((Boolean)newValue);
 				return;
+			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
+				getVariantMembership_comp().clear();
+				getVariantMembership_comp().addAll((Collection<? extends VariantMembership>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE:
 				getOwnedAnalysisCase().clear();
 				getOwnedAnalysisCase().addAll((Collection<? extends AnalysisCaseUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__VARIANT:
+				getVariant().clear();
+				getVariant().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__OWNED_CASE:
 				getOwnedCase().clear();
@@ -610,6 +604,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedAttribute().clear();
 				getOwnedAttribute().addAll((Collection<? extends AttributeUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
@@ -626,15 +624,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				return;
-			case SysMLPackage.DEFINITION__VARIANT:
-				getVariant().clear();
-				return;
-			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
-				getVariantMembership_comp().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
@@ -662,8 +651,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__IS_VARIATION:
 				setIsVariation(IS_VARIATION_EDEFAULT);
 				return;
+			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
+				getVariantMembership_comp().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE:
 				getOwnedAnalysisCase().clear();
+				return;
+			case SysMLPackage.DEFINITION__VARIANT:
+				getVariant().clear();
 				return;
 			case SysMLPackage.DEFINITION__OWNED_CASE:
 				getOwnedCase().clear();
@@ -692,6 +687,9 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				return;
@@ -709,12 +707,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		switch (featureID) {
 			case SysMLPackage.DEFINITION__OWNED_MEMBERSHIP_COMP:
 				return ownedMembership_comp != null && !ownedMembership_comp.isEmpty();
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
-			case SysMLPackage.DEFINITION__VARIANT:
-				return !getVariant().isEmpty();
-			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
-				return variantMembership_comp != null && !variantMembership_comp.isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
 			case SysMLPackage.DEFINITION__FLOW:
@@ -733,8 +725,12 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedCalculation().isEmpty();
 			case SysMLPackage.DEFINITION__IS_VARIATION:
 				return isVariation != IS_VARIATION_EDEFAULT;
+			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP_COMP:
+				return variantMembership_comp != null && !variantMembership_comp.isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_ANALYSIS_CASE:
 				return !getOwnedAnalysisCase().isEmpty();
+			case SysMLPackage.DEFINITION__VARIANT:
+				return !getVariant().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_CASE:
 				return !getOwnedCase().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_REFERENCE:
@@ -753,6 +749,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedInterface().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
 				return !getOwnedAttribute().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return !getVariantMembership().isEmpty();
 		}

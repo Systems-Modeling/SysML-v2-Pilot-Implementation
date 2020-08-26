@@ -49,6 +49,15 @@ public interface SysMLFactory extends EFactory {
 	AssertConstraintUsage createAssertConstraintUsage();
 
 	/**
+	 * Returns a new object of class '<em>Expose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expose</em>'.
+	 * @generated
+	 */
+	Expose createExpose();
+
+	/**
 	 * Returns a new object of class '<em>Subject Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -553,6 +562,87 @@ public interface SysMLFactory extends EFactory {
 	AttributeUsage createAttributeUsage();
 
 	/**
+	 * Returns a new object of class '<em>View Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View Usage</em>'.
+	 * @generated
+	 */
+	ViewUsage createViewUsage();
+
+	/**
+	 * Returns a new object of class '<em>View Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View Definition</em>'.
+	 * @generated
+	 */
+	ViewDefinition createViewDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Viewpoint Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Viewpoint Usage</em>'.
+	 * @generated
+	 */
+	ViewpointUsage createViewpointUsage();
+
+	/**
+	 * Returns a new object of class '<em>Viewpoint Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Viewpoint Definition</em>'.
+	 * @generated
+	 */
+	ViewpointDefinition createViewpointDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Model Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Query</em>'.
+	 * @generated
+	 */
+	ModelQuery createModelQuery();
+
+	/**
+	 * Returns a new object of class '<em>Rendering Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rendering Usage</em>'.
+	 * @generated
+	 */
+	RenderingUsage createRenderingUsage();
+
+	/**
+	 * Returns a new object of class '<em>Rendering Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rendering Definition</em>'.
+	 * @generated
+	 */
+	RenderingDefinition createRenderingDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Verification Case Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Verification Case Usage</em>'.
+	 * @generated
+	 */
+	VerificationCaseUsage createVerificationCaseUsage();
+
+	/**
+	 * Returns a new object of class '<em>Verification Case Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Verification Case Definition</em>'.
+	 * @generated
+	 */
+	VerificationCaseDefinition createVerificationCaseDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Interface Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -958,15 +1048,6 @@ public interface SysMLFactory extends EFactory {
 	ItemFlowEnd createItemFlowEnd();
 
 	/**
-	 * Returns a new object of class '<em>Item Flow Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Item Flow Feature</em>'.
-	 * @generated
-	 */
-	ItemFlowFeature createItemFlowFeature();
-
-	/**
 	 * Returns a new object of class '<em>Item Feature</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1028,6 +1109,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ItemFlow createItemFlow();
+
+	/**
+	 * Returns a new object of class '<em>Item Flow Feature</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Item Flow Feature</em>'.
+	 * @generated
+	 */
+	ItemFlowFeature createItemFlowFeature();
 
 	/**
 	 * Returns a new object of class '<em>Succession Item Flow</em>'.

@@ -35,6 +35,7 @@ public interface ActionDefinition extends Definition, Behavior {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Behavior#getStep() <em>Step</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getUsage() <em>Usage</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

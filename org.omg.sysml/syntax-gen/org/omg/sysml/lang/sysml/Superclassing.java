@@ -101,8 +101,8 @@ public interface Superclassing extends Generalization {
 	void setSubclass(Classifier value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Classifier</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing <em>Owned Superclassing</em>}'.
+	 * Returns the value of the '<em><b>Owning Classifier</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing_comp <em>Owned Superclassing comp</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -118,20 +118,20 @@ public interface Superclassing extends Generalization {
 	 * <!-- begin-model-doc -->
 	 * <p>The more general Classifier in the pair linked by Superclassing and that owns the relationship.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Classifier</em>' reference.
+	 * @return the value of the '<em>Owning Classifier</em>' container reference.
 	 * @see #setOwningClassifier(Classifier)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuperclassing_OwningClassifier()
-	 * @see org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing
-	 * @model opposite="ownedSuperclassing" transient="true" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing_comp
+	 * @model opposite="ownedSuperclassing_comp" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	Classifier getOwningClassifier();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}' container reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Classifier</em>' reference.
+	 * @param value the new value of the '<em>Owning Classifier</em>' container reference.
 	 * @see #getOwningClassifier()
 	 * @generated
 	 */

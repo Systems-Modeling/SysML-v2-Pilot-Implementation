@@ -230,12 +230,11 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 			Type type = owningType instanceof IndividualUsage? 
 					((IndividualUsage)owningType).getIndividualDefinition(): 
 					owningType;
-			EList<FeatureTyping> typings = feature.getTyping();
+			EList<FeatureTyping> typings = feature.getOwnedTyping_comp();
 			if (typings.isEmpty()) {
 				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
 				typing.setType(type);
 				feature.getOwnedRelationship_comp().add(typing);
-				typings.add(typing);
 			} else {
 				typings.stream().filter(typing->typing.getType() == null).findFirst().
 					ifPresent(typing->typing.setType(type));

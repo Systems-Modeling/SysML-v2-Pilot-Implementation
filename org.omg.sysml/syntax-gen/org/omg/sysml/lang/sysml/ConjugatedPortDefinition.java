@@ -10,6 +10,8 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>A ConjugatedPortDefinition is a PortDefinition that is a PortConjugation of its original PortDefinition. That is, a ConjugatedPortDefinition inherits all the <code>features</code> of the original PortDefinition, but input <code>flows</code> of the original PortDefinition become outputs on the ConjugatedPortDefinition and output <code>flows</code> of the original PortDefinition become inputs on the ConjugatedPortDefinition. Every PortDefinition has exactly one corresponding ConjugatedPortDefinition, whose name is the same as that of the originalPortDefinition, with the character <code>~</code> prepended.</p>
+ * originalPortDefinition = ownedPortConjugator.originalPortDefinition
+ * conjugatedPortDefinition = null
  * <!-- end-model-doc -->
  *
  * <p>
@@ -32,7 +34,7 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator() <em>Owned Conjugator</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp() <em>Owned Conjugator comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

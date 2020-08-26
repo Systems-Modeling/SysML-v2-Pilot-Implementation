@@ -9,10 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Generalization is a Relationship between two Types that requires all sequences of the specific type to also be sequences of the&nbsp;general Type (the set of sequences of the specific Type is a <em>subset</em> of those of the general Type, which might be the same set).</p>
+ * <p>Generalization is a Relationship between two Types that requires all instances of the <code>specific</code> type to also be instances of the <code>general</code> Type (i.e., the set of instances of the <code>specific</code> Type is a <em>subset</em> of those of the <code>general</code> Type, which might be the same set).</p>
  * 
- * <p>The specific Type of a Generalization cannot&nbsp;be a conjugated Type.</p>
- * 
+ * not specific.isConjugated
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,7 +43,7 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type with&nbsp;a&nbsp;superset of all instances of the specific Type, which might be the same set.</p>
+	 * <p>A Type with a superset of all instances of the <code>specific</code> Type, which might be the same set.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>General</em>' reference.
@@ -82,7 +81,7 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type with&nbsp;a&nbsp;subset of all instances of the general Type, which might be the same set.</p>
+	 * <p>A Type with a subset of all instances of the <code>general</code> Type, which might be the same set.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specific</em>' reference.
@@ -106,8 +105,8 @@ public interface Generalization extends Relationship {
 	void setSpecific(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp <em>Owned Generalization comp</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -123,23 +122,23 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that owns this Generalization.</p>
+	 * <p>The Type that is the <code>specific<code> Type of this Generalization and owns it as its <code>owningRelatedElement<code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Type</em>' reference.
+	 * @return the value of the '<em>Owning Type</em>' container reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedGeneralization
-	 * @model opposite="ownedGeneralization" transient="true" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp
+	 * @model opposite="ownedGeneralization_comp" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' reference.
+	 * @param value the new value of the '<em>Owning Type</em>' container reference.
 	 * @see #getOwningType()
 	 * @generated
 	 */

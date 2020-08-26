@@ -15,8 +15,9 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureTyping#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature <em>Typed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureTyping#getType <em>Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping()
@@ -61,8 +62,48 @@ public interface FeatureTyping extends Generalization {
 	void setType(Type value);
 
 	/**
+	 * Returns the value of the '<em><b>Owning Feature</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp <em>Owned Typing comp</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature() <em>Typed Feature</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Generalization#getOwningType() <em>Owning Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that owned this FeatureTyping (which must also be the <code>typedFeature</code>).</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owning Feature</em>' container reference.
+	 * @see #setOwningFeature(Feature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_OwningFeature()
+	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp
+	 * @model opposite="ownedTyping_comp" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Feature getOwningFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Feature</em>' container reference.
+	 * @see #getOwningFeature()
+	 * @generated
+	 */
+	void setOwningFeature(Feature value);
+
+	/**
 	 * Returns the value of the '<em><b>Typed Feature</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -81,8 +122,8 @@ public interface FeatureTyping extends Generalization {
 	 * @return the value of the '<em>Typed Feature</em>' reference.
 	 * @see #setTypedFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_TypedFeature()
-	 * @see org.omg.sysml.lang.sysml.Feature#getTyping
-	 * @model opposite="typing" required="true" ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typing'"
 	 *        annotation="redefines"
 	 * @generated
 	 */

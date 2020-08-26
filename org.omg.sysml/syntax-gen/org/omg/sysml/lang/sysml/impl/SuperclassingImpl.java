@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -170,21 +171,11 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Classifier getOwningClassifier() {
-		Classifier owningClassifier = basicGetOwningClassifier();
-		return owningClassifier != null && owningClassifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)owningClassifier) : owningClassifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
-	 */
-	public Classifier basicGetOwningClassifier() {
-		Type owningType = super.basicGetOwningType();
+		Type owningType = super.getOwningType();
 		return owningType instanceof Classifier ? (org.omg.sysml.lang.sysml.Classifier) owningType : null;
 	}
 
@@ -203,7 +194,21 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	public boolean isSetOwningClassifier() {
-		return basicGetOwningClassifier() != null;
+		return getOwningClassifier() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP, Classifier.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -220,8 +225,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 				if (resolve) return getSubclass();
 				return basicGetSubclass();
 			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-				if (resolve) return getOwningClassifier();
-				return basicGetOwningClassifier();
+				return getOwningClassifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -370,15 +374,6 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	@Override
 	public Type getOwningType() {
 		return getOwningClassifier();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetOwningType() {
-		return basicGetOwningClassifier();
 	}
 
 	/**

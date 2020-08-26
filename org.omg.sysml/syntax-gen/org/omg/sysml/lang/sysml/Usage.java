@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement <em>Nested Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCalculation <em>Nested Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getFlow <em>Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCase <em>Nested Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
@@ -45,6 +45,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedIndividual <em>Nested Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute <em>Nested Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedView <em>Nested View</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRendering <em>Nested Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -366,7 +370,7 @@ public interface Usage extends Feature {
 	void setIsVariation(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Flow</b></em>' reference list.
+	 * Returns the value of the '<em><b>Flow Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
@@ -380,14 +384,14 @@ public interface Usage extends Feature {
 	 * <p>The <code>usages</code> of this Usage that have a non-null <code>direction</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Flow</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_Flow()
+	 * @return the value of the '<em>Flow Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_FlowFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='usageWithFlow'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Usage> getFlow();
+	EList<Usage> getFlowFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Case</b></em>' reference list.
@@ -658,6 +662,98 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<AttributeUsage> getNestedAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Nested View</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ViewUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>nestedUsages</code> of this Usage that are ViewUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested View</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedView()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ViewUsage> getNestedView();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Viewpoint</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ViewpointUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedRequirement() <em>Nested Requirement</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>nestedUsages</p> of this Usage that are ViewpointUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Viewpoint</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedViewpoint()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ViewpointUsage> getNestedViewpoint();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Rendering</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RenderingUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedPart() <em>Nested Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>nestedUsages</p> of this Usage that are RenderingUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Rendering</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedRendering()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='renderingOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<RenderingUsage> getNestedRendering();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Verification Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VerificationCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedCase() <em>Nested Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>nestedUsages</code> of this Usage that are VerifactionCaseUsages</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Verification Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedVerificationCase()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verificationCaseOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<VerificationCaseUsage> getNestedVerificationCase();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

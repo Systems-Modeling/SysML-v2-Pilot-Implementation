@@ -162,7 +162,7 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
 		if (conjugatedPortDefinition == null) {
-			Type owningType = super.basicGetOwningType();
+			Type owningType = super.getOwningType();
 			if (owningType instanceof ConjugatedPortDefinition) {
 				conjugatedPortDefinition = (ConjugatedPortDefinition)owningType;
 			}
@@ -367,16 +367,6 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	@Override
 	public Type getOwningType() {
 		return getConjugatedPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetOwningType() {
-		return basicGetConjugatedPortDefinition();
 	}
 
 	/**

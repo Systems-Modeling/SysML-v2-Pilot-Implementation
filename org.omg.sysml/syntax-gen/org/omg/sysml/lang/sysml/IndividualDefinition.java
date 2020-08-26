@@ -39,7 +39,7 @@ public interface IndividualDefinition extends ItemDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An Class that is an <tt>ownedMember</tt> of this IndividualDefinition, which specializes both the IndividualDefinition and the <tt>Base::Life</tt> Class from the Kernel Library and has a multiplicity of 0..1. This constrains the IndividualDefinition to have at most one instance that is a complete Life.</p>
+	 * <p>An Class that is an <code>ownedMember</code> of this IndividualDefinition, which specializes both the IndividualDefinition and the <code>Base::Life</code> Class from the Kernel Library and has a multiplicity of 0..1. This constrains the IndividualDefinition to have at most one instance that is a complete Life.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Life Class</em>' reference.
 	 * @see #setLifeClass(org.omg.sysml.lang.sysml.Class)

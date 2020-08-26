@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Connector is a context-specific application of an Association. Associations determine what kinds of objects can be linked. The Connector further restricts those links according to specific roles played within a featuringType.</p>
+ * <p>A Connector is a usage of Associations, with links restricted to instances of the type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&nbsp;domain.</p>
  * 
  * relatedFeature = connectorEnd.feature
  * <!-- end-model-doc -->
@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getTargetFeature <em>Target Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector()
@@ -245,18 +245,5 @@ public interface Connector extends Feature, Relationship {
 	 * @generated
 	 */
 	EList<Association> getOwnedAssociationType();
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The path operation returns the path from the Connector owner to the Feature given as the &quot;relatedFeature&quot; parameter.</p>
-	 * 
-	 * <p>There must be a path of Features from the owner of a Connector (which must be a Type) to each of the relatedFeatures of the Connector.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @model ordered="false" relatedFeatureRequired="true" relatedFeatureOrdered="false"
-	 * @generated
-	 */
-	EList<Feature> path(Feature relatedFeature);
 
 } // Connector

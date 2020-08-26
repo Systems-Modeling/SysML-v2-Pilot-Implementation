@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -173,18 +174,8 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Feature owningFeature = basicGetOwningFeature();
-		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT // derived
-	 */
-	public Feature basicGetOwningFeature() {
-		Type owningType = super.basicGetOwningType();
-		return owningType instanceof Feature ? (Feature) owningType : null;
+		Type owningType = super.getOwningType();
+		return owningType instanceof Feature? (Feature) owningType : null;
 	}
 
 	/**
@@ -201,7 +192,21 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	public boolean isSetOwningFeature() {
-		return basicGetOwningFeature() != null;
+		return getOwningFeature() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP, Feature.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -218,8 +223,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 				if (resolve) return getSubsettingFeature();
 				return basicGetSubsettingFeature();
 			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				if (resolve) return getOwningFeature();
-				return basicGetOwningFeature();
+				return getOwningFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -368,15 +372,6 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	@Override
 	public Type getOwningType() {
 		return getOwningFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetOwningType() {
-		return basicGetOwningFeature();
 	}
 
 	/**

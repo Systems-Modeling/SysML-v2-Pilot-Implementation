@@ -105,8 +105,8 @@ public interface Generalization extends Relationship {
 	void setSpecific(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp <em>Owned Generalization comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -124,21 +124,21 @@ public interface Generalization extends Relationship {
 	 * <!-- begin-model-doc -->
 	 * <p>The Type that is the <code>specific<code> Type of this Generalization and owns it as its <code>owningRelatedElement<code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Type</em>' container reference.
+	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getGeneralization_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp
-	 * @model opposite="ownedGeneralization_comp" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedGeneralization
+	 * @model opposite="ownedGeneralization" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' container reference.
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
 	 * @see #getOwningType()
 	 * @generated
 	 */

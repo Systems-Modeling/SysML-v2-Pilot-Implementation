@@ -3,8 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -171,11 +169,21 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Classifier getOwningClassifier() {
-		Type owningType = super.getOwningType();
+		Classifier classifier = basicGetOwningClassifier();
+		return classifier != null && classifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)classifier) : classifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Classifier basicGetOwningClassifier() {
+		Type owningType = super.basicGetOwningType();
 		return owningType instanceof Classifier ? (org.omg.sysml.lang.sysml.Classifier) owningType : null;
 	}
 
@@ -194,103 +202,7 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 * @generated
 	 */
 	public boolean isSetOwningClassifier() {
-		return getOwningClassifier() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP, Classifier.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-				if (resolve) return getSuperclass();
-				return basicGetSuperclass();
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				if (resolve) return getSubclass();
-				return basicGetSubclass();
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-				return getOwningClassifier();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-				setSuperclass((Classifier)newValue);
-				return;
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				setSubclass((Classifier)newValue);
-				return;
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-				setOwningClassifier((Classifier)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-				setSuperclass((Classifier)null);
-				return;
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				setSubclass((Classifier)null);
-				return;
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-				setOwningClassifier((Classifier)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.SUPERCLASSING__GENERAL:
-				return isSetGeneral();
-			case SysMLPackage.SUPERCLASSING__SPECIFIC:
-				return isSetSpecific();
-			case SysMLPackage.SUPERCLASSING__OWNING_TYPE:
-				return isSetOwningType();
-			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
-				return isSetSuperclass();
-			case SysMLPackage.SUPERCLASSING__SUBCLASS:
-				return isSetSubclass();
-			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
-				return isSetOwningClassifier();
-		}
-		return super.eIsSet(featureID);
+		return basicGetOwningClassifier() != null;
 	}
 
 	/**
@@ -377,6 +289,16 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetOwningType() {
+		return basicGetOwningClassifier();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -393,6 +315,89 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 */
 	public boolean isSetOwningType() {
   		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				if (resolve) return getSuperclass();
+				return basicGetSuperclass();
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				if (resolve) return getSubclass();
+				return basicGetSubclass();
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				if (resolve) return getOwningClassifier();
+				return basicGetOwningClassifier();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				setSuperclass((Classifier)newValue);
+				return;
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				setSubclass((Classifier)newValue);
+				return;
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				setSuperclass((Classifier)null);
+				return;
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				setSubclass((Classifier)null);
+				return;
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				setOwningClassifier((Classifier)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.SUPERCLASSING__GENERAL:
+				return isSetGeneral();
+			case SysMLPackage.SUPERCLASSING__SPECIFIC:
+				return isSetSpecific();
+			case SysMLPackage.SUPERCLASSING__OWNING_TYPE:
+				return isSetOwningType();
+			case SysMLPackage.SUPERCLASSING__SUPERCLASS:
+				return isSetSuperclass();
+			case SysMLPackage.SUPERCLASSING__SUBCLASS:
+				return isSetSubclass();
+			case SysMLPackage.SUPERCLASSING__OWNING_CLASSIFIER:
+				return isSetOwningClassifier();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } // SuperclassingImpl

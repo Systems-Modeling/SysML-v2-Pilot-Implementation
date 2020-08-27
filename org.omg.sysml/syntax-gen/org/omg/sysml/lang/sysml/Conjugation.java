@@ -103,8 +103,8 @@ public interface Conjugation extends Relationship {
 	void setConjugatedType(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp <em>Owned Conjugator comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -121,21 +121,21 @@ public interface Conjugation extends Relationship {
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>conjugatingType</code> of this Type that is also its <code>owningRelatedElement</p>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Type</em>' container reference.
+	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugation_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp
-	 * @model opposite="ownedConjugator_comp" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedConjugator
+	 * @model opposite="ownedConjugator" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' container reference.
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
 	 * @see #getOwningType()
 	 * @generated
 	 */

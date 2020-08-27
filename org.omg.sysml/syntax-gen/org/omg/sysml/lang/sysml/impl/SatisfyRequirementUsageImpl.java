@@ -2,7 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -111,7 +112,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	public RequirementUsage basicGetSatisfiedRequirement() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = getOwnedSubsetting_comp();		
+		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
 				allMatch(feature->feature == subsettingBaseDefault || 
 				         feature == subsettingPartDefault)) {
@@ -205,6 +206,45 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	public void transform() {
 		super.transform();
 		getSatisfyingFeatureConnector();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstraintUsage getAssertedConstraint() {
+		return getSatisfiedRequirement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConstraintUsage basicGetAssertedConstraint() {
+		return basicGetSatisfiedRequirement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssertedConstraint(ConstraintUsage newAssertedConstraint) {
+		if (newAssertedConstraint != null && !(newAssertedConstraint instanceof RequirementUsage)) {
+			throw new IllegalArgumentException("newAssertedConstraint must be an instance of RequirementUsage");
+		}
+		setSatisfiedRequirement((RequirementUsage) newAssertedConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAssertedConstraint() {
+  		return false;
 	}
 
 	/**
@@ -341,45 +381,6 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstraintUsage getAssertedConstraint() {
-		return getSatisfiedRequirement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ConstraintUsage basicGetAssertedConstraint() {
-		return basicGetSatisfiedRequirement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAssertedConstraint(ConstraintUsage newAssertedConstraint) {
-		if (newAssertedConstraint != null && !(newAssertedConstraint instanceof RequirementUsage)) {
-			throw new IllegalArgumentException("newAssertedConstraint must be an instance of RequirementUsage");
-		}
-		setSatisfiedRequirement((RequirementUsage) newAssertedConstraint);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAssertedConstraint() {
-  		return false;
 	}
 
 } //SatisfyRequirementUsageImpl

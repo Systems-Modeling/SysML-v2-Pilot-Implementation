@@ -3,7 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -117,7 +116,17 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Type owningType = super.getOwningType();
+		Feature owningFeature = basicGetOwningFeature();
+		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature basicGetOwningFeature() {
+		Type owningType = super.basicGetOwningType();
 		return owningType instanceof Feature? (Feature) owningType : null;
 	}
 
@@ -137,7 +146,7 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @generated
 	 */
 	public boolean isSetOwningFeature() {
-		return getOwningFeature() != null;
+		return basicGetOwningFeature() != null;
 	}
 
 	@Override
@@ -197,17 +206,115 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getGeneral() {
+		return getType();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetGeneral() {
+		return basicGetType();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGeneral(Type newGeneral) {
+		setType(newGeneral);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGeneral() {
+  		return false;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.FEATURE_TYPING__OWNING_FEATURE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE__OWNED_TYPING_COMP, Feature.class, msgs);
+	public Type getOwningType() {
+		return getOwningFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetOwningType() {
+		return basicGetOwningFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningType(Type newOwningType) {
+		if (newOwningType != null && !(newOwningType instanceof Feature)) {
+			throw new IllegalArgumentException("newOwningType must be an instance of Feature");
 		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
+		setOwningFeature((Feature) newOwningType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getSpecific() {
+		return getTypedFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetSpecific() {
+		return basicGetTypedFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSpecific(Type newSpecific) {
+		if (newSpecific != null && !(newSpecific instanceof Feature)) {
+			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
+		}
+		setTypedFeature((Feature) newSpecific);
+	}
+	
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSpecific() {
+  		return false;
 	}
 
 	/**
@@ -224,7 +331,8 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 				if (resolve) return getType();
 				return basicGetType();
 			case SysMLPackage.FEATURE_TYPING__OWNING_FEATURE:
-				return getOwningFeature();
+				if (resolve) return getOwningFeature();
+				return basicGetOwningFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -290,108 +398,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 				return isSetOwningFeature();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getGeneral() {
-		return getType();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetGeneral() {
-		return basicGetType();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setGeneral(Type newGeneral) {
-		setType(newGeneral);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetGeneral() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getOwningType() {
-		return getOwningFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningType(Type newOwningType) {
-		if (newOwningType != null && !(newOwningType instanceof Feature)) {
-			throw new IllegalArgumentException("newOwningType must be an instance of Feature");
-		}
-		setOwningFeature((Feature) newOwningType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getSpecific() {
-		return getTypedFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetSpecific() {
-		return basicGetTypedFeature();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSpecific(Type newSpecific) {
-		if (newSpecific != null && !(newSpecific instanceof Feature)) {
-			throw new IllegalArgumentException("newSpecific must be an instance of Feature");
-		}
-		setTypedFeature((Feature) newSpecific);
-	}
-	
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSpecific() {
-  		return false;
 	}
 
 } // FeatureTypingImpl

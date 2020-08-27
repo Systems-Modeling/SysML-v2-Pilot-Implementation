@@ -62,8 +62,8 @@ public interface FeatureTyping extends Generalization {
 	void setType(Type value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Feature</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp <em>Owned Typing comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Feature</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -81,11 +81,11 @@ public interface FeatureTyping extends Generalization {
 	 * <!-- begin-model-doc -->
 	 * <p>The Feature that owned this FeatureTyping (which must also be the <code>typedFeature</code>).</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Feature</em>' container reference.
+	 * @return the value of the '<em>Owning Feature</em>' reference.
 	 * @see #setOwningFeature(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureTyping_OwningFeature()
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp
-	 * @model opposite="ownedTyping_comp" volatile="true" derived="true" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedTyping
+	 * @model opposite="ownedTyping" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated
@@ -93,10 +93,10 @@ public interface FeatureTyping extends Generalization {
 	Feature getOwningFeature();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Feature</em>' container reference.
+	 * @param value the new value of the '<em>Owning Feature</em>' reference.
 	 * @see #getOwningFeature()
 	 * @generated
 	 */

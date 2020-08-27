@@ -1645,13 +1645,13 @@ public interface SysMLPackage extends EPackage {
 	int TYPE__OWNED_IMPORT = PACKAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__OWNED_GENERALIZATION_COMP = PACKAGE_FEATURE_COUNT + 0;
+	int TYPE__OWNED_GENERALIZATION = PACKAGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -1744,13 +1744,13 @@ public interface SysMLPackage extends EPackage {
 	int TYPE__IS_SUFFICIENT = PACKAGE_FEATURE_COUNT + 10;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__OWNED_CONJUGATOR_COMP = PACKAGE_FEATURE_COUNT + 11;
+	int TYPE__OWNED_CONJUGATOR = PACKAGE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -1789,31 +1789,13 @@ public interface SysMLPackage extends EPackage {
 	int TYPE__MULTIPLICITY = PACKAGE_FEATURE_COUNT + 15;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_GENERALIZATION = PACKAGE_FEATURE_COUNT + 16;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE__OWNED_FEATURE_MEMBERSHIP = PACKAGE_FEATURE_COUNT + 17;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE__OWNED_CONJUGATOR = PACKAGE_FEATURE_COUNT + 18;
+	int TYPE__OWNED_FEATURE_MEMBERSHIP = PACKAGE_FEATURE_COUNT + 16;
 
 	/**
 	 * The number of structural features of the '<em>Type</em>' class.
@@ -1822,7 +1804,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 19;
+	int TYPE_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 17;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -2144,13 +2126,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNED_IMPORT = TYPE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_GENERALIZATION_COMP = TYPE__OWNED_GENERALIZATION_COMP;
+	int FEATURE__OWNED_GENERALIZATION = TYPE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -2243,13 +2225,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__IS_SUFFICIENT = TYPE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_CONJUGATOR_COMP = TYPE__OWNED_CONJUGATOR_COMP;
+	int FEATURE__OWNED_CONJUGATOR = TYPE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -2288,15 +2270,6 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__MULTIPLICITY = TYPE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_GENERALIZATION = TYPE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2304,15 +2277,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE__OWNED_FEATURE_MEMBERSHIP = TYPE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_CONJUGATOR = TYPE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -2387,22 +2351,22 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__OWNED_TYPE = TYPE_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_REDEFINITION_COMP = TYPE_FEATURE_COUNT + 8;
+	int FEATURE__OWNED_REDEFINITION = TYPE_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_SUBSETTING_COMP = TYPE_FEATURE_COUNT + 9;
+	int FEATURE__OWNED_SUBSETTING = TYPE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -2423,13 +2387,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__IS_END = TYPE_FEATURE_COUNT + 11;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__OWNED_TYPING_COMP = TYPE_FEATURE_COUNT + 12;
+	int FEATURE__OWNED_TYPING = TYPE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -2441,40 +2405,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE__IS_NONUNIQUE = TYPE_FEATURE_COUNT + 13;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_REDEFINITION = TYPE_FEATURE_COUNT + 14;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_SUBSETTING = TYPE_FEATURE_COUNT + 15;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_TYPING = TYPE_FEATURE_COUNT + 16;
-
-	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 17;
+	int FEATURE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -2765,13 +2702,13 @@ public interface SysMLPackage extends EPackage {
 	int STEP__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int STEP__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -2864,13 +2801,13 @@ public interface SysMLPackage extends EPackage {
 	int STEP__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int STEP__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -2909,15 +2846,6 @@ public interface SysMLPackage extends EPackage {
 	int STEP__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2925,15 +2853,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -3008,22 +2927,22 @@ public interface SysMLPackage extends EPackage {
 	int STEP__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int STEP__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int STEP__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -3044,13 +2963,13 @@ public interface SysMLPackage extends EPackage {
 	int STEP__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int STEP__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -3060,33 +2979,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -3634,13 +3526,13 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__OWNED_IMPORT = STEP__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__OWNED_GENERALIZATION_COMP = STEP__OWNED_GENERALIZATION_COMP;
+	int EXPRESSION__OWNED_GENERALIZATION = STEP__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -3733,13 +3625,13 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__IS_SUFFICIENT = STEP__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__OWNED_CONJUGATOR_COMP = STEP__OWNED_CONJUGATOR_COMP;
+	int EXPRESSION__OWNED_CONJUGATOR = STEP__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -3778,15 +3670,6 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__MULTIPLICITY = STEP__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__OWNED_GENERALIZATION = STEP__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3794,15 +3677,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION__OWNED_FEATURE_MEMBERSHIP = STEP__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__OWNED_CONJUGATOR = STEP__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -3877,22 +3751,22 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__OWNED_TYPE = STEP__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__OWNED_REDEFINITION_COMP = STEP__OWNED_REDEFINITION_COMP;
+	int EXPRESSION__OWNED_REDEFINITION = STEP__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__OWNED_SUBSETTING_COMP = STEP__OWNED_SUBSETTING_COMP;
+	int EXPRESSION__OWNED_SUBSETTING = STEP__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -3913,13 +3787,13 @@ public interface SysMLPackage extends EPackage {
 	int EXPRESSION__IS_END = STEP__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__OWNED_TYPING_COMP = STEP__OWNED_TYPING_COMP;
+	int EXPRESSION__OWNED_TYPING = STEP__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -3929,33 +3803,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION__IS_NONUNIQUE = STEP__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__OWNED_REDEFINITION = STEP__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__OWNED_SUBSETTING = STEP__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION__OWNED_TYPING = STEP__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -4291,13 +4138,13 @@ public interface SysMLPackage extends EPackage {
 	int BOOLEAN_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_EXPRESSION__OWNED_GENERALIZATION_COMP = EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int BOOLEAN_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -4390,13 +4237,13 @@ public interface SysMLPackage extends EPackage {
 	int BOOLEAN_EXPRESSION__IS_SUFFICIENT = EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_EXPRESSION__OWNED_CONJUGATOR_COMP = EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int BOOLEAN_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -4435,15 +4282,6 @@ public interface SysMLPackage extends EPackage {
 	int BOOLEAN_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4451,15 +4289,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -4534,22 +4363,22 @@ public interface SysMLPackage extends EPackage {
 	int BOOLEAN_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_EXPRESSION__OWNED_REDEFINITION_COMP = EXPRESSION__OWNED_REDEFINITION_COMP;
+	int BOOLEAN_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_EXPRESSION__OWNED_SUBSETTING_COMP = EXPRESSION__OWNED_SUBSETTING_COMP;
+	int BOOLEAN_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -4570,13 +4399,13 @@ public interface SysMLPackage extends EPackage {
 	int BOOLEAN_EXPRESSION__IS_END = EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOOLEAN_EXPRESSION__OWNED_TYPING_COMP = EXPRESSION__OWNED_TYPING_COMP;
+	int BOOLEAN_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -4586,33 +4415,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -4957,13 +4759,13 @@ public interface SysMLPackage extends EPackage {
 	int INVARIANT__OWNED_IMPORT = BOOLEAN_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVARIANT__OWNED_GENERALIZATION_COMP = BOOLEAN_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int INVARIANT__OWNED_GENERALIZATION = BOOLEAN_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -5056,13 +4858,13 @@ public interface SysMLPackage extends EPackage {
 	int INVARIANT__IS_SUFFICIENT = BOOLEAN_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVARIANT__OWNED_CONJUGATOR_COMP = BOOLEAN_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int INVARIANT__OWNED_CONJUGATOR = BOOLEAN_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -5101,15 +4903,6 @@ public interface SysMLPackage extends EPackage {
 	int INVARIANT__MULTIPLICITY = BOOLEAN_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVARIANT__OWNED_GENERALIZATION = BOOLEAN_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5117,15 +4910,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVARIANT__OWNED_FEATURE_MEMBERSHIP = BOOLEAN_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVARIANT__OWNED_CONJUGATOR = BOOLEAN_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -5200,22 +4984,22 @@ public interface SysMLPackage extends EPackage {
 	int INVARIANT__OWNED_TYPE = BOOLEAN_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVARIANT__OWNED_REDEFINITION_COMP = BOOLEAN_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int INVARIANT__OWNED_REDEFINITION = BOOLEAN_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVARIANT__OWNED_SUBSETTING_COMP = BOOLEAN_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int INVARIANT__OWNED_SUBSETTING = BOOLEAN_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -5236,13 +5020,13 @@ public interface SysMLPackage extends EPackage {
 	int INVARIANT__IS_END = BOOLEAN_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVARIANT__OWNED_TYPING_COMP = BOOLEAN_EXPRESSION__OWNED_TYPING_COMP;
+	int INVARIANT__OWNED_TYPING = BOOLEAN_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -5252,33 +5036,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVARIANT__IS_NONUNIQUE = BOOLEAN_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVARIANT__OWNED_REDEFINITION = BOOLEAN_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVARIANT__OWNED_SUBSETTING = BOOLEAN_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVARIANT__OWNED_TYPING = BOOLEAN_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -7540,7 +7297,7 @@ public interface SysMLPackage extends EPackage {
 	int GENERALIZATION__SPECIFIC = RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8170,7 +7927,7 @@ public interface SysMLPackage extends EPackage {
 	int CONJUGATION__CONJUGATED_TYPE = RELATIONSHIP_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8422,13 +8179,13 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int MULTIPLICITY__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -8521,13 +8278,13 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int MULTIPLICITY__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -8566,15 +8323,6 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8582,15 +8330,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -8665,22 +8404,22 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int MULTIPLICITY__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int MULTIPLICITY__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -8701,13 +8440,13 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int MULTIPLICITY__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -8717,33 +8456,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Multiplicity</em>' class.
@@ -9043,7 +8755,7 @@ public interface SysMLPackage extends EPackage {
 	int SUBSETTING__SPECIFIC = GENERALIZATION__SPECIFIC;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9070,7 +8782,7 @@ public interface SysMLPackage extends EPackage {
 	int SUBSETTING__SUBSETTING_FEATURE = GENERALIZATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Feature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9322,7 +9034,7 @@ public interface SysMLPackage extends EPackage {
 	int REDEFINITION__SPECIFIC = SUBSETTING__SPECIFIC;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9349,7 +9061,7 @@ public interface SysMLPackage extends EPackage {
 	int REDEFINITION__SUBSETTING_FEATURE = SUBSETTING__SUBSETTING_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Feature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9619,7 +9331,7 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_TYPING__SPECIFIC = GENERALIZATION__SPECIFIC;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9646,7 +9358,7 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_TYPING__TYPE = GENERALIZATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Feature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9898,13 +9610,13 @@ public interface SysMLPackage extends EPackage {
 	int CLASSIFIER__OWNED_IMPORT = TYPE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__OWNED_GENERALIZATION_COMP = TYPE__OWNED_GENERALIZATION_COMP;
+	int CLASSIFIER__OWNED_GENERALIZATION = TYPE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -9997,13 +9709,13 @@ public interface SysMLPackage extends EPackage {
 	int CLASSIFIER__IS_SUFFICIENT = TYPE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__OWNED_CONJUGATOR_COMP = TYPE__OWNED_CONJUGATOR_COMP;
+	int CLASSIFIER__OWNED_CONJUGATOR = TYPE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -10042,15 +9754,6 @@ public interface SysMLPackage extends EPackage {
 	int CLASSIFIER__MULTIPLICITY = TYPE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER__OWNED_GENERALIZATION = TYPE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10060,31 +9763,13 @@ public interface SysMLPackage extends EPackage {
 	int CLASSIFIER__OWNED_FEATURE_MEMBERSHIP = TYPE__OWNED_FEATURE_MEMBERSHIP;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER__OWNED_CONJUGATOR = TYPE__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER__OWNED_SUPERCLASSING_COMP = TYPE_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER__OWNED_SUPERCLASSING = TYPE_FEATURE_COUNT + 1;
+	int CLASSIFIER__OWNED_SUPERCLASSING = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Classifier</em>' class.
@@ -10093,7 +9778,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASSIFIER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+	int CLASSIFIER_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -10375,13 +10060,13 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__OWNED_IMPORT = CLASSIFIER__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__OWNED_GENERALIZATION_COMP = CLASSIFIER__OWNED_GENERALIZATION_COMP;
+	int BEHAVIOR__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -10474,13 +10159,13 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__IS_SUFFICIENT = CLASSIFIER__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BEHAVIOR__OWNED_CONJUGATOR_COMP = CLASSIFIER__OWNED_CONJUGATOR_COMP;
+	int BEHAVIOR__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -10519,15 +10204,6 @@ public interface SysMLPackage extends EPackage {
 	int BEHAVIOR__MULTIPLICITY = CLASSIFIER__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10535,24 +10211,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BEHAVIOR__OWNED_FEATURE_MEMBERSHIP = CLASSIFIER__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BEHAVIOR__OWNED_SUPERCLASSING_COMP = CLASSIFIER__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -10870,7 +10528,7 @@ public interface SysMLPackage extends EPackage {
 	int SUPERCLASSING__SPECIFIC = GENERALIZATION__SPECIFIC;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10897,7 +10555,7 @@ public interface SysMLPackage extends EPackage {
 	int SUPERCLASSING__SUBCLASS = GENERALIZATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Owning Classifier</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Classifier</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11149,13 +10807,13 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__OWNED_IMPORT = BEHAVIOR__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION__OWNED_GENERALIZATION_COMP = BEHAVIOR__OWNED_GENERALIZATION_COMP;
+	int FUNCTION__OWNED_GENERALIZATION = BEHAVIOR__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -11248,13 +10906,13 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__IS_SUFFICIENT = BEHAVIOR__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION__OWNED_CONJUGATOR_COMP = BEHAVIOR__OWNED_CONJUGATOR_COMP;
+	int FUNCTION__OWNED_CONJUGATOR = BEHAVIOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -11293,15 +10951,6 @@ public interface SysMLPackage extends EPackage {
 	int FUNCTION__MULTIPLICITY = BEHAVIOR__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION__OWNED_GENERALIZATION = BEHAVIOR__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11309,24 +10958,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION__OWNED_FEATURE_MEMBERSHIP = BEHAVIOR__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION__OWNED_CONJUGATOR = BEHAVIOR__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTION__OWNED_SUPERCLASSING_COMP = BEHAVIOR__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -11662,13 +11293,13 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__OWNED_IMPORT = FUNCTION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__OWNED_GENERALIZATION_COMP = FUNCTION__OWNED_GENERALIZATION_COMP;
+	int PREDICATE__OWNED_GENERALIZATION = FUNCTION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -11761,13 +11392,13 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__IS_SUFFICIENT = FUNCTION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDICATE__OWNED_CONJUGATOR_COMP = FUNCTION__OWNED_CONJUGATOR_COMP;
+	int PREDICATE__OWNED_CONJUGATOR = FUNCTION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -11806,15 +11437,6 @@ public interface SysMLPackage extends EPackage {
 	int PREDICATE__MULTIPLICITY = FUNCTION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__OWNED_GENERALIZATION = FUNCTION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11822,24 +11444,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE__OWNED_FEATURE_MEMBERSHIP = FUNCTION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__OWNED_CONJUGATOR = FUNCTION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREDICATE__OWNED_SUPERCLASSING_COMP = FUNCTION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -12175,13 +11779,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int CONNECTOR__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -12274,13 +11878,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int CONNECTOR__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -12319,15 +11923,6 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12335,15 +11930,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTOR__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -12418,22 +12004,22 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int CONNECTOR__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int CONNECTOR__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -12454,13 +12040,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTOR__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int CONNECTOR__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -12470,33 +12056,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTOR__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTOR__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
@@ -12913,13 +12472,13 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__OWNED_GENERALIZATION_COMP = CONNECTOR__OWNED_GENERALIZATION_COMP;
+	int BINDING_CONNECTOR__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -13012,13 +12571,13 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__IS_SUFFICIENT = CONNECTOR__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__OWNED_CONJUGATOR_COMP = CONNECTOR__OWNED_CONJUGATOR_COMP;
+	int BINDING_CONNECTOR__OWNED_CONJUGATOR = CONNECTOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -13057,15 +12616,6 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13073,15 +12623,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_CONJUGATOR = CONNECTOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -13156,22 +12697,22 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__OWNED_REDEFINITION_COMP = CONNECTOR__OWNED_REDEFINITION_COMP;
+	int BINDING_CONNECTOR__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__OWNED_SUBSETTING_COMP = CONNECTOR__OWNED_SUBSETTING_COMP;
+	int BINDING_CONNECTOR__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -13192,13 +12733,13 @@ public interface SysMLPackage extends EPackage {
 	int BINDING_CONNECTOR__IS_END = CONNECTOR__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__OWNED_TYPING_COMP = CONNECTOR__OWNED_TYPING_COMP;
+	int BINDING_CONNECTOR__OWNED_TYPING = CONNECTOR__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -13208,33 +12749,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINDING_CONNECTOR__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINDING_CONNECTOR__OWNED_TYPING = CONNECTOR__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
@@ -13651,13 +13165,13 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__OWNED_IMPORT = CLASSIFIER__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_GENERALIZATION_COMP = CLASSIFIER__OWNED_GENERALIZATION_COMP;
+	int CLASS__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -13750,13 +13264,13 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__IS_SUFFICIENT = CLASSIFIER__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS__OWNED_CONJUGATOR_COMP = CLASSIFIER__OWNED_CONJUGATOR_COMP;
+	int CLASS__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -13795,15 +13309,6 @@ public interface SysMLPackage extends EPackage {
 	int CLASS__MULTIPLICITY = CLASSIFIER__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13811,24 +13316,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__OWNED_FEATURE_MEMBERSHIP = CLASSIFIER__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS__OWNED_SUPERCLASSING_COMP = CLASSIFIER__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -14128,13 +13615,13 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__OWNED_IMPORT = CLASS__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_GENERALIZATION_COMP = CLASS__OWNED_GENERALIZATION_COMP;
+	int ASSOCIATION__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -14227,13 +13714,13 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__IS_SUFFICIENT = CLASS__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION__OWNED_CONJUGATOR_COMP = CLASS__OWNED_CONJUGATOR_COMP;
+	int ASSOCIATION__OWNED_CONJUGATOR = CLASS__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -14272,15 +13759,6 @@ public interface SysMLPackage extends EPackage {
 	int ASSOCIATION__MULTIPLICITY = CLASS__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14288,24 +13766,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNED_CONJUGATOR = CLASS__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION__OWNED_SUPERCLASSING_COMP = CLASS__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -15910,13 +15370,13 @@ public interface SysMLPackage extends EPackage {
 	int TARGET_END__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_END__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int TARGET_END__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -16009,13 +15469,13 @@ public interface SysMLPackage extends EPackage {
 	int TARGET_END__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_END__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int TARGET_END__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -16054,15 +15514,6 @@ public interface SysMLPackage extends EPackage {
 	int TARGET_END__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_END__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16070,15 +15521,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_END__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_END__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -16153,22 +15595,22 @@ public interface SysMLPackage extends EPackage {
 	int TARGET_END__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_END__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int TARGET_END__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_END__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int TARGET_END__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -16189,13 +15631,13 @@ public interface SysMLPackage extends EPackage {
 	int TARGET_END__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TARGET_END__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int TARGET_END__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -16205,33 +15647,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TARGET_END__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_END__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_END__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TARGET_END__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Target End</em>' class.
@@ -16531,13 +15946,13 @@ public interface SysMLPackage extends EPackage {
 	int SOURCE_END__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_END__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int SOURCE_END__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -16630,13 +16045,13 @@ public interface SysMLPackage extends EPackage {
 	int SOURCE_END__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_END__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int SOURCE_END__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -16675,15 +16090,6 @@ public interface SysMLPackage extends EPackage {
 	int SOURCE_END__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_END__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16691,15 +16097,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_END__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_END__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -16774,22 +16171,22 @@ public interface SysMLPackage extends EPackage {
 	int SOURCE_END__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_END__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int SOURCE_END__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_END__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int SOURCE_END__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -16810,13 +16207,13 @@ public interface SysMLPackage extends EPackage {
 	int SOURCE_END__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOURCE_END__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int SOURCE_END__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -16826,33 +16223,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOURCE_END__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_END__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_END__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOURCE_END__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Source End</em>' class.
@@ -17152,13 +16522,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION__OWNED_GENERALIZATION_COMP = CONNECTOR__OWNED_GENERALIZATION_COMP;
+	int SUCCESSION__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -17251,13 +16621,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__IS_SUFFICIENT = CONNECTOR__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION__OWNED_CONJUGATOR_COMP = CONNECTOR__OWNED_CONJUGATOR_COMP;
+	int SUCCESSION__OWNED_CONJUGATOR = CONNECTOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -17296,15 +16666,6 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -17312,15 +16673,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_CONJUGATOR = CONNECTOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -17395,22 +16747,22 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION__OWNED_REDEFINITION_COMP = CONNECTOR__OWNED_REDEFINITION_COMP;
+	int SUCCESSION__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION__OWNED_SUBSETTING_COMP = CONNECTOR__OWNED_SUBSETTING_COMP;
+	int SUCCESSION__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -17431,13 +16783,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION__IS_END = CONNECTOR__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION__OWNED_TYPING_COMP = CONNECTOR__OWNED_TYPING_COMP;
+	int SUCCESSION__OWNED_TYPING = CONNECTOR__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -17447,33 +16799,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION__OWNED_TYPING = CONNECTOR__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
@@ -17926,13 +17251,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FEATURE__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int ITEM_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -18025,13 +17350,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FEATURE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FEATURE__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int ITEM_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -18070,15 +17395,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FEATURE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18086,15 +17402,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -18169,22 +17476,22 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FEATURE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FEATURE__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int ITEM_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FEATURE__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int ITEM_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -18205,13 +17512,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FEATURE__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FEATURE__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int ITEM_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -18221,33 +17528,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Item Feature</em>' class.
@@ -18547,13 +17827,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_END__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_END__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int ITEM_FLOW_END__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -18646,13 +17926,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_END__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_END__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int ITEM_FLOW_END__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -18691,15 +17971,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_END__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_END__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -18707,15 +17978,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW_END__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_END__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -18790,22 +18052,22 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_END__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_END__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int ITEM_FLOW_END__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_END__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int ITEM_FLOW_END__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -18826,13 +18088,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_END__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_END__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int ITEM_FLOW_END__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -18842,33 +18104,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW_END__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_END__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_END__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_END__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Item Flow End</em>' class.
@@ -19168,13 +18403,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNED_IMPORT = CONNECTOR__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_GENERALIZATION_COMP = CONNECTOR__OWNED_GENERALIZATION_COMP;
+	int ITEM_FLOW__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -19267,13 +18502,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__IS_SUFFICIENT = CONNECTOR__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_CONJUGATOR_COMP = CONNECTOR__OWNED_CONJUGATOR_COMP;
+	int ITEM_FLOW__OWNED_CONJUGATOR = CONNECTOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -19312,15 +18547,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__MULTIPLICITY = CONNECTOR__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_GENERALIZATION = CONNECTOR__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19328,15 +18554,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = CONNECTOR__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_CONJUGATOR = CONNECTOR__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -19411,22 +18628,22 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__OWNED_TYPE = CONNECTOR__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_REDEFINITION_COMP = CONNECTOR__OWNED_REDEFINITION_COMP;
+	int ITEM_FLOW__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_SUBSETTING_COMP = CONNECTOR__OWNED_SUBSETTING_COMP;
+	int ITEM_FLOW__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -19447,13 +18664,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW__IS_END = CONNECTOR__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__OWNED_TYPING_COMP = CONNECTOR__OWNED_TYPING_COMP;
+	int ITEM_FLOW__OWNED_TYPING = CONNECTOR__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -19463,33 +18680,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW__IS_NONUNIQUE = CONNECTOR__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_REDEFINITION = CONNECTOR__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_SUBSETTING = CONNECTOR__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW__OWNED_TYPING = CONNECTOR__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
@@ -19978,13 +19168,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNED_IMPORT = ITEM_FLOW__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION_COMP = ITEM_FLOW__OWNED_GENERALIZATION_COMP;
+	int SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION = ITEM_FLOW__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -20077,13 +19267,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__IS_SUFFICIENT = ITEM_FLOW__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_CONJUGATOR_COMP = ITEM_FLOW__OWNED_CONJUGATOR_COMP;
+	int SUCCESSION_ITEM_FLOW__OWNED_CONJUGATOR = ITEM_FLOW__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -20122,15 +19312,6 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__MULTIPLICITY = ITEM_FLOW__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_GENERALIZATION = ITEM_FLOW__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20138,15 +19319,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION_ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP = ITEM_FLOW__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_CONJUGATOR = ITEM_FLOW__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -20221,22 +19393,22 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__OWNED_TYPE = ITEM_FLOW__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_REDEFINITION_COMP = ITEM_FLOW__OWNED_REDEFINITION_COMP;
+	int SUCCESSION_ITEM_FLOW__OWNED_REDEFINITION = ITEM_FLOW__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_SUBSETTING_COMP = ITEM_FLOW__OWNED_SUBSETTING_COMP;
+	int SUCCESSION_ITEM_FLOW__OWNED_SUBSETTING = ITEM_FLOW__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -20257,13 +19429,13 @@ public interface SysMLPackage extends EPackage {
 	int SUCCESSION_ITEM_FLOW__IS_END = ITEM_FLOW__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_TYPING_COMP = ITEM_FLOW__OWNED_TYPING_COMP;
+	int SUCCESSION_ITEM_FLOW__OWNED_TYPING = ITEM_FLOW__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -20273,33 +19445,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUCCESSION_ITEM_FLOW__IS_NONUNIQUE = ITEM_FLOW__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_REDEFINITION = ITEM_FLOW__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_SUBSETTING = ITEM_FLOW__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUCCESSION_ITEM_FLOW__OWNED_TYPING = ITEM_FLOW__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Related Element</b></em>' reference list.
@@ -20834,13 +19979,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_FEATURE__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int ITEM_FLOW_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -20933,13 +20078,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_FEATURE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_FEATURE__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int ITEM_FLOW_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -20978,15 +20123,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_FEATURE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20994,15 +20130,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -21077,22 +20204,22 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_FEATURE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_FEATURE__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int ITEM_FLOW_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_FEATURE__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int ITEM_FLOW_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -21113,13 +20240,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_FLOW_FEATURE__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_FEATURE__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int ITEM_FLOW_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -21129,33 +20256,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_FLOW_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_FLOW_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Item Flow Feature</em>' class.
@@ -21455,13 +20555,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__OWNED_IMPORT = ASSOCIATION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERACTION__OWNED_GENERALIZATION_COMP = ASSOCIATION__OWNED_GENERALIZATION_COMP;
+	int INTERACTION__OWNED_GENERALIZATION = ASSOCIATION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -21554,13 +20654,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__IS_SUFFICIENT = ASSOCIATION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERACTION__OWNED_CONJUGATOR_COMP = ASSOCIATION__OWNED_CONJUGATOR_COMP;
+	int INTERACTION__OWNED_CONJUGATOR = ASSOCIATION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -21599,15 +20699,6 @@ public interface SysMLPackage extends EPackage {
 	int INTERACTION__MULTIPLICITY = ASSOCIATION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_GENERALIZATION = ASSOCIATION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21615,24 +20706,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERACTION__OWNED_FEATURE_MEMBERSHIP = ASSOCIATION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_CONJUGATOR = ASSOCIATION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERACTION__OWNED_SUPERCLASSING_COMP = ASSOCIATION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -22049,13 +21122,13 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_GENERALIZATION_COMP = EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int BLOCK_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -22148,13 +21221,13 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__IS_SUFFICIENT = EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_CONJUGATOR_COMP = EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int BLOCK_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -22193,15 +21266,6 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22209,15 +21273,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOCK_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -22292,22 +21347,22 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_REDEFINITION_COMP = EXPRESSION__OWNED_REDEFINITION_COMP;
+	int BLOCK_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_SUBSETTING_COMP = EXPRESSION__OWNED_SUBSETTING_COMP;
+	int BLOCK_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -22328,13 +21383,13 @@ public interface SysMLPackage extends EPackage {
 	int BLOCK_EXPRESSION__IS_END = EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_EXPRESSION__OWNED_TYPING_COMP = EXPRESSION__OWNED_TYPING_COMP;
+	int BLOCK_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -22344,33 +21399,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOCK_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -22706,13 +21734,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION_COMP = EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -22805,13 +21833,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__IS_SUFFICIENT = EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_CONJUGATOR_COMP = EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -22850,15 +21878,6 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -22866,15 +21885,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -22949,22 +21959,22 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION_COMP = EXPRESSION__OWNED_REDEFINITION_COMP;
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING_COMP = EXPRESSION__OWNED_SUBSETTING_COMP;
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -22985,13 +21995,13 @@ public interface SysMLPackage extends EPackage {
 	int FEATURE_REFERENCE_EXPRESSION__IS_END = EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_TYPING_COMP = EXPRESSION__OWNED_TYPING_COMP;
+	int FEATURE_REFERENCE_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -23001,33 +22011,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FEATURE_REFERENCE_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_REFERENCE_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -23372,13 +22355,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__OWNED_IMPORT = FEATURE_REFERENCE_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_EXPRESSION__OWNED_GENERALIZATION_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int QUERY_PATH_EXPRESSION__OWNED_GENERALIZATION = FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -23471,13 +22454,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__IS_SUFFICIENT = FEATURE_REFERENCE_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_EXPRESSION__OWNED_CONJUGATOR_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int QUERY_PATH_EXPRESSION__OWNED_CONJUGATOR = FEATURE_REFERENCE_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -23516,15 +22499,6 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__MULTIPLICITY = FEATURE_REFERENCE_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_GENERALIZATION = FEATURE_REFERENCE_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23532,15 +22506,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = FEATURE_REFERENCE_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_CONJUGATOR = FEATURE_REFERENCE_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -23615,22 +22580,22 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__OWNED_TYPE = FEATURE_REFERENCE_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_EXPRESSION__OWNED_REDEFINITION_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int QUERY_PATH_EXPRESSION__OWNED_REDEFINITION = FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_EXPRESSION__OWNED_SUBSETTING_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int QUERY_PATH_EXPRESSION__OWNED_SUBSETTING = FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -23651,13 +22616,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_EXPRESSION__IS_END = FEATURE_REFERENCE_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_EXPRESSION__OWNED_TYPING_COMP = FEATURE_REFERENCE_EXPRESSION__OWNED_TYPING_COMP;
+	int QUERY_PATH_EXPRESSION__OWNED_TYPING = FEATURE_REFERENCE_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -23667,33 +22632,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_EXPRESSION__IS_NONUNIQUE = FEATURE_REFERENCE_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_REDEFINITION = FEATURE_REFERENCE_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_SUBSETTING = FEATURE_REFERENCE_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_EXPRESSION__OWNED_TYPING = FEATURE_REFERENCE_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -24038,13 +22976,13 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVOCATION_EXPRESSION__OWNED_GENERALIZATION_COMP = EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int INVOCATION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -24137,13 +23075,13 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__IS_SUFFICIENT = EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVOCATION_EXPRESSION__OWNED_CONJUGATOR_COMP = EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int INVOCATION_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -24182,15 +23120,6 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24198,15 +23127,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -24281,22 +23201,22 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVOCATION_EXPRESSION__OWNED_REDEFINITION_COMP = EXPRESSION__OWNED_REDEFINITION_COMP;
+	int INVOCATION_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVOCATION_EXPRESSION__OWNED_SUBSETTING_COMP = EXPRESSION__OWNED_SUBSETTING_COMP;
+	int INVOCATION_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -24317,13 +23237,13 @@ public interface SysMLPackage extends EPackage {
 	int INVOCATION_EXPRESSION__IS_END = EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVOCATION_EXPRESSION__OWNED_TYPING_COMP = EXPRESSION__OWNED_TYPING_COMP;
+	int INVOCATION_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -24333,33 +23253,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVOCATION_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVOCATION_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -24704,13 +23597,13 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_GENERALIZATION_COMP = INVOCATION_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int OPERATOR_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -24803,13 +23696,13 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__IS_SUFFICIENT = INVOCATION_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_CONJUGATOR_COMP = INVOCATION_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int OPERATOR_EXPRESSION__OWNED_CONJUGATOR = INVOCATION_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -24848,15 +23741,6 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__MULTIPLICITY = INVOCATION_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24864,15 +23748,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OWNED_CONJUGATOR = INVOCATION_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -24947,22 +23822,22 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__OWNED_TYPE = INVOCATION_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_REDEFINITION_COMP = INVOCATION_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int OPERATOR_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_SUBSETTING_COMP = INVOCATION_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int OPERATOR_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -24983,13 +23858,13 @@ public interface SysMLPackage extends EPackage {
 	int OPERATOR_EXPRESSION__IS_END = INVOCATION_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_EXPRESSION__OWNED_TYPING_COMP = INVOCATION_EXPRESSION__OWNED_TYPING_COMP;
+	int OPERATOR_EXPRESSION__OWNED_TYPING = INVOCATION_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -24999,33 +23874,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR_EXPRESSION__IS_NONUNIQUE = INVOCATION_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_EXPRESSION__OWNED_TYPING = INVOCATION_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -25397,13 +24245,13 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__OWNED_IMPORT = INVOCATION_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION_COMP = INVOCATION_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -25496,13 +24344,13 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__IS_SUFFICIENT = INVOCATION_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_CONJUGATOR_COMP = INVOCATION_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int INSTANCE_CREATION_EXPRESSION__OWNED_CONJUGATOR = INVOCATION_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -25541,15 +24389,6 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__MULTIPLICITY = INVOCATION_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_GENERALIZATION = INVOCATION_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25557,15 +24396,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_CREATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = INVOCATION_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_CONJUGATOR = INVOCATION_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -25640,22 +24470,22 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__OWNED_TYPE = INVOCATION_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_REDEFINITION_COMP = INVOCATION_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int INSTANCE_CREATION_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_SUBSETTING_COMP = INVOCATION_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int INSTANCE_CREATION_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -25676,13 +24506,13 @@ public interface SysMLPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION__IS_END = INVOCATION_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_TYPING_COMP = INVOCATION_EXPRESSION__OWNED_TYPING_COMP;
+	int INSTANCE_CREATION_EXPRESSION__OWNED_TYPING = INVOCATION_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -25692,33 +24522,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_CREATION_EXPRESSION__IS_NONUNIQUE = INVOCATION_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_REDEFINITION = INVOCATION_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_SUBSETTING = INVOCATION_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_CREATION_EXPRESSION__OWNED_TYPING = INVOCATION_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -26072,13 +24875,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_IMPORT = OPERATOR_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_GENERALIZATION_COMP = OPERATOR_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_GENERALIZATION = OPERATOR_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -26171,13 +24974,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__IS_SUFFICIENT = OPERATOR_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_CONJUGATOR_COMP = OPERATOR_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_CONJUGATOR = OPERATOR_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -26216,15 +25019,6 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__MULTIPLICITY = OPERATOR_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_GENERALIZATION = OPERATOR_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26232,15 +25026,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_CONJUGATOR = OPERATOR_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -26315,22 +25100,22 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__OWNED_TYPE = OPERATOR_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_REDEFINITION_COMP = OPERATOR_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_REDEFINITION = OPERATOR_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_SUBSETTING_COMP = OPERATOR_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_SUBSETTING = OPERATOR_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -26351,13 +25136,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_QUALIFIER_EXPRESSION__IS_END = OPERATOR_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_TYPING_COMP = OPERATOR_EXPRESSION__OWNED_TYPING_COMP;
+	int QUERY_QUALIFIER_EXPRESSION__OWNED_TYPING = OPERATOR_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -26367,33 +25152,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_QUALIFIER_EXPRESSION__IS_NONUNIQUE = OPERATOR_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_REDEFINITION = OPERATOR_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_SUBSETTING = OPERATOR_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_QUALIFIER_EXPRESSION__OWNED_TYPING = OPERATOR_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -26765,13 +25523,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_IMPORT = OPERATOR_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_GENERALIZATION_COMP = OPERATOR_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_GENERALIZATION = OPERATOR_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -26864,13 +25622,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__IS_SUFFICIENT = OPERATOR_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_CONJUGATOR_COMP = OPERATOR_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_CONJUGATOR = OPERATOR_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -26909,15 +25667,6 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__MULTIPLICITY = OPERATOR_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_GENERALIZATION = OPERATOR_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26925,15 +25674,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = OPERATOR_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_CONJUGATOR = OPERATOR_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -27008,22 +25748,22 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__OWNED_TYPE = OPERATOR_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_REDEFINITION_COMP = OPERATOR_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_REDEFINITION = OPERATOR_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_SUBSETTING_COMP = OPERATOR_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_SUBSETTING = OPERATOR_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -27044,13 +25784,13 @@ public interface SysMLPackage extends EPackage {
 	int QUERY_PATH_STEP_EXPRESSION__IS_END = OPERATOR_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_TYPING_COMP = OPERATOR_EXPRESSION__OWNED_TYPING_COMP;
+	int QUERY_PATH_STEP_EXPRESSION__OWNED_TYPING = OPERATOR_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -27060,33 +25800,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_PATH_STEP_EXPRESSION__IS_NONUNIQUE = OPERATOR_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_REDEFINITION = OPERATOR_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_SUBSETTING = OPERATOR_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY_PATH_STEP_EXPRESSION__OWNED_TYPING = OPERATOR_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -27458,13 +26171,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXPRESSION__OWNED_GENERALIZATION_COMP = EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int LITERAL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -27557,13 +26270,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__IS_SUFFICIENT = EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXPRESSION__OWNED_CONJUGATOR_COMP = EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int LITERAL_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -27602,15 +26315,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27618,15 +26322,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -27701,22 +26396,22 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXPRESSION__OWNED_REDEFINITION_COMP = EXPRESSION__OWNED_REDEFINITION_COMP;
+	int LITERAL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXPRESSION__OWNED_SUBSETTING_COMP = EXPRESSION__OWNED_SUBSETTING_COMP;
+	int LITERAL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -27737,13 +26432,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_EXPRESSION__IS_END = EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_EXPRESSION__OWNED_TYPING_COMP = EXPRESSION__OWNED_TYPING_COMP;
+	int LITERAL_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -27753,33 +26448,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -28115,13 +26783,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_BOOLEAN__OWNED_GENERALIZATION_COMP = LITERAL_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int LITERAL_BOOLEAN__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -28214,13 +26882,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_BOOLEAN__OWNED_CONJUGATOR_COMP = LITERAL_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int LITERAL_BOOLEAN__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -28259,15 +26927,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28275,15 +26934,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_BOOLEAN__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -28358,22 +27008,22 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_BOOLEAN__OWNED_REDEFINITION_COMP = LITERAL_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int LITERAL_BOOLEAN__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_BOOLEAN__OWNED_SUBSETTING_COMP = LITERAL_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int LITERAL_BOOLEAN__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -28394,13 +27044,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_BOOLEAN__IS_END = LITERAL_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_BOOLEAN__OWNED_TYPING_COMP = LITERAL_EXPRESSION__OWNED_TYPING_COMP;
+	int LITERAL_BOOLEAN__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -28410,33 +27060,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_BOOLEAN__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_BOOLEAN__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -28781,13 +27404,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__OWNED_GENERALIZATION_COMP = LITERAL_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int LITERAL_UNBOUNDED__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -28880,13 +27503,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__OWNED_CONJUGATOR_COMP = LITERAL_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int LITERAL_UNBOUNDED__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -28925,15 +27548,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28941,15 +27555,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_UNBOUNDED__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -29024,22 +27629,22 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__OWNED_REDEFINITION_COMP = LITERAL_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int LITERAL_UNBOUNDED__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__OWNED_SUBSETTING_COMP = LITERAL_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int LITERAL_UNBOUNDED__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -29060,13 +27665,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_UNBOUNDED__IS_END = LITERAL_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_UNBOUNDED__OWNED_TYPING_COMP = LITERAL_EXPRESSION__OWNED_TYPING_COMP;
+	int LITERAL_UNBOUNDED__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -29076,33 +27681,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_UNBOUNDED__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_UNBOUNDED__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -29438,13 +28016,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__OWNED_GENERALIZATION_COMP = LITERAL_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int LITERAL_INTEGER__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -29537,13 +28115,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__OWNED_CONJUGATOR_COMP = LITERAL_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int LITERAL_INTEGER__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -29582,15 +28160,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29598,15 +28167,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_INTEGER__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -29681,22 +28241,22 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__OWNED_REDEFINITION_COMP = LITERAL_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int LITERAL_INTEGER__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__OWNED_SUBSETTING_COMP = LITERAL_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int LITERAL_INTEGER__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -29717,13 +28277,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_INTEGER__IS_END = LITERAL_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_INTEGER__OWNED_TYPING_COMP = LITERAL_EXPRESSION__OWNED_TYPING_COMP;
+	int LITERAL_INTEGER__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -29733,33 +28293,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_INTEGER__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_INTEGER__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -30104,13 +28637,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_REAL__OWNED_GENERALIZATION_COMP = LITERAL_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int LITERAL_REAL__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -30203,13 +28736,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_REAL__OWNED_CONJUGATOR_COMP = LITERAL_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int LITERAL_REAL__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -30248,15 +28781,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30264,15 +28788,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_REAL__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -30347,22 +28862,22 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_REAL__OWNED_REDEFINITION_COMP = LITERAL_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int LITERAL_REAL__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_REAL__OWNED_SUBSETTING_COMP = LITERAL_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int LITERAL_REAL__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -30383,13 +28898,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_REAL__IS_END = LITERAL_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_REAL__OWNED_TYPING_COMP = LITERAL_EXPRESSION__OWNED_TYPING_COMP;
+	int LITERAL_REAL__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -30399,33 +28914,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_REAL__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_REAL__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -30770,13 +29258,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__OWNED_IMPORT = LITERAL_EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_STRING__OWNED_GENERALIZATION_COMP = LITERAL_EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int LITERAL_STRING__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -30869,13 +29357,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__IS_SUFFICIENT = LITERAL_EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_STRING__OWNED_CONJUGATOR_COMP = LITERAL_EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int LITERAL_STRING__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -30914,15 +29402,6 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__MULTIPLICITY = LITERAL_EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_GENERALIZATION = LITERAL_EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30930,15 +29409,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_STRING__OWNED_FEATURE_MEMBERSHIP = LITERAL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_CONJUGATOR = LITERAL_EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -31013,22 +29483,22 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__OWNED_TYPE = LITERAL_EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_STRING__OWNED_REDEFINITION_COMP = LITERAL_EXPRESSION__OWNED_REDEFINITION_COMP;
+	int LITERAL_STRING__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_STRING__OWNED_SUBSETTING_COMP = LITERAL_EXPRESSION__OWNED_SUBSETTING_COMP;
+	int LITERAL_STRING__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -31049,13 +29519,13 @@ public interface SysMLPackage extends EPackage {
 	int LITERAL_STRING__IS_END = LITERAL_EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LITERAL_STRING__OWNED_TYPING_COMP = LITERAL_EXPRESSION__OWNED_TYPING_COMP;
+	int LITERAL_STRING__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -31065,33 +29535,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_STRING__IS_NONUNIQUE = LITERAL_EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_REDEFINITION = LITERAL_EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_SUBSETTING = LITERAL_EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_STRING__OWNED_TYPING = LITERAL_EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -31436,13 +29879,13 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__OWNED_IMPORT = EXPRESSION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_EXPRESSION__OWNED_GENERALIZATION_COMP = EXPRESSION__OWNED_GENERALIZATION_COMP;
+	int NULL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -31535,13 +29978,13 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__IS_SUFFICIENT = EXPRESSION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_EXPRESSION__OWNED_CONJUGATOR_COMP = EXPRESSION__OWNED_CONJUGATOR_COMP;
+	int NULL_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -31580,15 +30023,6 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__MULTIPLICITY = EXPRESSION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_GENERALIZATION = EXPRESSION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -31596,15 +30030,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int NULL_EXPRESSION__OWNED_FEATURE_MEMBERSHIP = EXPRESSION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_CONJUGATOR = EXPRESSION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -31679,22 +30104,22 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__OWNED_TYPE = EXPRESSION__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_EXPRESSION__OWNED_REDEFINITION_COMP = EXPRESSION__OWNED_REDEFINITION_COMP;
+	int NULL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_EXPRESSION__OWNED_SUBSETTING_COMP = EXPRESSION__OWNED_SUBSETTING_COMP;
+	int NULL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -31715,13 +30140,13 @@ public interface SysMLPackage extends EPackage {
 	int NULL_EXPRESSION__IS_END = EXPRESSION__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NULL_EXPRESSION__OWNED_TYPING_COMP = EXPRESSION__OWNED_TYPING_COMP;
+	int NULL_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -31731,33 +30156,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int NULL_EXPRESSION__IS_NONUNIQUE = EXPRESSION__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_REDEFINITION = EXPRESSION__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_SUBSETTING = EXPRESSION__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_EXPRESSION__OWNED_TYPING = EXPRESSION__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' reference list.
@@ -32507,13 +30905,13 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY_RANGE__OWNED_IMPORT = MULTIPLICITY__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_RANGE__OWNED_GENERALIZATION_COMP = MULTIPLICITY__OWNED_GENERALIZATION_COMP;
+	int MULTIPLICITY_RANGE__OWNED_GENERALIZATION = MULTIPLICITY__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -32606,13 +31004,13 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY_RANGE__IS_SUFFICIENT = MULTIPLICITY__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_RANGE__OWNED_CONJUGATOR_COMP = MULTIPLICITY__OWNED_CONJUGATOR_COMP;
+	int MULTIPLICITY_RANGE__OWNED_CONJUGATOR = MULTIPLICITY__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -32651,15 +31049,6 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY_RANGE__MULTIPLICITY = MULTIPLICITY__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_RANGE__OWNED_GENERALIZATION = MULTIPLICITY__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32667,15 +31056,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY_RANGE__OWNED_FEATURE_MEMBERSHIP = MULTIPLICITY__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_RANGE__OWNED_CONJUGATOR = MULTIPLICITY__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -32750,22 +31130,22 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY_RANGE__OWNED_TYPE = MULTIPLICITY__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_RANGE__OWNED_REDEFINITION_COMP = MULTIPLICITY__OWNED_REDEFINITION_COMP;
+	int MULTIPLICITY_RANGE__OWNED_REDEFINITION = MULTIPLICITY__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_RANGE__OWNED_SUBSETTING_COMP = MULTIPLICITY__OWNED_SUBSETTING_COMP;
+	int MULTIPLICITY_RANGE__OWNED_SUBSETTING = MULTIPLICITY__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -32786,13 +31166,13 @@ public interface SysMLPackage extends EPackage {
 	int MULTIPLICITY_RANGE__IS_END = MULTIPLICITY__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTIPLICITY_RANGE__OWNED_TYPING_COMP = MULTIPLICITY__OWNED_TYPING_COMP;
+	int MULTIPLICITY_RANGE__OWNED_TYPING = MULTIPLICITY__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -32802,33 +31182,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MULTIPLICITY_RANGE__IS_NONUNIQUE = MULTIPLICITY__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_RANGE__OWNED_REDEFINITION = MULTIPLICITY__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_RANGE__OWNED_SUBSETTING = MULTIPLICITY__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTIPLICITY_RANGE__OWNED_TYPING = MULTIPLICITY__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' reference.
@@ -33155,13 +31508,13 @@ public interface SysMLPackage extends EPackage {
 	int DATA_TYPE__OWNED_IMPORT = CLASSIFIER__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__OWNED_GENERALIZATION_COMP = CLASSIFIER__OWNED_GENERALIZATION_COMP;
+	int DATA_TYPE__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -33254,13 +31607,13 @@ public interface SysMLPackage extends EPackage {
 	int DATA_TYPE__IS_SUFFICIENT = CLASSIFIER__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__OWNED_CONJUGATOR_COMP = CLASSIFIER__OWNED_CONJUGATOR_COMP;
+	int DATA_TYPE__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -33299,15 +31652,6 @@ public interface SysMLPackage extends EPackage {
 	int DATA_TYPE__MULTIPLICITY = CLASSIFIER__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33315,24 +31659,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE__OWNED_FEATURE_MEMBERSHIP = CLASSIFIER__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE__OWNED_SUPERCLASSING_COMP = CLASSIFIER__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -33632,13 +31958,13 @@ public interface SysMLPackage extends EPackage {
 	int USAGE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGE__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int USAGE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -33731,13 +32057,13 @@ public interface SysMLPackage extends EPackage {
 	int USAGE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGE__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int USAGE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -33776,15 +32102,6 @@ public interface SysMLPackage extends EPackage {
 	int USAGE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USAGE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33792,15 +32109,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int USAGE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USAGE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -33875,22 +32183,22 @@ public interface SysMLPackage extends EPackage {
 	int USAGE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGE__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int USAGE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGE__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int USAGE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -33911,13 +32219,13 @@ public interface SysMLPackage extends EPackage {
 	int USAGE__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USAGE__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int USAGE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -33927,33 +32235,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int USAGE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USAGE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USAGE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USAGE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -34514,13 +32795,13 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_USAGE__OWNED_IMPORT = USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_USAGE__OWNED_GENERALIZATION_COMP = USAGE__OWNED_GENERALIZATION_COMP;
+	int ACTION_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -34613,13 +32894,13 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_USAGE__IS_SUFFICIENT = USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_USAGE__OWNED_CONJUGATOR_COMP = USAGE__OWNED_CONJUGATOR_COMP;
+	int ACTION_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -34658,15 +32939,6 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_USAGE__MULTIPLICITY = USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34674,15 +32946,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP = USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -34757,22 +33020,22 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_USAGE__OWNED_TYPE = USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_USAGE__OWNED_REDEFINITION_COMP = USAGE__OWNED_REDEFINITION_COMP;
+	int ACTION_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_USAGE__OWNED_SUBSETTING_COMP = USAGE__OWNED_SUBSETTING_COMP;
+	int ACTION_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -34793,13 +33056,13 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_USAGE__IS_END = USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_USAGE__OWNED_TYPING_COMP = USAGE__OWNED_TYPING_COMP;
+	int ACTION_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -34809,33 +33072,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_USAGE__IS_NONUNIQUE = USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -35513,13 +33749,13 @@ public interface SysMLPackage extends EPackage {
 	int PERFORM_ACTION_USAGE__OWNED_IMPORT = ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORM_ACTION_USAGE__OWNED_GENERALIZATION_COMP = ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int PERFORM_ACTION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -35612,13 +33848,13 @@ public interface SysMLPackage extends EPackage {
 	int PERFORM_ACTION_USAGE__IS_SUFFICIENT = ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORM_ACTION_USAGE__OWNED_CONJUGATOR_COMP = ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int PERFORM_ACTION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -35657,15 +33893,6 @@ public interface SysMLPackage extends EPackage {
 	int PERFORM_ACTION_USAGE__MULTIPLICITY = ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORM_ACTION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35673,15 +33900,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PERFORM_ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP = ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORM_ACTION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -35756,22 +33974,22 @@ public interface SysMLPackage extends EPackage {
 	int PERFORM_ACTION_USAGE__OWNED_TYPE = ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORM_ACTION_USAGE__OWNED_REDEFINITION_COMP = ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int PERFORM_ACTION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORM_ACTION_USAGE__OWNED_SUBSETTING_COMP = ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int PERFORM_ACTION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -35792,13 +34010,13 @@ public interface SysMLPackage extends EPackage {
 	int PERFORM_ACTION_USAGE__IS_END = ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORM_ACTION_USAGE__OWNED_TYPING_COMP = ACTION_USAGE__OWNED_TYPING_COMP;
+	int PERFORM_ACTION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -35808,33 +34026,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PERFORM_ACTION_USAGE__IS_NONUNIQUE = ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORM_ACTION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORM_ACTION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PERFORM_ACTION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -36431,13 +34622,13 @@ public interface SysMLPackage extends EPackage {
 	int DEFINITION__OWNED_IMPORT = CLASSIFIER__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION__OWNED_GENERALIZATION_COMP = CLASSIFIER__OWNED_GENERALIZATION_COMP;
+	int DEFINITION__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -36530,13 +34721,13 @@ public interface SysMLPackage extends EPackage {
 	int DEFINITION__IS_SUFFICIENT = CLASSIFIER__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEFINITION__OWNED_CONJUGATOR_COMP = CLASSIFIER__OWNED_CONJUGATOR_COMP;
+	int DEFINITION__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -36575,15 +34766,6 @@ public interface SysMLPackage extends EPackage {
 	int DEFINITION__MULTIPLICITY = CLASSIFIER__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFINITION__OWNED_GENERALIZATION = CLASSIFIER__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36591,24 +34773,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEFINITION__OWNED_FEATURE_MEMBERSHIP = CLASSIFIER__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFINITION__OWNED_CONJUGATOR = CLASSIFIER__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEFINITION__OWNED_SUPERCLASSING_COMP = CLASSIFIER__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -37151,13 +35315,13 @@ public interface SysMLPackage extends EPackage {
 	int PORT_USAGE__OWNED_IMPORT = USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_USAGE__OWNED_GENERALIZATION_COMP = USAGE__OWNED_GENERALIZATION_COMP;
+	int PORT_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -37250,13 +35414,13 @@ public interface SysMLPackage extends EPackage {
 	int PORT_USAGE__IS_SUFFICIENT = USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_USAGE__OWNED_CONJUGATOR_COMP = USAGE__OWNED_CONJUGATOR_COMP;
+	int PORT_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -37295,15 +35459,6 @@ public interface SysMLPackage extends EPackage {
 	int PORT_USAGE__MULTIPLICITY = USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -37311,15 +35466,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PORT_USAGE__OWNED_FEATURE_MEMBERSHIP = USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -37394,22 +35540,22 @@ public interface SysMLPackage extends EPackage {
 	int PORT_USAGE__OWNED_TYPE = USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_USAGE__OWNED_REDEFINITION_COMP = USAGE__OWNED_REDEFINITION_COMP;
+	int PORT_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_USAGE__OWNED_SUBSETTING_COMP = USAGE__OWNED_SUBSETTING_COMP;
+	int PORT_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -37430,13 +35576,13 @@ public interface SysMLPackage extends EPackage {
 	int PORT_USAGE__IS_END = USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_USAGE__OWNED_TYPING_COMP = USAGE__OWNED_TYPING_COMP;
+	int PORT_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -37446,33 +35592,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PORT_USAGE__IS_NONUNIQUE = USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -38051,13 +36170,13 @@ public interface SysMLPackage extends EPackage {
 	int PORT_DEFINITION__OWNED_IMPORT = DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_DEFINITION__OWNED_GENERALIZATION_COMP = DEFINITION__OWNED_GENERALIZATION_COMP;
+	int PORT_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -38150,13 +36269,13 @@ public interface SysMLPackage extends EPackage {
 	int PORT_DEFINITION__IS_SUFFICIENT = DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_DEFINITION__OWNED_CONJUGATOR_COMP = DEFINITION__OWNED_CONJUGATOR_COMP;
+	int PORT_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -38195,15 +36314,6 @@ public interface SysMLPackage extends EPackage {
 	int PORT_DEFINITION__MULTIPLICITY = DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38211,24 +36321,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PORT_DEFINITION__OWNED_FEATURE_MEMBERSHIP = DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PORT_DEFINITION__OWNED_SUPERCLASSING_COMP = DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -38780,13 +36872,13 @@ public interface SysMLPackage extends EPackage {
 	int CONJUGATED_PORT_DEFINITION__OWNED_IMPORT = PORT_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONJUGATED_PORT_DEFINITION__OWNED_GENERALIZATION_COMP = PORT_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int CONJUGATED_PORT_DEFINITION__OWNED_GENERALIZATION = PORT_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -38879,13 +36971,13 @@ public interface SysMLPackage extends EPackage {
 	int CONJUGATED_PORT_DEFINITION__IS_SUFFICIENT = PORT_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONJUGATED_PORT_DEFINITION__OWNED_CONJUGATOR_COMP = PORT_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int CONJUGATED_PORT_DEFINITION__OWNED_CONJUGATOR = PORT_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -38924,15 +37016,6 @@ public interface SysMLPackage extends EPackage {
 	int CONJUGATED_PORT_DEFINITION__MULTIPLICITY = PORT_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONJUGATED_PORT_DEFINITION__OWNED_GENERALIZATION = PORT_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38940,24 +37023,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONJUGATED_PORT_DEFINITION__OWNED_FEATURE_MEMBERSHIP = PORT_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONJUGATED_PORT_DEFINITION__OWNED_CONJUGATOR = PORT_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONJUGATED_PORT_DEFINITION__OWNED_SUPERCLASSING_COMP = PORT_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -39527,7 +37592,7 @@ public interface SysMLPackage extends EPackage {
 	int PORT_CONJUGATION__CONJUGATED_TYPE = CONJUGATION__CONJUGATED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -39797,13 +37862,13 @@ public interface SysMLPackage extends EPackage {
 	int STATE_USAGE__OWNED_IMPORT = ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_USAGE__OWNED_GENERALIZATION_COMP = ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int STATE_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -39896,13 +37961,13 @@ public interface SysMLPackage extends EPackage {
 	int STATE_USAGE__IS_SUFFICIENT = ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_USAGE__OWNED_CONJUGATOR_COMP = ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int STATE_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -39941,15 +38006,6 @@ public interface SysMLPackage extends EPackage {
 	int STATE_USAGE__MULTIPLICITY = ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39957,15 +38013,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_USAGE__OWNED_FEATURE_MEMBERSHIP = ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -40040,22 +38087,22 @@ public interface SysMLPackage extends EPackage {
 	int STATE_USAGE__OWNED_TYPE = ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_USAGE__OWNED_REDEFINITION_COMP = ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int STATE_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_USAGE__OWNED_SUBSETTING_COMP = ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int STATE_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -40076,13 +38123,13 @@ public interface SysMLPackage extends EPackage {
 	int STATE_USAGE__IS_END = ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_USAGE__OWNED_TYPING_COMP = ACTION_USAGE__OWNED_TYPING_COMP;
+	int STATE_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -40092,33 +38139,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_USAGE__IS_NONUNIQUE = ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -40742,13 +38762,13 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_USAGE__OWNED_IMPORT = USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_USAGE__OWNED_GENERALIZATION_COMP = USAGE__OWNED_GENERALIZATION_COMP;
+	int CONSTRAINT_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -40841,13 +38861,13 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_USAGE__IS_SUFFICIENT = USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_USAGE__OWNED_CONJUGATOR_COMP = USAGE__OWNED_CONJUGATOR_COMP;
+	int CONSTRAINT_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -40886,15 +38906,6 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_USAGE__MULTIPLICITY = USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40902,15 +38913,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_USAGE__OWNED_FEATURE_MEMBERSHIP = USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -40985,22 +38987,22 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_USAGE__OWNED_TYPE = USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_USAGE__OWNED_REDEFINITION_COMP = USAGE__OWNED_REDEFINITION_COMP;
+	int CONSTRAINT_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_USAGE__OWNED_SUBSETTING_COMP = USAGE__OWNED_SUBSETTING_COMP;
+	int CONSTRAINT_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -41021,13 +39023,13 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_USAGE__IS_END = USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_USAGE__OWNED_TYPING_COMP = USAGE__OWNED_TYPING_COMP;
+	int CONSTRAINT_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -41037,33 +39039,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_USAGE__IS_NONUNIQUE = USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -41678,13 +39653,13 @@ public interface SysMLPackage extends EPackage {
 	int TRANSITION_USAGE__OWNED_IMPORT = ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_USAGE__OWNED_GENERALIZATION_COMP = ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int TRANSITION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -41777,13 +39752,13 @@ public interface SysMLPackage extends EPackage {
 	int TRANSITION_USAGE__IS_SUFFICIENT = ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_USAGE__OWNED_CONJUGATOR_COMP = ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int TRANSITION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -41822,15 +39797,6 @@ public interface SysMLPackage extends EPackage {
 	int TRANSITION_USAGE__MULTIPLICITY = ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41838,15 +39804,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSITION_USAGE__OWNED_FEATURE_MEMBERSHIP = ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -41921,22 +39878,22 @@ public interface SysMLPackage extends EPackage {
 	int TRANSITION_USAGE__OWNED_TYPE = ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_USAGE__OWNED_REDEFINITION_COMP = ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int TRANSITION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_USAGE__OWNED_SUBSETTING_COMP = ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int TRANSITION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -41957,13 +39914,13 @@ public interface SysMLPackage extends EPackage {
 	int TRANSITION_USAGE__IS_END = ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_USAGE__OWNED_TYPING_COMP = ACTION_USAGE__OWNED_TYPING_COMP;
+	int TRANSITION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -41973,33 +39930,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSITION_USAGE__IS_NONUNIQUE = ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -42641,13 +40571,13 @@ public interface SysMLPackage extends EPackage {
 	int TRANSFER_ACTION_USAGE__OWNED_IMPORT = ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION_COMP = ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -42740,13 +40670,13 @@ public interface SysMLPackage extends EPackage {
 	int TRANSFER_ACTION_USAGE__IS_SUFFICIENT = ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR_COMP = ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -42785,15 +40715,6 @@ public interface SysMLPackage extends EPackage {
 	int TRANSFER_ACTION_USAGE__MULTIPLICITY = ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42801,15 +40722,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSFER_ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP = ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -42884,22 +40796,22 @@ public interface SysMLPackage extends EPackage {
 	int TRANSFER_ACTION_USAGE__OWNED_TYPE = ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_ACTION_USAGE__OWNED_REDEFINITION_COMP = ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int TRANSFER_ACTION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_ACTION_USAGE__OWNED_SUBSETTING_COMP = ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int TRANSFER_ACTION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -42920,13 +40832,13 @@ public interface SysMLPackage extends EPackage {
 	int TRANSFER_ACTION_USAGE__IS_END = ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFER_ACTION_USAGE__OWNED_TYPING_COMP = ACTION_USAGE__OWNED_TYPING_COMP;
+	int TRANSFER_ACTION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -42936,33 +40848,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSFER_ACTION_USAGE__IS_NONUNIQUE = ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFER_ACTION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFER_ACTION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSFER_ACTION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -43559,13 +41444,13 @@ public interface SysMLPackage extends EPackage {
 	int ACCEPT_ACTION_USAGE__OWNED_IMPORT = TRANSFER_ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACCEPT_ACTION_USAGE__OWNED_GENERALIZATION_COMP = TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int ACCEPT_ACTION_USAGE__OWNED_GENERALIZATION = TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -43658,13 +41543,13 @@ public interface SysMLPackage extends EPackage {
 	int ACCEPT_ACTION_USAGE__IS_SUFFICIENT = TRANSFER_ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACCEPT_ACTION_USAGE__OWNED_CONJUGATOR_COMP = TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int ACCEPT_ACTION_USAGE__OWNED_CONJUGATOR = TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -43703,15 +41588,6 @@ public interface SysMLPackage extends EPackage {
 	int ACCEPT_ACTION_USAGE__MULTIPLICITY = TRANSFER_ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACCEPT_ACTION_USAGE__OWNED_GENERALIZATION = TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43719,15 +41595,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACCEPT_ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP = TRANSFER_ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACCEPT_ACTION_USAGE__OWNED_CONJUGATOR = TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -43802,22 +41669,22 @@ public interface SysMLPackage extends EPackage {
 	int ACCEPT_ACTION_USAGE__OWNED_TYPE = TRANSFER_ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACCEPT_ACTION_USAGE__OWNED_REDEFINITION_COMP = TRANSFER_ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int ACCEPT_ACTION_USAGE__OWNED_REDEFINITION = TRANSFER_ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACCEPT_ACTION_USAGE__OWNED_SUBSETTING_COMP = TRANSFER_ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int ACCEPT_ACTION_USAGE__OWNED_SUBSETTING = TRANSFER_ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -43838,13 +41705,13 @@ public interface SysMLPackage extends EPackage {
 	int ACCEPT_ACTION_USAGE__IS_END = TRANSFER_ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACCEPT_ACTION_USAGE__OWNED_TYPING_COMP = TRANSFER_ACTION_USAGE__OWNED_TYPING_COMP;
+	int ACCEPT_ACTION_USAGE__OWNED_TYPING = TRANSFER_ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -43854,33 +41721,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACCEPT_ACTION_USAGE__IS_NONUNIQUE = TRANSFER_ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACCEPT_ACTION_USAGE__OWNED_REDEFINITION = TRANSFER_ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACCEPT_ACTION_USAGE__OWNED_SUBSETTING = TRANSFER_ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACCEPT_ACTION_USAGE__OWNED_TYPING = TRANSFER_ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -44477,13 +42317,13 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_USAGE__OWNED_IMPORT = CONSTRAINT_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_USAGE__OWNED_GENERALIZATION_COMP = CONSTRAINT_USAGE__OWNED_GENERALIZATION_COMP;
+	int REQUIREMENT_USAGE__OWNED_GENERALIZATION = CONSTRAINT_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -44576,13 +42416,13 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_USAGE__IS_SUFFICIENT = CONSTRAINT_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_USAGE__OWNED_CONJUGATOR_COMP = CONSTRAINT_USAGE__OWNED_CONJUGATOR_COMP;
+	int REQUIREMENT_USAGE__OWNED_CONJUGATOR = CONSTRAINT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -44621,15 +42461,6 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_USAGE__MULTIPLICITY = CONSTRAINT_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_USAGE__OWNED_GENERALIZATION = CONSTRAINT_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44637,15 +42468,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int REQUIREMENT_USAGE__OWNED_FEATURE_MEMBERSHIP = CONSTRAINT_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_USAGE__OWNED_CONJUGATOR = CONSTRAINT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -44720,22 +42542,22 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_USAGE__OWNED_TYPE = CONSTRAINT_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_USAGE__OWNED_REDEFINITION_COMP = CONSTRAINT_USAGE__OWNED_REDEFINITION_COMP;
+	int REQUIREMENT_USAGE__OWNED_REDEFINITION = CONSTRAINT_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_USAGE__OWNED_SUBSETTING_COMP = CONSTRAINT_USAGE__OWNED_SUBSETTING_COMP;
+	int REQUIREMENT_USAGE__OWNED_SUBSETTING = CONSTRAINT_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -44756,13 +42578,13 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_USAGE__IS_END = CONSTRAINT_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_USAGE__OWNED_TYPING_COMP = CONSTRAINT_USAGE__OWNED_TYPING_COMP;
+	int REQUIREMENT_USAGE__OWNED_TYPING = CONSTRAINT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -44772,33 +42594,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int REQUIREMENT_USAGE__IS_NONUNIQUE = CONSTRAINT_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_USAGE__OWNED_REDEFINITION = CONSTRAINT_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_USAGE__OWNED_SUBSETTING = CONSTRAINT_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_USAGE__OWNED_TYPING = CONSTRAINT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -45467,13 +43262,13 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_DEFINITION__OWNED_IMPORT = DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DEFINITION__OWNED_GENERALIZATION_COMP = DEFINITION__OWNED_GENERALIZATION_COMP;
+	int CONSTRAINT_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -45566,13 +43361,13 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_DEFINITION__IS_SUFFICIENT = DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DEFINITION__OWNED_CONJUGATOR_COMP = DEFINITION__OWNED_CONJUGATOR_COMP;
+	int CONSTRAINT_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -45611,15 +43406,6 @@ public interface SysMLPackage extends EPackage {
 	int CONSTRAINT_DEFINITION__MULTIPLICITY = DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45627,24 +43413,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_DEFINITION__OWNED_FEATURE_MEMBERSHIP = DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_DEFINITION__OWNED_SUPERCLASSING_COMP = DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -46223,13 +43991,13 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_DEFINITION__OWNED_IMPORT = CONSTRAINT_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_DEFINITION__OWNED_GENERALIZATION_COMP = CONSTRAINT_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int REQUIREMENT_DEFINITION__OWNED_GENERALIZATION = CONSTRAINT_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -46322,13 +44090,13 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_DEFINITION__IS_SUFFICIENT = CONSTRAINT_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_DEFINITION__OWNED_CONJUGATOR_COMP = CONSTRAINT_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int REQUIREMENT_DEFINITION__OWNED_CONJUGATOR = CONSTRAINT_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -46367,15 +44135,6 @@ public interface SysMLPackage extends EPackage {
 	int REQUIREMENT_DEFINITION__MULTIPLICITY = CONSTRAINT_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_DEFINITION__OWNED_GENERALIZATION = CONSTRAINT_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46383,24 +44142,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int REQUIREMENT_DEFINITION__OWNED_FEATURE_MEMBERSHIP = CONSTRAINT_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_DEFINITION__OWNED_CONJUGATOR = CONSTRAINT_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REQUIREMENT_DEFINITION__OWNED_SUPERCLASSING_COMP = CONSTRAINT_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -47024,13 +44765,13 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_USAGE__OWNED_IMPORT = ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_USAGE__OWNED_GENERALIZATION_COMP = ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int CALCULATION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -47123,13 +44864,13 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_USAGE__IS_SUFFICIENT = ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_USAGE__OWNED_CONJUGATOR_COMP = ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int CALCULATION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -47168,15 +44909,6 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_USAGE__MULTIPLICITY = ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_USAGE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47184,15 +44916,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CALCULATION_USAGE__OWNED_FEATURE_MEMBERSHIP = ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_USAGE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -47267,22 +44990,22 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_USAGE__OWNED_TYPE = ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_USAGE__OWNED_REDEFINITION_COMP = ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int CALCULATION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_USAGE__OWNED_SUBSETTING_COMP = ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int CALCULATION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -47303,13 +45026,13 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_USAGE__IS_END = ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_USAGE__OWNED_TYPING_COMP = ACTION_USAGE__OWNED_TYPING_COMP;
+	int CALCULATION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -47319,33 +45042,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CALCULATION_USAGE__IS_NONUNIQUE = ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_USAGE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_USAGE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_USAGE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -48266,13 +45962,13 @@ public interface SysMLPackage extends EPackage {
 	int CASE_USAGE__OWNED_IMPORT = CALCULATION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_USAGE__OWNED_GENERALIZATION_COMP = CALCULATION_USAGE__OWNED_GENERALIZATION_COMP;
+	int CASE_USAGE__OWNED_GENERALIZATION = CALCULATION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -48365,13 +46061,13 @@ public interface SysMLPackage extends EPackage {
 	int CASE_USAGE__IS_SUFFICIENT = CALCULATION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_USAGE__OWNED_CONJUGATOR_COMP = CALCULATION_USAGE__OWNED_CONJUGATOR_COMP;
+	int CASE_USAGE__OWNED_CONJUGATOR = CALCULATION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -48410,15 +46106,6 @@ public interface SysMLPackage extends EPackage {
 	int CASE_USAGE__MULTIPLICITY = CALCULATION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_USAGE__OWNED_GENERALIZATION = CALCULATION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48426,15 +46113,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_USAGE__OWNED_FEATURE_MEMBERSHIP = CALCULATION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_USAGE__OWNED_CONJUGATOR = CALCULATION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -48509,22 +46187,22 @@ public interface SysMLPackage extends EPackage {
 	int CASE_USAGE__OWNED_TYPE = CALCULATION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_USAGE__OWNED_REDEFINITION_COMP = CALCULATION_USAGE__OWNED_REDEFINITION_COMP;
+	int CASE_USAGE__OWNED_REDEFINITION = CALCULATION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_USAGE__OWNED_SUBSETTING_COMP = CALCULATION_USAGE__OWNED_SUBSETTING_COMP;
+	int CASE_USAGE__OWNED_SUBSETTING = CALCULATION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -48545,13 +46223,13 @@ public interface SysMLPackage extends EPackage {
 	int CASE_USAGE__IS_END = CALCULATION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_USAGE__OWNED_TYPING_COMP = CALCULATION_USAGE__OWNED_TYPING_COMP;
+	int CASE_USAGE__OWNED_TYPING = CALCULATION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -48561,33 +46239,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_USAGE__IS_NONUNIQUE = CALCULATION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_USAGE__OWNED_REDEFINITION = CALCULATION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_USAGE__OWNED_SUBSETTING = CALCULATION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_USAGE__OWNED_TYPING = CALCULATION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -49229,13 +46880,13 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_USAGE__OWNED_IMPORT = CASE_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_USAGE__OWNED_GENERALIZATION_COMP = CASE_USAGE__OWNED_GENERALIZATION_COMP;
+	int ANALYSIS_CASE_USAGE__OWNED_GENERALIZATION = CASE_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -49328,13 +46979,13 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_USAGE__IS_SUFFICIENT = CASE_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_USAGE__OWNED_CONJUGATOR_COMP = CASE_USAGE__OWNED_CONJUGATOR_COMP;
+	int ANALYSIS_CASE_USAGE__OWNED_CONJUGATOR = CASE_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -49373,15 +47024,6 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_USAGE__MULTIPLICITY = CASE_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_USAGE__OWNED_GENERALIZATION = CASE_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49389,15 +47031,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANALYSIS_CASE_USAGE__OWNED_FEATURE_MEMBERSHIP = CASE_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_USAGE__OWNED_CONJUGATOR = CASE_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -49472,22 +47105,22 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_USAGE__OWNED_TYPE = CASE_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_USAGE__OWNED_REDEFINITION_COMP = CASE_USAGE__OWNED_REDEFINITION_COMP;
+	int ANALYSIS_CASE_USAGE__OWNED_REDEFINITION = CASE_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_USAGE__OWNED_SUBSETTING_COMP = CASE_USAGE__OWNED_SUBSETTING_COMP;
+	int ANALYSIS_CASE_USAGE__OWNED_SUBSETTING = CASE_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -49508,13 +47141,13 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_USAGE__IS_END = CASE_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_USAGE__OWNED_TYPING_COMP = CASE_USAGE__OWNED_TYPING_COMP;
+	int ANALYSIS_CASE_USAGE__OWNED_TYPING = CASE_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -49524,33 +47157,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANALYSIS_CASE_USAGE__IS_NONUNIQUE = CASE_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_USAGE__OWNED_REDEFINITION = CASE_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_USAGE__OWNED_SUBSETTING = CASE_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_USAGE__OWNED_TYPING = CASE_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -50219,13 +47825,13 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_DEFINITION__OWNED_IMPORT = DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DEFINITION__OWNED_GENERALIZATION_COMP = DEFINITION__OWNED_GENERALIZATION_COMP;
+	int ACTION_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -50318,13 +47924,13 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_DEFINITION__IS_SUFFICIENT = DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_DEFINITION__OWNED_CONJUGATOR_COMP = DEFINITION__OWNED_CONJUGATOR_COMP;
+	int ACTION_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -50363,15 +47969,6 @@ public interface SysMLPackage extends EPackage {
 	int ACTION_DEFINITION__MULTIPLICITY = DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -50379,24 +47976,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_DEFINITION__OWNED_FEATURE_MEMBERSHIP = DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_DEFINITION__OWNED_SUPERCLASSING_COMP = DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -50966,13 +48545,13 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_DEFINITION__OWNED_IMPORT = ACTION_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_DEFINITION__OWNED_GENERALIZATION_COMP = ACTION_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int CALCULATION_DEFINITION__OWNED_GENERALIZATION = ACTION_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -51065,13 +48644,13 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_DEFINITION__IS_SUFFICIENT = ACTION_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALCULATION_DEFINITION__OWNED_CONJUGATOR_COMP = ACTION_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int CALCULATION_DEFINITION__OWNED_CONJUGATOR = ACTION_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -51110,15 +48689,6 @@ public interface SysMLPackage extends EPackage {
 	int CALCULATION_DEFINITION__MULTIPLICITY = ACTION_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_DEFINITION__OWNED_GENERALIZATION = ACTION_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -51126,24 +48696,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CALCULATION_DEFINITION__OWNED_FEATURE_MEMBERSHIP = ACTION_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_DEFINITION__OWNED_CONJUGATOR = ACTION_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALCULATION_DEFINITION__OWNED_SUPERCLASSING_COMP = ACTION_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -51740,13 +49292,13 @@ public interface SysMLPackage extends EPackage {
 	int CASE_DEFINITION__OWNED_IMPORT = CALCULATION_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_DEFINITION__OWNED_GENERALIZATION_COMP = CALCULATION_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int CASE_DEFINITION__OWNED_GENERALIZATION = CALCULATION_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -51839,13 +49391,13 @@ public interface SysMLPackage extends EPackage {
 	int CASE_DEFINITION__IS_SUFFICIENT = CALCULATION_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CASE_DEFINITION__OWNED_CONJUGATOR_COMP = CALCULATION_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int CASE_DEFINITION__OWNED_CONJUGATOR = CALCULATION_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -51884,15 +49436,6 @@ public interface SysMLPackage extends EPackage {
 	int CASE_DEFINITION__MULTIPLICITY = CALCULATION_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_DEFINITION__OWNED_GENERALIZATION = CALCULATION_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -51900,24 +49443,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CASE_DEFINITION__OWNED_FEATURE_MEMBERSHIP = CALCULATION_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_DEFINITION__OWNED_CONJUGATOR = CALCULATION_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CASE_DEFINITION__OWNED_SUPERCLASSING_COMP = CALCULATION_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -52532,13 +50057,13 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_DEFINITION__OWNED_IMPORT = CASE_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_DEFINITION__OWNED_GENERALIZATION_COMP = CASE_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int ANALYSIS_CASE_DEFINITION__OWNED_GENERALIZATION = CASE_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -52631,13 +50156,13 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_DEFINITION__IS_SUFFICIENT = CASE_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYSIS_CASE_DEFINITION__OWNED_CONJUGATOR_COMP = CASE_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int ANALYSIS_CASE_DEFINITION__OWNED_CONJUGATOR = CASE_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -52676,15 +50201,6 @@ public interface SysMLPackage extends EPackage {
 	int ANALYSIS_CASE_DEFINITION__MULTIPLICITY = CASE_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_DEFINITION__OWNED_GENERALIZATION = CASE_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52692,24 +50208,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANALYSIS_CASE_DEFINITION__OWNED_FEATURE_MEMBERSHIP = CASE_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_DEFINITION__OWNED_CONJUGATOR = CASE_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYSIS_CASE_DEFINITION__OWNED_SUPERCLASSING_COMP = CASE_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -53342,13 +50840,13 @@ public interface SysMLPackage extends EPackage {
 	int REFERENCE_USAGE__OWNED_IMPORT = USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_USAGE__OWNED_GENERALIZATION_COMP = USAGE__OWNED_GENERALIZATION_COMP;
+	int REFERENCE_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -53441,13 +50939,13 @@ public interface SysMLPackage extends EPackage {
 	int REFERENCE_USAGE__IS_SUFFICIENT = USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_USAGE__OWNED_CONJUGATOR_COMP = USAGE__OWNED_CONJUGATOR_COMP;
+	int REFERENCE_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -53486,15 +50984,6 @@ public interface SysMLPackage extends EPackage {
 	int REFERENCE_USAGE__MULTIPLICITY = USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53502,15 +50991,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_USAGE__OWNED_FEATURE_MEMBERSHIP = USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -53585,22 +51065,22 @@ public interface SysMLPackage extends EPackage {
 	int REFERENCE_USAGE__OWNED_TYPE = USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_USAGE__OWNED_REDEFINITION_COMP = USAGE__OWNED_REDEFINITION_COMP;
+	int REFERENCE_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_USAGE__OWNED_SUBSETTING_COMP = USAGE__OWNED_SUBSETTING_COMP;
+	int REFERENCE_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -53621,13 +51101,13 @@ public interface SysMLPackage extends EPackage {
 	int REFERENCE_USAGE__IS_END = USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_USAGE__OWNED_TYPING_COMP = USAGE__OWNED_TYPING_COMP;
+	int REFERENCE_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -53637,33 +51117,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_USAGE__IS_NONUNIQUE = USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -54233,13 +51686,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_USAGE__OWNED_IMPORT = USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_USAGE__OWNED_GENERALIZATION_COMP = USAGE__OWNED_GENERALIZATION_COMP;
+	int ITEM_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -54332,13 +51785,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_USAGE__IS_SUFFICIENT = USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_USAGE__OWNED_CONJUGATOR_COMP = USAGE__OWNED_CONJUGATOR_COMP;
+	int ITEM_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -54377,15 +51830,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_USAGE__MULTIPLICITY = USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54393,15 +51837,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_USAGE__OWNED_FEATURE_MEMBERSHIP = USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -54476,22 +51911,22 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_USAGE__OWNED_TYPE = USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_USAGE__OWNED_REDEFINITION_COMP = USAGE__OWNED_REDEFINITION_COMP;
+	int ITEM_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_USAGE__OWNED_SUBSETTING_COMP = USAGE__OWNED_SUBSETTING_COMP;
+	int ITEM_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -54512,13 +51947,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_USAGE__IS_END = USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_USAGE__OWNED_TYPING_COMP = USAGE__OWNED_TYPING_COMP;
+	int ITEM_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -54528,33 +51963,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_USAGE__IS_NONUNIQUE = USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -55124,13 +52532,13 @@ public interface SysMLPackage extends EPackage {
 	int PART_USAGE__OWNED_IMPORT = ITEM_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_USAGE__OWNED_GENERALIZATION_COMP = ITEM_USAGE__OWNED_GENERALIZATION_COMP;
+	int PART_USAGE__OWNED_GENERALIZATION = ITEM_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -55223,13 +52631,13 @@ public interface SysMLPackage extends EPackage {
 	int PART_USAGE__IS_SUFFICIENT = ITEM_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_USAGE__OWNED_CONJUGATOR_COMP = ITEM_USAGE__OWNED_CONJUGATOR_COMP;
+	int PART_USAGE__OWNED_CONJUGATOR = ITEM_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -55268,15 +52676,6 @@ public interface SysMLPackage extends EPackage {
 	int PART_USAGE__MULTIPLICITY = ITEM_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_USAGE__OWNED_GENERALIZATION = ITEM_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55284,15 +52683,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PART_USAGE__OWNED_FEATURE_MEMBERSHIP = ITEM_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_USAGE__OWNED_CONJUGATOR = ITEM_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -55367,22 +52757,22 @@ public interface SysMLPackage extends EPackage {
 	int PART_USAGE__OWNED_TYPE = ITEM_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_USAGE__OWNED_REDEFINITION_COMP = ITEM_USAGE__OWNED_REDEFINITION_COMP;
+	int PART_USAGE__OWNED_REDEFINITION = ITEM_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_USAGE__OWNED_SUBSETTING_COMP = ITEM_USAGE__OWNED_SUBSETTING_COMP;
+	int PART_USAGE__OWNED_SUBSETTING = ITEM_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -55403,13 +52793,13 @@ public interface SysMLPackage extends EPackage {
 	int PART_USAGE__IS_END = ITEM_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_USAGE__OWNED_TYPING_COMP = ITEM_USAGE__OWNED_TYPING_COMP;
+	int PART_USAGE__OWNED_TYPING = ITEM_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -55419,33 +52809,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PART_USAGE__IS_NONUNIQUE = ITEM_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_USAGE__OWNED_REDEFINITION = ITEM_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_USAGE__OWNED_SUBSETTING = ITEM_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_USAGE__OWNED_TYPING = ITEM_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -56024,13 +53387,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_USAGE__OWNED_IMPORT = PART_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_USAGE__OWNED_GENERALIZATION_COMP = PART_USAGE__OWNED_GENERALIZATION_COMP;
+	int CONNECTION_USAGE__OWNED_GENERALIZATION = PART_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -56123,13 +53486,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_USAGE__IS_SUFFICIENT = PART_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_USAGE__OWNED_CONJUGATOR_COMP = PART_USAGE__OWNED_CONJUGATOR_COMP;
+	int CONNECTION_USAGE__OWNED_CONJUGATOR = PART_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -56168,15 +53531,6 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_USAGE__MULTIPLICITY = PART_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_USAGE__OWNED_GENERALIZATION = PART_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56184,15 +53538,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTION_USAGE__OWNED_FEATURE_MEMBERSHIP = PART_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_USAGE__OWNED_CONJUGATOR = PART_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -56267,22 +53612,22 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_USAGE__OWNED_TYPE = PART_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_USAGE__OWNED_REDEFINITION_COMP = PART_USAGE__OWNED_REDEFINITION_COMP;
+	int CONNECTION_USAGE__OWNED_REDEFINITION = PART_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_USAGE__OWNED_SUBSETTING_COMP = PART_USAGE__OWNED_SUBSETTING_COMP;
+	int CONNECTION_USAGE__OWNED_SUBSETTING = PART_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -56303,13 +53648,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_USAGE__IS_END = PART_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_USAGE__OWNED_TYPING_COMP = PART_USAGE__OWNED_TYPING_COMP;
+	int CONNECTION_USAGE__OWNED_TYPING = PART_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -56319,33 +53664,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTION_USAGE__IS_NONUNIQUE = PART_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_USAGE__OWNED_REDEFINITION = PART_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_USAGE__OWNED_SUBSETTING = PART_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_USAGE__OWNED_TYPING = PART_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -57050,13 +54368,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_DEFINITION__OWNED_IMPORT = DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_DEFINITION__OWNED_GENERALIZATION_COMP = DEFINITION__OWNED_GENERALIZATION_COMP;
+	int ITEM_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -57149,13 +54467,13 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_DEFINITION__IS_SUFFICIENT = DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_DEFINITION__OWNED_CONJUGATOR_COMP = DEFINITION__OWNED_CONJUGATOR_COMP;
+	int ITEM_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -57194,15 +54512,6 @@ public interface SysMLPackage extends EPackage {
 	int ITEM_DEFINITION__MULTIPLICITY = DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57210,24 +54519,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITEM_DEFINITION__OWNED_FEATURE_MEMBERSHIP = DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITEM_DEFINITION__OWNED_SUPERCLASSING_COMP = DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -57770,13 +55061,13 @@ public interface SysMLPackage extends EPackage {
 	int PART_DEFINITION__OWNED_IMPORT = ITEM_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_DEFINITION__OWNED_GENERALIZATION_COMP = ITEM_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int PART_DEFINITION__OWNED_GENERALIZATION = ITEM_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -57869,13 +55160,13 @@ public interface SysMLPackage extends EPackage {
 	int PART_DEFINITION__IS_SUFFICIENT = ITEM_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PART_DEFINITION__OWNED_CONJUGATOR_COMP = ITEM_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int PART_DEFINITION__OWNED_CONJUGATOR = ITEM_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -57914,15 +55205,6 @@ public interface SysMLPackage extends EPackage {
 	int PART_DEFINITION__MULTIPLICITY = ITEM_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_DEFINITION__OWNED_GENERALIZATION = ITEM_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57930,24 +55212,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PART_DEFINITION__OWNED_FEATURE_MEMBERSHIP = ITEM_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_DEFINITION__OWNED_CONJUGATOR = ITEM_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PART_DEFINITION__OWNED_SUPERCLASSING_COMP = ITEM_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -58490,13 +55754,13 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_USAGE__OWNED_IMPORT = ITEM_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_USAGE__OWNED_GENERALIZATION_COMP = ITEM_USAGE__OWNED_GENERALIZATION_COMP;
+	int INDIVIDUAL_USAGE__OWNED_GENERALIZATION = ITEM_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -58589,13 +55853,13 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_USAGE__IS_SUFFICIENT = ITEM_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_USAGE__OWNED_CONJUGATOR_COMP = ITEM_USAGE__OWNED_CONJUGATOR_COMP;
+	int INDIVIDUAL_USAGE__OWNED_CONJUGATOR = ITEM_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -58634,15 +55898,6 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_USAGE__MULTIPLICITY = ITEM_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_USAGE__OWNED_GENERALIZATION = ITEM_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58650,15 +55905,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDIVIDUAL_USAGE__OWNED_FEATURE_MEMBERSHIP = ITEM_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_USAGE__OWNED_CONJUGATOR = ITEM_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -58733,22 +55979,22 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_USAGE__OWNED_TYPE = ITEM_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_USAGE__OWNED_REDEFINITION_COMP = ITEM_USAGE__OWNED_REDEFINITION_COMP;
+	int INDIVIDUAL_USAGE__OWNED_REDEFINITION = ITEM_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_USAGE__OWNED_SUBSETTING_COMP = ITEM_USAGE__OWNED_SUBSETTING_COMP;
+	int INDIVIDUAL_USAGE__OWNED_SUBSETTING = ITEM_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -58769,13 +56015,13 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_USAGE__IS_END = ITEM_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_USAGE__OWNED_TYPING_COMP = ITEM_USAGE__OWNED_TYPING_COMP;
+	int INDIVIDUAL_USAGE__OWNED_TYPING = ITEM_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -58785,33 +56031,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDIVIDUAL_USAGE__IS_NONUNIQUE = ITEM_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_USAGE__OWNED_REDEFINITION = ITEM_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_USAGE__OWNED_SUBSETTING = ITEM_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_USAGE__OWNED_TYPING = ITEM_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -59426,13 +56645,13 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_DEFINITION__OWNED_IMPORT = ITEM_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_DEFINITION__OWNED_GENERALIZATION_COMP = ITEM_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int INDIVIDUAL_DEFINITION__OWNED_GENERALIZATION = ITEM_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -59525,13 +56744,13 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_DEFINITION__IS_SUFFICIENT = ITEM_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDIVIDUAL_DEFINITION__OWNED_CONJUGATOR_COMP = ITEM_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int INDIVIDUAL_DEFINITION__OWNED_CONJUGATOR = ITEM_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -59570,15 +56789,6 @@ public interface SysMLPackage extends EPackage {
 	int INDIVIDUAL_DEFINITION__MULTIPLICITY = ITEM_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_DEFINITION__OWNED_GENERALIZATION = ITEM_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59586,24 +56796,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDIVIDUAL_DEFINITION__OWNED_FEATURE_MEMBERSHIP = ITEM_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_DEFINITION__OWNED_CONJUGATOR = ITEM_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDIVIDUAL_DEFINITION__OWNED_SUPERCLASSING_COMP = ITEM_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -60155,13 +57347,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_USAGE__OWNED_IMPORT = CONNECTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_USAGE__OWNED_GENERALIZATION_COMP = CONNECTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int INTERFACE_USAGE__OWNED_GENERALIZATION = CONNECTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -60254,13 +57446,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_USAGE__IS_SUFFICIENT = CONNECTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_USAGE__OWNED_CONJUGATOR_COMP = CONNECTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int INTERFACE_USAGE__OWNED_CONJUGATOR = CONNECTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -60299,15 +57491,6 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_USAGE__MULTIPLICITY = CONNECTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_USAGE__OWNED_GENERALIZATION = CONNECTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60315,15 +57498,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERFACE_USAGE__OWNED_FEATURE_MEMBERSHIP = CONNECTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_USAGE__OWNED_CONJUGATOR = CONNECTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -60398,22 +57572,22 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_USAGE__OWNED_TYPE = CONNECTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_USAGE__OWNED_REDEFINITION_COMP = CONNECTION_USAGE__OWNED_REDEFINITION_COMP;
+	int INTERFACE_USAGE__OWNED_REDEFINITION = CONNECTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_USAGE__OWNED_SUBSETTING_COMP = CONNECTION_USAGE__OWNED_SUBSETTING_COMP;
+	int INTERFACE_USAGE__OWNED_SUBSETTING = CONNECTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -60434,13 +57608,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_USAGE__IS_END = CONNECTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_USAGE__OWNED_TYPING_COMP = CONNECTION_USAGE__OWNED_TYPING_COMP;
+	int INTERFACE_USAGE__OWNED_TYPING = CONNECTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -60450,33 +57624,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERFACE_USAGE__IS_NONUNIQUE = CONNECTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_USAGE__OWNED_REDEFINITION = CONNECTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_USAGE__OWNED_SUBSETTING = CONNECTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_USAGE__OWNED_TYPING = CONNECTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -61190,13 +58337,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_DEFINITION__OWNED_IMPORT = PART_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_DEFINITION__OWNED_GENERALIZATION_COMP = PART_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int CONNECTION_DEFINITION__OWNED_GENERALIZATION = PART_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -61289,13 +58436,13 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_DEFINITION__IS_SUFFICIENT = PART_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_DEFINITION__OWNED_CONJUGATOR_COMP = PART_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int CONNECTION_DEFINITION__OWNED_CONJUGATOR = PART_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -61334,15 +58481,6 @@ public interface SysMLPackage extends EPackage {
 	int CONNECTION_DEFINITION__MULTIPLICITY = PART_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_DEFINITION__OWNED_GENERALIZATION = PART_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61350,24 +58488,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONNECTION_DEFINITION__OWNED_FEATURE_MEMBERSHIP = PART_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_DEFINITION__OWNED_CONJUGATOR = PART_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_DEFINITION__OWNED_SUPERCLASSING_COMP = PART_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -62018,13 +59138,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_DEFINITION__OWNED_IMPORT = CONNECTION_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_DEFINITION__OWNED_GENERALIZATION_COMP = CONNECTION_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int INTERFACE_DEFINITION__OWNED_GENERALIZATION = CONNECTION_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -62117,13 +59237,13 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_DEFINITION__IS_SUFFICIENT = CONNECTION_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE_DEFINITION__OWNED_CONJUGATOR_COMP = CONNECTION_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int INTERFACE_DEFINITION__OWNED_CONJUGATOR = CONNECTION_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -62162,15 +59282,6 @@ public interface SysMLPackage extends EPackage {
 	int INTERFACE_DEFINITION__MULTIPLICITY = CONNECTION_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_DEFINITION__OWNED_GENERALIZATION = CONNECTION_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -62178,24 +59289,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERFACE_DEFINITION__OWNED_FEATURE_MEMBERSHIP = CONNECTION_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_DEFINITION__OWNED_CONJUGATOR = CONNECTION_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTERFACE_DEFINITION__OWNED_SUPERCLASSING_COMP = CONNECTION_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -62855,13 +59948,13 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_USAGE__OWNED_IMPORT = USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_USAGE__OWNED_GENERALIZATION_COMP = USAGE__OWNED_GENERALIZATION_COMP;
+	int ATTRIBUTE_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -62954,13 +60047,13 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_USAGE__IS_SUFFICIENT = USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_USAGE__OWNED_CONJUGATOR_COMP = USAGE__OWNED_CONJUGATOR_COMP;
+	int ATTRIBUTE_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -62999,15 +60092,6 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_USAGE__MULTIPLICITY = USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_USAGE__OWNED_GENERALIZATION = USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63015,15 +60099,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_USAGE__OWNED_FEATURE_MEMBERSHIP = USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_USAGE__OWNED_CONJUGATOR = USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -63098,22 +60173,22 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_USAGE__OWNED_TYPE = USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_USAGE__OWNED_REDEFINITION_COMP = USAGE__OWNED_REDEFINITION_COMP;
+	int ATTRIBUTE_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_USAGE__OWNED_SUBSETTING_COMP = USAGE__OWNED_SUBSETTING_COMP;
+	int ATTRIBUTE_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -63134,13 +60209,13 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_USAGE__IS_END = USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_USAGE__OWNED_TYPING_COMP = USAGE__OWNED_TYPING_COMP;
+	int ATTRIBUTE_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -63150,33 +60225,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_USAGE__IS_NONUNIQUE = USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_USAGE__OWNED_REDEFINITION = USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_USAGE__OWNED_SUBSETTING = USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_USAGE__OWNED_TYPING = USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -63746,13 +60794,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_USAGE__OWNED_IMPORT = PART_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_USAGE__OWNED_GENERALIZATION_COMP = PART_USAGE__OWNED_GENERALIZATION_COMP;
+	int VIEW_USAGE__OWNED_GENERALIZATION = PART_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -63845,13 +60893,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_USAGE__IS_SUFFICIENT = PART_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_USAGE__OWNED_CONJUGATOR_COMP = PART_USAGE__OWNED_CONJUGATOR_COMP;
+	int VIEW_USAGE__OWNED_CONJUGATOR = PART_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -63890,15 +60938,6 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_USAGE__MULTIPLICITY = PART_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_USAGE__OWNED_GENERALIZATION = PART_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63906,15 +60945,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEW_USAGE__OWNED_FEATURE_MEMBERSHIP = PART_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_USAGE__OWNED_CONJUGATOR = PART_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -63989,22 +61019,22 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_USAGE__OWNED_TYPE = PART_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_USAGE__OWNED_REDEFINITION_COMP = PART_USAGE__OWNED_REDEFINITION_COMP;
+	int VIEW_USAGE__OWNED_REDEFINITION = PART_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_USAGE__OWNED_SUBSETTING_COMP = PART_USAGE__OWNED_SUBSETTING_COMP;
+	int VIEW_USAGE__OWNED_SUBSETTING = PART_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -64025,13 +61055,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_USAGE__IS_END = PART_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_USAGE__OWNED_TYPING_COMP = PART_USAGE__OWNED_TYPING_COMP;
+	int VIEW_USAGE__OWNED_TYPING = PART_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -64041,33 +61071,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEW_USAGE__IS_NONUNIQUE = PART_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_USAGE__OWNED_REDEFINITION = PART_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_USAGE__OWNED_SUBSETTING = PART_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_USAGE__OWNED_TYPING = PART_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -64682,13 +61685,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_DEFINITION__OWNED_IMPORT = PART_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_DEFINITION__OWNED_GENERALIZATION_COMP = PART_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int VIEW_DEFINITION__OWNED_GENERALIZATION = PART_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -64781,13 +61784,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_DEFINITION__IS_SUFFICIENT = PART_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_DEFINITION__OWNED_CONJUGATOR_COMP = PART_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int VIEW_DEFINITION__OWNED_CONJUGATOR = PART_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -64826,15 +61829,6 @@ public interface SysMLPackage extends EPackage {
 	int VIEW_DEFINITION__MULTIPLICITY = PART_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_DEFINITION__OWNED_GENERALIZATION = PART_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64842,24 +61836,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEW_DEFINITION__OWNED_FEATURE_MEMBERSHIP = PART_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_DEFINITION__OWNED_CONJUGATOR = PART_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEW_DEFINITION__OWNED_SUPERCLASSING_COMP = PART_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -65438,13 +62414,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_USAGE__OWNED_IMPORT = REQUIREMENT_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_USAGE__OWNED_GENERALIZATION_COMP = REQUIREMENT_USAGE__OWNED_GENERALIZATION_COMP;
+	int VIEWPOINT_USAGE__OWNED_GENERALIZATION = REQUIREMENT_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -65537,13 +62513,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_USAGE__IS_SUFFICIENT = REQUIREMENT_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_USAGE__OWNED_CONJUGATOR_COMP = REQUIREMENT_USAGE__OWNED_CONJUGATOR_COMP;
+	int VIEWPOINT_USAGE__OWNED_CONJUGATOR = REQUIREMENT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -65582,15 +62558,6 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_USAGE__MULTIPLICITY = REQUIREMENT_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_USAGE__OWNED_GENERALIZATION = REQUIREMENT_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65598,15 +62565,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEWPOINT_USAGE__OWNED_FEATURE_MEMBERSHIP = REQUIREMENT_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_USAGE__OWNED_CONJUGATOR = REQUIREMENT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -65681,22 +62639,22 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_USAGE__OWNED_TYPE = REQUIREMENT_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_USAGE__OWNED_REDEFINITION_COMP = REQUIREMENT_USAGE__OWNED_REDEFINITION_COMP;
+	int VIEWPOINT_USAGE__OWNED_REDEFINITION = REQUIREMENT_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_USAGE__OWNED_SUBSETTING_COMP = REQUIREMENT_USAGE__OWNED_SUBSETTING_COMP;
+	int VIEWPOINT_USAGE__OWNED_SUBSETTING = REQUIREMENT_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -65717,13 +62675,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_USAGE__IS_END = REQUIREMENT_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_USAGE__OWNED_TYPING_COMP = REQUIREMENT_USAGE__OWNED_TYPING_COMP;
+	int VIEWPOINT_USAGE__OWNED_TYPING = REQUIREMENT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -65733,33 +62691,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEWPOINT_USAGE__IS_NONUNIQUE = REQUIREMENT_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_USAGE__OWNED_REDEFINITION = REQUIREMENT_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_USAGE__OWNED_SUBSETTING = REQUIREMENT_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_USAGE__OWNED_TYPING = REQUIREMENT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -66437,13 +63368,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_DEFINITION__OWNED_IMPORT = REQUIREMENT_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_DEFINITION__OWNED_GENERALIZATION_COMP = REQUIREMENT_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int VIEWPOINT_DEFINITION__OWNED_GENERALIZATION = REQUIREMENT_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -66536,13 +63467,13 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_DEFINITION__IS_SUFFICIENT = REQUIREMENT_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEWPOINT_DEFINITION__OWNED_CONJUGATOR_COMP = REQUIREMENT_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int VIEWPOINT_DEFINITION__OWNED_CONJUGATOR = REQUIREMENT_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -66581,15 +63512,6 @@ public interface SysMLPackage extends EPackage {
 	int VIEWPOINT_DEFINITION__MULTIPLICITY = REQUIREMENT_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_DEFINITION__OWNED_GENERALIZATION = REQUIREMENT_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66597,24 +63519,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEWPOINT_DEFINITION__OWNED_FEATURE_MEMBERSHIP = REQUIREMENT_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_DEFINITION__OWNED_CONJUGATOR = REQUIREMENT_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VIEWPOINT_DEFINITION__OWNED_SUPERCLASSING_COMP = REQUIREMENT_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -67256,13 +64160,13 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_USAGE__OWNED_IMPORT = PART_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_USAGE__OWNED_GENERALIZATION_COMP = PART_USAGE__OWNED_GENERALIZATION_COMP;
+	int RENDERING_USAGE__OWNED_GENERALIZATION = PART_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -67355,13 +64259,13 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_USAGE__IS_SUFFICIENT = PART_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_USAGE__OWNED_CONJUGATOR_COMP = PART_USAGE__OWNED_CONJUGATOR_COMP;
+	int RENDERING_USAGE__OWNED_CONJUGATOR = PART_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -67400,15 +64304,6 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_USAGE__MULTIPLICITY = PART_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_USAGE__OWNED_GENERALIZATION = PART_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67416,15 +64311,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int RENDERING_USAGE__OWNED_FEATURE_MEMBERSHIP = PART_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_USAGE__OWNED_CONJUGATOR = PART_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -67499,22 +64385,22 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_USAGE__OWNED_TYPE = PART_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_USAGE__OWNED_REDEFINITION_COMP = PART_USAGE__OWNED_REDEFINITION_COMP;
+	int RENDERING_USAGE__OWNED_REDEFINITION = PART_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_USAGE__OWNED_SUBSETTING_COMP = PART_USAGE__OWNED_SUBSETTING_COMP;
+	int RENDERING_USAGE__OWNED_SUBSETTING = PART_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -67535,13 +64421,13 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_USAGE__IS_END = PART_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_USAGE__OWNED_TYPING_COMP = PART_USAGE__OWNED_TYPING_COMP;
+	int RENDERING_USAGE__OWNED_TYPING = PART_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -67551,33 +64437,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int RENDERING_USAGE__IS_NONUNIQUE = PART_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_USAGE__OWNED_REDEFINITION = PART_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_USAGE__OWNED_SUBSETTING = PART_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_USAGE__OWNED_TYPING = PART_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -68165,13 +65024,13 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_DEFINITION__OWNED_IMPORT = PART_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_DEFINITION__OWNED_GENERALIZATION_COMP = PART_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int RENDERING_DEFINITION__OWNED_GENERALIZATION = PART_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -68264,13 +65123,13 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_DEFINITION__IS_SUFFICIENT = PART_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RENDERING_DEFINITION__OWNED_CONJUGATOR_COMP = PART_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int RENDERING_DEFINITION__OWNED_CONJUGATOR = PART_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -68309,15 +65168,6 @@ public interface SysMLPackage extends EPackage {
 	int RENDERING_DEFINITION__MULTIPLICITY = PART_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_DEFINITION__OWNED_GENERALIZATION = PART_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68325,24 +65175,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int RENDERING_DEFINITION__OWNED_FEATURE_MEMBERSHIP = PART_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_DEFINITION__OWNED_CONJUGATOR = PART_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RENDERING_DEFINITION__OWNED_SUPERCLASSING_COMP = PART_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -68894,13 +65726,13 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_USAGE__OWNED_IMPORT = CASE_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_USAGE__OWNED_GENERALIZATION_COMP = CASE_USAGE__OWNED_GENERALIZATION_COMP;
+	int VERIFICATION_CASE_USAGE__OWNED_GENERALIZATION = CASE_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -68993,13 +65825,13 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_USAGE__IS_SUFFICIENT = CASE_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_USAGE__OWNED_CONJUGATOR_COMP = CASE_USAGE__OWNED_CONJUGATOR_COMP;
+	int VERIFICATION_CASE_USAGE__OWNED_CONJUGATOR = CASE_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -69038,15 +65870,6 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_USAGE__MULTIPLICITY = CASE_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_USAGE__OWNED_GENERALIZATION = CASE_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -69054,15 +65877,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VERIFICATION_CASE_USAGE__OWNED_FEATURE_MEMBERSHIP = CASE_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_USAGE__OWNED_CONJUGATOR = CASE_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -69137,22 +65951,22 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_USAGE__OWNED_TYPE = CASE_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_USAGE__OWNED_REDEFINITION_COMP = CASE_USAGE__OWNED_REDEFINITION_COMP;
+	int VERIFICATION_CASE_USAGE__OWNED_REDEFINITION = CASE_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_USAGE__OWNED_SUBSETTING_COMP = CASE_USAGE__OWNED_SUBSETTING_COMP;
+	int VERIFICATION_CASE_USAGE__OWNED_SUBSETTING = CASE_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -69173,13 +65987,13 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_USAGE__IS_END = CASE_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_USAGE__OWNED_TYPING_COMP = CASE_USAGE__OWNED_TYPING_COMP;
+	int VERIFICATION_CASE_USAGE__OWNED_TYPING = CASE_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -69189,33 +66003,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VERIFICATION_CASE_USAGE__IS_NONUNIQUE = CASE_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_USAGE__OWNED_REDEFINITION = CASE_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_USAGE__OWNED_SUBSETTING = CASE_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_USAGE__OWNED_TYPING = CASE_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -69866,13 +66653,13 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_DEFINITION__OWNED_IMPORT = CASE_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_DEFINITION__OWNED_GENERALIZATION_COMP = CASE_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int VERIFICATION_CASE_DEFINITION__OWNED_GENERALIZATION = CASE_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -69965,13 +66752,13 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_DEFINITION__IS_SUFFICIENT = CASE_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERIFICATION_CASE_DEFINITION__OWNED_CONJUGATOR_COMP = CASE_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int VERIFICATION_CASE_DEFINITION__OWNED_CONJUGATOR = CASE_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -70010,15 +66797,6 @@ public interface SysMLPackage extends EPackage {
 	int VERIFICATION_CASE_DEFINITION__MULTIPLICITY = CASE_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_DEFINITION__OWNED_GENERALIZATION = CASE_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70026,24 +66804,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VERIFICATION_CASE_DEFINITION__OWNED_FEATURE_MEMBERSHIP = CASE_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_DEFINITION__OWNED_CONJUGATOR = CASE_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VERIFICATION_CASE_DEFINITION__OWNED_SUPERCLASSING_COMP = CASE_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -70658,13 +67418,13 @@ public interface SysMLPackage extends EPackage {
 	int CONTROL_NODE__OWNED_IMPORT = ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_NODE__OWNED_GENERALIZATION_COMP = ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int CONTROL_NODE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -70757,13 +67517,13 @@ public interface SysMLPackage extends EPackage {
 	int CONTROL_NODE__IS_SUFFICIENT = ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_NODE__OWNED_CONJUGATOR_COMP = ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int CONTROL_NODE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -70802,15 +67562,6 @@ public interface SysMLPackage extends EPackage {
 	int CONTROL_NODE__MULTIPLICITY = ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_NODE__OWNED_GENERALIZATION = ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70818,15 +67569,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTROL_NODE__OWNED_FEATURE_MEMBERSHIP = ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_NODE__OWNED_CONJUGATOR = ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -70901,22 +67643,22 @@ public interface SysMLPackage extends EPackage {
 	int CONTROL_NODE__OWNED_TYPE = ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_NODE__OWNED_REDEFINITION_COMP = ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int CONTROL_NODE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_NODE__OWNED_SUBSETTING_COMP = ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int CONTROL_NODE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -70937,13 +67679,13 @@ public interface SysMLPackage extends EPackage {
 	int CONTROL_NODE__IS_END = ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_NODE__OWNED_TYPING_COMP = ACTION_USAGE__OWNED_TYPING_COMP;
+	int CONTROL_NODE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -70953,33 +67695,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTROL_NODE__IS_NONUNIQUE = ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_NODE__OWNED_REDEFINITION = ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_NODE__OWNED_SUBSETTING = ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_NODE__OWNED_TYPING = ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -71567,13 +68282,13 @@ public interface SysMLPackage extends EPackage {
 	int MERGE_NODE__OWNED_IMPORT = CONTROL_NODE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE__OWNED_GENERALIZATION_COMP = CONTROL_NODE__OWNED_GENERALIZATION_COMP;
+	int MERGE_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -71666,13 +68381,13 @@ public interface SysMLPackage extends EPackage {
 	int MERGE_NODE__IS_SUFFICIENT = CONTROL_NODE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE__OWNED_CONJUGATOR_COMP = CONTROL_NODE__OWNED_CONJUGATOR_COMP;
+	int MERGE_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -71711,15 +68426,6 @@ public interface SysMLPackage extends EPackage {
 	int MERGE_NODE__MULTIPLICITY = CONTROL_NODE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71727,15 +68433,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGE_NODE__OWNED_FEATURE_MEMBERSHIP = CONTROL_NODE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -71810,22 +68507,22 @@ public interface SysMLPackage extends EPackage {
 	int MERGE_NODE__OWNED_TYPE = CONTROL_NODE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE__OWNED_REDEFINITION_COMP = CONTROL_NODE__OWNED_REDEFINITION_COMP;
+	int MERGE_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE__OWNED_SUBSETTING_COMP = CONTROL_NODE__OWNED_SUBSETTING_COMP;
+	int MERGE_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -71846,13 +68543,13 @@ public interface SysMLPackage extends EPackage {
 	int MERGE_NODE__IS_END = CONTROL_NODE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERGE_NODE__OWNED_TYPING_COMP = CONTROL_NODE__OWNED_TYPING_COMP;
+	int MERGE_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -71862,33 +68559,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGE_NODE__IS_NONUNIQUE = CONTROL_NODE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MERGE_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -72476,13 +69146,13 @@ public interface SysMLPackage extends EPackage {
 	int DECISION_NODE__OWNED_IMPORT = CONTROL_NODE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE__OWNED_GENERALIZATION_COMP = CONTROL_NODE__OWNED_GENERALIZATION_COMP;
+	int DECISION_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -72575,13 +69245,13 @@ public interface SysMLPackage extends EPackage {
 	int DECISION_NODE__IS_SUFFICIENT = CONTROL_NODE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE__OWNED_CONJUGATOR_COMP = CONTROL_NODE__OWNED_CONJUGATOR_COMP;
+	int DECISION_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -72620,15 +69290,6 @@ public interface SysMLPackage extends EPackage {
 	int DECISION_NODE__MULTIPLICITY = CONTROL_NODE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72636,15 +69297,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int DECISION_NODE__OWNED_FEATURE_MEMBERSHIP = CONTROL_NODE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -72719,22 +69371,22 @@ public interface SysMLPackage extends EPackage {
 	int DECISION_NODE__OWNED_TYPE = CONTROL_NODE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE__OWNED_REDEFINITION_COMP = CONTROL_NODE__OWNED_REDEFINITION_COMP;
+	int DECISION_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE__OWNED_SUBSETTING_COMP = CONTROL_NODE__OWNED_SUBSETTING_COMP;
+	int DECISION_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -72755,13 +69407,13 @@ public interface SysMLPackage extends EPackage {
 	int DECISION_NODE__IS_END = CONTROL_NODE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECISION_NODE__OWNED_TYPING_COMP = CONTROL_NODE__OWNED_TYPING_COMP;
+	int DECISION_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -72771,33 +69423,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int DECISION_NODE__IS_NONUNIQUE = CONTROL_NODE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -73385,13 +70010,13 @@ public interface SysMLPackage extends EPackage {
 	int FORK_NODE__OWNED_IMPORT = CONTROL_NODE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE__OWNED_GENERALIZATION_COMP = CONTROL_NODE__OWNED_GENERALIZATION_COMP;
+	int FORK_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -73484,13 +70109,13 @@ public interface SysMLPackage extends EPackage {
 	int FORK_NODE__IS_SUFFICIENT = CONTROL_NODE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE__OWNED_CONJUGATOR_COMP = CONTROL_NODE__OWNED_CONJUGATOR_COMP;
+	int FORK_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -73529,15 +70154,6 @@ public interface SysMLPackage extends EPackage {
 	int FORK_NODE__MULTIPLICITY = CONTROL_NODE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73545,15 +70161,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORK_NODE__OWNED_FEATURE_MEMBERSHIP = CONTROL_NODE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -73628,22 +70235,22 @@ public interface SysMLPackage extends EPackage {
 	int FORK_NODE__OWNED_TYPE = CONTROL_NODE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE__OWNED_REDEFINITION_COMP = CONTROL_NODE__OWNED_REDEFINITION_COMP;
+	int FORK_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE__OWNED_SUBSETTING_COMP = CONTROL_NODE__OWNED_SUBSETTING_COMP;
+	int FORK_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -73664,13 +70271,13 @@ public interface SysMLPackage extends EPackage {
 	int FORK_NODE__IS_END = CONTROL_NODE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORK_NODE__OWNED_TYPING_COMP = CONTROL_NODE__OWNED_TYPING_COMP;
+	int FORK_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -73680,33 +70287,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORK_NODE__IS_NONUNIQUE = CONTROL_NODE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORK_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -74294,13 +70874,13 @@ public interface SysMLPackage extends EPackage {
 	int SEND_ACTION_USAGE__OWNED_IMPORT = TRANSFER_ACTION_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEND_ACTION_USAGE__OWNED_GENERALIZATION_COMP = TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION_COMP;
+	int SEND_ACTION_USAGE__OWNED_GENERALIZATION = TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -74393,13 +70973,13 @@ public interface SysMLPackage extends EPackage {
 	int SEND_ACTION_USAGE__IS_SUFFICIENT = TRANSFER_ACTION_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEND_ACTION_USAGE__OWNED_CONJUGATOR_COMP = TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR_COMP;
+	int SEND_ACTION_USAGE__OWNED_CONJUGATOR = TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -74438,15 +71018,6 @@ public interface SysMLPackage extends EPackage {
 	int SEND_ACTION_USAGE__MULTIPLICITY = TRANSFER_ACTION_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_ACTION_USAGE__OWNED_GENERALIZATION = TRANSFER_ACTION_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74454,15 +71025,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEND_ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP = TRANSFER_ACTION_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_ACTION_USAGE__OWNED_CONJUGATOR = TRANSFER_ACTION_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -74537,22 +71099,22 @@ public interface SysMLPackage extends EPackage {
 	int SEND_ACTION_USAGE__OWNED_TYPE = TRANSFER_ACTION_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEND_ACTION_USAGE__OWNED_REDEFINITION_COMP = TRANSFER_ACTION_USAGE__OWNED_REDEFINITION_COMP;
+	int SEND_ACTION_USAGE__OWNED_REDEFINITION = TRANSFER_ACTION_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEND_ACTION_USAGE__OWNED_SUBSETTING_COMP = TRANSFER_ACTION_USAGE__OWNED_SUBSETTING_COMP;
+	int SEND_ACTION_USAGE__OWNED_SUBSETTING = TRANSFER_ACTION_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -74573,13 +71135,13 @@ public interface SysMLPackage extends EPackage {
 	int SEND_ACTION_USAGE__IS_END = TRANSFER_ACTION_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEND_ACTION_USAGE__OWNED_TYPING_COMP = TRANSFER_ACTION_USAGE__OWNED_TYPING_COMP;
+	int SEND_ACTION_USAGE__OWNED_TYPING = TRANSFER_ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -74589,33 +71151,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEND_ACTION_USAGE__IS_NONUNIQUE = TRANSFER_ACTION_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_ACTION_USAGE__OWNED_REDEFINITION = TRANSFER_ACTION_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_ACTION_USAGE__OWNED_SUBSETTING = TRANSFER_ACTION_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_ACTION_USAGE__OWNED_TYPING = TRANSFER_ACTION_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -75221,13 +71756,13 @@ public interface SysMLPackage extends EPackage {
 	int JOIN_NODE__OWNED_IMPORT = CONTROL_NODE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE__OWNED_GENERALIZATION_COMP = CONTROL_NODE__OWNED_GENERALIZATION_COMP;
+	int JOIN_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -75320,13 +71855,13 @@ public interface SysMLPackage extends EPackage {
 	int JOIN_NODE__IS_SUFFICIENT = CONTROL_NODE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE__OWNED_CONJUGATOR_COMP = CONTROL_NODE__OWNED_CONJUGATOR_COMP;
+	int JOIN_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -75365,15 +71900,6 @@ public interface SysMLPackage extends EPackage {
 	int JOIN_NODE__MULTIPLICITY = CONTROL_NODE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__OWNED_GENERALIZATION = CONTROL_NODE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75381,15 +71907,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int JOIN_NODE__OWNED_FEATURE_MEMBERSHIP = CONTROL_NODE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__OWNED_CONJUGATOR = CONTROL_NODE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -75464,22 +71981,22 @@ public interface SysMLPackage extends EPackage {
 	int JOIN_NODE__OWNED_TYPE = CONTROL_NODE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE__OWNED_REDEFINITION_COMP = CONTROL_NODE__OWNED_REDEFINITION_COMP;
+	int JOIN_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE__OWNED_SUBSETTING_COMP = CONTROL_NODE__OWNED_SUBSETTING_COMP;
+	int JOIN_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -75500,13 +72017,13 @@ public interface SysMLPackage extends EPackage {
 	int JOIN_NODE__IS_END = CONTROL_NODE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JOIN_NODE__OWNED_TYPING_COMP = CONTROL_NODE__OWNED_TYPING_COMP;
+	int JOIN_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -75516,33 +72033,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int JOIN_NODE__IS_NONUNIQUE = CONTROL_NODE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__OWNED_REDEFINITION = CONTROL_NODE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__OWNED_SUBSETTING = CONTROL_NODE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__OWNED_TYPING = CONTROL_NODE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -76140,13 +72630,13 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_DEFINITION__OWNED_IMPORT = DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_DEFINITION__OWNED_GENERALIZATION_COMP = DEFINITION__OWNED_GENERALIZATION_COMP;
+	int ATTRIBUTE_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -76239,13 +72729,13 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_DEFINITION__IS_SUFFICIENT = DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_DEFINITION__OWNED_CONJUGATOR_COMP = DEFINITION__OWNED_CONJUGATOR_COMP;
+	int ATTRIBUTE_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -76284,15 +72774,6 @@ public interface SysMLPackage extends EPackage {
 	int ATTRIBUTE_DEFINITION__MULTIPLICITY = DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_DEFINITION__OWNED_GENERALIZATION = DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76300,24 +72781,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_DEFINITION__OWNED_FEATURE_MEMBERSHIP = DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_DEFINITION__OWNED_CONJUGATOR = DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_DEFINITION__OWNED_SUPERCLASSING_COMP = DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -76860,13 +73323,13 @@ public interface SysMLPackage extends EPackage {
 	int ASSERT_CONSTRAINT_USAGE__OWNED_IMPORT = CONSTRAINT_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_GENERALIZATION_COMP = CONSTRAINT_USAGE__OWNED_GENERALIZATION_COMP;
+	int ASSERT_CONSTRAINT_USAGE__OWNED_GENERALIZATION = CONSTRAINT_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -76959,13 +73422,13 @@ public interface SysMLPackage extends EPackage {
 	int ASSERT_CONSTRAINT_USAGE__IS_SUFFICIENT = CONSTRAINT_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_CONJUGATOR_COMP = CONSTRAINT_USAGE__OWNED_CONJUGATOR_COMP;
+	int ASSERT_CONSTRAINT_USAGE__OWNED_CONJUGATOR = CONSTRAINT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -77004,15 +73467,6 @@ public interface SysMLPackage extends EPackage {
 	int ASSERT_CONSTRAINT_USAGE__MULTIPLICITY = CONSTRAINT_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_GENERALIZATION = CONSTRAINT_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77020,15 +73474,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSERT_CONSTRAINT_USAGE__OWNED_FEATURE_MEMBERSHIP = CONSTRAINT_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_CONJUGATOR = CONSTRAINT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -77103,22 +73548,22 @@ public interface SysMLPackage extends EPackage {
 	int ASSERT_CONSTRAINT_USAGE__OWNED_TYPE = CONSTRAINT_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_REDEFINITION_COMP = CONSTRAINT_USAGE__OWNED_REDEFINITION_COMP;
+	int ASSERT_CONSTRAINT_USAGE__OWNED_REDEFINITION = CONSTRAINT_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_SUBSETTING_COMP = CONSTRAINT_USAGE__OWNED_SUBSETTING_COMP;
+	int ASSERT_CONSTRAINT_USAGE__OWNED_SUBSETTING = CONSTRAINT_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -77139,13 +73584,13 @@ public interface SysMLPackage extends EPackage {
 	int ASSERT_CONSTRAINT_USAGE__IS_END = CONSTRAINT_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_TYPING_COMP = CONSTRAINT_USAGE__OWNED_TYPING_COMP;
+	int ASSERT_CONSTRAINT_USAGE__OWNED_TYPING = CONSTRAINT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -77155,33 +73600,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSERT_CONSTRAINT_USAGE__IS_NONUNIQUE = CONSTRAINT_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_REDEFINITION = CONSTRAINT_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_SUBSETTING = CONSTRAINT_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSERT_CONSTRAINT_USAGE__OWNED_TYPING = CONSTRAINT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -78732,13 +75150,13 @@ public interface SysMLPackage extends EPackage {
 	int SATISFY_REQUIREMENT_USAGE__OWNED_IMPORT = REQUIREMENT_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_GENERALIZATION_COMP = REQUIREMENT_USAGE__OWNED_GENERALIZATION_COMP;
+	int SATISFY_REQUIREMENT_USAGE__OWNED_GENERALIZATION = REQUIREMENT_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -78831,13 +75249,13 @@ public interface SysMLPackage extends EPackage {
 	int SATISFY_REQUIREMENT_USAGE__IS_SUFFICIENT = REQUIREMENT_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_CONJUGATOR_COMP = REQUIREMENT_USAGE__OWNED_CONJUGATOR_COMP;
+	int SATISFY_REQUIREMENT_USAGE__OWNED_CONJUGATOR = REQUIREMENT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -78876,15 +75294,6 @@ public interface SysMLPackage extends EPackage {
 	int SATISFY_REQUIREMENT_USAGE__MULTIPLICITY = REQUIREMENT_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_GENERALIZATION = REQUIREMENT_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78892,15 +75301,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SATISFY_REQUIREMENT_USAGE__OWNED_FEATURE_MEMBERSHIP = REQUIREMENT_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_CONJUGATOR = REQUIREMENT_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -78975,22 +75375,22 @@ public interface SysMLPackage extends EPackage {
 	int SATISFY_REQUIREMENT_USAGE__OWNED_TYPE = REQUIREMENT_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_REDEFINITION_COMP = REQUIREMENT_USAGE__OWNED_REDEFINITION_COMP;
+	int SATISFY_REQUIREMENT_USAGE__OWNED_REDEFINITION = REQUIREMENT_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_SUBSETTING_COMP = REQUIREMENT_USAGE__OWNED_SUBSETTING_COMP;
+	int SATISFY_REQUIREMENT_USAGE__OWNED_SUBSETTING = REQUIREMENT_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -79011,13 +75411,13 @@ public interface SysMLPackage extends EPackage {
 	int SATISFY_REQUIREMENT_USAGE__IS_END = REQUIREMENT_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_TYPING_COMP = REQUIREMENT_USAGE__OWNED_TYPING_COMP;
+	int SATISFY_REQUIREMENT_USAGE__OWNED_TYPING = REQUIREMENT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -79027,33 +75427,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SATISFY_REQUIREMENT_USAGE__IS_NONUNIQUE = REQUIREMENT_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_REDEFINITION = REQUIREMENT_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_SUBSETTING = REQUIREMENT_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SATISFY_REQUIREMENT_USAGE__OWNED_TYPING = REQUIREMENT_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -80586,7 +76959,7 @@ public interface SysMLPackage extends EPackage {
 	int CONJUGATED_PORT_TYPING__SPECIFIC = FEATURE_TYPING__SPECIFIC;
 
 	/**
-	 * The feature id for the '<em><b>Owning Type</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -80613,7 +76986,7 @@ public interface SysMLPackage extends EPackage {
 	int CONJUGATED_PORT_TYPING__TYPE = FEATURE_TYPING__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owning Feature</b></em>' container reference.
+	 * The feature id for the '<em><b>Owning Feature</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -81693,13 +78066,13 @@ public interface SysMLPackage extends EPackage {
 	int EXHIBIT_STATE_USAGE__OWNED_IMPORT = STATE_USAGE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXHIBIT_STATE_USAGE__OWNED_GENERALIZATION_COMP = STATE_USAGE__OWNED_GENERALIZATION_COMP;
+	int EXHIBIT_STATE_USAGE__OWNED_GENERALIZATION = STATE_USAGE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -81792,13 +78165,13 @@ public interface SysMLPackage extends EPackage {
 	int EXHIBIT_STATE_USAGE__IS_SUFFICIENT = STATE_USAGE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXHIBIT_STATE_USAGE__OWNED_CONJUGATOR_COMP = STATE_USAGE__OWNED_CONJUGATOR_COMP;
+	int EXHIBIT_STATE_USAGE__OWNED_CONJUGATOR = STATE_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -81837,15 +78210,6 @@ public interface SysMLPackage extends EPackage {
 	int EXHIBIT_STATE_USAGE__MULTIPLICITY = STATE_USAGE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXHIBIT_STATE_USAGE__OWNED_GENERALIZATION = STATE_USAGE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81853,15 +78217,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXHIBIT_STATE_USAGE__OWNED_FEATURE_MEMBERSHIP = STATE_USAGE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXHIBIT_STATE_USAGE__OWNED_CONJUGATOR = STATE_USAGE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -81936,22 +78291,22 @@ public interface SysMLPackage extends EPackage {
 	int EXHIBIT_STATE_USAGE__OWNED_TYPE = STATE_USAGE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXHIBIT_STATE_USAGE__OWNED_REDEFINITION_COMP = STATE_USAGE__OWNED_REDEFINITION_COMP;
+	int EXHIBIT_STATE_USAGE__OWNED_REDEFINITION = STATE_USAGE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXHIBIT_STATE_USAGE__OWNED_SUBSETTING_COMP = STATE_USAGE__OWNED_SUBSETTING_COMP;
+	int EXHIBIT_STATE_USAGE__OWNED_SUBSETTING = STATE_USAGE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -81972,13 +78327,13 @@ public interface SysMLPackage extends EPackage {
 	int EXHIBIT_STATE_USAGE__IS_END = STATE_USAGE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXHIBIT_STATE_USAGE__OWNED_TYPING_COMP = STATE_USAGE__OWNED_TYPING_COMP;
+	int EXHIBIT_STATE_USAGE__OWNED_TYPING = STATE_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -81988,33 +78343,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXHIBIT_STATE_USAGE__IS_NONUNIQUE = STATE_USAGE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXHIBIT_STATE_USAGE__OWNED_REDEFINITION = STATE_USAGE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXHIBIT_STATE_USAGE__OWNED_SUBSETTING = STATE_USAGE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXHIBIT_STATE_USAGE__OWNED_TYPING = STATE_USAGE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Nested Usage</b></em>' reference list.
@@ -82647,13 +78975,13 @@ public interface SysMLPackage extends EPackage {
 	int STATE_DEFINITION__OWNED_IMPORT = ACTION_DEFINITION__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_DEFINITION__OWNED_GENERALIZATION_COMP = ACTION_DEFINITION__OWNED_GENERALIZATION_COMP;
+	int STATE_DEFINITION__OWNED_GENERALIZATION = ACTION_DEFINITION__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -82746,13 +79074,13 @@ public interface SysMLPackage extends EPackage {
 	int STATE_DEFINITION__IS_SUFFICIENT = ACTION_DEFINITION__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_DEFINITION__OWNED_CONJUGATOR_COMP = ACTION_DEFINITION__OWNED_CONJUGATOR_COMP;
+	int STATE_DEFINITION__OWNED_CONJUGATOR = ACTION_DEFINITION__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -82791,15 +79119,6 @@ public interface SysMLPackage extends EPackage {
 	int STATE_DEFINITION__MULTIPLICITY = ACTION_DEFINITION__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_DEFINITION__OWNED_GENERALIZATION = ACTION_DEFINITION__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82807,24 +79126,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_DEFINITION__OWNED_FEATURE_MEMBERSHIP = ACTION_DEFINITION__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_DEFINITION__OWNED_CONJUGATOR = ACTION_DEFINITION__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_DEFINITION__OWNED_SUPERCLASSING_COMP = ACTION_DEFINITION__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -83430,13 +79731,13 @@ public interface SysMLPackage extends EPackage {
 	int TIME_SLICE_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int TIME_SLICE_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -83529,13 +79830,13 @@ public interface SysMLPackage extends EPackage {
 	int TIME_SLICE_FEATURE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int TIME_SLICE_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -83574,15 +79875,6 @@ public interface SysMLPackage extends EPackage {
 	int TIME_SLICE_FEATURE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83590,15 +79882,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_SLICE_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -83673,22 +79956,22 @@ public interface SysMLPackage extends EPackage {
 	int TIME_SLICE_FEATURE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int TIME_SLICE_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int TIME_SLICE_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -83709,13 +79992,13 @@ public interface SysMLPackage extends EPackage {
 	int TIME_SLICE_FEATURE__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TIME_SLICE_FEATURE__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int TIME_SLICE_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -83725,33 +80008,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_SLICE_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TIME_SLICE_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Time Slice Feature</em>' class.
@@ -84051,13 +80307,13 @@ public interface SysMLPackage extends EPackage {
 	int SNAPSHOT_FEATURE__OWNED_IMPORT = FEATURE__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_GENERALIZATION_COMP = FEATURE__OWNED_GENERALIZATION_COMP;
+	int SNAPSHOT_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -84150,13 +80406,13 @@ public interface SysMLPackage extends EPackage {
 	int SNAPSHOT_FEATURE__IS_SUFFICIENT = FEATURE__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_CONJUGATOR_COMP = FEATURE__OWNED_CONJUGATOR_COMP;
+	int SNAPSHOT_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -84195,15 +80451,6 @@ public interface SysMLPackage extends EPackage {
 	int SNAPSHOT_FEATURE__MULTIPLICITY = FEATURE__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNED_GENERALIZATION = FEATURE__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84211,15 +80458,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT_FEATURE__OWNED_FEATURE_MEMBERSHIP = FEATURE__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNED_CONJUGATOR = FEATURE__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -84294,22 +80532,22 @@ public interface SysMLPackage extends EPackage {
 	int SNAPSHOT_FEATURE__OWNED_TYPE = FEATURE__OWNED_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_REDEFINITION_COMP = FEATURE__OWNED_REDEFINITION_COMP;
+	int SNAPSHOT_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_SUBSETTING_COMP = FEATURE__OWNED_SUBSETTING_COMP;
+	int SNAPSHOT_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
 
 	/**
 	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
@@ -84330,13 +80568,13 @@ public interface SysMLPackage extends EPackage {
 	int SNAPSHOT_FEATURE__IS_END = FEATURE__IS_END;
 
 	/**
-	 * The feature id for the '<em><b>Owned Typing comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SNAPSHOT_FEATURE__OWNED_TYPING_COMP = FEATURE__OWNED_TYPING_COMP;
+	int SNAPSHOT_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The feature id for the '<em><b>Is Nonunique</b></em>' attribute.
@@ -84346,33 +80584,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Redefinition</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNED_REDEFINITION = FEATURE__OWNED_REDEFINITION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Subsetting</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNED_SUBSETTING = FEATURE__OWNED_SUBSETTING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Typing</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SNAPSHOT_FEATURE__OWNED_TYPING = FEATURE__OWNED_TYPING;
 
 	/**
 	 * The number of structural features of the '<em>Snapshot Feature</em>' class.
@@ -84672,13 +80883,13 @@ public interface SysMLPackage extends EPackage {
 	int LIFE_CLASS__OWNED_IMPORT = CLASS__OWNED_IMPORT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization comp</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_GENERALIZATION_COMP = CLASS__OWNED_GENERALIZATION_COMP;
+	int LIFE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Owned Feature Membership comp</b></em>' containment reference list.
@@ -84771,13 +80982,13 @@ public interface SysMLPackage extends EPackage {
 	int LIFE_CLASS__IS_SUFFICIENT = CLASS__IS_SUFFICIENT;
 
 	/**
-	 * The feature id for the '<em><b>Owned Conjugator comp</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIFE_CLASS__OWNED_CONJUGATOR_COMP = CLASS__OWNED_CONJUGATOR_COMP;
+	int LIFE_CLASS__OWNED_CONJUGATOR = CLASS__OWNED_CONJUGATOR;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -84816,15 +81027,6 @@ public interface SysMLPackage extends EPackage {
 	int LIFE_CLASS__MULTIPLICITY = CLASS__MULTIPLICITY;
 
 	/**
-	 * The feature id for the '<em><b>Owned Generalization</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_GENERALIZATION = CLASS__OWNED_GENERALIZATION;
-
-	/**
 	 * The feature id for the '<em><b>Owned Feature Membership</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84832,24 +81034,6 @@ public interface SysMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIFE_CLASS__OWNED_FEATURE_MEMBERSHIP = CLASS__OWNED_FEATURE_MEMBERSHIP;
-
-	/**
-	 * The feature id for the '<em><b>Owned Conjugator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_CONJUGATOR = CLASS__OWNED_CONJUGATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIFE_CLASS__OWNED_SUPERCLASSING_COMP = CLASS__OWNED_SUPERCLASSING_COMP;
 
 	/**
 	 * The feature id for the '<em><b>Owned Superclassing</b></em>' reference list.
@@ -85710,10 +81894,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getConjugation_ConjugatedType();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Type</em>'.
+	 * @return the meta object for the reference '<em>Owning Type</em>'.
 	 * @see org.omg.sysml.lang.sysml.Conjugation#getOwningType()
 	 * @see #getConjugation()
 	 * @generated
@@ -86595,17 +82779,6 @@ public interface SysMLPackage extends EPackage {
 	EClass getClassifier();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing_comp <em>Owned Superclassing comp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Superclassing comp</em>'.
-	 * @see org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing_comp()
-	 * @see #getClassifier()
-	 * @generated
-	 */
-	EReference getClassifier_OwnedSuperclassing_comp();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing <em>Owned Superclassing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86625,17 +82798,6 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getType();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp <em>Owned Generalization comp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Generalization comp</em>'.
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp()
-	 * @see #getType()
-	 * @generated
-	 */
-	EReference getType_OwnedGeneralization_comp();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}'.
@@ -86779,17 +82941,6 @@ public interface SysMLPackage extends EPackage {
 	EAttribute getType_IsSufficient();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp <em>Owned Conjugator comp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Conjugator comp</em>'.
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp()
-	 * @see #getType()
-	 * @generated
-	 */
-	EReference getType_OwnedConjugator_comp();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86888,10 +83039,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getGeneralization_Specific();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Type</em>'.
+	 * @return the meta object for the reference '<em>Owning Type</em>'.
 	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningType()
 	 * @see #getGeneralization()
 	 * @generated
@@ -86975,28 +83126,6 @@ public interface SysMLPackage extends EPackage {
 	EReference getFeature_OwnedType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition_comp <em>Owned Redefinition comp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Redefinition comp</em>'.
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition_comp()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_OwnedRedefinition_comp();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting_comp <em>Owned Subsetting comp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Subsetting comp</em>'.
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting_comp()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_OwnedSubsetting_comp();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87061,17 +83190,6 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFeature_IsEnd();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp <em>Owned Typing comp</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Owned Typing comp</em>'.
-	 * @see org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp()
-	 * @see #getFeature()
-	 * @generated
-	 */
-	EReference getFeature_OwnedTyping_comp();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}'.
@@ -87170,10 +83288,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getSubsetting_SubsettingFeature();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Feature</em>'.
+	 * @return the meta object for the reference '<em>Owning Feature</em>'.
 	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature()
 	 * @see #getSubsetting()
 	 * @generated
@@ -87330,10 +83448,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getFeatureTyping_Type();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Feature</em>'.
+	 * @return the meta object for the reference '<em>Owning Feature</em>'.
 	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature()
 	 * @see #getFeatureTyping()
 	 * @generated
@@ -87384,10 +83502,10 @@ public interface SysMLPackage extends EPackage {
 	EReference getSuperclassing_Subclass();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Owning Classifier</em>'.
+	 * @return the meta object for the reference '<em>Owning Classifier</em>'.
 	 * @see org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier()
 	 * @see #getSuperclassing()
 	 * @generated
@@ -90720,7 +86838,7 @@ public interface SysMLPackage extends EPackage {
 		EReference CONJUGATION__CONJUGATED_TYPE = eINSTANCE.getConjugation_ConjugatedType();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Type</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -91400,14 +87518,6 @@ public interface SysMLPackage extends EPackage {
 		EClass CLASSIFIER = eINSTANCE.getClassifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Superclassing comp</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CLASSIFIER__OWNED_SUPERCLASSING_COMP = eINSTANCE.getClassifier_OwnedSuperclassing_comp();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Superclassing</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -91424,14 +87534,6 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TYPE = eINSTANCE.getType();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Generalization comp</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE__OWNED_GENERALIZATION_COMP = eINSTANCE.getType_OwnedGeneralization_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Generalization</b></em>' reference list feature.
@@ -91536,14 +87638,6 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TYPE__IS_SUFFICIENT = eINSTANCE.getType_IsSufficient();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Conjugator comp</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TYPE__OWNED_CONJUGATOR_COMP = eINSTANCE.getType_OwnedConjugator_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Conjugator</b></em>' reference feature.
@@ -91738,7 +87832,7 @@ public interface SysMLPackage extends EPackage {
 		EReference GENERALIZATION__SPECIFIC = eINSTANCE.getGeneralization_Specific();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Type</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -91804,22 +87898,6 @@ public interface SysMLPackage extends EPackage {
 		EReference FEATURE__OWNED_TYPE = eINSTANCE.getFeature_OwnedType();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Redefinition comp</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__OWNED_REDEFINITION_COMP = eINSTANCE.getFeature_OwnedRedefinition_comp();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Subsetting comp</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__OWNED_SUBSETTING_COMP = eINSTANCE.getFeature_OwnedSubsetting_comp();
-
-		/**
 		 * The meta object literal for the '<em><b>Owned Redefinition</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -91866,14 +87944,6 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE__IS_END = eINSTANCE.getFeature_IsEnd();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Typing comp</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FEATURE__OWNED_TYPING_COMP = eINSTANCE.getFeature_OwnedTyping_comp();
 
 		/**
 		 * The meta object literal for the '<em><b>End Owning Type</b></em>' reference feature.
@@ -91952,7 +88022,7 @@ public interface SysMLPackage extends EPackage {
 		EReference SUBSETTING__SUBSETTING_FEATURE = eINSTANCE.getSubsetting_SubsettingFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Feature</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -92082,7 +88152,7 @@ public interface SysMLPackage extends EPackage {
 		EReference FEATURE_TYPING__TYPE = eINSTANCE.getFeatureTyping_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Feature</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Feature</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -92124,7 +88194,7 @@ public interface SysMLPackage extends EPackage {
 		EReference SUPERCLASSING__SUBCLASS = eINSTANCE.getSuperclassing_Subclass();
 
 		/**
-		 * The meta object literal for the '<em><b>Owning Classifier</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Owning Classifier</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

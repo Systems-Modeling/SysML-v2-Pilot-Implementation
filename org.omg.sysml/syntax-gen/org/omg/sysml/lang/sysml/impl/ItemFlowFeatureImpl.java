@@ -44,7 +44,7 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 
 	@Override
 	protected void addComputedRedefinitions() {
-		List<Redefinition> ownedRedefinitions = getOwnedRedefinition_comp();
+		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		int n = ownedRedefinitions.size();
 		if (n < 2 || ownedRedefinitions.get(1).getRedefinedFeature() == null) {
 			addRedefinitions(ownedRedefinitions.subList(1, n));

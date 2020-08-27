@@ -64,15 +64,12 @@ import org.omg.sysml.lang.sysml.Element;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition_comp <em>Owned Redefinition comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting_comp <em>Owned Subsetting comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTyping_comp <em>Owned Typing comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#getOwnedTyping <em>Owned Typing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureImpl#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
  * @generated
@@ -149,6 +146,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
+	/**
+	 * The cached environment for evaluating OCL expressions.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected static final OCL EOCL_ENV = OCL.newInstance();
 	
 	/**
 	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
@@ -383,13 +388,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Redefinition> getOwnedRedefinition_comp() {
-		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION_COMP, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION_COMP});
+	public List<Redefinition> basicGetOwnedRedefinition() {
+		return basicGetOwnedGeneralization(Redefinition.class);
 	}
 	
 
@@ -402,14 +402,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Subsetting> getOwnedSubsetting_comp() {
-		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION_COMP});
+	public List<Subsetting> basicGetOwnedSubsetting() {
+		return basicGetOwnedGeneralization(Subsetting.class);
 	}
 	
 	/**
@@ -422,14 +416,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return new DerivedSubsetEObjectEList<>(FeatureTyping.class, this, SysMLPackage.FEATURE__OWNED_TYPING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<FeatureTyping> getOwnedTyping_comp() {
-		return new DerivedSubsetEObjectEList<>(FeatureTyping.class, this, SysMLPackage.FEATURE__OWNED_TYPING_COMP, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION_COMP});
+	public List<FeatureTyping> basicGetOwnedTyping() {
+		return basicGetOwnedGeneralization(FeatureTyping.class);
 	}
 	
 	protected void addSubsetting(String name) {
@@ -444,7 +432,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
-		List<Feature> redefinedFeatures = getOwnedRedefinition_comp().stream().
+		List<Feature> redefinedFeatures = basicGetOwnedRedefinition().stream().
 				map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
 				collect(Collectors.toList());
 		if (redefinedFeatures.stream().allMatch(feature->feature == null)) {
@@ -474,7 +462,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
 	protected void addComputedRedefinitions() {
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinition_comp();
+		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (isComputeRedefinitions && ownedRedefinitions.isEmpty() ||
 				ownedRedefinitions.stream().anyMatch(r->((RedefinitionImpl)r).basicGetRedefinedFeature() == null)) {
 			addRedefinitions(ownedRedefinitions);
@@ -832,7 +820,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected Feature getNamingFeature() {
-		List<Redefinition> redefinitions = this.getOwnedRedefinition_comp();
+		List<Redefinition> redefinitions = this.basicGetOwnedRedefinition();
 		return redefinitions.size() != 1? null:
 			redefinitions.get(0).getRedefinedFeature();
 	}
@@ -900,11 +888,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public boolean hasObjectType() {
-		return getOwnedTyping_comp().stream().anyMatch(typing->typing.getType() instanceof Class);
+		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof Class);
 	}
 	
 	public boolean hasValueType() {
-		return getOwnedTyping_comp().stream().anyMatch(typing->typing.getType() instanceof DataType);
+		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof DataType);
 	}
 	
 	public boolean isExpression() {
@@ -1054,24 +1042,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return getType();
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				return getOwnedType();
-			case SysMLPackage.FEATURE__OWNED_REDEFINITION_COMP:
-				return getOwnedRedefinition_comp();
-			case SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP:
-				return getOwnedSubsetting_comp();
-			case SysMLPackage.FEATURE__IS_COMPOSITE:
-				return isComposite();
-			case SysMLPackage.FEATURE__IS_END:
-				return isEnd();
-			case SysMLPackage.FEATURE__OWNED_TYPING_COMP:
-				return getOwnedTyping_comp();
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique();
 			case SysMLPackage.FEATURE__OWNED_REDEFINITION:
 				return getOwnedRedefinition();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return getOwnedSubsetting();
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				return isComposite();
+			case SysMLPackage.FEATURE__IS_END:
+				return isEnd();
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return getOwnedTyping();
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				return isNonunique();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1112,27 +1094,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends Type>)newValue);
 				return;
-			case SysMLPackage.FEATURE__OWNED_REDEFINITION_COMP:
-				getOwnedRedefinition_comp().clear();
-				getOwnedRedefinition_comp().addAll((Collection<? extends Redefinition>)newValue);
-				return;
-			case SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP:
-				getOwnedSubsetting_comp().clear();
-				getOwnedSubsetting_comp().addAll((Collection<? extends Subsetting>)newValue);
-				return;
-			case SysMLPackage.FEATURE__IS_COMPOSITE:
-				setIsComposite((Boolean)newValue);
-				return;
-			case SysMLPackage.FEATURE__IS_END:
-				setIsEnd((Boolean)newValue);
-				return;
-			case SysMLPackage.FEATURE__OWNED_TYPING_COMP:
-				getOwnedTyping_comp().clear();
-				getOwnedTyping_comp().addAll((Collection<? extends FeatureTyping>)newValue);
-				return;
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				setIsNonunique((Boolean)newValue);
-				return;
 			case SysMLPackage.FEATURE__OWNED_REDEFINITION:
 				getOwnedRedefinition().clear();
 				getOwnedRedefinition().addAll((Collection<? extends Redefinition>)newValue);
@@ -1141,9 +1102,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				getOwnedSubsetting().clear();
 				getOwnedSubsetting().addAll((Collection<? extends Subsetting>)newValue);
 				return;
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				setIsComposite((Boolean)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_END:
+				setIsEnd((Boolean)newValue);
+				return;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				getOwnedTyping().clear();
 				getOwnedTyping().addAll((Collection<? extends FeatureTyping>)newValue);
+				return;
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				setIsNonunique((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1181,11 +1151,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
-			case SysMLPackage.FEATURE__OWNED_REDEFINITION_COMP:
-				getOwnedRedefinition_comp().clear();
+			case SysMLPackage.FEATURE__OWNED_REDEFINITION:
+				getOwnedRedefinition().clear();
 				return;
-			case SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP:
-				getOwnedSubsetting_comp().clear();
+			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
+				getOwnedSubsetting().clear();
 				return;
 			case SysMLPackage.FEATURE__IS_COMPOSITE:
 				setIsComposite(IS_COMPOSITE_EDEFAULT);
@@ -1193,20 +1163,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			case SysMLPackage.FEATURE__IS_END:
 				setIsEnd(IS_END_EDEFAULT);
 				return;
-			case SysMLPackage.FEATURE__OWNED_TYPING_COMP:
-				getOwnedTyping_comp().clear();
+			case SysMLPackage.FEATURE__OWNED_TYPING:
+				getOwnedTyping().clear();
 				return;
 			case SysMLPackage.FEATURE__IS_NONUNIQUE:
 				setIsNonunique(IS_NONUNIQUE_EDEFAULT);
-				return;
-			case SysMLPackage.FEATURE__OWNED_REDEFINITION:
-				getOwnedRedefinition().clear();
-				return;
-			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
-				getOwnedSubsetting().clear();
-				return;
-			case SysMLPackage.FEATURE__OWNED_TYPING:
-				getOwnedTyping().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1238,24 +1199,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				return !getType().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_TYPE:
 				return !getOwnedType().isEmpty();
-			case SysMLPackage.FEATURE__OWNED_REDEFINITION_COMP:
-				return !getOwnedRedefinition_comp().isEmpty();
-			case SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP:
-				return !getOwnedSubsetting_comp().isEmpty();
-			case SysMLPackage.FEATURE__IS_COMPOSITE:
-				return isComposite() != IS_COMPOSITE_EDEFAULT;
-			case SysMLPackage.FEATURE__IS_END:
-				return isEnd() != IS_END_EDEFAULT;
-			case SysMLPackage.FEATURE__OWNED_TYPING_COMP:
-				return !getOwnedTyping_comp().isEmpty();
-			case SysMLPackage.FEATURE__IS_NONUNIQUE:
-				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNED_REDEFINITION:
 				return !getOwnedRedefinition().isEmpty();
 			case SysMLPackage.FEATURE__OWNED_SUBSETTING:
 				return !getOwnedSubsetting().isEmpty();
+			case SysMLPackage.FEATURE__IS_COMPOSITE:
+				return isComposite() != IS_COMPOSITE_EDEFAULT;
+			case SysMLPackage.FEATURE__IS_END:
+				return isEnd() != IS_END_EDEFAULT;
 			case SysMLPackage.FEATURE__OWNED_TYPING:
 				return !getOwnedTyping().isEmpty();
+			case SysMLPackage.FEATURE__IS_NONUNIQUE:
+				return isNonunique() != IS_NONUNIQUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1291,14 +1246,5 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		result.append(')');
 		return result.toString();
 	}
-
-	/**
-	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final OCL EOCL_ENV = OCL.newInstance();
 
 } //FeatureImpl

@@ -28,7 +28,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing_comp <em>Owned Superclassing comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Classifier#getOwnedSuperclassing <em>Owned Superclassing</em>}</li>
  * </ul>
  *
@@ -39,30 +38,14 @@ import org.eclipse.emf.common.util.EList;
 public interface Classifier extends Type {
 
 	/**
-	 * Returns the value of the '<em><b>Owned Superclassing comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Superclassing}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The relationship leading from the <code>subclass</code> to a more general Classifier and is owned by the <code>subclass</code>.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Superclassing comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier_OwnedSuperclassing_comp()
-	 * @see org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier
-	 * @model opposite="owningClassifier" containment="true" transient="true" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<Superclassing> getOwnedSuperclassing_comp();
-
-	/**
 	 * Returns the value of the '<em><b>Owned Superclassing</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Superclassing}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier <em>Owning Classifier</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp() <em>Owned Generalization comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -70,9 +53,13 @@ public interface Classifier extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The relationship leading from the <code>subclass</code> to a more general Classifier and is owned by the <code>subclass</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Superclassing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier_OwnedSuperclassing()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Superclassing#getOwningClassifier
+	 * @model opposite="owningClassifier" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */

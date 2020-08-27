@@ -18,7 +18,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassifierImpl#getOwnedSuperclassing_comp <em>Owned Superclassing comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ClassifierImpl#getOwnedSuperclassing <em>Owned Superclassing</em>}</li>
  * </ul>
  *
@@ -45,16 +44,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.CLASSIFIER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Superclassing> getOwnedSuperclassing_comp() {
-		return new DerivedSubsetEObjectEList<>(Superclassing.class, this, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP, new int[] {SysMLPackage.TYPE__OWNED_GENERALIZATION_COMP});
 	}
 
 	/**
@@ -90,8 +79,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP:
-				return getOwnedSuperclassing_comp();
 			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
 				return getOwnedSuperclassing();
 		}
@@ -107,10 +94,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP:
-				getOwnedSuperclassing_comp().clear();
-				getOwnedSuperclassing_comp().addAll((Collection<? extends Superclassing>)newValue);
-				return;
 			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
 				getOwnedSuperclassing().clear();
 				getOwnedSuperclassing().addAll((Collection<? extends Superclassing>)newValue);
@@ -127,9 +110,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP:
-				getOwnedSuperclassing_comp().clear();
-				return;
 			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
 				getOwnedSuperclassing().clear();
 				return;
@@ -145,8 +125,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING_COMP:
-				return !getOwnedSuperclassing_comp().isEmpty();
 			case SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING:
 				return !getOwnedSuperclassing().isEmpty();
 		}

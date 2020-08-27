@@ -40,6 +40,7 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
 			if (element instanceof Property && modelElement instanceof EReference
+					&& !((Property)element).isDerived() 
 					&& AggregationKind.COMPOSITE_LITERAL.equals(((Property) element).getAggregation())) {
 				EReference compRef = (EReference) modelElement;
 

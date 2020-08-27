@@ -34,7 +34,7 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp() <em>Owned Conjugator comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator() <em>Owned Conjugator</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

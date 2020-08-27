@@ -230,10 +230,20 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Type getOwningType() {
+		Type owningType = basicGetOwningType();
+		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type basicGetOwningType() {
 		Element owner = getOwningRelatedElement();
 		return owner instanceof Type? (Type)owner: null;
 	}
@@ -288,8 +298,6 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.CONJUGATION__OWNING_RELATED_ELEMENT:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
-			case SysMLPackage.CONJUGATION__OWNING_TYPE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.TYPE__OWNED_CONJUGATOR_COMP, Type.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -309,7 +317,8 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 				if (resolve) return getOriginalType();
 				return basicGetOriginalType();
 			case SysMLPackage.CONJUGATION__OWNING_TYPE:
-				return getOwningType();
+				if (resolve) return getOwningType();
+				return basicGetOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -375,7 +384,7 @@ public class ConjugationImpl extends RelationshipImpl implements Conjugation {
 			case SysMLPackage.CONJUGATION__ORIGINAL_TYPE:
 				return isSetOriginalType();
 			case SysMLPackage.CONJUGATION__OWNING_TYPE:
-				return getOwningType() != null;
+				return basicGetOwningType() != null;
 		}
 		return super.eIsSet(featureID);
 	}

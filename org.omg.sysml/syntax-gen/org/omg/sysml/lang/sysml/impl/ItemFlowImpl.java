@@ -225,7 +225,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {
-						EList<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).getOwnedRedefinition_comp();
+						List<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
 						if (!redefinitions.isEmpty()) {
 							Redefinition redefinition = redefinitions.get(0);
 							if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {

@@ -231,10 +231,20 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Type getOwningType() {
+		Type owningType = basicGetOwningType();
+		return owningType != null && owningType.eIsProxy() ? (Type)eResolveProxy((InternalEObject)owningType) : owningType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type basicGetOwningType() {
 		Element element = this.getOwningRelatedElement();
 		return element instanceof Type? (Type)element: null;
 	}
@@ -317,7 +327,8 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 				if (resolve) return getGeneral();
 				return basicGetGeneral();
 			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				return getOwningType();
+				if (resolve) return getOwningType();
+				return basicGetOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -383,7 +394,7 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				return isSetGeneral();
 			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				return getOwningType() != null;
+				return basicGetOwningType() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -428,8 +439,6 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.GENERALIZATION__OWNING_RELATED_ELEMENT:
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
-			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.TYPE__OWNED_GENERALIZATION_COMP, Type.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

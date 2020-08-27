@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp <em>Owned Generalization comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
@@ -31,14 +31,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp <em>Owned Conjugator comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getType()
@@ -47,25 +45,9 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Type extends org.omg.sysml.lang.sysml.Package {
 	/**
-	 * Returns the value of the '<em><b>Owned Generalization comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Generalization}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Generalizations owned by this Type.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Generalization comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedGeneralization_comp()
-	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningType
-	 * @model opposite="owningType" containment="true" transient="true" volatile="true" derived="true"
-	 * @generated
-	 */
-	EList<Generalization> getOwnedGeneralization_comp();
-
-	/**
 	 * Returns the value of the '<em><b>Owned Generalization</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Generalization}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Generalization#getOwningType <em>Owning Type</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -79,9 +61,13 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Generalizations owned by this Type.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Generalization</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedGeneralization()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Generalization#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -384,34 +370,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	void setIsSufficient(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Conjugator comp</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Conjugation that is the <code>conjugator</code> of this Type and is owned by it.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Conjugator comp</em>' containment reference.
-	 * @see #setOwnedConjugator_comp(Conjugation)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedConjugator_comp()
-	 * @see org.omg.sysml.lang.sysml.Conjugation#getOwningType
-	 * @model opposite="owningType" containment="true" transient="true" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	Conjugation getOwnedConjugator_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator_comp <em>Owned Conjugator comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Conjugator comp</em>' containment reference.
-	 * @see #getOwnedConjugator_comp()
-	 * @generated
-	 */
-	void setOwnedConjugator_comp(Conjugation value);
-
-	/**
 	 * Returns the value of the '<em><b>Owned Conjugator</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Conjugation#getOwningType <em>Owning Type</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -424,10 +384,14 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Conjugation that is the <code>conjugator</code> of this Type and is owned by it.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Conjugator</em>' reference.
 	 * @see #setOwnedConjugator(Conjugation)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedConjugator()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Conjugation#getOwningType
+	 * @model opposite="owningType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */

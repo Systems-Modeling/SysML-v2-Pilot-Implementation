@@ -152,22 +152,23 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Feature/type #//Element/ownedElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRedefinition_comp"
-        ordered="false" upperBound="-1" eType="#//Redefinition" volatile="true" transient="true"
-        derived="true" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRedefinition" ordered="false"
+        upperBound="-1" eType="#//Redefinition" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningFeature"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Redefinition relationships that are&amp;nbsp;owned by this Feature, where this feature is the redefining one??.&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="subsets" references="#//Feature/ownedSubsetting"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubsetting_comp" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubsetting" ordered="false"
         upperBound="-1" eType="#//Subsetting" volatile="true" transient="true" derived="true"
-        containment="true" eOpposite="#//Subsetting/owningFeature">
+        eOpposite="#//Subsetting/owningFeature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Subsetting relationships that are&amp;nbsp;owned by this Feature, where this feature is the subsetting one.&lt;mms-cf mms-cf-type=&quot;com&quot; mms-element-id=&quot;MMS_1592312822399_5f15c140-7bd1-47ea-92b3-3ee60fcfabf2&quot;>comment:cbock&lt;/mms-cf>&lt;/p>&#xA;"/>
       </eAnnotations>
+      <eAnnotations source="subsets" references="#//Type/ownedGeneralization"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
@@ -183,28 +184,17 @@
         <details key="documentation" value="&lt;p>Whether or not the Feature is to be treated as an End for an Association. When a Feature is marked as an End, there are additional navigation rules to consider between instances of that Feature's Type and instances of the Types of other Ends of the Association.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTyping_comp" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTyping" ordered="false"
         upperBound="-1" eType="#//FeatureTyping" volatile="true" transient="true"
-        derived="true" containment="true" eOpposite="#//FeatureTyping/owningFeature">
+        derived="true" eOpposite="#//FeatureTyping/owningFeature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The FeatureTypings owned by this Feature as the &lt;code>typedFeature&lt;/code> of the FeatureTyping.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="subsets" references="#//Type/ownedGeneralization"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
         transient="true" defaultValueLiteral="false" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRedefinition" upperBound="-1"
-        eType="#//Redefinition" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Feature/ownedSubsetting_comp"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubsetting" upperBound="-1"
-        eType="#//Subsetting" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Type/ownedGeneralization_comp"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTyping" upperBound="-1"
-        eType="#//FeatureTyping" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Type/ownedGeneralization_comp"/>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" eSuperTypes="#//Package">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -218,12 +208,13 @@
     </eOperations>
     <eOperations name="allSupertypes" ordered="false" lowerBound="1" upperBound="-1"
         eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedGeneralization_comp"
-        upperBound="-1" eType="#//Generalization" volatile="true" transient="true"
-        derived="true" containment="true" eOpposite="#//Generalization/owningType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedGeneralization" upperBound="-1"
+        eType="#//Generalization" volatile="true" transient="true" derived="true"
+        eOpposite="#//Generalization/owningType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Generalizations owned by this Type.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="subsets" references="#//Element/ownedElement #//Element/ownedRelationship_comp"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureMembership_comp"
         upperBound="-1" eType="#//FeatureMembership" containment="true" eOpposite="#//FeatureMembership/owningType">
@@ -309,12 +300,12 @@
         <details key="documentation" value="&lt;p>A Type&amp;nbsp;gives conditions that must be met by whatever it classifies, but when isSufficient is false or absent, things meeting those conditions might not be classified.&amp;nbsp; For example, a type Car that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would need to be cars.&amp;nbsp; If isSufficient is true, all things that meet conditions of a Type must be classified by that Type.&amp;nbsp;For example, if the type Car were sufficient, it would classify all four-wheeled things.&lt;/p>&#xA;"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConjugator_comp" ordered="false"
-        eType="#//Conjugation" volatile="true" transient="true" derived="true" containment="true"
-        eOpposite="#//Conjugation/owningType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConjugator" ordered="false"
+        eType="#//Conjugation" volatile="true" transient="true" derived="true" eOpposite="#//Conjugation/owningType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Conjugation that is the &lt;code>conjugator&lt;/code> of this Type and is owned by it.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConjugated" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
@@ -352,18 +343,10 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Type/feature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedGeneralization" upperBound="-1"
-        eType="#//Generalization" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Element/ownedElement #//Element/ownedRelationship_comp"/>
-    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedFeatureMembership"
         upperBound="-1" eType="#//FeatureMembership" volatile="true" transient="true"
         derived="true">
       <eAnnotations source="subsets" references="#//Package/ownedMembership_comp #//Type/featureMembership"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedConjugator" eType="#//Conjugation"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Element">
@@ -846,7 +829,7 @@
       <eAnnotations source="redefines" references="#//Relationship/source"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
-        eType="#//Type" volatile="true" transient="true" derived="true" eOpposite="#//Type/ownedGeneralization_comp">
+        eType="#//Type" volatile="true" transient="true" derived="true" eOpposite="#//Type/ownedGeneralization">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Type that is the &lt;code>specific&lt;code> Type of this Generalization and owns it as its &lt;code>owningRelatedElement&lt;code>.&lt;/p>"/>
       </eAnnotations>
@@ -967,7 +950,7 @@
       <eAnnotations source="redefines" references="#//Relationship/source"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" ordered="false"
-        eType="#//Type" volatile="true" transient="true" derived="true" eOpposite="#//Type/ownedConjugator_comp">
+        eType="#//Type" volatile="true" transient="true" derived="true" eOpposite="#//Type/ownedConjugator">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>conjugatingType&lt;/code> of this Type that is also its &lt;code>owningRelatedElement&lt;/p>.&lt;/p>"/>
       </eAnnotations>
@@ -1029,7 +1012,7 @@
       <eAnnotations source="redefines" references="#//Generalization/specific"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeature" ordered="false"
-        eType="#//Feature" volatile="true" transient="true" derived="true" eOpposite="#//Feature/ownedSubsetting_comp">
+        eType="#//Feature" volatile="true" transient="true" derived="true" eOpposite="#//Feature/ownedSubsetting">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Feature whose set of values is a subset of the set of values of the other member of the pair linked by this Subsetting. It also owns the relationship.&lt;/p>"/>
       </eAnnotations>
@@ -1061,7 +1044,7 @@
       <eAnnotations source="redefines" references="#//Generalization/general"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeature" ordered="false"
-        eType="#//Feature" volatile="true" transient="true" derived="true" eOpposite="#//Feature/ownedTyping_comp">
+        eType="#//Feature" volatile="true" transient="true" derived="true" eOpposite="#//Feature/ownedTyping">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Feature that owned this FeatureTyping (which must also be the &lt;code>typedFeature&lt;/code>).&lt;/p>"/>
       </eAnnotations>
@@ -1098,16 +1081,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A Classifier is&amp;nbsp; a Type for model elements that classify:&lt;/p>&#xA;&#xA;&lt;ul>&#xA;&#x9;&lt;li>Things&amp;nbsp;(in the universe) regardless of how Features relate them.&amp;nbsp; These are&amp;nbsp;sequences of exactly one&amp;nbsp;thing (sequence of length 1).&lt;/li>&#xA;&#x9;&lt;li>How the above&amp;nbsp;things are related by Features. These are sequences of multiple things (length &amp;gt; 1).&lt;/li>&#xA;&lt;/ul>&#xA;&#xA;&lt;p>Classifiers that classify relationships (sequence length &amp;gt; 1) must also classify the things at the end of those&amp;nbsp;sequences (sequence length =1).&amp;nbsp; Because of this, Classifiers specializing Features cannot classify anything (any sequences).&lt;/p>&#xA;&#xA;ownedSuperclassing = ownedGeneralization->intersection(superclassing)&#xA;allSupertypes()->includes(Kernel Library::Anything)"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperclassing_comp"
-        ordered="false" upperBound="-1" eType="#//Superclassing" volatile="true" transient="true"
-        derived="true" containment="true" eOpposite="#//Superclassing/owningClassifier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperclassing" ordered="false"
+        upperBound="-1" eType="#//Superclassing" volatile="true" transient="true"
+        derived="true" eOpposite="#//Superclassing/owningClassifier">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The relationship leading from the &lt;code>subclass&lt;/code> to a more general Classifier and is owned by the &lt;code>subclass&lt;/code>.&lt;/p>"/>
       </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperclassing" upperBound="-1"
-        eType="#//Superclassing" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Type/ownedGeneralization_comp"/>
+      <eAnnotations source="subsets" references="#//Type/ownedGeneralization"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Superclassing" eSuperTypes="#//Generalization">
@@ -1135,7 +1115,7 @@
       <eAnnotations source="redefines" references="#//Generalization/specific"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningClassifier" ordered="false"
-        eType="#//Classifier" volatile="true" transient="true" derived="true" eOpposite="#//Classifier/ownedSuperclassing_comp">
+        eType="#//Classifier" volatile="true" transient="true" derived="true" eOpposite="#//Classifier/ownedSuperclassing">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The more general Classifier in the pair linked by Superclassing and that owns the relationship.&lt;/p>"/>
       </eAnnotations>
@@ -2282,7 +2262,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The PortConjugation that is the &lt;tt>ownedConjugator&lt;/tt> of this ConjugatedPortDefinition, linking it its &lt;tt>originalPortDefinition&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Type/ownedConjugator_comp"/>
+      <eAnnotations source="redefines" references="#//Type/ownedConjugator"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="originalPortDefinition"
         ordered="false" lowerBound="1" eType="#//PortDefinition" volatile="true" transient="true"

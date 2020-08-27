@@ -592,7 +592,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> subsettings = super.getOwnedSubsetting_comp();
+		List<Subsetting> subsettings = super.basicGetOwnedSubsetting();
 		Usage variationUsage = getOwningVariationUsage();
 		if (variationUsage != null && isVariant()) {
 			if (!subsettings.stream().anyMatch(s->s.getSubsettedFeature() == variationUsage)) {

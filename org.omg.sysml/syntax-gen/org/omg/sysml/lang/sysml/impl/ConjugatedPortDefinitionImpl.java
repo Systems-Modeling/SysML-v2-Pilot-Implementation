@@ -249,6 +249,37 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated
 	 */
 	@Override
+	public Conjugation basicGetOwnedConjugator() {
+		return basicGetOwnedPortConjugator();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedConjugator(Conjugation newOwnedConjugator) {
+		if (newOwnedConjugator != null && !(newOwnedConjugator instanceof PortConjugation)) {
+			throw new IllegalArgumentException("newOwnedConjugator must be an instance of PortConjugation");
+		}
+		setOwnedPortConjugator((PortConjugation) newOwnedConjugator);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedConjugator() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR:
@@ -335,8 +366,8 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_CONJUGATOR_COMP:
-				return isSetOwnedConjugator_comp();
+			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_CONJUGATOR:
+				return isSetOwnedConjugator();
 			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNING_NAMESPACE:
 				return isSetOwningNamespace();
 			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR:
@@ -345,49 +376,6 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 				return isSetOriginalPortDefinition();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Conjugation getOwnedConjugator_comp() {
-		return getOwnedPortConjugator();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedConjugator_comp(Conjugation newOwnedConjugator_comp, NotificationChain msgs) {
-		if (newOwnedConjugator_comp != null && !(newOwnedConjugator_comp instanceof PortConjugation)) {
-			throw new IllegalArgumentException("newOwnedConjugator_comp must be an instance of PortConjugation");
-		}
-		return basicSetOwnedPortConjugator((PortConjugation) newOwnedConjugator_comp, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedConjugator_comp(Conjugation newOwnedConjugator_comp) {
-		if (newOwnedConjugator_comp != null && !(newOwnedConjugator_comp instanceof PortConjugation)) {
-			throw new IllegalArgumentException("newOwnedConjugator_comp must be an instance of PortConjugation");
-		}
-		setOwnedPortConjugator((PortConjugation) newOwnedConjugator_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedConjugator_comp() {
-  		return false;
 	}
 
 } //ConjugatedPortDefinitionImpl

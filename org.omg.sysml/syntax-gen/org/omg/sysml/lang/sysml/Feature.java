@@ -37,15 +37,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition_comp <em>Owned Redefinition comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting_comp <em>Owned Subsetting comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping_comp <em>Owned Typing comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature()
@@ -229,48 +226,13 @@ public interface Feature extends Type {
 	EList<Type> getOwnedType();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Redefinition comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Redefinition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Redefinition relationships that are&nbsp;owned by this Feature, where this feature is the redefining one??.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Redefinition comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition_comp()
-	 * @model containment="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
-	 * @generated
-	 */
-	EList<Redefinition> getOwnedRedefinition_comp();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Subsetting comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subsetting}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Subsetting relationships that are&nbsp;owned by this Feature, where this feature is the subsetting one.<mms-cf mms-cf-type="com" mms-element-id="MMS_1592312822399_5f15c140-7bd1-47ea-92b3-3ee60fcfabf2">comment:cbock</mms-cf></p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Subsetting comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting_comp()
-	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
-	 * @model opposite="owningFeature" containment="true" transient="true" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<Subsetting> getOwnedSubsetting_comp();
-
-	/**
 	 * Returns the value of the '<em><b>Owned Redefinition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Redefinition}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting_comp() <em>Owned Subsetting comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting() <em>Owned Subsetting</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -278,9 +240,14 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Redefinition relationships that are&nbsp;owned by this Feature, where this feature is the redefining one??.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedRedefinition()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -289,11 +256,12 @@ public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Owned Subsetting</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Subsetting}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Subsetting#getOwningFeature <em>Owning Feature</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp() <em>Owned Generalization comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -301,9 +269,14 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Subsetting relationships that are&nbsp;owned by this Feature, where this feature is the subsetting one.<mms-cf mms-cf-type="com" mms-element-id="MMS_1592312822399_5f15c140-7bd1-47ea-92b3-3ee60fcfabf2">comment:cbock</mms-cf></p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedSubsetting()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Subsetting#getOwningFeature
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -312,11 +285,12 @@ public interface Feature extends Type {
 	/**
 	 * Returns the value of the '<em><b>Owned Typing</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization_comp() <em>Owned Generalization comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -324,9 +298,13 @@ public interface Feature extends Type {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FeatureTypings owned by this Feature as the <code>typedFeature</code> of the FeatureTyping.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -427,23 +405,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	void setIsEnd(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Typing comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The FeatureTypings owned by this Feature as the <code>typedFeature</code> of the FeatureTyping.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Typing comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping_comp()
-	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
-	 * @model opposite="owningFeature" containment="true" transient="true" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<FeatureTyping> getOwnedTyping_comp();
 
 	/**
 	 * Returns the value of the '<em><b>End Owning Type</b></em>' reference.

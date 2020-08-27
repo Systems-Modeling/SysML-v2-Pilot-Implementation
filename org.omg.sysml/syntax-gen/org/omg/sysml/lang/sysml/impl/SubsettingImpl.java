@@ -3,8 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -174,7 +172,17 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 */
 	@Override
 	public Feature getOwningFeature() {
-		Type owningType = super.getOwningType();
+		Feature owningFeature = basicGetOwningFeature();
+		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature basicGetOwningFeature() {
+		Type owningType = super.basicGetOwningType();
 		return owningType instanceof Feature? (Feature) owningType : null;
 	}
 
@@ -192,103 +200,7 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 * @generated
 	 */
 	public boolean isSetOwningFeature() {
-		return getOwningFeature() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.FEATURE__OWNED_SUBSETTING_COMP, Feature.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
-				if (resolve) return getSubsettedFeature();
-				return basicGetSubsettedFeature();
-			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
-				if (resolve) return getSubsettingFeature();
-				return basicGetSubsettingFeature();
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				return getOwningFeature();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
-				setSubsettedFeature((Feature)newValue);
-				return;
-			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
-				setSubsettingFeature((Feature)newValue);
-				return;
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				setOwningFeature((Feature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
-				setSubsettedFeature((Feature)null);
-				return;
-			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
-				setSubsettingFeature((Feature)null);
-				return;
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				setOwningFeature((Feature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.SUBSETTING__GENERAL:
-				return isSetGeneral();
-			case SysMLPackage.SUBSETTING__SPECIFIC:
-				return isSetSpecific();
-			case SysMLPackage.SUBSETTING__OWNING_TYPE:
-				return isSetOwningType();
-			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
-				return isSetSubsettedFeature();
-			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
-				return isSetSubsettingFeature();
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				return isSetOwningFeature();
-		}
-		return super.eIsSet(featureID);
+		return basicGetOwningFeature() != null;
 	}
 
 	/**
@@ -375,6 +287,16 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetOwningType() {
+		return basicGetOwningFeature();
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -391,6 +313,89 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	 */
 	public boolean isSetOwningType() {
   		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
+				if (resolve) return getSubsettedFeature();
+				return basicGetSubsettedFeature();
+			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
+				if (resolve) return getSubsettingFeature();
+				return basicGetSubsettingFeature();
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				if (resolve) return getOwningFeature();
+				return basicGetOwningFeature();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
+				setSubsettedFeature((Feature)newValue);
+				return;
+			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
+				setSubsettingFeature((Feature)newValue);
+				return;
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				setOwningFeature((Feature)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
+				setSubsettedFeature((Feature)null);
+				return;
+			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
+				setSubsettingFeature((Feature)null);
+				return;
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				setOwningFeature((Feature)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.SUBSETTING__GENERAL:
+				return isSetGeneral();
+			case SysMLPackage.SUBSETTING__SPECIFIC:
+				return isSetSpecific();
+			case SysMLPackage.SUBSETTING__OWNING_TYPE:
+				return isSetOwningType();
+			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
+				return isSetSubsettedFeature();
+			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
+				return isSetSubsettingFeature();
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				return isSetOwningFeature();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } // SubsettingImpl

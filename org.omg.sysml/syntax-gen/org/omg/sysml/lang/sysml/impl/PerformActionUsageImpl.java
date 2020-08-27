@@ -2,7 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
@@ -71,7 +72,7 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	public ActionUsage basicGetPerformedAction() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = getOwnedSubsetting_comp();		
+		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
 				allMatch(feature->feature == subsettingBaseDefault || 
 				         feature == subsettingPartDefault)) {

@@ -15,6 +15,8 @@ import com.google.inject.Binder
 import com.google.inject.name.Names
 import org.eclipse.xtext.validation.CompositeEValidator
 import org.omg.kerml.xtext.scoping.KerMLLinker
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
+import org.omg.kerml.xtext.scoping.KerMLResourceDescriptionStrategy
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -44,4 +46,8 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	def void configureUseEObjectValidator(Binder binder) {
 		binder.bind(Boolean).annotatedWith(Names.named(CompositeEValidator.USE_EOBJECT_VALIDATOR)).toInstance(false);
 	}
+	
+	def Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+        KerMLResourceDescriptionStrategy
+    }
 }

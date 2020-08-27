@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -291,6 +292,8 @@ public class SysML2PlantUMLText {
     private MODE getMode(EObject eObj) {
         if (eObj instanceof StateUsage) {
             return MODE.StateMachine;
+        } else if (eObj instanceof ActionUsage) {
+            return MODE.Activity;
         } else {
             return MODE.MIXED;
         }

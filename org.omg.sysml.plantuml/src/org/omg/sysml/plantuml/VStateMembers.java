@@ -31,6 +31,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -177,7 +178,13 @@ public class VStateMembers extends VDefault {
             if (s == null) continue;
             switch (tfm.getKind()) {
             case TRIGGER:
-                triggerString = getText(s);
+                VTraverser v = new VTraverser(this) {
+                    public String caseItemFeature(ItemFeature itemFeature) {
+                        addTypeText("", itemFeature);
+                        return "";
+                    }
+                };
+                triggerString = v.traverse(s);
                 break;
             case GUARD:
                 guardString = getText(s);
@@ -190,18 +197,19 @@ public class VStateMembers extends VDefault {
 
         LineFoldStringBuilder ls = new LineFoldStringBuilder();
         if (triggerString != null) {
-            ls.append(triggerString);
+            ls.append(triggerString.trim());
+            ls.append(' ');
         }
         if (guardString != null) {
             ls.fold();
             ls.append('[');
-            ls.append(guardString);
+            ls.append(guardString.trim());
             ls.append(']');
         }
         if (effectString != null) {
             ls.fold();
             ls.append('/');
-            ls.append(effectString);
+            ls.append(effectString.trim());
         }
 
         return ls.toString();

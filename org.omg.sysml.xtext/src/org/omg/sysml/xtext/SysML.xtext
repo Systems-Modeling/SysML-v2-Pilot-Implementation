@@ -51,6 +51,10 @@ Unit returns SysML::Package :
 	| RequirementDefinitionUnit
 	| CaseDefinitionUnit
 	| AnalysisCaseDefinitionUnit
+	| VerificationCaseDefinitionUnit
+	| ViewDefinitionUnit
+	| ViewpointDefinitionUnit
+	| RenderingDefinitionUnit
 	| AttributeUnit
 	| ItemUnit
 	| PartUnit
@@ -61,6 +65,10 @@ Unit returns SysML::Package :
 	| RequirementUnit
 	| CaseUnit
 	| AnalysisCaseUnit
+	| VerificationCaseUnit
+	| ViewUnit
+	| ViewpointUnit
+	| RenderingUnit
 ;
 
 AnonymousPackage returns SysML::Package :
@@ -123,6 +131,22 @@ AnalysisCaseDefinitionUnit returns SysML::AnalysisCaseDefinition :
 	UnitPrefix AnalysisCaseDefDeclaration CaseDefBody
 ;
 
+VerificationCaseDefinitionUnit returns SysML::VerificationCaseDefinition :
+	UnitPrefix VerificationCaseDefDeclaration CaseDefBody
+;
+
+ViewDefinitionUnit returns SysML::ViewDefinition :
+	UnitPrefix ViewDefDeclaration DefinitionBody
+;
+
+ViewpointDefinitionUnit returns SysML::ViewpointDefinition :
+	UnitPrefix ViewpointDefDeclaration RequirementDefBody
+;
+
+RenderingDefinitionUnit returns SysML::RenderingDefinition :
+	UnitPrefix RenderingDefDeclaration DefinitionBody
+;
+
 AttributeUnit returns SysML::AttributeUsage :
 	UnitPrefix AttributeDeclaration UsageCompletion
 ;
@@ -161,6 +185,22 @@ CaseUnit returns SysML::CaseUsage :
 
 AnalysisCaseUnit returns SysML::AnalysisCaseUsage :
 	UnitPrefix AnalysisCaseDeclaration CaseDefBody
+;
+
+VerificationCaseUnit returns SysML::VerificationCaseUsage :
+	UnitPrefix VerificationCaseDeclaration CaseDefBody
+;
+
+ViewUnit returns SysML::ViewUsage :
+	UnitPrefix ViewDeclaration ValuePart? ViewBody
+;
+
+ViewpointUnit returns SysML::ViewpointUsage :
+	UnitPrefix ViewpointDeclaration RequirementDefBody
+;
+
+RenderingUnit returns SysML::RenderingUsage :
+	UnitPrefix RenderingDeclaration UsageCompletion
 ;
 
 fragment UnitPrefix returns SysML::Package :
@@ -225,7 +265,7 @@ fragment PackageDeclaration returns SysML::Package :
 ;
 
 fragment PackageBody returns SysML::Package :
-	'{' ( ownedMembership_comp += PackageMember | ownedImport_comp += Import )* '}'
+	';' | '{' ( ownedMembership_comp += PackageMember | ownedImport_comp += Import )* '}'
 ;
 
 PackagedDefinitionElement returns SysML::Element :
@@ -244,6 +284,10 @@ PackagedDefinitionElement returns SysML::Element :
 	| RequirementDefinition
 	| CaseDefinition
 	| AnalysisCaseDefinition
+	| VerificationCaseDefinition
+	| ViewDefinition
+	| ViewpointDefinition
+	| RenderingDefinition
 	| Comment
 ;
 	
@@ -265,6 +309,10 @@ PackagedUsageElement returns SysML::Usage :
 	| RequirementUsage
 	| CaseUsage
 	| AnalysisCaseUsage
+	| VerificationCaseUsage
+	| ViewUsage
+	| ViewpointUsage
+	| RenderingUsage
 ;
 
 /* PACKAGE MEMBERSHIPS */
@@ -312,6 +360,8 @@ DirectionalStructureUsageElement returns SysML::Usage :
 	| AttributeUsage
 	| ItemRefUsage
 	| PartRefUsage
+	| ViewRefUsage
+	| RenderingRefUsage
 ;
 
 NondirectionalStructureUsageElement returns SysML::Feature :
@@ -339,6 +389,8 @@ DirectionalBehaviorUsageElement returns SysML::Usage :
 	| RequirementRefUsage
 	| CaseRefUsage
 	| AnalysisCaseRefUsage
+	| VerificationCaseRefUsage
+	| ViewpointRefUsage
 ;
 
 NondirectionalBehaviorUsageElement returns SysML::Usage :
@@ -1027,6 +1079,80 @@ AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
 fragment AnalysisCaseDefDeclaration returns SysML::AnalysisCaseDefinition :
 	DefinitionPrefix? AnalysisCaseDefKeyword name = Name 
 	SuperclassingList? SubjectParameterList ReturnParameterPart 
+;
+
+/* VERIFICATION CASE DEFINITIONS */
+
+VerificationCaseKeyword :
+	'verification'
+;
+
+VerificationCaseDefKeyword :
+	VerificationCaseKeyword 'def'
+;
+
+VerificationCaseDefinition returns SysML::VerificationCaseDefinition :
+	VerificationCaseDefDeclaration CaseDefBody
+;
+
+fragment VerificationCaseDefDeclaration returns SysML::VerificationCaseDefinition :
+	DefinitionPrefix? VerificationCaseDefKeyword name = Name 
+	SuperclassingList? SubjectParameterList ReturnParameterPart 
+;
+
+/* VIEW DEFINITION */
+
+ViewKeyword :
+	'view'
+;
+
+ViewDefKeyword :
+	ViewKeyword 'def'
+;
+
+ViewDefinition returns SysML::ViewDefinition :
+	ViewDefDeclaration DefinitionBody
+;
+
+fragment ViewDefDeclaration returns SysML::ViewDefinition :
+	DefinitionPrefix? ViewDefKeyword ClassifierDeclarationCompletion
+;
+
+/* VIEWPOINT DEFINITION */
+
+ViewpointKeyword :
+	'viewpoint'
+;
+
+ViewpointDefKeyword :
+	ViewpointKeyword 'def'
+;
+
+ViewpointDefinition returns SysML::ViewpointDefinition :
+	ViewpointDefDeclaration RequirementDefBody  
+;
+
+fragment ViewpointDefDeclaration returns SysML::ViewpointDefinition :
+	DefinitionPrefix? ViewpointDefKeyword ( 'id' reqId = Name )? name = Name 
+	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart 
+;
+
+/* RENDERING DEFINITION */
+
+RenderingKeyword :
+	'rendering'
+;
+
+RenderingDefKeyword :
+	RenderingKeyword 'def'
+;
+
+RenderingDefinition returns SysML::RenderingDefinition :
+	RenderingDefDeclaration DefinitionBody
+;
+
+fragment RenderingDefDeclaration returns SysML::RenderingDefinition :
+	DefinitionPrefix? RenderingDefKeyword ClassifierDeclarationCompletion
 ;
 
 /* USAGES */
@@ -1897,6 +2023,102 @@ AnalysisCaseUsage returns SysML::AnalysisCaseUsage :
 
 AnalysisCaseRefUsage returns SysML::AnalysisCaseUsage :
 	UsagePrefix? ( 'ref' AnalysisCaseUsageKeyword | isComposite ?= AnalysisCaseUsageKeyword ) CalculationUsageDeclaration CaseDefBody
+;
+
+/* VERIFICATION CASE USAGES */
+
+VerificationCaseUsageKeyword :
+	VerificationCaseKeyword
+;
+
+fragment VerificationCaseDeclaration returns SysML::VerificationCaseUsage :
+    UsagePrefix? VerificationCaseUsageKeyword 
+	name = Name TypePart? CalculationParameterPart
+;
+
+VerificationCaseUsage returns SysML::VerificationCaseUsage :
+	UsagePrefix? VerificationCaseUsageKeyword CalculationUsageDeclaration CaseDefBody
+;
+
+VerificationCaseRefUsage returns SysML::VerificationCaseUsage :
+	UsagePrefix? ( 'ref' VerificationCaseUsageKeyword | isComposite ?= VerificationCaseUsageKeyword ) CalculationUsageDeclaration CaseDefBody
+;
+
+/* VIEW USAGES */
+
+ViewUsageKeyword :
+	ViewKeyword
+;
+
+fragment ViewDeclaration returns SysML::ViewUsage :
+    UsagePrefix? ViewKeyword 
+	name = Name TypePart? SubsettingPart
+;
+
+ViewUsage returns SysML::ViewUsage :
+	UsagePrefix? ViewUsageKeyword UsageDeclaration ValuePart? ViewBody
+;
+
+ViewRefUsage returns SysML::ViewUsage :
+	UsagePrefix? ( 'ref' ViewUsageKeyword | isComposite ?= ViewUsageKeyword ) UsageDeclaration ValuePart? ViewBody
+;
+
+fragment ViewBody returns SysML::ViewUsage :
+	';' | '{' ViewBodyItem* '}'
+;
+
+
+fragment ViewBodyItem returns SysML::ViewUsage :
+	  DefinitionBodyItem
+	| ownedImport_comp += Expose
+;
+
+Expose returns SysML::Expose :
+	( ownedRelationship_comp += PrefixAnnotation )*
+	( visibility = PackageElementVisibilityIndicator )?  
+	'expose' (
+	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
+	| importedPackage = [SysML::Package|ColonQualifiedName] '::' '*' 
+	| importedPackage = [SysML::Package|DotQualifiedName] '.' '*'
+	) ';'
+;
+
+/* VIEWPOINT USAGES */
+
+ViewpointUsageKeyword :
+	ViewpointKeyword
+;
+
+fragment ViewpointDeclaration returns SysML::ViewpointUsage :
+    UsagePrefix? ViewpointUsageKeyword 
+	( 'id' reqId = Name )? name = Name TypePart? ConstraintParameterPart
+;
+
+ViewpointUsage returns SysML::ViewpointUsage :
+	UsagePrefix? ViewpointUsageKeyword RequirementUsageDeclaration RequirementDefBody
+;
+
+ViewpointRefUsage returns SysML::ViewpointUsage :
+	UsagePrefix? ( 'ref' ViewpointUsageKeyword | isComposite ?= ViewpointUsageKeyword ) RequirementUsageDeclaration RequirementDefBody
+;
+
+/* RENDERING USAGES */
+
+RenderingUsageKeyword :
+	RenderingKeyword
+;
+
+fragment RenderingDeclaration returns SysML::RenderingUsage :
+    UsagePrefix? RenderingKeyword 
+	name = Name TypePart? SubsettingPart
+;
+
+RenderingUsage returns SysML::RenderingUsage :
+	UsagePrefix? RenderingUsageKeyword Usage
+;
+
+RenderingRefUsage returns SysML::RenderingUsage :
+	UsagePrefix? ( 'ref' RenderingUsageKeyword | isComposite ?= RenderingUsageKeyword ) Usage
 ;
 
 /* EXPRESSIONS */

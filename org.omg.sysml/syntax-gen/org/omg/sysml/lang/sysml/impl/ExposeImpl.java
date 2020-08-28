@@ -84,14 +84,11 @@ public class ExposeImpl extends ImportImpl implements Expose {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<Element> getTarget() {
-		if (target == null) {
-			target = new SubsetSupersetEObjectResolvingEList<Element>(Element.class, this, SysMLPackage.EXPOSE__TARGET, null, TARGET_ESUBSETS);
-		}
-		return target;
+		return super.getTarget();
 	}
 
 	/**

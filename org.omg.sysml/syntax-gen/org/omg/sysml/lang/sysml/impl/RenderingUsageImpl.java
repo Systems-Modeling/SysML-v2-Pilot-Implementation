@@ -2,6 +2,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -9,11 +12,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +35,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage {
+	
+	public static final String RENDERING_SUBSETTING_BASE_DEFAULT = "Views::renderings";
+	public static final String RENDERING_SUBSETTING_SUBRENDERING_DEFAULT = "Views::Rendering::subrenderings";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,6 +99,34 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 		return basicGetRenderingDefinition() != null;
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubrendering()? 
+					RENDERING_SUBSETTING_SUBRENDERING_DEFAULT:
+					RENDERING_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	public boolean isSubrendering() {
+		Type owningType = getOwningType();
+		return owningType instanceof RenderingDefinition | owningType instanceof RenderingUsage;
+	}
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return !isParameter() && !isEnd() && isRender()? getRenderFeatures(type):
+			   super.getRelevantFeatures(type);
+	}
+	
+	protected List<? extends Feature> getRenderFeatures(Type type) {
+		List<Feature> features = type == getOwningType()? type.getOwnedFeature(): type.getFeature();
+		return features.stream().filter(RenderingUsage.class::isInstance).collect(Collectors.toList());
+	}
+	
+	public boolean isRender() {
+		Type owningType = getOwningType();
+		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

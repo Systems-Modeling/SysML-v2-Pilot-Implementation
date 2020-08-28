@@ -127,4 +127,4 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 		return super.eIsSet(featureID);
 	}
 
-} //BlockPropertyImpl
+} //PartUsageImpl

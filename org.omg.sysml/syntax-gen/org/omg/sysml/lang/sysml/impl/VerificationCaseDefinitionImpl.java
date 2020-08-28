@@ -15,6 +15,9 @@ import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
  * @generated
  */
 public class VerificationCaseDefinitionImpl extends CaseDefinitionImpl implements VerificationCaseDefinition {
+	
+	public static final String VERIFICATION_CASE_DEFINITION_SUPERCLASS_DEFAULT = "Verifications::VerificationCase";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +35,11 @@ public class VerificationCaseDefinitionImpl extends CaseDefinitionImpl implement
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.VERIFICATION_CASE_DEFINITION;
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return VERIFICATION_CASE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } //VerificationCaseDefinitionImpl

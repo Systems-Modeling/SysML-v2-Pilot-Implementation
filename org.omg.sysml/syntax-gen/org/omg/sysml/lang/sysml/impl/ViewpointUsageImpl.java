@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointDefinition;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 
@@ -24,6 +27,10 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * @generated
  */
 public class ViewpointUsageImpl extends RequirementUsageImpl implements ViewpointUsage {
+
+	public static final String VIEWPOINT_SUBSETTING_BASE_DEFAULT = "Views::viewpointChecks";
+	public static final String VIEWPOINT_SUBSETTING_VIEW_DEFAULT = "Views::View::viewpointSatisfactions";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,6 +88,18 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 */
 	public boolean isSetViewpointDefinition() {
 		return basicGetViewpointDefinition() != null;
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return isSatisfiedViewpoint()?
+					VIEWPOINT_SUBSETTING_VIEW_DEFAULT:
+					VIEWPOINT_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	public boolean isSatisfiedViewpoint() {
+		Type owningType = getOwningType();
+		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
 	}
 
 	/**

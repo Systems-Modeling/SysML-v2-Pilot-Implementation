@@ -23,6 +23,10 @@ import org.omg.sysml.lang.sysml.VerificationCaseUsage;
  * @generated
  */
 public class VerificationCaseUsageImpl extends CaseUsageImpl implements VerificationCaseUsage {
+	
+	public static final String VERIFICATION_CASE_SUBSETTING_BASE_DEFAULT = "Verifications::verificationCases";
+	public static final String VERIFICATION_CASE_SUBSETTING_SUBCASE_DEFAULT = "Verifications::VerificationCase::subVerificationCases";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -73,6 +77,13 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					VERIFICATION_CASE_SUBSETTING_SUBCASE_DEFAULT:
+					VERIFICATION_CASE_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

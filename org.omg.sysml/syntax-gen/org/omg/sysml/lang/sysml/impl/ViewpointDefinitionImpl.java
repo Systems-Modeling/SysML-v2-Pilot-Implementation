@@ -15,6 +15,9 @@ import org.omg.sysml.lang.sysml.ViewpointDefinition;
  * @generated
  */
 public class ViewpointDefinitionImpl extends RequirementDefinitionImpl implements ViewpointDefinition {
+	
+	public static final String VIEWPOINT_DEFINITION_SUPERCLASS_DEFAULT = "Views::ViewpointCheck";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32,6 +35,11 @@ public class ViewpointDefinitionImpl extends RequirementDefinitionImpl implement
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.VIEWPOINT_DEFINITION;
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return VIEWPOINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } //ViewpointDefinitionImpl

@@ -33,6 +33,9 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * @generated
  */
 public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefinition {
+
+	public static final String VIEW_DEFINITION_SUPERCLASS_DEFAULT = "Views::View";
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,6 +137,11 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	@Override
 	public void setRendering(RenderingUsage newRendering) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return VIEW_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

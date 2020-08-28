@@ -17,6 +17,9 @@ import org.eclipse.xtext.validation.CompositeEValidator
 import org.omg.kerml.xtext.scoping.KerMLLinker
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy
 import org.omg.kerml.xtext.scoping.KerMLResourceDescriptionStrategy
+import org.eclipse.xtext.resource.DerivedStateAwareResource
+import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.resource.IDerivedStateComputer
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -50,4 +53,12 @@ class KerMLRuntimeModule extends AbstractKerMLRuntimeModule {
 	def Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
         KerMLResourceDescriptionStrategy
     }
+    	
+	override Class<? extends XtextResource> bindXtextResource() {
+		DerivedStateAwareResource
+	}
+
+	def Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
+		KerMLDerivedStateComputer
+	}
 }

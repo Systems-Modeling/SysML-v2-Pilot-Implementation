@@ -105,24 +105,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	public List<BindingConnector> getArgumentConnectors() {
-		if (argumentConnectors == null) {
-			argumentConnectors = new ArrayList<>();
-			List<Expression> arguments = getArgument();
-			int i = 0;
-			for (Feature input: getInput()) {
-				List<Redefinition> redefinitions = input.getOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					Feature feature = redefinitions.get(0).getRedefinedFeature();
-					if (feature != null) {
-						Expression argument = getArgumentForFeature(arguments, feature, i);
-						if (argument != null) {
-							argumentConnectors.add(addOwnedBindingConnector(argument.getResult(), input));
-						}
-					}
-				}
-				i++;
-			}
-		}
 		return argumentConnectors;
 	}
 	
@@ -167,7 +149,26 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void transform() {
 		super.transform();
-		getArgumentConnectors();
+		
+		// Calculate binding connectors
+		if (argumentConnectors == null) {
+			argumentConnectors = new ArrayList<>();
+			List<Expression> arguments = getArgument();
+			int i = 0;
+			for (Feature input: getInput()) {
+				List<Redefinition> redefinitions = input.getOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					Feature feature = redefinitions.get(0).getRedefinedFeature();
+					if (feature != null) {
+						Expression argument = getArgumentForFeature(arguments, feature, i);
+						if (argument != null) {
+							argumentConnectors.add(addOwnedBindingConnector(argument.getResult(), input));
+						}
+					}
+				}
+				i++;
+			}
+		}
 	}
 	
 	/**

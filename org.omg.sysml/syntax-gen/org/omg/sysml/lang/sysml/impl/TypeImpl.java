@@ -5,8 +5,10 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -232,10 +234,16 @@ public class TypeImpl extends PackageImpl implements Type {
 				collect(Collectors.toList());
 	}
 	
+	private Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
+	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
 			addImplicitGeneralization();
  		}
+	}
+
+	public void cleanImplicitGeneralization() {
+		implicitGeneralizations.clear();
 	}
 	
 	protected void addImplicitGeneralization() {
@@ -243,10 +251,15 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
+		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> doComputeImplicitGeneralization(eClass, superTypeNames));
+	}
+	
+	private Generalization doComputeImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
 		Generalization generalization = getDefaultGeneralization(generalizationEClass, superTypeNames);
 		if (generalization != null) {
 			getOwnedRelationship_comp().add(generalization);
-		}		
+		}
+		return generalization;
 	}
 	
 	protected EClass getGeneralizationEClass() {

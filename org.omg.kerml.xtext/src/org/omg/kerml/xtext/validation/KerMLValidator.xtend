@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
@@ -117,11 +116,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if ( relatedElements !== null && relatedElements.length < 2)
 				error(INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
 		}
-	}
-	
-	@Check
-	def checkElement(Element e) {
-		(e as ElementImpl).transform
 	}
 	
 	@Check

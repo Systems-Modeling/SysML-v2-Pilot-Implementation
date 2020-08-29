@@ -385,7 +385,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<Redefinition> getOwnedRedefinition() {
-		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
+		EList<Redefinition> redefinitions = new EObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION);
+		getOwnedGeneralization().stream().
+			filter(subset->subset instanceof Redefinition).
+			map(subset->(Redefinition)subset).
+			forEachOrdered(redefinitions::add);
+		if (implicitGeneralizations.containsKey(SysMLPackage.Literals.REDEFINITION)) {
+			redefinitions.add((Redefinition)implicitGeneralizations.get(SysMLPackage.Literals.SUBSETTING));
+		}
+		return redefinitions;
 	}
 	
 	public List<Redefinition> basicGetOwnedRedefinition() {
@@ -399,7 +407,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
+		EList<Subsetting> subsettings = new EObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
+		getOwnedGeneralization().stream().
+			filter(Subsetting.class::isInstance).
+			map(Subsetting.class::cast).
+			forEachOrdered(subsettings::add);
+		if (implicitGeneralizations.containsKey(SysMLPackage.Literals.SUBSETTING)) {
+			subsettings.add((Subsetting)implicitGeneralizations.get(SysMLPackage.Literals.SUBSETTING));
+		}
+		return subsettings;
 	}
 	
 	public List<Subsetting> basicGetOwnedSubsetting() {

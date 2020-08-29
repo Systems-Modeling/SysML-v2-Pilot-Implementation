@@ -213,6 +213,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
 		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
+		generalizations.addAll(implicitGeneralizations.values());
 		return generalizations;
 	}
 
@@ -234,7 +235,7 @@ public class TypeImpl extends PackageImpl implements Type {
 				collect(Collectors.toList());
 	}
 	
-	private Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
+	protected Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
 	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
@@ -245,21 +246,21 @@ public class TypeImpl extends PackageImpl implements Type {
 	public void cleanImplicitGeneralization() {
 		implicitGeneralizations.clear();
 	}
+
+	@Override
+	public EList<Relationship> getOwnedRelationship() {
+		computeImplicitGeneralization();
+		EList<Relationship> relationships = super.getOwnedRelationship();
+		relationships.addAll(implicitGeneralizations.values());
+		return relationships;
+	}
 	
 	protected void addImplicitGeneralization() {
 		addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> doComputeImplicitGeneralization(eClass, superTypeNames));
-	}
-	
-	private Generalization doComputeImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		Generalization generalization = getDefaultGeneralization(generalizationEClass, superTypeNames);
-		if (generalization != null) {
-			getOwnedRelationship_comp().add(generalization);
-		}
-		return generalization;
+		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> getDefaultGeneralization(eClass, superTypeNames));
 	}
 	
 	protected EClass getGeneralizationEClass() {

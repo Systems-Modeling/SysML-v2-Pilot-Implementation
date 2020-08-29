@@ -71,6 +71,15 @@ import org.omg.sysml.lang.sysml.CaseDefinition
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition
 import org.omg.sysml.lang.sysml.ParameterMembership
+import org.omg.sysml.lang.sysml.VerificationCaseUsage
+import org.omg.sysml.lang.sysml.VerificationCaseDefinition
+import org.omg.sysml.lang.sysml.ViewUsage
+import org.omg.sysml.lang.sysml.ViewDefinition
+import org.omg.sysml.lang.sysml.ViewpointUsage
+import org.omg.sysml.lang.sysml.ViewpointDefinition
+import org.omg.sysml.lang.sysml.RenderingUsage
+import org.omg.sysml.lang.sysml.RenderingDefinition
+import org.omg.sysml.lang.sysml.Element
 
 /**
  * This class contains custom validation rules. 
@@ -119,6 +128,20 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CASEUSAGE_MSG = 'A case must be typed by one case definition.'
 	public static val INVALID_ANALYSISCASEUSAGE = 'Invalid AnalysisCaseUsage - invalid type'
 	public static val INVALID_ANALYSISCASEUSAGE_MSG = 'An analysis case must be typed by one analysis case definition.'
+	public static val INVALID_VERIFICATIONCASEUSAGE = 'Invalid VerificationCaseUsage - invalid type'
+	public static val INVALID_VERIFICATIONCASEUSAGE_MSG = 'A verification case must be typed by one verification case definition.'
+	public static val INVALID_VIEWUSAGE = 'Invalid ViewUsage - invalid type'
+	public static val INVALID_VIEWUSAGE_MSG = 'A view must be typed by one view definition.'
+	public static val INVALID_VIEWPOINTUSAGE = 'Invalid ViewpointUsage - invalid type'
+	public static val INVALID_VIEWPOINTUSAGE_MSG = 'A viewpoint must be typed by one viewpoint definition.'
+	public static val INVALID_RENDERINGUSAGE = 'Invalid RenderingUsage - invalid type'
+	public static val INVALID_RENDERINGUSAGE_MSG = 'A rendering must be typed by one rendering definition.'
+	
+	public static val INVALID_VIEWDEFINITION_RENDER = 'Invalid ViewDefinition - invalid render';
+	public static val INVALID_VIEWDEFINITION_RENDER_MSG = 'A view definition may have at most one rendering';
+	public static val INVALID_VIEWUSAGE_RENDER = 'Invalid ViewUsage - invalid render';
+	public static val INVALID_VIEWUSAGE_RENDER_MSG = 'A view may have at most one rendering';
+	
 	
 	@Check
 	def checkUsage(Usage usage) {
@@ -170,12 +193,16 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //Must have exactly one type, which is a CaseDefinition.
 	def checkCaseUsageTypes(CaseUsage usg){
-		if (!(usg instanceof AnalysisCaseUsage))
+		if (!(usg instanceof AnalysisCaseUsage || usg instanceof VerificationCaseUsage))
 			checkOneType(usg, CaseDefinition, SysMLValidator.INVALID_CASEUSAGE_MSG, SysMLPackage.eINSTANCE.caseUsage_CaseDefinition, SysMLValidator.INVALID_CASEUSAGE)
 	}
 	@Check //Must have exactly one type, which is an AnalysisCaseDefinition.
 	def checkAnalysisCaseUsageTypes(AnalysisCaseUsage usg){
 		checkOneType(usg, AnalysisCaseDefinition, SysMLValidator.INVALID_ANALYSISCASEUSAGE_MSG, SysMLPackage.eINSTANCE.analysisCaseUsage_AnalysisCaseDefinition, SysMLValidator.INVALID_ANALYSISCASEUSAGE)
+	}
+	@Check //Must have exactly one type, which is a VerificationCaseDefinition.
+	def checkVerificationCaseUsageTypes(VerificationCaseUsage usg){
+		checkOneType(usg, VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE_MSG, SysMLPackage.eINSTANCE.verificationCaseUsage_VerificationCaseDefinition, SysMLValidator.INVALID_VERIFICATIONCASEUSAGE)
 	}
 	@Check //Must have exactly one type, which is an IndividualDefinition
 	def checkIndividualUsageTypes(IndividualUsage usg){
@@ -206,6 +233,18 @@ class SysMLValidator extends KerMLValidator {
 	def checkAttributeUsageTypes(AttributeUsage usg){
 		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
 	}
+	@Check //Must have exactly one type, which is a ViewDefinition. Must have at most one rendering.
+	def checkViewUsageTypes(ViewUsage usg){
+		checkOneType(usg, ViewDefinition, SysMLValidator.INVALID_VIEWUSAGE_MSG, SysMLPackage.eINSTANCE.viewUsage_ViewDefinition, SysMLValidator.INVALID_VIEWUSAGE)
+	}
+	@Check //Must have exactly one type, which is a ViewpointDefinition. 
+	def checkViewpointUsageTypes(ViewpointUsage usg){
+		checkOneType(usg, ViewpointDefinition, SysMLValidator.INVALID_VIEWPOINTUSAGE_MSG, SysMLPackage.eINSTANCE.viewpointUsage_ViewpointDefinition, SysMLValidator.INVALID_VIEWPOINTUSAGE)
+	}
+	@Check //Must have exactly one type, which is a RenderingDefinition. 
+	def checkRenderingUsageTypes(RenderingUsage usg){
+		checkOneType(usg, RenderingDefinition, SysMLValidator.INVALID_RENDERINGUSAGE_MSG, SysMLPackage.eINSTANCE.renderingUsage_RenderingDefinition, SysMLValidator.INVALID_RENDERINGUSAGE)
+	}
 	
 	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
 		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
@@ -228,6 +267,26 @@ class SysMLValidator extends KerMLValidator {
 		if (!check)
 			error (msg, ref, eId)
 		return check
+	}
+	
+	@Check //Must have at most one rendering.
+	def checkViewDefinitionRender(ViewDefinition viewDef){
+		checkAtMostOneElement(viewDef.feature.filter[f|f instanceof RenderingUsage], INVALID_VIEWDEFINITION_RENDER_MSG, INVALID_VIEWDEFINITION_RENDER)
+	}
+	@Check //Must have at most one rendering.
+	def checkViewUsageRender(ViewUsage viewUsg){
+		checkAtMostOneElement(viewUsg.feature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
+	}
+	
+	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {
+		if (elements.size <= 1) {
+			return true;
+		} else {
+			for (var i = 1; i < elements.size; i++) {
+				error(msg, elements.get(i), null, eId);			
+			}
+			return false;
+		}
 	}
 	
 	@Check

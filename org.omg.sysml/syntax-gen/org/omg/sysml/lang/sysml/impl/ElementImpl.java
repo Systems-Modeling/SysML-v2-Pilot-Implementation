@@ -524,14 +524,18 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	public String getHumanId() {
 		return humanId;
 	}
+	
+	@Override
+	public void setHumanId(String newHumanId) {
+		setHumanIdGen(unescapeString(newHumanId));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setHumanId(String newHumanId) {
+	public void setHumanIdGen(String newHumanId) {
 		String oldHumanId = humanId;
 		humanId = newHumanId;
 		if (eNotificationRequired())

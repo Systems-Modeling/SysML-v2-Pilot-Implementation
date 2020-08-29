@@ -98,6 +98,12 @@ fragment UnitPrefix returns SysML::Package :
 	( ownedRelationship_comp += UnitAnnotation )*
 ;
 
+/* IDENTIFICATION */
+
+fragment Identification returns SysML::Element :
+	  ( 'id' humanId = Name )? name = Name
+;
+
 /* VISIBILITY */
 
 enum PackageElementVisibilityIndicator returns SysML::VisibilityKind:
@@ -111,7 +117,7 @@ enum VisibilityIndicator returns SysML::VisibilityKind :
 /* COMMENTS */
 
 Comment returns SysML::Comment :
-	( 'comment' ( name = Name )? ownedRelationship_comp += Annotation
+	( 'comment' Identification? ownedRelationship_comp += Annotation
 	| ownedRelationship_comp += EmptyAnnotation
 	)
 	body = ML_COMMENT
@@ -129,16 +135,27 @@ PrefixAnnotation returns SysML::Annotation :
 	ownedRelatedElement_comp += Documentation
 ;
 
-Documentation returns SysML::Comment :
-	('comment' ( name = Name )? )? body = DOCUMENTATION_COMMENT
-;
-
 UnitAnnotation returns SysML::Annotation :
 	ownedRelatedElement_comp += UnitDocumentation
 ;
 
+/* DOCUMENTATION */
+
+Documentation returns SysML::Comment :
+	( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+;
+
 UnitDocumentation returns SysML::Comment :
-	('comment' ( name = Name )? )? body = ( ML_COMMENT | DOCUMENTATION_COMMENT )
+	  ( 'comment' Identification? )? body = ML_COMMENT 
+    | ( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+;
+
+OwnedDocumentation returns SysML::Documentation :
+	documentingComment_comp = DocumentationComment
+;
+
+DocumentationComment returns SysML::Comment :
+	'doc' ( 'id' humanId = Name )? body = ML_COMMENT
 ;
 
 /* IMPORTS */
@@ -165,11 +182,14 @@ Package returns SysML::Package :
 ;
 
 fragment PackageDefinition returns SysML::Package : 
-	'package' name = Name PackageBody 
+	'package' Identification PackageBody 
 ;
 
 fragment PackageBody returns SysML::Package :
-	'{' ( ownedMembership_comp += PackageMember | ownedImport_comp += PackageImport )* '}'
+	'{' ( documentation_comp += OwnedDocumentation
+		| ownedMembership_comp += PackageMember 
+		| ownedImport_comp += PackageImport
+	    )* '}'
 ;
 
 PackagedNonFeatureElement returns SysML::Element :
@@ -222,8 +242,8 @@ fragment PackageFeatureMemberElement returns SysML::Membership :
 
 fragment TypeBody returns SysML::Type :
 	';' | 
-	'{' ( 
-		  ownedMembership_comp += NonFeatureTypeMember 
+	'{' ( documentation_comp += OwnedDocumentation
+		| ownedMembership_comp += NonFeatureTypeMember 
 		| ownedFeatureMembership_comp += FeatureTypeMember 
 		| ownedImport_comp += PackageImport
 	)* '}'
@@ -274,7 +294,7 @@ fragment ClassifierDeclaration returns SysML::Classifier :
 ;
 
 fragment ClassifierDeclarationCompletion returns SysML::Classifier :	
-    (isSufficient ?= 'all' )? name = Name 
+    (isSufficient ?= 'all' )? Identification 
 //  ( '<' ownedMember += ClassifierTemplateParameter ( ',' ownedMember += ClassifierTemplateParameter )* '>' )? 
 	SpecializationOrConjugation?
 	( ownedFeatureMembership_comp += MultiplicityMember )?
@@ -334,7 +354,7 @@ fragment BehaviorDeclaration returns SysML::Behavior :
 ;
 
 fragment BehaviorDeclarationCompletion returns SysML::Behavior :
-	(isSufficient ?= 'all' )? name = Name SpecializationOrConjugation? ParameterList?
+	(isSufficient ?= 'all' )? Identification SpecializationOrConjugation? ParameterList?
 ;
 
 fragment ParameterList returns SysML::Type :
@@ -343,8 +363,8 @@ fragment ParameterList returns SysML::Type :
 
 fragment BehaviorBody returns SysML::Type :
 	';'| 
-	'{' ( 
-		  ownedMembership_comp += NonFeatureTypeMember 
+	'{' ( documentation_comp += OwnedDocumentation
+		| ownedMembership_comp += NonFeatureTypeMember 
 		| ownedFeatureMembership_comp += FeatureTypeMember
 		| ownedRelationship_comp += PackageImport
 	)* '}'
@@ -364,7 +384,7 @@ Function returns SysML::Function :
 
 fragment FunctionDeclaration returns SysML::Function :
 	( isAbstract ?= 'abstract' )? 'function' (isSufficient ?= 'all' )? 
-	name = Name SpecializationOrConjugation? ParameterList? ReturnParameterPart
+	Identification SpecializationOrConjugation? ParameterList? ReturnParameterPart
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
@@ -373,11 +393,12 @@ fragment ReturnParameterPart returns SysML::Type :
 
 fragment FunctionBody returns SysML::Type :
 	  ';'
-	| '{' ( 
-		  ownedMembership_comp += NonFeatureTypeMember 
-		| ownedFeatureMembership_comp += FeatureTypeMember
-		| ownedRelationship_comp += PackageImport
-		)* ( ownedFeatureMembership_comp += ExpressionMember )? 
+	| '{' ( documentation_comp += OwnedDocumentation
+		  | ownedMembership_comp += NonFeatureTypeMember 
+		  | ownedFeatureMembership_comp += FeatureTypeMember
+		  | ownedRelationship_comp += PackageImport
+		  )* 
+		  ( ownedFeatureMembership_comp += ExpressionMember )? 
 	  '}'
 ;
 
@@ -398,7 +419,7 @@ Predicate returns SysML::Predicate :
 ;
 
 fragment PredicateDeclaration returns SysML::Predicate :
-	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? name = Name  SpecializationOrConjugation?
+	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? Identification  SpecializationOrConjugation?
 	( => ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart )
 ;
 
@@ -438,7 +459,7 @@ fragment FeatureDefinition returns SysML::Feature :
 
 fragment FeatureDeclaration returns SysML::Feature :
 	(isSufficient ?= 'all' )? 
-	( name = Name ( TypePart? SubsettingPart | FeatureConjugationPart )
+	( Identification ( TypePart? SubsettingPart | FeatureConjugationPart )
 	| TypePart SubsettingPart
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart
 	)
@@ -640,7 +661,7 @@ Step returns SysML::Step :
 
 fragment StepDeclaration returns SysML::Step :
 	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? SubsettingPart ( ValuePart | ParameterList )? 
+	( Identification TypePart? SubsettingPart ( ValuePart | ParameterList )? 
 	| TypePart? ( ValuePart | ParameterList )? 
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart 
 	  ( ValuePart | ParameterList )?
@@ -677,7 +698,7 @@ BlockExpression returns SysML::BlockExpression :
 
 fragment ExpressionDeclaration returns SysML::Expression :
 	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? SubsettingPart ( ValuePart | ParameterList ReturnParameterPart )? 
+	( Identification TypePart? SubsettingPart ( ValuePart | ParameterList ReturnParameterPart )? 
 	| TypePart? ( ValuePart | ParameterList ReturnParameterPart )? 
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart 
 	  ( ValuePart | ParameterList ReturnParameterPart )? 
@@ -692,7 +713,7 @@ BooleanExpression returns SysML::BooleanExpression :
 
 fragment BooleanExpressionDeclaration returns SysML::Expression :
 	(isSufficient ?= 'all' )? 
-	( name = Name TypePart? SubsettingPart ( ValuePart | ParameterList )? EmptyReturnParameterPart
+	( Identification TypePart? SubsettingPart ( ValuePart | ParameterList )? EmptyReturnParameterPart
 	| TypePart? ( ValuePart | ParameterList )? EmptyReturnParameterPart
 	| ( ':>>' | 'redefines' ) ownedRelationship_comp += Redefinition TypePart? SubsettingPart 
 	  ( ValuePart | ParameterList )?  EmptyReturnParameterPart

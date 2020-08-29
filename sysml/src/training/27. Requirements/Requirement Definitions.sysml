@@ -3,7 +3,7 @@ package 'Requirement Definitions' {
 	import SI::*;
 
 	requirement def MassLimitationRequirement {
-		/* The actual mass shall be less than or equal to the required mass. */
+		doc /* The actual mass shall be less than or equal to the required mass. */
 		
 		attribute massActual: MassValue;
 		attribute massReqd: MassValue;
@@ -18,7 +18,7 @@ package 'Requirement Definitions' {
 	}
 	
 	requirement def id '1' VehicleMassLimitationRequirement :> MassLimitationRequirement (vehicle : Vehicle) {
-		/* The total mass of a vehicle shall be less than or equal to the required mass. */
+		doc /* The total mass of a vehicle shall be less than or equal to the required mass. */
 		
 		attribute redefines massActual = vehicle::dryMass + vehicle::fuelMass;
 		
@@ -29,10 +29,10 @@ package 'Requirement Definitions' {
 	action def GenerateTorque;
 	
 	requirement def id '2' DrivePowerInterface (clutchPort: ClutchPort) {
-		/* The engine shall transfer its generated torque to the transmission via the clutch interface. */
+		doc /* The engine shall transfer its generated torque to the transmission via the clutch interface. */
 	}
 		
 	requirement def id '3' TorqueGeneration (generateTorque: GenerateTorque) {
-		/* The engine shall generate torque as a function of RPM as shown in Table 1. */
+		doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
 	}
 }

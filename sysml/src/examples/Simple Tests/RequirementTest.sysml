@@ -1,9 +1,9 @@
 package RequirementTest {
 	requirement def R {
-		/* */
+		doc /* */
     	requirement;
-    	requirement def A {
-    		/* Text */
+    	requirement def id '1' A {
+    		doc /* Text */
     	}
 	}
 }

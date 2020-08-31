@@ -23,7 +23,6 @@ package test{
 	class B{
 		  //* XPECT errors ---
 			"Couldn't resolve reference to Type 'test'." at "test"
-			"no viable alternative at input ':'" at ":"
 		--- */
 		feature b: test:A::a;
 	}

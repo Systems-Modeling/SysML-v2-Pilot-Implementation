@@ -7,7 +7,7 @@ package ControlFunctions {
 		composite abstract expr elseValue[0..1] (): Anything[0..*];
 	}
 	
-	abstract function '??'(firstValue: Anything[0..*]) {
+	abstract function '??'(firstValue: Anything[0..*]): Anything[0..*] {
 		composite abstract expr secondValue[0..1] (): Anything[0..*];
 	}
 	

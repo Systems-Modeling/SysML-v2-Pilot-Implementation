@@ -751,7 +751,7 @@ fragment ActionDefBodyItem returns SysML::Type :
 /* ACTION DEFINITION MEMBERSHIPS */
 
 ParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection )? memberName = Name ownedMemberFeature_comp = Parameter
+	( direction = FeatureDirection )? ownedMemberFeature_comp = Parameter
 ;
 
 InitialNodeMember returns SysML::FeatureMembership :
@@ -790,12 +790,26 @@ CalculationDefinition returns SysML::CalculationDefinition :
 
 fragment CalculationDefDeclaration returns SysML::CalculationDefinition :
 	DefinitionPrefix? CalculationDefKeyword Identification 
-	SuperclassingList? ParameterList? ReturnParameterPart 
+	SuperclassingList? ParameterPart
+;
+
+fragment ParameterPart returns SysML::Type :
+	  ParameterList ( ReturnParameterPart | EmptyReturnParameterPart )
+	| EmptyReturnParameterPart
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
 	ownedFeatureMembership_comp += ReturnParameterMember
 ;
+
+fragment EmptyReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += EmptyReturnParameterMember
+;
+
+EmptyParameter returns SysML::Usage :
+	{SysML::ReferenceUsage}
+;
+
 
 fragment CalculationDefBody returns SysML::Type :
 	    ';' 
@@ -821,7 +835,11 @@ fragment CalculationDefBodyItem returns SysML::Type :
 /* CALCULATION DEFINITION MEMBERSHIPS */
 
 ReturnParameterMember returns SysML::ReturnParameterMembership :
-	( 'return' )? ( memberName = Name )? ownedMemberParameter_comp = Parameter
+	( 'return' )? ownedMemberParameter_comp = Parameter
+;
+
+EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = EmptyParameter
 ;
 
 /* STATE DEFINITIONS */
@@ -954,15 +972,7 @@ fragment ConstraintDefMembers returns SysML::Type :
 	( ownedFeatureMembership_comp += ConstraintExpressionMember )?
 ;
 
-fragment EmptyReturnParameterPart returns SysML::Type :
-	ownedFeatureMembership_comp += EmptyReturnParameterMember
-;
-
 /* CONSTRAINT DEFINITION MEMBERSHIPS */
-
-EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedMemberFeature_comp = EmptyParameter
-;
 
 ConstraintExpressionMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix ownedMemberFeature_comp = Expression
@@ -1036,13 +1046,14 @@ CaseDefinition returns SysML::CaseDefinition :
 
 fragment CaseDefDeclaration returns SysML::CaseDefinition :
 	DefinitionPrefix? CaseDefKeyword Identification 
-	SuperclassingList? SubjectParameterList ReturnParameterPart 
+	SuperclassingList? SubjectParameterList
 ;
 
 fragment SubjectParameterList returns SysML::Type :
 	  ownedFeatureMembership_comp += EmptySubjectParameterMember
-	| '(' ownedFeatureMembership_comp += EmptySubjectParameterMember ')'
-	| '(' ownedFeatureMembership_comp += SubjectParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
+	| ( '(' ownedFeatureMembership_comp += EmptySubjectParameterMember ')'
+	  | '(' ownedFeatureMembership_comp += SubjectParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
+	  ) ReturnParameterPart?
 ;
 
 fragment CaseDefBody returns SysML::Type :
@@ -1078,7 +1089,7 @@ EmptySubjectParameterMember returns SysML::SubjectMembership :
 ;
 
 SubjectParameterMember returns SysML::SubjectMembership :
-	( direction = InDirection )? memberName = Name ownedSubjectParameter_comp = Parameter
+	( direction = InDirection )? ownedSubjectParameter_comp = Parameter
 ;
 
 InDirection returns SysML::FeatureDirectionKind :
@@ -1105,7 +1116,7 @@ AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
 
 fragment AnalysisCaseDefDeclaration returns SysML::AnalysisCaseDefinition :
 	DefinitionPrefix? AnalysisCaseDefKeyword Identification 
-	SuperclassingList? SubjectParameterList ReturnParameterPart 
+	SuperclassingList? SubjectParameterList 
 ;
 
 /* VERIFICATION CASE DEFINITIONS */
@@ -1124,7 +1135,7 @@ VerificationCaseDefinition returns SysML::VerificationCaseDefinition :
 
 fragment VerificationCaseDefDeclaration returns SysML::VerificationCaseDefinition :
 	DefinitionPrefix? VerificationCaseDefKeyword Identification 
-	SuperclassingList? SubjectParameterList ReturnParameterPart 
+	SuperclassingList? SubjectParameterList 
 ;
 
 /* VIEW DEFINITION */
@@ -1306,11 +1317,26 @@ UnlimitedNaturalLiteralMember returns SysML::FeatureMembership :
 /* PARAMETERS */
 
 Parameter returns SysML::Usage :
-	{SysML::ReferenceUsage} ParameterTypePart?
+      {SysML::ReferenceUsage} ( ParameterDeclaration | ReferenceUsageKeyword ParameterDeclaration?)
+    | {SysML::ItemUsage} ItemUsageKeyword ParameterDeclaration?
+    | {SysML::PartUsage} PartUsageKeyword ParameterDeclaration?
+    | {SysML::ActionUsage} ActionUsageKeyword ParameterDeclaration?
+    | {SysML::CalculationUsage} CalculationUsageKeyword ParameterDeclaration?
+    | {SysML::ConstraintUsage} ConstraintUsageKeyword ParameterDeclaration?
 ;
 
-fragment ParameterTypePart returns SysML::Usage :
-	DefinedBy+ MultiplicityPart? | MultiplicityPart	DefinedBy*
+fragment ParameterDeclaration returns SysML::Usage :
+	  Identification ParameterSpecializationPart? 
+	| ParameterSpecializationPart
+;
+
+fragment ParameterSpecializationPart returns SysML::Feature :
+	  ( Subsets | Redefines | DefinedBy MultiplicityPart? ) ParameterSpecialization*
+	| MultiplicityPart ParameterSpecialization*
+;
+
+fragment ParameterSpecialization returns SysML::Feature :
+	DefinedBy | Subsets | Redefines
 ;
 
 /* REFERENCE USAGES */
@@ -1679,11 +1705,11 @@ ActionUsageKeyword :
 ;
 
 fragment ActionDeclaration returns SysML::ActionUsage :
-    UsagePrefix? ActionUsageKeyword UsageDeclaration? ( ValuePart | ActionParameterList )?
+    UsagePrefix? ActionUsageKeyword ActionUsageDeclaration
 ;
 
 ActionUsage returns SysML::ActionUsage :
-	UsagePrefix? ActionUsageKeyword ActionUsageDeclaration ActionDefBody
+	ActionDeclaration ActionDefBody
 ;
 
 ActionRefUsage returns SysML::ActionUsage :
@@ -1695,14 +1721,17 @@ fragment ActionUsageDeclaration returns SysML::Step :
 ;
 
 fragment ActionParameterList returns SysML::Type :
-	'(' ( ownedFeatureMembership_comp += ActionParameterMember ( ownedFeatureMembership_comp += ActionParameterFlowMember )?
-		  ( ',' ownedFeatureMembership_comp += ActionParameterMember ( ownedFeatureMembership_comp += ActionParameterFlowMember )? )*
-		)?
-	')'
+	'(' ( ActionArgument ( ',' ActionArgument )* )? ')'
+;
+
+fragment ActionArgument returns SysML::Type :
+	  ownedFeatureMembership_comp += ActionParameterMember
+	| ownedFeatureMembership_comp += ( ParameterMember | DirectionParameterMember ) 
+	  ownedFeatureMembership_comp += ActionParameterFlowMember
 ;
 
 ActionParameter returns SysML::Usage :
-	{SysML::ReferenceUsage} ParameterTypePart? ValuePart?
+	Parameter ValuePart? | {SysML::ReferenceUsage} ValuePart
 ;
 
 ActionParameterFlow returns SysML::ItemFlow :
@@ -1770,17 +1799,10 @@ ForkNode returns SysML::ForkNode :
 	UsagePrefix? isComposite ?= 'fork' UsageDeclaration? ';'
 ;
 
-EmptyParameter returns SysML::Usage :
-	{SysML::ReferenceUsage}
-;
-
 /* ACTION MEMBERSHIPS */
 
 ActionParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection
-    | ( direction = FeatureDirection )? memberName = Name 
-    )
-	ownedMemberFeature_comp = ActionParameter
+	( direction = FeatureDirection )? ownedMemberParameter_comp = ActionParameter
 ;
 
 ActionParameterFlowMember returns SysML::FeatureMembership :
@@ -1789,6 +1811,10 @@ ActionParameterFlowMember returns SysML::FeatureMembership :
 
 EmptySuccessionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = EmptySuccession
+;
+
+DirectionParameterMember returns SysML::ParameterMembership :
+	( direction = FeatureDirection )? ownedMemberParameter_comp = EmptyParameter
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
@@ -1802,11 +1828,11 @@ CalculationUsageKeyword :
 ;
 
 fragment CalculationDeclaration returns SysML::CalculationUsage :
-    UsagePrefix? CalculationUsageKeyword UsageDeclaration? CalculationParameterPart
+    UsagePrefix? CalculationUsageKeyword CalculationUsageDeclaration
 ;
 
 CalculationUsage returns SysML::CalculationUsage :
-	UsagePrefix? CalculationUsageKeyword CalculationUsageDeclaration CalculationDefBody
+	CalculationDeclaration CalculationDefBody
 ;
 
 CalculationRefUsage returns SysML::CalculationUsage :
@@ -1818,13 +1844,18 @@ fragment CalculationUsageDeclaration returns SysML::Step :
 ;
 
 fragment CalculationParameterPart returns SysML::Feature :
-	( ValuePart | ActionParameterList ownedFeatureMembership_comp += CalculationReturnParameterMember )?
+	  ActionParameterList ( CalculationReturnParameterPart | EmptyReturnParameterPart )
+	| ValuePart? EmptyReturnParameterPart
+;
+
+fragment CalculationReturnParameterPart returns SysML::Feature :
+	ownedFeatureMembership_comp += CalculationReturnParameterMember
 ;
 
 /* CALCULATION MEMBERSHIPS */
 
 CalculationReturnParameterMember returns SysML::ReturnParameterMembership :
-	( 'return' )? ( memberName = Name )? ownedMemberParameter_comp = ActionParameter
+	( 'return' )? ownedMemberParameter_comp = ActionParameter
 ;
 
 /* STATE USAGES */
@@ -2019,11 +2050,11 @@ CaseUsageKeyword :
 ;
 
 fragment CaseDeclaration returns SysML::CaseUsage :
-    UsagePrefix? CaseUsageKeyword UsageDeclaration? CalculationParameterPart
+    UsagePrefix? CaseUsageKeyword CalculationUsageDeclaration
 ;
 
 CaseUsage returns SysML::CaseUsage :
-	UsagePrefix? CaseUsageKeyword CalculationUsageDeclaration CaseDefBody
+	CaseDeclaration CaseDefBody
 ;
 
 CaseRefUsage returns SysML::CaseUsage :
@@ -2037,11 +2068,11 @@ AnalysisCaseUsageKeyword :
 ;
 
 fragment AnalysisCaseDeclaration returns SysML::AnalysisCaseUsage :
-    UsagePrefix? AnalysisCaseUsageKeyword UsageDeclaration? CalculationParameterPart
+    UsagePrefix? AnalysisCaseUsageKeyword CalculationUsageDeclaration
 ;
 
 AnalysisCaseUsage returns SysML::AnalysisCaseUsage :
-	UsagePrefix? AnalysisCaseUsageKeyword CalculationUsageDeclaration CaseDefBody
+	AnalysisCaseDeclaration CaseDefBody
 ;
 
 AnalysisCaseRefUsage returns SysML::AnalysisCaseUsage :
@@ -2055,11 +2086,11 @@ VerificationCaseUsageKeyword :
 ;
 
 fragment VerificationCaseDeclaration returns SysML::VerificationCaseUsage :
-    UsagePrefix? VerificationCaseUsageKeyword UsageDeclaration? CalculationParameterPart
+    UsagePrefix? VerificationCaseUsageKeyword CalculationUsageDeclaration
 ;
 
 VerificationCaseUsage returns SysML::VerificationCaseUsage :
-	UsagePrefix? VerificationCaseUsageKeyword CalculationUsageDeclaration CaseDefBody
+	VerificationCaseDeclaration CaseDefBody
 ;
 
 VerificationCaseRefUsage returns SysML::VerificationCaseUsage :
@@ -2319,6 +2350,10 @@ BodyExpression returns SysML::BlockExpression :
 	 | ownedRelationship_comp += ExpressionTyping
 ;
 
+BodyParameter returns SysML::Usage :
+	{SysML::ReferenceUsage} ( DefinedBy MultiplicityPart? | MultiplicityPart DefinedBy? )?
+;
+
 ExpressionTyping returns SysML::FeatureTyping :
 	type = [ SysML::Function | QualifiedName ]
 ;
@@ -2441,7 +2476,7 @@ BodyMember returns SysML::FeatureMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	memberName = Name ownedMemberFeature_comp = Parameter
+	memberName = Name ownedMemberParameter_comp = BodyParameter
 ;
 
 /* QUERY PATH EXPRESSIONS */

@@ -47,6 +47,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_PackagedDefinitionMember_AliasKeyword_1_0_1_or_ImportKeyword_1_0_0;
+	protected AbstractElementAlias match_Parameter_ReferenceUsageKeywordParserRuleCall_0_1_1_0_q;
 	protected AbstractElementAlias match_PortEndUsage_PortUsageKeywordParserRuleCall_1_q;
 	protected AbstractElementAlias match_PortTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q;
 	protected AbstractElementAlias match_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q;
@@ -84,6 +85,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
 		match_PackagedDefinitionMember_AliasKeyword_1_0_1_or_ImportKeyword_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getAliasKeyword_1_0_1()), new TokenAlias(false, false, grammarAccess.getPackagedDefinitionMemberAccess().getImportKeyword_1_0_0()));
+		match_Parameter_ReferenceUsageKeywordParserRuleCall_0_1_1_0_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getReferenceUsageKeywordParserRuleCall_0_1_1_0());
 		match_PortEndUsage_PortUsageKeywordParserRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getPortEndUsageAccess().getPortUsageKeywordParserRuleCall_1());
 		match_PortTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getPortTypePartAccess().getDefinedByKeywordParserRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getPortTypePartAccess().getAnyKeyword_0_1_1()));
 		match_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getReferenceEndUsageAccess().getReferenceUsageKeywordParserRuleCall_1());
@@ -844,6 +846,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackagedDefinitionMember_AliasKeyword_1_0_1_or_ImportKeyword_1_0_0.equals(syntax))
 				emit_PackagedDefinitionMember_AliasKeyword_1_0_1_or_ImportKeyword_1_0_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Parameter_ReferenceUsageKeywordParserRuleCall_0_1_1_0_q.equals(syntax))
+				emit_Parameter_ReferenceUsageKeywordParserRuleCall_0_1_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PortEndUsage_PortUsageKeywordParserRuleCall_1_q.equals(syntax))
 				emit_PortEndUsage_PortUsageKeywordParserRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PortTypePart___DefinedByKeywordParserRuleCall_0_0_AnyKeyword_0_1_1__q.equals(syntax))
@@ -1019,24 +1023,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'ref' CalculationUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) CalculationUsageKeyword (ambiguity) (rule start)
-	 *     isAbstract?='abstract' 'ref' CalculationUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' CalculationUsageKeyword (ambiguity) (rule end)
-	 *     isComposite?=CalculationUsageKeyword (ambiguity) (rule end)
-	 *     isNonunique?='nonunique' (ambiguity) (rule end)
-	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' CalculationUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' CalculationUsageKeyword (ambiguity) (rule end)
-	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=CalculationReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=PrefixAnnotation CalculationUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
 	 */
 	protected void emit_CalculationDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1047,7 +1036,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'return'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) memberName=Name
 	 *     (rule start) (ambiguity) ownedMemberParameter_comp=ActionParameter
 	 */
 	protected void emit_CalculationReturnParameterMember_ReturnKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1059,40 +1047,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'ref' AnalysisCaseUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) 'ref' CaseUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) 'ref' VerificationCaseUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) AnalysisCaseUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) CaseUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) VerificationCaseUsageKeyword (ambiguity) (rule start)
-	 *     isAbstract?='abstract' 'ref' AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' CaseUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' VerificationCaseUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' CaseUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' VerificationCaseUsageKeyword (ambiguity) (rule end)
-	 *     isComposite?=AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     isComposite?=CaseUsageKeyword (ambiguity) (rule end)
-	 *     isComposite?=VerificationCaseUsageKeyword (ambiguity) (rule end)
-	 *     isNonunique?='nonunique' (ambiguity) (rule end)
-	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' CaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' VerificationCaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' CaseUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' VerificationCaseUsageKeyword (ambiguity) (rule end)
-	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=CalculationReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=EmptySubjectParameterMember ')' (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=EmptySubjectParameterMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=PrefixAnnotation AnalysisCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=PrefixAnnotation CaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=PrefixAnnotation VerificationCaseUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=SubjectParameterMember ')' (ambiguity) (rule end)
 	 */
 	protected void emit_CaseDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1386,6 +1347,23 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     ReferenceUsageKeyword?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '=' ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=FeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=Redefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=Subset
+	 *     (rule start) (ambiguity) name=Name
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 */
+	protected void emit_Parameter_ReferenceUsageKeywordParserRuleCall_0_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     PortUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
@@ -1535,7 +1513,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'return'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) memberName=Name
 	 *     (rule start) (ambiguity) ownedMemberParameter_comp=Parameter
 	 */
 	protected void emit_ReturnParameterMember_ReturnKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {

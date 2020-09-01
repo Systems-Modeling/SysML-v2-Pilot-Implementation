@@ -40,6 +40,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__;
 	protected AbstractElementAlias match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
+	protected AbstractElementAlias match_Parameter_FeatureKeyword_0_0_q;
 	protected AbstractElementAlias match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1;
 	protected AbstractElementAlias match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1;
 	protected AbstractElementAlias match_SpecializationOrConjugation_ConjugatesKeyword_1_0_1_or_TildeKeyword_1_0_0;
@@ -71,6 +72,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_NullExpression_SequenceConstructionExpression_NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
 		match_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getPackageBodyAccess().getSemicolonKeyword_0()));
 		match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getPackageImportAccess().getFullStopKeyword_3_0_1_1()));
+		match_Parameter_FeatureKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getFeatureKeyword_0_0());
 		match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getColonGreaterThanSignGreaterThanSignKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getRedefinesAccess().getRedefinesKeyword_0_1()));
 		match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getColonGreaterThanSignKeyword_0_0_0()), new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getSpecializesKeyword_0_0_1()));
 		match_SpecializationOrConjugation_ConjugatesKeyword_1_0_1_or_TildeKeyword_1_0_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getConjugatesKeyword_1_0_1()), new TokenAlias(false, false, grammarAccess.getSpecializationOrConjugationAccess().getTildeKeyword_1_0_0()));
@@ -130,6 +132,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PackageBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
 				emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Parameter_FeatureKeyword_0_0_q.equals(syntax))
+				emit_Parameter_FeatureKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1.equals(syntax))
 				emit_Redefines_ColonGreaterThanSignGreaterThanSignKeyword_0_0_or_RedefinesKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SpecializationOrConjugation_ColonGreaterThanSignKeyword_0_0_0_or_SpecializesKeyword_0_0_1.equals(syntax))
@@ -246,6 +250,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=StepParameterMember ')' (ambiguity) (rule end)
 	 *     ownedImport_comp+=PackageImport 'behavior' (ambiguity) (rule end)
 	 *     ownedMembership_comp+=ElementAlias 'behavior' (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Conjugation (ambiguity) (rule end)
@@ -419,28 +424,21 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'expr' (ambiguity) (rule start)
-	 *     (rule start) 'function' (ambiguity) (rule start)
 	 *     humanId=Name (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'expr' (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'function' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isSufficient?='all' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
-	 *     ownedImport_comp+=PackageImport 'function' (ambiguity) (rule end)
-	 *     ownedMembership_comp+=ElementAlias 'function' (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Conjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Redefinition (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=Subset (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=Superclassing (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=UnitAnnotation 'function' (ambiguity) (rule end)
 	 */
 	protected void emit_FunctionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -497,6 +495,23 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     importedPackage=[Package|Name] (ambiguity) '*' ';' (rule end)
 	 */
 	protected void emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'feature'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) 'id' humanId=Name
+	 *     (rule start) (ambiguity) (':' | ('typed' 'by')) ownedRelationship_comp+=FeatureTyping
+	 *     (rule start) (ambiguity) (':>' | 'subsets') ownedRelationship_comp+=Subset
+	 *     (rule start) (ambiguity) (':>>' | 'redefines') ownedRelationship_comp+=Redefinition
+	 *     (rule start) (ambiguity) isSufficient?='all'
+	 *     (rule start) (ambiguity) name=Name
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 */
+	protected void emit_Parameter_FeatureKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

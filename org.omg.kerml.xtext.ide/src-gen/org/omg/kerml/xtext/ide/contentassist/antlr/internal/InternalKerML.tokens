@@ -40,7 +40,7 @@
 'assoc'=72
 'behavior'=73
 'binding'=89
-'bool'=99
+'bool'=98
 'by'=83
 'class'=70
 'classifier'=68
@@ -51,7 +51,7 @@
 'datatype'=71
 'doc'=60
 'end'=67
-'expr'=98
+'expr'=97
 'false'=49
 'feature'=65
 'first'=93
@@ -65,7 +65,7 @@
 'inout'=56
 'instanceof'=37
 'interaction'=78
-'inv'=97
+'inv'=99
 'is'=66
 'nonunique'=108
 'null'=101

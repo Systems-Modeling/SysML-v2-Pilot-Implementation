@@ -375,7 +375,7 @@ fragment BehaviorBody returns SysML::Type :
 /* BEHAVIOR MEMBERSHIPS */
 
 ParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection )? memberName = Name ownedMemberParameter_comp = Parameter
+	( direction = FeatureDirection )? ownedMemberParameter_comp = Parameter
 ;
 
 /* FUNCTIONS */
@@ -386,11 +386,24 @@ Function returns SysML::Function :
 
 fragment FunctionDeclaration returns SysML::Function :
 	( isAbstract ?= 'abstract' )? 'function' (isSufficient ?= 'all' )? 
-	Identification? SpecializationOrConjugation? ( ParameterList ReturnParameterPart )?
+	Identification? SpecializationOrConjugation? ParameterPart
+;
+
+fragment ParameterPart returns SysML::Type :
+	  ParameterList ( ReturnParameterPart | EmptyReturnParameterPart )
+	| EmptyReturnParameterPart
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
 	ownedFeatureMembership_comp += ReturnParameterMember
+;
+
+fragment EmptyReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += EmptyReturnParameterMember
+;
+
+EmptyParameter returns SysML::Feature :
+	{SysML::Feature}
 ;
 
 fragment FunctionBody returns SysML::Type :
@@ -407,7 +420,11 @@ fragment FunctionBody returns SysML::Type :
 /* FUNCTION MEMBERSHIPS */
 
 ReturnParameterMember returns SysML::ReturnParameterMembership :
-	( memberName = Name )? ownedMemberParameter_comp = Parameter
+	ownedMemberParameter_comp = Parameter
+;
+
+EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = EmptyParameter
 ;
 
 ExpressionMember returns SysML::FeatureMembership :
@@ -421,22 +438,8 @@ Predicate returns SysML::Predicate :
 ;
 
 fragment PredicateDeclaration returns SysML::Predicate :
-	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? Identification?  SpecializationOrConjugation?
-	( => ParameterList ReturnParameterPart | ParameterList? EmptyReturnParameterPart )
-;
-
-fragment EmptyReturnParameterPart returns SysML::Type :
-	ownedFeatureMembership_comp += EmptyReturnParameterMember
-;
-
-EmptyParameter returns SysML::Feature :
-	{SysML::Feature}
-;
-
-/* PREDICATE MEMBERSHIPS */
-
-EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedMemberFeature_comp = EmptyParameter
+	( isAbstract ?= 'abstract' )? 'predicate' (isSufficient ?= 'all' )? 
+	Identification?  SpecializationOrConjugation? ParameterPart
 ;
 
 /* INTERACTIONS */
@@ -665,8 +668,26 @@ EmptyItemFeatureMember returns SysML::FeatureMembership :
 /* PARAMETERS */
 
 Parameter returns SysML::Feature :
-	{SysML::Feature} 	  
-	( TypedBy+ MultiplicityPart? | MultiplicityPart TypedBy* )?
+      'feature'? ParameterDeclaration
+    | {SysML::Step} 'step' ParameterDeclaration
+    | {SysML::Expression} 'expr' ParameterDeclaration
+    | {SysML::BooleanExpression} 'bool' ParameterDeclaration
+;
+
+fragment ParameterDeclaration returns SysML::Feature :
+	( isSufficient ?= 'all' )? 
+    ( Identification ParameterSpecializationPart? 
+	| ParameterSpecializationPart
+	)
+;
+
+fragment ParameterSpecializationPart returns SysML::Feature :
+	  ( Subsets | Redefines | TypedBy MultiplicityPart? ) ParameterSpecialization*
+	| MultiplicityPart ParameterSpecialization*
+;
+
+fragment ParameterSpecialization returns SysML::Feature :
+	TypedBy | Subsets | Redefines
 ;
 
 /* STEPS */
@@ -676,7 +697,22 @@ Step returns SysML::Step :
 ;
 
 fragment StepDeclaration returns SysML::Step :
-	FeatureDeclaration? ( ValuePart | ParameterList )?
+	FeatureDeclaration? ( ValuePart | StepParameterList )?
+;
+
+fragment StepParameterList returns SysML::Step :
+	'(' ( ownedFeatureMembership_comp += StepParameterMember
+	    ( ',' ownedFeatureMembership_comp += StepParameterMember )* )? ')'
+;
+
+StepParameter returns SysML::Feature :
+	Parameter ValuePart? 
+;
+
+/* STEP MEMBERSHIPS */
+
+StepParameterMember returns SysML::ParameterMembership :
+	( direction = FeatureDirection )? ownedMemberParameter_comp = StepParameter
 ;
 
 /* INVARIANTS */
@@ -708,7 +744,7 @@ BlockExpression returns SysML::BlockExpression :
 ;
 
 fragment ExpressionDeclaration returns SysML::Expression :
-	FeatureDeclaration? ( ValuePart | ParameterList ReturnParameterPart )? 
+	FeatureDeclaration? ( ValuePart | ParameterList ReturnParameterPart? )? 
 ;
 
 // Boolean Expressions
@@ -898,6 +934,10 @@ BodyExpression returns SysML::BlockExpression :
 	 | ownedRelationship_comp += ExpressionTyping
 ;
 
+BodyParameter returns SysML::Feature :
+	{SysML::Feature} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
+;
+
 ExpressionTyping returns SysML::FeatureTyping :
 	type = [ SysML::Function | QualifiedName ]
 ;
@@ -1016,7 +1056,7 @@ BodyMember returns SysML::FeatureMembership :
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
-	memberName = Name ownedMemberFeature_comp = Parameter
+	memberName = Name ownedMemberParameter_comp = BodyParameter
 ;
 
 /* NAMES */

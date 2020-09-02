@@ -24,14 +24,14 @@ var enableMode = function (CodeMirror) {
     CodeMirror.defineMode("sysml", function (config) {
         return CodeMirror.getMode(config, {
             name: "clike",
-            keywords: words("about abstract accept action activity alias allInstances analysis any as assert assoc assume attribute bind block by " +
-                "calc case comment connect constraint decide def do else end entry exhibit exit first flow fork from hastype id if import " +
-                "in inout instanceof interface individual item join link merge nonunique objective of ordered out package part perform port private " +
-                "protected public redefines ref require requirement return satisfy send snapshot specializes state stream subsets succession then " + 
-                "timeslice to transition type typed value variant variation"
+            keywords: words("about abstract accept action activity alias all allInstances analysis any as assert assoc assume attribute bind block by " +
+                "calc case comment connect connection constraint decide def defined do doc else end entry exhibit exit first flow fork from hastype id if " +
+                "import in inout instanceof interface individual istype item join link merge nonunique objective of ordered out package part perform port private " +
+                "protected public redefines ref rendering require requirement return satisfy send snapshot specializes state stream subsets succession then " + 
+                "timeslice to transition type value variant variation verification view viewpoint"
                 ),
-            defKeywords: words("action activity analysis assoc attribute block calc case constraint def id link individual interface item package " +
-                               "objective part port ref requirement snapshot state timeslice transition type value"),
+            defKeywords: words("action activity analysis assoc attribute block calc case comment connection constraint doc def id link individual interface " +
+                               "item package objective part port ref rendering requirement snapshot state timeslice transition type value verification view viewpoint"),
             typeFirstDefinitions: true,
             atoms: words("true false null"),
             number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,

@@ -855,7 +855,7 @@ ClassificationExpression returns SysML::Expression :
 ;
 
 ClassificationOperator :
-	'instanceof' | 'hastype'
+	'instanceof' | 'hastype' | 'istype'
 ;
 
 // Relational Expressions
@@ -949,7 +949,7 @@ BaseExpression returns SysML::Expression :
 	| LiteralExpression 
 	| FeatureReferenceExpression 
 	| InvocationExpression 
-	| ClassExtentExpression
+	| ExtentExpression
 	| SequenceConstructionExpression 
 	| '(' Expression ')'
 ;
@@ -978,8 +978,9 @@ fragment NamedTuple returns SysML::Expression :
 	ownedFeatureMembership_comp += NamedExpressionMember ( ',' ownedFeatureMembership_comp += NamedExpressionMember )*
 ;
 
-ClassExtentExpression returns SysML::OperatorExpression :
-	ownedFeatureMembership_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
+ExtentExpression returns SysML::OperatorExpression :
+	  ownedFeatureMembership_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
+	| operator = 'all' ownedFeatureMembership_comp += TypeReferenceMember
 ;
 
 TypeReference returns SysML::Feature :

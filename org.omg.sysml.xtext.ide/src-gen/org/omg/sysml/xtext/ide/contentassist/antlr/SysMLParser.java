@@ -170,6 +170,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyParameterAccess().getAlternatives_1(), "rule__BodyParameter__Alternatives_1");
 			builder.put(grammarAccess.getBaseExpressionAccess().getAlternatives(), "rule__BaseExpression__Alternatives");
 			builder.put(grammarAccess.getTupleAccess().getAlternatives(), "rule__Tuple__Alternatives");
+			builder.put(grammarAccess.getExtentExpressionAccess().getAlternatives(), "rule__ExtentExpression__Alternatives");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives(), "rule__SequenceConstructionExpression__Alternatives");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives_1_2(), "rule__SequenceConstructionExpression__Alternatives_1_2");
 			builder.put(grammarAccess.getLiteralExpressionAccess().getAlternatives(), "rule__LiteralExpression__Alternatives");
@@ -616,7 +617,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPositionalTupleAccess().getGroup_1(), "rule__PositionalTuple__Group_1__0");
 			builder.put(grammarAccess.getNamedTupleAccess().getGroup(), "rule__NamedTuple__Group__0");
 			builder.put(grammarAccess.getNamedTupleAccess().getGroup_1(), "rule__NamedTuple__Group_1__0");
-			builder.put(grammarAccess.getClassExtentExpressionAccess().getGroup(), "rule__ClassExtentExpression__Group__0");
+			builder.put(grammarAccess.getExtentExpressionAccess().getGroup_0(), "rule__ExtentExpression__Group_0__0");
+			builder.put(grammarAccess.getExtentExpressionAccess().getGroup_1(), "rule__ExtentExpression__Group_1__0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_0(), "rule__SequenceConstructionExpression__Group_0__0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_1(), "rule__SequenceConstructionExpression__Group_1__0");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getGroup_1_2_0(), "rule__SequenceConstructionExpression__Group_1_2_0__0");
@@ -994,8 +996,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPositionalTupleAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__PositionalTuple__OwnedFeatureMembership_compAssignment_1_1");
 			builder.put(grammarAccess.getNamedTupleAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__NamedTuple__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getNamedTupleAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__NamedTuple__OwnedFeatureMembership_compAssignment_1_1");
-			builder.put(grammarAccess.getClassExtentExpressionAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__ClassExtentExpression__OwnedFeatureMembership_compAssignment_0");
-			builder.put(grammarAccess.getClassExtentExpressionAccess().getOperatorAssignment_2(), "rule__ClassExtentExpression__OperatorAssignment_2");
+			builder.put(grammarAccess.getExtentExpressionAccess().getOwnedFeatureMembership_compAssignment_0_0(), "rule__ExtentExpression__OwnedFeatureMembership_compAssignment_0_0");
+			builder.put(grammarAccess.getExtentExpressionAccess().getOperatorAssignment_0_2(), "rule__ExtentExpression__OperatorAssignment_0_2");
+			builder.put(grammarAccess.getExtentExpressionAccess().getOperatorAssignment_1_0(), "rule__ExtentExpression__OperatorAssignment_1_0");
+			builder.put(grammarAccess.getExtentExpressionAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__ExtentExpression__OwnedFeatureMembership_compAssignment_1_1");
 			builder.put(grammarAccess.getTypeReferenceAccess().getOwnedRelationship_compAssignment(), "rule__TypeReference__OwnedRelationship_compAssignment");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getOperatorAssignment_1_2_0_1(), "rule__SequenceConstructionExpression__OperatorAssignment_1_2_0_1");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getOperand_compAssignment_1_2_0_2(), "rule__SequenceConstructionExpression__Operand_compAssignment_1_2_0_2");

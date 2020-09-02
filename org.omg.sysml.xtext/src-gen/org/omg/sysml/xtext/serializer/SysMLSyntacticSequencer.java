@@ -963,6 +963,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
+	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
@@ -987,6 +988,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) './' ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
+	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember

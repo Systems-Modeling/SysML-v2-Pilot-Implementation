@@ -39,8 +39,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getTargetInputFeature <em>Target Input Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getSourceOutputFeature <em>Source Output Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowEnd <em>Item Flow End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowFeature <em>Item Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFeature <em>Item Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ItemFlowImpl#getItemFlowFeature <em>Item Flow Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -225,7 +225,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				} else {
 					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
 					if (!features.isEmpty()) {
-						EList<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
+						List<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
 						if (!redefinitions.isEmpty()) {
 							Redefinition redefinition = redefinitions.get(0);
 							if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
@@ -298,10 +298,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return getSourceOutputFeature();
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				return getItemFlowEnd();
-			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				return getItemFlowFeature();
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				return getItemFeature();
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				return getItemFlowFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -339,13 +339,13 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				getItemFlowEnd().clear();
 				getItemFlowEnd().addAll((Collection<? extends ItemFlowEnd>)newValue);
 				return;
-			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				getItemFlowFeature().clear();
-				getItemFlowFeature().addAll((Collection<? extends ItemFlowFeature>)newValue);
-				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				getItemFeature().clear();
 				getItemFeature().addAll((Collection<? extends ItemFeature>)newValue);
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				getItemFlowFeature().clear();
+				getItemFlowFeature().addAll((Collection<? extends ItemFlowFeature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -377,11 +377,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				getItemFlowEnd().clear();
 				return;
-			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				getItemFlowFeature().clear();
-				return;
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				getItemFeature().clear();
+				return;
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				getItemFlowFeature().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -411,10 +411,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				return !getSourceOutputFeature().isEmpty();
 			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_END:
 				return isSetItemFlowEnd();
-			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
-				return !getItemFlowFeature().isEmpty();
 			case SysMLPackage.ITEM_FLOW__ITEM_FEATURE:
 				return !getItemFeature().isEmpty();
+			case SysMLPackage.ITEM_FLOW__ITEM_FLOW_FEATURE:
+				return !getItemFlowFeature().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

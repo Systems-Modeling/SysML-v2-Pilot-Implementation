@@ -31,12 +31,16 @@ import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.lang.sysml.VerificationCaseUsage;
+import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.lang.sysml.ViewpointUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +52,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlow <em>Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedState <em>Owned State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConstraint <em>Owned Constraint</em>}</li>
@@ -68,6 +72,10 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedIndividual <em>Owned Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedInterface <em>Owned Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedView <em>Owned View</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRendering <em>Owned Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
@@ -161,8 +169,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Usage> getFlow() {
-		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__FLOW);
+	public EList<Usage> getFlowFeature() {
+		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__FLOW_FEATURE);
 		getMembership().stream().
 			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
 			map(membership->((FeatureMembership)membership).getMemberFeature()).
@@ -240,6 +248,46 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public EList<AttributeUsage> getOwnedAttribute() {
 		return new DerivedEObjectEList<>(AttributeUsage.class, this, SysMLPackage.DEFINITION__OWNED_ATTRIBUTE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ViewUsage> getOwnedView() {
+		return new DerivedEObjectEList<>(ViewUsage.class, this, SysMLPackage.DEFINITION__OWNED_VIEW, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ViewpointUsage> getOwnedViewpoint() {
+		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.DEFINITION__OWNED_VIEWPOINT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<RenderingUsage> getOwnedRendering() {
+		return new DerivedEObjectEList<>(RenderingUsage.class, this, SysMLPackage.DEFINITION__OWNED_RENDERING, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<VerificationCaseUsage> getOwnedVerificationCase() {
+		return new DerivedEObjectEList<>(VerificationCaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
@@ -464,8 +512,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		switch (featureID) {
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
-			case SysMLPackage.DEFINITION__FLOW:
-				return getFlow();
+			case SysMLPackage.DEFINITION__FLOW_FEATURE:
+				return getFlowFeature();
 			case SysMLPackage.DEFINITION__USAGE:
 				return getUsage();
 			case SysMLPackage.DEFINITION__OWNED_STATE:
@@ -504,6 +552,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedInterface();
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
+			case SysMLPackage.DEFINITION__OWNED_VIEW:
+				return getOwnedView();
+			case SysMLPackage.DEFINITION__OWNED_VIEWPOINT:
+				return getOwnedViewpoint();
+			case SysMLPackage.DEFINITION__OWNED_RENDERING:
+				return getOwnedRendering();
+			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
+				return getOwnedVerificationCase();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
@@ -525,9 +581,9 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
 				return;
-			case SysMLPackage.DEFINITION__FLOW:
-				getFlow().clear();
-				getFlow().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.DEFINITION__FLOW_FEATURE:
+				getFlowFeature().clear();
+				getFlowFeature().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.DEFINITION__USAGE:
 				getUsage().clear();
@@ -604,6 +660,22 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedAttribute().clear();
 				getOwnedAttribute().addAll((Collection<? extends AttributeUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_VIEW:
+				getOwnedView().clear();
+				getOwnedView().addAll((Collection<? extends ViewUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_VIEWPOINT:
+				getOwnedViewpoint().clear();
+				getOwnedViewpoint().addAll((Collection<? extends ViewpointUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_RENDERING:
+				getOwnedRendering().clear();
+				getOwnedRendering().addAll((Collection<? extends RenderingUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
+				getOwnedVerificationCase().clear();
+				getOwnedVerificationCase().addAll((Collection<? extends VerificationCaseUsage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
@@ -627,8 +699,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
-			case SysMLPackage.DEFINITION__FLOW:
-				getFlow().clear();
+			case SysMLPackage.DEFINITION__FLOW_FEATURE:
+				getFlowFeature().clear();
 				return;
 			case SysMLPackage.DEFINITION__USAGE:
 				getUsage().clear();
@@ -687,6 +759,18 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_VIEW:
+				getOwnedView().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_VIEWPOINT:
+				getOwnedViewpoint().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_RENDERING:
+				getOwnedRendering().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
+				getOwnedVerificationCase().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				return;
@@ -709,8 +793,8 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return ownedMembership_comp != null && !ownedMembership_comp.isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
-			case SysMLPackage.DEFINITION__FLOW:
-				return !getFlow().isEmpty();
+			case SysMLPackage.DEFINITION__FLOW_FEATURE:
+				return !getFlowFeature().isEmpty();
 			case SysMLPackage.DEFINITION__USAGE:
 				return !getUsage().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_STATE:
@@ -749,6 +833,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedInterface().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_ATTRIBUTE:
 				return !getOwnedAttribute().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_VIEW:
+				return !getOwnedView().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_VIEWPOINT:
+				return !getOwnedViewpoint().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_RENDERING:
+				return !getOwnedRendering().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
+				return !getOwnedVerificationCase().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:

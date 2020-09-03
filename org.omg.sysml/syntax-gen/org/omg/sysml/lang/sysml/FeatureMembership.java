@@ -9,7 +9,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureMembership is a Membership for Features within Types. The Feature that is a member of a Type is said to be <em>nested</em> under that Type.</p>
+ * <p>FeatureMembership is a Membership for a Feature in a Type that also asserts that all instances of the domain of the Feature are instances of the <code>owningType</code>.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -44,7 +44,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates whether values of&nbsp;the Feature are computed from values of other Features.</p>
+	 * <p>Whether the values of the Feature&nbsp;can always be computed from the values of other Features.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Derived</em>' attribute.
@@ -75,7 +75,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates whether the values of the Feature change after an instance of the Feature&#39;s domain comes into existence.</p>
+	 * <p>Whether the values of the Feature can change over the lifetime of an instance of the domain.&nbsp;</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Read Only</em>' attribute.
@@ -111,7 +111,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>memberFeature</code> indicates a Feature that will have Membership with the FeatureMembership's <code>type</code>.</p>
+	 * <p>The Feature that this FeatureMembership relates to its <code>owningType, making it a <code>feature</code> of the <code>owningType<code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Feature</em>' reference.
 	 * @see #setMemberFeature(Feature)
@@ -149,7 +149,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>memberFeature</code> indicates a Feature that will have Membership with the FeatureMembership's <code>type</code> and be owned by that Type.</p>
+	 * <p>A <code>memberFeature</code> that is owned by this FeatureMembership and hence an <code>ownedFeature</code> of the <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Feature comp</em>' containment reference.
 	 * @see #setOwnedMemberFeature_comp(Feature)
@@ -181,7 +181,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not values of the Feature are contained in the space and time of instances of the Feature&#39;s domain.</p>
+	 * <p>Whether &nbsp;values of the Feature are contained in the space and time of instances of the Feature&#39;s domain.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Portion</em>' attribute.
@@ -212,7 +212,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If true, the Feature will be treated as a &quot;port,&quot; which is visible externally to instances of the Feature&#39;s domain.&nbsp;</p>
+	 * <p>Whether the Feature&nbsp; visible externally to instances of the Feature&#39;s domain.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Port</em>' attribute.
@@ -284,7 +284,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type of which this FeatureMembership will make the Feature a member and owned element.</p>
+	 * <p>The Type that owns this FeatureMembership.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' container reference.
 	 * @see #setOwningType(Type)
@@ -349,7 +349,8 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Feature is integral to the definition of the featuringType.</p>
+	 * <p>Whether the values of the Feature can exist after the instance of the domain no longer does.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)

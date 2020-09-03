@@ -11,7 +11,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Classifier specializes Type for model elements that classify:</p>
+ * <p>A Classifier is&nbsp; a Type for model elements that classify:</p>
  * 
  * <ul>
  * 	<li>Things&nbsp;(in the universe) regardless of how Features relate them.&nbsp; These are&nbsp;sequences of exactly one&nbsp;thing (sequence of length 1).</li>

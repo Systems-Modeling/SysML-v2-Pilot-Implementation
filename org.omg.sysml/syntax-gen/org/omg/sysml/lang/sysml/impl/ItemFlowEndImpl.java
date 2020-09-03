@@ -57,7 +57,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	protected void addItemFlowEndSubsetting() {
 		EList<Feature> features = getOwnedFeature();
 		if (!features.isEmpty()) {
-			EList<Redefinition> redefinitions = ((FeatureImpl) features.get(0)).basicGetOwnedRedefinition();
+			List<Redefinition> redefinitions = ((FeatureImpl) features.get(0)).basicGetOwnedRedefinition();
 			if (!redefinitions.isEmpty()) {
 				Feature feature = redefinitions.get(0).getRedefinedFeature();
 				if (feature != null) {

@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCaseUsage {
 
 	public static final String ANALYSIS_CASE_SUBSETTING_BASE_DEFAULT = "Analyses::analysisCases";
-	public static final String ANALYSIS_CASE_SUBSETTING_SUBCASE_DEFAULT = "Analyses::AnalysisCase::subanalysisCases";
+	public static final String ANALYSIS_CASE_SUBSETTING_SUBCASE_DEFAULT = "Analyses::AnalysisCase::subAnalysisCases";
 	
 	/**
 	 * <!-- begin-user-doc -->

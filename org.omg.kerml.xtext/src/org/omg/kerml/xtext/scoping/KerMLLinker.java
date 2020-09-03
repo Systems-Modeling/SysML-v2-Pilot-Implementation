@@ -29,6 +29,8 @@ import java.util.Objects;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
+import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class KerMLLinker extends LazyLinker {
@@ -47,7 +49,17 @@ public class KerMLLinker extends LazyLinker {
 			// abstract syntax model, but it is implemented as a manual derivation,
 			// which is overridden as necessary in subtypes, so there is no need to
 			// delete it.
-			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT)
+			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__RELATED_ELEMENT) ||
+			
+			// The Annotation#annotatingElement feature, which is not composite, is
+			// redefined by Documentation#documentingComment, which is composite. 
+			// Clearing annotedElement spuriously clears the documentedElement, which
+			// then does not get a proxy because it is composite (containment).
+			// Annotation#annotatingElement has the opposite feature 
+			// AnnotatingElement#Annotation, which also should not be cleared.
+			obj instanceof Documentation && Objects.equals(ref, SysMLPackage.Literals.ANNOTATION__ANNOTATING_ELEMENT) ||
+			obj instanceof Comment && obj.eContainer() instanceof Documentation && 
+				Objects.equals(ref, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATION)
 		 ) {
 			return;
 		}

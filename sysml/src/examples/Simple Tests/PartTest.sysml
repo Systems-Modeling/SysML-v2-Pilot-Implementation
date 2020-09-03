@@ -3,11 +3,11 @@ package PartTest {
 	part f: A;
 
 	public part def A {
-		part b: B;
+		part id '1' b: B;
 		protected port c: C;
 	}
 	
-	abstract part def B {
+	abstract part def id xx B {
 		public abstract part a: A;
 		port x: ~C;
 		package P { }

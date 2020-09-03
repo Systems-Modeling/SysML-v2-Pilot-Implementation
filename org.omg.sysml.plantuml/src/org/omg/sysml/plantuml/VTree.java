@@ -56,7 +56,7 @@ public class VTree extends VStructure {
 
     @Override
     public String caseReferenceUsage(ReferenceUsage ru) {
-        for (FeatureTyping ft: ru.getTyping()) {
+        for (FeatureTyping ft: ru.getOwnedTyping()) {
             Type typ = ft.getType();
             if (typ != null) {
                 addRel(typ, ru, ru.getName());

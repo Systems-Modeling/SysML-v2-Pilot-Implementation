@@ -154,7 +154,7 @@ public interface Relationship extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>relatedElements</tt> to which this Relationship is considered to be directed.</p>
+	 * <p>The <code>relatedElements</code> to which this Relationship is considered to be directed.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference list.
@@ -181,7 +181,7 @@ public interface Relationship extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>relatedElements</tt> from which this Relationship is considered to be directed.</p>
+	 * <p>The <code>relatedElements</c ode> from which this Relationship is considered to be directed.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_Source()

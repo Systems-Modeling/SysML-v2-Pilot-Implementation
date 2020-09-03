@@ -9,7 +9,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Step</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Steps are Features for Behaviors and support the steady refinement of behavioral descriptions. Steps can be related in time and serve as sources and targets for object transfers.</p>
+ * <p>Steps are Features of Behaviors for coordinating Occurrences of other Behaviors. and support the steady refinement of behavioral descriptions. Behaviors can order them in time and specify thing flowing between them.</p>
  * 
  * <p>Steps are Features for Behaviors and support the steady refinement of behavioral descriptions. Steps can be related in time and serve as sources and targets for object transfers.</p>
  * <!-- end-model-doc -->

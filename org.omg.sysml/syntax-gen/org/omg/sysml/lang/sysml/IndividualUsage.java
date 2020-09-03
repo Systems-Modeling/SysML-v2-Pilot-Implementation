@@ -10,6 +10,8 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>An IndividualUsage is a ItemUsage exactly one of whose types is an IndividualDefinition, specifying the usage of the represented individual, or a portion of it, in a certain context.</p>
+ * isTimeSlice = (timeSliceFeature <> null)
+ * isSnapshot = (snapshotFeature <> Null)
  * <!-- end-model-doc -->
  *
  * <p>

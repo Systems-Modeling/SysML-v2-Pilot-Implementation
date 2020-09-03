@@ -1,0 +1,240 @@
+/**
+ */
+package org.omg.sysml.lang.sysml.impl;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.lang.sysml.ModelQuery;
+import org.omg.sysml.lang.sysml.RenderingUsage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.lang.sysml.ViewpointUsage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>View Definition</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getView <em>View</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getModelQuery <em>Model Query</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getRendering <em>Rendering</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefinition {
+
+	public static final String VIEW_DEFINITION_SUPERCLASS_DEFAULT = "Views::View";
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ViewDefinitionImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return SysMLPackage.Literals.VIEW_DEFINITION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ViewUsage> getView() {
+		return new DerivedEObjectEList<>(ViewUsage.class, this, SysMLPackage.VIEW_DEFINITION__VIEW, new int[] {SysMLPackage.DEFINITION__USAGE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ViewpointUsage> getSatisfiedViewpoint() {
+		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT, new int[] {SysMLPackage.DEFINITION__OWNED_USAGE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ModelQuery getModelQuery() {
+		ModelQuery modelQuery = basicGetModelQuery();
+		return modelQuery != null && modelQuery.eIsProxy() ? (ModelQuery)eResolveProxy((InternalEObject)modelQuery) : modelQuery;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ModelQuery basicGetModelQuery() {
+		return (ModelQuery)getMember().stream().
+				filter(ModelQuery.class::isInstance).
+				findFirst().orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setModelQuery(ModelQuery newModelQuery) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public RenderingUsage getRendering() {
+		RenderingUsage rendering = basicGetRendering();
+		return rendering != null && rendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)rendering) : rendering;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public RenderingUsage basicGetRendering() {
+		return (RenderingUsage)getOwnedUsage().stream().
+				filter(RenderingUsage.class::isInstance).
+				findFirst().orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setRendering(RenderingUsage newRendering) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return VIEW_DEFINITION_SUPERCLASS_DEFAULT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.VIEW_DEFINITION__VIEW:
+				return getView();
+			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
+				return getSatisfiedViewpoint();
+			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
+				if (resolve) return getModelQuery();
+				return basicGetModelQuery();
+			case SysMLPackage.VIEW_DEFINITION__RENDERING:
+				if (resolve) return getRendering();
+				return basicGetRendering();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.VIEW_DEFINITION__VIEW:
+				getView().clear();
+				getView().addAll((Collection<? extends ViewUsage>)newValue);
+				return;
+			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
+				getSatisfiedViewpoint().clear();
+				getSatisfiedViewpoint().addAll((Collection<? extends ViewpointUsage>)newValue);
+				return;
+			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
+				setModelQuery((ModelQuery)newValue);
+				return;
+			case SysMLPackage.VIEW_DEFINITION__RENDERING:
+				setRendering((RenderingUsage)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.VIEW_DEFINITION__VIEW:
+				getView().clear();
+				return;
+			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
+				getSatisfiedViewpoint().clear();
+				return;
+			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
+				setModelQuery((ModelQuery)null);
+				return;
+			case SysMLPackage.VIEW_DEFINITION__RENDERING:
+				setRendering((RenderingUsage)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.VIEW_DEFINITION__VIEW:
+				return !getView().isEmpty();
+			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
+				return !getSatisfiedViewpoint().isEmpty();
+			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
+				return basicGetModelQuery() != null;
+			case SysMLPackage.VIEW_DEFINITION__RENDERING:
+				return basicGetRendering() != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+} //ViewDefinitionImpl

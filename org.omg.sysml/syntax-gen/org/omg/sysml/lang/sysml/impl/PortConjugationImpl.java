@@ -220,6 +220,88 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 * @generated
 	 */
 	@Override
+	public Type getOriginalType() {
+		return getOriginalPortDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetOriginalType() {
+		return basicGetOriginalPortDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOriginalType(Type newOriginalType) {
+		if (newOriginalType != null && !(newOriginalType instanceof PortDefinition)) {
+			throw new IllegalArgumentException("newOriginalType must be an instance of PortDefinition");
+		}
+		setOriginalPortDefinition((PortDefinition) newOriginalType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOriginalType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getOwningType() {
+		return getConjugatedPortDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetOwningType() {
+		return basicGetConjugatedPortDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningType(Type newOwningType) {
+		if (newOwningType != null && !(newOwningType instanceof ConjugatedPortDefinition)) {
+			throw new IllegalArgumentException("newOwningType must be an instance of ConjugatedPortDefinition");
+		}
+		setConjugatedPortDefinition((ConjugatedPortDefinition) newOwningType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningType() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION:
@@ -316,88 +398,6 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 				return isSetConjugatedPortDefinition();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getOriginalType() {
-		return getOriginalPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetOriginalType() {
-		return basicGetOriginalPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOriginalType(Type newOriginalType) {
-		if (newOriginalType != null && !(newOriginalType instanceof PortDefinition)) {
-			throw new IllegalArgumentException("newOriginalType must be an instance of PortDefinition");
-		}
-		setOriginalPortDefinition((PortDefinition) newOriginalType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOriginalType() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type getOwningType() {
-		return getConjugatedPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Type basicGetOwningType() {
-		return basicGetConjugatedPortDefinition();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningType(Type newOwningType) {
-		if (newOwningType != null && !(newOwningType instanceof ConjugatedPortDefinition)) {
-			throw new IllegalArgumentException("newOwningType must be an instance of ConjugatedPortDefinition");
-		}
-		setConjugatedPortDefinition((ConjugatedPortDefinition) newOwningType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningType() {
-  		return false;
 	}
 
 } //PortConjugationImpl

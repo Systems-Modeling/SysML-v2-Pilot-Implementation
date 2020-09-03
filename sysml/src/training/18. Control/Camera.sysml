@@ -6,11 +6,11 @@ package Camera {
 	part def ImagingSubsystem;
 	
 	part camera : Camera {
-		ref view : Scene;
+		ref 'view' : Scene;
 		part photos : Picture[*];
 				
 		part autoFocus {
-			in ref view : Scene = camera::view;		
+			in ref 'view' : Scene = camera::'view';		
 			out ref realImage : Image;
 		}
 		

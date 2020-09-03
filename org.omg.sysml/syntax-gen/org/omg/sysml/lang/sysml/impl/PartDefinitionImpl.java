@@ -42,4 +42,4 @@ public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefini
 		return PART_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-} //BlockImpl
+} // PartDefinitionImpl

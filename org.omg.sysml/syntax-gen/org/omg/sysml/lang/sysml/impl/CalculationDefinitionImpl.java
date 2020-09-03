@@ -28,7 +28,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getResult <em>Result</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getCalculationUsage <em>Calculation Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl#getCalculation <em>Calculation</em>}</li>
  * </ul>
  *
  * @generated
@@ -119,8 +119,8 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	@Override
-	public EList<CalculationUsage> getCalculationUsage() {
-		return new DerivedEObjectEList<CalculationUsage>(CalculationUsage.class, this, SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE,
+	public EList<CalculationUsage> getCalculation() {
+		return new DerivedEObjectEList<CalculationUsage>(CalculationUsage.class, this, SysMLPackage.CALCULATION_DEFINITION__CALCULATION,
 				new int[] { SysMLPackage.TYPE__FEATURE });
 	}
 
@@ -172,8 +172,8 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
-			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE:
-				return getCalculationUsage();
+			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
+				return getCalculation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -194,9 +194,9 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				setResult((Feature)newValue);
 				return;
-			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE:
-				getCalculationUsage().clear();
-				getCalculationUsage().addAll((Collection<? extends CalculationUsage>)newValue);
+			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
+				getCalculation().clear();
+				getCalculation().addAll((Collection<? extends CalculationUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -216,8 +216,8 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				setResult((Feature)null);
 				return;
-			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE:
-				getCalculationUsage().clear();
+			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
+				getCalculation().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -237,8 +237,8 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 				return isSetExpression();
 			case SysMLPackage.CALCULATION_DEFINITION__RESULT:
 				return basicGetResult() != null;
-			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION_USAGE:
-				return !getCalculationUsage().isEmpty();
+			case SysMLPackage.CALCULATION_DEFINITION__CALCULATION:
+				return !getCalculation().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

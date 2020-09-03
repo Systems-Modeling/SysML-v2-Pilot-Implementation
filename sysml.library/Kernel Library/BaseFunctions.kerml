@@ -25,10 +25,21 @@ package BaseFunctions {
 	function '['(seq: Anything[0..*] ordered, index: Integer): Anything[0..1];
 	function ','(x: Anything, seq: Anything[0..*] ordered): Anything[0..*] ordered;
 
+
+    abstract function 'all'(): Object[0..*] {
+    	abstract feature all type: Object;
+    }
+    
+    /** Deprecated */
 	abstract function 'allInstances'(): Object[0..*] {
 		abstract feature all type: Object;
 	}
 	
+	abstract function 'istype'(x: Anything): Boolean {
+		abstract feature type: Anything;
+	}
+	
+	/** Deprecated */
 	abstract function 'instanceof'(x: Anything): Boolean {
 		abstract feature type: Anything;
 	}

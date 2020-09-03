@@ -70,8 +70,8 @@ package '8-Requirements' {
 		 * Every requirement is parameterized by a "subject". The "subject" of this requirement is implicitly "Anything".
 		 */
 		requirement def id '1' MassLimitationRequirement {
-			// The requirement text is given by the first comment in the requirement def body (this note doesn't count).
-			/* The actual mass shall be less than or equal to the required mass. */
+			// The requirement text is given by the documentation in the requirement def body.
+			doc /* The actual mass shall be less than or equal to the required mass. */
 			
 			attribute massActual: MassValue;
 			attribute massReqd: MassValue;
@@ -88,7 +88,7 @@ package '8-Requirements' {
 		 * The subject of this requirement is redefined to be a "Vehicle".
 		 */
 		requirement id '1.1' vehicleMass1: MassLimitationRequirement (vehicle: Vehicle) {
-			/* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
+			doc /* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
 			
 			/**
 			 * This redefinition binds the vehicle mass to the actual mass.
@@ -104,19 +104,19 @@ package '8-Requirements' {
 			 * A constraint can also be used to specify an assumption.
 			 */
 			assume constraint fuelConstraint {
-				/* full fuel tank */
+				doc /* full fuel tank */
 				vehicle::fuelLevel >= vehicle::fuelTankCapacity
 			}
 		}
 			
 		requirement id '2.1' vehicleMass2: MassLimitationRequirement (vehicle: Vehicle) {
-			/* The vehicle mass shall be less than or equal to 2500 kg when the fuel tank is empty. */
+			doc /* The vehicle mass shall be less than or equal to 2500 kg when the fuel tank is empty. */
 			
 			attribute :>> massActual: MassValue = vehicle::mass;
 			attribute :>> massReqd = 2500@[kg];
 		
 			assume constraint fuelConstraint {
-				/* empty fuel tank */
+				doc /* empty fuel tank */
 				vehicle::fuelLevel == 0.0
 			}
 		}
@@ -124,11 +124,11 @@ package '8-Requirements' {
 		requirement id '2.2' vehicleReliability2: ReliabilityRequirement (vehicle: Vehicle);
 			
 		requirement id '3.1' drivePowerInterface (drivePwrPort: DrivePwrPort) {
-			/* The engine shall transfer its generated torque to the transmission via the clutch interface. */
+			doc /* The engine shall transfer its generated torque to the transmission via the clutch interface. */
 		}
 		
 		requirement id '3.2' torqueGeneration (generateTorque: 'Generate Torque') {
-			/* The engine shall generate torque as a function of RPM as shown in Table 1. */
+			doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
 		}
 			
 	}

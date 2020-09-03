@@ -26,8 +26,8 @@ package 'Fork Join Example' {
 		then joinNode;
 		
 		action braking : Braking(
-			in stream from monitorBrakePedal::brakePressure, 
-			in stream from monitorTraction::modulationFrequency);
+			stream from monitorBrakePedal::brakePressure, 
+			stream from monitorTraction::modulationFrequency);
 		then joinNode;
 		
 		join joinNode;

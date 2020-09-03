@@ -21,7 +21,7 @@ package Analyses {
 		/**
 		 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.
 		 */
-		abstract ref analysis subanalysisCases : Case[0..*] :> analysisCases, subcases;
+		abstract ref analysis subAnalysisCases : AnalysisCase[0..*] :> analysisCases, subcases;
 	
 		/**
 		 * The subactions of this AnalysisCase that are AnalysisActions.

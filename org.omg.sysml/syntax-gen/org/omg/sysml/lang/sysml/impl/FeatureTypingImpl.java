@@ -3,12 +3,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -22,13 +20,23 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getTypedFeature <em>Typed Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureTypingImpl#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTyping {
+	/**
+	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getTypedFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected Feature typedFeature;
+
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -38,15 +46,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * @ordered
 	 */
 	protected Type type;
-
-	/**
-	 * The cached value of the '{@link #getTypedFeature() <em>Typed Feature</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getTypedFeature()
-	 * @generated
-	 * @ordered
-	 */
-	protected Feature typedFeature;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -110,6 +109,46 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 		return type != null;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getOwningFeature() {
+		Feature owningFeature = basicGetOwningFeature();
+		return owningFeature != null && owningFeature.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)owningFeature) : owningFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Feature basicGetOwningFeature() {
+		Type owningType = super.basicGetOwningType();
+		return owningType instanceof Feature? (Feature) owningType : null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setOwningFeature(Feature newOwningFeature) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningFeature() {
+		return basicGetOwningFeature() != null;
+	}
+
 	@Override
 	public Feature getTypedFeature() {
 		return typedFeature == null ? basicGetTypedFeature() : getTypedFeatureGen();
@@ -150,33 +189,12 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypedFeature(Feature newTypedFeature, NotificationChain msgs) {
-		Feature oldTypedFeature = typedFeature;
-		typedFeature = newTypedFeature;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, newTypedFeature);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public void setTypedFeature(Feature newTypedFeature) {
-		if (newTypedFeature != typedFeature) {
-			NotificationChain msgs = null;
-			if (typedFeature != null)
-				msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
-			if (newTypedFeature != null)
-				msgs = ((InternalEObject)newTypedFeature).eInverseAdd(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
-			msgs = basicSetTypedFeature(newTypedFeature, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, newTypedFeature, newTypedFeature));
+		Feature oldTypedFeature = typedFeature;
+		typedFeature = newTypedFeature;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_TYPING__TYPED_FEATURE, oldTypedFeature, typedFeature));
 	}
 
 	/**
@@ -185,104 +203,6 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	 */
 	public boolean isSetTypedFeature() {
 		return basicGetTypedFeature() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				if (typedFeature != null)
-					msgs = ((InternalEObject)typedFeature).eInverseRemove(this, SysMLPackage.FEATURE__TYPING, Feature.class, msgs);
-				return basicSetTypedFeature((Feature)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				return basicSetTypedFeature(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPE:
-				if (resolve) return getType();
-				return basicGetType();
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				if (resolve) return getTypedFeature();
-				return basicGetTypedFeature();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPE:
-				setType((Type)newValue);
-				return;
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				setTypedFeature((Feature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__TYPE:
-				setType((Type)null);
-				return;
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				setTypedFeature((Feature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_TYPING__GENERAL:
-				return isSetGeneral();
-			case SysMLPackage.FEATURE_TYPING__SPECIFIC:
-				return isSetSpecific();
-			case SysMLPackage.FEATURE_TYPING__TYPE:
-				return isSetType();
-			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
-				return isSetTypedFeature();
-		}
-		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -320,6 +240,47 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type getOwningType() {
+		return getOwningFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Type basicGetOwningType() {
+		return basicGetOwningFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningType(Type newOwningType) {
+		if (newOwningType != null && !(newOwningType instanceof Feature)) {
+			throw new IllegalArgumentException("newOwningType must be an instance of Feature");
+		}
+		setOwningFeature((Feature) newOwningType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningType() {
+  		return false;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -348,17 +309,95 @@ public class FeatureTypingImpl extends GeneralizationImpl implements FeatureTypi
 		setTypedFeature((Feature) newSpecific);
 	}
 	
-	@Override
-	public void basicSetSpecific(Type newSpecific) {
-		basicSetTypedFeature((Feature) newSpecific, null);
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetSpecific() {
   		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				if (resolve) return getTypedFeature();
+				return basicGetTypedFeature();
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
+			case SysMLPackage.FEATURE_TYPING__OWNING_FEATURE:
+				if (resolve) return getOwningFeature();
+				return basicGetOwningFeature();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				setTypedFeature((Feature)newValue);
+				return;
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				setType((Type)newValue);
+				return;
+			case SysMLPackage.FEATURE_TYPING__OWNING_FEATURE:
+				setOwningFeature((Feature)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				setTypedFeature((Feature)null);
+				return;
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				setType((Type)null);
+				return;
+			case SysMLPackage.FEATURE_TYPING__OWNING_FEATURE:
+				setOwningFeature((Feature)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.FEATURE_TYPING__TYPED_FEATURE:
+				return isSetTypedFeature();
+			case SysMLPackage.FEATURE_TYPING__SPECIFIC:
+				return isSetSpecific();
+			case SysMLPackage.FEATURE_TYPING__GENERAL:
+				return isSetGeneral();
+			case SysMLPackage.FEATURE_TYPING__OWNING_TYPE:
+				return isSetOwningType();
+			case SysMLPackage.FEATURE_TYPING__TYPE:
+				return isSetType();
+			case SysMLPackage.FEATURE_TYPING__OWNING_FEATURE:
+				return isSetOwningFeature();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } // FeatureTypingImpl

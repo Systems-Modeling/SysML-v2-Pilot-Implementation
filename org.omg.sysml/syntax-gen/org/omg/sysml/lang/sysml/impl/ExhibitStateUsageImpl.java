@@ -2,7 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
@@ -70,7 +71,7 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	public StateUsage basicGetExhibitedState() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = basicGetOwnedSubsetting();		
+		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
 				allMatch(feature->feature == subsettingBaseDefault || 
 				         feature == subsettingPartDefault)) {

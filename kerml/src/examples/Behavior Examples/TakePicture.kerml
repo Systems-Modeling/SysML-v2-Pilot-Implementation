@@ -17,7 +17,7 @@ behavior TakePicture() {
 	composite step step1: Focus[1] (out xrsl);	
 	composite step step2: Shoot[1] (in xsf);
 	
-	composite flow Exposure[1] from step1::xrsl to step2::xsf;
+	composite flow exposure[1] from step1::xrsl to step2::xsf;
 
 //	The above flow is semantically equivalent to the following:
 //	

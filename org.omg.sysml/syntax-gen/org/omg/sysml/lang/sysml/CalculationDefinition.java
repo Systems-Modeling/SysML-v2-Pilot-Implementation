@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.CalculationDefinition#getCalculationUsage <em>Calculation Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.CalculationDefinition#getCalculation <em>Calculation</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getCalculationDefinition()
@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CalculationDefinition extends ActionDefinition, Function {
 	/**
-	 * Returns the value of the '<em><b>Calculation Usage</b></em>' reference list.
+	 * Returns the value of the '<em><b>Calculation</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.CalculationUsage}.
 	 * <p>
 	 * This feature subsets the following features:
@@ -42,13 +42,13 @@ public interface CalculationDefinition extends ActionDefinition, Function {
 	 * <!-- begin-model-doc -->
 	 * <p>The CalculationUsage that are <code>actions</code> in this CalculationDefinition.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Calculation Usage</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCalculationDefinition_CalculationUsage()
+	 * @return the value of the '<em>Calculation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getCalculationDefinition_Calculation()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringCalculationDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<CalculationUsage> getCalculationUsage();
+	EList<CalculationUsage> getCalculation();
 
 } // FunctionDefinition

@@ -173,17 +173,17 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 	
 	@Override
-	public EList<FeatureTyping> getTyping() {
+	public EList<FeatureTyping> getOwnedTyping() {
 		String operator = getOperator();
 		if (operator != null) {
 			addImplicitGeneralization(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		}		
-		return super.getTyping();
+		return super.getOwnedTyping();
 	}
 
 	@Override
 	public void computeImplicitGeneralization() {
-		getTyping();
+		getOwnedTyping();
 		super.computeImplicitGeneralization();
 	}
 	

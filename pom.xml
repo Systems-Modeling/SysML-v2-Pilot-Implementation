@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <properties>
-    <revision>0.4.1-SNAPSHOT</revision>
+    <revision>0.4.2-SNAPSHOT</revision>
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2019-12</eclipse-repository>

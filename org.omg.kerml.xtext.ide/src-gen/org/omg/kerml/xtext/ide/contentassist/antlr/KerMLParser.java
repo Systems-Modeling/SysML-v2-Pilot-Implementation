@@ -36,6 +36,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getIdentificationAccess().getAlternatives(), "rule__Identification__Alternatives");
 			builder.put(grammarAccess.getCommentAccess().getAlternatives_0(), "rule__Comment__Alternatives_0");
 			builder.put(grammarAccess.getUnitDocumentationAccess().getAlternatives(), "rule__UnitDocumentation__Alternatives");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getAlternatives_0(), "rule__TextualRepresentation__Alternatives_0");
 			builder.put(grammarAccess.getPackageImportAccess().getAlternatives_3(), "rule__PackageImport__Alternatives_3");
 			builder.put(grammarAccess.getPackageImportAccess().getAlternatives_3_0_1(), "rule__PackageImport__Alternatives_3_0_1");
 			builder.put(grammarAccess.getElementAliasAccess().getAlternatives_1(), "rule__ElementAlias__Alternatives_1");
@@ -121,10 +122,10 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureUnitAccess().getGroup(), "rule__FeatureUnit__Group__0");
 			builder.put(grammarAccess.getUnitPrefixAccess().getGroup(), "rule__UnitPrefix__Group__0");
 			builder.put(grammarAccess.getIdentificationAccess().getGroup_0(), "rule__Identification__Group_0__0");
-			builder.put(grammarAccess.getCommentAccess().getGroup(), "rule__Comment__Group__0");
-			builder.put(grammarAccess.getCommentAccess().getGroup_0_0(), "rule__Comment__Group_0_0__0");
 			builder.put(grammarAccess.getAnnotationAccess().getGroup(), "rule__Annotation__Group__0");
 			builder.put(grammarAccess.getAnnotationAccess().getGroup_1(), "rule__Annotation__Group_1__0");
+			builder.put(grammarAccess.getCommentAccess().getGroup(), "rule__Comment__Group__0");
+			builder.put(grammarAccess.getCommentAccess().getGroup_0_0(), "rule__Comment__Group_0_0__0");
 			builder.put(grammarAccess.getDocumentationAccess().getGroup(), "rule__Documentation__Group__0");
 			builder.put(grammarAccess.getDocumentationAccess().getGroup_0(), "rule__Documentation__Group_0__0");
 			builder.put(grammarAccess.getDocumentationAccess().getGroup_0_1(), "rule__Documentation__Group_0_1__0");
@@ -135,6 +136,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getUnitDocumentationAccess().getGroup_1_0_1(), "rule__UnitDocumentation__Group_1_0_1__0");
 			builder.put(grammarAccess.getDocumentationCommentAccess().getGroup(), "rule__DocumentationComment__Group__0");
 			builder.put(grammarAccess.getDocumentationCommentAccess().getGroup_1(), "rule__DocumentationComment__Group_1__0");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getGroup(), "rule__TextualRepresentation__Group__0");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getGroup_0_0(), "rule__TextualRepresentation__Group_0_0__0");
 			builder.put(grammarAccess.getPackageImportAccess().getGroup(), "rule__PackageImport__Group__0");
 			builder.put(grammarAccess.getPackageImportAccess().getGroup_3_0(), "rule__PackageImport__Group_3_0__0");
 			builder.put(grammarAccess.getPackageImportAccess().getGroup_3_1(), "rule__PackageImport__Group_3_1__0");
@@ -320,12 +323,12 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getIdentificationAccess().getHumanIdAssignment_0_1(), "rule__Identification__HumanIdAssignment_0_1");
 			builder.put(grammarAccess.getIdentificationAccess().getNameAssignment_0_2(), "rule__Identification__NameAssignment_0_2");
 			builder.put(grammarAccess.getIdentificationAccess().getNameAssignment_1(), "rule__Identification__NameAssignment_1");
-			builder.put(grammarAccess.getCommentAccess().getOwnedRelationship_compAssignment_0_0_2(), "rule__Comment__OwnedRelationship_compAssignment_0_0_2");
-			builder.put(grammarAccess.getCommentAccess().getOwnedRelationship_compAssignment_0_1(), "rule__Comment__OwnedRelationship_compAssignment_0_1");
-			builder.put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 			builder.put(grammarAccess.getAnnotationAccess().getAnnotatedElementAssignment_1_1(), "rule__Annotation__AnnotatedElementAssignment_1_1");
 			builder.put(grammarAccess.getPrefixAnnotationAccess().getOwnedRelatedElement_compAssignment(), "rule__PrefixAnnotation__OwnedRelatedElement_compAssignment");
 			builder.put(grammarAccess.getUnitAnnotationAccess().getOwnedRelatedElement_compAssignment(), "rule__UnitAnnotation__OwnedRelatedElement_compAssignment");
+			builder.put(grammarAccess.getCommentAccess().getOwnedRelationship_compAssignment_0_0_2(), "rule__Comment__OwnedRelationship_compAssignment_0_0_2");
+			builder.put(grammarAccess.getCommentAccess().getOwnedRelationship_compAssignment_0_1(), "rule__Comment__OwnedRelationship_compAssignment_0_1");
+			builder.put(grammarAccess.getCommentAccess().getBodyAssignment_1(), "rule__Comment__BodyAssignment_1");
 			builder.put(grammarAccess.getDocumentationAccess().getHumanIdAssignment_0_1_1(), "rule__Documentation__HumanIdAssignment_0_1_1");
 			builder.put(grammarAccess.getDocumentationAccess().getBodyAssignment_1(), "rule__Documentation__BodyAssignment_1");
 			builder.put(grammarAccess.getUnitDocumentationAccess().getBodyAssignment_0_1(), "rule__UnitDocumentation__BodyAssignment_0_1");
@@ -334,6 +337,10 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOwnedDocumentationAccess().getDocumentingComment_compAssignment(), "rule__OwnedDocumentation__DocumentingComment_compAssignment");
 			builder.put(grammarAccess.getDocumentationCommentAccess().getHumanIdAssignment_1_1(), "rule__DocumentationComment__HumanIdAssignment_1_1");
 			builder.put(grammarAccess.getDocumentationCommentAccess().getBodyAssignment_2(), "rule__DocumentationComment__BodyAssignment_2");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getOwnedRelationship_compAssignment_0_0_2(), "rule__TextualRepresentation__OwnedRelationship_compAssignment_0_0_2");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getOwnedRelationship_compAssignment_0_1(), "rule__TextualRepresentation__OwnedRelationship_compAssignment_0_1");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getLanguageAssignment_2(), "rule__TextualRepresentation__LanguageAssignment_2");
+			builder.put(grammarAccess.getTextualRepresentationAccess().getBodyAssignment_3(), "rule__TextualRepresentation__BodyAssignment_3");
 			builder.put(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAssignment_0(), "rule__PackageImport__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPackageImportAccess().getVisibilityAssignment_1(), "rule__PackageImport__VisibilityAssignment_1");
 			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_0_0(), "rule__PackageImport__ImportedPackageAssignment_3_0_0");

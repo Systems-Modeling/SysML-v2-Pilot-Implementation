@@ -223,14 +223,7 @@ enum VisibilityIndicator returns SysML::VisibilityKind :
 	public = 'public' | private = 'private' | protected = 'protected'
 ;
 
-/* COMMENTS */
-
-Comment returns SysML::Comment :
-	( 'comment' Identification? ownedRelationship_comp += Annotation
-	| ownedRelationship_comp += EmptyAnnotation
-	)
-	body = ML_COMMENT
-;
+/* ANNOTATIONS */
 
 Annotation returns SysML::Annotation :
 	{SysML::Annotation} ( 'about' annotatedElement = [SysML::Element|QualifiedName] )?
@@ -242,6 +235,15 @@ EmptyAnnotation returns SysML::Annotation :
 
 PrefixAnnotation returns SysML::Annotation :
 	ownedRelatedElement_comp += Documentation
+;
+
+/* COMMENTS */
+
+Comment returns SysML::Comment :
+	( 'comment' Identification? ownedRelationship_comp += Annotation
+	| ownedRelationship_comp += EmptyAnnotation
+	)
+	body = ML_COMMENT
 ;
 
 /* DOCUMENTATION */
@@ -256,6 +258,16 @@ OwnedDocumentation returns SysML::Documentation :
 
 DocumentationComment returns SysML::Comment :
 	'doc' ( 'id' humanId = Name )? body = ML_COMMENT
+;
+
+/* TEXTUAL REPRESENTATION */
+
+TextualRepresentation returns SysML::TextualRepresentation :
+    ( 'rep' Identification? ownedRelationship_comp += Annotation
+    | ownedRelationship_comp += EmptyAnnotation
+    )
+    'language' language = STRING_VALUE 
+    body = ML_COMMENT
 ;
 
 /* IMPORTS */
@@ -310,6 +322,7 @@ PackagedDefinitionElement returns SysML::Element :
 	| ViewpointDefinition
 	| RenderingDefinition
 	| Comment
+	| TextualRepresentation
 ;
 	
 PackagedUsageElement returns SysML::Usage :

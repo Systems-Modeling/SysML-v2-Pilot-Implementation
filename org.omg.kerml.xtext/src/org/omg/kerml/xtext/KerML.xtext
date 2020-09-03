@@ -115,14 +115,7 @@ enum VisibilityIndicator returns SysML::VisibilityKind :
 	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
 ;
 
-/* COMMENTS */
-
-Comment returns SysML::Comment :
-	( 'comment' Identification? ownedRelationship_comp += Annotation
-	| ownedRelationship_comp += EmptyAnnotation
-	)
-	body = ML_COMMENT
-;
+/* ANNOTATIONS */
 
 Annotation returns SysML::Annotation :
 	{SysML::Annotation} ( 'about' annotatedElement = [SysML::Element|QualifiedName] )?
@@ -138,6 +131,15 @@ PrefixAnnotation returns SysML::Annotation :
 
 UnitAnnotation returns SysML::Annotation :
 	ownedRelatedElement_comp += UnitDocumentation
+;
+
+/* COMMENTS */
+
+Comment returns SysML::Comment :
+	( 'comment' Identification? ownedRelationship_comp += Annotation
+	| ownedRelationship_comp += EmptyAnnotation
+	)
+	body = ML_COMMENT
 ;
 
 /* DOCUMENTATION */
@@ -157,6 +159,16 @@ OwnedDocumentation returns SysML::Documentation :
 
 DocumentationComment returns SysML::Comment :
 	'doc' ( 'id' humanId = Name )? body = ML_COMMENT
+;
+
+/* TEXTUAL REPRESENTATION */
+
+TextualRepresentation returns SysML::TextualRepresentation :
+    ( 'rep' Identification? ownedRelationship_comp += Annotation
+    | ownedRelationship_comp += EmptyAnnotation
+    )
+    'language' language = STRING_VALUE 
+    body = ML_COMMENT
 ;
 
 /* IMPORTS */
@@ -205,6 +217,7 @@ PackagedNonFeatureElement returns SysML::Element :
 	| Function
 	| Predicate
 	| Comment
+	| TextualRepresentation
 ;
 
 PackagedFeatureElement returns SysML::Feature :

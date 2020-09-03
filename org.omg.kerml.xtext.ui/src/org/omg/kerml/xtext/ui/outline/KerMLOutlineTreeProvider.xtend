@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Comment
 import org.omg.sysml.lang.sysml.SysMLPackage
+import org.omg.sysml.lang.sysml.TextualRepresentation
 
 /**
  * Customization of the default outline structure.
@@ -172,10 +173,31 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (comment.body !== null) {
 			createEStructuralFeatureNode(parentNode, comment, 
 				SysMLPackage.eINSTANCE.comment_Body, 
-				_image(comment.body), comment.body , true
+				_image(comment.body), comment.body, true
 			)
 		}
 		super._createChildren(parentNode, comment)
+	}
+	
+
+	def boolean _isLeaf(TextualRepresentation rep) {
+		rep.language === null && rep.body === null && super._isLeaf(rep)
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, TextualRepresentation rep) {
+		if (rep.language !== null) {
+			createEStructuralFeatureNode(parentNode, rep, 
+				SysMLPackage.eINSTANCE.textualRepresentation_Language, 
+				_image(rep.language), "language " + rep.language, true
+			)
+		}
+		if (rep.body !== null) {
+			createEStructuralFeatureNode(parentNode, rep, 
+				SysMLPackage.eINSTANCE.textualRepresentation_Body, 
+				_image(rep.body), rep.body, true
+			)
+		}
+		super._createChildren(parentNode, rep)
 	}
 	
 

@@ -46,6 +46,9 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
+import org.omg.sysml.lang.sysml.Package;
+import org.omg.sysml.lang.sysml.impl.MembershipImpl
+import org.omg.sysml.lang.sysml.FeatureMembership
 
 /**
  * This class contains custom validation rules. 
@@ -68,15 +71,75 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	
-	
 	@Check
+	def checkPackage(Package pack){
+		//println("Checking pkg: " + pack.name)
+		if (!(pack instanceof InvocationExpression || pack instanceof FeatureReferenceExpression || pack instanceof LiteralExpression || pack instanceof NullExpression ||
+			  pack instanceof BindingConnector
+		)) {
+			var mm = pack.ownedMembership
+			for (var i = 0; i < mm.length -1; i++){
+				
+				var mem = mm.get(i);
+				//println("\t1checking" + " " + mem.memberName + " "  + mem)
+				for (var j = i+1; j < mm.length; j++){
+					
+					var m = mm.get(j)
+					//println("\t\t1against" + " " + m.memberName + " " + m)
+					if (!mem.isDistinguishableFrom(m)) {
+						if (mem.ownedMemberElement !== null) {
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						} else {
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						}
+						if (m.ownedMemberElement !== null) {
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, m.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						} else {
+							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, m, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+						}
+					}
+				}
+			}
+			if (pack instanceof Type){
+				var mmi = pack.inheritedMembership
+				//println(mmi.size)
+				/*for (var i = 0; i < mmi.length; i++){
+					println("\t" + i  + mmi.get(i).memberName + " " +  (mmi.get(i).memberElement as ElementImpl)?.effectiveName + " " + (mmi.get(i).memberElement as ElementImpl).class.simpleName + " " + mmi.get(i).hashCode + " " + mmi.get(i).memberElement.eResource)
+				}*/
+				for (var i = 0; i < mmi.length -1; i++){
+					var memi = mmi.get(i);
+					//println("\t2checking" +i + " " + (memi as MembershipImpl).memberName + " " + memi)
+					for (var j = i+1; j < mmi.length; j++){
+						var mi = mmi.get(j)
+						//if ( j == 1)
+						//println("\t\t2against" + j + " " + (mi as MembershipImpl).memberName + " " + mi)
+						if (!memi.isDistinguishableFrom(mi)){
+							if (memi.ownedMemberElement !== null) {
+								warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, memi.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+							} else {
+								warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, memi, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+							}
+							
+						}
+					}
+				}
+	
+			}
+		}
+	}
+	
+	/* @Check
 	def checkMembership(Membership mem){
+		//println("checking........."  + mem.memberName)
 		val pack = mem.membershipOwningPackage;	
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
 		if (!(pack instanceof InvocationExpression || pack instanceof FeatureReferenceExpression || pack instanceof LiteralExpression || pack instanceof NullExpression ||
 			  pack instanceof BindingConnector
 		)) {
+		
+			
 			pack.ownedMembership.forEach[m|
+				println("\t\t" + " " + m.memberName)
 				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
 					if (mem.ownedMemberElement !== null) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
@@ -99,7 +162,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-	}
+	}*/
 	
 	
 	@Check

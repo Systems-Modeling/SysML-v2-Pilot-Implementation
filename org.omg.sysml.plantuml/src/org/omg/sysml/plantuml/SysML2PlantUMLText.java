@@ -31,27 +31,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Class;
-import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Comment;
-import org.omg.sysml.lang.sysml.ConnectionUsage;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.ItemFlow;
-import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
-import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleStereotypeSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
 import com.google.inject.Inject;
@@ -67,100 +50,10 @@ public class SysML2PlantUMLText {
         MIXED;
     }
 
-    public class StyleRelDefaultSwitch extends StyleRelSwitch {
-		@Override
-        public String caseFeatureTyping(FeatureTyping e) {
-            return " --:|> ";
-        }
-
-		@Override
-		public String caseRedefinition(Redefinition object) {
-            return "--||>";
-		}
-
-		@Override
-		public String caseSuccession(Succession s) {
-            return " --> ";
-		}
-
-		@Override
-		public String caseConnectionUsage(ConnectionUsage object) {
-            return " -[thickness=3]- ";
-		}
-
-		@Override
-		public String caseComment(Comment object) {
-            return " .. ";
-		}
-
-		@Override
-		public String caseTransitionUsage(TransitionUsage object) {
-            return "  --> ";
-		}
-
-		@Override
-		public String caseClassifier(Classifier object) {
-            return " +-- ";
-		}
-
-		@Override
-		public String caseReferenceUsage(ReferenceUsage object) {
-            return " o-- ";
-		}
-
-		@Override
-		public String caseItemUsage(ItemUsage itemUsage) {
-            return itemUsage.isComposite() ? " *-- ": " o-- ";
-		}
-
-		@Override
-		public String caseItemFlow(ItemFlow itemFlow) {
-            return " --> ";
-		}
-
-		@Override
-		public String casePartUsage(PartUsage partUsage) {
-            return partUsage.isComposite() ? " *-- ": " o-- ";
-		}
-
-		@Override
-		public String caseBindingConnector(BindingConnector object) {
-            return " -[thickness=5]- ";
-		}
-
-		@Override
-		public String caseGeneralization(Generalization object) {
-            return " --|> ";
-		}
-    }
-
-    public class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
-		@Override
-		public String caseClass(Class object) {
-            if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
-            return null;
-		}
-
-		@Override
-		public String casePortUsage(PortUsage object) {
-            return " <<port>> ";
-		}
-
-		@Override
-		public String caseItemUsage(ItemUsage object) {
-            return " <<item>> ";
-		}
-
-		@Override
-		public String casePartUsage(PartUsage object) {
-            return " <<part>> ";
-		}
-    }
-
     private final Collection<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private StyleSwitch styleSwitch;
-    private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new StyleRelDefaultSwitch(),
-                                                                   new StyleStereotypeDefaultSwitch());
+    private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new SysML2PlantUMLStyle.StyleRelDefaultSwitch(),
+                                                                   new SysML2PlantUMLStyle.StyleStereotypeDefaultSwitch());
 
     public void addStyle(SysML2PlantUMLStyle style) {
         styles.add(style);
@@ -291,6 +184,8 @@ public class SysML2PlantUMLText {
     private MODE getMode(EObject eObj) {
         if (eObj instanceof StateUsage) {
             return MODE.StateMachine;
+        } else if (eObj instanceof ActionUsage) {
+            return MODE.Activity;
         } else {
             return MODE.MIXED;
         }

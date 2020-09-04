@@ -572,8 +572,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	@Override
-	public EList<FeatureTyping> getOwnedTyping() {
-		EList<FeatureTyping> typings = super.getOwnedTyping();
+	public List<FeatureTyping> basicGetOwnedTyping() {
+		List<FeatureTyping> typings = super.basicGetOwnedTyping();
 		Definition variationDefinition = getOwningVariationDefinition();
 		if (variationDefinition != null) {
 			if (!typings.stream().anyMatch(s->s.getType() == variationDefinition)) {

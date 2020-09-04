@@ -160,7 +160,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public Type getExpressionType() {
-		EList<FeatureTyping> typing = getOwnedTyping();
+		List<FeatureTyping> typing = basicGetOwnedTyping();
 		return typing.isEmpty()? null: typing.get(0).getType();
 	}
 	

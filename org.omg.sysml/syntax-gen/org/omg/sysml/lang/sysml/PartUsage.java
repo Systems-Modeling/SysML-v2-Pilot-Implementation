@@ -45,7 +45,7 @@ public interface PartUsage extends ItemUsage {
 	 * @return the value of the '<em>Part Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPartUsage_PartDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedPart'"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedPart'"
 	 *        annotation="subsets"
 	 * @generated
 	 */

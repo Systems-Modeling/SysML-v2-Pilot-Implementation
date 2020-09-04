@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Association classifies relations that can occur between objects of a particular Type. It has at least two participant properties to connect Types. The Association itself may have additional properties that describe the relationship itself.</p>
+ * <p>An Association is a Relationship and a Class to enable classification of links between things (in the universe). The co-domains&nbsp;of the associationEnd Features are one of the relatedTypes as co-domain and participants (linked things) of an association identify each other.</p>
  * 
  * relatedTypes = associationEnd.type
  * let numend : Natural = associationEnd->size() in

@@ -206,12 +206,12 @@ public class AssociationImpl extends ClassImpl implements Association {
 	protected static final int[] RELATED_TYPE_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__SOURCE_TYPE, SysMLPackage.ASSOCIATION__TARGET_TYPE};
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetRelatedType() {
-		return isSetSourceType()
-			|| isSetTargetType();
+		return !getRelatedType().isEmpty();
 	}
 
 	/**

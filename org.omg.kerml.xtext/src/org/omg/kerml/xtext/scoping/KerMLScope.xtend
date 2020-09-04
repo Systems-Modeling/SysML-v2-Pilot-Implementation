@@ -235,7 +235,7 @@ class KerMLScope extends AbstractScope {
 	
 	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited, Set<Element> redefined) {
 		if (pack instanceof Type) {
-			val conjugator = pack.conjugator
+			val conjugator = pack.ownedConjugator
 			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
 				scopeProvider.addVisited(conjugator)
 				val found = conjugator.originalType.resolveIfUnvisited(qn, false, visited, newHashSet)

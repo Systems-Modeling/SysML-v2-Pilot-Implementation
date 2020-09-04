@@ -2,7 +2,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -41,11 +40,11 @@ import org.omg.sysml.lang.sysml.Type;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getSourceFeature <em>Source Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getTargetFeature <em>Target Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectionDefinition <em>Connection Definition</em>}</li>
  * </ul>
  *
@@ -245,8 +244,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 */
 	public boolean isSetRelatedFeature() {
-		return isSetSourceFeature()
-			|| isSetTargetFeature();
+		return !getRelatedFeature().isEmpty();
 	}
 
 	/**
@@ -399,9 +397,9 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Feature> getTargetFeature() {
-		EList<Feature> sourceFeatures = new EObjectEList<>(Feature.class, this, SysMLPackage.	CONNECTION_USAGE__SOURCE_FEATURE);
-		ConnectorImpl.addSourceFeatures(this, sourceFeatures);
-		return sourceFeatures;
+		EList<Feature> targetFeatures = new EObjectEList<>(Feature.class, this, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE);
+		ConnectorImpl.addTargetFeatures(this, targetFeatures);
+		return targetFeatures;
 	}
 
 	/**
@@ -576,6 +574,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return getAssociation();
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				return getOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				return isDirected();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
@@ -585,8 +585,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return basicGetSourceFeature();
 			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
 				return getTargetFeature();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				return getOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				return getConnectionDefinition();
 		}
@@ -625,6 +623,10 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
 				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				getOwnedAssociationType().clear();
+				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
+				return;
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				setIsDirected((Boolean)newValue);
 				return;
@@ -638,10 +640,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
 				getTargetFeature().clear();
 				getTargetFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				getConnectionDefinition().clear();
@@ -677,6 +675,9 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				getAssociation().clear();
 				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				getOwnedAssociationType().clear();
+				return;
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				setIsDirected(IS_DIRECTED_EDEFAULT);
 				return;
@@ -688,9 +689,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return;
 			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
 				getTargetFeature().clear();
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				getConnectionDefinition().clear();
@@ -727,6 +725,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return isSetOwnedType();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return isSetAssociation();
+			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
+				return isSetOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
@@ -735,8 +735,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return isSetSourceFeature();
 			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
 				return isSetTargetFeature();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				return isSetOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				return isSetConnectionDefinition();
 		}
@@ -765,11 +763,11 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE: return SysMLPackage.CONNECTOR__RELATED_FEATURE;
 				case SysMLPackage.CONNECTION_USAGE__ASSOCIATION: return SysMLPackage.CONNECTOR__ASSOCIATION;
+				case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE;
 				case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED: return SysMLPackage.CONNECTOR__IS_DIRECTED;
 				case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END: return SysMLPackage.CONNECTOR__CONNECTOR_END;
 				case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE: return SysMLPackage.CONNECTOR__SOURCE_FEATURE;
 				case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE: return SysMLPackage.CONNECTOR__TARGET_FEATURE;
-				case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE;
 				default: return -1;
 			}
 		}
@@ -798,50 +796,15 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			switch (baseFeatureID) {
 				case SysMLPackage.CONNECTOR__RELATED_FEATURE: return SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE;
 				case SysMLPackage.CONNECTOR__ASSOCIATION: return SysMLPackage.CONNECTION_USAGE__ASSOCIATION;
+				case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE;
 				case SysMLPackage.CONNECTOR__IS_DIRECTED: return SysMLPackage.CONNECTION_USAGE__IS_DIRECTED;
 				case SysMLPackage.CONNECTOR__CONNECTOR_END: return SysMLPackage.CONNECTION_USAGE__CONNECTOR_END;
 				case SysMLPackage.CONNECTOR__SOURCE_FEATURE: return SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE;
 				case SysMLPackage.CONNECTOR__TARGET_FEATURE: return SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE;
-				case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == Relationship.class) {
-			switch (baseOperationID) {
-				default: return -1;
-			}
-		}
-		if (baseClass == Connector.class) {
-			switch (baseOperationID) {
-				case SysMLPackage.CONNECTOR___PATH__FEATURE: return SysMLPackage.CONNECTION_USAGE___PATH__FEATURE;
-				default: return -1;
-			}
-		}
-		return super.eDerivedOperationID(baseOperationID, baseClass);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case SysMLPackage.CONNECTION_USAGE___PATH__FEATURE:
-				return path((Feature)arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

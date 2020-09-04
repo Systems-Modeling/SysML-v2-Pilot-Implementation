@@ -43,7 +43,7 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type in the model to be conjugated.</P>
+	 * <p>The Type to be conjugated.</P>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Original Type</em>' reference.
 	 * @see #setOriginalType(Type)
@@ -67,7 +67,6 @@ public interface Conjugation extends Relationship {
 
 	/**
 	 * Returns the value of the '<em><b>Conjugated Type</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getConjugator <em>Conjugator</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -86,8 +85,8 @@ public interface Conjugation extends Relationship {
 	 * @return the value of the '<em>Conjugated Type</em>' reference.
 	 * @see #setConjugatedType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugation_ConjugatedType()
-	 * @see org.omg.sysml.lang.sysml.Type#getConjugator
-	 * @model opposite="conjugator" required="true" ordered="false"
+	 * @model required="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='conjugator'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
@@ -111,8 +110,7 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Conjugation#getConjugatedType() <em>Conjugated Type</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwner() <em>Owner</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -121,7 +119,7 @@ public interface Conjugation extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that is the result of applying Conjugation to the <code>originalType</code> that also owns the Conjugation.</p>
+	 * <p>The <code>conjugatingType</code> of this Type that is also its <code>owningRelatedElement</p>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)

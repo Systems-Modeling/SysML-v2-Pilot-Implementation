@@ -1,12 +1,14 @@
 /** Documentation Comment */
 package Comments {
-	comment doc_about_doc /** Comment about Comment */
-	comment doc /* Named Comment */	
-	comment doc_doc about doc /* Other Comment about Comment */
+	doc /* Documentation about Package */
+	doc /** Comment about Comment */
+	comment cmt /* Named Comment */	
+	comment cmt_cmtc about cmt /* Other Comment about Comment */
 	
-	comment /** Documention Comment on Block */
+	doc /** Documention Comment on Block */
 	part def C {
-		comment /* Comment in Block */
+		doc /* Documentation in Part Def */
+		comment /* Comment in Part Def */
 		comment about Comments /* Comment about Package */
 	}
 }

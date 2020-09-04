@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlow <em>Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedState <em>Owned State</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedConstraint <em>Owned Constraint</em>}</li>
@@ -43,6 +43,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedIndividual <em>Owned Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedInterface <em>Owned Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAttribute <em>Owned Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedView <em>Owned View</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRendering <em>Owned Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
@@ -80,7 +84,7 @@ public interface Definition extends Classifier {
 	EList<PortUsage> getOwnedPort();
 
 	/**
-	 * Returns the value of the '<em><b>Flow</b></em>' reference list.
+	 * Returns the value of the '<em><b>Flow Feature</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Usage}.
 	 * <p>
 	 * This feature subsets the following features:
@@ -94,14 +98,14 @@ public interface Definition extends Classifier {
 	 * <p>The <code>usages</code> of this Definition that have a non-null <code>direction</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Flow</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_Flow()
+	 * @return the value of the '<em>Flow Feature</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_FlowFeature()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definitionWithFlow'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Usage> getFlow();
+	EList<Usage> getFlowFeature();
 
 	/**
 	 * Returns the value of the '<em><b>Usage</b></em>' reference list.
@@ -295,6 +299,98 @@ public interface Definition extends Classifier {
 	 * @generated
 	 */
 	EList<AttributeUsage> getOwnedAttribute();
+
+	/**
+	 * Returns the value of the '<em><b>Owned View</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ViewUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p> The <code>ownedUsages</code> of this Definition that are ViewUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned View</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedView()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ViewUsage> getOwnedView();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Viewpoint</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ViewpointUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement() <em>Owned Requirement</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedUsages</code> of this Definition that are ViewpointUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Viewpoint</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedViewpoint()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ViewpointUsage> getOwnedViewpoint();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Rendering</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RenderingUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedPart() <em>Owned Part</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>usages</code> of this Definition that are RenderingUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Rendering</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedRendering()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='redenderingOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<RenderingUsage> getOwnedRendering();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Verification Case</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VerificationCaseUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase() <em>Owned Case</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedUsages</code> of this Definition that are VerificationCaseUsages.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Verification Case</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedVerificationCase()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verificationCaseOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<VerificationCaseUsage> getOwnedVerificationCase();
 
 	/**
 	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.

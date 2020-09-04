@@ -51,7 +51,6 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getConjugator <em>Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
@@ -77,16 +76,6 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 public class TypeImpl extends PackageImpl implements Type {
 	
 	public static final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
-
-	/**
-	 * The cached value of the '{@link #getConjugator() <em>Conjugator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConjugator()
-	 * @generated
-	 * @ordered
-	 */
-	protected Conjugation conjugator;
 
 	/**
 	 * The cached value of the '{@link #getOwnedFeatureMembership_comp() <em>Owned Feature Membership comp</em>}' containment reference list.
@@ -200,77 +189,6 @@ public class TypeImpl extends PackageImpl implements Type {
 		return ownedRelationship_comp;
 	}
 	
-	@Override
-	public Conjugation getConjugator() {
-		return conjugator == null? basicGetConjugator(): getConjugatorGen();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Conjugation getConjugatorGen() {
-		if (conjugator != null && conjugator.eIsProxy()) {
-			InternalEObject oldConjugator = (InternalEObject)conjugator;
-			conjugator = (Conjugation)eResolveProxy(oldConjugator);
-			if (conjugator != oldConjugator) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.TYPE__CONJUGATOR, oldConjugator, conjugator));
-			}
-		}
-		return conjugator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public Conjugation basicGetConjugator() {
-		if (conjugator == null) {
-			conjugator = (Conjugation) getOwnedRelationship_comp().stream().
-					filter(r->r instanceof Conjugation).
-					findFirst().orElse(null);
-		}
-		return conjugator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetConjugator(Conjugation newConjugator, NotificationChain msgs) {
-		Conjugation oldConjugator = conjugator;
-		conjugator = newConjugator;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.TYPE__CONJUGATOR, oldConjugator, newConjugator);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setConjugator(Conjugation newConjugator) {
-		if (newConjugator != conjugator) {
-			NotificationChain msgs = null;
-			if (conjugator != null)
-				msgs = ((InternalEObject)conjugator).eInverseRemove(this, SysMLPackage.CONJUGATION__CONJUGATED_TYPE, Conjugation.class, msgs);
-			if (newConjugator != null)
-				msgs = ((InternalEObject)newConjugator).eInverseAdd(this, SysMLPackage.CONJUGATION__CONJUGATED_TYPE, Conjugation.class, msgs);
-			msgs = basicSetConjugator(newConjugator, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.TYPE__CONJUGATOR, newConjugator, newConjugator));
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,11 +210,11 @@ public class TypeImpl extends PackageImpl implements Type {
 	public EList<Generalization> getOwnedGeneralization() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
-		basicGetOwnedGeneralization().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
+		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
 		return generalizations;
 	}
 
-	public EList<Generalization> basicGetOwnedGeneralization() {
+	public EList<Generalization> getOwnedGeneralization_comp() {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		for (Relationship relationship: getOwnedRelationship_comp()) {
 			if (relationship instanceof Generalization &&
@@ -308,14 +226,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> EList<T> basicGetOwnedGeneralization(Class<T> kind, int featureID) {
-		EList<T> generalizations = new EObjectEList<T>(kind, this, featureID);
-		for (Generalization generalization: basicGetOwnedGeneralization()) {
-			if (kind.isInstance(generalization)) {
-				generalizations.add((T)generalization);
-			}
-		}
-		return generalizations;
+	protected <T extends Generalization> List<T> basicGetOwnedGeneralization(Class<T> kind) {
+		return (List<T>)getOwnedGeneralization_comp().stream().
+				filter(kind::isInstance).
+				collect(Collectors.toList());
 	}
 	
 	public void computeImplicitGeneralization() {
@@ -329,12 +243,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		@SuppressWarnings("unchecked")
-		Generalization generalization = getDefaultGeneralization(
-				basicGetOwnedGeneralization(
-						(Class<? extends Generalization>)generalizationEClass.getInstanceClass(), 
-						SysMLPackage.TYPE__OWNED_GENERALIZATION),
-				generalizationEClass, superTypeNames);
+		Generalization generalization = getDefaultGeneralization(generalizationEClass, superTypeNames);
 		if (generalization != null) {
 			getOwnedRelationship_comp().add(generalization);
 		}		
@@ -348,7 +257,10 @@ public class TypeImpl extends PackageImpl implements Type {
 		return TYPE_GENERALIZATION_DEFAULT;
 	}
 	
-	protected <T extends Generalization> Generalization getDefaultGeneralization(EList<T> generalizations, EClass eClass, String... defaultNames) {
+	protected <T extends Generalization> Generalization getDefaultGeneralization(EClass eClass, String... defaultNames) {
+		@SuppressWarnings("unchecked")
+		List<? extends Generalization> generalizations = 
+			basicGetOwnedGeneralization((Class<? extends Generalization>)eClass.getInstanceClass());
 		Generalization generalization = null;
 		if (generalizations.isEmpty()) {
 			Type general = getDefaultType(defaultNames);
@@ -422,7 +334,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__INPUT);
-		Conjugation conjugator = getConjugator();
+		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			inputs.addAll(conjugator.getOriginalType().getOutput());
 		} else {
@@ -450,7 +362,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public EList<Feature> getOutput() {
 		EList<Feature> outputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__OUTPUT);
-		Conjugation conjugator = getConjugator();
+		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			outputs.addAll(conjugator.getOriginalType().getInput());
 		} else {
@@ -568,8 +480,9 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public Conjugation basicGetOwnedConjugator() {
-		Conjugation conjugator = getConjugator();
-		return this.getOwnedRelationship().contains(conjugator)? conjugator: null;
+		return (Conjugation) getOwnedRelationship_comp().stream().
+				filter(Conjugation.class::isInstance).
+				findFirst().orElse(null);
 	}
 
 	/**
@@ -589,7 +502,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public boolean isConjugated() {
-		return getConjugator() != null;
+		return getOwnedConjugator() != null;
 	}
 
 	/**
@@ -693,7 +606,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public EList<Membership> getInheritedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
 		excludedTypes.add(this);
-		Conjugation conjugator = this.getConjugator();
+		Conjugation conjugator = this.getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
 			if (originalType != null && !excludedTypes.contains(originalType)) {
@@ -1008,10 +921,6 @@ public class TypeImpl extends PackageImpl implements Type {
 		switch (featureID) {
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.TYPE__CONJUGATOR:
-				if (conjugator != null)
-					msgs = ((InternalEObject)conjugator).eInverseRemove(this, SysMLPackage.CONJUGATION__CONJUGATED_TYPE, Conjugation.class, msgs);
-				return basicSetConjugator((Conjugation)otherEnd, msgs);
 			case SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership_comp()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
@@ -1030,8 +939,6 @@ public class TypeImpl extends PackageImpl implements Type {
 		switch (featureID) {
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
 				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.TYPE__CONJUGATOR:
-				return basicSetConjugator(null, msgs);
 			case SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP:
 				return ((InternalEList<?>)getOwnedMembership_comp()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
@@ -1048,9 +955,6 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__CONJUGATOR:
-				if (resolve) return getConjugator();
-				return basicGetConjugator();
 			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
 				return getOwnedGeneralization();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
@@ -1100,9 +1004,6 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__CONJUGATOR:
-				setConjugator((Conjugation)newValue);
-				return;
 			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
@@ -1178,9 +1079,6 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__CONJUGATOR:
-				setConjugator((Conjugation)null);
-				return;
 			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
 				getOwnedGeneralization().clear();
 				return;
@@ -1248,8 +1146,6 @@ public class TypeImpl extends PackageImpl implements Type {
 				return isSetMembership();
 			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
 				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
-			case SysMLPackage.TYPE__CONJUGATOR:
-				return conjugator != null;
 			case SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP:
 				return ownedMembership_comp != null && !ownedMembership_comp.isEmpty();
 			case SysMLPackage.TYPE__OWNED_GENERALIZATION:

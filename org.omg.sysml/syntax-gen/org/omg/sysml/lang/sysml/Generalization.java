@@ -9,10 +9,9 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Generalization is a Relationship between two Types that requires all sequences of the specific type to also be sequences of the&nbsp;general Type (the set of sequences of the specific Type is a <em>subset</em> of those of the general Type, which might be the same set).</p>
+ * <p>Generalization is a Relationship between two Types that requires all instances of the <code>specific</code> type to also be instances of the <code>general</code> Type (i.e., the set of instances of the <code>specific</code> Type is a <em>subset</em> of those of the <code>general</code> Type, which might be the same set).</p>
  * 
- * <p>The specific Type of a Generalization cannot&nbsp;be a conjugated Type.</p>
- * 
+ * not specific.isConjugated
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,7 +43,7 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type with&nbsp;a&nbsp;superset of all instances of the specific Type, which might be the same set.</p>
+	 * <p>A Type with a superset of all instances of the <code>specific</code> Type, which might be the same set.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>General</em>' reference.
@@ -82,7 +81,7 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type with&nbsp;a&nbsp;subset of all instances of the general Type, which might be the same set.</p>
+	 * <p>A Type with a subset of all instances of the <code>general</code> Type, which might be the same set.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Specific</em>' reference.
@@ -123,7 +122,7 @@ public interface Generalization extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Type that owns this Generalization.</p>
+	 * <p>The Type that is the <code>specific<code> Type of this Generalization and owns it as its <code>owningRelatedElement<code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)

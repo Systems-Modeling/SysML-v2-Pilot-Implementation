@@ -221,8 +221,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @generated
 	 */
 	public boolean isSetRelatedType() {
-		return isSetSourceType()
-			|| isSetTargetType();
+		return !getRelatedType().isEmpty();
 	}
 
 	/**

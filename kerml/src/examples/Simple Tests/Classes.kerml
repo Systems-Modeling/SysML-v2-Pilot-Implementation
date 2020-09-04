@@ -3,12 +3,12 @@ package Classes {
 	
 	feature f: A;
 
-	public class A {
+	public class id '1' A {
 		feature b: B;
 		protected in port c: C;
 	}
 	
-	abstract class B {
+	abstract class id '2' B {
 		public abstract feature a: A;
 		packaged abstract feature x: C;
 		package P { }

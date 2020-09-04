@@ -7,7 +7,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Membership is a Relationship between a Package and an Element that indicates the Element is a <tt>member</tt> of (i.e., is contained in) the Package. The Membership may define a <tt>memberName</tt> for the Element as a member of the Package and specifies whether or not the Element is publicly visible as a member of the Package from outside the Package. The Element may be owned by the Membership, in which case it is an <tt>ownedMember</tt> of the Package, or it may be referenced but not owned, in which case it is effectively individually imported into the Package.</p>
+ * <p>Membership is a Relationship between a Package and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Package. The Membership may define a <code>memberName</code> for the Element as a member of the Package and specifies whether or not the Element is publicly visible as a member of the Package from outside the Package. The Element may be owned by the Membership, in which case it is an <code>ownedMember</code> of the Package, or it may be referenced but not owned, in which case it is effectively individually imported into the Package.</p>
  * 
  * <!-- end-model-doc -->
  *

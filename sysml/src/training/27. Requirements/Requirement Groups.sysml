@@ -8,14 +8,14 @@ package 'Requirement Groups' {
 	}
 	
 	requirement vehicleSpecification(vehicle : Vehicle) {
-		/* Overall vehicle requirements group */
+		doc /* Overall vehicle requirements group */
 		
 		require fullVehicleMassLimit;
 		require emptyVehicleMassLimit;
 	}
 	
 	requirement engineSpecification(engine : Engine) {
-		/* Engine power requirements group */
+		doc /* Engine power requirements group */
 		
 		requirement drivePowerInterface : DrivePowerInterface 
 			(clutchPort = engine::clutchPort);

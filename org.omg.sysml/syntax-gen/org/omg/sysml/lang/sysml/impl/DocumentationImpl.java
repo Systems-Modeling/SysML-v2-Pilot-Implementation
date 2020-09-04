@@ -204,6 +204,126 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 		throw new UnsupportedOperationException();
 	}
 
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnotatingElement getAnnotatingElement() {
+		return getDocumentingComment_comp();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public AnnotatingElement basicGetAnnotatingElement() {
+		return getDocumentingComment_comp();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAnnotatingElement(AnnotatingElement newAnnotatingElement, NotificationChain msgs) {
+		if (newAnnotatingElement != null && !(newAnnotatingElement instanceof Comment)) {
+			throw new IllegalArgumentException("newAnnotatingElement must be an instance of Comment");
+		}
+		return basicSetDocumentingComment_comp((Comment) newAnnotatingElement, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAnnotatingElement(AnnotatingElement newAnnotatingElement) {
+		if (newAnnotatingElement != null && !(newAnnotatingElement instanceof Comment)) {
+			throw new IllegalArgumentException("newAnnotatingElement must be an instance of Comment");
+		}
+		setDocumentingComment_comp((Comment) newAnnotatingElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAnnotatingElement() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getOwnedRelatedElement_comp() {
+		EList<Element> ownedRelatedElement_comp = new UniqueEList<Element>();
+		Comment documentingComment_comp = getDocumentingComment_comp();
+		if (documentingComment_comp != null) {
+			ownedRelatedElement_comp.add(documentingComment_comp);
+		}
+		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP, ownedRelatedElement_comp.size(), ownedRelatedElement_comp.toArray());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedRelatedElement_comp() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwningAnnotatedElement() {
+		return getOwningDocumentedElement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningAnnotatedElement(Element newOwningAnnotatedElement, NotificationChain msgs) {
+		return basicSetOwningDocumentedElement(newOwningAnnotatedElement, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwningAnnotatedElement(Element newOwningAnnotatedElement) {
+		setOwningDocumentedElement(newOwningAnnotatedElement);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningAnnotatedElement() {
+  		return false;
+	}
+	
+	@Override
+	public Element getAnnotatedElement() {
+		return getOwningDocumentedElement();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,119 +454,4 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 		}
 		return super.eIsSet(featureID);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public AnnotatingElement getAnnotatingElement() {
-		return getDocumentingComment_comp();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public AnnotatingElement basicGetAnnotatingElement() {
-		return getDocumentingComment_comp();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAnnotatingElement(AnnotatingElement newAnnotatingElement, NotificationChain msgs) {
-		if (newAnnotatingElement != null && !(newAnnotatingElement instanceof Comment)) {
-			throw new IllegalArgumentException("newAnnotatingElement must be an instance of Comment");
-		}
-		return basicSetDocumentingComment_comp((Comment) newAnnotatingElement, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAnnotatingElement(AnnotatingElement newAnnotatingElement) {
-		if (newAnnotatingElement != null && !(newAnnotatingElement instanceof Comment)) {
-			throw new IllegalArgumentException("newAnnotatingElement must be an instance of Comment");
-		}
-		setDocumentingComment_comp((Comment) newAnnotatingElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAnnotatingElement() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getOwnedRelatedElement_comp() {
-		EList<Element> ownedRelatedElement_comp = new UniqueEList<Element>();
-		Comment documentingComment_comp = getDocumentingComment_comp();
-		if (documentingComment_comp != null) {
-			ownedRelatedElement_comp.add(documentingComment_comp);
-		}
-		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP, ownedRelatedElement_comp.size(), ownedRelatedElement_comp.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedRelatedElement_comp() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwningAnnotatedElement() {
-		return getOwningDocumentedElement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwningAnnotatedElement(Element newOwningAnnotatedElement, NotificationChain msgs) {
-		return basicSetOwningDocumentedElement(newOwningAnnotatedElement, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwningAnnotatedElement(Element newOwningAnnotatedElement) {
-		setOwningDocumentedElement(newOwningAnnotatedElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningAnnotatedElement() {
-  		return false;
-	}
-
 } //DocumentationImpl

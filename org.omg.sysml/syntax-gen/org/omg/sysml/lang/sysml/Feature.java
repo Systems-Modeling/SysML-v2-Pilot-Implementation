@@ -40,8 +40,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getTyping <em>Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -93,7 +93,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>featuringType</code> values are derived as all Types that have a path through <code>ownedFeatureMembership</code> to <code>ownedMemberFeature</code>.
+	 * <p>The Type that is the <code>owningType</code> of the <code>owningFeatureMembership</code> of this Type.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
@@ -283,6 +283,34 @@ public interface Feature extends Type {
 	EList<Subsetting> getOwnedSubsetting();
 
 	/**
+	 * Returns the value of the '<em><b>Owned Typing</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature <em>Owning Feature</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization() <em>Owned Generalization</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Typing</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The FeatureTypings owned by this Feature as the <code>typedFeature</code> of the FeatureTyping.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Typing</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
+	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<FeatureTyping> getOwnedTyping();
+
+	/**
 	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}'.
 	 * <p>
@@ -298,7 +326,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureMembership that indicates where this Feature will be a <code>memberElement</code> and what its owner will be.</p>
+	 * <p>The FeatureMembership that owns this Feature as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
@@ -350,28 +378,6 @@ public interface Feature extends Type {
 	void setIsComposite(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Typing</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.FeatureTyping}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature <em>Typed Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Typing</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The FeatureTyping relationships determining the <code>type</code> of this Feature.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Typing</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Typing()
-	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getTypedFeature
-	 * @model opposite="typedFeature" ordered="false"
-	 * @generated
-	 */
-	EList<FeatureTyping> getTyping();
-
-	/**
 	 * Returns the value of the '<em><b>Is End</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -416,7 +422,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Placeholder</p>
+	 * <p>The Type that is related to this Feature by an EndFeatureMembership in which the Feature is an <code>ownedMemberFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>End Owning Type</em>' reference.
 	 * @see #setEndOwningType(Type)
@@ -468,7 +474,11 @@ public interface Feature extends Type {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" typeRequired="true" typeOrdered="false"
+	 * <!-- begin-model-doc -->
+	 * <p>Return the <code>directionOf</code> this Feature relative to the given <code>type</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @model ordered="false" typeRequired="true" typeOrdered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='type.directionOf(self)'"
 	 * @generated
 	 */
 	FeatureDirectionKind directionFor(Type type);

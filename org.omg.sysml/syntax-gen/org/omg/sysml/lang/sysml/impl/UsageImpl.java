@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -51,6 +52,9 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.lang.sysml.VerificationCaseUsage;
+import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.lang.sysml.ViewpointUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +76,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRequirement <em>Nested Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCalculation <em>Nested Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getFlow <em>Flow</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCase <em>Nested Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
@@ -85,6 +89,10 @@ import org.omg.sysml.lang.sysml.VariantMembership;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedIndividual <em>Nested Individual</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedInterface <em>Nested Interface</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAttribute <em>Nested Attribute</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedView <em>Nested View</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRendering <em>Nested Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -331,8 +339,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Usage> getFlow() {
-		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.USAGE__FLOW);
+	public EList<Usage> getFlowFeature() {
+		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.USAGE__FLOW_FEATURE);
 		getMembership().stream().
 			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
 			map(membership->((FeatureMembership)membership).getMemberFeature()).
@@ -472,6 +480,46 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<ViewUsage> getNestedView() {
+		return new DerivedEObjectEList<>(ViewUsage.class, this, SysMLPackage.USAGE__NESTED_VIEW, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<ViewpointUsage> getNestedViewpoint() {
+		return new DerivedEObjectEList<>(ViewpointUsage.class, this, SysMLPackage.USAGE__NESTED_VIEWPOINT, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<RenderingUsage> getNestedRendering() {
+		return new DerivedEObjectEList<>(RenderingUsage.class, this, SysMLPackage.USAGE__NESTED_RENDERING, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<VerificationCaseUsage> getNestedVerificationCase() {
+		return new DerivedEObjectEList<>(VerificationCaseUsage.class, this, SysMLPackage.USAGE__NESTED_VERIFICATION_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<ActionUsage> getNestedAction() {
 		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -524,8 +572,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	@Override
-	public EList<FeatureTyping> getTyping() {
-		EList<FeatureTyping> typings = super.getTyping();
+	public EList<FeatureTyping> getOwnedTyping() {
+		EList<FeatureTyping> typings = super.getOwnedTyping();
 		Definition variationDefinition = getOwningVariationDefinition();
 		if (variationDefinition != null) {
 			if (!typings.stream().anyMatch(s->s.getType() == variationDefinition)) {
@@ -533,9 +581,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 						filter(s->s.getType() == null).findFirst().orElse(null);
 				if (typing == null) {
 					typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-					((FeatureTypingImpl)typing).basicSetTypedFeature(this, null);
+					typing.setTypedFeature(this);
 					getOwnedRelationship_comp().add(typing);
-					typings.add(typing);
 				}
 				typing.setType(variationDefinition);
 			}
@@ -545,7 +592,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> subsettings = super.basicGetOwnedSubsetting();
+		List<Subsetting> subsettings = super.basicGetOwnedSubsetting();
 		Usage variationUsage = getOwningVariationUsage();
 		if (variationUsage != null && isVariant()) {
 			if (!subsettings.stream().anyMatch(s->s.getSubsettedFeature() == variationUsage)) {
@@ -594,7 +641,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public void transform() {
-		getTyping();
+		getOwnedTyping();
 		getOwnedSubsetting();
 		super.transform();
 	}
@@ -731,8 +778,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedCalculation();
 			case SysMLPackage.USAGE__IS_VARIATION:
 				return isVariation();
-			case SysMLPackage.USAGE__FLOW:
-				return getFlow();
+			case SysMLPackage.USAGE__FLOW_FEATURE:
+				return getFlowFeature();
 			case SysMLPackage.USAGE__NESTED_CASE:
 				return getNestedCase();
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
@@ -757,6 +804,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedInterface();
 			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
 				return getNestedAttribute();
+			case SysMLPackage.USAGE__NESTED_VIEW:
+				return getNestedView();
+			case SysMLPackage.USAGE__NESTED_VIEWPOINT:
+				return getNestedViewpoint();
+			case SysMLPackage.USAGE__NESTED_RENDERING:
+				return getNestedRendering();
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				return getNestedVerificationCase();
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 		}
@@ -813,9 +868,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__IS_VARIATION:
 				setIsVariation((Boolean)newValue);
 				return;
-			case SysMLPackage.USAGE__FLOW:
-				getFlow().clear();
-				getFlow().addAll((Collection<? extends Usage>)newValue);
+			case SysMLPackage.USAGE__FLOW_FEATURE:
+				getFlowFeature().clear();
+				getFlowFeature().addAll((Collection<? extends Usage>)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_CASE:
 				getNestedCase().clear();
@@ -864,6 +919,22 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
 				getNestedAttribute().clear();
 				getNestedAttribute().addAll((Collection<? extends AttributeUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_VIEW:
+				getNestedView().clear();
+				getNestedView().addAll((Collection<? extends ViewUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_VIEWPOINT:
+				getNestedViewpoint().clear();
+				getNestedViewpoint().addAll((Collection<? extends ViewpointUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_RENDERING:
+				getNestedRendering().clear();
+				getNestedRendering().addAll((Collection<? extends RenderingUsage>)newValue);
+				return;
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				getNestedVerificationCase().clear();
+				getNestedVerificationCase().addAll((Collection<? extends VerificationCaseUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -914,8 +985,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__IS_VARIATION:
 				setIsVariation(IS_VARIATION_EDEFAULT);
 				return;
-			case SysMLPackage.USAGE__FLOW:
-				getFlow().clear();
+			case SysMLPackage.USAGE__FLOW_FEATURE:
+				getFlowFeature().clear();
 				return;
 			case SysMLPackage.USAGE__NESTED_CASE:
 				getNestedCase().clear();
@@ -952,6 +1023,18 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
 				getNestedAttribute().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_VIEW:
+				getNestedView().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_VIEWPOINT:
+				getNestedViewpoint().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_RENDERING:
+				getNestedRendering().clear();
+				return;
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				getNestedVerificationCase().clear();
 				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -992,8 +1075,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedCalculation().isEmpty();
 			case SysMLPackage.USAGE__IS_VARIATION:
 				return isVariation != IS_VARIATION_EDEFAULT;
-			case SysMLPackage.USAGE__FLOW:
-				return !getFlow().isEmpty();
+			case SysMLPackage.USAGE__FLOW_FEATURE:
+				return !getFlowFeature().isEmpty();
 			case SysMLPackage.USAGE__NESTED_CASE:
 				return !getNestedCase().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
@@ -1018,6 +1101,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedInterface().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ATTRIBUTE:
 				return !getNestedAttribute().isEmpty();
+			case SysMLPackage.USAGE__NESTED_VIEW:
+				return !getNestedView().isEmpty();
+			case SysMLPackage.USAGE__NESTED_VIEWPOINT:
+				return !getNestedViewpoint().isEmpty();
+			case SysMLPackage.USAGE__NESTED_RENDERING:
+				return !getNestedRendering().isEmpty();
+			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
+				return !getNestedVerificationCase().isEmpty();
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				return !getVariantMembership().isEmpty();
 		}

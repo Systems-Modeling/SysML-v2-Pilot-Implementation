@@ -186,47 +186,6 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated
 	 */
 	@Override
-	public Conjugation getOwnedConjugator() {
-		return getOwnedPortConjugator();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Conjugation basicGetOwnedConjugator() {
-		return basicGetOwnedPortConjugator();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedConjugator(Conjugation newOwnedConjugator) {
-		if (newOwnedConjugator != null && !(newOwnedConjugator instanceof PortConjugation)) {
-			throw new IllegalArgumentException("newOwnedConjugator must be an instance of PortConjugation");
-		}
-		setOwnedPortConjugator((PortConjugation) newOwnedConjugator);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedConjugator() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
 		return getOriginalPortDefinition();
 	}
@@ -280,8 +239,39 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	}
 	
 	@Override
-	public Conjugation getConjugator() {
+	public Conjugation getOwnedConjugator() {
 		return getOwnedPortConjugator();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Conjugation basicGetOwnedConjugator() {
+		return basicGetOwnedPortConjugator();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedConjugator(Conjugation newOwnedConjugator) {
+		if (newOwnedConjugator != null && !(newOwnedConjugator instanceof PortConjugation)) {
+			throw new IllegalArgumentException("newOwnedConjugator must be an instance of PortConjugation");
+		}
+		setOwnedPortConjugator((PortConjugation) newOwnedConjugator);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedConjugator() {
+  		return false;
 	}
 
 	/**

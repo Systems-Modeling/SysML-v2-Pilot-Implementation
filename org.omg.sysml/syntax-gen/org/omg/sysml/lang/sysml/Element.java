@@ -365,7 +365,7 @@ public interface Element extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model dataType="org.omg.sysml.lang.types.String" required="true" changeable="false" ordered="false"
+	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" changeable="false" ordered="false"
 	 * @generated
 	 */
 	String getIdentifier();

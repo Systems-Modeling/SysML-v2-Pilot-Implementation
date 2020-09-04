@@ -6,7 +6,7 @@ package 'Requirement Usages' {
 		attribute :>> massReqd = 2000@[kg];
 		
 		assume constraint {
-			/* Full tank is full. */
+			doc /* Full tank is full. */
 			vehicle::fuelMass == vehicle::fuelFullMass
 		}
 	}
@@ -15,7 +15,7 @@ package 'Requirement Usages' {
 		attribute :>> massReqd = 1500@[kg];
 		
 		assume constraint {
-			/* Full tank is empty. */
+			doc /* Full tank is empty. */
 			vehicle::fuelMass == 0@[kg]
 		}
 	}

@@ -920,7 +920,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures, Set<Feature> visited) {
 		redefinedFeatures.add(this);
-		getOwnedRedefinition().stream().forEach(redefinition->{
+		addComputedRedefinitions();
+		basicGetOwnedRedefinition().stream().forEach(redefinition->{
 			visited.add(this);
 			Feature redefinedFeature = redefinition.getRedefinedFeature();
 			if (!visited.contains(redefinedFeature)) {

@@ -61,10 +61,7 @@ package 'Individuals and Roles' {
 			//DD has no part-def-type, but c_1 is part-def-typed by C
 		}		
 		snapshot a_1_4 {
-			//* XPECT errors ---
-			 "An individual must be typed by one individual definition." at "snapshot b_1_1 : B :>> b_1;"
-			 "Relationships must have at least two related elements" at ""
-			 --- */
+			// XPECT errors -->"An individual must be typed by one individual definition." at "snapshot b_1_1 : B :>> b_1;"
 			snapshot b_1_1 : B :>> b_1;
 		}
 	}

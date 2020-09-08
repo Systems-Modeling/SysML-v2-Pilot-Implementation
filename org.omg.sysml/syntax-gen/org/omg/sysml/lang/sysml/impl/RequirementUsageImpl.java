@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
@@ -141,8 +143,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		// Note: The subject parameter is assumed to be the first owned parameter.
-		return (Usage)getOwnedParameters().stream().findFirst().orElse(null);
+		return UsageImpl.getSubjectParameterOf(this);
 	}
 
 	/**
@@ -310,6 +311,22 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	public boolean isSetHumanId() {
   		return false;
 	}
+
+	// Additional overrides
+	
+	@Override
+	public List<Feature> getOwnedParameters() {
+		basicGetSubjectParameter();
+		return super.getOwnedParameters();
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		basicGetSubjectParameter();
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

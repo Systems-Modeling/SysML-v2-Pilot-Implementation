@@ -10,16 +10,18 @@ package AnalysisTest {
 		/* ... */
 	}
 
-	analysis def AnalysisCase(v : V) {
+	analysis def AnalysisCase {
+		subject v : V;
 		
-		objective obj : AnalysisObjective(
-			subject = result
-		);
+		objective obj : AnalysisObjective { 
+			subject = result;
+		}
 		
 		v::m
 	}
 	
-	analysis def AnalysisPlan(v : V) {
+	analysis def AnalysisPlan {
+		subject v : V;
 		
 		objective {
 			/* ... */

@@ -2,14 +2,15 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 
@@ -67,11 +68,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return getOwnedFeatureMembership().stream().
-				filter(SubjectMembership.class::isInstance).
-				map(SubjectMembership.class::cast).
-				map(SubjectMembership::getOwnedSubjectParameter).
-				findFirst().orElse(null);
+		return UsageImpl.getSubjectParameterOf(this);
 	}
 
 	/**
@@ -101,10 +98,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return (RequirementUsage)getFeatureMembership().stream().
-				filter(ObjectiveMembership.class::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
-				findFirst().orElse(null);
+		return (RequirementUsage)getFeatureByMembership(ObjectiveMembership.class);
 	}
 
 	/**
@@ -124,26 +118,17 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	
 	// Additional overrides
 	
-//	@Override
-//	public List<Parameter> getOwnedParameters() {
-//		addSubjectParameterTo(this);
-//		return super.getOwnedParameters();
-//	}
-//	
-//	public static void addSubjectParameterTo(Type type) {
-//		if (!type.getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
-//			Parameter parameter = SysMLFactory.eINSTANCE.createParameter();
-//			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-//			membership.setOwnedSubjectParameter_comp(parameter);
-//			type.getOwnedFeatureMembership_comp().add(membership);
-//		}
-//	}
-//	
-//	@Override
-//	public void transform() {
-//		addSubjectParameterTo(this);
-//		super.transform();
-//	}
+	@Override
+	public List<Feature> getOwnedParameters() {
+		basicGetSubjectParameter();
+		return super.getOwnedParameters();
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		basicGetSubjectParameter();
+	}
 	
 	//
 	

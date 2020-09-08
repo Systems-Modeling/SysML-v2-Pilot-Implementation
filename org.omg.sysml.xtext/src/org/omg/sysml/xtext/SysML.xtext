@@ -1007,13 +1007,7 @@ RequirementDefinition returns SysML::RequirementDefinition :
 
 fragment RequirementDefDeclaration returns SysML::RequirementDefinition :
 	DefinitionPrefix? RequirementDefKeyword Identification 
-	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart 
-;
-
-fragment RequirementDefParameterList returns SysML::Type :
-	  ownedFeatureMembership_comp += EmptyParameterMember
-	| '(' ownedFeatureMembership_comp += EmptyParameterMember ')'
-	| '(' ownedFeatureMembership_comp += ParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
+	SuperclassingList? ParameterList? EmptyReturnParameterPart 
 ;
 
 fragment RequirementDefBody returns SysML::Type :
@@ -1022,17 +1016,26 @@ fragment RequirementDefBody returns SysML::Type :
 
 fragment RequirementDefBodyItem returns SysML::Type :
 	  DefinitionBodyItem
+	| ownedFeatureMembership_comp += SubjectMember
 	| ownedFeatureMembership_comp += RequirementConstraintMember
 ;
 
+SubjectUsage returns SysML::ReferenceUsage :
+	'subject' Usage
+;
+
 RequirementConstraintUsage returns SysML::ConstraintUsage :
-    ( ownedRelationship_comp += Subset UsageSpecialization*
-    | 'constraint' UsageDeclaration?
-    )
-    ConstraintParameterPart ConstraintDefBody
+      ownedRelationship_comp += Subset UsageSpecialization* 
+      ConstraintParameterPart RequirementDefBody
+    | 'constraint' UsageDeclaration? 
+      ConstraintParameterPart ConstraintDefBody
 ;
 
 /* REQUIREMENT DEFINITION MEMBERSHIPS */
+
+SubjectMember returns SysML::SubjectMembership :
+	DefinitionMemberPrefix ownedSubjectParameter_comp = SubjectUsage
+;
 
 RequirementConstraintMember returns SysML::RequirementConstraintMembership :
 	DefinitionMemberPrefix kind = RequirementConstraintKind 
@@ -1059,14 +1062,7 @@ CaseDefinition returns SysML::CaseDefinition :
 
 fragment CaseDefDeclaration returns SysML::CaseDefinition :
 	DefinitionPrefix? CaseDefKeyword Identification 
-	SuperclassingList? SubjectParameterList
-;
-
-fragment SubjectParameterList returns SysML::Type :
-	  ownedFeatureMembership_comp += EmptySubjectParameterMember
-	| ( '(' ownedFeatureMembership_comp += EmptySubjectParameterMember ')'
-	  | '(' ownedFeatureMembership_comp += SubjectParameterMember ( ',' ownedFeatureMembership_comp += ParameterMember )* ')'
-	  ) ReturnParameterPart?
+	SuperclassingList? ParameterPart
 ;
 
 fragment CaseDefBody returns SysML::Type :
@@ -1078,36 +1074,16 @@ fragment CaseDefBody returns SysML::Type :
 
 fragment CaseDefBodyItem returns SysML::Type :
 	  CalculationDefBodyItem
-//	| ownedFeatureMembership_comp += SubjectParameterMember 
+	| ownedFeatureMembership_comp += SubjectMember 
 	| ownedFeatureMembership_comp += ObjectiveMember
 	
 ;
-
-//SubjectParameter returns SysML::Usage :
-//	{SysML::Parameter} UsageDeclaration? ValuePart?
-//;
 
 ObjectiveRequirementUsage returns SysML::RequirementUsage :
 	RequirementUsageDeclaration RequirementDefBody
 ;
 
 /* CASE DEFINITION MEMBERSHIPS */
-
-//SubjectParameterMember returns SysML::SubjectMembership :
-//	DefinitionMemberPrefix 'subject' ownedSubjectParameter_comp = SubjectParameter ';'
-//;
-
-EmptySubjectParameterMember returns SysML::SubjectMembership :
-	ownedSubjectParameter_comp = EmptyParameter
-;
-
-SubjectParameterMember returns SysML::SubjectMembership :
-	( direction = InDirection )? ownedSubjectParameter_comp = Parameter
-;
-
-InDirection returns SysML::FeatureDirectionKind :
-	'in'
-;
 
 ObjectiveMember returns SysML::ObjectiveMembership :
 	DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp = ObjectiveRequirementUsage
@@ -1129,7 +1105,7 @@ AnalysisCaseDefinition returns SysML::AnalysisCaseDefinition :
 
 fragment AnalysisCaseDefDeclaration returns SysML::AnalysisCaseDefinition :
 	DefinitionPrefix? AnalysisCaseDefKeyword Identification 
-	SuperclassingList? SubjectParameterList 
+	SuperclassingList? ParameterPart 
 ;
 
 /* VERIFICATION CASE DEFINITIONS */
@@ -1148,7 +1124,7 @@ VerificationCaseDefinition returns SysML::VerificationCaseDefinition :
 
 fragment VerificationCaseDefDeclaration returns SysML::VerificationCaseDefinition :
 	DefinitionPrefix? VerificationCaseDefKeyword Identification 
-	SuperclassingList? SubjectParameterList 
+	SuperclassingList? ParameterPart 
 ;
 
 /* VIEW DEFINITION */
@@ -1185,7 +1161,7 @@ ViewpointDefinition returns SysML::ViewpointDefinition :
 
 fragment ViewpointDefDeclaration returns SysML::ViewpointDefinition :
 	DefinitionPrefix? ViewpointDefKeyword Identification 
-	SuperclassingList? RequirementDefParameterList EmptyReturnParameterPart 
+	SuperclassingList? ParameterList? EmptyReturnParameterPart 
 ;
 
 /* RENDERING DEFINITION */
@@ -2030,7 +2006,8 @@ RequirementUsage returns SysML::RequirementUsage :
 ;
 
 RequirementRefUsage returns SysML::RequirementUsage :
-	UsagePrefix? ( 'ref' RequirementUsageKeyword | isComposite ?= RequirementUsageKeyword ) RequirementUsageDeclaration RequirementDefBody
+	UsagePrefix? ( 'ref' RequirementUsageKeyword | isComposite ?= RequirementUsageKeyword ) 
+	RequirementUsageDeclaration RequirementDefBody
 ;
 
 fragment RequirementUsageDeclaration returns SysML::RequirementUsage :
@@ -2071,7 +2048,8 @@ CaseUsage returns SysML::CaseUsage :
 ;
 
 CaseRefUsage returns SysML::CaseUsage :
-	UsagePrefix? ( 'ref' CaseUsageKeyword | isComposite ?= CaseUsageKeyword ) CalculationUsageDeclaration CaseDefBody
+	UsagePrefix? ( 'ref' CaseUsageKeyword | isComposite ?= CaseUsageKeyword ) 
+	CalculationUsageDeclaration CaseDefBody
 ;
 
 /* ANALYSIS CASE USAGES */

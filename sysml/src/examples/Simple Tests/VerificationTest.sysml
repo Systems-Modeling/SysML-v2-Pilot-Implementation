@@ -10,11 +10,13 @@ package VerificationTest {
 		/* ... */
 	}
 
-	verification def VerificationCase(v : V) {
+	verification def VerificationCase {
 		
-		objective obj : VerificationObjective(
-			subject = v
-		);
+		subject v : V;
+		
+		objective : VerificationObjective {
+			subject = v;
+		}
 		
 		v::m == 0
 	}

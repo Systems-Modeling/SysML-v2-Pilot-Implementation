@@ -10,13 +10,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
 /**
@@ -75,10 +73,7 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return (RequirementUsage)getFeatureMembership().stream().
-				filter(ObjectiveMembership.class::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
-				findFirst().orElse(null);
+		return (RequirementUsage)getFeatureByMembership(ObjectiveMembership.class);
 	}
 
 	/**
@@ -108,11 +103,7 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return getOwnedFeatureMembership().stream().
-				filter(SubjectMembership.class::isInstance).
-				map(SubjectMembership.class::cast).
-				map(SubjectMembership::getOwnedSubjectParameter).
-				findFirst().orElse(null);
+		return UsageImpl.getSubjectParameterOf(this);
 	}
 
 	/**
@@ -216,23 +207,20 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	// Additional overrides
 	
 	@Override
-	public List<Feature> getOwnedParameters() {
-		addSubjectParameter();
-		return super.getOwnedParameters();
+	protected boolean hasRelevantSubjectParameter() {
+		Type owningType = getOwningType();
+		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
 	}
 	
-	public void addSubjectParameter() {
-		if (!getOwnedFeatureMembership().stream().anyMatch(SubjectMembership.class::isInstance)) {
-			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-			membership.setOwnedSubjectParameter_comp(parameter);
-			getOwnedFeatureMembership_comp().add(membership);
-		}
+	@Override
+	public List<Feature> getOwnedParameters() {
+		basicGetSubjectParameter();
+		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
-		addSubjectParameter();
+		basicGetSubjectParameter();
 		super.transform();
 	}
 	

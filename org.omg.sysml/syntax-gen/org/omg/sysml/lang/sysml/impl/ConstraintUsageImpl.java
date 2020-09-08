@@ -21,15 +21,15 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 
 /**
  * <!-- begin-user-doc -->
@@ -281,28 +281,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	/**
-	 * If this ConstraintUsage has a RequirementDefinition as a type, then ensure that it has
-	 * at least one owned Parameter (to redefine the requirement subject parameter).
-	 */
-	@Override
-	public List<Feature> getOwnedParameters() {
-		List<Feature> parameters = super.getOwnedParameters();
-		// Note: A ConstraintUsage will always have at least a return Parameter.
-		if (parameters.size() < 2 && isRequirement() ) {
-			Feature parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
-			membership.setOwnedMemberParameter_comp(parameter);
-			getOwnedFeatureMembership_comp().add(0, membership);
-			parameters.add(0, parameter);
-		}
-		return parameters;
-	}
-	
-	public boolean isRequirement() {
-		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
-	}
-	
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -345,12 +323,36 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
+	// Additional Overrides
+	
+	@Override
+	protected boolean hasRelevantSubjectParameter() {
+		Type owningType = getOwningType();
+		return isRequirement() && 
+			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
+	}
+	
+	public boolean isRequirement() {
+		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
+	}
+	
+	@Override
+	public Usage getSubjectParameter() {
+		return getSubjectParameterOf(this);
+	}
+	
+	@Override
+	public List<Feature> getOwnedParameters() {
+		getSubjectParameter();
+		return super.getOwnedParameters();
+	}
+	
 	@Override
 	public void transform() {
 		super.transform();
-		getOwnedParameters();
+		getSubjectParameter();
 		getResultConnector();
-	}
+	}	
 	
 	//
 	

@@ -2,7 +2,7 @@ package 'Requirement Usages' {
 	import SI::*;
 	import 'Requirement Definitions'::*;
 	
-	requirement id '1.1' fullVehicleMassLimit : VehicleMassLimitationRequirement(vehicle: Vehicle) {
+	requirement id '1.1' fullVehicleMassLimit : VehicleMassLimitationRequirement {
 		attribute :>> massReqd = 2000@[kg];
 		
 		assume constraint {
@@ -11,7 +11,7 @@ package 'Requirement Usages' {
 		}
 	}
 	
-	requirement id '1.2' emptyVehicleMassLimit : VehicleMassLimitationRequirement(vehicle: Vehicle) {
+	requirement id '1.2' emptyVehicleMassLimit : VehicleMassLimitationRequirement {
 		attribute :>> massReqd = 1500@[kg];
 		
 		assume constraint {

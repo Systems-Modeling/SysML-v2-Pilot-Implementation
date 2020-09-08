@@ -37,12 +37,13 @@ package '10a-Analysis' {
 	package VehicleAnalysisModel {
 		import VehicleDesignModel::Vehicle;
 		
-		requirement def MassAnalysisObjective(mass : MassValue) {
-			/* ... */
+		requirement def MassAnalysisObjective {
+			subject mass : MassValue;
+			doc /* ... */
 		}
 	
-		analysis def MassAnalysisCase(vehicle : Vehicle) {
-			
+		analysis def MassAnalysisCase {
+			subject vehicle : Vehicle;
 			objective : MassAnalysisObjective(
 				mass = result
 			);
@@ -51,10 +52,10 @@ package '10a-Analysis' {
 			vehicle::mass
 		}
 		
-		analysis def AnalysisPlan(vehicle : Vehicle) {
-			
+		analysis def AnalysisPlan {
+			subject vehicle : Vehicle;			
 			objective {
-				/* ... */
+				doc /* ... */
 			}
 			
 			/**
@@ -65,9 +66,9 @@ package '10a-Analysis' {
 		}
 		
 		part massAnalysisContext {
-			analysis analysisPlan : AnalysisPlan (
-				vehicle = VehicleDesignModel::vehicle
-			);
+			analysis analysisPlan : AnalysisPlan {
+				subject vehicle = VehicleDesignModel::vehicle;
+			}
 		}
 	}
 }

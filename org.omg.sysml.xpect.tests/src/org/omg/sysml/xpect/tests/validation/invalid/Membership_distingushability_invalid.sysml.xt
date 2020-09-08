@@ -109,6 +109,11 @@ package pkg {
 	part def A {
 		part b: B;
 		part c: B;
+		part c: B;
+		//XPECT warnings --> "Duplicate owned member name" at "z"
+		part z: B;
+		//XPECT warnings --> "Duplicate owned member name" at "z"
+		part z: B;
 	}
 	part def B {}
 	part a : A {

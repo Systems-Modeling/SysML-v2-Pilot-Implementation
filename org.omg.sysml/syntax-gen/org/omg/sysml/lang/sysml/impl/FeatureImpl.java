@@ -439,7 +439,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			redefinedFeatures.clear();
 			Type type = getOwningType();
 			if (type != null) {
-				int i = ((TypeImpl)type).getOwnedEndFeatures().indexOf(this);
+				List<? extends Feature> relevantFeatures =
+						isEnd()? ((TypeImpl)type).getOwnedEndFeatures():
+						isParameter()? ((TypeImpl)type).getOwnedParameters():
+						((TypeImpl)type).getRelevantFeatures();
+				int i = relevantFeatures.indexOf(this);
 				if (i >= 0) {
 					for (Type general: getGeneralTypes(type)) {
 						List<? extends Feature> features = getRelevantFeatures(general);
@@ -926,7 +930,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures, Set<Feature> visited) {
 		redefinedFeatures.add(this);
-		getOwnedRedefinition().stream().forEach(redefinition->{
+		addComputedRedefinitions();
+		basicGetOwnedRedefinition().stream().forEach(redefinition->{
 			visited.add(this);
 			Feature redefinedFeature = redefinition.getRedefinedFeature();
 			if (!visited.contains(redefinedFeature)) {

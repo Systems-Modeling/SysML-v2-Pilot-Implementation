@@ -67,8 +67,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishability"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
-	
-	
+		
 	@Check
 	def checkMembership(Membership mem){
 		val pack = mem.membershipOwningPackage;	
@@ -99,8 +98,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-	}
-	
+	}	
 	
 	@Check
 	def checkFeature(Feature f){

@@ -105,7 +105,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 					println("\t" + i  + mmi.get(i).memberName + " " +  (mmi.get(i).memberElement as ElementImpl)?.effectiveName + " " + (mmi.get(i).memberElement as ElementImpl).class.simpleName + " " + mmi.get(i).hashCode + " " + mmi.get(i).memberElement.eResource)
 				}*/
 				inheritedMembership.forEach[memi|
-					mm.filter[mem | mem.memberElement !== mem.memberElement &&!mem.isDistinguishableFrom(memi)].forEach[mem |
+					mm.filter[mem | mem.memberElement !== memi.memberElement &&!mem.isDistinguishableFrom(memi)].forEach[mem |
 						if (mem.ownedMemberElement !== null) {
 							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 						} else {

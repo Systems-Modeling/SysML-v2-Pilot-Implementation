@@ -111,6 +111,7 @@ public class SysMLInteractive extends SysMLUtil {
 			// TODO: Replace this hardcoding with a configuration mechanism.
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Quantities" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/UnitsAndScales" + SYSML_EXTENSION, false, SYSML_EXTENSION);
+			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/QuantityCalculations" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQ" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQAtomicNuclear" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQChemistryMolecular" + SYSML_EXTENSION, false, SYSML_EXTENSION);

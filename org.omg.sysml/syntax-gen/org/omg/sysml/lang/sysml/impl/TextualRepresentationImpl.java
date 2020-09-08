@@ -102,14 +102,18 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	public String getLanguage() {
 		return language;
 	}
+	
+	@Override
+	public void setLanguage(String newLanguage) {
+		setLanguageGen(unescapeString(newLanguage));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setLanguage(String newLanguage) {
+	public void setLanguageGen(String newLanguage) {
 		String oldLanguage = language;
 		language = newLanguage;
 		if (eNotificationRequired())
@@ -125,14 +129,18 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	public String getBody() {
 		return body;
 	}
+	
+	@Override
+	public void setBody(String newBody) {
+		setBodyGen(processCommentBody(newBody));
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public void setBody(String newBody) {
+	public void setBodyGen(String newBody) {
 		String oldBody = body;
 		body = newBody;
 		if (eNotificationRequired())

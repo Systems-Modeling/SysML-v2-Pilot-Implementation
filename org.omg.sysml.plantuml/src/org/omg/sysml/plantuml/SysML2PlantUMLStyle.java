@@ -32,14 +32,26 @@ import java.util.Map;
 
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Class;
+import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
@@ -57,7 +69,7 @@ public class SysML2PlantUMLStyle {
         add("STDCOLOR",
             "Standard style with colors",
             "hide circle\n",
-            new StyleSwitch(new StyleRelSwitch() {
+            new StyleSwitch(new StyleRelDefaultSwitch() {
                 @Override
                 public String caseConnector(Connector object) {
                     return " -[thickness=3,#blue]- ";
@@ -69,7 +81,7 @@ public class SysML2PlantUMLStyle {
             }, null));
         add("PLANTUML",
             "PlantUML Style", " ",
-             new StyleSwitch(new StyleRelSwitch() {
+             new StyleSwitch(new StyleRelDefaultSwitch() {
                  @Override
                  public String caseConnector(Connector object) {
                      return " -[thickness=3,#blue]- ";
@@ -79,7 +91,7 @@ public class SysML2PlantUMLStyle {
                      return " -[thickness=5,#red]- ";
                  }
              },
-             new StyleStereotypeSwitch() {
+             new StyleStereotypeDefaultSwitch() {
                  @Override
                  public String caseBehavior(Behavior object) {
                      return " <<(B,lemonchiffon)";
@@ -219,4 +231,96 @@ public class SysML2PlantUMLStyle {
                                            + " Possible styles: "
                                            + getAvailableStyles());
     }
+
+
+    public static class StyleRelDefaultSwitch extends StyleRelSwitch {
+		@Override
+        public String caseFeatureTyping(FeatureTyping e) {
+            return " --:|> ";
+        }
+
+		@Override
+		public String caseRedefinition(Redefinition object) {
+            return "--||>";
+		}
+
+		@Override
+		public String caseSuccession(Succession s) {
+            return " --> ";
+		}
+
+		@Override
+		public String caseConnectionUsage(ConnectionUsage object) {
+            return " -[thickness=3]- ";
+		}
+
+		@Override
+		public String caseComment(Comment object) {
+            return " .. ";
+		}
+
+		@Override
+		public String caseTransitionUsage(TransitionUsage object) {
+            return "  --> ";
+		}
+
+		@Override
+		public String caseClassifier(Classifier object) {
+            return " +-- ";
+		}
+
+		@Override
+		public String caseReferenceUsage(ReferenceUsage object) {
+            return " o-- ";
+		}
+
+		@Override
+		public String caseItemUsage(ItemUsage itemUsage) {
+            return itemUsage.isComposite() ? " *-- ": " o-- ";
+		}
+
+		@Override
+		public String caseItemFlow(ItemFlow itemFlow) {
+            return " --> ";
+		}
+
+		@Override
+		public String casePartUsage(PartUsage partUsage) {
+            return partUsage.isComposite() ? " *-- ": " o-- ";
+		}
+
+		@Override
+		public String caseBindingConnector(BindingConnector object) {
+            return " -[thickness=5]- ";
+		}
+
+		@Override
+		public String caseGeneralization(Generalization object) {
+            return " --|> ";
+		}
+    }
+
+    public static class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
+		@Override
+		public String caseClass(Class object) {
+            if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
+            return null;
+		}
+
+		@Override
+		public String casePortUsage(PortUsage object) {
+            return " <<port>> ";
+		}
+
+		@Override
+		public String caseItemUsage(ItemUsage object) {
+            return " <<item>> ";
+		}
+
+		@Override
+		public String casePartUsage(PartUsage object) {
+            return " <<part>> ";
+		}
+    }
+
 }

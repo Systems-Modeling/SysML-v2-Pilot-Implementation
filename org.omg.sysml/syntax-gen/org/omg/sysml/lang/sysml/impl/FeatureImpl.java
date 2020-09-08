@@ -234,7 +234,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected List<Type> getFeatureTypes(List<Type> types) {
-		return getOwnedTyping().stream().
+		return basicGetOwnedTyping().stream().
 				map(typing->typing.getType()).
 				filter(type->type != null).
 				collect(Collectors.toList());

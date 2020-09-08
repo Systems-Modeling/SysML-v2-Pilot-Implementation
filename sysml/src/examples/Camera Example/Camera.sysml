@@ -1,7 +1,7 @@
 part def Camera {
 	import PictureTaking::*;
 	
-	perform takePicture[*] as PictureTaking::takePicture;
+	perform action takePicture[*] :> PictureTaking::takePicture;
 	
 	part focusingSubsystem {
 		perform takePicture::focus;

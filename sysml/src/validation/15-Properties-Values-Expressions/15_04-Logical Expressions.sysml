@@ -21,8 +21,8 @@ package '15_04-Logical Expressions' {
 			 * "if...then...else".
 			 */
 			isHighPerformance? 
-				engine instanceof '6CylEngine': 
-				engine instanceof '4CylEngine'
+				engine istype '6CylEngine': 
+				engine istype '4CylEngine'
 		}
 		
 		assert constraint {
@@ -32,10 +32,10 @@ package '15_04-Logical Expressions' {
 			 * Other operators are "|" (or) and "!" (not).
 			 * Equality ("==") can be used for "if and only if".
 			 */
-			(engine instanceof '4CylEngine' & 
-			 transmission instanceof ManualTransmission) ^
-			(engine instanceof '6CylEngine' &
-			 transmission instanceof AutomaticTransmission)
+			(engine istype '4CylEngine' & 
+			 transmission istype ManualTransmission) ^
+			(engine istype '6CylEngine' &
+			 transmission istype AutomaticTransmission)
 		}
 	}
 }

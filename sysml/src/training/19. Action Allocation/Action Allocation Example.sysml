@@ -9,8 +9,8 @@ package 'Action Allocation Example' {
 		ref views : Scene[*] ordered = takePhoto::scene;
 		ref photos : Picture[*] ordered = takePhoto::picture;
 		
-		perform takePhoto[*] ordered 
-			as takePicture (in scene, out picture);
+		perform action takePhoto[*] ordered 
+			:> takePicture (in scene, out picture);
 		
 		part f : AutoFocus {
 			perform takePhoto::focus;			

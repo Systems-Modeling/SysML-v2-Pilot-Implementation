@@ -33,31 +33,31 @@ package ISQ {
 	 */	 
 	abstract attribute def SIDerivedUnit :> DerivedUnit {
 		attribute lengthPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: LengthUnit;
+			attribute redefines unit: LengthUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute massPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: MassUnit;
+			attribute redefines unit: MassUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute timePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: TimeUnit;
+			attribute redefines unit: TimeUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute electricCurrentPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: ElectricCurrentUnit;
+			attribute redefines unit: ElectricCurrentUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute temperaturePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: TemperatureUnit;
+			attribute redefines unit: TemperatureUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute amountOfSubstancePowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: AmountOfSubstanceUnit;
+			attribute redefines unit: AmountOfSubstanceUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute luminousIntensityPowerFactor :> MeasurementUnit::unitPowerFactor {
-			attribute redefinesunit: LuminousIntensityUnit;
+			attribute redefines unit: LuminousIntensityUnit;
 			attribute redefines exponent = 0;
 		}
 	}	 

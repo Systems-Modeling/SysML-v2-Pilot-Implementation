@@ -36,8 +36,10 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -138,14 +140,79 @@ public class VStateMembers extends VDefault {
         return "";
     }
 
-    private String convertToDescription(TransitionUsage aau) {
-        VTraverser v = new VTraverser(this) {
-            public String caseItemFeature(ItemFeature itemFeature) {
-                addTypeText("", itemFeature);
-                return "";
+    private static class LineFoldStringBuilder {
+    	private StringBuilder sb = new StringBuilder();
+        private static int LINEFOLD_LEN = 20;
+        private int curLen;
+        public void fold() {
+            if (curLen <= LINEFOLD_LEN) return;
+            sb.append("\\n");
+            curLen = 0;
+        }
+
+        public void append(String s) {
+            curLen += s.length();
+            sb.append(s);
+        }
+
+        public void append(char ch) {
+            curLen++;
+            sb.append(ch);
+        }
+        
+        @Override
+        public String toString() {
+        	return sb.toString();
+        }
+    }
+
+    private String convertToDescription(TransitionUsage tu) {
+        String triggerString = null;
+        String guardString = null;
+        String effectString = null;
+
+        for (FeatureMembership fm: tu.getOwnedFeatureMembership()) {
+            if (!(fm instanceof TransitionFeatureMembership)) continue;
+            TransitionFeatureMembership tfm = (TransitionFeatureMembership) fm;
+            Step s = tfm.getTransitionFeature();
+            if (s == null) continue;
+            switch (tfm.getKind()) {
+            case TRIGGER:
+                VTraverser v = new VTraverser(this) {
+                    public String caseItemFeature(ItemFeature itemFeature) {
+                        addTypeText("", itemFeature);
+                        return "";
+                    }
+                };
+                triggerString = v.traverse(s);
+                break;
+            case GUARD:
+                guardString = getText(s);
+                break;
+            case EFFECT:
+                effectString = getText(s);
+                break;
             }
-        };
-        return v.traverse(aau);
+        }
+
+        LineFoldStringBuilder ls = new LineFoldStringBuilder();
+        if (triggerString != null) {
+            ls.append(triggerString.trim());
+            ls.append(' ');
+        }
+        if (guardString != null) {
+            ls.fold();
+            ls.append('[');
+            ls.append(guardString.trim());
+            ls.append(']');
+        }
+        if (effectString != null) {
+            ls.fold();
+            ls.append('/');
+            ls.append(effectString.trim());
+        }
+
+        return ls.toString();
     }
 
     private boolean isDoneAction(Feature f) {

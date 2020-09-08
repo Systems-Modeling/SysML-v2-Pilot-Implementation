@@ -22,6 +22,7 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TextualRepresentation;
 
 /**
  * <!-- begin-user-doc -->
@@ -113,8 +114,8 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	public Element basicGetAnnotatedElement() {
 		if (annotatedElement == null) {
 			annotatedElement = getOwningRelatedElement();
-			if (annotatedElement instanceof Comment) {
-				Element owner = ((Comment)annotatedElement).getOwner();
+			if (annotatedElement instanceof Comment || annotatedElement instanceof TextualRepresentation) {
+				Element owner = annotatedElement.getOwner();
 				if (owner != null) {
 					annotatedElement = owner;
 				}

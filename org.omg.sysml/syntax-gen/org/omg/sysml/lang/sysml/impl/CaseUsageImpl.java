@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -11,7 +12,6 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -73,7 +73,7 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return (RequirementUsage)getFeatureByMembership(ObjectiveMembership.class);
+		return CaseDefinitionImpl.getObjectiveRequirementOf(this);
 	}
 
 	/**
@@ -213,6 +213,12 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	}
 	
 	@Override
+	public EList<Feature> getOwnedFeature() {
+		basicGetObjectiveRequirement();
+		return super.getOwnedFeature();
+	}
+	
+	@Override
 	public List<Feature> getOwnedParameters() {
 		basicGetSubjectParameter();
 		return super.getOwnedParameters();
@@ -220,8 +226,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	
 	@Override
 	public void transform() {
-		basicGetSubjectParameter();
 		super.transform();
+		basicGetSubjectParameter();
+		basicGetObjectiveRequirement();
 	}
 	
 	//

@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -11,7 +12,9 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 
 /**
@@ -98,7 +101,23 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return (RequirementUsage)getFeatureByMembership(ObjectiveMembership.class);
+		return getObjectiveRequirementOf(this);
+	}
+	
+	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		RequirementUsage objective = (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
+		if (objective == null) {
+			addObjectiveRequirement(type);
+		}
+		return objective;
+	}
+	
+	public static RequirementUsage addObjectiveRequirement(Type type) {
+		RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
+		ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
+		membership.setOwnedObjectiveRequirement_comp(objective);
+		type.getOwnedFeatureMembership_comp().add(membership);
+		return objective;
 	}
 
 	/**
@@ -119,6 +138,12 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	// Additional overrides
 	
 	@Override
+	public EList<Feature> getOwnedFeature() {
+		basicGetObjectiveRequirement();
+		return super.getOwnedFeature();
+	}
+	
+	@Override
 	public List<Feature> getOwnedParameters() {
 		basicGetSubjectParameter();
 		return super.getOwnedParameters();
@@ -128,6 +153,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	public void transform() {
 		super.transform();
 		basicGetSubjectParameter();
+		basicGetObjectiveRequirement();
 	}
 	
 	//

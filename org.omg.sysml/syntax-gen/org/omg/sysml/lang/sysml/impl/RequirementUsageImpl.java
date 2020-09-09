@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,9 +14,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
@@ -311,8 +315,24 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	public boolean isSetHumanId() {
   		return false;
 	}
-
+	
 	// Additional overrides
+	
+	public boolean isObjective() {
+		return getOwningFeatureMembership() instanceof ObjectiveMembership;
+	}
+	
+	public RequirementUsage getObjectiveRequirementOf(Type type) {
+		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
+			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
+			   null;
+	}
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return isObjective()? Collections.singletonList(getObjectiveRequirementOf(type)):
+			   super.getRelevantFeatures(type);
+	}
 	
 	@Override
 	public List<Feature> getOwnedParameters() {

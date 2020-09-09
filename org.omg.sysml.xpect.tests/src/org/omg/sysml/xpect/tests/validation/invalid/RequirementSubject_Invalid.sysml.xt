@@ -1,5 +1,5 @@
 //*
-XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
@@ -48,16 +48,28 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 			}
 		}
 	}
-END_SETUP
+END_SETUP 
 */
-// XPECT noErrors ---> ""
-package RequirementTest {
+package 'Requirement Subjects' {
+	
 	requirement def R {
-		doc /* */
-    	requirement;
-    	requirement def id '1' A {
-    		doc /* Text */
-    		subject s;
-    	}
+		// XPECT errors --> "Only one subject is allowed" at "subject s1;"
+		subject s1;
+		
+		// XPECT errors --> "Only one subject is allowed" at "subject s2;"
+		subject s2;
 	}
+	
+	requirement r: R {
+		// XPECT errors --> "Only one subject is allowed" at "subject s3;"
+		subject s3;
+		
+		// XPECT errors --> "Only one subject is allowed" at "subject s4;"
+		subject s4;
+	}
+	
+	requirement r1 : R {
+		subject s5; // Valid implicit redefinition.
+	}
+	
 }

@@ -10,8 +10,10 @@ package Verifications {
 	 * VerificationCase is the most general class of performances of VerificationCaseDefinitions. 
 	 * VericationCase is the base class of all VerificationCaseDefinitions.
 	 */
-	verification def VerificationCase :> Case (subject[1]) {
-		ref verification :>> self : VerificationCase;
+	verification def VerificationCase :> Case {
+		ref verification :>> self : VerificationCase;		
+		subject :>> subj;
+		objective :>> obj;
 		
 		/**
 		 * The subcases of this VerificationCase that are VerificationCaseUsages.

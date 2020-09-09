@@ -7,21 +7,27 @@ package 'Requirement Groups' {
 		perform action generateTorque: GenerateTorque;
 	}
 	
-	requirement vehicleSpecification(vehicle : Vehicle) {
+	requirement vehicleSpecification {
 		doc /* Overall vehicle requirements group */
+		
+		subject vehicle : Vehicle;
 		
 		require fullVehicleMassLimit;
 		require emptyVehicleMassLimit;
 	}
 	
-	requirement engineSpecification(engine : Engine) {
+	requirement engineSpecification {
 		doc /* Engine power requirements group */
 		
-		requirement drivePowerInterface : DrivePowerInterface 
-			(clutchPort = engine::clutchPort);
+		subject engine : Engine;
 		
-		requirement torqueGeneration : TorqueGeneration 
-			(generateTorque = engine::generateTorque);
+		requirement drivePowerInterface : DrivePowerInterface {
+			subject = engine::clutchPort;
+		}
+		
+		requirement torqueGeneration : TorqueGeneration {
+			subject = engine::generateTorque;	
+		}
 	}
 	
 }

@@ -34,14 +34,12 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
@@ -611,13 +609,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	/**
-	 * A subject Parameter always redefines the subject Parameter of a general CaseDefinition or CaseUsage.
+	 * A subject Parameter always redefines a subject Parameter.
 	 */
 	@Override
 	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
-		return isSubjectParameter() && (type instanceof CaseDefinition || type instanceof CaseUsage)?
-					    Collections.singletonList(getSubjectParameterOf(type)):
-			   super.getParameterRelevantFeatures(type);
+		if (isSubjectParameter()) {
+			Feature typeSubject = getSubjectParameterOf(type);
+			return typeSubject == null? Collections.emptyList(): 
+				Collections.singletonList(typeSubject);
+		}
+		return super.getParameterRelevantFeatures(type);
 	}
 	
 	@Override
@@ -630,7 +631,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		FeatureValue valuation = getValuation();
 		if (valuation != null) {
 			return super.getValueConnector();
-		} else {
+		} else if (isSubjectParameter()){
 			Feature subjectParameter = getRelevantSubjectParameter();
 			if (subjectParameter != null) {
 				valueConnector = makeBinding(valueConnector, subjectParameter, this);
@@ -679,38 +680,42 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * Return the relevant subject parameter to which this Usage should be bound.
 	 */
 	public Feature getRelevantSubjectParameter() {
-		Type owningType = getOwningType();
-		
-		if (owningType != null && !owningType.isAbstract()) {
-			if (owningType instanceof ConstraintUsage && ((ConstraintUsageImpl)owningType).isRequirement()) {
-				// This parameter is itself effectively the subject parameter of a requirement if it is the first parameter
-				// of a ConstraintUsage that is effectively a requirement usage (i.e., is typed by a RequirementDefinition).
-				List<Feature> parameters = ((TypeImpl)owningType).getOwnedParameters();
-				if (!parameters.isEmpty() && parameters.get(0) == this) {
-					owningType = ((Feature)owningType).getOwningType();
-					if (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage) {
-						// The subject parameter to be bound to this parameter is the first parameter of the
-						// RequirementDefinition or RequirementUsage.
-						parameters = ((TypeImpl)owningType).getOwnedParameters();
-						if (!parameters.isEmpty()) {
-							return parameters.get(0);
-						}
-					}
-				}
-			} else if (owningType instanceof CaseUsage && isSubjectParameter()) {
-				owningType = ((Feature)owningType).getOwningType();
-				if (owningType instanceof CaseDefinition || owningType instanceof CaseUsage) {
-					return getSubjectParameterOf(owningType);
-				}
+		Type owningType = getOwningType();		
+		if (owningType instanceof Usage && !owningType.isAbstract()) {
+			if (((UsageImpl)owningType).hasRelevantSubjectParameter()) {
+				return getSubjectParameterOf(((Usage)owningType).getOwningType());
 			}
 		}
 		return null;
 	}
 	
-	protected static Feature getSubjectParameterOf(Type type) {
+	protected boolean hasRelevantSubjectParameter() {
+		return false;
+	}
+	
+	protected static Usage getSubjectParameterOf(Type type) {
 		return type instanceof Definition? ((DefinitionImpl)type).getSubjectParameter():
 			   type instanceof Usage? ((UsageImpl)type).getSubjectParameter():
 			   null;
+	}
+	
+	protected static Usage basicGetSubjectParameterOf(Type type) {
+		Usage subjectParameter = null;
+		if (type != null) {
+			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
+			if (subjectParameter == null) {
+				subjectParameter = addSubjectParameterTo(type);
+			}
+		}
+		return subjectParameter;
+	}
+	
+	public static Usage addSubjectParameterTo(Type type) {
+		Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+		SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+		membership.setOwnedSubjectParameter_comp(parameter);
+		type.getOwnedFeatureMembership_comp().add(membership);
+		return parameter;
 	}
 	
 	//

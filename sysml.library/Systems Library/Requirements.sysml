@@ -37,10 +37,15 @@ package Requirements {
 	 * RequirementCheck is the most general class for requirements checking. RequirementsCheck is the base
 	 * type of all requirement definitions.
 	 * 
-	 * The subject is the entity that is being check for satisfaction of the required constraints.
+	 * 
 	 */
-	abstract requirement def RequirementCheck :> RequirementConstraintCheck (subject: Anything) {
+	abstract requirement def RequirementCheck :> RequirementConstraintCheck {
 		ref requirement thisRequirement: RequirementCheck :>> self;
+		
+		/**
+		 * The entity that is being checked for satisfaction of the required constraints.
+		 */
+		subject subj : Anything[1];
 		
 		/* Note: assumptions and constraints are redefined here solely to simplify the
 		 * resolution of their qualified names as library elements.
@@ -58,35 +63,45 @@ package Requirements {
 	/**
 	 * A functional requirement specifies an action that a system, or part of a system, must perform.
 	 */
-	requirement def FunctionalRequirementCheck :> RequirementCheck (subject: Action);
+	requirement def FunctionalRequirementCheck :> RequirementCheck {
+		subject : Action;
+	}
 	
 	/** 
 	 * An interface requirement specifies an interface for connecting systems and system parts, which
 	 * optionally may include item flows across the interface and/or interface constraints.
 	 */
-	requirement def InterfaceRequirementCheck :> RequirementCheck (subject: Interface);
+	requirement def InterfaceRequirementCheck :> RequirementCheck {
+		subject : Interface;
+	}
 	
 	/**
 	 * A performance requirement quantitavely measures the extent to which a system, or a system part, 
 	 * satisfies a required capability or condition.
 	 */
-	requirement def PerformanceRequirementCheck :> RequirementCheck (subject: AttributeValue);
+	requirement def PerformanceRequirementCheck :> RequirementCheck {
+		subject: AttributeValue;
+	}
 	
 	/**
 	 * A physical requirement specifies physical characteristics and/or physical constraints of the 
 	 * system, or a system part.
 	 */
-	requirement def PhysicalRequirementCheck :> RequirementCheck (subject: Part);
+	requirement def PhysicalRequirementCheck :> RequirementCheck {
+		subject: Part;
+	}
 	
 	/**
 	 * A design constraint specifies a constraint on the implementation of the system or system part, 
 	 * such as the system must use a commercial off the shelf component.
 	 */
-	requirement def DesignConstraintCheck :> RequirementCheck (subject: Part);
+	requirement def DesignConstraintCheck :> RequirementCheck {
+		subject: Part;
+	}
 	
 	/**
 	 * requirementChecks is the base feature of all requirement usages.
 	 */
-	abstract requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks (subject: Anything);
+	abstract requirement requirementChecks: RequirementCheck[0..*] :> constraintChecks;
 	
 }

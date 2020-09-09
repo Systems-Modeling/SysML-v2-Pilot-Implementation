@@ -84,11 +84,13 @@ package '8-Requirements' {
 		
 		requirement def id '2' ReliabilityRequirement;
 		
-		/**
-		 * The subject of this requirement is redefined to be a "Vehicle".
-		 */
-		requirement id '1.1' vehicleMass1: MassLimitationRequirement (vehicle: Vehicle) {
+		requirement id '1.1' vehicleMass1: MassLimitationRequirement {
 			doc /* The vehicle mass shall be less than or equal to 2000 kg when the fuel tank is full. */
+			
+			/**
+			 * The subject of this requirement is redefined to be a "Vehicle".
+			 */
+			subject vehicle : Vehicle;
 			
 			/**
 			 * This redefinition binds the vehicle mass to the actual mass.
@@ -109,8 +111,10 @@ package '8-Requirements' {
 			}
 		}
 			
-		requirement id '2.1' vehicleMass2: MassLimitationRequirement (vehicle: Vehicle) {
+		requirement id '2.1' vehicleMass2: MassLimitationRequirement {
 			doc /* The vehicle mass shall be less than or equal to 2500 kg when the fuel tank is empty. */
+			
+			subject vehicle : Vehicle;
 			
 			attribute :>> massActual: MassValue = vehicle::mass;
 			attribute :>> massReqd = 2500@[kg];
@@ -121,14 +125,18 @@ package '8-Requirements' {
 			}
 		}
 		
-		requirement id '2.2' vehicleReliability2: ReliabilityRequirement (vehicle: Vehicle);
+		requirement id '2.2' vehicleReliability2: ReliabilityRequirement {
+			subject vehicle : Vehicle;
+		}
 			
-		requirement id '3.1' drivePowerInterface (drivePwrPort: DrivePwrPort) {
+		requirement id '3.1' drivePowerInterface {
 			doc /* The engine shall transfer its generated torque to the transmission via the clutch interface. */
+			subject drivePwrPort: DrivePwrPort;
 		}
 		
-		requirement id '3.2' torqueGeneration (generateTorque: 'Generate Torque') {
+		requirement id '3.2' torqueGeneration {
 			doc /* The engine shall generate torque as a function of RPM as shown in Table 1. */
+			subject generateTorque: 'Generate Torque';
 		}
 			
 	}
@@ -140,7 +148,8 @@ package '8-Requirements' {
 		/**
 		 * This models a "requirement group" as a requirement that references other requirements.
 		 */
-		requirement 'vehicle1-c1 Specification'(vehicle: Vehicle) {
+		requirement 'vehicle1-c1 Specification' {
+			subject vehicle : Vehicle;
 			/** 
 			 * This is a reference to a requirement defined outside the group.
 			 * By default, the subject of the requirement is bound to that of the group.
@@ -149,13 +158,18 @@ package '8-Requirements' {
 			// ...
 		}
 		
-		requirement 'engine-v1 Specification'(engine: Engine) {
+		requirement 'engine-v1 Specification' {
+			subject engine : Engine;
 			/** 
 			 * Here the subjects of the referenced requirements are defined to be specific properties of the
 			 * subject of the group.
 			 */
-			require torqueGeneration(generateTorque = engine::'generate torque');
-			require drivePowerInterface(drivePwrPort = engine::drivePwrPort);
+			require torqueGeneration {
+				subject generateTorque = engine::'generate torque';
+			}
+			require drivePowerInterface {
+				subject drivePwrPort = engine::drivePwrPort;
+			}
 		}
 		
 		/**
@@ -169,7 +183,8 @@ package '8-Requirements' {
 	part 'vehicle1_c2 Specification Context' {
 		import 'vehicle1-c2 Specification'::*;
 		
-		requirement 'vehicle1-c2 Specification'(vehicle: Vehicle) {
+		requirement 'vehicle1-c2 Specification' {
+			subject vehicle : Vehicle;
 			require vehicleMass2;
 			require vehicleReliability2;
 		}

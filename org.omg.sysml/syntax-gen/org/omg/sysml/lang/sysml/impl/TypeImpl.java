@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -758,14 +759,6 @@ public class TypeImpl extends PackageImpl implements Type {
 
 	// Utility Methods
 	
-	public List<Feature> getPublicFeatures() {
-		return publicMemberships().stream().
-				filter(FeatureMembership.class::isInstance).
-				map(FeatureMembership.class::cast).
-				map(FeatureMembership::getMemberFeature).
-				collect(Collectors.toList());
-	}
-	
 	public boolean conformsTo(Type supertype) {
 		return conformsTo(supertype, new HashSet<>());
 	}
@@ -785,6 +778,34 @@ public class TypeImpl extends PackageImpl implements Type {
 							((TypeImpl)gen.getGeneral()).conformsTo(supertype, visited));
 			}
 		}
+	}
+	
+	public <T extends Membership> Stream<Feature> getFeaturesByMembership(Class<T> kind) {
+		return getFeatureMembership().stream().
+				filter(kind::isInstance).
+				map(FeatureMembership::getMemberFeature);
+	}
+	
+	public <T extends Membership> Feature getFeatureByMembership(Class<T> kind) {
+		return getFeaturesByMembership(kind).findFirst().orElse(null);
+	}
+	
+	public <T extends Membership> Stream<Feature> getOwnedFeaturesByMembership(Class<T> kind) {
+		return getOwnedFeatureMembership().stream().
+				filter(kind::isInstance).
+				map(FeatureMembership::getMemberFeature);
+	}
+	
+	public <T extends Membership> Feature getOwnedFeatureByMembership(Class<T> kind) {
+		return getOwnedFeaturesByMembership(kind).findFirst().orElse(null);
+	}
+	
+	public List<Feature> getPublicFeatures() {
+		return publicMemberships().stream().
+				filter(FeatureMembership.class::isInstance).
+				map(FeatureMembership.class::cast).
+				map(FeatureMembership::getMemberFeature).
+				collect(Collectors.toList());
 	}
 	
 	public List<Feature> getAllEndFeatures() {

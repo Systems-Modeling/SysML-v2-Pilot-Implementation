@@ -22,6 +22,6 @@ package CalculationExample {
 	}
 	
 	calc ms: MassSum (
-		totalMass = vehicle::m)
-		partMasses = {vehicle::eng::m, vehicle::trans::m};
+		partMasses = {vehicle::eng::m, vehicle::trans::m})
+		totalMass = vehicle::m;
 }

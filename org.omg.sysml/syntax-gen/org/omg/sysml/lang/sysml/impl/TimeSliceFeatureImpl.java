@@ -4,7 +4,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Feature;
@@ -64,8 +63,8 @@ public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeatur
 	}
 	
 	@Override
-	protected Set<Type> getGeneralTypes(Type type) {
-		return Collections.singleton(null);
+	protected List<Type> getGeneralTypes(Type type) {
+		return Collections.singletonList(null);
 	}
 	
 	@Override

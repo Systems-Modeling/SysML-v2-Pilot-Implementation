@@ -197,19 +197,28 @@ public class VStateMembers extends VDefault {
 
         LineFoldStringBuilder ls = new LineFoldStringBuilder();
         if (triggerString != null) {
-            ls.append(triggerString.trim());
-            ls.append(' ');
+            triggerString = triggerString.trim();
+            if (!(triggerString.isEmpty())) {
+                ls.append(triggerString);
+                ls.append(' ');
+            }
         }
         if (guardString != null) {
-            ls.fold();
-            ls.append('[');
-            ls.append(guardString.trim());
-            ls.append(']');
+            guardString = guardString.trim();
+            if (!guardString.isEmpty()) {
+                ls.fold();
+                ls.append('[');
+                ls.append(guardString);
+                ls.append(']');
+            }
         }
         if (effectString != null) {
-            ls.fold();
-            ls.append('/');
-            ls.append(effectString.trim());
+            effectString = effectString.trim();
+            if (!effectString.isEmpty()) {
+                ls.fold();
+                ls.append('/');
+                ls.append(effectString);
+            }
         }
 
         return ls.toString();

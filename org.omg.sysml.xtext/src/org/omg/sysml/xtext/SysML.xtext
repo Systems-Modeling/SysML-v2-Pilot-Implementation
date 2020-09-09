@@ -373,8 +373,8 @@ fragment PackageMemberPrefix returns SysML::Membership :
 /* DEPENDENCIES */
 
 Dependency returns SysML::Dependency :
-	'dependency' ( Identification? 'of' )?
-    client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'on'
+	'dependency' ( Identification? 'from' )?
+    client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'to'
     supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )* ';'
 ;
 

@@ -35,7 +35,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ConnectionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_ConnectionUsage_Connector_ConnectorKeywordParserRuleCall_1_or___ConnectionUsageKeywordParserRuleCall_1_ConnectorKeywordParserRuleCall_3_0__;
 	protected AbstractElementAlias match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
-	protected AbstractElementAlias match_Dependency_OfKeyword_1_1_q;
+	protected AbstractElementAlias match_Dependency_FromKeyword_1_1_q;
 	protected AbstractElementAlias match_Documentation_DocKeyword_0_0_q;
 	protected AbstractElementAlias match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q;
 	protected AbstractElementAlias match_Expose_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
@@ -74,7 +74,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ConnectionDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getConnectionDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getConnectionDefBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getConnectionDefBodyAccess().getSemicolonKeyword_0()));
 		match_ConnectionUsage_Connector_ConnectorKeywordParserRuleCall_1_or___ConnectionUsageKeywordParserRuleCall_1_ConnectorKeywordParserRuleCall_3_0__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getConnectionUsageAccess().getConnectionUsageKeywordParserRuleCall_1()), new TokenAlias(false, false, grammarAccess.getConnectionUsageAccess().getConnectorKeywordParserRuleCall_3_0())), new TokenAlias(false, false, grammarAccess.getConnectorAccess().getConnectorKeywordParserRuleCall_1()));
 		match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getDefinitionBodyAccess().getSemicolonKeyword_0()));
-		match_Dependency_OfKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getDependencyAccess().getOfKeyword_1_1());
+		match_Dependency_FromKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getDependencyAccess().getFromKeyword_1_1());
 		match_Documentation_DocKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getDocumentationAccess().getDocKeyword_0_0());
 		match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getLeftCurlyBracketKeyword_1_1_0()), new TokenAlias(false, false, grammarAccess.getEffectBehaviorUsageAccess().getRightCurlyBracketKeyword_1_1_2()));
 		match_Expose_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getExposeAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getExposeAccess().getFullStopKeyword_3_0_1_1()));
@@ -824,8 +824,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ConnectionUsage_Connector_ConnectorKeywordParserRuleCall_1_or___ConnectionUsageKeywordParserRuleCall_1_ConnectorKeywordParserRuleCall_3_0__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
 				emit_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Dependency_OfKeyword_1_1_q.equals(syntax))
-				emit_Dependency_OfKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Dependency_FromKeyword_1_1_q.equals(syntax))
+				emit_Dependency_FromKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Documentation_DocKeyword_0_0_q.equals(syntax))
 				emit_Documentation_DocKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q.equals(syntax))
@@ -1174,12 +1174,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
-	 *     'of'?
+	 *     'from'?
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) 'dependency' (ambiguity) client+=[Element|QualifiedName]
 	 */
-	protected void emit_Dependency_OfKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Dependency_FromKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

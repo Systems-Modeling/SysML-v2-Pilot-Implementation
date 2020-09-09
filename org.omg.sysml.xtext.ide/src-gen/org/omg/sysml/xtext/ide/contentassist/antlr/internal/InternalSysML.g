@@ -19699,9 +19699,9 @@ rule__Dependency__Group__4__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDependencyAccess().getOnKeyword_4()); }
-	'on'
-	{ after(grammarAccess.getDependencyAccess().getOnKeyword_4()); }
+	{ before(grammarAccess.getDependencyAccess().getToKeyword_4()); }
+	'to'
+	{ after(grammarAccess.getDependencyAccess().getToKeyword_4()); }
 )
 ;
 finally {
@@ -19833,9 +19833,9 @@ rule__Dependency__Group_1__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDependencyAccess().getOfKeyword_1_1()); }
-	'of'
-	{ after(grammarAccess.getDependencyAccess().getOfKeyword_1_1()); }
+	{ before(grammarAccess.getDependencyAccess().getFromKeyword_1_1()); }
+	'from'
+	{ after(grammarAccess.getDependencyAccess().getFromKeyword_1_1()); }
 )
 ;
 finally {

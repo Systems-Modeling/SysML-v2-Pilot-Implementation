@@ -3658,9 +3658,9 @@ ruleDependency returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)?
-			otherlv_2='of'
+			otherlv_2='from'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getDependencyAccess().getOfKeyword_1_1());
+				newLeafNode(otherlv_2, grammarAccess.getDependencyAccess().getFromKeyword_1_1());
 			}
 		)?
 		(
@@ -3701,9 +3701,9 @@ ruleDependency returns [EObject current=null]
 				)
 			)
 		)*
-		otherlv_6='on'
+		otherlv_6='to'
 		{
-			newLeafNode(otherlv_6, grammarAccess.getDependencyAccess().getOnKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getDependencyAccess().getToKeyword_4());
 		}
 		(
 			(

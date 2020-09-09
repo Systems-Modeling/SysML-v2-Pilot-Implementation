@@ -238,6 +238,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackagedDefinitionMemberAccess().getGroup_1(), "rule__PackagedDefinitionMember__Group_1__0");
 			builder.put(grammarAccess.getPackagedDefinitionMemberAccess().getGroup_1_2(), "rule__PackagedDefinitionMember__Group_1_2__0");
 			builder.put(grammarAccess.getPackageMemberPrefixAccess().getGroup(), "rule__PackageMemberPrefix__Group__0");
+			builder.put(grammarAccess.getDependencyAccess().getGroup(), "rule__Dependency__Group__0");
+			builder.put(grammarAccess.getDependencyAccess().getGroup_1(), "rule__Dependency__Group_1__0");
+			builder.put(grammarAccess.getDependencyAccess().getGroup_3(), "rule__Dependency__Group_3__0");
+			builder.put(grammarAccess.getDependencyAccess().getGroup_6(), "rule__Dependency__Group_6__0");
 			builder.put(grammarAccess.getDefinitionBodyAccess().getGroup_1(), "rule__DefinitionBody__Group_1__0");
 			builder.put(grammarAccess.getDefinitionBodyItemAccess().getGroup_4(), "rule__DefinitionBodyItem__Group_4__0");
 			builder.put(grammarAccess.getNestedDefinitionMemberAccess().getGroup(), "rule__NestedDefinitionMember__Group__0");
@@ -663,6 +667,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackagedUsageMemberAccess().getOwnedMemberElement_compAssignment(), "rule__PackagedUsageMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getPackageMemberPrefixAccess().getOwnedRelationship_compAssignment_0(), "rule__PackageMemberPrefix__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPackageMemberPrefixAccess().getVisibilityAssignment_1(), "rule__PackageMemberPrefix__VisibilityAssignment_1");
+			builder.put(grammarAccess.getDependencyAccess().getClientAssignment_2(), "rule__Dependency__ClientAssignment_2");
+			builder.put(grammarAccess.getDependencyAccess().getClientAssignment_3_1(), "rule__Dependency__ClientAssignment_3_1");
+			builder.put(grammarAccess.getDependencyAccess().getSupplierAssignment_5(), "rule__Dependency__SupplierAssignment_5");
+			builder.put(grammarAccess.getDependencyAccess().getSupplierAssignment_6_1(), "rule__Dependency__SupplierAssignment_6_1");
 			builder.put(grammarAccess.getDefinitionPrefixAccess().getIsAbstractAssignment_0(), "rule__DefinitionPrefix__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getDefinitionPrefixAccess().getIsVariationAssignment_1(), "rule__DefinitionPrefix__IsVariationAssignment_1");
 			builder.put(grammarAccess.getDefinitionBodyItemAccess().getDocumentation_compAssignment_0(), "rule__DefinitionBodyItem__Documentation_compAssignment_0");

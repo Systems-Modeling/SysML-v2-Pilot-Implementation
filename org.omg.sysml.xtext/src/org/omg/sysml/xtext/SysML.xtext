@@ -323,6 +323,7 @@ PackagedDefinitionElement returns SysML::Element :
 	| RenderingDefinition
 	| Comment
 	| TextualRepresentation
+	| Dependency
 ;
 	
 PackagedUsageElement returns SysML::Usage :
@@ -367,6 +368,14 @@ fragment PackagedUsageMember returns SysML::Membership:
 fragment PackageMemberPrefix returns SysML::Membership :
 	( ownedRelationship_comp += PrefixAnnotation )*
     ( visibility = PackageElementVisibilityIndicator )?		
+;
+
+/* DEPENDENCIES */
+
+Dependency returns SysML::Dependency :
+	'dependency' ( Identification? 'of' )?
+    client += [SysML::Element|QualifiedName] ( ',' client += [SysML::Element|QualifiedName] )* 'on'
+    supplier += [SysML::Element|QualifiedName] ( ',' supplier += [SysML::Element|QualifiedName] )* ';'
 ;
 
 /* DEFINITIONS */

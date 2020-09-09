@@ -1532,6 +1532,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRenderingDefinitionParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
 		private final RuleCall cCommentParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
 		private final RuleCall cTextualRepresentationParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cDependencyParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
 		
 		//PackagedDefinitionElement SysML::Element:
 		//	Package
@@ -1554,13 +1555,14 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		//	| ViewpointDefinition
 		//	| RenderingDefinition
 		//	| Comment
-		//	| TextualRepresentation;
+		//	| TextualRepresentation
+		//	| Dependency;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Package | AttributeDefinition | ItemDefinition | PartDefinition | IndividualDefinition | ConnectionDefinition |
 		//InterfaceDefinition | PortDefinition | ActionDefinition | CalculationDefinition | StateDefinition |
 		//ConstraintDefinition | RequirementDefinition | CaseDefinition | AnalysisCaseDefinition | VerificationCaseDefinition |
-		//ViewDefinition | ViewpointDefinition | RenderingDefinition | Comment | TextualRepresentation
+		//ViewDefinition | ViewpointDefinition | RenderingDefinition | Comment | TextualRepresentation | Dependency
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Package
@@ -1625,6 +1627,9 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//TextualRepresentation
 		public RuleCall getTextualRepresentationParserRuleCall_20() { return cTextualRepresentationParserRuleCall_20; }
+		
+		//Dependency
+		public RuleCall getDependencyParserRuleCall_21() { return cDependencyParserRuleCall_21; }
 	}
 	public class PackagedUsageElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PackagedUsageElement");
@@ -1881,6 +1886,109 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//PackageElementVisibilityIndicator
 		public RuleCall getVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0() { return cVisibilityPackageElementVisibilityIndicatorEnumRuleCall_1_0; }
+	}
+	public class DependencyElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Dependency");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDependencyKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cIdentificationParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Keyword cOfKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cClientAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cClientElementCrossReference_2_0 = (CrossReference)cClientAssignment_2.eContents().get(0);
+		private final RuleCall cClientElementQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cClientElementCrossReference_2_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cClientAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cClientElementCrossReference_3_1_0 = (CrossReference)cClientAssignment_3_1.eContents().get(0);
+		private final RuleCall cClientElementQualifiedNameParserRuleCall_3_1_0_1 = (RuleCall)cClientElementCrossReference_3_1_0.eContents().get(1);
+		private final Keyword cOnKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cSupplierAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final CrossReference cSupplierElementCrossReference_5_0 = (CrossReference)cSupplierAssignment_5.eContents().get(0);
+		private final RuleCall cSupplierElementQualifiedNameParserRuleCall_5_0_1 = (RuleCall)cSupplierElementCrossReference_5_0.eContents().get(1);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cSupplierAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final CrossReference cSupplierElementCrossReference_6_1_0 = (CrossReference)cSupplierAssignment_6_1.eContents().get(0);
+		private final RuleCall cSupplierElementQualifiedNameParserRuleCall_6_1_0_1 = (RuleCall)cSupplierElementCrossReference_6_1_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		
+		///* DEPENDENCIES */ Dependency SysML::Dependency:
+		//	'dependency' (Identification? 'of')?
+		//	client+=[SysML::Element|QualifiedName] (',' client+=[SysML::Element|QualifiedName])* 'on'
+		//	supplier+=[SysML::Element|QualifiedName] (',' supplier+=[SysML::Element|QualifiedName])* ';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'dependency' (Identification? 'of')? client+=[SysML::Element|QualifiedName] (','
+		//client+=[SysML::Element|QualifiedName])* 'on' supplier+=[SysML::Element|QualifiedName] (','
+		//supplier+=[SysML::Element|QualifiedName])* ';'
+		public Group getGroup() { return cGroup; }
+		
+		//'dependency'
+		public Keyword getDependencyKeyword_0() { return cDependencyKeyword_0; }
+		
+		//(Identification? 'of')?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//Identification?
+		public RuleCall getIdentificationParserRuleCall_1_0() { return cIdentificationParserRuleCall_1_0; }
+		
+		//'of'
+		public Keyword getOfKeyword_1_1() { return cOfKeyword_1_1; }
+		
+		//client+=[SysML::Element|QualifiedName]
+		public Assignment getClientAssignment_2() { return cClientAssignment_2; }
+		
+		//[SysML::Element|QualifiedName]
+		public CrossReference getClientElementCrossReference_2_0() { return cClientElementCrossReference_2_0; }
+		
+		//QualifiedName
+		public RuleCall getClientElementQualifiedNameParserRuleCall_2_0_1() { return cClientElementQualifiedNameParserRuleCall_2_0_1; }
+		
+		//(',' client+=[SysML::Element|QualifiedName])*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//','
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		
+		//client+=[SysML::Element|QualifiedName]
+		public Assignment getClientAssignment_3_1() { return cClientAssignment_3_1; }
+		
+		//[SysML::Element|QualifiedName]
+		public CrossReference getClientElementCrossReference_3_1_0() { return cClientElementCrossReference_3_1_0; }
+		
+		//QualifiedName
+		public RuleCall getClientElementQualifiedNameParserRuleCall_3_1_0_1() { return cClientElementQualifiedNameParserRuleCall_3_1_0_1; }
+		
+		//'on'
+		public Keyword getOnKeyword_4() { return cOnKeyword_4; }
+		
+		//supplier+=[SysML::Element|QualifiedName]
+		public Assignment getSupplierAssignment_5() { return cSupplierAssignment_5; }
+		
+		//[SysML::Element|QualifiedName]
+		public CrossReference getSupplierElementCrossReference_5_0() { return cSupplierElementCrossReference_5_0; }
+		
+		//QualifiedName
+		public RuleCall getSupplierElementQualifiedNameParserRuleCall_5_0_1() { return cSupplierElementQualifiedNameParserRuleCall_5_0_1; }
+		
+		//(',' supplier+=[SysML::Element|QualifiedName])*
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//','
+		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		
+		//supplier+=[SysML::Element|QualifiedName]
+		public Assignment getSupplierAssignment_6_1() { return cSupplierAssignment_6_1; }
+		
+		//[SysML::Element|QualifiedName]
+		public CrossReference getSupplierElementCrossReference_6_1_0() { return cSupplierElementCrossReference_6_1_0; }
+		
+		//QualifiedName
+		public RuleCall getSupplierElementQualifiedNameParserRuleCall_6_1_0_1() { return cSupplierElementQualifiedNameParserRuleCall_6_1_0_1; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_7() { return cSemicolonKeyword_7; }
 	}
 	public class DefinitionPrefixElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.DefinitionPrefix");
@@ -14334,6 +14442,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	private final PackagedDefinitionMemberElements pPackagedDefinitionMember;
 	private final PackagedUsageMemberElements pPackagedUsageMember;
 	private final PackageMemberPrefixElements pPackageMemberPrefix;
+	private final DependencyElements pDependency;
 	private final DefinitionPrefixElements pDefinitionPrefix;
 	private final DefinitionBodyElements pDefinitionBody;
 	private final DefinitionBodyItemElements pDefinitionBodyItem;
@@ -14827,6 +14936,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPackagedDefinitionMember = new PackagedDefinitionMemberElements();
 		this.pPackagedUsageMember = new PackagedUsageMemberElements();
 		this.pPackageMemberPrefix = new PackageMemberPrefixElements();
+		this.pDependency = new DependencyElements();
 		this.pDefinitionPrefix = new DefinitionPrefixElements();
 		this.pDefinitionBody = new DefinitionBodyElements();
 		this.pDefinitionBodyItem = new DefinitionBodyItemElements();
@@ -15848,7 +15958,8 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	//	| ViewpointDefinition
 	//	| RenderingDefinition
 	//	| Comment
-	//	| TextualRepresentation;
+	//	| TextualRepresentation
+	//	| Dependency;
 	public PackagedDefinitionElementElements getPackagedDefinitionElementAccess() {
 		return pPackagedDefinitionElement;
 	}
@@ -15927,6 +16038,18 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getPackageMemberPrefixRule() {
 		return getPackageMemberPrefixAccess().getRule();
+	}
+	
+	///* DEPENDENCIES */ Dependency SysML::Dependency:
+	//	'dependency' (Identification? 'of')?
+	//	client+=[SysML::Element|QualifiedName] (',' client+=[SysML::Element|QualifiedName])* 'on'
+	//	supplier+=[SysML::Element|QualifiedName] (',' supplier+=[SysML::Element|QualifiedName])* ';';
+	public DependencyElements getDependencyAccess() {
+		return pDependency;
+	}
+	
+	public ParserRule getDependencyRule() {
+		return getDependencyAccess().getRule();
 	}
 	
 	///* DEFINITIONS */ fragment DefinitionPrefix returns SysML::Definition:

@@ -3178,6 +3178,15 @@ rulePackagedDefinitionElement returns [EObject current=null]
 			$current = $this_TextualRepresentation_20.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPackagedDefinitionElementAccess().getDependencyParserRuleCall_21());
+		}
+		this_Dependency_21=ruleDependency
+		{
+			$current = $this_Dependency_21.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -3612,6 +3621,132 @@ rulePackageMemberPrefix[EObject in_current]  returns [EObject current=in_current
 				}
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleDependency
+entryRuleDependency returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDependencyRule()); }
+	iv_ruleDependency=ruleDependency
+	{ $current=$iv_ruleDependency.current; }
+	EOF;
+
+// Rule Dependency
+ruleDependency returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='dependency'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getDependencyAccess().getDependencyKeyword_0());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDependencyRule());
+					}
+					newCompositeNode(grammarAccess.getDependencyAccess().getIdentificationParserRuleCall_1_0());
+				}
+				this_Identification_1=ruleIdentification[$current]
+				{
+					$current = $this_Identification_1.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+			otherlv_2='of'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getDependencyAccess().getOfKeyword_1_1());
+			}
+		)?
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDependencyRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getDependencyAccess().getClientElementCrossReference_2_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_4=','
+			{
+				newLeafNode(otherlv_4, grammarAccess.getDependencyAccess().getCommaKeyword_3_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDependencyRule());
+						}
+					}
+					{
+						newCompositeNode(grammarAccess.getDependencyAccess().getClientElementCrossReference_3_1_0());
+					}
+					ruleQualifiedName
+					{
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_6='on'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getDependencyAccess().getOnKeyword_4());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDependencyRule());
+					}
+				}
+				{
+					newCompositeNode(grammarAccess.getDependencyAccess().getSupplierElementCrossReference_5_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_8=','
+			{
+				newLeafNode(otherlv_8, grammarAccess.getDependencyAccess().getCommaKeyword_6_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDependencyRule());
+						}
+					}
+					{
+						newCompositeNode(grammarAccess.getDependencyAccess().getSupplierElementCrossReference_6_1_0());
+					}
+					ruleQualifiedName
+					{
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_10=';'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getDependencyAccess().getSemicolonKeyword_7());
+		}
 	)
 ;
 

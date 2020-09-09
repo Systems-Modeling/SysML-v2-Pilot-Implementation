@@ -7,7 +7,7 @@ package AnalysisTest {
 	part vv : V;
 	
 	requirement def AnalysisObjective {
-		/* ... */
+		doc /* ... */
 	}
 
 	analysis def AnalysisCase {
@@ -24,15 +24,15 @@ package AnalysisTest {
 		subject v : V;
 		
 		objective {
-			/* ... */
+			doc /* ... */
 		}
 		
 		analysis analysisCase : AnalysisCase () return mass;
 	}
 	
 	part analysisContext {
-		analysis analysisPlan : AnalysisPlan (
-			v = vv
-		);
+		analysis analysisPlan : AnalysisPlan {
+			subject v = vv;
+		}
 	}
 }

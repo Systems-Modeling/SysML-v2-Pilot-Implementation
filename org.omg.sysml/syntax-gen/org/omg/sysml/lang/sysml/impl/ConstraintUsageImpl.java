@@ -338,7 +338,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	@Override
 	public Usage getSubjectParameter() {
-		return getSubjectParameterOf(this);
+		return isRequirement()? basicGetSubjectParameterOf(this): null;
 	}
 	
 	@Override

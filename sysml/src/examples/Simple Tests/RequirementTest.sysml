@@ -4,6 +4,7 @@ package RequirementTest {
     	requirement;
     	requirement def id '1' A {
     		doc /* Text */
+    		subject s;
     	}
 	}
 }

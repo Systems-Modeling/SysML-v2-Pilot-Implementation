@@ -71,7 +71,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.getSubjectParameterOf(this);
+		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 
 	/**

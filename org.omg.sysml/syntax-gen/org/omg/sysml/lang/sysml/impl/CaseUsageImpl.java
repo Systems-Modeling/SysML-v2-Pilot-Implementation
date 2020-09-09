@@ -103,7 +103,7 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.getSubjectParameterOf(this);
+		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 
 	/**

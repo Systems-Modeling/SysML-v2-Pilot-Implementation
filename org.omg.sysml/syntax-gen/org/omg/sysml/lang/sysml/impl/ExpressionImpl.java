@@ -5,7 +5,6 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -147,10 +146,10 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	protected Set<Type> getGeneralTypes(Type type) {
+	protected List<Type> getGeneralTypes(Type type) {
 		Type owningType = getOwningType();
 		return isTransitionGuard() && type == owningType?
-				Collections.singleton(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
+				Collections.singletonList(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
 				super.getGeneralTypes(type);
 	}
 	

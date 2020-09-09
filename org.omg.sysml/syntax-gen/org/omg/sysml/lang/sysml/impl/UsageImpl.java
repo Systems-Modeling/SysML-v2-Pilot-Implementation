@@ -609,12 +609,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	/**
-	 * A subject Parameter always redefines the subject Parameter of a general CaseDefinition or CaseUsage.
+	 * A subject Parameter always redefines a subject Parameter.
 	 */
 	@Override
 	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
-		return isSubjectParameter() ? Collections.singletonList(getSubjectParameterOf(type)):
-			   super.getParameterRelevantFeatures(type);
+		if (isSubjectParameter()) {
+			Feature typeSubject = getSubjectParameterOf(type);
+			return typeSubject == null? Collections.emptyList(): 
+				Collections.singletonList(typeSubject);
+		}
+		return super.getParameterRelevantFeatures(type);
 	}
 	
 	@Override
@@ -690,6 +694,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	protected static Usage getSubjectParameterOf(Type type) {
+		return type instanceof Definition? ((DefinitionImpl)type).getSubjectParameter():
+			   type instanceof Usage? ((UsageImpl)type).getSubjectParameter():
+			   null;
+	}
+	
+	protected static Usage basicGetSubjectParameterOf(Type type) {
 		Usage subjectParameter = null;
 		if (type != null) {
 			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);

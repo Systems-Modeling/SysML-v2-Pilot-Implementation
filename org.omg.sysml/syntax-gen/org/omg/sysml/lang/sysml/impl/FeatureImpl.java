@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -507,15 +508,21 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	/**
-	 * Get the set of Types, more general than the given type, that may have features
-	 * redefined by this feature. By default this is all general Types of the given
-	 * Type (without defaults).
+	 * Get the (ordered) set of Types, more general than the given type, that may have 
+	 * features redefined by this feature. By default this is all general Types of the
+	 * given Type.
 	 */
-	protected Set<Type> getGeneralTypes(Type type) {
-		return type.getOwnedGeneralization().stream().
+	protected List<Type> getGeneralTypes(Type type) {
+		List<Type> generalTypes = new ArrayList<>();
+		type.getOwnedGeneralization().stream().
 				map(gen->((GeneralizationImpl)gen).basicGetGeneral()).
 				filter(gen->gen != null).
-				collect(Collectors.toSet());
+				forEachOrdered(gen->{
+					if (!generalTypes.contains(gen)) {
+						generalTypes.add(gen);
+					}
+				});
+		return generalTypes;
 	}
 	
 	/**
@@ -821,7 +828,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected Feature getNamingFeature() {
 		List<Redefinition> redefinitions = this.basicGetOwnedRedefinition();
-		return redefinitions.size() != 1? null:
+		return redefinitions.isEmpty()? null:
 			redefinitions.get(0).getRedefinedFeature();
 	}
 	

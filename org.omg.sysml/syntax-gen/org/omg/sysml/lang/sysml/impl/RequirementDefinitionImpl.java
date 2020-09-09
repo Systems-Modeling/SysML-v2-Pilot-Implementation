@@ -102,7 +102,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.getSubjectParameterOf(this);
+		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 	
 	/**

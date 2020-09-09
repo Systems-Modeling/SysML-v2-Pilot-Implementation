@@ -147,7 +147,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.getSubjectParameterOf(this);
+		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 
 	/**

@@ -7,13 +7,11 @@ package VerificationTest {
 	part vv : V;
 	
 	requirement def VerificationObjective {
-		/* ... */
+		doc /* ... */
 	}
 
-	verification def VerificationCase {
-		
-		subject v : V;
-		
+	verification def VerificationCase {		
+		subject v : V;	
 		objective : VerificationObjective {
 			subject = v;
 		}
@@ -21,18 +19,19 @@ package VerificationTest {
 		v::m == 0
 	}
 	
-	verification def VerificationPlan(v : V) {
+	verification def VerificationPlan {
+		subject v : V;
 		
 		objective {
-			/* ... */
+			doc /* ... */
 		}
 		
-		verification verificationCase : VerificationCase () return mass;
+		verification verificationCase : VerificationCase;
 	}
 	
 	part verificationContext {
-		verification verificationPlan : VerificationPlan (
-			v = vv
-		);
+		verification verificationPlan : VerificationPlan {
+			subject v = vv;
+		}
 	}
 }

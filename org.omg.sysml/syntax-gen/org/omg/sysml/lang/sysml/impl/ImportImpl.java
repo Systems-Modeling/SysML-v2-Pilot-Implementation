@@ -22,6 +22,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 
 /**
@@ -83,13 +84,17 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.IMPORT;
 	}
+	
+	@Override
+	public org.omg.sysml.lang.sysml.Package getImportedPackage() {
+		return importedPackage == null? basicGetImportedPackage(): getImportedPackageGen();
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public org.omg.sysml.lang.sysml.Package getImportedPackage() {
+	public org.omg.sysml.lang.sysml.Package getImportedPackageGen() {
 		if (importedPackage != null && importedPackage.eIsProxy()) {
 			InternalEObject oldImportedPackage = (InternalEObject)importedPackage;
 			importedPackage = (org.omg.sysml.lang.sysml.Package)eResolveProxy(oldImportedPackage);
@@ -103,9 +108,20 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public org.omg.sysml.lang.sysml.Package basicGetImportedPackage() {
+		if (importedPackage == null) {
+			org.omg.sysml.lang.sysml.Package owningPackage = getImportOwningPackage();
+			if (owningPackage instanceof TransitionUsage) {
+				// Fill in the empty import inserted into a trigger usage in order to make the namespace
+				// of the trigger action visible.
+				EList<? extends org.omg.sysml.lang.sysml.Package> triggers = ((TransitionUsage)owningPackage).getTriggerAction();
+				if (!triggers.isEmpty()) {
+					importedPackage = triggers.get(0);
+				}
+			}
+		}
 		return importedPackage;
 	}
 

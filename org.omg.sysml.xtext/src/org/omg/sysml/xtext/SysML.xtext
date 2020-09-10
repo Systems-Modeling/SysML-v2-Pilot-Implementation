@@ -1891,14 +1891,16 @@ TransitionUsageKeyword :
 TransitionStep returns SysML::TransitionUsage :
 	TransitionUsageKeyword ( UsageDeclaration? 'first' )? 
 	ownedFeatureMembership_comp += TransitionSourceMember 
-	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedImport_comp += EmptyImport
+	  ownedFeatureMembership_comp += TriggerStepMember )?
 	( ownedFeatureMembership_comp += GuardExpressionMember )?
 	( ownedFeatureMembership_comp += EffectBehaviorMember )?
 	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
 ;
 
 TargetTransitionStep returns SysML::TransitionUsage :
-	( ownedFeatureMembership_comp += TriggerStepMember )?
+	( ownedImport_comp += EmptyImport
+	  ownedFeatureMembership_comp += TriggerStepMember )?
 	( ownedFeatureMembership_comp += GuardExpressionMember )?
 	( ownedFeatureMembership_comp += EffectBehaviorMember )?
 	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
@@ -1919,6 +1921,10 @@ TransitionSuccession returns SysML::Succession :
 ;
 
 /* TRANSITION MEMBERSHIPS */
+
+EmptyImport returns SysML::Import :
+	{SysML::Import}
+;
 
 TransitionSourceMember returns SysML::FeatureMembership :
 	memberFeature = [SysML::Feature|QualifiedName]

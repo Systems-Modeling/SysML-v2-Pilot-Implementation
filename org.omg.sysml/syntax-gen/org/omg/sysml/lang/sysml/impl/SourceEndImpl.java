@@ -42,9 +42,15 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 		return SysMLPackage.Literals.SOURCE_END;
 	}
 	
+	@Override
 	public void computeImplicitGeneralization() {
-		addImplicitGeneralization();
 		addComputedRedefinitions();
+	}
+	
+	@Override
+	public void addComputedRedefinitions() {
+		addImplicitGeneralization();
+		super.addComputedRedefinitions();
 	}
 	
 	@Override

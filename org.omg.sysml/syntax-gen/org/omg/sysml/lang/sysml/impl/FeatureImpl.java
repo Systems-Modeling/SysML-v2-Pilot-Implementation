@@ -433,32 +433,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
-		List<Feature> redefinedFeatures = basicGetOwnedRedefinition().stream().
-				map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
-				collect(Collectors.toList());
-		if (redefinedFeatures.stream().allMatch(feature->feature == null)) {
-			redefinedFeatures.clear();
-			Type type = getOwningType();
-			if (type != null) {
-				List<? extends Feature> relevantFeatures =
-						isEnd()? ((TypeImpl)type).getOwnedEndFeatures():
-						isParameter()? ((TypeImpl)type).getOwnedParameters():
-						((TypeImpl)type).getRelevantFeatures();
-				int i = relevantFeatures.indexOf(this);
-				if (i >= 0) {
-					for (Type general: getGeneralTypes(type)) {
-						List<? extends Feature> features = getRelevantFeatures(general);
-						if (i < features.size()) {
-							Feature redefinedFeature = features.get(i);
-							if (redefinedFeature != null && redefinedFeature != this) {
-								redefinedFeatures.add(redefinedFeature);
-							}
-						}
-					}
-				}
-			}
-		}
-		return redefinedFeatures;
+		addComputedRedefinitions();
+		return basicGetOwnedRedefinition().stream().
+					map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+					collect(Collectors.toList());
 	}
 	
 	boolean isComputeRedefinitions = true;
@@ -831,9 +809,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected Feature getNamingFeature() {
-		List<Redefinition> redefinitions = this.basicGetOwnedRedefinition();
-		return redefinitions.isEmpty()? null:
-			redefinitions.get(0).getRedefinedFeature();
+		List<Feature> redefinedFeatures = getRedefinedFeaturesWithComputed(null);
+		return redefinedFeatures.isEmpty()? null:
+			redefinedFeatures.get(0);
 	}
 	
 	public FeatureValue getValuation() {
@@ -931,18 +909,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public Set<Feature> getAllRedefinedFeatures() {
 		Set<Feature> redefinedFeatures = new HashSet<>();
-		addAllRedefinedFeatures(redefinedFeatures, new HashSet<>());
+		addAllRedefinedFeatures(redefinedFeatures);
 		return redefinedFeatures;
 	}
 	
-	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures, Set<Feature> visited) {
+	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures) {
 		redefinedFeatures.add(this);
-		addComputedRedefinitions();
-		basicGetOwnedRedefinition().stream().forEach(redefinition->{
-			visited.add(this);
-			Feature redefinedFeature = redefinition.getRedefinedFeature();
-			if (!visited.contains(redefinedFeature)) {
-				((FeatureImpl)redefinedFeature).addAllRedefinedFeatures(redefinedFeatures, visited);
+		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
+			if (!redefinedFeatures.contains(redefinedFeature)) {
+				((FeatureImpl)redefinedFeature).addAllRedefinedFeatures(redefinedFeatures);
 			}
 		});
 	}

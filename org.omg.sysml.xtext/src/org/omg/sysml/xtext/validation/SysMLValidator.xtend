@@ -256,11 +256,11 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check //Must have at most one rendering.
 	def checkViewDefinitionRender(ViewDefinition viewDef){
-		checkAtMostOneElement(viewDef.feature.filter[f|f instanceof RenderingUsage], INVALID_VIEWDEFINITION_RENDER_MSG, INVALID_VIEWDEFINITION_RENDER)
+		checkAtMostOneElement(viewDef.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWDEFINITION_RENDER_MSG, INVALID_VIEWDEFINITION_RENDER)
 	}
 	@Check //Must have at most one rendering.
 	def checkViewUsageRender(ViewUsage viewUsg){
-		checkAtMostOneElement(viewUsg.feature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
+		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
 	}
 	
 	@Check //Must have at most one subject membership.

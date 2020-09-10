@@ -5,12 +5,12 @@ package 'Streaming Interface Example' {
 	
 	interface def FuelInterface {
 		end supplierPort : FuelOutPort {
-			out ref item :>> fuelSupply;
-			in ref :>> fuelReturn;			
+			out item :>> fuelSupply;
+			in item :>> fuelReturn;			
 		}
 		end consumerPort : FuelInPort {
-			in ref item :>> fuelSupply;
-			out ref item :>> fuelReturn;
+			in item :>> fuelSupply;
+			out item :>> fuelReturn;
 		}
 		
 		stream supplierPort::fuelSupply to consumerPort::fuelSupply;			

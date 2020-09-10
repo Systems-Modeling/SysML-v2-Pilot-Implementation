@@ -70,8 +70,8 @@ package '10c-Fuel Economy Analysis' {
 		
 		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : QuantityValue {
 			subject vehicle : Vehicle;
-			in ref calc scenario : NominalScenario;
-			in ref requirement fuelEconomyRequirement : FuelEconomyRequirement;
+			in calc scenario : NominalScenario;
+			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
 			
 			objective fuelEconomyAnalysisObjective {
 				/*

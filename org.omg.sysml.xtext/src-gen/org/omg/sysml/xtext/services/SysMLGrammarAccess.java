@@ -4280,37 +4280,37 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Assignment cOwnedFeatureMembership_compAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cOwnedFeatureMembership_compResultExpressionMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_1_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		//CalculationDefinition SysML::CalculationDefinition:
 		//	CalculationDefDeclaration (CalculationDefBody
-		//	| '=' ownedFeatureMembership_comp+=ExpressionMember ';');
+		//	| '=' ownedFeatureMembership_comp+=ResultExpressionMember ';');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//CalculationDefDeclaration (CalculationDefBody | '=' ownedFeatureMembership_comp+=ExpressionMember ';')
+		//CalculationDefDeclaration (CalculationDefBody | '=' ownedFeatureMembership_comp+=ResultExpressionMember ';')
 		public Group getGroup() { return cGroup; }
 		
 		//CalculationDefDeclaration
 		public RuleCall getCalculationDefDeclarationParserRuleCall_0() { return cCalculationDefDeclarationParserRuleCall_0; }
 		
-		//(CalculationDefBody | '=' ownedFeatureMembership_comp+=ExpressionMember ';')
+		//(CalculationDefBody | '=' ownedFeatureMembership_comp+=ResultExpressionMember ';')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//CalculationDefBody
 		public RuleCall getCalculationDefBodyParserRuleCall_1_0() { return cCalculationDefBodyParserRuleCall_1_0; }
 		
-		//'=' ownedFeatureMembership_comp+=ExpressionMember ';'
+		//'=' ownedFeatureMembership_comp+=ResultExpressionMember ';'
 		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//'='
 		public Keyword getEqualsSignKeyword_1_1_0() { return cEqualsSignKeyword_1_1_0; }
 		
-		//ownedFeatureMembership_comp+=ExpressionMember
+		//ownedFeatureMembership_comp+=ResultExpressionMember
 		public Assignment getOwnedFeatureMembership_compAssignment_1_1_1() { return cOwnedFeatureMembership_compAssignment_1_1_1; }
 		
-		//ExpressionMember
-		public RuleCall getOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0() { return cOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0; }
+		//ResultExpressionMember
+		public RuleCall getOwnedFeatureMembership_compResultExpressionMemberParserRuleCall_1_1_1_0() { return cOwnedFeatureMembership_compResultExpressionMemberParserRuleCall_1_1_1_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_1_1_2() { return cSemicolonKeyword_1_1_2; }
@@ -17531,7 +17531,7 @@ public class SysMLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//CalculationDefinition SysML::CalculationDefinition:
 	//	CalculationDefDeclaration (CalculationDefBody
-	//	| '=' ownedFeatureMembership_comp+=ExpressionMember ';');
+	//	| '=' ownedFeatureMembership_comp+=ResultExpressionMember ';');
 	public CalculationDefinitionElements getCalculationDefinitionAccess() {
 		return pCalculationDefinition;
 	}

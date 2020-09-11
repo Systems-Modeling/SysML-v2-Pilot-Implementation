@@ -7980,9 +7980,9 @@ ruleCalculationDefinition returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getCalculationDefinitionAccess().getOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0());
+							newCompositeNode(grammarAccess.getCalculationDefinitionAccess().getOwnedFeatureMembership_compResultExpressionMemberParserRuleCall_1_1_1_0());
 						}
-						lv_ownedFeatureMembership_comp_3_0=ruleExpressionMember
+						lv_ownedFeatureMembership_comp_3_0=ruleResultExpressionMember
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getCalculationDefinitionRule());
@@ -7991,7 +7991,7 @@ ruleCalculationDefinition returns [EObject current=null]
 								$current,
 								"ownedFeatureMembership_comp",
 								lv_ownedFeatureMembership_comp_3_0,
-								"org.omg.sysml.xtext.SysML.ExpressionMember");
+								"org.omg.sysml.xtext.SysML.ResultExpressionMember");
 							afterParserOrEnumRuleCall();
 						}
 					)

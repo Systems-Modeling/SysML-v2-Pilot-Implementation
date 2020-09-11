@@ -53456,9 +53456,9 @@ rule__CalculationDefinition__OwnedFeatureMembership_compAssignment_1_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getCalculationDefinitionAccess().getOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0()); }
-		ruleExpressionMember
-		{ after(grammarAccess.getCalculationDefinitionAccess().getOwnedFeatureMembership_compExpressionMemberParserRuleCall_1_1_1_0()); }
+		{ before(grammarAccess.getCalculationDefinitionAccess().getOwnedFeatureMembership_compResultExpressionMemberParserRuleCall_1_1_1_0()); }
+		ruleResultExpressionMember
+		{ after(grammarAccess.getCalculationDefinitionAccess().getOwnedFeatureMembership_compResultExpressionMemberParserRuleCall_1_1_1_0()); }
 	)
 ;
 finally {

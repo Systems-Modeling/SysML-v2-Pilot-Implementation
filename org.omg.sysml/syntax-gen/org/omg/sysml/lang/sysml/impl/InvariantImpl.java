@@ -6,7 +6,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
@@ -83,15 +82,6 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		return assertionConnector;
 	}
 	
-	@Override
-	public BindingConnector getResultConnector() {
-		return hasNoResultExpression(this)? null: super.getResultConnector();
-	}
-	
-	public static boolean hasNoResultExpression(Invariant invariant) {
-		return invariant.getOwnedFeature().stream().filter(feature->feature instanceof Expression).count() <= 1;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,6 +99,14 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		getAssertionConnector();
 		return super.getFeature();
 	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getAssertionConnector();
+	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

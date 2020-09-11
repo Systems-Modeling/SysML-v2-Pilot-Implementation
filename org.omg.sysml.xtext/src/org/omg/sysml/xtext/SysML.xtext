@@ -822,7 +822,7 @@ CalculationDefKeyword :
 CalculationDefinition returns SysML::CalculationDefinition :
 	CalculationDefDeclaration 
 	( CalculationDefBody 
-	| '=' ownedFeatureMembership_comp += ExpressionMember ';'
+	| '=' ownedFeatureMembership_comp += ResultExpressionMember ';'
 	)
 ;
 

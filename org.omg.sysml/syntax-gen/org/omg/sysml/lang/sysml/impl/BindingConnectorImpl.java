@@ -72,6 +72,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		if (argIndex < inputs.size()) {
 			Feature input = inputs.get(argIndex);
 			if (endIndex == 0) {
+				((FeatureImpl)input).forceComputeRedefinitions();
 				List<Redefinition> redefinitions = input.getOwnedRedefinition();
 				if (!redefinitions.isEmpty()) {
 					Feature feature = redefinitions.get(0).getRedefinedFeature();

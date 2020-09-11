@@ -3970,7 +3970,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 )* 
 	 *                 ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *             ) | 
-	 *             ownedFeatureMembership_comp+=ExpressionMember
+	 *             ownedFeatureMembership_comp+=ResultExpressionMember
 	 *         )?
 	 *     )
 	 */
@@ -4017,7 +4017,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	//                 )* 
 	//                 ownedFeatureMembership_comp+=ResultExpressionMember?
 	//             ) | 
-	//             ownedFeatureMembership_comp+=ExpressionMember
+	//             ownedFeatureMembership_comp+=ResultExpressionMember
 	//         )?
 	//     )
 	//

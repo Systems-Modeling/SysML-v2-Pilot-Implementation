@@ -182,7 +182,7 @@ package 'Vehicle Analysis Demo' {
 		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : DistancePerVolumeValue {
 			subject vehicle: Vehicle;
 			in attribute scenario : NominalScenario;
-			in ref requirement fuelEconomyRequirement : FuelEconomyRequirement;
+			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
 			
 			objective fuelEconomyAnalysisObjective {
 				doc 

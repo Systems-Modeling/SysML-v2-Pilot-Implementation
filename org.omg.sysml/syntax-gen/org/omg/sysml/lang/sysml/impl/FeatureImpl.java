@@ -439,7 +439,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 					collect(Collectors.toList());
 	}
 	
-	boolean isComputeRedefinitions = true;
+	private boolean isComputeRedefinitions = true;
+	
+	public void forceComputeRedefinitions() {
+		isComputeRedefinitions = true;
+	}
 	
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
@@ -909,6 +913,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public Set<Feature> getAllRedefinedFeatures() {
 		Set<Feature> redefinedFeatures = new HashSet<>();
+		
+		// Ensure that the redefinitions for this feature are recomputed. 
+		forceComputeRedefinitions();
+		
 		addAllRedefinedFeatures(redefinedFeatures);
 		return redefinedFeatures;
 	}

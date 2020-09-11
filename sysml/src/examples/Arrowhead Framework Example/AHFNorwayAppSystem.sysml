@@ -12,7 +12,7 @@ package AHFNorway {
 		:>> intrfce_protocol = "{JSON}";
 		:>> serviceURL = "pull";
 		// functionalities 
-		out ref action getAllItems; // referring to generic functionality
+		out action getAllItems; // referring to generic functionality
 	}
 	
 	attribute def Subscribe_getAllItems;
@@ -35,10 +35,10 @@ package AHFNorway {
 		part def APISProducer :> SysDD{
 			port serviceDiscovery:~ServiceDiscovery subsets services; // communicating with ServiceRegistry
 			port apis:APISService subsets services { // providing the APISService
-				out ref action :>> getAllItems;
+				out action :>> getAllItems;
 			}
 			port tellu:APISService subsets services { // talking to TellU
-				out ref action :>> getAllItems;
+				out action :>> getAllItems;
 			}
 			
 			// specializing the functionality implementation towards REST

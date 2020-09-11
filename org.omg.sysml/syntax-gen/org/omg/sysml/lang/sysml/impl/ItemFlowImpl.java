@@ -14,7 +14,6 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -22,7 +21,6 @@ import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
-import  org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -206,32 +204,14 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	public EList<Feature> getConnectorEnd() {
 		EList<Feature> ends = super.getConnectorEnd();
 		Type owner = getOwningType();
-		if (owner instanceof Step) {
-			EList<Feature> features = owner.getOwnedFeature();
-			int i = features.indexOf(this);
-			if (i > 0) {
-				if (ends.size() < 2) {
-					ItemFlowFeature targetInput = SysMLFactory.eINSTANCE.createItemFlowFeature();
-					Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-					redefinition.setRedefiningFeature(targetInput);
-					redefinition.setRedefinedFeature(features.get(i-1));
-					targetInput.getOwnedRelationship_comp().add(redefinition);
-					ItemFlowEnd targetEnd = SysMLFactory.eINSTANCE.createItemFlowEnd();
-					((FeatureImpl)targetEnd).addOwnedFeature(targetInput);
-					EndFeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-					membership.setOwnedMemberFeature_comp(targetEnd);
-					getOwnedFeatureMembership_comp().add(membership);
-					((ItemFlowEndImpl)targetEnd).addItemFlowEndSubsetting();
-				} else {
-					EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
-					if (!features.isEmpty()) {
-						List<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
-						if (!redefinitions.isEmpty()) {
-							Redefinition redefinition = redefinitions.get(0);
-							if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
-								redefinition.setRedefinedFeature(features.get(i-1));
-							}
-						}
+		if (owner instanceof Feature) {
+			if (ends.size() >= 2) {
+				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
+				List<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
+				if (!redefinitions.isEmpty()) {
+					Redefinition redefinition = redefinitions.get(0);
+					if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
+						redefinition.setRedefinedFeature((Feature)owner);
 					}
 				}
 			}

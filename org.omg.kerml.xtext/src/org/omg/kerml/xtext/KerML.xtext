@@ -426,7 +426,7 @@ fragment FunctionBody returns SysML::Type :
 		  | ownedFeatureMembership_comp += FeatureTypeMember
 		  | ownedRelationship_comp += PackageImport
 		  )* 
-		  ( ownedFeatureMembership_comp += ExpressionMember )? 
+		  ( ownedFeatureMembership_comp += ResultExpressionMember )? 
 	  '}'
 ;
 
@@ -440,8 +440,8 @@ EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
 	ownedMemberFeature_comp = EmptyParameter
 ;
 
-ExpressionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = Expression
+ResultExpressionMember returns SysML::ResultExpressionMembership :
+	TypeMemberPrefix ownedResultExpression_comp = Expression
 ;
 
 /* PREDICATES */
@@ -943,7 +943,7 @@ PrimaryExpression returns SysML::Expression :
 
 BodyExpression returns SysML::BlockExpression :
 	   => ( ownedFeatureMembership_comp += BodyParameterMember ( ownedFeatureMembership_comp += BodyParameterMember )* 
-	   	    '(' ownedFeatureMembership_comp += ExpressionMember ')' )
+	   	    '(' ownedFeatureMembership_comp += ResultExpressionMember ')' )
 	 | ownedRelationship_comp += ExpressionTyping
 ;
 
@@ -1052,6 +1052,10 @@ UnlimitedNaturalLiteralExpression returns SysML::LiteralExpression:
 ;
 
 /* EXPRESSION MEMBERSHIPS */
+
+ExpressionMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = Expression
+;
 
 FeatureReferenceMember returns SysML::ReturnParameterMembership :
 	ownedMemberFeature_comp = FeatureReference

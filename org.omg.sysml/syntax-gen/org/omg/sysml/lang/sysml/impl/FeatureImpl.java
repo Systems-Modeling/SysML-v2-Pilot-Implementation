@@ -432,17 +432,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return basicGetOwnedGeneralization(FeatureTyping.class);
 	}
 	
-	protected void addSubsetting(String name) {
-		Type type = getDefaultType(name);
-		if (type instanceof Feature && type != this &&
-				!getOwnedSubsetting().stream().anyMatch(sub->sub.getSubsettedFeature() == type)) {
-			Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-			subsetting.setSubsettedFeature((Feature)type);
-			subsetting.setSubsettingFeature(this);
-			getOwnedRelationship_comp().add(subsetting);
-		}
-	}
-	
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
 		addComputedRedefinitions();
 		List<Redefinition> redefinitions = basicGetOwnedRedefinition();

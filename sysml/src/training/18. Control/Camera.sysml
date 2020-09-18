@@ -6,19 +6,19 @@ package Camera {
 	part def ImagingSubsystem;
 	
 	part camera : Camera {
-		ref 'view' : Scene;
+		ref item scene : Scene;
 		part photos : Picture[*];
 				
 		part autoFocus {
-			in ref 'view' : Scene = camera::'view';		
-			out ref realImage : Image;
+			in ref item scene : Scene = camera::scene;		
+			out ref item realImage : Image;
 		}
 		
 		flow autoFocus::realImage to imager::focusedImage;
 		
 		part imager {
-			in ref focusedImage : Image;		
-			out ref photo : Picture :> photos;
+			in item focusedImage : Image;		
+			out item photo : Picture :> photos;
 		}
 		
 	}

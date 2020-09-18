@@ -6,7 +6,6 @@ package 'Analysis Case Definition Example' {
 	
 	attribute def DistancePerVolumeValue :> QuantityValue;
     attribute gallon = 231.0 * 'in' ** 3;
-    attribute mpg = 'mi' / gallon;
 
 	part def Vehicle {
         attribute mass : MassValue;
@@ -19,7 +18,8 @@ package 'Analysis Case Definition Example' {
         attribute fuelEconomy_highway : DistancePerVolumeValue;
     }
     
-	analysis def FuelEconomyAnalysis (vehicle : Vehicle) fuelEconomyResult : DistancePerVolumeValue {
+	analysis def FuelEconomyAnalysis () fuelEconomyResult : DistancePerVolumeValue {
+		subject vehicle : Vehicle;
 		
 		objective fuelEconomyAnalysisObjective {
 			/*
@@ -33,11 +33,11 @@ package 'Analysis Case Definition Example' {
 			}
 			
 			require constraint {
-				fuelEconomyResult > 30@['mi' / gallon]
+				fuelEconomyResult > 30@[mi / gallon]
 			}
 		}
 	    
-		attribute scenario[*] {
+		in attribute scenario[*] {
 			time : TimeValue;
 			position : LengthValue;
 			velocity : VelocityValue;

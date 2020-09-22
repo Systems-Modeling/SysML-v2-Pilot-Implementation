@@ -92,7 +92,7 @@ package 'Turbojet Stage Analysis' {
 	        	calc 'Solve for Pressure1' : 'Ideal Gas Law' (rho, R_bar, T) p;
 	        	bind 'Density' = 'Solve for Pressure1'::rho;
 	        	bind 'Specific Gas Constant' = 'Solve for Pressure1'::R_bar;
-	        	bind 'Static Temperature' = 'Solve for Pressure1'::rho;
+	        	bind 'Static Temperature' = 'Solve for Pressure1'::T;
 	        	bind 'Static Pressure' = 'Solve for Pressure1'::p;	        	
 	        	
 	        	// Shorthand parameter binding notation (also using optional "in" and "return")
@@ -110,27 +110,6 @@ package 'Turbojet Stage Analysis' {
 	            
 	            // Equation as a constraint (note "==")
 	            constraint { 'Static Pressure' == 'Ideal Gas Law'('Density', 'Specific Gas Constant', 'Static Temperature') }
-	            
-	        	// Shorthand parameter binding notation
-	        	
-	            calc 'Solve for Pressure3' : 'Ideal Gas Law'(
-	                in rho = 'Density',
-	                in R_bar = 'Specific Gas Constant',
-	                in T = 'Static Temperature'
-	            ) return p = 'Static Pressure';
-	            
-	            calc 'Solve for Pressure4' : 'Ideal Gas Law'(
-	                in rho = 'Density',
-	                in R_bar = 'Specific Gas Constant',
-	                in T = 'Static Temperature'
-	            ) return p = 'Static Pressure';
-	            
-	            calc 'Solve for Pressure5' : 'Ideal Gas Law'(
-	                in rho = 'Density',
-	                in R_bar = 'Specific Gas Constant',
-	                in T = 'Static Temperature'
-	            ) return p = 'Static Pressure';
-	            
 	        }
 	    }
 	}	

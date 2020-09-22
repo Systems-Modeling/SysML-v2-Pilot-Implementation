@@ -29,8 +29,9 @@ package Views {
 	 * ViewpointCheck is a RequirementCheck for checking if a View meets the concerns of viewpoint stakeholders. 
 	 * It is the base type of all ViewpointDefinitions.
 	 */
-	abstract viewpoint def ViewpointCheck :> RequirementCheck (subject : View[1]) {
-		ref viewpoint thisViewpoint : ViewpointCheck :>> thisRequirement;	
+	abstract viewpoint def ViewpointCheck :> RequirementCheck {
+		ref viewpoint thisViewpoint : ViewpointCheck :>> thisRequirement;		
+		subject : View[1];
 	}
 	
 	/**

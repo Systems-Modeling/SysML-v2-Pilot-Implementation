@@ -1,0 +1,78 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Constraints.sysml"}
+		File {from ="/library.systems/Requirements.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.systems/Cases.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Constraints.sysml"}
+				File {from ="/library.systems/Requirements.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.systems/Cases.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+package 'Case Subjects and Objectives' {
+	
+	case def C {
+		// XPECT errors --> "Only one subject is allowed" at "subject s1;"
+		subject s1;
+		
+		// XPECT errors --> "Only one subject is allowed" at "subject s2;"
+		subject s2;
+
+		// XPECT errors --> "Only one objective is allowed" at "objective o1;"
+		objective o1;
+		
+		// XPECT errors --> "Only one objective is allowed" at "objective o2;"
+		objective o2;
+	}
+	
+	case c: C {
+		// XPECT errors --> "Only one subject is allowed" at "subject s3;"
+		subject s3;
+		
+		// XPECT errors --> "Only one subject is allowed" at "subject s4;"
+		subject s4;
+
+		// XPECT errors --> "Only one objective is allowed" at "objective o3;"
+		objective o3;
+		
+		// XPECT errors --> "Only one objective is allowed" at "objective o4;"
+		objective o4;
+	}
+	
+	case c1 : C {
+		subject s5; // Valid implicit redefinition.
+		objective o5;
+	}
+	
+}

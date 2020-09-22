@@ -34,9 +34,15 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 		return SysMLPackage.Literals.TARGET_END;
 	}
 
+	@Override
 	public void computeImplicitGeneralization() {
-		addImplicitGeneralization();
 		addComputedRedefinitions();
+	}
+	
+	@Override
+	public void addComputedRedefinitions() {
+		addImplicitGeneralization();
+		super.addComputedRedefinitions();
 	}
 	
 	@Override

@@ -164,9 +164,9 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	}
 	
 	@Override
-	public BindingConnector getResultConnector() {
-		return InvariantImpl.hasNoResultExpression(this)? null:
-			(resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult()));
+	public void transform() {
+		super.transform();
+		getAssertionConnector();
 	}
 	
 	//

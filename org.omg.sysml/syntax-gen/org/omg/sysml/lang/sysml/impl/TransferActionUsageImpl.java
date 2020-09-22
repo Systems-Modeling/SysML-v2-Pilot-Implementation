@@ -87,10 +87,15 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	@Override
 	public void computeImplicitGeneralization() {
-		addImplicitGeneralization();
 		addComputedRedefinitions();
 	}
-
+	
+	@Override
+	public void addComputedRedefinitions() {
+		addImplicitGeneralization();
+		super.addComputedRedefinitions();
+	}
+	
 	@Override
 	protected String getDefaultSupertype() {
 		return TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT;

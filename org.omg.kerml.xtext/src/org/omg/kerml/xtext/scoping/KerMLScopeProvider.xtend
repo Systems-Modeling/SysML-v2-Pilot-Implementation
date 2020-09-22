@@ -94,7 +94,9 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			context.scope_Namespace(context.importOwningPackage, context, reference)
 		else if (context instanceof Package) 
 			context.scopeFor(reference, null, true, false, null)
-		else 
+		else if (context instanceof Element)
+			context.scope_owningNamespace(context, reference)
+		else
 			super.getScope(context, reference)
 	}
 	

@@ -1,6 +1,6 @@
 # SysML v2 Release 2020-06 Eclipse Installation
 
-**Requirements:** Eclipse 2019-12 (4.14) or later, with Java Development Kit
+**Requirements:** Eclipse 2020-06 (4.16) or later, with Java Development Kit
 
 ## Installing the plugins
 

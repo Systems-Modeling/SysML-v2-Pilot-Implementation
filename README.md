@@ -16,7 +16,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
 
-4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2019-12.
+4. In the product list, select "Eclipse Modeling Tools" with Product Version: 2020-06.
 
 5. In the Projects window, to the right of the text box, click the "+" to the add the Sysml2 project as user project. In the dialog, choose Catalog: Github Projects and browse the file system to select the setup file from the local git repository.
    * e.g. `file:/C:/git/sysml/SysML-v2-Pilot-Implementation/org.omg.sysml.installer/SysML2.setup`
@@ -39,15 +39,15 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 
 #### Manual installation
 
-1. Install Eclipse 2019-12 (4.14) and Xtext.
+1. Install Eclipse 2020-06 (4.16) and Xtext.
    * If you are installing Eclipse fresh, the easiest approach is to just install the “Eclipse IDE for Java and DSL Development” package, which includes Xtext.
-      * https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-ide-java-and-dsl-developers
+      * https://www.eclipse.org/downloads/packages/release/2020-06/r/eclipse-ide-java-and-dsl-developers
       
    * Alternatively, you can install the “Eclipse Modeling Tools” package (which includes other modeling capabilities, like UML, that you don’t need now but will likely be useful in the future), and install Xtext into that (per below).
-      * https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-modeling-tools
+      * https://www.eclipse.org/downloads/packages/release/2020-06/r/eclipse-modeling-tools
       
-   * To install Xtext into an existing Eclipse 4.12 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
-      * http://download.eclipse.org/releases/2019-12
+   * To install Xtext into an existing Eclipse 4.16 instance, select Help > Install New Software, use the update site URLgiven below, and install “Xtext Complete SDK” (under General Purpose Tools).
+      * http://download.eclipse.org/releases/2020-06
 
    * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
      the update site of https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/ with Help > Install New Software.

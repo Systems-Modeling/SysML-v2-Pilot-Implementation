@@ -2,9 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -78,8 +77,8 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 
 	@Override
-	protected Set<Type> getGeneralTypes(Type type) {
-		return type instanceof ItemFlow ? new HashSet<>(((ItemFlow) type).getType()) : super.getGeneralTypes(type);
+	protected List<Type> getGeneralTypes(Type type) {
+		return type instanceof ItemFlow ? new ArrayList<>(((ItemFlow) type).getType()) : super.getGeneralTypes(type);
 	}
 
 	@Override

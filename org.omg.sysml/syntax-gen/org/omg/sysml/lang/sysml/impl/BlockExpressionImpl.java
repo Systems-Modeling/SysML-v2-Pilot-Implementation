@@ -8,6 +8,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -56,14 +57,11 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 
 	public static BindingConnector getResultConnectorFor(
 			Type owningType, BindingConnector resultConnector, Feature result) {
-		EList<Feature> ownedFeatures = owningType.getOwnedFeature();
-		for (int i = ownedFeatures.size() - 1; i >= 0; i--) {
-			Feature ownedFeature = ownedFeatures.get(i);
-			if (((FeatureImpl)ownedFeature).isExpression() && !ownedFeature.isAbstract()) {
-				resultConnector = updateBindingConnectorFor(
-						owningType, resultConnector, ((Expression)ownedFeature).getResult(), result);
-				break;
-			}
+		Expression resultExpression = 
+				(Expression)((TypeImpl)owningType).getOwnedFeatureByMembership(ResultExpressionMembership.class);
+		if (resultExpression != null) {
+			resultConnector = updateBindingConnectorFor(
+					owningType, resultConnector, resultExpression.getResult(), result);
 		}
 		return resultConnector;
 	}

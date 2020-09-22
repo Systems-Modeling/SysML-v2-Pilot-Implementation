@@ -5,9 +5,7 @@ package '10c-Fuel Economy Analysis' {
 	import ISQ::*;
 	import USCustomaryUnits::*;
 	
-	attribute volume : QuantityValue = length ** 3;
-	attribute distancePerVolume : QuantityValue = length / volume;
-	
+	attribute distancePerVolume : QuantityValue = length / volume;	
 	attribute gallon : MeasurementUnit = 231.0 * 'in' ** 3;
 	
 	package FuelEconomyRequirementsModel {
@@ -63,16 +61,17 @@ package '10c-Fuel Economy Analysis' {
 			position : LengthValue;
 			velocity : SpeedValue;
 			acceleration : AccelerationValue;
-			inclineAngle : Real;
+			inclineAngle : RotationValue;
 		}
 		
 		abstract calc def NominalScenario (t : TimeValue) : ScenarioState;
 		calc cityScenario : NominalScenario;
 		calc highwayScenario : NominalScenario;
 		
-		analysis def FuelEconomyAnalysis (vehicle : Vehicle) calculatedFuelEconomy : QuantityValue {
-			in ref calc scenario : NominalScenario;
-			in ref requirement fuelEconomyRequirement : FuelEconomyRequirement;
+		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : QuantityValue {
+			subject vehicle : Vehicle;
+			in calc scenario : NominalScenario;
+			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
 			
 			objective fuelEconomyAnalysisObjective {
 				/*
@@ -111,12 +110,12 @@ package '10c-Fuel Economy Analysis' {
 			}
 		}
 		
-		requirement vehicleFuelEconomyRequirementsGroup (vehicle : Vehicle) {
-			
+		requirement vehicleFuelEconomyRequirementsGroup {
+			subject vehicle : Vehicle;
 			requirement vehicleFuelEconomyRequirement_city :> cityFuelEconomyRequirement {
-				/* The vehicle shall provide a fuel economy that is greater than or equal to
-				 * 25 miles per gallon for the nominal city driving scenarios.
-				 */
+				doc /* The vehicle shall provide a fuel economy that is greater than or equal to
+				     * 25 miles per gallon for the nominal city driving scenarios.
+				     */
 				 
 				:>> actualFuelEconomy = vehicle::fuelEconomy_city;
 				
@@ -124,9 +123,9 @@ package '10c-Fuel Economy Analysis' {
 			}
 
 			requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
-				/* The vehicle shall provide a fuel economy that is greater than or equal to
-				 * 30 miles per gallon for the nominal highway driving scenarios.
-				 */
+				doc /* The vehicle shall provide a fuel economy that is greater than or equal to
+				     * 30 miles per gallon for the nominal highway driving scenarios.
+				     */
 				
 				:>> actualFuelEconomy = vehicle::fuelEconomy_highway;
 				
@@ -138,18 +137,21 @@ package '10c-Fuel Economy Analysis' {
 		part analysisContext {
 			
 			analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
-				part :>> vehicle = vehicle1_c1;
-				calc :>> scenario = cityScenario;
-				requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
-			} cityFuelEconomy = vehicle1_c1_analysized::fuelEconomy_city;
+				subject vehicle = vehicle1_c1;
+				in calc :>> scenario = cityScenario;
+				in requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
+			} 
 			
 			analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
-				part :>> vehicle = vehicle1_c1;
-				calc :>> scenario = highwayScenario;
-				requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
-			} highwayFuelEconomy = vehicle1_c1_analysized::fuelEconomy_highway;
+				subject vehicle = vehicle1_c1;
+				in calc :>> scenario = highwayScenario;
+				in requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
+			}
 			
-			part vehicle1_c1_analysized :> vehicle1_c1;			
+			part vehicle1_c1_analysized :> vehicle1_c1 {
+				:>> fuelEconomy_city = cityFuelEconomyAnalysis::calculatedFuelEconomy;
+				:>> fuelEconomy_highway = highwayFuelEconomyAnalysis::calculatedFuelEconomy;
+			}		
 			
 			satisfy vehicleFuelEconomyRequirementsGroup by vehicle1_c1_analysized;
 		}

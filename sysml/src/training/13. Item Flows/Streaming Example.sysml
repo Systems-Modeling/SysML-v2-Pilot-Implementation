@@ -10,16 +10,16 @@ package 'Streaming Example' {
 	
 	part vehicle : Vehicle {
 		part tankAssy : FuelTankAssembly {
-			port :>> fuelTankPort {
-				out ref item :>> fuelSupply;
-				in ref item :>> fuelReturn;
+			port redefines fuelTankPort {
+				out item redefines fuelSupply;
+				in item redefines fuelReturn;
 			}
 		}
 		
 		part eng : Engine {
-			port :>> engineFuelPort {
-				in ref item :>> fuelSupply;
-				out ref item :>> fuelReturn;
+			port redefines engineFuelPort {
+				in item redefines fuelSupply;
+				out item redefines fuelReturn;
 			}
 		}
 		

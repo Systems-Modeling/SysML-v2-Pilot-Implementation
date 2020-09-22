@@ -80,6 +80,9 @@ import org.omg.sysml.lang.sysml.ViewpointDefinition
 import org.omg.sysml.lang.sysml.RenderingUsage
 import org.omg.sysml.lang.sysml.RenderingDefinition
 import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.lang.sysml.SubjectMembership
+import org.omg.sysml.lang.sysml.Type
+import org.omg.sysml.lang.sysml.ObjectiveMembership
 
 /**
  * This class contains custom validation rules. 
@@ -141,6 +144,11 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_VIEWDEFINITION_RENDER_MSG = 'A view definition may have at most one rendering';
 	public static val INVALID_VIEWUSAGE_RENDER = 'Invalid ViewUsage - invalid render';
 	public static val INVALID_VIEWUSAGE_RENDER_MSG = 'A view may have at most one rendering';
+	
+	public static val INVALID_SUBJECTMEMBERSHIP = 'Invalid SubjectMembership - too many';
+	public static val INVALID_SUBJECTMEMBERSHIP_MSG = 'Only one subject is allowed';
+	public static val INVALID_OBJECTIVEMEMBERSHIP = 'Invalid ObjectiveMembership - too many';
+	public static val INVALID_OBJECTIVEMEMBERSHIP_MSG = 'Only one objective is allowed';
 	
 	
 	@Check
@@ -246,6 +254,42 @@ class SysMLValidator extends KerMLValidator {
 		checkOneType(usg, RenderingDefinition, SysMLValidator.INVALID_RENDERINGUSAGE_MSG, SysMLPackage.eINSTANCE.renderingUsage_RenderingDefinition, SysMLValidator.INVALID_RENDERINGUSAGE)
 	}
 	
+	@Check //Must have at most one rendering.
+	def checkViewDefinitionRender(ViewDefinition viewDef){
+		checkAtMostOneElement(viewDef.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWDEFINITION_RENDER_MSG, INVALID_VIEWDEFINITION_RENDER)
+	}
+	@Check //Must have at most one rendering.
+	def checkViewUsageRender(ViewUsage viewUsg){
+		checkAtMostOneElement(viewUsg.ownedFeature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
+	}
+	
+	@Check //Must have at most one subject membership.
+	def checkSubjectMembership(SubjectMembership mem) {
+		val pack = mem.membershipOwningPackage
+		if (pack instanceof Type && (pack as Type).ownedFeatureMembership.exists[m| m instanceof SubjectMembership && m != mem]) {
+			error(INVALID_SUBJECTMEMBERSHIP_MSG, SysMLPackage.eINSTANCE.subjectMembership_OwnedSubjectParameter, INVALID_SUBJECTMEMBERSHIP)
+		}
+	}
+	
+	@Check //Must have at most one objective requirement.
+	def checkObjectiveMembership(ObjectiveMembership mem) {
+		val pack = mem.membershipOwningPackage
+		if (pack instanceof Type && (pack as Type).ownedFeatureMembership.exists[m| m instanceof ObjectiveMembership && m != mem]) {
+			error(INVALID_OBJECTIVEMEMBERSHIP_MSG, SysMLPackage.eINSTANCE.objectiveMembership_OwnedObjectiveRequirement, INVALID_OBJECTIVEMEMBERSHIP)
+		}
+	}
+	
+	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {
+		if (elements.size <= 1) {
+			return true;
+		} else {
+			for (var i = 1; i < elements.size; i++) {
+				error(msg, elements.get(i), null, eId);			
+			}
+			return false;
+		}
+	}
+	
 	protected def boolean checkAllTypes(Feature f, Class<?> requiredType, String msg, EStructuralFeature ref, String eId){
 		val check = (f as FeatureImpl).allTypes.forall[u| requiredType.isInstance(u)]
 		if (!check)
@@ -267,26 +311,6 @@ class SysMLValidator extends KerMLValidator {
 		if (!check)
 			error (msg, ref, eId)
 		return check
-	}
-	
-	@Check //Must have at most one rendering.
-	def checkViewDefinitionRender(ViewDefinition viewDef){
-		checkAtMostOneElement(viewDef.feature.filter[f|f instanceof RenderingUsage], INVALID_VIEWDEFINITION_RENDER_MSG, INVALID_VIEWDEFINITION_RENDER)
-	}
-	@Check //Must have at most one rendering.
-	def checkViewUsageRender(ViewUsage viewUsg){
-		checkAtMostOneElement(viewUsg.feature.filter[f|f instanceof RenderingUsage], INVALID_VIEWUSAGE_RENDER_MSG, INVALID_VIEWUSAGE_RENDER)
-	}
-	
-	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {
-		if (elements.size <= 1) {
-			return true;
-		} else {
-			for (var i = 1; i < elements.size; i++) {
-				error(msg, elements.get(i), null, eId);			
-			}
-			return false;
-		}
 	}
 	
 	@Check

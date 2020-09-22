@@ -165,6 +165,12 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
+	@Override
+	public void transform() {
+		super.transform();
+		getResultConnector();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -179,11 +179,13 @@ package 'Vehicle Analysis Demo' {
 			n : Natural = size(t);
 		}
 		
-		analysis def FuelEconomyAnalysis (vehicle : Vehicle) calculatedFuelEconomy : DistancePerVolumeValue {
+		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : DistancePerVolumeValue {
+			subject vehicle: Vehicle;
 			in attribute scenario : NominalScenario;
-			in ref requirement fuelEconomyRequirement : FuelEconomyRequirement;
+			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
 			
 			objective fuelEconomyAnalysisObjective {
+				doc 
 				/*
 				 * The objective of this analysis is to determine whether the
 				 * current vehicle design configuration can satisfy the fuel
@@ -244,11 +246,13 @@ package 'Vehicle Analysis Demo' {
 	part vehicleFuelEconomyAnalysisContext {
 	    import FuelEconomyAnalysisModel::*;
 	
-	    requirement vehicleFuelEconomyRequirementsGroup (vehicle : Vehicle) {
+	    requirement vehicleFuelEconomyRequirementsGroup {
 	        import FuelEconomyRequirementsModel::*;
+	        
+	        subject vehicle : Vehicle;
 	
 	        requirement vehicleFuelEconomyRequirement_city :> cityFuelEconomyRequirement {
-	            /* The vehicle shall provide a fuel economy that is greater than or equal to
+	            doc /* The vehicle shall provide a fuel economy that is greater than or equal to
 	             * 25 miles per gallon for the nominal city driving scenarios.
 	             */
 	
@@ -258,7 +262,7 @@ package 'Vehicle Analysis Demo' {
 	        }
 	
 	        requirement vehicleFuelEconomyRequirement_highway :> highwayFuelEconomyRequirement {
-	            /* The vehicle shall provide a fuel economy that is greater than or equal to
+	            doc /* The vehicle shall provide a fuel economy that is greater than or equal to
 	             * 30 miles per gallon for the nominal highway driving scenarios.
 	             */
 	
@@ -272,21 +276,21 @@ package 'Vehicle Analysis Demo' {
 	    attribute cityScenario : NominalScenario;
 	    attribute highwayScenario : NominalScenario;
 	
-	    analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
-	        part :>> vehicle = vehicle_c1;
+	    analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis () {
+	        subject vehicle = vehicle_c1;
 	        attribute :>> scenario = cityScenario;
 	        requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
-	    } cityFuelEconomy;
+	    }
 	
-	    analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
-	        part :>> vehicle = vehicle_c1;
+	    analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis () {
+	        subject vehicle = vehicle_c1;
 	        attribute :>> scenario = highwayScenario;
 	        requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
-	    } highwayFuelEconomy;
+	    }
 	
 	    part vehicle_c1_analysized :> vehicle_c1 {
-	        attribute :>> fuelEconomy_city = cityFuelEconomy;
-	        attribute :>> fuelEconomy_highway = highwayFuelEconomy;
+	        attribute :>> fuelEconomy_city = cityFuelEconomyAnalysis::calculatedFuelEconomy;
+	        attribute :>> fuelEconomy_highway = highwayFuelEconomyAnalysis::calculatedFuelEconomy;
 	    }
 	
 	    satisfy vehicleFuelEconomyRequirementsGroup by vehicle_c1_analysized;

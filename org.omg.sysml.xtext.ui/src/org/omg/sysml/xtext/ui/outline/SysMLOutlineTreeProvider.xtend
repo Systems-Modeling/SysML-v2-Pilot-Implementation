@@ -11,6 +11,8 @@ import org.omg.sysml.lang.sysml.Type
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.RequirementUsage
+import org.omg.sysml.lang.sysml.Dependency
+import org.omg.sysml.lang.sysml.Element
 
 /**
  * Customization of the default outline structure.
@@ -53,6 +55,25 @@ class SysMLOutlineTreeProvider extends KerMLOutlineTreeProvider {
 			)
 		}
 		super._createChildren(parentNode, requirement)
+	}
+	
+	def boolean _isLeaf(Dependency dependency) {
+		false
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Dependency dependency) {
+		for (Element client: dependency.client) {
+			createEObjectNode(parentNode, client, 
+				client._image, "client " + client._text, 
+				true
+			)
+		}
+		for (Element supplier: dependency.supplier) {
+			createEObjectNode(parentNode, supplier, 
+				supplier._image, "supplier " + supplier._text, 
+				true
+			)
+		}
 	}
 	
 }

@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+ 		File {from ="/library.systems/Attributes.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.systems/Attributes.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package DependencyTest {
+	
+	package System {
+		package 'Application Layer';
+		package 'Service Layer';
+		package 'Data Layer';
+	}
+	
+	import System::*;
+	
+	dependency Use from 'Application Layer' to 'Service Layer';
+	dependency from 'Service Layer' to 'Data Layer';
+	
+	attribute x;
+	attribute y;
+	attribute z;
+	
+	dependency z to x, y;
+	
+}

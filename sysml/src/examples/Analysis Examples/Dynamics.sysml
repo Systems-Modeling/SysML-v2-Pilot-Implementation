@@ -83,24 +83,4 @@ package Dynamics {
 			v0 = vel::v
 		) return x = x_out;		
 	}
-	
-	action dyn3 : StraightLineVehicleDynamics {
-		calc acc : Acceleration (
-			dt = dyn3::dt, 
-			tm = dyn3::tm, 
-			tp = Power(whlpwr, Cd, Cf, tm, v_in)
-		) return a = a_out;
-		
-		calc vel : Velocity (
-			dt = dyn3::dt, 
-			v0 = dyn3::v_in, 
-			a = acc::a
-		) return v = v_out;
-		
-		calc pos : Position (
-			dt = dyn3::dt, 
-			x0 = dyn3::x_in, 
-			v0 = vel::v
-		) return x = x_out;		
-	}
 }

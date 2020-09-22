@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -214,7 +215,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
 		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
-		generalizations.addAll(implicitGeneralizations.values());
+		generalizations.addAll(getImplicitGeneralizations());
 		return generalizations;
 	}
 
@@ -236,7 +237,7 @@ public class TypeImpl extends PackageImpl implements Type {
 				collect(Collectors.toList());
 	}
 	
-	protected Map<EClass, Generalization> implicitGeneralizations = new HashMap<>();
+	protected Map<EClass, List<Generalization>> implicitGeneralizations = new HashMap<>();
 	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
@@ -247,12 +248,18 @@ public class TypeImpl extends PackageImpl implements Type {
 	public void cleanImplicitGeneralization() {
 		implicitGeneralizations.clear();
 	}
+	
+	public List<Generalization> getImplicitGeneralizations() {
+		return implicitGeneralizations.values().stream().
+				flatMap(Collection::stream).
+				collect(Collectors.toList());
+	}
 
 	@Override
 	public EList<Relationship> getOwnedRelationship() {
 		computeImplicitGeneralization();
 		EList<Relationship> relationships = super.getOwnedRelationship();
-		relationships.addAll(implicitGeneralizations.values());
+		relationships.addAll(getImplicitGeneralizations());
 		return relationships;
 	}
 	
@@ -261,7 +268,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected Generalization addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		return implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> getDefaultGeneralization(eClass, superTypeNames));
+		List<Generalization> generalizations = implicitGeneralizations.get(generalizationEClass);
+		if (generalizations != null) {
+			return generalizations.get(0);
+		} else {
+			Generalization defaultGeneralization = getDefaultGeneralization(generalizationEClass, superTypeNames);
+			if (defaultGeneralization != null) {
+				generalizations = new ArrayList<>();
+				generalizations.add(defaultGeneralization);
+				implicitGeneralizations.put(generalizationEClass, generalizations);
+			}
+			return defaultGeneralization;
+		}
+	}
+	
+	protected void addImplicitGeneralization(Generalization generalization) {
+		implicitGeneralizations.computeIfAbsent(generalization.eClass(), e -> new ArrayList<>()).add(generalization);
 	}
 	
 	protected EClass getGeneralizationEClass() {
@@ -284,15 +306,6 @@ public class TypeImpl extends PackageImpl implements Type {
 				generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
 				generalization.setGeneral(general);
 				((GeneralizationImpl)generalization).basicSetSpecific(this);
-			}
-		} else {
-			generalization = generalizations.stream().
-					filter(s->s.eClass() == eClass && ((GeneralizationImpl)s).basicGetGeneral() == null).
-					findFirst().orElse(null);
-			if (generalization != null) {
-				// Only resolve a default name if necessary.
-				Type general = getDefaultType(defaultNames);
-				generalization.setGeneral(general);
 			}
 		}
 		return generalization;

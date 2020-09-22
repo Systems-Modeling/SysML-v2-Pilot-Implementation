@@ -35,6 +35,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -391,9 +392,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			filter(subset->subset instanceof Redefinition).
 			map(subset->(Redefinition)subset).
 			forEachOrdered(redefinitions::add);
-		if (implicitGeneralizations.containsKey(SysMLPackage.Literals.REDEFINITION)) {
-			redefinitions.add((Redefinition)implicitGeneralizations.get(SysMLPackage.Literals.SUBSETTING));
-		}
 		return redefinitions;
 	}
 	
@@ -413,9 +411,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			filter(Subsetting.class::isInstance).
 			map(Subsetting.class::cast).
 			forEachOrdered(subsettings::add);
-		if (implicitGeneralizations.containsKey(SysMLPackage.Literals.SUBSETTING)) {
-			subsettings.add((Subsetting)implicitGeneralizations.get(SysMLPackage.Literals.SUBSETTING));
-		}
 		return subsettings;
 	}
 	
@@ -450,7 +445,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
 		addComputedRedefinitions();
-		return basicGetOwnedRedefinition().stream().
+		List<Redefinition> redefinitions = basicGetOwnedRedefinition();
+		List<Generalization> implicitRedefinitions = implicitGeneralizations.get(SysMLPackage.eINSTANCE.getRedefinition());
+		if (implicitRedefinitions != null) {
+			implicitRedefinitions.stream().
+			map(Redefinition.class::cast).
+			forEachOrdered(redefinitions::add);
+		}
+		return redefinitions.stream().
 					map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
 					collect(Collectors.toList());
 	}
@@ -466,9 +468,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected void addComputedRedefinitions() {
 		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
-		if (isComputeRedefinitions && ownedRedefinitions.isEmpty() ||
-				ownedRedefinitions.stream().anyMatch(r->((RedefinitionImpl)r).basicGetRedefinedFeature() == null)) {
-			addRedefinitions(ownedRedefinitions);
+		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
+			implicitGeneralizations.remove(SysMLPackage.eINSTANCE.getRedefinition());
+			addRedefinitions();
 			isComputeRedefinitions = false;
 		}
 	}
@@ -476,35 +478,24 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
 	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 
-	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
-	 * overriding getGeneralCategories and getRelevantFeatures.
+	 * owning Type. The determination of what are relevant Types and Features can be adjusted by
+	 * overriding getGeneralTypes and getRelevantFeatures.
 	 */
-	protected void addRedefinitions(List<Redefinition> emptyRedefinitions) {
+	protected void addRedefinitions() {
 		Type type = getOwningType();
 		int i = getRelevantFeatures(type).indexOf(this);
-		int j = 0;
-		int n = emptyRedefinitions == null? 0: emptyRedefinitions.size();
 		if (i >= 0) {
 			for (Type general: getGeneralTypes(type)) {
 				List<? extends Feature> features = getRelevantFeatures(general);
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
 					if (redefinedFeature != null && redefinedFeature != this) {
-						Redefinition redefinition;
-						if (j < n) {
-							redefinition = emptyRedefinitions.get(j);
-							j++;
-						} else {
-							redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-							redefinition.setRedefiningFeature(this);
-							getOwnedRelationship_comp().add(redefinition);
-						}
+						Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+						redefinition.setRedefiningFeature(this);
 						redefinition.setRedefinedFeature(redefinedFeature);
+						addImplicitGeneralization(redefinition);
 					}
 				}
-			}
-			if (n > 0) {
-				getOwnedRelationship_comp().removeAll(emptyRedefinitions.subList(j, n));
 			}
 		}
 	}

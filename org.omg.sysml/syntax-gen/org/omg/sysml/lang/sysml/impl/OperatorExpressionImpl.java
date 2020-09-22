@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -175,10 +176,9 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	@Override
 	public List<FeatureTyping> basicGetOwnedTyping() {
 		String operator = getOperator();
-		if (operator != null) {
-			addImplicitGeneralization(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
-		}		
-		return super.basicGetOwnedTyping();
+		return operator == null? Collections.emptyList(): 
+			Collections.singletonList((FeatureTyping)addImplicitGeneralization(
+					SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator)));
 	}
 
 	@Override

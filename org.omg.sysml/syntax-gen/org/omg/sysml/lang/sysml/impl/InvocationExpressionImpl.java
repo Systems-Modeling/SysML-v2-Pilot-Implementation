@@ -109,7 +109,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			argumentConnectors = new ArrayList<>();
 			List<Expression> arguments = getArgument();
 			int i = 0;
-			for (Feature input: getOwnedInput()) {
+			for (Feature input: getInput()) {
 				List<Redefinition> redefinitions = input.getOwnedRedefinition();
 				if (!redefinitions.isEmpty()) {
 					Feature feature = redefinitions.get(0).getRedefinedFeature();

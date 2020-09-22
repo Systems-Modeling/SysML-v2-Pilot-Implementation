@@ -256,12 +256,12 @@ public class TypeImpl extends PackageImpl implements Type {
 		return relationships;
 	}
 	
-	protected void addImplicitGeneralization() {
-		addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
+	protected Generalization addImplicitGeneralization() {
+		return addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
-	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> getDefaultGeneralization(eClass, superTypeNames));
+	protected Generalization addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
+		return implicitGeneralizations.computeIfAbsent(generalizationEClass, eClass -> getDefaultGeneralization(eClass, superTypeNames));
 	}
 	
 	protected EClass getGeneralizationEClass() {

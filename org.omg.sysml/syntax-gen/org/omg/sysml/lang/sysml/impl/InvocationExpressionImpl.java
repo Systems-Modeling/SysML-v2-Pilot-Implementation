@@ -16,7 +16,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -110,9 +109,9 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			List<Expression> arguments = getArgument();
 			int i = 0;
 			for (Feature input: getInput()) {
-				List<Redefinition> redefinitions = input.getOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					Feature feature = redefinitions.get(0).getRedefinedFeature();
+				List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
+				if (!redefinedFeatures.isEmpty()) {
+					Feature feature = redefinedFeatures.get(0);
 					if (feature != null) {
 						Expression argument = getArgumentForFeature(arguments, feature, i);
 						if (argument != null) {

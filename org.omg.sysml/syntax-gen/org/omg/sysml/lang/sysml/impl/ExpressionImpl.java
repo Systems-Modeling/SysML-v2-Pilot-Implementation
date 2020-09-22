@@ -241,12 +241,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	public Collection<Feature> getRedefinedFeatures() {
+	public Collection<Feature> getFeaturesRedefinedByType() {
 		// Note: Ensures that all owned inputs and outputs are computed
 		// before checking for redefined features.
 		getInput();
 		getOutput();
-		return super.getRedefinedFeatures();
+		return super.getFeaturesRedefinedByType();
 	}
 	
 	// Utility methods

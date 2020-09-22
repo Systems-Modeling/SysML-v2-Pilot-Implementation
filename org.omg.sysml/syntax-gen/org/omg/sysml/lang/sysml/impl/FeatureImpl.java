@@ -227,8 +227,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				((FeatureImpl)originalType).getTypes(types, visitedFeatures);
 			}
 		}
-		for (Subsetting subsetting: getOwnedSubsetting()) {
-			Feature subsettedFeature = subsetting.getSubsettedFeature();
+		for (Feature subsettedFeature: getSubsettedFeatures()) {
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
 				((FeatureImpl)subsettedFeature).getTypes(types, visitedFeatures);
 			}
@@ -333,8 +332,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			return feature.isOrdered;
 		} else {
 			visited.add(feature);
-			for (Subsetting subsetting: feature.getOwnedSubsetting()) {
-				Feature subsettedFeature = subsetting.getSubsettedFeature();
+			for (Feature subsettedFeature: ((FeatureImpl)feature).getSubsettedFeatures()) {
 				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
 						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
 					return true;
@@ -486,14 +484,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected List<Type> getGeneralTypes(Type type) {
 		List<Type> generalTypes = new ArrayList<>();
-		type.getOwnedGeneralization().stream().
-				map(gen->((GeneralizationImpl)gen).basicGetGeneral()).
-				filter(gen->gen != null).
-				forEachOrdered(gen->{
-					if (!generalTypes.contains(gen)) {
-						generalTypes.add(gen);
-					}
-				});
+		for (Type generalType: ((TypeImpl)type).basicGetSuperTypes()) {
+			if (!generalTypes.contains(generalType)) {
+				generalTypes.add(generalType);
+			}
+		}
 		return generalTypes;
 	}
 	
@@ -892,6 +887,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public Optional<Feature> getFirstSubsettedFeature() {
 		return getFirstSubsetting().map(Subsetting::getSubsettedFeature);
+	}
+	
+	public List<Feature> getSubsettedFeatures() {
+		return getOwnedSubsetting().stream().
+				map(Subsetting::getSubsettedFeature).
+				collect(Collectors.toList());
+	}
+	
+	public List<Feature> getRedefinedFeatures() {
+		return getOwnedRedefinition().stream().
+				map(Redefinition::getRedefinedFeature).
+				collect(Collectors.toList());
 	}
 	
 	/**

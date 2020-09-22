@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -73,9 +72,9 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 			Feature input = inputs.get(argIndex);
 			if (endIndex == 0) {
 				((FeatureImpl)input).forceComputeRedefinitions();
-				List<Redefinition> redefinitions = input.getOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					Feature feature = redefinitions.get(0).getRedefinedFeature();
+				List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
+				if (!redefinedFeatures.isEmpty()) {
+					Feature feature = redefinedFeatures.get(0);
 					if (feature != null) {
 						List<Expression> arguments = expression.getArgument();
 						Expression argument = InvocationExpressionImpl.getArgumentForFeature(arguments, feature, argIndex);

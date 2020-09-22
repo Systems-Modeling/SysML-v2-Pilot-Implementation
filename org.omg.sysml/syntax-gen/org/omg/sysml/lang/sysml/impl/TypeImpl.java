@@ -601,9 +601,12 @@ public class TypeImpl extends PackageImpl implements Type {
 				findFirst().orElse(null);
 		if (multiplicity == null) {
 			visited.add(this);
-			Type general = getOwnedGeneralization().stream().map(Generalization::getGeneral).findFirst().orElse(null);
-			if (general != null && !visited.contains(general)) { 
-				multiplicity = ((TypeImpl)general).getMultiplicity(visited);
+			List<Type> superTypes = getSupertypes();
+			if (!superTypes.isEmpty()) {
+				Type general = getSupertypes().get(0);
+				if (general != null && !visited.contains(general)) { 
+					multiplicity = ((TypeImpl)general).getMultiplicity(visited);
+				}
 			}
 		}
 		return multiplicity;
@@ -641,8 +644,7 @@ public class TypeImpl extends PackageImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedPackages, excludedTypes, includeProtected));
 			}
 		}
-		for (Generalization generalization: getOwnedGeneralization()) {
-			Type general = generalization.getGeneral();
+		for (Type general: getSupertypes()) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedPackages, excludedTypes, includeProtected));
 			}
@@ -652,7 +654,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
+		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
 		memberships.removeIf(membership->{
 			if (!(membership instanceof FeatureMembership)) {
 				return false;
@@ -663,7 +665,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		});		
 	}
 	
-	public Collection<Feature> getRedefinedFeatures() {
+	public Collection<Feature> getFeaturesRedefinedByType() {
 		return getOwnedFeature().stream().
 				flatMap(feature->((FeatureImpl)feature).getAllRedefinedFeatures().stream()).
 				collect(Collectors.toSet());
@@ -763,7 +765,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			return ((TypeImpl)originalType).getAllSuperTypes(visited);
 		} else {
 			EList<Type> superTypes = new BasicEList<>();
-			getOwnedGeneralization().stream().map(Generalization::getGeneral).
+			getSupertypes().stream().
 				forEachOrdered(superType->{
 					if (superType != null && !visited.contains(superType)) {
 						visited.add(superType);
@@ -774,7 +776,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			return superTypes;
 		}
 	}
-
+	
 	// Additional subsets
 	
 	@Override
@@ -785,6 +787,19 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	// Utility Methods
+	
+	public List<Type> getSupertypes() {
+		return getOwnedGeneralization().stream().
+				map(Generalization::getGeneral).
+				collect(Collectors.toList());
+	}
+
+	protected List<Type> basicGetSuperTypes() {
+		return getOwnedGeneralization().stream().
+				map(gen->((GeneralizationImpl)gen).basicGetGeneral()).
+				filter(gen->gen != null).
+				collect(Collectors.toList());
+	}
 	
 	public boolean conformsTo(Type supertype) {
 		return conformsTo(supertype, new HashSet<>());
@@ -843,8 +858,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		visited.add(this);
 		List<Feature> ends = getOwnedEndFeatures();
 		int n = ends.size();
-		for (Generalization generalization: getOwnedGeneralization()) {
-			Type general = generalization.getGeneral();
+		for (Type general: getSupertypes()) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures(visited);
 				if (inheritedEnds.size() > n) {
@@ -869,8 +883,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		visited.add(this);
 		List<Feature> parameters = getOwnedParameters();
 		int n = parameters.size();
-		for (Generalization generalization: getOwnedGeneralization()) {
-			Type general = generalization.getGeneral();
+		for (Type general: getSupertypes()) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
 				if (inheritedParameters.size() > n) {

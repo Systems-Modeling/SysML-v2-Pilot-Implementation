@@ -387,12 +387,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<Redefinition> getOwnedRedefinition() {
-		EList<Redefinition> redefinitions = new EObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION);
-		getOwnedGeneralization().stream().
-			filter(subset->subset instanceof Redefinition).
-			map(subset->(Redefinition)subset).
-			forEachOrdered(redefinitions::add);
-		return redefinitions;
+		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
 	public List<Redefinition> basicGetOwnedRedefinition() {
@@ -406,12 +401,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
-		EList<Subsetting> subsettings = new EObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING);
-		getOwnedGeneralization().stream().
-			filter(Subsetting.class::isInstance).
-			map(Subsetting.class::cast).
-			forEachOrdered(subsettings::add);
-		return subsettings;
+		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
 	public List<Subsetting> basicGetOwnedSubsetting() {

@@ -24,9 +24,16 @@
 package org.omg.sysml.interactive;
 
 public class VizResult {
-    private final String svgResult;
-    private final Exception exception;
+    public static enum Kind {
+    	EXCEPTION,
+        EMPTY,
+        PLANTUML,
+        SVG
+    }
 
+    public final Kind kind;
+    private final String result;
+    private final Exception exception;
 
     public static class UnresolvedException extends Exception {
 		private static final long serialVersionUID = 1L;
@@ -42,26 +49,52 @@ public class VizResult {
 
     public String formatException() {
         if (exception == null) return "";
-        return SysMLInteractiveUtil.formatException(exception);
+        return this.exception instanceof UnresolvedException? this.exception.getMessage():
+        	   SysMLInteractiveUtil.formatException(exception);
+    }
+
+    public String getPlantUML() {
+        switch (kind) {
+        case EMPTY:
+            return "";
+        case PLANTUML:
+            return result;
+        default:
+            return null;
+        }
     }
 
     public String getSVG() {
-        return svgResult;
+        switch (kind) {
+        case EMPTY:
+            return "";
+        case SVG:
+            return result;
+        default:
+            return null;
+        }
     }
 
-    private VizResult(String svg) {
-        this.svgResult = svg;
+    private VizResult(Kind kind, String result) {
+        this.kind = kind;
+        this.result = result;
         this.exception = null;
     }
 
     private VizResult(Exception e) {
+    	this.kind = Kind.EXCEPTION;
         this.exception = e;
-        this.svgResult = null;
+        this.result = null;
     }
 
     public static VizResult svgResult(String svg) {
         if (svg == null) return emptyResult();
-        return new VizResult(svg);
+        return new VizResult(Kind.SVG, svg);
+    }
+
+    public static VizResult plantumlResult(String plantuml) {
+        if (plantuml == null) return emptyResult();
+        return new VizResult(Kind.PLANTUML, plantuml);
     }
 
     public static VizResult unresolvedResult(String name) {
@@ -69,11 +102,16 @@ public class VizResult {
     }
 
     public static VizResult emptyResult() {
-        return new VizResult("");
+        return new VizResult(Kind.EMPTY, "");
     }
 
     public static VizResult exceptionResult(Exception e) {
         return new VizResult(e);
+    }
+    
+    public String toString() {
+    	return this.kind == Kind.EXCEPTION? this.formatException():
+    		   this.kind + "\n" + this.result;
     }
 }
 

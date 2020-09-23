@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -269,6 +270,12 @@ public class SysMLInteractive extends SysMLUtil {
 		getSysML2PlantUMLSvc().setGraphVizPath(path);
 	}
 
+    private static List<String> filterStyle(List<String> styles, String name) {
+        return styles.stream()
+            .filter(x -> !x.toUpperCase().equals(name))
+            .collect(Collectors.toList());
+    }
+
 	public VizResult viz(List<String> names, List<String> views, List<String> styles) {
 		this.counter++;
         List<EObject> elements = new ArrayList<EObject>(names.size());
@@ -287,13 +294,25 @@ public class SysMLInteractive extends SysMLUtil {
                     String view = views.get(0);
                     svc.setView(view);
                 }
-                return VizResult.svgResult(svc.getSVG(elements, styles));
+
+                List<String> fStyles = filterStyle(styles, "PUMLCODE");
+                if (fStyles.size() != styles.size()) {
+                    // --style PUMLCODE option
+                    return VizResult.plantumlResult(svc.getPlantUMLCode(elements, fStyles));
+                } else {
+                    return VizResult.svgResult(svc.getSVG(elements, fStyles));
+                }
+
             } else {
                 return VizResult.emptyResult();
             }
 		} catch (Exception e) {
 			return VizResult.exceptionResult(e);
 		}
+	}
+	
+	protected VizResult viz(String name) {
+		return this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"));
 	}
 	
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
@@ -360,6 +379,10 @@ public class SysMLInteractive extends SysMLUtil {
 	        			} else if ("%publish".equals(command)) {
 	        				if (!"".equals(argument)) {
 	        					System.out.print(this.publish(argument));
+	        				}
+	        			} else if ("%viz".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.viz(argument));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

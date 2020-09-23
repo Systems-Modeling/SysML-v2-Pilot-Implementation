@@ -311,6 +311,10 @@ public class SysMLInteractive extends SysMLUtil {
 		}
 	}
 	
+	protected VizResult viz(String name) {
+		return this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"));
+	}
+	
 	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
 		System.out.println("API base path: " + this.apiBasePath);
 		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
@@ -375,6 +379,10 @@ public class SysMLInteractive extends SysMLUtil {
 	        			} else if ("%publish".equals(command)) {
 	        				if (!"".equals(argument)) {
 	        					System.out.print(this.publish(argument));
+	        				}
+	        			} else if ("%viz".equals(command)) {
+	        				if (!"".equals(argument)) {
+	        					System.out.print(this.viz(argument));
 	        				}
 	        			} else {
 	        				System.out.println("ERROR:Invalid command '" + input + "'");

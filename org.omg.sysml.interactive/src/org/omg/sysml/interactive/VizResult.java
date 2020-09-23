@@ -49,7 +49,8 @@ public class VizResult {
 
     public String formatException() {
         if (exception == null) return "";
-        return SysMLInteractiveUtil.formatException(exception);
+        return this.exception instanceof UnresolvedException? this.exception.getMessage():
+        	   SysMLInteractiveUtil.formatException(exception);
     }
 
     public String getPlantUML() {
@@ -106,6 +107,11 @@ public class VizResult {
 
     public static VizResult exceptionResult(Exception e) {
         return new VizResult(e);
+    }
+    
+    public String toString() {
+    	return this.kind == Kind.EXCEPTION? this.formatException():
+    		   this.kind + "\n" + this.result;
     }
 }
 

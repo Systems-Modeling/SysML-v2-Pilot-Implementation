@@ -219,7 +219,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(this);
-		types.addAll(getFeatureTypes(types));
+		types.addAll(getFeatureTypes());
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
@@ -234,11 +234,16 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}		
 	}
 	
-	protected List<Type> getFeatureTypes(List<Type> types) {
-		return basicGetOwnedTyping().stream().
+	protected List<Type> getFeatureTypes() {
+		List<Type> types = basicGetOwnedTyping().stream().
 				map(typing->typing.getType()).
 				filter(type->type != null).
 				collect(Collectors.toList());
+		getImplicitGeneralizations(SysMLPackage.eINSTANCE.getFeatureTyping()).stream().
+			map(typing->typing.getGeneral()).
+			filter(type->type != null).
+			forEachOrdered(types::add);
+		return types;
 	}
 	
 	protected static void removeRedundantTypes(List<Type> types) {

@@ -51,17 +51,16 @@ public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeatur
 	}
 	
 	@Override
-	protected List<Type> getFeatureTypes(List<Type> types) {
-		IndividualUsageImpl.setTypingFor(this);
-		return super.getFeatureTypes(types);
-	}
-
-	@Override
 	public void computeImplicitGeneralization() {
-		IndividualUsageImpl.setTypingFor(this);
+		getFeatureTypes();
 		super.computeImplicitGeneralization();
 	}
-	
+		
+	@Override
+	protected List<Type> getFeatureTypes() {
+		return IndividualUsageImpl.setTypingFor(this, super.getFeatureTypes());
+	}
+
 	@Override
 	protected List<Type> getGeneralTypes(Type type) {
 		return Collections.singletonList(null);

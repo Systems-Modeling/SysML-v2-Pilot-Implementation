@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -571,41 +570,38 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public List<FeatureTyping> basicGetOwnedTyping() {
-		List<FeatureTyping> typings = super.basicGetOwnedTyping();
+		addVariationTyping();
+		return super.basicGetOwnedTyping();
+	}
+	
+	protected void addVariationTyping() {
 		Definition variationDefinition = getOwningVariationDefinition();
-		if (variationDefinition != null) {
-			if (!typings.stream().anyMatch(s->s.getType() == variationDefinition)) {
-				FeatureTyping typing = typings.stream().
-						filter(s->s.getType() == null).findFirst().orElse(null);
-				if (typing == null) {
-					typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-					typing.setTypedFeature(this);
-					getOwnedRelationship_comp().add(typing);
-				}
+		if (variationDefinition != null && isVariant()) {
+			if (!isImplicitGeneralizationFor(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition)) {
+				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+				typing.setTypedFeature(this);
 				typing.setType(variationDefinition);
+				addImplicitGeneralization(typing);
 			}
-		}
-		return typings;
+		}		
 	}
 	
 	@Override
 	public EList<Subsetting> getOwnedSubsetting() {
-		List<Subsetting> subsettings = super.basicGetOwnedSubsetting();
+		addVariationSubsetting();
+		return super.getOwnedSubsetting();
+	}
+	
+	protected void addVariationSubsetting() {
 		Usage variationUsage = getOwningVariationUsage();
 		if (variationUsage != null && isVariant()) {
-			if (!subsettings.stream().anyMatch(s->s.getSubsettedFeature() == variationUsage)) {
-				Subsetting subsetting = subsettings.stream().
-						filter(s->!(s instanceof Redefinition) && s.getSubsettedFeature() == null).
-						findFirst().orElse(null);
-				if (subsetting == null) {
-					subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-					subsetting.setSubsettingFeature(this);
-					getOwnedRelationship_comp().add(subsetting);
-				}
+			if (!isImplicitGeneralizationFor(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage)) {
+				Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+				subsetting.setSubsettingFeature(this);
 				subsetting.setSubsettedFeature(variationUsage);
+				addImplicitGeneralization(subsetting);
 			}
 		}
-		return super.getOwnedSubsetting();
 	}
 	
 	/**

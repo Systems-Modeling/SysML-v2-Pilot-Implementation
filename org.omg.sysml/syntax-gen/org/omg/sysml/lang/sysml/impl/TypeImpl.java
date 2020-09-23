@@ -254,6 +254,15 @@ public class TypeImpl extends PackageImpl implements Type {
 				flatMap(Collection::stream).
 				collect(Collectors.toList());
 	}
+	
+	public List<Generalization> getImplicitGeneralizations(EClass eClass) {
+		List<Generalization> generalizations = implicitGeneralizations.get(eClass);
+		return generalizations == null? Collections.emptyList(): generalizations;
+	}
+	
+	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
+		return getImplicitGeneralizations(eClass).stream().anyMatch(g->g.getGeneral() == general);
+	}
 
 	@Override
 	public EList<Relationship> getOwnedRelationship() {

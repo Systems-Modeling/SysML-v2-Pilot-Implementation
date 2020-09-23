@@ -214,32 +214,32 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 
 	@Override
 	public void computeImplicitGeneralization() {
-		setTypingFor(this);
+		getFeatureTypes();
 		super.computeImplicitGeneralization();
 	}
 		
 	@Override
-	protected List<Type> getFeatureTypes(List<Type> types) {
-		setTypingFor(this);
-		return super.getFeatureTypes(types);
+	protected List<Type> getFeatureTypes() {
+		return setTypingFor(this, super.getFeatureTypes());
 	}
 
-	public static void setTypingFor(Feature feature) {
-		Type owningType = feature.getOwningType();
-		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
-			Type type = owningType instanceof IndividualUsage? 
-					((IndividualUsage)owningType).getIndividualDefinition(): 
-					owningType;
-			List<FeatureTyping> typings = ((FeatureImpl)feature).basicGetOwnedTyping();
-			if (typings.isEmpty()) {
-				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-				typing.setType(type);
-				feature.getOwnedRelationship_comp().add(typing);
-			} else {
-				typings.stream().filter(typing->typing.getType() == null).findFirst().
-					ifPresent(typing->typing.setType(type));
+	public static List<Type> setTypingFor(Feature feature, List<Type> featureTypes) {
+		if (featureTypes.isEmpty()) {
+			Type owningType = feature.getOwningType();
+			if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
+				Type type = owningType instanceof IndividualUsage? 
+						((IndividualUsage)owningType).getIndividualDefinition(): 
+						owningType;
+				if (type != null) {
+					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+					typing.setTypedFeature(feature);
+					typing.setType(type);
+					((FeatureImpl)feature).addImplicitGeneralization(typing);
+					featureTypes.add(type);
+				}
 			}
 		}
+		return featureTypes;
 	}
 	
 	/**

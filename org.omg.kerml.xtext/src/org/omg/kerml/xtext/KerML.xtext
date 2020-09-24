@@ -33,69 +33,10 @@ grammar org.omg.kerml.xtext.KerML hidden (WS, ML_NOTE, SL_NOTE)
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
 import "http://www.omg.org/spec/SysML/2.0" as SysML
 
-/* UNITS */
+/* ROOT PACKAGE */
 
-Unit returns SysML::Package :
-	  AnonymousPackage
-	| PackageUnit 
-	| ClassifierUnitDefinition 
-	| ClassUnit
-	| DataTypeUnit
-	| AssociationUnit 
-	| InteractionUnit
-	| BehaviorUnit
-	| FunctionUnit
-	| PredicateUnit
-	| FeatureUnit
-;
-
-AnonymousPackage returns SysML::Package :
-	PackageBody
-;
-
-PackageUnit returns SysML::Package: 
-    UnitPrefix PackageDefinition 
-;
-
-ClassifierUnitDefinition returns SysML::Classifier : 
-	UnitPrefix ClassifierDeclaration TypeBody
-;
-
-ClassUnit returns SysML::Class:
-	UnitPrefix ClassDeclaration TypeBody
-;
-
-DataTypeUnit returns SysML::DataType :
-	UnitPrefix DataTypeDeclaration TypeBody
-;
-
-AssociationUnit returns SysML::Association :
-	UnitPrefix AssociationDeclaration TypeBody
-;
-
-InteractionUnit returns SysML::Interaction :
-	UnitPrefix InteractionDeclaration TypeBody
-;
-
-BehaviorUnit returns SysML::Behavior :
-	UnitPrefix BehaviorDeclaration BehaviorBody
-;
-
-FunctionUnit returns SysML::Function :
-	UnitPrefix FunctionDeclaration FunctionBody
-;
-
-PredicateUnit returns SysML::Predicate :
-	UnitPrefix PredicateDeclaration FunctionBody
-;
-
-FeatureUnit returns SysML::Feature :
-	UnitPrefix FeatureDefinition
-;
-
-fragment UnitPrefix returns SysML::Package :
-	( ownedImport_comp += PackageImport | ownedMembership_comp += ElementAlias )*
-	( ownedRelationship_comp += UnitAnnotation )*
+RootPackage returns SysML::Package :
+	{SysML::Package}PackageBodyElement*
 ;
 
 /* IDENTIFICATION */
@@ -199,11 +140,19 @@ fragment PackageDefinition returns SysML::Package :
 ;
 
 fragment PackageBody returns SysML::Package :
-	  ';'
-	| '{' ( documentation_comp += OwnedDocumentation
-		| ownedMembership_comp += PackageMember 
-		| ownedImport_comp += PackageImport
-	    )* '}'
+	  ';' 
+	| '{' ( // Note: PackageBodyElement is expanded here to avoid
+			// infinite loops in the incremental parser.
+		    documentation_comp += OwnedDocumentation
+	      | ownedMembership_comp += PackageMember 
+	      | ownedImport_comp += PackageImport )* 
+	  '}'
+;
+
+fragment PackageBodyElement returns SysML::Package :
+	  documentation_comp += OwnedDocumentation
+	| ownedMembership_comp += PackageMember 
+	| ownedImport_comp += PackageImport
 ;
 
 PackagedNonFeatureElement returns SysML::Element :

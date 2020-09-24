@@ -33,10 +33,10 @@
 '^'=85
 'about'=15
 'abstract'=36
-'alias'=25
+'alias'=28
 'all'=38
 'allInstances'=103
-'as'=26
+'as'=29
 'assoc'=46
 'behavior'=47
 'binding'=69
@@ -74,7 +74,7 @@
 'of'=70
 'ordered'=53
 'out'=112
-'package'=27
+'package'=25
 'packaged'=110
 'port'=35
 'portion'=34
@@ -93,10 +93,10 @@
 'to'=67
 'true'=105
 'typed'=59
-'{'=28
+'{'=26
 '|'=84
 '||'=82
-'}'=29
+'}'=27
 '~'=42
 RULE_DECIMAL_VALUE=7
 RULE_DOCUMENTATION_COMMENT=5

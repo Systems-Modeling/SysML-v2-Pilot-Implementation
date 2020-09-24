@@ -17,7 +17,7 @@
 '::'=22
 ':>'=27
 ':>>'=33
-';'=26
+';'=24
 '<'=40
 '<='=42
 '='=87
@@ -33,10 +33,10 @@
 '^'=19
 'about'=59
 'abstract'=108
-'alias'=24
+'alias'=25
 'all'=109
 'allInstances'=113
-'as'=64
+'as'=67
 'assoc'=75
 'behavior'=76
 'binding'=92
@@ -60,7 +60,7 @@
 'function'=79
 'hastype'=38
 'id'=58
-'import'=25
+'import'=26
 'in'=55
 'inout'=57
 'instanceof'=37
@@ -74,7 +74,7 @@
 'of'=93
 'ordered'=110
 'out'=56
-'package'=65
+'package'=64
 'packaged'=54
 'port'=107
 'portion'=106
@@ -93,10 +93,10 @@
 'to'=89
 'true'=49
 'typed'=85
-'{'=66
+'{'=65
 '|'=18
 '||'=16
-'}'=67
+'}'=66
 '~'=29
 RULE_DECIMAL_VALUE=5
 RULE_DOCUMENTATION_COMMENT=9

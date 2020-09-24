@@ -241,7 +241,7 @@ public class SysML2PlantUMLStyle {
 
 		@Override
 		public String caseRedefinition(Redefinition object) {
-            return "--||>";
+            return " --||> ";
 		}
 
 		@Override

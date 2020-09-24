@@ -25,7 +25,9 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -36,22 +38,22 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VCompartment extends VStructure {
     private List<Element> rest = new ArrayList<Element>();
+    private Map<Feature, List<String>> features = new HashMap<Feature, List<String>>();
 
-	@Override
+    @Override
     public String caseFeature(Feature f) {
-        if (addFeatureText(f)) {
-            append('\n');
-        }
+        if (features.containsKey(f)) return "";
+        features.put(f, null);
         return "";
     }
 
-	@Override
+    @Override
     public String casePartUsage(PartUsage pu) {
         rest.add(pu);
         return "";
     }
 
-	@Override
+    @Override
     public String caseReferenceUsage(ReferenceUsage pu) {
         rest.add(pu);
         return "";
@@ -59,23 +61,54 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseMembership(Membership m) {
-        rest.add(m.getMemberElement());
-        return "";
+        Element e = m.getMemberElement();
+        if (e instanceof Feature) {
+            // alias
+            Feature f = (Feature) e;
+            List<String> aliases = features.get(f);
+            if (aliases == null) {
+                aliases = new ArrayList<String>(1);
+                features.put(f, aliases);
+            }
+            aliases.add(m.getMemberName());
+            return "";
+        } else {
+            rest.add(e);
+            return "";
+        }
+    }
+
+    private void addFeatures() {
+        for (Map.Entry<Feature, List<String>> entry: features.entrySet()) {
+            Feature f = entry.getKey();
+            List<String> aliases = entry.getValue();
+            if (addFeatureText(f)) {
+                if (aliases != null) {
+                    append(" <b>as</b> ");
+                    for (String alias: aliases) {
+                        append(alias);
+                        append(' ');
+                    }
+                }
+                append('\n');
+            }
+        }
     }
 
     public void startType(Type typ) {
         traverse(typ);
+        addFeatures();
         closeBlock("--\n"); // Explicitly add class separator
     }
 
     public List<Element> process(Type typ) {
         rest.clear();
-        traverse(typ);
-        closeBlock("--\n"); // Explicitly add class separator
+        features.clear();
+        startType(typ);
         return rest;
     }
 
     public VCompartment(Visitor prev) {
-    	super(prev);
+        super(prev);
     }
 }

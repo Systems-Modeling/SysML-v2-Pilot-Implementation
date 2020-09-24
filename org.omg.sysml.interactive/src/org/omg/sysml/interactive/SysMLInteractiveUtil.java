@@ -50,6 +50,7 @@ public class SysMLInteractiveUtil {
 			for (Relationship subrelationship: element.getOwnedRelationship()) {
 				for (Element relatedElement: subrelationship.getRelatedElement()) {
 					if (relatedElement != element) {
+						// TODO support for implicit generalizations were removed!
 						if (relatedElement.getOwningRelationship() == subrelationship) {
 							formatTree(buffer, indentation + SysMLInteractiveUtil.INDENT, relatedElement, subrelationship);
 						} else {

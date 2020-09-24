@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -35,7 +37,6 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -239,10 +240,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				map(typing->typing.getType()).
 				filter(type->type != null).
 				collect(Collectors.toList());
-		getImplicitGeneralizations(SysMLPackage.eINSTANCE.getFeatureTyping()).stream().
-			map(typing->typing.getGeneral()).
-			filter(type->type != null).
-			forEachOrdered(types::add);
+		types.addAll(getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
 		return types;
 	}
 	
@@ -428,15 +426,20 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
 		addComputedRedefinitions();
 		List<Redefinition> redefinitions = basicGetOwnedRedefinition();
-		List<Generalization> implicitRedefinitions = implicitGeneralizations.get(SysMLPackage.eINSTANCE.getRedefinition());
-		if (implicitRedefinitions != null) {
-			implicitRedefinitions.stream().
-			map(Redefinition.class::cast).
-			forEachOrdered(redefinitions::add);
+		
+		List<Feature> redefinedFeatures = new ArrayList<>();
+		redefinitions.stream().
+			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+			collect(Collectors.toList());
+		
+		if (implicitGeneralTypes.containsKey(SysMLPackage.eINSTANCE.getRedefinition())) {
+			implicitGeneralTypes.get(SysMLPackage.eINSTANCE.getRedefinition())
+					.stream().
+					map(Feature.class::cast).
+					forEachOrdered(redefinedFeatures::add);
 		}
-		return redefinitions.stream().
-					map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
-					collect(Collectors.toList());
+		
+		return redefinedFeatures; 
 	}
 	
 	private boolean isComputeRedefinitions = true;
@@ -451,7 +454,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void addComputedRedefinitions() {
 		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
-			implicitGeneralizations.remove(SysMLPackage.eINSTANCE.getRedefinition());
+			implicitGeneralTypes.remove(SysMLPackage.eINSTANCE.getRedefinition());
 			addRedefinitions();
 			isComputeRedefinitions = false;
 		}
@@ -489,7 +492,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected List<Type> getGeneralTypes(Type type) {
 		List<Type> generalTypes = new ArrayList<>();
-		for (Type generalType: ((TypeImpl)type).basicGetSuperTypes()) {
+		for (Type generalType: ((TypeImpl)type).getSupertypes()) {
 			if (!generalTypes.contains(generalType)) {
 				generalTypes.add(generalType);
 			}
@@ -895,14 +898,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
-		return getOwnedSubsetting().stream().
-				map(Subsetting::getSubsettedFeature).
+		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).
+				stream().
+				map(Feature.class::cast);
+		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().
+				stream().
+				map(Subsetting::getSubsettedFeature);
+		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures).
 				collect(Collectors.toList());
 	}
 	
 	public List<Feature> getRedefinedFeatures() {
-		return getOwnedRedefinition().stream().
-				map(Redefinition::getRedefinedFeature).
+		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).
+				stream().
+				map(Feature.class::cast);
+		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
+				map(Redefinition::getRedefinedFeature);
+		return Stream.concat(ownedRedefinedFeatures, implicitRedefinedFeatures).
 				collect(Collectors.toList());
 	}
 	

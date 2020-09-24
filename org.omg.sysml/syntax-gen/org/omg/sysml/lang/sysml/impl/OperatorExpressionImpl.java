@@ -2,8 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -175,21 +175,13 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	
 	@Override
 	public List<FeatureTyping> basicGetOwnedTyping() {
-		String operator = getOperator();
-		List<FeatureTyping> typings = new ArrayList<>();
-		if (operator != null) {
-			FeatureTyping typing = (FeatureTyping)addImplicitGeneralization(
-					SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
-			if (typing != null) {
-				typings.add(typing);
-			}
-		}
-		return typings;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public void computeImplicitGeneralization() {
-		getOwnedTyping();
+		addImplicitGeneralType(
+				SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		super.computeImplicitGeneralization();
 	}
 	

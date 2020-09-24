@@ -304,8 +304,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
-		val implicitGeneralizations = (expression as TypeImpl).getImplicitGeneralizations()
-		for (Relationship relationship : expression.ownedRelationship.filter[r | !implicitGeneralizations.contains(r)]) {
+		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
 				_image(relationship), 
 				if (relationship instanceof Membership) (relationship as Membership)._text 

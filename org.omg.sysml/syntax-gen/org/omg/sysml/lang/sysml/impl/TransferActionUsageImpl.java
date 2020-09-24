@@ -92,7 +92,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	@Override
 	public void addComputedRedefinitions() {
-		addImplicitGeneralization();
+		addImplicitGeneralType();
 		super.addComputedRedefinitions();
 	}
 	

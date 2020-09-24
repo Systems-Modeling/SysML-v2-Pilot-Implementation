@@ -127,7 +127,8 @@ public abstract class VStructure extends VDefault {
     }
 
     protected void addGeneralizations(Type typ) {
-        for (Generalization g: typ.getOwnedGeneralization()) {
+        // TODO implicit generalizations removed here!
+    	for (Generalization g: typ.getOwnedGeneralization()) {
             Type gt = g.getGeneral();
             if (gt.getName() == null) continue;
             addPRelation(typ, gt, g);

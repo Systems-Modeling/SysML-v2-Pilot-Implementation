@@ -40,7 +40,6 @@ import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
-import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import java.util.HashSet
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
@@ -223,10 +222,9 @@ class KerMLScope extends AbstractScope {
 	}
 		
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){
-		var gs = general.ownedGeneralization
-		for(Generalization g: gs){
-			if (g.general == protectedOwningPackage || 
-				 g.general.isInheritedProtected(protectedOwningPackage)) {
+		for(Type g: (general as TypeImpl).supertypes) {
+			if (g == protectedOwningPackage || 
+				 g.isInheritedProtected(protectedOwningPackage)) {
 				return true
 			}
 		}

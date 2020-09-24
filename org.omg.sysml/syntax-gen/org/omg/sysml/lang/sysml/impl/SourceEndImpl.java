@@ -49,7 +49,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	
 	@Override
 	public void addComputedRedefinitions() {
-		addImplicitGeneralization();
+		addImplicitGeneralType();
 		super.addComputedRedefinitions();
 	}
 	

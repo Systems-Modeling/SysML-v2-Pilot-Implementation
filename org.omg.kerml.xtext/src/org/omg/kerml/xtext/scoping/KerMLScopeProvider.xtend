@@ -74,8 +74,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	
 	override getScope(EObject context, EReference reference) {
 		if (context instanceof Conjugation)
-			context.conjugatedType.scope_owningNamespace(context, reference)
+			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Subsetting) {
+			if (context.eContainer instanceof Membership) {
+				return context.owningMembership.scope_owningNamespace(context, reference)
+			}
 		    var subsettingFeature = context.subsettingFeature
 		    var owningType = subsettingFeature?.owningType
 		    if (owningType instanceof QueryPathExpression) {
@@ -87,7 +90,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Generalization)
-			context.specific.scope_owningNamespace(context, reference)
+			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
 		    context.scope_Namespace(context.membershipOwningPackage, context, reference)
 		} else if (context instanceof Import)

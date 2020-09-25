@@ -151,6 +151,26 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		"NullExpression null"
 	}
 	
+	def boolean _isLeaf(Relationship relationship) {
+		false
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Relationship relationship) {
+		for (source: relationship.source) {
+			createEObjectNode(parentNode, source, 
+				_image(source), 'from ' + source._text, 
+				true
+			)
+		}
+		for (target: relationship.target) {
+			createEObjectNode(parentNode, target, 
+				_image(target), 'to ' + target._text, 
+				true
+			)
+		}
+		super._createChildren(parentNode, relationship)
+	}
+	
 	def boolean _isLeaf(Annotation annotation) {
 		false
 	}
@@ -251,6 +271,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
+		if (generalization.specific !== null && generalization.specific !== generalization.eContainer) {
+			createEObjectNode(parentNode, generalization.specific, 
+				generalization.general._image, generalization.specific._text, 
+				true
+			)			
+		}
 		if (generalization.general !== null) {
 			createEObjectNode(parentNode, generalization.general, 
 				generalization.general._image, generalization.general._text, 
@@ -264,6 +290,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
+		if (redefinition.redefiningFeature !== null && redefinition.redefiningFeature !== redefinition.eContainer) {
+			createEObjectNode(parentNode, redefinition.redefiningFeature, 
+				redefinition.redefiningFeature._image, redefinition.redefiningFeature._text, 
+				true
+			)			
+		}
 		if (redefinition.redefinedFeature !== null) {
 			createEObjectNode(parentNode, redefinition.redefinedFeature, 
 				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
@@ -276,10 +308,16 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		subset.subsettedFeature === null
 	}
 
-	def void _createChildren(IOutlineNode parentNode, Subsetting subset) {
-		if (subset.subsettedFeature !== null) {
-			createEObjectNode(parentNode, subset.subsettedFeature, 
-				_image(subset.subsettedFeature), subset.subsettedFeature._text, 
+	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
+		if (subsetting.subsettingFeature !== null && subsetting.subsettingFeature !== subsetting.eContainer) {
+			createEObjectNode(parentNode, subsetting.subsettingFeature, 
+				subsetting.subsettingFeature._image, subsetting.subsettingFeature._text, 
+				true
+			)			
+		}
+		if (subsetting.subsettedFeature !== null) {
+			createEObjectNode(parentNode, subsetting.subsettedFeature, 
+				_image(subsetting.subsettedFeature), subsetting.subsettedFeature._text, 
 				true
 			)
 		}
@@ -290,6 +328,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Conjugation conjugation) {
+		if (conjugation.conjugatedType !== null && conjugation.conjugatedType !== conjugation.eContainer) {
+			createEObjectNode(parentNode, conjugation.conjugatedType, 
+				conjugation.conjugatedType._image, conjugation.conjugatedType._text, 
+				true
+			)			
+		}
 		if (conjugation.originalType !== null) {
 			createEObjectNode(parentNode, conjugation.originalType, 
 				_image(conjugation.originalType), conjugation.originalType._text, 

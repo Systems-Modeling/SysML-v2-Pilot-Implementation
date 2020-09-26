@@ -9,6 +9,9 @@
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
     <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+    <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+    <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+    <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
@@ -28,6 +31,7 @@
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
     <module>org.omg.sysml.interactive</module>
+    <module>org.omg.sysml.jupyter</module>
     <module>org.omg.sysml.feature</module>
     <module>org.omg.sysml.plantuml</module>
     <module>org.omg.sysml.plantuml.eclipse</module>

@@ -9,9 +9,11 @@
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
     <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-    <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+    <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
+    <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>

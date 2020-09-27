@@ -11,7 +11,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An ItemFlow is a Step that represents the transfer of objects or values from one Feature to another. ItemFlows can take non-zero time to complete.</p>
  * 
- * <p>ItemsFlows must be typed by a library Transfer element or one of its specializations.</p>
+ * <p>An ItemsFlow must be typed by the library Interaction Transfer or one of its specializations.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -107,7 +107,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
+	 * <p>A <code>connectorEnd</code> of this ItemFlow. (IMPL)</p>
 	 * 
 	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
 	 * <!-- end-model-doc -->
@@ -135,7 +135,7 @@ public interface ItemFlow extends Connector, Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
+	 * <p>The Feature representing the Item in transit between the source and the target during the transfer. (IMPL)</p>
 	 * 
 	 * <p>This Feature represents the Item in transit between the source and the target during the transfer.</p>
 	 * <!-- end-model-doc -->
@@ -156,6 +156,9 @@ public interface ItemFlow extends Connector, Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>sourceOutputFeatures</code> and <code>targetInputFeatures</code> of this ItemFlow. (IMPL).</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowFeature()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"

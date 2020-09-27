@@ -28,6 +28,7 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -627,12 +628,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
 		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
 		memberships.removeIf(membership->{
-			if (!(membership instanceof FeatureMembership)) {
-				return false;
-			} else {
-				Collection<Feature> otherRedefinedFeatures = ((FeatureImpl)membership.getMemberElement()).getAllRedefinedFeatures();
-				return otherRedefinedFeatures.stream().anyMatch(redefinedFeatures::contains);
-			}
+			Element memberElement = membership.getMemberElement();
+			return memberElement instanceof Feature &&
+				   ((FeatureImpl)memberElement).getAllRedefinedFeatures().stream().
+				   		anyMatch(redefinedFeatures::contains);
 		});		
 	}
 	

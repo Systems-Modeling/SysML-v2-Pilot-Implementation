@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -80,6 +81,17 @@ public class VComposite extends VStructure {
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
+        vc.closeBlock("");
+
+        return "";
+    }
+
+	@Override
+    public String casePartDefinition(PartDefinition pd) {
+        addType(pd, "rectangle ");
+
+        VComposite vc = new VComposite(this);
+        vc.traverse(pd);
         vc.closeBlock("");
 
         return "";

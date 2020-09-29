@@ -3,4 +3,4 @@
 .ipynb_checkpoints
 *.ipynb
 build
-/bin/
+target

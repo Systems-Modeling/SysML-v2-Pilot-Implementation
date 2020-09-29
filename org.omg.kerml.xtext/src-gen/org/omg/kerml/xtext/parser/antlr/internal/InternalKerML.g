@@ -4056,96 +4056,27 @@ ruleFeatureDeclaration[EObject in_current]  returns [EObject current=in_current]
 				)?
 			)
 			    |
-			(
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getSubsettingsParserRuleCall_1_1_0_0());
-					}
-					this_Subsettings_4=ruleSubsettings[$current]
-					{
-						$current = $this_Subsettings_4.current;
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getRedefinitionsParserRuleCall_1_1_0_1());
-					}
-					this_Redefinitions_5=ruleRedefinitions[$current]
-					{
-						$current = $this_Redefinitions_5.current;
-						afterParserOrEnumRuleCall();
-					}
-				)
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getFeatureSpecializationPartParserRuleCall_1_1_1());
-					}
-					this_FeatureSpecializationPart_6=ruleFeatureSpecializationPart[$current]
-					{
-						$current = $this_FeatureSpecializationPart_6.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-			)
-			    |
-			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
-					}
-					newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getTypingsParserRuleCall_1_2_0());
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
 				}
-				this_Typings_7=ruleTypings[$current]
-				{
-					$current = $this_Typings_7.current;
-					afterParserOrEnumRuleCall();
-				}
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getMultiplicityPartParserRuleCall_1_2_1());
-					}
-					this_MultiplicityPart_8=ruleMultiplicityPart[$current]
-					{
-						$current = $this_MultiplicityPart_8.current;
-						afterParserOrEnumRuleCall();
-					}
-				)?
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
-						}
-						newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getFeatureSpecializationParserRuleCall_1_2_2());
-					}
-					this_FeatureSpecialization_9=ruleFeatureSpecialization[$current]
-					{
-						$current = $this_FeatureSpecialization_9.current;
-						afterParserOrEnumRuleCall();
-					}
-				)*
-			)
+				newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getFeatureSpecializationPartParserRuleCall_1_1());
+			}
+			this_FeatureSpecializationPart_4=ruleFeatureSpecializationPart[$current]
+			{
+				$current = $this_FeatureSpecializationPart_4.current;
+				afterParserOrEnumRuleCall();
+			}
 			    |
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getFeatureDeclarationRule());
 				}
-				newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getFeatureConjugationPartParserRuleCall_1_3());
+				newCompositeNode(grammarAccess.getFeatureDeclarationAccess().getFeatureConjugationPartParserRuleCall_1_2());
 			}
-			this_FeatureConjugationPart_10=ruleFeatureConjugationPart[$current]
+			this_FeatureConjugationPart_5=ruleFeatureConjugationPart[$current]
 			{
-				$current = $this_FeatureConjugationPart_10.current;
+				$current = $this_FeatureConjugationPart_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -4164,67 +4095,42 @@ ruleFeatureSpecializationPart[EObject in_current]  returns [EObject current=in_c
 	(
 		(
 			(
+				(':' | 'typed' | ':>' | 'subsets' | ':>>' | 'redefines')=>
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFeatureSpecializationPartRule());
 					}
-					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getSubsettingsParserRuleCall_0_0_0());
+					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getFeatureSpecializationParserRuleCall_0_0());
 				}
-				this_Subsettings_0=ruleSubsettings[$current]
+				this_FeatureSpecialization_0=ruleFeatureSpecialization[$current]
 				{
-					$current = $this_Subsettings_0.current;
+					$current = $this_FeatureSpecialization_0.current;
 					afterParserOrEnumRuleCall();
 				}
-				    |
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFeatureSpecializationPartRule());
-					}
-					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getRedefinitionsParserRuleCall_0_0_1());
-				}
-				this_Redefinitions_1=ruleRedefinitions[$current]
-				{
-					$current = $this_Redefinitions_1.current;
-					afterParserOrEnumRuleCall();
-				}
-				    |
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFeatureSpecializationPartRule());
-						}
-						newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getTypingsParserRuleCall_0_0_2_0());
-					}
-					this_Typings_2=ruleTypings[$current]
-					{
-						$current = $this_Typings_2.current;
-						afterParserOrEnumRuleCall();
-					}
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getFeatureSpecializationPartRule());
-							}
-							newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getMultiplicityPartParserRuleCall_0_0_2_1());
-						}
-						this_MultiplicityPart_3=ruleMultiplicityPart[$current]
-						{
-							$current = $this_MultiplicityPart_3.current;
-							afterParserOrEnumRuleCall();
-						}
-					)?
-				)
-			)
+			)+
 			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFeatureSpecializationPartRule());
 					}
-					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getFeatureSpecializationParserRuleCall_0_1());
+					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getMultiplicityPartParserRuleCall_0_1());
 				}
-				this_FeatureSpecialization_4=ruleFeatureSpecialization[$current]
+				this_MultiplicityPart_1=ruleMultiplicityPart[$current]
 				{
-					$current = $this_FeatureSpecialization_4.current;
+					$current = $this_MultiplicityPart_1.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFeatureSpecializationPartRule());
+					}
+					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getFeatureSpecializationParserRuleCall_0_2());
+				}
+				this_FeatureSpecialization_2=ruleFeatureSpecialization[$current]
+				{
+					$current = $this_FeatureSpecialization_2.current;
 					afterParserOrEnumRuleCall();
 				}
 			)*
@@ -4237,9 +4143,9 @@ ruleFeatureSpecializationPart[EObject in_current]  returns [EObject current=in_c
 				}
 				newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getMultiplicityPartParserRuleCall_1_0());
 			}
-			this_MultiplicityPart_5=ruleMultiplicityPart[$current]
+			this_MultiplicityPart_3=ruleMultiplicityPart[$current]
 			{
-				$current = $this_MultiplicityPart_5.current;
+				$current = $this_MultiplicityPart_3.current;
 				afterParserOrEnumRuleCall();
 			}
 			(
@@ -4249,9 +4155,9 @@ ruleFeatureSpecializationPart[EObject in_current]  returns [EObject current=in_c
 					}
 					newCompositeNode(grammarAccess.getFeatureSpecializationPartAccess().getFeatureSpecializationParserRuleCall_1_1());
 				}
-				this_FeatureSpecialization_6=ruleFeatureSpecialization[$current]
+				this_FeatureSpecialization_4=ruleFeatureSpecialization[$current]
 				{
-					$current = $this_FeatureSpecialization_6.current;
+					$current = $this_FeatureSpecialization_4.current;
 					afterParserOrEnumRuleCall();
 				}
 			)*
@@ -6662,67 +6568,42 @@ ruleParameterSpecializationPart[EObject in_current]  returns [EObject current=in
 	(
 		(
 			(
+				(':' | 'typed' | ':>' | 'subsets' | ':>>' | 'redefines')=>
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getParameterSpecializationPartRule());
 					}
-					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getSubsetsParserRuleCall_0_0_0());
+					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getParameterSpecializationParserRuleCall_0_0());
 				}
-				this_Subsets_0=ruleSubsets[$current]
+				this_ParameterSpecialization_0=ruleParameterSpecialization[$current]
 				{
-					$current = $this_Subsets_0.current;
+					$current = $this_ParameterSpecialization_0.current;
 					afterParserOrEnumRuleCall();
 				}
-				    |
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getParameterSpecializationPartRule());
-					}
-					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getRedefinesParserRuleCall_0_0_1());
-				}
-				this_Redefines_1=ruleRedefines[$current]
-				{
-					$current = $this_Redefines_1.current;
-					afterParserOrEnumRuleCall();
-				}
-				    |
-				(
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getParameterSpecializationPartRule());
-						}
-						newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getTypedByParserRuleCall_0_0_2_0());
-					}
-					this_TypedBy_2=ruleTypedBy[$current]
-					{
-						$current = $this_TypedBy_2.current;
-						afterParserOrEnumRuleCall();
-					}
-					(
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getParameterSpecializationPartRule());
-							}
-							newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getMultiplicityPartParserRuleCall_0_0_2_1());
-						}
-						this_MultiplicityPart_3=ruleMultiplicityPart[$current]
-						{
-							$current = $this_MultiplicityPart_3.current;
-							afterParserOrEnumRuleCall();
-						}
-					)?
-				)
-			)
+			)+
 			(
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getParameterSpecializationPartRule());
 					}
-					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getParameterSpecializationParserRuleCall_0_1());
+					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getMultiplicityPartParserRuleCall_0_1());
 				}
-				this_ParameterSpecialization_4=ruleParameterSpecialization[$current]
+				this_MultiplicityPart_1=ruleMultiplicityPart[$current]
 				{
-					$current = $this_ParameterSpecialization_4.current;
+					$current = $this_MultiplicityPart_1.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getParameterSpecializationPartRule());
+					}
+					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getParameterSpecializationParserRuleCall_0_2());
+				}
+				this_ParameterSpecialization_2=ruleParameterSpecialization[$current]
+				{
+					$current = $this_ParameterSpecialization_2.current;
 					afterParserOrEnumRuleCall();
 				}
 			)*
@@ -6735,9 +6616,9 @@ ruleParameterSpecializationPart[EObject in_current]  returns [EObject current=in
 				}
 				newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getMultiplicityPartParserRuleCall_1_0());
 			}
-			this_MultiplicityPart_5=ruleMultiplicityPart[$current]
+			this_MultiplicityPart_3=ruleMultiplicityPart[$current]
 			{
-				$current = $this_MultiplicityPart_5.current;
+				$current = $this_MultiplicityPart_3.current;
 				afterParserOrEnumRuleCall();
 			}
 			(
@@ -6747,9 +6628,9 @@ ruleParameterSpecializationPart[EObject in_current]  returns [EObject current=in
 					}
 					newCompositeNode(grammarAccess.getParameterSpecializationPartAccess().getParameterSpecializationParserRuleCall_1_1());
 				}
-				this_ParameterSpecialization_6=ruleParameterSpecialization[$current]
+				this_ParameterSpecialization_4=ruleParameterSpecialization[$current]
 				{
-					$current = $this_ParameterSpecialization_6.current;
+					$current = $this_ParameterSpecialization_4.current;
 					afterParserOrEnumRuleCall();
 				}
 			)*

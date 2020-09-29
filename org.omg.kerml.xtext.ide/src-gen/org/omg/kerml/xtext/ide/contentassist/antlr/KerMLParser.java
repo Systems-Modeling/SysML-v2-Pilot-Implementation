@@ -67,9 +67,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureAccess().getAlternatives_1(), "rule__Feature__Alternatives_1");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1(), "rule__FeatureDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1_0_1(), "rule__FeatureDeclaration__Alternatives_1_0_1");
-			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1_1_0(), "rule__FeatureDeclaration__Alternatives_1_1_0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getAlternatives(), "rule__FeatureSpecializationPart__Alternatives");
-			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getAlternatives_0_0(), "rule__FeatureSpecializationPart__Alternatives_0_0");
 			builder.put(grammarAccess.getFeatureSpecializationAccess().getAlternatives(), "rule__FeatureSpecialization__Alternatives");
 			builder.put(grammarAccess.getTypedByAccess().getAlternatives_0(), "rule__TypedBy__Alternatives_0");
 			builder.put(grammarAccess.getSubsetsAccess().getAlternatives_0(), "rule__Subsets__Alternatives_0");
@@ -85,7 +83,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getAlternatives(), "rule__Parameter__Alternatives");
 			builder.put(grammarAccess.getParameterDeclarationAccess().getAlternatives_1(), "rule__ParameterDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getAlternatives(), "rule__ParameterSpecializationPart__Alternatives");
-			builder.put(grammarAccess.getParameterSpecializationPartAccess().getAlternatives_0_0(), "rule__ParameterSpecializationPart__Alternatives_0_0");
 			builder.put(grammarAccess.getParameterSpecializationAccess().getAlternatives(), "rule__ParameterSpecialization__Alternatives");
 			builder.put(grammarAccess.getStepDeclarationAccess().getAlternatives_1(), "rule__StepDeclaration__Alternatives_1");
 			builder.put(grammarAccess.getParameterPartAccess().getAlternatives(), "rule__ParameterPart__Alternatives");
@@ -191,10 +188,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureAccess().getGroup_1_0(), "rule__Feature__Group_1_0__0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup(), "rule__FeatureDeclaration__Group__0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_1_0(), "rule__FeatureDeclaration__Group_1_0__0");
-			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_1_1(), "rule__FeatureDeclaration__Group_1_1__0");
-			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_1_2(), "rule__FeatureDeclaration__Group_1_2__0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_0(), "rule__FeatureSpecializationPart__Group_0__0");
-			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_0_0_2(), "rule__FeatureSpecializationPart__Group_0_0_2__0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_1(), "rule__FeatureSpecializationPart__Group_1__0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getGroup(), "rule__MultiplicityPart__Group__0");
 			builder.put(grammarAccess.getTypingsAccess().getGroup(), "rule__Typings__Group__0");
@@ -250,7 +244,6 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterDeclarationAccess().getGroup(), "rule__ParameterDeclaration__Group__0");
 			builder.put(grammarAccess.getParameterDeclarationAccess().getGroup_1_0(), "rule__ParameterDeclaration__Group_1_0__0");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_0(), "rule__ParameterSpecializationPart__Group_0__0");
-			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_0_0_2(), "rule__ParameterSpecializationPart__Group_0_0_2__0");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_1(), "rule__ParameterSpecializationPart__Group_1__0");
 			builder.put(grammarAccess.getStepAccess().getGroup(), "rule__Step__Group__0");
 			builder.put(grammarAccess.getStepDeclarationAccess().getGroup(), "rule__StepDeclaration__Group__0");

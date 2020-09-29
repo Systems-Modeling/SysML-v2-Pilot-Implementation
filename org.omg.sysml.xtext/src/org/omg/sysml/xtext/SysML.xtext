@@ -279,12 +279,11 @@ OwnedSuperclassing returns SysML::Superclassing:
 
 fragment FeatureDeclaration returns SysML::Feature :
 	  Identification FeatureSpecializationPart?
-	| ( Subsettings | Redefinitions ) FeatureSpecializationPart?
-	| Typings MultiplicityPart? FeatureSpecialization*
+	| FeatureSpecializationPart
 ;
 
 fragment FeatureSpecializationPart returns SysML::Feature :
-	  ( Subsettings | Redefinitions | Typings MultiplicityPart? ) FeatureSpecialization*
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
 	| MultiplicityPart FeatureSpecialization*
 ;
 
@@ -851,12 +850,11 @@ PortEndUsage returns SysML::PortUsage :
 
 fragment PortUsageDeclaration returns SysML::Usage :
 	  Identification PortSpecializationPart?
-	| ( Subsettings | Redefinitions ) PortSpecializationPart?
-	| PortTypings MultiplicityPart? PortSpecialization*
+	| PortSpecializationPart
 ;
 
 fragment PortSpecializationPart returns SysML::Usage :
-	  ( Subsettings | Redefinitions | PortTypings MultiplicityPart? ) PortSpecialization*
+	  ( -> PortSpecialization )+ MultiplicityPart? PortSpecialization*
 	| MultiplicityPart PortSpecialization*
 ;
 
@@ -894,7 +892,6 @@ ConnectionDefinition returns SysML::ConnectionDefinition :
 	DefinitionDeclaration ConnectionBody
 ;
 
-// TODO: Update to use DefinitionBodyItem?
 fragment ConnectionBody returns SysML::Type :
 	  ';'
 	| '{' (
@@ -988,7 +985,6 @@ fragment InterfaceDefDeclaration returns SysML::InterfaceDefinition :
 	DefinitionPrefix? InterfaceDefKeyword DefinitionDeclaration
 ;
 
-// TODO: Update to use DefinitionBodyItem?
 fragment InterfaceDefBody returns SysML::Type :
 	  ';'
 	| '{' ( 
@@ -1232,7 +1228,7 @@ fragment ParameterDeclaration returns SysML::Usage :
 ;
 
 fragment ParameterSpecializationPart returns SysML::Feature :
-	  ( Subsets | Redefines | TypedBy MultiplicityPart? ) ParameterSpecialization*
+	  ( -> ParameterSpecialization )+ MultiplicityPart? ParameterSpecialization*
 	| MultiplicityPart ParameterSpecialization*
 ;
 
@@ -1263,9 +1259,8 @@ PerformActionUsage returns SysML::PerformActionUsage :
 	UsagePrefix? 'perform' PerformActionUsageDeclaration ActionBody
 ;
 
-// TODO: Update specialization part?
 fragment PerformActionUsageDeclaration returns SysML::ActionUsage :
-   	( ownedRelationship_comp += OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+   	( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
    	| ActionUsageKeyword UsageDeclaration? )
     ( ValuePart | ActionUsageParameterList )?
 ;
@@ -1488,10 +1483,9 @@ StateRefUsage returns SysML::StateUsage :
 	ActionUsageDeclaration StateBody
 ;
 
-// TODO: Update specialization part?
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
     UsagePrefix? 'exhibit' 
-    ( ownedRelationship_comp += OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+    ( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
     ( ValuePart | ActionUsageParameterList )? StateBody
@@ -1700,10 +1694,9 @@ ConstraintRefUsage returns SysML::ConstraintUsage :
 	CalculationUsageDeclaration CalculationBody
 ;
 
-// TODO: Update specification part?
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
 	UsagePrefix? 'assert'
-    ( ownedRelationship_comp += OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+    ( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
     CalculationParameterPart InvariantPart CalculationBody
@@ -1789,10 +1782,9 @@ RequirementRefUsage returns SysML::RequirementUsage :
 	CalculationUsageDeclaration RequirementBody
 ;
 
-// TODO: Update specialization part?
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
 	UsagePrefix? 'satisfy'
-	( ownedRelationship_comp += OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+	( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
     | RequirementKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )? EmptyReturnParameterPart

@@ -2417,26 +2417,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Alternatives cAlternatives_1_0_1 = (Alternatives)cGroup_1_0.eContents().get(1);
 		private final RuleCall cFeatureSpecializationPartParserRuleCall_1_0_1_0 = (RuleCall)cAlternatives_1_0_1.eContents().get(0);
 		private final RuleCall cFeatureConjugationPartParserRuleCall_1_0_1_1 = (RuleCall)cAlternatives_1_0_1.eContents().get(1);
-		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
-		private final Alternatives cAlternatives_1_1_0 = (Alternatives)cGroup_1_1.eContents().get(0);
-		private final RuleCall cSubsettingsParserRuleCall_1_1_0_0 = (RuleCall)cAlternatives_1_1_0.eContents().get(0);
-		private final RuleCall cRedefinitionsParserRuleCall_1_1_0_1 = (RuleCall)cAlternatives_1_1_0.eContents().get(1);
-		private final RuleCall cFeatureSpecializationPartParserRuleCall_1_1_1 = (RuleCall)cGroup_1_1.eContents().get(1);
-		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
-		private final RuleCall cTypingsParserRuleCall_1_2_0 = (RuleCall)cGroup_1_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_1_2_1 = (RuleCall)cGroup_1_2.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_1_2_2 = (RuleCall)cGroup_1_2.eContents().get(2);
-		private final RuleCall cFeatureConjugationPartParserRuleCall_1_3 = (RuleCall)cAlternatives_1.eContents().get(3);
+		private final RuleCall cFeatureSpecializationPartParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
+		private final RuleCall cFeatureConjugationPartParserRuleCall_1_2 = (RuleCall)cAlternatives_1.eContents().get(2);
 		
 		//fragment FeatureDeclaration returns SysML::Feature:
 		//	isSufficient?='all'? (Identification (FeatureSpecializationPart | FeatureConjugationPart)?
-		//	| (Subsettings | Redefinitions) FeatureSpecializationPart?
-		//	| Typings MultiplicityPart? FeatureSpecialization*
+		//	| FeatureSpecializationPart
 		//	| FeatureConjugationPart);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isSufficient?='all'? (Identification (FeatureSpecializationPart | FeatureConjugationPart)? | (Subsettings |
-		//Redefinitions) FeatureSpecializationPart? | Typings MultiplicityPart? FeatureSpecialization* | FeatureConjugationPart)
+		//isSufficient?='all'? (Identification (FeatureSpecializationPart | FeatureConjugationPart)? | FeatureSpecializationPart |
+		//FeatureConjugationPart)
 		public Group getGroup() { return cGroup; }
 		
 		//isSufficient?='all'?
@@ -2445,8 +2436,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'all'
 		public Keyword getIsSufficientAllKeyword_0_0() { return cIsSufficientAllKeyword_0_0; }
 		
-		//(Identification (FeatureSpecializationPart | FeatureConjugationPart)? | (Subsettings | Redefinitions)
-		//FeatureSpecializationPart? | Typings MultiplicityPart? FeatureSpecialization* | FeatureConjugationPart)
+		//(Identification (FeatureSpecializationPart | FeatureConjugationPart)? | FeatureSpecializationPart |
+		//FeatureConjugationPart)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//Identification (FeatureSpecializationPart | FeatureConjugationPart)?
@@ -2464,83 +2455,42 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//FeatureConjugationPart
 		public RuleCall getFeatureConjugationPartParserRuleCall_1_0_1_1() { return cFeatureConjugationPartParserRuleCall_1_0_1_1; }
 		
-		//(Subsettings | Redefinitions) FeatureSpecializationPart?
-		public Group getGroup_1_1() { return cGroup_1_1; }
-		
-		//(Subsettings | Redefinitions)
-		public Alternatives getAlternatives_1_1_0() { return cAlternatives_1_1_0; }
-		
-		//Subsettings
-		public RuleCall getSubsettingsParserRuleCall_1_1_0_0() { return cSubsettingsParserRuleCall_1_1_0_0; }
-		
-		//Redefinitions
-		public RuleCall getRedefinitionsParserRuleCall_1_1_0_1() { return cRedefinitionsParserRuleCall_1_1_0_1; }
-		
-		//FeatureSpecializationPart?
-		public RuleCall getFeatureSpecializationPartParserRuleCall_1_1_1() { return cFeatureSpecializationPartParserRuleCall_1_1_1; }
-		
-		//Typings MultiplicityPart? FeatureSpecialization*
-		public Group getGroup_1_2() { return cGroup_1_2; }
-		
-		//Typings
-		public RuleCall getTypingsParserRuleCall_1_2_0() { return cTypingsParserRuleCall_1_2_0; }
-		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_1_2_1() { return cMultiplicityPartParserRuleCall_1_2_1; }
-		
-		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_1_2_2() { return cFeatureSpecializationParserRuleCall_1_2_2; }
+		//FeatureSpecializationPart
+		public RuleCall getFeatureSpecializationPartParserRuleCall_1_1() { return cFeatureSpecializationPartParserRuleCall_1_1; }
 		
 		//FeatureConjugationPart
-		public RuleCall getFeatureConjugationPartParserRuleCall_1_3() { return cFeatureConjugationPartParserRuleCall_1_3; }
+		public RuleCall getFeatureConjugationPartParserRuleCall_1_2() { return cFeatureConjugationPartParserRuleCall_1_2; }
 	}
 	public class FeatureSpecializationPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureSpecializationPart");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final RuleCall cSubsettingsParserRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cRedefinitionsParserRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
-		private final Group cGroup_0_0_2 = (Group)cAlternatives_0_0.eContents().get(2);
-		private final RuleCall cTypingsParserRuleCall_0_0_2_0 = (RuleCall)cGroup_0_0_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_0_0_2_1 = (RuleCall)cGroup_0_0_2.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cFeatureSpecializationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final RuleCall cMultiplicityPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cFeatureSpecializationParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final RuleCall cMultiplicityPartParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final RuleCall cFeatureSpecializationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//fragment FeatureSpecializationPart returns SysML::Feature:
-		//	(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization*
+		//	-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization*
 		//	| MultiplicityPart FeatureSpecialization*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization* | MultiplicityPart
-		//FeatureSpecialization*
+		//-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization* | MultiplicityPart FeatureSpecialization*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization*
+		//-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization*
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//(Subsettings | Redefinitions | Typings MultiplicityPart?)
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-		
-		//Subsettings
-		public RuleCall getSubsettingsParserRuleCall_0_0_0() { return cSubsettingsParserRuleCall_0_0_0; }
-		
-		//Redefinitions
-		public RuleCall getRedefinitionsParserRuleCall_0_0_1() { return cRedefinitionsParserRuleCall_0_0_1; }
-		
-		//Typings MultiplicityPart?
-		public Group getGroup_0_0_2() { return cGroup_0_0_2; }
-		
-		//Typings
-		public RuleCall getTypingsParserRuleCall_0_0_2_0() { return cTypingsParserRuleCall_0_0_2_0; }
+		//-> FeatureSpecialization+
+		public RuleCall getFeatureSpecializationParserRuleCall_0_0() { return cFeatureSpecializationParserRuleCall_0_0; }
 		
 		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_0_0_2_1() { return cMultiplicityPartParserRuleCall_0_0_2_1; }
+		public RuleCall getMultiplicityPartParserRuleCall_0_1() { return cMultiplicityPartParserRuleCall_0_1; }
 		
 		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_0_1() { return cFeatureSpecializationParserRuleCall_0_1; }
+		public RuleCall getFeatureSpecializationParserRuleCall_0_2() { return cFeatureSpecializationParserRuleCall_0_2; }
 		
 		//MultiplicityPart FeatureSpecialization*
 		public Group getGroup_1() { return cGroup_1; }
@@ -4020,48 +3970,32 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ParameterSpecializationPart");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final RuleCall cSubsetsParserRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cRedefinesParserRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
-		private final Group cGroup_0_0_2 = (Group)cAlternatives_0_0.eContents().get(2);
-		private final RuleCall cTypedByParserRuleCall_0_0_2_0 = (RuleCall)cGroup_0_0_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_0_0_2_1 = (RuleCall)cGroup_0_0_2.eContents().get(1);
-		private final RuleCall cParameterSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cParameterSpecializationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final RuleCall cMultiplicityPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cParameterSpecializationParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final RuleCall cMultiplicityPartParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final RuleCall cParameterSpecializationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//fragment ParameterSpecializationPart returns SysML::Feature:
-		//	(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization*
+		//	-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization*
 		//	| MultiplicityPart ParameterSpecialization*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization* | MultiplicityPart ParameterSpecialization*
+		//-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization* | MultiplicityPart ParameterSpecialization*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization*
+		//-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization*
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//(Subsets | Redefines | TypedBy MultiplicityPart?)
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-		
-		//Subsets
-		public RuleCall getSubsetsParserRuleCall_0_0_0() { return cSubsetsParserRuleCall_0_0_0; }
-		
-		//Redefines
-		public RuleCall getRedefinesParserRuleCall_0_0_1() { return cRedefinesParserRuleCall_0_0_1; }
-		
-		//TypedBy MultiplicityPart?
-		public Group getGroup_0_0_2() { return cGroup_0_0_2; }
-		
-		//TypedBy
-		public RuleCall getTypedByParserRuleCall_0_0_2_0() { return cTypedByParserRuleCall_0_0_2_0; }
+		//-> ParameterSpecialization+
+		public RuleCall getParameterSpecializationParserRuleCall_0_0() { return cParameterSpecializationParserRuleCall_0_0; }
 		
 		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_0_0_2_1() { return cMultiplicityPartParserRuleCall_0_0_2_1; }
+		public RuleCall getMultiplicityPartParserRuleCall_0_1() { return cMultiplicityPartParserRuleCall_0_1; }
 		
 		//ParameterSpecialization*
-		public RuleCall getParameterSpecializationParserRuleCall_0_1() { return cParameterSpecializationParserRuleCall_0_1; }
+		public RuleCall getParameterSpecializationParserRuleCall_0_2() { return cParameterSpecializationParserRuleCall_0_2; }
 		
 		//MultiplicityPart ParameterSpecialization*
 		public Group getGroup_1() { return cGroup_1; }
@@ -8361,8 +8295,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment FeatureDeclaration returns SysML::Feature:
 	//	isSufficient?='all'? (Identification (FeatureSpecializationPart | FeatureConjugationPart)?
-	//	| (Subsettings | Redefinitions) FeatureSpecializationPart?
-	//	| Typings MultiplicityPart? FeatureSpecialization*
+	//	| FeatureSpecializationPart
 	//	| FeatureConjugationPart);
 	public FeatureDeclarationElements getFeatureDeclarationAccess() {
 		return pFeatureDeclaration;
@@ -8373,7 +8306,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment FeatureSpecializationPart returns SysML::Feature:
-	//	(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization*
+	//	-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization*
 	//	| MultiplicityPart FeatureSpecialization*;
 	public FeatureSpecializationPartElements getFeatureSpecializationPartAccess() {
 		return pFeatureSpecializationPart;
@@ -8810,7 +8743,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ParameterSpecializationPart returns SysML::Feature:
-	//	(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization*
+	//	-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization*
 	//	| MultiplicityPart ParameterSpecialization*;
 	public ParameterSpecializationPartElements getParameterSpecializationPartAccess() {
 		return pParameterSpecializationPart;

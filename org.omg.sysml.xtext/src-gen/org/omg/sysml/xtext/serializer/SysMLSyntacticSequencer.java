@@ -981,6 +981,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_ActionFlowUsage_CalculationFlowUsage___RefKeyword_1_q_ActionUsageKeywordParserRuleCall_2___or___RefKeyword_1_q_CalculationUsageKeywordParserRuleCall_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1011,6 +1012,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ActionUsageKeyword name=Name
 	 *     (rule start) (ambiguity) ActionUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ActionUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword 'id' humanId=Name
@@ -1032,6 +1034,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword 'id' humanId=Name
@@ -1053,6 +1056,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_ActionFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1072,6 +1076,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword name=Name
 	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword 'id' humanId=Name
@@ -1081,6 +1086,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword 'id' humanId=Name
@@ -1090,6 +1096,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_AnalysisCaseFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1105,16 +1112,19 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
 	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
 	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
 	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
 	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) name=Name
+	 *     isVariation?='variation' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1282,6 +1292,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) CalculationUsageKeyword name=Name
 	 *     (rule start) (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword 'id' humanId=Name
@@ -1291,6 +1302,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword 'id' humanId=Name
@@ -1300,6 +1312,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_CalculationFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1343,6 +1356,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) CaseUsageKeyword name=Name
 	 *     (rule start) (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword 'id' humanId=Name
@@ -1352,6 +1366,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword 'id' humanId=Name
@@ -1361,6 +1376,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_CaseFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1442,6 +1458,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ConstraintUsageKeyword name=Name
 	 *     (rule start) (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword 'id' humanId=Name
@@ -1451,6 +1468,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword 'id' humanId=Name
@@ -1460,6 +1478,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_ConstraintFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1507,12 +1526,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     humanId=Name (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
 	 *     humanId=Name (ambiguity) ownedMembership_comp+=LifeClassMembership
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -1553,12 +1572,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
 	 *     isOrdered?='ordered' (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
+	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -1689,6 +1708,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_IndividualRefUsage_SnapshotRefUsage_TimeSliceRefUsage___RefKeyword_1_0_0_IndividualUsageKeywordParserRuleCall_1_0_1___or___RefKeyword_1_0_0_SnapshotKeywordParserRuleCall_1_0_1___or___RefKeyword_1_0_0_TimeSliceKeywordParserRuleCall_1_0_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1716,6 +1736,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_IndividualUsage_SnapshotUsage_TimeSliceUsage_IndividualUsageKeywordParserRuleCall_1_or_SnapshotKeywordParserRuleCall_1_or_TimeSliceKeywordParserRuleCall_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1784,6 +1805,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ItemUsageKeyword name=Name
 	 *     (rule start) (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' documentation_comp+=OwnedDocumentation
@@ -1799,6 +1821,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword 'id' humanId=Name
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' documentation_comp+=OwnedDocumentation
@@ -1814,6 +1837,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_ItemFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1907,6 +1931,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) PartUsageKeyword name=Name
 	 *     (rule start) (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' documentation_comp+=OwnedDocumentation
@@ -1922,6 +1947,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword 'id' humanId=Name
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' documentation_comp+=OwnedDocumentation
@@ -1937,6 +1963,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_PartFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -1953,16 +1980,19 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=PortTyping
 	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
 	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) name=Name
+	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
 	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=PortTyping
 	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
 	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) name=Name
+	 *     isVariation?='variation' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_PortEndUsage_PortUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1998,6 +2028,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) '{' documentation_comp+=OwnedDocumentation
@@ -2013,6 +2044,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) name=Name
 	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
 	 *     isVariation?='variation' (ambiguity) '{' documentation_comp+=OwnedDocumentation
@@ -2028,6 +2060,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) name=Name
 	 *     isVariation?='variation' (ambiguity) ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) ownedFeatureMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -2061,6 +2094,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) RequirementUsageKeyword name=Name
 	 *     (rule start) (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword 'id' humanId=Name
@@ -2070,6 +2104,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword 'id' humanId=Name
@@ -2079,6 +2114,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_RequirementFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2121,6 +2157,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) StateUsageKeyword name=Name
 	 *     (rule start) (ambiguity) StateUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) StateUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword ';' (rule end)
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword 'id' humanId=Name
@@ -2142,6 +2179,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword ';' (rule end)
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword 'id' humanId=Name
@@ -2163,6 +2201,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_StateFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2240,6 +2279,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword name=Name
 	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword 'id' humanId=Name
@@ -2249,6 +2289,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword 'id' humanId=Name
@@ -2258,6 +2299,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_VerificationCaseFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2313,6 +2355,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ViewUsageKeyword name=Name
 	 *     (rule start) (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     (rule start) (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' documentation_comp+=OwnedDocumentation
@@ -2329,6 +2372,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword 'id' humanId=Name
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' documentation_comp+=OwnedDocumentation
@@ -2345,6 +2389,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedFeatureMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_ViewFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -2365,6 +2410,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ViewpointUsageKeyword name=Name
 	 *     (rule start) (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     (rule start) (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword 'id' humanId=Name
@@ -2374,6 +2420,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword name=Name
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword 'id' humanId=Name
@@ -2383,6 +2430,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword name=Name
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=EmptyReturnParameterMember
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword ownedFeatureMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_ViewpointFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

@@ -1360,24 +1360,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
 		private final RuleCall cFeatureSpecializationPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final RuleCall cSubsettingsParserRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cRedefinitionsParserRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cFeatureSpecializationPartParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cTypingsParserRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
+		private final RuleCall cFeatureSpecializationPartParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		///* FEATURES */ /* Features */ fragment FeatureDeclaration returns SysML::Feature:
 		//	Identification FeatureSpecializationPart?
-		//	| (Subsettings | Redefinitions) FeatureSpecializationPart?
-		//	| Typings MultiplicityPart? FeatureSpecialization*;
+		//	| FeatureSpecializationPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Identification FeatureSpecializationPart? | (Subsettings | Redefinitions) FeatureSpecializationPart? | Typings
-		//MultiplicityPart? FeatureSpecialization*
+		//Identification FeatureSpecializationPart? | FeatureSpecializationPart
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Identification FeatureSpecializationPart?
@@ -1389,80 +1379,39 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//FeatureSpecializationPart?
 		public RuleCall getFeatureSpecializationPartParserRuleCall_0_1() { return cFeatureSpecializationPartParserRuleCall_0_1; }
 		
-		//(Subsettings | Redefinitions) FeatureSpecializationPart?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//(Subsettings | Redefinitions)
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
-		
-		//Subsettings
-		public RuleCall getSubsettingsParserRuleCall_1_0_0() { return cSubsettingsParserRuleCall_1_0_0; }
-		
-		//Redefinitions
-		public RuleCall getRedefinitionsParserRuleCall_1_0_1() { return cRedefinitionsParserRuleCall_1_0_1; }
-		
-		//FeatureSpecializationPart?
-		public RuleCall getFeatureSpecializationPartParserRuleCall_1_1() { return cFeatureSpecializationPartParserRuleCall_1_1; }
-		
-		//Typings MultiplicityPart? FeatureSpecialization*
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//Typings
-		public RuleCall getTypingsParserRuleCall_2_0() { return cTypingsParserRuleCall_2_0; }
-		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_2_1() { return cMultiplicityPartParserRuleCall_2_1; }
-		
-		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_2_2() { return cFeatureSpecializationParserRuleCall_2_2; }
+		//FeatureSpecializationPart
+		public RuleCall getFeatureSpecializationPartParserRuleCall_1() { return cFeatureSpecializationPartParserRuleCall_1; }
 	}
 	public class FeatureSpecializationPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FeatureSpecializationPart");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final RuleCall cSubsettingsParserRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cRedefinitionsParserRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
-		private final Group cGroup_0_0_2 = (Group)cAlternatives_0_0.eContents().get(2);
-		private final RuleCall cTypingsParserRuleCall_0_0_2_0 = (RuleCall)cGroup_0_0_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_0_0_2_1 = (RuleCall)cGroup_0_0_2.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cFeatureSpecializationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final RuleCall cMultiplicityPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cFeatureSpecializationParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final RuleCall cMultiplicityPartParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final RuleCall cFeatureSpecializationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//fragment FeatureSpecializationPart returns SysML::Feature:
-		//	(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization*
+		//	-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization*
 		//	| MultiplicityPart FeatureSpecialization*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization* | MultiplicityPart
-		//FeatureSpecialization*
+		//-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization* | MultiplicityPart FeatureSpecialization*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization*
+		//-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization*
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//(Subsettings | Redefinitions | Typings MultiplicityPart?)
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-		
-		//Subsettings
-		public RuleCall getSubsettingsParserRuleCall_0_0_0() { return cSubsettingsParserRuleCall_0_0_0; }
-		
-		//Redefinitions
-		public RuleCall getRedefinitionsParserRuleCall_0_0_1() { return cRedefinitionsParserRuleCall_0_0_1; }
-		
-		//Typings MultiplicityPart?
-		public Group getGroup_0_0_2() { return cGroup_0_0_2; }
-		
-		//Typings
-		public RuleCall getTypingsParserRuleCall_0_0_2_0() { return cTypingsParserRuleCall_0_0_2_0; }
+		//-> FeatureSpecialization+
+		public RuleCall getFeatureSpecializationParserRuleCall_0_0() { return cFeatureSpecializationParserRuleCall_0_0; }
 		
 		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_0_0_2_1() { return cMultiplicityPartParserRuleCall_0_0_2_1; }
+		public RuleCall getMultiplicityPartParserRuleCall_0_1() { return cMultiplicityPartParserRuleCall_0_1; }
 		
 		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_0_1() { return cFeatureSpecializationParserRuleCall_0_1; }
+		public RuleCall getFeatureSpecializationParserRuleCall_0_2() { return cFeatureSpecializationParserRuleCall_0_2; }
 		
 		//MultiplicityPart FeatureSpecialization*
 		public Group getGroup_1() { return cGroup_1; }
@@ -4380,24 +4329,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final RuleCall cIdentificationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
 		private final RuleCall cPortSpecializationPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final RuleCall cSubsettingsParserRuleCall_1_0_0 = (RuleCall)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cRedefinitionsParserRuleCall_1_0_1 = (RuleCall)cAlternatives_1_0.eContents().get(1);
-		private final RuleCall cPortSpecializationPartParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final RuleCall cPortTypingsParserRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
-		private final RuleCall cPortSpecializationParserRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
+		private final RuleCall cPortSpecializationPartParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//fragment PortUsageDeclaration returns SysML::Usage:
 		//	Identification PortSpecializationPart?
-		//	| (Subsettings | Redefinitions) PortSpecializationPart?
-		//	| PortTypings MultiplicityPart? PortSpecialization*;
+		//	| PortSpecializationPart;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Identification PortSpecializationPart? | (Subsettings | Redefinitions) PortSpecializationPart? | PortTypings
-		//MultiplicityPart? PortSpecialization*
+		//Identification PortSpecializationPart? | PortSpecializationPart
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Identification PortSpecializationPart?
@@ -4409,79 +4348,39 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//PortSpecializationPart?
 		public RuleCall getPortSpecializationPartParserRuleCall_0_1() { return cPortSpecializationPartParserRuleCall_0_1; }
 		
-		//(Subsettings | Redefinitions) PortSpecializationPart?
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//(Subsettings | Redefinitions)
-		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
-		
-		//Subsettings
-		public RuleCall getSubsettingsParserRuleCall_1_0_0() { return cSubsettingsParserRuleCall_1_0_0; }
-		
-		//Redefinitions
-		public RuleCall getRedefinitionsParserRuleCall_1_0_1() { return cRedefinitionsParserRuleCall_1_0_1; }
-		
-		//PortSpecializationPart?
-		public RuleCall getPortSpecializationPartParserRuleCall_1_1() { return cPortSpecializationPartParserRuleCall_1_1; }
-		
-		//PortTypings MultiplicityPart? PortSpecialization*
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//PortTypings
-		public RuleCall getPortTypingsParserRuleCall_2_0() { return cPortTypingsParserRuleCall_2_0; }
-		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_2_1() { return cMultiplicityPartParserRuleCall_2_1; }
-		
-		//PortSpecialization*
-		public RuleCall getPortSpecializationParserRuleCall_2_2() { return cPortSpecializationParserRuleCall_2_2; }
+		//PortSpecializationPart
+		public RuleCall getPortSpecializationPartParserRuleCall_1() { return cPortSpecializationPartParserRuleCall_1; }
 	}
 	public class PortSpecializationPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.PortSpecializationPart");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final RuleCall cSubsettingsParserRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cRedefinitionsParserRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
-		private final Group cGroup_0_0_2 = (Group)cAlternatives_0_0.eContents().get(2);
-		private final RuleCall cPortTypingsParserRuleCall_0_0_2_0 = (RuleCall)cGroup_0_0_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_0_0_2_1 = (RuleCall)cGroup_0_0_2.eContents().get(1);
-		private final RuleCall cPortSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cPortSpecializationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final RuleCall cMultiplicityPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cPortSpecializationParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final RuleCall cMultiplicityPartParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final RuleCall cPortSpecializationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//fragment PortSpecializationPart returns SysML::Usage:
-		//	(Subsettings | Redefinitions | PortTypings MultiplicityPart?) PortSpecialization*
+		//	-> PortSpecialization+ MultiplicityPart? PortSpecialization*
 		//	| MultiplicityPart PortSpecialization*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Subsettings | Redefinitions | PortTypings MultiplicityPart?) PortSpecialization* | MultiplicityPart PortSpecialization*
+		//-> PortSpecialization+ MultiplicityPart? PortSpecialization* | MultiplicityPart PortSpecialization*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(Subsettings | Redefinitions | PortTypings MultiplicityPart?) PortSpecialization*
+		//-> PortSpecialization+ MultiplicityPart? PortSpecialization*
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//(Subsettings | Redefinitions | PortTypings MultiplicityPart?)
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-		
-		//Subsettings
-		public RuleCall getSubsettingsParserRuleCall_0_0_0() { return cSubsettingsParserRuleCall_0_0_0; }
-		
-		//Redefinitions
-		public RuleCall getRedefinitionsParserRuleCall_0_0_1() { return cRedefinitionsParserRuleCall_0_0_1; }
-		
-		//PortTypings MultiplicityPart?
-		public Group getGroup_0_0_2() { return cGroup_0_0_2; }
-		
-		//PortTypings
-		public RuleCall getPortTypingsParserRuleCall_0_0_2_0() { return cPortTypingsParserRuleCall_0_0_2_0; }
+		//-> PortSpecialization+
+		public RuleCall getPortSpecializationParserRuleCall_0_0() { return cPortSpecializationParserRuleCall_0_0; }
 		
 		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_0_0_2_1() { return cMultiplicityPartParserRuleCall_0_0_2_1; }
+		public RuleCall getMultiplicityPartParserRuleCall_0_1() { return cMultiplicityPartParserRuleCall_0_1; }
 		
 		//PortSpecialization*
-		public RuleCall getPortSpecializationParserRuleCall_0_1() { return cPortSpecializationParserRuleCall_0_1; }
+		public RuleCall getPortSpecializationParserRuleCall_0_2() { return cPortSpecializationParserRuleCall_0_2; }
 		
 		//MultiplicityPart PortSpecialization*
 		public Group getGroup_1() { return cGroup_1; }
@@ -4698,7 +4597,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedImport_compPackageImportParserRuleCall_1_1_5_0 = (RuleCall)cOwnedImport_compAssignment_1_1_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
-		//// TODO: Update to use DefinitionBodyItem?
 		//fragment ConnectionBody returns SysML::Type:
 		//	';'
 		//	| '{' (documentation_comp+=OwnedDocumentation
@@ -5194,7 +5092,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedImport_compPackageImportParserRuleCall_1_1_4_0 = (RuleCall)cOwnedImport_compAssignment_1_1_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
-		//// TODO: Update to use DefinitionBodyItem?
 		//fragment InterfaceDefBody returns SysML::Type:
 		//	';'
 		//	| '{' (documentation_comp+=OwnedDocumentation
@@ -6695,48 +6592,32 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ParameterSpecializationPart");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
-		private final RuleCall cSubsetsParserRuleCall_0_0_0 = (RuleCall)cAlternatives_0_0.eContents().get(0);
-		private final RuleCall cRedefinesParserRuleCall_0_0_1 = (RuleCall)cAlternatives_0_0.eContents().get(1);
-		private final Group cGroup_0_0_2 = (Group)cAlternatives_0_0.eContents().get(2);
-		private final RuleCall cTypedByParserRuleCall_0_0_2_0 = (RuleCall)cGroup_0_0_2.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_0_0_2_1 = (RuleCall)cGroup_0_0_2.eContents().get(1);
-		private final RuleCall cParameterSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cParameterSpecializationParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final RuleCall cMultiplicityPartParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cParameterSpecializationParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final RuleCall cMultiplicityPartParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final RuleCall cParameterSpecializationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//fragment ParameterSpecializationPart returns SysML::Feature:
-		//	(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization*
+		//	-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization*
 		//	| MultiplicityPart ParameterSpecialization*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization* | MultiplicityPart ParameterSpecialization*
+		//-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization* | MultiplicityPart ParameterSpecialization*
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization*
+		//-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization*
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//(Subsets | Redefines | TypedBy MultiplicityPart?)
-		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
-		
-		//Subsets
-		public RuleCall getSubsetsParserRuleCall_0_0_0() { return cSubsetsParserRuleCall_0_0_0; }
-		
-		//Redefines
-		public RuleCall getRedefinesParserRuleCall_0_0_1() { return cRedefinesParserRuleCall_0_0_1; }
-		
-		//TypedBy MultiplicityPart?
-		public Group getGroup_0_0_2() { return cGroup_0_0_2; }
-		
-		//TypedBy
-		public RuleCall getTypedByParserRuleCall_0_0_2_0() { return cTypedByParserRuleCall_0_0_2_0; }
+		//-> ParameterSpecialization+
+		public RuleCall getParameterSpecializationParserRuleCall_0_0() { return cParameterSpecializationParserRuleCall_0_0; }
 		
 		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_0_0_2_1() { return cMultiplicityPartParserRuleCall_0_0_2_1; }
+		public RuleCall getMultiplicityPartParserRuleCall_0_1() { return cMultiplicityPartParserRuleCall_0_1; }
 		
 		//ParameterSpecialization*
-		public RuleCall getParameterSpecializationParserRuleCall_0_1() { return cParameterSpecializationParserRuleCall_0_1; }
+		public RuleCall getParameterSpecializationParserRuleCall_0_2() { return cParameterSpecializationParserRuleCall_0_2; }
 		
 		//MultiplicityPart ParameterSpecialization*
 		public Group getGroup_1() { return cGroup_1; }
@@ -6920,8 +6801,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
 		private final Assignment cOwnedRelationship_compAssignment_0_0_0 = (Assignment)cGroup_0_0.eContents().get(0);
 		private final RuleCall cOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0_0 = (RuleCall)cOwnedRelationship_compAssignment_0_0_0.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_0_0_1 = (RuleCall)cGroup_0_0.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_0_0_2 = (RuleCall)cGroup_0_0.eContents().get(2);
+		private final RuleCall cFeatureSpecializationPartParserRuleCall_0_0_1 = (RuleCall)cGroup_0_0.eContents().get(1);
 		private final Group cGroup_0_1 = (Group)cAlternatives_0.eContents().get(1);
 		private final RuleCall cActionUsageKeywordParserRuleCall_0_1_0 = (RuleCall)cGroup_0_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_0_1_1 = (RuleCall)cGroup_0_1.eContents().get(1);
@@ -6929,21 +6809,19 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cValuePartParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
 		private final RuleCall cActionUsageParameterListParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
-		//// TODO: Update specialization part?
 		//fragment PerformActionUsageDeclaration returns SysML::ActionUsage:
-		//	(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//	(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		//	| ActionUsageKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* | ActionUsageKeyword
-		//UsageDeclaration?) (ValuePart | ActionUsageParameterList)?
+		//(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | ActionUsageKeyword UsageDeclaration?) (ValuePart |
+		//ActionUsageParameterList)?
 		public Group getGroup() { return cGroup; }
 		
-		//(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* | ActionUsageKeyword
-		//UsageDeclaration?)
+		//(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | ActionUsageKeyword UsageDeclaration?)
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
-		//ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		public Group getGroup_0_0() { return cGroup_0_0; }
 		
 		//ownedRelationship_comp+=OwnedSubsetting
@@ -6952,11 +6830,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedSubsetting
 		public RuleCall getOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0_0() { return cOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0_0; }
 		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_0_0_1() { return cMultiplicityPartParserRuleCall_0_0_1; }
-		
-		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_0_0_2() { return cFeatureSpecializationParserRuleCall_0_0_2; }
+		//FeatureSpecializationPart?
+		public RuleCall getFeatureSpecializationPartParserRuleCall_0_0_1() { return cFeatureSpecializationPartParserRuleCall_0_0_1; }
 		
 		//ActionUsageKeyword UsageDeclaration?
 		public Group getGroup_0_1() { return cGroup_0_1; }
@@ -8371,8 +8246,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cOwnedRelationship_compAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0 = (RuleCall)cOwnedRelationship_compAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cFeatureSpecializationPartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final RuleCall cStateUsageKeywordParserRuleCall_2_1_0 = (RuleCall)cGroup_2_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
@@ -8381,14 +8255,13 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cActionUsageParameterListParserRuleCall_3_1 = (RuleCall)cAlternatives_3.eContents().get(1);
 		private final RuleCall cStateBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
-		//// TODO: Update specialization part?
 		//ExhibitStateUsage SysML::ExhibitStateUsage:
-		//	UsagePrefix? 'exhibit' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//	UsagePrefix? 'exhibit' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		//	| StateUsageKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)? StateBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UsagePrefix? 'exhibit' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* |
-		//StateUsageKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)? StateBody
+		//UsagePrefix? 'exhibit' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | StateUsageKeyword
+		//UsageDeclaration?) (ValuePart | ActionUsageParameterList)? StateBody
 		public Group getGroup() { return cGroup; }
 		
 		//UsagePrefix?
@@ -8397,10 +8270,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'exhibit'
 		public Keyword getExhibitKeyword_1() { return cExhibitKeyword_1; }
 		
-		//(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* | StateUsageKeyword UsageDeclaration?)
+		//(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | StateUsageKeyword UsageDeclaration?)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//ownedRelationship_comp+=OwnedSubsetting
@@ -8409,11 +8282,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedSubsetting
 		public RuleCall getOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0() { return cOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0; }
 		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_2_0_1() { return cMultiplicityPartParserRuleCall_2_0_1; }
-		
-		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_2_0_2() { return cFeatureSpecializationParserRuleCall_2_0_2; }
+		//FeatureSpecializationPart?
+		public RuleCall getFeatureSpecializationPartParserRuleCall_2_0_1() { return cFeatureSpecializationPartParserRuleCall_2_0_1; }
 		
 		//StateUsageKeyword UsageDeclaration?
 		public Group getGroup_2_1() { return cGroup_2_1; }
@@ -9521,8 +9391,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cOwnedRelationship_compAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0 = (RuleCall)cOwnedRelationship_compAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cFeatureSpecializationPartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final RuleCall cConstraintUsageKeywordParserRuleCall_2_1_0 = (RuleCall)cGroup_2_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
@@ -9530,14 +9399,13 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cInvariantPartParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		private final RuleCall cCalculationBodyParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
-		//// TODO: Update specification part?
 		//AssertConstraintUsage SysML::AssertConstraintUsage:
-		//	UsagePrefix? 'assert' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//	UsagePrefix? 'assert' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		//	| ConstraintUsageKeyword UsageDeclaration?) CalculationParameterPart InvariantPart CalculationBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UsagePrefix? 'assert' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* |
-		//ConstraintUsageKeyword UsageDeclaration?) CalculationParameterPart InvariantPart CalculationBody
+		//UsagePrefix? 'assert' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | ConstraintUsageKeyword
+		//UsageDeclaration?) CalculationParameterPart InvariantPart CalculationBody
 		public Group getGroup() { return cGroup; }
 		
 		//UsagePrefix?
@@ -9546,11 +9414,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'assert'
 		public Keyword getAssertKeyword_1() { return cAssertKeyword_1; }
 		
-		//(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* | ConstraintUsageKeyword
-		//UsageDeclaration?)
+		//(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | ConstraintUsageKeyword UsageDeclaration?)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//ownedRelationship_comp+=OwnedSubsetting
@@ -9559,11 +9426,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedSubsetting
 		public RuleCall getOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0() { return cOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0; }
 		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_2_0_1() { return cMultiplicityPartParserRuleCall_2_0_1; }
-		
-		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_2_0_2() { return cFeatureSpecializationParserRuleCall_2_0_2; }
+		//FeatureSpecializationPart?
+		public RuleCall getFeatureSpecializationPartParserRuleCall_2_0_1() { return cFeatureSpecializationPartParserRuleCall_2_0_1; }
 		
 		//ConstraintUsageKeyword UsageDeclaration?
 		public Group getGroup_2_1() { return cGroup_2_1; }
@@ -10001,8 +9865,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cOwnedRelationship_compAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
 		private final RuleCall cOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0 = (RuleCall)cOwnedRelationship_compAssignment_2_0_0.eContents().get(0);
-		private final RuleCall cMultiplicityPartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
-		private final RuleCall cFeatureSpecializationParserRuleCall_2_0_2 = (RuleCall)cGroup_2_0.eContents().get(2);
+		private final RuleCall cFeatureSpecializationPartParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final RuleCall cRequirementKeywordParserRuleCall_2_1_0 = (RuleCall)cGroup_2_1.eContents().get(0);
 		private final RuleCall cUsageDeclarationParserRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
@@ -10017,16 +9880,15 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cInvariantPartParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		private final RuleCall cRequirementBodyParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
 		
-		//// TODO: Update specialization part?
 		//SatisfyRequirementUsage SysML::SatisfyRequirementUsage:
-		//	UsagePrefix? 'satisfy' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//	UsagePrefix? 'satisfy' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		//	| RequirementKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)? EmptyReturnParameterPart ('by'
 		//	ownedFeatureMembership_comp+=SatisfactionConnectorMember)?
 		//	InvariantPart RequirementBody;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UsagePrefix? 'satisfy' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* |
-		//RequirementKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)? EmptyReturnParameterPart ('by'
+		//UsagePrefix? 'satisfy' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | RequirementKeyword
+		//UsageDeclaration?) (ValuePart | ActionUsageParameterList)? EmptyReturnParameterPart ('by'
 		//ownedFeatureMembership_comp+=SatisfactionConnectorMember)? InvariantPart RequirementBody
 		public Group getGroup() { return cGroup; }
 		
@@ -10036,11 +9898,10 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'satisfy'
 		public Keyword getSatisfyKeyword_1() { return cSatisfyKeyword_1; }
 		
-		//(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization* | RequirementKeyword
-		//UsageDeclaration?)
+		//(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart? | RequirementKeyword UsageDeclaration?)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+		//ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//ownedRelationship_comp+=OwnedSubsetting
@@ -10049,11 +9910,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//OwnedSubsetting
 		public RuleCall getOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0() { return cOwnedRelationship_compOwnedSubsettingParserRuleCall_2_0_0_0; }
 		
-		//MultiplicityPart?
-		public RuleCall getMultiplicityPartParserRuleCall_2_0_1() { return cMultiplicityPartParserRuleCall_2_0_1; }
-		
-		//FeatureSpecialization*
-		public RuleCall getFeatureSpecializationParserRuleCall_2_0_2() { return cFeatureSpecializationParserRuleCall_2_0_2; }
+		//FeatureSpecializationPart?
+		public RuleCall getFeatureSpecializationPartParserRuleCall_2_0_1() { return cFeatureSpecializationPartParserRuleCall_2_0_1; }
 		
 		//RequirementKeyword UsageDeclaration?
 		public Group getGroup_2_1() { return cGroup_2_1; }
@@ -15093,8 +14951,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	///* FEATURES */ /* Features */ fragment FeatureDeclaration returns SysML::Feature:
 	//	Identification FeatureSpecializationPart?
-	//	| (Subsettings | Redefinitions) FeatureSpecializationPart?
-	//	| Typings MultiplicityPart? FeatureSpecialization*;
+	//	| FeatureSpecializationPart;
 	public FeatureDeclarationElements getFeatureDeclarationAccess() {
 		return pFeatureDeclaration;
 	}
@@ -15104,7 +14961,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment FeatureSpecializationPart returns SysML::Feature:
-	//	(Subsettings | Redefinitions | Typings MultiplicityPart?) FeatureSpecialization*
+	//	-> FeatureSpecialization+ MultiplicityPart? FeatureSpecialization*
 	//	| MultiplicityPart FeatureSpecialization*;
 	public FeatureSpecializationPartElements getFeatureSpecializationPartAccess() {
 		return pFeatureSpecializationPart;
@@ -16271,8 +16128,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//fragment PortUsageDeclaration returns SysML::Usage:
 	//	Identification PortSpecializationPart?
-	//	| (Subsettings | Redefinitions) PortSpecializationPart?
-	//	| PortTypings MultiplicityPart? PortSpecialization*;
+	//	| PortSpecializationPart;
 	public PortUsageDeclarationElements getPortUsageDeclarationAccess() {
 		return pPortUsageDeclaration;
 	}
@@ -16282,7 +16138,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment PortSpecializationPart returns SysML::Usage:
-	//	(Subsettings | Redefinitions | PortTypings MultiplicityPart?) PortSpecialization*
+	//	-> PortSpecialization+ MultiplicityPart? PortSpecialization*
 	//	| MultiplicityPart PortSpecialization*;
 	public PortSpecializationPartElements getPortSpecializationPartAccess() {
 		return pPortSpecializationPart;
@@ -16363,7 +16219,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConnectionDefinitionAccess().getRule();
 	}
 	
-	//// TODO: Update to use DefinitionBodyItem?
 	//fragment ConnectionBody returns SysML::Type:
 	//	';'
 	//	| '{' (documentation_comp+=OwnedDocumentation
@@ -16549,7 +16404,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getInterfaceDefDeclarationAccess().getRule();
 	}
 	
-	//// TODO: Update to use DefinitionBodyItem?
 	//fragment InterfaceDefBody returns SysML::Type:
 	//	';'
 	//	| '{' (documentation_comp+=OwnedDocumentation
@@ -17043,7 +16897,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ParameterSpecializationPart returns SysML::Feature:
-	//	(Subsets | Redefines | TypedBy MultiplicityPart?) ParameterSpecialization*
+	//	-> ParameterSpecialization+ MultiplicityPart? ParameterSpecialization*
 	//	| MultiplicityPart ParameterSpecialization*;
 	public ParameterSpecializationPartElements getParameterSpecializationPartAccess() {
 		return pParameterSpecializationPart;
@@ -17113,9 +16967,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getPerformActionUsageAccess().getRule();
 	}
 	
-	//// TODO: Update specialization part?
 	//fragment PerformActionUsageDeclaration returns SysML::ActionUsage:
-	//	(ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+	//	(ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 	//	| ActionUsageKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)?;
 	public PerformActionUsageDeclarationElements getPerformActionUsageDeclarationAccess() {
 		return pPerformActionUsageDeclaration;
@@ -17586,9 +17439,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getStateRefUsageAccess().getRule();
 	}
 	
-	//// TODO: Update specialization part?
 	//ExhibitStateUsage SysML::ExhibitStateUsage:
-	//	UsagePrefix? 'exhibit' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+	//	UsagePrefix? 'exhibit' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 	//	| StateUsageKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)? StateBody;
 	public ExhibitStateUsageElements getExhibitStateUsageAccess() {
 		return pExhibitStateUsage;
@@ -18036,9 +17888,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getConstraintRefUsageAccess().getRule();
 	}
 	
-	//// TODO: Update specification part?
 	//AssertConstraintUsage SysML::AssertConstraintUsage:
-	//	UsagePrefix? 'assert' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+	//	UsagePrefix? 'assert' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 	//	| ConstraintUsageKeyword UsageDeclaration?) CalculationParameterPart InvariantPart CalculationBody;
 	public AssertConstraintUsageElements getAssertConstraintUsageAccess() {
 		return pAssertConstraintUsage;
@@ -18224,9 +18075,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getRequirementRefUsageAccess().getRule();
 	}
 	
-	//// TODO: Update specialization part?
 	//SatisfyRequirementUsage SysML::SatisfyRequirementUsage:
-	//	UsagePrefix? 'satisfy' (ownedRelationship_comp+=OwnedSubsetting MultiplicityPart? FeatureSpecialization*
+	//	UsagePrefix? 'satisfy' (ownedRelationship_comp+=OwnedSubsetting FeatureSpecializationPart?
 	//	| RequirementKeyword UsageDeclaration?) (ValuePart | ActionUsageParameterList)? EmptyReturnParameterPart ('by'
 	//	ownedFeatureMembership_comp+=SatisfactionConnectorMember)?
 	//	InvariantPart RequirementBody;

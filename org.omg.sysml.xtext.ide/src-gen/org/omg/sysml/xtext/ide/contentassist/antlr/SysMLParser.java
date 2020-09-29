@@ -50,9 +50,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureElementAccess().getAlternatives(), "rule__FeatureElement__Alternatives");
 			builder.put(grammarAccess.getSpecializesKeywordAccess().getAlternatives(), "rule__SpecializesKeyword__Alternatives");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives(), "rule__FeatureDeclaration__Alternatives");
-			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives_1_0(), "rule__FeatureDeclaration__Alternatives_1_0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getAlternatives(), "rule__FeatureSpecializationPart__Alternatives");
-			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getAlternatives_0_0(), "rule__FeatureSpecializationPart__Alternatives_0_0");
 			builder.put(grammarAccess.getFeatureSpecializationAccess().getAlternatives(), "rule__FeatureSpecialization__Alternatives");
 			builder.put(grammarAccess.getDefinedByKeywordAccess().getAlternatives(), "rule__DefinedByKeyword__Alternatives");
 			builder.put(grammarAccess.getSubsetsKeywordAccess().getAlternatives(), "rule__SubsetsKeyword__Alternatives");
@@ -81,9 +79,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPartRefUsageAccess().getAlternatives_1(), "rule__PartRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getPortDefKeywordAccess().getAlternatives(), "rule__PortDefKeyword__Alternatives");
 			builder.put(grammarAccess.getPortUsageDeclarationAccess().getAlternatives(), "rule__PortUsageDeclaration__Alternatives");
-			builder.put(grammarAccess.getPortUsageDeclarationAccess().getAlternatives_1_0(), "rule__PortUsageDeclaration__Alternatives_1_0");
 			builder.put(grammarAccess.getPortSpecializationPartAccess().getAlternatives(), "rule__PortSpecializationPart__Alternatives");
-			builder.put(grammarAccess.getPortSpecializationPartAccess().getAlternatives_0_0(), "rule__PortSpecializationPart__Alternatives_0_0");
 			builder.put(grammarAccess.getPortSpecializationAccess().getAlternatives(), "rule__PortSpecialization__Alternatives");
 			builder.put(grammarAccess.getPortTypingAccess().getAlternatives(), "rule__PortTyping__Alternatives");
 			builder.put(grammarAccess.getConnectionDefKeywordAccess().getAlternatives(), "rule__ConnectionDefKeyword__Alternatives");
@@ -108,7 +104,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getAlternatives_0_1(), "rule__Parameter__Alternatives_0_1");
 			builder.put(grammarAccess.getParameterDeclarationAccess().getAlternatives(), "rule__ParameterDeclaration__Alternatives");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getAlternatives(), "rule__ParameterSpecializationPart__Alternatives");
-			builder.put(grammarAccess.getParameterSpecializationPartAccess().getAlternatives_0_0(), "rule__ParameterSpecializationPart__Alternatives_0_0");
 			builder.put(grammarAccess.getParameterSpecializationAccess().getAlternatives(), "rule__ParameterSpecialization__Alternatives");
 			builder.put(grammarAccess.getActionRefUsageAccess().getAlternatives_1(), "rule__ActionRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getPerformActionUsageDeclarationAccess().getAlternatives_0(), "rule__PerformActionUsageDeclaration__Alternatives_0");
@@ -216,10 +211,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSuperclassingPartAccess().getGroup(), "rule__SuperclassingPart__Group__0");
 			builder.put(grammarAccess.getSuperclassingPartAccess().getGroup_2(), "rule__SuperclassingPart__Group_2__0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_0(), "rule__FeatureDeclaration__Group_0__0");
-			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_1(), "rule__FeatureDeclaration__Group_1__0");
-			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_2(), "rule__FeatureDeclaration__Group_2__0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_0(), "rule__FeatureSpecializationPart__Group_0__0");
-			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_0_0_2(), "rule__FeatureSpecializationPart__Group_0_0_2__0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_1(), "rule__FeatureSpecializationPart__Group_1__0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getGroup(), "rule__MultiplicityPart__Group__0");
 			builder.put(grammarAccess.getTypingsAccess().getGroup(), "rule__Typings__Group__0");
@@ -299,10 +291,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPortUsageAccess().getGroup(), "rule__PortUsage__Group__0");
 			builder.put(grammarAccess.getPortEndUsageAccess().getGroup(), "rule__PortEndUsage__Group__0");
 			builder.put(grammarAccess.getPortUsageDeclarationAccess().getGroup_0(), "rule__PortUsageDeclaration__Group_0__0");
-			builder.put(grammarAccess.getPortUsageDeclarationAccess().getGroup_1(), "rule__PortUsageDeclaration__Group_1__0");
-			builder.put(grammarAccess.getPortUsageDeclarationAccess().getGroup_2(), "rule__PortUsageDeclaration__Group_2__0");
 			builder.put(grammarAccess.getPortSpecializationPartAccess().getGroup_0(), "rule__PortSpecializationPart__Group_0__0");
-			builder.put(grammarAccess.getPortSpecializationPartAccess().getGroup_0_0_2(), "rule__PortSpecializationPart__Group_0_0_2__0");
 			builder.put(grammarAccess.getPortSpecializationPartAccess().getGroup_1(), "rule__PortSpecializationPart__Group_1__0");
 			builder.put(grammarAccess.getPortTypingsAccess().getGroup(), "rule__PortTypings__Group__0");
 			builder.put(grammarAccess.getPortTypingsAccess().getGroup_2(), "rule__PortTypings__Group_2__0");
@@ -373,7 +362,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParameterAccess().getGroup_13(), "rule__Parameter__Group_13__0");
 			builder.put(grammarAccess.getParameterDeclarationAccess().getGroup_0(), "rule__ParameterDeclaration__Group_0__0");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_0(), "rule__ParameterSpecializationPart__Group_0__0");
-			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_0_0_2(), "rule__ParameterSpecializationPart__Group_0_0_2__0");
 			builder.put(grammarAccess.getParameterSpecializationPartAccess().getGroup_1(), "rule__ParameterSpecializationPart__Group_1__0");
 			builder.put(grammarAccess.getActionUsageAccess().getGroup(), "rule__ActionUsage__Group__0");
 			builder.put(grammarAccess.getActionFlowUsageAccess().getGroup(), "rule__ActionFlowUsage__Group__0");

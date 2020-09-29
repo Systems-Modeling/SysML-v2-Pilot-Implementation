@@ -427,14 +427,13 @@ Feature returns SysML::Feature :
 fragment FeatureDeclaration returns SysML::Feature :
 	( isSufficient ?= 'all' )? 
 	( Identification ( FeatureSpecializationPart | FeatureConjugationPart )?
-	| ( Subsettings | Redefinitions ) FeatureSpecializationPart?
-	| Typings MultiplicityPart? FeatureSpecialization*
+	| FeatureSpecializationPart
 	| FeatureConjugationPart
 	)
 ;
 
 fragment FeatureSpecializationPart returns SysML::Feature :
-	  ( Subsettings | Redefinitions | Typings MultiplicityPart? ) FeatureSpecialization*
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
 	| MultiplicityPart FeatureSpecialization*
 ;
 
@@ -664,7 +663,7 @@ fragment ParameterDeclaration returns SysML::Feature :
 ;
 
 fragment ParameterSpecializationPart returns SysML::Feature :
-	  ( Subsets | Redefines | TypedBy MultiplicityPart? ) ParameterSpecialization*
+	  ( -> ParameterSpecialization )+ MultiplicityPart? ParameterSpecialization*
 	| MultiplicityPart ParameterSpecialization*
 ;
 

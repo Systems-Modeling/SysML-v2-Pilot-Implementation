@@ -85,7 +85,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 						
 			]
 			if (pack instanceof Type){
-				pack.inheritedMembership.forEach[m|
+				for (m : pack.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
 						if (mem.ownedMemberElement !== null) {
 							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
@@ -93,7 +93,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 						}
 					}
-				]
+				}
 			}
 		}
 		

@@ -206,6 +206,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
+		computeImplicitGeneralization();
 		return getAllTypes();
 	}
 	

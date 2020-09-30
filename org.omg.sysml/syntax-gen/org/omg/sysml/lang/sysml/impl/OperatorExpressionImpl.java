@@ -175,13 +175,17 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	
 	@Override
 	public List<FeatureTyping> basicGetOwnedTyping() {
+		String operator = getOperator();
+		if (operator != null) {
+			addImplicitGeneralType(
+					SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
+		}
 		return Collections.emptyList();
 	}
 
 	@Override
 	public void computeImplicitGeneralization() {
-		addImplicitGeneralType(
-				SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
+		getOwnedTyping();
 		super.computeImplicitGeneralization();
 	}
 	

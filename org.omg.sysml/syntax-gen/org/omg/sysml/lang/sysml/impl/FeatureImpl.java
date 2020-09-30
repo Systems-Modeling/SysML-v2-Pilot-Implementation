@@ -430,7 +430,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		List<Feature> redefinedFeatures = new ArrayList<>();
 		redefinitions.stream().
 			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
-			collect(Collectors.toList());
+			forEachOrdered(redefinedFeatures::add);
 		
 		if (implicitGeneralTypes.containsKey(SysMLPackage.eINSTANCE.getRedefinition())) {
 			implicitGeneralTypes.get(SysMLPackage.eINSTANCE.getRedefinition())

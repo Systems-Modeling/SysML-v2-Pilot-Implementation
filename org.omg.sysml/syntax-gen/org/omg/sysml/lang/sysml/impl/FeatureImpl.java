@@ -424,7 +424,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
-		addComputedRedefinitions();
+		addComputedRedefinitions(skip);
 		List<Redefinition> redefinitions = basicGetOwnedRedefinition();
 		
 		List<Feature> redefinedFeatures = new ArrayList<>();
@@ -451,11 +451,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
-	protected void addComputedRedefinitions() {
+	protected void addComputedRedefinitions(Element skip) {
 		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
 			implicitGeneralTypes.remove(SysMLPackage.eINSTANCE.getRedefinition());
-			addRedefinitions();
+			addRedefinitions(skip);
 			isComputeRedefinitions = false;
 		}
 	}
@@ -466,11 +466,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * owning Type. The determination of what are relevant Types and Features can be adjusted by
 	 * overriding getGeneralTypes and getRelevantFeatures.
 	 */
-	protected void addRedefinitions() {
+	protected void addRedefinitions(Element skip) {
 		Type type = getOwningType();
 		int i = getRelevantFeatures(type).indexOf(this);
 		if (i >= 0) {
-			for (Type general: getGeneralTypes(type)) {
+			for (Type general: getGeneralTypes(type, skip)) {
 				List<? extends Feature> features = getRelevantFeatures(general);
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
@@ -490,9 +490,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * features redefined by this feature. By default this is all general Types of the
 	 * given Type.
 	 */
-	protected List<Type> getGeneralTypes(Type type) {
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		List<Type> generalTypes = new ArrayList<>();
-		for (Type generalType: ((TypeImpl)type).getSupertypes()) {
+		for (Type generalType: ((TypeImpl)type).getSupertypes(skip)) {
 			if (!generalTypes.contains(generalType)) {
 				generalTypes.add(generalType);
 			}
@@ -838,7 +838,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	@Override
 	public void computeImplicitGeneralization() {
-		addComputedRedefinitions();
+		addComputedRedefinitions(null);
 		super.computeImplicitGeneralization();
 	}
 	

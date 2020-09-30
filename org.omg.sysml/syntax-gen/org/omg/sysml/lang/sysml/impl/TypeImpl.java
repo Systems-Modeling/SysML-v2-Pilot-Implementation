@@ -31,6 +31,7 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -798,9 +799,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	// Utility Methods
 	
 	public List<Type> getSupertypes() {
+		return getSupertypes(null);
+	}
+	
+	public List<Type> getSupertypes(Element skip) {
 		List<Type> ownedGeneralEnds = new ArrayList<>(); 
 		getOwnedGeneralization()
 			.stream()
+			.filter(gen -> gen != skip)
 			.map(Generalization::getGeneral)
 			.forEachOrdered(ownedGeneralEnds::add);
 		computeImplicitGeneralization();

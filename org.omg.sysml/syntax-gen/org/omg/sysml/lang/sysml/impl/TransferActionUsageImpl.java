@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransferActionUsage;
@@ -87,13 +88,13 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	@Override
 	public void computeImplicitGeneralization() {
-		addComputedRedefinitions();
+		addComputedRedefinitions(null);
 	}
 	
 	@Override
-	public void addComputedRedefinitions() {
+	public void addComputedRedefinitions(Element skip) {
 		addImplicitGeneralType();
-		super.addComputedRedefinitions();
+		super.addComputedRedefinitions(skip);
 	}
 	
 	@Override

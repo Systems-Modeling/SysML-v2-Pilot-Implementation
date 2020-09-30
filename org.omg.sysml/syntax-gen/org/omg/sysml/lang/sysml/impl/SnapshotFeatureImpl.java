@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -62,7 +63,8 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	}
 
 	@Override
-	protected List<Type> getGeneralTypes(Type type) {
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		// TODO check this return
 		return Collections.singletonList(null);
 	}
 	

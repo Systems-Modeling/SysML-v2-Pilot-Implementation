@@ -5,6 +5,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -36,13 +37,13 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 
 	@Override
 	public void computeImplicitGeneralization() {
-		addComputedRedefinitions();
+		addComputedRedefinitions(null);
 	}
 	
 	@Override
-	public void addComputedRedefinitions() {
+	public void addComputedRedefinitions(Element skip) {
 		addImplicitGeneralType();
-		super.addComputedRedefinitions();
+		super.addComputedRedefinitions(skip);
 	}
 	
 	@Override

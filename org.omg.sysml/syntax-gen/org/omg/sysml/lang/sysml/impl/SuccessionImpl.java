@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
@@ -151,11 +152,11 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	}
 	
 	@Override
-	protected List<Type> getGeneralTypes(Type type) {
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		Type owningType = getOwningType();
 		return owningType instanceof TransitionUsage && type == owningType?
 				Collections.singletonList(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
-				super.getGeneralTypes(type);
+				super.getGeneralTypes(type, skip);
 	}
 	
 	/**

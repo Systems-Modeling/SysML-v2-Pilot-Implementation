@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
@@ -44,13 +45,13 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	
 	@Override
 	public void computeImplicitGeneralization() {
-		addComputedRedefinitions();
+		addComputedRedefinitions(null);
 	}
 	
 	@Override
-	public void addComputedRedefinitions() {
+	public void addComputedRedefinitions(Element skip) {
 		addImplicitGeneralType();
-		super.addComputedRedefinitions();
+		super.addComputedRedefinitions(skip);
 	}
 	
 	@Override

@@ -42,9 +42,9 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	}
 
 	@Override
-	protected void addComputedRedefinitions() {
+	protected void addComputedRedefinitions(Element skip) {
 		if (!implicitGeneralTypes.containsKey(SysMLPackage.eINSTANCE.getRedefinition())) {
-			addRedefinitions();
+			addRedefinitions(skip);
 		}
 	}
 

@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
@@ -50,7 +51,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	@Override
 	public void computeImplicitGeneralization() {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
-		addComputedRedefinitions();
+		addComputedRedefinitions(null);
 	}
 
 	protected void addItemFlowEndSubsetting() {
@@ -75,8 +76,8 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 
 	@Override
-	protected List<Type> getGeneralTypes(Type type) {
-		return type instanceof ItemFlow ? new ArrayList<>(((ItemFlow) type).getType()) : super.getGeneralTypes(type);
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		return type instanceof ItemFlow ? new ArrayList<>(((ItemFlow) type).getType()) : super.getGeneralTypes(type, skip);
 	}
 
 	@Override

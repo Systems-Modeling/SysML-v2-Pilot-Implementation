@@ -220,15 +220,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 					CALCULATION_SUBSETTING_BASE_DEFAULT;
 	}
 	
-	/**
-	 * Exclude CalculationUsages from being used as result expressions.
-	 * @return
-	 */
-	@Override
-	public boolean isExpression() {
-		return false;
-	}
-	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}

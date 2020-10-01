@@ -4,6 +4,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -22,11 +23,14 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Subsetting;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -251,13 +255,40 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 
 	// Additional redefinitions and subsets
+	
+	@Override
+	public void computeImplicitGeneralization() {
+		if (isAssumptionConstraint()) {
+			addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+		} else if (isRequirementConstraint()){
+			addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+		}
+		super.computeImplicitGeneralization();
+	}
+	
+	protected void addSubsetting(String subsettedFeatureName) {
+		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
+		if (feature != null) {
+			List<Subsetting> subsettings = basicGetOwnedSubsetting().stream().
+					filter(s->!(s instanceof Redefinition)).
+					collect(Collectors.toList());
+			if (subsettings.stream().noneMatch(s->s.getSubsettedFeature() == feature)) {
+				Subsetting subsetting = subsettings.stream().
+						filter(s->s.getSubsettedFeature() == null).
+						findFirst().orElse(null);
+				if (subsetting == null) {
+					subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+					subsetting.setSubsettingFeature(this);
+					getOwnedRelationship_comp().add(subsetting);
+				}
+				subsetting.setSubsettedFeature(feature);
+			}
+		}
+	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return 
-			isAssumptionConstraint()? CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE:
-			isRequirementConstraint()? CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE:
-			CONSTRAINT_SUBSETTING_BASE_DEFAULT;
+		return CONSTRAINT_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	public boolean isAssumptionConstraint() {
@@ -310,15 +341,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * Exclude ConstraintUsages from being used as result expressions.
-	 * @return
-	 */
-	@Override
-	public boolean isExpression() {
-		return false;
-	}
-	
 	public BindingConnector getResultConnector() {
 		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
 	}

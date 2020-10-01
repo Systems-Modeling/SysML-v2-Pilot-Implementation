@@ -1,0 +1,32 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package test{
+	import OuterPackage::*;
+	feature A{
+		feature a2{}
+	}
+	feature B redefines A {
+		//* XPECT errors --- 
+		   "Couldn't resolve reference to Feature 'a1'." at "a1"
+		   "Features must have at least one type" at "feature b redefines a1{}"
+		--- */
+		feature b redefines a1{}
+	}
+}

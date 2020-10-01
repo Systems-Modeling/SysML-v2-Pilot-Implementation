@@ -19,7 +19,11 @@ END_SETUP
 
 package test{
 	class C{
-		// XPECT errors ---> "no viable alternative at input '.'" at "."
+		//* XPECT errors ---
+			"no viable alternative at input '.'" at "."
+			"no viable alternative at input 'b'" at "b"
+		---
+		*/
 		feature c : OuterPackage::B.b;
 	}
 }

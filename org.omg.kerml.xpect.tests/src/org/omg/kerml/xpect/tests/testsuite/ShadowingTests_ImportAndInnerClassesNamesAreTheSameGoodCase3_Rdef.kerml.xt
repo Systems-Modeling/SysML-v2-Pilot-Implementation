@@ -1,0 +1,30 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library/Base.kerml"}
+		File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library/Base.kerml"}
+				File {from ="/src/DependencyOuterPackage_Feature_Rdef.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+//XPECT noErrors ---> ""
+package test{
+	feature A{
+		feature a2{}
+	}
+	feature inner{
+		import OuterPackage::*;
+		feature B redefines A {
+			feature b redefines a2{}
+		}
+	}
+}

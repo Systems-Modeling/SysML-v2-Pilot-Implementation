@@ -4,7 +4,7 @@ package '12a-Dependency' {
 	package 'Service Layer';
 	package 'Data Layer';
 	
-	dependency Usage from 'Application Layer' to 'Service Layer';
+	dependency Use from 'Application Layer' to 'Service Layer';
 	dependency from 'Service Layer' to 'Data Layer';
 	
 	attribute x;

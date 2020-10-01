@@ -23,7 +23,11 @@ package test{
 		feature a: A;
 	}
 	class B{
-		// XPECT errors ---> "no viable alternative at input '..'" at ".."
+		//* XPECT errors ---
+			"no viable alternative at input '..'" at ".."
+			"no viable alternative at input 'a'" at "a"
+		---
+		*/
 		feature b: test::A..a;
 	}
 }

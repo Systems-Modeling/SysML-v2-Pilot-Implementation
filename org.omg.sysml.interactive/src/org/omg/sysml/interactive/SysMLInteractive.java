@@ -169,23 +169,14 @@ public class SysMLInteractive extends SysMLUtil {
 	public void parse(String input) throws IOException {
 		XtextResource resource = this.getResource();
 		if (resource != null) {
-			// Surround input with braces so that it is parsed as an anonymous package.
-			resource.reparse("{\n" + input + "}");
+			resource.reparse(input);
 		}
 	}
 	
 	public List<Issue> validate() {
 		XtextResource resource = this.getResource();
-		if (resource == null) {
-			return Collections.emptyList();
-		} else {
-			List<Issue> issues = validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
-			for (Issue issue: issues) {
-				// Adjust line numbers to account for the initial brace added for parsing.
-				((Issue.IssueImpl)issue).setLineNumber(issue.getLineNumber() - 1);
-			}
-			return issues;
-		}
+		return resource == null? Collections.emptyList():
+			validator.validate(resource, CheckMode.ALL, CancelIndicator.NullImpl);
 	}
 	
 	public SysMLInteractiveResult eval(String input) {

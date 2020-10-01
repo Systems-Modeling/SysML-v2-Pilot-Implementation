@@ -10,7 +10,7 @@ package 'Signaling Example' {
 	action display;
 		
 	action takePicture : TakePicture {
-		accept trigger (scene : Scene);
+		action trigger accept scene : Scene;
 		
 		then action focus : Focus (
 			in scene = trigger::scene, 

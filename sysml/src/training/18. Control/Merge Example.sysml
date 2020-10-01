@@ -14,7 +14,7 @@ package 'Merge Example' {
 		
 		then merge continue;
 			
-		then accept trigger (scene : Scene);
+		then action trigger accept scene : Scene;
 		
 		then action focus : Focus (
 			in scene = trigger::scene, 

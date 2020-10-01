@@ -13011,16 +13011,16 @@ ruleAcceptNodeDeclaration[EObject in_current]  returns [EObject current=in_curre
 				}
 			)
 		)
-		otherlv_1='accept'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getAcceptNodeDeclarationAccess().getAcceptKeyword_1());
-		}
 		(
+			otherlv_1='action'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getAcceptNodeDeclarationAccess().getActionKeyword_1_0());
+			}
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getAcceptNodeDeclarationRule());
 				}
-				newCompositeNode(grammarAccess.getAcceptNodeDeclarationAccess().getUsageDeclarationParserRuleCall_2());
+				newCompositeNode(grammarAccess.getAcceptNodeDeclarationAccess().getUsageDeclarationParserRuleCall_1_1());
 			}
 			this_UsageDeclaration_2=ruleUsageDeclaration[$current]
 			{
@@ -13028,14 +13028,14 @@ ruleAcceptNodeDeclaration[EObject in_current]  returns [EObject current=in_curre
 				afterParserOrEnumRuleCall();
 			}
 		)?
-		otherlv_3='('
+		otherlv_3='accept'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getAcceptNodeDeclarationAccess().getLeftParenthesisKeyword_3());
+			newLeafNode(otherlv_3, grammarAccess.getAcceptNodeDeclarationAccess().getAcceptKeyword_2());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAcceptNodeDeclarationAccess().getOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getAcceptNodeDeclarationAccess().getOwnedFeatureMembership_compItemFeatureMemberParserRuleCall_3_0());
 				}
 				lv_ownedFeatureMembership_comp_4_0=ruleItemFeatureMember
 				{
@@ -13051,10 +13051,6 @@ ruleAcceptNodeDeclaration[EObject in_current]  returns [EObject current=in_curre
 				}
 			)
 		)
-		otherlv_5=')'
-		{
-			newLeafNode(otherlv_5, grammarAccess.getAcceptNodeDeclarationAccess().getRightParenthesisKeyword_5());
-		}
 	)
 ;
 
@@ -13160,27 +13156,27 @@ ruleSendNodeDeclaration[EObject in_current]  returns [EObject current=in_current
 				}
 			)
 		)
-		otherlv_2='send'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getSendNodeDeclarationAccess().getSendKeyword_2());
-		}
 		(
+			otherlv_2='action'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getSendNodeDeclarationAccess().getActionKeyword_2_0());
+			}
 			{
 				if ($current==null) {
 					$current = createModelElement(grammarAccess.getSendNodeDeclarationRule());
 				}
-				newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getUsageDeclarationParserRuleCall_3_0());
+				newCompositeNode(grammarAccess.getSendNodeDeclarationAccess().getUsageDeclarationParserRuleCall_2_1());
 			}
 			this_UsageDeclaration_3=ruleUsageDeclaration[$current]
 			{
 				$current = $this_UsageDeclaration_3.current;
 				afterParserOrEnumRuleCall();
 			}
-			otherlv_4='of'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getSendNodeDeclarationAccess().getOfKeyword_3_1());
-			}
 		)?
+		otherlv_4='send'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getSendNodeDeclarationAccess().getSendKeyword_3());
+		}
 		(
 			(
 				{

@@ -342,11 +342,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(Type type) {
-//		(type as ElementImpl).transform()
-		super._isLeaf(type)
-	}
-	
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
 		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 

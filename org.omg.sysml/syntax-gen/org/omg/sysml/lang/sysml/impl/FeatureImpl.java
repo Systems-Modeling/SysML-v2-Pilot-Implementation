@@ -206,12 +206,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		computeImplicitGeneralization();
 		return getAllTypes();
 	}
 	
 	public EList<Type> getAllTypes() {
 		if (types == null) {
+			computeImplicitGeneralization();
 			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 			getTypes(types, new HashSet<Feature>());
 			removeRedundantTypes(types);
@@ -895,17 +895,25 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public Optional<Feature> getFirstSubsettedFeature() {
-		return getFirstSubsetting().map(Subsetting::getSubsettedFeature);
+		computeImplicitGeneralization();
+		Optional<Feature> firstFeature = getFirstSubsetting().map(Subsetting::getSubsettedFeature);
+		return firstFeature.isPresent() 
+				? firstFeature
+				: getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).stream().filter(Feature.class::isInstance).map(Feature.class::cast).findFirst();
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).
 				stream().
 				map(Feature.class::cast);
+		Stream<Feature> implicitRedefinitions = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).
+				stream().
+				map(Feature.class::cast);
+		
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().
 				stream().
 				map(Subsetting::getSubsettedFeature);
-		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures).
+		return Stream.concat(ownedSubsettedFeatures, Stream.concat(implicitSubsettedFeatures, implicitRedefinitions)).
 				collect(Collectors.toList());
 	}
 	

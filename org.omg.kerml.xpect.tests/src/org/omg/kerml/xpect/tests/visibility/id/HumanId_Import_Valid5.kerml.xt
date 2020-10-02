@@ -1,0 +1,51 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+//XPECT noErrors ---> ""
+package Test {
+
+	package Test0 {
+		import Test2::VP_Id::*;
+		//XPECT linkedName at VVP_Id::VVVP_Id--> Test.Test2.VP.VVP.VVVP
+		class A specializes VVP_Id::VVVP_Id;
+		//XPECT linkedName at VVP::VVVP_Id--> Test.Test2.VP.VVP.VVVP
+		class B specializes VVP::VVVP_Id;
+		//XPECT linkedName at VVP_Id::VVVP--> Test.Test2.VP.VVP.VVVP
+		class C specializes VVP_Id::VVVP;
+		//XPECT linkedName at VVP_Id::VVVP_Id::VVVVP_Id_alias--> Test.Test2.VP.VVP.VVVP.VVVVP
+		class D specializes VVP_Id::VVVP_Id::VVVVP_Id_alias;
+		
+	}
+	package Test1 {
+		import Test2::VP_Id::*;
+		//XPECT linkedName at VVP_Id --> Test.Test2.VP.VVP
+		class A specializes VVP_Id;
+	}
+	
+	package Test2 {
+		public class id 'VP_Id' VP {	
+			public class id 'VVP_Id' VVP {
+				public class id 'VVVP_Id' VVVP{
+					public class id 'VVVVP_Id' VVVVP;
+					alias VVVVP_Id as VVVVP_Id_alias;
+				}
+			}
+		}
+		
+	}
+	
+}
+
+	

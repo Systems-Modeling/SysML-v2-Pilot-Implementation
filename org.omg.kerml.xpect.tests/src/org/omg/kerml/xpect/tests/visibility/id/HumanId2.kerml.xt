@@ -1,0 +1,23 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Test {
+	 //id are the same
+	 //XPECT warnings --> "Duplicate owned member name" at "two"
+	 class id 'one' two;
+	 //XPECT warnings --> "Duplicate owned member name" at "three"
+	 class id 'one' three;
+}
+

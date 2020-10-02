@@ -15,15 +15,19 @@ END_SETUP
 
 //XPECT noErrors ---> ""
 package test{
-	class A {}
+	class id 'A_Id' A {}
 	alias A as A_alias;
-// besides "A_alias", we can reference...
-//* XPECT scope at A_alias ---
-	    A, A_alias, a, test.A, test.A_alias, test.a,
-
---- */
+	alias A_Id as A_Id_alias;
+	
+	// besides "A_alias", we can reference...
+	//* XPECT scope at A_alias ---
+	    A, A_Id, A_alias, A_Id_alias, a, test.A, test.A_Id, test.A_alias, test.A_Id_alias, test.a, a_Id, test.a_Id, a_Id_1, test.a_Id_1
+	--- */
 	//XPECT linkedName at A_alias --> test.A
 	feature a: A_alias;
+	//XPECT linkedName at A_Id --> test.A
+	feature a_Id: A_Id;
+	//XPECT linkedName at A_Id_alias --> test.A
+	feature a_Id_1: A_Id_alias;
 	
 }
-//	    Base.Anything, Base.BehaviorOccurrence, Base.BinaryLink,	    Base.BinaryLink.linkage, Base.BinaryLink.participant, Base.BinaryLink.sourceEnd,	    Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd, Base.BinaryLink.targetParticipant,	    Base.EnumeratedValue, Base.FunctionEvaluation, Base.Link, Base.Link.participant,	    Base.LiteralEvaluation, Base.NullEvaluation, Base.Object, Base.Occurrence, Base.SelfLink,	    Base.SelfLink.myself, Base.SelfLink.self, Base.SelfLink.sourceParticipant,	    Base.SelfLink.targetParticipant, Base.Value, Base.behaviorOccurrences, Base.binaryLinks,	    Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,	    Base.selfLinks, Base.things, Base.values

@@ -153,15 +153,16 @@ class KerMLScope extends AbstractScope {
 	protected def boolean isSkip(Element e) {
 		targetqn !== null && e === skip
 	}
-	
 	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited, Set<Element> redefined) {
+		
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
 			}
 			for (m: pack.ownedMembership) {
 				if (!isSkip(m) && !scopeProvider.visited.contains(m)) {
-					var String elementName
+					var String elementName1
+					var String elementName2 //for HumanId
 					var Element memberElement
 					
 					// Note: Proxy resolution for memberElement may result in recursive name resolution
@@ -171,48 +172,31 @@ class KerMLScope extends AbstractScope {
 					scopeProvider.addVisited(m)
 					try {
 						memberElement = m.memberElement
-						elementName = 
-							if (memberElement !== null && memberElement.eIsProxy) null
-							else if (m.memberName !== null || (isFirstScope && pack == this.pack && memberElement === element)) m.memberName 
-							else (memberElement as ElementImpl)?.effectiveName
+						if (memberElement !== null && memberElement.eIsProxy){
+							elementName1 = null;
+							elementName2 = null;
+						} else{
+							elementName2 = memberElement.humanId;
+							if (m.memberName !== null || (isFirstScope && pack == this.pack && memberElement === element)) elementName1 = m.memberName 
+							else elementName1 = (memberElement as ElementImpl)?.effectiveName
+						}
+							
 					} finally {
 						scopeProvider.removeVisited(m)
 					}
-					if (elementName !== null && !redefined.contains(memberElement) &&
+					if (elementName1 !== null  && !redefined.contains(memberElement) &&
 						(isInsideScope || m.visibility == VisibilityKind.PUBLIC || 
 						 m.visibility == VisibilityKind.PROTECTED && 
 							scopingType !== null && 
 							scopingType.isInheritedProtected(m.membershipOwningPackage))) {
-						val elementqn = qn.append(elementName)
-						if (targetqn === null || targetqn.startsWith(elementqn)) {
-							if (!checkIfAdded || !visitedqns.contains(elementqn)) {
-								visitedqns.add(elementqn)
-								if (targetqn === null || targetqn == elementqn) {
-									elements.addName(elementqn, memberElement)
-									if (findFirst && targetqn == elementqn) {
-										return true
-									}
-								}
-								if (targetqn != elementqn) {
-									if (memberElement instanceof Package) {
-										isShadowing = true;
-										
-										// Note: If the resolution is for a single element, search the owned elements first and, if found, do
-										// not search the inherited elements. This avoids a possible cyclic linking error if getting the 
-										// superclass requires proxy resolution.
-										if (memberElement.owned(elementqn, false, false, ownedvisited, visited, newHashSet)) {
-											return true
-										}
-										
-										if (memberElement.gen(elementqn, visited, newHashSet)) {
-											return true;
-										}
-										if (memberElement.imp(elementqn, false, visited)) {
-											return true;
-										}
-									}
-								}
-							}
+						val elementqn1 = qn.append(elementName1)
+						if (ownedPerQufalifiedName(elementqn1, checkIfAdded, memberElement, ownedvisited, visited))
+							return true
+					
+						if (elementName2 !== null) {
+							val elementqn2 = qn.append(elementName2)	
+							if (ownedPerQufalifiedName(elementqn2, checkIfAdded, memberElement, ownedvisited, visited))
+								return true
 						}
 					}
 				}
@@ -220,6 +204,39 @@ class KerMLScope extends AbstractScope {
 			ownedvisited.remove(pack)
 		}
 		return false
+	}
+	protected def ownedPerQufalifiedName (QualifiedName elementqn, boolean checkIfAdded, Element memberElement, Set<Package> ownedvisited, Set<Package> visited)
+	{
+		if (targetqn === null || targetqn.startsWith(elementqn))  {
+			if (!checkIfAdded || !visitedqns.contains(elementqn)) {
+				visitedqns.add(elementqn)
+				if (targetqn === null || targetqn == elementqn) {
+					elements.addName(elementqn, memberElement)
+					if (findFirst && targetqn == elementqn) {
+						return true;
+					}
+				}
+				if (targetqn != elementqn) {
+					if (memberElement instanceof Package) {
+						isShadowing = true;
+						
+						// Note: If the resolution is for a single element, search the owned elements first and, if found, do
+						// not search the inherited elements. This avoids a possible cyclic linking error if getting the 
+						// superclass requires proxy resolution.
+						if (memberElement.owned(elementqn, false, false, ownedvisited, visited, newHashSet)) {
+							return true
+						}
+						
+						if (memberElement.gen(elementqn, visited, newHashSet)) {
+							return true;
+						}
+						if (memberElement.imp(elementqn, false, visited)) {
+							return true;
+						}
+					}
+				}
+			}
+		}
 	}
 		
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){

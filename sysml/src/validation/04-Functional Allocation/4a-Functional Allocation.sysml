@@ -14,10 +14,10 @@ package '4a-Functional Allocation' {
 		 * This allocates the action '3a-Function-based Behavior-1'::'provide power' as an enacted 
 		 * performance of 'vehicle_c1_functional_allocation'.
 		 */
-		perform 'provide power' (
+		perform 'provide power' {
 			// This assigns the fuelCmdPort to provide the input to 'provide power'.
-			in fuelCmd = fuelCmdPort::fuelCmd
-		);
+			in fuelCmd = fuelCmdPort::fuelCmd;
+		}
 		
 		//*
 		// The above is semantically equivalent to:
@@ -39,10 +39,10 @@ package '4a-Functional Allocation' {
 			/**
 			 *  This allocates one of the sub-steps of 'provide power' to a sub-part of vehicle_c1. 
 			 */ 
-			perform 'generate torque' (
-				in fuelCmd = fuelCmdPort::fuelCmd, 
-				out engineTorque = drivePwrPort::engineTorque
-			);
+			perform 'generate torque' {
+				in fuelCmd = fuelCmdPort::fuelCmd;
+				out engineTorque = drivePwrPort::engineTorque;
+			}
 			
 			port drivePwrPort :>> vehicle1_c1::engine::drivePwrPort {
 				out engineTorque: Torque;
@@ -54,10 +54,10 @@ package '4a-Functional Allocation' {
 				in attribute engineTorque: Torque;
 			}
 			
-			perform 'amplify torque' (
-				in engineTorque = clutchPort::engineTorque, 
-				out transmissionTorque = shaftPort_a::transmissionTorque
-			);
+			perform 'amplify torque' {
+				in engineTorque = clutchPort::engineTorque; 
+				out transmissionTorque = shaftPort_a::transmissionTorque;
+			}
 
 			port shaftPort_a :>> vehicle1_c1::transmission::shaftPort_a {
 				out transmissionTorque: Torque;
@@ -69,10 +69,10 @@ package '4a-Functional Allocation' {
 				in transmissionTorque: Torque;
 			}
 
-			perform 'transfer torque' (
-				in transmissionTorque = shaftPort_b::transmissionTorque, 
-				out driveshaftTorque = shaftPort_c::driveshaftTorque
-			);
+			perform 'transfer torque' {
+				in transmissionTorque = shaftPort_b::transmissionTorque; 
+				out driveshaftTorque = shaftPort_c::driveshaftTorque;
+			}
 
 			port shaftPort_c :>> Driveshaft::shaftPort_c {
 				out driveshaftTorque: Torque;
@@ -84,11 +84,11 @@ package '4a-Functional Allocation' {
 				in driveshaftTorque: Torque;
 			}
 				
-			perform 'distribute torque' (
-				in driveshaftTorque = shaftPort_d::driveshaftTorque, 
-				out wheelTorque1 = rearAxle::leftHalfAxle::axleToWheelPort::wheelTorque, 
-				out wheelTorque2 = rearAxle::rightHalfAxle::axleToWheelPort::wheelTorque
-			);
+			perform 'distribute torque' {
+				in driveshaftTorque = shaftPort_d::driveshaftTorque; 
+				out wheelTorque1 = rearAxle::leftHalfAxle::axleToWheelPort::wheelTorque; 
+				out wheelTorque2 = rearAxle::rightHalfAxle::axleToWheelPort::wheelTorque;
+			}
 			
 			part rearAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle {
 				part leftHalfAxle :>> vehicle1_c1::rearAxleAssembly::rearAxle::leftHalfAxle {

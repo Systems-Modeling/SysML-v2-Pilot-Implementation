@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -113,9 +114,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return getAllParameters().stream().
-				filter(p->((FeatureImpl)p).isResultParameter()).
-				findFirst().orElse(null);
+		return getResultParameter();
 	}
 
 	/**
@@ -148,26 +147,27 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
   		return false;
 	}
 
-	// Additional redefinitions and subsets
+	// Additional overrides
 
 	@Override
 	protected String getDefaultSupertype() {
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-	@Override
-	public EList<Feature> getFeature() {
-		getResultConnector();
-		return super.getFeature();
+	public BindingConnector getResultConnector() {
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
 	}
 	
-	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+	@Override
+	public List<Feature> getOwnedParameters() {
+		CalculationDefinitionImpl.addResultParameter(this);
+		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
+		CalculationDefinitionImpl.addResultParameter(this);
 		getResultConnector();
 	}
 	

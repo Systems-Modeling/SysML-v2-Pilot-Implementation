@@ -360,19 +360,26 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	@Override
 	public Usage getSubjectParameter() {
+		return basicGetSubjectParameter();
+	}
+	
+	protected Usage basicGetSubjectParameter() {
 		return isRequirement()? basicGetSubjectParameterOf(this): null;
 	}
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
-		getSubjectParameter();
+		// Note: "Basic" version is used to avoid proxy resolution in RequirementUsageImpl.
+		basicGetSubjectParameter();
+		CalculationDefinitionImpl.addResultParameter(this);
 		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		getSubjectParameter();
+		basicGetSubjectParameter();
+		CalculationDefinitionImpl.addResultParameter(this);
 		getResultConnector();
 	}	
 	

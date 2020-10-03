@@ -174,7 +174,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 */
 	public Feature basicGetSatisfyingFeature() {
 		BindingConnector connector = getSatisfyingFeatureConnector();		
-		return connector == null? null: connector.getRelatedFeature().get(0);
+		return connector == null? null: connector.getRelatedFeature().get(1);
 	}
 
 	/**

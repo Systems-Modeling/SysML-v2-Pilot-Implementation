@@ -30,6 +30,8 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Comment
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.TextualRepresentation
+import org.omg.sysml.lang.sysml.Association
+import org.omg.sysml.lang.sysml.Connector
 
 /**
  * Customization of the default outline structure.
@@ -156,6 +158,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Relationship relationship) {
+		createRelatedElements(parentNode, relationship)
+		super._createChildren(parentNode, relationship)
+	}
+	
+	def createRelatedElements(IOutlineNode parentNode, Relationship relationship) {
 		for (source: relationship.source) {
 			createEObjectNode(parentNode, source, 
 				_image(source), 'from ' + source._text, 
@@ -168,7 +175,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				true
 			)
 		}
-		super._createChildren(parentNode, relationship)
 	}
 	
 	def boolean _isLeaf(Annotation annotation) {
@@ -342,11 +348,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def boolean _isLeaf(Type type) {
-//		(type as ElementImpl).transform()
-		super._isLeaf(type)
-	}
-	
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
 		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
@@ -356,6 +357,16 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				false
 			);
 		}
+	}
+	
+	def _createChildren(IOutlineNode parentNode, Association association) {
+		createRelatedElements(parentNode, association)
+		_createChildren(parentNode, association as Package)
+	}
+
+	def _createChildren(IOutlineNode parentNode, Connector connector) {
+		createRelatedElements(parentNode, connector)
+		_createChildren(parentNode, connector as Package)
 	}
 
 }

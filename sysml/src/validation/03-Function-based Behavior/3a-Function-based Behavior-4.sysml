@@ -71,8 +71,8 @@ package '3a-Function-based Behavior-2' {
 			 */
 			first start;
 			then merge continue;	
-			then accept engineStarted (engineStart: EngineStart);			
-			then accept engineStopped (engineOff: EngineOff);	
+			then action engineStarted accept engineStart: EngineStart;			
+			then action engineStopped accept engineOff: EngineOff;	
 			then continue;
 			
 			/* Enable torque generation. */

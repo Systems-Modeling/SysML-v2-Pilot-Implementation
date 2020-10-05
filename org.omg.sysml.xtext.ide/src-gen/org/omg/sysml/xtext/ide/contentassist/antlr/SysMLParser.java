@@ -380,9 +380,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getActionUsageParameterAccess().getGroup_1(), "rule__ActionUsageParameter__Group_1__0");
 			builder.put(grammarAccess.getAcceptNodeAccess().getGroup(), "rule__AcceptNode__Group__0");
 			builder.put(grammarAccess.getAcceptNodeDeclarationAccess().getGroup(), "rule__AcceptNodeDeclaration__Group__0");
+			builder.put(grammarAccess.getAcceptNodeDeclarationAccess().getGroup_1(), "rule__AcceptNodeDeclaration__Group_1__0");
 			builder.put(grammarAccess.getSendNodeAccess().getGroup(), "rule__SendNode__Group__0");
 			builder.put(grammarAccess.getSendNodeDeclarationAccess().getGroup(), "rule__SendNodeDeclaration__Group__0");
-			builder.put(grammarAccess.getSendNodeDeclarationAccess().getGroup_3(), "rule__SendNodeDeclaration__Group_3__0");
+			builder.put(grammarAccess.getSendNodeDeclarationAccess().getGroup_2(), "rule__SendNodeDeclaration__Group_2__0");
 			builder.put(grammarAccess.getMergeNodeAccess().getGroup(), "rule__MergeNode__Group__0");
 			builder.put(grammarAccess.getDecisionNodeAccess().getGroup(), "rule__DecisionNode__Group__0");
 			builder.put(grammarAccess.getJoinNodeAccess().getGroup(), "rule__JoinNode__Group__0");
@@ -786,7 +787,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getActionUsageParameterMemberAccess().getDirectionAssignment_0(), "rule__ActionUsageParameterMember__DirectionAssignment_0");
 			builder.put(grammarAccess.getActionUsageParameterMemberAccess().getOwnedMemberParameter_compAssignment_1(), "rule__ActionUsageParameterMember__OwnedMemberParameter_compAssignment_1");
 			builder.put(grammarAccess.getAcceptNodeDeclarationAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__AcceptNodeDeclaration__OwnedFeatureMembership_compAssignment_0");
-			builder.put(grammarAccess.getAcceptNodeDeclarationAccess().getOwnedFeatureMembership_compAssignment_4(), "rule__AcceptNodeDeclaration__OwnedFeatureMembership_compAssignment_4");
+			builder.put(grammarAccess.getAcceptNodeDeclarationAccess().getOwnedFeatureMembership_compAssignment_3(), "rule__AcceptNodeDeclaration__OwnedFeatureMembership_compAssignment_3");
 			builder.put(grammarAccess.getSendNodeDeclarationAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__SendNodeDeclaration__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getSendNodeDeclarationAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__SendNodeDeclaration__OwnedFeatureMembership_compAssignment_1");
 			builder.put(grammarAccess.getSendNodeDeclarationAccess().getOwnedFeatureMembership_compAssignment_4(), "rule__SendNodeDeclaration__OwnedFeatureMembership_compAssignment_4");

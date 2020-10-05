@@ -25,34 +25,59 @@
 package org.omg.sysml.plantuml;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
-    private static FeatureValue getFeatureValue(Feature f) {
-        // TODO: Multiple Feature Value.
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
-            if (fm instanceof FeatureValue) return (FeatureValue) fm;
+    protected void appendText(String text, boolean unfold) {
+        text = text.replace("\r", "");
+        if (unfold) {
+            text = text.replace("\n", "");
+        } else {
+            text = text.replace("\n", "\\n");
         }
-        return null;
+        text = text.trim();
+        append(text);
     }
 
-    private boolean addFeatureValueText(Feature f) {
-        FeatureValue fv = getFeatureValue(f);
-        if (fv == null) return false;
-        String text = getText(fv);
-        if (text == null) return false;
-        append('=');
-        text = text.replace("\r", "");
-        text = text.replace("\n", "\\n");
-        append(text);
-        return true;
+    private static Pattern patEq = Pattern.compile("^\\s*=");
+    private boolean addFeatureMembershipText(Feature f) {
+        boolean flag = false;
+        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+            if (fm instanceof FeatureValue) {
+                FeatureValue fv = (FeatureValue) fm;
+                String text = getText(fv);
+                if (text == null) continue;
+                if (!patEq.matcher(text).lookingAt()) {
+                    append('=');
+                }
+                appendText(text, true);
+                append("; ");
+                flag = true;
+            } else if (fm instanceof ResultExpressionMembership) {
+                ResultExpressionMembership rem = (ResultExpressionMembership) fm;
+                Expression ex = rem.getOwnedResultExpression();
+                String text = getText(ex);
+                if (text == null) continue;
+                append(" { ");
+                appendText(text, true);
+                append(" }");
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     private static Redefinition getRedefinition(Feature f) {
@@ -97,7 +122,7 @@ public abstract class VStructure extends VDefault {
         if (name == null) return false;
         append(name);
         addTypeText(": ", f);
-        addFeatureValueText(f);
+        addFeatureMembershipText(f);
         addRedefinedFeatureText(f);
         return true;
     }
@@ -108,6 +133,7 @@ public abstract class VStructure extends VDefault {
         }
         Feature f = (Feature) e;
         String name = getFeatureName(f);
+        if (name == null) return null;
         List<Type> tt = f.getType();
         if (tt.isEmpty()) return name;
         StringBuilder sb = new StringBuilder();
@@ -123,6 +149,14 @@ public abstract class VStructure extends VDefault {
         if (sb.length() == 0) return name;
         sb.insert(0, ": ");
         sb.insert(0, name);
+        /*
+        if (f instanceof Usage) {
+            Usage u = (Usage) f;
+            if (u.isVariation()) {
+                sb.insert(0, "<size:20><&layers> </size>");
+            }
+        }
+        */
         return sb.toString();
     }
 
@@ -142,11 +176,16 @@ public abstract class VStructure extends VDefault {
         addLink(typ);
     }
 
-    protected void addType(Type typ, String keyword) {
+    protected boolean addType(Type typ, String keyword) {
         String name = extractName(typ);
-        if (name == null) return;
+        if (name == null) return false;
+        return addType(typ, name, keyword);
+    }
+
+    protected boolean addType(Type typ, String name, String keyword) {
         addPUMLLine(typ, keyword, name);
         addGeneralizations(typ);
+        return true;
     }
 
     @Override
@@ -155,7 +194,7 @@ public abstract class VStructure extends VDefault {
         if (name == null) return super.casePackage(pkg);
 
         append("package ");
-        quote(name);
+        addNameWithId(pkg, name);
         append(' ');
         addLink(pkg);
         append(" {\n");
@@ -163,7 +202,27 @@ public abstract class VStructure extends VDefault {
         append("}\n");
         return "";
     }
+
+    @Override
+    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+        addPRelation(sru.getSatisfiedRequirement(),
+                     sru.getSatisfyingFeature(),
+                     sru, "<<satisfy>>");
+        return "";
+    }
     
+    @Override
+    public String caseConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
+        // Do not show conjugated ports.
+        return "";
+    }
+
+    @Override
+    public String caseLifeClass(LifeClass lc) {
+        // Do not show life classes
+        return "";
+    }
+
     VStructure(Visitor prev) {
     	super(prev);
     }

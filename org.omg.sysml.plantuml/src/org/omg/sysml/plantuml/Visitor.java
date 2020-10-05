@@ -171,14 +171,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
     private static void closeBlockInternal(StringBuilder sbParent,
                                            StringBuilder sbChild,
                                            String endStr) {
-        if (sbChild.length() == 0) {
-            sbParent.append('\n');
-        } else {
-            sbParent.append("{\n");
-            sbParent.append(sbChild);
-            sbParent.append(endStr);
-            sbParent.append("}\n");
-        }
+        sbParent.append("{\n");
+        sbParent.append(sbChild);
+        sbParent.append(endStr);
+        sbParent.append("}\n");
     }
 
     protected void closeBlock(String endStr) {

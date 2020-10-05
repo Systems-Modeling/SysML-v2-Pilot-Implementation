@@ -33,14 +33,15 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VTree extends VStructure {
     private static final SysML2PlantUMLStyle style
-    = new SysML2PlantUMLStyle
-    ("VTree",
-      null,
-     "allow_mixing\n", null);
+    = new SysML2PlantUMLStyle("VTree", null, "", null);
 
     @Override 
     protected SysML2PlantUMLStyle getStyle() {
@@ -85,10 +86,25 @@ public class VTree extends VStructure {
         return "";
     }
 
-    private void addType(Type typ) {
-        addType(typ, "class ");
-        addRel(typ, typ, null);
-        VCompartment v = new VCompartment(this);
+    @Override
+    public String caseVariantMembership(VariantMembership vm) {
+        Usage u = vm.getOwnedVariantUsage();
+        String name = vm.getName();
+        if (name == null) {
+        	name = extractName(u);
+        }
+        if (name == null) {
+        	name = "variant";
+        }
+
+        addPUMLLine(u, "comp usage ", name);
+        addRel(u, vm, "<<variant>>");
+        process(new VCompartment(this), u);
+
+        return "";
+    }
+
+    private void process(VCompartment v, Type typ) {
         List<Element> es = v.process(typ);
         VTree vt = new VTree(this, typ);
         for (Element e: es) {
@@ -97,10 +113,43 @@ public class VTree extends VStructure {
         vt.flush();
     }
 
+    private void addType(Type typ) {
+        if (typ instanceof Usage) {
+            addType(typ, "comp usage ");
+        } else {
+            addType(typ, "comp def ");
+        }
+        addRel(typ, typ, null);
+        process(new VCompartment(this), typ);
+    }
+
 
     @Override
     public String caseType(Type typ) {
         addType(typ);
+        return "";
+    }
+
+    private void addReq(String keyword, Type typ, String reqId) {
+        String name = extractName(typ);
+        if (name == null) return;
+        if (reqId != null) {
+            name = " [<b>" + reqId + "</b>] " + name;
+        }
+        addType(typ, name, keyword);
+        addRel(typ, typ, null);
+        process(new VRequirement(this), typ);
+    }
+
+    @Override
+    public String caseRequirementDefinition(RequirementDefinition rd) {
+        addReq("comp def ", rd, rd.getReqId());
+        return "";
+    }
+
+    @Override
+    public String caseRequirementUsage(RequirementUsage ru) {
+        addReq("comp usage ", ru, ru.getReqId());
         return "";
     }
 

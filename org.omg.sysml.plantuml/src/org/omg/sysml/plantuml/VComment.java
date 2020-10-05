@@ -63,7 +63,7 @@ public class VComment extends Visitor {
         }
     }
 
-	public void addComment(Comment c) {
+    private void addCommentInternal(Comment c) {
         if (checkId(c)) return;
         append("note as ");
         addIdStr(c);
@@ -72,10 +72,20 @@ public class VComment extends Visitor {
         addTrimmedBody(c.getBody());
         append("\nend note ");
         append('\n');
-        
-        List<Element> e = c.getAnnotatedElement();
-        if (!e.isEmpty()) {
-        	addPRelation(c, e.get(0), c);
+    }
+
+	public void addComment(Comment c) {
+        addCommentInternal(c);
+        List<Element> es = c.getAnnotatedElement();
+        for (Element e: es) {
+        	addPRelation(c, e, c);
+        }
+    }
+
+	public void addComment(Comment c, Element annotatedElement) {
+        addCommentInternal(c);
+        if (annotatedElement != null) {
+        	addPRelation(c, annotatedElement, c);
         }
     }
 }

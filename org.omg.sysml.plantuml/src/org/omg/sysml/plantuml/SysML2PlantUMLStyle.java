@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -49,10 +50,15 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class SysML2PlantUMLStyle {
@@ -65,10 +71,12 @@ public class SysML2PlantUMLStyle {
     		"skinparam monochrome true\n"
             + "skinparam classbackgroundcolor white\n"
             + "skinparam shadowing false\n"
+            + "skinparam wrapWidth 300\n"
             + "hide circle\n");
         add("STDCOLOR",
             "Standard style with colors",
-            "hide circle\n",
+            "skinparam wrapWidth 300\n"
+            + "hide circle\n",
             new StyleSwitch(new StyleRelDefaultSwitch() {
                 @Override
                 public String caseConnector(Connector object) {
@@ -290,6 +298,26 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String caseDependency(Dependency dep) {
+            return " ..>> ";
+		}
+
+		@Override
+		public String caseRequirementUsage(RequirementUsage requirementUsage) {
+            return " +-- ";
+		}
+
+		@Override
+		public String caseRequirementConstraintMembership(RequirementConstraintMembership requirementConstraintMembership) {
+            return " ..> ";
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage satisfyRequirementUsage) {
+            return " ..> ";
+		}
+
+		@Override
 		public String caseBindingConnector(BindingConnector object) {
             return " -[thickness=5]- ";
 		}
@@ -298,6 +326,16 @@ public class SysML2PlantUMLStyle {
 		public String caseGeneralization(Generalization object) {
             return " --|> ";
 		}
+
+		@Override
+		public String caseSubjectMembership(SubjectMembership sm) {
+            return " ..> ";
+		}
+
+		@Override
+		public String caseVariantMembership(VariantMembership vm) {
+            return " )-->> ";
+		}
     }
 
     public static class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
@@ -305,21 +343,6 @@ public class SysML2PlantUMLStyle {
 		public String caseClass(Class object) {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
-		}
-
-		@Override
-		public String casePortUsage(PortUsage object) {
-            return " <<port>> ";
-		}
-
-		@Override
-		public String caseItemUsage(ItemUsage object) {
-            return " <<item>> ";
-		}
-
-		@Override
-		public String casePartUsage(PartUsage object) {
-            return " <<part>> ";
 		}
     }
 

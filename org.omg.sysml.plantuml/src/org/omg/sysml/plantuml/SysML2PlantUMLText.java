@@ -29,12 +29,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
 import com.google.inject.Inject;
@@ -110,10 +113,19 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleStereotypeSwitch.doSwitch(e);
     }
 
-    private String getStereotypeName(Type typ) {
+    private static Pattern patMetaclassName = Pattern.compile("^(\\p{L}+?)(Definition|Usage)$");
+    public static String getStereotypeName(Type typ) {
         String str = typ.eClass().getName();
         if (str == null) return "";
         if (str.isEmpty()) return str;
+        Matcher m = patMetaclassName.matcher(str);
+        if (m.matches()) {
+            if ("Definition".equals(m.group(2))) {
+                str = m.group(1) + " def";
+            } else {
+                str = m.group(1);
+            }
+        }
 
         return Character.toLowerCase(str.charAt(0)) + str.substring(1);
     }
@@ -122,9 +134,18 @@ public class SysML2PlantUMLText {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
             if (diagramMode == MODE.Interconnection) {
-                return " <<" + getStereotypeName(typ) + ">> ";
+                ret = " <<";
             } else {
-                return " <<(T,blue)" + getStereotypeName(typ) + ">> ";
+                ret = " <<(T,blue)";
+            }
+        }
+        if (typ instanceof Usage) {
+            Usage u = (Usage) typ;
+            if (u.isVariation()) {
+                if (ret.equals(" ")) {
+                    return " <<variation>> ";
+                }
+                ret = " <<variation>>\\n" + ret;
             }
         }
         if (ret.endsWith(" ")) return ret;

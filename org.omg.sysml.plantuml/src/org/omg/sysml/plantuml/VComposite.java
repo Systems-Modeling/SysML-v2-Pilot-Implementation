@@ -77,7 +77,7 @@ public class VComposite extends VStructure {
     public String caseUsage(Usage f) {
         String featureText = getFeatureText(f);
         if (featureText.isEmpty()) return "";
-        addPUMLLine(f, "rectangle ", featureText);
+        addPUMLLine(f, "rec usage ", featureText);
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
@@ -88,7 +88,7 @@ public class VComposite extends VStructure {
 
 	@Override
     public String casePartDefinition(PartDefinition pd) {
-        addType(pd, "rectangle ");
+        addType(pd, "rec def ");
 
         VComposite vc = new VComposite(this);
         vc.traverse(pd);
@@ -101,7 +101,7 @@ public class VComposite extends VStructure {
     public String caseStateUsage(StateUsage su) {
         String name = extractName(su);
         if (name == null) return "";
-        addPUMLLine(su, "rectangle ", name);
+        addPUMLLine(su, "rec usage ", name);
         append('\n');
         return "";
     }
@@ -129,18 +129,24 @@ public class VComposite extends VStructure {
         String keyword;
         if (ret.isEmpty()) {
             keyword = "portin ";
+            addPUMLLine(pu, keyword, name);
+            append('\n');
         } else {
-            keyword = "rectangle ";
+            keyword = "rec usage ";
+            addPUMLLine(pu, keyword, name);
+            vc.closeBlock("");
         }
 
-        addPUMLLine(pu, keyword, name);
-        vc.closeBlock("");
 
         return "";
     }
 
     private void addType(Type typ) {
-        addType(typ, "rectangle ");
+        if (typ instanceof Usage) {
+            if (!addType(typ, "usage ")) return;
+        } else {
+            if (!addType(typ, "def ")) return;
+        }
         append('\n');
     }
 

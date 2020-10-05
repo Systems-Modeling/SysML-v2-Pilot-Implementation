@@ -25,25 +25,100 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VCompartment extends VStructure {
     private List<Element> rest = new ArrayList<Element>();
-    private Map<Feature, List<String>> features = new HashMap<Feature, List<String>>();
+
+    private static class FeatureEntry implements Comparable<FeatureEntry> {
+        public final Feature f;
+        public final String alias;
+        public final String prefix;
+
+        private static int featureMetaclassCompare(Feature f1, Feature f2) {
+            if (f1 instanceof AttributeUsage) {
+                if (!(f2 instanceof AttributeUsage)) {
+                    return -1;
+                }
+            } else if (f1 instanceof Usage) {
+                if (!(f2 instanceof Usage)) {
+                    return -1;
+                }
+            }
+            
+            String ec1 = f1.eClass().getName();
+            String ec2 = f2.eClass().getName();
+            return ec1.compareTo(ec2);
+        }
+
+        /*
+        private static int featureTypeCompare(Feature f1, Feature f2) {
+            List<Type> ts1 = f1.getType();
+            List<Type> ts2 = f2.getType();
+        }
+        */
+
+        private static int featureNameCompare(Feature f1, Feature f2) {
+            String name1 = f1.getName();
+            String name2 = f2.getName();
+            if (name1 == null) {
+                if (name2 == null) return 0;
+                return -1;
+            }
+            if (name2 == null) return 1;
+            return name1.compareTo(name2);
+        }
+
+        private static int featureCompare(Feature f1, Feature f2) {
+            int v = featureMetaclassCompare(f1, f2);
+            if (v != 0) return v;
+            return featureNameCompare(f1, f2);
+        }
+
+        public int compareTo(FeatureEntry o) {
+            int v = featureCompare(f, o.f);
+            if (v != 0) return v;
+            if (alias == null) {
+                if (o.alias == null) return 0;
+                return -1;
+            }
+            if (o.alias == null) return 1;
+            return alias.compareTo(o.alias);
+        }
+
+        public FeatureEntry(Feature f, String alias, String prefix) {
+            this.f = f;
+            this.alias = alias;
+            this.prefix = prefix;
+        }
+    }
+
+    private List<FeatureEntry> featureEntries = new ArrayList<FeatureEntry>();
+
+    protected void addFeature(Feature f, String alias, String prefix) {
+        featureEntries.add(new FeatureEntry(f, alias, prefix));
+    }
+
 
     @Override
     public String caseFeature(Feature f) {
-        if (features.containsKey(f)) return "";
-        features.put(f, null);
+        addFeature(f, null, null);
         return "";
     }
 
@@ -60,34 +135,74 @@ public class VCompartment extends VStructure {
     }
 
     @Override
+    public String caseRequirementUsage(RequirementUsage ru) {
+        rest.add(ru);
+        return "";
+    }
+
+    @Override
+    public String caseIndividualUsage(IndividualUsage iu) {
+        rest.add(iu);
+        return "";
+    }
+
+    @Override
+    public String caseDefinition(Definition d) {
+        rest.add(d);
+        return "";
+    }
+
+    @Override
     public String caseMembership(Membership m) {
         Element e = m.getMemberElement();
         if (e instanceof Feature) {
-            // alias
-            Feature f = (Feature) e;
-            List<String> aliases = features.get(f);
-            if (aliases == null) {
-                aliases = new ArrayList<String>(1);
-                features.put(f, aliases);
-            }
-            aliases.add(m.getMemberName());
-            return "";
+            addFeature((Feature) e, m.getMemberName(), null);
         } else {
             rest.add(e);
-            return "";
         }
+        return "";
+    }
+
+    @Override
+    public String caseVariantMembership(VariantMembership vm) {
+        rest.add(vm);
+        return "";
     }
 
     private void addFeatures() {
-        for (Map.Entry<Feature, List<String>> entry: features.entrySet()) {
-            Feature f = entry.getKey();
-            List<String> aliases = entry.getValue();
-            if (addFeatureText(f)) {
-                if (aliases != null) {
-                    append(" <b>as</b> ");
-                    for (String alias: aliases) {
-                        append(alias);
-                        append(' ');
+        Collections.sort(featureEntries);
+        
+        final int size = featureEntries.size();
+        EClass ec0 = null;
+        for (int i = 0; i < size; i++) {
+            FeatureEntry fe = featureEntries.get(i);
+            if (getFeatureName(fe.f) == null) continue;
+            EClass ec1 = fe.f.eClass();
+            if (!ec1.equals(ec0)) {
+                ec0 = ec1;
+                if (!ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
+                    append("--");
+                    append(SysML2PlantUMLText.getStereotypeName(fe.f));
+                    append("--\n");
+                }
+            }
+            if (fe.prefix != null) {
+                append(fe.prefix);
+            }
+            if (addFeatureText(fe.f)) {
+                boolean first = true;
+                for (int j = i + 1; j < size; j++) {
+                    FeatureEntry fe2 = featureEntries.get(j);
+                    if (fe.f.equals(fe2.f)) {
+                        if (fe2.alias != null) {
+                            if (first) append(" <b>as</b> ");
+                            append(fe2.alias);
+                            append(' ');
+                            first = false;
+                        }
+                        i = j;
+                    } else {
+                        break;
                     }
                 }
                 append('\n');
@@ -98,12 +213,12 @@ public class VCompartment extends VStructure {
     public void startType(Type typ) {
         traverse(typ);
         addFeatures();
-        closeBlock("--\n"); // Explicitly add class separator
+        closeBlock("");
     }
 
     public List<Element> process(Type typ) {
         rest.clear();
-        features.clear();
+        featureEntries.clear();
         startType(typ);
         return rest;
     }

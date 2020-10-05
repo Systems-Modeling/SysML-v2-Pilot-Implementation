@@ -38,6 +38,8 @@ import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
@@ -219,6 +221,18 @@ public abstract class VStructure extends VDefault {
 
     @Override
     public String caseLifeClass(LifeClass lc) {
+        // Do not show life classes
+        return "";
+    }
+
+    @Override
+    public String caseTimeSliceFeature(TimeSliceFeature tsf) {
+        // Do not show life classes
+        return "";
+    }
+
+    @Override
+    public String caseSnapshotFeature(SnapshotFeature sf) {
         // Do not show life classes
         return "";
     }

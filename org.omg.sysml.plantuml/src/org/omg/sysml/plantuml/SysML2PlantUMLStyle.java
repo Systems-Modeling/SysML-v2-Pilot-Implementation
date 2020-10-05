@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -344,6 +345,18 @@ public class SysML2PlantUMLStyle {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
 		}
+
+		@Override
+        public String caseIndividualUsage(IndividualUsage iu) {
+            if (iu.isTimeSlice()) {
+                return "<<timeslice>> ";
+            } else if (iu.isSnapshot()) {
+                return "<<snapshot>> ";
+            } else {
+                return "<<individual>> ";
+            }
+        }
+        
     }
 
 }

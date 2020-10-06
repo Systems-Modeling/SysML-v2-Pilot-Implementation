@@ -26,8 +26,10 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
@@ -127,7 +129,6 @@ public class VComposite extends VStructure {
             vc.closeBlock("");
         }
 
-
         return "";
     }
 
@@ -144,6 +145,18 @@ public class VComposite extends VStructure {
     @Override
     public String caseType(Type typ) {
         addType(typ);
+        return "";
+    }
+
+    @Override
+    public String caseMultiplicityRange(MultiplicityRange mr) {
+        // Do not show MultiplicityRange
+        return "";
+    }
+
+    @Override
+    public String caseExpression(Expression e) {
+        // Do not show Expression
         return "";
     }
 

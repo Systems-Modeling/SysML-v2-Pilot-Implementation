@@ -93,7 +93,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	@Override
 	public void addComputedRedefinitions(Element skip) {
-		addImplicitGeneralType();
+		addDefaultGeneralType();
 		super.addComputedRedefinitions(skip);
 	}
 	

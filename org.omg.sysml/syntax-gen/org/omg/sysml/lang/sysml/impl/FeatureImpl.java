@@ -210,7 +210,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
-//		computeImplicitGeneralization();
 		visitedFeatures.add(this);
 		types.addAll(getFeatureTypes());
 		Conjugation conjugator = getOwnedConjugator();
@@ -467,10 +466,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				if (i < features.size()) {
 					Feature redefinedFeature = features.get(i);
 					if (redefinedFeature != null && redefinedFeature != this) {
-						Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-						redefinition.setRedefiningFeature(this);
-						redefinition.setRedefinedFeature(redefinedFeature);
-						addImplicitGeneralization(redefinition);
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
 					}
 				}
 			}
@@ -870,14 +866,13 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public boolean hasObjectType() {
-		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof Class)
-				||
-				getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Class.class::isInstance);
+		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof Class) ||
+			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Class.class::isInstance);
 	}
 	
 	public boolean hasValueType() {
-		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof DataType)||
-				getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
+		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof DataType) ||
+			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
 	}
 	
 	public Subsetting createSubsetting() {
@@ -893,33 +888,28 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public Optional<Feature> getFirstSubsettedFeature() {
+		return getSubsettedNotRedefinedFeatures().findFirst();
+	}
+	
+	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		computeImplicitGeneralization();
-		Optional<Feature> firstFeature = getFirstSubsetting().map(Subsetting::getSubsettedFeature);
-		return firstFeature.isPresent() 
-				? firstFeature
-				: getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).stream().filter(Feature.class::isInstance).map(Feature.class::cast).findFirst();
+		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).stream().
+				map(Feature.class::cast);
+		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
+				map(Subsetting::getSubsettedFeature);
+		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
-		computeImplicitGeneralization();
-		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).
-				stream().
-				map(Feature.class::cast);
-		Stream<Feature> implicitRedefinitions = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).
-				stream().
-				map(Feature.class::cast);
-		
-		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().
-				stream().
-				map(Subsetting::getSubsettedFeature);
-		return Stream.concat(ownedSubsettedFeatures, Stream.concat(implicitSubsettedFeatures, implicitRedefinitions)).
+		Stream<Feature> implicitRedefinitions = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).stream().
+				map(Feature.class::cast);		
+		return Stream.concat(getSubsettedNotRedefinedFeatures(), implicitRedefinitions).
 				collect(Collectors.toList());
 	}
 	
 	public List<Feature> getRedefinedFeatures() {
 		computeImplicitGeneralization();
-		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).
-				stream().
+		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
 				map(Redefinition::getRedefinedFeature);

@@ -5,6 +5,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -42,7 +43,6 @@ import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -577,30 +577,20 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	protected void addVariationTyping() {
 		Definition variationDefinition = getOwningVariationDefinition();
 		if (variationDefinition != null && isVariant()) {
-			if (!isImplicitGeneralizationFor(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition)) {
-				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-				typing.setTypedFeature(this);
-				typing.setType(variationDefinition);
-				addImplicitGeneralization(typing);
-			}
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
 		}		
 	}
 	
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
+	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		addVariationSubsetting();
-		return super.getOwnedSubsetting();
+		return super.getSubsettedNotRedefinedFeatures();
 	}
 	
 	protected void addVariationSubsetting() {
 		Usage variationUsage = getOwningVariationUsage();
 		if (variationUsage != null && isVariant()) {
-			if (!isImplicitGeneralizationFor(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage)) {
-				Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-				subsetting.setSubsettingFeature(this);
-				subsetting.setSubsettedFeature(variationUsage);
-				addImplicitGeneralization(subsetting);
-			}
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
 		}
 	}
 	

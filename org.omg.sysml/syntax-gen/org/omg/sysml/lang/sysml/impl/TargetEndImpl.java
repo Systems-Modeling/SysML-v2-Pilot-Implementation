@@ -42,7 +42,7 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 	
 	@Override
 	public void addComputedRedefinitions(Element skip) {
-		addImplicitGeneralType();
+		addDefaultGeneralType();
 		super.addComputedRedefinitions(skip);
 	}
 	

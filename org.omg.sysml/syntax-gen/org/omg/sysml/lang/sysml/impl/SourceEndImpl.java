@@ -50,7 +50,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	
 	@Override
 	public void addComputedRedefinitions(Element skip) {
-		addImplicitGeneralType();
+		addDefaultGeneralType();
 		super.addComputedRedefinitions(skip);
 	}
 	

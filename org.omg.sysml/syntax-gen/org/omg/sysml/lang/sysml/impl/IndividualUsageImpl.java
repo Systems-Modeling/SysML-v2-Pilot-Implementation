@@ -9,11 +9,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
@@ -231,10 +229,7 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 						((IndividualUsage)owningType).getIndividualDefinition(): 
 						owningType;
 				if (type != null) {
-					FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-					typing.setTypedFeature(feature);
-					typing.setType(type);
-					((FeatureImpl)feature).addImplicitGeneralization(typing);
+					((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 					featureTypes.add(type);
 				}
 			}

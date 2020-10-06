@@ -245,7 +245,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public void computeImplicitGeneralization() {
 		if (!isConjugated()) {
-			addImplicitGeneralType();
+			addDefaultGeneralType();
  		}
 	}
 
@@ -278,12 +278,12 @@ public class TypeImpl extends PackageImpl implements Type {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
 	}
 	
-	protected void addImplicitGeneralType() {
-		addImplicitGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+	protected void addDefaultGeneralType() {
+		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected void addImplicitGeneralType(EClass generalizationEClass, String... superTypeNames) {
+	protected void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		List<Type> generalizations = implicitGeneralTypes.get(generalizationEClass);
 		if (generalizations == null &&
 				basicGetOwnedGeneralization((Class<? extends Generalization>)generalizationEClass.getInstanceClass()).isEmpty()) {
@@ -296,8 +296,10 @@ public class TypeImpl extends PackageImpl implements Type {
 		}
 	}
 	
-	protected void addImplicitGeneralization(Generalization generalization) {
-		implicitGeneralTypes.computeIfAbsent(generalization.eClass(), e -> new ArrayList<>()).add(generalization.getGeneral());
+	protected void addImplicitGeneralType(EClass eClass, Type general) {
+		if (!isImplicitGeneralizationFor(eClass, general)) {
+			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
+		}
 	}
 	
 	protected EClass getGeneralizationEClass() {

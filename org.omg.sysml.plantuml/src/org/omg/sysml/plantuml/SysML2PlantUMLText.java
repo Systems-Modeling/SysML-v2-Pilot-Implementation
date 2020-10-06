@@ -190,6 +190,8 @@ public class SysML2PlantUMLText {
 			return new VTree();
         case Activity:
 			return new VAction();
+        case MIXED:
+        	return new VMixed();
 		default:
 			return new VTree();
         }

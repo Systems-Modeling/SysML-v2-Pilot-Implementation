@@ -42,12 +42,12 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class VActionMembers extends VDefault {
 
-    private void addNode(Feature f, String stereotype) {
+    private void addNode(Feature f, String type) {
         String name = f.getName();
         if (name == null) return;
-        append("state ");
+        append(type);
+        append(' ');
         addNameWithId(f, name);
-        append(stereotype);
         append(' ');
         addLink(f);
         append('\n');
@@ -58,13 +58,13 @@ public class VActionMembers extends VDefault {
         Feature p = pm.getMemberParameter();
         switch (fdk) {
         case IN:
-            addNode(p, "<<inputpin>>");
+            addNode(p, "portin");
             break;
         case OUT:
-            addNode(p, "<<outputpin>>");
+            addNode(p, "portout");
             break;
         default:
-            addNode(p, "<<port>>");
+            addNode(p, "port");
             break;
         }
         return "";
@@ -115,19 +115,19 @@ public class VActionMembers extends VDefault {
 
     @Override
     public String caseMergeNode(MergeNode mn) {
-        addNode(mn, "<<choice>>");
+        addNode(mn, "choice");
         return "";
     }
 
     @Override
     public String caseJoinNode(JoinNode jn) {
-        addNode(jn, "<<join>>");
+        addNode(jn, "join");
         return "";
     }
 
     @Override
     public String caseForkNode(ForkNode fn) {
-        addNode(fn, "<<fork>>");
+        addNode(fn, "fork");
         return "";
     }
 

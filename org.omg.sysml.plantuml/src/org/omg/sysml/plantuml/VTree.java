@@ -106,7 +106,7 @@ public class VTree extends VStructure {
 
     private void process(VCompartment v, Type typ) {
         List<Element> es = v.process(typ);
-        VTree vt = new VTree(this, typ);
+        VTree vt = newVTree(typ);
         for (Element e: es) {
             vt.visit(e);
         }
@@ -153,7 +153,11 @@ public class VTree extends VStructure {
         return "";
     }
 
-    private VTree(VTree vt, Element parent) {
+    protected VTree newVTree(Element parent) {
+        return new VTree(this, parent);
+    }
+
+    protected VTree(VTree vt, Element parent) {
         super(vt);
         this.parent = parent;
     }

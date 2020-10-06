@@ -26,64 +26,69 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
-import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateUsage;
 
-public class VAction extends VDefault {
+public class VMixed extends VTree {
     private static final SysML2PlantUMLStyle style
-    = new SysML2PlantUMLStyle
-    ("VAction",
-      null,
-     "skinparam ranksep 8\n",
-     new StyleSwitch(new StyleRelSwitch() {
-		@Override
-		public String caseSuccession(Succession s) {
-            return " ..> ";
-		}
-    }, null));
+    = new SysML2PlantUMLStyle("VMixed", null, "", null);
 
     @Override 
     protected SysML2PlantUMLStyle getStyle() {
         return style;
     }
 
-    private void addAction(Type typ) {
-    	String name = getName(typ);
-    	if (name == null) return;
-        if (typ instanceof Usage) {
-            append("rec usage ");
-        } else {
-            append("rec def ");
-        }
-        addNameWithId(typ, name);
-        addLink(typ);
-        VActionMembers v = new VActionMembers(this);
-        v.startAction(typ);
-        append("\n");
+    @Override
+    protected VTree newVTree(Element parent) {
+        return new VMixed(this, parent);
     }
 
+    /***************************************************
+     * Delegation Methods for VAction
+     ***************************************************/
 
     @Override
     public String caseActionDefinition(ActionDefinition ad) {
-        addAction(ad);
-        return getString();
+        VAction va = new VAction(this);
+        va.caseActionDefinition(ad);
+        va.flush();
+        return "";
     }
 
     @Override
     public String caseActionUsage(ActionUsage au) {
-        addAction(au);
-        return getString();
+        VAction va = new VAction(this);
+        va.caseActionUsage(au);
+        va.flush();
+        return "";
     }
 
-    public VAction(Visitor prev) {
-    	super(prev);
-        setShowsMultiplicity(false);
+    /***************************************************
+     * Delegation Methods for VStateMachine
+     ***************************************************/
+
+    @Override
+    public String caseStateUsage(StateUsage su) {
+        VStateMachine vs = new VStateMachine(this);
+        vs.caseStateUsage(su);
+        vs.flush();
+        return "";
+    }
+    
+    @Override
+    public String caseStateDefinition(StateDefinition sd) {
+        VStateMachine vs = new VStateMachine(this);
+        vs.caseStateDefinition(sd);
+        vs.flush();
+        return "";
     }
 
-    public VAction() {
-        setShowsMultiplicity(false);
+    private VMixed(VTree vt, Element parent) {
+        super(vt, parent);
+    }
+
+    public VMixed() {
+        super();
     }
 }

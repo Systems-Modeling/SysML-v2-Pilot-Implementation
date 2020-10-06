@@ -28,12 +28,17 @@ import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 
 public class VStateMachine extends VDefault {
     private void addState(Type typ) {
     	String name = getName(typ);
     	if (name == null) return;
-        append("state ");
+        if (typ instanceof Usage) {
+            append("rec usage ");
+        } else {
+            append("rec def ");
+        }
         addNameWithId(typ, name);
         addLink(typ);
         VStateMembers v = new VStateMembers(this);

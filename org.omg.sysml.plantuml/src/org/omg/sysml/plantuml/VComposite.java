@@ -31,7 +31,6 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -94,15 +93,6 @@ public class VComposite extends VStructure {
         vc.traverse(pd);
         vc.closeBlock("");
 
-        return "";
-    }
-
-	@Override
-    public String caseStateUsage(StateUsage su) {
-        String name = extractName(su);
-        if (name == null) return "";
-        addPUMLLine(su, "rec usage ", name);
-        append('\n');
         return "";
     }
 

@@ -211,7 +211,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public EList<Type> getAllTypes() {
 		if (types == null) {
-			computeImplicitGeneralization();
 			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 			getTypes(types, new HashSet<Feature>());
 			removeRedundantTypes(types);
@@ -220,6 +219,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
+//		computeImplicitGeneralization();
 		visitedFeatures.add(this);
 		types.addAll(getFeatureTypes());
 		Conjugation conjugator = getOwnedConjugator();
@@ -906,6 +906,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
+		computeImplicitGeneralization();
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).
 				stream().
 				map(Feature.class::cast);

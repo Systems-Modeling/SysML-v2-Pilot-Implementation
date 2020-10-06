@@ -282,18 +282,17 @@ public class TypeImpl extends PackageImpl implements Type {
 		addImplicitGeneralType(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
-	protected Type addImplicitGeneralType(EClass generalizationEClass, String... superTypeNames) {
+	@SuppressWarnings("unchecked")
+	protected void addImplicitGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		List<Type> generalizations = implicitGeneralTypes.get(generalizationEClass);
-		if (generalizations != null) {
-			return generalizations.get(0);
-		} else {
+		if (generalizations == null &&
+				basicGetOwnedGeneralization((Class<? extends Generalization>)generalizationEClass.getInstanceClass()).isEmpty()) {
 			Type general = getDefaultType(superTypeNames);
 			if (general != null && general != this) {
 				generalizations = new ArrayList<>();
 				generalizations.add(general);
 				implicitGeneralTypes.put(generalizationEClass, generalizations);
 			}
-			return general;
 		}
 	}
 	

@@ -259,12 +259,15 @@ class KerMLScope extends AbstractScope {
 					}
 				}
 			}
-			for (type : (pack as TypeImpl).getImplicitGeneralTypes) {
-				scopeProvider.addVisited(type)
-				val found = type.resolveIfUnvisited(qn, false, visited, newRedefined)
-				scopeProvider.removeVisited(type)
-				if (found) {
-					return true
+			if (!scopeProvider.visited.contains(pack)) {
+				scopeProvider.addVisited(pack);
+				(pack as TypeImpl).computeImplicitGeneralization
+				scopeProvider.removeVisited(pack)
+				for (type : (pack as TypeImpl).getImplicitGeneralTypes) {
+					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined)
+					if (found) {
+						return true
+					}
 				}
 			}
 		}

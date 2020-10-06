@@ -814,8 +814,10 @@ public class TypeImpl extends PackageImpl implements Type {
 			.filter(gen -> gen != skip)
 			.map(Generalization::getGeneral)
 			.forEachOrdered(ownedGeneralEnds::add);
-		computeImplicitGeneralization();
-		ownedGeneralEnds.addAll(getImplicitGeneralTypes());
+		if (ownedGeneralEnds.isEmpty()) {
+			computeImplicitGeneralization();
+			ownedGeneralEnds.addAll(getImplicitGeneralTypes());
+		}
 		return ownedGeneralEnds;
 	}
 	

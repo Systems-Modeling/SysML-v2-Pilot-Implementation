@@ -135,7 +135,10 @@ public abstract class VStructure extends VDefault {
         }
         Feature f = (Feature) e;
         String name = getFeatureName(f);
-        if (name == null) return null;
+        if (name == null) {
+        	// It should not happen but need to give some name for processing
+        	name = "<s>noname</s>";
+        }
         List<Type> tt = f.getType();
         if (tt.isEmpty()) return name;
         StringBuilder sb = new StringBuilder();

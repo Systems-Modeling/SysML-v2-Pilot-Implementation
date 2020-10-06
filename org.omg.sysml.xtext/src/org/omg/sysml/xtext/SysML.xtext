@@ -1294,7 +1294,7 @@ AcceptNode returns SysML::AcceptActionUsage :
 
 fragment AcceptNodeDeclaration returns SysML::ActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember
-	'accept' UsageDeclaration? '(' ownedFeatureMembership_comp += ItemFeatureMember ')'
+	( 'action' UsageDeclaration )? 'accept'ownedFeatureMembership_comp += ItemFeatureMember
 ;
 
 SendNode returns SysML::SendActionUsage :
@@ -1303,7 +1303,7 @@ SendNode returns SysML::SendActionUsage :
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
 	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
-	'send' ( UsageDeclaration 'of')? ownedFeatureMembership_comp += OwnedExpressionMember 
+	( 'action' UsageDeclaration )? 'send' ownedFeatureMembership_comp += OwnedExpressionMember 
 	'to' ownedFeatureMembership_comp += OwnedExpressionMember
 ;
 

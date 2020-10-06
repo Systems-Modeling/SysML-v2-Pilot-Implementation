@@ -13,7 +13,7 @@ package 'Decision Example' {
 
 		then merge continueCharging;
 		
-		then accept monitor (batteryCharge : Real);
+		then action monitor accept batteryCharge : Real;
 		
 		then decide;
 			if monitor::batteryCharge < 100 then addCharge;
@@ -22,7 +22,7 @@ package 'Decision Example' {
 		action addCharge : AddCharge (batteryCharge);
 		then continueCharging;
 		
-		send signalCharged of BatteryCharged() to powerSystem;
+		action signalCharged send BatteryCharged() to powerSystem;
 		then done;
 	}
 }

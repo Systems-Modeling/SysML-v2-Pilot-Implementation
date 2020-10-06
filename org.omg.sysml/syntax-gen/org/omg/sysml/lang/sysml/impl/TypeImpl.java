@@ -269,6 +269,11 @@ public class TypeImpl extends PackageImpl implements Type {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList());
 	}
 	
+	public Type getFirstImplicitGeneralType(EClass eClass) {
+		List<Type> types = getImplicitGeneralTypes(eClass);
+		return types.isEmpty() ? null : types.get(0);
+	}
+	
 	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
 	}

@@ -160,7 +160,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public Type getExpressionType() {
 		List<FeatureTyping> typing = basicGetOwnedTyping();
-		return typing.isEmpty()? null: typing.get(0).getType();
+		return typing.isEmpty()? getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
 	}
 	
 	@Override

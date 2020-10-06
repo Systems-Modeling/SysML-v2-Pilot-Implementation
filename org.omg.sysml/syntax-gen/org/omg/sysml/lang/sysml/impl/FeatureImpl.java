@@ -871,11 +871,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public boolean hasObjectType() {
-		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof Class);
+		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof Class)
+				||
+				getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Class.class::isInstance);
 	}
 	
 	public boolean hasValueType() {
-		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof DataType);
+		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof DataType)||
+				getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
 	}
 	
 	public boolean isExpression() {
@@ -918,6 +921,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getRedefinedFeatures() {
+		computeImplicitGeneralization();
 		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).
 				stream().
 				map(Feature.class::cast);

@@ -1,4 +1,3 @@
-// Sample KerML code
 package Classes {
 	
 	feature f: A;
@@ -10,7 +9,6 @@ package Classes {
 	
 	abstract class id '2' B {
 		public abstract feature a: A;
-		packaged abstract feature x: C;
 		package P { }
 	}
 	

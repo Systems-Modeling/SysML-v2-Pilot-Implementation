@@ -1,0 +1,69 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+package Test {
+	attribute def T;
+	
+	calc def C () : T;
+	
+	// XPECT errors --> "Only one return parameter is allowed" at ": T"
+	calc def C1 () : T {
+		// XPECT errors --> "Only one return parameter is allowed" at "return x : T;"
+		return x : T;
+	}
+	
+	calc def C2 {
+		// XPECT errors --> "Only one return parameter is allowed" at "return r1 : T;"
+		return r1 : T;
+		// XPECT errors --> "Only one return parameter is allowed" at "return r2 : T;"
+		return r2 : T;
+	}
+	
+	calc c : C () : T;
+	
+	// XPECT errors --> "Only one return parameter is allowed" at ": T"
+	calc c1 : C () : T {
+		// XPECT errors --> "Only one return parameter is allowed" at "return x : T;"
+		return x : T;
+	}
+	
+	calc c2 : C {
+		// XPECT errors --> "Only one return parameter is allowed" at "return r1 : T;"
+		return r1 : T;
+		// XPECT errors --> "Only one return parameter is allowed" at "return r2 : T;"
+		return r2 : T;
+	}
+}

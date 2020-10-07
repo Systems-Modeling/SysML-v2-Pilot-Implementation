@@ -80,7 +80,7 @@ public class SysML2PlantUMLSvc {
         }
     }
 
-    public String getSVG(List<EObject> eObjs, List<String> styles) throws IOException {
+    public String getPlantUMLCode(List<EObject> eObjs, List<String> styles) {
         if (eObjs.isEmpty()) return null;
         // Setup Visualization Mode with the first item.
         s2Text.setupVisualizationEObjects(eObjs.get(0));
@@ -91,10 +91,17 @@ public class SysML2PlantUMLSvc {
         sb.append(s2Text.sysML2PUML(eObjs));
         sb.append("@enduml\n");
 
+        return sb.toString();
+    }
+
+
+    public String getSVG(List<EObject> eObjs, List<String> styles) throws IOException {
+        String pcode = getPlantUMLCode(eObjs, styles);
+
         final FileFormatOption ffo = new FileFormatOption(FileFormat.SVG);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-        SourceStringReader reader = new SourceStringReader(sb.toString());
+        SourceStringReader reader = new SourceStringReader(pcode);
         reader.outputImage(bos, ffo);
 
         return bos.toString("UTF-8");

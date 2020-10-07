@@ -3,6 +3,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -13,10 +14,13 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,7 +106,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	public Feature basicGetResult() {
 		return getResultParameter();
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,14 +154,35 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
+	}
+	
+	// Other methods
+	
+	public static void addResultParameter(Type type) {
+		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
+			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+			membership.setOwnedMemberParameter_comp(resultParameter);
+			type.getOwnedFeatureMembership_comp().add(membership);
+			((FeatureImpl)resultParameter).transform();
+		}
+	}
+	
+	@Override
+	public List<Feature> getOwnedParameters() {
+		addResultParameter(this);
+		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
+		addResultParameter(this);
 		getResultConnector();
 	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

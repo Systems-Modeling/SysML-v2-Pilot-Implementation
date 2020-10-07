@@ -173,8 +173,8 @@ public class SuperclassingImpl extends GeneralizationImpl implements Superclassi
 	 */
 	@Override
 	public Classifier getOwningClassifier() {
-		Classifier classifier = basicGetOwningClassifier();
-		return classifier != null && classifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)classifier) : classifier;
+		Classifier owningClassifier = basicGetOwningClassifier();
+		return owningClassifier != null && owningClassifier.eIsProxy() ? (Classifier)eResolveProxy((InternalEObject)owningClassifier) : owningClassifier;
 	}
 
 	/**

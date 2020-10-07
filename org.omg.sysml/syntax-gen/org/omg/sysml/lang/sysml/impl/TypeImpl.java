@@ -28,6 +28,7 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -627,12 +628,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
 		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
 		memberships.removeIf(membership->{
-			if (!(membership instanceof FeatureMembership)) {
-				return false;
-			} else {
-				Collection<Feature> otherRedefinedFeatures = ((FeatureImpl)membership.getMemberElement()).getAllRedefinedFeatures();
-				return otherRedefinedFeatures.stream().anyMatch(redefinedFeatures::contains);
-			}
+			Element memberElement = membership.getMemberElement();
+			return memberElement instanceof Feature &&
+				   ((FeatureImpl)memberElement).getAllRedefinedFeatures().stream().
+				   		anyMatch(redefinedFeatures::contains);
 		});		
 	}
 	
@@ -793,7 +792,8 @@ public class TypeImpl extends PackageImpl implements Type {
 	public <T extends Membership> Stream<Feature> getOwnedFeaturesByMembership(Class<T> kind) {
 		return getOwnedFeatureMembership().stream().
 				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature);
+				map(FeatureMembership::getMemberFeature).
+				filter(f->f != null);
 	}
 	
 	public <T extends Membership> Feature getOwnedFeatureByMembership(Class<T> kind) {
@@ -841,25 +841,27 @@ public class TypeImpl extends PackageImpl implements Type {
 	protected List<Feature> getAllParameters(Set<Type> visited) {
 		visited.add(this);
 		List<Feature> parameters = getOwnedParameters();
+		parameters.removeIf(p->((FeatureImpl)p).isResultParameter());
 		int n = parameters.size();
-		for (Generalization generalization: getOwnedGeneralization()) {
+		for (Generalization generalization : getOwnedGeneralization()) {
 			Type general = generalization.getGeneral();
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
+				inheritedParameters.removeIf(p->((FeatureImpl)p).isResultParameter());
 				if (inheritedParameters.size() > n) {
 					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
 				}
 			}
 		}
+		Feature resultParameter = getResultParameter();
+		if (resultParameter != null) {
+			parameters.add(resultParameter);
+		}
 		return parameters;
 	}
 	
 	public List<Feature> getOwnedParameters() {
-		return getOwnedFeatureMembership().stream().
-				filter(ParameterMembership.class::isInstance).
-				map(FeatureMembership::getMemberFeature).
-				filter(feature->feature != null).
-				collect(Collectors.toList());
+		return getOwnedFeaturesByMembership(ParameterMembership.class).collect(Collectors.toList());
 	}
 	
 	public EList<Feature> getOwnedInput() {
@@ -899,9 +901,8 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected Feature getResultParameter() {
-		return getAllParameters().stream().
-				filter(parameter->((FeatureImpl)parameter).
-				isResultParameter()).
+		return getOwnedParameters().stream().
+				filter(p->((FeatureImpl)p).isResultParameter()).
 				findFirst().orElse(null);
 	}
 	

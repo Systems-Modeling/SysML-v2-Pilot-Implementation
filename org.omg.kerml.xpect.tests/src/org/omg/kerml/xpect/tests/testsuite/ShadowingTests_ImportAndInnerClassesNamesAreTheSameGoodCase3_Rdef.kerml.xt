@@ -16,7 +16,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest
 	}
 END_SETUP 
 */
-
+//XPECT noErrors ---> ""
 package test{
 	feature A{
 		feature a2{}
@@ -24,10 +24,6 @@ package test{
 	feature inner{
 		import OuterPackage::*;
 		feature B redefines A {
-			//* XPECT errors --- 
-			"Couldn't resolve reference to Feature 'a2'." at "a2"
-			"The feature 'type' of 'org.omg.sysml.lang.sysml.impl.FeatureImpl@6f3e19b3{file:/C:/install_dir/org.omg.sysml.xpect.tests/src/org/omg/sysml/xpect/tests/validation/a_ShadowingTests_ImportAndInnerClassesNamesAreTheSameGoodCase3_Rdef.kerml.xt#//@ownedRelationship.1/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0/@ownedRelationship.1/@ownedRelatedElement.0}' with 0 values must have at least 1 values" at "b redefines a2{}"
-			--- */
 			feature b redefines a2{}
 		}
 	}

@@ -92,9 +92,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return getAllParameters().stream().
-				filter(p->((FeatureImpl)p).isResultParameter()).
-				findFirst().orElse(null);
+		return super.getResultParameter();
 	}
 
 	/**

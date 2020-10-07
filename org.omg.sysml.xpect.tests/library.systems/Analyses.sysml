@@ -13,7 +13,7 @@ package Analyses {
 	 * AnalysisCase is the most general class of performances of AnalysisCaseDefinitions. 
 	 * AnalysisCase is the base class of all AnalysisCaseDefinitions.
 	 */
-	abstract analysis def AnalysisCase :> Case () result[0..*] {
+	abstract analysis def AnalysisCase :> Case {
 		ref analysis :>> self : AnalysisCase;		
 		subject :>> subj;
 		objective :>> obj;
@@ -31,12 +31,12 @@ package Analyses {
 		/**
 		 * The Evaluation of the resultExpression from the definition of this AnalysisCase.
 		 */
-		calc resultEvaluation : Evaluation[0..1] :> evaluations () result[0..*];
+		calc resultEvaluation : Evaluation[0..1] :> evaluations;
 		
 		/**
 		 * The result of this AnalysisCase is bound to the result of the resultEvaluation.
 		 */
-		bind resultEvaluation::result = AnalysisCase::result;
+		return ref result = resultEvaluation();
 	}
 	
 	/**

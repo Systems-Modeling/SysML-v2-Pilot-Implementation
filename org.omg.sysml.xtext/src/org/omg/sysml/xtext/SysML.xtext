@@ -1161,10 +1161,10 @@ fragment ActionBody returns SysML::Type :
 	    ';' 
 		// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 		// while incrementally parsing.
-	  | '{' => ActionDefBodyItem* '}' 
+	  | '{' => ActionBodyItem* '}' 
 ;
 
-fragment ActionDefBodyItem returns SysML::Type :
+fragment ActionBodyItem returns SysML::Type :
 	  documentation_comp += OwnedDocumentation
 	| ownedMembership_comp += NestedDefinitionMember 
 	| ownedMembership_comp += VariantUsageMember
@@ -1553,7 +1553,7 @@ enum EffectFeatureKind returns SysML::TransitionFeatureKind :
 ;
 
 EffectBehaviorUsage returns SysML::ActionUsage :
-	  EmptyActionUsage | PerformedActionUsage ( '{' ActionDefBodyItem* '}' )?
+	  EmptyActionUsage | PerformedActionUsage ( '{' ActionBodyItem* '}' )?
 ;
 
 TransitionSuccessionMember returns SysML::FeatureMembership :
@@ -1585,35 +1585,32 @@ CalculationDefinition returns SysML::CalculationDefinition :
 ;
 
 fragment CalculationDeclaration returns SysML::CalculationDefinition :
-	DefinitionDeclaration ParameterPart
-;
-
-fragment ParameterPart returns SysML::Type :
-	  ParameterList ( ReturnParameterPart | EmptyReturnParameterPart )
-	| EmptyReturnParameterPart
+	DefinitionDeclaration ( ParameterList ReturnParameterPart? )?
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
 	ownedFeatureMembership_comp += ReturnParameterMember
 ;
 
-fragment EmptyReturnParameterPart returns SysML::Type :
-	ownedFeatureMembership_comp += EmptyReturnParameterMember
-;
-
 ReturnParameterMember returns SysML::ReturnParameterMembership :
 	'return'? ownedMemberParameter_comp = Parameter
 ;
 
-EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedMemberFeature_comp = EmptyParameter
-;
-
 fragment CalculationBody returns SysML::Type :
 	    ';' 
-	  | '{' => ActionDefBodyItem*
+	  | '{' => CalculationBodyItem*
 	        ( ownedFeatureMembership_comp += ResultExpressionMember )?
 	    '}' 
+;
+
+fragment CalculationBodyItem returns SysML::Type :
+	  ActionBodyItem
+	| ownedFeatureMembership_comp += ReturnParameterFlowUsageMember
+;
+
+ReturnParameterFlowUsageMember returns SysML::ReturnParameterMembership :
+	DefinitionMemberPrefix 'return' 
+	ownedMemberParameter_comp = FlowUsageElement
 ;
 
 ResultExpressionMember returns SysML::ResultExpressionMembership :
@@ -1630,21 +1627,21 @@ CalculationUsage returns SysML::CalculationUsage :
 	UsagePrefix? CalculationUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
-CalculationFlowUsage returns SysML::ActionUsage :
+CalculationFlowUsage returns SysML::CalculationUsage :
 	UsagePrefix? 'ref'? CalculationUsageKeyword CalculationUsageDeclaration CalculationBody
 ;
 
 CalculationRefUsage returns SysML::CalculationUsage :
-	UsagePrefix? ( 'ref' CalculationUsageKeyword | isComposite ?= CalculationUsageKeyword ) CalculationUsageDeclaration CalculationBody
+	UsagePrefix? ( 'ref' CalculationUsageKeyword | isComposite ?= CalculationUsageKeyword ) 
+	CalculationUsageDeclaration CalculationBody
 ;
 
 fragment CalculationUsageDeclaration returns SysML::Step :
-	  UsageDeclaration? CalculationParameterPart
+	  UsageDeclaration? ( ValuePart | CalculationUsageParameterPart )?
 ;
 
-fragment CalculationParameterPart returns SysML::Feature :
-	  ActionUsageParameterList ( CalculationReturnParameterPart | EmptyReturnParameterPart )
-	| ValuePart? EmptyReturnParameterPart
+fragment CalculationUsageParameterPart returns SysML::Feature :
+	  ActionUsageParameterList CalculationReturnParameterPart?
 ;
 
 fragment CalculationReturnParameterPart returns SysML::Feature :
@@ -1672,7 +1669,15 @@ ConstraintDefinition returns SysML::ConstraintDefinition :
 ;
 
 fragment ConstraintDeclaration returns SysML::ConstraintDefinition :
-	DefinitionDeclaration ParameterList? EmptyReturnParameterPart 
+	DefinitionDeclaration ParameterList? EmptyReturnParameterPart
+;
+
+fragment EmptyReturnParameterPart returns SysML::Type :
+	ownedFeatureMembership_comp += EmptyReturnParameterMember
+;
+
+EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
+	ownedMemberParameter_comp = EmptyParameter
 ;
 
 /* Constraint Usages */
@@ -1699,7 +1704,7 @@ AssertConstraintUsage returns SysML::AssertConstraintUsage :
     ( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
-    CalculationParameterPart InvariantPart CalculationBody
+    CalculationUsageParameterPart? InvariantPart CalculationBody
 ;
 
 fragment InvariantPart returns SysML::Invariant :
@@ -1759,7 +1764,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :
       ownedRelationship_comp += OwnedSubsetting FeatureSpecialization* 
-      CalculationParameterPart RequirementBody
+      CalculationUsageParameterPart? RequirementBody
     | 'constraint' CalculationUsageDeclaration CalculationBody
 ;
 
@@ -1785,9 +1790,9 @@ RequirementRefUsage returns SysML::RequirementUsage :
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
 	UsagePrefix? 'satisfy'
 	( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
-    | RequirementKeyword UsageDeclaration? 
+    | RequirementUsageKeyword UsageDeclaration? 
     )
-    ( ValuePart | ActionUsageParameterList )? EmptyReturnParameterPart
+    ( ValuePart | ActionUsageParameterList )?
     ( 'by' ownedFeatureMembership_comp += SatisfactionConnectorMember )?
     InvariantPart RequirementBody
 ;
@@ -1826,7 +1831,7 @@ fragment CaseBody returns SysML::Type :
 ;
 
 fragment CaseBodyItem returns SysML::Type :
-	  ActionDefBodyItem
+	  CalculationBodyItem
 	| ownedFeatureMembership_comp += SubjectMember 
 	| ownedFeatureMembership_comp += ObjectiveMember
 	

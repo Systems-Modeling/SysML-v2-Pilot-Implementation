@@ -42,28 +42,38 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package CalculationExample {
+	import ScalarValues::Real;
+	import ScalarFunctions::sum;
+	
 	part vehicle {
-		attribute m: ScalarValues::Real;
+		attribute m: Real;
 		
 		part eng {
-			attribute m: ScalarValues::Real;
+			attribute m: Real;
 		}
 		
 		part trans {
-			attribute m: ScalarValues::Real;
+			attribute m: Real;
 		}
 	}
 	
-	calc def MassSum (
-		partMasses: ScalarValues::Real[0..*] )
-		totalMass: ScalarValues::Real 
-	{
-		ScalarFunctions::sum(partMasses)
+	calc def MassSum (partMasses : Real[0..*]) totalMass : Real {
+		sum(partMasses)
 	}
 	
 	calc ms: MassSum (
 		partMasses = {vehicle::eng::m, vehicle::trans::m})
 		totalMass = vehicle::m;
 		
+	calc def MassSum1 {
+		in partMasses : Real[0..*];
+		return totalMass : Real = sum(partMasses);
+	}
+	
+	calc ms1: MassSum {
+		in partMasses = {vehicle::eng::m, vehicle::trans::m};
+		return totalMass = vehicle::m;
+	}
+
 	calc c;
 }

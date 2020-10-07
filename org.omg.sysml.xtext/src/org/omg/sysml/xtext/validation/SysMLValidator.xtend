@@ -81,8 +81,9 @@ import org.omg.sysml.lang.sysml.RenderingUsage
 import org.omg.sysml.lang.sysml.RenderingDefinition
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.SubjectMembership
-import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.ObjectiveMembership
+import org.omg.sysml.lang.sysml.ReturnParameterMembership
+import org.omg.sysml.lang.sysml.FeatureMembership
 
 /**
  * This class contains custom validation rules. 
@@ -148,8 +149,9 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_SUBJECTMEMBERSHIP = 'Invalid SubjectMembership - too many';
 	public static val INVALID_SUBJECTMEMBERSHIP_MSG = 'Only one subject is allowed';
 	public static val INVALID_OBJECTIVEMEMBERSHIP = 'Invalid ObjectiveMembership - too many';
-	public static val INVALID_OBJECTIVEMEMBERSHIP_MSG = 'Only one objective is allowed';
-	
+	public static val INVALID_OBJECTIVEMEMBERSHIP_MSG = 'Only one objective is allowed';	
+	public static val INVALID_RETURNPARAMETERMEMBERSHIP = 'Invalid ReturnParameterMembership - too many'
+	public static val INVALID_RETURNPARAMETERMEMBERSHIP_MSG = 'Only one return parameter is allowed'
 	
 	@Check
 	def checkUsage(Usage usage) {
@@ -265,18 +267,26 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check //Must have at most one subject membership.
 	def checkSubjectMembership(SubjectMembership mem) {
-		val pack = mem.membershipOwningPackage
-		if (pack instanceof Type && (pack as Type).ownedFeatureMembership.exists[m| m instanceof SubjectMembership && m != mem]) {
-			error(INVALID_SUBJECTMEMBERSHIP_MSG, SysMLPackage.eINSTANCE.subjectMembership_OwnedSubjectParameter, INVALID_SUBJECTMEMBERSHIP)
-		}
+		checkAtMostOneFeature(SubjectMembership, mem, INVALID_SUBJECTMEMBERSHIP_MSG, INVALID_SUBJECTMEMBERSHIP)
 	}
 	
 	@Check //Must have at most one objective requirement.
 	def checkObjectiveMembership(ObjectiveMembership mem) {
-		val pack = mem.membershipOwningPackage
-		if (pack instanceof Type && (pack as Type).ownedFeatureMembership.exists[m| m instanceof ObjectiveMembership && m != mem]) {
-			error(INVALID_OBJECTIVEMEMBERSHIP_MSG, SysMLPackage.eINSTANCE.objectiveMembership_OwnedObjectiveRequirement, INVALID_OBJECTIVEMEMBERSHIP)
+		checkAtMostOneFeature(ObjectiveMembership, mem, INVALID_OBJECTIVEMEMBERSHIP_MSG, INVALID_OBJECTIVEMEMBERSHIP)
+	}
+	
+	@Check // Must have at most one owned return parameter.
+	def checkReturnMembership(ReturnParameterMembership mem) {
+		checkAtMostOneFeature(ReturnParameterMembership, mem, INVALID_RETURNPARAMETERMEMBERSHIP_MSG, INVALID_RETURNPARAMETERMEMBERSHIP)
+	}
+	
+	protected def boolean checkAtMostOneFeature(Class<?> kind, FeatureMembership mem, String msg, String eId) {
+		val owningType = mem.owningType
+		if (owningType !== null && owningType.ownedFeatureMembership.exists[m | kind.isInstance(m) && m != mem]) {
+			error(msg, mem, SysMLPackage.eINSTANCE.featureMembership_OwnedMemberFeature, eId)
+			return false
 		}
+		return true
 	}
 	
 	protected def boolean checkAtMostOneElement(Iterable<? extends Element> elements, String msg, String eId) {

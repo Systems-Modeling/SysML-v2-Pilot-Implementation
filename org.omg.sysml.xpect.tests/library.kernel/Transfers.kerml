@@ -57,7 +57,7 @@ package Transfers {
 		 */
 		assoc SourceOutputLink {
 			end feature source: Occurrence[1];
-			end feature target: Occurrence[1..*] redefines transferSource::sourceOutput;
+			end feature target: Occurrence[1..*] redefines target, transferSource::sourceOutput;
 		}
 		
 		/**
@@ -72,7 +72,7 @@ package Transfers {
 		 * The link from the transfer source to the items it is inputing.
 		 */
 		assoc TargetInputLink {
-			end feature source: Occurrence[1..*] redefines transferTarget::targetInput;
+			end feature source: Occurrence[1..*] redefines source, transferTarget::targetInput;
 			end feature target: Occurrence[1];
 		}
 		

@@ -1,8 +1,8 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2018, 2019 Model Driven Solutions, Inc.
- * Copyright (c) 2018, 2019 California Institute of Technology/Jet Propulsion Laboratory
+ * Copyright (c) 2018, 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2019, 2020 California Institute of Technology/Jet Propulsion Laboratory
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -46,6 +46,7 @@ import java.util.HashSet
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.Membership
 
 class KerMLScope extends AbstractScope {
 	
@@ -159,43 +160,48 @@ class KerMLScope extends AbstractScope {
 			if (targetqn === null) {
 				ownedvisited.add(pack)		
 			}
-			for (m: pack.ownedMembership) {
-				if (!isSkip(m) && !scopeProvider.visited.contains(m)) {
-					var String elementName1
-					var String elementName2 //for HumanId
+			
+			for (r: pack.ownedRelationship) {
+				if (!isSkip(r) && !scopeProvider.visited.contains(r)) {
 					var Element memberElement
+					var String elementId = null
+					var String elementName = null
 					
 					// Note: Proxy resolution for memberElement may result in recursive name resolution
 					// (and getting the memberName may also result in accessing the memberElement).
 					// In this case, the membership m should be excluded from the scope, to avoid a 
 					// cyclic linking error.
-					scopeProvider.addVisited(m)
+					scopeProvider.addVisited(r)
 					try {
-						memberElement = m.memberElement
-						if (memberElement !== null && memberElement.eIsProxy){
-							elementName1 = null;
-							elementName2 = null;
-						} else{
-							elementName2 = memberElement.humanId;
-							if (m.memberName !== null || (isFirstScope && pack == this.pack && memberElement === element)) elementName1 = m.memberName 
-							else elementName1 = (memberElement as ElementImpl)?.effectiveName
-						}
-							
+						if (r instanceof Membership) {
+							memberElement = r.memberElement
+							elementId = memberElement?.humanId
+							elementName = 
+								if (memberElement !== null && memberElement.eIsProxy) null
+								else if (r.memberName !== null || (isFirstScope && pack == this.pack && memberElement === element)) r.memberName 
+								else (memberElement as ElementImpl)?.effectiveName
+						} else {
+							val ownedElements = r.ownedRelatedElement;
+							if (!ownedElements.empty) {
+								// Note: This assumes ownership relationships will be binary.
+								memberElement = ownedElements.get(0);
+								elementId = memberElement?.humanId;
+							}							
+						}				
 					} finally {
-						scopeProvider.removeVisited(m)
+						scopeProvider.removeVisited(r)
 					}
-					if (elementName1 !== null  && !redefined.contains(memberElement) &&
-						(isInsideScope || m.visibility == VisibilityKind.PUBLIC || 
-						 m.visibility == VisibilityKind.PROTECTED && 
-							scopingType !== null && 
-							scopingType.isInheritedProtected(m.membershipOwningPackage))) {
-						val elementqn1 = qn.append(elementName1)
-						if (ownedPerQufalifiedName(elementqn1, checkIfAdded, memberElement, ownedvisited, visited))
-							return true
+
+					if (elementId !== null && 
+						ownedPerQualifiedName(qn, elementId, checkIfAdded, memberElement, ownedvisited, visited)) {
+						return true;
+					}
 					
-						if (elementName2 !== null) {
-							val elementqn2 = qn.append(elementName2)	
-							if (ownedPerQufalifiedName(elementqn2, checkIfAdded, memberElement, ownedvisited, visited))
+					if (elementName !== null  && !redefined.contains(memberElement)) {
+						val m = r as Membership
+						if ((isInsideScope || m.visibility == VisibilityKind.PUBLIC || 
+						     m.visibility == VisibilityKind.PROTECTED &&  scopingType !== null && scopingType.isInheritedProtected(m.membershipOwningPackage)) &&
+							ownedPerQualifiedName(qn, elementName, checkIfAdded, memberElement, ownedvisited, visited)) {
 								return true
 						}
 					}
@@ -205,8 +211,9 @@ class KerMLScope extends AbstractScope {
 		}
 		return false
 	}
-	protected def ownedPerQufalifiedName (QualifiedName elementqn, boolean checkIfAdded, Element memberElement, Set<Package> ownedvisited, Set<Package> visited)
-	{
+	
+	protected def ownedPerQualifiedName (QualifiedName qn, String elementName, boolean checkIfAdded, Element memberElement, Set<Package> ownedvisited, Set<Package> visited) {
+		val elementqn = qn.append(elementName)
 		if (targetqn === null || targetqn.startsWith(elementqn))  {
 			if (!checkIfAdded || !visitedqns.contains(elementqn)) {
 				visitedqns.add(elementqn)

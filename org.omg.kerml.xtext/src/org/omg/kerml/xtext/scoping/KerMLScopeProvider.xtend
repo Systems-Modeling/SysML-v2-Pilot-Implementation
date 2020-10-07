@@ -74,8 +74,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	
 	override getScope(EObject context, EReference reference) {
 		if (context instanceof Conjugation)
-			context.conjugatedType.scope_owningNamespace(context, reference)
+			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Subsetting) {
+			if (context.eContainer instanceof Membership) {
+				return context.owningMembership.scope_owningNamespace(context, reference)
+			}
 		    var subsettingFeature = context.subsettingFeature
 		    var owningType = subsettingFeature?.owningType
 		    if (owningType instanceof QueryPathExpression) {
@@ -87,7 +90,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Generalization)
-			context.specific.scope_owningNamespace(context, reference)
+			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
 		    context.scope_Namespace(context.membershipOwningPackage, context, reference)
 		} else if (context instanceof Import)
@@ -157,17 +160,10 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	def IScope scopeFor(Package pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
 		val parent = pack.parentPackage
 		val outerscope = 
-			if (parent === null) { // Root Package
-				 val global = globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-				 if (pack.name !== null) 
-				 	// The root scope includes qualified names whose first segment is the name
-				 	// of the root package.
-				 	new KerMLRootScope(global, pack, reference.EReferenceType, this, element, skip)
-				 else 
-				 	global
-			} else {
-				parent.scopeFor(reference, element, false, false, skip)
-			}		
+			if (parent === null) // Root Package
+				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
+			else
+				parent.scopeFor(reference, element, false, false, skip)		
 
 		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isFirstScope, isRedefinition, element, skip)
 	}

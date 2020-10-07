@@ -27,10 +27,17 @@ public class Viz {
 
         VizResult vr = ISysML.getKernelInstance().getInteractive().viz(elements, views, styles);
         DisplayData dd = new DisplayData();
-        if (vr.hasException()) {
+
+        switch (vr.kind) {
+        case EXCEPTION:
             dd.putText(vr.formatException());
-        } else {
+            break;
+        case PLANTUML:
+            dd.putText(vr.getPlantUML());
+            break;
+        case SVG:
             dd.putSVG(vr.getSVG());
+            break;
         }
         return dd;
     }

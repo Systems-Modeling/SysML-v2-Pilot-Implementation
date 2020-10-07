@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
@@ -102,12 +103,21 @@ public class VStateMembers extends VDefault {
         return "";
     }
 
-    @Override
-    public String caseStateUsage(StateUsage su) {
+    private String visitState(Type stateType) {
         VStateMachine v = new VStateMachine(this);
-        String ret = v.visit(su);
+        String ret = v.visit(stateType);
         append(ret);
         return ret;
+    }
+
+    @Override
+    public String caseStateUsage(StateUsage su) {
+        return visitState(su);
+    }
+
+    @Override
+    public String caseStateDefinition(StateDefinition sd) {
+        return visitState(sd);
     }
 
     public String startStateUsage(Type typ) {

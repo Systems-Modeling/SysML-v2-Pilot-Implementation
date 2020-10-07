@@ -9,7 +9,7 @@ package 'Fork Join Example' {
 	action def Braking(in brakePressure : BrakePressure, in modulationFrequency : Real);
 	
 	action def Brake {
-		accept (TurnKeyToOn);
+		accept TurnKeyToOn;
 		
 		then fork;
 			then monitorBrakePedal;

@@ -67,7 +67,7 @@ package AnalysisTest {
 			subject = result;
 		}
 		
-		v::m
+		return ref result = v::m;
 	}
 	
 	analysis def AnalysisPlan {

@@ -234,13 +234,12 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isRequirementConstraint()? 
+		return isSubrequirement()? 
 				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
 				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
 	}
 	
-	@Override
-	public boolean isRequirementConstraint() {
+	public boolean isSubrequirement() {
 		Type owningType = getOwningType();
 		return !isAssumptionConstraint() &&
 			   (owningType instanceof RequirementDefinition || 
@@ -332,18 +331,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return isObjective()? Collections.singletonList(getObjectiveRequirementOf(type)):
 			   super.getRelevantFeatures(type);
-	}
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		basicGetSubjectParameter();
-		return super.getOwnedParameters();
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		basicGetSubjectParameter();
 	}
 	
 	//

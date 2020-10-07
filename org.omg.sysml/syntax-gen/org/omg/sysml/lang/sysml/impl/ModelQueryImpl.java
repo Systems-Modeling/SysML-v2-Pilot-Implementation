@@ -3,9 +3,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.omg.sysml.lang.sysml.ModelQuery;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -16,7 +13,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class ModelQueryImpl extends MinimalEObjectImpl.Container implements ModelQuery {
+public class ModelQueryImpl extends ElementImpl implements ModelQuery {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

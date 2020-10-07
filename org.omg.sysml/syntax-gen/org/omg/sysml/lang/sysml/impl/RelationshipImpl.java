@@ -179,13 +179,22 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 		}
 		return target;
 	}
+	
+	@Override
+	public EList<Element> getSource() {
+		EList<Element> sources = getSourceGen();
+		Element owningRelatedElement = getOwningRelatedElement();
+		if (sources.isEmpty() && owningRelatedElement != null && !getTarget().contains(owningRelatedElement)) {
+			sources.add(owningRelatedElement);
+		}
+		return sources;
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public EList<Element> getSource() {
+	public EList<Element> getSourceGen() {
 		if (source == null) {
 			source = new EObjectResolvingEList<Element>(Element.class, this, SysMLPackage.RELATIONSHIP__SOURCE);
 		}

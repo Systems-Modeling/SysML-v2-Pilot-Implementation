@@ -72,8 +72,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val pack = mem.membershipOwningPackage;	
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
 		if (!(pack instanceof InvocationExpression || pack instanceof FeatureReferenceExpression || pack instanceof LiteralExpression || pack instanceof NullExpression ||
-			  pack instanceof BindingConnector
-		)) {
+			  pack instanceof BindingConnector)) {
 			pack.ownedMembership.forEach[m|
 				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
 					if (mem.ownedMemberElement !== null) {

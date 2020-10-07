@@ -12,7 +12,7 @@ package Cases {
 	 * Case is the most general class of performances of CaseDefinitions. 
 	 * Case is the base class of all CaseDefinitions.
 	 */
-	abstract case def Case :> Calculation () result[0..*] {
+	abstract case def Case :> Calculation {
 		ref case :>> self : Case;
 		
 		/**
@@ -26,6 +26,11 @@ package Cases {
 		objective obj : RequirementCheck[1] {
 			subject = Case::result;
 		}
+		
+		/**
+		 * The result determined by the case, which should satisfy the case objective.
+		 */
+		return ref result[0..*];
 		
 		/**
 		 * Other Cases carried out as part of the performance of this Case.

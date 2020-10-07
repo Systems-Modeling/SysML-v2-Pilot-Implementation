@@ -115,10 +115,10 @@ package '3a-Function-based Behavior-1' {
 			 * Note that 'engineStarted' is the name of the action, while
 			 * 'engineStart' is the name of the received signal attribute.
 			 */
-			accept engineStarted (engineStart: EngineStart);			
+			action engineStarted accept engineStart: EngineStart;			
 			succession engineStarted then engineStopped;
 					
-			accept engineStopped (engineOff: EngineOff);	
+			action engineStopped accept engineOff: EngineOff;	
 			succession engineStopped then continue;
 			
 			/**

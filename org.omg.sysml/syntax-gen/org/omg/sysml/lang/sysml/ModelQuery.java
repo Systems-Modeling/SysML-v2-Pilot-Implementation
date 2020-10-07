@@ -2,8 +2,6 @@
  */
 package org.omg.sysml.lang.sysml;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Model Query</b></em>'.
@@ -20,5 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ModelQuery extends EObject {
+public interface ModelQuery extends Element {
 } // ModelQuery

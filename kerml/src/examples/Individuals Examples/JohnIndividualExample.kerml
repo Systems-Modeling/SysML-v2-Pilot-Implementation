@@ -41,7 +41,7 @@ package JohnIndividualExample {
 	  There is at most one such person.
 	*/
 	class John specializes Person {
-		class all JohnLife specializes John, Occurrences::Life [0..1];
+		class all JohnLife[0..1] specializes John, Occurrences::Life;
 	} 
 	
 	/**
@@ -70,7 +70,7 @@ package JohnIndividualExample {
 	  always has a president who must be at least 35 years old.
 	*/
 	class UnitedStates specializes Country {
-		class all USLife specializes UnitedStates, Occurrences::Life [1];
+		class all USLife[1] specializes UnitedStates, Occurrences::Life ;
 	  	feature presidentOfUS[1] redefines presidentOfCountry {
 	   		inv { age >= 35 } 
 	  	}

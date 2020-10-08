@@ -15,7 +15,7 @@ package Parts {
 	 * Part is the most general class of objects that represent all or a part of a system.
 	 * Part is the base type of all PartDefinitions.
 	 */
-	abstract block Part :> Item {
+	abstract part def Part :> Item {
 		ref :>> self: Part;
 		
 		part :>> start: Part;

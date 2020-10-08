@@ -11,11 +11,11 @@ package Items {
 	 * Item is the most general class of objects that are part of, exist in or flow through a system. 
 	 * Item is the base type of all ItemDefinitions.
 	 */
-	abstract block Item :> Object {
+	abstract item def Item :> Object {
 		ref :>> self: Item;
 		
-		part start: Item :>> startShot;
-		part done: Item :>> endShot;
+		item start: Item :>> startShot;
+		item done: Item :>> endShot;
 		
 		/**
 		 * Constraints that are asserted by this item.
@@ -26,6 +26,6 @@ package Items {
 	/**
 	 * items is the base feature of all ItemUsages.
 	 */
-	abstract part items : Item[0..*] :> objects;
+	abstract item items : Item[0..*] :> objects;
 	
 }

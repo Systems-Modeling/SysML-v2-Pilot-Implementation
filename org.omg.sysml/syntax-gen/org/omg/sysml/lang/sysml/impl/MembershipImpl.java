@@ -377,13 +377,19 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	public Element getOwnedMemberElement_comp() {
 		return ownedMemberElement_comp;
 	}
+	
+	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+		memberName = ((ElementImpl)newOwnedMemberElement_comp).basicGetName();
+		((ElementImpl)newOwnedMemberElement_comp).basicSetName(null);
+		return basicSetOwnedMemberElement_compGen(newOwnedMemberElement_comp, msgs);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+	public NotificationChain basicSetOwnedMemberElement_compGen(Element newOwnedMemberElement_comp, NotificationChain msgs) {
 		Element oldOwnedMemberElement_comp = ownedMemberElement_comp;
 		ownedMemberElement_comp = newOwnedMemberElement_comp;
 		if (eNotificationRequired()) {

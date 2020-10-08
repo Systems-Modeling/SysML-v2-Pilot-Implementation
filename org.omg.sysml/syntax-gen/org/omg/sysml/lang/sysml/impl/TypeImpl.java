@@ -254,6 +254,20 @@ public class TypeImpl extends PackageImpl implements Type {
 		implicitGeneralTypes.clear();
 	}
 	
+	public void addImplicitGeneralizations() {
+		for (EClass eClass : implicitGeneralTypes.keySet()) {
+			// Do not generate implicit subsetting when an implicit redefinition is available
+			if (implicitGeneralTypes.keySet().stream().noneMatch(key -> eClass != key && eClass.isSuperTypeOf(key))) {
+				for (Type general : implicitGeneralTypes.get(eClass)) {
+					Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
+					newGeneralization.setGeneral(general);
+					newGeneralization.setSpecific(this);
+					this.getOwnedRelationship_comp().add(newGeneralization);
+				}
+			}
+		}
+	}
+	
 	public List<Type> getImplicitGeneralTypes() {
 		return implicitGeneralTypes.values().stream().
 				flatMap(Collection::stream).

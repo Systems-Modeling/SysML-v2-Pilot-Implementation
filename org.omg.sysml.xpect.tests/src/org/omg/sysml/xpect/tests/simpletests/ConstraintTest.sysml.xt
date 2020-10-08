@@ -15,7 +15,13 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Constraints.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQLight.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQMechanics.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQThermodynamics.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 		File {from ="/library.domain/Quantities and Units/SI.sysml"}
 		File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
@@ -24,23 +30,29 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="/library.kernel/Base.kerml"}
-       			File {from ="/library.kernel/Occurrences.kerml"}
-                File {from ="/library.kernel/Objects.kerml"}
-                File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/ScalarValues.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
-				File {from ="/library.kernel/ScalarFunctions.kerml"}
-				File {from ="/library.systems/Items.sysml"}
-				File {from ="/library.systems/Parts.sysml"}
-				File {from ="/library.systems/Ports.sysml"}
-				File {from ="/library.systems/Constraints.sysml"}
-				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
-				File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
-				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-				File {from ="/library.domain/Quantities and Units/SI.sysml"}
-				File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
+						File {from ="/library.kernel/Base.kerml"}
+				       	File {from ="/library.kernel/Occurrences.kerml"}
+				        File {from ="/library.kernel/Objects.kerml"}
+				       	File {from ="/library.kernel/Performances.kerml"}
+						File {from ="/library.kernel/ScalarValues.kerml"}
+						File {from ="/library.kernel/BaseFunctions.kerml"}
+						File {from ="/library.kernel/ScalarFunctions.kerml"}
+						File {from ="/library.systems/Items.sysml"}
+						File {from ="/library.systems/Parts.sysml"}
+						File {from ="/library.systems/Ports.sysml"}
+						File {from ="/library.systems/Constraints.sysml"}
+						File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+						File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQLight.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQMechanics.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQThermodynamics.sysml"}
+						File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+						File {from ="/library.domain/Quantities and Units/SI.sysml"}
+						File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
 			}
 		}
 	}

@@ -52,9 +52,9 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	}
 	
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		getFeatureTypes();
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 		
 	@Override

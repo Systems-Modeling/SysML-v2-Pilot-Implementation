@@ -253,13 +253,13 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	// Additional redefinitions and subsets
 	
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		if (isAssumptionConstraint()) {
 			addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
 		} else if (isRequirementConstraint()){
 			addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 	
 	protected void addSubsetting(String subsettedFeatureName) {

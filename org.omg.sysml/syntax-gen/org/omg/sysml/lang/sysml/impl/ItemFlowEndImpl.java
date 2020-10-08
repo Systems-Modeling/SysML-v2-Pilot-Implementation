@@ -48,7 +48,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 	
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
 		addComputedRedefinitions(null);
 	}

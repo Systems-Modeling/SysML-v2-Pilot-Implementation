@@ -243,21 +243,16 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	protected Map<EClass, List<Type>> implicitGeneralTypes = new HashMap<>();
 	
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		if (!isConjugated()) {
 			addDefaultGeneralType();
  		}
 	}
+	
 
 	public void cleanImplicitGeneralization() {
 		implicitGeneralTypes.clear();
 	}
-	
-//	public List<Generalization> getImplicitGeneralizations() {
-//		return implicitGeneralTypes.values().stream().
-//				flatMap(Collection::stream).
-//				collect(Collectors.toList());
-//	}
 	
 	public List<Type> getImplicitGeneralTypes() {
 		return implicitGeneralTypes.values().stream().
@@ -813,7 +808,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			.filter(gen -> gen != skip)
 			.map(Generalization::getGeneral)
 			.forEachOrdered(ownedGeneralEnds::add);
-		computeImplicitGeneralization();
+		computeImplicitGeneralTypes();
 		ownedGeneralEnds.addAll(getImplicitGeneralTypes());
 		return ownedGeneralEnds;
 	}
@@ -985,7 +980,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public void transform() {
 		super.transform();
 		clearCaches();
-		computeImplicitGeneralization();
+		computeImplicitGeneralTypes();
 	}
 	
 	//

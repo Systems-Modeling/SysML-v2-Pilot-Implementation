@@ -833,9 +833,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		addComputedRedefinitions(null);
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 	
 	@Override
@@ -892,7 +892,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		computeImplicitGeneralization();
+		computeImplicitGeneralTypes();
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
@@ -908,7 +908,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getRedefinedFeatures() {
-		computeImplicitGeneralization();
+		computeImplicitGeneralTypes();
 		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().

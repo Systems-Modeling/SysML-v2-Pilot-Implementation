@@ -184,9 +184,9 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	}
 
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		basicGetOwnedTyping();
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 	
 	/**

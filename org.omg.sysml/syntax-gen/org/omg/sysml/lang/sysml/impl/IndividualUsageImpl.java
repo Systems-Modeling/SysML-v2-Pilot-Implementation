@@ -211,9 +211,9 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 	}
 
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		getFeatureTypes();
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 		
 	@Override

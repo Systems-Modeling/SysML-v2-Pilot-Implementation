@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 	ResourceSet {
 		ThisFile {}
 	}
@@ -13,10 +13,11 @@ XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
 END_SETUP 
 */
 
-//XPECT noErrors ---> ""
+// XPECT noErrors --> ""
 package Test {
- 	package Test2 {
-		import VP::VP2::A_Id;
+
+	package Test2 {
+		import VP::VP2::*;
 		class A;
 		//* XPECT scope at A_Id ---
 		 A,  Test2.A, Test.Test2.A,

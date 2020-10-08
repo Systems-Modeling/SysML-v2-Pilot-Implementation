@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest
+XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 	ResourceSet {
 		ThisFile {}
 	}

@@ -450,17 +450,17 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated NOT
 	 */
 	public boolean isDistinguishableFrom(Membership other) {
-		// TODO Implement full distinguishibility test.
+		// TODO Implement full distinguishability test.
 		String name = this.getMemberEffectiveName();
 		return name == null 
 			|| (!name.equals(((MembershipImpl)other).getMemberEffectiveName())
-			&& (this.memberElement == null || this.memberElement.getHumanId() == null ||
-			(
-					!name.equals(((MembershipImpl)other).memberElement.getHumanId())
-					&& !this.memberElement.getHumanId().equals(((MembershipImpl)other).memberElement.getHumanId())
-					&& !this.memberElement.getHumanId().equals(((MembershipImpl)other).getMemberEffectiveName())
-			)
-			)
+//			&& (this.memberElement == null || this.memberElement.getHumanId() == null ||
+//			(
+//					!name.equals(((MembershipImpl)other).memberElement.getHumanId())
+//					&& !this.memberElement.getHumanId().equals(((MembershipImpl)other).memberElement.getHumanId())
+//					&& !this.memberElement.getHumanId().equals(((MembershipImpl)other).getMemberEffectiveName())
+//			)
+//			)
 			);
 			
 	}

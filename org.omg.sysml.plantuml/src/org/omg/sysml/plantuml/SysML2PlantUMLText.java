@@ -54,6 +54,7 @@ public class SysML2PlantUMLText {
     }
 
     private final Collection<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
+    private final Map<String, String> styleValueMap = new HashMap<String, String>();
     private StyleSwitch styleSwitch;
     private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new SysML2PlantUMLStyle.StyleRelDefaultSwitch(),
                                                                    new SysML2PlantUMLStyle.StyleStereotypeDefaultSwitch());
@@ -63,11 +64,15 @@ public class SysML2PlantUMLText {
         if (style.styleSwitch != null) {
             styleSwitch = style.styleSwitch;
         }
+        if (style.options != null) {
+            styleValueMap.putAll(style.options);
+        }
     }
 
     public void clearStyle() {
         styles.clear();
         styleSwitch = null;
+        styleValueMap.clear();
     }
 
     private SysML2PlantUMLStyle getVisitorStyle() {
@@ -94,8 +99,7 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleRelSwitch.doSwitch(e);
     }
 
-    /* used by Visitor */
-    String getStereotypeStyle(Element e) {
+    private String getStereotypeStyle(Element e) {
         String ret;
         SysML2PlantUMLStyle vStyle = getVisitorStyle();
         if (vStyle != null) {
@@ -152,6 +156,10 @@ public class SysML2PlantUMLText {
         return ret + getStereotypeName(typ) + ">> ";
     }
 
+    String styleValue(String key) {
+        return styleValueMap.get(key);
+    }
+
     @Inject
     public SysML2PlantUMLText(SysML2PlantUMLLinkProvider linkProvider) {
         this.linkProvider = linkProvider;
@@ -201,6 +209,12 @@ public class SysML2PlantUMLText {
     private Visitor initVisitor() {
         Visitor v = createVisitor();
         this.currentVisitor = v;
+        SysML2PlantUMLStyle vStyle = getVisitorStyle();
+        if (vStyle != null) {
+            if (vStyle.options != null) {
+                styleValueMap.putAll(vStyle.options);
+            }
+        }
         return v;
     }
 

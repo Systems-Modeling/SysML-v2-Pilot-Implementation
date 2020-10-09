@@ -87,7 +87,7 @@ public class SysML2PlantUMLStyle {
                 public String caseBindingConnector(BindingConnector object) {
                     return " -[thickness=5,#red]- ";
                 }
-            }, null));
+            }, null), "decoratedRedefined", "true");
         add("PLANTUML",
             "PlantUML Style", " ",
              new StyleSwitch(new StyleRelDefaultSwitch() {
@@ -176,21 +176,39 @@ public class SysML2PlantUMLStyle {
     public final String title;
     public final String commandStr;
     public final StyleSwitch styleSwitch;
+    public final Map<String, String> options;
 
-    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch) {
+    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, Map<String, String> options) {
     	this.name = name;
         this.title = title;
         this.commandStr = commandStr;
         this.styleSwitch = styleSwitch;
+        this.options = options;
     }
 
-    private static void add(String name, String title, String commandStr, StyleSwitch styleSwitch) {
+    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
+        this(name, title, commandStr, styleSwitch, convOptions(options));
+    }
+
+    private static Map<String, String> convOptions(String[] options) {
+        if (options == null) return null;
+        int size = options.length / 2;
+        Map<String, String> map = new HashMap<String, String>(size);
+        for (int i = 0; i < options.length;) {
+            map.put(options[i], options[i + 1]);
+            i += 2;
+        }
+        return map;
+    }
+
+    private static void add(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
         SysML2PlantUMLStyle s;
+        Map<String, String> map = convOptions(options);
         if (name == null) {
-            s = new SysML2PlantUMLStyle("DEFAULT", title, commandStr, styleSwitch);
+            s = new SysML2PlantUMLStyle("DEFAULT", title, commandStr, styleSwitch, map);
             defaultStyle = s;
         } else {
-            s = new SysML2PlantUMLStyle(name, title, commandStr, styleSwitch);
+            s = new SysML2PlantUMLStyle(name, title, commandStr, styleSwitch, map);
         }
         styles.put(s.name, s);
     }

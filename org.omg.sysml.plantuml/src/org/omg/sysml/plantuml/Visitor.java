@@ -113,12 +113,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.getRelStyle(rel);
     }
 
-    protected String getStereotypeStyle(Element e) {
-        return s2p.getStereotypeStyle(e);
-    }
-
     protected String styleString(Type typ) {
         return s2p.styleString(typ);
+    }
+
+    protected String styleValue(String option) {
+        return s2p.styleValue(option);
     }
 
     protected String getText(EObject eObj) {

@@ -94,38 +94,55 @@ public abstract class VStructure extends VDefault {
         return rd.getRedefinedFeature();
     }
 
-    private boolean addRedefinedFeatureText(Feature f) {
+    private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
-        if (rf == null) return false;
+        if (rf == null) return null;
         String name = getFeatureName(rf);
-        if (name == null) return false;
+        if (name == null) return null;
 
         org.omg.sysml.lang.sysml.Package pkg = rf.getOwningNamespace();
-        String pkgName;
-        if (pkg != null) {
-            pkgName = pkg.getName();
+        if (pkg == null) {
+            return name;
         } else {
-            pkgName = null;
+            return pkg.getName() + "::" + name;
         }
+    }
 
+    private boolean addRedefinedFeatureText(Feature f) {
+        String rt = redefinedFeatureText(f);
+        if (rt == null) return false;
         // waved decoration for redefinition
         append("\\n//:>>");
-        if (pkgName != null) {
-            append(pkgName);
-            append("::");
-        }
-        append(name);
+        append(rt);
         append("// ");
         return true;
     }
 
-    protected boolean addFeatureText(Feature f) {
-        String name = getFeatureName(f);
-        if (name == null) return false;
+    private void addFeatureTextInternal(Feature f, String name) {
         append(name);
         addTypeText(": ", f);
         addFeatureMembershipText(f);
-        addRedefinedFeatureText(f);
+    }
+    
+    protected boolean addFeatureText(Feature f) {
+        String name = getFeatureName(f);
+        if (name == null) return false;
+
+        if (styleValue("decoratedRedefined") != null) {
+            String rt = redefinedFeatureText(f);
+            if (rt != null) {
+                append('>');
+                addFeatureTextInternal(f, name);
+                append("<s>");
+                append(rt);
+                append("</s>");
+            } else {
+                addFeatureTextInternal(f, name);
+            }
+        } else {
+            addFeatureTextInternal(f, name);
+            addRedefinedFeatureText(f);
+        }
         return true;
     }
 

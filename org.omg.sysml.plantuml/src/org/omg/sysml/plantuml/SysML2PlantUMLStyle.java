@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -46,6 +47,7 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
@@ -322,6 +324,11 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String caseActionUsage(ActionUsage actionUsage) {
+            return " +-- ";
+		}
+
+		@Override
 		public String caseRequirementUsage(RequirementUsage requirementUsage) {
             return " +-- ";
 		}
@@ -354,6 +361,11 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseVariantMembership(VariantMembership vm) {
             return " )-->> ";
+		}
+
+		@Override
+		public String caseObjectiveMembership(ObjectiveMembership vm) {
+            return " -->> ";
 		}
     }
 

@@ -74,7 +74,8 @@ public class VRequirement extends VCompartment {
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
         ConstraintUsage c = rcm.getConstraint();
-        if (getFeatureName(c) == null) {
+        if (false) {
+        // if (getFeatureName(c) != null) {
             String desc;
             switch (rcm.getKind()) {
             case ASSUMPTION:
@@ -101,10 +102,9 @@ public class VRequirement extends VCompartment {
                 prefix = "<b>require</b> ";
                 break;
             default:
-                prefix = null;
-                break;
+                return "";
             }
-            addFeature(rcm.getConstraint(), null, prefix);
+            addFeatureForce(rcm.getConstraint(), null, prefix);
         }
         return "";
     }

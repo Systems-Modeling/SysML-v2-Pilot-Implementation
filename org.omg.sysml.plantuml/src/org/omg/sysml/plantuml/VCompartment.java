@@ -29,12 +29,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -45,6 +47,10 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VCompartment extends VStructure {
     private List<Element> rest = new ArrayList<Element>();
+
+    protected void putAside(Element e) {
+        rest.add(e);
+    }
 
     private static class FeatureEntry implements Comparable<FeatureEntry> {
         public final Feature f;
@@ -111,7 +117,12 @@ public class VCompartment extends VStructure {
 
     private List<FeatureEntry> featureEntries = new ArrayList<FeatureEntry>();
 
+    protected void addFeatureForce(Feature f, String alias, String prefix) {
+        featureEntries.add(new FeatureEntry(f, alias, prefix));
+    }
+
     protected void addFeature(Feature f, String alias, String prefix) {
+        if (getFeatureName(f) == null) return;
         featureEntries.add(new FeatureEntry(f, alias, prefix));
     }
 
@@ -124,31 +135,37 @@ public class VCompartment extends VStructure {
 
     @Override
     public String casePartUsage(PartUsage pu) {
-        rest.add(pu);
+        putAside(pu);
         return "";
     }
 
     @Override
-    public String caseReferenceUsage(ReferenceUsage pu) {
-        rest.add(pu);
+    public String caseReferenceUsage(ReferenceUsage ru) {
+        putAside(ru);
         return "";
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
-        rest.add(ru);
+        putAside(ru);
         return "";
     }
 
     @Override
     public String caseIndividualUsage(IndividualUsage iu) {
-        rest.add(iu);
+        putAside(iu);
+        return "";
+    }
+
+    @Override
+    public String caseAnalysisCaseUsage(AnalysisCaseUsage au) {
+        putAside(au);
         return "";
     }
 
     @Override
     public String caseDefinition(Definition d) {
-        rest.add(d);
+        putAside(d);
         return "";
     }
 
@@ -158,14 +175,20 @@ public class VCompartment extends VStructure {
         if (e instanceof Feature) {
             addFeature((Feature) e, m.getMemberName(), null);
         } else {
-            rest.add(e);
+            putAside(e);
         }
         return "";
     }
 
     @Override
     public String caseVariantMembership(VariantMembership vm) {
-        rest.add(vm);
+        putAside(vm);
+        return "";
+    }
+
+    @Override
+    public String caseObjectiveMembership(ObjectiveMembership om) {
+        putAside(om);
         return "";
     }
 
@@ -176,7 +199,6 @@ public class VCompartment extends VStructure {
         EClass ec0 = null;
         for (int i = 0; i < size; i++) {
             FeatureEntry fe = featureEntries.get(i);
-            if (getFeatureName(fe.f) == null) continue;
             EClass ec1 = fe.f.eClass();
             if (!ec1.equals(ec0)) {
                 ec0 = ec1;
@@ -189,7 +211,10 @@ public class VCompartment extends VStructure {
             if (fe.prefix != null) {
                 append(fe.prefix);
             }
-            if (addFeatureText(fe.f)) {
+            if (getFeatureName(fe.f) == null) {
+                addAnonymouseFeatureText(fe.f);
+                append('\n');
+            } else if (addFeatureText(fe.f)) {
                 boolean first = true;
                 for (int j = i + 1; j < size; j++) {
                     FeatureEntry fe2 = featureEntries.get(j);

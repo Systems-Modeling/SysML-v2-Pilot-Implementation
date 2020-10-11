@@ -146,6 +146,12 @@ public abstract class VStructure extends VDefault {
         return true;
     }
 
+    protected void addAnonymouseFeatureText(Feature f) {
+        addTypeText(": ", f);
+        addFeatureMembershipText(f);
+    }
+
+
     protected String extractName(Element e) {
         if (!(e instanceof Feature)) {
             return e.getName();

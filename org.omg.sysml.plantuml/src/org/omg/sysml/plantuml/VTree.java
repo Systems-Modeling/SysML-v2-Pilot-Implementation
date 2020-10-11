@@ -27,11 +27,13 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
@@ -82,6 +84,12 @@ public class VTree extends VStructure {
     }
 
     @Override
+    public String caseCalculationUsage(CalculationUsage cu) {
+        addType(cu);
+        return "";
+    }
+
+    @Override
     public String caseMultiplicity(Multiplicity m) {
         return "";
     }
@@ -101,6 +109,15 @@ public class VTree extends VStructure {
         addRel(u, vm, "<<variant>>");
         process(new VCompartment(this), u);
 
+        return "";
+    }
+
+
+    @Override
+    public String caseObjectiveMembership(ObjectiveMembership om) {
+        RequirementUsage ru = om.getOwnedObjectiveRequirement();
+        addRel(ru, om, "<<objective>>");
+        addReq("comp usage ", ru, ru.getReqId());
         return "";
     }
 
@@ -137,18 +154,19 @@ public class VTree extends VStructure {
             name = " [<b>" + reqId + "</b>] " + name;
         }
         addType(typ, name, keyword);
-        addRel(typ, typ, null);
         process(new VRequirement(this), typ);
     }
 
     @Override
     public String caseRequirementDefinition(RequirementDefinition rd) {
+        addRel(rd, rd, null);
         addReq("comp def ", rd, rd.getReqId());
         return "";
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
+        addRel(ru, ru, null);
         addReq("comp usage ", ru, ru.getReqId());
         return "";
     }

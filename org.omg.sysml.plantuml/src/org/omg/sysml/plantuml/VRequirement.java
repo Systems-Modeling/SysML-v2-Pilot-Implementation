@@ -41,16 +41,6 @@ import org.omg.sysml.lang.sysml.Usage;
 public class VRequirement extends VCompartment {
     private Element base;
 
-    @Override
-    public String caseSubjectMembership(SubjectMembership sm) {
-        Usage u = sm.getOwnedSubjectParameter();
-        for (FeatureTyping ft: u.getOwnedTyping()) {
-            Type typ = ft.getType();
-            addPRelation(base, typ, sm, "<<subject>>");
-        }
-        return "";
-    }
-
     private void addReqText(List<String> ss) {
         boolean added = false;
         for (String text: ss) {        	

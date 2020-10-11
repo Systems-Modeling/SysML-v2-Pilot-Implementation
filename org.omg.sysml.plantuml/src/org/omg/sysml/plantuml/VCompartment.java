@@ -34,12 +34,14 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -47,6 +49,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VCompartment extends VStructure {
     private List<Element> rest = new ArrayList<Element>();
+    private Element base;
 
     protected void putAside(Element e) {
         rest.add(e);
@@ -192,6 +195,16 @@ public class VCompartment extends VStructure {
         return "";
     }
 
+    @Override
+    public String caseSubjectMembership(SubjectMembership sm) {
+        Usage u = sm.getOwnedSubjectParameter();
+        for (FeatureTyping ft: u.getOwnedTyping()) {
+            Type typ = ft.getType();
+            addPRelation(base, typ, sm, "<<subject>>");
+        }
+        return "";
+    }
+
     private void addFeatures() {
         Collections.sort(featureEntries);
         
@@ -236,6 +249,7 @@ public class VCompartment extends VStructure {
     }
 
     public void startType(Type typ) {
+        this.base = typ;
         traverse(typ);
         addFeatures();
         closeBlock("");

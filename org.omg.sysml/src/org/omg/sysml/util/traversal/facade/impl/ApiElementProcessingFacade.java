@@ -302,7 +302,7 @@ public class ApiElementProcessingFacade implements ElementProcessingFacade {
 	public void commit() {
 		try {
 			List<ElementVersion> changeSet = this.getChangeSet();
-			Commit commit = new Commit().changes(changeSet);
+			Commit commit = new Commit().change(changeSet);
 //			System.out.println(new org.omg.sysml.JSON().serialize(commit));
 			int n = changeSet.size();
 			System.out.print("\nPosting Commit (" + n + " element" + (n == 1? ")...": "s)..."));

@@ -133,12 +133,10 @@ public class VStateMembers extends VDefault {
                 append(descriptions.get(i));
                 append('\n');
             }
-            closeBlock("");
-            flush();
         } else {
             outputPRelations(entryExitTransitions);
-            closeBlock("");
         }
+        closeBlock();
         return "";
     }
 

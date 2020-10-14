@@ -82,7 +82,7 @@ public class VComposite extends VStructure {
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
-        vc.closeBlock("");
+        vc.closeBlock();
 
         return "";
     }
@@ -93,7 +93,7 @@ public class VComposite extends VStructure {
 
         VComposite vc = new VComposite(this);
         vc.traverse(pd);
-        vc.closeBlock("");
+        vc.closeBlock();
 
         return "";
     }
@@ -126,7 +126,7 @@ public class VComposite extends VStructure {
         } else {
             keyword = "rec usage ";
             addPUMLLine(pu, keyword, name);
-            vc.closeBlock("");
+            vc.closeBlock();
         }
 
         return "";

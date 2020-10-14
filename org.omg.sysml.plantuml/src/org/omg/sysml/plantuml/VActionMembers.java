@@ -72,7 +72,7 @@ public class VActionMembers extends VDefault {
 
     public String startAction(Type typ) {
         traverse(typ);
-        closeBlock("");
+        closeBlock();
         return "";
     }
 

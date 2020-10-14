@@ -43,16 +43,22 @@ import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
 
 public class VCompartment extends VStructure {
-    private List<Element> rest = new ArrayList<Element>();
-    private Element base;
+    private List<VTree> subtrees = new ArrayList<VTree>();
 
-    protected void putAside(Element e) {
-        rest.add(e);
+    private Element base;
+    private VTree parent;
+
+    protected boolean rec(Element e, boolean force) {
+        VTree subtree = parent.subtree(base, e, force);
+        if (subtree == null) return false;
+        subtrees.add(subtree);
+        return true;
     }
 
     private static class FeatureEntry implements Comparable<FeatureEntry> {
@@ -65,10 +71,14 @@ public class VCompartment extends VStructure {
                 if (!(f2 instanceof AttributeUsage)) {
                     return -1;
                 }
+            } else if (f2 instanceof AttributeUsage) {
+                return 1;
             } else if (f1 instanceof Usage) {
                 if (!(f2 instanceof Usage)) {
                     return -1;
                 }
+            } else if (f2 instanceof Usage) {
+                return 1;
             }
             
             String ec1 = f1.eClass().getName();
@@ -120,55 +130,69 @@ public class VCompartment extends VStructure {
 
     private List<FeatureEntry> featureEntries = new ArrayList<FeatureEntry>();
 
-    protected void addFeatureForce(Feature f, String alias, String prefix) {
+    protected void addFeature(Feature f,
+                              String alias,
+                              String prefix,
+                              boolean nocheck,
+                              boolean norec) {
+        if (!nocheck && getFeatureName(f) == null) return;
+        if (!norec && (alias == null) && (prefix == null)) {
+            if (rec(f, false)) return;
+        }
         featureEntries.add(new FeatureEntry(f, alias, prefix));
     }
 
-    protected void addFeature(Feature f, String alias, String prefix) {
-        if (getFeatureName(f) == null) return;
-        featureEntries.add(new FeatureEntry(f, alias, prefix));
+    protected void addFeature(Feature f,
+                              String alias) {
+        addFeature(f, alias, null, false, false);
     }
 
 
     @Override
     public String caseFeature(Feature f) {
-        addFeature(f, null, null);
+        addFeature(f, null);
         return "";
     }
 
     @Override
     public String casePartUsage(PartUsage pu) {
-        putAside(pu);
+        rec(pu, true);
+        return "";
+    }
+
+    @Override
+    public String caseTransitionUsage(TransitionUsage tu) {
+        addFeature(tu, null, null, false, true);
         return "";
     }
 
     @Override
     public String caseReferenceUsage(ReferenceUsage ru) {
-        putAside(ru);
+        rec(ru, true);
         return "";
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
-        putAside(ru);
+        rec(ru, true);
         return "";
     }
 
     @Override
     public String caseIndividualUsage(IndividualUsage iu) {
-        putAside(iu);
+        rec(iu, true);
         return "";
     }
 
     @Override
     public String caseAnalysisCaseUsage(AnalysisCaseUsage au) {
-        putAside(au);
+        rec(au, true);
         return "";
     }
 
     @Override
     public String caseDefinition(Definition d) {
-        putAside(d);
+        rec(d, true);
         return "";
     }
 
@@ -176,22 +200,22 @@ public class VCompartment extends VStructure {
     public String caseMembership(Membership m) {
         Element e = m.getMemberElement();
         if (e instanceof Feature) {
-            addFeature((Feature) e, m.getMemberName(), null);
+            addFeature((Feature) e, m.getMemberName());
         } else {
-            putAside(e);
+            rec(e, true);
         }
         return "";
     }
 
     @Override
     public String caseVariantMembership(VariantMembership vm) {
-        putAside(vm);
+        rec(vm, true);
         return "";
     }
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
-        putAside(om);
+        rec(om, true);
         return "";
     }
 
@@ -252,14 +276,14 @@ public class VCompartment extends VStructure {
         this.base = typ;
         traverse(typ);
         addFeatures();
-        closeBlock("");
     }
 
-    public List<Element> process(Type typ) {
-        rest.clear();
+    public List<VTree> process(VTree parent, Type typ) {
+        this.parent = parent;
+        subtrees.clear();
         featureEntries.clear();
         startType(typ);
-        return rest;
+        return subtrees;
     }
 
     public VCompartment(Visitor prev) {

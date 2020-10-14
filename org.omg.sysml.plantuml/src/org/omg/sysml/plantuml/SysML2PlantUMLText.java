@@ -321,11 +321,17 @@ public class SysML2PlantUMLText {
         return idMap.containsKey(e);
     }
 
+    void removeId(Element e) {
+        idMap.remove(e);
+    }
+
+    private int idCounter = 1;
+
     Integer getId(Element e) {
         Integer ii = idMap.get(e);
         
         if (ii == null) {
-            ii = new Integer(idMap.size());
+            ii = new Integer(idCounter++);
             idMap.put(e, ii);
         }
 

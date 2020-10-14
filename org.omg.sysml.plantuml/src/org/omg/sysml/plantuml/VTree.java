@@ -121,13 +121,31 @@ public class VTree extends VStructure {
         return "";
     }
 
+    private boolean hasItems = false;
+
     private void process(VCompartment v, Type typ) {
-        List<Element> es = v.process(typ);
-        VTree vt = newVTree(typ);
-        for (Element e: es) {
-            vt.visit(e);
+        List<VTree> subtrees = v.process(this, typ);
+        if (v.isEmpty() && subtrees.isEmpty()) {
+            v.closeBlock();
+            return;
+        } else {
+            hasItems = true;
+            v.closeBlock();
+            for (VTree vt: subtrees) {
+                vt.flush();
+            }
         }
-        vt.flush();
+    }
+
+    /* VCompartment uses */
+    VTree subtree(Element parent, Element e, boolean force) {
+        VTree vt = newVTree(parent);
+        vt.visit(e);
+        if (!(force || vt.hasItems)) {
+            vt.clearId();
+            return null;
+        }
+        return vt;
     }
 
     private void addType(Type typ) {

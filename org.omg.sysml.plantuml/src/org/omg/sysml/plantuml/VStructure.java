@@ -263,7 +263,7 @@ public abstract class VStructure extends VDefault {
         return "";
     }
 
-    VStructure(Visitor prev) {
+    protected VStructure(Visitor prev) {
     	super(prev);
     }
     

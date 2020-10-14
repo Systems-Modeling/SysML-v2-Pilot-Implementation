@@ -27,19 +27,14 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 public class VRequirement extends VCompartment {
-    private Element base;
 
     private void addReqText(List<String> ss) {
         boolean added = false;
@@ -64,8 +59,7 @@ public class VRequirement extends VCompartment {
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
         ConstraintUsage c = rcm.getConstraint();
-        if (false) {
-        // if (getFeatureName(c) != null) {
+        if (rec(c, false)) {
             String desc;
             switch (rcm.getKind()) {
             case ASSUMPTION:
@@ -94,16 +88,15 @@ public class VRequirement extends VCompartment {
             default:
                 return "";
             }
-            addFeatureForce(rcm.getConstraint(), null, prefix);
+            addFeature(rcm.getConstraint(), null, prefix, true, true);
         }
         return "";
     }
 
     @Override
-    public List<Element> process(Type typ) {
-        this.base = typ;
+    public List<VTree> process(VTree parent, Type typ) {
         addReqText(typ);
-        return super.process(typ);
+        return super.process(parent, typ);
     }
 
     public VRequirement(Visitor prev) {

@@ -25,7 +25,9 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
@@ -89,6 +91,10 @@ public abstract class Visitor extends SysMLSwitch<String> {
         contexts.clear();
     }
 
+    protected boolean isEmpty() {
+        return sb.length() == 0;
+    }
+
     protected String getString() {
         if (prev == null) {
             flushContexts();
@@ -101,8 +107,18 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return sb.length();
     }
 
+    private Set<Element> identified = new HashSet<Element>(1);
+
     protected Integer getId(Element e) {
+        identified.add(e);
         return s2p.getId(e);
+    }
+
+    protected void clearId() {
+        for (Element e: identified) {
+            s2p.removeId(e);
+        }
+        identified.clear();
     }
 
     protected boolean checkId(Element e) {
@@ -168,18 +184,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append(' ');
     }
 
-    private static void closeBlockInternal(StringBuilder sbParent,
-                                           StringBuilder sbChild,
-                                           String endStr) {
-        sbParent.append("{\n");
-        sbParent.append(sbChild);
-        sbParent.append(endStr);
-        sbParent.append("}\n");
-    }
-
-    protected void closeBlock(String endStr) {
+    protected void closeBlock() {
         if (prev == null) return;
-        closeBlockInternal(prev.sb, sb, endStr);
+        prev.sb.append("{\n");
+        prev.sb.append(sb);
+        prev.sb.append("}\n");
         sb.setLength(0);
     }
 

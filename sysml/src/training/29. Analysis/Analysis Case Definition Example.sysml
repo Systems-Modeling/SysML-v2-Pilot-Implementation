@@ -18,8 +18,9 @@ package 'Analysis Case Definition Example' {
         attribute fuelEconomy_highway : DistancePerVolumeValue;
     }
     
-	analysis def FuelEconomyAnalysis () fuelEconomyResult : DistancePerVolumeValue {
+	analysis def FuelEconomyAnalysis {
 		subject vehicle : Vehicle;
+		return fuelEconomyResult : DistancePerVolumeValue;
 		
 		objective fuelEconomyAnalysisObjective {
 			/*
@@ -43,10 +44,10 @@ package 'Analysis Case Definition Example' {
 			velocity : VelocityValue;
 		}
 	
-		action solveForPower (
-			out power : PowerValue[*],
-			out acceleration : AccelerationValue[*]
-		) {
+		action solveForPower {
+			out power : PowerValue[*];
+			out acceleration : AccelerationValue[*];
+		
 			/*
 			 * Solve for the required engine power as a function of time
 			 * to support the scenario.
@@ -67,10 +68,10 @@ package 'Analysis Case Definition Example' {
 			}
 		}
 		
-		then action solveForFuelConsumption (
-			in power : PowerValue[*] = solveForPower::power,
-			out fuelEconomy : DistancePerVolumeValue = fuelEconomyResult
-		) {
+		then action solveForFuelConsumption {
+			in power : PowerValue[*] = solveForPower::power;
+			out fuelEconomy : DistancePerVolumeValue = fuelEconomyResult;
+		
 			/*
 			 * Solve the engine equations to determine how much fuel is
 			 * consumed.

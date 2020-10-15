@@ -30,7 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
+import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -54,7 +55,6 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
@@ -294,8 +294,18 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String casePackage(org.omg.sysml.lang.sysml.Package p) {
+            return " +-- ";
+		}
+
+		@Override
 		public String caseClassifier(Classifier object) {
             return " +-- ";
+		}
+
+		@Override
+		public String caseFeature(Feature f) {
+            return f.isComposite() ? " *-- ": " o-- ";
 		}
 
 		@Override
@@ -304,33 +314,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseItemUsage(ItemUsage itemUsage) {
-            return itemUsage.isComposite() ? " *-- ": " o-- ";
-		}
-
-		@Override
 		public String caseItemFlow(ItemFlow itemFlow) {
             return " --> ";
 		}
 
 		@Override
-		public String casePartUsage(PartUsage partUsage) {
-            return partUsage.isComposite() ? " *-- ": " o-- ";
-		}
-
-		@Override
 		public String caseDependency(Dependency dep) {
             return " ..>> ";
-		}
-
-		@Override
-		public String caseActionUsage(ActionUsage actionUsage) {
-            return " +-- ";
-		}
-
-		@Override
-		public String caseRequirementUsage(RequirementUsage requirementUsage) {
-            return " +-- ";
 		}
 
 		@Override
@@ -374,6 +364,16 @@ public class SysML2PlantUMLStyle {
 		public String caseClass(Class object) {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
+		}
+
+		@Override
+		public String caseAnalysisCaseUsage(AnalysisCaseUsage acu) {
+            return "<<analysis>> ";
+		}
+
+		@Override
+		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
+            return "<<analysis def>> ";
 		}
 
 		@Override

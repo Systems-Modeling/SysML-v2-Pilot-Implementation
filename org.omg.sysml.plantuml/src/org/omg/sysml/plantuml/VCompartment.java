@@ -168,7 +168,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseReferenceUsage(ReferenceUsage ru) {
-        rec(ru, true);
+        rec(ru, false);
         return "";
     }
 
@@ -222,9 +222,18 @@ public class VCompartment extends VStructure {
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
         Usage u = sm.getOwnedSubjectParameter();
+        boolean added = false;
         for (FeatureTyping ft: u.getOwnedTyping()) {
             Type typ = ft.getType();
             addPRelation(base, typ, sm, "<<subject>>");
+            added = true;
+        }
+        if (!added) {
+            if (u instanceof ReferenceUsage) {
+                // Does not show empty ReferenceUsage.
+                if (u.getOwnedFeatureMembership().isEmpty()) return "";
+            }
+            addFeature(u, null);
         }
         return "";
     }

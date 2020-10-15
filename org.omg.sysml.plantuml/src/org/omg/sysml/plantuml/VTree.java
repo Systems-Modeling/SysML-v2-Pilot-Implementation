@@ -29,12 +29,14 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -52,8 +54,12 @@ public class VTree extends VStructure {
 
     private final Element parent;
 
-    private void addRel(Type typ, Element rel, String text) {
+    private void addRel(Element typ, Element rel, String text) {
         if (parent == null) return;
+        if (typ.equals(rel)) { // This means a containment relationship
+        	Element owner = rel.getOwner(); // Check if they have a proper hierarchy
+        	if (!parent.equals(owner)) return;
+        }
         addPRelation(parent, typ, rel, text);
     }
 
@@ -70,6 +76,9 @@ public class VTree extends VStructure {
 
     @Override
     public String caseAttributeUsage(AttributeUsage au) {
+        if (parent == null) {
+            addType(au);
+        }
         return "";
     }
 
@@ -121,6 +130,25 @@ public class VTree extends VStructure {
         return "";
     }
 
+    @Override
+    public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
+        ConstraintUsage c = rcm.getConstraint();
+        switch (rcm.getKind()) {
+        case ASSUMPTION:
+            addRel(c, c, "<<assume>>");
+            break;
+        case REQUIREMENT:
+            addRel(c, c, "<<require>>");
+            break;
+        default:
+            addRel(c, c, null);
+            break;
+        }
+        addType(c, "comp usage ");
+        process(new VCompartment(this), c);
+        return "";
+    }
+
     private boolean hasItems = false;
 
     private void process(VCompartment v, Type typ) {
@@ -159,10 +187,23 @@ public class VTree extends VStructure {
     }
 
 
+    // To prevent caseExpression()
+    @Override
+    public String caseConstraintUsage(ConstraintUsage cu) {
+        addType(cu);
+        return "";
+    }
+
     @Override
     public String caseType(Type typ) {
         addType(typ);
         return "";
+    }
+
+    @Override
+    public String casePackage(org.omg.sysml.lang.sysml.Package p) {
+        addRel(p, p, null);
+        return super.casePackage(p);
     }
 
     private void addReq(String keyword, Type typ, String reqId) {

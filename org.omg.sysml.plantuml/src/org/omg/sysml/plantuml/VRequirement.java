@@ -27,11 +27,9 @@ package org.omg.sysml.plantuml;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.Type;
 
 public class VRequirement extends VCompartment {
@@ -58,25 +56,7 @@ public class VRequirement extends VCompartment {
 
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
-        ConstraintUsage c = rcm.getConstraint();
-        if (rec(c, false)) {
-            String desc;
-            switch (rcm.getKind()) {
-            case ASSUMPTION:
-                desc = "<<assume>>";
-                break;
-            case REQUIREMENT:
-                desc = "<<require>>";
-                break;
-            default:
-                desc = null;
-                break;
-            }
-            for (Subsetting s: c.getOwnedSubsetting()) {
-                Feature sf = s.getSubsettedFeature();
-                addPRelation(rcm.getMembershipOwningPackage(), sf, rcm, desc);
-            }
-        } else {
+        if (!rec(rcm, false)) {
             String prefix;
             switch (rcm.getKind()) {
             case ASSUMPTION:
@@ -88,7 +68,8 @@ public class VRequirement extends VCompartment {
             default:
                 return "";
             }
-            addFeature(rcm.getConstraint(), null, prefix, true, true);
+            ConstraintUsage c = rcm.getConstraint();
+            addFeature(c, null, prefix, true, true);
         }
         return "";
     }

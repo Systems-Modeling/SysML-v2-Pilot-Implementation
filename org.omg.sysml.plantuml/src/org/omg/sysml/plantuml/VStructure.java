@@ -133,7 +133,7 @@ public abstract class VStructure extends VDefault {
             if (rt != null) {
                 append('>');
                 addFeatureTextInternal(f, name);
-                append("<s>");
+                append(" <s>");
                 append(rt);
                 append("</s>");
             } else {

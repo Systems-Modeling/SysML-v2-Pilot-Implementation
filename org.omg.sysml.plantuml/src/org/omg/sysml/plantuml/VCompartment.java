@@ -31,9 +31,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
@@ -219,6 +221,14 @@ public class VCompartment extends VStructure {
         return "";
     }
 
+    private static boolean isEmptyFeature(Feature f) {
+        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+            if (fm.getMemberFeature() instanceof BindingConnector) continue;
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String caseSubjectMembership(SubjectMembership sm) {
         Usage u = sm.getOwnedSubjectParameter();
@@ -230,12 +240,21 @@ public class VCompartment extends VStructure {
         }
         if (!added) {
             if (u instanceof ReferenceUsage) {
-                // Does not show empty ReferenceUsage.
-                if (u.getOwnedFeatureMembership().isEmpty()) return "";
+                // Do not show empty ReferenceUsage.
+                if (isEmptyFeature(u)) return "";
             }
             addFeature(u, null);
         }
         return "";
+    }
+
+    private static String getTitle(Feature f) {
+        String s = SysML2PlantUMLText.getStereotypeName(f);
+        if (s.endsWith("s")) {
+            return s + "es";
+        } else {
+            return s + "s";
+        }
     }
 
     private void addFeatures() {
@@ -250,7 +269,7 @@ public class VCompartment extends VStructure {
                 ec0 = ec1;
                 if (!ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
                     append("--");
-                    append(SysML2PlantUMLText.getStereotypeName(fe.f));
+                    append(getTitle(fe.f));
                     append("--\n");
                 }
             }

@@ -1,39 +1,46 @@
-/** This is the very start of a library for Arrowhead Framework
- * I will be experimenting
+/** This is the start of a library for Arrowhead Framework
  */
 
 package AHFProfileLib {
 	/** Services and (later) functionalities */
+	import Base::*;
 	import ScalarValues::*;
+	import Performances::*;
 	
 	port def SD{
-		/* operation service1  
-		 * operations do not seem to be included yet*/
-		serviceDefinition:String;
-		serviceURL:String;
-		intrfce_protocol:String; // which may be "REST" or "MQTT" etc.		 
+		/* operations do not seem to be included yet*/
+		attribute serviceDefinition:String;
+		attribute serviceURL:String;
+		attribute intrfce_protocol:String; // which may be "REST" or "MQTT" etc.		 
 	}
 	
-	/** System of Systems */
+	port def IDD :> SD{
+		attribute encoding_kind:String;
+	}
 	
-	part def Arrowhead_SoSD {
+	/** System of Systems Definition*/	
+	part def SoSD {
+		part systems:SysD[1..*];
 	
-		/** System definitions */
-	
+		/** System definitions */	
 		part def SysD {
 			port services: SD[1..*];
-			systemname: String;
-			address: String;
-			portno: Integer;
-		}
-		
+			attribute systemname: String;
+			attribute address: String;
+			attribute portno: Integer;
+		}		
+	}
+
+	/** System of Systems Detailed Description */	
+	part def SoSDD :> SoSD {
+
+		/** System Detailed Description */
 		part def SysDD :> SysD{
-			action ServiceMethod[1..*]; //means behaviors
+			action ServiceMethod:Performance[1..*]; //means behaviors
 		}
 	}
 	
-	part def LocalCloud_SoSDD :> Arrowhead_SoSD {
-		part systems:SysD[1..*];
-	}	
+	/** Local cloud definition with devices (not covered all the way)*/
+	part def LocalCloud :> SoSDD;	
 
 }

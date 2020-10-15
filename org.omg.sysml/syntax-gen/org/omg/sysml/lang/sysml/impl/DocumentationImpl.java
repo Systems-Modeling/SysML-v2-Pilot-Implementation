@@ -323,6 +323,13 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 	public Element getAnnotatedElement() {
 		return getOwningDocumentedElement();
 	}
+	
+	// Other overrides
+	
+	@Override
+	public Element getOwningRelatedElement() {
+		return getOwningDocumentedElement();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

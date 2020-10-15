@@ -1,5 +1,5 @@
 package Classes2 {
-	public class A {
+	public class id 'A_Id' A {
 	} 
 	
 }

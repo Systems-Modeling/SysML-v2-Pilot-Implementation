@@ -377,13 +377,19 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	public Element getOwnedMemberElement_comp() {
 		return ownedMemberElement_comp;
 	}
+	
+	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+		memberName = ((ElementImpl)newOwnedMemberElement_comp).basicGetName();
+		((ElementImpl)newOwnedMemberElement_comp).basicSetName(null);
+		return basicSetOwnedMemberElement_compGen(newOwnedMemberElement_comp, msgs);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+	public NotificationChain basicSetOwnedMemberElement_compGen(Element newOwnedMemberElement_comp, NotificationChain msgs) {
 		Element oldOwnedMemberElement_comp = ownedMemberElement_comp;
 		ownedMemberElement_comp = newOwnedMemberElement_comp;
 		if (eNotificationRequired()) {
@@ -450,9 +456,19 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated NOT
 	 */
 	public boolean isDistinguishableFrom(Membership other) {
-		// TODO Implement full distinguishibility test.
+		// TODO Implement full distinguishability test.
 		String name = this.getMemberEffectiveName();
-		return name == null || !name.equals(((MembershipImpl)other).getMemberEffectiveName());
+		return name == null 
+			|| (!name.equals(((MembershipImpl)other).getMemberEffectiveName())
+//			&& (this.memberElement == null || this.memberElement.getHumanId() == null ||
+//			(
+//					!name.equals(((MembershipImpl)other).memberElement.getHumanId())
+//					&& !this.memberElement.getHumanId().equals(((MembershipImpl)other).memberElement.getHumanId())
+//					&& !this.memberElement.getHumanId().equals(((MembershipImpl)other).getMemberEffectiveName())
+//			)
+//			)
+			);
+			
 	}
 	
 	public String getMemberEffectiveName() {

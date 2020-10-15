@@ -17,17 +17,20 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package test{
-	class A {
-		in feature f;
+	class id 'A_Id' A {
+		in feature id 'f_Id' f;
 	}
 	
 	//* XPECT scope at A ---
-		A, A.f, test.A, test.A.f,
-		B, B.f, test.B, test.B.f,
-		g, test.g
+		A, A.f, A.f_Id, test.A, test.A.f, test.A.f_Id,
+		A_Id, A_Id.f, A_Id.f_Id, test.A_Id, test.A_Id.f, test.A_Id.f_Id,
+		B, B.f, B.f_Id, test.B, test.B.f, test.B.f_Id,
+		g, test.g, h, test.h
 		--- */
 	class B conjugates A;
 
 	//XPECT linkedName at B::f --> test.A.f	
 	feature g ~ B::f;
+	//XPECT linkedName at B::f_Id --> test.A.f
+	feature h ~ B::f_Id;
 }

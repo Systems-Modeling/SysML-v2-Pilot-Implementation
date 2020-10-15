@@ -333,18 +333,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			   super.getRelevantFeatures(type);
 	}
 	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		basicGetSubjectParameter();
-		return super.getOwnedParameters();
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		basicGetSubjectParameter();
-	}
-	
 	//
 
 	/**

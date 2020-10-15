@@ -15,9 +15,9 @@ XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
 END_SETUP 
 */
 
-import Classes2::*;
 package Classes1 {
-	// XPECT scope at A --> A, B, ...
+import Classes2::*;
+	// XPECT scope at A --> A, A_Id, B, Classes1.A, Classes1.A_Id, Classes2.A, Classes2.A_Id
 	private class B specializes A {
 		private y: A;
 	} 

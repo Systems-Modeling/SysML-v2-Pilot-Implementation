@@ -9,12 +9,19 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 	File {from ="/library.kernel/ScalarFunctions.kerml"}
                 	File {from ="/library.systems/Items.sysml"}
                 	File {from ="/library.systems/Parts.sysml"}
-                    File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-               		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
-               		File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
-               		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-                	File {from ="/library.domain/Quantities and Units/SI.sysml"}
-					File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+                	File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+					File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+					File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQLight.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQMechanics.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQThermodynamics.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+					File {from ="/library.domain/Quantities and Units/SI.sysml"}
+					File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
         }
         Workspace {
                 JavaProject {
@@ -27,12 +34,19 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 				File {from ="/library.kernel/ScalarFunctions.kerml"}
                 				File {from ="/library.systems/Items.sysml"}
                 				File {from ="/library.systems/Parts.sysml"}
+                				File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
                                 File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
-               					File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
-               					File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
-               					File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
-                				File {from ="/library.domain/Quantities and Units/SI.sysml"}
-								File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
+								File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQLight.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQMechanics.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQThermodynamics.sysml"}
+								File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+								File {from ="/library.domain/Quantities and Units/SI.sysml"}
+								File {from ="/library.domain/Quantities and Units/SIPrefixes.sysml"}
                         }
                 }
         }

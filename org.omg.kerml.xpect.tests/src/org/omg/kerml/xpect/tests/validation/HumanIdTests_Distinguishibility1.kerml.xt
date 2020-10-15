@@ -1,0 +1,23 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package Test {
+	 //ids are the same
+	 //XPECT warnings --> "Duplicate of other ID or member name" at "one"
+	 class id one two;
+	 //XPECT warnings --> "Duplicate of other ID or member name" at "one"
+	 class id one three;
+}
+

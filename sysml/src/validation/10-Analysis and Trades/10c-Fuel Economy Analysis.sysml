@@ -68,22 +68,23 @@ package '10c-Fuel Economy Analysis' {
 		calc cityScenario : NominalScenario;
 		calc highwayScenario : NominalScenario;
 		
-		analysis def FuelEconomyAnalysis () calculatedFuelEconomy : QuantityValue {
+		analysis def FuelEconomyAnalysis {
 			subject vehicle : Vehicle;
 			in calc scenario : NominalScenario;
 			in requirement fuelEconomyRequirement : FuelEconomyRequirement;
+			return calculatedFuelEconomy : QuantityValue;
 			
 			objective fuelEconomyAnalysisObjective {
-				/*
-				 * The objective of this analysis is to determine whether the
-				 * current vehicle design configuration can satisfy the fuel
-				 * economy requirement.
-				 */
+				doc /*
+				     * The objective of this analysis is to determine whether the
+				     * current vehicle design configuration can satisfy the fuel
+				     * economy requirement.
+				     */
 				 
 				 assume constraint {
-				 	/* wheelDiameter == 33 inches
-				 	 * drive train efficiency == 0.4
-				 	 */
+				 	doc /* wheelDiameter == 33 inches
+				 	     * drive train efficiency == 0.4
+				 	     */
 				 }
 				 
 				 require fuelEconomyRequirement {
@@ -138,14 +139,14 @@ package '10c-Fuel Economy Analysis' {
 			
 			analysis cityFuelEconomyAnalysis : FuelEconomyAnalysis {
 				subject vehicle = vehicle1_c1;
-				in calc :>> scenario = cityScenario;
-				in requirement :>> fuelEconomyRequirement = cityFuelEconomyRequirement;
+				in calc scenario = cityScenario;
+				in requirement fuelEconomyRequirement = cityFuelEconomyRequirement;
 			} 
 			
 			analysis highwayFuelEconomyAnalysis : FuelEconomyAnalysis {
 				subject vehicle = vehicle1_c1;
-				in calc :>> scenario = highwayScenario;
-				in requirement :>> fuelEconomyRequirement = highwayFuelEconomyRequirement;
+				in calc scenario = highwayScenario;
+				in requirement fuelEconomyRequirement = highwayFuelEconomyRequirement;
 			}
 			
 			part vehicle1_c1_analysized :> vehicle1_c1 {

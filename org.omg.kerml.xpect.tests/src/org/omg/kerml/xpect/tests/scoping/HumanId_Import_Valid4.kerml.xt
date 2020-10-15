@@ -1,0 +1,39 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package Test {
+ 	package Test2 {
+		import VP::VP2::A_Id;
+		class A;
+		//* XPECT scope at A_Id ---
+		 A,  Test2.A, Test.Test2.A,
+		 AA, Test2.AA, Test.Test2.AA,
+		 B, Test2.B, Test.Test2.B,
+		 A_Id, Test2.A_Id, Test.Test2.A_Id,
+		 VP.VP2.B, Test.VP.VP2.B,
+		 VP.VP2.A_Id, Test.VP.VP2.A_Id,  
+		--- */
+		class AA specializes A_Id;
+	}
+	package VP {
+		package VP2 {
+			public class id 'A_Id' B;
+		}
+	}
+	
+}
+
+	

@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -80,7 +82,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return super.getResultParameter();
+		return getResultParameter();
 	}
 
 	/**
@@ -221,14 +223,25 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
+	}
+	
+	// Other methods
+	
+	@Override
+	public List<Feature> getOwnedParameters() {
+		CalculationDefinitionImpl.addResultParameter(this);
+		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
+		CalculationDefinitionImpl.addResultParameter(this);
 		getResultConnector();
 	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1,0 +1,42 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.scoping.KerMLScopingTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package Test {
+	 class id '1' A {
+	 	class id '11A' AA;
+	 }
+
+	//* XPECT scope at 1 ---
+   		A, B, C, Test.A, Test.B, Test.C,
+   		A.AA, B.AA, C.AA, Test.A.AA, Test.B.AA, Test.C.AA,
+   		1, two, 3, Test.1, Test.two, Test.3,
+        1.11A, two.11A, 3.11A, Test.1.11A, Test.two.11A, Test.3.11A, 
+		1.AA, Test.1.AA,
+   		A.11A, Test.A.11A, 
+   		B.11A, Test.B.11A, 
+   		C.11A, Test.C.11A,
+   		two.AA, Test.two.AA,
+   		3.AA, 3.AAA, 3.33A, Test.3.AA, Test.3.AAA,  Test.3.33A,
+   		C.AAA, Test.C.AAA, 
+   		C.33A, Test.C.33A
+   	--- */
+	 class id 'two' B specializes '1';
+	 
+	 class id '3' C specializes 'two'{
+	 	class id '33A' AAA;
+	 }
+}
+

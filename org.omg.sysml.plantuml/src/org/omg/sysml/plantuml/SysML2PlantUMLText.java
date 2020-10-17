@@ -304,7 +304,7 @@ public class SysML2PlantUMLText {
 
         addStyleHeader(sb);
         
-        idMap.clear();
+        initIdMap();
 
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
@@ -315,26 +315,88 @@ public class SysML2PlantUMLText {
         return sb.toString();
     }
     
-    private Map<Element, Integer> idMap = new HashMap<Element, Integer>();
+    private int idCounter;
+    private IDMap idMap;
 
-    boolean checkId(Element e) {
-        return idMap.containsKey(e);
-    }
+    private class IDMap {    	
+        private final Map<Element, Integer> idMap = new HashMap<Element, Integer>();
+        private final IDMap prev;
 
-    void removeId(Element e) {
-        idMap.remove(e);
-    }
-
-    private int idCounter = 1;
-
-    Integer getId(Element e) {
-        Integer ii = idMap.get(e);
-        
-        if (ii == null) {
-            ii = new Integer(idCounter++);
-            idMap.put(e, ii);
+        boolean checkId(Element e) {
+            if (idMap.containsKey(e)) return true;
+            if (prev == null) return false;
+            return prev.checkId(e);
         }
 
-        return ii;
+        private Integer lookupId(Element e) {
+            Integer ii = idMap.get(e);
+            if (ii != null) return ii;
+            if (prev == null) return null;
+            return prev.lookupId(e);
+        }
+
+        Integer newId(Element e) {
+            Integer ii = new Integer(idCounter++);
+            idMap.put(e, ii);
+            return ii;
+        }
+
+        Integer getId(Element e) {
+            Integer ii = lookupId(e);
+            if (ii == null) return newId(e);
+            return ii;
+        }
+
+        IDMap push() {
+            return new IDMap(this);
+        }
+
+        IDMap pop(boolean keep) {
+            if (prev == null) {
+                throw new IllegalStateException();
+            }
+            if (keep) {
+                Map<Element, Integer> idMap2 = prev.idMap;
+                for (Map.Entry<Element, Integer> ent : idMap.entrySet()) {
+                    Element e = ent.getKey();
+                    if (idMap2.containsKey(e)) continue;
+                    idMap2.put(e, ent.getValue());
+                }
+            }
+            return prev;
+        }
+
+        private IDMap(IDMap prev) {
+            this.prev = prev;
+        }
+
+        IDMap() {
+            this.prev = null;
+        }
+    }
+
+    private void initIdMap() {
+        idCounter = 1;
+        this.idMap = new IDMap();
+    }
+
+    boolean checkId(Element e) {
+        return idMap.checkId(e);
+    }
+
+    void pushIdMap() {
+        idMap = idMap.push();
+    }
+
+    void popIdMap(boolean keep) {
+        idMap = idMap.pop(keep);
+    }
+
+    Integer newId(Element e) {
+        return idMap.newId(e);
+    }
+
+    Integer getId(Element e) {
+        return idMap.getId(e);
     }
 }

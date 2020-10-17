@@ -47,7 +47,7 @@ public class VActionMembers extends VDefault {
         if (name == null) return;
         append(type);
         append(' ');
-        addNameWithId(f, name);
+        addNameWithId(f, name, true);
         append(' ');
         addLink(f);
         append('\n');

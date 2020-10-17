@@ -198,7 +198,7 @@ public abstract class VStructure extends VDefault {
 
     protected void addPUMLLine(Type typ, String keyword, String name) {
         append(keyword);
-        addNameWithId(typ, name);
+        addNameWithId(typ, name, true);
         String style = styleString(typ);
         append(style);
         addLink(typ);
@@ -221,12 +221,16 @@ public abstract class VStructure extends VDefault {
         String name = pkg.getName();
         if (name == null) return super.casePackage(pkg);
 
+        flushContexts();
         append("package ");
-        addNameWithId(pkg, name);
+        addNameWithId(pkg, name, true);
         append(' ');
         addLink(pkg);
         append(" {\n");
+        pushIdMap();
         super.casePackage(pkg);
+        popIdMap(true);
+        flushContexts();
         append("}\n");
         return "";
     }

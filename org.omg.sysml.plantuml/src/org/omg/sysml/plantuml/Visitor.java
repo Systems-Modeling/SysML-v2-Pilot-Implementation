@@ -25,9 +25,9 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
@@ -56,7 +56,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private List<Visitor> contexts;
     private final Visitor prev;
-    
+
     private StringBuilder sb;
 
     protected void append(String str) {
@@ -99,6 +99,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         if (prev == null) {
             flushContexts();
             flushPRelations();
+            sb.append(pRelationsSB);
+            pRelationsSB.setLength(0);
         }
         return sb.toString();
     }
@@ -107,22 +109,27 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return sb.length();
     }
 
-    private Set<Element> identified = new HashSet<Element>(1);
-
-    protected Integer getId(Element e) {
-        identified.add(e);
-        return s2p.getId(e);
+    private Integer newId(Element e) {
+        return s2p.newId(e);
     }
 
-    protected void clearId() {
-        for (Element e: identified) {
-            s2p.removeId(e);
-        }
-        identified.clear();
+    private Integer getId(Element e) {
+        return s2p.getId(e);
     }
 
     protected boolean checkId(Element e) {
         return s2p.checkId(e);
+    }
+
+    protected void pushIdMap() {
+        s2p.pushIdMap();
+    }
+
+    protected void popIdMap(boolean keep) {
+        if (keep) {
+            flushPRelations();
+        }
+        s2p.popIdMap(keep);
     }
 
     protected String getRelStyle(Element rel) {
@@ -163,12 +170,16 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    protected void quote0(String s) {
+    private String quote0Str(String s) {
         if (s.indexOf('"') >= 0) {
             // Replace nonsafe " to ''
-            s = s.replace("\"", "''");
+            return s.replace("\"", "''");
         }
-        append(s);
+        return s;
+    }
+
+    protected void quote0(String s) {
+        append(quote0Str(s));
     }
 
     protected void quote(String s) {
@@ -177,11 +188,15 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append('"');
     }
 
-    protected void addNameWithId(Element e, String name) {
+    protected void addNameWithId(Element e, String name, boolean force) {
         quote(name);
         append(" as ");
-        addIdStr(e);
+        addIdStr(e, force);
         append(' ');
+    }
+
+    private void close() {
+        sb.setLength(0);
     }
 
     protected void closeBlock() {
@@ -189,25 +204,38 @@ public abstract class Visitor extends SysMLSwitch<String> {
         prev.sb.append("{\n");
         prev.sb.append(sb);
         prev.sb.append("}\n");
-        sb.setLength(0);
+        close();
     }
 
     protected void flush() {
         if (prev == null) return;
         prev.sb.append(sb);
-        sb.setLength(0);
+        close();
     }
 
-    protected void addIdStr(Element e) {
+    private void appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
-            append("[*]");
+            ss.append("[*]");
         } else {
-            append("Eid");
-            append(getId(e));
+            ss.append('E');
+            if (force) {
+                ss.append(newId(e));
+            } else {
+                ss.append(getId(e));
+            }
         }
     }
 
+    protected void addIdStr(Element e, boolean force) {
+        appendId(sb, e, force);
+    }
+
+    private void outputPRId(Element e) {
+        appendId(pRelationsSB, e, false);
+    }
+
     private final List<PRelation> pRelations;
+    private final StringBuilder pRelationsSB;
 
     protected PRelation addPRelation(Element src, Element dest, Element rel, String description) {
         PRelation pr = new PRelation(src, dest, rel, description);
@@ -237,25 +265,25 @@ public abstract class Visitor extends SysMLSwitch<String> {
         String exu = getText(mr.getUpperBound());
         if (exl == null) {
             if (exu == null) return;
-            sb.append('"');
-            quote0(exu);
-            sb.append('"');
+            pRelationsSB.append('"');
+            pRelationsSB.append(quote0Str(exu));
+            pRelationsSB.append('"');
             return;
         }
         if ((exu == null) || (exl.equals(exu))) {
-            append('"');
-            quote0(exl);
-            append('"');
+            pRelationsSB.append('"');
+            pRelationsSB.append(quote0Str(exl));
+            pRelationsSB.append('"');
             return;
         }
         if ("0".equals(exl) && "*".equals(exu)) {
-            append("\"*\"");
+            pRelationsSB.append("\"*\"");
         } else {
-            append('"');
-            quote0(exl);
-            append("..");
-            quote0(exu);
-            append('"');
+            pRelationsSB.append('"');
+            pRelationsSB.append(quote0Str(exl));
+            pRelationsSB.append("..");
+            pRelationsSB.append(quote0Str(exu));
+            pRelationsSB.append('"');
         }
     }
 
@@ -285,21 +313,21 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
         if (relStr == null) return true;
         if ((pr.src == null) && (pr.dest == null)) return true;
-        addIdStr(pr.src);
+        outputPRId(pr.src);
 
         // addMultiplicityString(pr.src);
                 
-        append(relStr);
+        pRelationsSB.append(relStr);
 
         addMultiplicityString(pr.rel);
 
-        addIdStr(pr.dest);
+        outputPRId(pr.dest);
         String desc = pr.getDescription();
         if (!((desc == null) || (desc.isEmpty()))) {
-            append(" : ");
-            append(desc);
+            pRelationsSB.append(" : ");
+            pRelationsSB.append(desc);
         }
-        append('\n');
+        pRelationsSB.append('\n');
 
         return true;
     }
@@ -331,6 +359,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             parent.addContext(this);
         }
         this.pRelations = parent.pRelations;
+        this.pRelationsSB = parent.pRelationsSB;
         this.s2p = parent.s2p;
         this.showsMultiplicity = parent.showsMultiplicity;
     }
@@ -344,6 +373,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         this.sb = new StringBuilder();
         this.contexts = new ArrayList<Visitor>();
         this.pRelations = new ArrayList<PRelation>();
+        this.pRelationsSB = new StringBuilder();
     }
 
     public String visit(Element e) {

@@ -52,14 +52,10 @@ public class VTree extends VStructure {
         return style;
     }
 
-    private final Element parent;
+    private Element parent;
 
     private void addRel(Element typ, Element rel, String text) {
         if (parent == null) return;
-        if (typ.equals(rel)) { // This means a containment relationship
-        	Element owner = rel.getOwner(); // Check if they have a proper hierarchy
-        	if (!parent.equals(owner)) return;
-        }
         addPRelation(parent, typ, rel, text);
     }
 
@@ -168,11 +164,13 @@ public class VTree extends VStructure {
     /* VCompartment uses */
     VTree subtree(Element parent, Element e, boolean force) {
         VTree vt = newVTree(parent);
+        vt.pushIdMap();
         vt.visit(e);
         if (!(force || vt.hasItems)) {
-            vt.clearId();
+            vt.popIdMap(false);
             return null;
         }
+        vt.popIdMap(true);
         return vt;
     }
 
@@ -203,6 +201,7 @@ public class VTree extends VStructure {
     @Override
     public String casePackage(org.omg.sysml.lang.sysml.Package p) {
         addRel(p, p, null);
+        this.parent = null;
         return super.casePackage(p);
     }
 

@@ -39,7 +39,7 @@ public class VStateMachine extends VDefault {
         } else {
             append("rec def ");
         }
-        addNameWithId(typ, name);
+        addNameWithId(typ, name, true);
         addLink(typ);
         VStateMembers v = new VStateMembers(this);
         v.startStateUsage(typ);

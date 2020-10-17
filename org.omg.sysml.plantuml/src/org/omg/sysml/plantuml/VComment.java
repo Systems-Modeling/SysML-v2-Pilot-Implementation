@@ -66,7 +66,7 @@ public class VComment extends Visitor {
     private void addCommentInternal(Comment c) {
         if (checkId(c)) return;
         append("note as ");
-        addIdStr(c);
+        addIdStr(c, true);
         append('\n');
         addLink(c, "@");
         addTrimmedBody(c.getBody());

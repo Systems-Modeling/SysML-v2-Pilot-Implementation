@@ -128,7 +128,7 @@ public class VStateMembers extends VDefault {
             outputPRelations(entryExitTransitions);
             for (int i = 0; i < size; i++) {
                 append("desc ");
-                addNameWithId(typ, name);
+                addNameWithId(typ, name, false);
                 append(" : ");
                 append(descriptions.get(i));
                 append('\n');

@@ -58,7 +58,7 @@ public class VAction extends VDefault {
         } else {
             append("rec def ");
         }
-        addNameWithId(typ, name);
+        addNameWithId(typ, name, true);
         addLink(typ);
         VActionMembers v = new VActionMembers(this);
         v.startAction(typ);

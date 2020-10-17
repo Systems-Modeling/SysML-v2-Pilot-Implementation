@@ -25,9 +25,7 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;

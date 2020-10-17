@@ -54,7 +54,7 @@ public class VTree extends VStructure {
 
     private Element parent;
 
-    private void addRel(Element typ, Element rel, String text) {
+    protected void addRel(Element typ, Element rel, String text) {
         if (parent == null) return;
         addPRelation(parent, typ, rel, text);
     }
@@ -147,7 +147,7 @@ public class VTree extends VStructure {
 
     private boolean hasItems = false;
 
-    private void process(VCompartment v, Type typ) {
+    protected void process(VCompartment v, Type typ) {
         List<VTree> subtrees = v.process(this, typ);
         if (v.isEmpty() && subtrees.isEmpty()) {
             v.closeBlock();

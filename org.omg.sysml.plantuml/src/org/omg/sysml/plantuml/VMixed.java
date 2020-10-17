@@ -29,10 +29,17 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 public class VMixed extends VTree {
     private static final SysML2PlantUMLStyle style
     = new SysML2PlantUMLStyle("VMixed", null, "", null);
+
+    @Override
+    protected void process(VCompartment v, Type typ) {
+        v.setMixedMode(true);
+        super.process(v, typ);
+    }
 
     @Override 
     protected SysML2PlantUMLStyle getStyle() {
@@ -52,6 +59,7 @@ public class VMixed extends VTree {
     public String caseActionDefinition(ActionDefinition ad) {
         VAction va = new VAction(this);
         va.caseActionDefinition(ad);
+        addRel(ad, ad, null);
         va.flush();
         return "";
     }
@@ -60,6 +68,7 @@ public class VMixed extends VTree {
     public String caseActionUsage(ActionUsage au) {
         VAction va = new VAction(this);
         va.caseActionUsage(au);
+        addRel(au, au, null);
         va.flush();
         return "";
     }
@@ -72,6 +81,7 @@ public class VMixed extends VTree {
     public String caseStateUsage(StateUsage su) {
         VStateMachine vs = new VStateMachine(this);
         vs.caseStateUsage(su);
+        addRel(su, su, null);
         vs.flush();
         return "";
     }
@@ -80,6 +90,7 @@ public class VMixed extends VTree {
     public String caseStateDefinition(StateDefinition sd) {
         VStateMachine vs = new VStateMachine(this);
         vs.caseStateDefinition(sd);
+        addRel(sd, sd, null);
         vs.flush();
         return "";
     }

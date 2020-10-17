@@ -29,6 +29,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -43,6 +45,8 @@ import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -316,5 +320,40 @@ public class VCompartment extends VStructure {
 
     public VCompartment(Visitor prev) {
         super(prev);
+    }
+
+
+    private boolean mixedMode = false;
+
+    void setMixedMode(boolean flag) {
+        this.mixedMode = flag;
+    }
+
+    @Override
+    public String caseStateDefinition(StateDefinition sd) {
+        if (!mixedMode) return null;
+        rec(sd, true);
+        return "";
+    }
+
+    @Override
+    public String caseStateUsage(StateUsage su) {
+        if (!mixedMode) return null;
+        rec(su, true);
+        return "";
+    }
+
+    @Override
+    public String caseActionDefinition(ActionDefinition ad) {
+        if (!mixedMode) return null;
+        rec(ad, true);
+        return "";
+    }
+
+    @Override
+    public String caseActionUsage(ActionUsage au) {
+        if (!mixedMode) return null;
+        rec(au, true);
+        return "";
     }
 }

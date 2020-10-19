@@ -228,8 +228,8 @@ public abstract class Visitor extends SysMLSwitch<String> {
         appendId(sb, e, force);
     }
 
-    private void outputPRId(Element e) {
-        appendId(pRelationsSB, e, false);
+    private void outputPRId(StringBuilder ss, Element e) {
+        appendId(ss, e, false);
     }
 
     private final List<PRelation> pRelations;
@@ -254,7 +254,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return (MultiplicityRange) m;
     }
 
-    private void addMultiplicityString(Element e) {
+    private void addMultiplicityString(StringBuilder ss, Element e) {
         if (!showsMultiplicity) return;
         MultiplicityRange mr = getEffectiveMultiplicityRange(e);
         if (mr == null) return;
@@ -263,25 +263,25 @@ public abstract class Visitor extends SysMLSwitch<String> {
         String exu = getText(mr.getUpperBound());
         if (exl == null) {
             if (exu == null) return;
-            pRelationsSB.append('"');
-            pRelationsSB.append(quote0Str(exu));
-            pRelationsSB.append('"');
+            ss.append('"');
+            ss.append(quote0Str(exu));
+            ss.append('"');
             return;
         }
         if ((exu == null) || (exl.equals(exu))) {
-            pRelationsSB.append('"');
-            pRelationsSB.append(quote0Str(exl));
-            pRelationsSB.append('"');
+            ss.append('"');
+            ss.append(quote0Str(exl));
+            ss.append('"');
             return;
         }
         if ("0".equals(exl) && "*".equals(exu)) {
-            pRelationsSB.append("\"*\"");
+            ss.append("\"*\"");
         } else {
-            pRelationsSB.append('"');
-            pRelationsSB.append(quote0Str(exl));
-            pRelationsSB.append("..");
-            pRelationsSB.append(quote0Str(exu));
-            pRelationsSB.append('"');
+            ss.append('"');
+            ss.append(quote0Str(exl));
+            ss.append("..");
+            ss.append(quote0Str(exu));
+            ss.append('"');
         }
     }
 
@@ -304,28 +304,28 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return null;
     }
 
-    private boolean outputPRelation(PRelation pr) {
+    private boolean outputPRelation(StringBuilder ss, PRelation pr) {
         if (!(((pr.src == null) || checkId(pr.src))
               && ((pr.dest == null) || checkId(pr.dest)))) return false;
         String relStr = getRelStyle(pr.rel);
 
         if (relStr == null) return true;
         if ((pr.src == null) && (pr.dest == null)) return true;
-        outputPRId(pr.src);
+        outputPRId(ss, pr.src);
 
-        // addMultiplicityString(pr.src);
+        // addMultiplicityString(ss, pr.src);
                 
-        pRelationsSB.append(relStr);
+        ss.append(relStr);
 
-        addMultiplicityString(pr.rel);
+        addMultiplicityString(ss, pr.rel);
 
-        outputPRId(pr.dest);
+        outputPRId(ss, pr.dest);
         String desc = pr.getDescription();
         if (!((desc == null) || (desc.isEmpty()))) {
-            pRelationsSB.append(" : ");
-            pRelationsSB.append(desc);
+            ss.append(" : ");
+            ss.append(desc);
         }
-        pRelationsSB.append('\n');
+        ss.append('\n');
 
         return true;
     }
@@ -333,7 +333,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     protected void outputPRelations(List<PRelation> prs) {
     	if (prs == null) return;
         for (PRelation pr: prs) {
-            outputPRelation(pr);
+            outputPRelation(sb, pr);
         }
     }
 
@@ -343,7 +343,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         pRelations.clear();
 
         for (PRelation pr: prs) {
-            if (!outputPRelation(pr)) {
+            if (!outputPRelation(pRelationsSB, pr)) {
                 pRelations.add(pr);
             }
         }

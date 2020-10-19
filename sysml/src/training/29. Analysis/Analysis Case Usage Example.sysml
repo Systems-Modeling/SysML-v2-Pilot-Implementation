@@ -12,12 +12,12 @@ package 'Analysis Case Usage Example' {
 		
 		analysis cityAnalysis : FuelEconomyAnalysis {
 			subject vehicle = vehicle_c1;
-			in attribute scenario = cityScenario;
+			in scenario = cityScenario;
 		}
 		
 		analysis highwayAnalysis : FuelEconomyAnalysis {
 			subject vehicle = vehicle_c1;
-			in attribute scenario = highwayScenario;
+			in scenario = highwayScenario;
 		}
 		
 		part vehicle_c1 : Vehicle {

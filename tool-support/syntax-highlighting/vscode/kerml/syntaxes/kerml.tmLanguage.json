@@ -18,7 +18,7 @@
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(about|abstract|alias|all|allInstances|any|as|assoc|behavior|binding|bool|class|classifier|comment|composite|conjugates|connector|datatype|end|expr|false|feature|first|flow|from|function|hastype|import|in|inout|instanceof|interaction|inv|is|nonunique|null|of|ordered|out|package|packaged|port|portion|predicate|private|protected|public|redefines|specializes|step|stream|subsets|succession|then|to|true)\\b", "name": "keyword.other.kerml" },
+        { "match": "\\b(about|abstract|alias|all|allInstances|as|assoc|behavior|binding|bool|by|class|classifier|comment|composite|conjugates|conjugation|connector|datatype|doc|element|end|expr|false|feature|first|flow|from|function|generalization|hastype|id|import|in|inout|instanceof|interaction|inv|is|istype|language|nonunique|null|of|ordered|out|package|packaged|port|portion|predicate|private|protected|public|redefines|redefinition|relationship|rep|specializes|step|stream|subclass|subset|subsets|subtype|succession|then|to|true|type|typed|typing)\\b", "name": "keyword.other.kerml" },
         { "match": "(&|&&|\\?|\\?\\?|\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
         { "match": "(!|!=|\\<|\\<=|=|==|=\\>|\\>|\\>=)", "name": "keyword.operator.comparison.kerml" },
         { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.kerml" },

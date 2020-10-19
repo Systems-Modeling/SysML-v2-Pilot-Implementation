@@ -12,14 +12,13 @@ package 'Calculation Usages-2' {
 		attribute wheelPower : PowerValue;
 		attribute mass : MassValue;
 		
-		calc updateState(delta_t : TimeValue, currState : DynamicState) : DynamicState {
+		calc updateState(delta_t : TimeValue, currState : DynamicState) {
 			attribute totalPower : PowerValue = Power(wheelPower, C_d, C_f, mass, currState::v);
-			attribute newState : DynamicState {
+			
+			return attribute newState : DynamicState {
 				:>> v = Velocity(delta_t, currState::v, Acceleration(totalPower, mass, currState::v));
 				:>> x = Position(delta_t, currState::x, currState::v);
 			}
-			
-			newState
 		}
 	} 
 	

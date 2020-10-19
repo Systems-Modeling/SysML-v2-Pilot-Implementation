@@ -54,7 +54,7 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.sysml2"
-      remoteURI="git@github.com:ModelDriven/SysML-v2-Pilot-Implementation.git">
+      remoteURI="git@github.com:Systems-Modeling/SysML-v2-Pilot-Implementation.git">
     <description>${scope.project.label}</description>
   </setupTask>
   <setupTask

@@ -40,7 +40,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -201,7 +201,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return super.getOwningMembership();
 	}
 	
-	EList<Type> types = null;
+	private List<Type> types = null;
 	
 	@Override
 	public void clearCaches() {
@@ -215,12 +215,13 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getType() {
-		return getAllTypes();
+		List<Type> allTypes = getAllTypes();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.FEATURE__TYPE, allTypes.size(), allTypes.toArray());
 	}
 	
-	public EList<Type> getAllTypes() {
+	public List<Type> getAllTypes() {
 		if (types == null) {
-			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
+			types = new ArrayList<>();
 			getTypes(types, new HashSet<Feature>());
 			removeRedundantTypes(types);
 		}
@@ -229,7 +230,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(this);
-		types.addAll(getFeatureTypes(types));
+		getFeatureTypes(types).stream().
+			filter(type -> !types.contains(type)).
+			forEachOrdered(types::add);
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
@@ -267,9 +270,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getReferencedType() {
-		EList<Type> referencedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
-		getType().stream().filter(type->type != null && type.getOwner() != this).forEachOrdered(referencedTypes::add);
-		return referencedTypes;
+		Type[] referencedTypes = getType().stream().filter(type->type != null && type.getOwner() != this).toArray(Type[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.FEATURE__REFERENCED_TYPE, referencedTypes.length, referencedTypes);
 	}
 
 	/**
@@ -373,9 +375,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getOwnedType() {
-		EList<Type> ownedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
-		getType().stream().filter(type->type != null && type.getOwner() == this).forEachOrdered(ownedTypes::add);
-		return ownedTypes;
+		Type[] ownedTypes = getType().stream().filter(type->type != null && type.getOwner() == this).toArray(Type[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.FEATURE__OWNED_TYPE, ownedTypes.length, ownedTypes);
 	}
 	
 	@Override

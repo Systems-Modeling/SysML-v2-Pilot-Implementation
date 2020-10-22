@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
@@ -109,9 +109,10 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.CONSTRAINT_USAGE__PARAMETER);
-		parameters.addAll(getAllParameters());
-		return parameters;
+		List<Feature> parameters = getAllParameters();
+		int parameterCount = parameters.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.BEHAVIOR__PARAMETER, parameterCount,
+				parameters.toArray(new Feature[parameterCount]));
 	}
 
 	/**

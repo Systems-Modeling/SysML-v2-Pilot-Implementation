@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
@@ -179,9 +179,10 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 */
 	@Override
 	public EList<String> getText() {
-		EList<String> text = new EObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
-		getDocumentationComment().stream().map(Comment::getBody).forEachOrdered(text::add);
-		return text;
+		String[] text = getDocumentationComment().stream().
+				map(Comment::getBody).
+				toArray(String[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.REQUIREMENT_DEFINITION__TEXT, text.length, text);
 	}
 	
 	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
@@ -199,9 +200,10 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 */
 	@Override
 	public EList<ConstraintUsage> getAssumedConstraint() {
-		EList<ConstraintUsage> constraints = new EObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
-		getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
-		return constraints;
+		ConstraintUsage[] constraints = getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION)
+				.toArray(ConstraintUsage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT,
+				constraints.length, constraints);
 	}
 
 	/**
@@ -211,9 +213,10 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 */
 	@Override
 	public EList<ConstraintUsage> getRequiredConstraint() {
-		EList<ConstraintUsage> constraints = new EObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
-		getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
-		return constraints;
+		ConstraintUsage[] constraints = getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT)
+				.toArray(ConstraintUsage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT,
+				constraints.length, constraints);
 	}
 
 	@Override

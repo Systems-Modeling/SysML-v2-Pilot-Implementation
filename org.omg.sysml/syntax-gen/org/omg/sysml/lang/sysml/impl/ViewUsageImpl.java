@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Expose;
@@ -140,9 +140,12 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 */
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Package> getExposedPackage() {
-		EList<org.omg.sysml.lang.sysml.Package> exposedPackages = new EObjectEList<>(org.omg.sysml.lang.sysml.Package.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE);
-		getOwnedImport().stream().filter(Expose.class::isInstance).map(Import::getImportedPackage).forEachOrdered(exposedPackages::add);
-		return exposedPackages;
+		org.omg.sysml.lang.sysml.Package[] exposedPackages = getOwnedImport().stream().
+				filter(Expose.class::isInstance).
+				map(Import::getImportedPackage).
+				toArray(org.omg.sysml.lang.sysml.Package[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.VIEW_USAGE__EXPOSED_PACKAGE, exposedPackages.length,
+				exposedPackages);
 	}
 	
 

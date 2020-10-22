@@ -28,8 +28,8 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
@@ -94,12 +94,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
-		super.getType().stream().
+		Behavior[] behaviors = super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+			toArray(Behavior[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.STEP__BEHAVIOR, behaviors.length, behaviors);
 	}
 
 	/**
@@ -118,9 +117,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
-		parameters.addAll(getAllParameters());
-		return parameters;
+		List<Feature> parameters = getAllParameters();
+		int parameterCount = parameters.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.STEP__PARAMETER, parameterCount,
+				parameters.toArray(new Feature[parameterCount]));
 	}
 
 	/**
@@ -130,14 +130,13 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Classifier> getItemType() {
-		EList<Classifier> itemType = new EObjectEList<Classifier>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
 		getItemFeature().get(0).getType();
-		getItemFeature().stream().
+		Classifier[] itemType = getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
 			filter(t->t instanceof Classifier).
 			map(t->(Classifier)t).
-			forEachOrdered(itemType::add);
-		return itemType;
+			toArray(Classifier[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ITEM_FLOW__ITEM_TYPE, itemType.length, itemType);
 	}
 	
 	/**
@@ -159,9 +158,10 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
-		EList<Feature> sourceOutputFeature = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
-		getInputOutputFeature(0).ifPresent(sourceOutputFeature::add);
-		return sourceOutputFeature;
+		Optional<Feature> inputOutputFeature = getInputOutputFeature(0);
+		return inputOutputFeature.isPresent() 
+				? new UnmodifiableEList<>(this, SysMLPackage.Literals.ITEM_FLOW__SOURCE_OUTPUT_FEATURE, 1, new Feature[] {inputOutputFeature.get()}) 
+				: new UnmodifiableEList<>(this, SysMLPackage.Literals.ITEM_FLOW__SOURCE_OUTPUT_FEATURE, 0, new Feature[0]);
 	}
 	
 	/**
@@ -171,13 +171,11 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<ItemFlowEnd> getItemFlowEnd() {
-		EList<ItemFlowEnd> itemFlows = 
-				new EObjectEList<ItemFlowEnd>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
-		getConnectorEnd().stream().
+		ItemFlowEnd[] itemFlows = getConnectorEnd().stream().
 			filter(end->end instanceof ItemFlowEnd).
 			map(end->(ItemFlowEnd)end).
-			forEachOrdered(itemFlows::add);
-		return itemFlows;
+			toArray(ItemFlowEnd[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ITEM_FLOW__ITEM_FLOW_END, itemFlows.length, itemFlows);
 	}
 
 	/**

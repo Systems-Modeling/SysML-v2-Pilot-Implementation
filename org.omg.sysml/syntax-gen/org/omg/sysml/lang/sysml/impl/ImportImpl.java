@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -333,20 +334,22 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public EList<Membership> importedMembership() {
-		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null,
-				new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>());
+		BasicInternalEList<Membership> importedMembership = new BasicInternalEList<Membership>(Membership.class);
+		this.importMembership(importedMembership, null, new HashSet<org.omg.sysml.lang.sysml.Package>(),
+				new HashSet<Type>());
+		return importedMembership;
 	}
 
 	// Note: The excludedType parameter is needed in case the imported Package
 	// is a Type that has one or more Generalizations.
-	public EList<Membership> importMembership(EList<Membership> importedMembership,
+	public List<Membership> importMembership(List<Membership> importedMembership,
 			Collection<Membership> nonpublicMembership, Collection<org.omg.sysml.lang.sysml.Package> excludedPackages,
 			Collection<Type> excludedTypes) {
 		org.omg.sysml.lang.sysml.Package importedPackage = this.getImportedPackage();
 		if (importedPackage != null && !excludedPackages.contains(importedPackage)) {
 			org.omg.sysml.lang.sysml.Package owningPackage = this.getImportOwningPackage();
 			excludedPackages.add(owningPackage);
-			EList<Membership> packageMembership = ((PackageImpl) importedPackage).getPublicMembership(excludedPackages,
+			List<Membership> packageMembership = ((PackageImpl) importedPackage).getPublicMembership(excludedPackages,
 					excludedTypes);
 			importedMembership.addAll(packageMembership);
 			if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {

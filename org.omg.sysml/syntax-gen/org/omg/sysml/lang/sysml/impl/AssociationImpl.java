@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -102,9 +102,10 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		EList<Element> relatedElement = getOwnedRelatedElement_comp();
+		int elementCount = relatedElement.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT, elementCount,
+				relatedElement.toArray(new Element[elementCount]));
 	}
 
 	/**
@@ -334,17 +335,18 @@ public class AssociationImpl extends ClassImpl implements Association {
 	 */
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new EObjectEList<>(Type.class, this, SysMLPackage.ASSOCIATION__TARGET_TYPE);
-		addTargetTypes(this, targetType);
-		return targetType;
+		return getTargetTypes(this);
 	}
 	
-	public static void addTargetTypes(Association association, EList<Type> targetTypes) {
+	public static EList<Type> getTargetTypes(Association association) {
 		EList<Type> relatedTypes = association.getRelatedType();
-		if (relatedTypes.size() == 2) {
-			targetTypes.add(relatedTypes.get(1));
+		int numberOfRelatedTypes = relatedTypes.size();
+		if (numberOfRelatedTypes == 2) {
+			return new UnmodifiableEList<>((InternalEObject) association, SysMLPackage.Literals.ASSOCIATION__TARGET_TYPE, 1,
+					new Type[] { relatedTypes.get(1) });
 		} else {
-			targetTypes.addAll(relatedTypes);
+			return new UnmodifiableEList<>((InternalEObject) association, SysMLPackage.Literals.ASSOCIATION__TARGET_TYPE, numberOfRelatedTypes,
+					relatedTypes.toArray(new Type[numberOfRelatedTypes]));
 		}
 	}
 

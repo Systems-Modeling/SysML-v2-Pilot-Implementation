@@ -25,7 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -73,13 +73,11 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	 */
 	@Override
 	public EList<PartDefinition> getPartDefinition() {
-		EList<PartDefinition> partDefinitions =
-				new EObjectEList<>(PartDefinition.class, this, SysMLPackage.PART_USAGE__PART_DEFINITION);
-		super.getItemDefinition().stream().
+		PartDefinition[] partDefinitions = super.getItemDefinition().stream().
 			filter(PartDefinition.class::isInstance).
 			map(PartDefinition.class::cast).
-			forEachOrdered(partDefinitions::add);
-		return partDefinitions;
+			toArray(PartDefinition[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PART_USAGE__PART_DEFINITION, partDefinitions.length, partDefinitions);
 	}
 
 	@Override

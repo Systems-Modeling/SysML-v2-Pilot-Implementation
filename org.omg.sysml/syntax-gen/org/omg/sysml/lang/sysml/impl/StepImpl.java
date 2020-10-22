@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
@@ -86,12 +86,11 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	@Override
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
-		super.getType().stream().
+		Behavior[] behaviors = super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+			toArray(Behavior[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.STEP__BEHAVIOR, behaviors.length, behaviors);
 	}
 
 	/**
@@ -110,9 +109,9 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
-		parameters.addAll(getAllParameters());
-		return parameters;
+		List<Feature> parameterList = getAllParameters();
+		Feature[] parameters = parameterList.toArray(new Feature[parameterList.size()]);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.STEP__PARAMETER, parameters.length, parameters);
 	}
 
 	/**

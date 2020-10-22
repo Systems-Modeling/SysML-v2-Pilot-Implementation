@@ -23,6 +23,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -34,6 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
@@ -338,11 +341,16 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
 		EList<Element> relatedElements = super.getOwnedRelatedElement();
+		
 		Element ownedMemberElement = getOwnedMemberElement();
 		if (ownedMemberElement != null) {
-			relatedElements.add(getOwnedMemberElement());
+			Element[] elements = Stream.concat(relatedElements.stream(), Stream.of(ownedMemberElement))
+					.toArray(Element[]::new);
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT,
+					elements.length, elements);
+		} else {
+			return relatedElements;
 		}
-		return relatedElements;
 	}
 	
 	//

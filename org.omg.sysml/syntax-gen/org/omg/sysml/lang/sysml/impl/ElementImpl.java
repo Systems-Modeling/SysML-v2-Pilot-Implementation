@@ -22,7 +22,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
@@ -463,10 +463,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated NOT
 	 */
 	public BasicEList<Element> getOwnedElement() {
-		BasicEList<Element> ownedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
-		ownedElements.addAllUnique(getOwnedRelationship().stream().
-				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
-		return ownedElements;
+		Element[] ownedElements = getOwnedRelationship().stream().
+				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).distinct().toArray(Element[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ELEMENT__OWNED_ELEMENT, ownedElements.length,
+				ownedElements);
 	}
 
 	/**
@@ -489,11 +489,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Comment> getDocumentationComment() {
-		EList<Comment> documentationComments = new EObjectEList<>(Comment.class, this, SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT);
-		getDocumentation().stream().
+		Comment[] documentationComments = getDocumentation().stream().
 			map(Documentation::getDocumentingComment).
-			forEachOrdered(documentationComments::add);
-		return documentationComments;
+			toArray(Comment[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ELEMENT__DOCUMENTATION_COMMENT,
+				documentationComments.length, documentationComments);
 	}
 
 	/**
@@ -503,13 +503,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<TextualRepresentation> getOwnedTextualRepresentation() {
-		EList<TextualRepresentation> ownedTextualRepresentations = new EObjectEList<>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION);
-		getOwnedAnnotation().stream().
+		TextualRepresentation[] ownedTextualRepresentations = getOwnedAnnotation().stream().
 			map(Annotation::getAnnotatingElement).
 			filter(TextualRepresentation.class::isInstance).
 			map(TextualRepresentation.class::cast).
-			forEachOrdered(ownedTextualRepresentations::add);
-		return ownedTextualRepresentations;
+			toArray(TextualRepresentation[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ELEMENT__OWNED_TEXTUAL_REPRESENTATION,
+				ownedTextualRepresentations.length, ownedTextualRepresentations);
 	}
 
 	/**
@@ -599,10 +599,13 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Relationship> getOwnedRelationship() {
-		EList<Relationship> ownedRelationships = new EObjectEList<Relationship>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP);
-		ownedRelationships.addAll(getOwnedRelationship_comp());
-		ownedRelationships.addAll(getOwnedAnnotation());
-		return ownedRelationships;
+		Relationship[] ownedRelationships = streamOwnedRelationship().toArray(Relationship[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ELEMENT__OWNED_RELATIONSHIP,
+				ownedRelationships.length, ownedRelationships);
+	}
+
+	protected Stream<Relationship> streamOwnedRelationship() {
+		return Stream.concat(getOwnedRelationship_comp().stream(), getOwnedAnnotation().stream());
 	}
 
 	/**
@@ -612,9 +615,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Documentation> getDocumentation() {
-		EList<Documentation> documentation = new EObjectEList<>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION);
-		documentation.addAll(getDocumentation_comp());
-		return documentation;
+		EList<Documentation> documentation = getDocumentation_comp();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ELEMENT__DOCUMENTATION, documentation.size(),
+				documentation.toArray(new Documentation[documentation.size()]));
 	}
 
 	/**
@@ -634,10 +637,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Annotation> getOwnedAnnotation() {
-		EList<Annotation> ownedAnnotations = new EObjectEList<>(Annotation.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
-		ownedAnnotations.addAll(getOwnedAnnotation_comp());
-		ownedAnnotations.addAll(getDocumentation());
-		return ownedAnnotations;
+		Annotation[] ownedAnnotations = Stream.concat(getOwnedAnnotation_comp().stream(), getDocumentation().stream())
+				.toArray(Annotation[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ELEMENT__OWNED_ANNOTATION, ownedAnnotations.length,
+				ownedAnnotations);
 	}
 
 	/**

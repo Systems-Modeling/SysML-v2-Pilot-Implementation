@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
@@ -198,9 +198,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		EList<Element> ownedRelatedElements = getOwnedRelatedElement_comp();
+		int relatedElementCount = ownedRelatedElements.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT,
+				relatedElementCount, ownedRelatedElements.toArray(new Element[relatedElementCount]));
 	}
 
 	/**
@@ -353,13 +354,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	@Override
 	public EList<Association> getAssociation() {
-		EList<Association> associations = 
-				new EObjectEList<Association>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
-		super.getType().stream().
-			filter(type->type instanceof Association).
-			map(type->(Association)type).
-			forEachOrdered(associations::add);
-		return associations;
+		Association[] associations = super.getType().stream().
+			filter(Association.class::isInstance).
+			map(Association.class::cast).
+			toArray(Association[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.CONNECTOR__ASSOCIATION, associations.length,
+				associations);
 	}
 
 	/**
@@ -455,17 +455,18 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	@Override
 	public EList<Feature> getTargetFeature() {
-		EList<Feature> targetFeatures = new EObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
-		addTargetFeatures(this, targetFeatures);
-		return targetFeatures;
+		return getTargetFeatures(this);
 	}
 	
-	public static void addTargetFeatures(Connector connector, EList<Feature> targetFeatures) {
+	public static EList<Feature> getTargetFeatures(Connector connector) {
 		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		if (relatedFeatures.size() == 2) {
-			targetFeatures.add(relatedFeatures.get(1));
+		int numberOfRelatedTypes = relatedFeatures.size();
+		if (numberOfRelatedTypes == 2) {
+			return new UnmodifiableEList<>((InternalEObject) connector, SysMLPackage.Literals.CONNECTOR__TARGET_FEATURE, 1,
+					new Feature[] { relatedFeatures.get(1) });
 		} else {
-			targetFeatures.addAll(relatedFeatures);
+			return new UnmodifiableEList<>((InternalEObject) connector, SysMLPackage.Literals.CONNECTOR__TARGET_FEATURE, numberOfRelatedTypes,
+					relatedFeatures.toArray(new Feature[numberOfRelatedTypes]));
 		}
 	}
 
@@ -507,9 +508,11 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	@Override
 	public EList<Association> getOwnedAssociationType() {
-		EList<Association> associations = new EObjectEList<Association>(Association.class, this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE);
-		getAssociation().stream().filter(a->a.getOwner() == this).forEachOrdered(associations::add);
-		return associations;
+		Association[] associations = getAssociation().stream().
+				filter(a->a.getOwner() == this).
+				toArray(Association[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.CONNECTOR__OWNED_ASSOCIATION_TYPE,
+				associations.length, associations);
 	}
 
 	/**

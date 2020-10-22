@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -229,9 +230,10 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		EList<Element> ownedRelatedElement = getOwnedRelatedElement_comp();
+		int elementCount = ownedRelatedElement.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT, elementCount,
+				ownedRelatedElement.toArray(new Element[elementCount]));
 	}
 
 	/**
@@ -274,13 +276,15 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Association> getAssociation() {
-		EList<Association> associations = 
-				new EObjectEList<Association>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
-		super.getType().stream().
-			filter(type->type instanceof Association).
-			map(type->(Association)type).
-			forEachOrdered(associations::add);
-		return associations;
+		Association[] associations = getAssociationStream().toArray(Association[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.CONNECTOR__ASSOCIATION, associations.length,
+				associations);
+	}
+
+	private Stream<Association> getAssociationStream() {
+		return super.getType().stream().
+			filter(Association.class::isInstance).
+			map(Association.class::cast);
 	}
 
 	/**
@@ -299,9 +303,11 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Association> getOwnedAssociationType() {
-		EList<Association> associations = new EObjectEList<Association>(Association.class, this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE);
-		getAssociation().stream().filter(a->a.getOwner() == this).forEachOrdered(associations::add);
-		return associations;
+		Association[] associations = getAssociationStream().
+				filter(a->a.getOwner() == this).
+				toArray(Association[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.CONNECTOR__OWNED_ASSOCIATION_TYPE,
+				associations.length, associations);
 	}
 
 	/**
@@ -320,13 +326,9 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Association> getConnectionDefinition() {
-		EList<Association> associations = 
-				new EObjectEList<>(Association.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
-		super.getType().stream().
-			filter(type->type instanceof Association).
-			map(type->(Association)type).
-			forEachOrdered(associations::add);
-		return associations;
+		Association[] associations = getAssociationStream().
+			toArray(Association[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.CONNECTION_USAGE__CONNECTION_DEFINITION, associations.length, associations);
 	}
 
 	/**
@@ -417,9 +419,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Feature> getTargetFeature() {
-		EList<Feature> targetFeatures = new EObjectEList<>(Feature.class, this, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE);
-		ConnectorImpl.addTargetFeatures(this, targetFeatures);
-		return targetFeatures;
+		return ConnectorImpl.getTargetFeatures(this);
 	}
 
 	/**

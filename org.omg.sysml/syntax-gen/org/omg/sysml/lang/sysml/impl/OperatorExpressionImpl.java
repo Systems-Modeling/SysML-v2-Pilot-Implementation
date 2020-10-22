@@ -37,8 +37,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
@@ -163,9 +163,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 */
 	@Override
 	public EList<Expression> getOperand() {
-		EList<Expression> operands = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
-		operands.addAll(getOperand_comp());
-		return operands;
+		EList<Expression> operands = getOperand_comp();
+		int operandCount = operands.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.OPERATOR_EXPRESSION__OPERAND, operandCount,
+				operands.toArray(new Expression[operandCount]));
 	}
 	
 	@Override

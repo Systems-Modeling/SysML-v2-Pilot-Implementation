@@ -29,7 +29,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
@@ -84,13 +84,15 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Step> getTriggerStep() {
-		EList<Step> triggerSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.SUCCESSION__TRIGGER_STEP);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
-			EList<AcceptActionUsage> triggers = ((TransitionUsageImpl)transitionStep).getTriggerAction();
-			triggerSteps.addAll(triggers);
+			EList<AcceptActionUsage> triggers = ((TransitionUsageImpl) transitionStep).getTriggerAction();
+			int stepCount = triggers.size();
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.SUCCESSION__TRIGGER_STEP, stepCount,
+					triggers.toArray(new Step[stepCount]));
+		} else {
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.SUCCESSION__TRIGGER_STEP, 0, new Step[0]);
 		}
-		return triggerSteps;
 	}
 
 	/**
@@ -100,13 +102,15 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Step> getEffectStep() {
-		EList<Step> effectSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.SUCCESSION__EFFECT_STEP);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
-			EList<ActionUsage> effects = ((TransitionUsageImpl)transitionStep).getEffectAction();
-			effectSteps.addAll(effects);
+			EList<ActionUsage> effects = ((TransitionUsageImpl) transitionStep).getEffectAction();
+			int effectsCount = effects.size();
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.SUCCESSION__EFFECT_STEP, effectsCount,
+					effects.toArray(new Step[effectsCount]));
+		} else {
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.SUCCESSION__EFFECT_STEP, 0, new Step[0]);
 		}
-		return effectSteps;
 	}
 
 	/**
@@ -116,13 +120,16 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {
-		EList<Expression> guardExpressions = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
-			EList<Expression> guards = ((TransitionUsageImpl)transitionStep).getGuardExpression();
-			guardExpressions.addAll(guards);
+			EList<Expression> guards = ((TransitionUsageImpl) transitionStep).getGuardExpression();
+			int guardsCount = guards.size();
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.SUCCESSION__GUARD_EXPRESSION, guardsCount,
+					guards.toArray(new Expression[guardsCount]));
+		} else {
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.SUCCESSION__GUARD_EXPRESSION, 0,
+					new Expression[0]);
 		}
-		return guardExpressions;
 	}
 
 	/**

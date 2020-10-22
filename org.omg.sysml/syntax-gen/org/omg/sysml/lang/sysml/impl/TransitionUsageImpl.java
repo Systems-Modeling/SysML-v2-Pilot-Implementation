@@ -28,7 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
@@ -170,13 +170,12 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	@Override
 	public EList<AcceptActionUsage> getTriggerAction() {
-		EList<AcceptActionUsage> triggerActions = 
-				new EObjectEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
-		getTransitionFeatures(TransitionFeatureKind.TRIGGER).
+		AcceptActionUsage[] triggerActions = getTransitionFeatures(TransitionFeatureKind.TRIGGER).
 			filter(feature->feature instanceof AcceptActionUsage).
 			map(feature->(AcceptActionUsage)feature).
-			forEachOrdered(triggerActions::add);
-		return triggerActions;
+			toArray(AcceptActionUsage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TRANSITION_USAGE__TRIGGER_ACTION,
+				triggerActions.length, triggerActions);
 	}
 
 	/**
@@ -186,13 +185,12 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {
-		EList<Expression> guardExpressions = 
-				new EObjectEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
-		getTransitionFeatures(TransitionFeatureKind.GUARD).
+		Expression[] guardExpressions = getTransitionFeatures(TransitionFeatureKind.GUARD).
 			filter(feature->feature instanceof Expression).
 			map(feature->(Expression)feature).
-			forEachOrdered(guardExpressions::add);
-		return guardExpressions;
+			toArray(Expression[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TRANSITION_USAGE__GUARD_EXPRESSION,
+				guardExpressions.length, guardExpressions);
 	}
 
 	/**
@@ -202,13 +200,12 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 */
 	@Override
 	public EList<ActionUsage> getEffectAction() {
-		EList<ActionUsage> effectActions = 
-				new EObjectEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
-		getTransitionFeatures(TransitionFeatureKind.EFFECT).
+		ActionUsage[] effectActions = getTransitionFeatures(TransitionFeatureKind.EFFECT).
 			filter(feature->feature instanceof ActionUsage).
 			map(feature->(ActionUsage)feature).
-			forEachOrdered(effectActions::add);
-		return effectActions;
+			toArray(ActionUsage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TRANSITION_USAGE__EFFECT_ACTION,
+				effectActions.length, effectActions);
 	}
 
 	/**

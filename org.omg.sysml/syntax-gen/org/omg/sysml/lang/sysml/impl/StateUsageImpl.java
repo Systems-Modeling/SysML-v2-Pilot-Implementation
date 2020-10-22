@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -86,12 +86,12 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 */
 	@Override
 	public EList<Behavior> getStateDefinition() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STATE_USAGE__STATE_DEFINITION);
-		super.getType().stream().
+		Behavior[] behaviors = super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+			toArray(Behavior[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.STATE_USAGE__STATE_DEFINITION, behaviors.length,
+				behaviors);
 	}
 
 	/**

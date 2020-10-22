@@ -28,7 +28,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -88,9 +88,8 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ACTION_USAGE__PARAMETER);
-		parameters.addAll(getAllParameters());
-		return parameters;
+		List<Feature> allParameters = getAllParameters();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.STEP__PARAMETER, allParameters.size(), allParameters.toArray(new Feature[allParameters.size()]));
 	}
 
 	/**
@@ -100,12 +99,11 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 */
 	@Override
 	public EList<Behavior> getActionDefinition() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTION_DEFINITION);
-		super.getType().stream().
+		Behavior[] behaviors = super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
-			forEachOrdered(behaviors::add);
-		return behaviors;
+			toArray(Behavior[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ACTION_USAGE__ACTION_DEFINITION, behaviors.length, behaviors);
 	}
 
 	/**

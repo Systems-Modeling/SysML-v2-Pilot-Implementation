@@ -27,7 +27,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -76,11 +76,11 @@ public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements
 	 */
 	@Override
 	public EList<PortUsage> getInterfaceEnd() {
-		EList<PortUsage> ends = new EObjectEList<PortUsage>(PortUsage.class, this, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END);
-		super.getAssociationEnd().stream().
+		PortUsage[] ends = super.getAssociationEnd().stream().
 			filter(end->end instanceof PortUsage).
-			forEachOrdered(end->ends.add((PortUsage)end));
-		return ends;
+			toArray(PortUsage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.INTERFACE_DEFINITION__INTERFACE_END, ends.length,
+				ends);
 	}
 
 	/**

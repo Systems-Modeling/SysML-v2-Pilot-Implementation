@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
@@ -208,9 +208,10 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new EObjectEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		EList<Element> ownedRelatedElements = getOwnedRelatedElement_comp();
+		int elementCount = ownedRelatedElements.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.RELATIONSHIP__OWNED_RELATED_ELEMENT, elementCount,
+				ownedRelatedElements.toArray(new Element[elementCount]));
 	}
 
 	/**
@@ -321,9 +322,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new EObjectEList<>(Type.class, this, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE);
-		AssociationImpl.addTargetTypes(this, targetType);
-		return targetType;
+		return AssociationImpl.getTargetTypes(this);
 	}
 	
 	/**
@@ -342,11 +341,11 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	@Override
 	public EList<Usage> getConnectionEnd() {
-		EList<Usage> connectionEnds = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END);
-		super.getEndFeature().stream().
+		Usage[] connectionEnds = super.getEndFeature().stream().
 			filter(Usage.class::isInstance).map(Usage.class::cast).
-			forEachOrdered(connectionEnds::add);
-		return connectionEnds;
+			toArray(Usage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.CONNECTION_DEFINITION__CONNECTION_END,
+				connectionEnds.length, connectionEnds);
 	}
 
 	/**

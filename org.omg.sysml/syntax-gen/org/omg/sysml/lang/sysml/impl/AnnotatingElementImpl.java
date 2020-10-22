@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -91,9 +91,10 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new EObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
-		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
-		return annotatedElements;
+		Element[] annotatedElements = getAnnotation().stream().map(Annotation::getAnnotatedElement)
+				.toArray(Element[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT,
+				annotatedElements.length, annotatedElements);
 	}
 
 	@Override

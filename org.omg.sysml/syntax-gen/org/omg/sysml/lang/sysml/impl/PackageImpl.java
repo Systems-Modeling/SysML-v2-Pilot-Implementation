@@ -26,7 +26,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
@@ -36,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
@@ -157,11 +162,11 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated NOT
 	 */
 	public EList<Element> getMember() {
-		EList<Element> members = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__MEMBER);
-		getMembership().stream().
+		Element[] members = getMembership().stream().
 			map(Membership::getMemberElement).
-			filter(m->m != null).forEachOrdered(members::add);	
-		return members;
+			filter(m->m != null).
+			toArray(Element[]::new);	
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PACKAGE__MEMBER, members.length, members);
 	}
 
 	/**
@@ -171,9 +176,10 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	@Override
 	public EList<Import> getOwnedImport() {
-		EList<Import> ownedImports = new EObjectEList<Import>(Element.class, this, SysMLPackage.PACKAGE__OWNED_IMPORT);
-		ownedImports.addAll(getOwnedImport_comp());
-		return ownedImports;
+		List<Import> ownedImports = getOwnedImport_comp();
+		int importCount = ownedImports.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PACKAGE__OWNED_IMPORT, importCount,
+				ownedImports.toArray(new Import[importCount]));
 	}
 
 	/**
@@ -182,14 +188,12 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 * @generated NOT
 	 */
 	public EList<Element> getOwnedMember() {
-		EList<Element> ownedMembers = new EObjectEList<Element>(Element.class, this, SysMLPackage.PACKAGE__OWNED_MEMBER);
-		for (Membership membership: this.getOwnedMembership()) {
-			Element element = membership.getOwnedMemberElement();
-			if (element != null) {
-				ownedMembers.add(element);
-			}
-		}
-		return ownedMembers;
+		Element[] ownedMembers = this.getOwnedMembership().stream().
+			map(Membership::getOwnedMemberElement).
+			filter(Objects::nonNull).
+			toArray(Element[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PACKAGE__OWNED_MEMBER, ownedMembers.length,
+				ownedMembers);
 	}
 	
 	private EList<Membership> importedMembership = null;
@@ -232,9 +236,10 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	 */
 	@Override
 	public EList<Membership> getOwnedMembership() {
-		EList<Membership> ownedMemberships = new EObjectEList<Membership>(Membership.class, this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP);
-		ownedMemberships.addAll(getOwnedMembership_comp());
-		return ownedMemberships;
+		List<Membership> ownedMemberships = getOwnedMembership_comp();
+		int membershipCount = ownedMemberships.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PACKAGE__OWNED_MEMBERSHIP, membershipCount,
+				ownedMemberships.toArray(new Membership[membershipCount]));
 	}
 	
 	/**
@@ -259,11 +264,9 @@ public class PackageImpl extends ElementImpl implements org.omg.sysml.lang.sysml
 	// Additional subsets
 	
 	@Override
-	public EList<Relationship> getOwnedRelationship() {
-		EList<Relationship> ownedRelationships = super.getOwnedRelationship();
-		ownedRelationships.addAll(getOwnedImport());
-		ownedRelationships.addAll(getOwnedMembership());
-		return ownedRelationships;
+	protected Stream<Relationship> streamOwnedRelationship() {
+		return Stream.concat(super.streamOwnedRelationship(),
+				Stream.concat(getOwnedImport().stream(), getOwnedMembership().stream()));
 	}
 
 	// Operations

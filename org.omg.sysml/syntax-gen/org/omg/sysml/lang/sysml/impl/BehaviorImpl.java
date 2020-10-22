@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -87,9 +87,10 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	 * @generated NOT // derived
 	 */
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
-		parameters.addAll(getAllParameters());
-		return parameters;
+		List<Feature> parameters = getAllParameters();
+		int parameterCount = parameters.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.BEHAVIOR__PARAMETER, parameterCount,
+				parameters.toArray(new Feature[parameterCount]));
 	}
 
 	@Override

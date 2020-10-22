@@ -23,6 +23,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -32,7 +34,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -190,14 +192,13 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<Usage> getFlowFeature() {
-		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__FLOW_FEATURE);
-		getMembership().stream().
+		Usage[] flows = getMembership().stream().
 			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
 			map(membership->((FeatureMembership)membership).getMemberFeature()).
 			filter(Usage.class::isInstance).
 			map(Usage.class::cast).
-			forEachOrdered(flows::add);
-		return flows;
+			toArray(Usage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.DEFINITION__FLOW_FEATURE, flows.length, flows);
 	}
 
 	/**
@@ -440,11 +441,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<Usage> getVariant() {
-		EList<Usage> variants = new EObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__VARIANT);
-		getVariantMembership().stream().
+		Usage[] variants = getVariantMembership().stream().
 			map(VariantMembership::getOwnedVariantUsage).
-			forEachOrdered(variants::add);
-		return variants;
+			toArray(Usage[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.DEFINITION__VARIANT, variants.length, variants);
 	}
 
 	/**
@@ -454,13 +454,13 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
-		EList<VariantMembership> variantMemberships = new EObjectEList<>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP);
-		super.getOwnedMembership().stream().
+		Stream<VariantMembership> ownedVariantMembershipStream = super.getOwnedMembership().stream().
 			filter(VariantMembership.class::isInstance).
-			map(VariantMembership.class::cast).
-			forEachOrdered(variantMemberships::add);
-		variantMemberships.addAll(getVariantMembership_comp());
-		return variantMemberships;
+			map(VariantMembership.class::cast);
+		VariantMembership[] variantMemberships = Stream.concat(ownedVariantMembershipStream, getVariantMembership_comp().stream()).
+			toArray(VariantMembership[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.DEFINITION__VARIANT_MEMBERSHIP,
+				variantMemberships.length, variantMemberships);
 	}
 
 	/**

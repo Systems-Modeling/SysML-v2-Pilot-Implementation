@@ -27,13 +27,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.util.EObjectEList;
+import org.eclipse.emf.ecore.util.EcoreEList.UnmodifiableEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -230,21 +231,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
-		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
-		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
-		return generalizations;
+		Generalization[] generalizations = getOwnedGeneralization_comp().stream().
+			filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).
+			toArray(Generalization[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__OWNED_GENERALIZATION, generalizations.length,
+				generalizations);
 	}
 
 	public EList<Generalization> getOwnedGeneralization_comp() {
-		EList<Generalization> generalizations = new EObjectEList<Generalization>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		for (Relationship relationship: getOwnedRelationship_comp()) {
-			if (relationship instanceof Generalization &&
-					this.equals(((Generalization)relationship).getSpecific())) {
-				generalizations.add(((Generalization)relationship));
-			}
-		}
-		return generalizations;
+		Generalization[] generalizations = getOwnedRelationship_comp().stream().
+			filter(Generalization.class::isInstance).
+			map(Generalization.class::cast).
+			filter(gen -> this.equals(gen.getSpecific())).
+			toArray(Generalization[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__OWNED_GENERALIZATION, generalizations.length,
+				generalizations);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -322,9 +324,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		EList<FeatureMembership> ownedFeatureMemberships = new EObjectEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP);
-		ownedFeatureMemberships.addAll(getOwnedFeatureMembership_comp());
-		return ownedFeatureMemberships;
+		EList<FeatureMembership> ownedFeatureMemberships = getOwnedFeatureMembership_comp();
+		int featureMembershipCount = ownedFeatureMemberships.size();
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__OWNED_FEATURE_MEMBERSHIP,
+				featureMembershipCount, ownedFeatureMemberships.toArray(new FeatureMembership[featureMembershipCount]));
 	}
 
 	/**
@@ -355,26 +358,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Feature> getInput() {
-		EList<Feature> inputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__INPUT);
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
-			inputs.addAll(conjugator.getOriginalType().getOutput());
+			EList<Feature> conjugatorOutput = conjugator.getOriginalType().getOutput();
+			int size = conjugatorOutput.size();
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__INPUT, size,
+					conjugatorOutput.toArray(new Feature[size]));
 		} else {
-			for (Membership membership: this.getMembership()) {
-				if (membership instanceof FeatureMembership) {
-					FeatureMembership featureMembership = (FeatureMembership)membership;
-					FeatureDirectionKind direction = featureMembership.getDirection();
-					if (FeatureDirectionKind.IN.equals(direction) || 
-							FeatureDirectionKind.INOUT.equals(direction)) {
-						Feature feature = featureMembership.getMemberFeature();
-						if (feature != null) {
-							inputs.add(feature);
-						}
-					}
-				}
-			}
+			Feature[] inputs = getMembership().stream().
+				filter(FeatureMembership.class::isInstance).
+				map(FeatureMembership.class::cast).
+				filter(m -> FeatureDirectionKind.IN == m.getDirection() || FeatureDirectionKind.INOUT == m.getDirection()).
+				map(FeatureMembership::getMemberFeature).
+				filter(Objects::nonNull).
+				toArray(Feature[]::new);
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__INPUT, inputs.length, inputs);
 		}
-		return inputs;
 	}
 
 	/**
@@ -383,26 +382,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Feature> getOutput() {
-		EList<Feature> outputs = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__OUTPUT);
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
-			outputs.addAll(conjugator.getOriginalType().getInput());
+			EList<Feature> conjugatorInput = conjugator.getOriginalType().getInput();
+			int size = conjugatorInput.size();
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__OUTPUT, size,
+					conjugatorInput.toArray(new Feature[size]));
 		} else {
-			for (Membership membership: this.getMembership()) {
-				if (membership instanceof FeatureMembership) {
-					FeatureMembership featureMembership = (FeatureMembership)membership;
-					FeatureDirectionKind direction = featureMembership.getDirection();
-					if (FeatureDirectionKind.OUT.equals(direction) || 
-							FeatureDirectionKind.INOUT.equals(direction)) {
-						Feature feature = featureMembership.getMemberFeature();
-						if (feature != null) {
-							outputs.add(feature);
-						}
-					}
-				}
-			}
+			Feature[] outputs = getMembership().stream().
+					filter(FeatureMembership.class::isInstance).
+					map(FeatureMembership.class::cast).
+					filter(m -> FeatureDirectionKind.OUT == m.getDirection() || FeatureDirectionKind.INOUT == m.getDirection()).
+					map(FeatureMembership::getMemberFeature).
+					filter(Objects::nonNull).
+					toArray(Feature[]::new);
+			return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__OUTPUT, outputs.length, outputs);
 		}
-		return outputs;
 	}
 
 	/**
@@ -457,9 +452,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<Feature> getEndFeature() {
-		EList<Feature> features = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
-		getFeature().stream().filter(f->f.isEnd()).forEachOrdered(features::add);
-		return features;
+		Feature[] features = getFeature().stream().
+				filter(f -> f.isEnd()).
+				toArray(Feature[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__END_FEATURE, features.length, features);
 	}
 
 	/**
@@ -544,12 +540,11 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<FeatureMembership> getFeatureMembership() {
-		EList<FeatureMembership> featureMemberships = new EObjectEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
-		getMembership().stream().
+		FeatureMembership[] featureMemberships = getMembership().stream().
 			filter(m->m instanceof FeatureMembership).
 			map(m->(FeatureMembership)m).
-			forEachOrdered(featureMemberships::add);
-		return featureMemberships;
+			toArray(FeatureMembership[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__FEATURE_MEMBERSHIP, featureMemberships.length, featureMemberships);
 	}
 
 	/**
@@ -559,13 +554,12 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<Feature> getInheritedFeature() {
-		EList<Feature> features = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__INHERITED_FEATURE);
-		getInheritedMembership().stream().
+		Feature[] features = getInheritedMembership().stream().
 			filter(m->m instanceof FeatureMembership).
 			map(m->((FeatureMembership)m).getMemberFeature()).
 			filter(f->f != null).
-			forEachOrdered(features::add);
-		return features;
+			toArray(Feature[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__INHERITED_FEATURE, features.length, features);
 	}
 
 	/**
@@ -620,9 +614,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<Feature> getOwnedEndFeature() {
-		EList<Feature> features = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
-		getOwnedFeature().stream().filter(f->f.isEnd()).forEachOrdered(features::add);
-		return features;
+		Feature[] features = getOwnedFeature().stream().
+			filter(f->f.isEnd()).
+			toArray(Feature[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.TYPE__END_FEATURE, features.length, features);
 	}
 
 	public EList<Membership> getInheritedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
@@ -663,9 +658,13 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> membership = getOwnedMembership();
-		membership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
-		membership.addAll(getImportedMembership(excludedPackages, excludedTypes, includeProtected));
-		return membership;
+		Membership[] calculatedMemberships = Stream.concat(Stream
+					.concat(membership.stream(), 
+						getInheritedMembership(excludedPackages, excludedTypes, includeProtected).stream()),
+				getImportedMembership(excludedPackages, excludedTypes, includeProtected).stream())
+				.toArray(Membership[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PACKAGE__OWNED_MEMBERSHIP,
+				calculatedMemberships.length, calculatedMemberships);
 	}	
 	
 	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
@@ -772,8 +771,10 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public EList<Membership> getOwnedMembership() {
 		EList<Membership> ownedMemberships = super.getOwnedMembership();
-		ownedMemberships.addAll(getOwnedFeatureMembership());
-		return ownedMemberships;
+		Membership[] calculatedMemberships = Stream
+				.concat(ownedMemberships.stream(), getOwnedFeatureMembership().stream()).toArray(Membership[]::new);
+		return new UnmodifiableEList<>(this, SysMLPackage.Literals.PACKAGE__OWNED_MEMBERSHIP,
+				calculatedMemberships.length, calculatedMemberships);
 	}
 
 	// Utility Methods

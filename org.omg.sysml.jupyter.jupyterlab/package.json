@@ -1,7 +1,7 @@
 {
   "name": "jupyterlab-sysml",
-  "version": "2020-10",
-  "description": "JupyterLab extension for adding SysML syntax to code cells",
+  "version": "0.0.0-SNAPSHOT",
+  "description": "A JupyterLab extension for system modeling using SysML",
   "repository": "github:Systems-Modeling/SysML-v2-Pilot-Implementation",
   "author": "SysML v2 Submission Team",
   "license": "LGPL-3.0-or-later",

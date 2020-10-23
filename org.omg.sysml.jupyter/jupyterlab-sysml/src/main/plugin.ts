@@ -17,7 +17,7 @@ function activate(app: JupyterLab) {
 const extension: JupyterFrontEndPlugin<void> = {
 	activate,
 	autoStart: true,
-	id: 'jupyterlab-sysmlv2:plugin',
+	id: 'jupyterlab-sysml:plugin',
 };
 
 export default extension;

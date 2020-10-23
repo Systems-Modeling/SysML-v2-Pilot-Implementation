@@ -18,6 +18,9 @@
   "peerDependencies": {
     "codemirror": "^5.58.1"
   },
+  "files": [
+    "build/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}"
+  ],
   "jupyterlab": {
     "extension": "build/plugin.js"
   },

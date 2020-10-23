@@ -12,7 +12,7 @@ $ conda activate sysml
 $ cd isysml && ./install.sh
 ```
 
-From the this repository's root directory:
+From this directory:
 ```console
 $ yarn install
 $ yarn run build

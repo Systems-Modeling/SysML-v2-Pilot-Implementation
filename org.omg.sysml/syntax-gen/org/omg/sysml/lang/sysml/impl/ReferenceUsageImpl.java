@@ -25,11 +25,11 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class ReferenceUsageImpl extends UsageImpl implements ReferenceUsage {
 	@Override
 	public EList<Classifier> getReferenceType() {
 		EList<Classifier> referenceTypes =
-				new EObjectEList<>(Classifier.class, this, SysMLPackage.REFERENCE_USAGE__REFERENCE_TYPE);
+				new NonNotifyingEcoreEList<>(Classifier.class, this, SysMLPackage.REFERENCE_USAGE__REFERENCE_TYPE);
 		super.getType().stream().
 			filter(Classifier.class::isInstance).
 			map(Classifier.class::cast).

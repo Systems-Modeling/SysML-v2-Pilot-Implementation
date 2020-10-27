@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
@@ -38,6 +37,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,7 +96,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

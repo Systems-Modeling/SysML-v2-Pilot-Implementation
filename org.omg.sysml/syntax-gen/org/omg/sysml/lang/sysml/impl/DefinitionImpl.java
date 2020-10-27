@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -61,6 +60,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -190,7 +190,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<Usage> getFlowFeature() {
-		EList<Usage> flows = new EObjectEList<Usage>(Usage.class, this, SysMLPackage.DEFINITION__FLOW_FEATURE);
+		EList<Usage> flows = new NonNotifyingEcoreEList<>(Usage.class, this, SysMLPackage.DEFINITION__FLOW_FEATURE);
 		getMembership().stream().
 			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
 			map(membership->((FeatureMembership)membership).getMemberFeature()).
@@ -440,7 +440,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<Usage> getVariant() {
-		EList<Usage> variants = new EObjectEList<>(Usage.class, this, SysMLPackage.DEFINITION__VARIANT);
+		EList<Usage> variants = new NonNotifyingEcoreEList<>(Usage.class, this, SysMLPackage.DEFINITION__VARIANT);
 		getVariantMembership().stream().
 			map(VariantMembership::getOwnedVariantUsage).
 			forEachOrdered(variants::add);
@@ -454,7 +454,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 */
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
-		EList<VariantMembership> variantMemberships = new EObjectEList<>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP);
+		EList<VariantMembership> variantMemberships = new NonNotifyingEcoreEList<>(VariantMembership.class, this, SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP);
 		super.getOwnedMembership().stream().
 			filter(VariantMembership.class::isInstance).
 			map(VariantMembership.class::cast).

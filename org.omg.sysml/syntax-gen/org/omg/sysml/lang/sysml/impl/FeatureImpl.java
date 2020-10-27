@@ -40,13 +40,13 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -220,7 +220,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public EList<Type> getAllTypes() {
 		if (types == null) {
-			types = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
+			types = new NonNotifyingEcoreEList<>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 			getTypes(types, new HashSet<Feature>());
 			removeRedundantTypes(types);
 		}
@@ -267,7 +267,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getReferencedType() {
-		EList<Type> referencedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
+		EList<Type> referencedTypes = new NonNotifyingEcoreEList<>(Type.class, this, SysMLPackage.FEATURE__REFERENCED_TYPE);
 		getType().stream().filter(type->type != null && type.getOwner() != this).forEachOrdered(referencedTypes::add);
 		return referencedTypes;
 	}
@@ -373,7 +373,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public EList<Type> getOwnedType() {
-		EList<Type> ownedTypes = new EObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
+		EList<Type> ownedTypes = new NonNotifyingEcoreEList<>(Type.class, this, SysMLPackage.FEATURE__OWNED_TYPE);
 		getType().stream().filter(type->type != null && type.getOwner() == this).forEachOrdered(ownedTypes::add);
 		return ownedTypes;
 	}

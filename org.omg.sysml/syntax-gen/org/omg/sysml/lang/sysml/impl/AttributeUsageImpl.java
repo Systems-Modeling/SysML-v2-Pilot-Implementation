@@ -25,10 +25,10 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 
 /**
@@ -74,7 +74,7 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	 */
 	@Override
 	public EList<DataType> getAttributeDefinition() {
-		EList<DataType> dataTypes = new EObjectEList<DataType>(DataType.class, this, SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION);
+		EList<DataType> dataTypes = new NonNotifyingEcoreEList<>(DataType.class, this, SysMLPackage.ATTRIBUTE_USAGE__ATTRIBUTE_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof DataType).
 			map(type->(DataType)type).

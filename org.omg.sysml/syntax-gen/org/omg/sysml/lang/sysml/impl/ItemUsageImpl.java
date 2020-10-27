@@ -27,10 +27,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getItemDefinition() {
 		EList<org.omg.sysml.lang.sysml.Class> itemDefinitions =
-				new EObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
+				new NonNotifyingEcoreEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
 		super.getType().stream().
 			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
 			map(org.omg.sysml.lang.sysml.Class.class::cast).

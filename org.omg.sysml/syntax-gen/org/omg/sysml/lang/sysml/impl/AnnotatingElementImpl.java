@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -39,6 +38,7 @@ import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,7 +91,7 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new EObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
+		EList<Element> annotatedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
 		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
 		return annotatedElements;
 	}

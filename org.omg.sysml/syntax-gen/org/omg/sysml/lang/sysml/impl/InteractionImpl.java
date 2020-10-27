@@ -27,13 +27,13 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -84,7 +84,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.FUNCTION__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.FUNCTION__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

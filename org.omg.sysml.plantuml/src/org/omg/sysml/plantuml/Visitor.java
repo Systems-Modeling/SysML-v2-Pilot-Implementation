@@ -54,7 +54,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
 
     private List<Visitor> contexts;
     private final Visitor prev;
-    
+
     private StringBuilder sb;
 
     protected void append(String str) {
@@ -89,10 +89,16 @@ public abstract class Visitor extends SysMLSwitch<String> {
         contexts.clear();
     }
 
+    protected boolean isEmpty() {
+        return sb.length() == 0;
+    }
+
     protected String getString() {
         if (prev == null) {
             flushContexts();
             flushPRelations();
+            sb.append(pRelationsSB);
+            pRelationsSB.setLength(0);
         }
         return sb.toString();
     }
@@ -101,7 +107,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return sb.length();
     }
 
-    protected Integer getId(Element e) {
+    private Integer newId(Element e) {
+        return s2p.newId(e);
+    }
+
+    private Integer getId(Element e) {
         return s2p.getId(e);
     }
 
@@ -109,16 +119,27 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return s2p.checkId(e);
     }
 
+    protected void pushIdMap() {
+        s2p.pushIdMap();
+    }
+
+    protected void popIdMap(boolean keep) {
+        if (keep) {
+            flushPRelations();
+        }
+        s2p.popIdMap(keep);
+    }
+
     protected String getRelStyle(Element rel) {
         return s2p.getRelStyle(rel);
     }
 
-    protected String getStereotypeStyle(Element e) {
-        return s2p.getStereotypeStyle(e);
-    }
-
     protected String styleString(Type typ) {
         return s2p.styleString(typ);
+    }
+
+    protected String styleValue(String option) {
+        return s2p.styleValue(option);
     }
 
     protected String getText(EObject eObj) {
@@ -147,12 +168,16 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    protected void quote0(String s) {
+    private String quote0Str(String s) {
         if (s.indexOf('"') >= 0) {
             // Replace nonsafe " to ''
-            s = s.replace("\"", "''");
+            return s.replace("\"", "''");
         }
-        append(s);
+        return s;
+    }
+
+    protected void quote0(String s) {
+        append(quote0Str(s));
     }
 
     protected void quote(String s) {
@@ -161,48 +186,54 @@ public abstract class Visitor extends SysMLSwitch<String> {
         append('"');
     }
 
-    protected void addNameWithId(Element e, String name) {
+    protected void addNameWithId(Element e, String name, boolean force) {
         quote(name);
         append(" as ");
-        addIdStr(e);
+        addIdStr(e, force);
         append(' ');
     }
 
-    private static void closeBlockInternal(StringBuilder sbParent,
-                                           StringBuilder sbChild,
-                                           String endStr) {
-        if (sbChild.length() == 0) {
-            sbParent.append('\n');
-        } else {
-            sbParent.append("{\n");
-            sbParent.append(sbChild);
-            sbParent.append(endStr);
-            sbParent.append("}\n");
-        }
+    private void close() {
+        sb.setLength(0);
     }
 
-    protected void closeBlock(String endStr) {
+    protected void closeBlock() {
         if (prev == null) return;
-        closeBlockInternal(prev.sb, sb, endStr);
-        sb.setLength(0);
+        prev.sb.append("{\n");
+        prev.sb.append(sb);
+        prev.sb.append("}\n");
+        close();
     }
 
     protected void flush() {
         if (prev == null) return;
         prev.sb.append(sb);
-        sb.setLength(0);
+        close();
     }
 
-    protected void addIdStr(Element e) {
+    private void appendId(StringBuilder ss, Element e, boolean force) {
         if (e == null) {
-            append("[*]");
+            ss.append("[*]");
         } else {
-            append("Eid");
-            append(getId(e));
+            ss.append('E');
+            if (force) {
+                ss.append(newId(e));
+            } else {
+                ss.append(getId(e));
+            }
         }
     }
 
+    protected void addIdStr(Element e, boolean force) {
+        appendId(sb, e, force);
+    }
+
+    private void outputPRId(StringBuilder ss, Element e) {
+        appendId(ss, e, false);
+    }
+
     private final List<PRelation> pRelations;
+    private final StringBuilder pRelationsSB;
 
     protected PRelation addPRelation(Element src, Element dest, Element rel, String description) {
         PRelation pr = new PRelation(src, dest, rel, description);
@@ -223,7 +254,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return (MultiplicityRange) m;
     }
 
-    private void addMultiplicityString(Element e) {
+    private void addMultiplicityString(StringBuilder ss, Element e) {
         if (!showsMultiplicity) return;
         MultiplicityRange mr = getEffectiveMultiplicityRange(e);
         if (mr == null) return;
@@ -232,25 +263,25 @@ public abstract class Visitor extends SysMLSwitch<String> {
         String exu = getText(mr.getUpperBound());
         if (exl == null) {
             if (exu == null) return;
-            sb.append('"');
-            quote0(exu);
-            sb.append('"');
+            ss.append('"');
+            ss.append(quote0Str(exu));
+            ss.append('"');
             return;
         }
         if ((exu == null) || (exl.equals(exu))) {
-            append('"');
-            quote0(exl);
-            append('"');
+            ss.append('"');
+            ss.append(quote0Str(exl));
+            ss.append('"');
             return;
         }
         if ("0".equals(exl) && "*".equals(exu)) {
-            append("\"*\"");
+            ss.append("\"*\"");
         } else {
-            append('"');
-            quote0(exl);
-            append("..");
-            quote0(exu);
-            append('"');
+            ss.append('"');
+            ss.append(quote0Str(exl));
+            ss.append("..");
+            ss.append(quote0Str(exu));
+            ss.append('"');
         }
     }
 
@@ -273,28 +304,28 @@ public abstract class Visitor extends SysMLSwitch<String> {
         return null;
     }
 
-    private boolean outputPRelation(PRelation pr) {
+    private boolean outputPRelation(StringBuilder ss, PRelation pr) {
         if (!(((pr.src == null) || checkId(pr.src))
               && ((pr.dest == null) || checkId(pr.dest)))) return false;
         String relStr = getRelStyle(pr.rel);
 
         if (relStr == null) return true;
         if ((pr.src == null) && (pr.dest == null)) return true;
-        addIdStr(pr.src);
+        outputPRId(ss, pr.src);
 
-        // addMultiplicityString(pr.src);
+        // addMultiplicityString(ss, pr.src);
                 
-        append(relStr);
+        ss.append(relStr);
 
-        addMultiplicityString(pr.rel);
+        addMultiplicityString(ss, pr.rel);
 
-        addIdStr(pr.dest);
+        outputPRId(ss, pr.dest);
         String desc = pr.getDescription();
         if (!((desc == null) || (desc.isEmpty()))) {
-            append(" : ");
-            append(desc);
+            ss.append(" : ");
+            ss.append(desc);
         }
-        append('\n');
+        ss.append('\n');
 
         return true;
     }
@@ -302,7 +333,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
     protected void outputPRelations(List<PRelation> prs) {
     	if (prs == null) return;
         for (PRelation pr: prs) {
-            outputPRelation(pr);
+            outputPRelation(sb, pr);
         }
     }
 
@@ -312,7 +343,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         pRelations.clear();
 
         for (PRelation pr: prs) {
-            if (!outputPRelation(pr)) {
+            if (!outputPRelation(pRelationsSB, pr)) {
                 pRelations.add(pr);
             }
         }
@@ -326,6 +357,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
             parent.addContext(this);
         }
         this.pRelations = parent.pRelations;
+        this.pRelationsSB = parent.pRelationsSB;
         this.s2p = parent.s2p;
         this.showsMultiplicity = parent.showsMultiplicity;
     }
@@ -339,6 +371,7 @@ public abstract class Visitor extends SysMLSwitch<String> {
         this.sb = new StringBuilder();
         this.contexts = new ArrayList<Visitor>();
         this.pRelations = new ArrayList<PRelation>();
+        this.pRelationsSB = new StringBuilder();
     }
 
     public String visit(Element e) {

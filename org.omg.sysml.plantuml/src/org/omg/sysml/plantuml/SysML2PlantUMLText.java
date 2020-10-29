@@ -29,12 +29,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
 import com.google.inject.Inject;
@@ -51,6 +54,7 @@ public class SysML2PlantUMLText {
     }
 
     private final Collection<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
+    private final Map<String, String> styleValueMap = new HashMap<String, String>();
     private StyleSwitch styleSwitch;
     private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new SysML2PlantUMLStyle.StyleRelDefaultSwitch(),
                                                                    new SysML2PlantUMLStyle.StyleStereotypeDefaultSwitch());
@@ -60,11 +64,15 @@ public class SysML2PlantUMLText {
         if (style.styleSwitch != null) {
             styleSwitch = style.styleSwitch;
         }
+        if (style.options != null) {
+            styleValueMap.putAll(style.options);
+        }
     }
 
     public void clearStyle() {
         styles.clear();
         styleSwitch = null;
+        styleValueMap.clear();
     }
 
     private SysML2PlantUMLStyle getVisitorStyle() {
@@ -91,8 +99,7 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleRelSwitch.doSwitch(e);
     }
 
-    /* used by Visitor */
-    String getStereotypeStyle(Element e) {
+    private String getStereotypeStyle(Element e) {
         String ret;
         SysML2PlantUMLStyle vStyle = getVisitorStyle();
         if (vStyle != null) {
@@ -110,10 +117,19 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleStereotypeSwitch.doSwitch(e);
     }
 
-    private String getStereotypeName(Type typ) {
+    private static Pattern patMetaclassName = Pattern.compile("^(\\p{L}+?)(Definition|Usage)$");
+    public static String getStereotypeName(Type typ) {
         String str = typ.eClass().getName();
         if (str == null) return "";
         if (str.isEmpty()) return str;
+        Matcher m = patMetaclassName.matcher(str);
+        if (m.matches()) {
+            if ("Definition".equals(m.group(2))) {
+                str = m.group(1) + " def";
+            } else {
+                str = m.group(1);
+            }
+        }
 
         return Character.toLowerCase(str.charAt(0)) + str.substring(1);
     }
@@ -122,13 +138,26 @@ public class SysML2PlantUMLText {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
             if (diagramMode == MODE.Interconnection) {
-                return " <<" + getStereotypeName(typ) + ">> ";
+                ret = " <<";
             } else {
-                return " <<(T,blue)" + getStereotypeName(typ) + ">> ";
+                ret = " <<(T,blue)";
+            }
+        }
+        if (typ instanceof Usage) {
+            Usage u = (Usage) typ;
+            if (u.isVariation()) {
+                if (ret.equals(" ")) {
+                    return " <<variation>> ";
+                }
+                ret = " <<variation>>\\n" + ret;
             }
         }
         if (ret.endsWith(" ")) return ret;
         return ret + getStereotypeName(typ) + ">> ";
+    }
+
+    String styleValue(String key) {
+        return styleValueMap.get(key);
     }
 
     @Inject
@@ -169,6 +198,8 @@ public class SysML2PlantUMLText {
 			return new VTree();
         case Activity:
 			return new VAction();
+        case MIXED:
+        	return new VMixed();
 		default:
 			return new VTree();
         }
@@ -178,6 +209,12 @@ public class SysML2PlantUMLText {
     private Visitor initVisitor() {
         Visitor v = createVisitor();
         this.currentVisitor = v;
+        SysML2PlantUMLStyle vStyle = getVisitorStyle();
+        if (vStyle != null) {
+            if (vStyle.options != null) {
+                styleValueMap.putAll(vStyle.options);
+            }
+        }
         return v;
     }
 
@@ -267,7 +304,7 @@ public class SysML2PlantUMLText {
 
         addStyleHeader(sb);
         
-        idMap.clear();
+        initIdMap();
 
         for (EObject eObj : eObjs) {
             if (eObj instanceof Element) {
@@ -278,20 +315,88 @@ public class SysML2PlantUMLText {
         return sb.toString();
     }
     
-    private Map<Element, Integer> idMap = new HashMap<Element, Integer>();
+    private int idCounter;
+    private IDMap idMap;
+
+    private class IDMap {    	
+        private final Map<Element, Integer> idMap = new HashMap<Element, Integer>();
+        private final IDMap prev;
+
+        boolean checkId(Element e) {
+            if (idMap.containsKey(e)) return true;
+            if (prev == null) return false;
+            return prev.checkId(e);
+        }
+
+        private Integer lookupId(Element e) {
+            Integer ii = idMap.get(e);
+            if (ii != null) return ii;
+            if (prev == null) return null;
+            return prev.lookupId(e);
+        }
+
+        Integer newId(Element e) {
+            Integer ii = new Integer(idCounter++);
+            idMap.put(e, ii);
+            return ii;
+        }
+
+        Integer getId(Element e) {
+            Integer ii = lookupId(e);
+            if (ii == null) return newId(e);
+            return ii;
+        }
+
+        IDMap push() {
+            return new IDMap(this);
+        }
+
+        IDMap pop(boolean keep) {
+            if (prev == null) {
+                throw new IllegalStateException();
+            }
+            if (keep) {
+                Map<Element, Integer> idMap2 = prev.idMap;
+                for (Map.Entry<Element, Integer> ent : idMap.entrySet()) {
+                    Element e = ent.getKey();
+                    if (idMap2.containsKey(e)) continue;
+                    idMap2.put(e, ent.getValue());
+                }
+            }
+            return prev;
+        }
+
+        private IDMap(IDMap prev) {
+            this.prev = prev;
+        }
+
+        IDMap() {
+            this.prev = null;
+        }
+    }
+
+    private void initIdMap() {
+        idCounter = 1;
+        this.idMap = new IDMap();
+    }
 
     boolean checkId(Element e) {
-        return idMap.containsKey(e);
+        return idMap.checkId(e);
+    }
+
+    void pushIdMap() {
+        idMap = idMap.push();
+    }
+
+    void popIdMap(boolean keep) {
+        idMap = idMap.pop(keep);
+    }
+
+    Integer newId(Element e) {
+        return idMap.newId(e);
     }
 
     Integer getId(Element e) {
-        Integer ii = idMap.get(e);
-        
-        if (ii == null) {
-            ii = new Integer(idMap.size());
-            idMap.put(e, ii);
-        }
-
-        return ii;
+        return idMap.getId(e);
     }
 }

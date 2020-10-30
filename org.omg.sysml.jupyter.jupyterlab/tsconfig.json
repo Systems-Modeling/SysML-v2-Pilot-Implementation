@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"esModuleInterop": true,
+		"lib": ["es6", "dom"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noEmitOnError": true,
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"outDir": "./build",
+		"target": "ES5"
+	},
+	"include": ["src/main/*"]
+}

@@ -10,10 +10,14 @@
     <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
     <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
     <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
+    <frontend-maven-plugin.version>1.9.1</frontend-maven-plugin.version>
+    <node.version>14.14.0</node.version>
+    <yarn.version>1.22.5</yarn.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
@@ -34,6 +38,7 @@
     <module>org.omg.sysml.xtext.ide</module>
     <module>org.omg.sysml.interactive</module>
     <module>org.omg.sysml.jupyter</module>
+    <module>org.omg.sysml.jupyter.jupyterlab</module>
     <module>org.omg.sysml.feature</module>
     <module>org.omg.sysml.plantuml</module>
     <module>org.omg.sysml.plantuml.eclipse</module>

@@ -30,7 +30,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A MultiplicityRange is a Multiplicity whose value is defined to be the (inclusive) range of natural numbers given by the result of a lowerBound Expression and the result of an upperBoundExpression. The result of the lowerBound Expression shall be of type Natural, while the result of the upperBound Expression shall be of type UnlimitedNatural. If the result of the upperBound Expression is the "unbounded" value *, then the specified range includes all natural numbers greater than or equal to the lowerBound value.
+ * <p>A MultiplicityRange is a Multiplicity whose value is defined to be the (inclusive) range of natural numbers given by the result of a <code>lowerBound</code> Expression and the result of an <code>upperBound</code> Expression. The result of the <code>lowerBound</code> Expression shall be of type <em>Natural</em>, while the result of the <code>upperBound</code> Expression shall be of type <em>UnlimitedNatural</em>. If the result of the <code>upperBound</code> Expression is the unbounded value <code>*</code>, then the specified range includes all natural numbers greater than or equal to the <code>lowerBound</code> value.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

@@ -86,6 +86,7 @@ public enum VisibilityKind implements Enumerator {
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Only valid if the owning Package of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Package that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Package that is not a Type (or if there is no such Package).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PACKAGE_VALUE
 	 * @generated
@@ -157,6 +158,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>Only valid if the owning Package of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Package that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Package that is not a Type (or if there is no such Package).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PACKAGE
 	 * @model name="package"

@@ -29,7 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Invariant is a BooleanExpression that is asserted to be true. This assertion is made by the Invariant having a BindingConnector as an owned Feature that binds the Invariant to the result of a LiteralBoolean with value "true".</p>
+ * <p>An Invariant is a BooleanExpression that is asserted to be true. This assertion is made by the Invariant having a BindingConnector as an <code>ownedFeature</code> that binds the <code>result</code> of the Invariant to the <code>result</code> of a LiteralBoolean with value <em>true</em>.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Binding Connector is a binary Connector that requires its&nbsp;relatedFeatures to identify the same things (have the same values).</p>
+ * <p>A Binding Connector is a binary Connector that requires its&nbsp;<code>relatedFeatures</code> to identify the same things (have the same values).</p>
  * 
  * <!-- end-model-doc -->
  *

@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Classifier</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>DataTypes are&nbsp;Classifiers of things (in the universe) that can only be distinguished by how they are related to other things (via Features).&nbsp;This means multiple things classified by the same Datatype</p>
+ * <p>A DataType is a Classifier of things (in the universe) that can only be distinguished by how they are related to other things (via Features).&nbsp;This means multiple things classified by the same DataType</p>
  * 
  * <ul>
  * 	<li>Cannot be distinguished&nbsp;when they are related to other things in exactly the same way, even when&nbsp;they are intended to be about the same thing.</li>

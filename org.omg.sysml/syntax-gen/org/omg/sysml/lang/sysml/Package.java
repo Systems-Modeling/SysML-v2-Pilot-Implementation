@@ -29,9 +29,9 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Package</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Package is an Element that contains other Elements, known as its <tt>members</tt>, via Membership Relationships with those Elements. Some of the <tt>members</tt> of a Package may be owned by the Package. The rest are imported into the Package, either as unowned <tt>memberElements</tt> of owned Memberships of the Package or via Import Relationships with other Packages.</p> 
+ * <p>A Package is an Element that contains other Elements, known as its <code>members</code>, via Membership Relationships with those Elements. Some of the <code>members</code> of a Package may be owned by the Package. The rest are imported into the Package, either as unowned <code>memberElements</code> of owned Memberships of the Package or via Import Relationships with other Packages.</p>
  * 
- * <p>A Package also acts as a namespace for its <tt>members</tt> that consists of the <tt>memberNames</tt> specified by all the Memberships in the Package. If a Membership specifies a <tt>memberName</tt>, then that is the name of the corresponding <tt>memberElement</tt> relative to the namespace defined by the Package. Note that the same Element may be the <tt>memberElement</tt> of multiple Memberships in a Package (though it may be owned at most once), each of which may define a separate alias for the Element relative to the Package namespace.</p>
+ * <p>A Package also acts as a namespace for its <code>members</code> that consists of the <code>memberNames</code> specified by all the Memberships in the Package. If a Membership specifies a <code>memberName</code>, then that is the name of the corresponding <code>memberElement</code> relative to the namespace defined by the Package. Note that the same Element may be the <code>memberElement</code> of multiple Memberships in a Package (though it may be owned at most once), each of which may define a separate alias for the Element relative to the Package namespace.</p>
  * 
  * membership->forAll(m1 | membership->forAll(m2 | m1 <> m2 implies m1.isDistinguishableFrom(m2)))
  * member = membership.memberElement
@@ -43,14 +43,14 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMembership <em>Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getMember <em>Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getImportedMembership <em>Imported Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedImport <em>Owned Import</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership <em>Owned Membership</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage()
@@ -130,7 +130,7 @@ public interface Package extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the names of the given <tt>element</tt> as it is known in the namespace defined by this Package.</p>
+	 * <p>Return the names of the given <code>element</code> as it is known in the namespace defined by this Package.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.String" ordered="false" elementRequired="true" elementOrdered="false"
@@ -263,7 +263,7 @@ public interface Package extends Element {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Exclude from the given set <tt>mem</tt> of Memberships those that would not be distinguishable from each other if imported into this Package.</p>
+	 * <p>Exclude from the given set <code>mem</code> of Memberships those that would not be distinguishable from each other if imported into this Package.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model ordered="false" memMany="true" memOrdered="false"
@@ -274,7 +274,7 @@ public interface Package extends Element {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Return the publicly visible Memberships of this Package, which includes those <tt>ownedMemberships</tt> that are with a <tt>visibility</tt> of <tt>public</tt> and those <tt>importedMemberships</tt> that where imported via Import Relationships with a <tt>visibility</tt> of <tt>public</tt>.</p>
+	 * <p>Return the publicly visible Memberships of this Package, which includes those <code>ownedMemberships</code> that are with a <code>visibility</code> of <code>public</code> and those <code>importedMemberships</code> that where imported via Import Relationships with a <code>visibility</code> of <code>public</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"

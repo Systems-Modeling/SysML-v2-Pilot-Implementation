@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Unbounded</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Expression that provides a value without a given bound as a result.</p>
+ * <p>An Expression that provides the unbounded (&quot;*&quot;) value of the DataType <em>UnlimitedNatural</em>. A LiteralUnbounded must have an owned <code>result</code> parameter whose type is <em>UnlimitedNatural</em>.</p>
  * 
  * <p>An Expression that provides a value without a given bound as a result.</p>
  * <!-- end-model-doc -->

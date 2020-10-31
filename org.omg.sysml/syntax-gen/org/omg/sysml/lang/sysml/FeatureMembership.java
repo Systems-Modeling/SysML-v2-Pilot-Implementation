@@ -201,7 +201,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether &nbsp;values of the Feature are contained in the space and time of instances of the Feature&#39;s domain.</p>
+	 * <p>Whether the values of the Feature are contained in the space and time of instances of the Feature&#39;s domain.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Portion</em>' attribute.
@@ -232,7 +232,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the Feature&nbsp; visible externally to instances of the Feature&#39;s domain.</p>
+	 * <p>Whether the Feature is visible externally to instances of the Feature&#39;s domain.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Port</em>' attribute.

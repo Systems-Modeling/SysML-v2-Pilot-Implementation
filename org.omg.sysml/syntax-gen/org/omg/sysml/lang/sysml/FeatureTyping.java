@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Typing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureTyping is Generalization in which the specific Type is a Feature. This means the set of sequences of the (specific) typedFeature is a subset of the set of&nbsp;sequences of the (general) type.&nbsp; In the simplest case, the type&nbsp;is a Classifier, whereupon the typedFeature&nbsp;subset has sequences ending in things&nbsp;(in the universe, see <mms-view-link mms-doc-id="_18_5_3_59601fc_1554554231131_907648_19909" mms-element-id="_18_5_3_59601fc_1554554191042_80162_19781">[cf:Semantics.vlink]</mms-view-link>) in single-length sequences of the Classifier.</p>
+ * <p>FeatureTyping is Generalization in which the <code>specific</code> Type is a Feature. This means the set of sequences of the (specific) <code>typedFeature</code> is a subset of the set of&nbsp;sequences of the (general) <code>type</code>. In the simplest case, the <code>type</code>&nbsp;is a Classifier, whereupon the <code>typedFeature</code>&nbsp;subset has sequences ending in things&nbsp;(in the modeled universe) in single-length sequences of the Classifier.</p>
  * 
  * <!-- end-model-doc -->
  *

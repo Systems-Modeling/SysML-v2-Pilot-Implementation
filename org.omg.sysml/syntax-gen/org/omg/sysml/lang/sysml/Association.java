@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Association is a Relationship and a Class to enable classification of links between things (in the universe). The co-domains&nbsp;of the associationEnd Features are one of the relatedTypes as co-domain and participants (linked things) of an association identify each other.</p>
+ * <p>An Association is a Relationship and a Class to enable classification of links between things (in the universe). The co-domains&nbsp;of the <code>associationEnd</code> Features are one of the <code>relatedTypes</code>, as co-domain and participants (linked things) of an Association identify each other.</p>
  * 
  * relatedTypes = associationEnd.type
  * let numend : Natural = associationEnd->size() in
@@ -204,7 +204,8 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>. If this is a binary Association, then the end Features corresponding to the <code>relatedTypes</code> must all redefine the <code>target</code> Feature of the Association BinaryLink from the Kernel Library.</p>
+	 * <p>The target <code>relatedTypes</code> for this Association. This includes all the <code>relatedTypes</code> other than the <code>sourceType</code>. If this is a binary Association, then the <code>associationEnds</code> corresponding to the <code>relatedTypes</code> must all redefine the <code>target</code> Feature of the Association <em>BinaryLink</em> from the Kernel Library.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_TargetType()

@@ -29,7 +29,8 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Function</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A Function represents the performance of a calculation that has a singular result. The calculation may be composed of multiple steps.
+ * <p>A Function is a Behavior that has an output parameter specifically identified as its <code>result</code>. It represents the performance of a calculation that produces the values of its <code>result</code> parameter. This calculation may be decomposed into Expressions that are the <code>steps</code> of the Function.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

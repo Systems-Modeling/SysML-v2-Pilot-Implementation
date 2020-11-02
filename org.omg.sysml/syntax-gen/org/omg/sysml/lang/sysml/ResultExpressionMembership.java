@@ -29,7 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ResultExpressionMembership is a FeatureMembership that indicates that the <code>ownedResultExpression</code> provides the result for the Function or Expression that owns it. The owning Function or Expression must contain a BindingConnector between the result of the <code>ownedResultExpression<code> and the <code>result</code> parameter of the Function or Expression.</p>
+ * <p>A ResultExpressionMembership is a FeatureMembership that indicates that the <code>ownedResultExpression</code> provides the result values for the Function or Expression that owns it. The owning Function or Expression must contain a BindingConnector between the <code>result</code> parameter of the <code>ownedResultExpression</code> and the <code>result</code> parameter of the Function or Expression.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

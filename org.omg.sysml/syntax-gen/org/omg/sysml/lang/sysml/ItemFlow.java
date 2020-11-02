@@ -31,8 +31,6 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An ItemFlow is a Step that represents the transfer of objects or values from one Feature to another. ItemFlows can take non-zero time to complete.</p>
  * 
- * <p>An ItemsFlow must be typed by the library Interaction Transfer or one of its specializations.</p>
- * 
  * <!-- end-model-doc -->
  *
  * <p>

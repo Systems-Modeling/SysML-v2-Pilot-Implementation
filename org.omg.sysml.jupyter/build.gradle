@@ -1,7 +1,8 @@
 plugins {
     id 'java'
     id 'io.github.spencerpark.jupyter-kernel-installer' version '2.1.0'
-    id "com.github.johnrengelman.shadow" version "4.0.4"
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id 'com.github.jk1.dependency-license-report' version '1.14'
 }
 
 sourceCompatibility = 1.8
@@ -13,11 +14,16 @@ wrapper {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
     compile group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
-    compile fileTree(dir: '../org.omg.sysml.interactive/dist', include: 'sysmli*.jar')
+    compile group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
+}
+
+licenseReport {
+    configurations = ['compile']
 }
 
 jupyter {
@@ -63,4 +69,8 @@ zipKernel {
     from('src/main/resources/installer/') {
         into '/'
     }
+    from(generateLicenseReport.outputFolder) {
+        into 'dependency-licenses'
+    }
 }
+zipKernel.dependsOn 'generateLicenseReport'

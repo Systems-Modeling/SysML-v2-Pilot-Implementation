@@ -17,6 +17,7 @@
     <dependency>
       <groupId>org.omg.sysml</groupId>
       <artifactId>org.omg.sysml.interactive</artifactId>
+      <classifier>all</classifier>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

@@ -22,6 +22,9 @@ target
 # VS Code settings
 .vscode/
 
+# Flattened POMs
+.flattened-pom.xml
+
 # JetBrains IDE settings
 .idea/
 *.iml

@@ -9,6 +9,7 @@
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
     <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+    <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
     <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
@@ -165,7 +166,31 @@
           </execution>
         </executions>
       </plugin>
-
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+        <version>${flatten-maven-plugin.version}</version>
+        <configuration>
+        </configuration>
+        <executions>
+          <!-- enable flattening -->
+          <execution>
+            <id>flatten</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>flatten</goal>
+            </goals>
+          </execution>
+          <!-- ensure proper cleanup -->
+          <execution>
+            <id>flatten-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

@@ -45,7 +45,6 @@
           </execution>
         </executions>
       </plugin>
-      
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>${maven-antrun-plugin.version}</version>
@@ -56,8 +55,8 @@
             <configuration>
               <target>
                 <ant antfile="${project.basedir}/sysmli.xml">
-                  <property name="dir.jarfile" value="${project.basedir}/dist"/>
-                  <property name="jar.filename" value="sysmli.jar"/>
+                  <property name="dir.jarfile" value="${project.basedir}/target"/>
+                  <property name="jar.filename" value="${project.artifactId}-${project.version}-all.jar"/>
                   <property name="main.class" value="org.omg.sysml.interactive.SysMLInteractive" />
                 </ant>
               </target>
@@ -65,6 +64,30 @@
             <goals>
               <goal>run</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>${build-helper-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>target/${project.artifactId}-${project.version}-all.jar</file>
+                  <type>jar</type>
+                  <classifier>all</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
           </execution>
         </executions>
       </plugin>

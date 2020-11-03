@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Behavior</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Behaviors coordinate Occurrences of other Behaviors, as well as&nbsp;changes in Objects. Behaviors can be decomposed into Steps and be characterized by parameters.</p>
+ * <p>A Behavior coordinates occurrences of other Behaviors, as well as&nbsp;changes in objects. Behaviors can be decomposed into Steps and be characterized by <code>parameters</code>.</p>
  * 
  * <p>Behaviors provide a place to describe changes in objects over time. Behaviors can be decomposed into steps and be characterized by parameters.</p>
  * 

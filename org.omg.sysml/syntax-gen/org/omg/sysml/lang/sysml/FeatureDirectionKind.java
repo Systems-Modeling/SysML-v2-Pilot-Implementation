@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * '<em><b>Feature Direction Kind</b></em>', and utility methods for working
  * with them. <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>FeatureDirectionKind enumerates the possible kinds of direction that a Feature may be given as a member of a Type. See description of its literal values.</p>
+ * <p>FeatureDirectionKind enumerates the possible kinds of <code>direction</code> that a Feature may be given as a member of a Type.</p>
  * 
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureDirectionKind()

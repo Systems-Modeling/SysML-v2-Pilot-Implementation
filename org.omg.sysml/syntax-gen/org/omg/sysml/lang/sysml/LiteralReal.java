@@ -27,9 +27,8 @@ package org.omg.sysml.lang.sysml;
  * Real</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Expression that provides a Real value as a result.</p>
+ * <p>An Expression that provides a Real value as a result. A LiteralInteger must have an owned <code>result</code> parameter whose type is <em>Real</em>.</p>
  * 
- * <p>A LiteralReal must be typed by a specialization of Evaluation with no input parameters and a single Real value as its result.</p>
  * <p>An Expression that provides a Real value as a result.</p>
  * 
  * <p>A LiteralReal must be typed by a specialization of Evaluation with no input parameters and a single Real value as its result.</p>

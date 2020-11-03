@@ -27,7 +27,8 @@ package org.omg.sysml.lang.sysml;
  * Value</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A FeatureValue is a FeatureMembership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. A FeatureValue requires that there be a BindingConnector between the Feature and the result of the Expression, enforcing the intended  semantics. A Feature can have at most one FeatureValue.
+ * <p>A FeatureValue is a FeatureMembership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. A FeatureValue requires that there be a BindingConnector between the Feature and the <code>result</code> of the Expression, enforcing the intended semantics. A Feature can have at most one FeatureValue.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

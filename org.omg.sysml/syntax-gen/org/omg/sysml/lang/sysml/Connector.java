@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Connector</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Connector is a usage of Associations, with links restricted to instances of the type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&nbsp;domain.</p>
+ * <p>A Connector is a usage of Associations, with links restricted to instances of the Type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&nbsp;domain.</p>
  * 
  * relatedFeature = connectorEnd.feature
  * <!-- end-model-doc -->

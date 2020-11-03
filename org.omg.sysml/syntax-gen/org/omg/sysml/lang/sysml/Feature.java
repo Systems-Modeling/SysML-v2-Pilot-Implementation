@@ -30,11 +30,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Feature is a Type that classifies sequences of multiple things&nbsp;(in the universe).&nbsp; These must concatenate a sequence drawn from the intersection of the Feature&#39;se&nbsp;featuringTypes (<em>domain</em>) with a sequence drawn from the intersection of its types (<em>co-domain</em>, range), treating (co)domains as sets of sequences. The domain of Features that do not have any&nbsp;featuringTypes is&nbsp; the same as if it were Anything. A Feature&#39;s types include&nbsp;at least Anything, which can be narrowed to other classifiers by redefinition.</p>
+ * <p>A Feature is a Type that classifies sequences of multiple things&nbsp;(in the universe). These must concatenate a sequence drawn from the intersection of the Feature&#39;s <code>featuringTypes</code> (<em>domain</em>) with a sequence drawn from the intersection of its <code>types</code> (<em>co-domain</em>, range), treating (co)domains as sets of sequences. The domain of Features that do not have any&nbsp;<code>featuringTypes</code> is the same as if it were Anything. A Feature&#39;s <code>types</code> include&nbsp;at least Anything, which can be narrowed to other Classifiers by Redefinition.</p>
  * 
- * <p>In the simplest cases, a Feature&#39;s featuringTypes and types&nbsp;are Classifiers,&nbsp;its sequences being pairs (length = 2), with&nbsp;the first element drawn from the Feature&#39;s domain&nbsp;and the second element&nbsp;from its co-domain (the Feature &quot;value&quot;). Examples include cars paired with wheels, people with other people, and cars with numbers&nbsp;representing the car length.</p>
+ * <p>In the simplest cases, a Feature&#39;s <code>featuringTypes</code> and <code>types</code>&nbsp;are Classifiers,&nbsp;its sequences being pairs (length = 2), with&nbsp;the first element drawn from the Feature&#39;s domain&nbsp;and the second element&nbsp;from its co-domain (the Feature &quot;value&quot;). Examples include cars paired with wheels, people paired with other people, and cars paired with numbers&nbsp;representing the car length.</p>
  * 
- * <p>Since Features are Types, their&nbsp;featuringTypes and types can&nbsp;be Features. When both are, Features classify&nbsp;sequences of at least four elements (length &gt; 3), otherwise at least three (length &gt; 2).&nbsp; The featuringTypes of&nbsp;<em>nested</em> features are features.</p>
+ * <p>Since Features are Types, their&nbsp;<code>featuringTypes</code> and <code>types</code> can&nbsp;be Features. When both are, Features classify&nbsp;sequences of at least four elements (length &gt; 3), otherwise at least three (length &gt; 2).&nbsp; The <code>featuringTypes</code> of&nbsp;<em>nested</em> Features are Features.</p>
  * 
  * ownedRedefinition = ownedSubsetting->intersection(redefining)
  * referencedType = type - ownedElement
@@ -49,18 +49,18 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
@@ -377,7 +377,8 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Feature is integral to the definition of the featuringType.</p>
+	 * <p>Whether the Feature is a composite <code>feature</code> of its <code>featuringType</code>, as given by whether <code>isComposite</code> is true for its owningFeatureMembership (see also FeatureMembership).</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
@@ -406,7 +407,8 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Feature is to be treated as an End for an Association. When a Feature is marked as an End, there are additional navigation rules to consider between instances of that Feature's Type and instances of the Types of other Ends of the Association.</p>
+	 * <p>Whether or not the <code>owningFeatureMembership</code> is an EndFeatureMembership, requiring a different interpretation of the <code>multiplicity</code> of the Feature. (See also EndFeatureMembership.)</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is End</em>' attribute.
 	 * @see #setIsEnd(boolean)

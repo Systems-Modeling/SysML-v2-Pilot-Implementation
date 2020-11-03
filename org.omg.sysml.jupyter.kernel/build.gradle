@@ -14,7 +14,9 @@ wrapper {
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    flatDir {
+        dirs '../org.omg.sysml.interactive/target'
+    }
 }
 
 dependencies {

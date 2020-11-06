@@ -43,7 +43,7 @@ if errorlevel 1 (
 
 echo --- Step 7: Installing SysML Jupyter kernel ---
 call jupyter kernelspec remove sysml -f
-for /F usebackq %%A in (`where dot`) do (
+for /F "usebackq tokens=*" %%A in (`where dot`) do (
   call python "%~dp0\install.py" --sys-prefix --api-base-path=http://sysml2.intercax.com:9000 "--graphviz-path=%%A%%" %* || goto:error
 )
 

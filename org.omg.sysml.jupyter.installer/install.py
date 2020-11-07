@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import subprocess
 import sys
 from jupyterlab.labapp import get_app_dir
 
@@ -20,14 +21,16 @@ if __name__ == '__main__':
     if not os.path.isdir(kernel_dir):
         sys.exit(f'{kernel_name} directory not found.')
 
-    curr_dir = os.getcwd()
     lib_copy = os.path.join(kernel_dir, 'sysml', search)
     shutil.copytree(match, lib_copy)
     try:
-        os.chdir(kernel_dir)
-        exec(open(os.path.join(kernel_dir, 'install.py')).read())
+        result = subprocess.run(['python', os.path.join(kernel_dir, 'install.py')] + sys.argv[1:], capture_output=True,
+                                cwd=kernel_dir)
+        sys.stdout.buffer.write(result.stdout)
+        sys.stderr.buffer.write(result.stderr)
+        if result.returncode > 0:
+            sys.exit(result.returncode)
     finally:
-        os.chdir(curr_dir)
         shutil.rmtree(lib_copy)
 
     # Enable line numbers and code folding by default

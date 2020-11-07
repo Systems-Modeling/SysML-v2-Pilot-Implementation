@@ -17,8 +17,7 @@ if errorlevel 1 (
 call java -version || goto :error
 
 echo --- Step 3: Installing dependencies into Conda environment ---
-call conda install python=3.* jupyterlab=2.* -y || goto:error
-call conda install graphviz=2.* nodejs=14.* -c conda-forge -y || goto:error
+call conda install python=3.* jupyterlab=2.* graphviz=2.* nodejs=14.* -c conda-forge -y || goto:error
 
 echo --- Step 4: Testing Python installation ---
 where python

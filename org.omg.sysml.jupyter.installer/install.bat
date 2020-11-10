@@ -41,10 +41,12 @@ if errorlevel 1 (
 )
 
 echo --- Step 7: Installing SysML Jupyter kernel ---
-call jupyter kernelspec remove sysml -f
+call jupyter kernelspec remove sysml -f >nul 2>&1
 for /F "usebackq tokens=*" %%A in (`where dot`) do (
   call python "%~dp0\install.py" --sys-prefix --api-base-path=http://sysml2.intercax.com:9000 "--graphviz-path=%%A%%" %* || goto:error
+  goto:done
 )
+:done
 
 echo --- Step 8: Installing JupyterLab extension for SysML ---
 call jupyter labextension uninstall jupyterlab-sysml

@@ -19,7 +19,7 @@ if __name__ == '__main__':
     kernel_name = 'jupyter-sysml-kernel'
     kernel_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), kernel_name)
     if not os.path.isdir(kernel_dir):
-        sys.exit(f'{kernel_name} directory not found.')
+        sys.exit(f'Could not find {kernel_dir} directory.')
 
     lib_copy = os.path.join(kernel_dir, 'sysml', search)
     shutil.copytree(match, lib_copy)

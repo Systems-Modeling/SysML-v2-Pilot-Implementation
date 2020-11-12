@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'io.github.spencerpark.jupyter-kernel-installer' version '2.1.0'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
+    id 'com.github.jk1.dependency-license-report' version '1.14'
+}
+
+sourceCompatibility = 1.8
+
+wrapper {
+    gradleVersion = '4.10.3'
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs '../org.omg.sysml.interactive/target'
+    }
+}
+
+dependencies {
+    compile group: 'io.github.spencerpark', name: 'jupyter-jvm-basekernel', version: '2.3.0'
+    compile group: 'org.omg.sysml', name: 'org.omg.sysml.interactive', version: project.version, classifier: 'all'
+}
+
+licenseReport {
+    configurations = ['compile']
+}
+
+jupyter {
+    kernelName = 'sysml'
+    kernelDisplayName = 'SysML'
+    kernelLanguage = 'sysml'
+    kernelInterruptMode = 'message'
+    kernelExecutable = shadowJar.archivePath
+    kernelResources = files('src/main/resources/kernel/', fileTree('../') { include 'sysml.library/**' })
+
+    kernelParameters {
+        list('library-path', 'ISYSML_LIBRARY_PATH') {
+            separator = PATH_SEPARATOR
+            description = '''A file path separator delimited list of library path entries that should be available to the user code. **Important:** no matter what OS, this should use forward slash "/" as the file separator.'''
+        }
+        string('api-base-path', 'ISYSML_API_BASE_PATH') {
+            description = '''The base path for the API that the model is published to using the %publish magic command.'''
+        }
+        string('graphviz-path', 'ISYSML_GRAPHVIZ_PATH') {
+            description = '''The path to the Graphviz dot executable that is used for the %viz magic command.'''
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.omg.sysml.jupyter.kernel.ISysML'
+    }
+}
+
+artifacts {
+    archives shadowJar
+}
+
+zipKernel.dependsOn shadowJar
+installKernel.dependsOn shadowJar
+
+installKernel {
+    kernelInstallPath = commandLineSpecifiedPath(userInstallPath)
+}
+
+zipKernel {
+    from('src/main/resources/installer/') {
+        into '/'
+    }
+    from(generateLicenseReport.outputFolder) {
+        into 'dependency-licenses'
+    }
+}
+zipKernel.dependsOn 'generateLicenseReport'

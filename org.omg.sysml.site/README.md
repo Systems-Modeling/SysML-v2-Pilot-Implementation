@@ -1,4 +1,4 @@
-# SysML v2 Release 2020-09 Eclipse Installation
+# SysML v2 Release Eclipse Installation
 
 **Requirements:** Eclipse 2020-06 (4.16) or later, with Java Development Kit
 
@@ -10,7 +10,7 @@
 
 3. Select `Add...` and then, in the add dialog, select `Archive...` .
 
-4. Navigate to the `org.omg.sysml.site-0.5.0.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
+4. Navigate to the `org.omg.sysml.site.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
 
 5. In the Install window, select the `KerML and SysML Editors` category and click `Next`.
 
@@ -20,12 +20,11 @@
 
 Graphical visualization is available in Eclipse using the open source [PlantUML](https://plantuml.com) tooling to render diagrams.
 
-0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of 
-[ https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1](https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1) with Help > Install New Software
+0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of [ https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1](https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1) with Help > Install New Software
 
 1. PlantUML visualization requires that [GraphViz](https://www.graphviz.org) be installed. Visit [ https://www.graphviz.org/download/](https://www.graphviz.org/download/) 
-and download the appropriate package for your environment. The recommended GraphViz version is 2.44.1.  Make sure you have initialized GraphViz with `dot -c` command. 
-See [ https://plantuml.com/ja/graphviz-dot](https://plantuml.com/ja/graphviz-dot) for details.
+and download the appropriate package for your environment.
+   * The recommended GraphViz version is 2.44.1.  Make sure you have initialized GraphViz with `dot -c` command.  See [ https://plantuml.com/ja/graphviz-dot](https://plantuml.com/ja/graphviz-dot) for details.
 
 2. If Eclipse cannot automatically find the path to the GraphViz executable, you can set it by going to `Preferences > PlantUML`. 
 For details, visit [ https://plantuml.com/en/eclipse](https://plantuml.com/en/eclipse).

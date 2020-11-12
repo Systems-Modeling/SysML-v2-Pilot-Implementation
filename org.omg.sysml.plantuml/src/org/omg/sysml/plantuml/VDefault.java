@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
@@ -70,7 +71,7 @@ public class VDefault extends VTraverser {
         if (ae instanceof Comment) {
             Comment c = (Comment) ae;
             VComment v = new VComment(this);
-            v.addComment(c);
+            v.addComment(c, a.getAnnotatedElement());
         }
         return "";
     }
@@ -79,6 +80,16 @@ public class VDefault extends VTraverser {
     public String caseComment(Comment c) {
         VComment v = new VComment(this);
         v.addComment(c);
+        return "";
+    }
+
+    @Override
+    public String caseDependency(Dependency dep) {
+    	for (Element c: dep.getClient()) {
+    		for (Element s: dep.getSupplier()) {
+    			addPRelation(c, s, dep, "<<depend>>");
+    		}
+    	}
         return "";
     }
 

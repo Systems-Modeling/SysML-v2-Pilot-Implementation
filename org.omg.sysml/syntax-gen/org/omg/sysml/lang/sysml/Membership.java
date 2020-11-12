@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Membership is a Relationship between a Package and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Package. The Membership may define a <code>memberName</code> for the Element as a member of the Package and specifies whether or not the Element is publicly visible as a member of the Package from outside the Package. The Element may be owned by the Membership, in which case it is an <code>ownedMember</code> of the Package, or it may be referenced but not owned, in which case it is effectively individually imported into the Package.</p>
+ * <p>Membership is a Relationship between a Package and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Package. The Membership may define a <code>memberName</code> for the Element as a member of the Package and specifies whether or not the Element is publicly visible as a <code>member</code> of the Package from outside the Package. The Element may be owned by the Membership, in which case it is an <code>ownedMember</code> of the Package, or it may be referenced but not owned, in which case it is effectively individually imported into the Package.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -35,11 +35,11 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
@@ -85,7 +85,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Membership of the <tt>memberElement</tt> in the <tt>membershipOwningPackage</tt> is publicly visible outside that Package. Unless the <tt>membershipOwningPackage</tt> is a Type, <tt>visibility</tt> must be either <tt>public</tt> or <tt>private</tt></p>
+	 * <p>Whether or not the Membership of the <code>memberElement</code> in the <code>membershipOwningPackage</code> is publicly visible outside that Package. Unless the <code>membershipOwningPackage</code> is a Type, <code>visibility</code> must be either <code>public</code> or <code>private</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
@@ -258,7 +258,7 @@ public interface Membership extends Relationship {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether this Membership is distinguishable from a given <tt>other</tt> Membership. By default, this is true if the <tt>memberName</tt> of this Membership is either empty or is different the <tt>memberName</tt> of the <tt>other</tt> Membership, or if the metaclass of the <tt>memberElement</tt> of this Membership is different than the metaclass of the <tt>memberElement</tt> of the <tt>other</tt> Membership. But this may be overridden in specializations of Membership.</p>
+	 * <p>Whether this Membership is distinguishable from a given <code>other</code> Membership. By default, this is true if the <code>memberName</code> of this Membership is either empty or is different the <code>memberName</code> of the <code>other</code> Membership, or if the metaclass of the <code>memberElement</code> of this Membership is different than the metaclass of the <cosw>memberElement</cosw> of the <cosw>other</cosw> Membership. But this may be overridden in specializations of Membership.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" otherRequired="true" otherOrdered="false"

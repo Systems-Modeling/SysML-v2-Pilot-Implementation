@@ -26,12 +26,13 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -77,32 +78,23 @@ public class VComposite extends VStructure {
     public String caseUsage(Usage f) {
         String featureText = getFeatureText(f);
         if (featureText.isEmpty()) return "";
-        addPUMLLine(f, "rectangle ", featureText);
+        addPUMLLine(f, "rec usage ", featureText);
 
         VComposite vc = new VComposite(this);
         vc.traverse(f);
-        vc.closeBlock("");
+        vc.closeBlock();
 
         return "";
     }
 
 	@Override
     public String casePartDefinition(PartDefinition pd) {
-        addType(pd, "rectangle ");
+        addType(pd, "rec def ");
 
         VComposite vc = new VComposite(this);
         vc.traverse(pd);
-        vc.closeBlock("");
+        vc.closeBlock();
 
-        return "";
-    }
-
-	@Override
-    public String caseStateUsage(StateUsage su) {
-        String name = extractName(su);
-        if (name == null) return "";
-        addPUMLLine(su, "rectangle ", name);
-        append('\n');
         return "";
     }
 
@@ -129,18 +121,23 @@ public class VComposite extends VStructure {
         String keyword;
         if (ret.isEmpty()) {
             keyword = "portin ";
+            addPUMLLine(pu, keyword, name);
+            append('\n');
         } else {
-            keyword = "rectangle ";
+            keyword = "rec usage ";
+            addPUMLLine(pu, keyword, name);
+            vc.closeBlock();
         }
-
-        addPUMLLine(pu, keyword, name);
-        vc.closeBlock("");
 
         return "";
     }
 
     private void addType(Type typ) {
-        addType(typ, "rectangle ");
+        if (typ instanceof Usage) {
+            if (!addType(typ, "usage ")) return;
+        } else {
+            if (!addType(typ, "def ")) return;
+        }
         append('\n');
     }
 
@@ -148,6 +145,18 @@ public class VComposite extends VStructure {
     @Override
     public String caseType(Type typ) {
         addType(typ);
+        return "";
+    }
+
+    @Override
+    public String caseMultiplicityRange(MultiplicityRange mr) {
+        // Do not show MultiplicityRange
+        return "";
+    }
+
+    @Override
+    public String caseExpression(Expression e) {
+        // Do not show Expression
         return "";
     }
 

@@ -30,7 +30,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An AnnotatingElement is an Element that provides additional description of or metadata on some other Element. An AnnotatingElement is attached to its <code>annotatedElement</code> an Annotation Relationship.</p>
+ * <p>An AnnotatingElement is an Element that provides additional description of or metadata on some other Element. An AnnotatingElement is attached to its <code>annotatedElement</code> by an Annotation Relationship.</p>
+ * 
  * annotatedElement = annotation
  * .annotatedElement
  * <!-- end-model-doc -->

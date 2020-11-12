@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.omg.sysml.xtext.ui
 Bundle-ManifestVersion: 2
 Bundle-Name: org.omg.sysml.xtext.ui
-Bundle-Version: 0.5.0.qualifier
+Bundle-Version: 0.6.0.qualifier
 Bundle-SymbolicName: org.omg.sysml.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml;bundle-version="0.2.0",

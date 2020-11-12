@@ -27,9 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Expression</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Expression that provides a basic value as a result.</p>
- * 
- * <p>A LiteralExpression must be typed by a specialization of Evaluation with no input parameters and a single value as its result.</p>
+ * <p>An Expression that provides a basic value as a result. A LiteralExpression must directly or indirectly specialize the Function <em>LiteralEvaluation</em> from the <em>Base</em> model library, which has no parameters other than its result, which is a single <em>DataValue</em>.</p>
  * 
  * <p>An Expression that provides a basic value as a result.</p>
  * 

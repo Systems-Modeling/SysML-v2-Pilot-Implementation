@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
+import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Class;
@@ -38,21 +40,28 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class SysML2PlantUMLStyle {
@@ -65,10 +74,12 @@ public class SysML2PlantUMLStyle {
     		"skinparam monochrome true\n"
             + "skinparam classbackgroundcolor white\n"
             + "skinparam shadowing false\n"
+            + "skinparam wrapWidth 300\n"
             + "hide circle\n");
         add("STDCOLOR",
             "Standard style with colors",
-            "hide circle\n",
+            "skinparam wrapWidth 300\n"
+            + "hide circle\n",
             new StyleSwitch(new StyleRelDefaultSwitch() {
                 @Override
                 public String caseConnector(Connector object) {
@@ -78,7 +89,7 @@ public class SysML2PlantUMLStyle {
                 public String caseBindingConnector(BindingConnector object) {
                     return " -[thickness=5,#red]- ";
                 }
-            }, null));
+            }, null), "decoratedRedefined", "true");
         add("PLANTUML",
             "PlantUML Style", " ",
              new StyleSwitch(new StyleRelDefaultSwitch() {
@@ -167,21 +178,39 @@ public class SysML2PlantUMLStyle {
     public final String title;
     public final String commandStr;
     public final StyleSwitch styleSwitch;
+    public final Map<String, String> options;
 
-    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch) {
+    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, Map<String, String> options) {
     	this.name = name;
         this.title = title;
         this.commandStr = commandStr;
         this.styleSwitch = styleSwitch;
+        this.options = options;
     }
 
-    private static void add(String name, String title, String commandStr, StyleSwitch styleSwitch) {
+    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
+        this(name, title, commandStr, styleSwitch, convOptions(options));
+    }
+
+    private static Map<String, String> convOptions(String[] options) {
+        if (options == null) return null;
+        int size = options.length / 2;
+        Map<String, String> map = new HashMap<String, String>(size);
+        for (int i = 0; i < options.length;) {
+            map.put(options[i], options[i + 1]);
+            i += 2;
+        }
+        return map;
+    }
+
+    private static void add(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
         SysML2PlantUMLStyle s;
+        Map<String, String> map = convOptions(options);
         if (name == null) {
-            s = new SysML2PlantUMLStyle("DEFAULT", title, commandStr, styleSwitch);
+            s = new SysML2PlantUMLStyle("DEFAULT", title, commandStr, styleSwitch, map);
             defaultStyle = s;
         } else {
-            s = new SysML2PlantUMLStyle(name, title, commandStr, styleSwitch);
+            s = new SysML2PlantUMLStyle(name, title, commandStr, styleSwitch, map);
         }
         styles.put(s.name, s);
     }
@@ -265,8 +294,18 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String casePackage(org.omg.sysml.lang.sysml.Package p) {
+            return " +-- ";
+		}
+
+		@Override
 		public String caseClassifier(Classifier object) {
             return " +-- ";
+		}
+
+		@Override
+		public String caseFeature(Feature f) {
+            return f.isComposite() ? " *-- ": " o-- ";
 		}
 
 		@Override
@@ -275,18 +314,23 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseItemUsage(ItemUsage itemUsage) {
-            return itemUsage.isComposite() ? " *-- ": " o-- ";
-		}
-
-		@Override
 		public String caseItemFlow(ItemFlow itemFlow) {
             return " --> ";
 		}
 
 		@Override
-		public String casePartUsage(PartUsage partUsage) {
-            return partUsage.isComposite() ? " *-- ": " o-- ";
+		public String caseDependency(Dependency dep) {
+            return " ..>> ";
+		}
+
+		@Override
+		public String caseRequirementConstraintMembership(RequirementConstraintMembership requirementConstraintMembership) {
+            return " ..> ";
+		}
+
+		@Override
+		public String caseSatisfyRequirementUsage(SatisfyRequirementUsage satisfyRequirementUsage) {
+            return " ..> ";
 		}
 
 		@Override
@@ -298,6 +342,21 @@ public class SysML2PlantUMLStyle {
 		public String caseGeneralization(Generalization object) {
             return " --|> ";
 		}
+
+		@Override
+		public String caseSubjectMembership(SubjectMembership sm) {
+            return " ..> ";
+		}
+
+		@Override
+		public String caseVariantMembership(VariantMembership vm) {
+            return " )-->> ";
+		}
+
+		@Override
+		public String caseObjectiveMembership(ObjectiveMembership vm) {
+            return " -->> ";
+		}
     }
 
     public static class StyleStereotypeDefaultSwitch extends StyleStereotypeSwitch {
@@ -308,19 +367,26 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String casePortUsage(PortUsage object) {
-            return " <<port>> ";
+		public String caseAnalysisCaseUsage(AnalysisCaseUsage acu) {
+            return "<<analysis>> ";
 		}
 
 		@Override
-		public String caseItemUsage(ItemUsage object) {
-            return " <<item>> ";
+		public String caseAnalysisCaseDefinition(AnalysisCaseDefinition acd) {
+            return "<<analysis def>> ";
 		}
 
 		@Override
-		public String casePartUsage(PartUsage object) {
-            return " <<part>> ";
-		}
+        public String caseIndividualUsage(IndividualUsage iu) {
+            if (iu.isTimeSlice()) {
+                return "<<timeslice>> ";
+            } else if (iu.isSnapshot()) {
+                return "<<snapshot>> ";
+            } else {
+                return "<<individual>> ";
+            }
+        }
+        
     }
 
 }

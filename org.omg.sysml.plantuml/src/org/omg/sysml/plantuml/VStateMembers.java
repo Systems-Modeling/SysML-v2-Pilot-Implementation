@@ -125,28 +125,18 @@ public class VStateMembers extends VDefault {
         String name = getName(typ);
         if ((name != null) && (descriptions != null)) {
             int size = descriptions.size();
-            if (length() > 0) {
-                outputPRelations(entryExitTransitions);
-                closeBlock("");
-                append("state ");
-                addNameWithId(typ, name);
-            }
-            int i = 0;
-            for (;;) {
+            outputPRelations(entryExitTransitions);
+            for (int i = 0; i < size; i++) {
+                append("desc ");
+                addNameWithId(typ, name, false);
                 append(" : ");
                 append(descriptions.get(i));
                 append('\n');
-                i++;
-                if (i >= size) break;
-
-                append("state ");
-                addNameWithId(typ, name);
             }
-            flush();
         } else {
             outputPRelations(entryExitTransitions);
-            closeBlock("");
         }
+        closeBlock();
         return "";
     }
 

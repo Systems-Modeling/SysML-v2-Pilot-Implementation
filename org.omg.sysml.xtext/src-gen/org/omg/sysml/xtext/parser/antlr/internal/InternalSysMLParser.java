@@ -15989,33 +15989,33 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValuePart"
-    // InternalSysML.g:5499:1: ruleValuePart[EObject in_current] returns [EObject current=in_current] : ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue ) ) ;
+    // InternalSysML.g:5499:1: ruleValuePart[EObject in_current] returns [EObject current=in_current] : ( (lv_ownedMembership_comp_0_0= ruleFeatureValue ) ) ;
     public final EObject ruleValuePart(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
-        EObject lv_ownedFeatureMembership_comp_0_0 = null;
+        EObject lv_ownedMembership_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:5505:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue ) ) )
-            // InternalSysML.g:5506:2: ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue ) )
+            // InternalSysML.g:5505:2: ( ( (lv_ownedMembership_comp_0_0= ruleFeatureValue ) ) )
+            // InternalSysML.g:5506:2: ( (lv_ownedMembership_comp_0_0= ruleFeatureValue ) )
             {
-            // InternalSysML.g:5506:2: ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue ) )
-            // InternalSysML.g:5507:3: (lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue )
+            // InternalSysML.g:5506:2: ( (lv_ownedMembership_comp_0_0= ruleFeatureValue ) )
+            // InternalSysML.g:5507:3: (lv_ownedMembership_comp_0_0= ruleFeatureValue )
             {
-            // InternalSysML.g:5507:3: (lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue )
-            // InternalSysML.g:5508:4: lv_ownedFeatureMembership_comp_0_0= ruleFeatureValue
+            // InternalSysML.g:5507:3: (lv_ownedMembership_comp_0_0= ruleFeatureValue )
+            // InternalSysML.g:5508:4: lv_ownedMembership_comp_0_0= ruleFeatureValue
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getValuePartAccess().getOwnedFeatureMembership_compFeatureValueParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getValuePartAccess().getOwnedMembership_compFeatureValueParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedFeatureMembership_comp_0_0=ruleFeatureValue();
+            lv_ownedMembership_comp_0_0=ruleFeatureValue();
 
             state._fsp--;
             if (state.failed) return current;
@@ -16026,8 +16026,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               				}
               				add(
               					current,
-              					"ownedFeatureMembership_comp",
-              					lv_ownedFeatureMembership_comp_0_0,
+              					"ownedMembership_comp",
+              					lv_ownedMembership_comp_0_0,
               					"org.omg.sysml.xtext.SysML.FeatureValue");
               				afterParserOrEnumRuleCall();
               			
@@ -16060,29 +16060,29 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValueOrFlowPart"
-    // InternalSysML.g:5529:1: ruleValueOrFlowPart[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember ) ) ) ;
+    // InternalSysML.g:5529:1: ruleValueOrFlowPart[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember ) ) ) ;
     public final EObject ruleValueOrFlowPart(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
-        EObject lv_ownedFeatureMembership_comp_0_1 = null;
+        EObject lv_ownedMembership_comp_0_1 = null;
 
-        EObject lv_ownedFeatureMembership_comp_0_2 = null;
+        EObject lv_ownedMembership_comp_0_2 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:5535:2: ( ( ( (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember ) ) ) )
-            // InternalSysML.g:5536:2: ( ( (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember ) ) )
+            // InternalSysML.g:5535:2: ( ( ( (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember ) ) ) )
+            // InternalSysML.g:5536:2: ( ( (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember ) ) )
             {
-            // InternalSysML.g:5536:2: ( ( (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember ) ) )
-            // InternalSysML.g:5537:3: ( (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember ) )
+            // InternalSysML.g:5536:2: ( ( (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember ) ) )
+            // InternalSysML.g:5537:3: ( (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember ) )
             {
-            // InternalSysML.g:5537:3: ( (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember ) )
-            // InternalSysML.g:5538:4: (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember )
+            // InternalSysML.g:5537:3: ( (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember ) )
+            // InternalSysML.g:5538:4: (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember )
             {
-            // InternalSysML.g:5538:4: (lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue | lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember )
+            // InternalSysML.g:5538:4: (lv_ownedMembership_comp_0_1= ruleFeatureValue | lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember )
             int alt89=2;
             int LA89_0 = input.LA(1);
 
@@ -16101,15 +16101,15 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt89) {
                 case 1 :
-                    // InternalSysML.g:5539:5: lv_ownedFeatureMembership_comp_0_1= ruleFeatureValue
+                    // InternalSysML.g:5539:5: lv_ownedMembership_comp_0_1= ruleFeatureValue
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedFeatureMembership_compFeatureValueParserRuleCall_0_0());
+                      					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedMembership_compFeatureValueParserRuleCall_0_0());
                       				
                     }
                     pushFollow(FOLLOW_2);
-                    lv_ownedFeatureMembership_comp_0_1=ruleFeatureValue();
+                    lv_ownedMembership_comp_0_1=ruleFeatureValue();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -16120,8 +16120,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_0_1,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_0_1,
                       						"org.omg.sysml.xtext.SysML.FeatureValue");
                       					afterParserOrEnumRuleCall();
                       				
@@ -16130,15 +16130,15 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSysML.g:5555:5: lv_ownedFeatureMembership_comp_0_2= ruleSourceItemFlowMember
+                    // InternalSysML.g:5555:5: lv_ownedMembership_comp_0_2= ruleSourceItemFlowMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedFeatureMembership_compSourceItemFlowMemberParserRuleCall_0_1());
+                      					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedMembership_compSourceItemFlowMemberParserRuleCall_0_1());
                       				
                     }
                     pushFollow(FOLLOW_2);
-                    lv_ownedFeatureMembership_comp_0_2=ruleSourceItemFlowMember();
+                    lv_ownedMembership_comp_0_2=ruleSourceItemFlowMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -16149,8 +16149,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_0_2,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_0_2,
                       						"org.omg.sysml.xtext.SysML.SourceItemFlowMember");
                       					afterParserOrEnumRuleCall();
                       				

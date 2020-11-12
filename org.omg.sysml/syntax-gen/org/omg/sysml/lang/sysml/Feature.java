@@ -30,11 +30,11 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Feature is a Type that classifies sequences of multiple things&nbsp;(in the universe). These must concatenate a sequence drawn from the intersection of the Feature&#39;s <code>featuringTypes</code> (<em>domain</em>) with a sequence drawn from the intersection of its <code>types</code> (<em>co-domain</em>, range), treating (co)domains as sets of sequences. The domain of Features that do not have any&nbsp;<code>featuringTypes</code> is the same as if it were Anything. A Feature&#39;s <code>types</code> include&nbsp;at least Anything, which can be narrowed to other Classifiers by Redefinition.</p>
+ * <p>A Feature is a Type that classifies sequences of multiple things (in the universe). These must concatenate a sequence drawn from the intersection of the Feature&#39;s <code>featuringTypes</code> (<em>domain</em>) with a sequence drawn from the intersection of its <code>types</code> (<em>co-domain</em>, range), treating (co)domains as sets of sequences. The domain of Features that do not have any <code>featuringTypes</code> is the same as if it were the library Type Anything. A Feature&#39;s <code>types</code> include at least Anything, which can be narrowed to other Classifiers by Redefinition.</p>
  * 
- * <p>In the simplest cases, a Feature&#39;s <code>featuringTypes</code> and <code>types</code>&nbsp;are Classifiers,&nbsp;its sequences being pairs (length = 2), with&nbsp;the first element drawn from the Feature&#39;s domain&nbsp;and the second element&nbsp;from its co-domain (the Feature &quot;value&quot;). Examples include cars paired with wheels, people paired with other people, and cars paired with numbers&nbsp;representing the car length.</p>
+ * <p>In the simplest cases, a Feature&#39;s <code>featuringTypes</code> and <code>types</code> are Classifiers, its sequences being pairs (length = 2), with the first element drawn from the Feature&#39;s domain and the second element from its co-domain (the Feature &quot;value&quot;). Examples include cars paired with wheels, people paired with other people, and cars paired with numbers&nbsp;representing the car length.</p>
  * 
- * <p>Since Features are Types, their&nbsp;<code>featuringTypes</code> and <code>types</code> can&nbsp;be Features. When both are, Features classify&nbsp;sequences of at least four elements (length &gt; 3), otherwise at least three (length &gt; 2).&nbsp; The <code>featuringTypes</code> of&nbsp;<em>nested</em> Features are Features.</p>
+ * <p>Since Features are Types, their <code>featuringTypes</code> and <code>types</code> can be Features. When both are, Features classify sequences of at least four elements (length &gt; 3), otherwise at least three (length &gt; 2). The <code>featuringTypes</code> of <em>nested</em> Features are Features.</p>
  * 
  * ownedRedefinition = ownedSubsetting->intersection(redefining)
  * referencedType = type - ownedElement
@@ -43,25 +43,26 @@ import org.eclipse.emf.common.util.EList;
  * ownedType = type->intersection(ownedElement)
  * type = typing.type
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
+ * multiplicity <> null implies multiplicity.featuringType = featuringType 
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getReferencedType <em>Referenced Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedType <em>Owned Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -71,31 +72,28 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Feature extends Type {
 	/**
-	 * Returns the value of the '<em><b>Referenced Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * Returns the value of the '<em><b>Owned Type Featuring</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.TypeFeaturing}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.TypeFeaturing#getOwningFeatureOfType <em>Owning Feature Of Type</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Referenced Type</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The members of <code>type</code> that are not in <code>ownedType</code>.</p>
+	 * <p>The TypeFeaturings owned by this Feature, for which it is also the <code>featureOfType</code> of the FeatureTyping.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Referenced Type</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_ReferencedType()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referencingFeature'"
+	 * @return the value of the '<em>Owned Type Featuring</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTypeFeaturing()
+	 * @see org.omg.sysml.lang.sysml.TypeFeaturing#getOwningFeatureOfType
+	 * @model opposite="owningFeatureOfType" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<Type> getReferencedType();
+	EList<TypeFeaturing> getOwnedTypeFeaturing();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
@@ -105,6 +103,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace() <em>Owning Namespace</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType() <em>Featuring Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -206,7 +205,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Types of a Feature restrict its&nbsp;values to instances that are classified by all the types.</p>
+	 * <p>Types that restrict the values of this Feature, such that the values must by instances of all the types. The types of a Feature are derived from its <code>ownedFeatureTypings</code> and the <code>types</code> of its <code>ownedSubsettings</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
@@ -216,34 +215,6 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<Type> getType();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getType() <em>Type</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedElement() <em>Owned Element</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Type</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The elements in <code>type</code> of this Feature that are also owned.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Type</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedType()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFeature'"
-	 *        annotation="subsets"
-	 * @generated
-	 */
-	EList<Type> getOwnedType();
 
 	/**
 	 * Returns the value of the '<em><b>Owned Redefinition</b></em>' reference list.
@@ -319,7 +290,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureTypings owned by this Feature as the <code>typedFeature</code> of the FeatureTyping.</p>
+	 * <p>The FeatureTypings owned by this Feature, for which it is also the <code>typedFeature</code> of the FeatureTyping.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
@@ -329,6 +300,22 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	EList<FeatureTyping> getOwnedTyping();
+
+	/**
+	 * Returns the value of the '<em><b>Featuring Type</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Types that feature this Feature, such that any instance in the domain of the Feature must be classified by all of these Types, including at least all the <code>featuringTypes</code> of its <code>ownedTypeFeaturings</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Featuring Type</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingType()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureOfType'"
+	 * @generated
+	 */
+	EList<Type> getFeaturingType();
 
 	/**
 	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
@@ -504,5 +491,17 @@ public interface Feature extends Type {
 	 * @generated
 	 */
 	FeatureDirectionKind directionFor(Type type);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return whether this Feature has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this Feature is implicitly directly or indirectly featured in <em>Base::Anything</em>.</p>
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='type = null and feature.featuringType-&gt;isEmpty() or\ntype &lt;&gt; null and feature.featuringType-&gt;includes(type) or\nfeature.featuringType-&gt;exists(f | isFeaturedIn(t)) '"
+	 * @generated
+	 */
+	boolean isFeaturedWithin(Type type);
 
 } // Feature

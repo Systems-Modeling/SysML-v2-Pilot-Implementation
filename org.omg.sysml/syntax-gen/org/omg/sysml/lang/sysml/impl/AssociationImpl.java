@@ -57,7 +57,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningConnector <em>Owning Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getAssociationEnd <em>Association End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTargetType <em>Target Type</em>}</li>
@@ -479,9 +478,6 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return getOwnedRelatedElement();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return getRelatedType();
-			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				if (resolve) return getOwningConnector();
-				return basicGetOwningConnector();
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				return getAssociationEnd();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
@@ -520,9 +516,6 @@ public class AssociationImpl extends ClassImpl implements Association {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				setOwningConnector((Connector)newValue);
-				return;
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				getAssociationEnd().clear();
 				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
@@ -560,9 +553,6 @@ public class AssociationImpl extends ClassImpl implements Association {
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				setOwningConnector((Connector)null);
-				return;
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				getAssociationEnd().clear();
 				return;
@@ -599,8 +589,6 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return isSetRelatedType();
 			case SysMLPackage.ASSOCIATION__END_FEATURE:
 				return isSetEndFeature();
-			case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR:
-				return basicGetOwningConnector() != null;
 			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
 				return isSetAssociationEnd();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:

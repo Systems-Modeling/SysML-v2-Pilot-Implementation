@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureMembership is a Membership for a Feature in a Type that also asserts that all instances of the domain of the Feature are instances of the <code>owningType</code>.</p>
+ * <p>FeatureMembership is a Membership for a Feature in a Type that is also a TypeFeaturing Relationship between the Feature and the Type.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -53,7 +53,7 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FeatureMembership extends Membership {
+public interface FeatureMembership extends Membership, TypeFeaturing {
 	/**
 	 * Returns the value of the '<em><b>Is Derived</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
@@ -123,6 +123,7 @@ public interface FeatureMembership extends Membership {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeatureOfType() <em>Feature Of Type</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

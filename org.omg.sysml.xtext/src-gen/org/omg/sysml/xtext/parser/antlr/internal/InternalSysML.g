@@ -5506,17 +5506,17 @@ ruleValuePart[EObject in_current]  returns [EObject current=in_current]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getValuePartAccess().getOwnedFeatureMembership_compFeatureValueParserRuleCall_0());
+				newCompositeNode(grammarAccess.getValuePartAccess().getOwnedMembership_compFeatureValueParserRuleCall_0());
 			}
-			lv_ownedFeatureMembership_comp_0_0=ruleFeatureValue
+			lv_ownedMembership_comp_0_0=ruleFeatureValue
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getValuePartRule());
 				}
 				add(
 					$current,
-					"ownedFeatureMembership_comp",
-					lv_ownedFeatureMembership_comp_0_0,
+					"ownedMembership_comp",
+					lv_ownedMembership_comp_0_0,
 					"org.omg.sysml.xtext.SysML.FeatureValue");
 				afterParserOrEnumRuleCall();
 			}
@@ -5537,33 +5537,33 @@ ruleValueOrFlowPart[EObject in_current]  returns [EObject current=in_current]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedFeatureMembership_compFeatureValueParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedMembership_compFeatureValueParserRuleCall_0_0());
 				}
-				lv_ownedFeatureMembership_comp_0_1=ruleFeatureValue
+				lv_ownedMembership_comp_0_1=ruleFeatureValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValueOrFlowPartRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_0_1,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_0_1,
 						"org.omg.sysml.xtext.SysML.FeatureValue");
 					afterParserOrEnumRuleCall();
 				}
 				    |
 				{
-					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedFeatureMembership_compSourceItemFlowMemberParserRuleCall_0_1());
+					newCompositeNode(grammarAccess.getValueOrFlowPartAccess().getOwnedMembership_compSourceItemFlowMemberParserRuleCall_0_1());
 				}
-				lv_ownedFeatureMembership_comp_0_2=ruleSourceItemFlowMember
+				lv_ownedMembership_comp_0_2=ruleSourceItemFlowMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValueOrFlowPartRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_0_2,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_0_2,
 						"org.omg.sysml.xtext.SysML.SourceItemFlowMember");
 					afterParserOrEnumRuleCall();
 				}

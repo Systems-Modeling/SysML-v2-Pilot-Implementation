@@ -444,7 +444,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOwnedRedefinitionAccess().getRedefinedFeatureAssignment(), "rule__OwnedRedefinition__RedefinedFeatureAssignment");
 			builder.put(grammarAccess.getFeatureConjugationPartAccess().getOwnedRelationship_compAssignment_1(), "rule__FeatureConjugationPart__OwnedRelationship_compAssignment_1");
 			builder.put(grammarAccess.getFeatureConjugationAccess().getOriginalTypeAssignment(), "rule__FeatureConjugation__OriginalTypeAssignment");
-			builder.put(grammarAccess.getValuePartAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__ValuePart__OwnedFeatureMembership_compAssignment_1");
+			builder.put(grammarAccess.getValuePartAccess().getOwnedMembership_compAssignment_1(), "rule__ValuePart__OwnedMembership_compAssignment_1");
 			builder.put(grammarAccess.getFeatureValueAccess().getValue_compAssignment(), "rule__FeatureValue__Value_compAssignment");
 			builder.put(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_1_0(), "rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0");
 			builder.put(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__Multiplicity__OwnedFeatureMembership_compAssignment_2");

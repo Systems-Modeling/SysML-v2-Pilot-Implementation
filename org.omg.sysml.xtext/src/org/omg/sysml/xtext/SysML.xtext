@@ -597,11 +597,11 @@ fragment UsageBody returns SysML::Usage :
 ;
 
 fragment ValuePart returns SysML::Feature :
-	  ownedFeatureMembership_comp += FeatureValue
+	  ownedMembership_comp += FeatureValue
 ;
 
 fragment ValueOrFlowPart returns SysML::Feature :
-	ownedFeatureMembership_comp += ( FeatureValue | SourceItemFlowMember )
+	ownedMembership_comp += ( FeatureValue | SourceItemFlowMember )
 ;
 
 FeatureValue returns SysML::FeatureValue :

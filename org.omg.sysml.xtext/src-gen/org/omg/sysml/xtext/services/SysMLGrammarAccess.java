@@ -3083,41 +3083,41 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ValuePartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ValuePart");
-		private final Assignment cOwnedFeatureMembership_compAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedFeatureMembership_compFeatureValueParserRuleCall_0 = (RuleCall)cOwnedFeatureMembership_compAssignment.eContents().get(0);
+		private final Assignment cOwnedMembership_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedMembership_compFeatureValueParserRuleCall_0 = (RuleCall)cOwnedMembership_compAssignment.eContents().get(0);
 		
 		//fragment ValuePart returns SysML::Feature:
-		//	ownedFeatureMembership_comp+=FeatureValue;
+		//	ownedMembership_comp+=FeatureValue;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedFeatureMembership_comp+=FeatureValue
-		public Assignment getOwnedFeatureMembership_compAssignment() { return cOwnedFeatureMembership_compAssignment; }
+		//ownedMembership_comp+=FeatureValue
+		public Assignment getOwnedMembership_compAssignment() { return cOwnedMembership_compAssignment; }
 		
 		//FeatureValue
-		public RuleCall getOwnedFeatureMembership_compFeatureValueParserRuleCall_0() { return cOwnedFeatureMembership_compFeatureValueParserRuleCall_0; }
+		public RuleCall getOwnedMembership_compFeatureValueParserRuleCall_0() { return cOwnedMembership_compFeatureValueParserRuleCall_0; }
 	}
 	public class ValueOrFlowPartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ValueOrFlowPart");
-		private final Assignment cOwnedFeatureMembership_compAssignment = (Assignment)rule.eContents().get(1);
-		private final Alternatives cOwnedFeatureMembership_compAlternatives_0 = (Alternatives)cOwnedFeatureMembership_compAssignment.eContents().get(0);
-		private final RuleCall cOwnedFeatureMembership_compFeatureValueParserRuleCall_0_0 = (RuleCall)cOwnedFeatureMembership_compAlternatives_0.eContents().get(0);
-		private final RuleCall cOwnedFeatureMembership_compSourceItemFlowMemberParserRuleCall_0_1 = (RuleCall)cOwnedFeatureMembership_compAlternatives_0.eContents().get(1);
+		private final Assignment cOwnedMembership_compAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cOwnedMembership_compAlternatives_0 = (Alternatives)cOwnedMembership_compAssignment.eContents().get(0);
+		private final RuleCall cOwnedMembership_compFeatureValueParserRuleCall_0_0 = (RuleCall)cOwnedMembership_compAlternatives_0.eContents().get(0);
+		private final RuleCall cOwnedMembership_compSourceItemFlowMemberParserRuleCall_0_1 = (RuleCall)cOwnedMembership_compAlternatives_0.eContents().get(1);
 		
 		//fragment ValueOrFlowPart returns SysML::Feature:
-		//	ownedFeatureMembership_comp+=(FeatureValue | SourceItemFlowMember);
+		//	ownedMembership_comp+=(FeatureValue | SourceItemFlowMember);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedFeatureMembership_comp+=(FeatureValue | SourceItemFlowMember)
-		public Assignment getOwnedFeatureMembership_compAssignment() { return cOwnedFeatureMembership_compAssignment; }
+		//ownedMembership_comp+=(FeatureValue | SourceItemFlowMember)
+		public Assignment getOwnedMembership_compAssignment() { return cOwnedMembership_compAssignment; }
 		
 		//(FeatureValue | SourceItemFlowMember)
-		public Alternatives getOwnedFeatureMembership_compAlternatives_0() { return cOwnedFeatureMembership_compAlternatives_0; }
+		public Alternatives getOwnedMembership_compAlternatives_0() { return cOwnedMembership_compAlternatives_0; }
 		
 		//FeatureValue
-		public RuleCall getOwnedFeatureMembership_compFeatureValueParserRuleCall_0_0() { return cOwnedFeatureMembership_compFeatureValueParserRuleCall_0_0; }
+		public RuleCall getOwnedMembership_compFeatureValueParserRuleCall_0_0() { return cOwnedMembership_compFeatureValueParserRuleCall_0_0; }
 		
 		//SourceItemFlowMember
-		public RuleCall getOwnedFeatureMembership_compSourceItemFlowMemberParserRuleCall_0_1() { return cOwnedFeatureMembership_compSourceItemFlowMemberParserRuleCall_0_1; }
+		public RuleCall getOwnedMembership_compSourceItemFlowMemberParserRuleCall_0_1() { return cOwnedMembership_compSourceItemFlowMemberParserRuleCall_0_1; }
 	}
 	public class FeatureValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.FeatureValue");
@@ -10470,7 +10470,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.VerificationCaseKeyword");
 		private final Keyword cVerificationKeyword = (Keyword)rule.eContents().get(1);
 		
-		///* VERIFICATION CASE DEFINITIONS */ VerificationCaseKeyword:
+		///* VERIFICATION CASES */ VerificationCaseKeyword:
 		//	'verification';
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -15634,7 +15634,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ValuePart returns SysML::Feature:
-	//	ownedFeatureMembership_comp+=FeatureValue;
+	//	ownedMembership_comp+=FeatureValue;
 	public ValuePartElements getValuePartAccess() {
 		return pValuePart;
 	}
@@ -15644,7 +15644,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment ValueOrFlowPart returns SysML::Feature:
-	//	ownedFeatureMembership_comp+=(FeatureValue | SourceItemFlowMember);
+	//	ownedMembership_comp+=(FeatureValue | SourceItemFlowMember);
 	public ValueOrFlowPartElements getValueOrFlowPartAccess() {
 		return pValueOrFlowPart;
 	}
@@ -18310,7 +18310,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getAnalysisCaseRefUsageAccess().getRule();
 	}
 	
-	///* VERIFICATION CASE DEFINITIONS */ VerificationCaseKeyword:
+	///* VERIFICATION CASES */ VerificationCaseKeyword:
 	//	'verification';
 	public VerificationCaseKeywordElements getVerificationCaseKeywordAccess() {
 		return pVerificationCaseKeyword;

@@ -27,13 +27,14 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -42,16 +43,25 @@ import org.omg.sysml.lang.sysml.Type;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getFeatureWithValue <em>Feature With Value</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getValueConnector <em>Value Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getValue_comp <em>Value comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getValueConnector <em>Value Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureValue {
+public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
+	/**
+	 * The cached value of the '{@link #getFeatureWithValue() <em>Feature With Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFeatureWithValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Feature featureWithValue;
 	/**
 	 * The cached value of the '{@link #getValue_comp() <em>Value comp</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -84,9 +94,9 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * @generated
 	 */
 	@Override
-	public Type getOwningType() {
-		if (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__OWNING_TYPE) return null;
-		return (Type)eInternalContainer();
+	public org.omg.sysml.lang.sysml.Package getMembershipOwningPackage() {
+		if (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE) return null;
+		return (org.omg.sysml.lang.sysml.Package)eInternalContainer();
 	}
 
 	/**
@@ -94,8 +104,14 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningType(Type newOwningType, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningType, SysMLPackage.FEATURE_VALUE__OWNING_TYPE, msgs);
+	public NotificationChain basicSetMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newMembershipOwningPackage, SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE, msgs);
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (featureWithValue != null && featureWithValue != newMembershipOwningPackage) {
+				setFeatureWithValue(null);
+			}
+		}
 		return msgs;
 	}
 
@@ -105,20 +121,20 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * @generated
 	 */
 	@Override
-	public void setOwningType(Type newOwningType) {
-		if (newOwningType != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__OWNING_TYPE && newOwningType != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningType))
+	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
+		if (newMembershipOwningPackage != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE && newMembershipOwningPackage != null)) {
+			if (EcoreUtil.isAncestor(this, newMembershipOwningPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningType != null)
-				msgs = ((InternalEObject)newOwningType).eInverseAdd(this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP, Type.class, msgs);
-			msgs = basicSetOwningType(newOwningType, msgs);
+			if (newMembershipOwningPackage != null)
+				msgs = ((InternalEObject)newMembershipOwningPackage).eInverseAdd(this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
+			msgs = basicSetMembershipOwningPackage(newMembershipOwningPackage, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__OWNING_TYPE, newOwningType, newOwningType));
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE, newMembershipOwningPackage, newMembershipOwningPackage));
 	}
 
 	/**
@@ -126,8 +142,8 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwningType() {
-		return getOwningType() != null;
+	public boolean isSetMembershipOwningPackage() {
+		return getMembershipOwningPackage() != null;
 	}
 
 	/**
@@ -219,10 +235,10 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__OWNING_TYPE:
+			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningType((Type)otherEnd, msgs);
+				return basicSetMembershipOwningPackage((org.omg.sysml.lang.sysml.Package)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -233,8 +249,15 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 */
 	@Override
 	public Feature getFeatureWithValue() {
-		Feature featureWithValue = basicGetFeatureWithValue();
-		return featureWithValue != null && featureWithValue.eIsProxy() ? (Feature)eResolveProxy((InternalEObject)featureWithValue) : featureWithValue;
+		if (featureWithValue != null && featureWithValue.eIsProxy()) {
+			InternalEObject oldFeatureWithValue = (InternalEObject)featureWithValue;
+			featureWithValue = (Feature)eResolveProxy(oldFeatureWithValue);
+			if (featureWithValue != oldFeatureWithValue) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE, oldFeatureWithValue, featureWithValue));
+			}
+		}
+		return featureWithValue;
 	}
 
 	/**
@@ -243,8 +266,8 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * @generated NOT
 	 */
 	public Feature basicGetFeatureWithValue() {
-		Type owningType = getOwningType();
-		return owningType instanceof Feature? (Feature)owningType: null;
+		org.omg.sysml.lang.sysml.Package owningPackage = getMembershipOwningPackage();
+		return owningPackage instanceof Feature? (Feature)owningPackage: null;
 	}
 
 	/**
@@ -253,7 +276,6 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 */
 	@Override
 	public void setFeatureWithValue(Feature newFeatureWithValue) {
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -293,7 +315,7 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * @generated
 	 */
 	@Override
-	public Feature getOwnedMemberFeature_comp() {
+	public Element getOwnedMemberElement_comp() {
 		return getValue_comp();
 	}
 
@@ -302,11 +324,11 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp, NotificationChain msgs) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof Expression)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of Expression");
+	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Expression)) {
+			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Expression");
 		}
-		return basicSetValue_comp((Expression) newOwnedMemberFeature_comp, msgs);
+		return basicSetValue_comp((Expression) newOwnedMemberElement_comp, msgs);
 	}
 
 	/**
@@ -314,11 +336,11 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof Expression)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of Expression");
+	public void setOwnedMemberElement_comp(Element newOwnedMemberElement_comp) {
+		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Expression)) {
+			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Expression");
 		}
-		setValue_comp((Expression) newOwnedMemberFeature_comp);
+		setValue_comp((Expression) newOwnedMemberElement_comp);
 	}
 
 	/**
@@ -326,7 +348,7 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedMemberFeature_comp() {
+	public boolean isSetOwnedMemberElement_comp() {
   		return false;
 	}
 
@@ -337,8 +359,8 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__OWNING_TYPE:
-				return basicSetOwningType(null, msgs);
+			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE:
+				return basicSetMembershipOwningPackage(null, msgs);
 			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
 				return basicSetValue_comp(null, msgs);
 		}
@@ -353,8 +375,8 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case SysMLPackage.FEATURE_VALUE__OWNING_TYPE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP, Type.class, msgs);
+			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.PACKAGE__OWNED_MEMBERSHIP_COMP, org.omg.sysml.lang.sysml.Package.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -369,11 +391,11 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
 				if (resolve) return getFeatureWithValue();
 				return basicGetFeatureWithValue();
+			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
+				return getValue_comp();
 			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
 				if (resolve) return getValueConnector();
 				return basicGetValueConnector();
-			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
-				return getValue_comp();
 			case SysMLPackage.FEATURE_VALUE__VALUE:
 				if (resolve) return getValue();
 				return basicGetValue();
@@ -391,11 +413,11 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
 				setFeatureWithValue((Feature)newValue);
 				return;
-			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
-				setValueConnector((BindingConnector)newValue);
-				return;
 			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
 				setValue_comp((Expression)newValue);
+				return;
+			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
+				setValueConnector((BindingConnector)newValue);
 				return;
 			case SysMLPackage.FEATURE_VALUE__VALUE:
 				setValue((Expression)newValue);
@@ -414,11 +436,11 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
 				setFeatureWithValue((Feature)null);
 				return;
-			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
-				setValueConnector((BindingConnector)null);
-				return;
 			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
 				setValue_comp((Expression)null);
+				return;
+			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
+				setValueConnector((BindingConnector)null);
 				return;
 			case SysMLPackage.FEATURE_VALUE__VALUE:
 				setValue((Expression)null);
@@ -434,16 +456,16 @@ public class FeatureValueImpl extends FeatureMembershipImpl implements FeatureVa
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__OWNING_TYPE:
-				return isSetOwningType();
-			case SysMLPackage.FEATURE_VALUE__OWNED_MEMBER_FEATURE_COMP:
-				return isSetOwnedMemberFeature_comp();
+			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_PACKAGE:
+				return isSetMembershipOwningPackage();
+			case SysMLPackage.FEATURE_VALUE__OWNED_MEMBER_ELEMENT_COMP:
+				return isSetOwnedMemberElement_comp();
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:
-				return basicGetFeatureWithValue() != null;
-			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
-				return basicGetValueConnector() != null;
+				return featureWithValue != null;
 			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
 				return isSetValue_comp();
+			case SysMLPackage.FEATURE_VALUE__VALUE_CONNECTOR:
+				return basicGetValueConnector() != null;
 			case SysMLPackage.FEATURE_VALUE__VALUE:
 				return basicGetValue() != null;
 		}

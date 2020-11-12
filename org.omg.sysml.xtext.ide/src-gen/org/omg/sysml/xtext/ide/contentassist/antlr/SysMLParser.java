@@ -63,7 +63,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDefinitionBodyItemAccess().getAlternatives(), "rule__DefinitionBodyItem__Alternatives");
 			builder.put(grammarAccess.getNestedUsageMemberAccess().getAlternatives(), "rule__NestedUsageMember__Alternatives");
 			builder.put(grammarAccess.getUsagePrefixAccess().getAlternatives(), "rule__UsagePrefix__Alternatives");
-			builder.put(grammarAccess.getValueOrFlowPartAccess().getOwnedFeatureMembership_compAlternatives_0(), "rule__ValueOrFlowPart__OwnedFeatureMembership_compAlternatives_0");
+			builder.put(grammarAccess.getValueOrFlowPartAccess().getOwnedMembership_compAlternatives_0(), "rule__ValueOrFlowPart__OwnedMembership_compAlternatives_0");
 			builder.put(grammarAccess.getSourceItemFlowAccess().getAlternatives_0(), "rule__SourceItemFlow__Alternatives_0");
 			builder.put(grammarAccess.getReferenceVariantUsageAccess().getAlternatives(), "rule__ReferenceVariantUsage__Alternatives");
 			builder.put(grammarAccess.getStructureUsageElementAccess().getAlternatives(), "rule__StructureUsageElement__Alternatives");
@@ -701,8 +701,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDefinitionMemberPrefixAccess().getVisibilityAssignment_1(), "rule__DefinitionMemberPrefix__VisibilityAssignment_1");
 			builder.put(grammarAccess.getUsagePrefixAccess().getIsAbstractAssignment_0(), "rule__UsagePrefix__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getUsagePrefixAccess().getIsVariationAssignment_1(), "rule__UsagePrefix__IsVariationAssignment_1");
-			builder.put(grammarAccess.getValuePartAccess().getOwnedFeatureMembership_compAssignment(), "rule__ValuePart__OwnedFeatureMembership_compAssignment");
-			builder.put(grammarAccess.getValueOrFlowPartAccess().getOwnedFeatureMembership_compAssignment(), "rule__ValueOrFlowPart__OwnedFeatureMembership_compAssignment");
+			builder.put(grammarAccess.getValuePartAccess().getOwnedMembership_compAssignment(), "rule__ValuePart__OwnedMembership_compAssignment");
+			builder.put(grammarAccess.getValueOrFlowPartAccess().getOwnedMembership_compAssignment(), "rule__ValueOrFlowPart__OwnedMembership_compAssignment");
 			builder.put(grammarAccess.getFeatureValueAccess().getValue_compAssignment_1(), "rule__FeatureValue__Value_compAssignment_1");
 			builder.put(grammarAccess.getSourceItemFlowMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__SourceItemFlowMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getSourceItemFlowAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__SourceItemFlow__OwnedFeatureMembership_compAssignment_1");

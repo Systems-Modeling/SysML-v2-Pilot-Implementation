@@ -201,8 +201,11 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ConnectorEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()
-						|| rule == grammarAccess.getEndFeatureMemberRule()) {
+				else if (rule == grammarAccess.getFeatureTypeMemberRule()) {
+					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEndFeatureMemberRule()) {
 					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -848,13 +851,13 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedRelationship_comp+=FeatureConjugation? ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember) | 
 	 *                     (
 	 *                         ownedRelationship_comp+=FeatureConjugation? 
 	 *                         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *                         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *                         ownedFeatureMembership_comp+=ConnectorEndMember*
-	 *                     )
+	 *                     ) | 
+	 *                     (ownedRelationship_comp+=FeatureConjugation? ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember)
 	 *                 )
 	 *             ) | 
 	 *             (
@@ -1064,9 +1067,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -1074,7 +1082,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (isSufficient?='all' ownedRelationship_comp+=FeatureConjugation) | 
@@ -1082,14 +1090,19 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*) | 
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*) | 
 	 *                     ownedRelationship_comp+=FeatureConjugation
 	 *                 )?
 	 *             ) | 
-	 *             (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *             )
 	 *         )? 
 	 *         (
-	 *             ownedFeatureMembership_comp+=FeatureValue | 
+	 *             ownedMembership_comp+=FeatureValue | 
 	 *             (
 	 *                 (ownedFeatureMembership_comp+=StepParameterMember ownedFeatureMembership_comp+=StepParameterMember*)? 
 	 *                 (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember)
@@ -1173,10 +1186,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         ownedMembership_comp+=NonFeatureTypeMember? 
+	 *         ownedFeatureMembership_comp+=FeatureTypeMember? 
 	 *         (
-	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=PackageImport)? 
-	 *             ownedMembership_comp+=NonFeatureTypeMember?
+	 *             (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NonFeatureTypeMember | ownedRelationship_comp+=PackageImport)? 
+	 *             ownedFeatureMembership_comp+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1200,10 +1213,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         ownedMembership_comp+=NonFeatureTypeMember? 
+	 *         ownedFeatureMembership_comp+=FeatureTypeMember? 
 	 *         (
-	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=PackageImport)? 
-	 *             ownedMembership_comp+=NonFeatureTypeMember?
+	 *             (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NonFeatureTypeMember | ownedRelationship_comp+=PackageImport)? 
+	 *             ownedFeatureMembership_comp+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1460,9 +1473,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -1470,7 +1488,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (isSufficient?='all' ownedRelationship_comp+=FeatureConjugation) | 
@@ -1478,14 +1496,19 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*) | 
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*) | 
 	 *                     ownedRelationship_comp+=FeatureConjugation
 	 *                 )?
 	 *             ) | 
-	 *             (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *             )
 	 *         )? 
 	 *         (
-	 *             ownedFeatureMembership_comp+=FeatureValue | 
+	 *             ownedMembership_comp+=FeatureValue | 
 	 *             (
 	 *                 (ownedFeatureMembership_comp+=StepParameterMember ownedFeatureMembership_comp+=StepParameterMember*)? 
 	 *                 (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember)
@@ -1520,9 +1543,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -1530,7 +1558,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (isSufficient?='all' ownedRelationship_comp+=FeatureConjugation) | 
@@ -1538,14 +1566,19 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*) | 
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*) | 
 	 *                     ownedRelationship_comp+=FeatureConjugation
 	 *                 )?
 	 *             ) | 
-	 *             (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *             )
 	 *         )? 
 	 *         (
-	 *             ownedFeatureMembership_comp+=FeatureValue | 
+	 *             ownedMembership_comp+=FeatureValue | 
 	 *             (
 	 *                 (ownedFeatureMembership_comp+=StepParameterMember ownedFeatureMembership_comp+=StepParameterMember*)? 
 	 *                 (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember)
@@ -1569,11 +1602,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     FeatureTypeMember returns EndFeatureMembership
-	 *     EndFeatureMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship_comp+=PrefixDocumentation* 
+	 *         ownedRelationship_comp+=PrefixDocumentation? 
 	 *         visibility=VisibilityIndicator? 
 	 *         direction=FeatureDirection? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
@@ -1585,6 +1617,25 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
+	
+	// This method is commented out because it has the same signature as another method in this class.
+	// This is probably a bug in Xtext's serializer, please report it here: 
+	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
+	//
+	// Contexts:
+	//     EndFeatureMember returns EndFeatureMembership
+	//
+	// Constraint:
+	//     (
+	//         ownedRelationship_comp+=PrefixDocumentation* 
+	//         visibility=VisibilityIndicator? 
+	//         direction=FeatureDirection? 
+	//         (isComposite?='composite' | isPortion?='portion')? 
+	//         isPort?='port'? 
+	//         ownedMemberFeature_comp=FeatureElement
+	//     )
+	//
+	// protected void sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:
@@ -1634,7 +1685,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
 	 *                     (
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
 	 *                         (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *                     ) | 
 	 *                     (
@@ -1646,8 +1697,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (
 	 *                 isSufficient?='all' 
 	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
-	 *                 isOrdered?='ordered'? 
-	 *                 (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
 	 *                 (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *             ) | 
 	 *             (
@@ -1656,9 +1707,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -1666,7 +1722,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+ 
 	 *                 (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *             ) | 
@@ -1705,7 +1761,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
 	 *                     (
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)? 
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)? 
 	 *                         (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *                     ) | 
 	 *                     (
@@ -1717,8 +1773,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             (
 	 *                 isSufficient?='all' 
 	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
-	 *                 isOrdered?='ordered'? 
-	 *                 (isNonunique?='nonunique'? isOrdered?='ordered'?)* 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)* 
 	 *                 (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *             ) | 
 	 *             (
@@ -1727,9 +1783,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -1737,7 +1798,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+ 
 	 *                 (ownedFeatureMembership_comp+=ItemFeatureMember | ownedFeatureMembership_comp+=EmptyItemFeatureMember)
 	 *             ) | 
@@ -1773,9 +1834,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -1783,7 +1849,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (isSufficient?='all' ownedRelationship_comp+=FeatureConjugation) | 
@@ -1791,16 +1857,18 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*) | 
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*) | 
 	 *                     ownedRelationship_comp+=FeatureConjugation
 	 *                 )?
 	 *             ) | 
-	 *             (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *             )
 	 *         )? 
-	 *         (
-	 *             ownedFeatureMembership_comp+=FeatureValue | 
-	 *             (ownedFeatureMembership_comp+=StepParameterMember ownedFeatureMembership_comp+=StepParameterMember*)
-	 *         )? 
+	 *         (ownedMembership_comp+=FeatureValue | (ownedFeatureMembership_comp+=StepParameterMember ownedFeatureMembership_comp+=StepParameterMember*))? 
 	 *         (
 	 *             documentation_comp+=OwnedDocumentation | 
 	 *             ownedMembership_comp+=NonFeatureTypeMember | 
@@ -2051,9 +2119,14 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                     (
 	 *                         isSufficient?='all' 
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                     ) | 
-	 *                     (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (
+	 *                         isSufficient?='all' 
+	 *                         ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                         isNonunique?='nonunique'? 
+	 *                         (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *                     )
 	 *                 )? 
 	 *                 (
 	 *                     (
@@ -2061,7 +2134,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                         (ownedRelationship_comp+=OwnedSubsetting ownedRelationship_comp+=OwnedSubsetting*) | 
 	 *                         (ownedRelationship_comp+=OwnedRedefinition ownedRelationship_comp+=OwnedRedefinition*)
 	 *                     ) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (isSufficient?='all' ownedRelationship_comp+=FeatureConjugation) | 
@@ -2069,13 +2142,18 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*) | 
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*) | 
 	 *                     ownedRelationship_comp+=FeatureConjugation
 	 *                 )?
 	 *             ) | 
-	 *             (isSufficient?='all' ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *             (
+	 *                 isSufficient?='all' 
+	 *                 ownedFeatureMembership_comp+=MultiplicityMember 
+	 *                 isNonunique?='nonunique'? 
+	 *                 (isOrdered?='ordered'? isNonunique?='nonunique'?)*
+	 *             )
 	 *         )? 
-	 *         ownedFeatureMembership_comp+=FeatureValue? 
+	 *         ownedMembership_comp+=FeatureValue? 
 	 *         (
 	 *             documentation_comp+=OwnedDocumentation | 
 	 *             ownedMembership_comp+=NonFeatureTypeMember | 
@@ -2147,21 +2225,21 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (
 	 *                     (
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                 ) 
 	 *                 (
 	 *                     (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (
 	 *                 (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *             )+
 	 *         )? 
-	 *         ownedFeatureMembership_comp+=FeatureValue?
+	 *         ownedMembership_comp+=FeatureValue?
 	 *     )
 	 */
 	protected void sequence_Identification_MultiplicityPart_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(ISerializationContext context, Feature semanticObject) {
@@ -2280,21 +2358,21 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (
 	 *                     (
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                 ) 
 	 *                 (
 	 *                     (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (
 	 *                 (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *             )+
 	 *         )? 
-	 *         ownedFeatureMembership_comp+=FeatureValue?
+	 *         ownedMembership_comp+=FeatureValue?
 	 *     )
 	 */
 	protected void sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(ISerializationContext context, BooleanExpression semanticObject) {
@@ -2314,21 +2392,21 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (
 	 *                     (
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                 ) 
 	 *                 (
 	 *                     (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (
 	 *                 (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *             )+
 	 *         )? 
-	 *         ownedFeatureMembership_comp+=FeatureValue?
+	 *         ownedMembership_comp+=FeatureValue?
 	 *     )
 	 */
 	protected void sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(ISerializationContext context, Expression semanticObject) {
@@ -2348,21 +2426,21 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 (
 	 *                     (
 	 *                         ((humanId=Name name=Name?) | name=Name) 
-	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)?
+	 *                         (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)?
 	 *                     ) | 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'? (isNonunique?='nonunique'? isOrdered?='ordered'?)*)
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'? (isOrdered?='ordered'? isNonunique?='nonunique'?)*)
 	 *                 ) 
 	 *                 (
 	 *                     (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                     (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *                 )+
 	 *             ) | 
 	 *             (
 	 *                 (ownedRelationship_comp+=OwnedFeatureTyping | ownedRelationship_comp+=OwnedSubsetting | ownedRelationship_comp+=OwnedRedefinition) 
-	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isOrdered?='ordered'?)?
+	 *                 (ownedFeatureMembership_comp+=MultiplicityMember isNonunique?='nonunique'?)?
 	 *             )+
 	 *         )? 
-	 *         ownedFeatureMembership_comp+=FeatureValue?
+	 *         ownedMembership_comp+=FeatureValue?
 	 *     )
 	 */
 	protected void sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy_ValuePart(ISerializationContext context, Step semanticObject) {

@@ -60,7 +60,6 @@ import org.omg.sysml.util.NonNotifyingEcoreEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getRelatedType <em>Related Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getOwningConnector <em>Owning Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getTargetType <em>Target Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionDefinitionImpl#getConnectionEnd <em>Connection End</em>}</li>
@@ -247,32 +246,11 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Connector getOwningConnector() {
-		Connector owningConnector = basicGetOwningConnector();
-		return owningConnector != null && owningConnector.eIsProxy() ? (Connector)eResolveProxy((InternalEObject)owningConnector) : owningConnector;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT // derived
 	 */
 	public Connector basicGetOwningConnector() {
 		Element owner = this.getOwner();
 		return owner instanceof Connector ? (Connector) owner : null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setOwningConnector(Connector newOwningConnector) {
-		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -504,9 +482,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				return getOwnedRelatedElement();
 			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
 				return getRelatedType();
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_CONNECTOR:
-				if (resolve) return getOwningConnector();
-				return basicGetOwningConnector();
 			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
 				return getAssociationEnd();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
@@ -547,9 +522,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_CONNECTOR:
-				setOwningConnector((Connector)newValue);
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
 				getAssociationEnd().clear();
@@ -593,9 +565,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_CONNECTOR:
-				setOwningConnector((Connector)null);
-				return;
 			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
 				getAssociationEnd().clear();
 				return;
@@ -636,8 +605,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				return isSetRelatedType();
 			case SysMLPackage.CONNECTION_DEFINITION__END_FEATURE:
 				return isSetEndFeature();
-			case SysMLPackage.CONNECTION_DEFINITION__OWNING_CONNECTOR:
-				return basicGetOwningConnector() != null;
 			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
 				return isSetAssociationEnd();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
@@ -671,7 +638,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 		if (baseClass == Association.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE: return SysMLPackage.ASSOCIATION__RELATED_TYPE;
-				case SysMLPackage.CONNECTION_DEFINITION__OWNING_CONNECTOR: return SysMLPackage.ASSOCIATION__OWNING_CONNECTOR;
 				case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END: return SysMLPackage.ASSOCIATION__ASSOCIATION_END;
 				case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE: return SysMLPackage.ASSOCIATION__SOURCE_TYPE;
 				case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE: return SysMLPackage.ASSOCIATION__TARGET_TYPE;
@@ -702,7 +668,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 		if (baseClass == Association.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.ASSOCIATION__RELATED_TYPE: return SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE;
-				case SysMLPackage.ASSOCIATION__OWNING_CONNECTOR: return SysMLPackage.CONNECTION_DEFINITION__OWNING_CONNECTOR;
 				case SysMLPackage.ASSOCIATION__ASSOCIATION_END: return SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END;
 				case SysMLPackage.ASSOCIATION__SOURCE_TYPE: return SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE;
 				case SysMLPackage.ASSOCIATION__TARGET_TYPE: return SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE;

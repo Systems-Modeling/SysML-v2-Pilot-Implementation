@@ -66,7 +66,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getSourceFeature <em>Source Feature</em>}</li>
@@ -176,10 +175,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated
 	 */
 	@Override
-	public EList<Type> getOwnedType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> ownedAssociationType = (EList<Type>)((EList<?>)getOwnedAssociationType());
-		return ownedAssociationType;
+	public EList<Feature> getEndFeature() {
+		return getConnectorEnd();
 	}
 
 	/**
@@ -187,7 +184,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedType() {
+	public boolean isSetEndFeature() {
   		return false;
 	}
 
@@ -409,6 +406,15 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetConnectorEnd() {
+		return !getConnectorEnd().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Feature getSourceFeature() {
 		Feature sourceFeature = basicGetSourceFeature();
@@ -500,27 +506,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		}
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Association> getOwnedAssociationType() {
-		EList<Association> associations = new NonNotifyingEcoreEList<>(Association.class, this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE);
-		getAssociation().stream().filter(a->a.getOwner() == this).forEachOrdered(associations::add);
-		return associations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedAssociationType() {
-		return !getOwnedAssociationType().isEmpty();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -651,8 +636,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return getAssociation();
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				return getOwnedAssociationType();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isDirected();
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
@@ -698,10 +681,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
-				return;
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				setIsDirected((Boolean)newValue);
 				return;
@@ -746,9 +725,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
 				return;
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				return;
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				setIsDirected(IS_DIRECTED_EDEFAULT);
 				return;
@@ -789,16 +765,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__TYPE:
 				return isSetType();
-			case SysMLPackage.CONNECTOR__OWNED_TYPE:
-				return isSetOwnedType();
+			case SysMLPackage.CONNECTOR__END_FEATURE:
+				return isSetEndFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE:
-				return isSetOwnedAssociationType();
 			case SysMLPackage.CONNECTOR__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTOR__CONNECTOR_END:
-				return !getConnectorEnd().isEmpty();
+				return isSetConnectorEnd();
 			case SysMLPackage.CONNECTOR__SOURCE_FEATURE:
 				return isSetSourceFeature();
 			case SysMLPackage.CONNECTOR__TARGET_FEATURE:

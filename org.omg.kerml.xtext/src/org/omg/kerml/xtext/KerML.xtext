@@ -519,7 +519,7 @@ FeatureConjugation returns SysML::Conjugation :
 /* FEATURE VALUES */
 
 fragment ValuePart returns SysML::Feature :
-	'=' ownedFeatureMembership_comp += FeatureValue
+	'=' ownedMembership_comp += FeatureValue
 ;
 
 FeatureValue returns SysML::FeatureValue :

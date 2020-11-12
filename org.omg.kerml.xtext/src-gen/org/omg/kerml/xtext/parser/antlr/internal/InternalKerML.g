@@ -5050,17 +5050,17 @@ ruleValuePart[EObject in_current]  returns [EObject current=in_current]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValuePartAccess().getOwnedFeatureMembership_compFeatureValueParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getValuePartAccess().getOwnedMembership_compFeatureValueParserRuleCall_1_0());
 				}
-				lv_ownedFeatureMembership_comp_1_0=ruleFeatureValue
+				lv_ownedMembership_comp_1_0=ruleFeatureValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValuePartRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_1_0,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_1_0,
 						"org.omg.kerml.xtext.KerML.FeatureValue");
 					afterParserOrEnumRuleCall();
 				}

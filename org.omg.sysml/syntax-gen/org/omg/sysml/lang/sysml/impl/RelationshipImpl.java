@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -131,8 +130,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new EObjectEList<>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
-		//EList<Element> ownedRelatedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
+		EList<Element> ownedRelatedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
 		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
 		return ownedRelatedElements;
 	}

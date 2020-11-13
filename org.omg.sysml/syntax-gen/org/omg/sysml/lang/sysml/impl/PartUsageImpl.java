@@ -25,10 +25,10 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	@Override
 	public EList<PartDefinition> getPartDefinition() {
 		EList<PartDefinition> partDefinitions =
-				new EObjectEList<>(PartDefinition.class, this, SysMLPackage.PART_USAGE__PART_DEFINITION);
+				new NonNotifyingEcoreEList<>(PartDefinition.class, this, SysMLPackage.PART_USAGE__PART_DEFINITION);
 		super.getItemDefinition().stream().
 			filter(PartDefinition.class::isInstance).
 			map(PartDefinition.class::cast).

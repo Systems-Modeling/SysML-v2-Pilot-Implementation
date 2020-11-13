@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -40,6 +39,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,7 +92,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated NOT // derived
 	 */
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

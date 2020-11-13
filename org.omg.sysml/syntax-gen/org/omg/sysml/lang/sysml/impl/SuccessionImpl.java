@@ -29,7 +29,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
@@ -39,6 +38,7 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -84,7 +84,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Step> getTriggerStep() {
-		EList<Step> triggerSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.SUCCESSION__TRIGGER_STEP);
+		EList<Step> triggerSteps = new NonNotifyingEcoreEList<>(Step.class, this, SysMLPackage.SUCCESSION__TRIGGER_STEP);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
 			EList<AcceptActionUsage> triggers = ((TransitionUsageImpl)transitionStep).getTriggerAction();
@@ -100,7 +100,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Step> getEffectStep() {
-		EList<Step> effectSteps = new EObjectEList<Step>(Step.class, this, SysMLPackage.SUCCESSION__EFFECT_STEP);
+		EList<Step> effectSteps = new NonNotifyingEcoreEList<>(Step.class, this, SysMLPackage.SUCCESSION__EFFECT_STEP);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
 			EList<ActionUsage> effects = ((TransitionUsageImpl)transitionStep).getEffectAction();
@@ -116,7 +116,7 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 */
 	@Override
 	public EList<Expression> getGuardExpression() {
-		EList<Expression> guardExpressions = new EObjectEList<Expression>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
+		EList<Expression> guardExpressions = new NonNotifyingEcoreEList<>(Expression.class, this, SysMLPackage.SUCCESSION__GUARD_EXPRESSION);
 		Step transitionStep = getTransitionStep();
 		if (transitionStep instanceof TransitionUsage) {
 			EList<Expression> guards = ((TransitionUsageImpl)transitionStep).getGuardExpression();

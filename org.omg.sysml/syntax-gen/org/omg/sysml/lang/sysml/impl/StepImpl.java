@@ -28,9 +28,9 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Class;
@@ -86,7 +86,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	@Override
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
+		EList<Behavior> behaviors = new NonNotifyingEcoreEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
@@ -110,7 +110,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

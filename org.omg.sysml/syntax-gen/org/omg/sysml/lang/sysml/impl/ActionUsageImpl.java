@@ -28,7 +28,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
@@ -38,6 +37,7 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +88,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ACTION_USAGE__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ACTION_USAGE__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -100,7 +100,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	 */
 	@Override
 	public EList<Behavior> getActionDefinition() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTION_DEFINITION);
+		EList<Behavior> behaviors = new NonNotifyingEcoreEList<>(Behavior.class, this, SysMLPackage.ACTION_USAGE__ACTION_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).

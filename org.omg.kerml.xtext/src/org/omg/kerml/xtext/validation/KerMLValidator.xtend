@@ -45,6 +45,8 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
+import org.omg.sysml.lang.sysml.impl.MembershipImpl
+import org.omg.sysml.lang.sysml.impl.ElementImpl
 
 /**
  * This class contains custom validation rules. 
@@ -63,17 +65,46 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_FEATURE_NO_TYPE_MSG = "Features must have at least one type"
 	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS = 'Invalid Relationship - Related element minimum validation'
 	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG = "Relationships must have at least two related elements"
-	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishability"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishablity"
+	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member ID"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
+	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
+	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
 		
+	@Check
+	def checkElement(Element elm) {
+		(elm as ElementImpl).transform
+		if (elm.humanId !== null) {
+			val owner = elm.owner;
+			if (owner !== null) {
+				for (e: owner.ownedElement) {
+					if (e != elm) {
+						if (elm.humanId == e.humanId || elm.humanId == (e as ElementImpl).effectiveName) {
+							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_HumanId, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
+						}						
+					}
+				}
+			}
+		}
+	}
+	
 	@Check
 	def checkMembership(Membership mem){
 		val pack = mem.membershipOwningPackage;	
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
 		if (!(pack instanceof InvocationExpression || pack instanceof FeatureReferenceExpression || pack instanceof LiteralExpression || pack instanceof NullExpression ||
 			  pack instanceof BindingConnector)) {
-			pack.ownedMembership.forEach[m|
+			for (e : pack.ownedElement) {
+				if (mem.memberElement !== e && e.humanId !== null && (mem as MembershipImpl).memberEffectiveName == e.humanId) {
+					if (mem.ownedMemberElement !== null) {
+						warning(org.omg.kerml.xtext.validation.KerMLValidator.INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					} else {
+						warning(org.omg.kerml.xtext.validation.KerMLValidator.INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem, SysMLPackage.eINSTANCE.membership_MemberName, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
+					}
+				}
+			}
+			for (m: pack.ownedMembership) {
 				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
 					if (mem.ownedMemberElement !== null) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
@@ -82,7 +113,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 					}
 				}
 						
-			]
+			}
 			if (pack instanceof Type){
 				for (m : pack.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){

@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -7,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Classifier</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>DataTypes are&nbsp;Classifiers of things (in the universe) that can only be distinguished by how they are related to other things (via Features).&nbsp;This means multiple things classified by the same Datatype</p>
+ * <p>A DataType is a Classifier of things (in the universe) that can only be distinguished by how they are related to other things (via Features).&nbsp;This means multiple things classified by the same DataType</p>
  * 
  * <ul>
  * 	<li>Cannot be distinguished&nbsp;when they are related to other things in exactly the same way, even when&nbsp;they are intended to be about the same thing.</li>

@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -9,9 +29,10 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Conjugation is a Relationship between two types in which the conjugatedType inherits all the Features of the originalType, but with all input and output Features reversed. That is, any Features with a FeatureMembership with direction <em>in</em> relative to the originalType are considered to have an effective direction of <em>out</em> relative to the conjugatedType and, similarly, Features with direction <em>out</em> in the original type are considered to have an effective direction of <em>in</em> in the original type. Features with direction <em>inout</em>, or with no direction, in the originalType, are inherited without change.</p>
+ * <p>Conjugation is a Relationship between two types in which the <code>conjugatedType</code> inherits all the Features of the <code>originalType</code>, but with all <code>input</code> and <code>output</code> Features reversed. That is, any Features with a FeatureMembership with <code>direction</code> <em>in</em> relative to the <code>originalType</code> are considered to have an effective <code>direction</code> of <em>out</em> relative to the <code>conjugatedType</code> and, similarly, Features with <code>direction</code> <em>out</em> in the <code>originalType</code> are considered to have an effective <code>direction</code> of <em>in</em> in the <code>originalType</code>. Features with <code>direction</code> <em>inout</em>, or with no <code>direction</code>, in the <code>originalType</code>, are inherited without change.</p>
  * 
- * <p>A Type may participate as a conjugatedType in at most one Conjugation relationship, and such a Type may not also be the specific Type in any Generalization relationship.</p>
+ * <p>A Type may participate as a <code>conjugatedType</code> in at most one Conjugation relationship, and such a Type may not also be the <code>specific</code> Type in any Generalization relationship.</p>
+ * 
  * <!-- end-model-doc -->
  *
  * <p>

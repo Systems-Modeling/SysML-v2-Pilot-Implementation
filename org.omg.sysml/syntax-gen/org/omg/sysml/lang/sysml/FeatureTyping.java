@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -7,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * Typing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>FeatureTyping is Generalization in which the specific Type is a Feature. This means the set of sequences of the (specific) typedFeature is a subset of the set of&nbsp;sequences of the (general) type.&nbsp; In the simplest case, the type&nbsp;is a Classifier, whereupon the typedFeature&nbsp;subset has sequences ending in things&nbsp;(in the universe, see <mms-view-link mms-doc-id="_18_5_3_59601fc_1554554231131_907648_19909" mms-element-id="_18_5_3_59601fc_1554554191042_80162_19781">[cf:Semantics.vlink]</mms-view-link>) in single-length sequences of the Classifier.</p>
+ * <p>FeatureTyping is Generalization in which the <code>specific</code> Type is a Feature. This means the set of sequences of the (specific) <code>typedFeature</code> is a subset of the set of&nbsp;sequences of the (general) <code>type</code>. In the simplest case, the <code>type</code>&nbsp;is a Classifier, whereupon the <code>typedFeature</code>&nbsp;subset has sequences ending in things&nbsp;(in the modeled universe) in single-length sequences of the Classifier.</p>
  * 
  * <!-- end-model-doc -->
  *

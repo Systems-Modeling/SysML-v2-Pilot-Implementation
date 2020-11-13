@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -7,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Superclassing</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Superclassing is Generalization in which both the specific and general Types are Classifiers. This means all sequences&nbsp;of the specific Classifier are&nbsp;also sequences of the general Classifier.</p>
+ * <p>Superclassing is Generalization in which both the <code>specific</code> and <code>general</code> Types are Classifiers. This means all instances of the specific Classifier are&nbsp;also instances of the general Classifier.</p>
  * 
  * <!-- end-model-doc -->
  *

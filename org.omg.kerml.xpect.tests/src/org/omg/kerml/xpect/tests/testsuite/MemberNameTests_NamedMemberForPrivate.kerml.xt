@@ -14,14 +14,17 @@ END_SETUP
 */
 //XPECT noErrors ---> ""
 package test {
-	private class something{}
+	private class id 's_Id' something{}
 	private alias something as k;
+	private alias s_Id as kk;
 	class hello {
 		//* XPECT scope at k ---
 		   		hello, hello.test, k, something, 
-		   		test,
+		   		test, s_Id, kk, hello.test1, test1
 		--- */
 		//XPECT linkedName at k --> test.something
 		class test specializes k{}
+		//XPECT linkedName at kk --> test.something
+		class test1 specializes kk;
 	}
 }

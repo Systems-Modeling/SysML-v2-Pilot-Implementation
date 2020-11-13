@@ -17,16 +17,23 @@ END_SETUP
 
 // XPECT noErrors --> ""
 package testt {
-	feature A{
-		feature a{}
+	feature id 'A_Id' A {
+		feature id 'a_Id' a{}
 	}
 	alias A as B;
 	//XPECT linkedName at B.a --> testt.A.a
 	//* XPECT scope at B.a ---
-   		A, A.a, B, B.a, C,
-   		testt.A, testt.A.a, testt.B, testt.B.a, testt.C,
+   		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, B, B.a, B.a_Id, C, D, 
+   		testt.A, testt.A_Id, testt.A.a, testt.A.a_Id, testt.A_Id.a, testt.A_Id.a_Id, testt.B, testt.B.a, testt.B.a_Id, testt.C, testt.D
  
 	--- */
 	feature C subsets B.a;
+	
+	//XPECT linkedName at B.a_Id --> testt.A.a
+	//* XPECT scope at B.a_Id ---
+   		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, B, B.a, B.a_Id, C, D, 
+   		testt.A, testt.A_Id, testt.A.a, testt.A.a_Id, testt.A_Id.a, testt.A_Id.a_Id, testt.B, testt.B.a, testt.B.a_Id, testt.C, testt.D
+ 
+	--- */
+	feature D subsets B.a_Id;
 }
-//	   	Base.BinaryLink.linkage, Base.BinaryLink.participant,		Base.BinaryLink.sourceEnd, Base.BinaryLink.sourceParticipant, Base.BinaryLink.targetEnd,		Base.BinaryLink.targetParticipant, Base.Link.participant, Base.SelfLink.myself, Base.SelfLink.self,		Base.SelfLink.sourceParticipant, Base.SelfLink.targetParticipant, Base.behaviorOccurrences, Base.binaryLinks,		Base.functionEvaluations, Base.links, Base.literalEvaluations, Base.nullEvaluations, Base.objects,		Base.selfLinks, Base.things, Base.values

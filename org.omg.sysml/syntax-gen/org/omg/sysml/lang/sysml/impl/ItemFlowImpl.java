@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -8,12 +28,12 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -74,7 +94,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new EObjectEList<Behavior>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
+		EList<Behavior> behaviors = new NonNotifyingEcoreEList<>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
@@ -98,7 +118,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new EObjectEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -110,7 +130,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Classifier> getItemType() {
-		EList<Classifier> itemType = new EObjectEList<Classifier>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
+		EList<Classifier> itemType = new NonNotifyingEcoreEList<>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
 		getItemFeature().get(0).getType();
 		getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
@@ -139,7 +159,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
-		EList<Feature> sourceOutputFeature = new EObjectEList<Feature>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
+		EList<Feature> sourceOutputFeature = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
 		getInputOutputFeature(0).ifPresent(sourceOutputFeature::add);
 		return sourceOutputFeature;
 	}
@@ -152,7 +172,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public EList<ItemFlowEnd> getItemFlowEnd() {
 		EList<ItemFlowEnd> itemFlows = 
-				new EObjectEList<ItemFlowEnd>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
+				new NonNotifyingEcoreEList<>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
 		getConnectorEnd().stream().
 			filter(end->end instanceof ItemFlowEnd).
 			map(end->(ItemFlowEnd)end).

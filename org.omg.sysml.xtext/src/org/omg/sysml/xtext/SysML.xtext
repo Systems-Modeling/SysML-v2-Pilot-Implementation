@@ -1895,7 +1895,7 @@ AnalysisCaseRefUsage returns SysML::AnalysisCaseUsage :
 	CalculationUsageDeclaration CaseBody
 ;
 
-/* VERIFICATION CASE DEFINITIONS */
+/* VERIFICATION CASES */
 
 VerificationCaseKeyword :
 	'verification'

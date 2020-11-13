@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -7,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Subsetting</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Subsetting specializes&nbsp;Generalization for the case of specific and general Types that are Features. This means all values of the subsettingFeature (on instances of its domain, i.e., the intersection of its featuringTypes) are values of the subsettedFeature on instances of its domain.&nbsp; To support this,&nbsp;the domain&nbsp;of the subsettingFeature must be the same or specialize (at least indirectly) the&nbsp;domain&nbsp;of the subsettedFeature (via Generalization), and the range (intersection of a Feature&#39;s types) of the subsetting feature must specialize the range of the subsetted feature.&nbsp;The subsettedFeature is imported into the owningNamespace of the subsettingFeature (if it is not already in that namespace), requiring the names of the subsetting and subsettedFeatures to be different.</p>
+ * <p>Subsetting is Generalization in which the <code>specific</code> and <code>general</code> Types that are Features. This means all values of the <code>subsettingFeature</code> (on instances of its domain, i.e., the intersection of its <code>featuringTypes</code>) are values of the <code>subsettedFeature</code> on instances of its domain.&nbsp; To support this,&nbsp;the domain&nbsp;of the <code>subsettingFeature</code> must be the same or specialize (at least indirectly) the&nbsp;domain&nbsp;of the <code>subsettedFeature</code> (via Generalization), and the range (intersection of a Feature&#39;s <code>types</code>) of the <code>subsettingFeature</code> must specialize the range of the <code>subsettedFeature</code>.&nbsp;The <code>subsettedFeature</code> is imported into the <code>owningNamespace</code> of the <code>subsettingFeature</code> (if it is not already in that namespace), requiring the names of the <code>subsettingFeature</code> and <code>subsettedFeature</code> to be different.</p>
  * 
  * <!-- end-model-doc -->
  *

@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -7,10 +27,10 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,7 +76,7 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Class> getItemDefinition() {
 		EList<org.omg.sysml.lang.sysml.Class> itemDefinitions =
-				new EObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
+				new NonNotifyingEcoreEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
 		super.getType().stream().
 			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
 			map(org.omg.sysml.lang.sysml.Class.class::cast).

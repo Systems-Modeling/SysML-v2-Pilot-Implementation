@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -14,7 +34,7 @@ package org.omg.sysml.lang.sysml;
  * 	<li>Features: sequences with the same feature-pair head.&nbsp; In the case of Features with Classifiers as domain and co-domain, these sequences are pairs, with the first element in&nbsp;a single-length sequence of the domain Classifier (head of the pair), and the number of pairs with the same first element being among the Multiplicity co-domain numbers.</li>
  * </ul>
  * 
- * <p>Multiplicity co-domains (in models) can be specified by expressions&nbsp;that might vary in their results depending on the sequence of the&nbsp;typeWithMultiplicity on which the expression is evaluated.</p>
+ * <p>Multiplicity co-domains (in models) can be specified by expressions&nbsp;that might vary in their results depending on the sequence of the&nbsp;<code>typeWithMultiplicity</code> on which the expression is evaluated.</p>
  * 
  * <!-- end-model-doc -->
  *

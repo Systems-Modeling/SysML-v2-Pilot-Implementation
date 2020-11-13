@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -7,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Redefinition</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Redefinition specializes&nbsp;Subsetting to require&nbsp;the redefinedFeature and the&nbsp;redefiningFeature to have the same values (on each instance of the domain&nbsp; of the redefiningFeature).&nbsp;&nbsp;This means any restrictions on the redefiningFeature, such as type or multiplicity, also apply to the redefinedFeature (on each instance of the owningType of the redefining Feature), and vice versa.&nbsp; The redefinedFeature might have&nbsp;values for instances of the owningType of the redefiningFeature, but only as instances of the owningType of the redefinedFeature that happen to also be instances of the owningType of the redefiningFeature.&nbsp; This is supported by the constraints on the domains of the redefining and redefinedFeature inherited from&nbsp;Subsetting.&nbsp; However, these constraints are narrowed for Redefinition to require the owningTypes of the redefining and redefinedFeatures to be different and the redefinedFeature to&nbsp;not be imported into the owningNamespace of the redefiningFeature.&nbsp;This&nbsp;enables&nbsp;the redefiningFeature to have the same name as the redefinedFeature if desired.</p>
+ * <p>Redefinition specializes&nbsp;Subsetting to require&nbsp;the <code>redefinedFeature</code> and the&nbsp;<code>redefiningFeature</code> to have the same values (on each instance of the domain of the <code>redefiningFeature</code>). This means any restrictions on the <code>redefiningFeature</code>, such as <code>type</code> or <code>multiplicity</code>, also apply to the <code>redefinedFeature</code> (on each instance of the <code>owningType</code> of the redefining Feature), and vice versa. The <code>redefinedFeature</code> might have&nbsp;values for instances of the <code>owningType</code> of the <code>redefiningFeature</code>, but only as instances of the <code>owningType</code> of the <code>redefinedFeature</code> that happen to also be instances of the <code>owningType</code> of the <code>redefiningFeature</code>. This is supported by the constraints inherited from&nbsp;Subsetting on the domains of the <code>redefiningFeature</code> and <code>redefinedFeature</code>. However, these constraints are narrowed for Redefinition to require the <code>owningTypes</code> of the <code>redefiningFeature</code> and <code>redefinedFeature</code> to be different and the <code>redefinedFeature</code> to&nbsp;not be imported into the <code>owningNamespace</code> of the <code>redefiningFeature</code>.&nbsp;This&nbsp;enables&nbsp;the <code>redefiningFeature</code> to have the same name as the <code>redefinedFeature</code> if desired.</p>
  * 
  * <!-- end-model-doc -->
  *

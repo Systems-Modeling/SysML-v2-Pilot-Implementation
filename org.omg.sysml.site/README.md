@@ -1,4 +1,4 @@
-# SysML v2 Release 2020-06 Eclipse Installation
+# SysML v2 Release Eclipse Installation
 
 **Requirements:** Eclipse 2020-06 (4.16) or later, with Java Development Kit
 
@@ -10,11 +10,24 @@
 
 3. Select `Add...` and then, in the add dialog, select `Archive...` .
 
-4. Navigate to the `org.omg.sysml.site-0.4.0.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
+4. Navigate to the `org.omg.sysml.site.zip` archive and select it. (You can give it a name if you wish.) Click `Add`.
 
 5. In the Install window, select the `KerML and SysML Editors` category and click `Next`.
 
 6. Continue with the installation (select `Install Anyway` if asked), and, when it is complete, restart Eclipse.
+
+## Installing PlantUML graphical visualization
+
+Graphical visualization is available in Eclipse using the open source [PlantUML](https://plantuml.com) tooling to render diagrams.
+
+0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions. You can install it from the update site of [ https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1](https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1) with Help > Install New Software
+
+1. PlantUML visualization requires that [GraphViz](https://www.graphviz.org) be installed. Visit [ https://www.graphviz.org/download/](https://www.graphviz.org/download/) 
+and download the appropriate package for your environment.
+   * The recommended GraphViz version is 2.44.1.  Make sure you have initialized GraphViz with `dot -c` command.  See [ https://plantuml.com/ja/graphviz-dot](https://plantuml.com/ja/graphviz-dot) for details.
+
+2. If Eclipse cannot automatically find the path to the GraphViz executable, you can set it by going to `Preferences > PlantUML`. 
+For details, visit [ https://plantuml.com/en/eclipse](https://plantuml.com/en/eclipse).
 
 ## Installing the model library and modeling projects
 
@@ -38,18 +51,6 @@ below, delete the `kerml`, `sysml` and `sysml.library` projects from your worksp
 After installation is complete, if you wish to turn `Build Automatically` back on, first go to `Preferences > General > Workspace > Build`
 and make sure that `sysml.library` is before `kerml` and `sysml` in the build order.
 
-## Installing PlantUML graphical visualization
-
-Graphical visualization is available in Eclipse using the open source [PlantUML](https://plantuml.com) tooling to render diagrams.
-
-0. Make sure that your Eclipse has PlantUML with SysMLv2 extensions.  You can install it from the update site of [ https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1](https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1) with Help > Install New Software
-
-1. PlantUML visualization requires that [GraphViz](https://www.graphviz.org) be installed. Visit [ https://www.graphviz.org/download/](https://www.graphviz.org/download/) 
-and download the appropriate package for your environment.
-
-2. If Eclipse cannot automatically find the path to the GraphViz executable, you can set it by going to `Preferences > PlantUML`. 
-For details, visit [ https://plantuml.com/en/eclipse](https://plantuml.com/en/eclipse).
-
 ## Working with model files
 
 1. Double click on a file with a `.kerml` or `.sysml` extension to view it in a Kernel Modeling Language (KerML) or Systems Modeling Language (SysML).
@@ -63,7 +64,7 @@ For details, visit [ https://plantuml.com/en/eclipse](https://plantuml.com/en/ec
 4. To show SysML diagrams, in `Window > Show View > Other...` select the PlantUML view. The diagram rendered in the view is relative to the text selected 
 in the active SysML editor view. Tree (BDD-like), interconnection (IBD-like) and state machine views are currently supported.
 
-**Release Note:** While performance has improved significantly in this release, there are still cases in which the processing of a file with 
+**Release Note:** While performance has improved further in this release, there are still cases in which the processing of a file with 
 several name resolution errors can take a long time, particularly if the `Quantities and Units` library is being used.
 
 ## Initializing new model projects

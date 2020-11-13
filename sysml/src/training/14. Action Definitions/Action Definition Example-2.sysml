@@ -1,21 +1,24 @@
 package 'Action Definition Example-1' {
-	part def Scene;
-	part def Image;
-	part def Picture;
+	item def Scene;
+	item def Image;
+	item def Picture;
 	
-	action def Focus(in scene : Scene, out image : Image);
-	action def Shoot(in image: Image, out picture : Picture);	
+	action def Focus(in item scene : Scene, out item image : Image);
+	action def Shoot(in item image: Image, out item picture : Picture);	
 		
-	action def TakePicture(in scene : Scene, out picture : Picture) {
-		action focus: Focus (
-			in scene = TakePicture::scene, 
-			out image
-		);
+	action def TakePicture {
+		in item scene : Scene;
+		out item picture : Picture;
 		
-		action shoot: Shoot (
-			in image flow from focus::image, 
-			out picture = TakePicture::picture
-		);
+		action focus: Focus {
+			in item scene = TakePicture::scene;
+			out item image;
+		}
+		
+		action shoot: Shoot {
+			in item image flow from focus::image;
+			out item picture = TakePicture::picture;
+		}
 	}
 	
 }

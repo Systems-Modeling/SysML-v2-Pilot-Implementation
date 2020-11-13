@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -10,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Types are the most general element supporting classification.&nbsp;They must be Classifiers or Features.&nbsp;Both give conditions on what&nbsp;they classify, see isSufficient.</p>
+ * <p>A Type is a Package that is the most general kind of Element supporting the semantics of classification. A Type may be a Classifier or a Feature, defining conditions on what is classified by the Type (see also the description of <code>isSufficient</code>).</p>
  * 
  * ownedGeneralization = generalization->intersection(ownedElement)
  * multiplicity = feature->select(oclIsKindOf(Multiplicity))
@@ -22,14 +42,14 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Type#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Type#isConjugated <em>Is Conjugated</em>}</li>
@@ -348,7 +368,9 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>A Type&nbsp;gives conditions that must be met by whatever it classifies, but when isSufficient is false or absent, things meeting those conditions might not be classified.&nbsp; For example, a type Car that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would need to be cars.&nbsp; If isSufficient is true, all things that meet conditions of a Type must be classified by that Type.&nbsp;For example, if the type Car were sufficient, it would classify all four-wheeled things.</p>
+	 * <p>Whether all things that meet the classification conditions of this Type must be classified by the Type.</p>
+	 * 
+	 * <p>(A Type&nbsp;gives conditions that must be met by whatever it classifies, but when <code>isSufficient</code> is false, things may meet those conditions but still not be classified by the Type. For example, a Type <code><em>Car</em></code> that is not sufficient could require everything it classifies to have four wheels, but not all four wheeled things would need to be cars. However, if the type <code><em>Car</em></code> were sufficient, it would classify all four-wheeled things.)</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Sufficient</em>' attribute.
@@ -416,7 +438,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates whether this Type has an <code>ownedConjugator</code>. See Conjugation.</p>
+	 * <p>Indicates whether this Type has an <code>ownedConjugator</code>. (See Conjugation.)</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Conjugated</em>' attribute.

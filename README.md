@@ -1,5 +1,7 @@
 # SysML v2 Pilot Implementation Protoyping
 
+This software is licensed under the GNU Lesser General Public License. See the files LICENSE and LICENSE-GPL.
+
 ## Installation Instructions
 
 ### Development Environment
@@ -11,7 +13,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
 1. Download the Eclipse Installer from https://www.eclipse.org/downloads/packages/installer.
 
 2. Clone our GitHub repository from the URL below.
-   * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
+   * https://github.com/Systems-Modeling/SySML-v2-Pilot-Implementation.git
    
 3. Open Eclipse Installer and switch to Advanced mode:
 ![switch to advanced mode](installer-advanced.png)
@@ -53,7 +55,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
      the update site of https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/ with Help > Install New Software.
 
 2. Clone our GitHub repository from the URL below.
-   * https://github.com/ModelDriven/SySML-v2-Pilot-Implementation.git
+   * https://github.com/Systems-Modeling/SySML-v2-Pilot-Implementation.git
 
 3. Import projects from the repository into your Eclipse workspace. This should include at least the projects:
    * `org.omg.sysml`
@@ -148,7 +150,7 @@ Set up a Java code template as follows:
 
 #### For existing code
 * When modifying existing code created by someone in a different organization, add a new copyright line, without changing anything else in the header.
-* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2019, "Copyright (C) 2018" becomes "Copyright (C) 2018-2019" and in 2020 it becomes "Copyright (C) 2018-2020".)
+* When modifying existing code for the first time in a new year, add the year as the latest year in the appropriate copy right line. (E.g., in 2021, "Copyright (C) 2020" becomes "Copyright (C) 2020-2021" and in 2022 it becomes "Copyright (C) 2020-2022".)
 
 #### Sources
 * [GNU GPL v3.0 - How to Apply These Terms to Your New Programs](https://www.gnu.org/licenses/gpl-3.0.en.html)

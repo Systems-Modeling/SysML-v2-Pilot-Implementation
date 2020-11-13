@@ -15,18 +15,18 @@ END_SETUP
 
 //XPECT noErrors ---> ""
 package test{
-	class A{
-		class a {}
+	class id 'A_Id' A{
+		class id 'a_Id' a {}
 	}
-	class B specializes A{
-		class b specializes a {}
+	class id 'B_Id' B specializes A{
+		class id 'b_Id' b specializes a {}
 	}
-	class C specializes B{
-		class c specializes a {}
+	class id 'C_Id' C specializes B{
+		class id 'c_Id' c specializes a {}
 	}
 	//* XPECT scope at C::a ---
- 		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
- 		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D 
+ 		A, A_Id, A.a, A.a_Id, A_Id.a, A_Id.a_Id, B, B_Id, B.a, B.a_Id, B_Id.a, B_Id.a_Id, B.b, B.b_Id, B_Id.b, B_Id.b_Id, C,C_Id, C.a, C.a_Id, C_Id.a, C_Id.a_Id, C.b, C.b_Id, C_Id.b, C_Id.b_Id, C.c, C.c_Id, C_Id.c, C_Id.c_Id, D, D_Id,
+ 		test.A, test.A_Id, test.A.a, test.A.a_Id, test.A_Id.a, test.A_Id.a_Id, test.B, test.B_Id, test.B.a, test.B.a_Id, test.B_Id.a, test.B_Id.a_Id, test.B.b, test.B.b_Id, test.B_Id.b, test.B_Id.b_Id, test.C, test.C_Id, test.C.a, test.C.a_Id, test.C_Id.a, test.C_Id.a_Id, test.C.b, test.C.b_Id, test.C_Id.b, test.C_Id.b_Id, test.C.c, test.C.c_Id, test.C_Id.c, test.C_Id.c_Id, test.D, test.D_Id 
  	--- */
-	class D specializes C::a{}
+	class id 'D_Id' D specializes C::a{}
 }

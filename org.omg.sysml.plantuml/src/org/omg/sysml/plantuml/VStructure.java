@@ -25,34 +25,61 @@
 package org.omg.sysml.plantuml;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
 
 public abstract class VStructure extends VDefault {
-    private static FeatureValue getFeatureValue(Feature f) {
-        // TODO: Multiple Feature Value.
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
-            if (fm instanceof FeatureValue) return (FeatureValue) fm;
+    protected void appendText(String text, boolean unfold) {
+        text = text.replace("\r", "");
+        if (unfold) {
+            text = text.replace("\n", "");
+        } else {
+            text = text.replace("\n", "\\n");
         }
-        return null;
+        text = text.trim();
+        append(text);
     }
 
-    private boolean addFeatureValueText(Feature f) {
-        FeatureValue fv = getFeatureValue(f);
-        if (fv == null) return false;
-        String text = getText(fv);
-        if (text == null) return false;
-        append('=');
-        text = text.replace("\r", "");
-        text = text.replace("\n", "\\n");
-        append(text);
-        return true;
+    private static Pattern patEq = Pattern.compile("^\\s*=");
+    private boolean addFeatureMembershipText(Feature f) {
+        boolean flag = false;
+        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
+            if (fm instanceof FeatureValue) {
+                FeatureValue fv = (FeatureValue) fm;
+                String text = getText(fv);
+                if (text == null) continue;
+                if (!patEq.matcher(text).lookingAt()) {
+                    append('=');
+                }
+                appendText(text, true);
+                append("; ");
+                flag = true;
+            } else if (fm instanceof ResultExpressionMembership) {
+                ResultExpressionMembership rem = (ResultExpressionMembership) fm;
+                Expression ex = rem.getOwnedResultExpression();
+                String text = getText(ex);
+                if (text == null) continue;
+                append(" { ");
+                appendText(text, true);
+                append(" }");
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     private static Redefinition getRedefinition(Feature f) {
@@ -67,40 +94,63 @@ public abstract class VStructure extends VDefault {
         return rd.getRedefinedFeature();
     }
 
-    private boolean addRedefinedFeatureText(Feature f) {
+    private String redefinedFeatureText(Feature f) {
         Feature rf = getRedefinedFeature(f);
-        if (rf == null) return false;
+        if (rf == null) return null;
         String name = getFeatureName(rf);
-        if (name == null) return false;
+        if (name == null) return null;
 
         org.omg.sysml.lang.sysml.Package pkg = rf.getOwningNamespace();
-        String pkgName;
-        if (pkg != null) {
-            pkgName = pkg.getName();
+        if (pkg == null) {
+            return name;
         } else {
-            pkgName = null;
+            return pkg.getName() + "::" + name;
         }
+    }
 
+    private boolean addRedefinedFeatureText(Feature f) {
+        String rt = redefinedFeatureText(f);
+        if (rt == null) return false;
         // waved decoration for redefinition
         append("\\n//:>>");
-        if (pkgName != null) {
-            append(pkgName);
-            append("::");
-        }
-        append(name);
+        append(rt);
         append("// ");
         return true;
     }
 
+    private void addFeatureTextInternal(Feature f, String name) {
+        append(name);
+        addTypeText(": ", f);
+        addFeatureMembershipText(f);
+    }
+    
     protected boolean addFeatureText(Feature f) {
         String name = getFeatureName(f);
         if (name == null) return false;
-        append(name);
-        addTypeText(": ", f);
-        addFeatureValueText(f);
-        addRedefinedFeatureText(f);
+
+        if (styleValue("decoratedRedefined") != null) {
+            String rt = redefinedFeatureText(f);
+            if (rt != null) {
+                append('>');
+                addFeatureTextInternal(f, name);
+                append(" <s>");
+                append(rt);
+                append("</s>");
+            } else {
+                addFeatureTextInternal(f, name);
+            }
+        } else {
+            addFeatureTextInternal(f, name);
+            addRedefinedFeatureText(f);
+        }
         return true;
     }
+
+    protected void addAnonymouseFeatureText(Feature f) {
+        addTypeText(": ", f);
+        addFeatureMembershipText(f);
+    }
+
 
     protected String extractName(Element e) {
         if (!(e instanceof Feature)) {
@@ -108,6 +158,10 @@ public abstract class VStructure extends VDefault {
         }
         Feature f = (Feature) e;
         String name = getFeatureName(f);
+        if (name == null) {
+        	// It should not happen but need to give some name for processing
+        	name = "<s>noname</s>";
+        }
         List<Type> tt = f.getType();
         if (tt.isEmpty()) return name;
         StringBuilder sb = new StringBuilder();
@@ -123,6 +177,14 @@ public abstract class VStructure extends VDefault {
         if (sb.length() == 0) return name;
         sb.insert(0, ": ");
         sb.insert(0, name);
+        /*
+        if (f instanceof Usage) {
+            Usage u = (Usage) f;
+            if (u.isVariation()) {
+                sb.insert(0, "<size:20><&layers> </size>");
+            }
+        }
+        */
         return sb.toString();
     }
 
@@ -137,17 +199,22 @@ public abstract class VStructure extends VDefault {
 
     protected void addPUMLLine(Type typ, String keyword, String name) {
         append(keyword);
-        addNameWithId(typ, name);
+        addNameWithId(typ, name, true);
         String style = styleString(typ);
         append(style);
         addLink(typ);
     }
 
-    protected void addType(Type typ, String keyword) {
+    protected boolean addType(Type typ, String keyword) {
         String name = extractName(typ);
-        if (name == null) return;
+        if (name == null) return false;
+        return addType(typ, name, keyword);
+    }
+
+    protected boolean addType(Type typ, String name, String keyword) {
         addPUMLLine(typ, keyword, name);
         addGeneralizations(typ);
+        return true;
     }
 
     @Override
@@ -155,17 +222,53 @@ public abstract class VStructure extends VDefault {
         String name = pkg.getName();
         if (name == null) return super.casePackage(pkg);
 
+        flushContexts();
         append("package ");
-        quote(name);
+        addNameWithId(pkg, name, true);
         append(' ');
         addLink(pkg);
         append(" {\n");
+        pushIdMap();
         super.casePackage(pkg);
+        popIdMap(true);
+        flushContexts();
         append("}\n");
         return "";
     }
+
+    @Override
+    public String caseSatisfyRequirementUsage(SatisfyRequirementUsage sru) {
+        addPRelation(sru.getSatisfiedRequirement(),
+                     sru.getSatisfyingFeature(),
+                     sru, "<<satisfy>>");
+        return "";
+    }
     
-    VStructure(Visitor prev) {
+    @Override
+    public String caseConjugatedPortDefinition(ConjugatedPortDefinition cpd) {
+        // Do not show conjugated ports.
+        return "";
+    }
+
+    @Override
+    public String caseLifeClass(LifeClass lc) {
+        // Do not show life classes
+        return "";
+    }
+
+    @Override
+    public String caseTimeSliceFeature(TimeSliceFeature tsf) {
+        // Do not show life classes
+        return "";
+    }
+
+    @Override
+    public String caseSnapshotFeature(SnapshotFeature sf) {
+        // Do not show life classes
+        return "";
+    }
+
+    protected VStructure(Visitor prev) {
     	super(prev);
     }
     

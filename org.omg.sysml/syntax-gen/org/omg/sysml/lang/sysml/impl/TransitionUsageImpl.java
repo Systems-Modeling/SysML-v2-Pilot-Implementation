@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -8,7 +28,6 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Expression;
@@ -18,6 +37,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.NonNotifyingEcoreEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -151,7 +171,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public EList<AcceptActionUsage> getTriggerAction() {
 		EList<AcceptActionUsage> triggerActions = 
-				new EObjectEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
+				new NonNotifyingEcoreEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
 		getTransitionFeatures(TransitionFeatureKind.TRIGGER).
 			filter(feature->feature instanceof AcceptActionUsage).
 			map(feature->(AcceptActionUsage)feature).
@@ -167,7 +187,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public EList<Expression> getGuardExpression() {
 		EList<Expression> guardExpressions = 
-				new EObjectEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
+				new NonNotifyingEcoreEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
 		getTransitionFeatures(TransitionFeatureKind.GUARD).
 			filter(feature->feature instanceof Expression).
 			map(feature->(Expression)feature).
@@ -183,7 +203,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public EList<ActionUsage> getEffectAction() {
 		EList<ActionUsage> effectActions = 
-				new EObjectEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
+				new NonNotifyingEcoreEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
 		getTransitionFeatures(TransitionFeatureKind.EFFECT).
 			filter(feature->feature instanceof ActionUsage).
 			map(feature->(ActionUsage)feature).

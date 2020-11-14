@@ -947,12 +947,21 @@ public class TypeImpl extends PackageImpl implements Type {
 		getOwnedFeatureMembership_comp().add(membership);
 		return membership;
 	}
-	
+
 	public BindingConnector addOwnedBindingConnector(Feature source, Feature target) {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
 		((ConnectorImpl)connector).addConnectorEnd(source);
 		((ConnectorImpl)connector).addConnectorEnd(target);
 		addOwnedFeature(connector);
+		return connector;
+	}
+
+	public BindingConnector addOwnedBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
+		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
+		((ConnectorImpl)connector).addConnectorEnd(source);
+		((ConnectorImpl)connector).addConnectorEnd(target);
+		addOwnedMember(connector);
+		((FeatureImpl)connector).addFeaturingTypes(featuringTypes);
 		return connector;
 	}
 	

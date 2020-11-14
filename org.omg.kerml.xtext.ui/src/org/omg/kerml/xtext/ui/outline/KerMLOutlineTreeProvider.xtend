@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.TextualRepresentation
 import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
+import org.omg.sysml.lang.sysml.TypeFeaturing
 
 /**
  * Customization of the default outline structure.
@@ -243,6 +244,15 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(FeatureMembership membership) {
+		false
+	}
+	
+	// Display a FeatureMembership like a Membership, rather than like a TypeFeaturing.
+	def void _createChildren(IOutlineNode parentNode, FeatureMembership membership) {
+		_createChildren(parentNode, membership as Membership)
+	}
+	
 	def boolean _isLeaf(Import _import) {
 		_import.importedPackage === null && _import.ownedElement.isEmpty
 	}
@@ -272,6 +282,25 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(TypeFeaturing featuring) {
+		featuring.featuringType === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, TypeFeaturing featuring) {
+		if (featuring.featureOfType !== null && featuring.featureOfType !== featuring.eContainer) {
+			createEObjectNode(parentNode, featuring.featureOfType, 
+				featuring.featureOfType._image, featuring.featureOfType._text, 
+				true
+			)			
+		}
+		if (featuring.featuringType !== null) {
+			createEObjectNode(parentNode, featuring.featuringType, 
+				featuring.featuringType._image, featuring.featuringType._text, 
+				true
+			)
+		}
+	}
+	
 	def boolean _isLeaf(Generalization generalization) {
 		generalization.general === null
 	}
@@ -279,7 +308,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
 		if (generalization.specific !== null && generalization.specific !== generalization.eContainer) {
 			createEObjectNode(parentNode, generalization.specific, 
-				generalization.general._image, generalization.specific._text, 
+				generalization.specific._image, generalization.specific._text, 
 				true
 			)			
 		}

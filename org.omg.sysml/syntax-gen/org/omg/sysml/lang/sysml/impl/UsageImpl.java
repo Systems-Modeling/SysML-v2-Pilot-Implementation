@@ -654,7 +654,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		} else if (isSubjectParameter()){
 			Feature subjectParameter = getRelevantSubjectParameter();
 			if (subjectParameter != null) {
-				valueConnector = makeBinding(valueConnector, subjectParameter, this);
+				valueConnector = makeValueBinding(valueConnector, subjectParameter);
 			}
 		}
 		return valueConnector;

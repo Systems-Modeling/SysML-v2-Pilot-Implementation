@@ -438,8 +438,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public EList<Type> getFeaturingType() {
 		EList<Type> featuringTypes = new NonNotifyingEcoreEList<>(Type.class, this, SysMLPackage.FEATURE__FEATURING_TYPE);
-		getOwnedTypeFeaturing().stream().map(TypeFeaturing::getFeaturingType).forEachOrdered(featuringTypes::add);
-		featuringTypes.add(getOwningType());
+		getOwnedTypeFeaturing().stream().
+			map(TypeFeaturing::getFeaturingType).
+			filter(featuring->featuring != null).
+			forEachOrdered(featuringTypes::add);
+		Type owningType = getOwningType();
+		if (owningType != null) {
+			featuringTypes.add(getOwningType());
+		}
 		return featuringTypes;
 	}
 
@@ -919,7 +925,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				valueConnector = makeBinding(valueConnector, ((ExpressionImpl)value).getResult(), this);
+				valueConnector = makeValueBinding(valueConnector, ((ExpressionImpl)value).getResult());
 			}
 		}
 		return valueConnector;
@@ -952,12 +958,48 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	// Utility methods
 	
+	public TypeFeaturing addFeaturingType(Type type) {
+		TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
+		featuring.setFeaturingType(type);
+		featuring.setFeatureOfType(this);
+		getOwnedRelationship_comp().add(featuring);
+		return featuring;
+	}
+	
+	public void addFeaturingTypes(Collection<Type> featuringTypes) {
+		for (Type featuringType: featuringTypes) {
+			addFeaturingType(featuringType);
+		}
+	}
+	
+	public void updateFeaturingTypes(List<Type> featuringTypes) {
+		int i = 0;
+		int n = featuringTypes.size();
+		for (TypeFeaturing featuring: getOwnedTypeFeaturing()) {
+			if (i >= n) {
+				break;
+			}
+			if (!(featuring instanceof FeatureMembership) && featuring.getFeaturingType() == null) {
+				featuring.setFeaturingType(featuringTypes.get(i));
+				i++;
+			}
+		}
+	}
+	
 	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
 		if (connector == null) {
 			connector = addOwnedBindingConnector(source, target);
 		} else {
-			((ConnectorImpl)connector).setRelatedFeature(0, source);
-			((ConnectorImpl)connector).setRelatedFeature(1, target);
+			((BindingConnectorImpl)connector).update(null, source, target);
+		}
+		return connector;
+	}
+	
+	public BindingConnector makeValueBinding(BindingConnector connector, Feature source) {
+		if (connector == null) {
+			connector = addOwnedBindingConnector(getFeaturingType(), source, this);
+		} else {
+			((BindingConnectorImpl)connector).update(getFeaturingType(), source, this);
 		}
 		return connector;
 	}

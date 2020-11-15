@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -146,6 +147,14 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 */
 	public boolean isSetBehavior() {
   		return false;
+	}
+	
+	@Override
+	public EList<Type> getFeaturingType() {
+		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
+			addImplicitFeaturingTypes();
+		}
+		return super.getFeaturingType();		
 	}
 
 	@Override
@@ -281,6 +290,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	public void transform() {
 		super.transform();
+		getFeaturingType();
 		getInput();
 		getOutput();
 	}

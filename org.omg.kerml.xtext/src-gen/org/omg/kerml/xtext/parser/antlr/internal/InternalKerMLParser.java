@@ -7343,14 +7343,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTypeDeclaration"
-    // InternalKerML.g:2540:1: ruleTypeDeclaration[EObject in_current] returns [EObject current=in_current] : ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ ) ;
+    // InternalKerML.g:2540:1: ruleTypeDeclaration[EObject in_current] returns [EObject current=in_current] : ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ ) ;
     public final EObject ruleTypeDeclaration(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
         Token lv_isSufficient_0_0=null;
         EObject this_Identification_1 = null;
 
-        EObject lv_ownedFeatureMembership_comp_2_0 = null;
+        EObject lv_ownedMembership_comp_2_0 = null;
 
         EObject this_SpecializationPart_3 = null;
 
@@ -7361,11 +7361,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:2546:2: ( ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ ) )
-            // InternalKerML.g:2547:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ )
+            // InternalKerML.g:2546:2: ( ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ ) )
+            // InternalKerML.g:2547:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ )
             {
-            // InternalKerML.g:2547:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ )
-            // InternalKerML.g:2548:3: ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+
+            // InternalKerML.g:2547:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+ )
+            // InternalKerML.g:2548:3: ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SpecializationPart_3= ruleSpecializationPart[$current] | this_ConjugationPart_4= ruleConjugationPart[$current] )+
             {
             // InternalKerML.g:2548:3: ( (lv_isSufficient_0_0= 'all' ) )?
             int alt51=2;
@@ -7440,7 +7440,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:2575:3: ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )?
+            // InternalKerML.g:2575:3: ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )?
             int alt53=2;
             int LA53_0 = input.LA(1);
 
@@ -7449,18 +7449,18 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt53) {
                 case 1 :
-                    // InternalKerML.g:2576:4: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalKerML.g:2576:4: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
                     {
-                    // InternalKerML.g:2576:4: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
-                    // InternalKerML.g:2577:5: lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember
+                    // InternalKerML.g:2576:4: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalKerML.g:2577:5: lv_ownedMembership_comp_2_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getTypeDeclarationAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0());
+                      					newCompositeNode(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_2_0());
                       				
                     }
                     pushFollow(FOLLOW_37);
-                    lv_ownedFeatureMembership_comp_2_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_2_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -7471,8 +7471,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_2_0,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_2_0,
                       						"org.omg.kerml.xtext.KerML.MultiplicityMember");
                       					afterParserOrEnumRuleCall();
                       				
@@ -7944,33 +7944,33 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityMember"
-    // InternalKerML.g:2741:1: ruleMultiplicityMember returns [EObject current=null] : ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) ) ;
+    // InternalKerML.g:2741:1: ruleMultiplicityMember returns [EObject current=null] : ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) ) ;
     public final EObject ruleMultiplicityMember() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedMemberFeature_comp_0_0 = null;
+        EObject lv_ownedMemberElement_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:2747:2: ( ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) ) )
-            // InternalKerML.g:2748:2: ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) )
+            // InternalKerML.g:2747:2: ( ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) ) )
+            // InternalKerML.g:2748:2: ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) )
             {
-            // InternalKerML.g:2748:2: ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) )
-            // InternalKerML.g:2749:3: (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity )
+            // InternalKerML.g:2748:2: ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) )
+            // InternalKerML.g:2749:3: (lv_ownedMemberElement_comp_0_0= ruleMultiplicity )
             {
-            // InternalKerML.g:2749:3: (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity )
-            // InternalKerML.g:2750:4: lv_ownedMemberFeature_comp_0_0= ruleMultiplicity
+            // InternalKerML.g:2749:3: (lv_ownedMemberElement_comp_0_0= ruleMultiplicity )
+            // InternalKerML.g:2750:4: lv_ownedMemberElement_comp_0_0= ruleMultiplicity
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compMultiplicityParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compMultiplicityParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedMemberFeature_comp_0_0=ruleMultiplicity();
+            lv_ownedMemberElement_comp_0_0=ruleMultiplicity();
 
             state._fsp--;
             if (state.failed) return current;
@@ -7981,8 +7981,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               				}
               				set(
               					current,
-              					"ownedMemberFeature_comp",
-              					lv_ownedMemberFeature_comp_0_0,
+              					"ownedMemberElement_comp",
+              					lv_ownedMemberElement_comp_0_0,
               					"org.omg.kerml.xtext.KerML.Multiplicity");
               				afterParserOrEnumRuleCall();
               			
@@ -10419,14 +10419,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleClassifierDeclaration"
-    // InternalKerML.g:3564:1: ruleClassifierDeclaration[EObject in_current] returns [EObject current=in_current] : ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? ) ;
+    // InternalKerML.g:3564:1: ruleClassifierDeclaration[EObject in_current] returns [EObject current=in_current] : ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? ) ;
     public final EObject ruleClassifierDeclaration(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
         Token lv_isSufficient_0_0=null;
         EObject this_Identification_1 = null;
 
-        EObject lv_ownedFeatureMembership_comp_2_0 = null;
+        EObject lv_ownedMembership_comp_2_0 = null;
 
         EObject this_SuperclassingPart_3 = null;
 
@@ -10437,11 +10437,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:3570:2: ( ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? ) )
-            // InternalKerML.g:3571:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? )
+            // InternalKerML.g:3570:2: ( ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? ) )
+            // InternalKerML.g:3571:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? )
             {
-            // InternalKerML.g:3571:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? )
-            // InternalKerML.g:3572:3: ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )?
+            // InternalKerML.g:3571:2: ( ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )? )
+            // InternalKerML.g:3572:3: ( (lv_isSufficient_0_0= 'all' ) )? (this_Identification_1= ruleIdentification[$current] )? ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )? (this_SuperclassingPart_3= ruleSuperclassingPart[$current] | this_ClassifierConjugationPart_4= ruleClassifierConjugationPart[$current] )?
             {
             // InternalKerML.g:3572:3: ( (lv_isSufficient_0_0= 'all' ) )?
             int alt75=2;
@@ -10516,7 +10516,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:3599:3: ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )?
+            // InternalKerML.g:3599:3: ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )?
             int alt77=2;
             int LA77_0 = input.LA(1);
 
@@ -10525,18 +10525,18 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt77) {
                 case 1 :
-                    // InternalKerML.g:3600:4: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalKerML.g:3600:4: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
                     {
-                    // InternalKerML.g:3600:4: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
-                    // InternalKerML.g:3601:5: lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember
+                    // InternalKerML.g:3600:4: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalKerML.g:3601:5: lv_ownedMembership_comp_2_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getClassifierDeclarationAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0());
+                      					newCompositeNode(grammarAccess.getClassifierDeclarationAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_2_0());
                       				
                     }
                     pushFollow(FOLLOW_59);
-                    lv_ownedFeatureMembership_comp_2_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_2_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -10547,8 +10547,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_2_0,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_2_0,
                       						"org.omg.kerml.xtext.KerML.MultiplicityMember");
                       					afterParserOrEnumRuleCall();
                       				
@@ -12279,38 +12279,38 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityPart"
-    // InternalKerML.g:4170:1: ruleMultiplicityPart[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) ;
+    // InternalKerML.g:4170:1: ruleMultiplicityPart[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) ;
     public final EObject ruleMultiplicityPart(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
         Token lv_isOrdered_2_0=null;
         Token lv_isNonunique_3_0=null;
-        EObject lv_ownedFeatureMembership_comp_0_0 = null;
+        EObject lv_ownedMembership_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:4176:2: ( ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) )
-            // InternalKerML.g:4177:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
+            // InternalKerML.g:4176:2: ( ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) )
+            // InternalKerML.g:4177:2: ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
             {
-            // InternalKerML.g:4177:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
-            // InternalKerML.g:4178:3: ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) )
+            // InternalKerML.g:4177:2: ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
+            // InternalKerML.g:4178:3: ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) )
             {
-            // InternalKerML.g:4178:3: ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) )
-            // InternalKerML.g:4179:4: (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember )
+            // InternalKerML.g:4178:3: ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) )
+            // InternalKerML.g:4179:4: (lv_ownedMembership_comp_0_0= ruleMultiplicityMember )
             {
-            // InternalKerML.g:4179:4: (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember )
-            // InternalKerML.g:4180:5: lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember
+            // InternalKerML.g:4179:4: (lv_ownedMembership_comp_0_0= ruleMultiplicityMember )
+            // InternalKerML.g:4180:5: lv_ownedMembership_comp_0_0= ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_0());
+              					newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_0());
               				
             }
             pushFollow(FOLLOW_67);
-            lv_ownedFeatureMembership_comp_0_0=ruleMultiplicityMember();
+            lv_ownedMembership_comp_0_0=ruleMultiplicityMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -12321,8 +12321,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_0_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_0_0,
               						"org.omg.kerml.xtext.KerML.MultiplicityMember");
               					afterParserOrEnumRuleCall();
               				
@@ -15035,27 +15035,27 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicity"
-    // InternalKerML.g:5116:1: ruleMultiplicity returns [EObject current=null] : (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) ;
+    // InternalKerML.g:5116:1: ruleMultiplicity returns [EObject current=null] : (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) ;
     public final EObject ruleMultiplicity() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_3_0 = null;
+        EObject lv_ownedMembership_comp_3_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:5122:2: ( (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) )
-            // InternalKerML.g:5123:2: (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
+            // InternalKerML.g:5122:2: ( (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) )
+            // InternalKerML.g:5123:2: (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
             {
-            // InternalKerML.g:5123:2: (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
-            // InternalKerML.g:5124:3: otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']'
+            // InternalKerML.g:5123:2: (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
+            // InternalKerML.g:5124:3: otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']'
             {
             otherlv_0=(Token)match(input,65,FOLLOW_79); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -15063,7 +15063,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getMultiplicityAccess().getLeftSquareBracketKeyword_0());
               		
             }
-            // InternalKerML.g:5128:3: ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )?
+            // InternalKerML.g:5128:3: ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )?
             int alt114=2;
             int LA114_0 = input.LA(1);
 
@@ -15076,21 +15076,21 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt114) {
                 case 1 :
-                    // InternalKerML.g:5129:4: ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..'
+                    // InternalKerML.g:5129:4: ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..'
                     {
-                    // InternalKerML.g:5129:4: ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) )
-                    // InternalKerML.g:5130:5: (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember )
+                    // InternalKerML.g:5129:4: ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) )
+                    // InternalKerML.g:5130:5: (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember )
                     {
-                    // InternalKerML.g:5130:5: (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember )
-                    // InternalKerML.g:5131:6: lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember
+                    // InternalKerML.g:5130:5: (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember )
+                    // InternalKerML.g:5131:6: lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralIntegerMemberParserRuleCall_1_0_0());
+                      						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralIntegerMemberParserRuleCall_1_0_0());
                       					
                     }
                     pushFollow(FOLLOW_80);
-                    lv_ownedFeatureMembership_comp_1_0=ruleLiteralIntegerMember();
+                    lv_ownedMembership_comp_1_0=ruleLiteralIntegerMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -15101,8 +15101,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       						}
                       						add(
                       							current,
-                      							"ownedFeatureMembership_comp",
-                      							lv_ownedFeatureMembership_comp_1_0,
+                      							"ownedMembership_comp",
+                      							lv_ownedMembership_comp_1_0,
                       							"org.omg.kerml.xtext.KerML.LiteralIntegerMember");
                       						afterParserOrEnumRuleCall();
                       					
@@ -15125,19 +15125,19 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:5153:3: ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) )
-            // InternalKerML.g:5154:4: (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
+            // InternalKerML.g:5153:3: ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) )
+            // InternalKerML.g:5154:4: (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
             {
-            // InternalKerML.g:5154:4: (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
-            // InternalKerML.g:5155:5: lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember
+            // InternalKerML.g:5154:4: (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
+            // InternalKerML.g:5155:5: lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0());
+              					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0());
               				
             }
             pushFollow(FOLLOW_81);
-            lv_ownedFeatureMembership_comp_3_0=ruleLiteralUnlimitedNaturalMember();
+            lv_ownedMembership_comp_3_0=ruleLiteralUnlimitedNaturalMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -15148,8 +15148,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_3_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_3_0,
               						"org.omg.kerml.xtext.KerML.LiteralUnlimitedNaturalMember");
               					afterParserOrEnumRuleCall();
               				
@@ -15231,33 +15231,33 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralIntegerMember"
-    // InternalKerML.g:5187:1: ruleLiteralIntegerMember returns [EObject current=null] : ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) ) ;
+    // InternalKerML.g:5187:1: ruleLiteralIntegerMember returns [EObject current=null] : ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) ) ;
     public final EObject ruleLiteralIntegerMember() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedMemberFeature_comp_0_0 = null;
+        EObject lv_ownedMemberElement_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:5193:2: ( ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) ) )
-            // InternalKerML.g:5194:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) )
+            // InternalKerML.g:5193:2: ( ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) ) )
+            // InternalKerML.g:5194:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) )
             {
-            // InternalKerML.g:5194:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) )
-            // InternalKerML.g:5195:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger )
+            // InternalKerML.g:5194:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) )
+            // InternalKerML.g:5195:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger )
             {
-            // InternalKerML.g:5195:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger )
-            // InternalKerML.g:5196:4: lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger
+            // InternalKerML.g:5195:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger )
+            // InternalKerML.g:5196:4: lv_ownedMemberElement_comp_0_0= ruleLiteralInteger
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compLiteralIntegerParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compLiteralIntegerParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedMemberFeature_comp_0_0=ruleLiteralInteger();
+            lv_ownedMemberElement_comp_0_0=ruleLiteralInteger();
 
             state._fsp--;
             if (state.failed) return current;
@@ -15268,8 +15268,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               				}
               				set(
               					current,
-              					"ownedMemberFeature_comp",
-              					lv_ownedMemberFeature_comp_0_0,
+              					"ownedMemberElement_comp",
+              					lv_ownedMemberElement_comp_0_0,
               					"org.omg.kerml.xtext.KerML.LiteralInteger");
               				afterParserOrEnumRuleCall();
               			
@@ -15342,33 +15342,33 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralUnlimitedNaturalMember"
-    // InternalKerML.g:5223:1: ruleLiteralUnlimitedNaturalMember returns [EObject current=null] : ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) ) ;
+    // InternalKerML.g:5223:1: ruleLiteralUnlimitedNaturalMember returns [EObject current=null] : ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) ) ;
     public final EObject ruleLiteralUnlimitedNaturalMember() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedMemberFeature_comp_0_0 = null;
+        EObject lv_ownedMemberElement_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:5229:2: ( ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) ) )
-            // InternalKerML.g:5230:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) )
+            // InternalKerML.g:5229:2: ( ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) ) )
+            // InternalKerML.g:5230:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) )
             {
-            // InternalKerML.g:5230:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) )
-            // InternalKerML.g:5231:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural )
+            // InternalKerML.g:5230:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) )
+            // InternalKerML.g:5231:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural )
             {
-            // InternalKerML.g:5231:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural )
-            // InternalKerML.g:5232:4: lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural
+            // InternalKerML.g:5231:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural )
+            // InternalKerML.g:5232:4: lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compLiteralUnlimitedNaturalParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compLiteralUnlimitedNaturalParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedMemberFeature_comp_0_0=ruleLiteralUnlimitedNatural();
+            lv_ownedMemberElement_comp_0_0=ruleLiteralUnlimitedNatural();
 
             state._fsp--;
             if (state.failed) return current;
@@ -15379,8 +15379,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               				}
               				set(
               					current,
-              					"ownedMemberFeature_comp",
-              					lv_ownedMemberFeature_comp_0_0,
+              					"ownedMemberElement_comp",
+              					lv_ownedMemberElement_comp_0_0,
               					"org.omg.kerml.xtext.KerML.LiteralUnlimitedNatural");
               				afterParserOrEnumRuleCall();
               			
@@ -16894,24 +16894,24 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConnectorEnd"
-    // InternalKerML.g:5794:1: ruleConnectorEnd returns [EObject current=null] : ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) ;
+    // InternalKerML.g:5794:1: ruleConnectorEnd returns [EObject current=null] : ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) ;
     public final EObject ruleConnectorEnd() throws RecognitionException {
         EObject current = null;
 
         EObject lv_ownedRelationship_comp_0_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:5800:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) )
-            // InternalKerML.g:5801:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
+            // InternalKerML.g:5800:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) )
+            // InternalKerML.g:5801:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
             {
-            // InternalKerML.g:5801:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
-            // InternalKerML.g:5802:3: ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+            // InternalKerML.g:5801:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
+            // InternalKerML.g:5802:3: ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
             {
             // InternalKerML.g:5802:3: ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) )
             // InternalKerML.g:5803:4: (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting )
@@ -16948,7 +16948,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:5821:3: ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+            // InternalKerML.g:5821:3: ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
             int alt126=2;
             int LA126_0 = input.LA(1);
 
@@ -16957,18 +16957,18 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt126) {
                 case 1 :
-                    // InternalKerML.g:5822:4: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
+                    // InternalKerML.g:5822:4: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
                     {
-                    // InternalKerML.g:5822:4: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
-                    // InternalKerML.g:5823:5: lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember
+                    // InternalKerML.g:5822:4: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
+                    // InternalKerML.g:5823:5: lv_ownedMembership_comp_1_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0());
+                      					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0());
                       				
                     }
                     pushFollow(FOLLOW_2);
-                    lv_ownedFeatureMembership_comp_1_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_1_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -16979,8 +16979,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_1_0,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_1_0,
                       						"org.omg.kerml.xtext.KerML.MultiplicityMember");
                       					afterParserOrEnumRuleCall();
                       				
@@ -24058,15 +24058,15 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleItemFeature"
-    // InternalKerML.g:8310:1: ruleItemFeature returns [EObject current=null] : ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) ;
+    // InternalKerML.g:8310:1: ruleItemFeature returns [EObject current=null] : ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) ;
     public final EObject ruleItemFeature() throws RecognitionException {
         EObject current = null;
 
         EObject lv_ownedRelationship_comp_0_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_2_0 = null;
+        EObject lv_ownedMembership_comp_2_0 = null;
 
         EObject lv_ownedRelationship_comp_3_0 = null;
 
@@ -24075,10 +24075,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:8316:2: ( ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) )
-            // InternalKerML.g:8317:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
+            // InternalKerML.g:8316:2: ( ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) )
+            // InternalKerML.g:8317:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
             {
-            // InternalKerML.g:8317:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
+            // InternalKerML.g:8317:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
             int alt181=2;
             int LA181_0 = input.LA(1);
 
@@ -24097,10 +24097,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt181) {
                 case 1 :
-                    // InternalKerML.g:8318:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
+                    // InternalKerML.g:8318:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
                     {
-                    // InternalKerML.g:8318:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
-                    // InternalKerML.g:8319:4: ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+                    // InternalKerML.g:8318:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
+                    // InternalKerML.g:8319:4: ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
                     {
                     // InternalKerML.g:8319:4: ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) )
                     // InternalKerML.g:8320:5: (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping )
@@ -24137,7 +24137,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalKerML.g:8338:4: ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+                    // InternalKerML.g:8338:4: ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
                     int alt179=2;
                     int LA179_0 = input.LA(1);
 
@@ -24146,18 +24146,18 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt179) {
                         case 1 :
-                            // InternalKerML.g:8339:5: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
+                            // InternalKerML.g:8339:5: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
                             {
-                            // InternalKerML.g:8339:5: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
-                            // InternalKerML.g:8340:6: lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember
+                            // InternalKerML.g:8339:5: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
+                            // InternalKerML.g:8340:6: lv_ownedMembership_comp_1_0= ruleMultiplicityMember
                             {
                             if ( state.backtracking==0 ) {
 
-                              						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_1_0());
+                              						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_1_0());
                               					
                             }
                             pushFollow(FOLLOW_2);
-                            lv_ownedFeatureMembership_comp_1_0=ruleMultiplicityMember();
+                            lv_ownedMembership_comp_1_0=ruleMultiplicityMember();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -24168,8 +24168,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                               						}
                               						add(
                               							current,
-                              							"ownedFeatureMembership_comp",
-                              							lv_ownedFeatureMembership_comp_1_0,
+                              							"ownedMembership_comp",
+                              							lv_ownedMembership_comp_1_0,
                               							"org.omg.kerml.xtext.KerML.MultiplicityMember");
                               						afterParserOrEnumRuleCall();
                               					
@@ -24190,24 +24190,24 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:8359:3: ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
+                    // InternalKerML.g:8359:3: ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
                     {
-                    // InternalKerML.g:8359:3: ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
-                    // InternalKerML.g:8360:4: ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )?
+                    // InternalKerML.g:8359:3: ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
+                    // InternalKerML.g:8360:4: ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )?
                     {
-                    // InternalKerML.g:8360:4: ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )
-                    // InternalKerML.g:8361:5: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalKerML.g:8360:4: ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )
+                    // InternalKerML.g:8361:5: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
                     {
-                    // InternalKerML.g:8361:5: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
-                    // InternalKerML.g:8362:6: lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember
+                    // InternalKerML.g:8361:5: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalKerML.g:8362:6: lv_ownedMembership_comp_2_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0_0());
+                      						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0_0());
                       					
                     }
                     pushFollow(FOLLOW_5);
-                    lv_ownedFeatureMembership_comp_2_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_2_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -24218,8 +24218,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       						}
                       						add(
                       							current,
-                      							"ownedFeatureMembership_comp",
-                      							lv_ownedFeatureMembership_comp_2_0,
+                      							"ownedMembership_comp",
+                      							lv_ownedMembership_comp_2_0,
                       							"org.omg.kerml.xtext.KerML.MultiplicityMember");
                       						afterParserOrEnumRuleCall();
                       					

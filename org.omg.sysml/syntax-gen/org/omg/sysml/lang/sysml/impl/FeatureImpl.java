@@ -298,8 +298,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated NOT
 	 */
 	public Type basicGetOwningType() {
-		org.omg.sysml.lang.sysml.Package namespace = this.getOwningNamespace();
-		return namespace instanceof Type? (Type)namespace: null;
+		FeatureMembership membership = getOwningFeatureMembership();
+		return membership == null? null: membership.getOwningType();
 	}
 
 	/**
@@ -492,31 +492,34 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * overriding getGeneralCategories and getRelevantFeatures.
 	 */
 	protected void addRedefinitions(List<Redefinition> emptyRedefinitions) {
-		Type type = getOwningType();
-		int i = getRelevantFeatures(type).indexOf(this);
-		int j = 0;
-		int n = emptyRedefinitions == null? 0: emptyRedefinitions.size();
-		if (i >= 0) {
-			for (Type general: getGeneralTypes(type)) {
-				List<? extends Feature> features = getRelevantFeatures(general);
-				if (i < features.size()) {
-					Feature redefinedFeature = features.get(i);
-					if (redefinedFeature != null && redefinedFeature != this) {
-						Redefinition redefinition;
-						if (j < n) {
-							redefinition = emptyRedefinitions.get(j);
-							j++;
-						} else {
-							redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-							redefinition.setRedefiningFeature(this);
-							getOwnedRelationship_comp().add(redefinition);
+		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		if (owner instanceof Type) {
+			Type type = (Type)owner;
+			int i = getRelevantFeatures(type).indexOf(this);
+			int j = 0;
+			int n = emptyRedefinitions == null? 0: emptyRedefinitions.size();
+			if (i >= 0) {
+				for (Type general: getGeneralTypes(type)) {
+					List<? extends Feature> features = getRelevantFeatures(general);
+					if (i < features.size()) {
+						Feature redefinedFeature = features.get(i);
+						if (redefinedFeature != null && redefinedFeature != this) {
+							Redefinition redefinition;
+							if (j < n) {
+								redefinition = emptyRedefinitions.get(j);
+								j++;
+							} else {
+								redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+								redefinition.setRedefiningFeature(this);
+								getOwnedRelationship_comp().add(redefinition);
+							}
+							redefinition.setRedefinedFeature(redefinedFeature);
 						}
-						redefinition.setRedefinedFeature(redefinedFeature);
 					}
 				}
-			}
-			if (n > 0) {
-				getOwnedRelationship_comp().removeAll(emptyRedefinitions.subList(j, n));
+				if (n > 0) {
+					getOwnedRelationship_comp().removeAll(emptyRedefinitions.subList(j, n));
+				}
 			}
 		}
 	}
@@ -957,6 +960,18 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	// Utility methods
+	
+	protected void addImplicitFeaturingTypes() {
+		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		if (owner instanceof Feature) {
+			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
+			if (getOwnedTypeFeaturing().stream().allMatch(FeatureMembership.class::isInstance)) {
+				addFeaturingTypes(ownerFeaturingTypes);
+			} else {
+				updateFeaturingTypes(ownerFeaturingTypes);
+			}
+		}
+	}
 	
 	public TypeFeaturing addFeaturingType(Type type) {
 		TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();

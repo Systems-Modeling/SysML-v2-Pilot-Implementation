@@ -288,7 +288,7 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedFeatureMembership_comp += MultiplicityMember 
+	ownedMembership_comp += MultiplicityMember 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
@@ -348,22 +348,22 @@ OwnedRedefinition returns SysML::Redefinition:
 
 /* Multiplicity */
 
-MultiplicityMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = Multiplicity
+MultiplicityMember returns SysML::Membership :
+	ownedMemberElement_comp = Multiplicity
 ;
 
 Multiplicity returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	'[' ( ownedFeatureMembership_comp += LiteralIntegerMember '..' )? 
-	      ownedFeatureMembership_comp += LiteralUnlimitedNaturalMember ']'
+	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
+	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
 ;
 
-LiteralIntegerMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = LiteralInteger
+LiteralIntegerMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralInteger
 ;
 
-LiteralUnlimitedNaturalMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = LiteralUnlimitedNatural
+LiteralUnlimitedNaturalMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralUnlimitedNatural
 ;
 
 /* CONNECTORS */
@@ -376,7 +376,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 
 ConnectorEnd returns SysML::Feature :
 	ownedRelationship_comp += OwnedSubsetting 
-	( ownedFeatureMembership_comp += MultiplicityMember )?
+	( ownedMembership_comp += MultiplicityMember )?
 ;
 
 /* Binding Connectors */
@@ -451,8 +451,8 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  ownedRelationship_comp += OwnedFeatureTyping 
-	  ( ownedFeatureMembership_comp += MultiplicityMember )?
-	| ownedFeatureMembership_comp += MultiplicityMember
+	  ( ownedMembership_comp += MultiplicityMember )?
+	| ownedMembership_comp += MultiplicityMember
 	  ( ownedRelationship_comp += OwnedFeatureTyping )?
 ;
 
@@ -1117,7 +1117,7 @@ MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} ( ownedFeatureMembership_comp += MultiplicityMember )?
+	{SysML::SourceEnd} ( ownedMembership_comp += MultiplicityMember )?
 ;
 
 EmptyTargetEndMember returns SysML::EndFeatureMembership :

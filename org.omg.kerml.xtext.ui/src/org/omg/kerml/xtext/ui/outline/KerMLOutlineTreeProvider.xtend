@@ -40,9 +40,14 @@ import org.omg.sysml.lang.sysml.TypeFeaturing
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
+	
+	def String metaclassText(Element element) {
+		(element as ElementImpl).transform()
+		element.eClass.name
+	}
 
 	def String _text(Element element) {
-		var text = element.eClass.name;
+		var text = element.metaclassText;
 		if (element.humanId !== null) {
 			text += ' id ' + element.humanId
 		}
@@ -59,7 +64,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String prefixText(Membership membership) {
-		var text = membership.eClass.name;
+		var text = membership.metaclassText;
 		if (membership.ownedMemberElement !== null) {
 			text += ' owns'
 		}
@@ -104,7 +109,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Import import_) {
-		var text = import_.eClass.name;
+		var text = import_.metaclassText;
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
@@ -130,28 +135,28 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _text(LiteralString literal) {
-		"LiteralString " + literal.value
+	def String _Text(LiteralString literal) {
+		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String _text(LiteralBoolean literal) {
-		"LiteralBoolean " + literal.value
+	def String literalText(LiteralBoolean literal) {
+		literal.metaclassText + ' ' + literal.value
 	}
 	
 	def String _text(LiteralInteger literal) {
-		"LiteralInteger " + literal.value
+		literal.metaclassText + ' ' + literal.value
 	}
 	
 	def String _text(LiteralReal literal) {
-		"LiteralReal " + literal.value
+		literal.metaclassText + ' ' + literal.value
 	}
 	
 	def String _text(LiteralUnbounded literal) {
-		"LiteralUnbounded *"
+		literal.metaclassText + ' *'
 	}
 	
 	def String _text(NullExpression expression) {
-		"NullExpression null"
+		expression.metaclassText + ' null'
 	}
 	
 	def boolean _isLeaf(Relationship relationship) {

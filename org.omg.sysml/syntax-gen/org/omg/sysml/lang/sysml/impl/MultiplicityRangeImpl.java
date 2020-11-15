@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
@@ -88,11 +88,11 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @generated NOT
 	 */
 	public Expression basicGetLowerBound() {
-		EList<Feature> bounds = super.getOwnedFeature();
+		EList<Element> bounds = super.getOwnedMember();
 		if (bounds.size() < 2) {
 			return null;
 		} else {
-			Feature bound = bounds.get(0);
+			Element bound = bounds.get(0);
 			return bound instanceof Expression? (Expression)bound: null;
 		}
 	}
@@ -124,12 +124,12 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @generated NOT
 	 */
 	public Expression basicGetUpperBound() {
-		EList<Feature> bounds = super.getOwnedFeature();
+		EList<Element> bounds = super.getOwnedMember();
 		int size = bounds.size();
 		if (bounds.isEmpty()) {
 			return null;
 		} else {
-			Feature bound = bounds.get(size - 1);
+			Element bound = bounds.get(size - 1);
 			return bound instanceof Expression? (Expression)bound: null;
 		}
 	}

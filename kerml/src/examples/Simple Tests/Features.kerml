@@ -33,11 +33,11 @@ generalization Sub subset parent subsets person;
 generalization subset mother subsets parent;
 
 classifier LegalRecord {
-	feature guardian;
+	feature guardian[0..1] = null;
 }
 
 classifier RegisteredAsset {
-	feature identifier;
+	feature identifier[1];
 }
 
 classifier Vehicle :> RegisteredAsset {

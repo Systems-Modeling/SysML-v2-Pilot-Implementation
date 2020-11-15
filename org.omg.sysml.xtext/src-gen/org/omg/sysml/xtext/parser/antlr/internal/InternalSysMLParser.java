@@ -7186,38 +7186,38 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityPart"
-    // InternalSysML.g:2448:1: ruleMultiplicityPart[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) ;
+    // InternalSysML.g:2448:1: ruleMultiplicityPart[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) ;
     public final EObject ruleMultiplicityPart(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
         Token lv_isOrdered_2_0=null;
         Token lv_isNonunique_3_0=null;
-        EObject lv_ownedFeatureMembership_comp_0_0 = null;
+        EObject lv_ownedMembership_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:2454:2: ( ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) )
-            // InternalSysML.g:2455:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
+            // InternalSysML.g:2454:2: ( ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) ) )
+            // InternalSysML.g:2455:2: ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
             {
-            // InternalSysML.g:2455:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
-            // InternalSysML.g:2456:3: ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) )
+            // InternalSysML.g:2455:2: ( ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) ) )
+            // InternalSysML.g:2456:3: ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) ) ( ( ( ( ({...}? => ( ({...}? => ( (lv_isOrdered_2_0= 'ordered' ) ) ) ) ) | ({...}? => ( ({...}? => ( (lv_isNonunique_3_0= 'nonunique' ) ) ) ) ) )* ) ) )
             {
-            // InternalSysML.g:2456:3: ( (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember ) )
-            // InternalSysML.g:2457:4: (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember )
+            // InternalSysML.g:2456:3: ( (lv_ownedMembership_comp_0_0= ruleMultiplicityMember ) )
+            // InternalSysML.g:2457:4: (lv_ownedMembership_comp_0_0= ruleMultiplicityMember )
             {
-            // InternalSysML.g:2457:4: (lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember )
-            // InternalSysML.g:2458:5: lv_ownedFeatureMembership_comp_0_0= ruleMultiplicityMember
+            // InternalSysML.g:2457:4: (lv_ownedMembership_comp_0_0= ruleMultiplicityMember )
+            // InternalSysML.g:2458:5: lv_ownedMembership_comp_0_0= ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_0());
+              					newCompositeNode(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_0());
               				
             }
             pushFollow(FOLLOW_37);
-            lv_ownedFeatureMembership_comp_0_0=ruleMultiplicityMember();
+            lv_ownedMembership_comp_0_0=ruleMultiplicityMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -7228,8 +7228,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_0_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_0_0,
               						"org.omg.sysml.xtext.SysML.MultiplicityMember");
               					afterParserOrEnumRuleCall();
               				
@@ -8977,33 +8977,33 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicityMember"
-    // InternalSysML.g:3054:1: ruleMultiplicityMember returns [EObject current=null] : ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) ) ;
+    // InternalSysML.g:3054:1: ruleMultiplicityMember returns [EObject current=null] : ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) ) ;
     public final EObject ruleMultiplicityMember() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedMemberFeature_comp_0_0 = null;
+        EObject lv_ownedMemberElement_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:3060:2: ( ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) ) )
-            // InternalSysML.g:3061:2: ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) )
+            // InternalSysML.g:3060:2: ( ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) ) )
+            // InternalSysML.g:3061:2: ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) )
             {
-            // InternalSysML.g:3061:2: ( (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity ) )
-            // InternalSysML.g:3062:3: (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity )
+            // InternalSysML.g:3061:2: ( (lv_ownedMemberElement_comp_0_0= ruleMultiplicity ) )
+            // InternalSysML.g:3062:3: (lv_ownedMemberElement_comp_0_0= ruleMultiplicity )
             {
-            // InternalSysML.g:3062:3: (lv_ownedMemberFeature_comp_0_0= ruleMultiplicity )
-            // InternalSysML.g:3063:4: lv_ownedMemberFeature_comp_0_0= ruleMultiplicity
+            // InternalSysML.g:3062:3: (lv_ownedMemberElement_comp_0_0= ruleMultiplicity )
+            // InternalSysML.g:3063:4: lv_ownedMemberElement_comp_0_0= ruleMultiplicity
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compMultiplicityParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compMultiplicityParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedMemberFeature_comp_0_0=ruleMultiplicity();
+            lv_ownedMemberElement_comp_0_0=ruleMultiplicity();
 
             state._fsp--;
             if (state.failed) return current;
@@ -9014,8 +9014,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               				}
               				set(
               					current,
-              					"ownedMemberFeature_comp",
-              					lv_ownedMemberFeature_comp_0_0,
+              					"ownedMemberElement_comp",
+              					lv_ownedMemberElement_comp_0_0,
               					"org.omg.sysml.xtext.SysML.Multiplicity");
               				afterParserOrEnumRuleCall();
               			
@@ -9088,27 +9088,27 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicity"
-    // InternalSysML.g:3090:1: ruleMultiplicity returns [EObject current=null] : (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) ;
+    // InternalSysML.g:3090:1: ruleMultiplicity returns [EObject current=null] : (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) ;
     public final EObject ruleMultiplicity() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_3_0 = null;
+        EObject lv_ownedMembership_comp_3_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:3096:2: ( (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) )
-            // InternalSysML.g:3097:2: (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
+            // InternalSysML.g:3096:2: ( (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' ) )
+            // InternalSysML.g:3097:2: (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
             {
-            // InternalSysML.g:3097:2: (otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
-            // InternalSysML.g:3098:3: otherlv_0= '[' ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']'
+            // InternalSysML.g:3097:2: (otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']' )
+            // InternalSysML.g:3098:3: otherlv_0= '[' ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )? ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) ) otherlv_4= ']'
             {
             otherlv_0=(Token)match(input,42,FOLLOW_39); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -9116,7 +9116,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getMultiplicityAccess().getLeftSquareBracketKeyword_0());
               		
             }
-            // InternalSysML.g:3102:3: ( ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )?
+            // InternalSysML.g:3102:3: ( ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..' )?
             int alt55=2;
             int LA55_0 = input.LA(1);
 
@@ -9129,21 +9129,21 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt55) {
                 case 1 :
-                    // InternalSysML.g:3103:4: ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..'
+                    // InternalSysML.g:3103:4: ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) ) otherlv_2= '..'
                     {
-                    // InternalSysML.g:3103:4: ( (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember ) )
-                    // InternalSysML.g:3104:5: (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember )
+                    // InternalSysML.g:3103:4: ( (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember ) )
+                    // InternalSysML.g:3104:5: (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember )
                     {
-                    // InternalSysML.g:3104:5: (lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember )
-                    // InternalSysML.g:3105:6: lv_ownedFeatureMembership_comp_1_0= ruleLiteralIntegerMember
+                    // InternalSysML.g:3104:5: (lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember )
+                    // InternalSysML.g:3105:6: lv_ownedMembership_comp_1_0= ruleLiteralIntegerMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralIntegerMemberParserRuleCall_1_0_0());
+                      						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralIntegerMemberParserRuleCall_1_0_0());
                       					
                     }
                     pushFollow(FOLLOW_40);
-                    lv_ownedFeatureMembership_comp_1_0=ruleLiteralIntegerMember();
+                    lv_ownedMembership_comp_1_0=ruleLiteralIntegerMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -9154,8 +9154,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       						}
                       						add(
                       							current,
-                      							"ownedFeatureMembership_comp",
-                      							lv_ownedFeatureMembership_comp_1_0,
+                      							"ownedMembership_comp",
+                      							lv_ownedMembership_comp_1_0,
                       							"org.omg.sysml.xtext.SysML.LiteralIntegerMember");
                       						afterParserOrEnumRuleCall();
                       					
@@ -9178,19 +9178,19 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSysML.g:3127:3: ( (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) )
-            // InternalSysML.g:3128:4: (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
+            // InternalSysML.g:3127:3: ( (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember ) )
+            // InternalSysML.g:3128:4: (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
             {
-            // InternalSysML.g:3128:4: (lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
-            // InternalSysML.g:3129:5: lv_ownedFeatureMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember
+            // InternalSysML.g:3128:4: (lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember )
+            // InternalSysML.g:3129:5: lv_ownedMembership_comp_3_0= ruleLiteralUnlimitedNaturalMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0());
+              					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0());
               				
             }
             pushFollow(FOLLOW_41);
-            lv_ownedFeatureMembership_comp_3_0=ruleLiteralUnlimitedNaturalMember();
+            lv_ownedMembership_comp_3_0=ruleLiteralUnlimitedNaturalMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -9201,8 +9201,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_3_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_3_0,
               						"org.omg.sysml.xtext.SysML.LiteralUnlimitedNaturalMember");
               					afterParserOrEnumRuleCall();
               				
@@ -9284,33 +9284,33 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralIntegerMember"
-    // InternalSysML.g:3161:1: ruleLiteralIntegerMember returns [EObject current=null] : ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) ) ;
+    // InternalSysML.g:3161:1: ruleLiteralIntegerMember returns [EObject current=null] : ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) ) ;
     public final EObject ruleLiteralIntegerMember() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedMemberFeature_comp_0_0 = null;
+        EObject lv_ownedMemberElement_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:3167:2: ( ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) ) )
-            // InternalSysML.g:3168:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) )
+            // InternalSysML.g:3167:2: ( ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) ) )
+            // InternalSysML.g:3168:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) )
             {
-            // InternalSysML.g:3168:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger ) )
-            // InternalSysML.g:3169:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger )
+            // InternalSysML.g:3168:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger ) )
+            // InternalSysML.g:3169:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger )
             {
-            // InternalSysML.g:3169:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger )
-            // InternalSysML.g:3170:4: lv_ownedMemberFeature_comp_0_0= ruleLiteralInteger
+            // InternalSysML.g:3169:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralInteger )
+            // InternalSysML.g:3170:4: lv_ownedMemberElement_comp_0_0= ruleLiteralInteger
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compLiteralIntegerParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compLiteralIntegerParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedMemberFeature_comp_0_0=ruleLiteralInteger();
+            lv_ownedMemberElement_comp_0_0=ruleLiteralInteger();
 
             state._fsp--;
             if (state.failed) return current;
@@ -9321,8 +9321,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               				}
               				set(
               					current,
-              					"ownedMemberFeature_comp",
-              					lv_ownedMemberFeature_comp_0_0,
+              					"ownedMemberElement_comp",
+              					lv_ownedMemberElement_comp_0_0,
               					"org.omg.sysml.xtext.SysML.LiteralInteger");
               				afterParserOrEnumRuleCall();
               			
@@ -9395,33 +9395,33 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralUnlimitedNaturalMember"
-    // InternalSysML.g:3197:1: ruleLiteralUnlimitedNaturalMember returns [EObject current=null] : ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) ) ;
+    // InternalSysML.g:3197:1: ruleLiteralUnlimitedNaturalMember returns [EObject current=null] : ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) ) ;
     public final EObject ruleLiteralUnlimitedNaturalMember() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedMemberFeature_comp_0_0 = null;
+        EObject lv_ownedMemberElement_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:3203:2: ( ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) ) )
-            // InternalSysML.g:3204:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) )
+            // InternalSysML.g:3203:2: ( ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) ) )
+            // InternalSysML.g:3204:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) )
             {
-            // InternalSysML.g:3204:2: ( (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural ) )
-            // InternalSysML.g:3205:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural )
+            // InternalSysML.g:3204:2: ( (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural ) )
+            // InternalSysML.g:3205:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural )
             {
-            // InternalSysML.g:3205:3: (lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural )
-            // InternalSysML.g:3206:4: lv_ownedMemberFeature_comp_0_0= ruleLiteralUnlimitedNatural
+            // InternalSysML.g:3205:3: (lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural )
+            // InternalSysML.g:3206:4: lv_ownedMemberElement_comp_0_0= ruleLiteralUnlimitedNatural
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compLiteralUnlimitedNaturalParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compLiteralUnlimitedNaturalParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedMemberFeature_comp_0_0=ruleLiteralUnlimitedNatural();
+            lv_ownedMemberElement_comp_0_0=ruleLiteralUnlimitedNatural();
 
             state._fsp--;
             if (state.failed) return current;
@@ -9432,8 +9432,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               				}
               				set(
               					current,
-              					"ownedMemberFeature_comp",
-              					lv_ownedMemberFeature_comp_0_0,
+              					"ownedMemberElement_comp",
+              					lv_ownedMemberElement_comp_0_0,
               					"org.omg.sysml.xtext.SysML.LiteralUnlimitedNatural");
               				afterParserOrEnumRuleCall();
               			
@@ -9695,24 +9695,24 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleConnectorEnd"
-    // InternalSysML.g:3296:1: ruleConnectorEnd returns [EObject current=null] : ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) ;
+    // InternalSysML.g:3296:1: ruleConnectorEnd returns [EObject current=null] : ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) ;
     public final EObject ruleConnectorEnd() throws RecognitionException {
         EObject current = null;
 
         EObject lv_ownedRelationship_comp_0_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:3302:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) )
-            // InternalSysML.g:3303:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
+            // InternalSysML.g:3302:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) )
+            // InternalSysML.g:3303:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
             {
-            // InternalSysML.g:3303:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
-            // InternalSysML.g:3304:3: ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+            // InternalSysML.g:3303:2: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
+            // InternalSysML.g:3304:3: ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
             {
             // InternalSysML.g:3304:3: ( (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting ) )
             // InternalSysML.g:3305:4: (lv_ownedRelationship_comp_0_0= ruleOwnedSubsetting )
@@ -9749,7 +9749,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSysML.g:3323:3: ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+            // InternalSysML.g:3323:3: ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
             int alt57=2;
             int LA57_0 = input.LA(1);
 
@@ -9758,18 +9758,18 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt57) {
                 case 1 :
-                    // InternalSysML.g:3324:4: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
+                    // InternalSysML.g:3324:4: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
                     {
-                    // InternalSysML.g:3324:4: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
-                    // InternalSysML.g:3325:5: lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember
+                    // InternalSysML.g:3324:4: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
+                    // InternalSysML.g:3325:5: lv_ownedMembership_comp_1_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0());
+                      					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0());
                       				
                     }
                     pushFollow(FOLLOW_2);
-                    lv_ownedFeatureMembership_comp_1_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_1_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -9780,8 +9780,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_1_0,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_1_0,
                       						"org.omg.sysml.xtext.SysML.MultiplicityMember");
                       					afterParserOrEnumRuleCall();
                       				
@@ -11834,15 +11834,15 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleItemFeature"
-    // InternalSysML.g:4044:1: ruleItemFeature returns [EObject current=null] : ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) ;
+    // InternalSysML.g:4044:1: ruleItemFeature returns [EObject current=null] : ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) ;
     public final EObject ruleItemFeature() throws RecognitionException {
         EObject current = null;
 
         EObject lv_ownedRelationship_comp_0_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
-        EObject lv_ownedFeatureMembership_comp_2_0 = null;
+        EObject lv_ownedMembership_comp_2_0 = null;
 
         EObject lv_ownedRelationship_comp_3_0 = null;
 
@@ -11851,10 +11851,10 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:4050:2: ( ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) )
-            // InternalSysML.g:4051:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
+            // InternalSysML.g:4050:2: ( ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) ) )
+            // InternalSysML.g:4051:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
             {
-            // InternalSysML.g:4051:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
+            // InternalSysML.g:4051:2: ( ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) | ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? ) )
             int alt71=2;
             int LA71_0 = input.LA(1);
 
@@ -11873,10 +11873,10 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt71) {
                 case 1 :
-                    // InternalSysML.g:4052:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
+                    // InternalSysML.g:4052:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
                     {
-                    // InternalSysML.g:4052:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
-                    // InternalSysML.g:4053:4: ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+                    // InternalSysML.g:4052:3: ( ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
+                    // InternalSysML.g:4053:4: ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) ) ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
                     {
                     // InternalSysML.g:4053:4: ( (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping ) )
                     // InternalSysML.g:4054:5: (lv_ownedRelationship_comp_0_0= ruleOwnedFeatureTyping )
@@ -11913,7 +11913,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalSysML.g:4072:4: ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+                    // InternalSysML.g:4072:4: ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
                     int alt69=2;
                     int LA69_0 = input.LA(1);
 
@@ -11922,18 +11922,18 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt69) {
                         case 1 :
-                            // InternalSysML.g:4073:5: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
+                            // InternalSysML.g:4073:5: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
                             {
-                            // InternalSysML.g:4073:5: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
-                            // InternalSysML.g:4074:6: lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember
+                            // InternalSysML.g:4073:5: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
+                            // InternalSysML.g:4074:6: lv_ownedMembership_comp_1_0= ruleMultiplicityMember
                             {
                             if ( state.backtracking==0 ) {
 
-                              						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_1_0());
+                              						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_1_0());
                               					
                             }
                             pushFollow(FOLLOW_2);
-                            lv_ownedFeatureMembership_comp_1_0=ruleMultiplicityMember();
+                            lv_ownedMembership_comp_1_0=ruleMultiplicityMember();
 
                             state._fsp--;
                             if (state.failed) return current;
@@ -11944,8 +11944,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                               						}
                               						add(
                               							current,
-                              							"ownedFeatureMembership_comp",
-                              							lv_ownedFeatureMembership_comp_1_0,
+                              							"ownedMembership_comp",
+                              							lv_ownedMembership_comp_1_0,
                               							"org.omg.sysml.xtext.SysML.MultiplicityMember");
                               						afterParserOrEnumRuleCall();
                               					
@@ -11966,24 +11966,24 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalSysML.g:4093:3: ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
+                    // InternalSysML.g:4093:3: ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
                     {
-                    // InternalSysML.g:4093:3: ( ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
-                    // InternalSysML.g:4094:4: ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )?
+                    // InternalSysML.g:4093:3: ( ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )? )
+                    // InternalSysML.g:4094:4: ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) ) ( (lv_ownedRelationship_comp_3_0= ruleOwnedFeatureTyping ) )?
                     {
-                    // InternalSysML.g:4094:4: ( (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember ) )
-                    // InternalSysML.g:4095:5: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalSysML.g:4094:4: ( (lv_ownedMembership_comp_2_0= ruleMultiplicityMember ) )
+                    // InternalSysML.g:4095:5: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
                     {
-                    // InternalSysML.g:4095:5: (lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember )
-                    // InternalSysML.g:4096:6: lv_ownedFeatureMembership_comp_2_0= ruleMultiplicityMember
+                    // InternalSysML.g:4095:5: (lv_ownedMembership_comp_2_0= ruleMultiplicityMember )
+                    // InternalSysML.g:4096:6: lv_ownedMembership_comp_2_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0_0());
+                      						newCompositeNode(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0_0());
                       					
                     }
                     pushFollow(FOLLOW_5);
-                    lv_ownedFeatureMembership_comp_2_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_2_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -11994,8 +11994,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       						}
                       						add(
                       							current,
-                      							"ownedFeatureMembership_comp",
-                      							lv_ownedFeatureMembership_comp_2_0,
+                      							"ownedMembership_comp",
+                      							lv_ownedMembership_comp_2_0,
                       							"org.omg.sysml.xtext.SysML.MultiplicityMember");
                       						afterParserOrEnumRuleCall();
                       					
@@ -31613,22 +31613,22 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicitySourceEnd"
-    // InternalSysML.g:10611:1: ruleMultiplicitySourceEnd returns [EObject current=null] : ( () ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) ;
+    // InternalSysML.g:10611:1: ruleMultiplicitySourceEnd returns [EObject current=null] : ( () ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) ;
     public final EObject ruleMultiplicitySourceEnd() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:10617:2: ( ( () ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? ) )
-            // InternalSysML.g:10618:2: ( () ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
+            // InternalSysML.g:10617:2: ( ( () ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? ) )
+            // InternalSysML.g:10618:2: ( () ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
             {
-            // InternalSysML.g:10618:2: ( () ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )? )
-            // InternalSysML.g:10619:3: () ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+            // InternalSysML.g:10618:2: ( () ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )? )
+            // InternalSysML.g:10619:3: () ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
             {
             // InternalSysML.g:10619:3: ()
             // InternalSysML.g:10620:4: 
@@ -31643,7 +31643,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSysML.g:10626:3: ( (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember ) )?
+            // InternalSysML.g:10626:3: ( (lv_ownedMembership_comp_1_0= ruleMultiplicityMember ) )?
             int alt168=2;
             int LA168_0 = input.LA(1);
 
@@ -31652,18 +31652,18 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt168) {
                 case 1 :
-                    // InternalSysML.g:10627:4: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
+                    // InternalSysML.g:10627:4: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
                     {
-                    // InternalSysML.g:10627:4: (lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember )
-                    // InternalSysML.g:10628:5: lv_ownedFeatureMembership_comp_1_0= ruleMultiplicityMember
+                    // InternalSysML.g:10627:4: (lv_ownedMembership_comp_1_0= ruleMultiplicityMember )
+                    // InternalSysML.g:10628:5: lv_ownedMembership_comp_1_0= ruleMultiplicityMember
                     {
                     if ( state.backtracking==0 ) {
 
-                      					newCompositeNode(grammarAccess.getMultiplicitySourceEndAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0());
+                      					newCompositeNode(grammarAccess.getMultiplicitySourceEndAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0());
                       				
                     }
                     pushFollow(FOLLOW_2);
-                    lv_ownedFeatureMembership_comp_1_0=ruleMultiplicityMember();
+                    lv_ownedMembership_comp_1_0=ruleMultiplicityMember();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -31674,8 +31674,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                       					}
                       					add(
                       						current,
-                      						"ownedFeatureMembership_comp",
-                      						lv_ownedFeatureMembership_comp_1_0,
+                      						"ownedMembership_comp",
+                      						lv_ownedMembership_comp_1_0,
                       						"org.omg.sysml.xtext.SysML.MultiplicityMember");
                       					afterParserOrEnumRuleCall();
                       				

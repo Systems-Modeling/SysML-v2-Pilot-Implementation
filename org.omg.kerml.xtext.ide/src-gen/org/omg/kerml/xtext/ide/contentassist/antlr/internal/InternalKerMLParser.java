@@ -2995,26 +2995,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleMultiplicityMember"
-    // InternalKerML.g:919:1: ruleMultiplicityMember : ( ( rule__MultiplicityMember__OwnedMemberFeature_compAssignment ) ) ;
+    // InternalKerML.g:919:1: ruleMultiplicityMember : ( ( rule__MultiplicityMember__OwnedMemberElement_compAssignment ) ) ;
     public final void ruleMultiplicityMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:923:2: ( ( ( rule__MultiplicityMember__OwnedMemberFeature_compAssignment ) ) )
-            // InternalKerML.g:924:2: ( ( rule__MultiplicityMember__OwnedMemberFeature_compAssignment ) )
+            // InternalKerML.g:923:2: ( ( ( rule__MultiplicityMember__OwnedMemberElement_compAssignment ) ) )
+            // InternalKerML.g:924:2: ( ( rule__MultiplicityMember__OwnedMemberElement_compAssignment ) )
             {
-            // InternalKerML.g:924:2: ( ( rule__MultiplicityMember__OwnedMemberFeature_compAssignment ) )
-            // InternalKerML.g:925:3: ( rule__MultiplicityMember__OwnedMemberFeature_compAssignment )
+            // InternalKerML.g:924:2: ( ( rule__MultiplicityMember__OwnedMemberElement_compAssignment ) )
+            // InternalKerML.g:925:3: ( rule__MultiplicityMember__OwnedMemberElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compAssignment()); 
+               before(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compAssignment()); 
             }
-            // InternalKerML.g:926:3: ( rule__MultiplicityMember__OwnedMemberFeature_compAssignment )
-            // InternalKerML.g:926:4: rule__MultiplicityMember__OwnedMemberFeature_compAssignment
+            // InternalKerML.g:926:3: ( rule__MultiplicityMember__OwnedMemberElement_compAssignment )
+            // InternalKerML.g:926:4: rule__MultiplicityMember__OwnedMemberElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__MultiplicityMember__OwnedMemberFeature_compAssignment();
+            rule__MultiplicityMember__OwnedMemberElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -3022,7 +3022,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compAssignment()); 
+               after(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compAssignment()); 
             }
 
             }
@@ -5868,26 +5868,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleLiteralIntegerMember"
-    // InternalKerML.g:1800:1: ruleLiteralIntegerMember : ( ( rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment ) ) ;
+    // InternalKerML.g:1800:1: ruleLiteralIntegerMember : ( ( rule__LiteralIntegerMember__OwnedMemberElement_compAssignment ) ) ;
     public final void ruleLiteralIntegerMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:1804:2: ( ( ( rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment ) ) )
-            // InternalKerML.g:1805:2: ( ( rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment ) )
+            // InternalKerML.g:1804:2: ( ( ( rule__LiteralIntegerMember__OwnedMemberElement_compAssignment ) ) )
+            // InternalKerML.g:1805:2: ( ( rule__LiteralIntegerMember__OwnedMemberElement_compAssignment ) )
             {
-            // InternalKerML.g:1805:2: ( ( rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment ) )
-            // InternalKerML.g:1806:3: ( rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment )
+            // InternalKerML.g:1805:2: ( ( rule__LiteralIntegerMember__OwnedMemberElement_compAssignment ) )
+            // InternalKerML.g:1806:3: ( rule__LiteralIntegerMember__OwnedMemberElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compAssignment()); 
+               before(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compAssignment()); 
             }
-            // InternalKerML.g:1807:3: ( rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment )
-            // InternalKerML.g:1807:4: rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment
+            // InternalKerML.g:1807:3: ( rule__LiteralIntegerMember__OwnedMemberElement_compAssignment )
+            // InternalKerML.g:1807:4: rule__LiteralIntegerMember__OwnedMemberElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment();
+            rule__LiteralIntegerMember__OwnedMemberElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -5895,7 +5895,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compAssignment()); 
+               after(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compAssignment()); 
             }
 
             }
@@ -5953,26 +5953,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruleLiteralUnlimitedNaturalMember"
-    // InternalKerML.g:1825:1: ruleLiteralUnlimitedNaturalMember : ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment ) ) ;
+    // InternalKerML.g:1825:1: ruleLiteralUnlimitedNaturalMember : ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment ) ) ;
     public final void ruleLiteralUnlimitedNaturalMember() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:1829:2: ( ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment ) ) )
-            // InternalKerML.g:1830:2: ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment ) )
+            // InternalKerML.g:1829:2: ( ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment ) ) )
+            // InternalKerML.g:1830:2: ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment ) )
             {
-            // InternalKerML.g:1830:2: ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment ) )
-            // InternalKerML.g:1831:3: ( rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment )
+            // InternalKerML.g:1830:2: ( ( rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment ) )
+            // InternalKerML.g:1831:3: ( rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compAssignment()); 
+               before(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compAssignment()); 
             }
-            // InternalKerML.g:1832:3: ( rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment )
-            // InternalKerML.g:1832:4: rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment
+            // InternalKerML.g:1832:3: ( rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment )
+            // InternalKerML.g:1832:4: rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment();
+            rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment();
 
             state._fsp--;
             if (state.failed) return ;
@@ -5980,7 +5980,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compAssignment()); 
+               after(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compAssignment()); 
             }
 
             }
@@ -36411,22 +36411,22 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDeclaration__Group__2__Impl"
-    // InternalKerML.g:10309:1: rule__TypeDeclaration__Group__2__Impl : ( ( rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 )? ) ;
+    // InternalKerML.g:10309:1: rule__TypeDeclaration__Group__2__Impl : ( ( rule__TypeDeclaration__OwnedMembership_compAssignment_2 )? ) ;
     public final void rule__TypeDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:10313:1: ( ( ( rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 )? ) )
-            // InternalKerML.g:10314:1: ( ( rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 )? )
+            // InternalKerML.g:10313:1: ( ( ( rule__TypeDeclaration__OwnedMembership_compAssignment_2 )? ) )
+            // InternalKerML.g:10314:1: ( ( rule__TypeDeclaration__OwnedMembership_compAssignment_2 )? )
             {
-            // InternalKerML.g:10314:1: ( ( rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 )? )
-            // InternalKerML.g:10315:2: ( rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 )?
+            // InternalKerML.g:10314:1: ( ( rule__TypeDeclaration__OwnedMembership_compAssignment_2 )? )
+            // InternalKerML.g:10315:2: ( rule__TypeDeclaration__OwnedMembership_compAssignment_2 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeDeclarationAccess().getOwnedFeatureMembership_compAssignment_2()); 
+               before(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compAssignment_2()); 
             }
-            // InternalKerML.g:10316:2: ( rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 )?
+            // InternalKerML.g:10316:2: ( rule__TypeDeclaration__OwnedMembership_compAssignment_2 )?
             int alt124=2;
             int LA124_0 = input.LA(1);
 
@@ -36435,10 +36435,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt124) {
                 case 1 :
-                    // InternalKerML.g:10316:3: rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2
+                    // InternalKerML.g:10316:3: rule__TypeDeclaration__OwnedMembership_compAssignment_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2();
+                    rule__TypeDeclaration__OwnedMembership_compAssignment_2();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -36449,7 +36449,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeDeclarationAccess().getOwnedFeatureMembership_compAssignment_2()); 
+               after(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compAssignment_2()); 
             }
 
             }
@@ -41026,22 +41026,22 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ClassifierDeclaration__Group__2__Impl"
-    // InternalKerML.g:11720:1: rule__ClassifierDeclaration__Group__2__Impl : ( ( rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 )? ) ;
+    // InternalKerML.g:11720:1: rule__ClassifierDeclaration__Group__2__Impl : ( ( rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 )? ) ;
     public final void rule__ClassifierDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:11724:1: ( ( ( rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 )? ) )
-            // InternalKerML.g:11725:1: ( ( rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 )? )
+            // InternalKerML.g:11724:1: ( ( ( rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 )? ) )
+            // InternalKerML.g:11725:1: ( ( rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 )? )
             {
-            // InternalKerML.g:11725:1: ( ( rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 )? )
-            // InternalKerML.g:11726:2: ( rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 )?
+            // InternalKerML.g:11725:1: ( ( rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 )? )
+            // InternalKerML.g:11726:2: ( rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassifierDeclarationAccess().getOwnedFeatureMembership_compAssignment_2()); 
+               before(grammarAccess.getClassifierDeclarationAccess().getOwnedMembership_compAssignment_2()); 
             }
-            // InternalKerML.g:11727:2: ( rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 )?
+            // InternalKerML.g:11727:2: ( rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 )?
             int alt141=2;
             int LA141_0 = input.LA(1);
 
@@ -41050,10 +41050,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt141) {
                 case 1 :
-                    // InternalKerML.g:11727:3: rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2
+                    // InternalKerML.g:11727:3: rule__ClassifierDeclaration__OwnedMembership_compAssignment_2
                     {
                     pushFollow(FOLLOW_2);
-                    rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2();
+                    rule__ClassifierDeclaration__OwnedMembership_compAssignment_2();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -41064,7 +41064,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassifierDeclarationAccess().getOwnedFeatureMembership_compAssignment_2()); 
+               after(grammarAccess.getClassifierDeclarationAccess().getOwnedMembership_compAssignment_2()); 
             }
 
             }
@@ -43951,26 +43951,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicityPart__Group__0__Impl"
-    // InternalKerML.g:12591:1: rule__MultiplicityPart__Group__0__Impl : ( ( rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 ) ) ;
+    // InternalKerML.g:12591:1: rule__MultiplicityPart__Group__0__Impl : ( ( rule__MultiplicityPart__OwnedMembership_compAssignment_0 ) ) ;
     public final void rule__MultiplicityPart__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:12595:1: ( ( ( rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 ) ) )
-            // InternalKerML.g:12596:1: ( ( rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 ) )
+            // InternalKerML.g:12595:1: ( ( ( rule__MultiplicityPart__OwnedMembership_compAssignment_0 ) ) )
+            // InternalKerML.g:12596:1: ( ( rule__MultiplicityPart__OwnedMembership_compAssignment_0 ) )
             {
-            // InternalKerML.g:12596:1: ( ( rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 ) )
-            // InternalKerML.g:12597:2: ( rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 )
+            // InternalKerML.g:12596:1: ( ( rule__MultiplicityPart__OwnedMembership_compAssignment_0 ) )
+            // InternalKerML.g:12597:2: ( rule__MultiplicityPart__OwnedMembership_compAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compAssignment_0()); 
+               before(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compAssignment_0()); 
             }
-            // InternalKerML.g:12598:2: ( rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 )
-            // InternalKerML.g:12598:3: rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0
+            // InternalKerML.g:12598:2: ( rule__MultiplicityPart__OwnedMembership_compAssignment_0 )
+            // InternalKerML.g:12598:3: rule__MultiplicityPart__OwnedMembership_compAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0();
+            rule__MultiplicityPart__OwnedMembership_compAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -43978,7 +43978,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compAssignment_0()); 
+               after(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compAssignment_0()); 
             }
 
             }
@@ -48499,26 +48499,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Multiplicity__Group__2__Impl"
-    // InternalKerML.g:14022:1: rule__Multiplicity__Group__2__Impl : ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 ) ) ;
+    // InternalKerML.g:14022:1: rule__Multiplicity__Group__2__Impl : ( ( rule__Multiplicity__OwnedMembership_compAssignment_2 ) ) ;
     public final void rule__Multiplicity__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14026:1: ( ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 ) ) )
-            // InternalKerML.g:14027:1: ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 ) )
+            // InternalKerML.g:14026:1: ( ( ( rule__Multiplicity__OwnedMembership_compAssignment_2 ) ) )
+            // InternalKerML.g:14027:1: ( ( rule__Multiplicity__OwnedMembership_compAssignment_2 ) )
             {
-            // InternalKerML.g:14027:1: ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 ) )
-            // InternalKerML.g:14028:2: ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 )
+            // InternalKerML.g:14027:1: ( ( rule__Multiplicity__OwnedMembership_compAssignment_2 ) )
+            // InternalKerML.g:14028:2: ( rule__Multiplicity__OwnedMembership_compAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_2()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedMembership_compAssignment_2()); 
             }
-            // InternalKerML.g:14029:2: ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 )
-            // InternalKerML.g:14029:3: rule__Multiplicity__OwnedFeatureMembership_compAssignment_2
+            // InternalKerML.g:14029:2: ( rule__Multiplicity__OwnedMembership_compAssignment_2 )
+            // InternalKerML.g:14029:3: rule__Multiplicity__OwnedMembership_compAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__Multiplicity__OwnedFeatureMembership_compAssignment_2();
+            rule__Multiplicity__OwnedMembership_compAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -48526,7 +48526,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_2()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedMembership_compAssignment_2()); 
             }
 
             }
@@ -48662,26 +48662,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Multiplicity__Group_1__0__Impl"
-    // InternalKerML.g:14076:1: rule__Multiplicity__Group_1__0__Impl : ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 ) ) ;
+    // InternalKerML.g:14076:1: rule__Multiplicity__Group_1__0__Impl : ( ( rule__Multiplicity__OwnedMembership_compAssignment_1_0 ) ) ;
     public final void rule__Multiplicity__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:14080:1: ( ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 ) ) )
-            // InternalKerML.g:14081:1: ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 ) )
+            // InternalKerML.g:14080:1: ( ( ( rule__Multiplicity__OwnedMembership_compAssignment_1_0 ) ) )
+            // InternalKerML.g:14081:1: ( ( rule__Multiplicity__OwnedMembership_compAssignment_1_0 ) )
             {
-            // InternalKerML.g:14081:1: ( ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 ) )
-            // InternalKerML.g:14082:2: ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 )
+            // InternalKerML.g:14081:1: ( ( rule__Multiplicity__OwnedMembership_compAssignment_1_0 ) )
+            // InternalKerML.g:14082:2: ( rule__Multiplicity__OwnedMembership_compAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_1_0()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedMembership_compAssignment_1_0()); 
             }
-            // InternalKerML.g:14083:2: ( rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 )
-            // InternalKerML.g:14083:3: rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0
+            // InternalKerML.g:14083:2: ( rule__Multiplicity__OwnedMembership_compAssignment_1_0 )
+            // InternalKerML.g:14083:3: rule__Multiplicity__OwnedMembership_compAssignment_1_0
             {
             pushFollow(FOLLOW_2);
-            rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0();
+            rule__Multiplicity__OwnedMembership_compAssignment_1_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -48689,7 +48689,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_1_0()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedMembership_compAssignment_1_0()); 
             }
 
             }
@@ -52109,22 +52109,22 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ConnectorEnd__Group__1__Impl"
-    // InternalKerML.g:15155:1: rule__ConnectorEnd__Group__1__Impl : ( ( rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 )? ) ;
+    // InternalKerML.g:15155:1: rule__ConnectorEnd__Group__1__Impl : ( ( rule__ConnectorEnd__OwnedMembership_compAssignment_1 )? ) ;
     public final void rule__ConnectorEnd__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:15159:1: ( ( ( rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 )? ) )
-            // InternalKerML.g:15160:1: ( ( rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 )? )
+            // InternalKerML.g:15159:1: ( ( ( rule__ConnectorEnd__OwnedMembership_compAssignment_1 )? ) )
+            // InternalKerML.g:15160:1: ( ( rule__ConnectorEnd__OwnedMembership_compAssignment_1 )? )
             {
-            // InternalKerML.g:15160:1: ( ( rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 )? )
-            // InternalKerML.g:15161:2: ( rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 )?
+            // InternalKerML.g:15160:1: ( ( rule__ConnectorEnd__OwnedMembership_compAssignment_1 )? )
+            // InternalKerML.g:15161:2: ( rule__ConnectorEnd__OwnedMembership_compAssignment_1 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compAssignment_1()); 
+               before(grammarAccess.getConnectorEndAccess().getOwnedMembership_compAssignment_1()); 
             }
-            // InternalKerML.g:15162:2: ( rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 )?
+            // InternalKerML.g:15162:2: ( rule__ConnectorEnd__OwnedMembership_compAssignment_1 )?
             int alt174=2;
             int LA174_0 = input.LA(1);
 
@@ -52133,10 +52133,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt174) {
                 case 1 :
-                    // InternalKerML.g:15162:3: rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1
+                    // InternalKerML.g:15162:3: rule__ConnectorEnd__OwnedMembership_compAssignment_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1();
+                    rule__ConnectorEnd__OwnedMembership_compAssignment_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -52147,7 +52147,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compAssignment_1()); 
+               after(grammarAccess.getConnectorEndAccess().getOwnedMembership_compAssignment_1()); 
             }
 
             }
@@ -64435,22 +64435,22 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemFeature__Group_0__1__Impl"
-    // InternalKerML.g:18996:1: rule__ItemFeature__Group_0__1__Impl : ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 )? ) ;
+    // InternalKerML.g:18996:1: rule__ItemFeature__Group_0__1__Impl : ( ( rule__ItemFeature__OwnedMembership_compAssignment_0_1 )? ) ;
     public final void rule__ItemFeature__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:19000:1: ( ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 )? ) )
-            // InternalKerML.g:19001:1: ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 )? )
+            // InternalKerML.g:19000:1: ( ( ( rule__ItemFeature__OwnedMembership_compAssignment_0_1 )? ) )
+            // InternalKerML.g:19001:1: ( ( rule__ItemFeature__OwnedMembership_compAssignment_0_1 )? )
             {
-            // InternalKerML.g:19001:1: ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 )? )
-            // InternalKerML.g:19002:2: ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 )?
+            // InternalKerML.g:19001:1: ( ( rule__ItemFeature__OwnedMembership_compAssignment_0_1 )? )
+            // InternalKerML.g:19002:2: ( rule__ItemFeature__OwnedMembership_compAssignment_0_1 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compAssignment_0_1()); 
+               before(grammarAccess.getItemFeatureAccess().getOwnedMembership_compAssignment_0_1()); 
             }
-            // InternalKerML.g:19003:2: ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 )?
+            // InternalKerML.g:19003:2: ( rule__ItemFeature__OwnedMembership_compAssignment_0_1 )?
             int alt217=2;
             int LA217_0 = input.LA(1);
 
@@ -64459,10 +64459,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
             switch (alt217) {
                 case 1 :
-                    // InternalKerML.g:19003:3: rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1
+                    // InternalKerML.g:19003:3: rule__ItemFeature__OwnedMembership_compAssignment_0_1
                     {
                     pushFollow(FOLLOW_2);
-                    rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1();
+                    rule__ItemFeature__OwnedMembership_compAssignment_0_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -64473,7 +64473,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compAssignment_0_1()); 
+               after(grammarAccess.getItemFeatureAccess().getOwnedMembership_compAssignment_0_1()); 
             }
 
             }
@@ -64535,26 +64535,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ItemFeature__Group_1__0__Impl"
-    // InternalKerML.g:19024:1: rule__ItemFeature__Group_1__0__Impl : ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 ) ) ;
+    // InternalKerML.g:19024:1: rule__ItemFeature__Group_1__0__Impl : ( ( rule__ItemFeature__OwnedMembership_compAssignment_1_0 ) ) ;
     public final void rule__ItemFeature__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:19028:1: ( ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 ) ) )
-            // InternalKerML.g:19029:1: ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 ) )
+            // InternalKerML.g:19028:1: ( ( ( rule__ItemFeature__OwnedMembership_compAssignment_1_0 ) ) )
+            // InternalKerML.g:19029:1: ( ( rule__ItemFeature__OwnedMembership_compAssignment_1_0 ) )
             {
-            // InternalKerML.g:19029:1: ( ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 ) )
-            // InternalKerML.g:19030:2: ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 )
+            // InternalKerML.g:19029:1: ( ( rule__ItemFeature__OwnedMembership_compAssignment_1_0 ) )
+            // InternalKerML.g:19030:2: ( rule__ItemFeature__OwnedMembership_compAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compAssignment_1_0()); 
+               before(grammarAccess.getItemFeatureAccess().getOwnedMembership_compAssignment_1_0()); 
             }
-            // InternalKerML.g:19031:2: ( rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 )
-            // InternalKerML.g:19031:3: rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0
+            // InternalKerML.g:19031:2: ( rule__ItemFeature__OwnedMembership_compAssignment_1_0 )
+            // InternalKerML.g:19031:3: rule__ItemFeature__OwnedMembership_compAssignment_1_0
             {
             pushFollow(FOLLOW_2);
-            rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0();
+            rule__ItemFeature__OwnedMembership_compAssignment_1_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -64562,7 +64562,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compAssignment_1_0()); 
+               after(grammarAccess.getItemFeatureAccess().getOwnedMembership_compAssignment_1_0()); 
             }
 
             }
@@ -81205,9 +81205,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypeDeclaration__IsSufficientAssignment_0"
 
 
-    // $ANTLR start "rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2"
-    // InternalKerML.g:24306:1: rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2 : ( ruleMultiplicityMember ) ;
-    public final void rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__TypeDeclaration__OwnedMembership_compAssignment_2"
+    // InternalKerML.g:24306:1: rule__TypeDeclaration__OwnedMembership_compAssignment_2 : ( ruleMultiplicityMember ) ;
+    public final void rule__TypeDeclaration__OwnedMembership_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -81219,7 +81219,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24312:3: ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeDeclarationAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0()); 
+               before(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicityMember();
@@ -81227,7 +81227,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeDeclarationAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0()); 
+               after(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_2_0()); 
             }
 
             }
@@ -81247,7 +81247,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2"
+    // $ANTLR end "rule__TypeDeclaration__OwnedMembership_compAssignment_2"
 
 
     // $ANTLR start "rule__SpecializationPart__OwnedRelationship_compAssignment_1"
@@ -81385,9 +81385,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConjugationPart__OwnedRelationship_compAssignment_1"
 
 
-    // $ANTLR start "rule__MultiplicityMember__OwnedMemberFeature_compAssignment"
-    // InternalKerML.g:24366:1: rule__MultiplicityMember__OwnedMemberFeature_compAssignment : ( ruleMultiplicity ) ;
-    public final void rule__MultiplicityMember__OwnedMemberFeature_compAssignment() throws RecognitionException {
+    // $ANTLR start "rule__MultiplicityMember__OwnedMemberElement_compAssignment"
+    // InternalKerML.g:24366:1: rule__MultiplicityMember__OwnedMemberElement_compAssignment : ( ruleMultiplicity ) ;
+    public final void rule__MultiplicityMember__OwnedMemberElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -81399,7 +81399,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24372:3: ruleMultiplicity
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compMultiplicityParserRuleCall_0()); 
+               before(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compMultiplicityParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicity();
@@ -81407,7 +81407,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compMultiplicityParserRuleCall_0()); 
+               after(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compMultiplicityParserRuleCall_0()); 
             }
 
             }
@@ -81427,7 +81427,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__MultiplicityMember__OwnedMemberFeature_compAssignment"
+    // $ANTLR end "rule__MultiplicityMember__OwnedMemberElement_compAssignment"
 
 
     // $ANTLR start "rule__TypeBody__Documentation_compAssignment_1_1_0"
@@ -82544,9 +82544,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ClassifierDeclaration__IsSufficientAssignment_0"
 
 
-    // $ANTLR start "rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2"
-    // InternalKerML.g:24759:1: rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2 : ( ruleMultiplicityMember ) ;
-    public final void rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__ClassifierDeclaration__OwnedMembership_compAssignment_2"
+    // InternalKerML.g:24759:1: rule__ClassifierDeclaration__OwnedMembership_compAssignment_2 : ( ruleMultiplicityMember ) ;
+    public final void rule__ClassifierDeclaration__OwnedMembership_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -82558,7 +82558,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24765:3: ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getClassifierDeclarationAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0()); 
+               before(grammarAccess.getClassifierDeclarationAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicityMember();
@@ -82566,7 +82566,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getClassifierDeclarationAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_2_0()); 
+               after(grammarAccess.getClassifierDeclarationAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_2_0()); 
             }
 
             }
@@ -82586,7 +82586,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2"
+    // $ANTLR end "rule__ClassifierDeclaration__OwnedMembership_compAssignment_2"
 
 
     // $ANTLR start "rule__SuperclassingPart__OwnedRelationship_compAssignment_1"
@@ -83058,9 +83058,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureDeclaration__IsSufficientAssignment_0"
 
 
-    // $ANTLR start "rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0"
-    // InternalKerML.g:24933:1: rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0 : ( ruleMultiplicityMember ) ;
-    public final void rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__MultiplicityPart__OwnedMembership_compAssignment_0"
+    // InternalKerML.g:24933:1: rule__MultiplicityPart__OwnedMembership_compAssignment_0 : ( ruleMultiplicityMember ) ;
+    public final void rule__MultiplicityPart__OwnedMembership_compAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -83072,7 +83072,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24939:3: ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_0()); 
+               before(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicityMember();
@@ -83080,7 +83080,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_0()); 
+               after(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_0()); 
             }
 
             }
@@ -83100,7 +83100,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0"
+    // $ANTLR end "rule__MultiplicityPart__OwnedMembership_compAssignment_0"
 
 
     // $ANTLR start "rule__MultiplicityPart__IsOrderedAssignment_1_0"
@@ -84184,9 +84184,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureValue__Value_compAssignment"
 
 
-    // $ANTLR start "rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0"
-    // InternalKerML.g:25311:1: rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0 : ( ruleLiteralIntegerMember ) ;
-    public final void rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__Multiplicity__OwnedMembership_compAssignment_1_0"
+    // InternalKerML.g:25311:1: rule__Multiplicity__OwnedMembership_compAssignment_1_0 : ( ruleLiteralIntegerMember ) ;
+    public final void rule__Multiplicity__OwnedMembership_compAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -84198,7 +84198,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:25317:3: ruleLiteralIntegerMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralIntegerMemberParserRuleCall_1_0_0()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralIntegerMemberParserRuleCall_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleLiteralIntegerMember();
@@ -84206,7 +84206,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralIntegerMemberParserRuleCall_1_0_0()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralIntegerMemberParserRuleCall_1_0_0()); 
             }
 
             }
@@ -84226,12 +84226,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0"
+    // $ANTLR end "rule__Multiplicity__OwnedMembership_compAssignment_1_0"
 
 
-    // $ANTLR start "rule__Multiplicity__OwnedFeatureMembership_compAssignment_2"
-    // InternalKerML.g:25326:1: rule__Multiplicity__OwnedFeatureMembership_compAssignment_2 : ( ruleLiteralUnlimitedNaturalMember ) ;
-    public final void rule__Multiplicity__OwnedFeatureMembership_compAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__Multiplicity__OwnedMembership_compAssignment_2"
+    // InternalKerML.g:25326:1: rule__Multiplicity__OwnedMembership_compAssignment_2 : ( ruleLiteralUnlimitedNaturalMember ) ;
+    public final void rule__Multiplicity__OwnedMembership_compAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -84243,7 +84243,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:25332:3: ruleLiteralUnlimitedNaturalMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0()); 
+               before(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleLiteralUnlimitedNaturalMember();
@@ -84251,7 +84251,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0()); 
+               after(grammarAccess.getMultiplicityAccess().getOwnedMembership_compLiteralUnlimitedNaturalMemberParserRuleCall_2_0()); 
             }
 
             }
@@ -84271,12 +84271,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Multiplicity__OwnedFeatureMembership_compAssignment_2"
+    // $ANTLR end "rule__Multiplicity__OwnedMembership_compAssignment_2"
 
 
-    // $ANTLR start "rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment"
-    // InternalKerML.g:25341:1: rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment : ( ruleLiteralInteger ) ;
-    public final void rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment() throws RecognitionException {
+    // $ANTLR start "rule__LiteralIntegerMember__OwnedMemberElement_compAssignment"
+    // InternalKerML.g:25341:1: rule__LiteralIntegerMember__OwnedMemberElement_compAssignment : ( ruleLiteralInteger ) ;
+    public final void rule__LiteralIntegerMember__OwnedMemberElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -84288,7 +84288,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:25347:3: ruleLiteralInteger
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compLiteralIntegerParserRuleCall_0()); 
+               before(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compLiteralIntegerParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleLiteralInteger();
@@ -84296,7 +84296,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compLiteralIntegerParserRuleCall_0()); 
+               after(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compLiteralIntegerParserRuleCall_0()); 
             }
 
             }
@@ -84316,12 +84316,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment"
+    // $ANTLR end "rule__LiteralIntegerMember__OwnedMemberElement_compAssignment"
 
 
-    // $ANTLR start "rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment"
-    // InternalKerML.g:25356:1: rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment : ( ruleLiteralUnlimitedNatural ) ;
-    public final void rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment() throws RecognitionException {
+    // $ANTLR start "rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment"
+    // InternalKerML.g:25356:1: rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment : ( ruleLiteralUnlimitedNatural ) ;
+    public final void rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -84333,7 +84333,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:25362:3: ruleLiteralUnlimitedNatural
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compLiteralUnlimitedNaturalParserRuleCall_0()); 
+               before(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compLiteralUnlimitedNaturalParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleLiteralUnlimitedNatural();
@@ -84341,7 +84341,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compLiteralUnlimitedNaturalParserRuleCall_0()); 
+               after(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compLiteralUnlimitedNaturalParserRuleCall_0()); 
             }
 
             }
@@ -84361,7 +84361,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment"
+    // $ANTLR end "rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment"
 
 
     // $ANTLR start "rule__DataType__IsAbstractAssignment_0"
@@ -84989,9 +84989,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ConnectorEnd__OwnedRelationship_compAssignment_0"
 
 
-    // $ANTLR start "rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1"
-    // InternalKerML.g:25586:1: rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1 : ( ruleMultiplicityMember ) ;
-    public final void rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__ConnectorEnd__OwnedMembership_compAssignment_1"
+    // InternalKerML.g:25586:1: rule__ConnectorEnd__OwnedMembership_compAssignment_1 : ( ruleMultiplicityMember ) ;
+    public final void rule__ConnectorEnd__OwnedMembership_compAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -85003,7 +85003,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:25592:3: ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0()); 
+               before(grammarAccess.getConnectorEndAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicityMember();
@@ -85011,7 +85011,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0()); 
+               after(grammarAccess.getConnectorEndAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0()); 
             }
 
             }
@@ -85031,7 +85031,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1"
+    // $ANTLR end "rule__ConnectorEnd__OwnedMembership_compAssignment_1"
 
 
     // $ANTLR start "rule__BindingConnector__IsAbstractAssignment_0"
@@ -87322,9 +87322,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ItemFeature__OwnedRelationship_compAssignment_0_0"
 
 
-    // $ANTLR start "rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1"
-    // InternalKerML.g:26385:1: rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1 : ( ruleMultiplicityMember ) ;
-    public final void rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1() throws RecognitionException {
+    // $ANTLR start "rule__ItemFeature__OwnedMembership_compAssignment_0_1"
+    // InternalKerML.g:26385:1: rule__ItemFeature__OwnedMembership_compAssignment_0_1 : ( ruleMultiplicityMember ) ;
+    public final void rule__ItemFeature__OwnedMembership_compAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -87336,7 +87336,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:26391:3: ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_1_0()); 
+               before(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_1_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicityMember();
@@ -87344,7 +87344,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_0_1_0()); 
+               after(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_0_1_0()); 
             }
 
             }
@@ -87364,12 +87364,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1"
+    // $ANTLR end "rule__ItemFeature__OwnedMembership_compAssignment_0_1"
 
 
-    // $ANTLR start "rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0"
-    // InternalKerML.g:26400:1: rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0 : ( ruleMultiplicityMember ) ;
-    public final void rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0() throws RecognitionException {
+    // $ANTLR start "rule__ItemFeature__OwnedMembership_compAssignment_1_0"
+    // InternalKerML.g:26400:1: rule__ItemFeature__OwnedMembership_compAssignment_1_0 : ( ruleMultiplicityMember ) ;
+    public final void rule__ItemFeature__OwnedMembership_compAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -87381,7 +87381,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:26406:3: ruleMultiplicityMember
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0_0()); 
+               before(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleMultiplicityMember();
@@ -87389,7 +87389,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compMultiplicityMemberParserRuleCall_1_0_0()); 
+               after(grammarAccess.getItemFeatureAccess().getOwnedMembership_compMultiplicityMemberParserRuleCall_1_0_0()); 
             }
 
             }
@@ -87409,7 +87409,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0"
+    // $ANTLR end "rule__ItemFeature__OwnedMembership_compAssignment_1_0"
 
 
     // $ANTLR start "rule__ItemFeature__OwnedRelationship_compAssignment_1_1"

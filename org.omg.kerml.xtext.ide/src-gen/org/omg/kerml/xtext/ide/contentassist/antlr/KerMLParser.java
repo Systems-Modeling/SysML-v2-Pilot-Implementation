@@ -387,11 +387,11 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_2_0(), "rule__PackageImport__ImportedPackageAssignment_3_2_0");
 			builder.put(grammarAccess.getTypeAccess().getIsAbstractAssignment_0(), "rule__Type__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getTypeDeclarationAccess().getIsSufficientAssignment_0(), "rule__TypeDeclaration__IsSufficientAssignment_0");
-			builder.put(grammarAccess.getTypeDeclarationAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__TypeDeclaration__OwnedFeatureMembership_compAssignment_2");
+			builder.put(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compAssignment_2(), "rule__TypeDeclaration__OwnedMembership_compAssignment_2");
 			builder.put(grammarAccess.getSpecializationPartAccess().getOwnedRelationship_compAssignment_1(), "rule__SpecializationPart__OwnedRelationship_compAssignment_1");
 			builder.put(grammarAccess.getSpecializationPartAccess().getOwnedRelationship_compAssignment_2_1(), "rule__SpecializationPart__OwnedRelationship_compAssignment_2_1");
 			builder.put(grammarAccess.getConjugationPartAccess().getOwnedRelationship_compAssignment_1(), "rule__ConjugationPart__OwnedRelationship_compAssignment_1");
-			builder.put(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__MultiplicityMember__OwnedMemberFeature_compAssignment");
+			builder.put(grammarAccess.getMultiplicityMemberAccess().getOwnedMemberElement_compAssignment(), "rule__MultiplicityMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getTypeBodyAccess().getDocumentation_compAssignment_1_1_0(), "rule__TypeBody__Documentation_compAssignment_1_1_0");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedMembership_compAssignment_1_1_1(), "rule__TypeBody__OwnedMembership_compAssignment_1_1_1");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedFeatureMembership_compAssignment_1_1_2(), "rule__TypeBody__OwnedFeatureMembership_compAssignment_1_1_2");
@@ -414,7 +414,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureMemberFlagsAccess().getIsPortAssignment_2(), "rule__FeatureMemberFlags__IsPortAssignment_2");
 			builder.put(grammarAccess.getClassifierAccess().getIsAbstractAssignment_0(), "rule__Classifier__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getClassifierDeclarationAccess().getIsSufficientAssignment_0(), "rule__ClassifierDeclaration__IsSufficientAssignment_0");
-			builder.put(grammarAccess.getClassifierDeclarationAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__ClassifierDeclaration__OwnedFeatureMembership_compAssignment_2");
+			builder.put(grammarAccess.getClassifierDeclarationAccess().getOwnedMembership_compAssignment_2(), "rule__ClassifierDeclaration__OwnedMembership_compAssignment_2");
 			builder.put(grammarAccess.getSuperclassingPartAccess().getOwnedRelationship_compAssignment_1(), "rule__SuperclassingPart__OwnedRelationship_compAssignment_1");
 			builder.put(grammarAccess.getSuperclassingPartAccess().getOwnedRelationship_compAssignment_2_1(), "rule__SuperclassingPart__OwnedRelationship_compAssignment_2_1");
 			builder.put(grammarAccess.getClassifierConjugationPartAccess().getOwnedRelationship_compAssignment_1(), "rule__ClassifierConjugationPart__OwnedRelationship_compAssignment_1");
@@ -424,7 +424,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassifierConjugationAccess().getOriginalTypeAssignment(), "rule__ClassifierConjugation__OriginalTypeAssignment");
 			builder.put(grammarAccess.getFeatureAccess().getIsAbstractAssignment_0(), "rule__Feature__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getIsSufficientAssignment_0(), "rule__FeatureDeclaration__IsSufficientAssignment_0");
-			builder.put(grammarAccess.getMultiplicityPartAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__MultiplicityPart__OwnedFeatureMembership_compAssignment_0");
+			builder.put(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compAssignment_0(), "rule__MultiplicityPart__OwnedMembership_compAssignment_0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getIsOrderedAssignment_1_0(), "rule__MultiplicityPart__IsOrderedAssignment_1_0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getIsNonuniqueAssignment_1_1(), "rule__MultiplicityPart__IsNonuniqueAssignment_1_1");
 			builder.put(grammarAccess.getTypingsAccess().getOwnedRelationship_compAssignment_1_1(), "rule__Typings__OwnedRelationship_compAssignment_1_1");
@@ -446,10 +446,10 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureConjugationAccess().getOriginalTypeAssignment(), "rule__FeatureConjugation__OriginalTypeAssignment");
 			builder.put(grammarAccess.getValuePartAccess().getOwnedMembership_compAssignment_1(), "rule__ValuePart__OwnedMembership_compAssignment_1");
 			builder.put(grammarAccess.getFeatureValueAccess().getValue_compAssignment(), "rule__FeatureValue__Value_compAssignment");
-			builder.put(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_1_0(), "rule__Multiplicity__OwnedFeatureMembership_compAssignment_1_0");
-			builder.put(grammarAccess.getMultiplicityAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__Multiplicity__OwnedFeatureMembership_compAssignment_2");
-			builder.put(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__LiteralIntegerMember__OwnedMemberFeature_compAssignment");
-			builder.put(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__LiteralUnlimitedNaturalMember__OwnedMemberFeature_compAssignment");
+			builder.put(grammarAccess.getMultiplicityAccess().getOwnedMembership_compAssignment_1_0(), "rule__Multiplicity__OwnedMembership_compAssignment_1_0");
+			builder.put(grammarAccess.getMultiplicityAccess().getOwnedMembership_compAssignment_2(), "rule__Multiplicity__OwnedMembership_compAssignment_2");
+			builder.put(grammarAccess.getLiteralIntegerMemberAccess().getOwnedMemberElement_compAssignment(), "rule__LiteralIntegerMember__OwnedMemberElement_compAssignment");
+			builder.put(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compAssignment(), "rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getDataTypeAccess().getIsAbstractAssignment_0(), "rule__DataType__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getClassAccess().getIsAbstractAssignment_0(), "rule__Class__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getAssociationAccess().getIsAbstractAssignment_0(), "rule__Association__IsAbstractAssignment_0");
@@ -463,7 +463,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getMemberNameAssignment_0_0(), "rule__ConnectorEndMember__MemberNameAssignment_0_0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__ConnectorEndMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getConnectorEndAccess().getOwnedRelationship_compAssignment_0(), "rule__ConnectorEnd__OwnedRelationship_compAssignment_0");
-			builder.put(grammarAccess.getConnectorEndAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__ConnectorEnd__OwnedFeatureMembership_compAssignment_1");
+			builder.put(grammarAccess.getConnectorEndAccess().getOwnedMembership_compAssignment_1(), "rule__ConnectorEnd__OwnedMembership_compAssignment_1");
 			builder.put(grammarAccess.getBindingConnectorAccess().getIsAbstractAssignment_0(), "rule__BindingConnector__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getBindingConnectorDeclarationAccess().getIsSufficientAssignment_0_1_0(), "rule__BindingConnectorDeclaration__IsSufficientAssignment_0_1_0");
 			builder.put(grammarAccess.getBindingConnectorDeclarationAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__BindingConnectorDeclaration__OwnedFeatureMembership_compAssignment_1");
@@ -512,8 +512,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getItemFeatureMemberAccess().getMemberNameAssignment_0_0(), "rule__ItemFeatureMember__MemberNameAssignment_0_0");
 			builder.put(grammarAccess.getItemFeatureMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__ItemFeatureMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getOwnedRelationship_compAssignment_0_0(), "rule__ItemFeature__OwnedRelationship_compAssignment_0_0");
-			builder.put(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compAssignment_0_1(), "rule__ItemFeature__OwnedFeatureMembership_compAssignment_0_1");
-			builder.put(grammarAccess.getItemFeatureAccess().getOwnedFeatureMembership_compAssignment_1_0(), "rule__ItemFeature__OwnedFeatureMembership_compAssignment_1_0");
+			builder.put(grammarAccess.getItemFeatureAccess().getOwnedMembership_compAssignment_0_1(), "rule__ItemFeature__OwnedMembership_compAssignment_0_1");
+			builder.put(grammarAccess.getItemFeatureAccess().getOwnedMembership_compAssignment_1_0(), "rule__ItemFeature__OwnedMembership_compAssignment_1_0");
 			builder.put(grammarAccess.getItemFeatureAccess().getOwnedRelationship_compAssignment_1_1(), "rule__ItemFeature__OwnedRelationship_compAssignment_1_1");
 			builder.put(grammarAccess.getEmptyItemFeatureMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__EmptyItemFeatureMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getItemFlowEndMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__ItemFlowEndMember__OwnedMemberFeature_compAssignment");

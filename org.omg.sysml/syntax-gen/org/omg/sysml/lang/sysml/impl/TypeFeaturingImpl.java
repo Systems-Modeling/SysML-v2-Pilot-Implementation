@@ -410,6 +410,11 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 		if (eContainerFeatureID() != SysMLPackage.TYPE_FEATURING__OWNING_RELATED_ELEMENT) return null;
 		return (Element)eInternalContainer();
 	}
+	
+	@Override
+	public void transform() {
+		((ElementImpl)getFeatureOfType()).transform();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

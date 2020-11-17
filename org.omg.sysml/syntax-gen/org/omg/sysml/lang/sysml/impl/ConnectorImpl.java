@@ -538,28 +538,54 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	
 	@Override
 	public EList<Type> getFeaturingType() {
-		if (getOwnedTypeFeaturing().stream().allMatch(FeatureMembership.class::isInstance)) {
-			addFeaturingType(getContextType());
-		} else {
-			updateFeaturingTypes(Collections.singletonList(getContextType()));
+		Type contextType = getContextType();
+		if (contextType != null) {
+			if (getOwnedTypeFeaturing().isEmpty()) {
+				addFeaturingType(contextType);
+			} else {
+				updateFeaturingTypes(Collections.singletonList(contextType));
+			}
 		}
 		return super.getFeaturingType();
 	}
 	
 	// Utility Methods
 	
+	private Type contextType = null;
+	private boolean isComputeContextType = true;
+	
 	public Type getContextType() {
-		List<Type> featuringPath = null;
-		for (Feature relatedFeature: getRelatedFeature()) {
-			List<Type> featuringTypes = getAllFeaturingTypes(relatedFeature);
-			if (featuringPath == null) {
-				featuringPath = featuringTypes;
-			} else {
-				featuringPath.retainAll(featuringTypes);
+		if (isComputeContextType) {
+			isComputeContextType = false;
+			contextType = getContextType(this);
+		}
+		return contextType;
+	}
+	
+	public static Type getContextType(Connector connector) {
+		Element owner = connector.getOwner();
+		List<Feature> relatedFeatures = connector.getRelatedFeature();
+		
+		// TODO: Handle inherited features more properly when determining context type.
+		if (owner instanceof Type) {
+			List<Feature> ownerInheritedFeatures = ((Type)owner).getInheritedFeature();
+			relatedFeatures.removeAll(ownerInheritedFeatures);
+			if (relatedFeatures.isEmpty()) {
+				return (Type)owner;
 			}
 		}
-		return featuringPath.isEmpty()? null: featuringPath.get(0);
-	}
+		
+		List<Type> commonFeaturingTypes = null;
+		for (Feature relatedFeature: relatedFeatures) {
+			List<Type> featuringTypes = getAllFeaturingTypes(relatedFeature);
+			if (commonFeaturingTypes == null) {
+				commonFeaturingTypes = featuringTypes;
+			} else {
+				commonFeaturingTypes.retainAll(featuringTypes);
+			}
+		}
+		return commonFeaturingTypes.isEmpty()? null: commonFeaturingTypes.get(0);
+	}	
 	
 	/**
 	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
@@ -579,7 +605,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 						if (!allFeaturingTypes.contains(featuringType)) {
 							allFeaturingTypes.add(featuringType);
 							if (featuringType instanceof Feature) {
-								nextFeatures.add(feature);
+								nextFeatures.add((Feature)featuringType);
 							}
 						}
 					}
@@ -613,6 +639,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		((FeatureImpl)connectorEnd).getFirstSubsetting().
 			orElseGet(()->((FeatureImpl)connectorEnd).createSubsetting()).
 			setSubsettedFeature(relatedFeature);
+	}
+	
+	//
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getFeaturingType();
 	}
 	
 	//

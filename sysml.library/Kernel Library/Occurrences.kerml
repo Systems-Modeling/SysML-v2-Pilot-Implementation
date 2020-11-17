@@ -87,18 +87,18 @@ package Occurrences {
 		/**
 		 * Snapshots have no duration.
 		 */
-		composite succession :Occurrences::HappensBefore, SelfLink 
+		succession :Occurrences::HappensBefore, SelfLink 
 			first snapshots[1] then snapshots[1];
 		
 		/**
 		 * The startShot happens before all snapshots.
 		 */
-		composite succession startShot[1] then snapshots[0..*];
+		succession startShot[1] then snapshots[0..*];
 		
 		/**
 		 * The endShot happens after all snapshots.
 		 */
-		composite succession snapshots[0..*] then endShot[1];
+		succession snapshots[0..*] then endShot[1];
 		
 		/**
 		 * The incoming transfers targeting this occurrence. 

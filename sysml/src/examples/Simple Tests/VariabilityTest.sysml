@@ -1,11 +1,18 @@
 package VariabilityTest {
-	part def P;
+	part def P {
+		attribute a;
+	}
 	part def Q :> P;
+	attribute def B;
 	variation part def V :> P {
-		variant part a : Q;
+		variant part x : Q {
+			attribute b : B :>> a;
+		}
 	}
 	part q : Q;
 	variation part v : P {
-		variant part b :> q;
+		variant part y :> q {
+			attribute b : B :>> a;
+		}
 	}
 }

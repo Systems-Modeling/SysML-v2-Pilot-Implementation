@@ -5279,6 +5279,36 @@ rule__NonFeatureElement__Alternatives
 		ruleRedefinition
 		{ after(grammarAccess.getNonFeatureElementAccess().getRedefinitionParserRuleCall_19()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getNonFeatureElementAccess().getConnectorParserRuleCall_20()); }
+		ruleConnector
+		{ after(grammarAccess.getNonFeatureElementAccess().getConnectorParserRuleCall_20()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNonFeatureElementAccess().getBindingConnectorParserRuleCall_21()); }
+		ruleBindingConnector
+		{ after(grammarAccess.getNonFeatureElementAccess().getBindingConnectorParserRuleCall_21()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNonFeatureElementAccess().getSuccessionParserRuleCall_22()); }
+		ruleSuccession
+		{ after(grammarAccess.getNonFeatureElementAccess().getSuccessionParserRuleCall_22()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNonFeatureElementAccess().getItemFlowParserRuleCall_23()); }
+		ruleItemFlow
+		{ after(grammarAccess.getNonFeatureElementAccess().getItemFlowParserRuleCall_23()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNonFeatureElementAccess().getSuccessionItemFlowParserRuleCall_24()); }
+		ruleSuccessionItemFlow
+		{ after(grammarAccess.getNonFeatureElementAccess().getSuccessionItemFlowParserRuleCall_24()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -5317,36 +5347,6 @@ rule__FeatureElement__Alternatives
 		{ before(grammarAccess.getFeatureElementAccess().getInvariantParserRuleCall_4()); }
 		ruleInvariant
 		{ after(grammarAccess.getFeatureElementAccess().getInvariantParserRuleCall_4()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getFeatureElementAccess().getConnectorParserRuleCall_5()); }
-		ruleConnector
-		{ after(grammarAccess.getFeatureElementAccess().getConnectorParserRuleCall_5()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getFeatureElementAccess().getBindingConnectorParserRuleCall_6()); }
-		ruleBindingConnector
-		{ after(grammarAccess.getFeatureElementAccess().getBindingConnectorParserRuleCall_6()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getFeatureElementAccess().getSuccessionParserRuleCall_7()); }
-		ruleSuccession
-		{ after(grammarAccess.getFeatureElementAccess().getSuccessionParserRuleCall_7()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getFeatureElementAccess().getItemFlowParserRuleCall_8()); }
-		ruleItemFlow
-		{ after(grammarAccess.getFeatureElementAccess().getItemFlowParserRuleCall_8()); }
-	)
-	|
-	(
-		{ before(grammarAccess.getFeatureElementAccess().getSuccessionItemFlowParserRuleCall_9()); }
-		ruleSuccessionItemFlow
-		{ after(grammarAccess.getFeatureElementAccess().getSuccessionItemFlowParserRuleCall_9()); }
 	)
 ;
 finally {

@@ -178,6 +178,12 @@ DefinitionElement returns SysML::Element :
 	| ViewDefinition
 	| ViewpointDefinition
 	| RenderingDefinition
+    | BindingConnector
+    | Succession
+    | ItemFlow
+    | SuccessionItemFlow
+	| ConnectionUsage
+	| Connector
 ;
 	
 UsageElement returns SysML::Usage :
@@ -188,8 +194,6 @@ UsageElement returns SysML::Usage :
 	| TimeSliceUsage
 	| SnapshotUsage
 	| PortUsage
-	| ConnectionUsage
-	| Connector
 	| InterfaceUsage
 	| ActionUsage
 	| CalculationUsage
@@ -250,10 +254,6 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 FeatureElement returns SysML::Feature :
       UsageElement
-    | BindingConnector
-    | Succession
-    | ItemFlow
-    | SuccessionItemFlow
 ;
 
 /* CLASSIFIERS */
@@ -654,13 +654,7 @@ StructureUsageElement returns SysML::Feature :
 	| ViewRefUsage
 	| RenderingRefUsage
 	| PortUsage
-	| ConnectionUsage
-	| Connector
 	| InterfaceUsage
-	| BindingConnector
-	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
 ;
 
 IndividualUsageElement returns SysML::Usage :
@@ -1793,18 +1787,16 @@ SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )?
-    ( 'by' ownedFeatureMembership_comp += SatisfactionConnectorMember )?
+    ( 'by' ownedMembership_comp += SatisfactionConnectorMember )?
     InvariantPart RequirementBody
+;
+
+SatisfactionConnectorMember returns SysML::Membership :
+	ownedMemberElement_comp = SatisfactionConnector
 ;
 
 SatisfactionConnector returns SysML::BindingConnector :
 	ownedFeatureMembership_comp += EmptySourceEndMember ownedFeatureMembership_comp += ConnectorEndMember
-;
-
-/* REQUIREMENT MEMBERSHIPS */
-
-SatisfactionConnectorMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = SatisfactionConnector
 ;
 
 /* CASES */

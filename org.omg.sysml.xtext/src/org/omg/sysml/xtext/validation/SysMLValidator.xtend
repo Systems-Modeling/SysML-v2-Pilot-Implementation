@@ -347,7 +347,7 @@ class SysMLValidator extends KerMLValidator {
 		var Expression setting_m_u = null;
 		
 		// Only check multiplicity conformance if the subsettingFeature owns its multiplicity element.
-		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningType === sub.subsettingFeature) {
+		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningNamespace === sub.subsettingFeature) {
 			var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
 			var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
 			

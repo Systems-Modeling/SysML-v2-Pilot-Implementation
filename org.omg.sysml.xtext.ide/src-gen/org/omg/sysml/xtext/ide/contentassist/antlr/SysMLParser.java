@@ -47,7 +47,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypeBodyAccess().getAlternatives(), "rule__TypeBody__Alternatives");
 			builder.put(grammarAccess.getTypeBodyAccess().getAlternatives_1_1(), "rule__TypeBody__Alternatives_1_1");
 			builder.put(grammarAccess.getFeatureTypeMemberAccess().getAlternatives(), "rule__FeatureTypeMember__Alternatives");
-			builder.put(grammarAccess.getFeatureElementAccess().getAlternatives(), "rule__FeatureElement__Alternatives");
 			builder.put(grammarAccess.getSpecializesKeywordAccess().getAlternatives(), "rule__SpecializesKeyword__Alternatives");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getAlternatives(), "rule__FeatureDeclaration__Alternatives");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getAlternatives(), "rule__FeatureSpecializationPart__Alternatives");
@@ -878,10 +877,10 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRequirementConstraintUsageAccess().getOwnedRelationship_compAssignment_0_0(), "rule__RequirementConstraintUsage__OwnedRelationship_compAssignment_0_0");
 			builder.put(grammarAccess.getRequirementRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__RequirementRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedRelationship_compAssignment_2_0_0(), "rule__SatisfyRequirementUsage__OwnedRelationship_compAssignment_2_0_0");
-			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedFeatureMembership_compAssignment_4_1(), "rule__SatisfyRequirementUsage__OwnedFeatureMembership_compAssignment_4_1");
+			builder.put(grammarAccess.getSatisfyRequirementUsageAccess().getOwnedMembership_compAssignment_4_1(), "rule__SatisfyRequirementUsage__OwnedMembership_compAssignment_4_1");
+			builder.put(grammarAccess.getSatisfactionConnectorMemberAccess().getOwnedMemberElement_compAssignment(), "rule__SatisfactionConnectorMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getSatisfactionConnectorAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__SatisfactionConnector__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getSatisfactionConnectorAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__SatisfactionConnector__OwnedFeatureMembership_compAssignment_1");
-			builder.put(grammarAccess.getSatisfactionConnectorMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__SatisfactionConnectorMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getCaseBodyAccess().getOwnedFeatureMembership_compAssignment_1_2(), "rule__CaseBody__OwnedFeatureMembership_compAssignment_1_2");
 			builder.put(grammarAccess.getCaseBodyItemAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__CaseBodyItem__OwnedFeatureMembership_compAssignment_1");
 			builder.put(grammarAccess.getCaseBodyItemAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__CaseBodyItem__OwnedFeatureMembership_compAssignment_2");

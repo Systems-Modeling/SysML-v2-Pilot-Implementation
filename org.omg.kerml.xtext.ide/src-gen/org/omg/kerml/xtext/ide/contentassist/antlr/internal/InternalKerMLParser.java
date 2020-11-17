@@ -16954,10 +16954,15 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             case 91:
             case 92:
             case 93:
+            case 94:
+            case 98:
+            case 100:
             case 103:
             case 107:
             case 108:
             case 110:
+            case 111:
+            case 112:
                 {
                 alt13=1;
                 }
@@ -16966,11 +16971,11 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 {
                 int LA13_2 = input.LA(2);
 
-                if ( ((LA13_2>=RULE_ID && LA13_2<=RULE_UNRESTRICTED_NAME)||LA13_2==27||(LA13_2>=29 && LA13_2<=35)||LA13_2==59||LA13_2==82||LA13_2==88||LA13_2==94||LA13_2==98||LA13_2==100||(LA13_2>=104 && LA13_2<=106)||LA13_2==109||(LA13_2>=111 && LA13_2<=112)||LA13_2==116) ) {
-                    alt13=2;
-                }
-                else if ( (LA13_2==74||LA13_2==80||(LA13_2>=91 && LA13_2<=93)||LA13_2==103||(LA13_2>=107 && LA13_2<=108)||LA13_2==110) ) {
+                if ( (LA13_2==74||LA13_2==80||(LA13_2>=91 && LA13_2<=94)||LA13_2==98||LA13_2==100||LA13_2==103||(LA13_2>=107 && LA13_2<=108)||(LA13_2>=110 && LA13_2<=112)) ) {
                     alt13=1;
+                }
+                else if ( ((LA13_2>=RULE_ID && LA13_2<=RULE_UNRESTRICTED_NAME)||LA13_2==27||(LA13_2>=29 && LA13_2<=35)||LA13_2==59||LA13_2==82||LA13_2==88||(LA13_2>=104 && LA13_2<=106)||LA13_2==109||LA13_2==116) ) {
+                    alt13=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -16994,15 +16999,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             case 59:
             case 82:
             case 88:
-            case 94:
-            case 98:
-            case 100:
             case 104:
             case 105:
             case 106:
             case 109:
-            case 111:
-            case 112:
             case 116:
                 {
                 alt13=2;
@@ -17091,7 +17091,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==EOF||LA14_0==RULE_REGULAR_COMMENT||LA14_0==60||(LA14_0>=62 && LA14_0<=63)||LA14_0==67||(LA14_0>=69 && LA14_0<=72)||(LA14_0>=74 && LA14_0<=77)||(LA14_0>=80 && LA14_0<=81)||(LA14_0>=85 && LA14_0<=86)||(LA14_0>=91 && LA14_0<=93)||LA14_0==103||(LA14_0>=107 && LA14_0<=108)||LA14_0==110||LA14_0==115) ) {
+            if ( (LA14_0==EOF||LA14_0==RULE_REGULAR_COMMENT||LA14_0==60||(LA14_0>=62 && LA14_0<=63)||LA14_0==67||(LA14_0>=69 && LA14_0<=72)||(LA14_0>=74 && LA14_0<=77)||(LA14_0>=80 && LA14_0<=81)||(LA14_0>=85 && LA14_0<=86)||(LA14_0>=91 && LA14_0<=94)||LA14_0==98||LA14_0==100||LA14_0==103||(LA14_0>=107 && LA14_0<=108)||(LA14_0>=110 && LA14_0<=112)||LA14_0==115) ) {
                 alt14=1;
             }
             else if ( ((LA14_0>=23 && LA14_0<=24)) ) {
@@ -17554,14 +17554,14 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NonFeatureElement__Alternatives"
-    // InternalKerML.g:5158:1: rule__NonFeatureElement__Alternatives : ( ( ruleElement ) | ( ruleRelationship ) | ( ruleComment ) | ( ruleTextualRepresentation ) | ( rulePackage ) | ( ruleType ) | ( ruleClassifier ) | ( ruleClass ) | ( ruleDataType ) | ( ruleAssociation ) | ( ruleInteraction ) | ( ruleBehavior ) | ( ruleFunction ) | ( rulePredicate ) | ( ruleGeneralization ) | ( ruleConjugation ) | ( ruleFeatureTyping ) | ( ruleSuperclassing ) | ( ruleSubsetting ) | ( ruleRedefinition ) );
+    // InternalKerML.g:5158:1: rule__NonFeatureElement__Alternatives : ( ( ruleElement ) | ( ruleRelationship ) | ( ruleComment ) | ( ruleTextualRepresentation ) | ( rulePackage ) | ( ruleType ) | ( ruleClassifier ) | ( ruleClass ) | ( ruleDataType ) | ( ruleAssociation ) | ( ruleInteraction ) | ( ruleBehavior ) | ( ruleFunction ) | ( rulePredicate ) | ( ruleGeneralization ) | ( ruleConjugation ) | ( ruleFeatureTyping ) | ( ruleSuperclassing ) | ( ruleSubsetting ) | ( ruleRedefinition ) | ( ruleConnector ) | ( ruleBindingConnector ) | ( ruleSuccession ) | ( ruleItemFlow ) | ( ruleSuccessionItemFlow ) );
     public final void rule__NonFeatureElement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:5162:1: ( ( ruleElement ) | ( ruleRelationship ) | ( ruleComment ) | ( ruleTextualRepresentation ) | ( rulePackage ) | ( ruleType ) | ( ruleClassifier ) | ( ruleClass ) | ( ruleDataType ) | ( ruleAssociation ) | ( ruleInteraction ) | ( ruleBehavior ) | ( ruleFunction ) | ( rulePredicate ) | ( ruleGeneralization ) | ( ruleConjugation ) | ( ruleFeatureTyping ) | ( ruleSuperclassing ) | ( ruleSubsetting ) | ( ruleRedefinition ) )
-            int alt18=20;
+            // InternalKerML.g:5162:1: ( ( ruleElement ) | ( ruleRelationship ) | ( ruleComment ) | ( ruleTextualRepresentation ) | ( rulePackage ) | ( ruleType ) | ( ruleClassifier ) | ( ruleClass ) | ( ruleDataType ) | ( ruleAssociation ) | ( ruleInteraction ) | ( ruleBehavior ) | ( ruleFunction ) | ( rulePredicate ) | ( ruleGeneralization ) | ( ruleConjugation ) | ( ruleFeatureTyping ) | ( ruleSuperclassing ) | ( ruleSubsetting ) | ( ruleRedefinition ) | ( ruleConnector ) | ( ruleBindingConnector ) | ( ruleSuccession ) | ( ruleItemFlow ) | ( ruleSuccessionItemFlow ) )
+            int alt18=25;
             alt18 = dfa18.predict(input);
             switch (alt18) {
                 case 1 :
@@ -18024,6 +18024,121 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
                     }
                     break;
+                case 21 :
+                    // InternalKerML.g:5283:2: ( ruleConnector )
+                    {
+                    // InternalKerML.g:5283:2: ( ruleConnector )
+                    // InternalKerML.g:5284:3: ruleConnector
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getNonFeatureElementAccess().getConnectorParserRuleCall_20()); 
+                    }
+                    pushFollow(FOLLOW_2);
+                    ruleConnector();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getNonFeatureElementAccess().getConnectorParserRuleCall_20()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 22 :
+                    // InternalKerML.g:5289:2: ( ruleBindingConnector )
+                    {
+                    // InternalKerML.g:5289:2: ( ruleBindingConnector )
+                    // InternalKerML.g:5290:3: ruleBindingConnector
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getNonFeatureElementAccess().getBindingConnectorParserRuleCall_21()); 
+                    }
+                    pushFollow(FOLLOW_2);
+                    ruleBindingConnector();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getNonFeatureElementAccess().getBindingConnectorParserRuleCall_21()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 23 :
+                    // InternalKerML.g:5295:2: ( ruleSuccession )
+                    {
+                    // InternalKerML.g:5295:2: ( ruleSuccession )
+                    // InternalKerML.g:5296:3: ruleSuccession
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getNonFeatureElementAccess().getSuccessionParserRuleCall_22()); 
+                    }
+                    pushFollow(FOLLOW_2);
+                    ruleSuccession();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getNonFeatureElementAccess().getSuccessionParserRuleCall_22()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 24 :
+                    // InternalKerML.g:5301:2: ( ruleItemFlow )
+                    {
+                    // InternalKerML.g:5301:2: ( ruleItemFlow )
+                    // InternalKerML.g:5302:3: ruleItemFlow
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getNonFeatureElementAccess().getItemFlowParserRuleCall_23()); 
+                    }
+                    pushFollow(FOLLOW_2);
+                    ruleItemFlow();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getNonFeatureElementAccess().getItemFlowParserRuleCall_23()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
+                case 25 :
+                    // InternalKerML.g:5307:2: ( ruleSuccessionItemFlow )
+                    {
+                    // InternalKerML.g:5307:2: ( ruleSuccessionItemFlow )
+                    // InternalKerML.g:5308:3: ruleSuccessionItemFlow
+                    {
+                    if ( state.backtracking==0 ) {
+                       before(grammarAccess.getNonFeatureElementAccess().getSuccessionItemFlowParserRuleCall_24()); 
+                    }
+                    pushFollow(FOLLOW_2);
+                    ruleSuccessionItemFlow();
+
+                    state._fsp--;
+                    if (state.failed) return ;
+                    if ( state.backtracking==0 ) {
+                       after(grammarAccess.getNonFeatureElementAccess().getSuccessionItemFlowParserRuleCall_24()); 
+                    }
+
+                    }
+
+
+                    }
+                    break;
 
             }
         }
@@ -18042,21 +18157,118 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FeatureElement__Alternatives"
-    // InternalKerML.g:5287:1: rule__FeatureElement__Alternatives : ( ( ruleFeature ) | ( ruleStep ) | ( ruleExpression ) | ( ruleBooleanExpression ) | ( ruleInvariant ) | ( ruleConnector ) | ( ruleBindingConnector ) | ( ruleSuccession ) | ( ruleItemFlow ) | ( ruleSuccessionItemFlow ) );
+    // InternalKerML.g:5317:1: rule__FeatureElement__Alternatives : ( ( ruleFeature ) | ( ruleStep ) | ( ruleExpression ) | ( ruleBooleanExpression ) | ( ruleInvariant ) );
     public final void rule__FeatureElement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:5291:1: ( ( ruleFeature ) | ( ruleStep ) | ( ruleExpression ) | ( ruleBooleanExpression ) | ( ruleInvariant ) | ( ruleConnector ) | ( ruleBindingConnector ) | ( ruleSuccession ) | ( ruleItemFlow ) | ( ruleSuccessionItemFlow ) )
-            int alt19=10;
-            alt19 = dfa19.predict(input);
+            // InternalKerML.g:5321:1: ( ( ruleFeature ) | ( ruleStep ) | ( ruleExpression ) | ( ruleBooleanExpression ) | ( ruleInvariant ) )
+            int alt19=5;
+            switch ( input.LA(1) ) {
+            case 115:
+                {
+                switch ( input.LA(2) ) {
+                case 106:
+                    {
+                    alt19=4;
+                    }
+                    break;
+                case 105:
+                    {
+                    alt19=3;
+                    }
+                    break;
+                case RULE_ID:
+                case RULE_UNRESTRICTED_NAME:
+                case 27:
+                case 29:
+                case 30:
+                case 31:
+                case 32:
+                case 33:
+                case 34:
+                case 35:
+                case 59:
+                case 82:
+                case 88:
+                case 116:
+                    {
+                    alt19=1;
+                    }
+                    break;
+                case 109:
+                    {
+                    alt19=5;
+                    }
+                    break;
+                case 104:
+                    {
+                    alt19=2;
+                    }
+                    break;
+                default:
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 19, 1, input);
+
+                    throw nvae;
+                }
+
+                }
+                break;
+            case RULE_ID:
+            case RULE_UNRESTRICTED_NAME:
+            case 27:
+            case 29:
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 59:
+            case 82:
+            case 88:
+            case 116:
+                {
+                alt19=1;
+                }
+                break;
+            case 104:
+                {
+                alt19=2;
+                }
+                break;
+            case 105:
+                {
+                alt19=3;
+                }
+                break;
+            case 106:
+                {
+                alt19=4;
+                }
+                break;
+            case 109:
+                {
+                alt19=5;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 19, 0, input);
+
+                throw nvae;
+            }
+
             switch (alt19) {
                 case 1 :
-                    // InternalKerML.g:5292:2: ( ruleFeature )
+                    // InternalKerML.g:5322:2: ( ruleFeature )
                     {
-                    // InternalKerML.g:5292:2: ( ruleFeature )
-                    // InternalKerML.g:5293:3: ruleFeature
+                    // InternalKerML.g:5322:2: ( ruleFeature )
+                    // InternalKerML.g:5323:3: ruleFeature
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFeatureElementAccess().getFeatureParserRuleCall_0()); 
@@ -18076,10 +18288,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:5298:2: ( ruleStep )
+                    // InternalKerML.g:5328:2: ( ruleStep )
                     {
-                    // InternalKerML.g:5298:2: ( ruleStep )
-                    // InternalKerML.g:5299:3: ruleStep
+                    // InternalKerML.g:5328:2: ( ruleStep )
+                    // InternalKerML.g:5329:3: ruleStep
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFeatureElementAccess().getStepParserRuleCall_1()); 
@@ -18099,10 +18311,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalKerML.g:5304:2: ( ruleExpression )
+                    // InternalKerML.g:5334:2: ( ruleExpression )
                     {
-                    // InternalKerML.g:5304:2: ( ruleExpression )
-                    // InternalKerML.g:5305:3: ruleExpression
+                    // InternalKerML.g:5334:2: ( ruleExpression )
+                    // InternalKerML.g:5335:3: ruleExpression
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFeatureElementAccess().getExpressionParserRuleCall_2()); 
@@ -18122,10 +18334,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // InternalKerML.g:5310:2: ( ruleBooleanExpression )
+                    // InternalKerML.g:5340:2: ( ruleBooleanExpression )
                     {
-                    // InternalKerML.g:5310:2: ( ruleBooleanExpression )
-                    // InternalKerML.g:5311:3: ruleBooleanExpression
+                    // InternalKerML.g:5340:2: ( ruleBooleanExpression )
+                    // InternalKerML.g:5341:3: ruleBooleanExpression
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFeatureElementAccess().getBooleanExpressionParserRuleCall_3()); 
@@ -18145,10 +18357,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // InternalKerML.g:5316:2: ( ruleInvariant )
+                    // InternalKerML.g:5346:2: ( ruleInvariant )
                     {
-                    // InternalKerML.g:5316:2: ( ruleInvariant )
-                    // InternalKerML.g:5317:3: ruleInvariant
+                    // InternalKerML.g:5346:2: ( ruleInvariant )
+                    // InternalKerML.g:5347:3: ruleInvariant
                     {
                     if ( state.backtracking==0 ) {
                        before(grammarAccess.getFeatureElementAccess().getInvariantParserRuleCall_4()); 
@@ -18160,121 +18372,6 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        after(grammarAccess.getFeatureElementAccess().getInvariantParserRuleCall_4()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 6 :
-                    // InternalKerML.g:5322:2: ( ruleConnector )
-                    {
-                    // InternalKerML.g:5322:2: ( ruleConnector )
-                    // InternalKerML.g:5323:3: ruleConnector
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureElementAccess().getConnectorParserRuleCall_5()); 
-                    }
-                    pushFollow(FOLLOW_2);
-                    ruleConnector();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureElementAccess().getConnectorParserRuleCall_5()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 7 :
-                    // InternalKerML.g:5328:2: ( ruleBindingConnector )
-                    {
-                    // InternalKerML.g:5328:2: ( ruleBindingConnector )
-                    // InternalKerML.g:5329:3: ruleBindingConnector
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureElementAccess().getBindingConnectorParserRuleCall_6()); 
-                    }
-                    pushFollow(FOLLOW_2);
-                    ruleBindingConnector();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureElementAccess().getBindingConnectorParserRuleCall_6()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 8 :
-                    // InternalKerML.g:5334:2: ( ruleSuccession )
-                    {
-                    // InternalKerML.g:5334:2: ( ruleSuccession )
-                    // InternalKerML.g:5335:3: ruleSuccession
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureElementAccess().getSuccessionParserRuleCall_7()); 
-                    }
-                    pushFollow(FOLLOW_2);
-                    ruleSuccession();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureElementAccess().getSuccessionParserRuleCall_7()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 9 :
-                    // InternalKerML.g:5340:2: ( ruleItemFlow )
-                    {
-                    // InternalKerML.g:5340:2: ( ruleItemFlow )
-                    // InternalKerML.g:5341:3: ruleItemFlow
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureElementAccess().getItemFlowParserRuleCall_8()); 
-                    }
-                    pushFollow(FOLLOW_2);
-                    ruleItemFlow();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureElementAccess().getItemFlowParserRuleCall_8()); 
-                    }
-
-                    }
-
-
-                    }
-                    break;
-                case 10 :
-                    // InternalKerML.g:5346:2: ( ruleSuccessionItemFlow )
-                    {
-                    // InternalKerML.g:5346:2: ( ruleSuccessionItemFlow )
-                    // InternalKerML.g:5347:3: ruleSuccessionItemFlow
-                    {
-                    if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureElementAccess().getSuccessionItemFlowParserRuleCall_9()); 
-                    }
-                    pushFollow(FOLLOW_2);
-                    ruleSuccessionItemFlow();
-
-                    state._fsp--;
-                    if (state.failed) return ;
-                    if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureElementAccess().getSuccessionItemFlowParserRuleCall_9()); 
                     }
 
                     }
@@ -19035,15 +19132,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             case 59:
             case 82:
             case 88:
-            case 94:
-            case 98:
-            case 100:
             case 104:
             case 105:
             case 106:
             case 109:
-            case 111:
-            case 112:
             case 115:
             case 116:
                 {
@@ -19057,11 +19149,11 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                     {
                     int LA28_3 = input.LA(3);
 
-                    if ( (LA28_3==22||LA28_3==27||(LA28_3>=29 && LA28_3<=30)||(LA28_3>=32 && LA28_3<=35)||LA28_3==61||LA28_3==82||(LA28_3>=87 && LA28_3<=88)) ) {
-                        alt28=1;
-                    }
-                    else if ( (LA28_3==78) ) {
+                    if ( (LA28_3==78) ) {
                         alt28=2;
+                    }
+                    else if ( (LA28_3==22||LA28_3==27||(LA28_3>=29 && LA28_3<=30)||(LA28_3>=32 && LA28_3<=35)||LA28_3==61||LA28_3==82||(LA28_3>=87 && LA28_3<=88)) ) {
+                        alt28=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
@@ -19128,11 +19220,11 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
                 {
                 int LA28_3 = input.LA(2);
 
-                if ( (LA28_3==22||LA28_3==27||(LA28_3>=29 && LA28_3<=30)||(LA28_3>=32 && LA28_3<=35)||LA28_3==61||LA28_3==82||(LA28_3>=87 && LA28_3<=88)) ) {
-                    alt28=1;
-                }
-                else if ( (LA28_3==78) ) {
+                if ( (LA28_3==78) ) {
                     alt28=2;
+                }
+                else if ( (LA28_3==22||LA28_3==27||(LA28_3>=29 && LA28_3<=30)||(LA28_3>=32 && LA28_3<=35)||LA28_3==61||LA28_3==82||(LA28_3>=87 && LA28_3<=88)) ) {
+                    alt28=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -61570,7 +61662,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18098:1: ( rule__Invariant__Group__0__Impl rule__Invariant__Group__1 )
             // InternalKerML.g:18099:2: rule__Invariant__Group__0__Impl rule__Invariant__Group__1
             {
-            pushFollow(FOLLOW_102);
+            pushFollow(FOLLOW_3);
             rule__Invariant__Group__0__Impl();
 
             state._fsp--;
@@ -61993,7 +62085,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18233:1: ( rule__Interaction__Group__0__Impl rule__Interaction__Group__1 )
             // InternalKerML.g:18234:2: rule__Interaction__Group__0__Impl rule__Interaction__Group__1
             {
-            pushFollow(FOLLOW_103);
+            pushFollow(FOLLOW_102);
             rule__Interaction__Group__0__Impl();
 
             state._fsp--;
@@ -62333,7 +62425,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18341:1: ( rule__ItemFlow__Group__0__Impl rule__ItemFlow__Group__1 )
             // InternalKerML.g:18342:2: rule__ItemFlow__Group__0__Impl rule__ItemFlow__Group__1
             {
-            pushFollow(FOLLOW_104);
+            pushFollow(FOLLOW_103);
             rule__ItemFlow__Group__0__Impl();
 
             state._fsp--;
@@ -62673,7 +62765,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:18449:1: ( rule__SuccessionItemFlow__Group__0__Impl rule__SuccessionItemFlow__Group__1 )
             // InternalKerML.g:18450:2: rule__SuccessionItemFlow__Group__0__Impl rule__SuccessionItemFlow__Group__1
             {
-            pushFollow(FOLLOW_3);
+            pushFollow(FOLLOW_104);
             rule__SuccessionItemFlow__Group__0__Impl();
 
             state._fsp--;
@@ -91121,7 +91213,6 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     protected DFA11 dfa11 = new DFA11(this);
     protected DFA12 dfa12 = new DFA12(this);
     protected DFA18 dfa18 = new DFA18(this);
-    protected DFA19 dfa19 = new DFA19(this);
     protected DFA24 dfa24 = new DFA24(this);
     protected DFA25 dfa25 = new DFA25(this);
     protected DFA46 dfa46 = new DFA46(this);
@@ -91328,17 +91419,19 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             return "5020:1: rule__PackageBodyElement__Alternatives : ( ( ( rule__PackageBodyElement__Documentation_compAssignment_0 ) ) | ( ( rule__PackageBodyElement__OwnedMembership_compAssignment_1 ) ) | ( ( rule__PackageBodyElement__OwnedImport_compAssignment_2 ) ) );";
         }
     }
-    static final String dfa_17s = "\1\10\5\uffff\1\112\11\uffff\1\6\5\uffff\1\6\2\113\1\uffff\2\6\2\113";
-    static final String dfa_18s = "\1\163\5\uffff\1\156\11\uffff\1\126\5\uffff\1\7\2\126\1\uffff\4\126";
-    static final String dfa_19s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\uffff\1\17\1\20\1\22\1\23\1\24\3\uffff\1\21\4\uffff";
-    static final String[] dfa_20s = {
-            "\1\3\63\uffff\1\1\2\uffff\1\2\3\uffff\1\3\2\uffff\2\4\1\5\1\uffff\1\7\1\21\1\20\1\22\2\uffff\1\10\1\23\3\uffff\1\24\1\25\4\uffff\1\12\1\11\1\13\11\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14\4\uffff\1\6",
+    static final String dfa_17s = "\43\uffff";
+    static final String dfa_18s = "\1\10\5\uffff\1\112\11\uffff\1\6\12\uffff\1\6\2\113\1\uffff\2\6\2\113";
+    static final String dfa_19s = "\1\163\5\uffff\1\160\11\uffff\1\126\12\uffff\1\7\2\126\1\uffff\4\126";
+    static final String dfa_20s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\uffff\1\17\1\20\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\3\uffff\1\21\4\uffff";
+    static final String dfa_21s = "\43\uffff}>";
+    static final String[] dfa_22s = {
+            "\1\3\63\uffff\1\1\2\uffff\1\2\3\uffff\1\3\2\uffff\2\4\1\5\1\uffff\1\7\1\21\1\20\1\22\2\uffff\1\10\1\23\3\uffff\1\24\1\25\4\uffff\1\12\1\11\1\13\1\26\3\uffff\1\27\1\uffff\1\30\2\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14\1\31\1\32\2\uffff\1\6",
             "",
             "",
             "",
             "",
             "",
-            "\1\7\5\uffff\1\10\12\uffff\1\12\1\11\1\13\11\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14",
+            "\1\7\5\uffff\1\10\12\uffff\1\12\1\11\1\13\1\26\3\uffff\1\27\1\uffff\1\30\2\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14\1\31\1\32",
             "",
             "",
             "",
@@ -91348,102 +91441,66 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "",
             "",
             "",
-            "\1\27\1\30\63\uffff\1\26\17\uffff\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25",
+            "\1\34\1\35\63\uffff\1\33\17\uffff\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25",
             "",
             "",
             "",
             "",
             "",
-            "\1\32\1\33",
-            "\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25",
-            "\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25",
             "",
-            "\1\34\1\35\103\uffff\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25",
-            "\1\34\1\35\103\uffff\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25",
-            "\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25",
-            "\1\21\5\uffff\1\23\2\uffff\1\31\1\24\1\25"
+            "",
+            "",
+            "",
+            "",
+            "\1\37\1\40",
+            "\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25",
+            "\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25",
+            "",
+            "\1\41\1\42\103\uffff\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25",
+            "\1\41\1\42\103\uffff\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25",
+            "\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25",
+            "\1\21\5\uffff\1\23\2\uffff\1\36\1\24\1\25"
     };
-    static final char[] dfa_17 = DFA.unpackEncodedStringToUnsignedChars(dfa_17s);
+
+    static final short[] dfa_17 = DFA.unpackEncodedString(dfa_17s);
     static final char[] dfa_18 = DFA.unpackEncodedStringToUnsignedChars(dfa_18s);
-    static final short[] dfa_19 = DFA.unpackEncodedString(dfa_19s);
-    static final short[][] dfa_20 = unpackEncodedStringArray(dfa_20s);
+    static final char[] dfa_19 = DFA.unpackEncodedStringToUnsignedChars(dfa_19s);
+    static final short[] dfa_20 = DFA.unpackEncodedString(dfa_20s);
+    static final short[] dfa_21 = DFA.unpackEncodedString(dfa_21s);
+    static final short[][] dfa_22 = unpackEncodedStringArray(dfa_22s);
 
     class DFA18 extends DFA {
 
         public DFA18(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 18;
-            this.eot = dfa_10;
-            this.eof = dfa_10;
-            this.min = dfa_17;
-            this.max = dfa_18;
-            this.accept = dfa_19;
-            this.special = dfa_14;
-            this.transition = dfa_20;
+            this.eot = dfa_17;
+            this.eof = dfa_17;
+            this.min = dfa_18;
+            this.max = dfa_19;
+            this.accept = dfa_20;
+            this.special = dfa_21;
+            this.transition = dfa_22;
         }
         public String getDescription() {
-            return "5158:1: rule__NonFeatureElement__Alternatives : ( ( ruleElement ) | ( ruleRelationship ) | ( ruleComment ) | ( ruleTextualRepresentation ) | ( rulePackage ) | ( ruleType ) | ( ruleClassifier ) | ( ruleClass ) | ( ruleDataType ) | ( ruleAssociation ) | ( ruleInteraction ) | ( ruleBehavior ) | ( ruleFunction ) | ( rulePredicate ) | ( ruleGeneralization ) | ( ruleConjugation ) | ( ruleFeatureTyping ) | ( ruleSuperclassing ) | ( ruleSubsetting ) | ( ruleRedefinition ) );";
+            return "5158:1: rule__NonFeatureElement__Alternatives : ( ( ruleElement ) | ( ruleRelationship ) | ( ruleComment ) | ( ruleTextualRepresentation ) | ( rulePackage ) | ( ruleType ) | ( ruleClassifier ) | ( ruleClass ) | ( ruleDataType ) | ( ruleAssociation ) | ( ruleInteraction ) | ( ruleBehavior ) | ( ruleFunction ) | ( rulePredicate ) | ( ruleGeneralization ) | ( ruleConjugation ) | ( ruleFeatureTyping ) | ( ruleSuperclassing ) | ( ruleSubsetting ) | ( ruleRedefinition ) | ( ruleConnector ) | ( ruleBindingConnector ) | ( ruleSuccession ) | ( ruleItemFlow ) | ( ruleSuccessionItemFlow ) );";
         }
     }
-    static final String dfa_21s = "\14\uffff";
-    static final String dfa_22s = "\2\6\12\uffff";
-    static final String dfa_23s = "\2\164\12\uffff";
-    static final String dfa_24s = "\2\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12";
-    static final String dfa_25s = "\14\uffff}>";
-    static final String[] dfa_26s = {
-            "\2\2\23\uffff\1\2\1\uffff\7\2\27\uffff\1\2\26\uffff\1\2\5\uffff\1\2\5\uffff\1\7\3\uffff\1\10\1\uffff\1\11\3\uffff\1\3\1\4\1\5\2\uffff\1\6\1\uffff\1\12\1\13\2\uffff\1\1\1\2",
-            "\2\2\23\uffff\1\2\1\uffff\7\2\27\uffff\1\2\26\uffff\1\2\5\uffff\1\2\5\uffff\1\7\3\uffff\1\10\1\uffff\1\11\3\uffff\1\3\1\4\1\5\2\uffff\1\6\1\uffff\1\12\1\13\3\uffff\1\2",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] dfa_21 = DFA.unpackEncodedString(dfa_21s);
-    static final char[] dfa_22 = DFA.unpackEncodedStringToUnsignedChars(dfa_22s);
-    static final char[] dfa_23 = DFA.unpackEncodedStringToUnsignedChars(dfa_23s);
-    static final short[] dfa_24 = DFA.unpackEncodedString(dfa_24s);
-    static final short[] dfa_25 = DFA.unpackEncodedString(dfa_25s);
-    static final short[][] dfa_26 = unpackEncodedStringArray(dfa_26s);
-
-    class DFA19 extends DFA {
-
-        public DFA19(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 19;
-            this.eot = dfa_21;
-            this.eof = dfa_21;
-            this.min = dfa_22;
-            this.max = dfa_23;
-            this.accept = dfa_24;
-            this.special = dfa_25;
-            this.transition = dfa_26;
-        }
-        public String getDescription() {
-            return "5287:1: rule__FeatureElement__Alternatives : ( ( ruleFeature ) | ( ruleStep ) | ( ruleExpression ) | ( ruleBooleanExpression ) | ( ruleInvariant ) | ( ruleConnector ) | ( ruleBindingConnector ) | ( ruleSuccession ) | ( ruleItemFlow ) | ( ruleSuccessionItemFlow ) );";
-        }
-    }
-    static final String dfa_27s = "\42\uffff";
-    static final String dfa_28s = "\1\6\1\10\5\6\1\uffff\2\6\1\uffff\1\6\1\uffff\1\11\2\26\2\10\3\6\2\11\2\26\1\uffff\2\26\2\6\4\26";
-    static final String dfa_29s = "\1\167\1\73\5\167\1\uffff\1\164\1\7\1\uffff\1\7\1\uffff\1\73\2\111\2\11\1\7\2\57\2\11\2\111\1\uffff\2\111\2\57\4\111";
-    static final String dfa_30s = "\7\uffff\1\2\2\uffff\1\3\1\uffff\1\1\14\uffff\1\4\10\uffff";
-    static final String dfa_31s = "\42\uffff}>";
-    static final String[] dfa_32s = {
-            "\2\12\1\7\1\2\15\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\20\uffff\1\3\1\4\1\5\1\6\4\12\1\7\2\uffff\1\7\3\uffff\1\7\1\uffff\1\1\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\2\uffff\1\10\4\12",
+    static final String dfa_23s = "\42\uffff";
+    static final String dfa_24s = "\1\6\1\10\5\6\1\uffff\2\6\1\uffff\1\6\1\uffff\1\11\2\26\2\10\3\6\2\11\2\26\1\uffff\2\26\2\6\4\26";
+    static final String dfa_25s = "\1\167\1\73\5\167\1\uffff\1\164\1\7\1\uffff\1\7\1\uffff\1\73\2\111\2\11\1\7\2\57\2\11\2\111\1\uffff\2\111\2\57\4\111";
+    static final String dfa_26s = "\7\uffff\1\2\2\uffff\1\3\1\uffff\1\1\14\uffff\1\4\10\uffff";
+    static final String dfa_27s = "\42\uffff}>";
+    static final String[] dfa_28s = {
+            "\2\12\1\7\1\2\15\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\20\uffff\1\3\1\4\1\5\1\6\4\12\1\7\2\uffff\1\7\3\uffff\1\7\1\uffff\1\1\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\2\uffff\1\10\4\12",
             "\1\14\1\2\61\uffff\1\13",
-            "\2\12\1\7\1\2\15\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\20\uffff\1\3\1\4\1\5\1\6\4\12\1\7\2\uffff\1\7\3\uffff\1\7\1\uffff\1\15\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\2\uffff\1\10\4\12",
-            "\2\12\1\7\16\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\2\uffff\1\10\4\12",
-            "\2\12\1\7\16\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\2\uffff\1\10\4\12",
-            "\2\12\1\7\16\uffff\2\7\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\2\uffff\1\10\4\12",
-            "\2\12\1\7\16\uffff\2\7\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\2\uffff\1\10\4\12",
+            "\2\12\1\7\1\2\15\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\20\uffff\1\3\1\4\1\5\1\6\4\12\1\7\2\uffff\1\7\3\uffff\1\7\1\uffff\1\15\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\2\uffff\1\10\4\12",
+            "\2\12\1\7\16\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\2\uffff\1\10\4\12",
+            "\2\12\1\7\16\uffff\1\7\1\11\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\2\uffff\1\10\4\12",
+            "\2\12\1\7\16\uffff\2\7\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\2\uffff\1\10\4\12",
+            "\2\12\1\7\16\uffff\2\7\2\uffff\1\12\1\uffff\7\12\24\uffff\4\12\1\7\2\uffff\1\7\3\uffff\1\7\2\uffff\3\7\1\uffff\4\7\2\12\2\7\1\12\2\uffff\2\7\1\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\2\uffff\1\10\4\12",
             "",
-            "\2\12\23\uffff\1\12\1\uffff\7\12\27\uffff\1\12\16\uffff\1\7\5\uffff\1\7\1\uffff\1\12\5\uffff\1\12\2\uffff\3\7\1\12\3\uffff\1\12\1\uffff\1\12\2\uffff\1\7\3\12\2\7\1\12\1\7\2\12\3\uffff\1\12",
+            "\2\12\23\uffff\1\12\1\uffff\7\12\27\uffff\1\12\16\uffff\1\7\5\uffff\1\7\1\uffff\1\12\5\uffff\1\12\2\uffff\4\7\3\uffff\1\7\1\uffff\1\7\2\uffff\1\7\3\12\2\7\1\12\3\7\3\uffff\1\12",
             "\1\16\1\17",
             "",
             "\1\20\1\21",
@@ -91471,75 +91528,80 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\7\2\uffff\1\35\57\uffff\1\7"
     };
 
+    static final short[] dfa_23 = DFA.unpackEncodedString(dfa_23s);
+    static final char[] dfa_24 = DFA.unpackEncodedStringToUnsignedChars(dfa_24s);
+    static final char[] dfa_25 = DFA.unpackEncodedStringToUnsignedChars(dfa_25s);
+    static final short[] dfa_26 = DFA.unpackEncodedString(dfa_26s);
     static final short[] dfa_27 = DFA.unpackEncodedString(dfa_27s);
-    static final char[] dfa_28 = DFA.unpackEncodedStringToUnsignedChars(dfa_28s);
-    static final char[] dfa_29 = DFA.unpackEncodedStringToUnsignedChars(dfa_29s);
-    static final short[] dfa_30 = DFA.unpackEncodedString(dfa_30s);
-    static final short[] dfa_31 = DFA.unpackEncodedString(dfa_31s);
-    static final short[][] dfa_32 = unpackEncodedStringArray(dfa_32s);
+    static final short[][] dfa_28 = unpackEncodedStringArray(dfa_28s);
 
     class DFA24 extends DFA {
 
         public DFA24(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 24;
-            this.eot = dfa_27;
-            this.eof = dfa_27;
-            this.min = dfa_28;
-            this.max = dfa_29;
-            this.accept = dfa_30;
-            this.special = dfa_31;
-            this.transition = dfa_32;
+            this.eot = dfa_23;
+            this.eof = dfa_23;
+            this.min = dfa_24;
+            this.max = dfa_25;
+            this.accept = dfa_26;
+            this.special = dfa_27;
+            this.transition = dfa_28;
         }
         public String getDescription() {
             return "5440:1: rule__TypeBody__Alternatives_1_1 : ( ( ( rule__TypeBody__Documentation_compAssignment_1_1_0 ) ) | ( ( rule__TypeBody__OwnedMembership_compAssignment_1_1_1 ) ) | ( ( rule__TypeBody__OwnedFeatureMembership_compAssignment_1_1_2 ) ) | ( ( rule__TypeBody__OwnedImport_compAssignment_1_1_3 ) ) );";
         }
     }
-    static final String dfa_33s = "\1\6\1\11\5\6\2\uffff\1\6\2\11";
-    static final String dfa_34s = "\1\167\1\73\5\167\2\uffff\1\7\2\11";
-    static final String dfa_35s = "\7\uffff\1\1\1\2\3\uffff";
-    static final String[] dfa_36s = {
-            "\2\7\1\uffff\1\2\21\uffff\1\7\1\uffff\7\7\20\uffff\1\3\1\4\1\5\1\6\4\7\11\uffff\1\1\10\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\2\uffff\5\7",
+    static final String dfa_29s = "\14\uffff";
+    static final String dfa_30s = "\1\6\1\11\5\6\2\uffff\1\6\2\11";
+    static final String dfa_31s = "\1\167\1\73\5\167\2\uffff\1\7\2\11";
+    static final String dfa_32s = "\7\uffff\1\1\1\2\3\uffff";
+    static final String dfa_33s = "\14\uffff}>";
+    static final String[] dfa_34s = {
+            "\2\7\1\uffff\1\2\21\uffff\1\7\1\uffff\7\7\20\uffff\1\3\1\4\1\5\1\6\4\7\11\uffff\1\1\10\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\17\uffff\3\7\2\uffff\1\7\5\uffff\5\7",
             "\1\2\61\uffff\1\11",
-            "\2\7\1\uffff\1\2\21\uffff\1\7\1\uffff\7\7\20\uffff\1\3\1\4\1\5\1\6\4\7\11\uffff\1\1\10\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\2\uffff\5\7",
-            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\2\uffff\5\7",
-            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\2\uffff\5\7",
-            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\2\uffff\5\7",
-            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\2\uffff\5\7",
+            "\2\7\1\uffff\1\2\21\uffff\1\7\1\uffff\7\7\20\uffff\1\3\1\4\1\5\1\6\4\7\11\uffff\1\1\10\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\17\uffff\3\7\2\uffff\1\7\5\uffff\5\7",
+            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\17\uffff\3\7\2\uffff\1\7\5\uffff\5\7",
+            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\17\uffff\3\7\2\uffff\1\7\5\uffff\5\7",
+            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\17\uffff\3\7\2\uffff\1\7\5\uffff\5\7",
+            "\2\7\23\uffff\1\7\1\uffff\7\7\24\uffff\4\7\22\uffff\1\7\1\10\2\uffff\1\7\5\uffff\1\7\17\uffff\3\7\2\uffff\1\7\5\uffff\5\7",
             "",
             "",
             "\1\12\1\13",
             "\1\2",
             "\1\2"
     };
-    static final char[] dfa_33 = DFA.unpackEncodedStringToUnsignedChars(dfa_33s);
-    static final char[] dfa_34 = DFA.unpackEncodedStringToUnsignedChars(dfa_34s);
-    static final short[] dfa_35 = DFA.unpackEncodedString(dfa_35s);
-    static final short[][] dfa_36 = unpackEncodedStringArray(dfa_36s);
+
+    static final short[] dfa_29 = DFA.unpackEncodedString(dfa_29s);
+    static final char[] dfa_30 = DFA.unpackEncodedStringToUnsignedChars(dfa_30s);
+    static final char[] dfa_31 = DFA.unpackEncodedStringToUnsignedChars(dfa_31s);
+    static final short[] dfa_32 = DFA.unpackEncodedString(dfa_32s);
+    static final short[] dfa_33 = DFA.unpackEncodedString(dfa_33s);
+    static final short[][] dfa_34 = unpackEncodedStringArray(dfa_34s);
 
     class DFA25 extends DFA {
 
         public DFA25(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 25;
-            this.eot = dfa_21;
-            this.eof = dfa_21;
-            this.min = dfa_33;
-            this.max = dfa_34;
-            this.accept = dfa_35;
-            this.special = dfa_25;
-            this.transition = dfa_36;
+            this.eot = dfa_29;
+            this.eof = dfa_29;
+            this.min = dfa_30;
+            this.max = dfa_31;
+            this.accept = dfa_32;
+            this.special = dfa_33;
+            this.transition = dfa_34;
         }
         public String getDescription() {
             return "5473:1: rule__FeatureTypeMember__Alternatives : ( ( ruleFeatureMember ) | ( ruleEndFeatureMember ) );";
         }
     }
-    static final String dfa_37s = "\u0349\uffff";
-    static final String dfa_38s = "\3\6\2\31\1\6\1\123\4\6\1\5\2\6\2\uffff\3\6\1\123\4\6\1\5\2\6\2\31\1\6\4\31\2\131\2\31\2\33\1\5\2\31\1\6\4\31\2\131\2\31\3\6\1\123\4\6\1\5\7\6\1\5\1\33\2\6\2\131\4\6\1\123\4\6\1\5\6\6\1\5\1\33\2\6\2\32\4\31\1\6\4\31\2\131\6\31\2\32\4\31\2\32\1\131\2\33\1\6\1\123\4\6\2\31\2\32\1\33\1\5\2\31\2\32\4\31\1\6\4\31\2\131\4\31\2\32\4\31\2\32\1\131\2\33\1\6\1\123\4\6\2\32\2\31\14\6\1\5\1\33\11\6\2\33\2\31\1\6\4\31\2\6\1\131\15\6\1\5\1\33\10\6\2\33\2\31\1\6\4\31\2\6\4\32\2\31\2\32\6\31\2\32\6\31\2\32\1\131\2\33\1\6\1\123\4\6\4\31\2\32\2\31\4\32\4\31\2\32\11\6\2\31\2\32\2\31\2\32\2\31\4\32\4\31\2\32\10\31\2\32\1\131\2\33\1\6\1\123\4\6\2\32\4\31\2\32\2\31\2\32\2\31\2\32\11\6\2\32\2\31\16\6\2\33\2\31\1\6\4\31\4\6\2\32\4\31\2\32\10\31\2\32\16\6\2\33\2\31\1\6\4\31\4\6\2\31\2\32\4\31\2\32\6\31\4\32\2\31\2\32\4\31\2\32\2\31\4\32\2\31\2\32\4\31\2\32\11\6\2\32\2\31\2\32\2\31\14\6\2\31\4\32\4\31\4\32\2\31\2\32\4\31\2\32\2\31\2\32\11\6\2\32\4\31\2\32\22\6\2\32\4\31\2\32\6\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\4\31\2\32\6\6\2\32\4\31\2\32\10\31\2\32\2\31\2\32\2\31\2\32\2\31\4\32\2\31\2\32\4\31\2\32\2\31\4\32\2\31\2\32\2\31\22\6\2\31\4\32\4\31\2\32\22\6\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\4\31\2\32\2\31\2\32\2\31\4\32\2\31\2\32\2\31\14\6\2\31\2\32\2\31\4\32\4\31\2\32\2\31\2\32\2\31\2\32";
-    static final String dfa_39s = "\1\164\1\130\1\7\2\141\1\7\1\123\4\7\1\57\2\7\2\uffff\2\137\1\7\1\123\4\7\1\57\2\7\2\137\1\7\4\137\1\132\1\131\4\137\1\57\2\137\1\7\4\137\1\132\1\131\2\137\3\7\1\123\4\7\1\57\7\7\1\57\1\171\2\7\1\132\1\131\4\7\1\123\4\7\1\57\6\7\1\57\1\171\2\7\6\137\1\7\4\137\1\132\1\131\16\137\1\131\2\171\1\7\1\123\4\7\4\137\1\171\1\57\10\137\1\7\4\137\1\132\1\131\14\137\1\131\2\171\1\7\1\123\4\7\4\137\14\7\1\57\1\171\11\7\4\137\1\7\4\137\2\7\1\131\15\7\1\57\1\171\10\7\4\137\1\7\4\137\2\7\30\137\1\131\2\171\1\7\1\123\4\7\22\137\11\7\36\137\1\131\2\171\1\7\1\123\4\7\20\137\11\7\4\137\16\7\4\137\1\7\4\137\4\7\22\137\16\7\4\137\1\7\4\137\4\7\56\137\11\7\10\137\14\7\34\137\11\7\10\137\22\7\52\137\6\7\66\137\22\7\14\137\22\7\110\137\14\7\30\137";
-    static final String dfa_40s = "\16\uffff\1\1\1\2\u0339\uffff";
-    static final String dfa_41s = "\u0349\uffff}>";
-    static final String[] dfa_42s = {
+    static final String dfa_35s = "\u0349\uffff";
+    static final String dfa_36s = "\3\6\2\31\1\6\1\123\4\6\1\5\2\6\2\uffff\3\6\1\123\4\6\1\5\2\6\2\31\1\6\4\31\2\131\2\31\2\33\1\5\2\31\1\6\4\31\2\131\2\31\3\6\1\123\4\6\1\5\7\6\1\5\1\33\2\6\2\131\4\6\1\123\4\6\1\5\6\6\1\5\1\33\2\6\2\32\4\31\1\6\4\31\2\131\6\31\2\32\4\31\2\32\1\131\2\33\1\6\1\123\4\6\2\31\2\32\1\33\1\5\2\31\2\32\4\31\1\6\4\31\2\131\4\31\2\32\4\31\2\32\1\131\2\33\1\6\1\123\4\6\2\32\2\31\14\6\1\5\1\33\11\6\2\33\2\31\1\6\4\31\2\6\1\131\15\6\1\5\1\33\10\6\2\33\2\31\1\6\4\31\2\6\4\32\2\31\2\32\6\31\2\32\6\31\2\32\1\131\2\33\1\6\1\123\4\6\4\31\2\32\2\31\4\32\4\31\2\32\11\6\2\31\2\32\2\31\2\32\2\31\4\32\4\31\2\32\10\31\2\32\1\131\2\33\1\6\1\123\4\6\2\32\4\31\2\32\2\31\2\32\2\31\2\32\11\6\2\32\2\31\16\6\2\33\2\31\1\6\4\31\4\6\2\32\4\31\2\32\10\31\2\32\16\6\2\33\2\31\1\6\4\31\4\6\2\31\2\32\4\31\2\32\6\31\4\32\2\31\2\32\4\31\2\32\2\31\4\32\2\31\2\32\4\31\2\32\11\6\2\32\2\31\2\32\2\31\14\6\2\31\4\32\4\31\4\32\2\31\2\32\4\31\2\32\2\31\2\32\11\6\2\32\4\31\2\32\22\6\2\32\4\31\2\32\6\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\4\31\2\32\6\6\2\32\4\31\2\32\10\31\2\32\2\31\2\32\2\31\2\32\2\31\4\32\2\31\2\32\4\31\2\32\2\31\4\32\2\31\2\32\2\31\22\6\2\31\4\32\4\31\2\32\22\6\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\2\31\2\32\4\31\2\32\2\31\2\32\2\31\4\32\2\31\2\32\2\31\14\6\2\31\2\32\2\31\4\32\4\31\2\32\2\31\2\32\2\31\2\32";
+    static final String dfa_37s = "\1\164\1\130\1\7\2\141\1\7\1\123\4\7\1\57\2\7\2\uffff\2\137\1\7\1\123\4\7\1\57\2\7\2\137\1\7\4\137\1\132\1\131\4\137\1\57\2\137\1\7\4\137\1\132\1\131\2\137\3\7\1\123\4\7\1\57\7\7\1\57\1\171\2\7\1\132\1\131\4\7\1\123\4\7\1\57\6\7\1\57\1\171\2\7\6\137\1\7\4\137\1\132\1\131\16\137\1\131\2\171\1\7\1\123\4\7\4\137\1\171\1\57\10\137\1\7\4\137\1\132\1\131\14\137\1\131\2\171\1\7\1\123\4\7\4\137\14\7\1\57\1\171\11\7\4\137\1\7\4\137\2\7\1\131\15\7\1\57\1\171\10\7\4\137\1\7\4\137\2\7\30\137\1\131\2\171\1\7\1\123\4\7\22\137\11\7\36\137\1\131\2\171\1\7\1\123\4\7\20\137\11\7\4\137\16\7\4\137\1\7\4\137\4\7\22\137\16\7\4\137\1\7\4\137\4\7\56\137\11\7\10\137\14\7\34\137\11\7\10\137\22\7\52\137\6\7\66\137\22\7\14\137\22\7\110\137\14\7\30\137";
+    static final String dfa_38s = "\16\uffff\1\1\1\2\u0339\uffff";
+    static final String dfa_39s = "\u0349\uffff}>";
+    static final String[] dfa_40s = {
             "\1\3\1\4\23\uffff\1\7\1\uffff\1\14\1\15\1\uffff\1\5\1\10\1\11\1\12\27\uffff\1\2\5\uffff\1\16\20\uffff\1\6\5\uffff\1\13\6\uffff\1\17\24\uffff\1\1",
             "\1\3\1\4\23\uffff\1\7\1\uffff\1\14\1\15\1\uffff\1\5\1\10\1\11\1\12\27\uffff\1\2\5\uffff\1\16\20\uffff\1\6\5\uffff\1\13",
             "\1\20\1\21",
@@ -92383,35 +92445,35 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\u0330\1\u0154\4\uffff\1\u0152\1\u0155\1\u0156\1\u0157\35\uffff\1\16\1\u022a\17\uffff\1\u0153\14\uffff\1\17"
     };
 
-    static final short[] dfa_37 = DFA.unpackEncodedString(dfa_37s);
-    static final char[] dfa_38 = DFA.unpackEncodedStringToUnsignedChars(dfa_38s);
-    static final char[] dfa_39 = DFA.unpackEncodedStringToUnsignedChars(dfa_39s);
-    static final short[] dfa_40 = DFA.unpackEncodedString(dfa_40s);
-    static final short[] dfa_41 = DFA.unpackEncodedString(dfa_41s);
-    static final short[][] dfa_42 = unpackEncodedStringArray(dfa_42s);
+    static final short[] dfa_35 = DFA.unpackEncodedString(dfa_35s);
+    static final char[] dfa_36 = DFA.unpackEncodedStringToUnsignedChars(dfa_36s);
+    static final char[] dfa_37 = DFA.unpackEncodedStringToUnsignedChars(dfa_37s);
+    static final short[] dfa_38 = DFA.unpackEncodedString(dfa_38s);
+    static final short[] dfa_39 = DFA.unpackEncodedString(dfa_39s);
+    static final short[][] dfa_40 = unpackEncodedStringArray(dfa_40s);
 
     class DFA46 extends DFA {
 
         public DFA46(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 46;
-            this.eot = dfa_37;
-            this.eof = dfa_37;
-            this.min = dfa_38;
-            this.max = dfa_39;
-            this.accept = dfa_40;
-            this.special = dfa_41;
-            this.transition = dfa_42;
+            this.eot = dfa_35;
+            this.eof = dfa_35;
+            this.min = dfa_36;
+            this.max = dfa_37;
+            this.accept = dfa_38;
+            this.special = dfa_39;
+            this.transition = dfa_40;
         }
         public String getDescription() {
             return "5926:1: rule__ConnectorDeclaration__Alternatives : ( ( ruleBinaryConnectorDeclaration ) | ( ruleNaryConnectorDeclaration ) );";
         }
     }
-    static final String dfa_43s = "\1\uffff\1\5\12\uffff";
-    static final String dfa_44s = "\2\6\1\uffff\2\31\1\uffff\1\5\2\131\1\33\1\5\1\131";
-    static final String dfa_45s = "\1\164\1\130\1\uffff\2\141\1\uffff\1\57\1\132\1\131\1\171\1\57\1\131";
-    static final String dfa_46s = "\2\uffff\1\1\2\uffff\1\2\6\uffff";
-    static final String[] dfa_47s = {
+    static final String dfa_41s = "\1\uffff\1\5\12\uffff";
+    static final String dfa_42s = "\2\6\1\uffff\2\31\1\uffff\1\5\2\131\1\33\1\5\1\131";
+    static final String dfa_43s = "\1\164\1\130\1\uffff\2\141\1\uffff\1\57\1\132\1\131\1\171\1\57\1\131";
+    static final String dfa_44s = "\2\uffff\1\1\2\uffff\1\2\6\uffff";
+    static final String[] dfa_45s = {
             "\2\2\23\uffff\1\2\1\uffff\2\2\1\uffff\4\2\27\uffff\1\2\5\uffff\1\2\20\uffff\1\2\5\uffff\1\2\33\uffff\1\1",
             "\1\3\1\4\23\uffff\1\2\1\uffff\2\2\1\uffff\4\2\27\uffff\1\2\5\uffff\1\5\20\uffff\1\2\5\uffff\1\2",
             "",
@@ -92425,31 +92487,31 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\13\51\uffff\1\10",
             "\1\11"
     };
-    static final short[] dfa_43 = DFA.unpackEncodedString(dfa_43s);
-    static final char[] dfa_44 = DFA.unpackEncodedStringToUnsignedChars(dfa_44s);
-    static final char[] dfa_45 = DFA.unpackEncodedStringToUnsignedChars(dfa_45s);
-    static final short[] dfa_46 = DFA.unpackEncodedString(dfa_46s);
-    static final short[][] dfa_47 = unpackEncodedStringArray(dfa_47s);
+    static final short[] dfa_41 = DFA.unpackEncodedString(dfa_41s);
+    static final char[] dfa_42 = DFA.unpackEncodedStringToUnsignedChars(dfa_42s);
+    static final char[] dfa_43 = DFA.unpackEncodedStringToUnsignedChars(dfa_43s);
+    static final short[] dfa_44 = DFA.unpackEncodedString(dfa_44s);
+    static final short[][] dfa_45 = unpackEncodedStringArray(dfa_45s);
 
     class DFA47 extends DFA {
 
         public DFA47(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 47;
-            this.eot = dfa_21;
-            this.eof = dfa_43;
-            this.min = dfa_44;
-            this.max = dfa_45;
-            this.accept = dfa_46;
-            this.special = dfa_25;
-            this.transition = dfa_47;
+            this.eot = dfa_29;
+            this.eof = dfa_41;
+            this.min = dfa_42;
+            this.max = dfa_43;
+            this.accept = dfa_44;
+            this.special = dfa_33;
+            this.transition = dfa_45;
         }
         public String getDescription() {
             return "5947:1: rule__BinaryConnectorDeclaration__Alternatives_0 : ( ( ( rule__BinaryConnectorDeclaration__Group_0_0__0 ) ) | ( ( rule__BinaryConnectorDeclaration__Group_0_1__0 ) ) );";
         }
     }
-    static final String dfa_48s = "\1\164\1\143\1\uffff\2\143\1\uffff\1\57\1\132\1\131\1\171\1\57\1\131";
-    static final String[] dfa_49s = {
+    static final String dfa_46s = "\1\164\1\143\1\uffff\2\143\1\uffff\1\57\1\132\1\131\1\171\1\57\1\131";
+    static final String[] dfa_47s = {
             "\2\2\23\uffff\1\2\1\uffff\2\2\1\uffff\4\2\27\uffff\1\2\26\uffff\1\2\5\uffff\1\2\12\uffff\1\2\20\uffff\1\1",
             "\1\3\1\4\23\uffff\1\2\1\uffff\2\2\1\uffff\4\2\27\uffff\1\2\26\uffff\1\2\5\uffff\1\2\12\uffff\1\5",
             "",
@@ -92463,31 +92525,31 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\13\51\uffff\1\10",
             "\1\11"
     };
-    static final char[] dfa_48 = DFA.unpackEncodedStringToUnsignedChars(dfa_48s);
-    static final short[][] dfa_49 = unpackEncodedStringArray(dfa_49s);
+    static final char[] dfa_46 = DFA.unpackEncodedStringToUnsignedChars(dfa_46s);
+    static final short[][] dfa_47 = unpackEncodedStringArray(dfa_47s);
 
     class DFA48 extends DFA {
 
         public DFA48(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 48;
-            this.eot = dfa_21;
-            this.eof = dfa_43;
-            this.min = dfa_44;
-            this.max = dfa_48;
-            this.accept = dfa_46;
-            this.special = dfa_25;
-            this.transition = dfa_49;
+            this.eot = dfa_29;
+            this.eof = dfa_41;
+            this.min = dfa_42;
+            this.max = dfa_46;
+            this.accept = dfa_44;
+            this.special = dfa_33;
+            this.transition = dfa_47;
         }
         public String getDescription() {
             return "5968:1: rule__BindingConnectorDeclaration__Alternatives_0 : ( ( ( rule__BindingConnectorDeclaration__Group_0_0__0 ) ) | ( ( rule__BindingConnectorDeclaration__Group_0_1__0 ) ) );";
         }
     }
-    static final String dfa_50s = "\1\uffff\1\3\12\uffff";
-    static final String dfa_51s = "\2\6\2\uffff\2\31\1\5\2\131\1\33\1\5\1\131";
-    static final String dfa_52s = "\1\164\1\146\2\uffff\2\146\1\57\1\132\1\131\1\171\1\57\1\131";
-    static final String dfa_53s = "\2\uffff\1\1\1\2\10\uffff";
-    static final String[] dfa_54s = {
+    static final String dfa_48s = "\1\uffff\1\3\12\uffff";
+    static final String dfa_49s = "\2\6\2\uffff\2\31\1\5\2\131\1\33\1\5\1\131";
+    static final String dfa_50s = "\1\164\1\146\2\uffff\2\146\1\57\1\132\1\131\1\171\1\57\1\131";
+    static final String dfa_51s = "\2\uffff\1\1\1\2\10\uffff";
+    static final String[] dfa_52s = {
             "\2\2\23\uffff\1\2\1\uffff\2\2\1\uffff\4\2\27\uffff\1\2\26\uffff\1\2\5\uffff\1\2\15\uffff\1\2\15\uffff\1\1",
             "\1\4\1\5\23\uffff\1\2\1\uffff\2\2\1\uffff\4\2\27\uffff\1\2\26\uffff\1\2\5\uffff\1\2\15\uffff\1\3",
             "",
@@ -92501,24 +92563,24 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\13\51\uffff\1\10",
             "\1\11"
     };
-    static final short[] dfa_50 = DFA.unpackEncodedString(dfa_50s);
-    static final char[] dfa_51 = DFA.unpackEncodedStringToUnsignedChars(dfa_51s);
-    static final char[] dfa_52 = DFA.unpackEncodedStringToUnsignedChars(dfa_52s);
-    static final short[] dfa_53 = DFA.unpackEncodedString(dfa_53s);
-    static final short[][] dfa_54 = unpackEncodedStringArray(dfa_54s);
+    static final short[] dfa_48 = DFA.unpackEncodedString(dfa_48s);
+    static final char[] dfa_49 = DFA.unpackEncodedStringToUnsignedChars(dfa_49s);
+    static final char[] dfa_50 = DFA.unpackEncodedStringToUnsignedChars(dfa_50s);
+    static final short[] dfa_51 = DFA.unpackEncodedString(dfa_51s);
+    static final short[][] dfa_52 = unpackEncodedStringArray(dfa_52s);
 
     class DFA49 extends DFA {
 
         public DFA49(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 49;
-            this.eot = dfa_21;
-            this.eof = dfa_50;
-            this.min = dfa_51;
-            this.max = dfa_52;
-            this.accept = dfa_53;
-            this.special = dfa_25;
-            this.transition = dfa_54;
+            this.eot = dfa_29;
+            this.eof = dfa_48;
+            this.min = dfa_49;
+            this.max = dfa_50;
+            this.accept = dfa_51;
+            this.special = dfa_33;
+            this.transition = dfa_52;
         }
         public String getDescription() {
             return "5989:1: rule__SuccessionDeclaration__Alternatives_0 : ( ( ( rule__SuccessionDeclaration__Group_0_0__0 ) ) | ( ( rule__SuccessionDeclaration__Group_0_1__0 ) ) );";
@@ -92530,25 +92592,25 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         public DFA58(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 58;
-            this.eot = dfa_27;
-            this.eof = dfa_27;
-            this.min = dfa_28;
-            this.max = dfa_29;
-            this.accept = dfa_30;
-            this.special = dfa_31;
-            this.transition = dfa_32;
+            this.eot = dfa_23;
+            this.eof = dfa_23;
+            this.min = dfa_24;
+            this.max = dfa_25;
+            this.accept = dfa_26;
+            this.special = dfa_27;
+            this.transition = dfa_28;
         }
         public String getDescription() {
             return "6196:1: rule__FunctionBody__Alternatives_1_1 : ( ( ( rule__FunctionBody__Documentation_compAssignment_1_1_0 ) ) | ( ( rule__FunctionBody__OwnedMembership_compAssignment_1_1_1 ) ) | ( ( rule__FunctionBody__OwnedFeatureMembership_compAssignment_1_1_2 ) ) | ( ( rule__FunctionBody__OwnedRelationship_compAssignment_1_1_3 ) ) );";
         }
     }
-    static final String dfa_55s = "\25\uffff";
-    static final String dfa_56s = "\3\uffff\2\7\5\uffff\2\7\1\uffff\2\7\2\uffff\4\7";
-    static final String dfa_57s = "\1\4\2\uffff\2\16\1\uffff\1\6\1\uffff\1\6\1\uffff\2\16\1\uffff\2\16\2\6\4\16";
-    static final String dfa_58s = "\1\162\2\uffff\2\172\1\uffff\1\173\1\uffff\1\7\1\uffff\2\172\1\uffff\2\172\1\173\1\7\4\172";
-    static final String dfa_59s = "\1\uffff\1\1\1\2\2\uffff\1\6\1\uffff\1\3\1\uffff\1\4\2\uffff\1\5\10\uffff";
-    static final String dfa_60s = "\25\uffff}>";
-    static final String[] dfa_61s = {
+    static final String dfa_53s = "\25\uffff";
+    static final String dfa_54s = "\3\uffff\2\7\5\uffff\2\7\1\uffff\2\7\2\uffff\4\7";
+    static final String dfa_55s = "\1\4\2\uffff\2\16\1\uffff\1\6\1\uffff\1\6\1\uffff\2\16\1\uffff\2\16\2\6\4\16";
+    static final String dfa_56s = "\1\162\2\uffff\2\172\1\uffff\1\173\1\uffff\1\7\1\uffff\2\172\1\uffff\2\172\1\173\1\7\4\172";
+    static final String dfa_57s = "\1\uffff\1\1\1\2\2\uffff\1\6\1\uffff\1\3\1\uffff\1\4\2\uffff\1\5\10\uffff";
+    static final String dfa_58s = "\25\uffff}>";
+    static final String[] dfa_59s = {
             "\2\2\1\3\1\4\2\uffff\1\2\17\uffff\1\2\24\uffff\1\2\2\uffff\2\2\53\uffff\1\5\22\uffff\1\1",
             "",
             "",
@@ -92572,38 +92634,38 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\11\7\2\uffff\1\20\1\14\5\uffff\1\7\3\uffff\15\7\14\uffff\2\7\3\uffff\1\7\25\uffff\3\7\4\uffff\1\11\1\7\20\uffff\1\7\10\uffff\1\7"
     };
 
-    static final short[] dfa_55 = DFA.unpackEncodedString(dfa_55s);
-    static final short[] dfa_56 = DFA.unpackEncodedString(dfa_56s);
-    static final char[] dfa_57 = DFA.unpackEncodedStringToUnsignedChars(dfa_57s);
-    static final char[] dfa_58 = DFA.unpackEncodedStringToUnsignedChars(dfa_58s);
-    static final short[] dfa_59 = DFA.unpackEncodedString(dfa_59s);
-    static final short[] dfa_60 = DFA.unpackEncodedString(dfa_60s);
-    static final short[][] dfa_61 = unpackEncodedStringArray(dfa_61s);
+    static final short[] dfa_53 = DFA.unpackEncodedString(dfa_53s);
+    static final short[] dfa_54 = DFA.unpackEncodedString(dfa_54s);
+    static final char[] dfa_55 = DFA.unpackEncodedStringToUnsignedChars(dfa_55s);
+    static final char[] dfa_56 = DFA.unpackEncodedStringToUnsignedChars(dfa_56s);
+    static final short[] dfa_57 = DFA.unpackEncodedString(dfa_57s);
+    static final short[] dfa_58 = DFA.unpackEncodedString(dfa_58s);
+    static final short[][] dfa_59 = unpackEncodedStringArray(dfa_59s);
 
     class DFA78 extends DFA {
 
         public DFA78(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 78;
-            this.eot = dfa_55;
-            this.eof = dfa_56;
-            this.min = dfa_57;
-            this.max = dfa_58;
-            this.accept = dfa_59;
-            this.special = dfa_60;
-            this.transition = dfa_61;
+            this.eot = dfa_53;
+            this.eof = dfa_54;
+            this.min = dfa_55;
+            this.max = dfa_56;
+            this.accept = dfa_57;
+            this.special = dfa_58;
+            this.transition = dfa_59;
         }
         public String getDescription() {
             return "6658:1: rule__BaseExpression__Alternatives : ( ( ruleNullExpression ) | ( ruleLiteralExpression ) | ( ruleFeatureReferenceExpression ) | ( ruleInvocationExpression ) | ( ruleExtentExpression_Deprecated ) | ( ( rule__BaseExpression__Group_5__0 ) ) );";
         }
     }
-    static final String dfa_62s = "\20\uffff";
-    static final String dfa_63s = "\1\1\17\uffff";
-    static final String dfa_64s = "\1\26\1\uffff\1\6\1\123\4\6\2\0\1\6\4\0\1\uffff";
-    static final String dfa_65s = "\1\146\1\uffff\1\7\1\123\4\7\2\0\1\7\4\0\1\uffff";
-    static final String dfa_66s = "\1\uffff\1\2\15\uffff\1\1";
-    static final String dfa_67s = "\10\uffff\1\2\1\4\1\uffff\1\0\1\3\1\5\1\1\1\uffff}>";
-    static final String[] dfa_68s = {
+    static final String dfa_60s = "\20\uffff";
+    static final String dfa_61s = "\1\1\17\uffff";
+    static final String dfa_62s = "\1\26\1\uffff\1\6\1\123\4\6\2\0\1\6\4\0\1\uffff";
+    static final String dfa_63s = "\1\146\1\uffff\1\7\1\123\4\7\2\0\1\7\4\0\1\uffff";
+    static final String dfa_64s = "\1\uffff\1\2\15\uffff\1\1";
+    static final String dfa_65s = "\10\uffff\1\2\1\4\1\uffff\1\0\1\3\1\5\1\1\1\uffff}>";
+    static final String[] dfa_66s = {
             "\1\1\4\uffff\1\4\4\uffff\1\2\1\5\1\6\1\7\31\uffff\1\1\3\uffff\1\1\20\uffff\1\3\4\uffff\2\1\6\uffff\1\1\3\uffff\1\1\2\uffff\1\1",
             "",
             "\1\10\1\11",
@@ -92622,26 +92684,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             ""
     };
 
-    static final short[] dfa_62 = DFA.unpackEncodedString(dfa_62s);
-    static final short[] dfa_63 = DFA.unpackEncodedString(dfa_63s);
-    static final char[] dfa_64 = DFA.unpackEncodedStringToUnsignedChars(dfa_64s);
-    static final char[] dfa_65 = DFA.unpackEncodedStringToUnsignedChars(dfa_65s);
-    static final short[] dfa_66 = DFA.unpackEncodedString(dfa_66s);
-    static final short[] dfa_67 = DFA.unpackEncodedString(dfa_67s);
-    static final short[][] dfa_68 = unpackEncodedStringArray(dfa_68s);
+    static final short[] dfa_60 = DFA.unpackEncodedString(dfa_60s);
+    static final short[] dfa_61 = DFA.unpackEncodedString(dfa_61s);
+    static final char[] dfa_62 = DFA.unpackEncodedStringToUnsignedChars(dfa_62s);
+    static final char[] dfa_63 = DFA.unpackEncodedStringToUnsignedChars(dfa_63s);
+    static final short[] dfa_64 = DFA.unpackEncodedString(dfa_64s);
+    static final short[] dfa_65 = DFA.unpackEncodedString(dfa_65s);
+    static final short[][] dfa_66 = unpackEncodedStringArray(dfa_66s);
 
     class DFA151 extends DFA {
 
         public DFA151(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 151;
-            this.eot = dfa_62;
-            this.eof = dfa_63;
-            this.min = dfa_64;
-            this.max = dfa_65;
-            this.accept = dfa_66;
-            this.special = dfa_67;
-            this.transition = dfa_68;
+            this.eot = dfa_60;
+            this.eof = dfa_61;
+            this.min = dfa_62;
+            this.max = dfa_63;
+            this.accept = dfa_64;
+            this.special = dfa_65;
+            this.transition = dfa_66;
         }
         public String getDescription() {
             return "()* loopback of 12462:3: ( ruleFeatureSpecialization )*";
@@ -92748,10 +92810,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             throw nvae;
         }
     }
-    static final String dfa_69s = "\1\6\1\uffff\2\31\1\5\1\uffff\2\131\1\5\1\33\1\131";
-    static final String dfa_70s = "\1\164\1\uffff\2\141\1\57\1\uffff\1\132\1\131\1\57\1\171\1\131";
-    static final String dfa_71s = "\1\uffff\1\1\3\uffff\1\2\5\uffff";
-    static final String[] dfa_72s = {
+    static final String dfa_67s = "\1\6\1\uffff\2\31\1\5\1\uffff\2\131\1\5\1\33\1\131";
+    static final String dfa_68s = "\1\164\1\uffff\2\141\1\57\1\uffff\1\132\1\131\1\57\1\171\1\131";
+    static final String dfa_69s = "\1\uffff\1\1\3\uffff\1\2\5\uffff";
+    static final String[] dfa_70s = {
             "\1\2\1\3\23\uffff\1\1\1\uffff\2\1\1\uffff\4\1\27\uffff\1\1\5\uffff\1\1\20\uffff\1\1\5\uffff\1\1\33\uffff\1\1",
             "",
             "\2\5\1\1\1\uffff\2\1\1\uffff\4\1\34\uffff\1\5\1\1\20\uffff\1\1\5\uffff\1\4\10\uffff\1\5",
@@ -92764,10 +92826,10 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\1\4\uffff\4\1\34\uffff\1\5\1\1\20\uffff\1\1\45\uffff\2\1",
             "\1\11"
     };
-    static final char[] dfa_69 = DFA.unpackEncodedStringToUnsignedChars(dfa_69s);
-    static final char[] dfa_70 = DFA.unpackEncodedStringToUnsignedChars(dfa_70s);
-    static final short[] dfa_71 = DFA.unpackEncodedString(dfa_71s);
-    static final short[][] dfa_72 = unpackEncodedStringArray(dfa_72s);
+    static final char[] dfa_67 = DFA.unpackEncodedStringToUnsignedChars(dfa_67s);
+    static final char[] dfa_68 = DFA.unpackEncodedStringToUnsignedChars(dfa_68s);
+    static final short[] dfa_69 = DFA.unpackEncodedString(dfa_69s);
+    static final short[][] dfa_70 = unpackEncodedStringArray(dfa_70s);
 
     class DFA168 extends DFA {
 
@@ -92776,19 +92838,19 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             this.decisionNumber = 168;
             this.eot = dfa_1;
             this.eof = dfa_1;
-            this.min = dfa_69;
-            this.max = dfa_70;
-            this.accept = dfa_71;
+            this.min = dfa_67;
+            this.max = dfa_68;
+            this.accept = dfa_69;
             this.special = dfa_5;
-            this.transition = dfa_72;
+            this.transition = dfa_70;
         }
         public String getDescription() {
             return "14569:2: ( rule__BinaryConnectorDeclaration__Alternatives_0 )?";
         }
     }
-    static final String dfa_73s = "\1\6\1\uffff\2\31\1\5\1\uffff\2\131\1\33\1\5\1\131";
-    static final String dfa_74s = "\1\164\1\uffff\2\143\1\57\1\uffff\1\132\1\131\1\171\1\57\1\131";
-    static final String[] dfa_75s = {
+    static final String dfa_71s = "\1\6\1\uffff\2\31\1\5\1\uffff\2\131\1\33\1\5\1\131";
+    static final String dfa_72s = "\1\164\1\uffff\2\143\1\57\1\uffff\1\132\1\131\1\171\1\57\1\131";
+    static final String[] dfa_73s = {
             "\1\2\1\3\23\uffff\1\1\1\uffff\2\1\1\uffff\4\1\27\uffff\1\1\26\uffff\1\1\5\uffff\1\1\12\uffff\1\1\20\uffff\1\1",
             "",
             "\2\5\1\1\1\uffff\2\1\1\uffff\4\1\56\uffff\1\1\4\uffff\1\5\1\4\10\uffff\1\5\1\uffff\1\1",
@@ -92801,9 +92863,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\12\51\uffff\1\7",
             "\1\10"
     };
-    static final char[] dfa_73 = DFA.unpackEncodedStringToUnsignedChars(dfa_73s);
-    static final char[] dfa_74 = DFA.unpackEncodedStringToUnsignedChars(dfa_74s);
-    static final short[][] dfa_75 = unpackEncodedStringArray(dfa_75s);
+    static final char[] dfa_71 = DFA.unpackEncodedStringToUnsignedChars(dfa_71s);
+    static final char[] dfa_72 = DFA.unpackEncodedStringToUnsignedChars(dfa_72s);
+    static final short[][] dfa_73 = unpackEncodedStringArray(dfa_73s);
 
     class DFA176 extends DFA {
 
@@ -92812,18 +92874,18 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             this.decisionNumber = 176;
             this.eot = dfa_1;
             this.eof = dfa_1;
-            this.min = dfa_73;
-            this.max = dfa_74;
-            this.accept = dfa_71;
+            this.min = dfa_71;
+            this.max = dfa_72;
+            this.accept = dfa_69;
             this.special = dfa_5;
-            this.transition = dfa_75;
+            this.transition = dfa_73;
         }
         public String getDescription() {
             return "15298:2: ( rule__BindingConnectorDeclaration__Alternatives_0 )?";
         }
     }
-    static final String dfa_76s = "\1\164\1\uffff\2\146\1\57\1\uffff\1\132\1\131\1\171\1\57\1\131";
-    static final String[] dfa_77s = {
+    static final String dfa_74s = "\1\164\1\uffff\2\146\1\57\1\uffff\1\132\1\131\1\171\1\57\1\131";
+    static final String[] dfa_75s = {
             "\1\2\1\3\23\uffff\1\1\1\uffff\2\1\1\uffff\4\1\27\uffff\1\1\26\uffff\1\1\5\uffff\1\1\15\uffff\1\1\15\uffff\1\1",
             "",
             "\2\5\1\1\1\uffff\2\1\1\uffff\4\1\56\uffff\1\1\5\uffff\1\4\10\uffff\1\5\3\uffff\1\5\1\1",
@@ -92836,8 +92898,8 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\12\51\uffff\1\7",
             "\1\10"
     };
-    static final char[] dfa_76 = DFA.unpackEncodedStringToUnsignedChars(dfa_76s);
-    static final short[][] dfa_77 = unpackEncodedStringArray(dfa_77s);
+    static final char[] dfa_74 = DFA.unpackEncodedStringToUnsignedChars(dfa_74s);
+    static final short[][] dfa_75 = unpackEncodedStringArray(dfa_75s);
 
     class DFA180 extends DFA {
 
@@ -92846,19 +92908,19 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             this.decisionNumber = 180;
             this.eot = dfa_1;
             this.eof = dfa_1;
-            this.min = dfa_73;
-            this.max = dfa_76;
-            this.accept = dfa_71;
+            this.min = dfa_71;
+            this.max = dfa_74;
+            this.accept = dfa_69;
             this.special = dfa_5;
-            this.transition = dfa_77;
+            this.transition = dfa_75;
         }
         public String getDescription() {
             return "15622:2: ( rule__SuccessionDeclaration__Alternatives_0 )?";
         }
     }
-    static final String dfa_78s = "\1\140\1\uffff\1\7\1\123\4\7\2\0\1\7\4\0\1\uffff";
-    static final String dfa_79s = "\10\uffff\1\3\1\1\1\uffff\1\5\1\0\1\4\1\2\1\uffff}>";
-    static final String[] dfa_80s = {
+    static final String dfa_76s = "\1\140\1\uffff\1\7\1\123\4\7\2\0\1\7\4\0\1\uffff";
+    static final String dfa_77s = "\10\uffff\1\3\1\1\1\uffff\1\5\1\0\1\4\1\2\1\uffff}>";
+    static final String[] dfa_78s = {
             "\1\1\4\uffff\1\4\4\uffff\1\2\1\5\1\6\1\7\31\uffff\1\1\4\uffff\1\1\17\uffff\1\3\4\uffff\2\1\7\uffff\1\1",
             "",
             "\1\10\1\11",
@@ -92876,22 +92938,22 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\1\uffff",
             ""
     };
-    static final char[] dfa_78 = DFA.unpackEncodedStringToUnsignedChars(dfa_78s);
-    static final short[] dfa_79 = DFA.unpackEncodedString(dfa_79s);
-    static final short[][] dfa_80 = unpackEncodedStringArray(dfa_80s);
+    static final char[] dfa_76 = DFA.unpackEncodedStringToUnsignedChars(dfa_76s);
+    static final short[] dfa_77 = DFA.unpackEncodedString(dfa_77s);
+    static final short[][] dfa_78 = unpackEncodedStringArray(dfa_78s);
 
     class DFA191 extends DFA {
 
         public DFA191(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 191;
-            this.eot = dfa_62;
-            this.eof = dfa_63;
-            this.min = dfa_64;
-            this.max = dfa_78;
-            this.accept = dfa_66;
-            this.special = dfa_79;
-            this.transition = dfa_80;
+            this.eot = dfa_60;
+            this.eof = dfa_61;
+            this.min = dfa_62;
+            this.max = dfa_76;
+            this.accept = dfa_64;
+            this.special = dfa_77;
+            this.transition = dfa_78;
         }
         public String getDescription() {
             return "()* loopback of 16654:3: ( ruleParameterSpecialization )*";
@@ -92998,12 +93060,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             throw nvae;
         }
     }
-    static final String dfa_81s = "\50\uffff";
-    static final String dfa_82s = "\1\4\1\10\5\4\1\uffff\1\4\1\6\2\16\1\uffff\1\6\1\11\4\16\1\4\2\10\3\6\2\16\2\11\5\16\2\6\4\16";
-    static final String dfa_83s = "\1\167\1\73\5\167\1\uffff\1\164\1\130\2\172\1\uffff\1\7\1\73\4\172\1\164\2\11\1\7\1\173\1\7\2\172\2\11\5\172\1\173\1\7\4\172";
-    static final String dfa_84s = "\7\uffff\1\2\4\uffff\1\1\33\uffff";
-    static final String dfa_85s = "\50\uffff}>";
-    static final String[] dfa_86s = {
+    static final String dfa_79s = "\50\uffff";
+    static final String dfa_80s = "\1\4\1\10\5\4\1\uffff\1\4\1\6\2\16\1\uffff\1\6\1\11\4\16\1\4\2\10\3\6\2\16\2\11\5\16\2\6\4\16";
+    static final String dfa_81s = "\1\167\1\73\5\167\1\uffff\1\164\1\130\2\172\1\uffff\1\7\1\73\4\172\1\164\2\11\1\7\1\173\1\7\2\172\2\11\5\172\1\173\1\7\4\172";
+    static final String dfa_82s = "\7\uffff\1\2\4\uffff\1\1\33\uffff";
+    static final String dfa_83s = "\50\uffff}>";
+    static final String[] dfa_84s = {
             "\2\7\1\12\1\13\1\14\1\2\1\7\14\uffff\2\14\1\uffff\1\7\1\14\1\uffff\1\10\6\14\11\uffff\3\7\1\uffff\3\7\1\3\1\4\1\5\1\6\5\14\2\7\1\14\3\uffff\1\14\1\uffff\1\1\3\14\1\uffff\11\14\2\uffff\2\14\1\uffff\1\14\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\12\14\1\uffff\1\7\1\14\1\11\3\14",
             "\1\14\1\2\61\uffff\1\15",
             "\2\7\1\12\1\13\1\14\1\2\1\7\14\uffff\2\14\1\uffff\1\7\1\14\1\uffff\1\10\6\14\11\uffff\3\7\1\uffff\3\7\1\3\1\4\1\5\1\6\5\14\1\7\1\uffff\1\14\3\uffff\1\14\1\uffff\1\16\3\14\1\uffff\11\14\2\uffff\2\14\1\uffff\1\14\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\12\14\1\uffff\1\7\1\14\1\11\3\14",
@@ -93046,25 +93108,25 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             "\10\7\1\14\2\uffff\1\43\1\7\11\uffff\15\7\14\uffff\1\14\1\7\30\uffff\1\14\1\7\6\uffff\1\7\21\uffff\1\7\10\uffff\1\7"
     };
 
-    static final short[] dfa_81 = DFA.unpackEncodedString(dfa_81s);
-    static final char[] dfa_82 = DFA.unpackEncodedStringToUnsignedChars(dfa_82s);
-    static final char[] dfa_83 = DFA.unpackEncodedStringToUnsignedChars(dfa_83s);
-    static final short[] dfa_84 = DFA.unpackEncodedString(dfa_84s);
-    static final short[] dfa_85 = DFA.unpackEncodedString(dfa_85s);
-    static final short[][] dfa_86 = unpackEncodedStringArray(dfa_86s);
+    static final short[] dfa_79 = DFA.unpackEncodedString(dfa_79s);
+    static final char[] dfa_80 = DFA.unpackEncodedStringToUnsignedChars(dfa_80s);
+    static final char[] dfa_81 = DFA.unpackEncodedStringToUnsignedChars(dfa_81s);
+    static final short[] dfa_82 = DFA.unpackEncodedString(dfa_82s);
+    static final short[] dfa_83 = DFA.unpackEncodedString(dfa_83s);
+    static final short[][] dfa_84 = unpackEncodedStringArray(dfa_84s);
 
     class DFA203 extends DFA {
 
         public DFA203(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 203;
-            this.eot = dfa_81;
-            this.eof = dfa_81;
-            this.min = dfa_82;
-            this.max = dfa_83;
-            this.accept = dfa_84;
-            this.special = dfa_85;
-            this.transition = dfa_86;
+            this.eot = dfa_79;
+            this.eof = dfa_79;
+            this.min = dfa_80;
+            this.max = dfa_81;
+            this.accept = dfa_82;
+            this.special = dfa_83;
+            this.transition = dfa_84;
         }
         public String getDescription() {
             return "()* loopback of 17492:2: ( rule__FunctionBody__Alternatives_1_1 )*";
@@ -93111,7 +93173,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0800000F780000C2L,0x0010000001040000L});
     public static final BitSet FOLLOW_38 = new BitSet(new long[]{0xD8F0000FE98002C0L,0x0019FF9479673DA8L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x98F0000FE98002C2L,0x0019FF9479673DA8L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x9000000001800000L,0x0008588038633D88L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x9000000001800000L,0x0009D89478633D88L});
     public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x00F0000000000200L,0x0000000000000020L});
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001800L});
     public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000018000000L});
@@ -93134,7 +93196,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000100000000L,0x0000000000040000L});
     public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x0000000000000000L,0x0000000000201000L});
     public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000208000000L});
-    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x9000000000000000L,0x0008588038633D88L});
+    public static final BitSet FOLLOW_63 = new BitSet(new long[]{0x0000000000000000L,0x0000000000401000L});
     public static final BitSet FOLLOW_64 = new BitSet(new long[]{0x0000000C00000000L});
     public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x280EE000240004F0L,0x0014000080000000L});
     public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x000C800004000430L});
@@ -93173,9 +93235,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_99 = new BitSet(new long[]{0x0000000000000000L,0x0008020000000000L});
     public static final BitSet FOLLOW_100 = new BitSet(new long[]{0x0000000000000000L,0x0008100000000000L});
     public static final BitSet FOLLOW_101 = new BitSet(new long[]{0x0000000000000000L,0x0008040000000000L});
-    public static final BitSet FOLLOW_102 = new BitSet(new long[]{0x0000000000000000L,0x0008200000000000L});
-    public static final BitSet FOLLOW_103 = new BitSet(new long[]{0x0000000000000000L,0x0008400000000000L});
-    public static final BitSet FOLLOW_104 = new BitSet(new long[]{0x0000000000000000L,0x0008800000000000L});
+    public static final BitSet FOLLOW_102 = new BitSet(new long[]{0x0000000000000000L,0x0008400000000000L});
+    public static final BitSet FOLLOW_103 = new BitSet(new long[]{0x0000000000000000L,0x0008800000000000L});
+    public static final BitSet FOLLOW_104 = new BitSet(new long[]{0x9000000000000000L,0x0009D89478633D88L});
     public static final BitSet FOLLOW_105 = new BitSet(new long[]{0x0800000F080000C0L,0x0000000001040000L});
     public static final BitSet FOLLOW_106 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_107 = new BitSet(new long[]{0x0000000000004000L});

@@ -826,7 +826,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns Connector
+	 *     NonFeatureElement returns Connector
 	 *     Connector returns Connector
 	 *
 	 * Constraint:
@@ -848,13 +848,13 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 isSufficient?='all' 
 	 *                 ((humanId=Name name=Name?) | name=Name) 
 	 *                 (
-	 *                     (ownedRelationship_comp+=FeatureConjugation? ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember) | 
 	 *                     (
 	 *                         ownedRelationship_comp+=FeatureConjugation? 
 	 *                         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *                         ownedFeatureMembership_comp+=ConnectorEndMember 
 	 *                         ownedFeatureMembership_comp+=ConnectorEndMember*
-	 *                     )
+	 *                     ) | 
+	 *                     (ownedRelationship_comp+=FeatureConjugation? ownedFeatureMembership_comp+=ConnectorEndMember ownedFeatureMembership_comp+=ConnectorEndMember)
 	 *                 )
 	 *             ) | 
 	 *             (
@@ -918,7 +918,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns BindingConnector
+	 *     NonFeatureElement returns BindingConnector
 	 *     BindingConnector returns BindingConnector
 	 *
 	 * Constraint:
@@ -1615,7 +1615,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns SuccessionItemFlow
+	 *     NonFeatureElement returns SuccessionItemFlow
 	 *     SuccessionItemFlow returns SuccessionItemFlow
 	 *
 	 * Constraint:
@@ -1686,7 +1686,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns ItemFlow
+	 *     NonFeatureElement returns ItemFlow
 	 *     ItemFlow returns ItemFlow
 	 *
 	 * Constraint:
@@ -1810,7 +1810,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns Succession
+	 *     NonFeatureElement returns Succession
 	 *     Succession returns Succession
 	 *
 	 * Constraint:

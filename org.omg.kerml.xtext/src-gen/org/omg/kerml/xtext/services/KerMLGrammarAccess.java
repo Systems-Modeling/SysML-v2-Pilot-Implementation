@@ -1319,6 +1319,11 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cSuperclassingParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
 		private final RuleCall cSubsettingParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
 		private final RuleCall cRedefinitionParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cConnectorParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cBindingConnectorParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
+		private final RuleCall cSuccessionParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cItemFlowParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
+		private final RuleCall cSuccessionItemFlowParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
 		
 		///* Package Elements */ NonFeatureElement SysML::Element:
 		//	Element
@@ -1340,12 +1345,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//	| FeatureTyping
 		//	| Superclassing
 		//	| Subsetting
-		//	| Redefinition;
+		//	| Redefinition
+		//	| Connector
+		//	| BindingConnector
+		//	| Succession
+		//	| ItemFlow
+		//	| SuccessionItemFlow;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Element | Relationship | Comment | TextualRepresentation | Package | Type | Classifier | Class | DataType | Association
 		//| Interaction | Behavior | Function | Predicate | Generalization | Conjugation | FeatureTyping | Superclassing |
-		//Subsetting | Redefinition
+		//Subsetting | Redefinition | Connector | BindingConnector | Succession | ItemFlow | SuccessionItemFlow
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Element
@@ -1407,6 +1417,21 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Redefinition
 		public RuleCall getRedefinitionParserRuleCall_19() { return cRedefinitionParserRuleCall_19; }
+		
+		//Connector
+		public RuleCall getConnectorParserRuleCall_20() { return cConnectorParserRuleCall_20; }
+		
+		//BindingConnector
+		public RuleCall getBindingConnectorParserRuleCall_21() { return cBindingConnectorParserRuleCall_21; }
+		
+		//Succession
+		public RuleCall getSuccessionParserRuleCall_22() { return cSuccessionParserRuleCall_22; }
+		
+		//ItemFlow
+		public RuleCall getItemFlowParserRuleCall_23() { return cItemFlowParserRuleCall_23; }
+		
+		//SuccessionItemFlow
+		public RuleCall getSuccessionItemFlowParserRuleCall_24() { return cSuccessionItemFlowParserRuleCall_24; }
 	}
 	public class FeatureElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureElement");
@@ -1416,27 +1441,16 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cBooleanExpressionParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cInvariantParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cConnectorParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cBindingConnectorParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cSuccessionParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cItemFlowParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cSuccessionItemFlowParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//FeatureElement SysML::Feature:
 		//	Feature
 		//	| Step
 		//	| Expression
 		//	| BooleanExpression
-		//	| Invariant
-		//	| Connector
-		//	| BindingConnector
-		//	| Succession
-		//	| ItemFlow
-		//	| SuccessionItemFlow;
+		//	| Invariant;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Feature | Step | Expression | BooleanExpression | Invariant | Connector | BindingConnector | Succession | ItemFlow |
-		//SuccessionItemFlow
+		//Feature | Step | Expression | BooleanExpression | Invariant
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Feature
@@ -1453,21 +1467,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Invariant
 		public RuleCall getInvariantParserRuleCall_4() { return cInvariantParserRuleCall_4; }
-		
-		//Connector
-		public RuleCall getConnectorParserRuleCall_5() { return cConnectorParserRuleCall_5; }
-		
-		//BindingConnector
-		public RuleCall getBindingConnectorParserRuleCall_6() { return cBindingConnectorParserRuleCall_6; }
-		
-		//Succession
-		public RuleCall getSuccessionParserRuleCall_7() { return cSuccessionParserRuleCall_7; }
-		
-		//ItemFlow
-		public RuleCall getItemFlowParserRuleCall_8() { return cItemFlowParserRuleCall_8; }
-		
-		//SuccessionItemFlow
-		public RuleCall getSuccessionItemFlowParserRuleCall_9() { return cSuccessionItemFlowParserRuleCall_9; }
 	}
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Type");
@@ -7987,7 +7986,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| FeatureTyping
 	//	| Superclassing
 	//	| Subsetting
-	//	| Redefinition;
+	//	| Redefinition
+	//	| Connector
+	//	| BindingConnector
+	//	| Succession
+	//	| ItemFlow
+	//	| SuccessionItemFlow;
 	public NonFeatureElementElements getNonFeatureElementAccess() {
 		return pNonFeatureElement;
 	}
@@ -8001,12 +8005,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| Step
 	//	| Expression
 	//	| BooleanExpression
-	//	| Invariant
-	//	| Connector
-	//	| BindingConnector
-	//	| Succession
-	//	| ItemFlow
-	//	| SuccessionItemFlow;
+	//	| Invariant;
 	public FeatureElementElements getFeatureElementAccess() {
 		return pFeatureElement;
 	}

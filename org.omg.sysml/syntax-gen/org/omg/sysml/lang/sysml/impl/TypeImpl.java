@@ -594,8 +594,8 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected Multiplicity getMultiplicity(Set<Type> visited) {
-		Multiplicity multiplicity = (Multiplicity)getOwnedFeature().stream().
-				filter(feature->feature instanceof Multiplicity).
+		Multiplicity multiplicity = (Multiplicity)getOwnedElement().stream().
+				filter(Multiplicity.class::isInstance).
 				findFirst().orElse(null);
 		if (multiplicity == null) {
 			visited.add(this);

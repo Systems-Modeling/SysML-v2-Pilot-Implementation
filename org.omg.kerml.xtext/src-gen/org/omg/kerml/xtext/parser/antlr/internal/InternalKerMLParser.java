@@ -5301,10 +5301,15 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             case 68:
             case 69:
             case 70:
+            case 71:
+            case 75:
+            case 77:
             case 80:
             case 84:
             case 85:
             case 87:
+            case 88:
+            case 89:
                 {
                 alt40=1;
                 }
@@ -5313,11 +5318,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA40_2 = input.LA(2);
 
-                if ( ((LA40_2>=RULE_ID && LA40_2<=RULE_UNRESTRICTED_NAME)||LA40_2==14||(LA40_2>=37 && LA40_2<=38)||(LA40_2>=40 && LA40_2<=41)||LA40_2==45||(LA40_2>=55 && LA40_2<=56)||(LA40_2>=58 && LA40_2<=60)||LA40_2==65||LA40_2==71||LA40_2==75||LA40_2==77||(LA40_2>=81 && LA40_2<=83)||LA40_2==86||(LA40_2>=88 && LA40_2<=89)) ) {
-                    alt40=2;
-                }
-                else if ( (LA40_2==36||LA40_2==51||(LA40_2>=68 && LA40_2<=70)||LA40_2==80||(LA40_2>=84 && LA40_2<=85)||LA40_2==87) ) {
+                if ( (LA40_2==36||LA40_2==51||(LA40_2>=68 && LA40_2<=71)||LA40_2==75||LA40_2==77||LA40_2==80||(LA40_2>=84 && LA40_2<=85)||(LA40_2>=87 && LA40_2<=89)) ) {
                     alt40=1;
+                }
+                else if ( ((LA40_2>=RULE_ID && LA40_2<=RULE_UNRESTRICTED_NAME)||LA40_2==14||(LA40_2>=37 && LA40_2<=38)||(LA40_2>=40 && LA40_2<=41)||LA40_2==45||(LA40_2>=55 && LA40_2<=56)||(LA40_2>=58 && LA40_2<=60)||LA40_2==65||(LA40_2>=81 && LA40_2<=83)||LA40_2==86) ) {
+                    alt40=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -5342,15 +5347,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             case 59:
             case 60:
             case 65:
-            case 71:
-            case 75:
-            case 77:
             case 81:
             case 82:
             case 83:
             case 86:
-            case 88:
-            case 89:
                 {
                 alt40=2;
                 }
@@ -5466,7 +5466,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             int alt43=2;
             int LA43_0 = input.LA(1);
 
-            if ( (LA43_0==EOF||LA43_0==RULE_REGULAR_COMMENT||LA43_0==15||(LA43_0>=18 && LA43_0<=19)||LA43_0==23||(LA43_0>=25 && LA43_0<=28)||(LA43_0>=35 && LA43_0<=36)||(LA43_0>=42 && LA43_0<=44)||(LA43_0>=51 && LA43_0<=52)||(LA43_0>=62 && LA43_0<=63)||(LA43_0>=68 && LA43_0<=70)||LA43_0==80||(LA43_0>=84 && LA43_0<=85)||LA43_0==87) ) {
+            if ( (LA43_0==EOF||LA43_0==RULE_REGULAR_COMMENT||LA43_0==15||(LA43_0>=18 && LA43_0<=19)||LA43_0==23||(LA43_0>=25 && LA43_0<=28)||(LA43_0>=35 && LA43_0<=36)||(LA43_0>=42 && LA43_0<=44)||(LA43_0>=51 && LA43_0<=52)||(LA43_0>=62 && LA43_0<=63)||(LA43_0>=68 && LA43_0<=71)||LA43_0==75||LA43_0==77||LA43_0==80||(LA43_0>=84 && LA43_0<=85)||(LA43_0>=87 && LA43_0<=89)) ) {
                 alt43=1;
             }
             else if ( ((LA43_0>=29 && LA43_0<=30)) ) {
@@ -6334,7 +6334,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNonFeatureElement"
-    // InternalKerML.g:2181:1: ruleNonFeatureElement returns [EObject current=null] : (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition ) ;
+    // InternalKerML.g:2181:1: ruleNonFeatureElement returns [EObject current=null] : (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition | this_Connector_20= ruleConnector | this_BindingConnector_21= ruleBindingConnector | this_Succession_22= ruleSuccession | this_ItemFlow_23= ruleItemFlow | this_SuccessionItemFlow_24= ruleSuccessionItemFlow ) ;
     public final EObject ruleNonFeatureElement() throws RecognitionException {
         EObject current = null;
 
@@ -6378,16 +6378,26 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
         EObject this_Redefinition_19 = null;
 
+        EObject this_Connector_20 = null;
+
+        EObject this_BindingConnector_21 = null;
+
+        EObject this_Succession_22 = null;
+
+        EObject this_ItemFlow_23 = null;
+
+        EObject this_SuccessionItemFlow_24 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:2187:2: ( (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition ) )
-            // InternalKerML.g:2188:2: (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition )
+            // InternalKerML.g:2187:2: ( (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition | this_Connector_20= ruleConnector | this_BindingConnector_21= ruleBindingConnector | this_Succession_22= ruleSuccession | this_ItemFlow_23= ruleItemFlow | this_SuccessionItemFlow_24= ruleSuccessionItemFlow ) )
+            // InternalKerML.g:2188:2: (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition | this_Connector_20= ruleConnector | this_BindingConnector_21= ruleBindingConnector | this_Succession_22= ruleSuccession | this_ItemFlow_23= ruleItemFlow | this_SuccessionItemFlow_24= ruleSuccessionItemFlow )
             {
-            // InternalKerML.g:2188:2: (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition )
-            int alt48=20;
+            // InternalKerML.g:2188:2: (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition | this_Connector_20= ruleConnector | this_BindingConnector_21= ruleBindingConnector | this_Succession_22= ruleSuccession | this_ItemFlow_23= ruleItemFlow | this_SuccessionItemFlow_24= ruleSuccessionItemFlow )
+            int alt48=25;
             alt48 = dfa48.predict(input);
             switch (alt48) {
                 case 1 :
@@ -6830,6 +6840,116 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 21 :
+                    // InternalKerML.g:2369:3: this_Connector_20= ruleConnector
+                    {
+                    if ( state.backtracking==0 ) {
+
+                      			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getConnectorParserRuleCall_20());
+                      		
+                    }
+                    pushFollow(FOLLOW_2);
+                    this_Connector_20=ruleConnector();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      			current = this_Connector_20;
+                      			afterParserOrEnumRuleCall();
+                      		
+                    }
+
+                    }
+                    break;
+                case 22 :
+                    // InternalKerML.g:2378:3: this_BindingConnector_21= ruleBindingConnector
+                    {
+                    if ( state.backtracking==0 ) {
+
+                      			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getBindingConnectorParserRuleCall_21());
+                      		
+                    }
+                    pushFollow(FOLLOW_2);
+                    this_BindingConnector_21=ruleBindingConnector();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      			current = this_BindingConnector_21;
+                      			afterParserOrEnumRuleCall();
+                      		
+                    }
+
+                    }
+                    break;
+                case 23 :
+                    // InternalKerML.g:2387:3: this_Succession_22= ruleSuccession
+                    {
+                    if ( state.backtracking==0 ) {
+
+                      			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getSuccessionParserRuleCall_22());
+                      		
+                    }
+                    pushFollow(FOLLOW_2);
+                    this_Succession_22=ruleSuccession();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      			current = this_Succession_22;
+                      			afterParserOrEnumRuleCall();
+                      		
+                    }
+
+                    }
+                    break;
+                case 24 :
+                    // InternalKerML.g:2396:3: this_ItemFlow_23= ruleItemFlow
+                    {
+                    if ( state.backtracking==0 ) {
+
+                      			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getItemFlowParserRuleCall_23());
+                      		
+                    }
+                    pushFollow(FOLLOW_2);
+                    this_ItemFlow_23=ruleItemFlow();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      			current = this_ItemFlow_23;
+                      			afterParserOrEnumRuleCall();
+                      		
+                    }
+
+                    }
+                    break;
+                case 25 :
+                    // InternalKerML.g:2405:3: this_SuccessionItemFlow_24= ruleSuccessionItemFlow
+                    {
+                    if ( state.backtracking==0 ) {
+
+                      			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getSuccessionItemFlowParserRuleCall_24());
+                      		
+                    }
+                    pushFollow(FOLLOW_2);
+                    this_SuccessionItemFlow_24=ruleSuccessionItemFlow();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      			current = this_SuccessionItemFlow_24;
+                      			afterParserOrEnumRuleCall();
+                      		
+                    }
+
+                    }
+                    break;
 
             }
 
@@ -6855,7 +6975,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeatureElement"
-    // InternalKerML.g:2372:1: entryRuleFeatureElement returns [EObject current=null] : iv_ruleFeatureElement= ruleFeatureElement EOF ;
+    // InternalKerML.g:2417:1: entryRuleFeatureElement returns [EObject current=null] : iv_ruleFeatureElement= ruleFeatureElement EOF ;
     public final EObject entryRuleFeatureElement() throws RecognitionException {
         EObject current = null;
 
@@ -6863,8 +6983,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:2372:55: (iv_ruleFeatureElement= ruleFeatureElement EOF )
-            // InternalKerML.g:2373:2: iv_ruleFeatureElement= ruleFeatureElement EOF
+            // InternalKerML.g:2417:55: (iv_ruleFeatureElement= ruleFeatureElement EOF )
+            // InternalKerML.g:2418:2: iv_ruleFeatureElement= ruleFeatureElement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFeatureElementRule()); 
@@ -6895,7 +7015,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureElement"
-    // InternalKerML.g:2379:1: ruleFeatureElement returns [EObject current=null] : (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant | this_Connector_5= ruleConnector | this_BindingConnector_6= ruleBindingConnector | this_Succession_7= ruleSuccession | this_ItemFlow_8= ruleItemFlow | this_SuccessionItemFlow_9= ruleSuccessionItemFlow ) ;
+    // InternalKerML.g:2424:1: ruleFeatureElement returns [EObject current=null] : (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant ) ;
     public final EObject ruleFeatureElement() throws RecognitionException {
         EObject current = null;
 
@@ -6909,30 +7029,117 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
         EObject this_Invariant_4 = null;
 
-        EObject this_Connector_5 = null;
-
-        EObject this_BindingConnector_6 = null;
-
-        EObject this_Succession_7 = null;
-
-        EObject this_ItemFlow_8 = null;
-
-        EObject this_SuccessionItemFlow_9 = null;
-
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:2385:2: ( (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant | this_Connector_5= ruleConnector | this_BindingConnector_6= ruleBindingConnector | this_Succession_7= ruleSuccession | this_ItemFlow_8= ruleItemFlow | this_SuccessionItemFlow_9= ruleSuccessionItemFlow ) )
-            // InternalKerML.g:2386:2: (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant | this_Connector_5= ruleConnector | this_BindingConnector_6= ruleBindingConnector | this_Succession_7= ruleSuccession | this_ItemFlow_8= ruleItemFlow | this_SuccessionItemFlow_9= ruleSuccessionItemFlow )
+            // InternalKerML.g:2430:2: ( (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant ) )
+            // InternalKerML.g:2431:2: (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant )
             {
-            // InternalKerML.g:2386:2: (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant | this_Connector_5= ruleConnector | this_BindingConnector_6= ruleBindingConnector | this_Succession_7= ruleSuccession | this_ItemFlow_8= ruleItemFlow | this_SuccessionItemFlow_9= ruleSuccessionItemFlow )
-            int alt49=10;
-            alt49 = dfa49.predict(input);
+            // InternalKerML.g:2431:2: (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant )
+            int alt49=5;
+            switch ( input.LA(1) ) {
+            case 35:
+                {
+                switch ( input.LA(2) ) {
+                case 82:
+                    {
+                    alt49=3;
+                    }
+                    break;
+                case 81:
+                    {
+                    alt49=2;
+                    }
+                    break;
+                case 86:
+                    {
+                    alt49=5;
+                    }
+                    break;
+                case 83:
+                    {
+                    alt49=4;
+                    }
+                    break;
+                case RULE_ID:
+                case RULE_UNRESTRICTED_NAME:
+                case 14:
+                case 37:
+                case 38:
+                case 40:
+                case 41:
+                case 45:
+                case 55:
+                case 56:
+                case 58:
+                case 59:
+                case 60:
+                case 65:
+                    {
+                    alt49=1;
+                    }
+                    break;
+                default:
+                    if (state.backtracking>0) {state.failed=true; return current;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 49, 1, input);
+
+                    throw nvae;
+                }
+
+                }
+                break;
+            case RULE_ID:
+            case RULE_UNRESTRICTED_NAME:
+            case 14:
+            case 37:
+            case 38:
+            case 40:
+            case 41:
+            case 45:
+            case 55:
+            case 56:
+            case 58:
+            case 59:
+            case 60:
+            case 65:
+                {
+                alt49=1;
+                }
+                break;
+            case 81:
+                {
+                alt49=2;
+                }
+                break;
+            case 82:
+                {
+                alt49=3;
+                }
+                break;
+            case 83:
+                {
+                alt49=4;
+                }
+                break;
+            case 86:
+                {
+                alt49=5;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return current;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 49, 0, input);
+
+                throw nvae;
+            }
+
             switch (alt49) {
                 case 1 :
-                    // InternalKerML.g:2387:3: this_Feature_0= ruleFeature
+                    // InternalKerML.g:2432:3: this_Feature_0= ruleFeature
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6954,7 +7161,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:2396:3: this_Step_1= ruleStep
+                    // InternalKerML.g:2441:3: this_Step_1= ruleStep
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6976,7 +7183,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalKerML.g:2405:3: this_Expression_2= ruleExpression
+                    // InternalKerML.g:2450:3: this_Expression_2= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -6998,7 +7205,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalKerML.g:2414:3: this_BooleanExpression_3= ruleBooleanExpression
+                    // InternalKerML.g:2459:3: this_BooleanExpression_3= ruleBooleanExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7020,7 +7227,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalKerML.g:2423:3: this_Invariant_4= ruleInvariant
+                    // InternalKerML.g:2468:3: this_Invariant_4= ruleInvariant
                     {
                     if ( state.backtracking==0 ) {
 
@@ -7035,116 +7242,6 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       			current = this_Invariant_4;
-                      			afterParserOrEnumRuleCall();
-                      		
-                    }
-
-                    }
-                    break;
-                case 6 :
-                    // InternalKerML.g:2432:3: this_Connector_5= ruleConnector
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      			newCompositeNode(grammarAccess.getFeatureElementAccess().getConnectorParserRuleCall_5());
-                      		
-                    }
-                    pushFollow(FOLLOW_2);
-                    this_Connector_5=ruleConnector();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      			current = this_Connector_5;
-                      			afterParserOrEnumRuleCall();
-                      		
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // InternalKerML.g:2441:3: this_BindingConnector_6= ruleBindingConnector
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      			newCompositeNode(grammarAccess.getFeatureElementAccess().getBindingConnectorParserRuleCall_6());
-                      		
-                    }
-                    pushFollow(FOLLOW_2);
-                    this_BindingConnector_6=ruleBindingConnector();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      			current = this_BindingConnector_6;
-                      			afterParserOrEnumRuleCall();
-                      		
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // InternalKerML.g:2450:3: this_Succession_7= ruleSuccession
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      			newCompositeNode(grammarAccess.getFeatureElementAccess().getSuccessionParserRuleCall_7());
-                      		
-                    }
-                    pushFollow(FOLLOW_2);
-                    this_Succession_7=ruleSuccession();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      			current = this_Succession_7;
-                      			afterParserOrEnumRuleCall();
-                      		
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // InternalKerML.g:2459:3: this_ItemFlow_8= ruleItemFlow
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      			newCompositeNode(grammarAccess.getFeatureElementAccess().getItemFlowParserRuleCall_8());
-                      		
-                    }
-                    pushFollow(FOLLOW_2);
-                    this_ItemFlow_8=ruleItemFlow();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      			current = this_ItemFlow_8;
-                      			afterParserOrEnumRuleCall();
-                      		
-                    }
-
-                    }
-                    break;
-                case 10 :
-                    // InternalKerML.g:2468:3: this_SuccessionItemFlow_9= ruleSuccessionItemFlow
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      			newCompositeNode(grammarAccess.getFeatureElementAccess().getSuccessionItemFlowParserRuleCall_9());
-                      		
-                    }
-                    pushFollow(FOLLOW_2);
-                    this_SuccessionItemFlow_9=ruleSuccessionItemFlow();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      			current = this_SuccessionItemFlow_9;
                       			afterParserOrEnumRuleCall();
                       		
                     }
@@ -9545,15 +9642,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             case 59:
             case 60:
             case 65:
-            case 71:
-            case 75:
-            case 77:
             case 81:
             case 82:
             case 83:
             case 86:
-            case 88:
-            case 89:
                 {
                 alt70=1;
                 }
@@ -36411,7 +36503,6 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
     protected DFA35 dfa35 = new DFA35(this);
     protected DFA37 dfa37 = new DFA37(this);
     protected DFA48 dfa48 = new DFA48(this);
-    protected DFA49 dfa49 = new DFA49(this);
     protected DFA58 dfa58 = new DFA58(this);
     protected DFA60 dfa60 = new DFA60(this);
     protected DFA92 dfa92 = new DFA92(this);
@@ -36618,19 +36709,19 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             return "1753:2: ( ( (lv_documentation_comp_0_0= ruleOwnedDocumentation ) ) | ( (lv_ownedMembership_comp_1_0= rulePackageMember ) ) | ( (lv_ownedImport_comp_2_0= rulePackageImport ) ) )";
         }
     }
-    static final String dfa_22s = "\36\uffff";
-    static final String dfa_23s = "\1\4\5\uffff\1\44\11\uffff\1\11\5\uffff\1\11\2\53\1\uffff\2\11\2\53";
-    static final String dfa_24s = "\1\127\5\uffff\1\127\11\uffff\1\77\5\uffff\1\12\2\77\1\uffff\4\77";
-    static final String dfa_25s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\uffff\1\17\1\20\1\22\1\23\1\24\3\uffff\1\21\4\uffff";
-    static final String dfa_26s = "\36\uffff}>";
+    static final String dfa_22s = "\43\uffff";
+    static final String dfa_23s = "\1\4\5\uffff\1\44\11\uffff\1\11\12\uffff\1\11\2\53\1\uffff\2\11\2\53";
+    static final String dfa_24s = "\1\131\5\uffff\1\131\11\uffff\1\77\12\uffff\1\12\2\77\1\uffff\4\77";
+    static final String dfa_25s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\uffff\1\17\1\20\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\3\uffff\1\21\4\uffff";
+    static final String dfa_26s = "\43\uffff}>";
     static final String[] dfa_27s = {
-            "\1\3\12\uffff\1\1\3\uffff\1\2\3\uffff\1\3\2\uffff\2\4\1\5\6\uffff\1\6\1\7\5\uffff\1\20\1\21\1\22\6\uffff\1\10\1\23\11\uffff\1\24\1\25\4\uffff\1\12\1\11\1\13\11\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14",
+            "\1\3\12\uffff\1\1\3\uffff\1\2\3\uffff\1\3\2\uffff\2\4\1\5\6\uffff\1\6\1\7\5\uffff\1\20\1\21\1\22\6\uffff\1\10\1\23\11\uffff\1\24\1\25\4\uffff\1\12\1\11\1\13\1\26\3\uffff\1\27\1\uffff\1\30\2\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14\1\31\1\32",
             "",
             "",
             "",
             "",
             "",
-            "\1\7\16\uffff\1\10\20\uffff\1\12\1\11\1\13\11\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14",
+            "\1\7\16\uffff\1\10\20\uffff\1\12\1\11\1\13\1\26\3\uffff\1\27\1\uffff\1\30\2\uffff\1\15\3\uffff\1\16\1\17\1\uffff\1\14\1\31\1\32",
             "",
             "",
             "",
@@ -36640,20 +36731,25 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "",
             "",
             "",
-            "\1\27\1\30\3\uffff\1\26\34\uffff\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25",
+            "\1\34\1\35\3\uffff\1\33\34\uffff\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25",
             "",
             "",
             "",
             "",
             "",
-            "\1\32\1\33",
-            "\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25",
-            "\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25",
             "",
-            "\1\34\1\35\40\uffff\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25",
-            "\1\34\1\35\40\uffff\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25",
-            "\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25",
-            "\1\21\10\uffff\1\23\10\uffff\1\31\1\24\1\25"
+            "",
+            "",
+            "",
+            "",
+            "\1\37\1\40",
+            "\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25",
+            "\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25",
+            "",
+            "\1\41\1\42\40\uffff\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25",
+            "\1\41\1\42\40\uffff\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25",
+            "\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25",
+            "\1\21\10\uffff\1\23\10\uffff\1\36\1\24\1\25"
     };
 
     static final short[] dfa_22 = DFA.unpackEncodedString(dfa_22s);
@@ -36677,69 +36773,25 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             this.transition = dfa_27;
         }
         public String getDescription() {
-            return "2188:2: (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition )";
+            return "2188:2: (this_Element_0= ruleElement | this_Relationship_1= ruleRelationship | this_Comment_2= ruleComment | this_TextualRepresentation_3= ruleTextualRepresentation | this_Package_4= rulePackage | this_Type_5= ruleType | this_Classifier_6= ruleClassifier | this_Class_7= ruleClass | this_DataType_8= ruleDataType | this_Association_9= ruleAssociation | this_Interaction_10= ruleInteraction | this_Behavior_11= ruleBehavior | this_Function_12= ruleFunction | this_Predicate_13= rulePredicate | this_Generalization_14= ruleGeneralization | this_Conjugation_15= ruleConjugation | this_FeatureTyping_16= ruleFeatureTyping | this_Superclassing_17= ruleSuperclassing | this_Subsetting_18= ruleSubsetting | this_Redefinition_19= ruleRedefinition | this_Connector_20= ruleConnector | this_BindingConnector_21= ruleBindingConnector | this_Succession_22= ruleSuccession | this_ItemFlow_23= ruleItemFlow | this_SuccessionItemFlow_24= ruleSuccessionItemFlow )";
         }
     }
-    static final String dfa_28s = "\14\uffff";
-    static final String dfa_29s = "\2\11\12\uffff";
-    static final String dfa_30s = "\2\131\12\uffff";
-    static final String dfa_31s = "\2\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12";
-    static final String dfa_32s = "\14\uffff}>";
+    static final String dfa_28s = "\37\uffff";
+    static final String dfa_29s = "\1\4\1\uffff\6\4\1\uffff\2\11\1\uffff\1\11\1\uffff\1\5\2\20\2\4\3\11\2\5\2\20\1\uffff\2\20\2\11";
+    static final String dfa_30s = "\1\173\1\uffff\1\16\5\173\1\uffff\1\131\1\12\1\uffff\1\12\1\uffff\1\16\2\41\2\5\1\12\2\42\2\5\2\40\1\uffff\2\41\2\42";
+    static final String dfa_31s = "\1\uffff\1\5\6\uffff\1\2\2\uffff\1\3\1\uffff\1\1\14\uffff\1\4\4\uffff";
+    static final String dfa_32s = "\37\uffff}>";
     static final String[] dfa_33s = {
-            "\2\2\3\uffff\1\2\24\uffff\1\1\1\uffff\2\2\1\uffff\2\2\3\uffff\1\2\11\uffff\2\2\1\uffff\3\2\4\uffff\1\2\5\uffff\1\7\3\uffff\1\10\1\uffff\1\11\3\uffff\1\3\1\4\1\5\2\uffff\1\6\1\uffff\1\12\1\13",
-            "\2\2\3\uffff\1\2\26\uffff\2\2\1\uffff\2\2\3\uffff\1\2\11\uffff\2\2\1\uffff\3\2\4\uffff\1\2\5\uffff\1\7\3\uffff\1\10\1\uffff\1\11\3\uffff\1\3\1\4\1\5\2\uffff\1\6\1\uffff\1\12\1\13",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
-
-    static final short[] dfa_28 = DFA.unpackEncodedString(dfa_28s);
-    static final char[] dfa_29 = DFA.unpackEncodedStringToUnsignedChars(dfa_29s);
-    static final char[] dfa_30 = DFA.unpackEncodedStringToUnsignedChars(dfa_30s);
-    static final short[] dfa_31 = DFA.unpackEncodedString(dfa_31s);
-    static final short[] dfa_32 = DFA.unpackEncodedString(dfa_32s);
-    static final short[][] dfa_33 = unpackEncodedStringArray(dfa_33s);
-
-    class DFA49 extends DFA {
-
-        public DFA49(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 49;
-            this.eot = dfa_28;
-            this.eof = dfa_28;
-            this.min = dfa_29;
-            this.max = dfa_30;
-            this.accept = dfa_31;
-            this.special = dfa_32;
-            this.transition = dfa_33;
-        }
-        public String getDescription() {
-            return "2386:2: (this_Feature_0= ruleFeature | this_Step_1= ruleStep | this_Expression_2= ruleExpression | this_BooleanExpression_3= ruleBooleanExpression | this_Invariant_4= ruleInvariant | this_Connector_5= ruleConnector | this_BindingConnector_6= ruleBindingConnector | this_Succession_7= ruleSuccession | this_ItemFlow_8= ruleItemFlow | this_SuccessionItemFlow_9= ruleSuccessionItemFlow )";
-        }
-    }
-    static final String dfa_34s = "\37\uffff";
-    static final String dfa_35s = "\1\4\1\uffff\6\4\1\uffff\2\11\1\uffff\1\11\1\uffff\1\5\2\20\2\4\3\11\2\5\2\20\1\uffff\2\20\2\11";
-    static final String dfa_36s = "\1\173\1\uffff\1\16\5\173\1\uffff\1\131\1\12\1\uffff\1\12\1\uffff\1\16\2\41\2\5\1\12\2\42\2\5\2\40\1\uffff\2\41\2\42";
-    static final String dfa_37s = "\1\uffff\1\5\6\uffff\1\2\2\uffff\1\3\1\uffff\1\1\14\uffff\1\4\4\uffff";
-    static final String dfa_38s = "\37\uffff}>";
-    static final String[] dfa_39s = {
-            "\1\10\1\3\3\uffff\2\13\3\uffff\1\13\1\10\2\uffff\1\1\1\10\3\uffff\1\10\1\uffff\1\2\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13\33\uffff\1\4\1\5\1\6\1\7\3\13",
+            "\1\10\1\3\3\uffff\2\13\3\uffff\1\13\1\10\2\uffff\1\1\1\10\3\uffff\1\10\1\uffff\1\2\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10\33\uffff\1\4\1\5\1\6\1\7\3\13",
             "",
             "\1\15\1\3\10\uffff\1\14",
-            "\1\10\1\3\3\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\1\uffff\1\16\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13\33\uffff\1\4\1\5\1\6\1\7\3\13",
-            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13\37\uffff\3\13",
-            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13\37\uffff\3\13",
-            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\5\10\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13\37\uffff\3\13",
-            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\5\10\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13\37\uffff\3\13",
+            "\1\10\1\3\3\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\1\uffff\1\16\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10\33\uffff\1\4\1\5\1\6\1\7\3\13",
+            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10\37\uffff\3\13",
+            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\4\10\1\12\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10\37\uffff\3\13",
+            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\5\10\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10\37\uffff\3\13",
+            "\1\10\4\uffff\2\13\3\uffff\1\13\1\10\3\uffff\1\10\3\uffff\1\10\2\uffff\5\10\4\uffff\1\11\1\10\2\13\1\uffff\2\13\3\10\6\13\2\10\2\uffff\2\13\1\uffff\3\13\1\uffff\2\10\1\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10\37\uffff\3\13",
             "",
-            "\2\13\3\uffff\1\13\25\uffff\1\10\2\13\1\uffff\2\13\3\uffff\1\13\5\uffff\1\10\3\uffff\2\13\1\uffff\3\13\4\uffff\1\13\2\uffff\3\10\1\13\3\uffff\1\13\1\uffff\1\13\2\uffff\1\10\3\13\2\10\1\13\1\10\2\13",
+            "\2\13\3\uffff\1\13\25\uffff\1\10\2\13\1\uffff\2\13\3\uffff\1\13\5\uffff\1\10\3\uffff\2\13\1\uffff\3\13\4\uffff\1\13\2\uffff\4\10\3\uffff\1\10\1\uffff\1\10\2\uffff\1\10\3\13\2\10\1\13\3\10",
             "\1\17\1\20",
             "",
             "\1\21\1\22",
@@ -36763,6 +36815,50 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\33\1\34\27\uffff\1\32"
     };
 
+    static final short[] dfa_28 = DFA.unpackEncodedString(dfa_28s);
+    static final char[] dfa_29 = DFA.unpackEncodedStringToUnsignedChars(dfa_29s);
+    static final char[] dfa_30 = DFA.unpackEncodedStringToUnsignedChars(dfa_30s);
+    static final short[] dfa_31 = DFA.unpackEncodedString(dfa_31s);
+    static final short[] dfa_32 = DFA.unpackEncodedString(dfa_32s);
+    static final short[][] dfa_33 = unpackEncodedStringArray(dfa_33s);
+
+    class DFA58 extends DFA {
+
+        public DFA58(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 58;
+            this.eot = dfa_28;
+            this.eof = dfa_28;
+            this.min = dfa_29;
+            this.max = dfa_30;
+            this.accept = dfa_31;
+            this.special = dfa_32;
+            this.transition = dfa_33;
+        }
+        public String getDescription() {
+            return "()* loopback of 2789:4: ( ( (lv_documentation_comp_2_0= ruleOwnedDocumentation ) ) | ( (lv_ownedMembership_comp_3_0= ruleNonFeatureTypeMember ) ) | ( (lv_ownedFeatureMembership_comp_4_0= ruleFeatureTypeMember ) ) | ( (lv_ownedImport_comp_5_0= rulePackageImport ) ) )*";
+        }
+    }
+    static final String dfa_34s = "\14\uffff";
+    static final String dfa_35s = "\3\5\4\11\2\uffff\1\11\2\5";
+    static final String dfa_36s = "\1\173\1\16\5\173\2\uffff\1\12\2\5";
+    static final String dfa_37s = "\7\uffff\1\1\1\2\3\uffff";
+    static final String dfa_38s = "\14\uffff}>";
+    static final String[] dfa_39s = {
+            "\1\2\3\uffff\2\7\3\uffff\1\7\12\uffff\1\1\11\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\17\uffff\3\7\2\uffff\1\7\36\uffff\1\3\1\4\1\5\1\6\3\7",
+            "\1\2\10\uffff\1\11",
+            "\1\2\3\uffff\2\7\3\uffff\1\7\12\uffff\1\1\11\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\17\uffff\3\7\2\uffff\1\7\36\uffff\1\3\1\4\1\5\1\6\3\7",
+            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\17\uffff\3\7\2\uffff\1\7\42\uffff\3\7",
+            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\17\uffff\3\7\2\uffff\1\7\42\uffff\3\7",
+            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\17\uffff\3\7\2\uffff\1\7\42\uffff\3\7",
+            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\17\uffff\3\7\2\uffff\1\7\42\uffff\3\7",
+            "",
+            "",
+            "\1\12\1\13",
+            "\1\2",
+            "\1\2"
+    };
+
     static final short[] dfa_34 = DFA.unpackEncodedString(dfa_34s);
     static final char[] dfa_35 = DFA.unpackEncodedStringToUnsignedChars(dfa_35s);
     static final char[] dfa_36 = DFA.unpackEncodedStringToUnsignedChars(dfa_36s);
@@ -36770,11 +36866,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
     static final short[] dfa_38 = DFA.unpackEncodedString(dfa_38s);
     static final short[][] dfa_39 = unpackEncodedStringArray(dfa_39s);
 
-    class DFA58 extends DFA {
+    class DFA60 extends DFA {
 
-        public DFA58(BaseRecognizer recognizer) {
+        public DFA60(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 58;
+            this.decisionNumber = 60;
             this.eot = dfa_34;
             this.eof = dfa_34;
             this.min = dfa_35;
@@ -36784,54 +36880,15 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             this.transition = dfa_39;
         }
         public String getDescription() {
-            return "()* loopback of 2789:4: ( ( (lv_documentation_comp_2_0= ruleOwnedDocumentation ) ) | ( (lv_ownedMembership_comp_3_0= ruleNonFeatureTypeMember ) ) | ( (lv_ownedFeatureMembership_comp_4_0= ruleFeatureTypeMember ) ) | ( (lv_ownedImport_comp_5_0= rulePackageImport ) ) )*";
-        }
-    }
-    static final String dfa_40s = "\3\5\4\11\2\uffff\1\11\2\5";
-    static final String dfa_41s = "\1\173\1\16\5\173\2\uffff\1\12\2\5";
-    static final String dfa_42s = "\7\uffff\1\1\1\2\3\uffff";
-    static final String[] dfa_43s = {
-            "\1\2\3\uffff\2\7\3\uffff\1\7\12\uffff\1\1\11\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\33\uffff\1\3\1\4\1\5\1\6\3\7",
-            "\1\2\10\uffff\1\11",
-            "\1\2\3\uffff\2\7\3\uffff\1\7\12\uffff\1\1\11\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\33\uffff\1\3\1\4\1\5\1\6\3\7",
-            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\37\uffff\3\7",
-            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\37\uffff\3\7",
-            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\37\uffff\3\7",
-            "\2\7\3\uffff\1\7\24\uffff\1\7\1\uffff\2\7\1\uffff\2\7\3\uffff\2\7\1\10\3\7\4\uffff\2\7\1\uffff\3\7\4\uffff\1\7\5\uffff\1\7\3\uffff\1\7\1\uffff\1\7\3\uffff\3\7\2\uffff\1\7\1\uffff\2\7\37\uffff\3\7",
-            "",
-            "",
-            "\1\12\1\13",
-            "\1\2",
-            "\1\2"
-    };
-    static final char[] dfa_40 = DFA.unpackEncodedStringToUnsignedChars(dfa_40s);
-    static final char[] dfa_41 = DFA.unpackEncodedStringToUnsignedChars(dfa_41s);
-    static final short[] dfa_42 = DFA.unpackEncodedString(dfa_42s);
-    static final short[][] dfa_43 = unpackEncodedStringArray(dfa_43s);
-
-    class DFA60 extends DFA {
-
-        public DFA60(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 60;
-            this.eot = dfa_28;
-            this.eof = dfa_28;
-            this.min = dfa_40;
-            this.max = dfa_41;
-            this.accept = dfa_42;
-            this.special = dfa_32;
-            this.transition = dfa_43;
-        }
-        public String getDescription() {
             return "2934:2: (this_FeatureMember_0= ruleFeatureMember | this_EndFeatureMember_1= ruleEndFeatureMember )";
         }
     }
-    static final String dfa_44s = "\20\uffff";
-    static final String dfa_45s = "\1\20\1\uffff\1\11\1\71\4\11\2\0\1\11\4\0\1\uffff";
-    static final String dfa_46s = "\1\116\1\uffff\1\12\1\71\4\12\2\0\1\12\4\0\1\uffff";
-    static final String dfa_47s = "\1\uffff\1\2\15\uffff\1\1";
-    static final String dfa_48s = "\10\uffff\1\1\1\2\1\uffff\1\3\1\5\1\4\1\0\1\uffff}>";
-    static final String[] dfa_49s = {
+    static final String dfa_40s = "\20\uffff";
+    static final String dfa_41s = "\1\20\1\uffff\1\11\1\71\4\11\2\0\1\11\4\0\1\uffff";
+    static final String dfa_42s = "\1\116\1\uffff\1\12\1\71\4\12\2\0\1\12\4\0\1\uffff";
+    static final String dfa_43s = "\1\uffff\1\2\15\uffff\1\1";
+    static final String dfa_44s = "\10\uffff\1\1\1\2\1\uffff\1\3\1\5\1\4\1\0\1\uffff}>";
+    static final String[] dfa_45s = {
             "\2\1\3\uffff\1\1\20\uffff\1\4\20\uffff\1\2\1\3\1\uffff\1\5\1\6\1\7\3\uffff\2\1\6\uffff\1\1\3\uffff\1\1\1\uffff\1\1",
             "",
             "\1\10\1\11",
@@ -36850,25 +36907,25 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             ""
     };
 
+    static final short[] dfa_40 = DFA.unpackEncodedString(dfa_40s);
+    static final char[] dfa_41 = DFA.unpackEncodedStringToUnsignedChars(dfa_41s);
+    static final char[] dfa_42 = DFA.unpackEncodedStringToUnsignedChars(dfa_42s);
+    static final short[] dfa_43 = DFA.unpackEncodedString(dfa_43s);
     static final short[] dfa_44 = DFA.unpackEncodedString(dfa_44s);
-    static final char[] dfa_45 = DFA.unpackEncodedStringToUnsignedChars(dfa_45s);
-    static final char[] dfa_46 = DFA.unpackEncodedStringToUnsignedChars(dfa_46s);
-    static final short[] dfa_47 = DFA.unpackEncodedString(dfa_47s);
-    static final short[] dfa_48 = DFA.unpackEncodedString(dfa_48s);
-    static final short[][] dfa_49 = unpackEncodedStringArray(dfa_49s);
+    static final short[][] dfa_45 = unpackEncodedStringArray(dfa_45s);
 
     class DFA92 extends DFA {
 
         public DFA92(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 92;
-            this.eot = dfa_44;
-            this.eof = dfa_44;
-            this.min = dfa_45;
-            this.max = dfa_46;
-            this.accept = dfa_47;
-            this.special = dfa_48;
-            this.transition = dfa_49;
+            this.eot = dfa_40;
+            this.eof = dfa_40;
+            this.min = dfa_41;
+            this.max = dfa_42;
+            this.accept = dfa_43;
+            this.special = dfa_44;
+            this.transition = dfa_45;
         }
         public String getDescription() {
             return "()+ loopback of 4097:4: ( ( ':' | 'typed' | ':>' | 'subsets' | ':>>' | 'redefines' )=>this_FeatureSpecialization_0= ruleFeatureSpecialization[$current] )+";
@@ -36975,12 +37032,12 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String dfa_50s = "\u0215\uffff";
-    static final String dfa_51s = "\3\11\2\24\1\11\1\71\4\11\1\7\2\11\2\uffff\2\11\1\7\1\11\1\71\6\11\2\25\1\11\4\25\1\102\1\103\4\25\1\7\1\102\1\103\2\25\1\11\6\25\1\11\1\7\1\11\1\71\14\11\1\25\1\7\2\11\1\102\1\103\1\24\1\7\1\11\1\7\1\11\1\71\16\11\2\25\1\102\1\103\2\25\1\11\26\25\1\11\1\71\4\11\1\103\5\25\1\7\2\25\1\11\1\71\4\11\1\103\2\25\1\102\1\103\2\25\1\11\30\25\2\11\1\7\1\25\15\11\2\25\1\11\4\25\1\103\2\25\1\11\4\25\2\11\1\7\1\25\15\11\4\25\1\103\2\25\1\11\1\71\4\11\32\25\22\11\4\25\1\103\2\25\1\11\1\71\4\11\34\25\1\11\4\25\6\11\46\25\1\11\4\25\17\11\14\25\25\11\110\25\14\11\30\25";
-    static final String dfa_52s = "\1\110\1\101\1\12\2\112\1\12\1\71\4\12\1\42\2\12\2\uffff\2\110\1\42\1\12\1\71\6\12\2\110\1\12\4\110\2\103\4\110\1\42\2\103\2\110\1\12\6\110\1\12\1\42\1\12\1\71\14\12\1\110\1\42\2\12\2\103\1\110\1\42\1\12\1\42\1\12\1\71\16\12\2\110\2\103\2\110\1\12\26\110\1\12\1\71\4\12\1\103\5\110\1\42\2\110\1\12\1\71\4\12\1\103\2\110\2\103\2\110\1\12\30\110\2\12\1\42\1\110\15\12\2\110\1\12\4\110\1\103\2\110\1\12\4\110\2\12\1\42\1\110\15\12\4\110\1\103\2\110\1\12\1\71\4\12\32\110\22\12\4\110\1\103\2\110\1\12\1\71\4\12\34\110\1\12\4\110\6\12\46\110\1\12\4\110\17\12\14\110\25\12\110\110\14\12\30\110";
-    static final String dfa_53s = "\16\uffff\1\1\1\2\u0205\uffff";
-    static final String dfa_54s = "\u0215\uffff}>";
-    static final String[] dfa_55s = {
+    static final String dfa_46s = "\u0215\uffff";
+    static final String dfa_47s = "\3\11\2\24\1\11\1\71\4\11\1\7\2\11\2\uffff\2\11\1\7\1\11\1\71\6\11\2\25\1\11\4\25\1\102\1\103\4\25\1\7\1\102\1\103\2\25\1\11\6\25\1\11\1\7\1\11\1\71\14\11\1\25\1\7\2\11\1\102\1\103\1\24\1\7\1\11\1\7\1\11\1\71\16\11\2\25\1\102\1\103\2\25\1\11\26\25\1\11\1\71\4\11\1\103\5\25\1\7\2\25\1\11\1\71\4\11\1\103\2\25\1\102\1\103\2\25\1\11\30\25\2\11\1\7\1\25\15\11\2\25\1\11\4\25\1\103\2\25\1\11\4\25\2\11\1\7\1\25\15\11\4\25\1\103\2\25\1\11\1\71\4\11\32\25\22\11\4\25\1\103\2\25\1\11\1\71\4\11\34\25\1\11\4\25\6\11\46\25\1\11\4\25\17\11\14\25\25\11\110\25\14\11\30\25";
+    static final String dfa_48s = "\1\110\1\101\1\12\2\112\1\12\1\71\4\12\1\42\2\12\2\uffff\2\110\1\42\1\12\1\71\6\12\2\110\1\12\4\110\2\103\4\110\1\42\2\103\2\110\1\12\6\110\1\12\1\42\1\12\1\71\14\12\1\110\1\42\2\12\2\103\1\110\1\42\1\12\1\42\1\12\1\71\16\12\2\110\2\103\2\110\1\12\26\110\1\12\1\71\4\12\1\103\5\110\1\42\2\110\1\12\1\71\4\12\1\103\2\110\2\103\2\110\1\12\30\110\2\12\1\42\1\110\15\12\2\110\1\12\4\110\1\103\2\110\1\12\4\110\2\12\1\42\1\110\15\12\4\110\1\103\2\110\1\12\1\71\4\12\32\110\22\12\4\110\1\103\2\110\1\12\1\71\4\12\34\110\1\12\4\110\6\12\46\110\1\12\4\110\17\12\14\110\25\12\110\110\14\12\30\110";
+    static final String dfa_49s = "\16\uffff\1\1\1\2\u0205\uffff";
+    static final String dfa_50s = "\u0215\uffff}>";
+    static final String[] dfa_51s = {
             "\1\3\1\4\3\uffff\1\2\6\uffff\1\16\17\uffff\1\1\1\7\1\uffff\1\14\1\15\15\uffff\1\5\1\6\1\uffff\1\10\1\11\1\12\4\uffff\1\13\6\uffff\1\17",
             "\1\3\1\4\3\uffff\1\2\6\uffff\1\16\20\uffff\1\7\1\uffff\1\14\1\15\15\uffff\1\5\1\6\1\uffff\1\10\1\11\1\12\4\uffff\1\13",
             "\1\20\1\21",
@@ -37516,36 +37573,36 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\16\1\u01a6\11\uffff\1\u01fc\5\uffff\1\u0123\20\uffff\1\u0121\1\u0122\1\uffff\1\u0124\1\u0125\1\u0126\13\uffff\1\17"
     };
 
+    static final short[] dfa_46 = DFA.unpackEncodedString(dfa_46s);
+    static final char[] dfa_47 = DFA.unpackEncodedStringToUnsignedChars(dfa_47s);
+    static final char[] dfa_48 = DFA.unpackEncodedStringToUnsignedChars(dfa_48s);
+    static final short[] dfa_49 = DFA.unpackEncodedString(dfa_49s);
     static final short[] dfa_50 = DFA.unpackEncodedString(dfa_50s);
-    static final char[] dfa_51 = DFA.unpackEncodedStringToUnsignedChars(dfa_51s);
-    static final char[] dfa_52 = DFA.unpackEncodedStringToUnsignedChars(dfa_52s);
-    static final short[] dfa_53 = DFA.unpackEncodedString(dfa_53s);
-    static final short[] dfa_54 = DFA.unpackEncodedString(dfa_54s);
-    static final short[][] dfa_55 = unpackEncodedStringArray(dfa_55s);
+    static final short[][] dfa_51 = unpackEncodedStringArray(dfa_51s);
 
     class DFA119 extends DFA {
 
         public DFA119(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 119;
-            this.eot = dfa_50;
-            this.eof = dfa_50;
-            this.min = dfa_51;
-            this.max = dfa_52;
-            this.accept = dfa_53;
-            this.special = dfa_54;
-            this.transition = dfa_55;
+            this.eot = dfa_46;
+            this.eof = dfa_46;
+            this.min = dfa_47;
+            this.max = dfa_48;
+            this.accept = dfa_49;
+            this.special = dfa_50;
+            this.transition = dfa_51;
         }
         public String getDescription() {
             return "5496:2: (this_BinaryConnectorDeclaration_0= ruleBinaryConnectorDeclaration[$current] | this_NaryConnectorDeclaration_1= ruleNaryConnectorDeclaration[$current] )";
         }
     }
-    static final String dfa_56s = "\25\uffff";
-    static final String dfa_57s = "\2\11\1\uffff\4\24\1\uffff\1\7\1\uffff\1\7\1\102\1\103\1\102\1\103\1\24\1\7\1\24\1\7\2\103";
-    static final String dfa_58s = "\2\101\1\uffff\4\112\1\uffff\1\42\1\uffff\1\42\4\103\1\74\1\42\1\74\1\42\2\103";
-    static final String dfa_59s = "\2\uffff\1\1\4\uffff\1\2\1\uffff\1\3\13\uffff";
-    static final String dfa_60s = "\25\uffff}>";
-    static final String[] dfa_61s = {
+    static final String dfa_52s = "\25\uffff";
+    static final String dfa_53s = "\2\11\1\uffff\4\24\1\uffff\1\7\1\uffff\1\7\1\102\1\103\1\102\1\103\1\24\1\7\1\24\1\7\2\103";
+    static final String dfa_54s = "\2\101\1\uffff\4\112\1\uffff\1\42\1\uffff\1\42\4\103\1\74\1\42\1\74\1\42\2\103";
+    static final String dfa_55s = "\2\uffff\1\1\4\uffff\1\2\1\uffff\1\3\13\uffff";
+    static final String dfa_56s = "\25\uffff}>";
+    static final String[] dfa_57s = {
             "\1\3\1\4\3\uffff\1\2\6\uffff\1\2\17\uffff\1\1\1\2\1\uffff\2\2\15\uffff\2\2\1\uffff\3\2\4\uffff\1\2",
             "\1\5\1\6\3\uffff\1\2\6\uffff\1\7\20\uffff\1\2\1\uffff\2\2\15\uffff\2\2\1\uffff\3\2\4\uffff\1\2",
             "",
@@ -37569,33 +37626,33 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\21"
     };
 
+    static final short[] dfa_52 = DFA.unpackEncodedString(dfa_52s);
+    static final char[] dfa_53 = DFA.unpackEncodedStringToUnsignedChars(dfa_53s);
+    static final char[] dfa_54 = DFA.unpackEncodedStringToUnsignedChars(dfa_54s);
+    static final short[] dfa_55 = DFA.unpackEncodedString(dfa_55s);
     static final short[] dfa_56 = DFA.unpackEncodedString(dfa_56s);
-    static final char[] dfa_57 = DFA.unpackEncodedStringToUnsignedChars(dfa_57s);
-    static final char[] dfa_58 = DFA.unpackEncodedStringToUnsignedChars(dfa_58s);
-    static final short[] dfa_59 = DFA.unpackEncodedString(dfa_59s);
-    static final short[] dfa_60 = DFA.unpackEncodedString(dfa_60s);
-    static final short[][] dfa_61 = unpackEncodedStringArray(dfa_61s);
+    static final short[][] dfa_57 = unpackEncodedStringArray(dfa_57s);
 
     class DFA122 extends DFA {
 
         public DFA122(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 122;
-            this.eot = dfa_56;
-            this.eof = dfa_56;
-            this.min = dfa_57;
-            this.max = dfa_58;
-            this.accept = dfa_59;
-            this.special = dfa_60;
-            this.transition = dfa_61;
+            this.eot = dfa_52;
+            this.eof = dfa_52;
+            this.min = dfa_53;
+            this.max = dfa_54;
+            this.accept = dfa_55;
+            this.special = dfa_56;
+            this.transition = dfa_57;
         }
         public String getDescription() {
             return "5533:3: ( ( (this_FeatureDeclaration_0= ruleFeatureDeclaration[$current] )? otherlv_1= 'from' ) | ( ( (lv_isSufficient_2_0= 'all' ) ) (otherlv_3= 'from' )? ) )?";
         }
     }
-    static final String dfa_62s = "\2\11\1\uffff\4\40\1\uffff\1\7\1\uffff\1\7\1\102\1\103\1\102\1\103\1\46\1\7\1\46\1\7\2\103";
-    static final String dfa_63s = "\2\114\1\uffff\4\114\1\uffff\1\42\1\uffff\1\42\4\103\1\114\1\42\1\114\1\42\2\103";
-    static final String[] dfa_64s = {
+    static final String dfa_58s = "\2\11\1\uffff\4\40\1\uffff\1\7\1\uffff\1\7\1\102\1\103\1\102\1\103\1\46\1\7\1\46\1\7\2\103";
+    static final String dfa_59s = "\2\114\1\uffff\4\114\1\uffff\1\42\1\uffff\1\42\4\103\1\114\1\42\1\114\1\42\2\103";
+    static final String[] dfa_60s = {
             "\1\3\1\4\3\uffff\1\2\26\uffff\1\1\1\2\1\uffff\2\2\15\uffff\2\2\1\uffff\3\2\4\uffff\1\2\12\uffff\1\2",
             "\1\5\1\6\3\uffff\1\2\27\uffff\1\2\1\uffff\2\2\15\uffff\2\2\1\uffff\3\2\4\uffff\1\2\12\uffff\1\7",
             "",
@@ -37618,31 +37675,31 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\17",
             "\1\21"
     };
-    static final char[] dfa_62 = DFA.unpackEncodedStringToUnsignedChars(dfa_62s);
-    static final char[] dfa_63 = DFA.unpackEncodedStringToUnsignedChars(dfa_63s);
-    static final short[][] dfa_64 = unpackEncodedStringArray(dfa_64s);
+    static final char[] dfa_58 = DFA.unpackEncodedStringToUnsignedChars(dfa_58s);
+    static final char[] dfa_59 = DFA.unpackEncodedStringToUnsignedChars(dfa_59s);
+    static final short[][] dfa_60 = unpackEncodedStringArray(dfa_60s);
 
     class DFA130 extends DFA {
 
         public DFA130(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 130;
-            this.eot = dfa_56;
-            this.eof = dfa_56;
-            this.min = dfa_62;
-            this.max = dfa_63;
-            this.accept = dfa_59;
-            this.special = dfa_60;
-            this.transition = dfa_64;
+            this.eot = dfa_52;
+            this.eof = dfa_52;
+            this.min = dfa_58;
+            this.max = dfa_59;
+            this.accept = dfa_55;
+            this.special = dfa_56;
+            this.transition = dfa_60;
         }
         public String getDescription() {
             return "5912:3: ( ( (this_FeatureDeclaration_0= ruleFeatureDeclaration[$current] )? otherlv_1= 'of' ) | ( ( (lv_isSufficient_2_0= 'all' ) ) (otherlv_3= 'of' )? ) )?";
         }
     }
-    static final String dfa_65s = "\2\11\1\uffff\4\40\2\uffff\2\7\1\102\1\103\1\102\1\103\1\46\1\7\1\46\1\7\2\103";
-    static final String dfa_66s = "\2\116\1\uffff\4\117\2\uffff\2\42\4\103\1\117\1\42\1\117\1\42\2\103";
-    static final String dfa_67s = "\2\uffff\1\1\4\uffff\1\2\1\3\14\uffff";
-    static final String[] dfa_68s = {
+    static final String dfa_61s = "\2\11\1\uffff\4\40\2\uffff\2\7\1\102\1\103\1\102\1\103\1\46\1\7\1\46\1\7\2\103";
+    static final String dfa_62s = "\2\116\1\uffff\4\117\2\uffff\2\42\4\103\1\117\1\42\1\117\1\42\2\103";
+    static final String dfa_63s = "\2\uffff\1\1\4\uffff\1\2\1\3\14\uffff";
+    static final String[] dfa_64s = {
             "\1\3\1\4\3\uffff\1\2\26\uffff\1\1\1\2\1\uffff\2\2\15\uffff\2\2\1\uffff\3\2\4\uffff\1\2\14\uffff\1\2",
             "\1\5\1\6\3\uffff\1\2\27\uffff\1\2\1\uffff\2\2\15\uffff\2\2\1\uffff\3\2\4\uffff\1\2\14\uffff\1\7",
             "",
@@ -37665,32 +37722,32 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\17",
             "\1\21"
     };
-    static final char[] dfa_65 = DFA.unpackEncodedStringToUnsignedChars(dfa_65s);
-    static final char[] dfa_66 = DFA.unpackEncodedStringToUnsignedChars(dfa_66s);
-    static final short[] dfa_67 = DFA.unpackEncodedString(dfa_67s);
-    static final short[][] dfa_68 = unpackEncodedStringArray(dfa_68s);
+    static final char[] dfa_61 = DFA.unpackEncodedStringToUnsignedChars(dfa_61s);
+    static final char[] dfa_62 = DFA.unpackEncodedStringToUnsignedChars(dfa_62s);
+    static final short[] dfa_63 = DFA.unpackEncodedString(dfa_63s);
+    static final short[][] dfa_64 = unpackEncodedStringArray(dfa_64s);
 
     class DFA134 extends DFA {
 
         public DFA134(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 134;
-            this.eot = dfa_56;
-            this.eof = dfa_56;
-            this.min = dfa_65;
-            this.max = dfa_66;
-            this.accept = dfa_67;
-            this.special = dfa_60;
-            this.transition = dfa_68;
+            this.eot = dfa_52;
+            this.eof = dfa_52;
+            this.min = dfa_61;
+            this.max = dfa_62;
+            this.accept = dfa_63;
+            this.special = dfa_56;
+            this.transition = dfa_64;
         }
         public String getDescription() {
             return "6070:3: ( ( (this_FeatureDeclaration_0= ruleFeatureDeclaration[$current] )? otherlv_1= 'first' ) | ( ( (lv_isSufficient_2_0= 'all' ) ) (otherlv_3= 'first' )? ) )?";
         }
     }
-    static final String dfa_69s = "\1\1\17\uffff";
-    static final String dfa_70s = "\1\111\1\uffff\1\12\1\71\4\12\2\0\1\12\4\0\1\uffff";
-    static final String dfa_71s = "\10\uffff\1\1\1\5\1\uffff\1\2\1\3\1\0\1\4\1\uffff}>";
-    static final String[] dfa_72s = {
+    static final String dfa_65s = "\1\1\17\uffff";
+    static final String dfa_66s = "\1\111\1\uffff\1\12\1\71\4\12\2\0\1\12\4\0\1\uffff";
+    static final String dfa_67s = "\10\uffff\1\1\1\5\1\uffff\1\2\1\3\1\0\1\4\1\uffff}>";
+    static final String[] dfa_68s = {
             "\2\1\4\uffff\1\1\17\uffff\1\4\20\uffff\1\2\1\3\1\uffff\1\5\1\6\1\7\3\uffff\2\1\7\uffff\1\1",
             "",
             "\1\10\1\11",
@@ -37708,23 +37765,23 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\uffff",
             ""
     };
-    static final short[] dfa_69 = DFA.unpackEncodedString(dfa_69s);
-    static final char[] dfa_70 = DFA.unpackEncodedStringToUnsignedChars(dfa_70s);
-    static final short[] dfa_71 = DFA.unpackEncodedString(dfa_71s);
-    static final short[][] dfa_72 = unpackEncodedStringArray(dfa_72s);
+    static final short[] dfa_65 = DFA.unpackEncodedString(dfa_65s);
+    static final char[] dfa_66 = DFA.unpackEncodedStringToUnsignedChars(dfa_66s);
+    static final short[] dfa_67 = DFA.unpackEncodedString(dfa_67s);
+    static final short[][] dfa_68 = unpackEncodedStringArray(dfa_68s);
 
     class DFA145 extends DFA {
 
         public DFA145(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 145;
-            this.eot = dfa_44;
-            this.eof = dfa_69;
-            this.min = dfa_45;
-            this.max = dfa_70;
-            this.accept = dfa_47;
-            this.special = dfa_71;
-            this.transition = dfa_72;
+            this.eot = dfa_40;
+            this.eof = dfa_65;
+            this.min = dfa_41;
+            this.max = dfa_66;
+            this.accept = dfa_43;
+            this.special = dfa_67;
+            this.transition = dfa_68;
         }
         public String getDescription() {
             return "()+ loopback of 6570:4: ( ( ':' | 'typed' | ':>' | 'subsets' | ':>>' | 'redefines' )=>this_ParameterSpecialization_0= ruleParameterSpecialization[$current] )+";
@@ -37831,33 +37888,33 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             throw nvae;
         }
     }
-    static final String dfa_73s = "\61\uffff";
-    static final String dfa_74s = "\7\4\1\uffff\1\6\1\11\2\20\1\uffff\2\11\1\uffff\1\11\1\uffff\1\5\4\20\1\6\2\20\2\4\3\11\1\41\1\42\2\11\2\5\5\20\1\uffff\4\20\2\11";
-    static final String dfa_75s = "\1\173\1\16\5\173\1\uffff\1\164\1\101\2\160\1\uffff\1\131\1\12\1\uffff\1\12\1\uffff\1\16\2\160\2\156\1\164\2\41\2\5\2\12\1\162\2\160\2\42\2\5\5\160\1\uffff\2\40\2\41\2\42";
-    static final String dfa_76s = "\7\uffff\1\5\4\uffff\1\2\2\uffff\1\3\1\uffff\1\1\30\uffff\1\4\6\uffff";
-    static final String dfa_77s = "\61\uffff}>";
-    static final String[] dfa_78s = {
-            "\1\14\1\2\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\2\7\1\14\3\uffff\1\14\1\uffff\1\1\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\3\14\1\17\1\7\2\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\1\3\1\4\1\5\1\6\3\17",
+    static final String dfa_69s = "\61\uffff";
+    static final String dfa_70s = "\7\4\1\uffff\1\6\1\11\2\20\1\uffff\2\11\1\uffff\1\11\1\uffff\1\5\4\20\1\6\2\20\2\4\3\11\1\41\1\42\2\11\2\5\5\20\1\uffff\4\20\2\11";
+    static final String dfa_71s = "\1\173\1\16\5\173\1\uffff\1\164\1\101\2\160\1\uffff\1\131\1\12\1\uffff\1\12\1\uffff\1\16\2\160\2\156\1\164\2\41\2\5\1\12\1\162\1\12\2\160\2\42\2\5\5\160\1\uffff\2\40\2\41\2\42";
+    static final String dfa_72s = "\7\uffff\1\5\4\uffff\1\2\2\uffff\1\3\1\uffff\1\1\30\uffff\1\4\6\uffff";
+    static final String dfa_73s = "\61\uffff}>";
+    static final String[] dfa_74s = {
+            "\1\14\1\2\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\2\7\1\14\3\uffff\1\14\1\uffff\1\1\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\1\3\1\4\1\5\1\6\3\17",
             "\1\21\1\2\10\uffff\1\20",
-            "\1\14\1\2\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\1\uffff\1\22\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\3\14\1\17\1\7\2\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\1\3\1\4\1\5\1\6\3\17",
-            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\3\14\1\17\1\7\2\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
-            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\3\14\1\17\1\7\2\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
-            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\5\14\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\3\14\1\17\1\7\2\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
-            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\5\14\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\3\14\1\17\1\7\2\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
+            "\1\14\1\2\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\1\uffff\1\22\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\1\3\1\4\1\5\1\6\3\17",
+            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
+            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\4\14\1\16\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
+            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\5\14\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
+            "\1\14\1\uffff\3\7\1\12\1\13\3\uffff\1\17\1\14\1\uffff\1\7\1\uffff\1\14\3\uffff\1\14\2\uffff\5\14\2\uffff\2\7\1\15\1\14\1\11\1\17\1\uffff\1\10\1\17\3\14\6\17\2\14\2\uffff\2\17\1\uffff\3\17\1\uffff\2\14\1\uffff\1\17\2\uffff\4\14\1\7\2\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14\20\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7\4\uffff\3\17",
             "",
             "\3\7\1\23\1\24\6\uffff\1\7\17\uffff\2\7\2\uffff\1\7\42\uffff\1\7\50\uffff\1\7\1\uffff\2\7",
             "\1\25\1\26\3\uffff\1\17\27\uffff\1\17\1\uffff\2\17\15\uffff\2\17\1\uffff\3\17\4\uffff\1\17",
             "\2\17\1\7\15\uffff\3\7\3\uffff\1\17\1\uffff\2\17\4\uffff\1\17\10\uffff\2\17\1\uffff\3\17\3\uffff\1\17\1\27\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
             "\2\17\1\7\15\uffff\3\7\3\uffff\1\17\1\uffff\2\17\4\uffff\1\17\10\uffff\2\17\1\uffff\3\17\3\uffff\1\17\1\27\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
             "",
-            "\2\17\3\uffff\1\17\25\uffff\1\14\2\17\1\uffff\2\17\3\uffff\1\17\5\uffff\1\14\3\uffff\2\17\1\uffff\3\17\4\uffff\1\17\2\uffff\3\14\1\17\3\uffff\1\17\1\uffff\1\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17",
+            "\2\17\3\uffff\1\17\25\uffff\1\14\2\17\1\uffff\2\17\3\uffff\1\17\5\uffff\1\14\3\uffff\2\17\1\uffff\3\17\4\uffff\1\17\2\uffff\4\14\3\uffff\1\14\1\uffff\1\14\2\uffff\1\14\3\17\2\14\1\17\3\14",
             "\1\30\1\31",
             "",
             "\1\32\1\33",
             "",
             "\1\2\10\uffff\1\34",
-            "\2\17\1\7\15\uffff\1\35\1\36\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
-            "\2\17\1\7\15\uffff\1\35\1\36\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
+            "\2\17\1\7\15\uffff\1\36\1\35\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
+            "\2\17\1\7\15\uffff\1\36\1\35\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
             "\2\17\1\7\15\uffff\3\7\3\uffff\1\17\1\uffff\2\17\15\uffff\2\17\1\uffff\3\17\3\uffff\2\17\30\uffff\25\7",
             "\2\17\1\7\15\uffff\3\7\3\uffff\1\17\1\uffff\2\17\15\uffff\2\17\1\uffff\3\17\3\uffff\2\17\30\uffff\25\7",
             "\1\7\1\37\3\7\6\uffff\1\7\17\uffff\1\7\1\40\2\uffff\1\7\2\uffff\1\7\37\uffff\1\7\41\uffff\2\7\3\uffff\1\7\1\uffff\1\7\1\uffff\2\7",
@@ -37866,18 +37923,18 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\21\1\2",
             "\1\21\1\2",
             "\1\43\1\44",
-            "\1\45\1\46",
-            "\1\47\1\50\147\uffff\1\7",
+            "\1\45\1\46\147\uffff\1\7",
+            "\1\47\1\50",
             "\2\7\36\uffff\1\7\1\17\1\51\26\uffff\25\7\1\uffff\1\7",
             "\1\7\36\uffff\1\7\1\uffff\1\51\26\uffff\25\7\1\uffff\1\7",
             "\1\53\1\54\27\uffff\1\52",
             "\1\55\1\56\27\uffff\1\52",
             "\1\2",
             "\1\2",
-            "\2\17\1\7\15\uffff\1\35\2\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
-            "\2\17\1\7\15\uffff\1\35\2\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
-            "\2\17\1\7\16\uffff\1\36\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
-            "\2\17\1\7\16\uffff\1\36\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
+            "\2\17\1\7\16\uffff\1\35\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
+            "\2\17\1\7\16\uffff\1\35\1\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
+            "\2\17\1\7\15\uffff\1\36\2\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
+            "\2\17\1\7\15\uffff\1\36\2\7\35\uffff\1\17\1\7\6\uffff\1\7\21\uffff\25\7\1\uffff\1\7",
             "\2\17\1\7\17\uffff\1\7\3\uffff\1\17\16\uffff\4\17\1\uffff\3\17\3\uffff\1\17\1\7\30\uffff\25\7\1\uffff\1\7",
             "",
             "\1\14\16\uffff\1\14\1\57",
@@ -37888,37 +37945,37 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\55\1\56\27\uffff\1\52"
     };
 
+    static final short[] dfa_69 = DFA.unpackEncodedString(dfa_69s);
+    static final char[] dfa_70 = DFA.unpackEncodedStringToUnsignedChars(dfa_70s);
+    static final char[] dfa_71 = DFA.unpackEncodedStringToUnsignedChars(dfa_71s);
+    static final short[] dfa_72 = DFA.unpackEncodedString(dfa_72s);
     static final short[] dfa_73 = DFA.unpackEncodedString(dfa_73s);
-    static final char[] dfa_74 = DFA.unpackEncodedStringToUnsignedChars(dfa_74s);
-    static final char[] dfa_75 = DFA.unpackEncodedStringToUnsignedChars(dfa_75s);
-    static final short[] dfa_76 = DFA.unpackEncodedString(dfa_76s);
-    static final short[] dfa_77 = DFA.unpackEncodedString(dfa_77s);
-    static final short[][] dfa_78 = unpackEncodedStringArray(dfa_78s);
+    static final short[][] dfa_74 = unpackEncodedStringArray(dfa_74s);
 
     class DFA161 extends DFA {
 
         public DFA161(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 161;
-            this.eot = dfa_73;
-            this.eof = dfa_73;
-            this.min = dfa_74;
-            this.max = dfa_75;
-            this.accept = dfa_76;
-            this.special = dfa_77;
-            this.transition = dfa_78;
+            this.eot = dfa_69;
+            this.eof = dfa_69;
+            this.min = dfa_70;
+            this.max = dfa_71;
+            this.accept = dfa_72;
+            this.special = dfa_73;
+            this.transition = dfa_74;
         }
         public String getDescription() {
             return "()* loopback of 7296:4: ( ( (lv_documentation_comp_2_0= ruleOwnedDocumentation ) ) | ( (lv_ownedMembership_comp_3_0= ruleNonFeatureTypeMember ) ) | ( (lv_ownedFeatureMembership_comp_4_0= ruleFeatureTypeMember ) ) | ( (lv_ownedRelationship_comp_5_0= rulePackageImport ) ) )*";
         }
     }
-    static final String dfa_79s = "\17\uffff";
-    static final String dfa_80s = "\3\uffff\2\6\6\uffff\4\6";
-    static final String dfa_81s = "\1\6\2\uffff\2\20\2\uffff\2\11\2\uffff\4\20";
-    static final String dfa_82s = "\1\164\2\uffff\2\160\2\uffff\1\162\1\12\2\uffff\4\160";
-    static final String dfa_83s = "\1\uffff\1\1\1\2\2\uffff\1\6\1\3\2\uffff\1\4\1\5\4\uffff";
-    static final String dfa_84s = "\17\uffff}>";
-    static final String[] dfa_85s = {
+    static final String dfa_75s = "\17\uffff";
+    static final String dfa_76s = "\3\uffff\2\6\6\uffff\4\6";
+    static final String dfa_77s = "\1\6\2\uffff\2\20\2\uffff\2\11\2\uffff\4\20";
+    static final String dfa_78s = "\1\164\2\uffff\2\160\2\uffff\1\162\1\12\2\uffff\4\160";
+    static final String dfa_79s = "\1\uffff\1\1\1\2\2\uffff\1\6\1\3\2\uffff\1\4\1\5\4\uffff";
+    static final String dfa_80s = "\17\uffff}>";
+    static final String[] dfa_81s = {
             "\3\2\1\3\1\4\26\uffff\2\2\45\uffff\1\5\50\uffff\1\1\1\uffff\2\2",
             "",
             "",
@@ -37936,26 +37993,26 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\3\6\3\uffff\1\6\11\uffff\1\10\1\12\1\6\24\uffff\1\6\11\uffff\3\6\4\uffff\1\11\1\6\20\uffff\25\6\1\uffff\1\6"
     };
 
+    static final short[] dfa_75 = DFA.unpackEncodedString(dfa_75s);
+    static final short[] dfa_76 = DFA.unpackEncodedString(dfa_76s);
+    static final char[] dfa_77 = DFA.unpackEncodedStringToUnsignedChars(dfa_77s);
+    static final char[] dfa_78 = DFA.unpackEncodedStringToUnsignedChars(dfa_78s);
     static final short[] dfa_79 = DFA.unpackEncodedString(dfa_79s);
     static final short[] dfa_80 = DFA.unpackEncodedString(dfa_80s);
-    static final char[] dfa_81 = DFA.unpackEncodedStringToUnsignedChars(dfa_81s);
-    static final char[] dfa_82 = DFA.unpackEncodedStringToUnsignedChars(dfa_82s);
-    static final short[] dfa_83 = DFA.unpackEncodedString(dfa_83s);
-    static final short[] dfa_84 = DFA.unpackEncodedString(dfa_84s);
-    static final short[][] dfa_85 = unpackEncodedStringArray(dfa_85s);
+    static final short[][] dfa_81 = unpackEncodedStringArray(dfa_81s);
 
     class DFA215 extends DFA {
 
         public DFA215(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 215;
-            this.eot = dfa_79;
-            this.eof = dfa_80;
-            this.min = dfa_81;
-            this.max = dfa_82;
-            this.accept = dfa_83;
-            this.special = dfa_84;
-            this.transition = dfa_85;
+            this.eot = dfa_75;
+            this.eof = dfa_76;
+            this.min = dfa_77;
+            this.max = dfa_78;
+            this.accept = dfa_79;
+            this.special = dfa_80;
+            this.transition = dfa_81;
         }
         public String getDescription() {
             return "11031:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | this_ExtentExpression_Deprecated_4= ruleExtentExpression_Deprecated | (otherlv_5= '(' this_OwnedExpression_6= ruleOwnedExpression otherlv_7= ')' ) )";
@@ -38002,7 +38059,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x1D8003E000004600L,0x0000000000000002L});
     public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x1D8003E000004602L,0x0000000000000002L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0xDD9FFF787E8CC630L,0x0FE0000003FF28F2L});
-    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0xC0181C187C888010L,0x0000000000B10070L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0xC0181C187C888010L,0x0000000003B128F0L});
     public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000002000022L,0x01E0000000000000L});
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000080000004600L});
     public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000080000000000L});

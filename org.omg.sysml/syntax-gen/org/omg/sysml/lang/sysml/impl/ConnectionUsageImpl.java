@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -505,6 +506,40 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	public boolean isSetEndFeature() {
   		return false;
 	}
+	
+	// Other overrides
+	
+	@Override
+	public EList<Type> getFeaturingType() {
+		Type contextType = getContextType();
+		if (contextType != null) {
+			if (getOwnedTypeFeaturing().isEmpty()) {
+				addFeaturingType(getContextType());
+			} else {
+				updateFeaturingTypes(Collections.singletonList(getContextType()));
+			}
+		}
+		return super.getFeaturingType();
+	}
+	
+	private Type contextType = null;
+	private boolean isComputeContextType = true;
+	
+	public Type getContextType() {
+		if (isComputeContextType) {
+			isComputeContextType = false;
+			contextType = ConnectorImpl.getContextType(this);
+		}
+		return contextType;
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getFeaturingType();
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

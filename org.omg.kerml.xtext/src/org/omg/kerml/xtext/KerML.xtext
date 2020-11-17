@@ -256,6 +256,11 @@ NonFeatureElement returns SysML::Element :
 	| Superclassing
 	| Subsetting
 	| Redefinition
+	| Connector
+	| BindingConnector
+	| Succession
+	| ItemFlow
+	| SuccessionItemFlow
 ;
 
 FeatureElement returns SysML::Feature :
@@ -264,11 +269,6 @@ FeatureElement returns SysML::Feature :
 	| Expression
 	| BooleanExpression
 	| Invariant
-	| Connector
-	| BindingConnector
-	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
 ;
 
 /* TYPES */

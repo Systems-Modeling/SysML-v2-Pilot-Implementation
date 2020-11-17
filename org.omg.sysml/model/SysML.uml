@@ -5066,7 +5066,7 @@ otherwise it subsets either &lt;code>actions&lt;/code> or &lt;code>subactions&lt
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="e03a2601-f121-4849-849c-c24f63da8685" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="0466faa8-4933-44ba-8e63-e3df416c0191" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="b4a24f70-4ada-4cbb-8db1-28c8ae0c0427" name="bound" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isOrdered="true" isDerived="true" isDerivedUnion="true" redefinedProperty="ea59f6ae-8a27-4163-a651-91da11bbfa67" association="790bb85b-f979-4b62-9d96-f3ae63a161ad">
+    <ownedAttribute xmi:id="b4a24f70-4ada-4cbb-8db1-28c8ae0c0427" name="bound" visibility="public" type="b32c4dd3-88a2-4418-b414-e75ceb0bb432" isOrdered="true" isDerived="true" isDerivedUnion="true" redefinedProperty="d69940fb-b910-4da2-a95d-9eb8d7caf86e" association="790bb85b-f979-4b62-9d96-f3ae63a161ad">
       <ownedComment xmi:id="a4e474fa-b810-4557-8ef3-fc6d5e901b05" annotatedElement="b4a24f70-4ada-4cbb-8db1-28c8ae0c0427">
         <body>The bound Expressions of the MultiplicityRange. These shall be the only ownedFeatures of the MultiplicityRange.</body>
       </ownedComment>

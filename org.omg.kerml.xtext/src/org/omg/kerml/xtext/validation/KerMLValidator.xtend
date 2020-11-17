@@ -166,11 +166,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 			relatedFeatures.removeIf[f|ownerFeatures.contains(f)]
 		}
 		
-		val cPath = c.getFeatureMembershipPath;
-		val relatedFeaturesPath = relatedFeatures.map[getFeatureMembershipPath]
-		relatedFeaturesPath.forEach[s|cPath.retainAll(s)]
-		if (cPath.empty) //no common Types
-			warning(INVALID_CONNECTOR_END__CONTEXT_MSG, c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
+		for (relatedFeature: relatedFeatures) {
+			val featuringTypes = relatedFeature.featuringType
+			if (!(featuringTypes.isEmpty? relatedFeature.isFeaturedWithin(null):
+				featuringTypes.exists[featuringType | relatedFeature.isFeaturedWithin(featuringType)])) {
+				warning(INVALID_CONNECTOR_END__CONTEXT_MSG, c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
+				return
+			}
+		}
+		
+//		val cPath = c.getFeatureMembershipPath;
+//		val relatedFeaturesPath = relatedFeatures.map[getFeatureMembershipPath]
+//		relatedFeaturesPath.forEach[s|cPath.retainAll(s)]
+//		if (cPath.empty) //no common Types
+//			warning(INVALID_CONNECTOR_END__CONTEXT_MSG, c, SysMLPackage.eINSTANCE.connector_ConnectorEnd, INVALID_CONNECTOR_END__CONTEXT)
 	}
 	
 	//return features's owners up to and including the first one that is not a Feature and an owningType

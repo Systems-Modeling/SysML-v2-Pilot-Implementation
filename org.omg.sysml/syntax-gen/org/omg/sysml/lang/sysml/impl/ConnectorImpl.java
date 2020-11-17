@@ -24,6 +24,8 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -534,7 +536,59 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
 	}
 	
+	@Override
+	public EList<Type> getFeaturingType() {
+		if (getOwnedTypeFeaturing().stream().allMatch(FeatureMembership.class::isInstance)) {
+			addFeaturingType(getContextType());
+		} else {
+			updateFeaturingTypes(Collections.singletonList(getContextType()));
+		}
+		return super.getFeaturingType();
+	}
+	
 	// Utility Methods
+	
+	public Type getContextType() {
+		List<Type> featuringPath = null;
+		for (Feature relatedFeature: getRelatedFeature()) {
+			List<Type> featuringTypes = getAllFeaturingTypes(relatedFeature);
+			if (featuringPath == null) {
+				featuringPath = featuringTypes;
+			} else {
+				featuringPath.retainAll(featuringTypes);
+			}
+		}
+		return featuringPath.isEmpty()? null: featuringPath.get(0);
+	}
+	
+	/**
+	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
+	 */
+	protected static List<Type> getAllFeaturingTypes(Feature originalFeature) {
+		List<Type> allFeaturingTypes = new ArrayList<>();
+		List<Feature> features = new ArrayList<>();
+		features.add(originalFeature);
+		while (!features.isEmpty()) {
+			List<Feature> nextFeatures = new ArrayList<>();
+			for (Feature feature: features) {
+				List<Type> featuringTypes = feature.getFeaturingType();
+				if (featuringTypes.isEmpty()) {
+					allFeaturingTypes.add(null);
+				} else {
+					for (Type featuringType: featuringTypes) {
+						if (!allFeaturingTypes.contains(featuringType)) {
+							allFeaturingTypes.add(featuringType);
+							if (featuringType instanceof Feature) {
+								nextFeatures.add(feature);
+							}
+						}
+					}
+				}
+			}
+			features = nextFeatures;
+		}
+		return allFeaturingTypes;
+	}
 	
 	public Feature addConnectorEnd(Feature relatedFeature) {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();

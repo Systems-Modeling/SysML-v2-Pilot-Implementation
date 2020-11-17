@@ -662,7 +662,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public void transform() {
-		getOwnedTyping();
+		basicGetOwnedTyping();
 		getOwnedSubsetting();
 		super.transform();
 	}
@@ -670,13 +670,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	// Utility methods
 	
 	public Definition getOwningVariationDefinition() {
-		Definition owningDefinition = getOwningDefinition();
-		return owningDefinition != null && owningDefinition.isVariation()? owningDefinition: null;
+		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		return owner instanceof Definition && ((Definition)owner).isVariation()? 
+				((Definition)owner): null;
 	}
 
 	public Usage getOwningVariationUsage() {
-		Usage owningUsage = getOwningUsage();
-		return owningUsage != null && owningUsage.isVariation()? owningUsage: null;
+		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		return owner instanceof Usage && ((Usage)owner).isVariation()? ((Usage)owner): null;
 	}
 
 	public VariantMembership getOwningVariantMembership() {

@@ -43,8 +43,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
@@ -759,23 +757,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isFeaturedWithin(Type type) {
-		if (IS_FEATURED_WITHIN__TYPE__EOCL_QRY == null) {
-			OCL.Helper helper = EOCL_ENV.createOCLHelper();
-			helper.setOperationContext(SysMLPackage.Literals.FEATURE, SysMLPackage.Literals.FEATURE.getEAllOperations().get(6));
-			try {
-				IS_FEATURED_WITHIN__TYPE__EOCL_QRY = helper.createQuery(IS_FEATURED_WITHIN__TYPE__EOCL_EXP);
-			}
-			catch (ParserException pe) {
-				throw new UnsupportedOperationException(pe.getLocalizedMessage());
-			}
-		}
-		OCL.Query query = EOCL_ENV.createQuery(IS_FEATURED_WITHIN__TYPE__EOCL_QRY);
-		EvaluationEnvironment<?, ?, ?, ?, ?> environment = query.getEvaluationEnvironment();
-		environment.add("type", type);
-		return ((Boolean) query.evaluate(this)).booleanValue();
+		List<Type> featuringTypes = getFeaturingType();
+		return type == null && featuringTypes.isEmpty() ||
+			   type != null && featuringTypes.contains(type) ||
+			   featuringTypes.stream().anyMatch(featuringType->
+					   featuringType instanceof Feature &&
+					   ((Feature)featuringType).isFeaturedWithin(type));
 	}
 
 	/**
@@ -830,7 +820,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<TypeFeaturing> getOwnedTypeFeaturing() {
-		return new DerivedSubsetEObjectEList<>(TypeFeaturing.class, this, SysMLPackage.FEATURE__OWNED_TYPE_FEATURING, new int[] {SysMLPackage.FEATURE__OWNED_RELATIONSHIP});
+		EList<TypeFeaturing> featurings = new NonNotifyingEcoreEList<>(TypeFeaturing.class, this, SysMLPackage.FEATURE__OWNED_TYPE_FEATURING);
+		getOwnedRelationship().stream().
+			filter(rel->(rel instanceof TypeFeaturing) && ((TypeFeaturing)rel).getFeatureOfType() == this).
+			map(TypeFeaturing.class::cast).
+			forEachOrdered(featurings::add);
+		return featurings;
 	}
 
 	/**
@@ -868,9 +863,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IS_FEATURED_WITHIN__TYPE__EOCL_EXP = "type = null and feature.featuringType->isEmpty() or"+
-"type <> null and feature.featuringType->includes(type) or"+
-"feature.featuringType->exists(f | isFeaturedIn(t)) ";
+	protected static final String IS_FEATURED_WITHIN__TYPE__EOCL_EXP = "type = null and featuringType->isEmpty() or "+
+"type <> null and featuringType->includes(type) or "+
+"featuringType->exists(t | t.oclIsKindOf(Feature) and t.oclAsType(Feature).isFeaturedWithin(type)) ";
 	/**
 	 * The cached OCL query for the '{@link #isFeaturedWithin(org.omg.sysml.lang.sysml.Type) <em>Is Featured Within</em>}' query operation.
 	 * <!-- begin-user-doc -->
@@ -965,7 +960,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
 		if (owner instanceof Feature) {
 			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (getOwnedTypeFeaturing().stream().allMatch(FeatureMembership.class::isInstance)) {
+			if (getOwnedTypeFeaturing().isEmpty()) {
 				addFeaturingTypes(ownerFeaturingTypes);
 			} else {
 				updateFeaturingTypes(ownerFeaturingTypes);
@@ -994,7 +989,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			if (i >= n) {
 				break;
 			}
-			if (!(featuring instanceof FeatureMembership) && featuring.getFeaturingType() == null) {
+			if (featuring.getFeatureOfType() == this && featuring.getFeaturingType() == null) {
 				featuring.setFeaturingType(featuringTypes.get(i));
 				i++;
 			}

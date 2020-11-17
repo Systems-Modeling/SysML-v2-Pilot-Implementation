@@ -66,8 +66,7 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 	
 	@Override
 	protected List<Multiplicity> getRelevantFeatures(Type type) {
-		return Collections.singletonList(
-				type == getOwningType()? this: type.getMultiplicity());
+		return Collections.emptyList();
 	}
 	
 	@Override

@@ -3461,7 +3461,7 @@
         <details key="documentation" value="The bound Expressions of the MultiplicityRange. These shall be the only ownedFeatures of the MultiplicityRange."/>
       </eAnnotations>
       <eAnnotations source="union"/>
-      <eAnnotations source="redefines" references="#//Type/ownedFeature"/>
+      <eAnnotations source="redefines" references="#//Package/ownedMember"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ItemFeature" eSuperTypes="#//Feature"/>

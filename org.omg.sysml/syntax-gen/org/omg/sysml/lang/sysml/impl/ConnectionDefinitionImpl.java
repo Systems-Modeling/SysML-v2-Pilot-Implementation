@@ -46,7 +46,7 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -207,7 +207,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
+		EList<Element> ownedRelatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
 		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
 		return ownedRelatedElements;
 	}
@@ -299,7 +299,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	@Override
 	public EList<Type> getTargetType() {
-		EList<Type> targetType = new NonNotifyingEcoreEList<>(Type.class, this, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE);
+		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE);
 		AssociationImpl.addTargetTypes(this, targetType);
 		return targetType;
 	}
@@ -320,7 +320,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	@Override
 	public EList<Usage> getConnectionEnd() {
-		EList<Usage> connectionEnds = new NonNotifyingEcoreEList<>(Usage.class, this, SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END);
+		EList<Usage> connectionEnds = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END);
 		super.getEndFeature().stream().
 			filter(Usage.class::isInstance).map(Usage.class::cast).
 			forEachOrdered(connectionEnds::add);

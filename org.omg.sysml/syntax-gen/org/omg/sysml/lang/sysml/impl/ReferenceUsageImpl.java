@@ -29,7 +29,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public class ReferenceUsageImpl extends UsageImpl implements ReferenceUsage {
 	@Override
 	public EList<Classifier> getReferenceType() {
 		EList<Classifier> referenceTypes =
-				new NonNotifyingEcoreEList<>(Classifier.class, this, SysMLPackage.REFERENCE_USAGE__REFERENCE_TYPE);
+				new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.REFERENCE_USAGE__REFERENCE_TYPE);
 		super.getType().stream().
 			filter(Classifier.class::isInstance).
 			map(Classifier.class::cast).

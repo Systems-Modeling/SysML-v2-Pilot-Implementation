@@ -49,7 +49,7 @@ import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -238,7 +238,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public EList<Type> getAllTypes() {
 		if (types == null) {
-			types = new NonNotifyingEcoreEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
+			types = new NonNotifyingEObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 			getTypes(types, new HashSet<Feature>());
 			removeRedundantTypes(types);
 		}
@@ -435,7 +435,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<Type> getFeaturingType() {
-		EList<Type> featuringTypes = new NonNotifyingEcoreEList<>(Type.class, this, SysMLPackage.FEATURE__FEATURING_TYPE);
+		EList<Type> featuringTypes = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.FEATURE__FEATURING_TYPE);
 		getOwnedTypeFeaturing().stream().
 			map(TypeFeaturing::getFeaturingType).
 			filter(featuring->featuring != null).
@@ -820,7 +820,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	@Override
 	public EList<TypeFeaturing> getOwnedTypeFeaturing() {
-		EList<TypeFeaturing> featurings = new NonNotifyingEcoreEList<>(TypeFeaturing.class, this, SysMLPackage.FEATURE__OWNED_TYPE_FEATURING);
+		EList<TypeFeaturing> featurings = new NonNotifyingEObjectEList<>(TypeFeaturing.class, this, SysMLPackage.FEATURE__OWNED_TYPE_FEATURING);
 		getOwnedRelationship().stream().
 			filter(rel->(rel instanceof TypeFeaturing) && ((TypeFeaturing)rel).getFeatureOfType() == this).
 			map(TypeFeaturing.class::cast).

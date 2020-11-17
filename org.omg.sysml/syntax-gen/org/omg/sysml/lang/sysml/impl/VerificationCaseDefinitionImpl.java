@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,7 +77,7 @@ public class VerificationCaseDefinitionImpl extends CaseDefinitionImpl implement
 	 */
 	@Override
 	public EList<RequirementUsage> getVerifiedRequirement() {
-		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEcoreEList<>(RequirementUsage.class, this, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
+		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, this, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
 		RequirementUsage objective = getObjectiveRequirement();
 		if (objective != null) {
 			getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);

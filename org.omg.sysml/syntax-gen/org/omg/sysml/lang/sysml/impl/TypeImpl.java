@@ -61,7 +61,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -230,14 +230,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
-		EList<Generalization> generalizations = new NonNotifyingEcoreEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
+		EList<Generalization> generalizations = new NonNotifyingEObjectEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		computeImplicitGeneralization();
 		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
 		return generalizations;
 	}
 
 	public EList<Generalization> getOwnedGeneralization_comp() {
-		EList<Generalization> generalizations = new NonNotifyingEcoreEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
+		EList<Generalization> generalizations = new NonNotifyingEObjectEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
 		for (Relationship relationship: getOwnedRelationship_comp()) {
 			if (relationship instanceof Generalization &&
 					this.equals(((Generalization)relationship).getSpecific())) {
@@ -326,7 +326,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		EList<FeatureMembership> ownedFeatureMemberships = new NonNotifyingEcoreEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP);
+		EList<FeatureMembership> ownedFeatureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP);
 		ownedFeatureMemberships.addAll(getOwnedFeatureMembership_comp());
 		return ownedFeatureMemberships;
 	}
@@ -359,7 +359,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Feature> getInput() {
-		EList<Feature> inputs = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.TYPE__INPUT);
+		EList<Feature> inputs = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__INPUT);
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			inputs.addAll(conjugator.getOriginalType().getOutput());
@@ -387,7 +387,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 * @generated NOT
 	 */
 	public EList<Feature> getOutput() {
-		EList<Feature> outputs = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.TYPE__OUTPUT);
+		EList<Feature> outputs = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__OUTPUT);
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			outputs.addAll(conjugator.getOriginalType().getInput());
@@ -461,7 +461,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<Feature> getEndFeature() {
-		EList<Feature> features = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
+		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
 		getFeature().stream().filter(f->f.isEnd()).forEachOrdered(features::add);
 		return features;
 	}
@@ -548,7 +548,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<FeatureMembership> getFeatureMembership() {
-		EList<FeatureMembership> featureMemberships = new NonNotifyingEcoreEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
+		EList<FeatureMembership> featureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__FEATURE_MEMBERSHIP);
 		getMembership().stream().
 			filter(m->m instanceof FeatureMembership).
 			map(m->(FeatureMembership)m).
@@ -563,7 +563,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<Feature> getInheritedFeature() {
-		EList<Feature> features = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.TYPE__INHERITED_FEATURE);
+		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__INHERITED_FEATURE);
 		getInheritedMembership().stream().
 			filter(m->m instanceof FeatureMembership).
 			map(m->((FeatureMembership)m).getMemberFeature()).
@@ -624,7 +624,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	@Override
 	public EList<Feature> getOwnedEndFeature() {
-		EList<Feature> features = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
+		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.TYPE__END_FEATURE);
 		getOwnedFeature().stream().filter(f->f.isEnd()).forEachOrdered(features::add);
 		return features;
 	}

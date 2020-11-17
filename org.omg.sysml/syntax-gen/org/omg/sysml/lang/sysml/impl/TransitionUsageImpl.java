@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -171,7 +171,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public EList<AcceptActionUsage> getTriggerAction() {
 		EList<AcceptActionUsage> triggerActions = 
-				new NonNotifyingEcoreEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
+				new NonNotifyingEObjectEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
 		getTransitionFeatures(TransitionFeatureKind.TRIGGER).
 			filter(feature->feature instanceof AcceptActionUsage).
 			map(feature->(AcceptActionUsage)feature).
@@ -187,7 +187,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public EList<Expression> getGuardExpression() {
 		EList<Expression> guardExpressions = 
-				new NonNotifyingEcoreEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
+				new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
 		getTransitionFeatures(TransitionFeatureKind.GUARD).
 			filter(feature->feature instanceof Expression).
 			map(feature->(Expression)feature).
@@ -203,7 +203,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public EList<ActionUsage> getEffectAction() {
 		EList<ActionUsage> effectActions = 
-				new NonNotifyingEcoreEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
+				new NonNotifyingEObjectEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
 		getTransitionFeatures(TransitionFeatureKind.EFFECT).
 			filter(feature->feature instanceof ActionUsage).
 			map(feature->(ActionUsage)feature).

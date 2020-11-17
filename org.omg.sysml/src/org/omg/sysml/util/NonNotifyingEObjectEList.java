@@ -26,11 +26,11 @@ package org.omg.sysml.util;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectEList;
 
-public class NonNotifyingEcoreEList<T> extends EObjectEList<T> {
+public class NonNotifyingEObjectEList<T> extends EObjectEList<T> {
 
 	private static final long serialVersionUID = -189113090526844372L;
 
-	public NonNotifyingEcoreEList(Class<?> dataClass, InternalEObject owner, int featureID) {
+	public NonNotifyingEObjectEList(Class<?> dataClass, InternalEObject owner, int featureID) {
 		super(dataClass, owner, featureID);
 	}
 

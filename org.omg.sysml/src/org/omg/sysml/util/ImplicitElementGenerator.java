@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Zoltan Ujhelyi, MDS
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.util;
@@ -26,6 +27,7 @@ package org.omg.sysml.util;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.omg.sysml.lang.sysml.impl.ElementImpl;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 /**
@@ -40,8 +42,11 @@ public class ImplicitElementGenerator {
 		TreeIterator<EObject> it = resource.getAllContents();
 		while (it.hasNext()) {
 			EObject nextElement = it.next();
-			if (nextElement instanceof TypeImpl) {
-				((TypeImpl) nextElement).addImplicitGeneralizations();
+			if (nextElement instanceof ElementImpl) {
+				((ElementImpl)nextElement).transform();
+				if (nextElement instanceof TypeImpl) {
+					((TypeImpl) nextElement).addImplicitGeneralizations();
+				}
 			}
 		}
 	}

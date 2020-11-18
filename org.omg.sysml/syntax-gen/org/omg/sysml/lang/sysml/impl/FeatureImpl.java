@@ -478,6 +478,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * overriding getGeneralTypes and getRelevantFeatures.
 	 */
 	protected void addRedefinitions(Element skip) {
+		removeEmptyGeneralTypes(Redefinition.class);
 		Type type = getOwningType();
 		int i = getRelevantFeatures(type).indexOf(this);
 		if (i >= 0) {

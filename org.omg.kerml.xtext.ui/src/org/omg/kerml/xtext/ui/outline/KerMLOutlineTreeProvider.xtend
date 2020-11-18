@@ -115,6 +115,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String _text(Type type) {
 		(type as TypeImpl).transform()
+		(type as TypeImpl).addImplicitGeneralizations()
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'

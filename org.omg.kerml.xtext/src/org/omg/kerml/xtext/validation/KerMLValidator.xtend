@@ -74,7 +74,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	@Check
 	def checkElement(Element elm) {
-		(elm as ElementImpl).transform
+//		(elm as ElementImpl).transform
 		if (elm.humanId !== null) {
 			val owner = elm.owner;
 			if (owner !== null) {

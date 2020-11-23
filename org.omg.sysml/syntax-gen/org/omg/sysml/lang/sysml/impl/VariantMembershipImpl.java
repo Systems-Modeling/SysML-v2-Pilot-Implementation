@@ -89,12 +89,18 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 		return ownedVariantUsage_comp;
 	}
 
+	public NotificationChain basicSetOwnedVariantUsage_comp(Usage newOwnedVariantUsage_comp, NotificationChain msgs) {
+		memberName = ((ElementImpl)newOwnedVariantUsage_comp).basicGetName();
+		((ElementImpl)newOwnedVariantUsage_comp).basicSetName(null);
+		return basicSetOwnedVariantUsage_compGen(newOwnedVariantUsage_comp, msgs);
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedVariantUsage_comp(Usage newOwnedVariantUsage_comp, NotificationChain msgs) {
+	public NotificationChain basicSetOwnedVariantUsage_compGen(Usage newOwnedVariantUsage_comp, NotificationChain msgs) {
 		Usage oldOwnedVariantUsage_comp = ownedVariantUsage_comp;
 		ownedVariantUsage_comp = newOwnedVariantUsage_comp;
 		if (eNotificationRequired()) {
@@ -163,6 +169,49 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 		throw new UnsupportedOperationException();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Element getOwnedMemberElement_comp() {
+		return getOwnedVariantUsage_comp();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
+		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Usage)) {
+			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Usage");
+		}
+		return basicSetOwnedVariantUsage_comp((Usage) newOwnedMemberElement_comp, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberElement_comp(Element newOwnedMemberElement_comp) {
+		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Usage)) {
+			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Usage");
+		}
+		setOwnedVariantUsage_comp((Usage) newOwnedMemberElement_comp);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberElement_comp() {
+  		return false;
+	}
+
 	// Utility Methods
 
 	public Definition getOwningVariationDefinition() {
@@ -260,49 +309,6 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 				return basicGetOwnedVariantUsage() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Element getOwnedMemberElement_comp() {
-		return getOwnedVariantUsage_comp();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
-		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Usage)) {
-			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Usage");
-		}
-		return basicSetOwnedVariantUsage_comp((Usage) newOwnedMemberElement_comp, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedMemberElement_comp(Element newOwnedMemberElement_comp) {
-		if (newOwnedMemberElement_comp != null && !(newOwnedMemberElement_comp instanceof Usage)) {
-			throw new IllegalArgumentException("newOwnedMemberElement_comp must be an instance of Usage");
-		}
-		setOwnedVariantUsage_comp((Usage) newOwnedMemberElement_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberElement_comp() {
-  		return false;
 	}
 
 } //VariantMembershipImpl

@@ -116,6 +116,14 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 				.collect(Collectors.toList()).indexOf(this);
 	}
 	
+	public void update(List<Type> featuringTypes, Feature source, Feature target) {
+		setRelatedFeature(0, source);
+		setRelatedFeature(1, target);
+		if (featuringTypes != null) {
+			updateFeaturingTypes(featuringTypes);
+		}
+	}
+	
 	@Override
 	public void transform() {
 		super.transform();

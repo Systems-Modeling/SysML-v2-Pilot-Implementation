@@ -27,8 +27,13 @@ package org.omg.sysml.lang.sysml;
  * Value</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A FeatureValue is a FeatureMembership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. A FeatureValue requires that there be a BindingConnector between the Feature and the <code>result</code> of the Expression, enforcing the intended semantics. A Feature can have at most one FeatureValue.</p>
+ * <p>A FeatureValue is a Membership that identifies a particular member Expression that provides the value of the Feature that owns the FeatureValue. A FeatureValue requires that there be a BindingConnector between the Feature and the <code>result</code> of the Expression, enforcing the intended semantics. A Feature can have at most one FeatureValue.</p>
  * 
+ * value.featuringType = featureWithValue.featuringType
+ * valueConnector.owningNamespace = featureWithValue and
+ * valueConnector.relatedFeature->includes(featureWithValue) and
+ * valueConnector.relatedFeature->includes(value.result) and
+ * valueConnector.featuringType = featureWithValue.featuringType
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,8 +41,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue <em>Feature With Value</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureValue#getValueConnector <em>Value Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureValue#getValue_comp <em>Value comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureValue#getValueConnector <em>Value Connector</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureValue#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -45,14 +50,14 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface FeatureValue extends FeatureMembership {
+public interface FeatureValue extends Membership {
 	/**
 	 * Returns the value of the '<em><b>Value comp</b></em>' containment reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp() <em>Owned Member Feature comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp() <em>Owned Member Element comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -61,7 +66,7 @@ public interface FeatureValue extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Expression that provides the value as a result.</p>
+	 * <p>The Expression that provides the value of the <code>FeatureWithValue</code> as its <code>result</code>.</p>
 	 * 
 	 * <p>The Expression that provides the value as a result.</p>
 	 * <!-- end-model-doc -->
@@ -116,7 +121,7 @@ public interface FeatureValue extends FeatureMembership {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType() <em>Owning Type</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage() <em>Membership Owning Package</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -132,7 +137,7 @@ public interface FeatureValue extends FeatureMembership {
 	 * @return the value of the '<em>Feature With Value</em>' reference.
 	 * @see #setFeatureWithValue(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureValue_FeatureWithValue()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='valuation'"
 	 *        annotation="subsets"
 	 * @generated
@@ -157,11 +162,7 @@ public interface FeatureValue extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The BindingConnector that assigns the result of the Expression to the Feature.</p>
-	 * 
-	 * <p>The valueConnector must be an ownedFeature of the featureWithValue.<br />
-	 * The source of the valueConnector must be the featureWithValue.<br />
-	 * The target of the valueConnector must be result of the value Expression.</p>
+	 * <p>The BindingConnector that binds the result of the <code>value</code> Expression to the <code>FeatureWithValue.</p>
 	 * <p>The BindingConnector that assigns the result of the Expression to the Feature.</p>
 	 * 
 	 * <p>The valueConnector must be an ownedFeature of the featureWithValue.<br />

@@ -22,12 +22,16 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +42,7 @@ import org.omg.sysml.lang.sysml.VerificationCaseUsage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.VerificationCaseUsageImpl#getVerificationCaseDefinition <em>Verification Case Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.VerificationCaseUsageImpl#getVerifiedRequirement <em>Verified Requirement</em>}</li>
  * </ul>
  *
  * @generated
@@ -97,6 +102,22 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<RequirementUsage> getVerifiedRequirement() {
+		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, this, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
+		RequirementUsage objective = getObjectiveRequirement();
+		if (objective != null) {
+			VerificationCaseDefinitionImpl.getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);
+		}
+		return verifiedRequirements;
+	}
+
+
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()? 
@@ -115,6 +136,8 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION:
 				if (resolve) return getVerificationCaseDefinition();
 				return basicGetVerificationCaseDefinition();
+			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT:
+				return getVerifiedRequirement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -124,11 +147,16 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION:
 				setVerificationCaseDefinition((VerificationCaseDefinition)newValue);
+				return;
+			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT:
+				getVerifiedRequirement().clear();
+				getVerifiedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,6 +173,9 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION:
 				setVerificationCaseDefinition((VerificationCaseDefinition)null);
 				return;
+			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT:
+				getVerifiedRequirement().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -159,6 +190,8 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 		switch (featureID) {
 			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFICATION_CASE_DEFINITION:
 				return basicGetVerificationCaseDefinition() != null;
+			case SysMLPackage.VERIFICATION_CASE_USAGE__VERIFIED_REQUIREMENT:
+				return !getVerifiedRequirement().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

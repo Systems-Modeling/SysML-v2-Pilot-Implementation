@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +41,7 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.VerificationCaseUsage#getVerificationCaseDefinition <em>Verification Case Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.VerificationCaseUsage#getVerifiedRequirement <em>Verified Requirement</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getVerificationCaseUsage()
@@ -78,5 +81,21 @@ public interface VerificationCaseUsage extends CaseUsage {
 	 * @generated
 	 */
 	void setVerificationCaseDefinition(VerificationCaseDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Verified Requirement</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.RequirementUsage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The RequirementUsages verified by this VerificationCaseUsage, derived as the <code>verifiedRequirements</code> of all RequirementVerificationMemberships of the <code>objectiveRequirement</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Verified Requirement</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getVerificationCaseUsage_VerifiedRequirement()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='verifyingCase'"
+	 * @generated
+	 */
+	EList<RequirementUsage> getVerifiedRequirement();
 
 } // VerificationCaseUsage

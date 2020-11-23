@@ -43,7 +43,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -163,7 +163,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 */
 	@Override
 	public EList<Expression> getOperand() {
-		EList<Expression> operands = new NonNotifyingEcoreEList<>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
+		EList<Expression> operands = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
 		operands.addAll(getOperand_comp());
 		return operands;
 	}

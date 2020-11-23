@@ -24,6 +24,7 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -46,7 +47,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +61,6 @@ import org.omg.sysml.util.NonNotifyingEcoreEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getSourceFeature <em>Source Feature</em>}</li>
@@ -229,7 +229,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT);
+		EList<Element> ownedRelatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT);
 		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
 		return ownedRelatedElements;
 	}
@@ -275,7 +275,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public EList<Association> getAssociation() {
 		EList<Association> associations = 
-				new NonNotifyingEcoreEList<>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
+				new NonNotifyingEObjectEList<>(Association.class, this, SysMLPackage.CONNECTOR__ASSOCIATION);
 		super.getType().stream().
 			filter(type->type instanceof Association).
 			map(type->(Association)type).
@@ -298,30 +298,9 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Association> getOwnedAssociationType() {
-		EList<Association> associations = new NonNotifyingEcoreEList<>(Association.class, this, SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE);
-		getAssociation().stream().filter(a->a.getOwner() == this).forEachOrdered(associations::add);
-		return associations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedAssociationType() {
-		return !getOwnedAssociationType().isEmpty();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
 	public EList<Association> getConnectionDefinition() {
 		EList<Association> associations = 
-				new NonNotifyingEcoreEList<>(Association.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
+				new NonNotifyingEObjectEList<>(Association.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof Association).
 			map(type->(Association)type).
@@ -376,6 +355,15 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSetConnectorEnd() {
+		return !getConnectorEnd().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Feature getSourceFeature() {
 		Feature sourceFeature = basicGetSourceFeature();
@@ -417,7 +405,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	@Override
 	public EList<Feature> getTargetFeature() {
-		EList<Feature> targetFeatures = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE);
+		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE);
 		ConnectorImpl.addTargetFeatures(this, targetFeatures);
 		return targetFeatures;
 	}
@@ -506,10 +494,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 */
 	@Override
-	public EList<Type> getOwnedType() {
-		@SuppressWarnings("unchecked")
-		EList<Type> ownedAssociationType = (EList<Type>)((EList<?>)getOwnedAssociationType());
-		return ownedAssociationType;
+	public EList<Feature> getEndFeature() {
+		return getConnectorEnd();
 	}
 
 	/**
@@ -517,9 +503,43 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedType() {
+	public boolean isSetEndFeature() {
   		return false;
 	}
+	
+	// Other overrides
+	
+	@Override
+	public EList<Type> getFeaturingType() {
+		Type contextType = getContextType();
+		if (contextType != null) {
+			if (getOwnedTypeFeaturing().isEmpty()) {
+				addFeaturingType(getContextType());
+			} else {
+				updateFeaturingTypes(Collections.singletonList(getContextType()));
+			}
+		}
+		return super.getFeaturingType();
+	}
+	
+	private Type contextType = null;
+	private boolean isComputeContextType = true;
+	
+	public Type getContextType() {
+		if (isComputeContextType) {
+			isComputeContextType = false;
+			contextType = ConnectorImpl.getContextType(this);
+		}
+		return contextType;
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		getFeaturingType();
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -594,8 +614,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return getAssociation();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				return getOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				return isDirected();
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
@@ -642,10 +660,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				getAssociation().clear();
 				getAssociation().addAll((Collection<? extends Association>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				getOwnedAssociationType().addAll((Collection<? extends Association>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				setIsDirected((Boolean)newValue);
@@ -695,9 +709,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				getAssociation().clear();
 				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				getOwnedAssociationType().clear();
-				return;
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				setIsDirected(IS_DIRECTED_EDEFAULT);
 				return;
@@ -741,16 +752,14 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__TYPE:
 				return isSetType();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_TYPE:
-				return isSetOwnedType();
+			case SysMLPackage.CONNECTION_USAGE__END_FEATURE:
+				return isSetEndFeature();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				return isSetAssociation();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE:
-				return isSetOwnedAssociationType();
 			case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED:
 				return isDirected != IS_DIRECTED_EDEFAULT;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END:
-				return !getConnectorEnd().isEmpty();
+				return isSetConnectorEnd();
 			case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE:
 				return isSetSourceFeature();
 			case SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE:
@@ -783,7 +792,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE: return SysMLPackage.CONNECTOR__RELATED_FEATURE;
 				case SysMLPackage.CONNECTION_USAGE__ASSOCIATION: return SysMLPackage.CONNECTOR__ASSOCIATION;
-				case SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE;
 				case SysMLPackage.CONNECTION_USAGE__IS_DIRECTED: return SysMLPackage.CONNECTOR__IS_DIRECTED;
 				case SysMLPackage.CONNECTION_USAGE__CONNECTOR_END: return SysMLPackage.CONNECTOR__CONNECTOR_END;
 				case SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE: return SysMLPackage.CONNECTOR__SOURCE_FEATURE;
@@ -816,7 +824,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			switch (baseFeatureID) {
 				case SysMLPackage.CONNECTOR__RELATED_FEATURE: return SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE;
 				case SysMLPackage.CONNECTOR__ASSOCIATION: return SysMLPackage.CONNECTION_USAGE__ASSOCIATION;
-				case SysMLPackage.CONNECTOR__OWNED_ASSOCIATION_TYPE: return SysMLPackage.CONNECTION_USAGE__OWNED_ASSOCIATION_TYPE;
 				case SysMLPackage.CONNECTOR__IS_DIRECTED: return SysMLPackage.CONNECTION_USAGE__IS_DIRECTED;
 				case SysMLPackage.CONNECTOR__CONNECTOR_END: return SysMLPackage.CONNECTION_USAGE__CONNECTOR_END;
 				case SysMLPackage.CONNECTOR__SOURCE_FEATURE: return SysMLPackage.CONNECTION_USAGE__SOURCE_FEATURE;

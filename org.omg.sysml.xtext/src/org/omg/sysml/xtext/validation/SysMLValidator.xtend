@@ -347,7 +347,7 @@ class SysMLValidator extends KerMLValidator {
 		var Expression setting_m_u = null;
 		
 		// Only check multiplicity conformance if the subsettingFeature owns its multiplicity element.
-		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningType === sub.subsettingFeature) {
+		if (setted_m instanceof MultiplicityRange && setting_m instanceof MultiplicityRange && setting_m.owningNamespace === sub.subsettingFeature) {
 			var setted_m_l = (setted_m as MultiplicityRange)?.lowerBound
 			var setted_m_u = (setted_m as MultiplicityRange)?.upperBound
 			
@@ -379,19 +379,26 @@ class SysMLValidator extends KerMLValidator {
 		}
 					
 		// Owning type conformance (only check for Redefinition)
+		// NOTE: Revised to use featuringTypes instead of owning types, but error messages not changed, because, for SysML user modeling
+		// owning types are still what matters.
 		if (sub instanceof Redefinition) {
-			if (subsettingOwningType == subsettedOwningType){
-				if (subsettingOwningType === null) {
-					warning("A package-level feature should not be redefined", sub, 
-						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
-				} else {
-					warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
-						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+			val subsettingFeaturingTypes = sub.subsettingFeature?.featuringType
+			val subsettedFeaturingTypes = sub.subsettedFeature?.featuringType
+			if (subsettingFeaturingTypes !== null && subsettedFeaturingTypes !== null) {
+				if (subsettedFeaturingTypes.containsAll(subsettingFeaturingTypes) && 
+					subsettedFeaturingTypes.size == subsettingFeaturingTypes.size){
+					if (subsettingFeaturingTypes.isEmpty) {
+						warning("A package-level feature should not be redefined", sub, 
+							SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+					} else {
+						warning("Owner of redefining feature should not be the same as owner of redefined feature", sub, 
+							SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+					}
 				}
-			}
-			else if (!subsettingOwningType.conformsTo(subsettedOwningType)){
-				warning("Owner of redefining feature should be a specialization of owner of redefined feature", sub, 
-				SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+				else if (!subsettedFeaturingTypes.forall[t | subsettingFeaturingTypes.exists[conformsTo(t)]]){
+					warning("Owner of redefining feature should be a specialization of owner of redefined feature", sub, 
+					SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, SysMLValidator.INVALID_REDEFINITION_OWNINGTYPECONFORMANCE)
+				}
 			}
 		}
 	}

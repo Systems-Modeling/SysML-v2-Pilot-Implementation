@@ -72,7 +72,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -358,7 +358,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public EList<Usage> getFlowFeature() {
-		EList<Usage> flows = new NonNotifyingEcoreEList<>(Usage.class, this, SysMLPackage.USAGE__FLOW_FEATURE);
+		EList<Usage> flows = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.USAGE__FLOW_FEATURE);
 		getMembership().stream().
 			filter(membership->membership instanceof FeatureMembership && ((FeatureMembership)membership).getDirection() != null).
 			map(membership->((FeatureMembership)membership).getMemberFeature()).
@@ -385,7 +385,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public EList<Usage> getVariant() {
-		EList<Usage> variants = new NonNotifyingEcoreEList<>(Usage.class, this, SysMLPackage.USAGE__VARIANT);
+		EList<Usage> variants = new NonNotifyingEObjectEList<>(Usage.class, this, SysMLPackage.USAGE__VARIANT);
 		getVariantMembership().stream().
 			map(VariantMembership::getOwnedVariantUsage).
 			forEachOrdered(variants::add);
@@ -549,7 +549,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
-		EList<VariantMembership> variantMemberships = new NonNotifyingEcoreEList<>(VariantMembership.class, this, SysMLPackage.USAGE__VARIANT_MEMBERSHIP);
+		EList<VariantMembership> variantMemberships = new NonNotifyingEObjectEList<>(VariantMembership.class, this, SysMLPackage.USAGE__VARIANT_MEMBERSHIP);
 		super.getOwnedMembership().stream().
 			filter(VariantMembership.class::isInstance).
 			map(VariantMembership.class::cast).
@@ -662,7 +662,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public void transform() {
-		getOwnedTyping();
+		basicGetOwnedTyping();
 		getOwnedSubsetting();
 		super.transform();
 	}
@@ -670,13 +670,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	// Utility methods
 	
 	public Definition getOwningVariationDefinition() {
-		Definition owningDefinition = getOwningDefinition();
-		return owningDefinition != null && owningDefinition.isVariation()? owningDefinition: null;
+		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		return owner instanceof Definition && ((Definition)owner).isVariation()? 
+				((Definition)owner): null;
 	}
 
 	public Usage getOwningVariationUsage() {
-		Usage owningUsage = getOwningUsage();
-		return owningUsage != null && owningUsage.isVariation()? owningUsage: null;
+		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		return owner instanceof Usage && ((Usage)owner).isVariation()? ((Usage)owner): null;
 	}
 
 	public VariantMembership getOwningVariantMembership() {

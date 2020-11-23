@@ -295,7 +295,7 @@ query SysML::Feature::redefinedFeature(): SysML::Feature {
 }
 
 query SysML::Feature::type(): SysML::Type {
-	var featureType := self.referencedType![true];
+	var featureType := self.type![true];
 	if featureType = null then {
 		var redefinedFeature := self.redefinedFeature();
 		if redefinedFeature <> null then {
@@ -311,7 +311,7 @@ query SysML::Feature::range(): SysML::Type {
 
 helper SysML::Feature::mapToDeclarations() {
 	self.map toDeclaration();
-	self.ownedType->mapToDeclarations();
+	self.type->mapToDeclarations();
 	self.ownedMembership.ownedMemberElement->mapToDeclarations();
 }
 
@@ -365,7 +365,7 @@ mapping SysML::Feature::toObjectProperty(): OWL::ObjectProperty
 		new OWL::ObjectPropertyDomain(new ObjectPropertyReference(result), new OWL::ClassReference(domain));
 		self.mapMultiplicity(result, domain);
 	} endif;
-	if self.referencedType->notEmpty() or self.ownedType->notEmpty() then {
+	if self.type->notEmpty() then {
 		new OWL::ObjectPropertyRange(
 			new ObjectPropertyReference(result),
 			self.range().mapToClassExpression());

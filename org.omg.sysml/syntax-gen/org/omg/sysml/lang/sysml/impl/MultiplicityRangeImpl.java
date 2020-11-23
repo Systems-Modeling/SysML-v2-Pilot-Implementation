@@ -28,9 +28,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -88,11 +87,11 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @generated NOT
 	 */
 	public Expression basicGetLowerBound() {
-		EList<Feature> bounds = super.getOwnedFeature();
+		EList<Element> bounds = super.getOwnedMember();
 		if (bounds.size() < 2) {
 			return null;
 		} else {
-			Feature bound = bounds.get(0);
+			Element bound = bounds.get(0);
 			return bound instanceof Expression? (Expression)bound: null;
 		}
 	}
@@ -124,12 +123,12 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 * @generated NOT
 	 */
 	public Expression basicGetUpperBound() {
-		EList<Feature> bounds = super.getOwnedFeature();
+		EList<Element> bounds = super.getOwnedMember();
 		int size = bounds.size();
 		if (bounds.isEmpty()) {
 			return null;
 		} else {
-			Feature bound = bounds.get(size - 1);
+			Element bound = bounds.get(size - 1);
 			return bound instanceof Expression? (Expression)bound: null;
 		}
 	}
@@ -171,6 +170,27 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 	 */
 	public boolean isSetBound() {
 		return !getBound().isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Element> getOwnedMember() {
+		@SuppressWarnings("unchecked")
+		EList<Element> bound = (EList<Element>)((EList<?>)getBound());
+		return bound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMember() {
+  		return false;
 	}
 
 	@Override
@@ -244,35 +264,14 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
 		switch (featureID) {
 			case SysMLPackage.MULTIPLICITY_RANGE__BOUND:
 				return isSetBound();
-			case SysMLPackage.MULTIPLICITY_RANGE__OWNED_FEATURE:
-				return isSetOwnedFeature();
+			case SysMLPackage.MULTIPLICITY_RANGE__OWNED_MEMBER:
+				return isSetOwnedMember();
 			case SysMLPackage.MULTIPLICITY_RANGE__LOWER_BOUND:
 				return basicGetLowerBound() != null;
 			case SysMLPackage.MULTIPLICITY_RANGE__UPPER_BOUND:
 				return basicGetUpperBound() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getOwnedFeature() {
-		@SuppressWarnings("unchecked")
-		EList<Feature> bound = (EList<Feature>)((EList<?>)getBound());
-		return bound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedFeature() {
-  		return false;
 	}
 
 } //MultiplicityRangeImpl

@@ -53,7 +53,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -109,7 +109,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.CONSTRAINT_USAGE__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONSTRAINT_USAGE__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

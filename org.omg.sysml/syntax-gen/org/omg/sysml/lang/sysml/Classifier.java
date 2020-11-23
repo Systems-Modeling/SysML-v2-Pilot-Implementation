@@ -42,6 +42,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * ownedSuperclassing = ownedGeneralization->intersection(superclassing)
  * allSupertypes()->includes(Kernel Library::Anything)
+ * multiplicity <> null implies multiplicity.featuringType->isEmpty()
  * <!-- end-model-doc -->
  *
  * <p>

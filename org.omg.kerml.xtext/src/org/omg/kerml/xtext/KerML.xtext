@@ -256,6 +256,11 @@ NonFeatureElement returns SysML::Element :
 	| Superclassing
 	| Subsetting
 	| Redefinition
+	| Connector
+	| BindingConnector
+	| Succession
+	| ItemFlow
+	| SuccessionItemFlow
 ;
 
 FeatureElement returns SysML::Feature :
@@ -264,11 +269,6 @@ FeatureElement returns SysML::Feature :
 	| Expression
 	| BooleanExpression
 	| Invariant
-	| Connector
-	| BindingConnector
-	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
 ;
 
 /* TYPES */
@@ -282,7 +282,7 @@ Type returns SysML::Type :
 
 fragment TypeDeclaration returns SysML::Type : 
     (isSufficient ?= 'all' )? Identification?
-    ( ownedFeatureMembership_comp += MultiplicityMember )? 
+    ( ownedMembership_comp += MultiplicityMember )? 
     ( SpecializationPart | ConjugationPart )+
 ;
 
@@ -295,8 +295,8 @@ fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship_comp += OwnedConjugation
 ;
 
-MultiplicityMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = Multiplicity
+MultiplicityMember returns SysML::Membership :
+	ownedMemberElement_comp = Multiplicity
 ;
 
 fragment TypeBody returns SysML::Type :
@@ -383,7 +383,7 @@ Classifier returns SysML::Classifier :
 
 fragment ClassifierDeclaration returns SysML::Classifier :	
     (isSufficient ?= 'all' )? Identification?
-	( ownedFeatureMembership_comp += MultiplicityMember )?
+	( ownedMembership_comp += MultiplicityMember )?
 	( SuperclassingPart | ClassifierConjugationPart )?
 ;
 
@@ -438,7 +438,7 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedFeatureMembership_comp += MultiplicityMember 
+	ownedMembership_comp += MultiplicityMember 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
@@ -519,7 +519,7 @@ FeatureConjugation returns SysML::Conjugation :
 /* FEATURE VALUES */
 
 fragment ValuePart returns SysML::Feature :
-	'=' ownedFeatureMembership_comp += FeatureValue
+	'=' ownedMembership_comp += FeatureValue
 ;
 
 FeatureValue returns SysML::FeatureValue :
@@ -530,16 +530,16 @@ FeatureValue returns SysML::FeatureValue :
 
 Multiplicity returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	'[' ( ownedFeatureMembership_comp += LiteralIntegerMember '..' )? 
-	      ownedFeatureMembership_comp += LiteralUnlimitedNaturalMember ']'
+	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
+	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
 ;
 
-LiteralIntegerMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = LiteralInteger
+LiteralIntegerMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralInteger
 ;
 
-LiteralUnlimitedNaturalMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = LiteralUnlimitedNatural
+LiteralUnlimitedNaturalMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralUnlimitedNatural
 ;
 
 /* CLASSIFICATION */
@@ -597,7 +597,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 
 ConnectorEnd returns SysML::Feature :
 	ownedRelationship_comp += OwnedSubsetting 
-	( ownedFeatureMembership_comp += MultiplicityMember )?
+	( ownedMembership_comp += MultiplicityMember )?
 ;
 
 /* Binding Connectors */
@@ -834,8 +834,8 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  ownedRelationship_comp += OwnedFeatureTyping 
-	  ( ownedFeatureMembership_comp += MultiplicityMember )?
-	| ownedFeatureMembership_comp += MultiplicityMember
+	  ( ownedMembership_comp += MultiplicityMember )?
+	| ownedMembership_comp += MultiplicityMember
 	  ( ownedRelationship_comp += OwnedFeatureTyping )?
 ;
 

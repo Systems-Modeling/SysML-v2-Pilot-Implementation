@@ -60,4 +60,9 @@ package RequirementTest {
     		subject s;
     	}
 	}
+	part p;
+	part q {
+		requirement r : R;
+		satisfy r by p;
+	}
 }

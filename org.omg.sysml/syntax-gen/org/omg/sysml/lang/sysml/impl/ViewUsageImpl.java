@@ -40,7 +40,7 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,7 +140,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 */
 	@Override
 	public EList<org.omg.sysml.lang.sysml.Package> getExposedPackage() {
-		EList<org.omg.sysml.lang.sysml.Package> exposedPackages = new NonNotifyingEcoreEList<>(org.omg.sysml.lang.sysml.Package.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE);
+		EList<org.omg.sysml.lang.sysml.Package> exposedPackages = new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Package.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE);
 		getOwnedImport().stream().filter(Expose.class::isInstance).map(Import::getImportedPackage).forEachOrdered(exposedPackages::add);
 		return exposedPackages;
 	}

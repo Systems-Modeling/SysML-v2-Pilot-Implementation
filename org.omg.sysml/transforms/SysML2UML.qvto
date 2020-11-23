@@ -213,7 +213,7 @@ query SysML::Feature::valuation(): FeatureValue {
 }
 
 helper SysML::Feature::parentTypeElement(): SysML::Element{
-	return if self.referencedType->notEmpty() then self.referencedType![true] 
+	return if self.type->notEmpty() then self.type![true] 
 		   else if self.redefinedFeatures()->notEmpty() then self.redefinedFeatures()![true].typeElement()
 		   else if self.subsettedFeatures()->notEmpty() then self.subsettedFeatures()![true].typeElement()
 		   else null 

@@ -32,7 +32,6 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
@@ -76,6 +75,10 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
 	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 	
+	private Type subsettingBaseDefault;
+	private Type subsettingAssumptionFeature;
+	private Type subsettingRequirementFeature;
+
 	/**
 	 * The cached value of the BindingConnector from the result of the last
 	 * sub-Expression to the result of this ConstraintUsage.
@@ -393,6 +396,50 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		basicGetSubjectParameter();
 		CalculationDefinitionImpl.addResultParameter(this);
 		return super.getOwnedParameters();
+	}
+	
+	@Override
+	public Feature getNamingFeature() {
+		return isAssumptionConstraint() || isRequirementConstraint()? 
+				getSubsettedConstraint():
+			    super.getNamingFeature();
+	}
+	
+	public ConstraintUsage getSubsettedConstraint() {
+		Type subsettingBaseDefault = getSubsettingBaseDefault();
+		Type subsettingAssumptionFeature = getSubsettingAssumptionFeature();
+		Type subsettingRequirementFeature = getSubsettingRequirementFeature();
+		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
+		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
+				allMatch(feature->feature == subsettingBaseDefault || 
+						 feature == subsettingAssumptionFeature ||
+				         feature == subsettingRequirementFeature)) {
+			return this;
+		} else {
+			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
+			return subsettedFeature instanceof ConstraintUsage? (ConstraintUsage)subsettedFeature: this;
+		}
+	}
+	
+	protected Type getSubsettingBaseDefault() {
+		if (subsettingBaseDefault == null) {
+			subsettingBaseDefault = getDefaultType(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+		}
+		return subsettingBaseDefault;
+	}
+
+	protected Type getSubsettingAssumptionFeature() {
+		if (subsettingAssumptionFeature == null) {
+			subsettingAssumptionFeature = getDefaultType(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+		}
+		return subsettingAssumptionFeature;
+	}
+
+	protected Type getSubsettingRequirementFeature() {
+		if (subsettingRequirementFeature == null) {
+			subsettingRequirementFeature = getDefaultType(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+		}
+		return subsettingRequirementFeature;
 	}
 	
 	@Override

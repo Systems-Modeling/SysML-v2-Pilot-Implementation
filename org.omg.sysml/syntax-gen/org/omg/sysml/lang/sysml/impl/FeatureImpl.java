@@ -914,7 +914,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).stream().
+		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
 				map(Subsetting::getSubsettedFeature);
@@ -922,7 +922,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
-		Stream<Feature> implicitRedefinitions = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinitions = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
 		return Stream.concat(getSubsettedNotRedefinedFeatures(), implicitRedefinitions).
 				collect(Collectors.toList());
@@ -930,7 +930,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public List<Feature> getRedefinedFeatures() {
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypes(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
 				map(Redefinition::getRedefinedFeature);

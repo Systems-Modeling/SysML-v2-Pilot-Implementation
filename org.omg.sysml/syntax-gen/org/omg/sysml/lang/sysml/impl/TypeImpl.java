@@ -283,6 +283,7 @@ public class TypeImpl extends PackageImpl implements Type {
 				getOwnedRelationship_comp().add(newGeneralization);
 			}
 		}
+		cleanImplicitGeneralization();
 	}
 	
 	public List<Type> getImplicitGeneralTypes() {
@@ -292,6 +293,13 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	public List<Type> getImplicitGeneralTypes(EClass eClass) {
+		return implicitGeneralTypes.keySet().stream().
+				filter(eClass::isSuperTypeOf).
+				flatMap(keyClass->getImplicitGeneralTypesOnly(keyClass).stream()).
+				collect(Collectors.toList());
+	}
+	
+	public List<Type> getImplicitGeneralTypesOnly(EClass eClass) {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList());
 	}
 	
@@ -321,12 +329,11 @@ public class TypeImpl extends PackageImpl implements Type {
 	protected void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
 		removeEmptyGeneralTypes(kind);
-		List<Type> generalizations = implicitGeneralTypes.get(generalizationEClass);
-		if (generalizations == null &&
+		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
 				basicGetOwnedGeneralization(kind).isEmpty()) {
 			Type general = getDefaultType(superTypeNames);
 			if (general != null && general != this) {
-				generalizations = new ArrayList<>();
+				List<Type> generalizations = new ArrayList<>();
 				generalizations.add(general);
 				implicitGeneralTypes.put(generalizationEClass, generalizations);
 			}

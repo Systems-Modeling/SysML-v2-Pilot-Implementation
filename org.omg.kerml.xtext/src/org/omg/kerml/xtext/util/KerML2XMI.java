@@ -79,13 +79,16 @@ public class KerML2XMI extends SysMLUtil {
 	public void write() throws IOException {
 		System.out.println("Resolving proxies...");
 		EcoreUtil.resolveAll(this.resourceSet);
-		Set<Resource> outputResources = new HashSet<Resource>();
 		ImplicitElementGenerator generator = new ImplicitElementGenerator();
-		for (Object object: this.resourceSet.getResources().toArray()) {
+		System.out.println("Transforming...");
+		for (Resource resource: inputResources) {
+			generator.generateElements(resource);
+		}
+		Set<Resource> outputResources = new HashSet<Resource>();
+ 		for (Object object: this.resourceSet.getResources().toArray()) {
 			Resource resource = (Resource)object;
 			Resource outputResource = this.createResource(this.getOutputPath(resource.getURI().toFileString()));
 			outputResource.getContents().addAll(resource.getContents());
-			generator.generateElements(outputResource);
 			if (this.isInputResource(resource)) {
 				outputResources.add(outputResource);
 			}

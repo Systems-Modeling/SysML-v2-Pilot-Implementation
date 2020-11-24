@@ -17882,6 +17882,26 @@ ruleRequirementBodyItem[EObject in_current]  returns [EObject current=in_current
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRequirementBodyItemAccess().getOwnedFeatureMembership_compRequirementVerificationMemberParserRuleCall_3_0());
+				}
+				lv_ownedFeatureMembership_comp_3_0=ruleRequirementVerificationMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRequirementBodyItemRule());
+					}
+					add(
+						$current,
+						"ownedFeatureMembership_comp",
+						lv_ownedFeatureMembership_comp_3_0,
+						"org.omg.sysml.xtext.SysML.RequirementVerificationMember");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -19945,6 +19965,180 @@ ruleVerificationCaseRefUsage returns [EObject current=null]
 			$current = $this_CaseBody_5.current;
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleRequirementVerificationMember
+entryRuleRequirementVerificationMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRequirementVerificationMemberRule()); }
+	iv_ruleRequirementVerificationMember=ruleRequirementVerificationMember
+	{ $current=$iv_ruleRequirementVerificationMember.current; }
+	EOF;
+
+// Rule RequirementVerificationMember
+ruleRequirementVerificationMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			if ($current==null) {
+				$current = createModelElement(grammarAccess.getRequirementVerificationMemberRule());
+			}
+			newCompositeNode(grammarAccess.getRequirementVerificationMemberAccess().getDefinitionMemberPrefixParserRuleCall_0());
+		}
+		this_DefinitionMemberPrefix_0=ruleDefinitionMemberPrefix[$current]
+		{
+			$current = $this_DefinitionMemberPrefix_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRequirementVerificationMemberAccess().getKindRequirementVerificationKindEnumRuleCall_1_0());
+				}
+				lv_kind_1_0=ruleRequirementVerificationKind
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRequirementVerificationMemberRule());
+					}
+					set(
+						$current,
+						"kind",
+						lv_kind_1_0,
+						"org.omg.sysml.xtext.SysML.RequirementVerificationKind");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRequirementVerificationMemberAccess().getOwnedRequirement_compRequirementVerificationUsageParserRuleCall_2_0());
+				}
+				lv_ownedRequirement_comp_2_0=ruleRequirementVerificationUsage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRequirementVerificationMemberRule());
+					}
+					set(
+						$current,
+						"ownedRequirement_comp",
+						lv_ownedRequirement_comp_2_0,
+						"org.omg.sysml.xtext.SysML.RequirementVerificationUsage");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRequirementVerificationUsage
+entryRuleRequirementVerificationUsage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRequirementVerificationUsageRule()); }
+	iv_ruleRequirementVerificationUsage=ruleRequirementVerificationUsage
+	{ $current=$iv_ruleRequirementVerificationUsage.current; }
+	EOF;
+
+// Rule RequirementVerificationUsage
+ruleRequirementVerificationUsage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0());
+					}
+					lv_ownedRelationship_comp_0_0=ruleOwnedSubsetting
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRequirementVerificationUsageRule());
+						}
+						add(
+							$current,
+							"ownedRelationship_comp",
+							lv_ownedRelationship_comp_0_0,
+							"org.omg.sysml.xtext.SysML.OwnedSubsetting");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+					}
+					newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getFeatureSpecializationParserRuleCall_0_1());
+				}
+				this_FeatureSpecialization_1=ruleFeatureSpecialization[$current]
+				{
+					$current = $this_FeatureSpecialization_1.current;
+					afterParserOrEnumRuleCall();
+				}
+			)*
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+					}
+					newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getCalculationUsageParameterPartParserRuleCall_0_2());
+				}
+				this_CalculationUsageParameterPart_2=ruleCalculationUsageParameterPart[$current]
+				{
+					$current = $this_CalculationUsageParameterPart_2.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+				}
+				newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getRequirementBodyParserRuleCall_0_3());
+			}
+			this_RequirementBody_3=ruleRequirementBody[$current]
+			{
+				$current = $this_RequirementBody_3.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
+		    |
+		(
+			otherlv_4='requirement'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getRequirementVerificationUsageAccess().getRequirementKeyword_1_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+				}
+				newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getCalculationUsageDeclarationParserRuleCall_1_1());
+			}
+			this_CalculationUsageDeclaration_5=ruleCalculationUsageDeclaration[$current]
+			{
+				$current = $this_CalculationUsageDeclaration_5.current;
+				afterParserOrEnumRuleCall();
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getRequirementVerificationUsageRule());
+				}
+				newCompositeNode(grammarAccess.getRequirementVerificationUsageAccess().getRequirementBodyParserRuleCall_1_2());
+			}
+			this_RequirementBody_6=ruleRequirementBody[$current]
+			{
+				$current = $this_RequirementBody_6.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
 	)
 ;
 
@@ -25163,6 +25357,23 @@ ruleRequirementConstraintKind returns [Enumerator current=null]
 				newLeafNode(enumLiteral_1, grammarAccess.getRequirementConstraintKindAccess().getRequirementEnumLiteralDeclaration_1());
 			}
 		)
+	)
+;
+
+// Rule RequirementVerificationKind
+ruleRequirementVerificationKind returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		enumLiteral_0='verify'
+		{
+			$current = grammarAccess.getRequirementVerificationKindAccess().getRequirementEnumLiteralDeclaration().getEnumLiteral().getInstance();
+			newLeafNode(enumLiteral_0, grammarAccess.getRequirementVerificationKindAccess().getRequirementEnumLiteralDeclaration());
+		}
 	)
 ;
 

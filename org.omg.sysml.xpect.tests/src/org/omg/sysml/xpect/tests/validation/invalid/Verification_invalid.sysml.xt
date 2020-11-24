@@ -48,43 +48,36 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 	}
 END_SETUP
 */
-// XPECT noErrors ---> ""
-package VerificationTest {
+package Verification_invalid {
 
-	part def V {
-		m : ScalarValues::Integer;
-	}
-	
-	part vv : V;
-	
 	requirement def R {
 		doc /* ... */
+		
+		// XPECT errors --> "A requirement verification must be in the objective of a verification case." at "verify requirement : R;"		
+		verify requirement : R;
+
+		// XPECT errors --> "A requirement verification must be in the objective of a verification case." at "verify r;"		
+		verify r;
 	}
 	
 	requirement r : R;
 
 	verification def VerificationCase {		
-		subject v : V;	
 		objective {
 			verify requirement : R;
 		}
 		
-		Verifications::PassIf(v::m == 0)
-	}
-	
-	verification def VerificationPlan {
-		subject v : V;
-		
-		objective {
+		requirement {
+			// XPECT errors --> "A requirement verification must be in the objective of a verification case." at "verify r;"		
 			verify r;
 		}
-		
-		verification verificationCase : VerificationCase;
 	}
 	
-	part verificationContext {
-		verification verificationPlan : VerificationPlan {
-			subject v = vv;
+	case def VerificationPlan {
+		objective {
+			// XPECT errors --> "A requirement verification must be in the objective of a verification case." at "verify r;"		
+			verify r;
 		}
 	}
+	
 }

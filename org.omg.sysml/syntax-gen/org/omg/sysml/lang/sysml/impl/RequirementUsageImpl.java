@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
@@ -47,8 +48,6 @@ import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
-import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -344,15 +343,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	}
 
 	public boolean isVerifiedRequirement() {
-		Type owningType = getOwningType();
-		if (owningType instanceof RequirementUsage && ((RequirementUsageImpl)owningType).isObjective()) {
-			owningType = ((RequirementUsage)owningType).getOwningType();
-			return (owningType instanceof VerificationCaseDefinition || 
-					owningType instanceof VerificationCaseUsage) &&
-				   getOwningFeatureMembership() instanceof RequirementVerificationMembership;
-		} else {
-			return false;
-		}
+		FeatureMembership membership = getOwningFeatureMembership();
+		return membership instanceof RequirementVerificationMembership &&
+			   ((RequirementVerificationMembershipImpl)membership).isLegalVerification();
 	}
 	
 	public boolean isObjective() {

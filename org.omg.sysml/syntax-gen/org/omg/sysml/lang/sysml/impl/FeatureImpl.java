@@ -1037,11 +1037,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return subsetting;
 	}
 	
-	public Optional<Subsetting> getFirstSubsetting() {
+	public Optional<Subsetting> basicGetFirstSubsetting() {
 		computeImplicitGeneralization();
-		// Note: getOwnedSubsetting filters out Subsettings whose subsettedFeature is null, and
-		// this needs to include those.
 		return basicGetOwnedSubsetting().stream().
+				filter(s->!(s instanceof Redefinition)).findFirst();
+	}
+	
+	public Optional<Subsetting> getFirstSubsetting() {
+		return getOwnedSubsetting().stream().
 				filter(s->!(s instanceof Redefinition)).findFirst();
 	}
 	

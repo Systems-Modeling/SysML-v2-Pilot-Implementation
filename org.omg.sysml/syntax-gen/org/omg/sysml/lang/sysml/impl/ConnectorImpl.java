@@ -636,7 +636,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 
 	public static void setRelatedFeature(Feature connectorEnd, Feature relatedFeature) {
-		((FeatureImpl)connectorEnd).getFirstSubsetting().
+		((FeatureImpl)connectorEnd).basicGetFirstSubsetting().
 			orElseGet(()->((FeatureImpl)connectorEnd).createSubsetting()).
 			setSubsettedFeature(relatedFeature);
 	}

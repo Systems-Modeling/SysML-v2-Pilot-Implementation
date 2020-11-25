@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
-import org.omg.sysml.util.ImplicitElementGenerator;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.SysMLUtil;
 
 /**
@@ -79,11 +79,10 @@ public class KerML2XMI extends SysMLUtil {
 	public void write() throws IOException {
 		System.out.println("Resolving proxies...");
 		EcoreUtil.resolveAll(this.resourceSet);
-		ImplicitElementGenerator generator = new ImplicitElementGenerator();
+		
 		System.out.println("Transforming...");
-		for (Resource resource: inputResources) {
-			generator.generateElements(resource);
-		}
+		ElementUtil.transformAll(this.resourceSet);
+		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {
 			Resource resource = (Resource)object;

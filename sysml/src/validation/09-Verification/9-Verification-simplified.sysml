@@ -5,7 +5,7 @@ package '9-Verification-simplified' {
 	package Definitions {
 	
 		requirement def id '2' MassRequirement {
-			attribute massActual :> ISQ::mass;
+			subject massActual :> ISQ::mass;
 			attribute massReqd :> ISQ::mass;
 			
 			doc /* The actual mass shall be less than or equal to the required mass limit. */
@@ -27,16 +27,17 @@ package '9-Verification-simplified' {
 		}
 		
 		individual def TestVehicle :> Vehicle;
+		
+		part def MassVerificationSystem;
+		
+		individual def TestSystem :> MassVerificationSystem;
 	
 	}
 	
 	package Usages {
 	
 		requirement id '2.1' vehicleMassRequirement : MassRequirement {
-			subject vehicle : Vehicle;
-			
-			doc /* The vehicle mass shall be less than or equal to 2500 kg. */
-				
+			doc /* The vehicle mass shall be less than or equal to 2500 kg. */				
 			:>> massReqd = 2500@[SI::kg];
 		}
 		
@@ -47,7 +48,9 @@ package '9-Verification-simplified' {
 		verification vehicleMassTest : MassTest {
 			subject vehicle : Vehicle;
 			objective vehicleMassVerificationObjective {
-				verify vehicleMassRequirement :>> massRequirement;
+				verify vehicleMassRequirement :>> massRequirement {
+					subject massActual = vehicle::mass;
+				}
 			}
 			
 			action collectData {
@@ -62,17 +65,14 @@ package '9-Verification-simplified' {
 			
 			action evaluateData {
 				in massProcessed :> ISQ::mass = processData::massProcessed;
-				calc :>> vehicleMassRequirement {
-					:>> massActual = massProcessed;
-					return isSatisfied;
-				}
-				out verdict : VerdictKind = PassIf(vehicleMassRequirement::isSatisfied);
+				out verdict : VerdictKind = 
+					PassIfSatisfied(vehicleMassRequirement, massProcessed);
 			}
 			
 			return verdict : VerdictKind = evaluateData::verdict;
 		}
 		
-		part massVerificationSystem {
+		part massVerificationSystem : MassVerificationSystem {
 			perform vehicleMassTest {
 				part :>> vehicle = vehicleUnderTest;
 			}
@@ -98,7 +98,7 @@ package '9-Verification-simplified' {
 				:>> mass = 2500@[SI::kg];
 			}
 			
-			ref part :>> massVerificationSystem {
+			ref individual testSystem : TestSystem :> massVerificationSystem {
 				ref part :>> vehicleUnderTest = testVehicle;
 			}
 		}

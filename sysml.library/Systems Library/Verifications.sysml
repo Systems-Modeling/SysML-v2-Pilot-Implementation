@@ -59,4 +59,8 @@ package Verifications {
 		return verdict : VerdictKind = isPassing? VerdictKind::pass : VerdictKind::fail;
 	}
 	
+	calc def PassIfSatisfied(in requirement req, in ref subj) {
+		return verict : VerdictKind = PassIf(req(subj));
+	}
+	
 }

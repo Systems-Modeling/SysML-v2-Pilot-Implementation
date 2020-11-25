@@ -922,9 +922,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
-		Stream<Feature> implicitRedefinitions = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
+		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
-		return Stream.concat(getSubsettedNotRedefinedFeatures(), implicitRedefinitions).
+		return Stream.concat(subsettedFeatures, implicitRedefinedFeatures).
 				collect(Collectors.toList());
 	}
 	

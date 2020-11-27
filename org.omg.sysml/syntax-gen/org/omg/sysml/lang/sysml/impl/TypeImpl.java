@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -310,6 +311,14 @@ public class TypeImpl extends PackageImpl implements Type {
 	
 	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
+	}
+	
+	public void forEachImplicitGeneralType(BiConsumer<EClass, Type> action) {
+		for (EClass eClass : implicitGeneralTypes.keySet()) {
+			for (Type supertype : implicitGeneralTypes.get(eClass)) {
+				action.accept(eClass, supertype);
+			}
+		}
 	}
 	
 	protected <T extends Generalization> void removeEmptyGeneralTypes(Class<T> kind) {

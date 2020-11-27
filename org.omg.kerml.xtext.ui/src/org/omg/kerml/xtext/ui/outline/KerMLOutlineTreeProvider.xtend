@@ -115,7 +115,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String _text(Type type) {
 		(type as TypeImpl).transform()
-		(type as TypeImpl).addImplicitGeneralizations()
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'
@@ -257,6 +256,32 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				_import.importOwningPackage == importedPackage || importedPackage._isLeaf
 			)
 		}
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Type type) {
+		(type as TypeImpl).computeImplicitGeneralTypes()
+		
+		(type as TypeImpl).forEachImplicitGeneralType[eClass, generalType |
+			/*
+			 * TODO here image dispatcher should be called with a type that
+			 * returns that appropriate icon for generalizations, but there
+			 * are no such icons added yet; in the future, the generalType
+			 * reference might return an unexpected icon if at a later point
+			 * type-specific icons are added.
+			 */
+			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
+				imageDispatcher.invoke(generalType), eClass
+			)
+			
+			// Traversal does not know about the new node, children have to be created here
+			if (generalType !== null) {
+				createEObjectNode(implicitNode, generalType, 
+					generalType._image, generalType._text, 
+					true
+				)
+			}
+		]
+		_createChildren(parentNode, type as Package)
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Package _package) {

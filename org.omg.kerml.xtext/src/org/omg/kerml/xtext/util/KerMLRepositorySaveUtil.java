@@ -28,6 +28,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 /**
@@ -178,6 +179,9 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				
 				this.initialize();				
 				this.read(args);
+				
+				System.out.println("Transforming...");
+				ElementUtil.transformAll(this.resourceSet);
 				
 				System.out.println("\nBase path is " + this.getBasePath());
 				System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());

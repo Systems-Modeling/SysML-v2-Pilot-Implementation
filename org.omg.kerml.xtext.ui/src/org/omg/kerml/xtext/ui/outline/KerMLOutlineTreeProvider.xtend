@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.TextualRepresentation
 import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
+import org.omg.sysml.lang.sysml.TypeFeaturing
 
 /**
  * Customization of the default outline structure.
@@ -39,9 +40,14 @@ import org.omg.sysml.lang.sysml.Connector
  * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
+	
+	def String metaclassText(Element element) {
+		(element as ElementImpl).transform()
+		element.eClass.name
+	}
 
 	def String _text(Element element) {
-		var text = element.eClass.name;
+		var text = element.metaclassText;
 		if (element.humanId !== null) {
 			text += ' id ' + element.humanId
 		}
@@ -58,7 +64,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String prefixText(Membership membership) {
-		var text = membership.eClass.name;
+		var text = membership.metaclassText;
 		if (membership.ownedMemberElement !== null) {
 			text += ' owns'
 		}
@@ -103,7 +109,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Import import_) {
-		var text = import_.eClass.name;
+		var text = import_.metaclassText;
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
@@ -129,28 +135,28 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _text(LiteralString literal) {
-		"LiteralString " + literal.value
+	def String _Text(LiteralString literal) {
+		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String _text(LiteralBoolean literal) {
-		"LiteralBoolean " + literal.value
+	def String literalText(LiteralBoolean literal) {
+		literal.metaclassText + ' ' + literal.value
 	}
 	
 	def String _text(LiteralInteger literal) {
-		"LiteralInteger " + literal.value
+		literal.metaclassText + ' ' + literal.value
 	}
 	
 	def String _text(LiteralReal literal) {
-		"LiteralReal " + literal.value
+		literal.metaclassText + ' ' + literal.value
 	}
 	
 	def String _text(LiteralUnbounded literal) {
-		"LiteralUnbounded *"
+		literal.metaclassText + ' *'
 	}
 	
 	def String _text(NullExpression expression) {
-		"NullExpression null"
+		expression.metaclassText + ' null'
 	}
 	
 	def boolean _isLeaf(Relationship relationship) {
@@ -243,6 +249,15 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(FeatureMembership membership) {
+		false
+	}
+	
+	// Display a FeatureMembership like a Membership, rather than like a TypeFeaturing.
+	def void _createChildren(IOutlineNode parentNode, FeatureMembership membership) {
+		_createChildren(parentNode, membership as Membership)
+	}
+	
 	def boolean _isLeaf(Import _import) {
 		_import.importedPackage === null && _import.ownedElement.isEmpty
 	}
@@ -298,6 +313,25 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def boolean _isLeaf(TypeFeaturing featuring) {
+		featuring.featuringType === null
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, TypeFeaturing featuring) {
+		if (featuring.featureOfType !== null && featuring.featureOfType !== featuring.eContainer) {
+			createEObjectNode(parentNode, featuring.featureOfType, 
+				featuring.featureOfType._image, featuring.featureOfType._text, 
+				true
+			)			
+		}
+		if (featuring.featuringType !== null) {
+			createEObjectNode(parentNode, featuring.featuringType, 
+				featuring.featuringType._image, featuring.featuringType._text, 
+				true
+			)
+		}
+	}
+	
 	def boolean _isLeaf(Generalization generalization) {
 		generalization.general === null
 	}
@@ -305,7 +339,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
 		if (generalization.specific !== null && generalization.specific !== generalization.eContainer) {
 			createEObjectNode(parentNode, generalization.specific, 
-				generalization.general._image, generalization.specific._text, 
+				generalization.specific._image, generalization.specific._text, 
 				true
 			)			
 		}

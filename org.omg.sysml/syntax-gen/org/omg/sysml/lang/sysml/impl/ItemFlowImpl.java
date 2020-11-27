@@ -33,7 +33,7 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -94,7 +94,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Behavior> getBehavior() {
-		EList<Behavior> behaviors = new NonNotifyingEcoreEList<>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
+		EList<Behavior> behaviors = new NonNotifyingEObjectEList<>(Behavior.class, this, SysMLPackage.STEP__BEHAVIOR);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).
@@ -118,7 +118,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}
@@ -130,7 +130,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Classifier> getItemType() {
-		EList<Classifier> itemType = new NonNotifyingEcoreEList<>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
+		EList<Classifier> itemType = new NonNotifyingEObjectEList<>(Classifier.class, this, SysMLPackage.ITEM_FLOW__ITEM_TYPE);
 		getItemFeature().get(0).getType();
 		getItemFeature().stream().
 			flatMap(f->f.getType().stream()).
@@ -159,7 +159,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	 */
 	@Override
 	public EList<Feature> getSourceOutputFeature() {
-		EList<Feature> sourceOutputFeature = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
+		EList<Feature> sourceOutputFeature = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__SOURCE_OUTPUT_FEATURE);
 		getInputOutputFeature(0).ifPresent(sourceOutputFeature::add);
 		return sourceOutputFeature;
 	}
@@ -172,7 +172,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public EList<ItemFlowEnd> getItemFlowEnd() {
 		EList<ItemFlowEnd> itemFlows = 
-				new NonNotifyingEcoreEList<>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
+				new NonNotifyingEObjectEList<>(ItemFlowEnd.class, this, SysMLPackage.ITEM_FLOW__ITEM_FLOW_END);
 		getConnectorEnd().stream().
 			filter(end->end instanceof ItemFlowEnd).
 			map(end->(ItemFlowEnd)end).

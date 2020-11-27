@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -130,7 +130,7 @@ public class RelationshipImpl extends ElementImpl implements Relationship {
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
+		EList<Element> ownedRelatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT);
 		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
 		return ownedRelatedElements;
 	}

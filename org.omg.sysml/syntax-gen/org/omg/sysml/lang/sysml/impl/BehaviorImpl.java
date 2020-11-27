@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -87,7 +87,7 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	 * @generated NOT // derived
 	 */
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

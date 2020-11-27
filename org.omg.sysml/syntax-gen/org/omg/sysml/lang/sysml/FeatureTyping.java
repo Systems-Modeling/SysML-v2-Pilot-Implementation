@@ -99,7 +99,7 @@ public interface FeatureTyping extends Generalization {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that owned this FeatureTyping (which must also be the <code>typedFeature</code>).</p>
+	 * <p>The Feature that owns this FeatureTyping (which must also be the <code>typedFeature</code>).</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature</em>' reference.
 	 * @see #setOwningFeature(Feature)

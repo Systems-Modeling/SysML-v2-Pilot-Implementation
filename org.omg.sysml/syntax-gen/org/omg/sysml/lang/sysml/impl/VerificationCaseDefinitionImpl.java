@@ -22,15 +22,28 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.ecore.EClass;
+import java.util.Collection;
+import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Verification Case Definition</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.VerificationCaseDefinitionImpl#getVerifiedRequirement <em>Verified Requirement</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -57,9 +70,91 @@ public class VerificationCaseDefinitionImpl extends CaseDefinitionImpl implement
 		return SysMLPackage.Literals.VERIFICATION_CASE_DEFINITION;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<RequirementUsage> getVerifiedRequirement() {
+		EList<RequirementUsage> verifiedRequirements = new NonNotifyingEObjectEList<>(RequirementUsage.class, this, SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT);
+		RequirementUsage objective = getObjectiveRequirement();
+		if (objective != null) {
+			getVerifiedRequirements(objective).forEachOrdered(verifiedRequirements::add);
+		}
+		return verifiedRequirements;
+	}
+
+	public static Stream<RequirementUsage> getVerifiedRequirements(Type owner) {
+		return owner.getOwnedFeatureMembership().stream().
+				filter(RequirementVerificationMembership.class::isInstance).
+				map(mem->((RequirementVerificationMembership)mem).getVerifiedRequirement()).
+				filter(constraint->constraint != null);
+	}
+	
 	@Override
 	protected String getDefaultSupertype() {
 		return VERIFICATION_CASE_DEFINITION_SUPERCLASS_DEFAULT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT:
+				return getVerifiedRequirement();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT:
+				getVerifiedRequirement().clear();
+				getVerifiedRequirement().addAll((Collection<? extends RequirementUsage>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT:
+				getVerifiedRequirement().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.VERIFICATION_CASE_DEFINITION__VERIFIED_REQUIREMENT:
+				return !getVerifiedRequirement().isEmpty();
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //VerificationCaseDefinitionImpl

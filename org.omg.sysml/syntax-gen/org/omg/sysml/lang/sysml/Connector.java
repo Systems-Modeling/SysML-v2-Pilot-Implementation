@@ -31,7 +31,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Connector is a usage of Associations, with links restricted to instances of the Type in which it is used (domain of the Connector). Associations restrict what kinds of things might be linked. The Connector further restricts these links to between values of two Features on instances of its&nbsp;domain.</p>
  * 
- * relatedFeature = connectorEnd.feature
+ * relatedFeature = connectorEnd.ownedSubsetting.subsettedFeature
+ * relatedFeature->forAll(f | 
+ *     featuringType->isEmpty() and f.isFeaturedWithin(null) or
+ *     featuringType->exists(t | f.isFeaturedWithin(t)))
+ * if relatedFeature->size() = 2 then relatedFeature->at(1) else null endif
+ * targetFeature =
+ *     if sourceFeature = null then relatedFeature
+ *     else relatedFeature->excluding(sourceFeature)
+ *     endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -40,7 +48,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getAssociation <em>Association</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Connector#getOwnedAssociationType <em>Owned Association Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getConnectorEnd <em>Connector End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Connector#getSourceFeature <em>Source Feature</em>}</li>
@@ -145,10 +152,10 @@ public interface Connector extends Feature, Relationship {
 	 * Returns the value of the '<em><b>Connector End</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
 	 * <p>
-	 * This feature subsets the following features:
+	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getEndFeature() <em>End Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -163,7 +170,7 @@ public interface Connector extends Feature, Relationship {
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_ConnectorEnd()
 	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featuringConnector'"
-	 *        annotation="subsets"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	EList<Feature> getConnectorEnd();
@@ -185,7 +192,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source <code>relatedFeature</code> for this Connector. If this is a binary Connector, then the <code>sourceFeature</code> is the first <code>relatedFeature</code>, and the first end Feature of the Connector must redefine the <code>source</code> Feature of the Connector binaryLinks from the Kernel Library. If this Cpmmectpr is not binary, then it has no <code>sourceFeature</code>.</p>
+	 * <p>The source <code>relatedFeature</code> for this Connector. If this is a binary Connector, then the <code>sourceFeature</code> is the first <code>relatedFeature</code>, and the first end Feature of the Connector must redefine the <code>source</code> Feature of the Connector binaryLinks from the Kernel Library. If this Connector is not binary, then it has no <code>sourceFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Feature</em>' reference.
 	 * @see #setSourceFeature(Feature)
@@ -226,7 +233,7 @@ public interface Connector extends Feature, Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The target <code>relatedFeatires</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>. If this is a binary Connector, then the end Features corresponding to the <code>relatedFeatures</code> must all redefine the <code>target</code> Feature of the Connector binaryLinks from the Kernel Library.</p>
+	 * <p>The target <code>relatedFeatires</code> for this Connector. This includes all the <code>relatedFeatures</code> other than the <code>sourceFeature</code>. If this is a binary Connector, then the end Feature corresponding to the <code>targetFeature</code> must redefine the <code>target</code> Feature of the Connector <code>binaryLinks</Code> from the Kernel Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_TargetFeature()
@@ -237,33 +244,5 @@ public interface Connector extends Feature, Relationship {
 	 * @generated
 	 */
 	EList<Feature> getTargetFeature();
-
-	/**
-	 * Returns the value of the '<em><b>Owned Association Type</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Association#getOwningConnector <em>Owning Connector</em>}'.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Feature#getOwnedType() <em>Owned Type</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Association Type</em>' reference isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Connector may optionally own the Association that types it.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Association Type</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_OwnedAssociationType()
-	 * @see org.omg.sysml.lang.sysml.Association#getOwningConnector
-	 * @model opposite="owningConnector" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	EList<Association> getOwnedAssociationType();
 
 } // Connector

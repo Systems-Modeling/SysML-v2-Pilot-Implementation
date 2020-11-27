@@ -432,7 +432,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     name=Name (ambiguity) ownedRelationship_comp+=ClassifierConjugation
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 */
 	protected void emit_ClassifierConjugationPart_ConjugatesKeyword_0_1_or_TildeKeyword_0_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -471,7 +471,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'type' (ambiguity) ownedRelationship_comp+=OwnedConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedConjugation
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedConjugation
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedConjugation
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedConjugation
 	 *     ownedRelationship_comp+=OwnedConjugation (ambiguity) ownedRelationship_comp+=OwnedConjugation
 	 *     ownedRelationship_comp+=OwnedGeneralization (ambiguity) ownedRelationship_comp+=OwnedConjugation
 	 */
@@ -583,7 +583,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) ('~' | 'conjugates') ownedRelationship_comp+=FeatureConjugation
 	 *     (rule start) (ambiguity) isSufficient?='all'
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
 	 *     isAbstract?='abstract' (ambiguity) (':' | ('typed' 'by')) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) (':>' | 'subsets') ownedRelationship_comp+=OwnedSubsetting
@@ -591,7 +591,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' (ambiguity) ('~' | 'conjugates') ownedRelationship_comp+=FeatureConjugation
 	 *     isAbstract?='abstract' (ambiguity) isSufficient?='all'
 	 *     isAbstract?='abstract' (ambiguity) name=Name
-	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ownedMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_Feature_FeatureKeyword_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -611,10 +611,10 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
+	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
@@ -718,7 +718,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) (':>>' | 'redefines') ownedRelationship_comp+=OwnedRedefinition
 	 *     (rule start) (ambiguity) isSufficient?='all'
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
 	 */
 	protected void emit_Parameter_FeatureKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -765,7 +765,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=OwnedRedefinition
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedRedefinition
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedRedefinition
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedRedefinition
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedRedefinition
 	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) ownedRelationship_comp+=OwnedRedefinition
 	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) ownedRelationship_comp+=OwnedRedefinition
 	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) ownedRelationship_comp+=OwnedRedefinition
@@ -820,7 +820,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'type' (ambiguity) ownedRelationship_comp+=OwnedGeneralization
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedGeneralization
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedGeneralization
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedGeneralization
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedGeneralization
 	 *     ownedRelationship_comp+=OwnedConjugation (ambiguity) ownedRelationship_comp+=OwnedGeneralization
 	 *     ownedRelationship_comp+=OwnedGeneralization (ambiguity) ownedRelationship_comp+=OwnedGeneralization
 	 */
@@ -858,7 +858,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=OwnedSubsetting
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedSubsetting
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedSubsetting
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedSubsetting
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedSubsetting
 	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) ownedRelationship_comp+=OwnedSubsetting
 	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) ownedRelationship_comp+=OwnedSubsetting
 	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) ownedRelationship_comp+=OwnedSubsetting
@@ -936,7 +936,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 */
 	protected void emit_SuperclassingPart_ColonGreaterThanSignKeyword_0_0_or_SpecializesKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1015,11 +1015,11 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=Name (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=FeatureValue (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ItemFlowEndMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
 	 *     ownedFeatureMembership_comp+=StepParameterMember ')' (ambiguity) (rule end)
+	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=ClassifierConjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=FeatureConjugation (ambiguity) (rule end)
 	 *     ownedRelationship_comp+=OwnedConjugation (ambiguity) (rule end)
@@ -1064,7 +1064,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     ownedFeatureMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping

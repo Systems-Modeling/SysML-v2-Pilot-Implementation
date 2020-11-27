@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,7 +96,7 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.STATE_DEFINITION__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

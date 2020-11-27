@@ -31,7 +31,7 @@ import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -76,7 +76,7 @@ public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements
 	 */
 	@Override
 	public EList<PortUsage> getInterfaceEnd() {
-		EList<PortUsage> ends = new NonNotifyingEcoreEList<>(PortUsage.class, this, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END);
+		EList<PortUsage> ends = new NonNotifyingEObjectEList<>(PortUsage.class, this, SysMLPackage.INTERFACE_DEFINITION__INTERFACE_END);
 		super.getAssociationEnd().stream().
 			filter(end->end instanceof PortUsage).
 			forEachOrdered(end->ends.add((PortUsage)end));

@@ -78,6 +78,15 @@ public interface SysMLFactory extends EFactory {
 	Expose createExpose();
 
 	/**
+	 * Returns a new object of class '<em>Requirement Verification Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Requirement Verification Membership</em>'.
+	 * @generated
+	 */
+	RequirementVerificationMembership createRequirementVerificationMembership();
+
+	/**
 	 * Returns a new object of class '<em>Subject Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,6 +175,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	FeatureMembership createFeatureMembership();
+
+	/**
+	 * Returns a new object of class '<em>Type Featuring</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Type Featuring</em>'.
+	 * @generated
+	 */
+	TypeFeaturing createTypeFeaturing();
 
 	/**
 	 * Returns a new object of class '<em>Conjugation</em>'.

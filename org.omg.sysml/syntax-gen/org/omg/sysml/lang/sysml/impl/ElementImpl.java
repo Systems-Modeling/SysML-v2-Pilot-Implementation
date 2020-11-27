@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -463,7 +463,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated NOT
 	 */
 	public BasicEList<Element> getOwnedElement() {
-		BasicEList<Element> ownedElements = new NonNotifyingEcoreEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
+		BasicEList<Element> ownedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ELEMENT__OWNED_ELEMENT);
 		ownedElements.addAllUnique(getOwnedRelationship().stream().
 				flatMap(relationship->relationship.getOwnedRelatedElement().stream()).collect(Collectors.toList()));
 		return ownedElements;
@@ -489,7 +489,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Comment> getDocumentationComment() {
-		EList<Comment> documentationComments = new NonNotifyingEcoreEList<>(Comment.class, this, SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT);
+		EList<Comment> documentationComments = new NonNotifyingEObjectEList<>(Comment.class, this, SysMLPackage.ELEMENT__DOCUMENTATION_COMMENT);
 		getDocumentation().stream().
 			map(Documentation::getDocumentingComment).
 			forEachOrdered(documentationComments::add);
@@ -503,7 +503,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<TextualRepresentation> getOwnedTextualRepresentation() {
-		EList<TextualRepresentation> ownedTextualRepresentations = new NonNotifyingEcoreEList<>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION);
+		EList<TextualRepresentation> ownedTextualRepresentations = new NonNotifyingEObjectEList<>(TextualRepresentation.class, this, SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION);
 		getOwnedAnnotation().stream().
 			map(Annotation::getAnnotatingElement).
 			filter(TextualRepresentation.class::isInstance).
@@ -599,7 +599,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Relationship> getOwnedRelationship() {
-		EList<Relationship> ownedRelationships = new NonNotifyingEcoreEList<>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP);
+		EList<Relationship> ownedRelationships = new NonNotifyingEObjectEList<>(Relationship.class, this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP);
 		ownedRelationships.addAll(getOwnedRelationship_comp());
 		ownedRelationships.addAll(getOwnedAnnotation());
 		return ownedRelationships;
@@ -612,7 +612,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Documentation> getDocumentation() {
-		EList<Documentation> documentation = new NonNotifyingEcoreEList<>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION);
+		EList<Documentation> documentation = new NonNotifyingEObjectEList<>(Documentation.class, this, SysMLPackage.ELEMENT__DOCUMENTATION);
 		documentation.addAll(getDocumentation_comp());
 		return documentation;
 	}
@@ -634,7 +634,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	@Override
 	public EList<Annotation> getOwnedAnnotation() {
-		EList<Annotation> ownedAnnotations = new NonNotifyingEcoreEList<>(Annotation.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
+		EList<Annotation> ownedAnnotations = new NonNotifyingEObjectEList<>(Annotation.class, this, SysMLPackage.ELEMENT__OWNED_ANNOTATION);
 		ownedAnnotations.addAll(getOwnedAnnotation_comp());
 		ownedAnnotations.addAll(getDocumentation());
 		return ownedAnnotations;

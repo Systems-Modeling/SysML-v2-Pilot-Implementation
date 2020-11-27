@@ -35,7 +35,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	 */
 	@Override
 	public EList<Behavior> getStateDefinition() {
-		EList<Behavior> behaviors = new NonNotifyingEcoreEList<>(Behavior.class, this, SysMLPackage.STATE_USAGE__STATE_DEFINITION);
+		EList<Behavior> behaviors = new NonNotifyingEObjectEList<>(Behavior.class, this, SysMLPackage.STATE_USAGE__STATE_DEFINITION);
 		super.getType().stream().
 			filter(type->type instanceof Behavior).
 			map(type->(Behavior)type).

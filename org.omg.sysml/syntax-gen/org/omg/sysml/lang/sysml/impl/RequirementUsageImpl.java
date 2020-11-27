@@ -46,7 +46,7 @@ import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -223,7 +223,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public EList<String> getText() {
-		EList<String> text = new NonNotifyingEcoreEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
+		EList<String> text = new NonNotifyingEObjectEList<>(String.class, this, SysMLPackage.REQUIREMENT_DEFINITION__TEXT);
 		getDocumentationComment().stream().map(Comment::getBody).forEachOrdered(text::add);
 		return text;
 	}
@@ -235,7 +235,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public EList<ConstraintUsage> getRequiredConstraint() {
-		EList<ConstraintUsage> constraints = new NonNotifyingEcoreEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
+		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ASSUMED_CONSTRAINT);
 		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.ASSUMPTION).forEachOrdered(constraints::add);
 		return constraints;
 	}
@@ -247,7 +247,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 */
 	@Override
 	public EList<ConstraintUsage> getAssumedConstraint() {
-		EList<ConstraintUsage> constraints = new NonNotifyingEcoreEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
+		EList<ConstraintUsage> constraints = new NonNotifyingEObjectEList<>(ConstraintUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__REQUIRED_CONSTRAINT);
 		RequirementDefinitionImpl.getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;
 	}

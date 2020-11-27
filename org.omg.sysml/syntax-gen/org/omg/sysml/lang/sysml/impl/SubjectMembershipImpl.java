@@ -169,6 +169,49 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 	 * @generated
 	 */
 	@Override
+	public Feature getOwnedMemberParameter_comp() {
+		return getOwnedSubjectParameter_comp();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwnedMemberParameter_comp(Feature newOwnedMemberParameter_comp, NotificationChain msgs) {
+		if (newOwnedMemberParameter_comp != null && !(newOwnedMemberParameter_comp instanceof Usage)) {
+			throw new IllegalArgumentException("newOwnedMemberParameter_comp must be an instance of Usage");
+		}
+		return basicSetOwnedSubjectParameter_comp((Usage) newOwnedMemberParameter_comp, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberParameter_comp(Feature newOwnedMemberParameter_comp) {
+		if (newOwnedMemberParameter_comp != null && !(newOwnedMemberParameter_comp instanceof Usage)) {
+			throw new IllegalArgumentException("newOwnedMemberParameter_comp must be an instance of Usage");
+		}
+		setOwnedSubjectParameter_comp((Usage) newOwnedMemberParameter_comp);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberParameter_comp() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SysMLPackage.SUBJECT_MEMBERSHIP__OWNED_SUBJECT_PARAMETER_COMP:
@@ -246,49 +289,6 @@ public class SubjectMembershipImpl extends ParameterMembershipImpl implements Su
 				return basicGetOwnedSubjectParameter() != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature getOwnedMemberParameter_comp() {
-		return getOwnedSubjectParameter_comp();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMemberParameter_comp(Feature newOwnedMemberParameter_comp, NotificationChain msgs) {
-		if (newOwnedMemberParameter_comp != null && !(newOwnedMemberParameter_comp instanceof Usage)) {
-			throw new IllegalArgumentException("newOwnedMemberParameter_comp must be an instance of Usage");
-		}
-		return basicSetOwnedSubjectParameter_comp((Usage) newOwnedMemberParameter_comp, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedMemberParameter_comp(Feature newOwnedMemberParameter_comp) {
-		if (newOwnedMemberParameter_comp != null && !(newOwnedMemberParameter_comp instanceof Usage)) {
-			throw new IllegalArgumentException("newOwnedMemberParameter_comp must be an instance of Usage");
-		}
-		setOwnedSubjectParameter_comp((Usage) newOwnedMemberParameter_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberParameter_comp() {
-  		return false;
 	}
 
 } //SubjectMembershipImpl

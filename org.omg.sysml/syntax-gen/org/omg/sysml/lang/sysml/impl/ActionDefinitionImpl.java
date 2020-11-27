@@ -36,7 +36,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEcoreEList;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,7 +95,7 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	 */
 	@Override
 	public EList<Feature> getParameter() {
-		EList<Feature> parameters = new NonNotifyingEcoreEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
+		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
 		parameters.addAll(getAllParameters());
 		return parameters;
 	}

@@ -93,7 +93,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage that is the <tt>ownedMemberFeature</tt> of this RequirementConstraintUsage.</p>
+	 * <p>The ConstraintUsage that is the <code>ownedMemberFeature</code> of this RequirementConstraintUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint comp</em>' containment reference.
 	 * @see #setConstraint_comp(ConstraintUsage)

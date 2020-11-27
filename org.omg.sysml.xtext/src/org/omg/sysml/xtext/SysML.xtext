@@ -178,6 +178,12 @@ DefinitionElement returns SysML::Element :
 	| ViewDefinition
 	| ViewpointDefinition
 	| RenderingDefinition
+    | BindingConnector
+    | Succession
+    | ItemFlow
+    | SuccessionItemFlow
+	| ConnectionUsage
+	| Connector
 ;
 	
 UsageElement returns SysML::Usage :
@@ -188,8 +194,6 @@ UsageElement returns SysML::Usage :
 	| TimeSliceUsage
 	| SnapshotUsage
 	| PortUsage
-	| ConnectionUsage
-	| Connector
 	| InterfaceUsage
 	| ActionUsage
 	| CalculationUsage
@@ -250,10 +254,6 @@ enum FeatureDirection returns SysML::FeatureDirectionKind:
 
 FeatureElement returns SysML::Feature :
       UsageElement
-    | BindingConnector
-    | Succession
-    | ItemFlow
-    | SuccessionItemFlow
 ;
 
 /* CLASSIFIERS */
@@ -288,7 +288,7 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedFeatureMembership_comp += MultiplicityMember 
+	ownedMembership_comp += MultiplicityMember 
 	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
 ;
 
@@ -348,22 +348,22 @@ OwnedRedefinition returns SysML::Redefinition:
 
 /* Multiplicity */
 
-MultiplicityMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = Multiplicity
+MultiplicityMember returns SysML::Membership :
+	ownedMemberElement_comp = Multiplicity
 ;
 
 Multiplicity returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	'[' ( ownedFeatureMembership_comp += LiteralIntegerMember '..' )? 
-	      ownedFeatureMembership_comp += LiteralUnlimitedNaturalMember ']'
+	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
+	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
 ;
 
-LiteralIntegerMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = LiteralInteger
+LiteralIntegerMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralInteger
 ;
 
-LiteralUnlimitedNaturalMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = LiteralUnlimitedNatural
+LiteralUnlimitedNaturalMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralUnlimitedNatural
 ;
 
 /* CONNECTORS */
@@ -376,7 +376,7 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 
 ConnectorEnd returns SysML::Feature :
 	ownedRelationship_comp += OwnedSubsetting 
-	( ownedFeatureMembership_comp += MultiplicityMember )?
+	( ownedMembership_comp += MultiplicityMember )?
 ;
 
 /* Binding Connectors */
@@ -451,8 +451,8 @@ ItemFeatureMember returns SysML::FeatureMembership :
 
 ItemFeature returns SysML::ItemFeature :
 	  ownedRelationship_comp += OwnedFeatureTyping 
-	  ( ownedFeatureMembership_comp += MultiplicityMember )?
-	| ownedFeatureMembership_comp += MultiplicityMember
+	  ( ownedMembership_comp += MultiplicityMember )?
+	| ownedMembership_comp += MultiplicityMember
 	  ( ownedRelationship_comp += OwnedFeatureTyping )?
 ;
 
@@ -597,11 +597,11 @@ fragment UsageBody returns SysML::Usage :
 ;
 
 fragment ValuePart returns SysML::Feature :
-	  ownedFeatureMembership_comp += FeatureValue
+	  ownedMembership_comp += FeatureValue
 ;
 
 fragment ValueOrFlowPart returns SysML::Feature :
-	ownedFeatureMembership_comp += ( FeatureValue | SourceItemFlowMember )
+	ownedMembership_comp += ( FeatureValue | SourceItemFlowMember )
 ;
 
 FeatureValue returns SysML::FeatureValue :
@@ -654,13 +654,7 @@ StructureUsageElement returns SysML::Feature :
 	| ViewRefUsage
 	| RenderingRefUsage
 	| PortUsage
-	| ConnectionUsage
-	| Connector
 	| InterfaceUsage
-	| BindingConnector
-	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
 ;
 
 IndividualUsageElement returns SysML::Usage :
@@ -1117,7 +1111,7 @@ MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} ( ownedFeatureMembership_comp += MultiplicityMember )?
+	{SysML::SourceEnd} ( ownedMembership_comp += MultiplicityMember )?
 ;
 
 EmptyTargetEndMember returns SysML::EndFeatureMembership :
@@ -1793,18 +1787,16 @@ SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )?
-    ( 'by' ownedFeatureMembership_comp += SatisfactionConnectorMember )?
+    ( 'by' ownedMembership_comp += SatisfactionConnectorMember )?
     InvariantPart RequirementBody
+;
+
+SatisfactionConnectorMember returns SysML::Membership :
+	ownedMemberElement_comp = SatisfactionConnector
 ;
 
 SatisfactionConnector returns SysML::BindingConnector :
 	ownedFeatureMembership_comp += EmptySourceEndMember ownedFeatureMembership_comp += ConnectorEndMember
-;
-
-/* REQUIREMENT MEMBERSHIPS */
-
-SatisfactionConnectorMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = SatisfactionConnector
 ;
 
 /* CASES */

@@ -30,8 +30,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
@@ -235,11 +238,17 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 
     private class LinkProvider implements SysML2PlantUMLLinkProvider {
+    	private Map<EObject, UUID> elementMap = new HashMap<EObject, UUID>(); 
+
         @Override
         public String getLinkString(EObject eObj) {
-            /* In the future, we can embed a proper link string
-               by implementing this method for interactive diagrams. */
-            return null;
+        	UUID uuid = elementMap.get(eObj);
+        	if (uuid == null) {
+        		uuid = UUID.randomUUID();
+        		elementMap.put(eObj,  uuid);
+        	}
+
+            return "psysml:" + uuid.toString();
         }
 
         @Override

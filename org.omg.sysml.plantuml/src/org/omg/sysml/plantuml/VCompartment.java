@@ -263,6 +263,7 @@ public class VCompartment extends VStructure {
 
     private void addFeatures() {
         Collections.sort(featureEntries);
+        final boolean isClassic = styleValue("classic") != null;
         
         final int size = featureEntries.size();
         EClass ec0 = null;
@@ -271,10 +272,14 @@ public class VCompartment extends VStructure {
             EClass ec1 = fe.f.eClass();
             if (!ec1.equals(ec0)) {
                 ec0 = ec1;
-                if (!ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
-                    append("--");
+                if (ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
+                    if (isClassic) {
+                        append("-- attributes --\n");
+                    }
+                } else {
+                    append("-- ");
                     append(getTitle(fe.f));
-                    append("--\n");
+                    append(" --\n");
                 }
             }
             if (fe.prefix != null) {

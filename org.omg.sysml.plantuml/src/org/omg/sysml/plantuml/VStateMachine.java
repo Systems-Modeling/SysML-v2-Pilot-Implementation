@@ -24,7 +24,6 @@
 
 package org.omg.sysml.plantuml;
 
-import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -48,7 +47,7 @@ public class VStateMachine extends VDefault {
 
     @Override
     public String caseStateUsage(StateUsage su) {
-        if (su instanceof ExhibitStateUsage) return "";
+        // if (su instanceof ExhibitStateUsage) return "";
         addState(su);
         return getString();
     }

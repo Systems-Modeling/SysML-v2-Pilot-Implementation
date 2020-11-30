@@ -24,22 +24,15 @@
 
 package org.omg.sysml.plantuml;
 
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 
 public class VStateMachine extends VDefault {
-    private void addState(Type typ) {
-    	String name = getName(typ);
-    	if (name == null) return;
-        if (typ instanceof Usage) {
-            append("rec usage ");
-        } else {
-            append("rec def ");
-        }
-        addNameWithId(typ, name, true);
-        addLink(typ);
+    private void addState(Type typ, boolean withStyle) {
+        addRecLine(typ, withStyle);
+        addGeneralizations(typ);
         VStateMembers v = new VStateMembers(this);
         v.startStateUsage(typ);
         append("\n");
@@ -47,15 +40,20 @@ public class VStateMachine extends VDefault {
 
     @Override
     public String caseStateUsage(StateUsage su) {
-        // if (su instanceof ExhibitStateUsage) return "";
-        addState(su);
+        addState(su, false);
+        return getString();
+    }
+    
+    @Override
+    public String caseExhibitStateUsage(ExhibitStateUsage esu) {
+        addState(esu, true);
         return getString();
     }
     
 
     @Override
     public String caseStateDefinition(StateDefinition sd) {
-        addState(sd);
+        addState(sd, true);
         return getString();
     }
     

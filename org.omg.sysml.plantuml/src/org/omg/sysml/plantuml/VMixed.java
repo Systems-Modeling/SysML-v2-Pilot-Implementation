@@ -80,7 +80,7 @@ public class VMixed extends VTree {
     @Override
     public String caseStateUsage(StateUsage su) {
         VStateMachine vs = new VStateMachine(this);
-        vs.caseStateUsage(su);
+        vs.visit(su);
         addRel(su, su, null);
         vs.flush();
         return "";
@@ -89,7 +89,7 @@ public class VMixed extends VTree {
     @Override
     public String caseStateDefinition(StateDefinition sd) {
         VStateMachine vs = new VStateMachine(this);
-        vs.caseStateDefinition(sd);
+        vs.visit(sd);
         addRel(sd, sd, null);
         vs.flush();
         return "";

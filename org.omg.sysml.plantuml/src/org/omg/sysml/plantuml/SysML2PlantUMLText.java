@@ -137,11 +137,7 @@ public class SysML2PlantUMLText {
     String styleString(Type typ) {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
-            if (diagramMode == MODE.Interconnection) {
-                ret = " <<";
-            } else {
-                ret = " <<(T,blue)";
-            }
+            ret = " <<(T,blue)";
         }
         if (typ instanceof Usage) {
             Usage u = (Usage) typ;

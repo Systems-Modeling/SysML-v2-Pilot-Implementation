@@ -161,10 +161,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 		var relatedFeatures = c.relatedFeature
 		
 		// Allow related features that are inherited by the owner of the connector
+		// (or have no featuring types and are thus implicitly inherited from Anything).
 		val cOwner = c.owner
 		if (cOwner instanceof Type) {
 			val ownerFeatures = cOwner.inheritedFeature
-			relatedFeatures.removeIf[f|ownerFeatures.contains(f)]
+			relatedFeatures.removeIf[f|f.featuringType.empty || ownerFeatures.contains(f)]
 		}
 		
 		val featuringTypes = c.featuringType
@@ -175,25 +176,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 				return
 			}
 		}
-	}
-	
-	//return features's owners up to and including the first one that is not a Feature and an owningType
-	protected def List<Element> getFeatureMembershipPath(Feature f){
-		val ownerList = newArrayList
- 		var owner = f.owner
- 		var owningType = f.owningType
-		while(owner instanceof Feature && owner === owningType) {			
-			ownerList.add(owner)
-			owningType = (owner as Feature).owningType
-			owner = owner.owner
-		}
-		if (owner instanceof Type) {
-			ownerList.add(owner)
-		} else if (owner !== null) {
-			// Use "null" as a marker for "package-level" ownership.
-			ownerList.add(null)
-		}
-		return ownerList
 	}
 	
 	@Check

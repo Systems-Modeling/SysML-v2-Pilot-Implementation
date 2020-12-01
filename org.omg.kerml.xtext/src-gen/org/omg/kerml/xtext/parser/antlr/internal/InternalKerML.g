@@ -2365,51 +2365,6 @@ ruleNonFeatureElement returns [EObject current=null]
 			$current = $this_Redefinition_19.current;
 			afterParserOrEnumRuleCall();
 		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getConnectorParserRuleCall_20());
-		}
-		this_Connector_20=ruleConnector
-		{
-			$current = $this_Connector_20.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getBindingConnectorParserRuleCall_21());
-		}
-		this_BindingConnector_21=ruleBindingConnector
-		{
-			$current = $this_BindingConnector_21.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getSuccessionParserRuleCall_22());
-		}
-		this_Succession_22=ruleSuccession
-		{
-			$current = $this_Succession_22.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getItemFlowParserRuleCall_23());
-		}
-		this_ItemFlow_23=ruleItemFlow
-		{
-			$current = $this_ItemFlow_23.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getNonFeatureElementAccess().getSuccessionItemFlowParserRuleCall_24());
-		}
-		this_SuccessionItemFlow_24=ruleSuccessionItemFlow
-		{
-			$current = $this_SuccessionItemFlow_24.current;
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -2471,6 +2426,51 @@ ruleFeatureElement returns [EObject current=null]
 		this_Invariant_4=ruleInvariant
 		{
 			$current = $this_Invariant_4.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureElementAccess().getConnectorParserRuleCall_5());
+		}
+		this_Connector_5=ruleConnector
+		{
+			$current = $this_Connector_5.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureElementAccess().getBindingConnectorParserRuleCall_6());
+		}
+		this_BindingConnector_6=ruleBindingConnector
+		{
+			$current = $this_BindingConnector_6.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureElementAccess().getSuccessionParserRuleCall_7());
+		}
+		this_Succession_7=ruleSuccession
+		{
+			$current = $this_Succession_7.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureElementAccess().getItemFlowParserRuleCall_8());
+		}
+		this_ItemFlow_8=ruleItemFlow
+		{
+			$current = $this_ItemFlow_8.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getFeatureElementAccess().getSuccessionItemFlowParserRuleCall_9());
+		}
+		this_SuccessionItemFlow_9=ruleSuccessionItemFlow
+		{
+			$current = $this_SuccessionItemFlow_9.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

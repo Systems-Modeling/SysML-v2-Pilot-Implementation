@@ -256,11 +256,6 @@ NonFeatureElement returns SysML::Element :
 	| Superclassing
 	| Subsetting
 	| Redefinition
-	| Connector
-	| BindingConnector
-	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
 ;
 
 FeatureElement returns SysML::Feature :
@@ -269,6 +264,11 @@ FeatureElement returns SysML::Feature :
 	| Expression
 	| BooleanExpression
 	| Invariant
+	| Connector
+	| BindingConnector
+	| Succession
+	| ItemFlow
+	| SuccessionItemFlow
 ;
 
 /* TYPES */
@@ -281,7 +281,7 @@ Type returns SysML::Type :
 ;
 
 fragment TypeDeclaration returns SysML::Type : 
-    (isSufficient ?= 'all' )? Identification?
+    ( isSufficient ?= 'all' )? Identification?
     ( ownedMembership_comp += MultiplicityMember )? 
     ( SpecializationPart | ConjugationPart )+
 ;

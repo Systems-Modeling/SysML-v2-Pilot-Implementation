@@ -41,7 +41,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class LifeClassImpl extends ClassImpl implements LifeClass {
 	
-	public static final String LIFE_CLASS_DEFAULT_NAME = "Life";
 	public static final String LIFE_CLASS_LIFE_SUPERCLASS = "Occurrences::Life";
 	
 	/**
@@ -61,14 +60,6 @@ public class LifeClassImpl extends ClassImpl implements LifeClass {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.LIFE_CLASS;
-	}
-	
-	@Override
-	public String basicGetName() {
-		if (super.basicGetName() == null) {
-			super.basicSetName(LIFE_CLASS_DEFAULT_NAME);
-		}
-		return super.basicGetName();
 	}
 	
 	@Override

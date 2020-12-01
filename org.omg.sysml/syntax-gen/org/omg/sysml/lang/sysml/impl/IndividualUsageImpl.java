@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
@@ -234,16 +235,44 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 
 	@Override
 	public void computeImplicitGeneralization() {
-		setTypingFor(this);
+		addIndividualDefinition();
 		super.computeImplicitGeneralization();
 	}
-		
-	@Override
-	protected List<Type> getFeatureTypes(List<Type> types) {
-		setTypingFor(this);
-		return super.getFeatureTypes(types);
+	
+	protected boolean needsIndividualDefinition() {
+		return basicGetOwnedTyping().stream().
+				map(FeatureTyping::getType).noneMatch(IndividualDefinition.class::isInstance) &&
+				basicGetOwnedSubsetting().stream().map(Subsetting::getSubsettedFeature).noneMatch(IndividualUsage.class::isInstance);
 	}
-
+		
+	protected void addIndividualDefinition() {
+		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
+			Type owningType = getOwningType();
+			if (owningType instanceof IndividualDefinition) {
+				FeatureTyping typing = super.basicGetOwnedTyping().stream().
+						filter(typ->typ.getType() == null).
+						findFirst().orElse(null);
+				if (typing == null) {
+					typing = SysMLFactory.eINSTANCE.createFeatureTyping();
+					getOwnedRelationship_comp().add(typing);
+				}
+				typing.setType(owningType);
+			} else if (owningType instanceof IndividualUsage) {
+				Subsetting subsetting = super.basicGetOwnedSubsetting().stream().
+						filter(subs->subs.getSubsettedFeature() == null).
+						findFirst().orElse(null);
+				if (subsetting == null) {
+					subsetting = SysMLFactory.eINSTANCE.createSubsetting();
+					getOwnedRelationship_comp().add(subsetting);
+				}
+				subsetting.setSubsettedFeature((IndividualUsage)owningType);
+			}
+		}
+	}
+	
+	/**
+	 * This method is used in TimeSliceFeatureImpl and SnapshotFeatureImpl.
+	 */
 	public static void setTypingFor(Feature feature) {
 		Type owningType = feature.getOwningType();
 		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {

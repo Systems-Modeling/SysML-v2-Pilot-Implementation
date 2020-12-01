@@ -9,7 +9,7 @@ package Views {
 	import Requirements::requirementChecks;
 	
 	abstract view def View :> Part {
-		ref view self : View :>> Part::self;
+		ref view :>> self : View;
 		
 		/**
 		 * Other Views that are used in the rendering of this View.
@@ -31,14 +31,14 @@ package Views {
 	 */
 	abstract viewpoint def ViewpointCheck :> RequirementCheck {
 		ref viewpoint thisViewpoint : ViewpointCheck :>> thisRequirement;		
-		subject subj : View[1] :>> RequirementCheck::subj;
+		subject : View[1];
 	}
 	
 	/**
 	 * Rendering is the base type of all RenderingDefinitions.
 	 */
 	abstract rendering def Rendering :> Part {
-		ref rendering self : Rendering :>> Part::self;
+		ref part :>> self : Rendering;
 		
 		/**
 		 * Other Renderings used to carry out this Rendering.

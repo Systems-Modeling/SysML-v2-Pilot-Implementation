@@ -282,19 +282,11 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	public void computeImplicitGeneralization() {
 		if (isAssumptionConstraint()) {
-			addAssumptionSubsetting();
+			addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
 		} else if (isRequirementConstraint()){
-			addRequirementSubsetting();
+			addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		super.computeImplicitGeneralization();
-	}
-	
-	protected void addAssumptionSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
-	}
-	
-	protected void addRequirementSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 	}
 	
 	protected void addSubsetting(String subsettedFeatureName) {
@@ -414,20 +406,19 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	public ConstraintUsage getSubsettedConstraint() {
+		Type subsettingBaseDefault = getSubsettingBaseDefault();
+		Type subsettingAssumptionFeature = getSubsettingAssumptionFeature();
+		Type subsettingRequirementFeature = getSubsettingRequirementFeature();
 		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
 		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(this::isIgnoredSubsetting)) {
+				allMatch(feature->feature == subsettingBaseDefault || 
+						 feature == subsettingAssumptionFeature ||
+				         feature == subsettingRequirementFeature)) {
 			return this;
 		} else {
 			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
 			return subsettedFeature instanceof ConstraintUsage? (ConstraintUsage)subsettedFeature: this;
 		}
-	}
-	
-	protected boolean isIgnoredSubsetting(Feature feature) {
-		return feature == getSubsettingBaseDefault() || 
-				 feature == getSubsettingAssumptionFeature() ||
-		         feature == getSubsettingRequirementFeature();
 	}
 	
 	protected Type getSubsettingBaseDefault() {

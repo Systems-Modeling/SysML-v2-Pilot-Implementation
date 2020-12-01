@@ -6,26 +6,24 @@ package VerificationTest {
 	
 	part vv : V;
 	
-	requirement def R {
+	requirement def VerificationObjective {
 		doc /* ... */
 	}
-	
-	requirement r : R;
 
 	verification def VerificationCase {		
 		subject v : V;	
-		objective {
-			verify requirement : R;
+		objective : VerificationObjective {
+			subject = v;
 		}
 		
-		Verifications::PassIf(v::m == 0)
+		v::m == 0
 	}
 	
 	verification def VerificationPlan {
 		subject v : V;
 		
 		objective {
-			verify r;
+			doc /* ... */
 		}
 		
 		verification verificationCase : VerificationCase;

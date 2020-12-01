@@ -13,7 +13,7 @@ package Cases {
 	 * Case is the base class of all CaseDefinitions.
 	 */
 	abstract case def Case :> Calculation {
-		ref case self : Case :>> Calculation::self;
+		ref case :>> self : Case;
 		
 		/**
 		 * The subject that was investigated by this Case.

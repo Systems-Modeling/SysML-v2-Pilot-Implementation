@@ -139,7 +139,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCaseRefUsageAccess().getAlternatives_1(), "rule__CaseRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getAnalysisCaseRefUsageAccess().getAlternatives_1(), "rule__AnalysisCaseRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getVerificationCaseRefUsageAccess().getAlternatives_1(), "rule__VerificationCaseRefUsage__Alternatives_1");
-			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getAlternatives(), "rule__RequirementVerificationUsage__Alternatives");
 			builder.put(grammarAccess.getViewRefUsageAccess().getAlternatives_1(), "rule__ViewRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getViewBodyAccess().getAlternatives(), "rule__ViewBody__Alternatives");
 			builder.put(grammarAccess.getViewBodyItemAccess().getAlternatives(), "rule__ViewBodyItem__Alternatives");
@@ -493,9 +492,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getVerificationCaseFlowUsageAccess().getGroup(), "rule__VerificationCaseFlowUsage__Group__0");
 			builder.put(grammarAccess.getVerificationCaseRefUsageAccess().getGroup(), "rule__VerificationCaseRefUsage__Group__0");
 			builder.put(grammarAccess.getVerificationCaseRefUsageAccess().getGroup_1_0(), "rule__VerificationCaseRefUsage__Group_1_0__0");
-			builder.put(grammarAccess.getRequirementVerificationMemberAccess().getGroup(), "rule__RequirementVerificationMember__Group__0");
-			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getGroup_0(), "rule__RequirementVerificationUsage__Group_0__0");
-			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getGroup_1(), "rule__RequirementVerificationUsage__Group_1__0");
 			builder.put(grammarAccess.getViewDefKeywordAccess().getGroup(), "rule__ViewDefKeyword__Group__0");
 			builder.put(grammarAccess.getViewDefinitionAccess().getGroup(), "rule__ViewDefinition__Group__0");
 			builder.put(grammarAccess.getViewUsageAccess().getGroup(), "rule__ViewUsage__Group__0");
@@ -875,7 +871,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTrueLiteralMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__TrueLiteralMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getRequirementBodyItemAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__RequirementBodyItem__OwnedFeatureMembership_compAssignment_1");
 			builder.put(grammarAccess.getRequirementBodyItemAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__RequirementBodyItem__OwnedFeatureMembership_compAssignment_2");
-			builder.put(grammarAccess.getRequirementBodyItemAccess().getOwnedFeatureMembership_compAssignment_3(), "rule__RequirementBodyItem__OwnedFeatureMembership_compAssignment_3");
 			builder.put(grammarAccess.getSubjectMemberAccess().getOwnedSubjectParameter_compAssignment_1(), "rule__SubjectMember__OwnedSubjectParameter_compAssignment_1");
 			builder.put(grammarAccess.getRequirementConstraintMemberAccess().getKindAssignment_1(), "rule__RequirementConstraintMember__KindAssignment_1");
 			builder.put(grammarAccess.getRequirementConstraintMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__RequirementConstraintMember__OwnedMemberFeature_compAssignment_2");
@@ -893,9 +888,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCaseRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__CaseRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getAnalysisCaseRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__AnalysisCaseRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getVerificationCaseRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__VerificationCaseRefUsage__IsCompositeAssignment_1_1");
-			builder.put(grammarAccess.getRequirementVerificationMemberAccess().getKindAssignment_1(), "rule__RequirementVerificationMember__KindAssignment_1");
-			builder.put(grammarAccess.getRequirementVerificationMemberAccess().getOwnedRequirement_compAssignment_2(), "rule__RequirementVerificationMember__OwnedRequirement_compAssignment_2");
-			builder.put(grammarAccess.getRequirementVerificationUsageAccess().getOwnedRelationship_compAssignment_0_0(), "rule__RequirementVerificationUsage__OwnedRelationship_compAssignment_0_0");
 			builder.put(grammarAccess.getViewRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ViewRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getViewBodyItemAccess().getOwnedImport_compAssignment_1(), "rule__ViewBodyItem__OwnedImport_compAssignment_1");
 			builder.put(grammarAccess.getExposeAccess().getOwnedRelationship_compAssignment_0(), "rule__Expose__OwnedRelationship_compAssignment_0");

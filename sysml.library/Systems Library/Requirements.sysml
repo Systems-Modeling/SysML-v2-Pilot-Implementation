@@ -40,7 +40,7 @@ package Requirements {
 	 * 
 	 */
 	abstract requirement def RequirementCheck :> RequirementConstraintCheck {
-		ref requirement thisRequirement: RequirementCheck :>> thisConstraint;
+		ref requirement thisRequirement: RequirementCheck :>> self;
 		
 		/**
 		 * The entity that is being checked for satisfaction of the required constraints.

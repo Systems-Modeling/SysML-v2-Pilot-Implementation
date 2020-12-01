@@ -1737,7 +1737,6 @@ fragment RequirementBodyItem returns SysML::Type :
 	  DefinitionBodyItem
 	| ownedFeatureMembership_comp += SubjectMember
 	| ownedFeatureMembership_comp += RequirementConstraintMember
-	| ownedFeatureMembership_comp += RequirementVerificationMember
 ;
 
 SubjectMember returns SysML::SubjectMembership :
@@ -1917,21 +1916,6 @@ VerificationCaseFlowUsage returns SysML::VerificationCaseUsage :
 VerificationCaseRefUsage returns SysML::VerificationCaseUsage :
 	UsagePrefix? ( 'ref' VerificationCaseUsageKeyword | isComposite ?= VerificationCaseUsageKeyword ) 
 	CalculationUsageDeclaration CaseBody
-;
-
-RequirementVerificationMember returns SysML::RequirementVerificationMembership :
-	DefinitionMemberPrefix kind = RequirementVerificationKind 
-	ownedRequirement_comp = RequirementVerificationUsage
-;
-
-enum RequirementVerificationKind returns SysML::RequirementConstraintKind :
-	requirement = 'verify'
-;
-
-RequirementVerificationUsage returns SysML::RequirementUsage :
-      ownedRelationship_comp += OwnedSubsetting FeatureSpecialization* 
-      CalculationUsageParameterPart? RequirementBody
-    | 'requirement' CalculationUsageDeclaration RequirementBody
 ;
 
 /* VIEWS */

@@ -13,7 +13,7 @@ package Calculations {
 	 * system or part of a system. Calculation is the base class of all CalculationDefinitions.
 	 */
 	abstract calc def Calculation :> Action, Evaluation {
-		ref calc self: Calculation :>> Action::self, Evaluation::self;
+		ref calc :>> self: Calculation;
 		
 		/**
 		 * The subactions of this Calculation that are Calculations.

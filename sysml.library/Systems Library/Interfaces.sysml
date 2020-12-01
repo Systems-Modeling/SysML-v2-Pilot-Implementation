@@ -9,8 +9,8 @@ package Interfaces {
 	 * InterfaceDefinitions.
 	 */
 	abstract interface def Interface :> Connection { 
-		end source: Port[0..*] :>> Connection::source;
-		end target: Port[0..*] :>> Connection::target;
+		end :>> source: Port[0..*];
+		end :>> target: Port[0..*];
 	}
 	
 	/**

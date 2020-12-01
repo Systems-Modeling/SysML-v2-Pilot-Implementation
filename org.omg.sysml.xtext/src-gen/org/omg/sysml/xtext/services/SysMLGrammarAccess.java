@@ -9556,15 +9556,18 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedFeatureMembership_compSubjectMemberParserRuleCall_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1.eContents().get(0);
 		private final Assignment cOwnedFeatureMembership_compAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cOwnedFeatureMembership_compRequirementConstraintMemberParserRuleCall_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_2.eContents().get(0);
+		private final Assignment cOwnedFeatureMembership_compAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cOwnedFeatureMembership_compRequirementVerificationMemberParserRuleCall_3_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_3.eContents().get(0);
 		
 		//fragment RequirementBodyItem returns SysML::Type:
 		//	DefinitionBodyItem
 		//	| ownedFeatureMembership_comp+=SubjectMember
-		//	| ownedFeatureMembership_comp+=RequirementConstraintMember;
+		//	| ownedFeatureMembership_comp+=RequirementConstraintMember
+		//	| ownedFeatureMembership_comp+=RequirementVerificationMember;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//DefinitionBodyItem | ownedFeatureMembership_comp+=SubjectMember |
-		//ownedFeatureMembership_comp+=RequirementConstraintMember
+		//ownedFeatureMembership_comp+=RequirementConstraintMember | ownedFeatureMembership_comp+=RequirementVerificationMember
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//DefinitionBodyItem
@@ -9581,6 +9584,12 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//RequirementConstraintMember
 		public RuleCall getOwnedFeatureMembership_compRequirementConstraintMemberParserRuleCall_2_0() { return cOwnedFeatureMembership_compRequirementConstraintMemberParserRuleCall_2_0; }
+		
+		//ownedFeatureMembership_comp+=RequirementVerificationMember
+		public Assignment getOwnedFeatureMembership_compAssignment_3() { return cOwnedFeatureMembership_compAssignment_3; }
+		
+		//RequirementVerificationMember
+		public RuleCall getOwnedFeatureMembership_compRequirementVerificationMemberParserRuleCall_3_0() { return cOwnedFeatureMembership_compRequirementVerificationMemberParserRuleCall_3_0; }
 	}
 	public class SubjectMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SubjectMember");
@@ -10605,6 +10614,92 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//CaseBody
 		public RuleCall getCaseBodyParserRuleCall_3() { return cCaseBodyParserRuleCall_3; }
+	}
+	public class RequirementVerificationMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RequirementVerificationMember");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cDefinitionMemberPrefixParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cKindAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cKindRequirementVerificationKindEnumRuleCall_1_0 = (RuleCall)cKindAssignment_1.eContents().get(0);
+		private final Assignment cOwnedRequirement_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedRequirement_compRequirementVerificationUsageParserRuleCall_2_0 = (RuleCall)cOwnedRequirement_compAssignment_2.eContents().get(0);
+		
+		//RequirementVerificationMember SysML::RequirementVerificationMembership:
+		//	DefinitionMemberPrefix kind=RequirementVerificationKind
+		//	ownedRequirement_comp=RequirementVerificationUsage;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//DefinitionMemberPrefix kind=RequirementVerificationKind ownedRequirement_comp=RequirementVerificationUsage
+		public Group getGroup() { return cGroup; }
+		
+		//DefinitionMemberPrefix
+		public RuleCall getDefinitionMemberPrefixParserRuleCall_0() { return cDefinitionMemberPrefixParserRuleCall_0; }
+		
+		//kind=RequirementVerificationKind
+		public Assignment getKindAssignment_1() { return cKindAssignment_1; }
+		
+		//RequirementVerificationKind
+		public RuleCall getKindRequirementVerificationKindEnumRuleCall_1_0() { return cKindRequirementVerificationKindEnumRuleCall_1_0; }
+		
+		//ownedRequirement_comp=RequirementVerificationUsage
+		public Assignment getOwnedRequirement_compAssignment_2() { return cOwnedRequirement_compAssignment_2; }
+		
+		//RequirementVerificationUsage
+		public RuleCall getOwnedRequirement_compRequirementVerificationUsageParserRuleCall_2_0() { return cOwnedRequirement_compRequirementVerificationUsageParserRuleCall_2_0; }
+	}
+	public class RequirementVerificationUsageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RequirementVerificationUsage");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Assignment cOwnedRelationship_compAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final RuleCall cOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0 = (RuleCall)cOwnedRelationship_compAssignment_0_0.eContents().get(0);
+		private final RuleCall cFeatureSpecializationParserRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
+		private final RuleCall cCalculationUsageParameterPartParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
+		private final RuleCall cRequirementBodyParserRuleCall_0_3 = (RuleCall)cGroup_0.eContents().get(3);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cRequirementKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cCalculationUsageDeclarationParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final RuleCall cRequirementBodyParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
+		
+		//RequirementVerificationUsage SysML::RequirementUsage:
+		//	ownedRelationship_comp+=OwnedSubsetting FeatureSpecialization*
+		//	CalculationUsageParameterPart? RequirementBody
+		//	| 'requirement' CalculationUsageDeclaration RequirementBody;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedRelationship_comp+=OwnedSubsetting FeatureSpecialization* CalculationUsageParameterPart? RequirementBody |
+		//'requirement' CalculationUsageDeclaration RequirementBody
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ownedRelationship_comp+=OwnedSubsetting FeatureSpecialization* CalculationUsageParameterPart? RequirementBody
+		public Group getGroup_0() { return cGroup_0; }
+		
+		//ownedRelationship_comp+=OwnedSubsetting
+		public Assignment getOwnedRelationship_compAssignment_0_0() { return cOwnedRelationship_compAssignment_0_0; }
+		
+		//OwnedSubsetting
+		public RuleCall getOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0() { return cOwnedRelationship_compOwnedSubsettingParserRuleCall_0_0_0; }
+		
+		//FeatureSpecialization*
+		public RuleCall getFeatureSpecializationParserRuleCall_0_1() { return cFeatureSpecializationParserRuleCall_0_1; }
+		
+		//CalculationUsageParameterPart?
+		public RuleCall getCalculationUsageParameterPartParserRuleCall_0_2() { return cCalculationUsageParameterPartParserRuleCall_0_2; }
+		
+		//RequirementBody
+		public RuleCall getRequirementBodyParserRuleCall_0_3() { return cRequirementBodyParserRuleCall_0_3; }
+		
+		//'requirement' CalculationUsageDeclaration RequirementBody
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'requirement'
+		public Keyword getRequirementKeyword_1_0() { return cRequirementKeyword_1_0; }
+		
+		//CalculationUsageDeclaration
+		public RuleCall getCalculationUsageDeclarationParserRuleCall_1_1() { return cCalculationUsageDeclarationParserRuleCall_1_1; }
+		
+		//RequirementBody
+		public RuleCall getRequirementBodyParserRuleCall_1_2() { return cRequirementBodyParserRuleCall_1_2; }
 	}
 	public class ViewKeywordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ViewKeyword");
@@ -13574,6 +13669,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'require'
 		public Keyword getRequirementRequireKeyword_1_0() { return cRequirementRequireKeyword_1_0; }
 	}
+	public class RequirementVerificationKindElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RequirementVerificationKind");
+		private final EnumLiteralDeclaration cRequirementEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
+		private final Keyword cRequirementVerifyKeyword_0 = (Keyword)cRequirementEnumLiteralDeclaration.eContents().get(0);
+		
+		//enum RequirementVerificationKind returns SysML::RequirementConstraintKind:
+		//	requirement='verify';
+		public EnumRule getRule() { return rule; }
+		
+		//requirement='verify'
+		public EnumLiteralDeclaration getRequirementEnumLiteralDeclaration() { return cRequirementEnumLiteralDeclaration; }
+		
+		//'verify'
+		public Keyword getRequirementVerifyKeyword_0() { return cRequirementVerifyKeyword_0; }
+	}
 	
 	private final RootPackageElements pRootPackage;
 	private final IdentificationElements pIdentification;
@@ -13929,6 +14039,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final VerificationCaseUsageElements pVerificationCaseUsage;
 	private final VerificationCaseFlowUsageElements pVerificationCaseFlowUsage;
 	private final VerificationCaseRefUsageElements pVerificationCaseRefUsage;
+	private final RequirementVerificationMemberElements pRequirementVerificationMember;
+	private final RequirementVerificationKindElements eRequirementVerificationKind;
+	private final RequirementVerificationUsageElements pRequirementVerificationUsage;
 	private final ViewKeywordElements pViewKeyword;
 	private final ViewDefKeywordElements pViewDefKeyword;
 	private final ViewDefinitionElements pViewDefinition;
@@ -14392,6 +14505,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pVerificationCaseUsage = new VerificationCaseUsageElements();
 		this.pVerificationCaseFlowUsage = new VerificationCaseFlowUsageElements();
 		this.pVerificationCaseRefUsage = new VerificationCaseRefUsageElements();
+		this.pRequirementVerificationMember = new RequirementVerificationMemberElements();
+		this.eRequirementVerificationKind = new RequirementVerificationKindElements();
+		this.pRequirementVerificationUsage = new RequirementVerificationUsageElements();
 		this.pViewKeyword = new ViewKeywordElements();
 		this.pViewDefKeyword = new ViewDefKeywordElements();
 		this.pViewDefinition = new ViewDefinitionElements();
@@ -17946,7 +18062,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//fragment RequirementBodyItem returns SysML::Type:
 	//	DefinitionBodyItem
 	//	| ownedFeatureMembership_comp+=SubjectMember
-	//	| ownedFeatureMembership_comp+=RequirementConstraintMember;
+	//	| ownedFeatureMembership_comp+=RequirementConstraintMember
+	//	| ownedFeatureMembership_comp+=RequirementVerificationMember;
 	public RequirementBodyItemElements getRequirementBodyItemAccess() {
 		return pRequirementBodyItem;
 	}
@@ -18337,6 +18454,39 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getVerificationCaseRefUsageRule() {
 		return getVerificationCaseRefUsageAccess().getRule();
+	}
+	
+	//RequirementVerificationMember SysML::RequirementVerificationMembership:
+	//	DefinitionMemberPrefix kind=RequirementVerificationKind
+	//	ownedRequirement_comp=RequirementVerificationUsage;
+	public RequirementVerificationMemberElements getRequirementVerificationMemberAccess() {
+		return pRequirementVerificationMember;
+	}
+	
+	public ParserRule getRequirementVerificationMemberRule() {
+		return getRequirementVerificationMemberAccess().getRule();
+	}
+	
+	//enum RequirementVerificationKind returns SysML::RequirementConstraintKind:
+	//	requirement='verify';
+	public RequirementVerificationKindElements getRequirementVerificationKindAccess() {
+		return eRequirementVerificationKind;
+	}
+	
+	public EnumRule getRequirementVerificationKindRule() {
+		return getRequirementVerificationKindAccess().getRule();
+	}
+	
+	//RequirementVerificationUsage SysML::RequirementUsage:
+	//	ownedRelationship_comp+=OwnedSubsetting FeatureSpecialization*
+	//	CalculationUsageParameterPart? RequirementBody
+	//	| 'requirement' CalculationUsageDeclaration RequirementBody;
+	public RequirementVerificationUsageElements getRequirementVerificationUsageAccess() {
+		return pRequirementVerificationUsage;
+	}
+	
+	public ParserRule getRequirementVerificationUsageRule() {
+		return getRequirementVerificationUsageAccess().getRule();
 	}
 	
 	///* VIEWS */ /* View Definitions */ ViewKeyword:

@@ -47,6 +47,8 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.RequirementUsage
+import org.omg.sysml.lang.sysml.impl.RequirementUsageImpl
 
 /**
  * This class contains custom validation rules. 
@@ -135,6 +137,12 @@ class KerMLValidator extends AbstractKerMLValidator {
 			error(INVALID_FEATURE_NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
 		
 	}
+	
+	@Check
+	def checkSatisfyRequirementUsage(RequirementUsage usage) {
+		(usage as RequirementUsageImpl).transform
+	}
+	
 	@Check
 	def checkRelationship(Relationship r){
 		(r as ElementImpl).transform();

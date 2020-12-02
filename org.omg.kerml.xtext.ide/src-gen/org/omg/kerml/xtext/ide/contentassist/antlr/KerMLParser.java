@@ -72,7 +72,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTypedByAccess().getAlternatives_0(), "rule__TypedBy__Alternatives_0");
 			builder.put(grammarAccess.getSubsetsAccess().getAlternatives_0(), "rule__Subsets__Alternatives_0");
 			builder.put(grammarAccess.getRedefinesAccess().getAlternatives_0(), "rule__Redefines__Alternatives_0");
-			builder.put(grammarAccess.getFeatureTypingAccess().getAlternatives_4(), "rule__FeatureTyping__Alternatives_4");
+			builder.put(grammarAccess.getFeatureTypingAccess().getAlternatives_3(), "rule__FeatureTyping__Alternatives_3");
 			builder.put(grammarAccess.getSubsettingAccess().getAlternatives_3(), "rule__Subsetting__Alternatives_3");
 			builder.put(grammarAccess.getRedefinitionAccess().getAlternatives_3(), "rule__Redefinition__Alternatives_3");
 			builder.put(grammarAccess.getFeatureConjugationPartAccess().getAlternatives_0(), "rule__FeatureConjugationPart__Alternatives_0");
@@ -188,6 +188,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureAccess().getGroup_1_0(), "rule__Feature__Group_1_0__0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup(), "rule__FeatureDeclaration__Group__0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getGroup_1_0(), "rule__FeatureDeclaration__Group_1_0__0");
+			builder.put(grammarAccess.getTypeFeaturingPartAccess().getGroup(), "rule__TypeFeaturingPart__Group__0");
+			builder.put(grammarAccess.getTypeFeaturingPartAccess().getGroup_3(), "rule__TypeFeaturingPart__Group_3__0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_0(), "rule__FeatureSpecializationPart__Group_0__0");
 			builder.put(grammarAccess.getFeatureSpecializationPartAccess().getGroup_1(), "rule__FeatureSpecializationPart__Group_1__0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getGroup(), "rule__MultiplicityPart__Group__0");
@@ -201,8 +203,11 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRedefinitionsAccess().getGroup(), "rule__Redefinitions__Group__0");
 			builder.put(grammarAccess.getRedefinitionsAccess().getGroup_1(), "rule__Redefinitions__Group_1__0");
 			builder.put(grammarAccess.getRedefinesAccess().getGroup(), "rule__Redefines__Group__0");
+			builder.put(grammarAccess.getTypeFeaturingAccess().getGroup(), "rule__TypeFeaturing__Group__0");
+			builder.put(grammarAccess.getTypeFeaturingAccess().getGroup_1(), "rule__TypeFeaturing__Group_1__0");
 			builder.put(grammarAccess.getFeatureTypingAccess().getGroup(), "rule__FeatureTyping__Group__0");
-			builder.put(grammarAccess.getFeatureTypingAccess().getGroup_4_1(), "rule__FeatureTyping__Group_4_1__0");
+			builder.put(grammarAccess.getFeatureTypingAccess().getGroup_0(), "rule__FeatureTyping__Group_0__0");
+			builder.put(grammarAccess.getFeatureTypingAccess().getGroup_3_1(), "rule__FeatureTyping__Group_3_1__0");
 			builder.put(grammarAccess.getSubsettingAccess().getGroup(), "rule__Subsetting__Group__0");
 			builder.put(grammarAccess.getSubsettingAccess().getGroup_0(), "rule__Subsetting__Group_0__0");
 			builder.put(grammarAccess.getRedefinitionAccess().getGroup(), "rule__Redefinition__Group__0");
@@ -424,6 +429,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getClassifierConjugationAccess().getOriginalTypeAssignment(), "rule__ClassifierConjugation__OriginalTypeAssignment");
 			builder.put(grammarAccess.getFeatureAccess().getIsAbstractAssignment_0(), "rule__Feature__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getFeatureDeclarationAccess().getIsSufficientAssignment_0(), "rule__FeatureDeclaration__IsSufficientAssignment_0");
+			builder.put(grammarAccess.getTypeFeaturingPartAccess().getOwnedRelationship_compAssignment_2(), "rule__TypeFeaturingPart__OwnedRelationship_compAssignment_2");
+			builder.put(grammarAccess.getTypeFeaturingPartAccess().getOwnedRelationship_compAssignment_3_1(), "rule__TypeFeaturingPart__OwnedRelationship_compAssignment_3_1");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getOwnedMembership_compAssignment_0(), "rule__MultiplicityPart__OwnedMembership_compAssignment_0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getIsOrderedAssignment_1_0(), "rule__MultiplicityPart__IsOrderedAssignment_1_0");
 			builder.put(grammarAccess.getMultiplicityPartAccess().getIsNonuniqueAssignment_1_1(), "rule__MultiplicityPart__IsNonuniqueAssignment_1_1");
@@ -433,8 +440,11 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSubsetsAccess().getOwnedRelationship_compAssignment_1(), "rule__Subsets__OwnedRelationship_compAssignment_1");
 			builder.put(grammarAccess.getRedefinitionsAccess().getOwnedRelationship_compAssignment_1_1(), "rule__Redefinitions__OwnedRelationship_compAssignment_1_1");
 			builder.put(grammarAccess.getRedefinesAccess().getOwnedRelationship_compAssignment_1(), "rule__Redefines__OwnedRelationship_compAssignment_1");
-			builder.put(grammarAccess.getFeatureTypingAccess().getTypedFeatureAssignment_3(), "rule__FeatureTyping__TypedFeatureAssignment_3");
-			builder.put(grammarAccess.getFeatureTypingAccess().getTypeAssignment_5(), "rule__FeatureTyping__TypeAssignment_5");
+			builder.put(grammarAccess.getTypeFeaturingAccess().getFeatureOfTypeAssignment_2(), "rule__TypeFeaturing__FeatureOfTypeAssignment_2");
+			builder.put(grammarAccess.getTypeFeaturingAccess().getFeaturingTypeAssignment_4(), "rule__TypeFeaturing__FeaturingTypeAssignment_4");
+			builder.put(grammarAccess.getOwnedTypeFeaturingAccess().getFeaturingTypeAssignment(), "rule__OwnedTypeFeaturing__FeaturingTypeAssignment");
+			builder.put(grammarAccess.getFeatureTypingAccess().getTypedFeatureAssignment_2(), "rule__FeatureTyping__TypedFeatureAssignment_2");
+			builder.put(grammarAccess.getFeatureTypingAccess().getTypeAssignment_4(), "rule__FeatureTyping__TypeAssignment_4");
 			builder.put(grammarAccess.getOwnedFeatureTypingAccess().getTypeAssignment(), "rule__OwnedFeatureTyping__TypeAssignment");
 			builder.put(grammarAccess.getSubsettingAccess().getSubsettingFeatureAssignment_2(), "rule__Subsetting__SubsettingFeatureAssignment_2");
 			builder.put(grammarAccess.getSubsettingAccess().getSubsettedFeatureAssignment_4(), "rule__Subsetting__SubsettedFeatureAssignment_4");

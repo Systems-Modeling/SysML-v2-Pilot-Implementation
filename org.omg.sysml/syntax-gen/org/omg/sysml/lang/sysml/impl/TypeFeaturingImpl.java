@@ -411,11 +411,6 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 		return (Element)eInternalContainer();
 	}
 	
-	@Override
-	public void transform() {
-		((ElementImpl)getFeatureOfType()).transform();
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

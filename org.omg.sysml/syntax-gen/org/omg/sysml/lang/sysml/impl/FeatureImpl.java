@@ -458,12 +458,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
 			forEachOrdered(redefinedFeatures::add);
 		
-		if (implicitGeneralTypes.containsKey(SysMLPackage.eINSTANCE.getRedefinition())) {
-			implicitGeneralTypes.get(SysMLPackage.eINSTANCE.getRedefinition())
-					.stream().
-					map(Feature.class::cast).
-					forEachOrdered(redefinedFeatures::add);
-		}
+		getImplicitGeneralTypesOnly(SysMLPackage.eINSTANCE.getRedefinition())
+				.stream().
+				map(Feature.class::cast).
+				forEachOrdered(redefinedFeatures::add);
 		
 		return redefinedFeatures; 
 	}

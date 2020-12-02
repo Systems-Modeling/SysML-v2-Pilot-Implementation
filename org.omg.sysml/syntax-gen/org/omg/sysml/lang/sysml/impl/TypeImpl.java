@@ -309,6 +309,10 @@ public class TypeImpl extends PackageImpl implements Type {
 		return types.isEmpty() ? null : types.get(0);
 	}
 	
+	public boolean isImplicitGeneralizationDeclaredFor(EClass eClass) {
+		return implicitGeneralTypes.containsKey(eClass);
+	}
+	
 	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
 		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
 	}

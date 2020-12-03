@@ -59,6 +59,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -381,8 +382,13 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String caseAcceptActionUsage(AcceptActionUsage pau) {
+		public String caseAcceptActionUsage(AcceptActionUsage aau) {
             return "<<accept action>> ";
+		}
+
+		@Override
+		public String caseSendActionUsage(SendActionUsage sau) {
+            return "<<send action>> ";
 		}
 
 		@Override

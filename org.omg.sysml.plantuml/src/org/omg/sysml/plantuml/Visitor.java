@@ -151,20 +151,24 @@ public abstract class Visitor extends SysMLSwitch<String> {
     }
 
     protected void addLink(EObject eObj) {
-        addLink(eObj, null);
+        addLink(sb, eObj, null);
     }
 
     protected void addLink(EObject eObj, String txt) {
+        addLink(sb, eObj, txt);
+    }
+
+    private void addLink(StringBuilder ss, EObject eObj, String txt) {
         String uriStr = getLinkStr(eObj);
         if (uriStr == null) return;
-        append("[[");
-        append(uriStr);
-        append(' ');
+        ss.append("[[");
+        ss.append(uriStr);
+        ss.append(' ');
         if (txt != null) {
-            append(txt);
-            append("]]");
+            ss.append(txt);
+            ss.append("]]");
         } else {
-            append("]] ");
+            ss.append("]] ");
         }
     }
 
@@ -320,9 +324,12 @@ public abstract class Visitor extends SysMLSwitch<String> {
         addMultiplicityString(ss, pr.rel);
 
         outputPRId(ss, pr.dest);
+        ss.append(' ');
+        addLink(ss, pr.rel, null);
+
         String desc = pr.getDescription();
         if (!((desc == null) || (desc.isEmpty()))) {
-            ss.append(" : ");
+            ss.append(": ");
             ss.append(desc);
         }
         ss.append('\n');

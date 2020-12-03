@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.Behavior;
@@ -41,6 +42,7 @@ import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Dependency;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -51,11 +53,13 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
+import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -75,7 +79,8 @@ public class SysML2PlantUMLStyle {
             + "skinparam classbackgroundcolor white\n"
             + "skinparam shadowing false\n"
             + "skinparam wrapWidth 300\n"
-            + "hide circle\n");
+            + "hide circle\n", null,
+            "classic", "true");
         add("STDCOLOR",
             "Standard style with colors",
             "skinparam wrapWidth 300\n"
@@ -364,6 +369,26 @@ public class SysML2PlantUMLStyle {
 		public String caseClass(Class object) {
             if (SysMLPackage.Literals.CLASS.equals(object.eClass())) return " ";
             return null;
+		}
+
+		@Override
+		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
+            return "<<exhibit state>> ";
+		}
+
+		@Override
+		public String casePerformActionUsage(PerformActionUsage pau) {
+            return "<<perform action>> ";
+		}
+
+		@Override
+		public String caseAcceptActionUsage(AcceptActionUsage aau) {
+            return "<<accept action>> ";
+		}
+
+		@Override
+		public String caseSendActionUsage(SendActionUsage sau) {
+            return "<<send action>> ";
 		}
 
 		@Override

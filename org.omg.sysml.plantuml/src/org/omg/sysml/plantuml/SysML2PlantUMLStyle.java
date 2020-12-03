@@ -91,7 +91,9 @@ public class SysML2PlantUMLStyle {
                 public String caseBindingConnector(BindingConnector object) {
                     return " -[thickness=5,#red]- ";
                 }
-            }, null), "decoratedRedefined", "true");
+            }, null),
+            "decoratedRedefined", "true",
+            "compartmentTree", "true");
         add("PLANTUML",
             "PlantUML Style", " ",
              new StyleSwitch(new StyleRelDefaultSwitch() {

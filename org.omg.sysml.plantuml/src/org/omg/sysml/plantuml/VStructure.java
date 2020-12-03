@@ -130,7 +130,7 @@ public abstract class VStructure extends VDefault {
         if (styleValue("decoratedRedefined") != null) {
             String rt = redefinedFeatureText(f);
             if (rt != null) {
-                append('>');
+                append("<&bar-trig> ");
                 addFeatureTextInternal(f, name);
                 append(" <s>");
                 append(rt);

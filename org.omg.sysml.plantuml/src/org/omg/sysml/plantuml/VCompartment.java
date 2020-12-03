@@ -34,8 +34,10 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -43,6 +45,7 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
@@ -67,7 +70,7 @@ public class VCompartment extends VStructure {
         return true;
     }
 
-    private static class FeatureEntry implements Comparable<FeatureEntry> {
+    protected static class FeatureEntry implements Comparable<FeatureEntry> {
         public final Feature f;
         public final String alias;
         public final String prefix;
@@ -127,25 +130,49 @@ public class VCompartment extends VStructure {
             return alias.compareTo(o.alias);
         }
 
+        public List<FeatureEntry> children;
+        public void add(FeatureEntry fe) {
+            if (children == null) {
+                children = new ArrayList<FeatureEntry>();
+            }
+            children.add(fe);
+        }
+
         public FeatureEntry(Feature f, String alias, String prefix) {
             this.f = f;
             this.alias = alias;
             this.prefix = prefix;
+            this.children = null;
         }
     }
 
     private List<FeatureEntry> featureEntries = new ArrayList<FeatureEntry>();
+
+    protected FeatureEntry addFeature(Feature f,
+                                      String alias,
+                                      String prefix,
+                                      boolean nocheck,
+                                      boolean norec,
+                                      FeatureEntry parent) {
+        if (!nocheck && getFeatureName(f) == null) return null;
+        if (!norec && (alias == null) && (prefix == null)) {
+            if (rec(f, false)) return null;
+        }
+        FeatureEntry fe = new FeatureEntry(f, alias, prefix);
+        if (parent == null) {
+            featureEntries.add(fe);
+        } else {
+            parent.add(fe);
+        }
+        return fe;
+    }
 
     protected void addFeature(Feature f,
                               String alias,
                               String prefix,
                               boolean nocheck,
                               boolean norec) {
-        if (!nocheck && getFeatureName(f) == null) return;
-        if (!norec && (alias == null) && (prefix == null)) {
-            if (rec(f, false)) return;
-        }
-        featureEntries.add(new FeatureEntry(f, alias, prefix));
+        addFeature(f, alias, prefix, nocheck, norec, null);
     }
 
     protected void addFeature(Feature f,
@@ -164,6 +191,45 @@ public class VCompartment extends VStructure {
     public String casePartUsage(PartUsage pu) {
         rec(pu, true);
         return "";
+    }
+
+    private class CompTree {
+        private final FeatureEntry parent;
+
+        public void process(Feature f) {
+            for (Membership m: f.getOwnedMembership()) {
+                Element e = m.getMemberElement();
+                if (e instanceof Expression) {
+                    // Do not show it
+                } else if (e instanceof Connector) {
+                    // Do not show it
+                } else if (e instanceof Feature) {
+                	Feature f2 = (Feature) e;
+                    FeatureEntry fe = addFeature(f2, m.getMemberName(), null, false, true, parent);
+                    CompTree ct = new CompTree(fe);
+                    ct.process(f2);
+                } else {
+                    rec(e, true);
+                }
+            }
+        }
+
+        private CompTree(FeatureEntry fe) {
+            this.parent = fe;
+        }
+    }
+
+    protected String tree(Feature f) {
+        if (styleValue("compartmentTree") == null) return null; 
+        FeatureEntry fe = addFeature(f, null, null, false, true, null);
+        CompTree ct = new CompTree(fe);
+        ct.process(f);
+        return "";
+    }
+
+    @Override
+    public String casePortUsage(PortUsage pu) {
+        return tree(pu);
     }
 
     @Override
@@ -261,26 +327,34 @@ public class VCompartment extends VStructure {
         }
     }
 
-    private void addFeatures() {
-        Collections.sort(featureEntries);
+    private void addFeatures(List<FeatureEntry> es, int level) {
+        Collections.sort(es);
         final boolean isClassic = styleValue("classic") != null;
         
-        final int size = featureEntries.size();
+        final int size = es.size();
         EClass ec0 = null;
         for (int i = 0; i < size; i++) {
-            FeatureEntry fe = featureEntries.get(i);
-            EClass ec1 = fe.f.eClass();
-            if (!ec1.equals(ec0)) {
-                ec0 = ec1;
-                if (ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
-                    if (isClassic) {
-                        append("-- attributes --\n");
+            FeatureEntry fe = es.get(i);
+            if (level == 0) {
+                EClass ec1 = fe.f.eClass();
+                if (!ec1.equals(ec0)) {
+                    ec0 = ec1;
+                    if (ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
+                        if (isClassic) {
+                            append("-- attributes --\n");
+                        }
+                    } else {
+                        append("-- ");
+                        append(getTitle(fe.f));
+                        append(" --\n");
                     }
-                } else {
-                    append("-- ");
-                    append(getTitle(fe.f));
-                    append(" --\n");
                 }
+            }
+            if (level > 0) {
+                for (int j = 0; j < level; j++) {
+                    append("|_");
+                }
+                append(' ');
             }
             if (fe.prefix != null) {
                 append(fe.prefix);
@@ -291,7 +365,7 @@ public class VCompartment extends VStructure {
             } else if (addFeatureText(fe.f)) {
                 boolean first = true;
                 for (int j = i + 1; j < size; j++) {
-                    FeatureEntry fe2 = featureEntries.get(j);
+                    FeatureEntry fe2 = es.get(j);
                     if (fe.f.equals(fe2.f)) {
                         if (fe2.alias != null) {
                             if (first) append(" <b>as</b> ");
@@ -306,13 +380,17 @@ public class VCompartment extends VStructure {
                 }
                 append('\n');
             }
+
+            if (fe.children != null) {
+                addFeatures(fe.children, level + 1);
+            }
         }
     }
 
     public void startType(Type typ) {
         this.base = typ;
         traverse(typ);
-        addFeatures();
+        addFeatures(featureEntries, 0);
     }
 
     public List<VTree> process(VTree parent, Type typ) {

@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseDefinition;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.Behavior;
@@ -52,6 +53,7 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
+import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
@@ -371,6 +373,16 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseExhibitStateUsage(ExhibitStateUsage esu) {
             return "<<exhibit state>> ";
+		}
+
+		@Override
+		public String casePerformActionUsage(PerformActionUsage pau) {
+            return "<<perform action>> ";
+		}
+
+		@Override
+		public String caseAcceptActionUsage(AcceptActionUsage pau) {
+            return "<<accept action>> ";
 		}
 
 		@Override

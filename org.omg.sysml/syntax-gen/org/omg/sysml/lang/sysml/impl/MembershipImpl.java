@@ -399,8 +399,11 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	}
 	
 	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
-		memberName = ((ElementImpl)newOwnedMemberElement_comp).basicGetName();
-		((ElementImpl)newOwnedMemberElement_comp).basicSetName(null);
+		ElementImpl element = (ElementImpl)newOwnedMemberElement_comp;
+		if (element.isNameSet()) {
+			memberName = element.basicGetName();
+			element.unsetName();
+		}
 		return basicSetOwnedMemberElement_compGen(newOwnedMemberElement_comp, msgs);
 	}
 

@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard ISO-80000-03:2019 "Space and Time"
+ * Generated on 2020-12-03T14:29:01Z from standard ISO-80000-3:2019 "Space and Time"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -153,7 +153,7 @@ package ISQSpaceTime {
 
     /**
      * source: item 3-1.11 displacement
-     * symbol(s): Δ vec(r)
+     * symbol(s): vec(Δr)
      * application domain: General
      * name: Displacement (specializes Length)
      * quantity dimension: L^1

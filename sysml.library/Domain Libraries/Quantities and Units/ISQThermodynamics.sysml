@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard ISO-80000-05:2019 "Thermodynamics"
+ * Generated on 2020-12-03T14:29:01Z from standard ISO-80000-5:2019 "Thermodynamics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-5:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -14,29 +14,29 @@ package ISQThermodynamics {
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
 
-    /**
-     * source: item 5-1 temperature, thermodynamic temperature
+    /**    
+     * source: item 5-1 thermodynamic temperature, temperature
      * symbol(s): T, Θ
      * application domain: General
-     * name: Temperature
+     * name: ThermodynamicTemperature
      * quantity dimension: Θ^1
      * measurement unit(s): K
-     * definition: partial derivative of internal energy with respect to entropy at constant volume and constant number of particles in the system: `T = ((partial U)/(partial S))_(V,N)` where U is internal energy (item 5-20.2), S is entropy (item 5-18), V is volume (ISO 80000-3), and N is number of particles
+     * definition: partial derivative of internal energy with respect to entropy at constant volume and constant number of particles in the system: `T = ((partial U)/(partial S))_(V,N)` where `U` is internal energy (item 5-20.2), `S` is entropy (item 5-18), `V` is volume (ISO 80000-3), and `N` is number of particles
      * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in de grees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted T_(90) and t_(90), respectively (replacing T_(68) and t_(68) defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of T_(90) and t_(90) are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References^[5^],^[6^]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference^[7^].
      */
-    attribute def TemperatureUnit :> SIDerivedUnit {
-        attribute temperaturePowerFactor :>> SIDerivedUnit::temperaturePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
+    attribute def ThermodynamicTemperatureUnit :> SimpleUnit {
+        attribute unitPowerFactor :>> SimpleUnit::unitPowerFactor {
+            attribute unit: ThermodynamicTemperatureUnit :>> UnitPowerFactor::unit;
         }
     }
-    attribute def TemperatureValue :> QuantityValue {
+    attribute def ThermodynamicTemperatureValue :> QuantityValue {
         attribute num: Real :>> QuantityValue::num;
-        attribute mRef: TemperatureUnit :>> QuantityValue::mRef;
-    }
-    attribute temperature: TemperatureValue :> quantity;
-
-    alias TemperatureValue as ThermodynamicTemperatureValue;
+        attribute mRef: ThermodynamicTemperatureUnit :>> QuantityValue::mRef;
+    }    
     attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> quantity;
+
+    alias ThermodynamicTemperatureValue as TemperatureValue;
+    attribute temperature: TemperatureValue :> quantity;
 
     /**
      * source: item 5-2 Celsius temperature

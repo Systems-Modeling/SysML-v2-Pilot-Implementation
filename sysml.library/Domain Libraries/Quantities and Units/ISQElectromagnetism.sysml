@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard IEC-80000-06:2008 "Electromagnetism"
+ * Generated on 2020-12-03T14:29:01Z from standard IEC-80000-6:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,

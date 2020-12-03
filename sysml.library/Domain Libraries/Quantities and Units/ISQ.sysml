@@ -5,19 +5,31 @@ package ISQ {
 	private import ScalarValues::Real;
 	private import Quantities::*;
 	private import UnitsAndScales::*;
+
+    // ISO 80000-3 "Space and Time" 
     import ISQSpaceTime::*;
+    // ISO 80000-4 "Mechanics" 
     import ISQMechanics::*;
+    // ISO 80000-5 "Thermodynamics" 
     import ISQThermodynamics::*;
+    // IEC 80000-6 "Electromagnetism" 
     import ISQElectromagnetism::*;
+    // ISO 80000-7 "Light" 
     import ISQLight::*;
+    // ISO 80000-8 "Acoustics" 
+    import ISQAcoustics::*;
+    // ISO 80000-9 "Physical chemistry and molecular physics" 
     import ISQChemistryMolecular::*;
+    // ISO 80000-10 "Atomic and nuclear physics"
     import ISQAtomicNuclear::*;
+    // ISO 80000-11 "Characteristic numbers" 
+    import ISQCharacteristicNumbers::*;
 	
 	/*
-	 * Base units are defined in the ISQ packaged, one for each of the seven base quantities in ISO/IEC 80000
-	 * - length in ISQSpaceTime (ISO 80000-3)
+	 * The ISQ base quantities are defined in the packages for the individual ISO/IEC 80000 parts, as follows:
+     * - length in ISQSpaceTime (ISO 80000-3)
      * - mass in ISQMechanics (ISO 80000-4)
-     * - duration or time in ISQSpaceTime (ISO 80000-3)
+     * - time or duration in ISQSpaceTime (ISO 80000-3) - Note: ISO 80000-3:2019 defines duration as the primary name.
      * - electric current in ISQElectromagnetism (IEC 80000-6)
      * - thermodynamic temperature in ISQThermodynamics (ISO 80000-5)
      * - amount of substance in ISQChemistryMolecular (ISO 80000-9)
@@ -32,31 +44,31 @@ package ISQ {
      * effectively making the default equivalent to a DimensionOneUnit.
 	 */	 
 	abstract attribute def SIDerivedUnit :> DerivedUnit {
-		attribute lengthPowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute lengthPowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: LengthUnit;
 			attribute redefines exponent = 0;
 		}
-		attribute massPowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute massPowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: MassUnit;
 			attribute redefines exponent = 0;
 		}
-		attribute timePowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute timePowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: TimeUnit;
 			attribute redefines exponent = 0;
 		}
-		attribute electricCurrentPowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute electricCurrentPowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: ElectricCurrentUnit;
 			attribute redefines exponent = 0;
 		}
-		attribute temperaturePowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute temperaturePowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: TemperatureUnit;
 			attribute redefines exponent = 0;
 		}
-		attribute amountOfSubstancePowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute amountOfSubstancePowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: AmountOfSubstanceUnit;
 			attribute redefines exponent = 0;
 		}
-		attribute luminousIntensityPowerFactor :> MeasurementUnit::unitPowerFactor {
+		attribute luminousIntensityPowerFactor subsets MeasurementUnit::unitPowerFactor {
 			attribute redefines unit: LuminousIntensityUnit;
 			attribute redefines exponent = 0;
 		}

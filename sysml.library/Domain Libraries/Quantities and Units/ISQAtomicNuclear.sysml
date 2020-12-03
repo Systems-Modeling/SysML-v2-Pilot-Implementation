@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard ISO-80000-10:2019 "Atomic and nuclear physics"
+ * Generated on 2020-12-03T14:29:01Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-10:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -1511,7 +1511,7 @@ package ISQAtomicNuclear {
      * application domain: General
      * name: TotalMassStoppingPower
      * quantity dimension: L^4*T^-2
-     * measurement unit(s): eV*m^‑2/kg, J*m^2/kg, m^4*s^-2
+     * measurement unit(s): eV*m^-2/kg, J*m^2/kg, m^4*s^-2
      * definition: quotient of the total linear stopping power `S` (item 10-54) and the mass density `ρ` (ISO 80000-4) of the material: `S_m` = S/`ρ`
      * remarks: The quotient of total mass stopping power of a material and that of a reference material is called relative mass stopping power.
      */
@@ -2065,13 +2065,13 @@ package ISQAtomicNuclear {
 
     /**
      * source: item 10-78.2 infinite multiplication factor
-     * symbol(s): k_(oo)
+     * symbol(s): k_∞
      * application domain: General
      * name: InfiniteMultiplicationFactor
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: multiplication factor (item 10-78.1) for an infinite medium or for an infinite repeating lattice
-     * remarks: For a thermal reactor, `k_∞`` = η·ε·p·f`
+     * remarks: For a thermal reactor, `k_∞ = η*ε*p*f`
      */
     attribute def InfiniteMultiplicationFactorUnit :> DimensionOneUnit {
     }
@@ -2101,7 +2101,7 @@ package ISQAtomicNuclear {
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: sum of all energy deposits in a given volume: `ε = sum_i ε_i` where the summation is performed over all energy (ISO 80000-5) deposits `ε_i` of interaction `i` in that volume
-     * remarks: Energy imparted is a stochastic quantity. `ε_i` is given by: `ε_i` = `ε_(`in) -` ε_(`out) + `Q` where `ε_(`in) is the energy (ISO 80000-5) of the incident ionizing particle, excluding rest energy (item 10-3), `ε_(`out) is the sum of the energies (ISO 80000-5) of all ionizing particles leaving the interaction, excluding rest energy (item 10-3), and `Q` is the change in the rest energies (item 10-3) of the nucleus and of all particles involved in the interaction. `Q` > 0 means decrease of rest energy; `Q` < 0 means increase of rest energy. Stochastic quantities such as the energy imparted and the specific energy imparted (item 10-81.2) and their probability distributions have been introduced as they describe the discontinuous nature of the ionizing radiations as a determinant of radiochemical and radiobiological effects. In radiation applications involving large numbers of ionizing particles, e.g. in medicine, radiation protection and materials testing and processing, these fluctuations are adequately represented by the expectation values of the probability distributions. Non-stochastic quantities such as particle fluence (item 10-43), absorbed dose (item 10-81.1) and kerma (item 10-86.1) are based on these expectation values.
+     * remarks: Energy imparted is a stochastic quantity. `ε_i` is given by: `ε_i = ε_(i n) - ε_(out) + Q` where `ε_(i n)` is the energy (ISO 80000-5) of the incident ionizing particle, excluding rest energy (item 10-3), `ε_(out)` is the sum of the energies (ISO 80000-5) of all ionizing particles leaving the interaction, excluding rest energy (item 10-3), and `Q` is the change in the rest energies (item 10-3) of the nucleus and of all particles involved in the interaction. `Q > 0` means decrease of rest energy; `Q < 0` means increase of rest energy. Stochastic quantities such as the energy imparted and the specific energy imparted (item 10-81.2) and their probability distributions have been introduced as they describe the discontinuous nature of the ionizing radiations as a determinant of radiochemical and radiobiological effects. In radiation applications involving large numbers of ionizing particles, e.g. in medicine, radiation protection and materials testing and processing, these fluctuations are adequately represented by the expectation values of the probability distributions. Non-stochastic quantities such as particle fluence (item 10-43), absorbed dose (item 10-81.1) and kerma (item 10-86.1) are based on these expectation values.
      */
     attribute def EnergyImpartedUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {

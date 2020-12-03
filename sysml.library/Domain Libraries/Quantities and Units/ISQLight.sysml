@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * from standard ISO-80000-07:2019 "Light"
+ * Generated on 2020-12-03T14:29:01Z from standard ISO-80000-7:2019 "Light"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-7:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,

@@ -81,7 +81,7 @@ public class KerML2XMI extends SysMLUtil {
 		EcoreUtil.resolveAll(this.resourceSet);
 		
 		System.out.println("Transforming...");
-		ElementUtil.transformAll(this.resourceSet);
+		ElementUtil.transformAll(this.resourceSet, true);
 		
 		Set<Resource> outputResources = new HashSet<Resource>();
  		for (Object object: this.resourceSet.getResources().toArray()) {

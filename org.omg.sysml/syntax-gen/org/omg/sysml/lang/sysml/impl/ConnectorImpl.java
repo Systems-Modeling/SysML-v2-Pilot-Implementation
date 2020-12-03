@@ -489,7 +489,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public static class DerivedConnectorEndList extends DerivedEObjectEList<Feature> {
 		public DerivedConnectorEndList(InternalEObject owner) {
 			super(Feature.class, owner, SysMLPackage.CONNECTOR__CONNECTOR_END, 
-				  new int[]{SysMLPackage.PACKAGE__OWNED_MEMBERSHIP});
+				  new int[]{SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
 		}
 		
 		@Override

@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.TypeFeaturing
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String metaclassText(Element element) {
-		(element as ElementImpl).transform()
 		element.eClass.name
 	}
 
@@ -120,7 +119,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Type type) {
-		(type as TypeImpl).transform()
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'

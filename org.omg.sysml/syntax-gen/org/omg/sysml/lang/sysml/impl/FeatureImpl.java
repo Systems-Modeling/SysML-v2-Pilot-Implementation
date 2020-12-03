@@ -250,6 +250,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {
 		visitedFeatures.add(this);
 		types.addAll(getFeatureTypes());
+		
+		
 		Conjugation conjugator = getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();

@@ -43,30 +43,30 @@ public class ElementUtil {
 		((TypeImpl)type).addImplicitGeneralizations();
 	}
 	
-	public static void transformAll(Element root) {
+	public static void transformAll(Element root, boolean generateImplicitElements) {
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
-			transformAll(relationship);
+			transformAll(relationship, generateImplicitElements);
 			for (Element element: relationship.getOwnedRelatedElement()) {
-				transformAll(element);
+				transformAll(element, generateImplicitElements);
 			}
 		}
-		if (root instanceof Type) {
+		if (generateImplicitElements && root instanceof Type) {
 			addImplicitGeneralizations((Type)root);
 		}
 	}
 	
-	public static void transformAll(Resource resource) {
+	public static void transformAll(Resource resource, boolean generateImplicitElements) {
 		for (EObject object: resource.getContents()) {
 			if (object instanceof Element) {
-				transformAll((Element)object);
+				transformAll((Element)object, generateImplicitElements);
 			}
 		}
 	}
 	
-	public static void transformAll(ResourceSet resourceSet) {
+	public static void transformAll(ResourceSet resourceSet, boolean generateImplicitElements) {
 		for (Resource resource: resourceSet.getResources()) {
-			transformAll(resource);
+			transformAll(resource, generateImplicitElements);
 		}
 	}
 

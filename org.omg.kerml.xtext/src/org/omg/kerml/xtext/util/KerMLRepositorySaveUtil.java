@@ -181,7 +181,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				this.read(args);
 				
 				System.out.println("Transforming...");
-				ElementUtil.transformAll(this.resourceSet);
+				ElementUtil.transformAll(this.resourceSet, true);
 				
 				System.out.println("\nBase path is " + this.getBasePath());
 				System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());

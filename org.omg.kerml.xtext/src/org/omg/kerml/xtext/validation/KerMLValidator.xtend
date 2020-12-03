@@ -47,8 +47,6 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
-import org.omg.sysml.lang.sysml.RequirementUsage
-import org.omg.sysml.lang.sysml.impl.RequirementUsageImpl
 
 /**
  * This class contains custom validation rules. 
@@ -135,17 +133,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val types = (f as FeatureImpl).type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE_NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
-		
-	}
-	
-	@Check
-	def checkSatisfyRequirementUsage(RequirementUsage usage) {
-		(usage as RequirementUsageImpl).transform
 	}
 	
 	@Check
 	def checkRelationship(Relationship r){
-		(r as ElementImpl).transform();
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
@@ -209,8 +200,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (rf.length !== 2) {
 			return //ignore binding connectors with invalid syntax
 		}
-		
-		rf.forEach[f|(f as FeatureImpl).transform]
 		
 //		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
 //		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]

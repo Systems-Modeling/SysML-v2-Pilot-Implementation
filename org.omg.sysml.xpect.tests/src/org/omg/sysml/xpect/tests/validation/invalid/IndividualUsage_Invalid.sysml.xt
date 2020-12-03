@@ -5,6 +5,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -16,6 +17,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -31,19 +33,7 @@ package 'Individuals and Roles' {
 	part def BB :> B;
 	part def C;
 	
-	//if this individual is not redefined by B 
-	//snapshot b_1_1 : AA :>> b_1; cases problem - b_1_1 is having type of not just individual but part def
-	individual def AA :> BB;
-	individual def CC :> A;
-	individual def DD;
-
-	individual def A_1 :> A {
-		part b_1 : B;
-		part c_1 : C;
-	}
-	individual def B_1 :> B;
-	// XPECT errors --> "An individual must be typed by one individual definition." at "individual two_types : A_1, B_1;"
-	individual two_types : A_1, B_1;
+individual def AA :> B;
 
 	individual a_1 : A_1 {
 		snapshot a_1_1 {

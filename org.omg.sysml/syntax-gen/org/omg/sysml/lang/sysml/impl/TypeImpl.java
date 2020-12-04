@@ -287,6 +287,10 @@ public class TypeImpl extends PackageImpl implements Type {
 		cleanImplicitGeneralization();
 	}
 	
+	public boolean isImplicitGeneralTypesEmpty() {
+		return implicitGeneralTypes.isEmpty();
+	}
+	
 	public List<Type> getImplicitGeneralTypes() {
 		return implicitGeneralTypes.values().stream().
 				flatMap(Collection::stream).

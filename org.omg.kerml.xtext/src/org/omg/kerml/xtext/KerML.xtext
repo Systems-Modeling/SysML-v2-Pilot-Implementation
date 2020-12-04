@@ -256,11 +256,7 @@ NonFeatureElement returns SysML::Element :
 	| Superclassing
 	| Subsetting
 	| Redefinition
-	| Connector
-	| BindingConnector
-	| Succession
-	| ItemFlow
-	| SuccessionItemFlow
+	| TypeFeaturing
 ;
 
 FeatureElement returns SysML::Feature :
@@ -269,6 +265,11 @@ FeatureElement returns SysML::Feature :
 	| Expression
 	| BooleanExpression
 	| Invariant
+	| Connector
+	| BindingConnector
+	| Succession
+	| ItemFlow
+	| SuccessionItemFlow
 ;
 
 /* TYPES */
@@ -281,7 +282,7 @@ Type returns SysML::Type :
 ;
 
 fragment TypeDeclaration returns SysML::Type : 
-    (isSufficient ?= 'all' )? Identification?
+    ( isSufficient ?= 'all' )? Identification?
     ( ownedMembership_comp += MultiplicityMember )? 
     ( SpecializationPart | ConjugationPart )+
 ;
@@ -429,7 +430,12 @@ fragment FeatureDeclaration returns SysML::Feature :
 	( Identification ( FeatureSpecializationPart | FeatureConjugationPart )?
 	| FeatureSpecializationPart
 	| FeatureConjugationPart
-	)
+	) TypeFeaturingPart?
+;
+
+fragment TypeFeaturingPart returns SysML::Feature :
+	'featured' 'by' ownedRelationship_comp += OwnedTypeFeaturing 
+	( ',' ownedRelationship_comp += OwnedTypeFeaturing )*
 ;
 
 fragment FeatureSpecializationPart returns SysML::Feature :
@@ -470,10 +476,22 @@ fragment Redefines returns SysML::Feature :
 	( ':>>' | 'redefines' ) ownedRelationship_comp += OwnedRedefinition
 ;
 
+/* Type Featuring */
+
+TypeFeaturing returns SysML::TypeFeaturing :
+	'featuring' ( Identification? 'of')?
+	featureOfType = [SysML::Feature | QualifiedName]
+	'by' featuringType = [SysML::Feature | QualifiedName] ';'
+;
+
+OwnedTypeFeaturing returns SysML::TypeFeaturing :
+	featuringType = [SysML::Type | QualifiedName]
+;
+
 /* Feature Typing */
 
 FeatureTyping returns SysML::FeatureTyping :
-	'generalization' Identification?
+	( 'generalization' Identification? )?
     'typing' typedFeature = [SysML::Feature | QualifiedName]
     (':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
 ;

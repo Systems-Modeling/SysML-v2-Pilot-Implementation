@@ -31,12 +31,23 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 END_SETUP 
 */
 package P {
-	part a;
+	part def A {
+		part x;
+	}
 	part def B {
-		part c {
-			part d;
+		part y {
+			part z;
 		}
-		// XPECT warnings --> "Connected features should have a common context" at "connect P::a to c::d;"
-		connect P::a to c::d;
+		// XPECT warnings --> "Connected features should have a common context" at "connect A::x to y::z;"
+		connect A::x to y::z;
+	}
+	part a {
+		part x;
+	}
+	part b {
+		part y :> a;
+		part z;
+		// XPECT warnings --> "Connected features should have a common context" at "connect y::x to z;"
+		connect y::x to z;
 	}
 }

@@ -84,6 +84,8 @@ import org.omg.sysml.lang.sysml.SubjectMembership
 import org.omg.sysml.lang.sysml.ObjectiveMembership
 import org.omg.sysml.lang.sysml.ReturnParameterMembership
 import org.omg.sysml.lang.sysml.FeatureMembership
+import org.omg.sysml.lang.sysml.RequirementVerificationMembership
+import org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl
 
 /**
  * This class contains custom validation rules. 
@@ -142,16 +144,18 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_RENDERINGUSAGE_MSG = 'A rendering must be typed by one rendering definition.'
 	
 	public static val INVALID_VIEWDEFINITION_RENDER = 'Invalid ViewDefinition - invalid render';
-	public static val INVALID_VIEWDEFINITION_RENDER_MSG = 'A view definition may have at most one rendering';
+	public static val INVALID_VIEWDEFINITION_RENDER_MSG = 'A view definition may have at most one rendering.';
 	public static val INVALID_VIEWUSAGE_RENDER = 'Invalid ViewUsage - invalid render';
-	public static val INVALID_VIEWUSAGE_RENDER_MSG = 'A view may have at most one rendering';
+	public static val INVALID_VIEWUSAGE_RENDER_MSG = 'A view may have at most one rendering.';
 	
 	public static val INVALID_SUBJECTMEMBERSHIP = 'Invalid SubjectMembership - too many';
-	public static val INVALID_SUBJECTMEMBERSHIP_MSG = 'Only one subject is allowed';
+	public static val INVALID_SUBJECTMEMBERSHIP_MSG = 'Only one subject is allowed.';
 	public static val INVALID_OBJECTIVEMEMBERSHIP = 'Invalid ObjectiveMembership - too many';
-	public static val INVALID_OBJECTIVEMEMBERSHIP_MSG = 'Only one objective is allowed';	
+	public static val INVALID_OBJECTIVEMEMBERSHIP_MSG = 'Only one objective is allowed.';	
 	public static val INVALID_RETURNPARAMETERMEMBERSHIP = 'Invalid ReturnParameterMembership - too many'
-	public static val INVALID_RETURNPARAMETERMEMBERSHIP_MSG = 'Only one return parameter is allowed'
+	public static val INVALID_RETURNPARAMETERMEMBERSHIP_MSG = 'Only one return parameter is allowed.'
+	public static val INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP = 'Invalid RequirementVerificationMembership - not allowed.'
+	public static val INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG = 'A requirement verification must be in the objective of a verification case.'
 	
 	@Check
 	def checkUsage(Usage usage) {
@@ -161,11 +165,11 @@ class SysMLValidator extends KerMLValidator {
 		if (owningMembership instanceof VariantMembership) {
 			// A variant Usage must be owned by a variation
 			if (!owningPackage.isVariation) {
-				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
+				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
 			}
 		// A variation must not own non-variant Usages (except for parameters)
 		} else if (owningPackage.isVariation && !(owningMembership instanceof ParameterMembership)) {
-				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.usage_VariantMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
+				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
 		}
 	}
 	
@@ -278,6 +282,13 @@ class SysMLValidator extends KerMLValidator {
 	@Check // Must have at most one owned return parameter.
 	def checkReturnMembership(ReturnParameterMembership mem) {
 		checkAtMostOneFeature(ReturnParameterMembership, mem, INVALID_RETURNPARAMETERMEMBERSHIP_MSG, INVALID_RETURNPARAMETERMEMBERSHIP)
+	}
+	
+	@Check // Must be owned by objective of verification case.
+	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
+		if (!(mem as RequirementVerificationMembershipImpl).isLegalVerification()) {
+			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
+		}
 	}
 	
 	protected def boolean checkAtMostOneFeature(Class<?> kind, FeatureMembership mem, String msg, String eId) {

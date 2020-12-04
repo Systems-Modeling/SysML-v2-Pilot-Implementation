@@ -38,11 +38,13 @@ import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -70,6 +72,9 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 
 	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
 	public static final String REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT = "Requirements::RequirementCheck::subrequirements";
+	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
+	
+	private Type subsettingVerificationFeature = null;
 
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
@@ -259,13 +264,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
 	}
 	
-	public boolean isSubrequirement() {
-		Type owningType = getOwningType();
-		return !isAssumptionConstraint() &&
-			   (owningType instanceof RequirementDefinition || 
-			    owningType instanceof RequirementUsage);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,7 +333,20 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
   		return false;
 	}
 	
-	// Additional overrides
+	// Utility methods
+	
+	public boolean isSubrequirement() {
+		Type owningType = getOwningType();
+		return !isAssumptionConstraint() &&
+			   (owningType instanceof RequirementDefinition || 
+			    owningType instanceof RequirementUsage);
+	}
+
+	public boolean isVerifiedRequirement() {
+		FeatureMembership membership = getOwningFeatureMembership();
+		return membership instanceof RequirementVerificationMembership &&
+			   ((RequirementVerificationMembershipImpl)membership).isLegalVerification();
+	}
 	
 	public boolean isObjective() {
 		return getOwningFeatureMembership() instanceof ObjectiveMembership;
@@ -347,6 +358,30 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 			   null;
 	}
 	
+	// Additional overrides
+	
+	@Override
+	public void addRequirementSubsetting() {
+		if (isVerifiedRequirement()) {
+			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+		} else {
+			super.addRequirementSubsetting();
+		}
+	}
+	
+	@Override
+	protected boolean isIgnoredSubsetting(Feature feature) {
+		return feature == getSubsettingVerificationFeature() ||
+			   super.isIgnoredSubsetting(feature);
+	}
+	
+	protected Type getSubsettingVerificationFeature() {
+		if (subsettingVerificationFeature == null) {
+			subsettingVerificationFeature = getDefaultType(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+		}
+		return subsettingVerificationFeature;
+	}
+
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return isObjective()? Collections.singletonList(getObjectiveRequirementOf(type)):

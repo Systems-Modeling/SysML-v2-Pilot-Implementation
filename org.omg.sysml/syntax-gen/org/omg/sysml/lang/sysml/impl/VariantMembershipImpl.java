@@ -90,11 +90,7 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 	}
 
 	public NotificationChain basicSetOwnedVariantUsage_comp(Usage newOwnedVariantUsage_comp, NotificationChain msgs) {
-		ElementImpl element = (ElementImpl)newOwnedVariantUsage_comp;
-		if (element.isNameSet()) {
-			memberName = element.basicGetName();
-			element.unsetName();
-		}
+		setMemberNameFrom(newOwnedVariantUsage_comp);
 		return basicSetOwnedVariantUsage_compGen(newOwnedVariantUsage_comp, msgs);
 	}
 

@@ -652,8 +652,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	// Additional
 	
-	private String name;
-	private boolean isNameSet = false;
+	String name;
 	
 	/**
 	 * Get the locally stored value for the element name.
@@ -667,22 +666,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	public void basicSetName(String newName) {
 		name = newName;
-		isNameSet = true;
-	}
-	
-	/**
-	 * Unset the locally stored value for the element name.
-	 */
-	public void unsetName() {
-		name = null;
-		isNameSet = false;
-	}
-	
-	/**
-	 * Return whether a locally stored value has been explicitly set for the element name.
-	 */
-	public boolean isNameSet() {
-		return isNameSet;
 	}
 	
 	/**

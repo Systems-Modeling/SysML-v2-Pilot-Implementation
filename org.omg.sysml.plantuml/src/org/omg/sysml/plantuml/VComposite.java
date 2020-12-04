@@ -48,16 +48,8 @@ public class VComposite extends VStructure {
      + "skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n",
      new StyleSwitch(null, new StyleStereotypeSwitch() {
          @Override
-         public String caseElement(Element object) {
-             return defaultStr();
-         }
-         @Override
-         public String caseItemUsage(ItemUsage object) {
-             return " ";
-         }
-
-         @Override
          public String casePartUsage(PartUsage object) {
+             /* Do not show stereotype for PartUsages */
              return " ";
          }
      }));

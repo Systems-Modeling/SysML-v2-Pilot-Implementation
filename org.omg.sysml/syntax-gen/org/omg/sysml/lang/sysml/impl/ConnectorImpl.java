@@ -584,9 +584,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				commonFeaturingTypes.retainAll(featuringTypes);
 			}
 		}
-		return (commonFeaturingTypes == null || commonFeaturingTypes.isEmpty())
-				? null
-				: commonFeaturingTypes.get(0);
+		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
+				null: commonFeaturingTypes.get(0);
 	}	
 	
 	/**

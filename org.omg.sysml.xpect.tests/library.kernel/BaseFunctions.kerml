@@ -14,6 +14,8 @@ package BaseFunctions {
 		!isEmpty(seq)
 	}
 	
+	function union(seq1: Anything[0..*] nonunique, seq2: Anything[0..*] nonunique): Anything[0..*] nonunique;
+	
 	function head(seq: Anything[0..*] ordered): Anything[0..1] {
 		seq[1]
 	}
@@ -27,25 +29,25 @@ package BaseFunctions {
 
 
     abstract function 'all'(): Object[0..*] {
-    	abstract feature all type: Object;
+    	abstract feature all 'type': Object;
     }
     
     /** Deprecated */
 	abstract function 'allInstances'(): Object[0..*] {
-		abstract feature all type: Object;
+		abstract feature all 'type': Object;
 	}
 	
 	abstract function 'istype'(x: Anything): Boolean {
-		abstract feature type: Anything;
+		abstract feature 'type': Anything;
 	}
 	
 	/** Deprecated */
 	abstract function 'instanceof'(x: Anything): Boolean {
-		abstract feature type: Anything;
+		abstract feature 'type': Anything;
 	}
 	
 	abstract function 'hastype'(x: Anything): Boolean {
-		abstract feature type: Anything;
+		abstract feature 'type': Anything;
 	}
 	
 }

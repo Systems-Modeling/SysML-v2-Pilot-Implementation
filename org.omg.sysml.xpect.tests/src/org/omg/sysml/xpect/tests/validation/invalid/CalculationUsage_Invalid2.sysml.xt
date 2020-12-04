@@ -39,31 +39,31 @@ package Test {
 	
 	calc def C () : T;
 	
-	// XPECT errors --> "Only one return parameter is allowed" at ": T"
+	// XPECT errors --> "Only one return parameter is allowed." at ": T"
 	calc def C1 () : T {
-		// XPECT errors --> "Only one return parameter is allowed" at "return x : T;"
+		// XPECT errors --> "Only one return parameter is allowed." at "return x : T;"
 		return x : T;
 	}
 	
 	calc def C2 {
-		// XPECT errors --> "Only one return parameter is allowed" at "return r1 : T;"
+		// XPECT errors --> "Only one return parameter is allowed." at "return r1 : T;"
 		return r1 : T;
-		// XPECT errors --> "Only one return parameter is allowed" at "return r2 : T;"
+		// XPECT errors --> "Only one return parameter is allowed." at "return r2 : T;"
 		return r2 : T;
 	}
 	
 	calc c : C () : T;
 	
-	// XPECT errors --> "Only one return parameter is allowed" at ": T"
+	// XPECT errors --> "Only one return parameter is allowed." at ": T"
 	calc c1 : C () : T {
-		// XPECT errors --> "Only one return parameter is allowed" at "return x : T;"
+		// XPECT errors --> "Only one return parameter is allowed." at "return x : T;"
 		return x : T;
 	}
 	
 	calc c2 : C {
-		// XPECT errors --> "Only one return parameter is allowed" at "return r1 : T;"
+		// XPECT errors --> "Only one return parameter is allowed." at "return r1 : T;"
 		return r1 : T;
-		// XPECT errors --> "Only one return parameter is allowed" at "return r2 : T;"
+		// XPECT errors --> "Only one return parameter is allowed." at "return r2 : T;"
 		return r2 : T;
 	}
 }

@@ -73,18 +73,18 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
-		getFeatureTypes();
+		IndividualUsageImpl.setTypingFor(this);
 		super.computeImplicitGeneralTypes();
 	}
 		
 	@Override
 	protected List<Type> getFeatureTypes() {
-		return IndividualUsageImpl.setTypingFor(this, super.getFeatureTypes());
+		IndividualUsageImpl.setTypingFor(this);
+		return super.getFeatureTypes();
 	}
 
 	@Override
 	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		// TODO check this return
 		return Collections.singletonList(null);
 	}
 	

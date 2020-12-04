@@ -35,7 +35,9 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class VDefault extends VTraverser {
@@ -62,6 +64,43 @@ public class VDefault extends VTraverser {
                 if (end2 == null) continue;
                 addPRelation(end2, end1, c);
             }
+        }
+    }
+
+    protected void addGeneralizations(Type typ) {
+        for (Generalization g: typ.getOwnedGeneralization()) {
+            Type gt = g.getGeneral();
+            if (gt.getName() == null) continue;
+            addPRelation(typ, gt, g);
+        }
+    }
+
+    protected void addPUMLLine(Type typ, String keyword, String name, String style) {
+        append(keyword);
+        addNameWithId(typ, name, true);
+        if (style != null) {
+            append(style);
+        }
+        addLink(typ);
+    }
+
+    protected void addPUMLLine(Type typ, String keyword, String name) {
+        addPUMLLine(typ, keyword, name, styleString(typ));
+    }
+
+    protected void addRecLine(Type typ, boolean withStyle) {
+    	String name = getName(typ);
+    	if (name == null) return;
+        String keyword;
+        if (typ instanceof Usage) {
+            keyword = "rec usage ";
+        } else {
+            keyword = "rec def ";
+        }
+        if (withStyle) {
+            addPUMLLine(typ, keyword, name);
+        } else {
+            addPUMLLine(typ, keyword, name, null);
         }
     }
 

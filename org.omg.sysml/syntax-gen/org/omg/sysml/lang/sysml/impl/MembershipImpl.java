@@ -284,6 +284,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 
 	@Override
 	public void setMemberName(String newMemberName) {
+		isNameSet = true;
 		setMemberNameGen(unescapeString(newMemberName));
 	}
 	
@@ -399,8 +400,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	}
 	
 	public NotificationChain basicSetOwnedMemberElement_comp(Element newOwnedMemberElement_comp, NotificationChain msgs) {
-		memberName = ((ElementImpl)newOwnedMemberElement_comp).basicGetName();
-		((ElementImpl)newOwnedMemberElement_comp).basicSetName(null);
+		setMemberNameFrom(newOwnedMemberElement_comp);
 		return basicSetOwnedMemberElement_compGen(newOwnedMemberElement_comp, msgs);
 	}
 
@@ -549,6 +549,19 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	public boolean isSetSource() {
   		return false;
 	}
+	
+	// Additional
+	
+	private boolean isNameSet = false;
+	
+	protected void setMemberNameFrom(Element element) {
+		if (!isNameSet) {
+			memberName = ((ElementImpl)element).basicGetName();
+			((ElementImpl)element).basicSetName(null);
+		}
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

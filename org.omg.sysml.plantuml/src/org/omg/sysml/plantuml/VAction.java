@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
@@ -51,20 +50,12 @@ public class VAction extends VDefault {
     }
 
     private void addAction(Type typ) {
-    	String name = getName(typ);
-    	if (name == null) return;
-        if (typ instanceof Usage) {
-            append("rec usage ");
-        } else {
-            append("rec def ");
-        }
-        addNameWithId(typ, name, true);
-        addLink(typ);
+        addRecLine(typ, true);
+        // addGeneralizations(typ);
         VActionMembers v = new VActionMembers(this);
         v.startAction(typ);
         append("\n");
     }
-
 
     @Override
     public String caseActionDefinition(ActionDefinition ad) {

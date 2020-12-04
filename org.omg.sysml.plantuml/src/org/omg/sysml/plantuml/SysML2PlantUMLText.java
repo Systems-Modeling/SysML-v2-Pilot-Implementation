@@ -46,9 +46,9 @@ public class SysML2PlantUMLText {
     public enum MODE {
         Default,
         Tree,
-        StateMachine,
+        State,
         Interconnection,
-        Activity,
+        Action,
         Sequence,
         MIXED;
     }
@@ -137,11 +137,7 @@ public class SysML2PlantUMLText {
     String styleString(Type typ) {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
-            if (diagramMode == MODE.Interconnection) {
-                ret = " <<";
-            } else {
-                ret = " <<(T,blue)";
-            }
+            ret = " <<(T,blue)";
         }
         if (typ instanceof Usage) {
             Usage u = (Usage) typ;
@@ -190,13 +186,13 @@ public class SysML2PlantUMLText {
 
     private Visitor createVisitor() {
         switch (diagramMode) {
-        case StateMachine:
+        case State:
             return new VStateMachine();
         case Interconnection:
             return new VComposite();
         case Tree:
 			return new VTree();
-        case Activity:
+        case Action:
 			return new VAction();
         case MIXED:
         	return new VMixed();
@@ -220,9 +216,9 @@ public class SysML2PlantUMLText {
 
     private MODE getMode(EObject eObj) {
         if (eObj instanceof StateUsage) {
-            return MODE.StateMachine;
+            return MODE.State;
         } else if (eObj instanceof ActionUsage) {
-            return MODE.Activity;
+            return MODE.Action;
         } else {
             return MODE.MIXED;
         }

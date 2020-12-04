@@ -159,6 +159,7 @@ public class SysML2PlantUMLStyle {
         add("LR", null, "left to right direction\n");
         add("POLYLINE", null, "skinparam linetype polyline\n");
         add("ORTHOLINE", null, "skinparam linetype ortho\n");
+        add("COMPTREE", null, " ", null, "compartmentTree", "true");
     }
 
     public static class StyleSwitch {

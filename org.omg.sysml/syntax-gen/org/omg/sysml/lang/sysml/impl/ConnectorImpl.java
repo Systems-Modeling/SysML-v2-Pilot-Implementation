@@ -539,7 +539,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public EList<Type> getFeaturingType() {
 		Type contextType = getContextType();
-		if (contextType != null) {
+		if (contextType != null && contextType != getOwningType()) {
 			if (getOwnedTypeFeaturing().isEmpty()) {
 				addFeaturingType(contextType);
 			} else {

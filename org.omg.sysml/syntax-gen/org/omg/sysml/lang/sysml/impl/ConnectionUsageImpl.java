@@ -512,7 +512,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public EList<Type> getFeaturingType() {
 		Type contextType = getContextType();
-		if (contextType != null) {
+		if (contextType != null && contextType != getOwningType()) {
 			if (getOwnedTypeFeaturing().isEmpty()) {
 				addFeaturingType(getContextType());
 			} else {

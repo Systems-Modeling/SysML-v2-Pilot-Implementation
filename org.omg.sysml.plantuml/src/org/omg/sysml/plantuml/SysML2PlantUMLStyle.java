@@ -69,36 +69,36 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class SysML2PlantUMLStyle {
-    private static Map<String, SysML2PlantUMLStyle> styles = new HashMap<String, SysML2PlantUMLStyle>();
+    private static Map<String, SysML2PlantUMLStyle> styleMap = new HashMap<String, SysML2PlantUMLStyle>();
+    private static List<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private static SysML2PlantUMLStyle defaultStyle;
 
     static {
-        add(null,
-            "Standard B&&W",
-    		"skinparam monochrome true\n"
-            + "skinparam classbackgroundcolor white\n"
-            + "skinparam shadowing false\n"
-            + "skinparam wrapWidth 300\n"
-            + "hide circle\n", null,
-            "classic", "true");
-        add("STDCOLOR",
-            "Standard style with colors",
-            "skinparam wrapWidth 300\n"
-            + "hide circle\n",
-            new StyleSwitch(new StyleRelDefaultSwitch() {
-                @Override
-                public String caseConnector(Connector object) {
-                    return " -[thickness=3,#blue]- ";
-                }
-                @Override
-                public String caseBindingConnector(BindingConnector object) {
-                    return " -[thickness=5,#red]- ";
-                }
-            }, null),
-            "decoratedRedefined", "true",
-            "compartmentTree", "true");
-        add("PLANTUML",
-            "PlantUML Style", " ",
+        addp(null,
+             "Standard B&&W",
+             "skinparam monochrome true\n"
+             + "skinparam classbackgroundcolor white\n"
+             + "skinparam shadowing false\n"
+             + "skinparam wrapWidth 300\n"
+             + "hide circle\n", null,
+             "classic", "true");
+        addp("STDCOLOR",
+             "Standard style with colors",
+             "skinparam wrapWidth 300\n"
+             + "hide circle\n",
+             new StyleSwitch(new StyleRelDefaultSwitch() {
+                 @Override
+                 public String caseConnector(Connector object) {
+                     return " -[thickness=3,#blue]- ";
+                 }
+                 @Override
+                 public String caseBindingConnector(BindingConnector object) {
+                     return " -[thickness=5,#red]- ";
+                 }
+             }, null),
+             "decoratedRedefined", "true");
+        addp("PLANTUML",
+             "PlantUML Style", " ",
              new StyleSwitch(new StyleRelDefaultSwitch() {
                  @Override
                  public String caseConnector(Connector object) {
@@ -159,7 +159,7 @@ public class SysML2PlantUMLStyle {
         add("LR", null, "left to right direction\n");
         add("POLYLINE", null, "skinparam linetype polyline\n");
         add("ORTHOLINE", null, "skinparam linetype ortho\n");
-        add("COMPTREE", null, " ", null, "compartmentTree", "true");
+        add("COMPTREE", "Show nested ports in a compartment", " ", "compartmentTree", "true");
     }
 
     public static class StyleSwitch {
@@ -182,13 +182,15 @@ public class SysML2PlantUMLStyle {
         }
     }
 
+    public final boolean isPrimary;
     public final String name;
     public final String title;
     public final String commandStr;
     public final StyleSwitch styleSwitch;
     public final Map<String, String> options;
 
-    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, Map<String, String> options) {
+    private SysML2PlantUMLStyle(boolean isPrimary, String name, String title, String commandStr, StyleSwitch styleSwitch, Map<String, String> options) {
+        this.isPrimary = isPrimary;
     	this.name = name;
         this.title = title;
         this.commandStr = commandStr;
@@ -196,8 +198,8 @@ public class SysML2PlantUMLStyle {
         this.options = options;
     }
 
-    SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
-        this(name, title, commandStr, styleSwitch, convOptions(options));
+    public SysML2PlantUMLStyle(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
+        this(false, name, title, commandStr, styleSwitch, convOptions(options));
     }
 
     private static Map<String, String> convOptions(String[] options) {
@@ -211,20 +213,25 @@ public class SysML2PlantUMLStyle {
         return map;
     }
 
-    private static void add(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
+    private static void add(boolean isPrimary, String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
         SysML2PlantUMLStyle s;
         Map<String, String> map = convOptions(options);
         if (name == null) {
-            s = new SysML2PlantUMLStyle("DEFAULT", title, commandStr, styleSwitch, map);
+            s = new SysML2PlantUMLStyle(true, "DEFAULT", title, commandStr, styleSwitch, map);
             defaultStyle = s;
         } else {
-            s = new SysML2PlantUMLStyle(name, title, commandStr, styleSwitch, map);
+            s = new SysML2PlantUMLStyle(isPrimary, name, title, commandStr, styleSwitch, map);
         }
-        styles.put(s.name, s);
+        styleMap.put(s.name, s);
+        styles.add(s);
     }
 
-    private static void add(String name, String title, String commandStr) {
-        add(name, title, commandStr, null);
+    private static void addp(String name, String title, String commandStr, StyleSwitch styleSwitch, String... options) {
+        add(true, name, title, commandStr, styleSwitch, options);
+    }
+
+    private static void add(String name, String title, String commandStr, String... options) {
+        add(false, name, title, commandStr, null, options);
     }
 
     public boolean isEntitled() {
@@ -232,9 +239,8 @@ public class SysML2PlantUMLStyle {
     }
 
     public static Collection<String> getStyleTitles() {
-        Collection<SysML2PlantUMLStyle> ss = styles.values();
-        List<String> titles = new ArrayList<String>(ss.size());
-        for (SysML2PlantUMLStyle s: ss) {
+        List<String> titles = new ArrayList<String>(styles.size());
+        for (SysML2PlantUMLStyle s: styles) {
             if (s.title != null) {
                 titles.add(s.title);
             }
@@ -244,7 +250,7 @@ public class SysML2PlantUMLStyle {
 
     public static SysML2PlantUMLStyle getStyle(String title) {
         if (title == null) return null;
-        Collection<SysML2PlantUMLStyle> ss = styles.values();
+        Collection<SysML2PlantUMLStyle> ss = styleMap.values();
         for (SysML2PlantUMLStyle s: ss) {
             if (title.equals(s.title)) return s;
         }
@@ -252,7 +258,7 @@ public class SysML2PlantUMLStyle {
     }
 
     private static String getAvailableStyles() {
-        return String.join(", ", styles.keySet());
+        return String.join(", ", styleMap.keySet());
     }
 
     public static SysML2PlantUMLStyle getDefault() {
@@ -260,7 +266,7 @@ public class SysML2PlantUMLStyle {
     }
 
     public static SysML2PlantUMLStyle get(String name) {
-        SysML2PlantUMLStyle s = styles.get(name.toUpperCase());
+        SysML2PlantUMLStyle s = styleMap.get(name.toUpperCase());
         if (s != null) return s;
 
         throw new IllegalArgumentException("Invalid Style: "

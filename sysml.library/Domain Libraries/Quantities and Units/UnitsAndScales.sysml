@@ -4,6 +4,7 @@
 package UnitsAndScales {
 	private import ScalarValues::*;
 	private import Quantities::QuantityValue;
+	private import Quantities::quantity;
 
 	/**
 	 * Representation of a measurement reference.
@@ -197,5 +198,7 @@ package UnitsAndScales {
 		attribute num: Real redefines QuantityValue::num;
 		attribute mRef: DimensionOneUnit redefines QuantityValue::mRef;
 	}
+	attribute dimensionOneQuantity : DimensionOneValue :> quantity;
+
 	attribute one = DimensionOneUnit();
 }

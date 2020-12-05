@@ -61,7 +61,7 @@ package ISQ {
 			attribute redefines exponent = 0;
 		}
 		attribute temperaturePowerFactor subsets MeasurementUnit::unitPowerFactor {
-			attribute redefines unit: TemperatureUnit;
+			attribute redefines unit: ThermodynamicTemperatureUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute amountOfSubstancePowerFactor subsets MeasurementUnit::unitPowerFactor {

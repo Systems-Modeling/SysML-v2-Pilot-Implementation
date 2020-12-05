@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-03T14:29:01Z from standard ISO-80000-5:2019 "Thermodynamics"
+ * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-5:2019 "Thermodynamics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-5:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -16,7 +16,7 @@ package ISQThermodynamics {
 
     /**    
      * source: item 5-1 thermodynamic temperature, temperature
-     * symbol(s): T, Θ
+     * symbol(s): `T`, `Θ`
      * application domain: General
      * name: ThermodynamicTemperature
      * quantity dimension: Θ^1
@@ -35,12 +35,13 @@ package ISQThermodynamics {
     }    
     attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> quantity;
 
+    alias ThermodynamicTemperatureUnit as TemperatureUnit;
     alias ThermodynamicTemperatureValue as TemperatureValue;
     attribute temperature: TemperatureValue :> quantity;
 
     /**
      * source: item 5-2 Celsius temperature
-     * symbol(s): `t, thη`
+     * symbol(s): ``t`, `thη``
      * application domain: General
      * name: CelsiusTemperature
      * quantity dimension: Θ^1
@@ -61,7 +62,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-3.1 linear expansion coefficient
-     * symbol(s): `α_l`
+     * symbol(s): ``α_l``
      * application domain: General
      * name: LinearExpansionCoefficient
      * quantity dimension: Θ^-1
@@ -82,7 +83,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-3.2 cubic expansion coefficient
-     * symbol(s): `α_V, γ`
+     * symbol(s): ``α_V`, `γ``
      * application domain: General
      * name: CubicExpansionCoefficient
      * quantity dimension: Θ^-1
@@ -103,7 +104,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-3.3 relative pressure coefficient
-     * symbol(s): `α_p`
+     * symbol(s): ``α_p``
      * application domain: General
      * name: RelativePressureCoefficient
      * quantity dimension: Θ^-1
@@ -124,7 +125,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-4 pressure coefficient
-     * symbol(s): β
+     * symbol(s): `β`
      * application domain: General
      * name: PressureCoefficient
      * quantity dimension: L^-1*M^1*T^-2*Θ^-1
@@ -154,7 +155,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-5.1 isothermal compressibility
-     * symbol(s): ϰ_T
+     * symbol(s): `ϰ_T`
      * application domain: General
      * name: IsothermalCompressibility
      * quantity dimension: L^1*M^-1*T^2
@@ -181,7 +182,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-5.2 isentropic compressibility
-     * symbol(s): ϰ_S
+     * symbol(s): `ϰ_S`
      * application domain: General
      * name: IsentropicCompressibility
      * quantity dimension: L^1*M^-1*T^2
@@ -208,7 +209,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-6.1 heat, amount of heat
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: Heat
      * quantity dimension: L^2*M^1*T^-2
@@ -238,7 +239,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-6.2 latent heat
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: LatentHeat
      * quantity dimension: L^2*M^1*T^-2
@@ -265,7 +266,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-7 heat flow rate
-     * symbol(s): `dot(Q)`
+     * symbol(s): ``dot(Q)``
      * application domain: General
      * name: HeatFlowRate
      * quantity dimension: L^2*M^1*T^-3
@@ -292,7 +293,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-8 density of heat flow rate
-     * symbol(s): q, φ
+     * symbol(s): `q`, `φ`
      * application domain: General
      * name: DensityOfHeatFlowRate
      * quantity dimension: M^1*T^-3
@@ -316,7 +317,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-9 thermal conductivity
-     * symbol(s): λ_l, (ϰ)
+     * symbol(s): `λ_l`, `(ϰ)`
      * application domain: General
      * name: ThermalConductivity
      * quantity dimension: L^1*M^1*T^-3*Θ^-1
@@ -346,7 +347,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-10.1 coefficient of heat transfer
-     * symbol(s): K, (k)
+     * symbol(s): `K`, `(k)`
      * application domain: General
      * name: CoefficientOfHeatTransfer
      * quantity dimension: M^1*T^-3*Θ^-1
@@ -373,7 +374,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-10.2 surface coefficient of heat transfer
-     * symbol(s): h, `(α)`
+     * symbol(s): `h`, ``(α)``
      * application domain: General
      * name: SurfaceCoefficientOfHeatTransfer
      * quantity dimension: M^1*T^-3*Θ^-1
@@ -400,7 +401,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-11 thermal insulance, coefficient of thermal insulance
-     * symbol(s): M
+     * symbol(s): `M`
      * application domain: General
      * name: ThermalInsulance
      * quantity dimension: M^-1*T^3*Θ^1
@@ -430,7 +431,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-12 thermal resistance
-     * symbol(s): R
+     * symbol(s): `R`
      * application domain: General
      * name: ThermalResistance
      * quantity dimension: L^-2*M^-1*T^3*Θ^1
@@ -460,7 +461,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-13 thermal conductance
-     * symbol(s): G, (H)
+     * symbol(s): `G`, `(H)`
      * application domain: General
      * name: ThermalConductance
      * quantity dimension: L^2*M^1*T^-3*Θ^-1
@@ -490,7 +491,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-14 thermal diffusivity
-     * symbol(s): a
+     * symbol(s): `a`
      * application domain: General
      * name: ThermalDiffusivity
      * quantity dimension: L^2*T^-1
@@ -514,7 +515,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-15 heat capacity
-     * symbol(s): C
+     * symbol(s): `C`
      * application domain: General
      * name: HeatCapacity
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
@@ -544,7 +545,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.1 specific heat capacity
-     * symbol(s): c
+     * symbol(s): `c`
      * application domain: General
      * name: SpecificHeatCapacity
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -571,7 +572,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.2 specific heat capacity at constant pressure
-     * symbol(s): c_p
+     * symbol(s): `c_p`
      * application domain: General
      * name: SpecificHeatCapacityAtConstantPressure
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -598,7 +599,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.3 specific heat capacity at constant volume
-     * symbol(s): c_V
+     * symbol(s): `c_V`
      * application domain: General
      * name: SpecificHeatCapacityAtConstantVolume
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -625,7 +626,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-16.4 specific heat capacity at saturated vapour pressure
-     * symbol(s): c_(sat)
+     * symbol(s): `c_(sat)`
      * application domain: General
      * name: SpecificHeatCapacityAtSaturatedVapourPressure
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -652,7 +653,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-17.1 ratio of specific heat capacities
-     * symbol(s): γ
+     * symbol(s): `γ`
      * application domain: General
      * name: RatioOfSpecificHeatCapacities
      * quantity dimension: 1
@@ -670,7 +671,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-17.2 isentropic exponent, isentropic expansion factor
-     * symbol(s): ϰ
+     * symbol(s): `ϰ`
      * application domain: General
      * name: IsentropicExponent
      * quantity dimension: 1
@@ -691,7 +692,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-18 entropy
-     * symbol(s): S
+     * symbol(s): `S`
      * application domain: General
      * name: Entropy
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
@@ -721,7 +722,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-19 specific entropy
-     * symbol(s): s
+     * symbol(s): `s`
      * application domain: General
      * name: SpecificEntropy
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -748,7 +749,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-20.1 energy
-     * symbol(s): E
+     * symbol(s): `E`
      * application domain: thermodynamics
      * name: Energy
      * quantity dimension: L^2*M^1*T^-2
@@ -775,37 +776,21 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-20.2 internal energy, thermodynamic energy
-     * symbol(s): U
+     * symbol(s): `U`
      * application domain: General
-     * name: InternalEnergy
+     * name: InternalEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
      * definition: energy of a system whose change is given by the amount of the heat (item 5-6.1) transferred to the system and the work (ISO 80000-4) done on the system, provided that the system is closed and no chemical reactions occur
      * remarks: In thermodynamic text books, usually the formula ΔU = Q + W is used. Note that the zero of the energy is undefined.
      */
-    attribute def InternalEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def InternalEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: InternalEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute internalEnergy: InternalEnergyValue :> quantity;
+    attribute internalEnergy :> energy;
 
-    alias InternalEnergyValue as ThermodynamicEnergyValue;
-    attribute thermodynamicEnergy: ThermodynamicEnergyValue :> quantity;
+    alias internalEnergy as thermodynamicEnergy;
 
     /**
      * source: item 5-20.3 enthalpy
-     * symbol(s): H
+     * symbol(s): `H`
      * application domain: General
      * name: Enthalpy
      * quantity dimension: L^2*M^1*T^-2
@@ -832,67 +817,35 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-20.4 Helmholtz energy, Helmholtz function
-     * symbol(s): A, F
+     * symbol(s): `A`, `F`
      * application domain: General
-     * name: HelmholtzEnergy
+     * name: HelmholtzEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
      * definition: difference of internal energy of the system and the product of thermodynamic temperature and entropy of the system: A = U - TS where U is internal energy (item 5-20.2), T is thermodynamic temperature (item 5-1), and S is entropy (item 5-18)
      * remarks: The name Helmholtz free energy is also used. However, this term is not recommended.
      */
-    attribute def HelmholtzEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def HelmholtzEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: HelmholtzEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute helmholtzEnergy: HelmholtzEnergyValue :> quantity;
+    attribute helmholtzEnergy :> energy;
 
-    alias HelmholtzEnergyValue as HelmholtzFunctionValue;
-    attribute helmholtzFunction: HelmholtzFunctionValue :> quantity;
+    alias helmholtzEnergy as helmholtzFunction;
 
     /**
      * source: item 5-20.5 Gibbs energy, Gibbs function
-     * symbol(s): G
+     * symbol(s): `G`
      * application domain: General
-     * name: GibbsEnergy
+     * name: GibbsEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): J, kg*m^2*s^-2
      * definition: difference of the enthalpy and the product of thermodynamic temperature and entropy of the system: `G = H - T*S` where H is enthalpy (item 5-20.3), T is thermodynamic temperature (item 5-1), and S is entropy (item 5-18)
      * remarks: The name Gibbs free energy is also used. However, this term is not recommended.
      */
-    attribute def GibbsEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 1;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def GibbsEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: GibbsEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute gibbsEnergy: GibbsEnergyValue :> quantity;
+    attribute gibbsEnergy :> energy;
 
-    alias GibbsEnergyValue as GibbsFunctionValue;
-    attribute gibbsFunction: GibbsFunctionValue :> quantity;
+    alias gibbsEnergy as gibbsFunction;
 
     /**
      * source: item 5-21.1 specific energy
-     * symbol(s): e
+     * symbol(s): `e`
      * application domain: General
      * name: SpecificEnergy
      * quantity dimension: L^2*T^-2
@@ -916,34 +869,21 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-21.2 specific internal energy, specific thermodynamic energy
-     * symbol(s): u
+     * symbol(s): `u`
      * application domain: General
-     * name: SpecificInternalEnergy
+     * name: SpecificInternalEnergy (specializes SpecificEnergy)
      * quantity dimension: L^2*T^-2
      * measurement unit(s): J/kg, m^2*s^-2
      * definition: quotient of internal energy and mass: `u = U/m` where U is internal energy (item 5-20.2) and m is mass (ISO 80000-4)
      * remarks: 
      */
-    attribute def SpecificInternalEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def SpecificInternalEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SpecificInternalEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute specificInternalEnergy: SpecificInternalEnergyValue :> quantity;
+    attribute specificInternalEnergy :> specificEnergy;
 
-    alias SpecificInternalEnergyValue as SpecificThermodynamicEnergyValue;
-    attribute specificThermodynamicEnergy: SpecificThermodynamicEnergyValue :> quantity;
+    alias specificInternalEnergy as specificThermodynamicEnergy;
 
     /**
      * source: item 5-21.3 specific enthalpy
-     * symbol(s): h
+     * symbol(s): `h`
      * application domain: General
      * name: SpecificEnthalpy
      * quantity dimension: L^2*T^-2
@@ -967,61 +907,35 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-21.4 specific Helmholtz energy, specific Helmholtz function
-     * symbol(s): a, f
+     * symbol(s): `a`, `f`
      * application domain: General
-     * name: SpecificHelmholtzEnergy
+     * name: SpecificHelmholtzEnergy (specializes SpecificEnergy)
      * quantity dimension: L^2*T^-2
      * measurement unit(s): J/kg, m^2*s^-2
      * definition: quotient of Helmholtz energy and mass: `a = A/m` where A is Helmholtz energy (item 5-20.4) and m is mass (ISO 80000-4)
      * remarks: The name specific Helmholtz free energy is also used. However, this term is not recommended.
      */
-    attribute def SpecificHelmholtzEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def SpecificHelmholtzEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SpecificHelmholtzEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute specificHelmholtzEnergy: SpecificHelmholtzEnergyValue :> quantity;
+    attribute specificHelmholtzEnergy :> specificEnergy;
 
-    alias SpecificHelmholtzEnergyValue as SpecificHelmholtzFunctionValue;
-    attribute specificHelmholtzFunction: SpecificHelmholtzFunctionValue :> quantity;
+    alias specificHelmholtzEnergy as specificHelmholtzFunction;
 
     /**
      * source: item 5-21.5 specific Gibbs energy, specific Gibbs function
-     * symbol(s): g
+     * symbol(s): `g`
      * application domain: General
-     * name: SpecificGibbsEnergy
+     * name: SpecificGibbsEnergy (specializes SpecificEnergy)
      * quantity dimension: L^2*T^-2
      * measurement unit(s): J/kg, m^2*s^-2
      * definition: quotient of Gibbs energy and mass: `g = G/m` where G is Gibbs energy (item 5-20.5) and m is mass (ISO 80000-4)
      * remarks: The name specific Gibbs free energy is also used. However, this term is not recommended.
      */
-    attribute def SpecificGibbsEnergyUnit :> SIDerivedUnit {
-        attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = 2;
-        }
-        attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-            attribute exponent :>> UnitPowerFactor::exponent = -2;
-        }
-    }
-    attribute def SpecificGibbsEnergyValue :> QuantityValue {
-        attribute num: Real :>> QuantityValue::num;
-        attribute mRef: SpecificGibbsEnergyUnit :>> QuantityValue::mRef;
-    }
-    attribute specificGibbsEnergy: SpecificGibbsEnergyValue :> quantity;
+    attribute specificGibbsEnergy :> specificEnergy;
 
-    alias SpecificGibbsEnergyValue as SpecificGibbsFunctionValue;
-    attribute specificGibbsFunction: SpecificGibbsFunctionValue :> quantity;
+    alias specificGibbsEnergy as specificGibbsFunction;
 
     /**
      * source: item 5-22 Massieu function
-     * symbol(s): J
+     * symbol(s): `J`
      * application domain: General
      * name: MassieuFunction
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
@@ -1051,7 +965,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-23 Planck function
-     * symbol(s): Y
+     * symbol(s): `Y`
      * application domain: General
      * name: PlanckFunction
      * quantity dimension: L^2*M^1*T^-2*Θ^-1
@@ -1081,7 +995,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-24 Joule-Thomson coefficient
-     * symbol(s): `μ_(JT)`
+     * symbol(s): ``μ_(JT)``
      * application domain: General
      * name: JouleThomsonCoefficient
      * quantity dimension: L^1*M^-1*T^2*Θ^1
@@ -1111,7 +1025,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-25.1 efficiency
-     * symbol(s): η
+     * symbol(s): `η`
      * application domain: thermodynamics
      * name: Efficiency
      * quantity dimension: 1
@@ -1129,7 +1043,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-25.2 maximum efficiency
-     * symbol(s): η_(max)
+     * symbol(s): `η_(max)`
      * application domain: General
      * name: MaximumEfficiency
      * quantity dimension: 1
@@ -1147,7 +1061,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-26 specific gas constant
-     * symbol(s): R_s
+     * symbol(s): `R_s`
      * application domain: General
      * name: SpecificGasConstant
      * quantity dimension: L^2*T^-2*Θ^-1
@@ -1174,7 +1088,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-27 mass concentration of water
-     * symbol(s): w
+     * symbol(s): `w`
      * application domain: General
      * name: MassConcentrationOfWater
      * quantity dimension: L^-3*M^1
@@ -1198,7 +1112,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-28 mass concentration of water vapour absolute humidity
-     * symbol(s): v
+     * symbol(s): `v`
      * application domain: General
      * name: MassConcentrationOfWaterVapourAbsoluteHumidity
      * quantity dimension: L^-3*M^1
@@ -1222,7 +1136,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-29 mass ratio of water to dry matter
-     * symbol(s): u
+     * symbol(s): `u`
      * application domain: General
      * name: MassRatioOfWaterToDryMatter
      * quantity dimension: 1
@@ -1240,7 +1154,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-30 mass ratio of water vapour to dry gas
-     * symbol(s): r, (x)
+     * symbol(s): `r`, `(x)`
      * application domain: General
      * name: MassRatioOfWaterVapourToDryGas
      * quantity dimension: 1
@@ -1258,7 +1172,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-31 mass fraction of water
-     * symbol(s): `w_(H_(2)O)`
+     * symbol(s): ``w_(H_(2)O)``
      * application domain: General
      * name: MassFractionOfWater
      * quantity dimension: 1
@@ -1276,7 +1190,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-32 mass fraction of dry matter
-     * symbol(s): w_d
+     * symbol(s): `w_d`
      * application domain: General
      * name: MassFractionOfDryMatter
      * quantity dimension: 1
@@ -1294,7 +1208,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-33 relative humidity
-     * symbol(s): φ
+     * symbol(s): `φ`
      * application domain: General
      * name: RelativeHumidity
      * quantity dimension: 1
@@ -1312,7 +1226,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-34 relative mass concentration of vapour
-     * symbol(s): φ
+     * symbol(s): `φ`
      * application domain: General
      * name: RelativeMassConcentrationOfVapour
      * quantity dimension: 1
@@ -1330,7 +1244,7 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-35 relative mass ratio of vapour
-     * symbol(s): ψ
+     * symbol(s): `ψ`
      * application domain: General
      * name: RelativeMassRatioOfVapour
      * quantity dimension: 1
@@ -1348,14 +1262,14 @@ package ISQThermodynamics {
 
     /**
      * source: item 5-36 dew-point temperature
-     * symbol(s): T_d
+     * symbol(s): `T_d`
      * application domain: General
-     * name: DewPointTemperature (specializes Temperature)
+     * name: DewPointTemperature (specializes ThermodynamicTemperature)
      * quantity dimension: Θ^1
      * measurement unit(s): K
      * definition: temperature at which water vapour in the air reaches saturation under isobaric conditions
      * remarks: The corresponding Celsius temperature, denoted t_d, is still called dew-point temperature. The unit for the corresponding Celsius temperature is degree Celsius, symbol °C.
      */
-    attribute dewPointTemperature: TemperatureValue :> temperature;
+    attribute dewPointTemperature :> thermodynamicTemperature;
 
 }

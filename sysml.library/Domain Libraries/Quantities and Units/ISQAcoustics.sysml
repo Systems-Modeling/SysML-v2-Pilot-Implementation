@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-03T14:29:01Z from standard ISO-80000-8:2020 "Acoustics"
+ * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-8:2020 "Acoustics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-8:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -14,10 +14,12 @@ package ISQAcoustics {
     private import UnitsAndScales::*;    
     private import ISQ::SIDerivedUnit;
 
-    private import ISQSpaceTime::DisplacementValue;
+    private import ISQSpaceTime::LengthValue;
     private import ISQSpaceTime::displacement;
     private import ISQSpaceTime::DurationValue;
     private import ISQSpaceTime::duration;
+    private import ISQSpaceTime::velocity;
+    private import ISQSpaceTime::acceleration;
     private import ISQMechanics::PowerValue;
     private import ISQMechanics::power;
     private import ISQMechanics::PressureValue;
@@ -27,7 +29,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-1 logarithmic frequency range
-     * symbol(s): G
+     * symbol(s): `G`
      * application domain: General
      * name: LogarithmicFrequencyRange
      * quantity dimension: 1
@@ -45,7 +47,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-2.1 static pressure
-     * symbol(s): p_s
+     * symbol(s): `p_s`
      * application domain: General
      * name: StaticPressure (specializes Pressure)
      * quantity dimension: L^-1*M^1*T^-2
@@ -53,11 +55,11 @@ package ISQAcoustics {
      * definition: pressure (ISO 80000-4) in a medium when no sound wave is present
      * remarks: This definition applies to a medium with zero flow.
      */
-    attribute staticPressure: PressureValue :> pressure;
+    attribute staticPressure :> pressure;
 
     /**
      * source: item 8-2.2 sound pressure
-     * symbol(s): p
+     * symbol(s): `p`
      * application domain: General
      * name: SoundPressure (specializes Pressure)
      * quantity dimension: L^-1*M^1*T^-2
@@ -65,11 +67,11 @@ package ISQAcoustics {
      * definition: difference between instantaneous total pressure and static pressure (item 8-2.1)
      * remarks: 
      */
-    attribute soundPressure: PressureValue :> pressure;
+    attribute soundPressure :> pressure;
 
     /**
      * source: item 8-3 sound particle displacement
-     * symbol(s): vec(δ)
+     * symbol(s): `vec(δ)`
      * application domain: General
      * name: SoundParticleDisplacement (specializes Displacement)
      * quantity dimension: L^1
@@ -77,11 +79,11 @@ package ISQAcoustics {
      * definition: vector (ISO 80000-2) quantity giving the instantaneous displacement (ISO 80000-3) of a particle in a medium from what would be its position in the absence of sound waves
      * remarks: 
      */
-    attribute soundParticleDisplacement: DisplacementValue :> displacement;
+    attribute soundParticleDisplacement :> displacement;
 
     /**
      * source: item 8-4 sound particle velocity
-     * symbol(s): vec(u), (vec(v))
+     * symbol(s): `vec(u)`, `(vec(v))`
      * application domain: General
      * name: SoundParticleVelocity (specializes Velocity)
      * quantity dimension: L^1*T^-1
@@ -89,11 +91,11 @@ package ISQAcoustics {
      * definition: vector (ISO 80000-2) quantity given by: `vec(u) = del(vec(δ))/del(t)`, where `vec(δ)` is sound particle displacement (item 8-3) and `t` is time (ISO 80000-3)
      * remarks: The definition is limited to small-amplitude acoustic disturbances such that the magnitude of `vec(u)` is small relative to the phase speed (ISO 80000-3) of sound.
      */
-    attribute soundParticleVelocity: VelocityValue :> velocity;
+    attribute soundParticleVelocity :> velocity;
 
     /**
      * source: item 8-5 sound particle acceleration
-     * symbol(s): vec(a)
+     * symbol(s): `vec(a)`
      * application domain: General
      * name: SoundParticleAcceleration (specializes Acceleration)
      * quantity dimension: L^1*T^-2
@@ -101,11 +103,11 @@ package ISQAcoustics {
      * definition: vector (ISO 80000-2) quantity given by: `vec(a) = (del(vec(u)))/(del(t))`, where `vec(u)` is sound particle velocity (item 8-4) and `t` is time
      * remarks: The definition is limited to small-amplitude acoustic disturbances such that the magnitude of `vec(u)` is small relative to the phase speed (ISO 80000-3) of sound.
      */
-    attribute soundParticleAcceleration: AccelerationValue :> acceleration;
+    attribute soundParticleAcceleration :> acceleration;
 
     /**
      * source: item 8-6 volume velocity, volume flow rate
-     * symbol(s): q, q_v
+     * symbol(s): `q`, `q_v`
      * application domain: General
      * name: VolumeVelocity (specializes Velocity)
      * quantity dimension: L^3*T^-1
@@ -113,13 +115,13 @@ package ISQAcoustics {
      * definition: surface integral of the normal component of the sound particle velocity (item 8-4) over a defined surface
      * remarks: 
      */
-    attribute volumeVelocity: VelocityValue :> velocity;
+    attribute volumeVelocity :> velocity;
 
     alias volumeVelocity as volumeFlowRate;
 
     /**
      * source: item 8-7 sound energy density
-     * symbol(s): w
+     * symbol(s): `w`
      * application domain: General
      * name: SoundEnergyDensity
      * quantity dimension: L^-1*M^1*T^-2
@@ -146,7 +148,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-8 sound energy
-     * symbol(s): Q
+     * symbol(s): `Q`
      * application domain: General
      * name: SoundEnergy (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
@@ -154,11 +156,11 @@ package ISQAcoustics {
      * definition: integral of sound energy density (item 8-7) over a specified volume
      * remarks: The sound energy in region `R` can be expressed by: `Q = oint_R w(x) d^3x`, where `d^3x` is an element of volume.
      */
-    attribute soundEnergy: EnergyValue :> energy;
+    attribute soundEnergy :> energy;
 
     /**
      * source: item 8-9 sound power
-     * symbol(s): P, W
+     * symbol(s): `P`, `W`
      * application domain: General
      * name: SoundPower (specializes Power)
      * quantity dimension: L^2*M^1*T^-3
@@ -166,11 +168,11 @@ package ISQAcoustics {
      * definition: integral over a surface of the product of sound pressure, `p` (item 8-2.2), and the component `u_n` of the particle velocity (item 8-4) in the direction normal to the surface, at a point on the surface
      * remarks: This definition holds for waves in the volume of homogenous fluids or gases. This definition can become inapplicable in situations with a high mean fluid flow. Sound power is for example used to indicate the rate at which energy is radiated by a sound source. Sound power is an oscillatory quantity that can be positive or negative. A positive sound power indicates that the sound power is radiated out of the surface. A negative sound power indicates that the sound power is absorbed into the surface.
      */
-    attribute soundPower: PowerValue :> power;
+    attribute soundPower :> power;
 
     /**
      * source: item 8-10 sound intensity
-     * symbol(s): vec(I)
+     * symbol(s): `vec(I)`
      * application domain: General
      * name: SoundIntensity
      * quantity dimension: M^1*T^-3
@@ -194,7 +196,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-11 sound exposure
-     * symbol(s): E
+     * symbol(s): `E`
      * application domain: General
      * name: SoundExposure
      * quantity dimension: L^-2*M^2*T^-3
@@ -221,7 +223,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-12 characteristic impedance of a medium for longitudinal waves
-     * symbol(s): Z_c
+     * symbol(s): `Z_c`
      * application domain: General
      * name: CharacteristicImpedanceOfAMediumForLongitudinalWaves
      * quantity dimension: L^-2*M^1*T^-1
@@ -248,7 +250,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-13 acoustic impedance
-     * symbol(s): Z_a
+     * symbol(s): `Z_a`
      * application domain: General
      * name: AcousticImpedance
      * quantity dimension: L^-4*M^1*T^-1
@@ -275,7 +277,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-14 sound pressure level
-     * symbol(s): L_p
+     * symbol(s): `L_p`
      * application domain: General
      * name: SoundPressureLevel
      * quantity dimension: 1
@@ -293,7 +295,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-15 sound power level
-     * symbol(s): L_P, L_W
+     * symbol(s): `L_P`, `L_W`
      * application domain: General
      * name: SoundPowerLevel
      * quantity dimension: 1
@@ -311,7 +313,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-16 sound exposure level
-     * symbol(s): L_E
+     * symbol(s): `L_E`
      * application domain: General
      * name: SoundExposureLevel
      * quantity dimension: 1
@@ -329,7 +331,7 @@ package ISQAcoustics {
 
     /**
      * source: item 8-17 reverberation time
-     * symbol(s): T
+     * symbol(s): `T`
      * application domain: General
      * name: ReverberationTime (specializes Duration)
      * quantity dimension: T^1
@@ -337,6 +339,6 @@ package ISQAcoustics {
      * definition: time duration (ISO 80000-3) required for the space-averaged sound energy density (item 8-7) to decrease to `10^(−6)` of its initial value (i.e. for its level to decrease by `60 "@[dB]"`) after the source emission has stopped
      * remarks: The reverberation time can be evaluated based on a dynamic range smaller than `60 "@[dB]"` and extrapolated to a decay time of `60 "@[dB]"`. It is then labelled accordingly `T_n`, where `n` is the dynamic range in `"@[dB]"`. See also ISO 3382-1.
      */
-    attribute reverberationTime: DurationValue :> duration;
+    attribute reverberationTime :> duration;
 
 }

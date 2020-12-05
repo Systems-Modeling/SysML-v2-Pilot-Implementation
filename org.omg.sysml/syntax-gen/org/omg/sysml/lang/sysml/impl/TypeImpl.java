@@ -291,6 +291,10 @@ public class TypeImpl extends PackageImpl implements Type {
 		return implicitGeneralTypes.isEmpty();
 	}
 	
+	public Collection<EClass> getImplicitGeneralTypeKinds() {
+		return implicitGeneralTypes.keySet();
+	}
+	
 	public List<Type> getImplicitGeneralTypes() {
 		return implicitGeneralTypes.values().stream().
 				flatMap(Collection::stream).

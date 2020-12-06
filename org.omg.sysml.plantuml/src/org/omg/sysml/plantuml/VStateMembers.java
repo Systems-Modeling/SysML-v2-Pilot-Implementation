@@ -180,7 +180,7 @@ public class VStateMembers extends VDefault {
             case TRIGGER:
                 VTraverser v = new VTraverser(this) {
                     public String caseItemFeature(ItemFeature itemFeature) {
-                        addTypeText("", itemFeature);
+                        addFeatureTypeText("", itemFeature);
                         return "";
                     }
                 };

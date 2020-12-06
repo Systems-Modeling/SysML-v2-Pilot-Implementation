@@ -30,6 +30,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -289,15 +290,23 @@ public abstract class Visitor extends SysMLSwitch<String> {
         }
     }
 
-    protected void addTypeText(String prefix, Feature f) {
-        List<Type> ts = f.getType();
+    protected void addFeatureTypeText(String prefix, Feature f) {
+        List<FeatureTyping> ts = f.getOwnedTyping();
         if (ts.isEmpty()) return;
-        // getType() should return the most specific type but for the time being we use the first type only.
-        Type t = ts.get(0);
-        String name = t.getName();
-        if (name == null) return;
-        append(prefix);
-        append(name);
+        boolean added = false;
+        for (FeatureTyping ft: ts) {
+            Type typ = ft.getType();
+            if (typ == null) continue;
+            String name = typ.getName();
+            if (name == null) continue;
+            if (!added) {
+                append(prefix);
+                added = true;
+            } else {
+                append(", ");
+            }
+            append(name);
+        }
     }
 
     protected Element getEnd(Feature f) {

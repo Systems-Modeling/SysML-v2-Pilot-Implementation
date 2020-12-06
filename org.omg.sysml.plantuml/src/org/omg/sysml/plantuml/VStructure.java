@@ -32,6 +32,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -119,7 +120,7 @@ public abstract class VStructure extends VDefault {
 
     private void addFeatureTextInternal(Feature f, String name) {
         append(name);
-        addTypeText(": ", f);
+        addFeatureTypeText(": ", f);
         addFeatureMembershipText(f);
     }
     
@@ -146,7 +147,7 @@ public abstract class VStructure extends VDefault {
     }
 
     protected void addAnonymouseFeatureText(Feature f) {
-        addTypeText(": ", f);
+        addFeatureTypeText(": ", f);
         addFeatureMembershipText(f);
     }
 
@@ -161,14 +162,15 @@ public abstract class VStructure extends VDefault {
         	// It should not happen but need to give some name for processing
         	name = "<s>noname</s>";
         }
-        List<Type> tt = f.getType();
+        List<FeatureTyping> tt = f.getOwnedTyping();
         if (tt.isEmpty()) return name;
         StringBuilder sb = new StringBuilder();
-        for (Type typ: tt) {
+        for (FeatureTyping ft: tt) {
             if (sb.length() > 0) {
                 sb.append(", ");
             }
-            if (typ == null) continue;
+            if (ft == null) continue;
+            Type typ = ft.getType();
             String typeName = typ.getName();
             if (typeName == null) continue;
             sb.append(typeName);

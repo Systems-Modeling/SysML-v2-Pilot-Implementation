@@ -25,7 +25,6 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,20 +52,53 @@ public class SysML2PlantUMLText {
         MIXED;
     }
 
-    private final Collection<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
+    private final List<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private final Map<String, String> styleValueMap = new HashMap<String, String>();
     private StyleSwitch styleSwitch;
     private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new SysML2PlantUMLStyle.StyleRelDefaultSwitch(),
                                                                    new SysML2PlantUMLStyle.StyleStereotypeDefaultSwitch());
 
+    private void enableStyle() {
+        styleSwitch = null;
+        styleValueMap.clear();
+        for (int i = 0; i < styles.size(); i++) {
+            SysML2PlantUMLStyle style = styles.get(i);
+            if (style.styleSwitch != null) {
+                styleSwitch = style.styleSwitch;
+            }
+            if (style.options != null) {
+                styleValueMap.putAll(style.options);
+            }
+        }
+    }
+
+    private void resetStyle(SysML2PlantUMLStyle style) {
+        if (!style.isPrimary) return;
+        SysML2PlantUMLStyle[] ss = new SysML2PlantUMLStyle[styles.size()];
+        ss = styles.toArray(ss);
+        for (int i = 0; i < ss.length; i++) {
+            SysML2PlantUMLStyle s = ss[i];
+            if (s.isPrimary) {
+                styles.remove(i);
+            }
+        }
+    }
+
     public void addStyle(SysML2PlantUMLStyle style) {
+        resetStyle(style);
         styles.add(style);
-        if (style.styleSwitch != null) {
-            styleSwitch = style.styleSwitch;
-        }
-        if (style.options != null) {
-            styleValueMap.putAll(style.options);
-        }
+        enableStyle();
+    }
+
+    public void removeStyle(SysML2PlantUMLStyle style) {
+        resetStyle(style);
+        styles.remove(style);
+        enableStyle();
+    }
+
+    public boolean isStyleEnabled(SysML2PlantUMLStyle style) {
+        initStyle();
+    	return styles.contains(style);
     }
 
     public void clearStyle() {

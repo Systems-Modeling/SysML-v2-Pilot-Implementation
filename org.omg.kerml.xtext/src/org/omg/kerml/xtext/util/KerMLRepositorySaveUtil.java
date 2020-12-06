@@ -94,6 +94,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	 * <ul>
 	 * <li> Set the base path if the "-b" option is present.</li>
 	 * <li> Set the library path if the "-l" option is present.</li>
+	 * <li> Set flag to add implicit generalizations if the "-g" option is present.</li>
 	 * <li> Set the project name as the file name from the first argument after
 	 *      any options, stripped of its extension, with the current date/time
 	 *      appended.</li>

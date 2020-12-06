@@ -48,6 +48,7 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 	
 	private String basePath = ApiElementProcessingFacade.DEFAULT_BASE_PATH;
 	private String libraryPath = null;
+	private boolean isAddImplicitGeneralizations = false;
 	private String projectName;
 	
 	/**
@@ -109,7 +110,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 		int n = args.length;
 		if (n > 0) {
 			int i = 0;
-			while(("-b".equals(args[i]) || "-l".equals(args[i])) && i + 1 < n) {
+			while(("-b".equals(args[i]) || "-l".equals(args[i]) || "-g".equals(args[i])) && 
+					i + 1 < n) {
 				if ("-b".equals(args[i])) {
 					this.basePath = args[++i];
 				} else if ("-l".equals(args[i])) {
@@ -117,6 +119,8 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 					if (!libraryPath.endsWith("/")) {
 						libraryPath += "/";
 					}
+				} else if ("-g".equals(args[i])) {
+					this.isAddImplicitGeneralizations = true;
 				}
 				i++;
 			}
@@ -180,8 +184,9 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				this.initialize();				
 				this.read(args);
 				
-				System.out.println("Transforming...");
-				ElementUtil.transformAll(this.resourceSet, true);
+				System.out.println("Transforming" + 
+						(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
+				ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
 				
 				System.out.println("\nBase path is " + this.getBasePath());
 				System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());

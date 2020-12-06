@@ -49,10 +49,10 @@ import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle;
 import org.omg.sysml.plantuml.SysML2PlantUMLText;
 
-import net.sourceforge.plantuml.eclipse.utils.DiagramTextProviderS2;
+import net.sourceforge.plantuml.eclipse.utils.DiagramTextProviderS3;
 import net.sourceforge.plantuml.ecore.AbstractEcoreClassDiagramTextProvider;
 
-public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvider implements DiagramTextProviderS2 {
+public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvider implements DiagramTextProviderS3 {
     public SysMLDiagramTextProvider() {
         super(XtextEditor.class);
     }
@@ -150,10 +150,25 @@ public class SysMLDiagramTextProvider extends AbstractEcoreClassDiagramTextProvi
 	}
 
 	@Override
-	public void setStyle(String title) {
-        SysML2PlantUMLStyle s = SysML2PlantUMLStyle.getStyle(title);
+	public boolean isStyleEnabled(String style) {
+        SysML2PlantUMLStyle s = SysML2PlantUMLStyle.getStyle(style);
+        if (s == null) return false;
+        return sysml2PlantUMLText.isStyleEnabled(s);
+	}
+
+	@Override
+	public void setStyle(String style) {
+		SysML2PlantUMLStyle s = SysML2PlantUMLStyle.getStyle(style);
         if (s == null) return;
-        sysml2PlantUMLText.clearStyle();
+        //sysml2PlantUMLText.clearStyle();
         sysml2PlantUMLText.addStyle(s);
+	}
+
+	@Override
+	public void disableStyle(String style) {
+		SysML2PlantUMLStyle s = SysML2PlantUMLStyle.getStyle(style);
+        if (s == null) return;
+        //sysml2PlantUMLText.clearStyle();
+        sysml2PlantUMLText.removeStyle(s);
 	}
 }

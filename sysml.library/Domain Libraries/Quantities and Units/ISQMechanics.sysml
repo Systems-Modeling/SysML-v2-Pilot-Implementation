@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-4:2019 "Mechanics"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-4:2019 "Mechanics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-4:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -62,8 +62,9 @@ package ISQMechanics {
     }
     attribute massDensity: MassDensityValue :> quantity;
 
+    alias MassDensityUnit as DensityUnit;
     alias MassDensityValue as DensityValue;
-    attribute density: DensityValue :> quantity;
+    alias massDensity as density;
 
     /**
      * source: item 4-3 specific volume
@@ -107,8 +108,9 @@ package ISQMechanics {
     }
     attribute relativeMassDensity: RelativeMassDensityValue :> quantity;
 
+    alias RelativeMassDensityUnit as RelativeDensityUnit;
     alias RelativeMassDensityValue as RelativeDensityValue;
-    attribute relativeDensity: RelativeDensityValue :> quantity;
+    alias relativeMassDensity as relativeDensity;
 
     /**
      * source: item 4-5 surface mass density, surface density
@@ -134,8 +136,9 @@ package ISQMechanics {
     }
     attribute surfaceMassDensity: SurfaceMassDensityValue :> quantity;
 
+    alias SurfaceMassDensityUnit as SurfaceDensityUnit;
     alias SurfaceMassDensityValue as SurfaceDensityValue;
-    attribute surfaceDensity: SurfaceDensityValue :> quantity;
+    alias surfaceMassDensity as surfaceDensity;
 
     /**
      * source: item 4-6 linear mass density, linear density
@@ -161,8 +164,9 @@ package ISQMechanics {
     }
     attribute linearMassDensity: LinearMassDensityValue :> quantity;
 
+    alias LinearMassDensityUnit as LinearDensityUnit;
     alias LinearMassDensityValue as LinearDensityValue;
-    attribute linearDensity: LinearDensityValue :> quantity;
+    alias linearMassDensity as linearDensity;
 
     /**
      * source: item 4-7 moment of inertia
@@ -284,7 +288,7 @@ package ISQMechanics {
 
     /**
      * source: item 4-9.5 rolling resistance, rolling drag, rolling friction force
-     * symbol(s): `vec(F_rr)`
+     * symbol(s): `vec(F_(rr))`
      * application domain: General
      * name: RollingResistance (specializes Force)
      * quantity dimension: L^1*M^1*T^-2
@@ -398,7 +402,7 @@ package ISQMechanics {
      * name: Torque
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): N*m, kg*m^2*s^-2
-     * definition: quantity described by the scalar product: `T = vec(M)*vec(e)_Q` where `vec(M)` is moment of force (item 4-12.1) and `vec(e)_Q` is unit vector of direction with respect to which the torque is considered
+     * definition: quantity described by the scalar product: `T = vec(M)*vec(e_Q)` where `vec(M)` is moment of force (item 4-12.1) and `vec(e_Q)` is unit vector of direction with respect to which the torque is considered
      * remarks: For example, torque is the twisting moment of force with respect to the longitudinal axis of a beam or shaft.
      */
     attribute def TorqueUnit :> SIDerivedUnit {
@@ -518,7 +522,7 @@ package ISQMechanics {
      * name: NormalStress
      * quantity dimension: L^-1*M^1*T^-2
      * measurement unit(s): Pa, N*m^-2, kg*m^-1*s^-2
-     * definition: scalar (ISO 80000-2) quantity describing surface action of a force into a body equal to: `σ_n = (d F_n)/(dA)` where `F`_n is the normal component of force (item 4-9.1) and `A` is the area (ISO 80000-3) of the surface element
+     * definition: scalar (ISO 80000-2) quantity describing surface action of a force into a body equal to: `σ_n = (d F_n)/(dA)` where `F_n` is the normal component of force (item 4-9.1) and `A` is the area (ISO 80000-3) of the surface element
      * remarks: A couple of mutually opposite forces of magnitude `F` acting on the opposite surfaces of a slice (layer) of homogenous solid matter normal to it, and evenly distributed, cause a constant normal stress `σ_n = F A` in the slice (layer).
      */
     attribute def NormalStressUnit :> SIDerivedUnit {
@@ -545,7 +549,7 @@ package ISQMechanics {
      * name: ShearStress
      * quantity dimension: L^-1*M^1*T^-2
      * measurement unit(s): Pa, N*m^-2, kg*m^-1*s^-2
-     * definition: scalar (ISO 80000-2) quantity describing surface action of a force into a body equal to: `τ_s = (d F_t)/(dA)` where `F`_t is the tangential component of force (item 4-9.1) and `A` is the area (ISO 80000-3) of the surface element
+     * definition: scalar (ISO 80000-2) quantity describing surface action of a force into a body equal to: `τ_s = (d F_t)/(dA)` where `F_t` is the tangential component of force (item 4-9.1) and `A` is the area (ISO 80000-3) of the surface element
      * remarks: A couple of mutually opposite forces of magnitude `F` acting on the opposite surfaces of a slice (layer) of homogenous solid matter parallel to it, and evenly distributed, cause a constant shear stress `τ = F/A` in the slice (layer).
      */
     attribute def ShearStressUnit :> SIDerivedUnit {
@@ -682,8 +686,9 @@ package ISQMechanics {
     }
     attribute modulusOfElasticity: ModulusOfElasticityValue :> quantity;
 
+    alias ModulusOfElasticityUnit as YoungModulusUnit;
     alias ModulusOfElasticityValue as YoungModulusValue;
-    attribute youngModulus: YoungModulusValue :> quantity;
+    alias modulusOfElasticity as youngModulus;
 
     /**
      * source: item 4-19.2 modulus of rigidity, shear modulus
@@ -712,8 +717,9 @@ package ISQMechanics {
     }
     attribute modulusOfRigidity: ModulusOfRigidityValue :> quantity;
 
+    alias ModulusOfRigidityUnit as ShearModulusUnit;
     alias ModulusOfRigidityValue as ShearModulusValue;
-    attribute shearModulus: ShearModulusValue :> quantity;
+    alias modulusOfRigidity as shearModulus;
 
     /**
      * source: item 4-19.3 modulus of compression, bulk modulus
@@ -742,8 +748,9 @@ package ISQMechanics {
     }
     attribute modulusOfCompression: ModulusOfCompressionValue :> quantity;
 
+    alias ModulusOfCompressionUnit as BulkModulusUnit;
     alias ModulusOfCompressionValue as BulkModulusValue;
-    attribute bulkModulus: BulkModulusValue :> quantity;
+    alias modulusOfCompression as bulkModulus;
 
     /**
      * source: item 4-20 compressibility
@@ -779,7 +786,7 @@ package ISQMechanics {
      * name: SecondAxialMomentOfArea
      * quantity dimension: L^4
      * measurement unit(s): m^4
-     * definition: geometrical characteristic of a shape of a body equal to: `I_a = int int_M r_Q^2 * dA` where M is the two-dimensional domain of the cross-section of a plane and considered body, `r_Q` is radial distance (ISO 80000-3) from a Q-axis in the plane of the surface considered and `A` is area (ISO 80000-3)
+     * definition: geometrical characteristic of a shape of a body equal to: `I_a = int int_M r_Q^2 * dA` where `M` is the two-dimensional domain of the cross-section of a plane and considered body, `r_Q` is radial distance (ISO 80000-3) from a Q-axis in the plane of the surface considered and `A` is area (ISO 80000-3)
      * remarks: This quantity is often referred to wrongly as “moment of inertia” (item 4-7). The subscript, `a`, may be omitted when there is no risk of confusion.
      */
     attribute def SecondAxialMomentOfAreaUnit :> SIDerivedUnit {
@@ -800,7 +807,7 @@ package ISQMechanics {
      * name: SecondPolarMomentOfArea
      * quantity dimension: L^4
      * measurement unit(s): m^4
-     * definition: geometrical characteristic of a shape of a body equal to: `I_p = int int_M r_Q^2 * dA` where M is the two-dimensional domain of the cross-section of a plane and considered body, `r_Q` is radial distance (ISO 80000-3) from a Q-axis perpendicular to the plane of the surface considered and `A` is area (ISO 80000-3)
+     * definition: geometrical characteristic of a shape of a body equal to: `I_p = int int_M r_Q^2 * dA` where `M` is the two-dimensional domain of the cross-section of a plane and considered body, `r_Q` is radial distance (ISO 80000-3) from a Q-axis perpendicular to the plane of the surface considered and `A` is area (ISO 80000-3)
      * remarks: This quantity is often referred to wrongly as “moment of inertia” (item 4-7). The subscript, p, may be omitted when there is no risk of confusion.
      */
     attribute def SecondPolarMomentOfAreaUnit :> SIDerivedUnit {
@@ -853,11 +860,13 @@ package ISQMechanics {
     }
     attribute staticFrictionCoefficient: StaticFrictionCoefficientValue :> quantity;
 
+    alias StaticFrictionCoefficientUnit as StaticFrictionFactorUnit;
     alias StaticFrictionCoefficientValue as StaticFrictionFactorValue;
-    attribute staticFrictionFactor: StaticFrictionFactorValue :> quantity;
+    alias staticFrictionCoefficient as staticFrictionFactor;
 
+    alias StaticFrictionCoefficientUnit as CoefficientOfStaticFrictionUnit;
     alias StaticFrictionCoefficientValue as CoefficientOfStaticFrictionValue;
-    attribute coefficientOfStaticFriction: CoefficientOfStaticFrictionValue :> quantity;
+    alias staticFrictionCoefficient as coefficientOfStaticFriction;
 
     /**
      * source: item 4-23.2 kinetic friction factor, dynamic friction factor
@@ -877,8 +886,9 @@ package ISQMechanics {
     }
     attribute kineticFrictionFactor: KineticFrictionFactorValue :> quantity;
 
+    alias KineticFrictionFactorUnit as DynamicFrictionFactorUnit;
     alias KineticFrictionFactorValue as DynamicFrictionFactorValue;
-    attribute dynamicFrictionFactor: DynamicFrictionFactorValue :> quantity;
+    alias kineticFrictionFactor as dynamicFrictionFactor;
 
     /**
      * source: item 4-23.3 rolling resistance factor
@@ -887,7 +897,7 @@ package ISQMechanics {
      * name: RollingResistanceFactor
      * quantity dimension: 1
      * measurement unit(s): 1
-     * definition: proportionality factor between the magnitude of the tangential component `F` and the magnitude of the normal component `N` of the force applied to a body rolling on a surface at constant speed: `F = C_(rr) N`
+     * definition: proportionality factor between the magnitude of the tangential component `F` and the magnitude of the normal component `N` of the force applied to a body rolling on a surface at constant speed: `F = C_(rr)*N`
      * remarks: Also known as rolling resistance coefficient, RRC.
      */
     attribute def RollingResistanceFactorUnit :> DimensionOneUnit {
@@ -905,7 +915,7 @@ package ISQMechanics {
      * name: DragCoefficient
      * quantity dimension: 1
      * measurement unit(s): 1
-     * definition: factor proportional to magnitude `F_D` of the drag force (item 4-9.6) of a body moving in a fluid, dependent on the shape and speed `v` (ISO 80000-3) of a body: `F_D = 1/2 * C_D * ρ * v^2 * A` where `rhp` is mass density (item 4-2) of the fluid and `A` is cross-section area (ISO 80000-3) of the body
+     * definition: factor proportional to magnitude `F_D` of the drag force (item 4-9.6) of a body moving in a fluid, dependent on the shape and speed `v` (ISO 80000-3) of a body: `F_D = 1/2 * C_D * ρ * v^2 * A` where `ρ` is mass density (item 4-2) of the fluid and `A` is cross-section area (ISO 80000-3) of the body
      * remarks: 
      */
     attribute def DragCoefficientUnit :> DimensionOneUnit {
@@ -916,8 +926,9 @@ package ISQMechanics {
     }
     attribute dragCoefficient: DragCoefficientValue :> quantity;
 
+    alias DragCoefficientUnit as DragFactorUnit;
     alias DragCoefficientValue as DragFactorValue;
-    attribute dragFactor: DragFactorValue :> quantity;
+    alias dragCoefficient as dragFactor;
 
     /**
      * source: item 4-24 dynamic viscosity, viscosity
@@ -946,8 +957,9 @@ package ISQMechanics {
     }
     attribute dynamicViscosity: DynamicViscosityValue :> quantity;
 
+    alias DynamicViscosityUnit as ViscosityUnit;
     alias DynamicViscosityValue as ViscosityValue;
-    attribute viscosity: ViscosityValue :> quantity;
+    alias dynamicViscosity as viscosity;
 
     /**
      * source: item 4-25 kinematic viscosity
@@ -1087,8 +1099,9 @@ package ISQMechanics {
     }
     attribute mechanicalWork: MechanicalWorkValue :> quantity;
 
+    alias MechanicalWorkUnit as WorkUnit;
     alias MechanicalWorkValue as WorkValue;
-    attribute work: WorkValue :> quantity;
+    alias mechanicalWork as work;
 
     /**
      * source: item 4-29 efficiency
@@ -1097,7 +1110,7 @@ package ISQMechanics {
      * name: Efficiency
      * quantity dimension: 1
      * measurement unit(s): 1
-     * definition: quotient of output power `P_(out)` (item 4-27) from a system and input power `P_("in")` (item 4-27) to this system: `η = P_(out)/P_("in")`
+     * definition: quotient of output power `P_"out"` (item 4-27) from a system and input power `P_"in"` (item 4-27) to this system: `η = P_"out"/P_"in"`
      * remarks: The system must be specified. This quantity is often expressed by the unit percent, symbol %.
      */
     attribute def EfficiencyUnit :> DimensionOneUnit {

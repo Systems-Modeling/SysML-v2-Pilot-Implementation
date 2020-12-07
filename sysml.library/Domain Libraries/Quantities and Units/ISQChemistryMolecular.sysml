@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-9:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -58,8 +58,9 @@ package ISQChemistryMolecular {
     }    
     attribute amountOfSubstance: AmountOfSubstanceValue :> quantity;
 
+    alias AmountOfSubstanceUnit as NumberOfMolesUnit;
     alias AmountOfSubstanceValue as NumberOfMolesValue;
-    attribute numberOfMoles: NumberOfMolesValue :> quantity;
+    alias amountOfSubstance as numberOfMoles;
 
     /**
      * source: item 9-3 relative atomic mass
@@ -511,8 +512,9 @@ package ISQChemistryMolecular {
     }
     attribute latentHeatOfPhaseTransition: LatentHeatOfPhaseTransitionValue :> quantity;
 
+    alias LatentHeatOfPhaseTransitionUnit as EnthalpyOfPhaseTransitionUnit;
     alias LatentHeatOfPhaseTransitionValue as EnthalpyOfPhaseTransitionValue;
-    attribute enthalpyOfPhaseTransition: EnthalpyOfPhaseTransitionValue :> quantity;
+    alias latentHeatOfPhaseTransition as enthalpyOfPhaseTransition;
 
     /**
      * source: item 9-17 chemical potential
@@ -700,8 +702,9 @@ package ISQChemistryMolecular {
     }
     attribute activityOfSolute: ActivityOfSoluteValue :> quantity;
 
+    alias ActivityOfSoluteUnit as RelativeActivityOfSoluteUnit;
     alias ActivityOfSoluteValue as RelativeActivityOfSoluteValue;
-    attribute relativeActivityOfSolute: RelativeActivityOfSoluteValue :> quantity;
+    alias activityOfSolute as relativeActivityOfSolute;
 
     /**
      * source: item 9-25 activity coefficient
@@ -757,8 +760,9 @@ package ISQChemistryMolecular {
     }
     attribute activityOfSolvent: ActivityOfSolventValue :> quantity;
 
+    alias ActivityOfSolventUnit as RelativeActivityOfSolventUnit;
     alias ActivityOfSolventValue as RelativeActivityOfSolventValue;
-    attribute relativeActivityOfSolvent: RelativeActivityOfSolventValue :> quantity;
+    alias activityOfSolvent as relativeActivityOfSolvent;
 
     /**
      * source: item 9-27.2 osmotic factor of solvent, osmotic coefficient of solvent A
@@ -778,8 +782,9 @@ package ISQChemistryMolecular {
     }
     attribute osmoticFactorOfSolvent: OsmoticFactorOfSolventValue :> quantity;
 
+    alias OsmoticFactorOfSolventUnit as OsmoticCoefficientOfSolventAUnit;
     alias OsmoticFactorOfSolventValue as OsmoticCoefficientOfSolventAValue;
-    attribute osmoticCoefficientOfSolventA: OsmoticCoefficientOfSolventAValue :> quantity;
+    alias osmoticFactorOfSolvent as osmoticCoefficientOfSolventA;
 
     /**
      * source: item 9-27.3 standard absolute activity of solvent
@@ -904,8 +909,9 @@ package ISQChemistryMolecular {
     }
     attribute standardEquilibriumConstant: StandardEquilibriumConstantValue :> quantity;
 
+    alias StandardEquilibriumConstantUnit as ThermodynamicEquilibriumConstantUnit;
     alias StandardEquilibriumConstantValue as ThermodynamicEquilibriumConstantValue;
-    attribute thermodynamicEquilibriumConstant: ThermodynamicEquilibriumConstantValue :> quantity;
+    alias standardEquilibriumConstant as thermodynamicEquilibriumConstant;
 
     /**
      * source: item 9-33 equilibrium constant on pressure basis
@@ -1012,8 +1018,9 @@ package ISQChemistryMolecular {
     }
     attribute grandCanonicalPartitionFunction: GrandCanonicalPartitionFunctionValue :> quantity;
 
+    alias GrandCanonicalPartitionFunctionUnit as GrandPartitionFunctionUnit;
     alias GrandCanonicalPartitionFunctionValue as GrandPartitionFunctionValue;
-    attribute grandPartitionFunction: GrandPartitionFunctionValue :> quantity;
+    alias grandCanonicalPartitionFunction as grandPartitionFunction;
 
     /**
      * source: item 9-35.4 molecular partition function, partition function of a molecule
@@ -1033,8 +1040,9 @@ package ISQChemistryMolecular {
     }
     attribute molecularPartitionFunction: MolecularPartitionFunctionValue :> quantity;
 
+    alias MolecularPartitionFunctionUnit as PartitionFunctionOfAMoleculeUnit;
     alias MolecularPartitionFunctionValue as PartitionFunctionOfAMoleculeValue;
-    attribute partitionFunctionOfAMolecule: PartitionFunctionOfAMoleculeValue :> quantity;
+    alias molecularPartitionFunction as partitionFunctionOfAMolecule;
 
     /**
      * source: item 9-36.1 statistical weight of subsystem
@@ -1072,8 +1080,9 @@ package ISQChemistryMolecular {
     }
     attribute degeneracy: DegeneracyValue :> quantity;
 
+    alias DegeneracyUnit as MultiplicityUnit;
     alias DegeneracyValue as MultiplicityValue;
-    attribute multiplicity: MultiplicityValue :> quantity;
+    alias degeneracy as multiplicity;
 
     /**
      * source: item 9-37.1 molar gas constant
@@ -1273,8 +1282,9 @@ package ISQChemistryMolecular {
     }
     attribute degreeOfDissociation: DegreeOfDissociationValue :> quantity;
 
+    alias DegreeOfDissociationUnit as DissociationFractionUnit;
     alias DegreeOfDissociationValue as DissociationFractionValue;
-    attribute dissociationFraction: DissociationFractionValue :> quantity;
+    alias degreeOfDissociation as dissociationFraction;
 
     /**
      * source: item 9-44 electrolytic conductivity
@@ -1354,8 +1364,9 @@ package ISQChemistryMolecular {
     }
     attribute transportNumberOfTheIonB: TransportNumberOfTheIonBValue :> quantity;
 
+    alias TransportNumberOfTheIonBUnit as CurrentFractionOfTheIonBUnit;
     alias TransportNumberOfTheIonBValue as CurrentFractionOfTheIonBValue;
-    attribute currentFractionOfTheIonB: CurrentFractionOfTheIonBValue :> quantity;
+    alias transportNumberOfTheIonB as currentFractionOfTheIonB;
 
     /**
      * source: item 9-47 angle of optical rotation

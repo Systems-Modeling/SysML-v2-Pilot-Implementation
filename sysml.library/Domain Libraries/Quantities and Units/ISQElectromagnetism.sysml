@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard IEC-80000-6:2008 "Electromagnetism"
+ * Generated on 2020-12-07T11:21:01Z from standard IEC-80000-6:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -89,8 +89,9 @@ package ISQElectromagnetism {
     }
     attribute electricChargeDensity: ElectricChargeDensityValue :> quantity;
 
+    alias ElectricChargeDensityUnit as VolumicElectricChargeUnit;
     alias ElectricChargeDensityValue as VolumicElectricChargeValue;
-    attribute volumicElectricCharge: VolumicElectricChargeValue :> quantity;
+    alias electricChargeDensity as volumicElectricCharge;
 
     /**
      * source: item 6-4 surface density of electric charge, areic electric charge
@@ -119,8 +120,9 @@ package ISQElectromagnetism {
     }
     attribute surfaceDensityOfElectricCharge: SurfaceDensityOfElectricChargeValue :> quantity;
 
+    alias SurfaceDensityOfElectricChargeUnit as AreicElectricChargeUnit;
     alias SurfaceDensityOfElectricChargeValue as AreicElectricChargeValue;
-    attribute areicElectricCharge: AreicElectricChargeValue :> quantity;
+    alias surfaceDensityOfElectricCharge as areicElectricCharge;
 
     /**
      * source: item 6-5 linear density of electric charge, lineic electric charge
@@ -149,8 +151,9 @@ package ISQElectromagnetism {
     }
     attribute linearDensityOfElectricCharge: LinearDensityOfElectricChargeValue :> quantity;
 
+    alias LinearDensityOfElectricChargeUnit as LineicElectricChargeUnit;
     alias LinearDensityOfElectricChargeValue as LineicElectricChargeValue;
-    attribute lineicElectricCharge: LineicElectricChargeValue :> quantity;
+    alias linearDensityOfElectricCharge as lineicElectricCharge;
 
     /**
      * source: item 6-6 electric dipole moment
@@ -230,8 +233,9 @@ package ISQElectromagnetism {
     }
     attribute electricCurrentDensity: ElectricCurrentDensityValue :> quantity;
 
+    alias ElectricCurrentDensityUnit as AreicElectricCurrentUnit;
     alias ElectricCurrentDensityValue as AreicElectricCurrentValue;
-    attribute areicElectricCurrent: AreicElectricCurrentValue :> quantity;
+    alias electricCurrentDensity as areicElectricCurrent;
 
     /**
      * source: item 6-9 linear electric current density, lineic electric current
@@ -257,8 +261,9 @@ package ISQElectromagnetism {
     }
     attribute linearElectricCurrentDensity: LinearElectricCurrentDensityValue :> quantity;
 
+    alias LinearElectricCurrentDensityUnit as LineicElectricCurrentUnit;
     alias LinearElectricCurrentDensityValue as LineicElectricCurrentValue;
-    attribute lineicElectricCurrent: LineicElectricCurrentValue :> quantity;
+    alias linearElectricCurrentDensity as lineicElectricCurrent;
 
     /**
      * source: item 6-10 electric field strength
@@ -380,8 +385,9 @@ package ISQElectromagnetism {
     }
     attribute voltage: VoltageValue :> quantity;
 
+    alias VoltageUnit as ElectricTensionUnit;
     alias VoltageValue as ElectricTensionValue;
-    attribute electricTension: ElectricTensionValue :> quantity;
+    alias voltage as electricTension;
 
     /**
      * source: item 6-12 electric flux density, electric displacement
@@ -410,8 +416,9 @@ package ISQElectromagnetism {
     }
     attribute electricFluxDensity: ElectricFluxDensityValue :> quantity;
 
+    alias ElectricFluxDensityUnit as ElectricDisplacementUnit;
     alias ElectricFluxDensityValue as ElectricDisplacementValue;
-    attribute electricDisplacement: ElectricDisplacementValue :> quantity;
+    alias electricFluxDensity as electricDisplacement;
 
     /**
      * source: item 6-13 capacitance
@@ -473,8 +480,9 @@ package ISQElectromagnetism {
     }
     attribute electricConstant: ElectricConstantValue :> quantity;
 
+    alias ElectricConstantUnit as PermittivityOfVacuumUnit;
     alias ElectricConstantValue as PermittivityOfVacuumValue;
-    attribute permittivityOfVacuum: PermittivityOfVacuumValue :> quantity;
+    alias electricConstant as permittivityOfVacuum;
 
     /**
      * source: item 6-14.2 permittivity
@@ -749,8 +757,9 @@ package ISQElectromagnetism {
     }
     attribute magneticMoment: MagneticMomentValue :> quantity;
 
+    alias MagneticMomentUnit as MagneticAreaMomentUnit;
     alias MagneticMomentValue as MagneticAreaMomentValue;
-    attribute magneticAreaMoment: MagneticAreaMomentValue :> quantity;
+    alias magneticMoment as magneticAreaMoment;
 
     /**
      * source: item 6-24 magnetization
@@ -800,8 +809,9 @@ package ISQElectromagnetism {
     }
     attribute magneticFieldStrength: MagneticFieldStrengthValue :> quantity;
 
+    alias MagneticFieldStrengthUnit as MagnetizingFieldUnit;
     alias MagneticFieldStrengthValue as MagnetizingFieldValue;
-    attribute magnetizingField: MagnetizingFieldValue :> quantity;
+    alias magneticFieldStrength as magnetizingField;
 
     /**
      * source: item 6-26.1 magnetic constant, permeability of vacuum
@@ -833,8 +843,9 @@ package ISQElectromagnetism {
     }
     attribute magneticConstant: MagneticConstantValue :> quantity;
 
+    alias MagneticConstantUnit as PermeabilityOfVacuumUnit;
     alias MagneticConstantValue as PermeabilityOfVacuumValue;
-    attribute permeabilityOfVacuum: PermeabilityOfVacuumValue :> quantity;
+    alias magneticConstant as permeabilityOfVacuum;
 
     /**
      * source: item 6-26.2 permeability
@@ -1040,8 +1051,9 @@ package ISQElectromagnetism {
     }
     attribute electromagneticEnergyDensity: ElectromagneticEnergyDensityValue :> quantity;
 
+    alias ElectromagneticEnergyDensityUnit as VolumicElectromagneticEnergyUnit;
     alias ElectromagneticEnergyDensityValue as VolumicElectromagneticEnergyValue;
-    attribute volumicElectromagneticEnergy: VolumicElectromagneticEnergyValue :> quantity;
+    alias electromagneticEnergyDensity as volumicElectromagneticEnergy;
 
     /**
      * source: item 6-34 Poynting vector
@@ -1115,8 +1127,9 @@ package ISQElectromagnetism {
     }
     attribute speedOfLight: SpeedOfLightValue :> quantity;
 
+    alias SpeedOfLightUnit as LightSpeedUnit;
     alias SpeedOfLightValue as LightSpeedValue;
-    attribute lightSpeed: LightSpeedValue :> quantity;
+    alias speedOfLight as lightSpeed;
 
     /**
      * source: item 6-36 source voltage, source tension
@@ -1148,8 +1161,9 @@ package ISQElectromagnetism {
     }
     attribute sourceVoltage: SourceVoltageValue :> quantity;
 
+    alias SourceVoltageUnit as SourceTensionUnit;
     alias SourceVoltageValue as SourceTensionValue;
-    attribute sourceTension: SourceTensionValue :> quantity;
+    alias sourceVoltage as sourceTension;
 
     /**
      * source: item 6-37.1 scalar magnetic potential
@@ -1316,8 +1330,9 @@ package ISQElectromagnetism {
     }
     attribute inductance: InductanceValue :> quantity;
 
+    alias InductanceUnit as SelfInductanceUnit;
     alias InductanceValue as SelfInductanceValue;
-    attribute selfInductance: SelfInductanceValue :> quantity;
+    alias inductance as selfInductance;
 
     /**
      * source: item 6-41.2 mutual inductance
@@ -1472,8 +1487,9 @@ package ISQElectromagnetism {
     }
     attribute power: PowerValue :> quantity;
 
+    alias PowerUnit as InstantaneousPowerUnit;
     alias PowerValue as InstantaneousPowerValue;
-    attribute instantaneousPower: InstantaneousPowerValue :> quantity;
+    alias power as instantaneousPower;
 
     /**
      * source: item 6-46 resistance
@@ -1625,8 +1641,9 @@ package ISQElectromagnetism {
     }
     attribute impedance: ImpedanceValue :> quantity;
 
+    alias ImpedanceUnit as ComplexImpedanceUnit;
     alias ImpedanceValue as ComplexImpedanceValue;
-    attribute complexImpedance: ComplexImpedanceValue :> quantity;
+    alias impedance as complexImpedance;
 
     /**
      * source: item 6-51.2 resistance to alterating current
@@ -1748,8 +1765,9 @@ package ISQElectromagnetism {
     }
     attribute admittance: AdmittanceValue :> quantity;
 
+    alias AdmittanceUnit as ComplexAdmittanceUnit;
     alias AdmittanceValue as ComplexAdmittanceValue;
-    attribute complexAdmittance: ComplexAdmittanceValue :> quantity;
+    alias admittance as complexAdmittance;
 
     /**
      * source: item 6-52.2 conductance for alternating current

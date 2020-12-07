@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-8:2020 "Acoustics"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-8:2020 "Acoustics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-8:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -16,8 +16,8 @@ package ISQAcoustics {
 
     private import ISQSpaceTime::LengthValue;
     private import ISQSpaceTime::displacement;
-    private import ISQSpaceTime::DurationValue;
-    private import ISQSpaceTime::duration;
+    private import ISQSpaceTime::TimeValue;
+    private import ISQSpaceTime::time;
     private import ISQSpaceTime::velocity;
     private import ISQSpaceTime::acceleration;
     private import ISQMechanics::PowerValue;
@@ -333,12 +333,12 @@ package ISQAcoustics {
      * source: item 8-17 reverberation time
      * symbol(s): `T`
      * application domain: General
-     * name: ReverberationTime (specializes Duration)
+     * name: ReverberationTime (specializes Time)
      * quantity dimension: T^1
      * measurement unit(s): s
      * definition: time duration (ISO 80000-3) required for the space-averaged sound energy density (item 8-7) to decrease to `10^(−6)` of its initial value (i.e. for its level to decrease by `60 "@[dB]"`) after the source emission has stopped
      * remarks: The reverberation time can be evaluated based on a dynamic range smaller than `60 "@[dB]"` and extrapolated to a decay time of `60 "@[dB]"`. It is then labelled accordingly `T_n`, where `n` is the dynamic range in `"@[dB]"`. See also ISO 3382-1.
      */
-    attribute reverberationTime :> duration;
+    attribute reverberationTime :> time;
 
 }

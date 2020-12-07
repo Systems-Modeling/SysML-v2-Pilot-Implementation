@@ -6,24 +6,15 @@ package ISQ {
 	private import Quantities::*;
 	private import UnitsAndScales::*;
 
-    // ISO 80000-3 "Space and Time" 
-    import ISQSpaceTime::*;
-    // ISO 80000-4 "Mechanics" 
-    import ISQMechanics::*;
-    // ISO 80000-5 "Thermodynamics" 
-    import ISQThermodynamics::*;
-    // IEC 80000-6 "Electromagnetism" 
-    import ISQElectromagnetism::*;
-    // ISO 80000-7 "Light" 
-    import ISQLight::*;
-    // ISO 80000-8 "Acoustics" 
-    import ISQAcoustics::*;
-    // ISO 80000-9 "Physical chemistry and molecular physics" 
-    import ISQChemistryMolecular::*;
-    // ISO 80000-10 "Atomic and nuclear physics"
-    import ISQAtomicNuclear::*;
-    // ISO 80000-11 "Characteristic numbers" 
-    import ISQCharacteristicNumbers::*;
+    import ISQSpaceTime::*;             // ISO 80000-3 "Space and Time"
+    import ISQMechanics::*;             // ISO 80000-4 "Mechanics"
+    import ISQThermodynamics::*;        // ISO 80000-5 "Thermodynamics"
+    import ISQElectromagnetism::*;      // IEC 80000-6 "Electromagnetism"
+    import ISQLight::*;                 // ISO 80000-7 "Light"
+    import ISQAcoustics::*;             // ISO 80000-8 "Acoustics"
+    import ISQChemistryMolecular::*;    // ISO 80000-9 "Physical chemistry and molecular physics"
+    import ISQAtomicNuclear::*;         // ISO 80000-10 "Atomic and nuclear physics"
+    import ISQCharacteristicNumbers::*; // ISO 80000-11 "Characteristic numbers"
 	
 	/*
 	 * The ISQ base quantities are defined in the packages for the individual ISO/IEC 80000 parts, as follows:
@@ -37,11 +28,11 @@ package ISQ {
 	 */
 	 
 	/**
-	 * Define abstract super attribute def for all derived units in ISO/IEC 80000
+	 * Abstract top level attribute def for all derived units in ISO/IEC 80000
 	 * 
 	 * An SI derived unit is always defined in terms of powers of the SI base units.
 	 * As a default, the exponents of all unit power factors are set to zero,
-     * effectively making the default equivalent to a DimensionOneUnit.
+     * effectively making the default equivalent to a UnitsAndScales::DimensionOneUnit, in terms of quantity dimension.
 	 */	 
 	abstract attribute def SIDerivedUnit :> DerivedUnit {
 		attribute lengthPowerFactor subsets MeasurementUnit::unitPowerFactor {
@@ -61,7 +52,7 @@ package ISQ {
 			attribute redefines exponent = 0;
 		}
 		attribute temperaturePowerFactor subsets MeasurementUnit::unitPowerFactor {
-			attribute redefines unit: ThermodynamicTemperatureUnit;
+			attribute redefines unit: TemperatureUnit;
 			attribute redefines exponent = 0;
 		}
 		attribute amountOfSubstancePowerFactor subsets MeasurementUnit::unitPowerFactor {

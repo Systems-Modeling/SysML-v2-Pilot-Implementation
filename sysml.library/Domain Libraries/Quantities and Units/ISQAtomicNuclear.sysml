@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-10:2019 "Atomic and nuclear physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-10:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -47,8 +47,9 @@ package ISQAtomicNuclear {
     }
     attribute atomicNumber: AtomicNumberValue :> quantity;
 
+    alias AtomicNumberUnit as ProtonNumberUnit;
     alias AtomicNumberValue as ProtonNumberValue;
-    attribute protonNumber: ProtonNumberValue :> quantity;
+    alias atomicNumber as protonNumber;
 
     /**
      * source: item 10-1.2 neutron number
@@ -86,8 +87,9 @@ package ISQAtomicNuclear {
     }
     attribute nucleonNumber: NucleonNumberValue :> quantity;
 
+    alias NucleonNumberUnit as MassNumberUnit;
     alias NucleonNumberValue as MassNumberValue;
-    attribute massNumber: MassNumberValue :> quantity;
+    alias nucleonNumber as massNumber;
 
     /**
      * source: item 10-2 rest mass, proper mass
@@ -181,8 +183,9 @@ package ISQAtomicNuclear {
     }
     attribute chargeNumber: ChargeNumberValue :> quantity;
 
+    alias ChargeNumberUnit as IonizationNumberUnit;
     alias ChargeNumberValue as IonizationNumberValue;
-    attribute ionizationNumber: IonizationNumberValue :> quantity;
+    alias chargeNumber as ionizationNumber;
 
     /**
      * source: item 10-6 Bohr radius
@@ -373,11 +376,13 @@ package ISQAtomicNuclear {
     }
     attribute gyromagneticRatio: GyromagneticRatioValue :> quantity;
 
+    alias GyromagneticRatioUnit as MagnetogyricRatioUnit;
     alias GyromagneticRatioValue as MagnetogyricRatioValue;
-    attribute magnetogyricRatio: MagnetogyricRatioValue :> quantity;
+    alias gyromagneticRatio as magnetogyricRatio;
 
+    alias GyromagneticRatioUnit as GyromagneticCoefficientUnit;
     alias GyromagneticRatioValue as GyromagneticCoefficientValue;
-    attribute gyromagneticCoefficient: GyromagneticCoefficientValue :> quantity;
+    alias gyromagneticRatio as gyromagneticCoefficient;
 
     /**
      * source: item 10-12.2 gyromagnetic ratio of the electron, magnetogyric ratio of the electron, gyromagnetic coefficient of the electron
@@ -406,11 +411,13 @@ package ISQAtomicNuclear {
     }
     attribute gyromagneticRatioOfTheElectron: GyromagneticRatioOfTheElectronValue :> quantity;
 
+    alias GyromagneticRatioOfTheElectronUnit as MagnetogyricRatioOfTheElectronUnit;
     alias GyromagneticRatioOfTheElectronValue as MagnetogyricRatioOfTheElectronValue;
-    attribute magnetogyricRatioOfTheElectron: MagnetogyricRatioOfTheElectronValue :> quantity;
+    alias gyromagneticRatioOfTheElectron as magnetogyricRatioOfTheElectron;
 
+    alias GyromagneticRatioOfTheElectronUnit as GyromagneticCoefficientOfTheElectronUnit;
     alias GyromagneticRatioOfTheElectronValue as GyromagneticCoefficientOfTheElectronValue;
-    attribute gyromagneticCoefficientOfTheElectron: GyromagneticCoefficientOfTheElectronValue :> quantity;
+    alias gyromagneticRatioOfTheElectron as gyromagneticCoefficientOfTheElectron;
 
     /**
      * source: item 10-13.1 quantum number
@@ -574,8 +581,9 @@ package ISQAtomicNuclear {
     }
     attribute landeFactor: LandeFactorValue :> quantity;
 
+    alias LandeFactorUnit as GFactorOfAtomUnit;
     alias LandeFactorValue as GFactorOfAtomValue;
-    attribute gFactorOfAtom: GFactorOfAtomValue :> quantity;
+    alias landeFactor as gFactorOfAtom;
 
     /**
      * source: item 10-14.2 g factor of nucleus or nuclear particle
@@ -849,8 +857,9 @@ package ISQAtomicNuclear {
     }
     attribute decayConstant: DecayConstantValue :> quantity;
 
+    alias DecayConstantUnit as DisintegrationConstantUnit;
     alias DecayConstantValue as DisintegrationConstantValue;
-    attribute disintegrationConstant: DisintegrationConstantValue :> quantity;
+    alias decayConstant as disintegrationConstant;
 
     /**
      * source: item 10-25 mean duration of life, mean life time
@@ -923,8 +932,9 @@ package ISQAtomicNuclear {
     }
     attribute specificActivity: SpecificActivityValue :> quantity;
 
+    alias SpecificActivityUnit as MassicActivityUnit;
     alias SpecificActivityValue as MassicActivityValue;
-    attribute massicActivity: MassicActivityValue :> quantity;
+    alias specificActivity as massicActivity;
 
     /**
      * source: item 10-29 activity density, volumic activity, activity concentration
@@ -950,11 +960,13 @@ package ISQAtomicNuclear {
     }
     attribute activityDensity: ActivityDensityValue :> quantity;
 
+    alias ActivityDensityUnit as VolumicActivityUnit;
     alias ActivityDensityValue as VolumicActivityValue;
-    attribute volumicActivity: VolumicActivityValue :> quantity;
+    alias activityDensity as volumicActivity;
 
+    alias ActivityDensityUnit as ActivityConcentrationUnit;
     alias ActivityDensityValue as ActivityConcentrationValue;
-    attribute activityConcentration: ActivityConcentrationValue :> quantity;
+    alias activityDensity as activityConcentration;
 
     /**
      * source: item 10-30 surface-activity density
@@ -1102,7 +1114,7 @@ package ISQAtomicNuclear {
 
     /**
      * source: item 10-38.2 total cross section
-     * symbol(s): `σ_(tot)`, `σ_T`
+     * symbol(s): `σ_"tot"`, `σ_"T"`
      * application domain: atomic physics
      * name: TotalCrossSection (specializes Area)
      * quantity dimension: L^2
@@ -1202,17 +1214,18 @@ package ISQAtomicNuclear {
     }
     attribute volumicCrossSection: VolumicCrossSectionValue :> quantity;
 
+    alias VolumicCrossSectionUnit as MacroscopicCrossSectionUnit;
     alias VolumicCrossSectionValue as MacroscopicCrossSectionValue;
-    attribute macroscopicCrossSection: MacroscopicCrossSectionValue :> quantity;
+    alias volumicCrossSection as macroscopicCrossSection;
 
     /**
      * source: item 10-42.2 volumic total cross section, macroscopic total cross section
-     * symbol(s): `Σ_(tot)`, `Σ_T`
+     * symbol(s): `Σ_"tot"`, `Σ_"T"`
      * application domain: atomic physics
      * name: VolumicTotalCrossSection
      * quantity dimension: L^-1
      * measurement unit(s): m^-1
-     * definition: product of the number density `n_a` of the atoms and the cross section (item 10-38.1) `σ_(`tot) for a given type of atoms: `Σ_(`tot) = `n_a` `σ_(`tot)
+     * definition: product of the number density `n_a` of the atoms and the cross section (item 10-38.1) `σ_"tot"` for a given type of atoms: `Σ_"tot" = n_a*σ_"tot"`
      * remarks: See the Remarks for item 10-49.
      */
     attribute def VolumicTotalCrossSectionUnit :> SIDerivedUnit {
@@ -1226,8 +1239,9 @@ package ISQAtomicNuclear {
     }
     attribute volumicTotalCrossSection: VolumicTotalCrossSectionValue :> quantity;
 
+    alias VolumicTotalCrossSectionUnit as MacroscopicTotalCrossSectionUnit;
     alias VolumicTotalCrossSectionValue as MacroscopicTotalCrossSectionValue;
-    attribute macroscopicTotalCrossSection: MacroscopicTotalCrossSectionValue :> quantity;
+    alias volumicTotalCrossSection as macroscopicTotalCrossSection;
 
     /**
      * source: item 10-43 particle fluence
@@ -1236,7 +1250,7 @@ package ISQAtomicNuclear {
      * name: ParticleFluence
      * quantity dimension: L^-2
      * measurement unit(s): m^-2
-     * definition: differential quotient of `N` with respect to `a`, where `N` is the number of particles incident on a sphere of cross-sectional area `a `(item 10-38.1): `Φ = (dN)/(da)`
+     * definition: differential quotient of `N` with respect to `a`, where `N` is the number of particles incident on a sphere of cross-sectional area `a` (item 10-38.1): `Φ = (dN)/(da)`
      * remarks: The word “particle” is usually replaced by the name of a specific particle, for example `proton` fluence. If a flat area of size d`A` is passed perpendicularly by a number of d`N` particles, the corresponding particle fluence is: `Φ = (dN)/(dA)`. A plane area of size d`A` crossed at an angle `α` with respect to the surface normal by a number of d`N` particles results in the particle fluence: `Φ = (dN)/(cos(α) dA)` In report 85a of the ICRU a definition with an equivalent meaning is given as: The fluence, `Φ` , is the quotient of d`N` and d`a`, where d`N` is the number of particles incident on a sphere of cross-sectional area d`a`: `Φ = (dN)/(dA)`. See also section 0.3.
      */
     attribute def ParticleFluenceUnit :> SIDerivedUnit {
@@ -1365,7 +1379,7 @@ package ISQAtomicNuclear {
      * name: LinearAttenuationCoefficient
      * quantity dimension: L^-1
      * measurement unit(s): m^-1
-     * definition: for uncharged particles of a given type and energy the differential quotient `n` with respect to `l,` where `n` is the fraction of `N` incoming particles that experience interactions in traversing a distance (ISO 80000-3) `l` in a given material: `μ = (dn)/(dl) = 1/N (dN)/(dl)` where d`N` is the number of particles that experience interactions in traversing d`l`
+     * definition: for uncharged particles of a given type and energy the differential quotient `n` with respect to `l,` where `n` is the fraction of `N` incoming particles that experience interactions in traversing a distance (ISO 80000-3) `l` in a given material: `μ = (dn)/(dl) = 1/N (dN)/(dl)` where `dN` is the number of particles that experience interactions in traversing `dl`
      * remarks: `μ` is equal to the macroscopic total cross section `Σ_(`tot) for the removal of particles from the beam. Using the relation `μ_m` = `μ`/`ρ` between the linear attenuation coefficient `μ`, the mass attenuation coefficient `μ_m` (item 10-50) and the density `ρ`, the definition given for the mass attenuation coefficient in report 85a of the ICRU can be applied to the linear attenuation coefficient resulting in: The linear attenuation coefficient, `μ`, of a material, for uncharged particles of a given type and energy, is the quotient of d`N`/`N` by d`l`, where d`N`/`N` is the mean fraction of the particles that experience interactions in traversing a distance d`l` in the material: `μ = 1/(dl) (dN)/(N)`. This definition has an equivalent meaning as the one given in column 4 of this item. See also section 0.3.
      */
     attribute def LinearAttenuationCoefficientUnit :> SIDerivedUnit {
@@ -1386,7 +1400,7 @@ package ISQAtomicNuclear {
      * name: MassAttenuationCoefficient
      * quantity dimension: L^2*M^-1
      * measurement unit(s): kg^-1*m^2
-     * definition: quotient of the linear attenuation coefficient `µ` (item 10-49) and the mass density `ρ` (ISO 80000-4) of the medium: `μ_m` = μ/`ρ`
+     * definition: quotient of the linear attenuation coefficient `µ` (item 10-49) and the mass density `ρ` (ISO 80000-4) of the medium: `μ_m = μ/ρ`
      * remarks: 
      */
     attribute def MassAttenuationCoefficientUnit :> SIDerivedUnit {
@@ -1410,7 +1424,7 @@ package ISQAtomicNuclear {
      * name: MolarAttenuationCoefficient
      * quantity dimension: L^2*N^-1
      * measurement unit(s): m^2*mol^-1
-     * definition: quotient of linear attenuation coefficient `µ` (item 10-49) and the amount c (ISO 80000-9) of the medium: `μ_c` = μ/`c`
+     * definition: quotient of linear attenuation coefficient `µ` (item 10-49) and the amount c (ISO 80000-9) of the medium: `μ_c = μ/c`
      * remarks: 
      */
     attribute def MolarAttenuationCoefficientUnit :> SIDerivedUnit {
@@ -1434,7 +1448,7 @@ package ISQAtomicNuclear {
      * name: AtomicAttenuationCoefficient
      * quantity dimension: L^2
      * measurement unit(s): m^2
-     * definition: quotient of the linear attenuation coefficient `µ` (item 10-49) and the number density (item 10-62.1), `n`, of atoms in the substance: `μ_a`` = μ`/`n`
+     * definition: quotient of the linear attenuation coefficient `µ` (item 10-49) and the number density (item 10-62.1), `n`, of atoms in the substance: `μ_a = μ/n`
      * remarks: `μ` is equal to the total cross section `σ_(`tot) for the removal of particles from the beam. See also item 10-38.2.
      */
     attribute def AtomicAttenuationCoefficientUnit :> SIDerivedUnit {
@@ -1487,8 +1501,9 @@ package ISQAtomicNuclear {
     }
     attribute totalLinearStoppingPower: TotalLinearStoppingPowerValue :> quantity;
 
+    alias TotalLinearStoppingPowerUnit as LinearStoppingPowerUnit;
     alias TotalLinearStoppingPowerValue as LinearStoppingPowerValue;
-    attribute linearStoppingPower: LinearStoppingPowerValue :> quantity;
+    alias totalLinearStoppingPower as linearStoppingPower;
 
     /**
      * source: item 10-55 total mass stopping power, mass stopping power
@@ -1497,7 +1512,7 @@ package ISQAtomicNuclear {
      * name: TotalMassStoppingPower
      * quantity dimension: L^4*T^-2
      * measurement unit(s): eV*m^-2/kg, J*m^2/kg, m^4*s^-2
-     * definition: quotient of the total linear stopping power `S` (item 10-54) and the mass density `ρ` (ISO 80000-4) of the material: `S_m` = S/`ρ`
+     * definition: quotient of the total linear stopping power `S` (item 10-54) and the mass density `ρ` (ISO 80000-4) of the material: `S_m = S/ρ`
      * remarks: The quotient of total mass stopping power of a material and that of a reference material is called relative mass stopping power.
      */
     attribute def TotalMassStoppingPowerUnit :> SIDerivedUnit {
@@ -1514,8 +1529,9 @@ package ISQAtomicNuclear {
     }
     attribute totalMassStoppingPower: TotalMassStoppingPowerValue :> quantity;
 
+    alias TotalMassStoppingPowerUnit as MassStoppingPowerUnit;
     alias TotalMassStoppingPowerValue as MassStoppingPowerValue;
-    attribute massStoppingPower: MassStoppingPowerValue :> quantity;
+    alias totalMassStoppingPower as massStoppingPower;
 
     /**
      * source: item 10-56 mean linear range
@@ -1536,7 +1552,7 @@ package ISQAtomicNuclear {
      * name: MeanMassRange
      * quantity dimension: L^-2*M^1
      * measurement unit(s): kg*m^-2
-     * definition: product of the mean linear range (item 10-56) `R` and the mass density `ρ` (ISO 80000-4) of the material: `R_ρ` = R`ρ`
+     * definition: product of the mean linear range (item 10-56) `R` and the mass density `ρ` (ISO 80000-4) of the material: `R_ρ = R*ρ`
      * remarks: 
      */
     attribute def MeanMassRangeUnit :> SIDerivedUnit {
@@ -1555,12 +1571,12 @@ package ISQAtomicNuclear {
 
     /**
      * source: item 10-58 linear ionization
-     * symbol(s): `N_i_l`
+     * symbol(s): `N_{i_l}`
      * application domain: General
      * name: LinearIonization
      * quantity dimension: L^-1
      * measurement unit(s): m^-1
-     * definition: differential quotient of `q` with respect to `l`, where `q` is the average total charge (IEC 80000-6) of all positive ions produced by an ionizing charged particle over a path `l` (ISO 80000-3), divided by the elementary charge, `e `(ISO 80000-1): `N_(il) = 1/e (dq)/(dl)`
+     * definition: differential quotient of `q` with respect to `l`, where `q` is the average total charge (IEC 80000-6) of all positive ions produced by an ionizing charged particle over a path `l` (ISO 80000-3), divided by the elementary charge, `e` (ISO 80000-1): `N_{i_l} = 1/e*(dq)/(dl)`
      * remarks: Ionization due to secondary ionizing particles is included.
      */
     attribute def LinearIonizationUnit :> SIDerivedUnit {
@@ -1581,7 +1597,7 @@ package ISQAtomicNuclear {
      * name: TotalIonization
      * quantity dimension: 1
      * measurement unit(s): 1
-     * definition: quotient of the total mean charge of all positive ions produced by an ionizing charged particle along its entire path and along the paths of any secondary charged particles, and the elementary charge, `e `(ISO 80000-1)
+     * definition: quotient of the total mean charge of all positive ions produced by an ionizing charged particle along its entire path and along the paths of any secondary charged particles, and the elementary charge, `e` (ISO 80000-1)
      * remarks: `N_i = int N_(il) dl` See item 10-58.
      */
     attribute def TotalIonizationUnit :> DimensionOneUnit {
@@ -1599,7 +1615,7 @@ package ISQAtomicNuclear {
      * name: AverageEnergyLossPerElementaryChargeProduced
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
-     * definition: quotient of the initial kinetic energy `E_k` (ISO 80000-4) of an ionizing charged particle and the total ionization `N_i` (item 10-59) produced by that particle: `W_i` = `E_k`/`N_i`
+     * definition: quotient of the initial kinetic energy `E_k` (ISO 80000-4) of an ionizing charged particle and the total ionization `N_i` (item 10-59) produced by that particle: `W_i = E_k/N_i`
      * remarks: The name “average energy loss per ion pair formed” is usually used, although it is ambiguous. In the practical dosimetry of ionizing radiation the term `W`/`e`, the quotient of `W`, the average energy deposited in dry air per ion pair formed, and `e`, the elementary charge, is used as the factor which, when multiplied with the electric charge of one sign carried by all ion pairs formed in dry air of given mass, gives the energy deposited in this amount of dry air in the form of excitations and ionizations. In ICRU Report 85a, the mean energy expended in a gas per ion pair formed, `W`, is the quotient of `E` by `N,` where `N` is the mean total liberated charge of either sign, divided by the elementary charge when the initial kinetic energy `E` of a charged particle introduced into the gas is completely dissipated in the gas. Thus, `W` = `E`/`N`. It follows from the definition of `W` that the ions produced by bremsstrahlung or other secondary radiation emitted by the initial and secondary charged particles are included in `N`.
      */
     attribute def AverageEnergyLossPerElementaryChargeProducedUnit :> SIDerivedUnit {
@@ -1653,7 +1669,7 @@ package ISQAtomicNuclear {
      * name: ParticleNumberDensity
      * quantity dimension: L^-3
      * measurement unit(s): m^-3
-     * definition: quotient of the mean number `N` of particles in the volume (ISO 80000-3) `V` and volume: `n` =` N`/`V`
+     * definition: quotient of the mean number `N` of particles in the volume (ISO 80000-3) `V` and volume: `n = N/V`
      * remarks: `n` is the general symbol for the number density of particles. The distribution functions expressed in terms of speed and energy, `n_v` and `n_E`, are related to `n` by: `n = int n_v dv = int n_E dE`. The word “particle” is usually replaced by the name of a specific particle, for example `neutron` number density.
      */
     attribute def ParticleNumberDensityUnit :> SIDerivedUnit {
@@ -1669,12 +1685,12 @@ package ISQAtomicNuclear {
 
     /**
      * source: item 10-62.2 ion number density, ion density
-     * symbol(s): `n^+`, `n^-`
+     * symbol(s): `n^"+"`, `n^"-"`
      * application domain: General
      * name: IonNumberDensity
      * quantity dimension: L^-3
      * measurement unit(s): m^-3
-     * definition: quotient of the number of positive and negative ions, `N`^+ and `N`^-, respectively, in the volume `V` (ISO 80000-3), and that volume: `n`^+ = `N`^+/`V`, `n`^- = `N`^-/`V`
+     * definition: quotient of the number of positive and negative ions, `N^"+"` and `N^"-"`, respectively, in the volume `V` (ISO 80000-3), and that volume: `n^"+" = N^"+" / V`, `n^"-" = N^"-" / V`
      * remarks: 
      */
     attribute def IonNumberDensityUnit :> SIDerivedUnit {
@@ -1688,8 +1704,9 @@ package ISQAtomicNuclear {
     }
     attribute ionNumberDensity: IonNumberDensityValue :> quantity;
 
+    alias IonNumberDensityUnit as IonDensityUnit;
     alias IonNumberDensityValue as IonDensityValue;
-    attribute ionDensity: IonDensityValue :> quantity;
+    alias ionNumberDensity as ionDensity;
 
     /**
      * source: item 10-63 Recombination coefficient
@@ -1698,8 +1715,8 @@ package ISQAtomicNuclear {
      * name: RecombinationCoefficient
      * quantity dimension: L^3*T^-1
      * measurement unit(s): m^3*s^-1
-     * definition: coefficient in the law of recombination: `- (dn^+)/(dt) = - (dn^-)/(dt) = α * n^+ n^-` where `n`^+ and `n`^- are the ion number densities (item 10-62.2) of positive and negative ions, respectively, recombined during a time interval of duration d`t` (ISO 80000-3)
-     * remarks: The widely used term “recombination factor” is not correct because “factor” should only be used for quantities with dimension 1. The terms `(dn^+)/(dt) , (dn^-)/(dt)` are differential quotients.
+     * definition: coefficient in the law of recombination: `-(dn^"+")/(dt) = - (dn^"-")/(dt) = α*n^"+"*n^"-"`, where `n^"+"` and `n^"-"` are the ion number densities (item 10-62.2) of positive and negative ions, respectively, recombined during a time interval of duration `dt` (ISO 80000-3)
+     * remarks: The widely used term “recombination factor” is not correct because “factor” should only be used for quantities with dimension 1. The terms `(dn^"+")/(dt)` , `(dn^"-")/(dt)` are differential quotients.
      */
     attribute def RecombinationCoefficientUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -1739,8 +1756,9 @@ package ISQAtomicNuclear {
     }
     attribute diffusionCoefficient: DiffusionCoefficientValue :> quantity;
 
+    alias DiffusionCoefficientUnit as DiffusionCoefficientForParticleNumberDensityUnit;
     alias DiffusionCoefficientValue as DiffusionCoefficientForParticleNumberDensityValue;
-    attribute diffusionCoefficientForParticleNumberDensity: DiffusionCoefficientForParticleNumberDensityValue :> quantity;
+    alias diffusionCoefficient as diffusionCoefficientForParticleNumberDensity;
 
     /**
      * source: item 10-65 diffusion coefficient for fluence rate
@@ -1750,7 +1768,7 @@ package ISQAtomicNuclear {
      * quantity dimension: L^1
      * measurement unit(s): m
      * definition: proportionality constant between the particle current density `vec(J )`(item 10-48) and the gradient of the particle fluence rate `dot(Φ)` (item 10-44): `vec(J) = - vec(D) * nabla Φ`
-     * remarks: For a particle of a given speed `v`: `d_Ψ(v) = - J_(v,x)/(del Ψ // del x)` and `vec(v) * vec(D_Ψ)(v) = - vec(D_n)(v)`
+     * remarks: For a particle of a given speed `v`: `D_Ψ(v) = - J_{v,x}/(partial Ψ // partial x)` and `vec(v) * vec(D_Ψ)(v) = - vec(D_n)(v)`
      */
     attribute diffusionCoefficientForFluenceRate :> length;
 
@@ -1827,7 +1845,7 @@ package ISQAtomicNuclear {
      * name: Lethargy
      * quantity dimension: 1
      * measurement unit(s): 1
-     * definition: for a neutron of kinetic energy `E` (ISO 80000-4) : `u` = ln(`E_0`/`E`), where `E_0` is a reference energy
+     * definition: for a neutron of kinetic energy `E` (ISO 80000-4) : `u = ln(E_0/E)`, where `E_0` is a reference energy
      * remarks: Lethargy is also referred to as logarithmic energy decrement.
      */
     attribute def LethargyUnit :> DimensionOneUnit {
@@ -1923,7 +1941,7 @@ package ISQAtomicNuclear {
      * name: DiffusionLength (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
-     * definition: square root of the diffusion area `L`^2 (item 10-72.2): `L = sqrt(L^2)`
+     * definition: square root of the diffusion area `L^2` (item 10-72.2): `L = sqrt(L^2)`
      * remarks: 
      */
     attribute diffusionLength :> length;
@@ -1935,7 +1953,7 @@ package ISQAtomicNuclear {
      * name: MigrationLength (specializes Length)
      * quantity dimension: L^1
      * measurement unit(s): m
-     * definition: square root of the migration area `M`^2 (item 10-72.3): `M = sqrt(M^2)`
+     * definition: square root of the migration area `M^2` (item 10-72.3): `M = sqrt(M^2)`
      * remarks: 
      */
     attribute migrationLength :> length;
@@ -1966,7 +1984,7 @@ package ISQAtomicNuclear {
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: average number of fission neutrons, both prompt and delayed, emitted per neutron absorbed in a fissionable nuclide or in a nuclear fuel, as specified
-     * remarks: `ν`/`η` is equal to the quotient of the macroscopic cross section for fission and that for absorption, both for neutrons in the fuel material.
+     * remarks: `ν/η` is equal to the quotient of the macroscopic cross section for fission and that for absorption, both for neutrons in the fuel material.
      */
     attribute def NeutronYieldPerAbsorptionUnit :> DimensionOneUnit {
     }
@@ -2086,7 +2104,7 @@ package ISQAtomicNuclear {
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
      * definition: sum of all energy deposits in a given volume: `ε = sum_i ε_i` where the summation is performed over all energy (ISO 80000-5) deposits `ε_i` of interaction `i` in that volume
-     * remarks: Energy imparted is a stochastic quantity. `ε_i` is given by: `ε_i = ε_(i n) - ε_(out) + Q` where `ε_(i n)` is the energy (ISO 80000-5) of the incident ionizing particle, excluding rest energy (item 10-3), `ε_(out)` is the sum of the energies (ISO 80000-5) of all ionizing particles leaving the interaction, excluding rest energy (item 10-3), and `Q` is the change in the rest energies (item 10-3) of the nucleus and of all particles involved in the interaction. `Q > 0` means decrease of rest energy; `Q < 0` means increase of rest energy. Stochastic quantities such as the energy imparted and the specific energy imparted (item 10-81.2) and their probability distributions have been introduced as they describe the discontinuous nature of the ionizing radiations as a determinant of radiochemical and radiobiological effects. In radiation applications involving large numbers of ionizing particles, e.g. in medicine, radiation protection and materials testing and processing, these fluctuations are adequately represented by the expectation values of the probability distributions. Non-stochastic quantities such as particle fluence (item 10-43), absorbed dose (item 10-81.1) and kerma (item 10-86.1) are based on these expectation values.
+     * remarks: Energy imparted is a stochastic quantity. `ε_i` is given by: `ε_i = ε_(i n) - ε_"out" + Q` where `ε_(i n)` is the energy (ISO 80000-5) of the incident ionizing particle, excluding rest energy (item 10-3), `ε_"out"` is the sum of the energies (ISO 80000-5) of all ionizing particles leaving the interaction, excluding rest energy (item 10-3), and `Q` is the change in the rest energies (item 10-3) of the nucleus and of all particles involved in the interaction. `Q > 0` means decrease of rest energy; `Q < 0` means increase of rest energy. Stochastic quantities such as the energy imparted and the specific energy imparted (item 10-81.2) and their probability distributions have been introduced as they describe the discontinuous nature of the ionizing radiations as a determinant of radiochemical and radiobiological effects. In radiation applications involving large numbers of ionizing particles, e.g. in medicine, radiation protection and materials testing and processing, these fluctuations are adequately represented by the expectation values of the probability distributions. Non-stochastic quantities such as particle fluence (item 10-43), absorbed dose (item 10-81.1) and kerma (item 10-86.1) are based on these expectation values.
      */
     attribute def EnergyImpartedUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -2112,7 +2130,7 @@ package ISQAtomicNuclear {
      * name: MeanEnergyImparted (specializes Energy)
      * quantity dimension: L^2*M^1*T^-2
      * measurement unit(s): eV, J, kg*m^2*s^-2
-     * definition: expectation value of the energy imparted (item 10-80.1): `bar(ε) = R_(i n) - R_(out) + int Q` where `R_(`in) is the radiant energy (item 10-45) of all those charged and uncharged ionizing particles that enter the volume, `R_(`out) is the radiant energy of all those charged and un- charged ionizing particles that leave the volume, and `sum Q` is the sum of all changes of the rest energy (item 10-3) of nuclei and elementary particles that occur in that volume
+     * definition: expectation value of the energy imparted (item 10-80.1): `bar(ε) = R_"in" - R_"out" + sum Q` where `R_"in"` is the radiant energy (item 10-45) of all those charged and uncharged ionizing particles that enter the volume, `R_"out"` is the radiant energy of all those charged and uncharged ionizing particles that leave the volume, and `sum Q` is the sum of all changes of the rest energy (item 10-3) of nuclei and elementary particles that occur in that volume
      * remarks: Sometimes, it has been called the integral absorbed dose. `Q` > 0 means decrease of rest energy; `Q` < 0 means increase of rest energy.
      */
     attribute meanEnergyImparted :> energy;
@@ -2161,7 +2179,7 @@ package ISQAtomicNuclear {
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: factor in the calculation and measurement of dose equivalent (item 10-83.1), by which the absorbed dose (item 10-81.1) is to be weighted in order to account for different biological effectiveness of radiations, for radiation protection purposes
-     * remarks: `Q` is determined by the linear energy transfer (item 10-85) for `Δ -> oo` , `L_∞` (often denoted as `L` or LET), of charged particles passing through a small volume element at this point (the value of `L_∞` refers to water, not to tissue; the difference, however, is small). The relationship between `L` and `Q` is given in ICRP Publication 103 (ICRP, 2007).
+     * remarks: `Q` is determined by the linear energy transfer (item 10-85) for `Δ -> ∞` , `L_∞` (often denoted as `L` or LET), of charged particles passing through a small volume element at this point (the value of `L_∞` refers to water, not to tissue; the difference, however, is small). The relationship between `L` and `Q` is given in ICRP Publication 103 (ICRP, 2007).
      */
     attribute def QualityFactorUnit :> DimensionOneUnit {
     }
@@ -2178,8 +2196,8 @@ package ISQAtomicNuclear {
      * name: DoseEquivalent
      * quantity dimension: L^2*T^-2
      * measurement unit(s): Sv, J/kg, m^2*s^-2
-     * definition: product of the absorbed dose `D` (item 10-81.1) to tissue at the point of interest and the quality factor `Q` (item 10-82) at that point: `H` =` DQ`
-     * remarks: The sievert (Sv) is a special name for joule per kilogram, and is the coherent SI unit for dose equivalent. 1 Sv = 1 J/kg The dose equivalent at a point in tissue is given by: `H = int_o^oo Q(L) D_L dL` where `D_L` = d`D`/d`L` is the distribution of `D` in `L` at the point of interest. See ICRP Publication 103 (ICRP, 2007). The quantities measured with radiation protection dosimeters are based on the definition `H` = `Q D`. If various radiation qualities `i` have to be simultaneously accounted for, the definition is: `H = sum_i Q_i D_i`. In ICRU 51 this quantity is denoted as “dose equivalent”. In order to quantify the radiation exposition of the human body and to specify dose limits, use is made of a quantity defined in ICRP 103, the “equivalent dose to a tissue or organ”: `H_T = w_T sum_R w_R D_(T,R)`. The weighting factors `w_T` for various tissues and organs T and `w_R` for various radiation qualities R have been numerically laid down in ICRP 103. `D_(`T,R) is the mean absorbed dose to tissue within a tissue or organ T, imparted by radiation with radiation quality R.
+     * definition: product of the absorbed dose `D` (item 10-81.1) to tissue at the point of interest and the quality factor `Q` (item 10-82) at that point: `H = DQ`
+     * remarks: The sievert (Sv) is a special name for joule per kilogram, and is the coherent SI unit for dose equivalent. `1 "Sv" = 1 "J/kg"` The dose equivalent at a point in tissue is given by: `H = int_0^∞ Q(L) D_L dL` where `D_L = (dD)/(dL)` is the distribution of `D` in `L` at the point of interest. See ICRP Publication 103 (ICRP, 2007). The quantities measured with radiation protection dosimeters are based on the definition `H = Q*D`. If various radiation qualities `i` have to be simultaneously accounted for, the definition is: `H = sum_i Q_i*D_i`. In ICRU 51 this quantity is denoted as “dose equivalent”. In order to quantify the radiation exposition of the human body and to specify dose limits, use is made of a quantity defined in ICRP 103, the "equivalent dose to a tissue or organ": `H_T = w_T*sum_R w_R*D_{T,R}`. The weighting factors `w_T` for various tissues and organs `T` and `w_R` for various radiation qualities `R` have been numerically laid down in ICRP 103. `D_{T,R}` is the mean absorbed dose to tissue within a tissue or organ `T`, imparted by radiation with radiation quality `R`.
      */
     attribute def DoseEquivalentUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -2203,7 +2221,7 @@ package ISQAtomicNuclear {
      * quantity dimension: L^2*T^-3
      * measurement unit(s): Sv/s, W/kg, m^2*s^-3
      * definition: differential quotient of dose equivalent `H` (item 10-83.1) with respect to time (ISO 80000-3): `dot(H) = (dH)/(dt)`
-     * remarks: 1 Sv/s = 1 W/kg See the remarks for item 10-83.1.
+     * remarks: `1 "@[Sv/s]" = 1 @[W/kg]`. See the remarks for item 10-83.1.
      */
     attribute doseEquivalentRate :> doseEquivalent;
 
@@ -2238,8 +2256,8 @@ package ISQAtomicNuclear {
      * name: LinearEnergyTransfer
      * quantity dimension: L^1*M^1*T^-2
      * measurement unit(s): eV/m, J/m, kg*m*s^-2
-     * definition: quotient of the mean energy (ISO 80000-4) d`E_Δ` lost by the charged particles due to electronic interactions in traversing a distance (ISO 80000-3) d`l,` minus the mean sum of the kinetic energies in excess of `Δ` of all the electrons released by the charged particles and d`l`: `L_Δ = (dE_Δ)/(dl)`
-     * remarks: This quantity is not completely defined unless `Δ` is specified, i.e. the maximum kinetic energy of secondary electrons whose energy is considered to be “locally deposited.” `Δ` may be expressed in eV. Note that the abbreviation LET specifically refers to the quantity `L_∞` mentioned in the remark to 10-82.
+     * definition: quotient of the mean energy (ISO 80000-4) `dE_Δ` lost by the charged particles due to electronic interactions in traversing a distance (ISO 80000-3) `dl`, minus the mean sum of the kinetic energies in excess of `Δ` of all the electrons released by the charged particles and `dl`: `L_Δ = (dE_Δ)/(dl)`
+     * remarks: This quantity is not completely defined unless `Δ` is specified, i.e. the maximum kinetic energy of secondary electrons whose energy is considered to be "locally deposited". `Δ` may be expressed in `"eV"`. Note that the abbreviation LET specifically refers to the quantity `L_∞` mentioned in the remark to 10-82.
      */
     attribute def LinearEnergyTransferUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {

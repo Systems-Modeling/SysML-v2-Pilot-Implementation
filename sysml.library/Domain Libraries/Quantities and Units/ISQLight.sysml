@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-7:2019 "Light"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-7:2019 "Light"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-7:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -108,7 +108,7 @@ package ISQLight {
      * quantity dimension: L^-1*M^1*T^-2
      * measurement unit(s): J/m^3, kg*m^-1*s^-2
      * definition: volumetric density of radiant energy, expressed by `w = (dQ_e)/(dV)` where Q_e is radiant energy (item 7-2.1) in an elementary three-dimensional domain and V is the volume (ISO 80000-3) of that domain
-     * remarks: Radiant energy density within a Planckian radiator is given by `w = (4 σ)/(c_0) T^4` where σ is the Stefan-Boltzmann constant (ISO 80000-1), c_()_0 is speed of light in vacuum (ISO 80000-1) and T is thermodynamic temperature (ISO 80000-5).
+     * remarks: Radiant energy density within a Planckian radiator is given by `w = (4 σ)/(c_0) T^4` where σ is the Stefan-Boltzmann constant (ISO 80000-1), c_()_0 is speed of light in vacuum (ISO 80000-1) and `T` is thermodynamic temperature (ISO 80000-5).
      */
     attribute def RadiantEnergyDensityUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -135,7 +135,7 @@ package ISQLight {
      * quantity dimension: L^-2*M^1*T^-2
      * measurement unit(s): J/(m^3*nm), kg*m^-2*s^-2
      * definition: change of radiant energy density with wavelength, expressed by `w_λ = (dw)/(d λ)` where w is radiant energy density (item 7-3.1) as a function of wavelength λ (ISO 80000-3)
-     * remarks: Spectral radiant energy density within a Planckian radiator is given by w_λ = 8πhc_0 · f(λ, T), where h is the Planck constant (ISO 80000-1), c_()_0 is speed of light in vacuum (ISO 80000-1), T is thermodynamic temperature (ISO 80000-5) and `f(λ, T) = (λ^-5)/(exp(c_2 λ^-1 T^-1) - 1)` For the radiation constant c_2 in f(λ, T), see ISO 80000-1.
+     * remarks: Spectral radiant energy density within a Planckian radiator is given by w_λ = 8πhc_0 · f(λ, T), where h is the Planck constant (ISO 80000-1), c_()_0 is speed of light in vacuum (ISO 80000-1), `T` is thermodynamic temperature (ISO 80000-5) and `f(λ, T) = (λ^-5)/(exp(c_2 λ^-1 T^-1) - 1)` For the radiation constant c_2 in f(λ, T), see ISO 80000-1.
      */
     attribute def SpectralRadiantEnergyDensityInTermsOfWavelengthUnit :> SIDerivedUnit {
         attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
@@ -156,12 +156,12 @@ package ISQLight {
 
     /**
      * source: item 7-3.3 spectral radiant energy density in terms of wavenumber
-     * symbol(s): ``w_ṽ``, ``ρ_ṽ``
+     * symbol(s): `w_ṽ`, `ρ_ṽ`
      * application domain: General
      * name: SpectralRadiantEnergyDensityInTermsOfWavenumber
      * quantity dimension: M^1*T^-2
      * measurement unit(s): J/m^2, kg*s^-2
-     * definition: change of radiant energy density with wavenumber, expressed by `w_ṽ = (dw)/(dṽ)` where w is radiant energy density (item 7-3.1) as a function of wavenumber ṽ (ISO 80000-3)
+     * definition: change of radiant energy density with wavenumber, expressed by `w_ṽ = (dw)/(dṽ)` where `w` is radiant energy density (item 7-3.1) as a function of wavenumber `ṽ` (ISO 80000-3)
      * remarks: 
      */
     attribute def SpectralRadiantEnergyDensityInTermsOfWavenumberUnit :> SIDerivedUnit {
@@ -185,7 +185,7 @@ package ISQLight {
      * name: RadiantFlux
      * quantity dimension: L^2*M^1*T^-3
      * measurement unit(s): W, kg*m^2*s^-3
-     * definition: change in radiant energy with time, expressed by `Φ_e = (dQ_e)/(dt)` where Q_e is the radiant energy (item 7-2.1) emitted, transferred or received and t is time (ISO 80000-3)
+     * definition: change in radiant energy with time, expressed by `Φ_e = (dQ_e)/(dt)` where `Q_e` is the radiant energy (item 7-2.1) emitted, transferred or received and `t` is time (ISO 80000-3)
      * remarks: The corresponding photometric quantity is “luminous flux” (item 7-13). The corresponding quantity for photons is “photon flux” (item 7-20).
      */
     attribute def RadiantFluxUnit :> SIDerivedUnit {
@@ -205,8 +205,9 @@ package ISQLight {
     }
     attribute radiantFlux: RadiantFluxValue :> quantity;
 
+    alias RadiantFluxUnit as RadiantPowerUnit;
     alias RadiantFluxValue as RadiantPowerValue;
-    attribute radiantPower: RadiantPowerValue :> quantity;
+    alias radiantFlux as radiantPower;
 
     /**
      * source: item 7-4.2 spectral radiant flux, spectral radiant power
@@ -235,8 +236,9 @@ package ISQLight {
     }
     attribute spectralRadiantFlux: SpectralRadiantFluxValue :> quantity;
 
+    alias SpectralRadiantFluxUnit as SpectralRadiantPowerUnit;
     alias SpectralRadiantFluxValue as SpectralRadiantPowerValue;
-    attribute spectralRadiantPower: SpectralRadiantPowerValue :> quantity;
+    alias spectralRadiantFlux as spectralRadiantPower;
 
     /**
      * source: item 7-5.1 radiant intensity
@@ -300,7 +302,7 @@ package ISQLight {
      * quantity dimension: M^1*T^-3
      * measurement unit(s): W/(sr*m^2), kg*s^-3*sr^-1
      * definition: density of radiant intensity with respect to projected area in a specified direction at a specified point on a real or imaginary surface, expressed by `L_e = (d I_e)/(dA) * 1/cos(α)` where I_e is radiant intensity (item 7-5.1), A is area (ISO 80000-3), and α is the angle between the normal to the surface at the specified point and the specified direction
-     * remarks: See also 0.1. For Planckian radiation, `L_e = σ/π T^4` where T is thermodynamic temperature (ISO 80000-5) and σ is the Stefan-Boltzmann constant (ISO 80000-1). The corresponding photometric quantity is “luminance” (item 7-15). The corresponding quantity for photons is “photon radiance” (item 7-22).
+     * remarks: See also 0.1. For Planckian radiation, `L_e = σ/π T^4` where `T` is thermodynamic temperature (ISO 80000-5) and σ is the Stefan-Boltzmann constant (ISO 80000-1). The corresponding photometric quantity is “luminance” (item 7-15). The corresponding quantity for photons is “photon radiance” (item 7-22).
      */
     attribute def RadianceUnit :> SIDerivedUnit {
         attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
@@ -323,7 +325,7 @@ package ISQLight {
      * name: SpectralRadiance
      * quantity dimension: L^-1*M^1*T^-3
      * measurement unit(s): W/(sr*m^2*nm), kg*m^-1*s^-3*sr^-1
-     * definition: density of radiance with respect to wavelength, expressed by `L_(e, λ) = (d L_e)/(d λ)` where L_e is radiance (item 7-6.1) in terms of wavelength λ(ISO 80000-3)
+     * definition: density of radiance with respect to wavelength, expressed by `L_(e, λ) = (d L_e)/(d λ)` where `L_e` is radiance (item 7-6.1) in terms of wavelength λ(ISO 80000-3)
      * remarks: For Planckian radiation, `L_(e, λ)(λ) = (c(λ))/(4 π) ω_λ(λ) = h c_0^2 * f(λ,T)` where c(λ) is phase speed (ISO 80000-3) of electromagnetic radiation of a wavelength (ISO 80000-3) λ in a given medium, ω_λ(λ) is spectral radiant energy density in terms of wavelength, c_0 is speed of light in vacuum (ISO 80000-1), h is the Planck constant (ISO 80000-1), and `f(λ,T) = λ^-5/(exp(c_2 λ^-1 T^-1) - 1)` where the radiation constant c_()_2 = hc/k. The integral of (total) radiance is determined by the wavelength interval (λ_1, λ_2) under consideration: `L_e = int_(λ_1)^(λ_2) L_(e,λ) d λ`
      */
     attribute def SpectralRadianceUnit :> SIDerivedUnit {
@@ -402,7 +404,7 @@ package ISQLight {
      * quantity dimension: M^1*T^-3
      * measurement unit(s): W/m^2, kg*s^-3
      * definition: density of exiting radiant flux with respect to area at a point on a real or imaginary surface, expressed by `M_e = (d Φ_e)/(d A)` where Φ_e is radiant flux (item 7-4.1) and A is the area (ISO 80000-3) from which the radiant flux leaves
-     * remarks: For Planckian radiation, M_e = σT^()^4 where T is thermodynamic temperature (ISO 80000-5) and σ is the Stefan-Boltzmann constant (ISO 80000-1). The corresponding photometric quantity is “luminous exitance” (item 7-17). The corresponding quantity for photons is “photon exitance” (item 7-24).
+     * remarks: For Planckian radiation, M_e = σT^()^4 where `T` is thermodynamic temperature (ISO 80000-5) and σ is the Stefan-Boltzmann constant (ISO 80000-1). The corresponding photometric quantity is “luminous exitance” (item 7-17). The corresponding quantity for photons is “photon exitance” (item 7-24).
      */
     attribute def RadiantExitanceUnit :> SIDerivedUnit {
         attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
@@ -418,8 +420,9 @@ package ISQLight {
     }
     attribute radiantExitance: RadiantExitanceValue :> quantity;
 
+    alias RadiantExitanceUnit as RadiantEmittanceUnit;
     alias RadiantExitanceValue as RadiantEmittanceValue;
-    attribute radiantEmittance: RadiantEmittanceValue :> quantity;
+    alias radiantExitance as radiantEmittance;
 
     /**
      * source: item 7-8.2 spectral radiant exitance
@@ -679,8 +682,9 @@ package ISQLight {
     }
     attribute luminousEnergy: LuminousEnergyValue :> quantity;
 
+    alias LuminousEnergyUnit as QuantityOfLightUnit;
     alias LuminousEnergyValue as QuantityOfLightValue;
-    attribute quantityOfLight: QuantityOfLightValue :> quantity;
+    alias luminousEnergy as quantityOfLight;
 
     /**
      * source: item 7-13 luminous flux
@@ -823,11 +827,13 @@ package ISQLight {
     }
     attribute luminousExposure: LuminousExposureValue :> quantity;
 
+    alias LuminousExposureUnit as QuantityOfIlluminationUnit;
     alias LuminousExposureValue as QuantityOfIlluminationValue;
-    attribute quantityOfIllumination: QuantityOfIlluminationValue :> quantity;
+    alias luminousExposure as quantityOfIllumination;
 
+    alias LuminousExposureUnit as LightExposureUnit;
     alias LuminousExposureValue as LightExposureValue;
-    attribute lightExposure: LightExposureValue :> quantity;
+    alias luminousExposure as lightExposure;
 
     /**
      * source: item 7-19.1 photon number, number of photons
@@ -847,8 +853,9 @@ package ISQLight {
     }
     attribute photonNumber: PhotonNumberValue :> quantity;
 
+    alias PhotonNumberUnit as NumberOfPhotonsUnit;
     alias PhotonNumberValue as NumberOfPhotonsValue;
-    attribute numberOfPhotons: NumberOfPhotonsValue :> quantity;
+    alias photonNumber as numberOfPhotons;
 
     /**
      * source: item 7-19.2 photon energy
@@ -1035,7 +1042,7 @@ package ISQLight {
 
     /**
      * source: item 7-27.1 CIE colour-matching functions for the CIE 1931 standard colorimetric observer
-     * symbol(s): ``overline x(λ)``, ``overline y(λ)``, ``overline z(λ)``
+     * symbol(s): `overline x(λ)`, `overline y(λ)`, `overline z(λ)`
      * application domain: General
      * name: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserver
      * quantity dimension: 1
@@ -1053,7 +1060,7 @@ package ISQLight {
 
     /**
      * source: item 7-27.2 CIE colour-matching functions for the CIE 1964 standard colorimetric observer
-     * symbol(s): ``overline x_10(λ)``, ``overline y_10(λ)``, ``overline z_10(λ)``
+     * symbol(s): `overline x_10(λ)`, `overline y_10(λ)`, `overline z_10(λ)`
      * application domain: General
      * name: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserver
      * quantity dimension: 1
@@ -1257,7 +1264,7 @@ package ISQLight {
 
     /**
      * source: item 7-31.6 luminous transmittance
-     * symbol(s): ``τ_v``
+     * symbol(s): `τ_v`
      * application domain: General
      * name: LuminousTransmittance
      * quantity dimension: 1
@@ -1291,14 +1298,17 @@ package ISQLight {
     }
     attribute transmittanceOpticalDensity: TransmittanceOpticalDensityValue :> quantity;
 
+    alias TransmittanceOpticalDensityUnit as OpticalDensityUnit;
     alias TransmittanceOpticalDensityValue as OpticalDensityValue;
-    attribute opticalDensity: OpticalDensityValue :> quantity;
+    alias transmittanceOpticalDensity as opticalDensity;
 
+    alias TransmittanceOpticalDensityUnit as TransmittanceDensityUnit;
     alias TransmittanceOpticalDensityValue as TransmittanceDensityValue;
-    attribute transmittanceDensity: TransmittanceDensityValue :> quantity;
+    alias transmittanceOpticalDensity as transmittanceDensity;
 
+    alias TransmittanceOpticalDensityUnit as DecadicAbsorbanceUnit;
     alias TransmittanceOpticalDensityValue as DecadicAbsorbanceValue;
-    attribute decadicAbsorbance: DecadicAbsorbanceValue :> quantity;
+    alias transmittanceOpticalDensity as decadicAbsorbance;
 
     /**
      * source: item 7-32.2 Napierian absorbance
@@ -1393,8 +1403,9 @@ package ISQLight {
     }
     attribute linearAttenuationCoefficient: LinearAttenuationCoefficientValue :> quantity;
 
+    alias LinearAttenuationCoefficientUnit as LinearExtinctionCoefficientUnit;
     alias LinearAttenuationCoefficientValue as LinearExtinctionCoefficientValue;
-    attribute linearExtinctionCoefficient: LinearExtinctionCoefficientValue :> quantity;
+    alias linearAttenuationCoefficient as linearExtinctionCoefficient;
 
     /**
      * source: item 7-35.2 linear absorption coefficient

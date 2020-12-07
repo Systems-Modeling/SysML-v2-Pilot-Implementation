@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-3:2019 "Space and Time"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-3:2019 "Space and Time"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -321,8 +321,9 @@ package ISQSpaceTime {
     }    
     attribute time: TimeValue :> quantity;
 
+    alias TimeUnit as DurationUnit;
     alias TimeValue as DurationValue;
-    attribute duration: DurationValue :> quantity;
+    alias time as duration;
 
     /**
      * source: item 3-10.1 velocity
@@ -510,7 +511,7 @@ package ISQSpaceTime {
      * name: RotationalFrequency (specializes Frequency)
      * quantity dimension: T^-1
      * measurement unit(s): s^-1
-     * definition: rate of change of rotation (item 3-16)
+     * definition: duration (item 3-9) of one cycle of a periodic event
      * remarks: The rotational frequency is given by: `n = (dN) / (dt)` where `N` denotes the rotation (item 3-16) and `t` is the duration (item 3-9).
      */
     attribute rotationalFrequency :> frequency;
@@ -569,8 +570,9 @@ package ISQSpaceTime {
     }
     attribute repetency: RepetencyValue :> quantity;
 
+    alias RepetencyUnit as WavenumberUnit;
     alias RepetencyValue as WavenumberValue;
-    attribute wavenumber: WavenumberValue :> quantity;
+    alias repetency as wavenumber;
 
     /**
      * source: item 3-21 wave vector
@@ -614,12 +616,13 @@ package ISQSpaceTime {
     }
     attribute angularRepetency: AngularRepetencyValue :> quantity;
 
+    alias AngularRepetencyUnit as AngularWavenumberUnit;
     alias AngularRepetencyValue as AngularWavenumberValue;
-    attribute angularWavenumber: AngularWavenumberValue :> quantity;
+    alias angularRepetency as angularWavenumber;
 
     /**
      * source: item 3-23.1 phase velocity, phase speed
-     * symbol(s): `c`, `v`, `(v)`, `c_φ`, `v_φ`, `(v_φ)`
+     * symbol(s): `c`, `v`, `(ν)`, `c_φ`, `v_φ`, `(ν_φ)`
      * application domain: General
      * name: PhaseVelocity
      * quantity dimension: L^1*T^-1
@@ -641,12 +644,13 @@ package ISQSpaceTime {
     }
     attribute phaseVelocity: PhaseVelocityValue :> quantity;
 
+    alias PhaseVelocityUnit as PhaseSpeedUnit;
     alias PhaseVelocityValue as PhaseSpeedValue;
-    attribute phaseSpeed: PhaseSpeedValue :> quantity;
+    alias phaseVelocity as phaseSpeed;
 
     /**
      * source: item 3-23.2 group velocity, group speed
-     * symbol(s): `c_g`, `v_g`, `(v_g)`
+     * symbol(s): `c_g`, `v_g`, `(ν_g)`
      * application domain: General
      * name: GroupVelocity (specializes Speed)
      * quantity dimension: L^1*T^-1
@@ -715,8 +719,9 @@ package ISQSpaceTime {
     }
     attribute attenuation: AttenuationValue :> quantity;
 
+    alias AttenuationUnit as ExtinctionUnit;
     alias AttenuationValue as ExtinctionValue;
-    attribute extinction: ExtinctionValue :> quantity;
+    alias attenuation as extinction;
 
     /**
      * source: item 3-26.2 phase coefficient

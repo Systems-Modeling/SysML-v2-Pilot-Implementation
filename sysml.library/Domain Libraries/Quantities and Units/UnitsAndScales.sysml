@@ -189,7 +189,7 @@ package UnitsAndScales {
 	}
 
 	/**
-	 * Explicit definition of "unit of dimension one" also known as "dimensionless unit" as well as value of dimension one
+	 * Explicit definitions of "unit of dimension one" also known as "dimensionless unit" as well as the value and quantity of dimension one.
 	 */
 	attribute def DimensionOneUnit :> DerivedUnit {
 		attribute name: String redefines MeasurementScale::name = "unit of dimension one";

@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2020-12-05T00:13:00Z from standard ISO-80000-11:2019 "Characteristic numbers"
+ * Generated on 2020-12-07T11:21:01Z from standard ISO-80000-11:2019 "Characteristic numbers"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-11:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -124,14 +124,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-4.9 drag coefficient
      * symbol(s): `c_D`
      * application domain: General
-     * name: DragCoefficient (specializes DimensionOneQuantity)
+     * name: DragCoefficientD (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between the effective drag force and inertial forces for a body moving in a fluid, expressed by `c_D = (2*F_D)/(ρ*v^2*A)`, where `F_D` is drag force (ISO 80000-4) on the body, `ρ` is mass density (ISO 80000-4) of the fluid, `v` is speed (ISO 80000-3) of the body, and `A` is cross-sectional area (ISO 80000-3)
      * remarks: The drag coefficient is strongly dependant on the shape of the body.
      */
-    attribute def DragCoefficientValue :> DimensionOneValue;
-    attribute dragCoefficient: DragCoefficientValue :> dimensionOneQuantity;
+    attribute def DragCoefficientDValue :> DimensionOneValue;
+    attribute dragCoefficientD: DragCoefficientDValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.10 Bagnold number
@@ -150,40 +150,40 @@ package ISQCharacteristicNumbers {
      * source: item 11-4.11 Bagnold number
      * symbol(s): `Ba_2`
      * application domain: solid particles
-     * name: BagnoldNumber (specializes DimensionOneQuantity)
+     * name: BagnoldNumber2 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of drag force and viscous force in a fluid transferring solid particles, expressed by `Ba_2 = (ρ_s*d^2*dot(γ))/η*sqrt(1/(f_s^(1/2) - 1))`, where `ρ_s` is mass density (ISO 80000-4) of particles, `d` is diameter (ISO 80000-3) of particles, `dot(γ) = v/d` is shear rate time-derivative of shear strain (ISO 80000-4), `η` is dynamic viscosity (ISO 80000-4) of fluid, and `f_s` is volumic fraction of solid particles
      * remarks: 
      */
-    attribute def BagnoldNumberValue :> DimensionOneValue;
-    attribute bagnoldNumber: BagnoldNumberValue :> dimensionOneQuantity;
+    attribute def BagnoldNumber2Value :> DimensionOneValue;
+    attribute bagnoldNumber2: BagnoldNumber2Value :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.12 lift coefficient
      * symbol(s): `c_l`, `c_A`
      * application domain: General
-     * name: LiftCoefficient (specializes DimensionOneQuantity)
+     * name: LiftCoefficientl (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of the lift force available from a wing at a given angle and the inertial force for a wing shaped body moving in a fluid, expressed by `c_l = ( 2*F_l)/(ρ*v^2*S) = F_l/(q*S)`, where `F_l` is lift force (ISO 80000-4) on the wing, `ρ` is mass density (ISO 80000-4) of the fluid, `v` is speed (ISO 80000-3) of the body, `S = A*cos(α)` is effective area (ISO 80000-3) when `α` is the angle of attack and `A` is area of the wing, and `q = 1/2*ρ*v^2` is dynamic pressure
      * remarks: The lift coefficient is dependant on the shape of the wing.
      */
-    attribute def LiftCoefficientValue :> DimensionOneValue;
-    attribute liftCoefficient: LiftCoefficientValue :> dimensionOneQuantity;
+    attribute def LiftCoefficientlValue :> DimensionOneValue;
+    attribute liftCoefficientl: LiftCoefficientlValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.13 thrust coefficient
      * symbol(s): `c_t`
      * application domain: General
-     * name: ThrustCoefficient (specializes DimensionOneQuantity)
+     * name: ThrustCoefficientt (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of the effective thrust force available from a propeller and the inertial force in a fluid, expressed by `c_t = F_T/(ρ*n^2*d^4)`, where `F_T` is thrust force (ISO 80000-4) of the propeller, `ρ` is mass density (ISO 80000-4) of the fluid, `n` is rotational frequency (ISO 80000-3), and `d` is tip diameter (ISO 80000-3) of the propeller
      * remarks: The thrust coefficient is dependant on the shape of the propeller.
      */
-    attribute def ThrustCoefficientValue :> DimensionOneValue;
-    attribute thrustCoefficient: ThrustCoefficientValue :> dimensionOneQuantity;
+    attribute def ThrustCoefficienttValue :> DimensionOneValue;
+    attribute thrustCoefficientt: ThrustCoefficienttValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.14 Dean number
@@ -310,29 +310,29 @@ package ISQCharacteristicNumbers {
      * source: item 11-4.23 Darcy friction factor, Moody friction factor
      * symbol(s): `f_D`
      * application domain: General
-     * name: DarcyFrictionFactor (specializes DimensionOneQuantity)
+     * name: DarcyFrictionFactorD (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: representation of pressure loss in a pipe due to friction within a laminar or turbulent flow of a fluid in a pipe, expressed by `f_D = (2*Δp)/(ρ*v^2)*d/l`, where `Δp` is drop of pressure (ISO 80000-4) due to friction, `ρ` is mass density (ISO 80000-4) of the fluid, `v` is (average) speed (ISO 80000-3) of the fluid in the pipe, `d` is diameter (ISO 80000-3) of the pipe, and `l` is length (ISO 80000-3) of the pipe
      * remarks: 
      */
-    attribute def DarcyFrictionFactorValue :> DimensionOneValue;
-    attribute darcyFrictionFactor: DarcyFrictionFactorValue :> dimensionOneQuantity;
+    attribute def DarcyFrictionFactorDValue :> DimensionOneValue;
+    attribute darcyFrictionFactorD: DarcyFrictionFactorDValue :> dimensionOneQuantity;
 
-    alias darcyFrictionFactor as moodyFrictionFactor;
+    alias darcyFrictionFactorD as moodyFrictionFactor;
 
     /**
      * source: item 11-4.24 Fanning number
      * symbol(s): `f_n`, `f`
      * application domain: General
-     * name: FanningNumber (specializes DimensionOneQuantity)
+     * name: FanningNumbern (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between shear stress and dynamic pressure in the flow of a fluid in a containment, expressed by `f_n = (2*τ)/(ρ*v^2)`, where `τ` is shear stress (ISO 80000-4) at the wall, `ρ` is mass density (ISO 80000-4) of the fluid, and `v` is speed (ISO 80000-3) of the fluid in the pipe
      * remarks: The Fanning number describes the flow of fluids in a pipe with friction at the walls represented by its shear stress. Symbol `f` may be used where no conflicts are possible.
      */
-    attribute def FanningNumberValue :> DimensionOneValue;
-    attribute fanningNumber: FanningNumberValue :> dimensionOneQuantity;
+    attribute def FanningNumbernValue :> DimensionOneValue;
+    attribute fanningNumbern: FanningNumbernValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.25 Goertler number, Goertler parameter
@@ -444,55 +444,55 @@ package ISQCharacteristicNumbers {
      * source: item 11-4.33 Stokes number
      * symbol(s): `Stk_1`
      * application domain: vibrating particles
-     * name: StokesNumber (specializes DimensionOneQuantity)
+     * name: StokesNumber1 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of friction and inertia forces for the special case of particles vibrating in a fluid or plasma, expressed by `Stk_1 = ν/(d^2*f)`, where `ν` is kinematic viscosity (ISO 80000-4) of the fluid or plasma, `d` is diameter (ISO 80000-3) of particle, and `f` is frequency (ISO 80000-3) of particle vibrations
      * remarks: Sometimes the inverse of this number is wrongly used.
      */
-    attribute def StokesNumberValue :> DimensionOneValue;
-    attribute stokesNumber: StokesNumberValue :> dimensionOneQuantity;
+    attribute def StokesNumber1Value :> DimensionOneValue;
+    attribute stokesNumber1: StokesNumber1Value :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.34 Stokes number, power coefficient
      * symbol(s): `Stk_2`
      * application domain: rotameter
-     * name: StokesNumber (specializes DimensionOneQuantity)
+     * name: StokesNumber2 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: Stokes number for calibration of rotameters metering vertical flows of fluids by means of a floating body, expressed by `Stk_2 = (r^3*g*m*ρ)/(η^2) * (ρ_b-ρ)/(ρ_b) = (r^3*g*m)/ν^2 * (1/ρ-1/ρ_b)`, where `r` is ratio of pipe and float radii, `g` is acceleration of free fall (ISO 80000-3), `m` is mass (ISO 80000-4) of the body, `ρ` is mass density (ISO 80000-4) of the fluid, `η` is dynamic viscosity (ISO 80000-4) of the fluid, `ρ_b` is mass density (ISO 80000-4) of the body, and `ν` is kinematic viscosity (ISO 80000-4) of the fluid
      * remarks: In general use, this value is multiplied by 1,042. See also the Archimedes number (item 11-6.12).
      */
-    attribute def StokesNumberValue :> DimensionOneValue;
-    attribute stokesNumber: StokesNumberValue :> dimensionOneQuantity;
+    attribute def StokesNumber2Value :> DimensionOneValue;
+    attribute stokesNumber2: StokesNumber2Value :> dimensionOneQuantity;
 
-    alias stokesNumber as powerCoefficient;
+    alias stokesNumber2 as powerCoefficient;
 
     /**
      * source: item 11-4.35 Stokes number
      * symbol(s): `Stk_3`
      * application domain: gravity
-     * name: StokesNumber (specializes DimensionOneQuantity)
+     * name: StokesNumber3 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between viscous forces and gravity forces for particles falling in a fluid, expressed by `Stk_3 = (v*ν)/(g*l^2)`, where `v` is characteristic speed (ISO 80000-3) of particles, `ν` is kinematic viscosity (ISO 80000-4) of the fluid, `g` is acceleration of free fall (ISO 80000-3), and `l` is length (ISO 80000-3) of fall
      * remarks: 
      */
-    attribute def StokesNumberValue :> DimensionOneValue;
-    attribute stokesNumber: StokesNumberValue :> dimensionOneQuantity;
+    attribute def StokesNumber3Value :> DimensionOneValue;
+    attribute stokesNumber3: StokesNumber3Value :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.36 Stokes number
      * symbol(s): `Stk_4`
      * application domain: drag
-     * name: StokesNumber (specializes DimensionOneQuantity)
+     * name: StokesNumber4 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of drag force and internal friction forces for particles dragged in a fluid `Stk_4 = F_D/(η*v*l)`, where `F_D` is drag force (ISO 80000-4), `η` is dynamic viscosity (ISO 80000-4), `v` is speed (ISO 80000-3), and `l` is characteristic length (ISO 80000-3)
      * remarks: 
      */
-    attribute def StokesNumberValue :> DimensionOneValue;
-    attribute stokesNumber: StokesNumberValue :> dimensionOneQuantity;
+    attribute def StokesNumber4Value :> DimensionOneValue;
+    attribute stokesNumber4: StokesNumber4Value :> dimensionOneQuantity;
 
     /**
      * source: item 11-4.37 Laplace number, Suratman number
@@ -562,17 +562,17 @@ package ISQCharacteristicNumbers {
     attribute galileiNumber: GalileiNumberValue :> dimensionOneQuantity;
 
     /**
-     * source: item 11-4.42 Womersley
+     * source: item 11-4.42 Womersley number
      * symbol(s): `Wo`, `α`
      * application domain: General
-     * name: Womersley (specializes DimensionOneQuantity)
+     * name: WomersleyNumber (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between inertial forces and viscous forces in oscillating flows of fluids in pipes, expressed by `Wo = R*sqrt(ω/ν)`, where `R` is (effective) radius (ISO 80000-3) of the pipe, `ω` is angular frequency (ISO 80000-3) of oscillations, and `ν` is kinematic viscosity (ISO 80000-4)
      * remarks: The Womersley number is used for pulsating flows e.g. in blood flow.
      */
-    attribute def WomersleyValue :> DimensionOneValue;
-    attribute womersley: WomersleyValue :> dimensionOneQuantity;
+    attribute def WomersleyNumberValue :> DimensionOneValue;
+    attribute womersleyNumber: WomersleyNumberValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-5.1 Fourier number
@@ -617,14 +617,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-5.4 Froude number
      * symbol(s): `Fr^"*"`
      * application domain: heat transfer
-     * name: FroudeStarNumber (specializes DimensionOneQuantity)
+     * name: FroudeNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of gravitational forces and thermodiffusion forces for heat transfer in forced convection of fluids, expressed by `Fr^"*" = (g*l^3)/a^2`, where `g` is acceleration of free fall (ISO 80000-3), `l` is characteristic length (ISO 80000-3), and `a` is thermal diffusivity (ISO 80000-5)"
      * remarks: 
      */
-    attribute def FroudeStarNumberValue :> DimensionOneValue;
-    attribute froudeStarNumber: FroudeStarNumberValue :> dimensionOneQuantity;
+    attribute def FroudeNumberStarredValue :> DimensionOneValue;
+    attribute froudeNumberStarred: FroudeNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-5.5 Nusselt number
@@ -686,27 +686,27 @@ package ISQCharacteristicNumbers {
      * source: item 11-5.9 Bejan number
      * symbol(s): `Be_1`
      * application domain: heat transfer
-     * name: BejanNumber (specializes DimensionOneQuantity)
+     * name: BejanNumber1 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of mechanical work and frictional and thermal diffusion energy losses for a forced flow, expressed by `Be_1 = (Δp*l^2)/(η*a)`, where `Δp` is drop of pressure (ISO 80000-4) along a pipe, `l` is length (ISO 80000-3) of the pipe, `η` is dynamic viscosity (ISO 80000-4), and `a` is thermal diffusivity (ISO 80000-5)
      * remarks: 
      */
-    attribute def BejanNumberValue :> DimensionOneValue;
-    attribute bejanNumber: BejanNumberValue :> dimensionOneQuantity;
+    attribute def BejanNumber1Value :> DimensionOneValue;
+    attribute bejanNumber1: BejanNumber1Value :> dimensionOneQuantity;
 
     /**
      * source: item 11-5.10 Bejan number
      * symbol(s): `Be_S`
      * application domain: entropy
-     * name: BejanNumber (specializes DimensionOneQuantity)
+     * name: BejanNumberS (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: efficiency of heat transfer by a fluid, expressed by `Be_S = (S(ΔT))/(S(ΔT)+S(Δp))`, where `S(ΔT)` is entropy generation contributed by heat transfer, and `S(Δp)` is entropy generation contributed by fluid friction
      * remarks: 
      */
-    attribute def BejanNumberValue :> DimensionOneValue;
-    attribute bejanNumber: BejanNumberValue :> dimensionOneQuantity;
+    attribute def BejanNumberSValue :> DimensionOneValue;
+    attribute bejanNumberS: BejanNumberSValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-5.11 Stefan number
@@ -792,14 +792,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-5.17 heat transfer number
      * symbol(s): `K_Q`
      * application domain: General
-     * name: HeatTransferNumber (specializes DimensionOneQuantity)
+     * name: HeatTransferNumberQ (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between heat transferred by a flow and its kinetic energy, expressed by `K_Q = Φ/(v^3*l^2*ρ)`, where `Φ` is heat flow rate (ISO 80000-5), `v` is characteristic speed (ISO 80000-3), `l` is characteristic length (ISO 80000-3), and `ρ` is mass density (ISO 80000-4)
      * remarks: 
      */
-    attribute def HeatTransferNumberValue :> DimensionOneValue;
-    attribute heatTransferNumber: HeatTransferNumberValue :> dimensionOneQuantity;
+    attribute def HeatTransferNumberQValue :> DimensionOneValue;
+    attribute heatTransferNumberQ: HeatTransferNumberQValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-5.18 Pomerantsev number
@@ -844,96 +844,96 @@ package ISQCharacteristicNumbers {
      * source: item 11-6.1 Fourier number
      * symbol(s): `Fo^"*"`
      * application domain: mass transfer
-     * name: FourierStarNumber (specializes DimensionOneQuantity)
+     * name: FourierNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between diffusive mass transfer within a given duration and mass storage rate in transient mass transfer, expressed by `Fo^"*" = (D*t)/l^2`, where `D` is diffusion coefficient (ISO 80000-9), `t` is duration (ISO 80000-3) of observation, and `l` is length (ISO 80000-3) of transfer"
      * remarks: The Fourier number for mass transfer is also given by `Fo^*" = (Fo)/(Le)`, where `Fo` is the Fourier number for heat transfer (item 11-5.1), and `Le` is the Lewis number (item 11-7.3). See also the Fourier number for heat transfer (item 11-5.1)."
      */
-    attribute def FourierStarNumberValue :> DimensionOneValue;
-    attribute fourierStarNumber: FourierStarNumberValue :> dimensionOneQuantity;
+    attribute def FourierNumberStarredValue :> DimensionOneValue;
+    attribute fourierNumberStarred: FourierNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.2 Péclet number, Bodenstein number
      * symbol(s): `Pe^"*"`, `Bd`, `Bod`
      * application domain: mass transfer
-     * name: PécletStarNumber (specializes DimensionOneQuantity)
+     * name: PécletNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between advective mass transfer rate and longitudinal diffusive mass transfer rate for mass transfer in reactors, expressed by `Pe^*" = (v*l)/D`, where `v` is speed (ISO 80000-3), `l` is characteristic length (ISO 80000-3), and `D` is diffusion coefficient (ISO 80000-9)"
      * remarks: The Péclet number for mass transfer is also given by `Pe^"*" = Pe*Le = Re*Sc`, where `Pe` is the Péclet number for heat transfer, `Le` is the Lewis number (item 11-7.3), `Re` is the Reynolds number (item 11-4.1), and `Sc` is the Schmidt number (item 11-7.2). Compare with item 11-5.2, the Péclet number for heat transfer.
      */
-    attribute def 'PécletStarNumberValue' :> DimensionOneValue;
-    attribute 'pécletStarNumber': 'PécletStarNumberValue' :> dimensionOneQuantity;
+    attribute def 'PécletNumberStarredValue' :> DimensionOneValue;
+    attribute 'pécletNumberStarred': 'PécletNumberStarredValue' :> dimensionOneQuantity;
 
-    alias 'pécletStarNumber' as bodensteinNumber;
+    alias 'pécletNumberStarred' as bodensteinNumberStarred;
 
     /**
      * source: item 11-6.3 Grashof number
      * symbol(s): `Gr^"*"`
      * application domain: mass transfer
-     * name: GrashofStarNumber (specializes DimensionOneQuantity)
+     * name: GrashofNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between buoyancy forces and viscous forces in natural convection of fluids, expressed by `Gr^"*" = (l^3*g*β*Δx)/ν^2`, where `l` is characteristic length (ISO 80000-3), `g` is acceleration of free fall (ISO 80000-3), `β = - 1/ρ*((del ρ)/(del x))_(T,p)`, where `ρ` is mass density (ISO 80000-4) of the fluid, and `x` is amount-of-substance fraction (ISO 80000-9), `Δx` is difference of amount-of-substance fraction (ISO 80000-9) along length `l`, and `ν` is kinematic viscosity (ISO 80000-4)"
      * remarks: Instead of “amount-of-substance fraction” the “amount-of-substance concentration” (ISO 80000-9) is used also. Compare with item 11-4.4, the Grashof number.
      */
-    attribute def GrashofStarNumberValue :> DimensionOneValue;
-    attribute grashofStarNumber: GrashofStarNumberValue :> dimensionOneQuantity;
+    attribute def GrashofNumberStarredValue :> DimensionOneValue;
+    attribute grashofNumberStarred: GrashofNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.4 Nusselt number
      * symbol(s): `Nu^"*"`
      * application domain: mass transfer
-     * name: NusseltStarNumber (specializes DimensionOneQuantity)
+     * name: NusseltNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between mass flux at an interface and specific flux by pure molecular diffusion in a layer of thickness `l` for mass transfer at the boundary of a fluid, expressed by `Nu^"*" = (k’*l)/(ρ*D)`, where `k’` is mass flux density `q_m/A` through the surface, where `q_m` is mass flow rate (ISO 80000-4), and `A` is area (ISO 80000-3), `l` is thickness (ISO 80000-3), `ρ` is mass density (ISO 80000-4) of the fluid, and `D` is diffusion coefficient (ISO 80000-9)"
      * remarks: Sometimes this quantity is called the Sherwood number, `Sh`. Compare with item 11-5.5, Nusselt number for heat transfer.
      */
-    attribute def NusseltStarNumberValue :> DimensionOneValue;
-    attribute nusseltStarNumber: NusseltStarNumberValue :> dimensionOneQuantity;
+    attribute def NusseltNumberStarredValue :> DimensionOneValue;
+    attribute nusseltNumberStarred: NusseltNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.5 Stanton number
      * symbol(s): `St^"*"`
      * application domain: mass transfer
-     * name: StantonStarNumber (specializes DimensionOneQuantity)
+     * name: StantonNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between mass transfer perpendicular to the surface of a fluid flow and mass transfer parallel to the surface in a free surface flow, expressed by `St^"*" = k^"*"
      * remarks: The Stanton number for mass transfer is also given by `St^*" = (Nu^"*")/(Pe^"*"*)`, where `Nu^"*"` is the Nusselt number for mass transfer (item 11-6.4), and `Pe^"*"` is the Péclet number for mass transfer (item 11-6.2). Compare with item 11-5.7, the Stanton number for heat transfer."
      */
-    attribute def StantonStarNumberValue :> DimensionOneValue;
-    attribute stantonStarNumber: StantonStarNumberValue :> dimensionOneQuantity;
+    attribute def StantonNumberStarredValue :> DimensionOneValue;
+    attribute stantonNumberStarred: StantonNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.6 Graetz number
      * symbol(s): `Gz^"*"`
      * application domain: mass transfer
-     * name: GraetzStarNumber (specializes DimensionOneQuantity)
+     * name: GraetzNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of advective mass transfer rate and radial diffusive mass transfer rate for mass transfer in pipes, expressed by `Gz^"*" = (v*d)/D = d/l*Pe^"*"`, where `v` is characteristic speed (ISO 80000-3) of the fluid, `d` is hydraulic diameter (ISO 80000-3) of the pipe, `D` is diffusion coefficient (ISO 80000-9), `l` is length (ISO 80000-3) of the pipe, and `Pe^"*"` is the Péclet number for mass transfer (item 11-6.2)"
      * remarks: 
      */
-    attribute def GraetzStarNumberValue :> DimensionOneValue;
-    attribute graetzStarNumber: GraetzStarNumberValue :> dimensionOneQuantity;
+    attribute def GraetzNumberStarredValue :> DimensionOneValue;
+    attribute graetzNumberStarred: GraetzNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.7 mass transfer factor, j-factor
      * symbol(s): `j^"*"`
      * application domain: mass transfer
-     * name: MassTransferFactor (specializes DimensionOneQuantity)
+     * name: MassTransferFactorStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between mass transfer perpendicular to the surface of a fluid and mass transfer parallel to the surface in an open flow of fluids, expressed by `j^*" = k/v * (ν/D)^(2/3)`, where `k` is the mass transfer coefficient through the surface, `k = k^'/ρ`, where `ρ` is mass density (ISO 80000-4), `k^'` is mass flux density `q_m/A` through the surface, where `q_m` is mass flow rate (ISO 80000-4), and `A` is area (ISO 80000-3), `v` is speed (ISO 80000-3), `ν` is kinematic viscosity (ISO 80000-4), and `D` is diffusion coefficient (ISO 80000-9)"
      * remarks: The mass transfer factor is also given by `j_m = j^*" = St^"*" * (Sc)^(2/3)` where `St^"*"` is the Stanton number for mass transfer (item 11-6.5), and `Sc` is the Schmidt number (item 11-7.2). See also heat transfer factor (item 11-5.17)."
      */
-    attribute def MassTransferFactorValue :> DimensionOneValue;
-    attribute massTransferFactor: MassTransferFactorValue :> dimensionOneQuantity;
+    attribute def MassTransferFactorStarredValue :> DimensionOneValue;
+    attribute massTransferFactorStarred: MassTransferFactorStarredValue :> dimensionOneQuantity;
 
-    alias massTransferFactor as jFactor;
+    alias massTransferFactorStarred as jFactorStarred;
 
     /**
      * source: item 11-6.8 Atwood number
@@ -952,14 +952,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-6.9 Biot number
      * symbol(s): `Bi^"*"`
      * application domain: mass transfer
-     * name: BiotStarNumber (specializes DimensionOneQuantity)
+     * name: BiotNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between mass transfer rate at the interface and mass transfer rate in the interior of a body, expressed by `Bi^*" = (k*l)/D_"int"`, where `k` is the mass transfer coefficient through the surface, `k = k^'/ρ`, where `ρ` is mass density (ISO 80000-4), `k^'` is mass flux density `q_m/A` through the surface, where `q_m` is mass flow rate (ISO 80000-4), and `A` is area (ISO 80000-3), `l` is thickness (ISO 80000-3) of layer, and `D_"int"` is diffusion coefficient (ISO 80000-9) at the interface"
      * remarks: 
      */
-    attribute def BiotStarNumberValue :> DimensionOneValue;
-    attribute biotStarNumber: BiotStarNumberValue :> dimensionOneQuantity;
+    attribute def BiotNumberStarredValue :> DimensionOneValue;
+    attribute biotNumberStarred: BiotNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.10 Morton number
@@ -1045,14 +1045,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-6.16 Bejan number
      * symbol(s): `Be^"*"`, `Be_2`
      * application domain: mass transfer
-     * name: BejanStarNumber (specializes DimensionOneQuantity)
+     * name: BejanNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of mechanical work and frictional and diffusion energy loss in viscous flow of fluids in pipes, expressed by `Be^*" = (Δp*l^2)/(η*D)`, where `Δp` is drop of pressure (ISO 80000-4) along a pipe or channel, `l` is length (ISO 80000-3) of channel, `η` is dynamic viscosity (ISO 80000-4) of the fluid, and `D` is diffusion coefficient (ISO 80000-9), mass diffusivity"
      * remarks: A similar quantity exists for heat transfer (item 11-5.9).
      */
-    attribute def BejanStarNumberValue :> DimensionOneValue;
-    attribute bejanStarNumber: BejanStarNumberValue :> dimensionOneQuantity;
+    attribute def BejanNumberStarredValue :> DimensionOneValue;
+    attribute bejanNumberStarred: BejanNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-6.17 cavitation number
@@ -1097,14 +1097,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-6.20 dynamic capillary number
      * symbol(s): `Ca^"*"`, `Cn`
      * application domain: General
-     * name: DynamicCapillaryStarNumber (specializes DimensionOneQuantity)
+     * name: DynamicCapillaryNumberStarred (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of viscous force and capillary force acting across an interface between a liquid and a gas, or between two immiscible liquids for a flow of fluid influenced by interfacial tension, expressed by `Ca^*" = (η*v)/γ`, where `η` is dynamic viscosity (ISO 80000-4) of the fluid, `v` is characteristic speed (ISO 80000-3), and `γ` is surface or interfacial tension (ISO 80000-4)"
      * remarks: The dynamic capillary number is also given by the quotient of the Weber number and the Reynolds number.
      */
-    attribute def DynamicCapillaryStarNumberValue :> DimensionOneValue;
-    attribute dynamicCapillaryStarNumber: DynamicCapillaryStarNumberValue :> dimensionOneQuantity;
+    attribute def DynamicCapillaryNumberStarredValue :> DimensionOneValue;
+    attribute dynamicCapillaryNumberStarred: DynamicCapillaryNumberStarredValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-7.1 Prandtl number
@@ -1177,14 +1177,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-7.6 Hooke number
      * symbol(s): `Ho_2`
      * application domain: General
-     * name: HookeNumber (specializes DimensionOneQuantity)
+     * name: HookeNumber2 (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: relation between inertia forces and linear stress forces in elastic fluids, expressed by `Ho_2 = (ρ*v^2)/E`, where `ρ` is mass density (ISO 80000-4), `v` is speed (ISO 80000-3), and `E` is modulus of elasticity (ISO 80000-4)
      * remarks: 
      */
-    attribute def HookeNumberValue :> DimensionOneValue;
-    attribute hookeNumber: HookeNumberValue :> dimensionOneQuantity;
+    attribute def HookeNumber2Value :> DimensionOneValue;
+    attribute hookeNumber2: HookeNumber2Value :> dimensionOneQuantity;
 
     /**
      * source: item 11-7.7 Weissenberg number
@@ -1365,14 +1365,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-8.10 Prandtl magnetic number
      * symbol(s): `Pr_m`
      * application domain: General
-     * name: PrandtlMagneticNumber (specializes DimensionOneQuantity)
+     * name: PrandtlMagneticNumberm (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of kinematic viscosity and magnetic viscosity in an electrically conducting liquid, expressed by `Pr_m = ν*σ*μ`, where `ν` is kinematic viscosity (ISO 80000-4), `σ` is electrical conductivity (IEC 80000-6), and `μ` is magnetic permeability (IEC 80000-6)
      * remarks: The quantity `ν_m = 1/(μ*σ)` is called magnetic viscosity or magnetic diffusivity. See item 11-8.11. The Prandtl magnetic number is also given by `Pr_m = (Rm)/(Re)`, where `Rm` is the Reynolds magnetic number (item 11-8.1), and `Re` is the Reynolds number (item 11-4.1). This number is also called magnetic Prandtl number.
      */
-    attribute def PrandtlMagneticNumberValue :> DimensionOneValue;
-    attribute prandtlMagneticNumber: PrandtlMagneticNumberValue :> dimensionOneQuantity;
+    attribute def PrandtlMagneticNumbermValue :> DimensionOneValue;
+    attribute prandtlMagneticNumberm: PrandtlMagneticNumbermValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-8.11 Roberts number
@@ -1456,27 +1456,27 @@ package ISQCharacteristicNumbers {
      * source: item 11-8.17 Joule magnetic number
      * symbol(s): `Jo_m`
      * application domain: General
-     * name: JouleMagneticNumber (specializes DimensionOneQuantity)
+     * name: JouleMagneticNumberm (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of Joule heating energy and magnetic field energy in a plasma, expressed by `Jo_m = (2*ρ*μ*c_p*ΔT)/B^2`, where `ρ` is mass density (ISO 80000-4), `μ` is magnetic permeability (IEC 80000-6), `c_p` is specific heat capacity at constant pressure (ISO 80000-5), `T` is thermodynamic temperature (ISO 80000-5), and `B` is magnetic flux density (IEC 80000-6)
      * remarks: This number is also called magnetic Joule number.
      */
-    attribute def JouleMagneticNumberValue :> DimensionOneValue;
-    attribute jouleMagneticNumber: JouleMagneticNumberValue :> dimensionOneQuantity;
+    attribute def JouleMagneticNumbermValue :> DimensionOneValue;
+    attribute jouleMagneticNumberm: JouleMagneticNumbermValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-8.18 Grashof magnetic number
      * symbol(s): `Gr_m`
      * application domain: General
-     * name: GrashofMagneticNumber (specializes DimensionOneQuantity)
+     * name: GrashofMagneticNumberm (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: mathematical expression for the heat transfer by free thermo-magnetic convection of a paramagnetic fluid under gravity, `Gr_m = (4*π*σ_e*μ_e*g*α_V*ΔT*l^3)/ν`, where `σ_e` is electrical conductivity (IEC 80000-6), `μ_e` is magnetic permeability (IEC 80000-6), `g` is acceleration of free fall (ISO 80000-3), `α_V` is cubic expansion coefficient (ISO 80000-5), `ΔT = T_S - T_∞` is difference of thermodynamic temperature `T` (ISO 80000-5), where `T_S` is surface temperature and `T_∞` is bulk temperature, `l` is characteristic length (ISO 80000-3), and `ν` is kinematic viscosity (ISO 80000-4)
      * remarks: This number is also called magnetic Grashof number. See also Grashof number (item 11-4.4).
      */
-    attribute def GrashofMagneticNumberValue :> DimensionOneValue;
-    attribute grashofMagneticNumber: GrashofMagneticNumberValue :> dimensionOneQuantity;
+    attribute def GrashofMagneticNumbermValue :> DimensionOneValue;
+    attribute grashofMagneticNumberm: GrashofMagneticNumbermValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-8.19 Naze number
@@ -1495,14 +1495,14 @@ package ISQCharacteristicNumbers {
      * source: item 11-8.20 Reynolds electric number
      * symbol(s): `Re_e`
      * application domain: General
-     * name: ReynoldsElectricNumber (specializes DimensionOneQuantity)
+     * name: ReynoldsElectricNumbere (specializes DimensionOneQuantity)
      * quantity dimension: 1
      * measurement unit(s): 1
      * definition: quotient of speed of a fluid and average drift speed of the charged particles in an electrically conducting fluid, expressed by `Re_e = (v*ε_e)/(ρ_e*l*μ)`, where `v` is characteristic speed (ISO 80000-3) of the fluid, `ε_e` is electric permittivity (IEC 80000-6), `ρ_e` is electric charge density (IEC 80000-6), `l` is characteristic length (ISO 80000-3), and `μ` is mobility (ISO 80000-10) of charge carriers
      * remarks: This number is also called electrical Reynolds number. The drift speed of the charged particles in an electric field is given by `v_d = 1/(μ*E)`, where `E` is electric field strength (IEC 80000-6), and `μ` is mobility (ISO 80000-10) of charge carriers.
      */
-    attribute def ReynoldsElectricNumberValue :> DimensionOneValue;
-    attribute reynoldsElectricNumber: ReynoldsElectricNumberValue :> dimensionOneQuantity;
+    attribute def ReynoldsElectricNumbereValue :> DimensionOneValue;
+    attribute reynoldsElectricNumbere: ReynoldsElectricNumbereValue :> dimensionOneQuantity;
 
     /**
      * source: item 11-8.21 Ampère number

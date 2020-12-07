@@ -25,7 +25,6 @@
 package org.omg.sysml.plantuml;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,27 +45,60 @@ public class SysML2PlantUMLText {
     public enum MODE {
         Default,
         Tree,
-        StateMachine,
+        State,
         Interconnection,
-        Activity,
+        Action,
         Sequence,
         MIXED;
     }
 
-    private final Collection<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
+    private final List<SysML2PlantUMLStyle> styles = new ArrayList<SysML2PlantUMLStyle>();
     private final Map<String, String> styleValueMap = new HashMap<String, String>();
     private StyleSwitch styleSwitch;
     private final StyleSwitch styleDefaultSwitch = new StyleSwitch(new SysML2PlantUMLStyle.StyleRelDefaultSwitch(),
                                                                    new SysML2PlantUMLStyle.StyleStereotypeDefaultSwitch());
 
+    private void enableStyle() {
+        styleSwitch = null;
+        styleValueMap.clear();
+        for (int i = 0; i < styles.size(); i++) {
+            SysML2PlantUMLStyle style = styles.get(i);
+            if (style.styleSwitch != null) {
+                styleSwitch = style.styleSwitch;
+            }
+            if (style.options != null) {
+                styleValueMap.putAll(style.options);
+            }
+        }
+    }
+
+    private void resetStyle(SysML2PlantUMLStyle style) {
+        if (!style.isPrimary) return;
+        SysML2PlantUMLStyle[] ss = new SysML2PlantUMLStyle[styles.size()];
+        ss = styles.toArray(ss);
+        for (int i = 0; i < ss.length; i++) {
+            SysML2PlantUMLStyle s = ss[i];
+            if (s.isPrimary) {
+                styles.remove(i);
+            }
+        }
+    }
+
     public void addStyle(SysML2PlantUMLStyle style) {
+        resetStyle(style);
         styles.add(style);
-        if (style.styleSwitch != null) {
-            styleSwitch = style.styleSwitch;
-        }
-        if (style.options != null) {
-            styleValueMap.putAll(style.options);
-        }
+        enableStyle();
+    }
+
+    public void removeStyle(SysML2PlantUMLStyle style) {
+        resetStyle(style);
+        styles.remove(style);
+        enableStyle();
+    }
+
+    public boolean isStyleEnabled(SysML2PlantUMLStyle style) {
+        initStyle();
+    	return styles.contains(style);
     }
 
     public void clearStyle() {
@@ -137,11 +169,7 @@ public class SysML2PlantUMLText {
     String styleString(Type typ) {
         String ret = getStereotypeStyle(typ);
         if (ret == null) {
-            if (diagramMode == MODE.Interconnection) {
-                ret = " <<";
-            } else {
-                ret = " <<(T,blue)";
-            }
+            ret = " <<(T,blue)";
         }
         if (typ instanceof Usage) {
             Usage u = (Usage) typ;
@@ -190,13 +218,13 @@ public class SysML2PlantUMLText {
 
     private Visitor createVisitor() {
         switch (diagramMode) {
-        case StateMachine:
+        case State:
             return new VStateMachine();
         case Interconnection:
             return new VComposite();
         case Tree:
 			return new VTree();
-        case Activity:
+        case Action:
 			return new VAction();
         case MIXED:
         	return new VMixed();
@@ -220,9 +248,9 @@ public class SysML2PlantUMLText {
 
     private MODE getMode(EObject eObj) {
         if (eObj instanceof StateUsage) {
-            return MODE.StateMachine;
+            return MODE.State;
         } else if (eObj instanceof ActionUsage) {
-            return MODE.Activity;
+            return MODE.Action;
         } else {
             return MODE.MIXED;
         }

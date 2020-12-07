@@ -7,7 +7,7 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.plantuml
 Import-Package: com.google.inject;version="1.3.0",
- net.sourceforge.plantuml;version="1.2020.14.himi3",
+ net.sourceforge.plantuml;version="1.2020.14.himi5",
  org.eclipse.emf.common,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore,

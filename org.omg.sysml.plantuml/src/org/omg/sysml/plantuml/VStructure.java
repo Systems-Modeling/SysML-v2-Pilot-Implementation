@@ -33,7 +33,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
@@ -131,7 +130,7 @@ public abstract class VStructure extends VDefault {
         if (styleValue("decoratedRedefined") != null) {
             String rt = redefinedFeatureText(f);
             if (rt != null) {
-                append('>');
+                append("<&bar-trig> ");
                 addFeatureTextInternal(f, name);
                 append(" <s>");
                 append(rt);
@@ -186,22 +185,6 @@ public abstract class VStructure extends VDefault {
         }
         */
         return sb.toString();
-    }
-
-    protected void addGeneralizations(Type typ) {
-        for (Generalization g: typ.getOwnedGeneralization()) {
-            Type gt = g.getGeneral();
-            if (gt.getName() == null) continue;
-            addPRelation(typ, gt, g);
-        }
-    }
-
-    protected void addPUMLLine(Type typ, String keyword, String name) {
-        append(keyword);
-        addNameWithId(typ, name, true);
-        String style = styleString(typ);
-        append(style);
-        addLink(typ);
     }
 
     protected boolean addType(Type typ, String keyword) {

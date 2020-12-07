@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.TypeFeaturing
 class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def String metaclassText(Element element) {
-		(element as ElementImpl).transform()
 		element.eClass.name
 	}
 
@@ -120,7 +119,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Type type) {
-		(type as TypeImpl).transform()
 		var text = type.eClass.name;
 		if (type.isAbstract) {
 			text += ' abstract'
@@ -382,7 +380,54 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
+	def _isLeaf(Type type) {
+	    _isLeaf(type as Package) && (type as TypeImpl).isImplicitGeneralTypesEmpty() 	
+	}
+	
+	def void _createChildren(IOutlineNode parentNode, Type type) {		
+		(type as TypeImpl).forEachImplicitGeneralType[eClass, generalType |
+			/*
+			 * TODO here image dispatcher should be called with a type that
+			 * returns that appropriate icon for generalizations, but there
+			 * are no such icons added yet; in the future, the generalType
+			 * reference might return an unexpected icon if at a later point
+			 * type-specific icons are added.
+			 */
+			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
+				imageDispatcher.invoke(generalType), eClass
+			)
+			
+			// Traversal does not know about the new node, children have to be created here
+			if (generalType !== null) {
+				createEObjectNode(implicitNode, generalType, 
+					generalType._image, generalType._text, 
+					true
+				)
+			}
+		]
+		_createChildren(parentNode, type as Package)
+	}
+	
+	def _isLeaf(Association association) {
+		false
+	}
+	
+	def _createChildren(IOutlineNode parentNode, Association association) {
+		createRelatedElements(parentNode, association)
+		_createChildren(parentNode, association as Type)
+	}
+
+	def _isLeaf(Connector connector) {
+		false
+	}
+	
+	def _createChildren(IOutlineNode parentNode, Connector connector) {
+		createRelatedElements(parentNode, connector)
+		_createChildren(parentNode, connector as Type)
+	}
+
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
+		_createChildren(parentNode, expression as Type)
 		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
 				_image(relationship), 
@@ -393,14 +438,4 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def _createChildren(IOutlineNode parentNode, Association association) {
-		createRelatedElements(parentNode, association)
-		_createChildren(parentNode, association as Package)
-	}
-
-	def _createChildren(IOutlineNode parentNode, Connector connector) {
-		createRelatedElements(parentNode, connector)
-		_createChildren(parentNode, connector as Package)
-	}
-
 }

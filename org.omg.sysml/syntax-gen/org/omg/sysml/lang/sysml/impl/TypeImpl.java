@@ -23,11 +23,15 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -231,7 +235,6 @@ public class TypeImpl extends PackageImpl implements Type {
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		EList<Generalization> generalizations = new NonNotifyingEObjectEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		computeImplicitGeneralization();
 		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
 		return generalizations;
 	}
@@ -254,21 +257,114 @@ public class TypeImpl extends PackageImpl implements Type {
 				collect(Collectors.toList());
 	}
 	
-	public void computeImplicitGeneralization() {
+	/**
+	 * Contains the required ends for implicit generalizations like implicit
+	 * superclassing, subsetting, featuretyping and redefinitions for future access.
+	 * The lists must not contain null values and the current type.
+	 */
+	protected Map<EClass, List<Type>> implicitGeneralTypes = new HashMap<>();
+	
+	public void computeImplicitGeneralTypes() {
 		if (!isConjugated()) {
-			addImplicitGeneralization();
+			addDefaultGeneralType();
  		}
 	}
 	
-	protected void addImplicitGeneralization() {
-		addImplicitGeneralization(getGeneralizationEClass(), getDefaultSupertype());
+
+	public void cleanImplicitGeneralization() {
+		implicitGeneralTypes.clear();
 	}
 	
-	protected void addImplicitGeneralization(EClass generalizationEClass, String... superTypeNames) {
-		Generalization generalization = getDefaultGeneralization(generalizationEClass, superTypeNames);
-		if (generalization != null) {
-			getOwnedRelationship_comp().add(generalization);
-		}		
+	public void addImplicitGeneralizations() {
+		for (EClass eClass : implicitGeneralTypes.keySet()) {
+			for (Type general : implicitGeneralTypes.get(eClass)) {
+				Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
+				newGeneralization.setGeneral(general);
+				newGeneralization.setSpecific(this);
+				getOwnedRelationship_comp().add(newGeneralization);
+			}
+		}
+		cleanImplicitGeneralization();
+	}
+	
+	public boolean isImplicitGeneralTypesEmpty() {
+		return implicitGeneralTypes.isEmpty();
+	}
+	
+	public Collection<EClass> getImplicitGeneralTypeKinds() {
+		return implicitGeneralTypes.keySet();
+	}
+	
+	public List<Type> getImplicitGeneralTypes() {
+		return implicitGeneralTypes.values().stream().
+				flatMap(Collection::stream).
+				collect(Collectors.toList());
+	}
+	
+	public List<Type> getImplicitGeneralTypes(EClass eClass) {
+		return implicitGeneralTypes.keySet().stream().
+				filter(eClass::isSuperTypeOf).
+				flatMap(keyClass->getImplicitGeneralTypesOnly(keyClass).stream()).
+				collect(Collectors.toList());
+	}
+	
+	public List<Type> getImplicitGeneralTypesOnly(EClass eClass) {
+		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList());
+	}
+	
+	public Type getFirstImplicitGeneralType(EClass eClass) {
+		List<Type> types = getImplicitGeneralTypes(eClass);
+		return types.isEmpty() ? null : types.get(0);
+	}
+	
+	public boolean isImplicitGeneralizationDeclaredFor(EClass eClass) {
+		return implicitGeneralTypes.containsKey(eClass);
+	}
+	
+	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
+		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
+	}
+	
+	public void forEachImplicitGeneralType(BiConsumer<EClass, Type> action) {
+		for (EClass eClass : implicitGeneralTypes.keySet()) {
+			for (Type supertype : implicitGeneralTypes.get(eClass)) {
+				action.accept(eClass, supertype);
+			}
+		}
+	}
+	
+	protected <T extends Generalization> void removeEmptyGeneralTypes(Class<T> kind) {
+		List<Relationship> ownedRelationships = getOwnedRelationship_comp();
+		for (Generalization generalization: basicGetOwnedGeneralization(kind)) {
+			if (((GeneralizationImpl)generalization).basicGetGeneral() == null) {
+				ownedRelationships.remove(generalization);
+			}
+		}
+	}
+	
+	protected void addDefaultGeneralType() {
+		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
+		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
+		removeEmptyGeneralTypes(kind);
+		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
+				basicGetOwnedGeneralization(kind).isEmpty()) {
+			Type general = getDefaultType(superTypeNames);
+			if (general != null && general != this) {
+				List<Type> generalizations = new ArrayList<>();
+				generalizations.add(general);
+				implicitGeneralTypes.put(generalizationEClass, generalizations);
+			}
+		}
+	}
+	
+	protected void addImplicitGeneralType(EClass eClass, Type general) {
+		if (!isImplicitGeneralizationFor(eClass, general)) {
+			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
+		}
 	}
 	
 	protected EClass getGeneralizationEClass() {
@@ -291,15 +387,6 @@ public class TypeImpl extends PackageImpl implements Type {
 				generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
 				generalization.setGeneral(general);
 				((GeneralizationImpl)generalization).basicSetSpecific(this);
-			}
-		} else {
-			generalization = generalizations.stream().
-					filter(s->s.eClass() == eClass && ((GeneralizationImpl)s).basicGetGeneral() == null).
-					findFirst().orElse(null);
-			if (generalization != null) {
-				// Only resolve a default name if necessary.
-				Type general = getDefaultType(defaultNames);
-				generalization.setGeneral(general);
 			}
 		}
 		return generalization;
@@ -599,9 +686,12 @@ public class TypeImpl extends PackageImpl implements Type {
 				findFirst().orElse(null);
 		if (multiplicity == null) {
 			visited.add(this);
-			Type general = getOwnedGeneralization().stream().map(Generalization::getGeneral).findFirst().orElse(null);
-			if (general != null && !visited.contains(general)) { 
-				multiplicity = ((TypeImpl)general).getMultiplicity(visited);
+			List<Type> superTypes = getSupertypes();
+			if (!superTypes.isEmpty()) {
+				Type general = getSupertypes().get(0);
+				if (general != null && !visited.contains(general)) { 
+					multiplicity = ((TypeImpl)general).getMultiplicity(visited);
+				}
 			}
 		}
 		return multiplicity;
@@ -639,8 +729,7 @@ public class TypeImpl extends PackageImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedPackages, excludedTypes, includeProtected));
 			}
 		}
-		for (Generalization generalization: getOwnedGeneralization()) {
-			Type general = generalization.getGeneral();
+		for (Type general: getSupertypes()) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedPackages, excludedTypes, includeProtected));
 			}
@@ -650,7 +739,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected void removeRedefinedFeatures(Collection<Membership> memberships) {
-		Collection<Feature> redefinedFeatures = getRedefinedFeatures();
+		Collection<Feature> redefinedFeatures = getFeaturesRedefinedByType();
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature &&
@@ -659,7 +748,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		});		
 	}
 	
-	public Collection<Feature> getRedefinedFeatures() {
+	public Collection<Feature> getFeaturesRedefinedByType() {
 		return getOwnedFeature().stream().
 				flatMap(feature->((FeatureImpl)feature).getAllRedefinedFeatures().stream()).
 				collect(Collectors.toSet());
@@ -770,7 +859,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			return ((TypeImpl)originalType).getAllSuperTypes(visited);
 		} else {
 			EList<Type> superTypes = new BasicEList<>();
-			getOwnedGeneralization().stream().map(Generalization::getGeneral).
+			getSupertypes().stream().
 				forEachOrdered(superType->{
 					if (superType != null && !visited.contains(superType)) {
 						visited.add(superType);
@@ -781,7 +870,7 @@ public class TypeImpl extends PackageImpl implements Type {
 			return superTypes;
 		}
 	}
-
+	
 	// Additional subsets
 	
 	@Override
@@ -792,6 +881,22 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 
 	// Utility Methods
+	
+	public List<Type> getSupertypes() {
+		return getSupertypes(null);
+	}
+	
+	public List<Type> getSupertypes(Element skip) {
+		List<Type> ownedGeneralEnds = new ArrayList<>(); 
+		getOwnedGeneralization()
+			.stream()
+			.filter(gen -> gen != skip)
+			.map(Generalization::getGeneral)
+			.forEachOrdered(ownedGeneralEnds::add);
+		computeImplicitGeneralTypes();
+		ownedGeneralEnds.addAll(getImplicitGeneralTypes());
+		return ownedGeneralEnds;
+	}
 	
 	public boolean conformsTo(Type supertype) {
 		return conformsTo(supertype, new HashSet<>());
@@ -807,9 +912,9 @@ public class TypeImpl extends PackageImpl implements Type {
 				Type originalType = getOwnedConjugator().getOriginalType();
 				return !visited.contains(originalType) && ((TypeImpl)originalType).conformsTo(supertype);
 			} else {
-				return getOwnedGeneralization().stream().
-					anyMatch(gen->!visited.contains(gen.getGeneral()) && 
-							((TypeImpl)gen.getGeneral()).conformsTo(supertype, visited));
+				return getSupertypes().stream().
+					anyMatch(type->!visited.contains(type) && 
+							((TypeImpl)type).conformsTo(supertype, visited));
 			}
 		}
 	}
@@ -851,8 +956,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		visited.add(this);
 		List<Feature> ends = getOwnedEndFeatures();
 		int n = ends.size();
-		for (Generalization generalization: getOwnedGeneralization()) {
-			Type general = generalization.getGeneral();
+		for (Type general: getSupertypes()) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures(visited);
 				if (inheritedEnds.size() > n) {
@@ -878,8 +982,7 @@ public class TypeImpl extends PackageImpl implements Type {
 		List<Feature> parameters = getOwnedParameters();
 		parameters.removeIf(p->((FeatureImpl)p).isResultParameter());
 		int n = parameters.size();
-		for (Generalization generalization : getOwnedGeneralization()) {
-			Type general = generalization.getGeneral();
+		for (Type general: getSupertypes()) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
 				inheritedParameters.removeIf(p->((FeatureImpl)p).isResultParameter());
@@ -971,7 +1074,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public void transform() {
 		super.transform();
 		clearCaches();
-		computeImplicitGeneralization();
+		computeImplicitGeneralTypes();
 	}
 	
 	//

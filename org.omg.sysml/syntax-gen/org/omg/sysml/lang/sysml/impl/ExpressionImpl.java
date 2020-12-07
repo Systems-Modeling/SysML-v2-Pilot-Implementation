@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -175,11 +176,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	protected List<Type> getGeneralTypes(Type type) {
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		Type owningType = getOwningType();
 		return isTransitionGuard() && type == owningType?
 				Collections.singletonList(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
-				super.getGeneralTypes(type);
+				super.getGeneralTypes(type, skip);
 	}
 	
 	protected boolean isTransitionGuard() {
@@ -270,12 +271,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	public Collection<Feature> getRedefinedFeatures() {
+	public Collection<Feature> getFeaturesRedefinedByType() {
 		// Note: Ensures that all owned inputs and outputs are computed
 		// before checking for redefined features.
 		getInput();
 		getOutput();
-		return super.getRedefinedFeatures();
+		return super.getFeaturesRedefinedByType();
 	}
 	
 	// Utility methods

@@ -22,8 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -34,7 +32,6 @@ import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
@@ -234,38 +231,25 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 	}
 
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		addIndividualDefinition();
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 	
 	protected boolean needsIndividualDefinition() {
-		return basicGetOwnedTyping().stream().
-				map(FeatureTyping::getType).noneMatch(IndividualDefinition.class::isInstance) &&
-				basicGetOwnedSubsetting().stream().map(Subsetting::getSubsettedFeature).noneMatch(IndividualUsage.class::isInstance);
+		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).
+					noneMatch(IndividualDefinition.class::isInstance) &&
+			   basicGetOwnedSubsetting().stream().map(Subsetting::getSubsettedFeature).
+					noneMatch(IndividualUsage.class::isInstance);
 	}
 		
 	protected void addIndividualDefinition() {
 		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
 			Type owningType = getOwningType();
 			if (owningType instanceof IndividualDefinition) {
-				FeatureTyping typing = super.basicGetOwnedTyping().stream().
-						filter(typ->typ.getType() == null).
-						findFirst().orElse(null);
-				if (typing == null) {
-					typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-					getOwnedRelationship_comp().add(typing);
-				}
-				typing.setType(owningType);
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
 			} else if (owningType instanceof IndividualUsage) {
-				Subsetting subsetting = super.basicGetOwnedSubsetting().stream().
-						filter(subs->subs.getSubsettedFeature() == null).
-						findFirst().orElse(null);
-				if (subsetting == null) {
-					subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-					getOwnedRelationship_comp().add(subsetting);
-				}
-				subsetting.setSubsettedFeature((IndividualUsage)owningType);
+				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
 			}
 		}
 	}
@@ -279,15 +263,7 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 			Type type = owningType instanceof IndividualUsage? 
 					((IndividualUsage)owningType).getIndividualDefinition(): 
 					owningType;
-			List<FeatureTyping> typings = ((FeatureImpl)feature).basicGetOwnedTyping();
-			if (typings.isEmpty()) {
-				FeatureTyping typing = SysMLFactory.eINSTANCE.createFeatureTyping();
-				typing.setType(type);
-				feature.getOwnedRelationship_comp().add(typing);
-			} else {
-				typings.stream().filter(typing->typing.getType() == null).findFirst().
-					ifPresent(typing->typing.setType(type));
-			}
+			((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 		}
 	}
 	

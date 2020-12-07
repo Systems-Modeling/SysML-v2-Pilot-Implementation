@@ -32,7 +32,6 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -63,11 +62,9 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	}
 
 	@Override
-	protected void addComputedRedefinitions() {
-		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
-		int n = ownedRedefinitions.size();
-		if (n < 2 || ownedRedefinitions.get(1).getRedefinedFeature() == null) {
-			addRedefinitions(ownedRedefinitions.subList(1, n));
+	protected void addComputedRedefinitions(Element skip) {
+		if (!isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+			addRedefinitions(skip);
 		}
 	}
 

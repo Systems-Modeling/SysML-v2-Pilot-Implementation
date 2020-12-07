@@ -24,16 +24,16 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -62,15 +62,15 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 
 	@Override
-	public EList<Subsetting> getOwnedSubsetting() {
+	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		addItemFlowEndSubsetting();
-		return super.getOwnedSubsetting();
+		return super.getSubsettedNotRedefinedFeatures();
 	}
 	
 	@Override
-	public void computeImplicitGeneralization() {
+	public void computeImplicitGeneralTypes() {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
-		addComputedRedefinitions();
+		addComputedRedefinitions(null);
 	}
 
 	protected void addItemFlowEndSubsetting() {
@@ -82,14 +82,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 				if (feature != null) {
 					Type owner = feature.getOwningType();
 					if (owner instanceof Feature) {
-						Subsetting subsetting = basicGetOwnedSubsetting().stream().
-								filter(s->!(s instanceof Redefinition)).findFirst().orElse(null);
-						if (subsetting == null) {
-							subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-							subsetting.setSubsettingFeature(this);
-							getOwnedRelationship_comp().add(subsetting);
-						}
-						subsetting.setSubsettedFeature((Feature) owner);
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner);
 					}
 				}
 			}
@@ -97,8 +90,8 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	}
 
 	@Override
-	protected List<Type> getGeneralTypes(Type type) {
-		return type instanceof ItemFlow ? new ArrayList<>(((ItemFlow) type).getType()) : super.getGeneralTypes(type);
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		return type instanceof ItemFlow? new ArrayList<>(((ItemFlow) type).getType()) : super.getGeneralTypes(type, skip);
 	}
 
 	@Override

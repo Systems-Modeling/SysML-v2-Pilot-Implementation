@@ -109,7 +109,10 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
 		if (ownedPortConjugator == null) {
-			ownedPortConjugator = (PortConjugation) getOwnedRelationship().stream().
+			// Using the _comp reference results in default generalization not considered -
+			// this is not a problem for ConjugatedPortDefinition but might be problematic
+			// for subclasses overriding getOwnedRelationship()
+			ownedPortConjugator = (PortConjugation) getOwnedRelationship_comp().stream().
 					filter(r->r instanceof PortConjugation).
 					findFirst().orElse(null);
 		}

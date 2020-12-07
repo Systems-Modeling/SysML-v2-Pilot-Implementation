@@ -32,9 +32,19 @@ import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class KerMLLinker extends LazyLinker {
 
+	@Override
+	protected void clearReferences(EObject obj) {
+		super.clearReferences(obj);
+		if (obj instanceof TypeImpl) {
+			((TypeImpl) obj).cleanImplicitGeneralization();
+		}
+	}
+	
+	@Override
 	protected void clearReference(EObject obj, EReference ref) {
 		if (
 			// The Relationship#source and #target features are overridden

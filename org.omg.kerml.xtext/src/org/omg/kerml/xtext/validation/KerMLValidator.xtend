@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
@@ -47,6 +46,7 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
+import org.omg.sysml.lang.sysml.impl.ElementImpl
 
 /**
  * This class contains custom validation rules. 
@@ -74,7 +74,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		
 	@Check
 	def checkElement(Element elm) {
-		(elm as ElementImpl).transform
 		if (elm.humanId !== null) {
 			val owner = elm.owner;
 			if (owner !== null) {
@@ -115,7 +114,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 						
 			}
 			if (pack instanceof Type){
-				for (m: pack.inheritedMembership) {
+				for (m : pack.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
 						if (mem.ownedMemberElement !== null) {
 							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
@@ -134,11 +133,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val types = (f as FeatureImpl).type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE_NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
-		
 	}
+	
 	@Check
 	def checkRelationship(Relationship r){
-		(r as ElementImpl).transform();
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
@@ -184,8 +182,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (rf.length !== 2) {
 			return //ignore binding connectors with invalid syntax
 		}
-		
-		rf.forEach[f|(f as FeatureImpl).transform]
 		
 //		val inFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.IN].map[ownedMemberFeature_comp].findFirst[true]
 //		val outFeature = rf.map[owningFeatureMembership].filter[m|m !== null && m.direction == FeatureDirectionKind.OUT].map[ownedMemberFeature_comp].findFirst[true]

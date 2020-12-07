@@ -26,6 +26,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -71,19 +72,19 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	}
 	
 	@Override
-	protected List<Type> getFeatureTypes(List<Type> types) {
+	public void computeImplicitGeneralTypes() {
 		IndividualUsageImpl.setTypingFor(this);
-		return super.getFeatureTypes(types);
-	}
-
-	@Override
-	public void computeImplicitGeneralization() {
-		IndividualUsageImpl.setTypingFor(this);
-		super.computeImplicitGeneralization();
+		super.computeImplicitGeneralTypes();
 	}
 		
 	@Override
-	protected List<Type> getGeneralTypes(Type type) {
+	protected List<Type> getFeatureTypes() {
+		IndividualUsageImpl.setTypingFor(this);
+		return super.getFeatureTypes();
+	}
+
+	@Override
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		return Collections.singletonList(null);
 	}
 	

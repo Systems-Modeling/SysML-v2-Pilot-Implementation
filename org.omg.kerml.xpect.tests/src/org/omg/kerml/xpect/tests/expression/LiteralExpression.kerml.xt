@@ -3,6 +3,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library_expr/Base.kerml"}
+		File {from ="/library_expr/Objects.kerml"}
 		File {from ="/library_expr/Performances.kerml"}
 		File {from ="/library_expr/ScalarValues.kerml"}
 	}
@@ -11,6 +12,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.expression.KerMLExpressionTest
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library_expr/Base.kerml"}
+				File {from ="/library_expr/Objects.kerml"}
 				File {from ="/library_expr/Performances.kerml"}
 				File {from ="/library_expr/ScalarValues.kerml"}
 			}

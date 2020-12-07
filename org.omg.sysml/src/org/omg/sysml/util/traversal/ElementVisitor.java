@@ -112,7 +112,6 @@ public class ElementVisitor {
 	 */
 	protected void preProcess() {
 		Element element = this.getElement();
-		((ElementImpl)element).transform();
 		this.getFacade().preProcess(element);
 	}
 	

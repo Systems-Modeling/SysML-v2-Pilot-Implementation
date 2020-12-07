@@ -5,6 +5,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -16,6 +17,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -31,8 +33,6 @@ package 'Individuals and Roles' {
 	part def BB :> B;
 	part def C;
 	
-	//if this individual is not redefined by B 
-	//snapshot b_1_1 : AA :>> b_1; cases problem - b_1_1 is having type of not just individual but part def
 	individual def AA :> BB;
 	individual def CC :> A;
 	individual def DD;

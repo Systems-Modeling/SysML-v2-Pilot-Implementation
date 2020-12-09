@@ -22,6 +22,7 @@
     <yarn.version>1.22.5</yarn.version>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
+    <xtext.version>2.22.0</xtext.version>
   </properties>
 
 
@@ -194,5 +195,48 @@
         </executions>
       </plugin>
     </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.eclipse.xtend</groupId>
+          <artifactId>xtend-maven-plugin</artifactId>
+          <version>${xtext.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>
+                <goal>xtend-install-debug-info</goal>
+                <goal>testCompile</goal>
+                <goal>xtend-test-install-debug-info</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <outputDirectory>xtend-gen</outputDirectory>
+          </configuration>
+        </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.5</version>
+					<executions>
+						<execution>
+							<id>gen-clean</id>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+							<configuration>
+								<filesets>
+									<fileset>
+										<directory>${basedir}/xtend-gen</directory>
+										<excludes>**/.gitignore</excludes>
+									</fileset>
+								</filesets>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>

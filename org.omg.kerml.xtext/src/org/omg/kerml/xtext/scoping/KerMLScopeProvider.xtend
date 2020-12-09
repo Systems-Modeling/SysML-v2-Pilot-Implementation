@@ -82,7 +82,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    var subsettingFeature = context.subsettingFeature
 		    var owningType = subsettingFeature?.owningType
 		    if (owningType instanceof QueryPathExpression) {
-			    return subsettingFeature.scope_QueryPathExpression(owningType as QueryPathExpression, context, reference)
+			    return subsettingFeature.scope_QueryPathExpression(owningType, context, reference)
 		    } else if (owningType instanceof Connector) {
 		    	if (owningType.connectorEnd.contains(subsettingFeature)) {
 		    		return owningType.scope_owningNamespace(context, reference)

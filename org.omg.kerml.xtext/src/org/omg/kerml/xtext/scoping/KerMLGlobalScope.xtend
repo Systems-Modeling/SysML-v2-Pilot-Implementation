@@ -105,7 +105,7 @@ class KerMLGlobalScope extends AbstractScope {
 			val element = root.EObjectOrProxy
 			if (element instanceof Package) {
 				allElements = Iterables.concat(allElements, 
-					scopeFor(element as Package).allElements.map[addQualification(root.name.firstSegment)]
+					scopeFor(element).allElements.map[addQualification(root.name.firstSegment)]
 				)
 			}
 		}

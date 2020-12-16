@@ -590,7 +590,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public List<FeatureTyping> basicGetOwnedTyping() {
-		addVariationTyping();
 		return super.basicGetOwnedTyping();
 	}
 	
@@ -648,7 +647,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	public void transform() {
-		basicGetOwnedTyping();
+		addVariationTyping();
 		super.transform();
 	}
 	

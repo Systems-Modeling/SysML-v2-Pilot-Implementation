@@ -152,9 +152,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public EList<Type> getFeaturingType() {
-		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
-			addImplicitFeaturingTypes();
-		}
 		return super.getFeaturingType();		
 	}
 
@@ -291,7 +288,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	public void transform() {
 		super.transform();
-		getFeaturingType();
+		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
+			addImplicitFeaturingTypes();
+		}
 		getInput();
 		getOutput();
 	}

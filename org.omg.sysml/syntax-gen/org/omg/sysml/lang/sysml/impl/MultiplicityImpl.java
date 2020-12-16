@@ -60,7 +60,6 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 	
 	@Override
 	public EList<Type> getFeaturingType() {
-		addImplicitFeaturingTypes();
 		return super.getFeaturingType();
 	}
 	
@@ -72,7 +71,7 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 	@Override
 	public void transform() {
 		super.transform();
-		getFeaturingType();
+		addImplicitFeaturingTypes();
 	}
 
 } // MultiplicityImpl

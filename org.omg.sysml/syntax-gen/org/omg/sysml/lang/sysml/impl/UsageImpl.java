@@ -649,7 +649,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public void transform() {
 		basicGetOwnedTyping();
-		getOwnedSubsetting();
 		super.transform();
 	}
 	

@@ -97,8 +97,9 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	}
 
 	@Override
-	public EList<Annotation> getAnnotation() {
-		EList<Annotation> annotations = getAnnotationGen();
+	public void transform() {
+		super.transform();
+		EList<Annotation> annotations = getAnnotation();
 		if (annotations.isEmpty()) {
 			Relationship owningRelationship = getOwningRelationship();
 			if (owningRelationship instanceof Annotation) {
@@ -110,7 +111,6 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 					forEachOrdered(annotations::add);
 			}
 		}
-		return annotations;
 	}
 
 	/**
@@ -118,7 +118,8 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Annotation> getAnnotationGen() {
+	@Override
+	public EList<Annotation> getAnnotation() {
 		if (annotation == null) {
 			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
 		}

@@ -71,11 +71,17 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 		return super.getFeature();
 	}
 	
-	public BindingConnector getResultConnector() {
-		return resultConnector = getResultConnectorFor(this, resultConnector, this.getResult());
+	@Override
+	public void transform() {
+		super.transform();
+		resultConnector = getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
-	public static BindingConnector getResultConnectorFor(
+	public BindingConnector getResultConnector() {
+		return resultConnector;
+	}
+
+	public static BindingConnector getOrCreateResultConnectorFor(
 			Type owningType, BindingConnector resultConnector, Feature result) {
 		Expression resultExpression = 
 				(Expression)((TypeImpl)owningType).getOwnedFeatureByMembership(ResultExpressionMembership.class);

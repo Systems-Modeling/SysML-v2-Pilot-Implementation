@@ -357,7 +357,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+		return resultConnector;
 	}
 	
 	// Additional Overrides
@@ -440,7 +440,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		super.transform();
 		basicGetSubjectParameter();
 		CalculationDefinitionImpl.addResultParameter(this);
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}	
 	
 	//

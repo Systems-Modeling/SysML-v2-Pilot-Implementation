@@ -243,7 +243,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
+		return resultConnector;
 	}
 	
 	// Other methods
@@ -258,7 +258,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	public void transform() {
 		super.transform();
 		CalculationDefinitionImpl.addResultParameter(this);
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());;
 	}
 	
 	//

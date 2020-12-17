@@ -174,7 +174,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
+		return resultConnector;
 	}
 	
 	// Other methods
@@ -199,7 +199,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	public void transform() {
 		super.transform();
 		addResultParameter(this);
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
 	//

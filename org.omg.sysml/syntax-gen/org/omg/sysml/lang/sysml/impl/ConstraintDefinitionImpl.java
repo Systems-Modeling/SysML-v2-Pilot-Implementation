@@ -175,7 +175,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	}
 
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
+		return resultConnector;
 	}
 	
 	@Override
@@ -188,7 +188,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	public void transform() {
 		super.transform();
 		CalculationDefinitionImpl.addResultParameter(this);
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
 	/**

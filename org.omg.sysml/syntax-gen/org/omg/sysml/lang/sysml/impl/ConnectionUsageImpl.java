@@ -509,8 +509,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	
 	// Other overrides
 	
-	@Override
-	public EList<Type> getFeaturingType() {
+	private void computeFeaturingType() {
 		Type contextType = getContextType();
 		if (contextType != null && contextType != getOwningType()) {
 			if (getOwnedTypeFeaturing().isEmpty()) {
@@ -519,7 +518,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				updateFeaturingTypes(Collections.singletonList(getContextType()));
 			}
 		}
-		return super.getFeaturingType();
 	}
 	
 	private Type contextType = null;
@@ -536,7 +534,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public void transform() {
 		super.transform();
-		getFeaturingType();
+		computeFeaturingType();
 	}
 	
 	//

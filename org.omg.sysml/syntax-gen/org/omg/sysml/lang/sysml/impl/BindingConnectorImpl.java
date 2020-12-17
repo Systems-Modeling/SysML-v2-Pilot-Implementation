@@ -60,8 +60,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return SysMLPackage.Literals.BINDING_CONNECTOR;
 	}
 
-	@Override
-	public EList<Feature> getRelatedFeature() {
+	private void computeRelatedFeature() {
 		EList<Feature> relatedFeatures = super.getRelatedFeature();
 		if (relatedFeatures.isEmpty()) {
 			Type owner = getOwningType();
@@ -76,7 +75,6 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 				}
 			}
 		}
-		return relatedFeatures;
 	}
 	
 	public Feature getRelatedFeatureFor(Feature end) {
@@ -126,7 +124,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 	@Override
 	public void transform() {
 		super.transform();
-		getRelatedFeature();
+		computeRelatedFeature();
 	}
 
 	@Override

@@ -211,9 +211,6 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 		BindingConnector connector = (BindingConnector)getOwnedFeature().stream().
 				filter(feature->feature instanceof BindingConnector).
 				findFirst().orElse(null);
-		if (connector != null) {
-			((ConnectorImpl)connector).setRelatedFeature(0,getSubjectParameter());
-		}
 		return connector;
 	}
 
@@ -225,7 +222,10 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	@Override
 	public void transform() {
 		super.transform();
-		getSatisfyingFeatureConnector();
+		BindingConnector connector = getSatisfyingFeatureConnector();
+		if (connector != null) {
+			((ConnectorImpl)connector).setRelatedFeature(0,getSubjectParameter());
+		}
 	}
 
 	/**

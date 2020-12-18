@@ -125,6 +125,10 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 	
+	private void computeSubjectParameter() {
+		UsageImpl.computeSubjectParameterOf(this);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -225,14 +229,13 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
-		basicGetSubjectParameter();
 		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		basicGetSubjectParameter();
+		computeSubjectParameter();
 	}
 	
 	//

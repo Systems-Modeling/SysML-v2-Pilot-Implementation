@@ -93,6 +93,10 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	public Usage basicGetSubjectParameter() {
 		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
+	
+	private void computeSubjectParameter() {
+		UsageImpl.computeSubjectParameterOf(this);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,11 +129,14 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	}
 	
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
+		return (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
+	}
+	
+	public static void computeObjectiveRequirementOf(Type type) {
 		RequirementUsage objective = (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
 		if (objective == null) {
 			addObjectiveRequirement(type);
 		}
-		return objective;
 	}
 	
 	public static RequirementUsage addObjectiveRequirement(Type type) {
@@ -159,24 +166,20 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	
 	@Override
 	public EList<Feature> getOwnedFeature() {
-		basicGetObjectiveRequirement();
 		return super.getOwnedFeature();
 	}
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
-		basicGetSubjectParameter();
 		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		basicGetSubjectParameter();
-		basicGetObjectiveRequirement();
+		computeSubjectParameter();
+		computeObjectiveRequirementOf(this);
 	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

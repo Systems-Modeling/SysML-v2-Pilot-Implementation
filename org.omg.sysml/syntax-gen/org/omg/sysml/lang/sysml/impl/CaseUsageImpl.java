@@ -95,6 +95,10 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	public RequirementUsage basicGetObjectiveRequirement() {
 		return CaseDefinitionImpl.getObjectiveRequirementOf(this);
 	}
+	
+	private void computeObjectiveRequirement() {
+		CaseDefinitionImpl.computeObjectiveRequirementOf(this);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,6 +128,10 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 */
 	public Usage basicGetSubjectParameter() {
 		return UsageImpl.basicGetSubjectParameterOf(this);
+	}
+	
+	private void computeSubjectParameter() {
+		UsageImpl.computeSubjectParameterOf(this);
 	}
 
 	/**
@@ -234,21 +242,19 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	
 	@Override
 	public EList<Feature> getOwnedFeature() {
-		basicGetObjectiveRequirement();
 		return super.getOwnedFeature();
 	}
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
-		basicGetSubjectParameter();
 		return super.getOwnedParameters();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		basicGetSubjectParameter();
-		basicGetObjectiveRequirement();
+		computeSubjectParameter();
+		computeObjectiveRequirement();
 	}
 	
 	//

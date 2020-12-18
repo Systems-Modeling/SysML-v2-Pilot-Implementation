@@ -701,6 +701,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	protected static Usage basicGetSubjectParameterOf(Type type) {
+		return (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
+	}
+	
+	public static void computeSubjectParameterOf(Type type) {
 		Usage subjectParameter = null;
 		if (type != null) {
 			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
@@ -708,10 +712,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				subjectParameter = addSubjectParameterTo(type);
 			}
 		}
-		return subjectParameter;
 	}
 	
-	public static Usage addSubjectParameterTo(Type type) {
+	private   static Usage addSubjectParameterTo(Type type) {
 		Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 		SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
 		membership.setOwnedSubjectParameter_comp(parameter);

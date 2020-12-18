@@ -382,11 +382,14 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		return isRequirement()? basicGetSubjectParameterOf(this): null;
 	}
 	
+	protected void computeSubjectParameter() {
+		if (isRequirement()) {
+			UsageImpl.computeSubjectParameterOf(this);
+		}
+	}
+	
 	@Override
 	public List<Feature> getOwnedParameters() {
-		// Note: "Basic" version is used to avoid proxy resolution in RequirementUsageImpl.
-		basicGetSubjectParameter();
-		CalculationDefinitionImpl.addResultParameter(this);
 		return super.getOwnedParameters();
 	}
 	
@@ -438,7 +441,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	public void transform() {
 		super.transform();
-		basicGetSubjectParameter();
+		computeSubjectParameter();
 		CalculationDefinitionImpl.addResultParameter(this);
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}	

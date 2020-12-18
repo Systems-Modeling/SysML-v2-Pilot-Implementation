@@ -57,7 +57,8 @@ public interface Invariant extends BooleanExpression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * An owned Feature of the Invariant that is a BindingConnector between the Invariant and the result of a LiteralBoolean with value "true".
+	 * <p>An <code>ownedFeature</code> of the Invariant that is a BindingConnector between the <code>result</code> of the Invariant and the <code>result</code> of a LiteralBoolean with value <em>true</em>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assertion Connector</em>' reference.
 	 * @see #setAssertionConnector(BindingConnector)

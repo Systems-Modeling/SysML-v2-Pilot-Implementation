@@ -232,7 +232,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Redefinition relationships that are&nbsp;owned by this Feature, where this feature is the redefining one??.</p>
+	 * <p>The Redefinition Relationships owned by this Feature for which it is the <code>redefiningFeature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
@@ -261,7 +261,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Subsetting relationships that are&nbsp;owned by this Feature, where this feature is the subsetting one.<mms-cf mms-cf-type="com" mms-element-id="MMS_1592312822399_5f15c140-7bd1-47ea-92b3-3ee60fcfabf2">comment:cbock</mms-cf></p>
+	 * <p>The Subsetting Relationships owned by this Feature for which it is the <code>subsettingFeature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
@@ -499,7 +499,7 @@ public interface Feature extends Type {
 	 * <p>Return whether this Feature has the given <code>type</code> as a direct or indirect <code>featuringType</code>. If <code>type</code> is null, then check if this Feature is implicitly directly or indirectly featured in <em>Base::Anything</em>.</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" typeOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='type = null and feature.featuringType-&gt;isEmpty() or\ntype &lt;&gt; null and feature.featuringType-&gt;includes(type) or\nfeature.featuringType-&gt;exists(f | isFeaturedIn(t)) '"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='type = null and feature.featuringType-&gt;isEmpty() or\n    type &lt;&gt; null and feature.featuringType-&gt;includes(type) or\n    feature.featuringType-&gt;exists(t |\n        t.oclIsKindOf(Feature) and\n        t.oclAsType(Feature).isFeaturedWithin(type)) '"
 	 * @generated
 	 */
 	boolean isFeaturedWithin(Type type);

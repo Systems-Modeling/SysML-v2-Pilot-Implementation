@@ -35387,26 +35387,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageImport__Group_3_0__0__Impl"
-    // InternalKerML.g:9977:1: rule__PackageImport__Group_3_0__0__Impl : ( ( rule__PackageImport__ImportedPackageAssignment_3_0_0 ) ) ;
+    // InternalKerML.g:9977:1: rule__PackageImport__Group_3_0__0__Impl : ( ( rule__PackageImport__ImportedNamespaceAssignment_3_0_0 ) ) ;
     public final void rule__PackageImport__Group_3_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:9981:1: ( ( ( rule__PackageImport__ImportedPackageAssignment_3_0_0 ) ) )
-            // InternalKerML.g:9982:1: ( ( rule__PackageImport__ImportedPackageAssignment_3_0_0 ) )
+            // InternalKerML.g:9981:1: ( ( ( rule__PackageImport__ImportedNamespaceAssignment_3_0_0 ) ) )
+            // InternalKerML.g:9982:1: ( ( rule__PackageImport__ImportedNamespaceAssignment_3_0_0 ) )
             {
-            // InternalKerML.g:9982:1: ( ( rule__PackageImport__ImportedPackageAssignment_3_0_0 ) )
-            // InternalKerML.g:9983:2: ( rule__PackageImport__ImportedPackageAssignment_3_0_0 )
+            // InternalKerML.g:9982:1: ( ( rule__PackageImport__ImportedNamespaceAssignment_3_0_0 ) )
+            // InternalKerML.g:9983:2: ( rule__PackageImport__ImportedNamespaceAssignment_3_0_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_0_0()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_0_0()); 
             }
-            // InternalKerML.g:9984:2: ( rule__PackageImport__ImportedPackageAssignment_3_0_0 )
-            // InternalKerML.g:9984:3: rule__PackageImport__ImportedPackageAssignment_3_0_0
+            // InternalKerML.g:9984:2: ( rule__PackageImport__ImportedNamespaceAssignment_3_0_0 )
+            // InternalKerML.g:9984:3: rule__PackageImport__ImportedNamespaceAssignment_3_0_0
             {
             pushFollow(FOLLOW_2);
-            rule__PackageImport__ImportedPackageAssignment_3_0_0();
+            rule__PackageImport__ImportedNamespaceAssignment_3_0_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -35414,7 +35414,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_0_0()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_0_0()); 
             }
 
             }
@@ -35639,26 +35639,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageImport__Group_3_1__0__Impl"
-    // InternalKerML.g:10058:1: rule__PackageImport__Group_3_1__0__Impl : ( ( rule__PackageImport__ImportedPackageAssignment_3_1_0 ) ) ;
+    // InternalKerML.g:10058:1: rule__PackageImport__Group_3_1__0__Impl : ( ( rule__PackageImport__ImportedNamespaceAssignment_3_1_0 ) ) ;
     public final void rule__PackageImport__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:10062:1: ( ( ( rule__PackageImport__ImportedPackageAssignment_3_1_0 ) ) )
-            // InternalKerML.g:10063:1: ( ( rule__PackageImport__ImportedPackageAssignment_3_1_0 ) )
+            // InternalKerML.g:10062:1: ( ( ( rule__PackageImport__ImportedNamespaceAssignment_3_1_0 ) ) )
+            // InternalKerML.g:10063:1: ( ( rule__PackageImport__ImportedNamespaceAssignment_3_1_0 ) )
             {
-            // InternalKerML.g:10063:1: ( ( rule__PackageImport__ImportedPackageAssignment_3_1_0 ) )
-            // InternalKerML.g:10064:2: ( rule__PackageImport__ImportedPackageAssignment_3_1_0 )
+            // InternalKerML.g:10063:1: ( ( rule__PackageImport__ImportedNamespaceAssignment_3_1_0 ) )
+            // InternalKerML.g:10064:2: ( rule__PackageImport__ImportedNamespaceAssignment_3_1_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_1_0()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_1_0()); 
             }
-            // InternalKerML.g:10065:2: ( rule__PackageImport__ImportedPackageAssignment_3_1_0 )
-            // InternalKerML.g:10065:3: rule__PackageImport__ImportedPackageAssignment_3_1_0
+            // InternalKerML.g:10065:2: ( rule__PackageImport__ImportedNamespaceAssignment_3_1_0 )
+            // InternalKerML.g:10065:3: rule__PackageImport__ImportedNamespaceAssignment_3_1_0
             {
             pushFollow(FOLLOW_2);
-            rule__PackageImport__ImportedPackageAssignment_3_1_0();
+            rule__PackageImport__ImportedNamespaceAssignment_3_1_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -35666,7 +35666,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_1_0()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_1_0()); 
             }
 
             }
@@ -35881,26 +35881,26 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PackageImport__Group_3_2__0__Impl"
-    // InternalKerML.g:10139:1: rule__PackageImport__Group_3_2__0__Impl : ( ( rule__PackageImport__ImportedPackageAssignment_3_2_0 ) ) ;
+    // InternalKerML.g:10139:1: rule__PackageImport__Group_3_2__0__Impl : ( ( rule__PackageImport__ImportedNamespaceAssignment_3_2_0 ) ) ;
     public final void rule__PackageImport__Group_3_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:10143:1: ( ( ( rule__PackageImport__ImportedPackageAssignment_3_2_0 ) ) )
-            // InternalKerML.g:10144:1: ( ( rule__PackageImport__ImportedPackageAssignment_3_2_0 ) )
+            // InternalKerML.g:10143:1: ( ( ( rule__PackageImport__ImportedNamespaceAssignment_3_2_0 ) ) )
+            // InternalKerML.g:10144:1: ( ( rule__PackageImport__ImportedNamespaceAssignment_3_2_0 ) )
             {
-            // InternalKerML.g:10144:1: ( ( rule__PackageImport__ImportedPackageAssignment_3_2_0 ) )
-            // InternalKerML.g:10145:2: ( rule__PackageImport__ImportedPackageAssignment_3_2_0 )
+            // InternalKerML.g:10144:1: ( ( rule__PackageImport__ImportedNamespaceAssignment_3_2_0 ) )
+            // InternalKerML.g:10145:2: ( rule__PackageImport__ImportedNamespaceAssignment_3_2_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_2_0()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_2_0()); 
             }
-            // InternalKerML.g:10146:2: ( rule__PackageImport__ImportedPackageAssignment_3_2_0 )
-            // InternalKerML.g:10146:3: rule__PackageImport__ImportedPackageAssignment_3_2_0
+            // InternalKerML.g:10146:2: ( rule__PackageImport__ImportedNamespaceAssignment_3_2_0 )
+            // InternalKerML.g:10146:3: rule__PackageImport__ImportedNamespaceAssignment_3_2_0
             {
             pushFollow(FOLLOW_2);
-            rule__PackageImport__ImportedPackageAssignment_3_2_0();
+            rule__PackageImport__ImportedNamespaceAssignment_3_2_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -35908,7 +35908,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_2_0()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_2_0()); 
             }
 
             }
@@ -82593,9 +82593,9 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__PackageImport__VisibilityAssignment_1"
 
 
-    // $ANTLR start "rule__PackageImport__ImportedPackageAssignment_3_0_0"
-    // InternalKerML.g:24716:1: rule__PackageImport__ImportedPackageAssignment_3_0_0 : ( ( ruleName ) ) ;
-    public final void rule__PackageImport__ImportedPackageAssignment_3_0_0() throws RecognitionException {
+    // $ANTLR start "rule__PackageImport__ImportedNamespaceAssignment_3_0_0"
+    // InternalKerML.g:24716:1: rule__PackageImport__ImportedNamespaceAssignment_3_0_0 : ( ( ruleName ) ) ;
+    public final void rule__PackageImport__ImportedNamespaceAssignment_3_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -82607,13 +82607,13 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24722:3: ( ruleName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_0_0_0()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_0_0_0()); 
             }
             // InternalKerML.g:24723:3: ( ruleName )
             // InternalKerML.g:24724:4: ruleName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackagePackageNameParserRuleCall_3_0_0_0_1()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1()); 
             }
             pushFollow(FOLLOW_2);
             ruleName();
@@ -82621,13 +82621,13 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackagePackageNameParserRuleCall_3_0_0_0_1()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_0_0_0()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_0_0_0()); 
             }
 
             }
@@ -82647,12 +82647,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageImport__ImportedPackageAssignment_3_0_0"
+    // $ANTLR end "rule__PackageImport__ImportedNamespaceAssignment_3_0_0"
 
 
-    // $ANTLR start "rule__PackageImport__ImportedPackageAssignment_3_1_0"
-    // InternalKerML.g:24735:1: rule__PackageImport__ImportedPackageAssignment_3_1_0 : ( ( ruleColonQualifiedName ) ) ;
-    public final void rule__PackageImport__ImportedPackageAssignment_3_1_0() throws RecognitionException {
+    // $ANTLR start "rule__PackageImport__ImportedNamespaceAssignment_3_1_0"
+    // InternalKerML.g:24735:1: rule__PackageImport__ImportedNamespaceAssignment_3_1_0 : ( ( ruleColonQualifiedName ) ) ;
+    public final void rule__PackageImport__ImportedNamespaceAssignment_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -82664,13 +82664,13 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24741:3: ( ruleColonQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_1_0_0()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_1_0_0()); 
             }
             // InternalKerML.g:24742:3: ( ruleColonQualifiedName )
             // InternalKerML.g:24743:4: ruleColonQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1()); 
             }
             pushFollow(FOLLOW_2);
             ruleColonQualifiedName();
@@ -82678,13 +82678,13 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_1_0_0()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_1_0_0()); 
             }
 
             }
@@ -82704,12 +82704,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageImport__ImportedPackageAssignment_3_1_0"
+    // $ANTLR end "rule__PackageImport__ImportedNamespaceAssignment_3_1_0"
 
 
-    // $ANTLR start "rule__PackageImport__ImportedPackageAssignment_3_2_0"
-    // InternalKerML.g:24754:1: rule__PackageImport__ImportedPackageAssignment_3_2_0 : ( ( ruleDotQualifiedName ) ) ;
-    public final void rule__PackageImport__ImportedPackageAssignment_3_2_0() throws RecognitionException {
+    // $ANTLR start "rule__PackageImport__ImportedNamespaceAssignment_3_2_0"
+    // InternalKerML.g:24754:1: rule__PackageImport__ImportedNamespaceAssignment_3_2_0 : ( ( ruleDotQualifiedName ) ) ;
+    public final void rule__PackageImport__ImportedNamespaceAssignment_3_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -82721,13 +82721,13 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:24760:3: ( ruleDotQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_2_0_0()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_2_0_0()); 
             }
             // InternalKerML.g:24761:3: ( ruleDotQualifiedName )
             // InternalKerML.g:24762:4: ruleDotQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getPackageImportAccess().getImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1()); 
+               before(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1()); 
             }
             pushFollow(FOLLOW_2);
             ruleDotQualifiedName();
@@ -82735,13 +82735,13 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_2_0_0()); 
+               after(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_2_0_0()); 
             }
 
             }
@@ -82761,7 +82761,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__PackageImport__ImportedPackageAssignment_3_2_0"
+    // $ANTLR end "rule__PackageImport__ImportedNamespaceAssignment_3_2_0"
 
 
     // $ANTLR start "rule__Type__IsAbstractAssignment_0"

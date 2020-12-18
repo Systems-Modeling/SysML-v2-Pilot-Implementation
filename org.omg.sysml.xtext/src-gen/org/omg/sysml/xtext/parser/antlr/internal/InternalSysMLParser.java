@@ -3586,7 +3586,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_0_0_0());
+                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_0_0_0());
                       						
                     }
                     pushFollow(FOLLOW_24);
@@ -3683,7 +3683,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_1_0_0());
+                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_1_0_0());
                       						
                     }
                     pushFollow(FOLLOW_26);
@@ -3741,7 +3741,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_2_0_0());
+                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_2_0_0());
                       						
                     }
                     pushFollow(FOLLOW_27);
@@ -61042,7 +61042,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getExposeAccess().getImportedPackagePackageCrossReference_3_0_0_0());
+                      							newCompositeNode(grammarAccess.getExposeAccess().getImportedNamespaceNamespaceCrossReference_3_0_0_0());
                       						
                     }
                     pushFollow(FOLLOW_24);
@@ -61139,7 +61139,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getExposeAccess().getImportedPackagePackageCrossReference_3_1_0_0());
+                      							newCompositeNode(grammarAccess.getExposeAccess().getImportedNamespaceNamespaceCrossReference_3_1_0_0());
                       						
                     }
                     pushFollow(FOLLOW_26);
@@ -61197,7 +61197,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getExposeAccess().getImportedPackagePackageCrossReference_3_2_0_0());
+                      							newCompositeNode(grammarAccess.getExposeAccess().getImportedNamespaceNamespaceCrossReference_3_2_0_0());
                       						
                     }
                     pushFollow(FOLLOW_27);

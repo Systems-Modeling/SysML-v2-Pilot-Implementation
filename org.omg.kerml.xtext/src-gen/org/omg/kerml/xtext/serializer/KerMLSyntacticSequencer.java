@@ -721,7 +721,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '::' | '.'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     importedPackage=[Package|Name] (ambiguity) '*' ';' (rule end)
+	 *     importedNamespace=[Namespace|Name] (ambiguity) '*' ';' (rule end)
 	 */
 	protected void emit_PackageImport_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

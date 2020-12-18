@@ -71,7 +71,8 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The types of the endFeatures of the Association, which are the relatedElements of the Association considered as a Relationship.
+	 * <p>The <code>types</code> of the <code>endFeatures</code> of the Association, which are the <code>relatedElements</code> of the Association considered as a Relationship.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_RelatedType()
@@ -99,7 +100,8 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ends of an Association define the objects that can be related by it. When there are two values in this attribute, the Association is informally called "binary."</p>
+	 * <p>The <code>features</code> of the Association that that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p>
+	 * 
 	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
 	 * 
 	 * <!-- end-model-doc -->
@@ -129,7 +131,8 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The source <code>relatedType</code> for this Association. If this is a binary Association, then the <code>sourceType</code> is the first <code>relatedType</code>, and the first end Feature of the Association must redefine the <code>source</code> Feature of the Association BinaryLink from the Kernel Library. If this Association is not binary, then it has no <code>sourceType</code>.</p>
+	 * <p>The source <code>relatedType</code> for this Association. If this is a binary Association, then the <code>sourceType</code> is the first <code>relatedType</code>, and the first <code>associationEnd</code> of the Association must redefine the <code>source</code> Feature of the Association <em>BinaryLink</em> from the Kernel Library. If this Association is not binary, then it has no <code>sourceType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Source Type</em>' reference.
 	 * @see #setSourceType(Type)

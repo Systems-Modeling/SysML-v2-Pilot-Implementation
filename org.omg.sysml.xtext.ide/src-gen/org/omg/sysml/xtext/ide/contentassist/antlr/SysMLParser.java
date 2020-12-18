@@ -617,9 +617,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getUsagePackageMemberAccess().getOwnedMemberElement_compAssignment(), "rule__UsagePackageMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAssignment_0(), "rule__PackageImport__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPackageImportAccess().getVisibilityAssignment_1(), "rule__PackageImport__VisibilityAssignment_1");
-			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_0_0(), "rule__PackageImport__ImportedPackageAssignment_3_0_0");
-			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_1_0(), "rule__PackageImport__ImportedPackageAssignment_3_1_0");
-			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_2_0(), "rule__PackageImport__ImportedPackageAssignment_3_2_0");
+			builder.put(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_0_0(), "rule__PackageImport__ImportedNamespaceAssignment_3_0_0");
+			builder.put(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_1_0(), "rule__PackageImport__ImportedNamespaceAssignment_3_1_0");
+			builder.put(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_2_0(), "rule__PackageImport__ImportedNamespaceAssignment_3_2_0");
 			builder.put(grammarAccess.getTypeBodyAccess().getDocumentation_compAssignment_1_1_0(), "rule__TypeBody__Documentation_compAssignment_1_1_0");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedMembership_compAssignment_1_1_1(), "rule__TypeBody__OwnedMembership_compAssignment_1_1_1");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedFeatureMembership_compAssignment_1_1_2(), "rule__TypeBody__OwnedFeatureMembership_compAssignment_1_1_2");
@@ -901,9 +901,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getViewBodyItemAccess().getOwnedImport_compAssignment_1(), "rule__ViewBodyItem__OwnedImport_compAssignment_1");
 			builder.put(grammarAccess.getExposeAccess().getOwnedRelationship_compAssignment_0(), "rule__Expose__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getExposeAccess().getVisibilityAssignment_1(), "rule__Expose__VisibilityAssignment_1");
-			builder.put(grammarAccess.getExposeAccess().getImportedPackageAssignment_3_0_0(), "rule__Expose__ImportedPackageAssignment_3_0_0");
-			builder.put(grammarAccess.getExposeAccess().getImportedPackageAssignment_3_1_0(), "rule__Expose__ImportedPackageAssignment_3_1_0");
-			builder.put(grammarAccess.getExposeAccess().getImportedPackageAssignment_3_2_0(), "rule__Expose__ImportedPackageAssignment_3_2_0");
+			builder.put(grammarAccess.getExposeAccess().getImportedNamespaceAssignment_3_0_0(), "rule__Expose__ImportedNamespaceAssignment_3_0_0");
+			builder.put(grammarAccess.getExposeAccess().getImportedNamespaceAssignment_3_1_0(), "rule__Expose__ImportedNamespaceAssignment_3_1_0");
+			builder.put(grammarAccess.getExposeAccess().getImportedNamespaceAssignment_3_2_0(), "rule__Expose__ImportedNamespaceAssignment_3_2_0");
 			builder.put(grammarAccess.getViewpointRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ViewpointRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getRenderingRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__RenderingRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__OwnedExpressionMember__OwnedMemberFeature_compAssignment");

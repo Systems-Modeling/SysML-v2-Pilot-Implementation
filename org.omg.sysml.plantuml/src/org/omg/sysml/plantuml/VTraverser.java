@@ -26,11 +26,12 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public abstract class VTraverser extends Visitor {
-    public String traverse(org.omg.sysml.lang.sysml.Package p) {
-        for (Membership m: p.getOwnedMembership()) {
+    public String traverse(Namespace n) {
+        for (Membership m: n.getOwnedMembership()) {
             // if (visit(m) == null) return null;
             visit(m);
             for (Relationship r: m.getOwnedRelationship()) {
@@ -51,8 +52,8 @@ public abstract class VTraverser extends Visitor {
     }
 
     @Override
-    public String casePackage(org.omg.sysml.lang.sysml.Package p) {
-        return traverse(p);
+    public String caseNamespace(Namespace n) {
+        return traverse(n);
     }
     
     protected VTraverser(Visitor prev, boolean block) {

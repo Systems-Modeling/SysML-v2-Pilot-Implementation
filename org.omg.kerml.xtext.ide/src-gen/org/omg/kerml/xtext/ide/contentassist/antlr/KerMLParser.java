@@ -387,9 +387,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeaturePackageMemberAccess().getOwnedMemberElement_compAssignment(), "rule__FeaturePackageMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getPackageImportAccess().getOwnedRelationship_compAssignment_0(), "rule__PackageImport__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPackageImportAccess().getVisibilityAssignment_1(), "rule__PackageImport__VisibilityAssignment_1");
-			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_0_0(), "rule__PackageImport__ImportedPackageAssignment_3_0_0");
-			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_1_0(), "rule__PackageImport__ImportedPackageAssignment_3_1_0");
-			builder.put(grammarAccess.getPackageImportAccess().getImportedPackageAssignment_3_2_0(), "rule__PackageImport__ImportedPackageAssignment_3_2_0");
+			builder.put(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_0_0(), "rule__PackageImport__ImportedNamespaceAssignment_3_0_0");
+			builder.put(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_1_0(), "rule__PackageImport__ImportedNamespaceAssignment_3_1_0");
+			builder.put(grammarAccess.getPackageImportAccess().getImportedNamespaceAssignment_3_2_0(), "rule__PackageImport__ImportedNamespaceAssignment_3_2_0");
 			builder.put(grammarAccess.getTypeAccess().getIsAbstractAssignment_0(), "rule__Type__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getTypeDeclarationAccess().getIsSufficientAssignment_0(), "rule__TypeDeclaration__IsSufficientAssignment_0");
 			builder.put(grammarAccess.getTypeDeclarationAccess().getOwnedMembership_compAssignment_2(), "rule__TypeDeclaration__OwnedMembership_compAssignment_2");

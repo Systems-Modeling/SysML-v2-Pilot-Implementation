@@ -86,6 +86,7 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership
 import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership
 import org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl
+import org.omg.sysml.lang.sysml.Namespace
 
 /**
  * This class contains custom validation rules. 
@@ -160,22 +161,22 @@ class SysMLValidator extends KerMLValidator {
 	@Check
 	def checkUsage(Usage usage) {
 		val owningMembership = usage.owningMembership;
-		val owningPackage = owningMembership?.membershipOwningPackage;
+		val owningNamespace = owningMembership?.membershipOwningNamespace;
 		
 		if (owningMembership instanceof VariantMembership) {
 			// A variant Usage must be owned by a variation
-			if (!owningPackage.isVariation) {
+			if (!owningNamespace.isVariation) {
 				error(org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIANT)				
 			}
 		// A variation must not own non-variant Usages (except for parameters)
-		} else if (owningPackage.isVariation && !(owningMembership instanceof ParameterMembership)) {
+		} else if (owningNamespace.isVariation && !(owningMembership instanceof ParameterMembership)) {
 				error(INVALID_USAGE_VARIATION_MSG, SysMLPackage.eINSTANCE.element_OwningMembership, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_USAGE_VARIATION)							
 		}
 	}
 	
-	def boolean isVariation(org.omg.sysml.lang.sysml.Package p) {
-		if (p instanceof Definition) p.isVariation
-		else if (p instanceof Usage) p.isVariation
+	def boolean isVariation(Namespace namespace) {
+		if (namespace instanceof Definition) namespace.isVariation
+		else if (namespace instanceof Usage) namespace.isVariation
 		else false
 	}
 

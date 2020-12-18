@@ -6072,7 +6072,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_0_0_0());
+                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_0_0_0());
                       						
                     }
                     pushFollow(FOLLOW_32);
@@ -6169,7 +6169,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_1_0_0());
+                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_1_0_0());
                       						
                     }
                     pushFollow(FOLLOW_34);
@@ -6227,7 +6227,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     if ( state.backtracking==0 ) {
 
-                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_2_0_0());
+                      							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_2_0_0());
                       						
                     }
                     pushFollow(FOLLOW_35);

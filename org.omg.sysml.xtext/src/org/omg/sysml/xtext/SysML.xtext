@@ -143,9 +143,9 @@ PackageImport returns SysML::Import :
 	( ownedRelationship_comp += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
 	'import' (
-	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
-	| importedPackage = [SysML::Package|ColonQualifiedName] '::' '*' 
-	| importedPackage = [SysML::Package|DotQualifiedName] '.' '*'
+	  importedNamespace = [SysML::Namespace|Name] ( '::' | '.' ) '*' 
+	| importedNamespace = [SysML::Namespace|ColonQualifiedName] '::' '*' 
+	| importedNamespace = [SysML::Namespace|DotQualifiedName] '.' '*'
 	) ';'
 ;
 
@@ -1988,9 +1988,9 @@ Expose returns SysML::Expose :
 	( ownedRelationship_comp += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
 	'expose' (
-	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
-	| importedPackage = [SysML::Package|ColonQualifiedName] '::' '*' 
-	| importedPackage = [SysML::Package|DotQualifiedName] '.' '*'
+	  importedNamespace = [SysML::Namespace|Name] ( '::' | '.' ) '*' 
+	| importedNamespace = [SysML::Namespace|ColonQualifiedName] '::' '*' 
+	| importedNamespace = [SysML::Namespace|DotQualifiedName] '.' '*'
 	) ';'
 ;
 

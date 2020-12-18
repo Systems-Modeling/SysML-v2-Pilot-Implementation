@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ViewUsage is a usage of a ViewDefinition to specify the generation of a view of a specific <code>exposedPackage</code>. The ViewDefinition can satisfy more <code>viewpoints</code> than its definition, and it can specialize the <code>rendering</code> specified by its definition.<p>
+ * <p>A ViewUsage is a usage of a ViewDefinition to specify the generation of a view of the <code>members</code> of a collection of <code>exposedNamespaces</code>. The ViewDefinition can satisfy more <code>viewpoints</code> than its definition, and it can specialize the <code>rendering</code> specified by its definition.<p>
  * 
  * <p>A ViewUsage must subset, directly or indirectly, the base ViewUsage <code>views</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -41,8 +41,10 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getExposedPackage <em>Exposed Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getExposedNamespace <em>Exposed Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewCondition <em>View Condition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ViewUsage#getViewedElement <em>Viewed Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage()
@@ -107,20 +109,20 @@ public interface ViewUsage extends PartUsage {
 	EList<ViewpointUsage> getSatisfiedViewpoint();
 
 	/**
-	 * Returns the value of the '<em><b>Exposed Package</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Package}.
+	 * Returns the value of the '<em><b>Exposed Namespace</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Namespace}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Package that is exposed by this ViewUsage, derived as the <code>importedPackage</code> related to the ViewUsage by a Expose Relationship.</p>
+	 * <p>The Namespaces that are exposed by this ViewUsage, derived as the Namespaces related to the ViewUsage by Expose Relationships.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Exposed Package</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ExposedPackage()
+	 * @return the value of the '<em>Exposed Namespace</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ExposedNamespace()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='exposingView'"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Package> getExposedPackage();
+	EList<Namespace> getExposedNamespace();
 
 	/**
 	 * Returns the value of the '<em><b>Rendering</b></em>' reference.
@@ -154,5 +156,44 @@ public interface ViewUsage extends PartUsage {
 	 * @generated
 	 */
 	void setRendering(RenderingUsage value);
+
+	/**
+	 * Returns the value of the '<em><b>View Condition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.MetadataCondition}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedMembers</code> of the ViewUsage that are <code>MetadataConditions</code>, which specify conditions on Elements to be rendered in a view.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>View Condition</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewCondition()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningView'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<MetadataCondition> getViewCondition();
+
+	/**
+	 * Returns the value of the '<em><b>Viewed Element</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Elements that are rendered by this ViewUsage, derived as the <code>members</code> of all the <code>exposedNamespaces</code> that met all the owned and inherited <code>viewConditions</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Viewed Element</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewedElement()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewer'"
+	 * @generated
+	 */
+	EList<Element> getViewedElement();
 
 } // ViewUsage

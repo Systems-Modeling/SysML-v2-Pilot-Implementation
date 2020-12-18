@@ -36,7 +36,6 @@ import org.eclipse.xtext.scoping.IScope
 import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.Element
-import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
@@ -47,10 +46,11 @@ import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
+import org.omg.sysml.lang.sysml.Namespace
 
 class KerMLScope extends AbstractScope {
 	
-	protected Package pack		
+	protected Namespace pack		
 	protected EClass referenceType	
 	protected KerMLScopeProvider scopeProvider
 	protected boolean isInsideScope //false if initialized from KerMLGlobalScope
@@ -68,11 +68,11 @@ class KerMLScope extends AbstractScope {
 	protected Element element
 	protected Type scopingType
 
-	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
+	new(IScope parent, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		this(parent, pack, referenceType, scopeProvider, true, isFirstScope, isRedefinition, element, skip)
 	}
 	
-	new(IScope parent, Package pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
+	new(IScope parent, Namespace pack, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		super(parent, false)
 		this.pack = pack
 		this.referenceType = referenceType
@@ -140,7 +140,7 @@ class KerMLScope extends AbstractScope {
 		}
 	}
 	
-	protected def boolean resolve(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> visited, Set<Element> redefined) {
+	protected def boolean resolve(Namespace pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Namespace> visited, Set<Element> redefined) {
 		pack.owned(qn, checkIfAdded, isInsideScope, newHashSet, visited, redefined) ||
 		pack.gen(qn, visited, redefined) ||
 		pack.imp(qn, isInsideScope, visited)
@@ -157,7 +157,7 @@ class KerMLScope extends AbstractScope {
 		}
 	}
 	
-	protected def boolean owned(Package pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Package> ownedvisited, Set<Package> visited, Set<Element> redefined) {
+	protected def boolean owned(Namespace pack, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined) {
 		
 		if (!ownedvisited.contains(pack)) {
 			if (targetqn === null) {
@@ -186,7 +186,7 @@ class KerMLScope extends AbstractScope {
 							val elementqn = qn.append(elementName)
 							if ((isInsideScope || r.visibility == VisibilityKind.PUBLIC || 
 							     r.visibility == VisibilityKind.PROTECTED && scopingType !== null && 
-							     scopingType.isInheritedProtected(r.membershipOwningPackage)) &&
+							     scopingType.isInheritedProtected(r.membershipOwningNamespace)) &&
 							     checkQualifiedName(elementqn, checkIfAdded)) {
 							    // Delay proxy resolution of memberElement for as long as possible (if not caused by getting memberName).
 							    // This can prevent the proxy from being spuriously marked as unresolvable during an earlier phase of the search. 
@@ -217,7 +217,7 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 	
-	protected def checkElementId(QualifiedName qn, boolean checkIfAdded, Element element, Set<Package> ownedvisited, Set<Package> visited) {
+	protected def checkElementId(QualifiedName qn, boolean checkIfAdded, Element element, Set<Namespace> ownedvisited, Set<Namespace> visited) {
 		val elementId = element?.humanId
 		if (elementId !== null) {
 			val elementqn = qn.append(elementId)
@@ -230,7 +230,7 @@ class KerMLScope extends AbstractScope {
 		(!checkIfAdded || !visitedqns.contains(elementqn))
 	}
 	
-	protected def visitQualifiedName(QualifiedName elementqn, Element memberElement, Set<Package> ownedvisited, Set<Package> visited) {
+	protected def visitQualifiedName(QualifiedName elementqn, Element memberElement, Set<Namespace> ownedvisited, Set<Namespace> visited) {
 		visitedqns.add(elementqn)
 		if (targetqn === null || targetqn == elementqn) {
 			elements.addName(elementqn, memberElement)
@@ -239,7 +239,7 @@ class KerMLScope extends AbstractScope {
 			}
 		}
 		if (targetqn != elementqn) {
-			if (memberElement instanceof Package) {
+			if (memberElement instanceof Namespace) {
 				isShadowing = true;
 				
 				// Note: If the resolution is for a single element, search the owned elements first and, if found, do
@@ -269,7 +269,7 @@ class KerMLScope extends AbstractScope {
 		return false; 
 	}
 	
-	protected def boolean gen(Package pack, QualifiedName qn, Set<Package> visited, Set<Element> redefined) {
+	protected def boolean gen(Namespace pack, QualifiedName qn, Set<Namespace> visited, Set<Element> redefined) {
 		if (pack instanceof Type) {
 			val conjugator = pack.ownedConjugator
 			if (conjugator !== null && !scopeProvider.visited.contains(conjugator)) {
@@ -317,14 +317,14 @@ class KerMLScope extends AbstractScope {
 			flatMap[feature|(feature as FeatureImpl).getRedefinedFeaturesWithComputed(skip)].toSet
 	}
 	
-	protected def boolean imp(Package pack, QualifiedName qn, boolean isInsideScope, Set<Package> visited) {
+	protected def boolean imp(Namespace pack, QualifiedName qn, boolean isInsideScope, Set<Namespace> visited) {
 		for (e: pack.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
 				// NOTE: Exclude the import e to avoid possible circular name resolution
-				// when resolving a proxy for e.importedPackage.
+				// when resolving a proxy for e.importedNamespace.
 				scopeProvider.addVisited(e)
 				val found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
-					e.importedPackage.resolveIfUnvisited(qn, true, visited, newHashSet)
+					e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet)
 				scopeProvider.removeVisited(e)
 				if (found) {
 					return true
@@ -334,7 +334,7 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 	
-	protected def boolean resolveIfUnvisited(Package pack, QualifiedName qn, boolean checkIfAdded, Set<Package> visited, Set<Element> redefined) {
+	protected def boolean resolveIfUnvisited(Namespace pack, QualifiedName qn, boolean checkIfAdded, Set<Namespace> visited, Set<Element> redefined) {
 		var found = false
 		if (pack !== null && !pack.eIsProxy && !visited.contains(pack)) {
 			visited.add(pack)

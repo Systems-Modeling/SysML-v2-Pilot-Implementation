@@ -33,13 +33,23 @@ import org.eclipse.emf.common.util.EList;
  * 
  * relatedFeature = connectorEnd.ownedSubsetting.subsettedFeature
  * relatedFeature->forAll(f | 
- *     featuringType->isEmpty() and f.isFeaturedWithin(null) or
- *     featuringType->exists(t | f.isFeaturedWithin(t)))
- * if relatedFeature->size() = 2 then relatedFeature->at(1) else null endif
+ *     if featuringType->isEmpty() then f.isFeaturedWithin(null)
+ *     else featuringType->exists(t | f.isFeaturedWithin(t))
+ *     endif)
+ * sourceFeature = 
+ *     if relatedFeature->size() = 2 then relatedFeature->at(1) 
+ *     else null 
+ *     endif
  * targetFeature =
  *     if sourceFeature = null then relatedFeature
  *     else relatedFeature->excluding(sourceFeature)
  *     endif
+ * connectorEnd = feature->select(isEnd)
+ * association->forAll(a |
+ *     a.associationEnd->forAll(ae |
+ *         connectorEnd->one(ce | 
+ *             ce.ownedRedefinition.redefinedFeature->includes(ae))))
+ * 
  * <!-- end-model-doc -->
  *
  * <p>
@@ -76,7 +86,7 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>relatedFeatures</tt> of a Connector are the subsetted Features of the connectorEnds of the Connector.</p>
+	 * <p>The Features that are related by this Connector considered as a Relationship, derived as the subsetted Features of the <code>connectorEnds</code> of the Connector.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Related Feature</em>' reference list.
@@ -105,7 +115,8 @@ public interface Connector extends Feature, Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Association that types the connector.</p>
+	 * <p>The Associations that type the Connector.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Association</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConnector_Association()

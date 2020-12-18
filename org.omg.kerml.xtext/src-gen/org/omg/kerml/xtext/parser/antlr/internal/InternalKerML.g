@@ -2084,7 +2084,7 @@ rulePackageImport returns [EObject current=null]
 							}
 						}
 						{
-							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_0_0_0());
+							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_0_0_0());
 						}
 						ruleName
 						{
@@ -2118,7 +2118,7 @@ rulePackageImport returns [EObject current=null]
 							}
 						}
 						{
-							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_1_0_0());
+							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_1_0_0());
 						}
 						ruleColonQualifiedName
 						{
@@ -2145,7 +2145,7 @@ rulePackageImport returns [EObject current=null]
 							}
 						}
 						{
-							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedPackagePackageCrossReference_3_2_0_0());
+							newCompositeNode(grammarAccess.getPackageImportAccess().getImportedNamespaceNamespaceCrossReference_3_2_0_0());
 						}
 						ruleDotQualifiedName
 						{

@@ -266,8 +266,6 @@ public interface FeatureMembership extends Membership, TypeFeaturing {
 	 * <!-- begin-model-doc -->
 	 * <p>Determines how values of the Feature are determined or used, see&nbsp;FeatureDirectionKind.</p>
 	 * 
-	 * <p><mms-cf mms-cf-type="doc" mms-element-id="_18_5_3_12e503d9_1533160651677_936694_42144" non-editable="false">[cf:FeatureDirectionKind.doc]</mms-cf></p>
-	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Direction</em>' attribute.
 	 * @see org.omg.sysml.lang.sysml.FeatureDirectionKind
@@ -296,7 +294,7 @@ public interface FeatureMembership extends Membership, TypeFeaturing {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage() <em>Membership Owning Package</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

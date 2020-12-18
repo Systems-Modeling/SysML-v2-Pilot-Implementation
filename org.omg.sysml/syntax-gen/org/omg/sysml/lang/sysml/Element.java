@@ -45,11 +45,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getName <em>Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwner <em>Owner</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedElement <em>Owned Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentation_comp <em>Documentation comp</em>}</li>
@@ -84,7 +84,7 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>owningRelationship</tt> of this Element, if that Relationship is a Membership.</p>
+	 * <p>The <code>owningRelationship</code> of this Element, if that Relationship is a Membership.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Membership</em>' container reference.
@@ -162,7 +162,7 @@ public interface Element extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Namespace</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMember <em>Owned Member</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Namespace</em>' reference isn't clear,
@@ -170,17 +170,17 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Package that is the owning namespace for this Element, derived as the <tt>membershipOwningPackage</tt> of the <tt>owningMembership</tt> of this Element, if any.</p>
+	 * <p>The Namespace that owns this Element, derived as the <code>membershipOwningNamespace</code> of the <code>owningMembership</code> of this Element, if any.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Namespace</em>' reference.
-	 * @see #setOwningNamespace(org.omg.sysml.lang.sysml.Package)
+	 * @see #setOwningNamespace(Namespace)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_OwningNamespace()
-	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMember
+	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMember
 	 * @model opposite="ownedMember" transient="true" volatile="true" derived="true" ordered="false"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Package getOwningNamespace();
+	Namespace getOwningNamespace();
 
 	/**
 	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getOwningNamespace <em>Owning Namespace</em>}' reference.
@@ -190,7 +190,7 @@ public interface Element extends EObject {
 	 * @see #getOwningNamespace()
 	 * @generated
 	 */
-	void setOwningNamespace(org.omg.sysml.lang.sysml.Package value);
+	void setOwningNamespace(Namespace value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Element</b></em>' reference list.
@@ -399,7 +399,7 @@ public interface Element extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The primary name of this Element. If the Element is owned by a Package, then its <code>name</code> is derived as the <code>memberName</code> of the <code>owningMembership</code> of the Element.</p>
+	 * <p>The primary name of this Element. If the Element is owned by a Namespace, then its <code>name</code> is derived as the <code>memberName</code> of the <code>owningMembership</code> of the Element.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.

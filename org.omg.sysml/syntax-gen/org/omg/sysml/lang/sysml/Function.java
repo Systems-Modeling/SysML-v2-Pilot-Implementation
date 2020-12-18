@@ -63,7 +63,8 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The set of expressions that represent computational steps or parts of a system of equations within the Function.</p>
+	 * <p>The Expressions that are steps in the calculation of the <code>result</code> of this Function.</p>
+	 * 
 	 * <p>The set of expressions that represent computational steps or parts of a system of equations within the Function.</p>
 	 * 
 	 * <!-- end-model-doc -->
@@ -92,7 +93,7 @@ public interface Function extends Behavior {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The object or value that is the result of evaluating the Function, derived as the <code>parameter</code> related to the Function by a ReturnParameterMembership.</p>
+	 * <p>The distinguished <code>result</code> parameter of the Function, derived as the <code>parameter</code> related to the Function by a ReturnParameterMembership.</p>
 	 * 
 	 * <p>The object or value that is the result of evaluating the Function.</p>
 	 * <!-- end-model-doc -->

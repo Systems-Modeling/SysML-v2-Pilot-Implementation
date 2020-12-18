@@ -682,23 +682,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cImportKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
-		private final Assignment cImportedPackageAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_3_0_0_0 = (CrossReference)cImportedPackageAssignment_3_0_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageNameParserRuleCall_3_0_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_0_0_0.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
+		private final CrossReference cImportedNamespaceNamespaceCrossReference_3_0_0_0 = (CrossReference)cImportedNamespaceAssignment_3_0_0.eContents().get(0);
+		private final RuleCall cImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1 = (RuleCall)cImportedNamespaceNamespaceCrossReference_3_0_0_0.eContents().get(1);
 		private final Alternatives cAlternatives_3_0_1 = (Alternatives)cGroup_3_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_3_0_1_0 = (Keyword)cAlternatives_3_0_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_3_0_1_1 = (Keyword)cAlternatives_3_0_1.eContents().get(1);
 		private final Keyword cAsteriskKeyword_3_0_2 = (Keyword)cGroup_3_0.eContents().get(2);
 		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Assignment cImportedPackageAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_3_1_0_0 = (CrossReference)cImportedPackageAssignment_3_1_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_1_0_0.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final CrossReference cImportedNamespaceNamespaceCrossReference_3_1_0_0 = (CrossReference)cImportedNamespaceAssignment_3_1_0.eContents().get(0);
+		private final RuleCall cImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1 = (RuleCall)cImportedNamespaceNamespaceCrossReference_3_1_0_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
 		private final Keyword cAsteriskKeyword_3_1_2 = (Keyword)cGroup_3_1.eContents().get(2);
 		private final Group cGroup_3_2 = (Group)cAlternatives_3.eContents().get(2);
-		private final Assignment cImportedPackageAssignment_3_2_0 = (Assignment)cGroup_3_2.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_3_2_0_0 = (CrossReference)cImportedPackageAssignment_3_2_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_2_0_0.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_3_2_0 = (Assignment)cGroup_3_2.eContents().get(0);
+		private final CrossReference cImportedNamespaceNamespaceCrossReference_3_2_0_0 = (CrossReference)cImportedNamespaceAssignment_3_2_0.eContents().get(0);
+		private final RuleCall cImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1 = (RuleCall)cImportedNamespaceNamespaceCrossReference_3_2_0_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_3_2_1 = (Keyword)cGroup_3_2.eContents().get(1);
 		private final Keyword cAsteriskKeyword_3_2_2 = (Keyword)cGroup_3_2.eContents().get(2);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
@@ -706,14 +706,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//PackageImport SysML::Import:
 		//	ownedRelationship_comp+=PrefixDocumentation*
 		//	visibility=BasicVisibilityIndicator?
-		//	'import' (importedPackage=[SysML::Package|Name] ('::' | '.') '*'
-		//	| importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-		//	| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';';
+		//	'import' (importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*'
+		//	| importedNamespace=[SysML::Namespace|ColonQualifiedName] '::' '*'
+		//	| importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*') ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedRelationship_comp+=PrefixDocumentation* visibility=BasicVisibilityIndicator? 'import'
-		//(importedPackage=[SysML::Package|Name] ('::' | '.') '*' | importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-		//| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';'
+		//(importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*' | importedNamespace=[SysML::Namespace|ColonQualifiedName]
+		//'::' '*' | importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*') ';'
 		public Group getGroup() { return cGroup; }
 		
 		//ownedRelationship_comp+=PrefixDocumentation*
@@ -731,21 +731,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'import'
 		public Keyword getImportKeyword_2() { return cImportKeyword_2; }
 		
-		//(importedPackage=[SysML::Package|Name] ('::' | '.') '*' | importedPackage=[SysML::Package|ColonQualifiedName] '::' '*' |
-		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*')
+		//(importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*' | importedNamespace=[SysML::Namespace|ColonQualifiedName]
+		//'::' '*' | importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*')
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//importedPackage=[SysML::Package|Name] ('::' | '.') '*'
+		//importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*'
 		public Group getGroup_3_0() { return cGroup_3_0; }
 		
-		//importedPackage=[SysML::Package|Name]
-		public Assignment getImportedPackageAssignment_3_0_0() { return cImportedPackageAssignment_3_0_0; }
+		//importedNamespace=[SysML::Namespace|Name]
+		public Assignment getImportedNamespaceAssignment_3_0_0() { return cImportedNamespaceAssignment_3_0_0; }
 		
-		//[SysML::Package|Name]
-		public CrossReference getImportedPackagePackageCrossReference_3_0_0_0() { return cImportedPackagePackageCrossReference_3_0_0_0; }
+		//[SysML::Namespace|Name]
+		public CrossReference getImportedNamespaceNamespaceCrossReference_3_0_0_0() { return cImportedNamespaceNamespaceCrossReference_3_0_0_0; }
 		
 		//Name
-		public RuleCall getImportedPackagePackageNameParserRuleCall_3_0_0_0_1() { return cImportedPackagePackageNameParserRuleCall_3_0_0_0_1; }
+		public RuleCall getImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1() { return cImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1; }
 		
 		//('::' | '.')
 		public Alternatives getAlternatives_3_0_1() { return cAlternatives_3_0_1; }
@@ -759,17 +759,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'*'
 		public Keyword getAsteriskKeyword_3_0_2() { return cAsteriskKeyword_3_0_2; }
 		
-		//importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
+		//importedNamespace=[SysML::Namespace|ColonQualifiedName] '::' '*'
 		public Group getGroup_3_1() { return cGroup_3_1; }
 		
-		//importedPackage=[SysML::Package|ColonQualifiedName]
-		public Assignment getImportedPackageAssignment_3_1_0() { return cImportedPackageAssignment_3_1_0; }
+		//importedNamespace=[SysML::Namespace|ColonQualifiedName]
+		public Assignment getImportedNamespaceAssignment_3_1_0() { return cImportedNamespaceAssignment_3_1_0; }
 		
-		//[SysML::Package|ColonQualifiedName]
-		public CrossReference getImportedPackagePackageCrossReference_3_1_0_0() { return cImportedPackagePackageCrossReference_3_1_0_0; }
+		//[SysML::Namespace|ColonQualifiedName]
+		public CrossReference getImportedNamespaceNamespaceCrossReference_3_1_0_0() { return cImportedNamespaceNamespaceCrossReference_3_1_0_0; }
 		
 		//ColonQualifiedName
-		public RuleCall getImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1() { return cImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1; }
+		public RuleCall getImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1() { return cImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1; }
 		
 		//'::'
 		public Keyword getColonColonKeyword_3_1_1() { return cColonColonKeyword_3_1_1; }
@@ -777,17 +777,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'*'
 		public Keyword getAsteriskKeyword_3_1_2() { return cAsteriskKeyword_3_1_2; }
 		
-		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*'
+		//importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*'
 		public Group getGroup_3_2() { return cGroup_3_2; }
 		
-		//importedPackage=[SysML::Package|DotQualifiedName]
-		public Assignment getImportedPackageAssignment_3_2_0() { return cImportedPackageAssignment_3_2_0; }
+		//importedNamespace=[SysML::Namespace|DotQualifiedName]
+		public Assignment getImportedNamespaceAssignment_3_2_0() { return cImportedNamespaceAssignment_3_2_0; }
 		
-		//[SysML::Package|DotQualifiedName]
-		public CrossReference getImportedPackagePackageCrossReference_3_2_0_0() { return cImportedPackagePackageCrossReference_3_2_0_0; }
+		//[SysML::Namespace|DotQualifiedName]
+		public CrossReference getImportedNamespaceNamespaceCrossReference_3_2_0_0() { return cImportedNamespaceNamespaceCrossReference_3_2_0_0; }
 		
 		//DotQualifiedName
-		public RuleCall getImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1() { return cImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1; }
+		public RuleCall getImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1() { return cImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_3_2_1() { return cFullStopKeyword_3_2_1; }
@@ -10984,23 +10984,23 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cExposeKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
 		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
-		private final Assignment cImportedPackageAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_3_0_0_0 = (CrossReference)cImportedPackageAssignment_3_0_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageNameParserRuleCall_3_0_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_0_0_0.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_3_0_0 = (Assignment)cGroup_3_0.eContents().get(0);
+		private final CrossReference cImportedNamespaceNamespaceCrossReference_3_0_0_0 = (CrossReference)cImportedNamespaceAssignment_3_0_0.eContents().get(0);
+		private final RuleCall cImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1 = (RuleCall)cImportedNamespaceNamespaceCrossReference_3_0_0_0.eContents().get(1);
 		private final Alternatives cAlternatives_3_0_1 = (Alternatives)cGroup_3_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_3_0_1_0 = (Keyword)cAlternatives_3_0_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_3_0_1_1 = (Keyword)cAlternatives_3_0_1.eContents().get(1);
 		private final Keyword cAsteriskKeyword_3_0_2 = (Keyword)cGroup_3_0.eContents().get(2);
 		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Assignment cImportedPackageAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_3_1_0_0 = (CrossReference)cImportedPackageAssignment_3_1_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_1_0_0.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final CrossReference cImportedNamespaceNamespaceCrossReference_3_1_0_0 = (CrossReference)cImportedNamespaceAssignment_3_1_0.eContents().get(0);
+		private final RuleCall cImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1 = (RuleCall)cImportedNamespaceNamespaceCrossReference_3_1_0_0.eContents().get(1);
 		private final Keyword cColonColonKeyword_3_1_1 = (Keyword)cGroup_3_1.eContents().get(1);
 		private final Keyword cAsteriskKeyword_3_1_2 = (Keyword)cGroup_3_1.eContents().get(2);
 		private final Group cGroup_3_2 = (Group)cAlternatives_3.eContents().get(2);
-		private final Assignment cImportedPackageAssignment_3_2_0 = (Assignment)cGroup_3_2.eContents().get(0);
-		private final CrossReference cImportedPackagePackageCrossReference_3_2_0_0 = (CrossReference)cImportedPackageAssignment_3_2_0.eContents().get(0);
-		private final RuleCall cImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1 = (RuleCall)cImportedPackagePackageCrossReference_3_2_0_0.eContents().get(1);
+		private final Assignment cImportedNamespaceAssignment_3_2_0 = (Assignment)cGroup_3_2.eContents().get(0);
+		private final CrossReference cImportedNamespaceNamespaceCrossReference_3_2_0_0 = (CrossReference)cImportedNamespaceAssignment_3_2_0.eContents().get(0);
+		private final RuleCall cImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1 = (RuleCall)cImportedNamespaceNamespaceCrossReference_3_2_0_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_3_2_1 = (Keyword)cGroup_3_2.eContents().get(1);
 		private final Keyword cAsteriskKeyword_3_2_2 = (Keyword)cGroup_3_2.eContents().get(2);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
@@ -11008,14 +11008,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Expose SysML::Expose:
 		//	ownedRelationship_comp+=PrefixDocumentation*
 		//	visibility=BasicVisibilityIndicator?
-		//	'expose' (importedPackage=[SysML::Package|Name] ('::' | '.') '*'
-		//	| importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-		//	| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';';
+		//	'expose' (importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*'
+		//	| importedNamespace=[SysML::Namespace|ColonQualifiedName] '::' '*'
+		//	| importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*') ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ownedRelationship_comp+=PrefixDocumentation* visibility=BasicVisibilityIndicator? 'expose'
-		//(importedPackage=[SysML::Package|Name] ('::' | '.') '*' | importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-		//| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';'
+		//(importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*' | importedNamespace=[SysML::Namespace|ColonQualifiedName]
+		//'::' '*' | importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*') ';'
 		public Group getGroup() { return cGroup; }
 		
 		//ownedRelationship_comp+=PrefixDocumentation*
@@ -11033,21 +11033,21 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'expose'
 		public Keyword getExposeKeyword_2() { return cExposeKeyword_2; }
 		
-		//(importedPackage=[SysML::Package|Name] ('::' | '.') '*' | importedPackage=[SysML::Package|ColonQualifiedName] '::' '*' |
-		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*')
+		//(importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*' | importedNamespace=[SysML::Namespace|ColonQualifiedName]
+		//'::' '*' | importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*')
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//importedPackage=[SysML::Package|Name] ('::' | '.') '*'
+		//importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*'
 		public Group getGroup_3_0() { return cGroup_3_0; }
 		
-		//importedPackage=[SysML::Package|Name]
-		public Assignment getImportedPackageAssignment_3_0_0() { return cImportedPackageAssignment_3_0_0; }
+		//importedNamespace=[SysML::Namespace|Name]
+		public Assignment getImportedNamespaceAssignment_3_0_0() { return cImportedNamespaceAssignment_3_0_0; }
 		
-		//[SysML::Package|Name]
-		public CrossReference getImportedPackagePackageCrossReference_3_0_0_0() { return cImportedPackagePackageCrossReference_3_0_0_0; }
+		//[SysML::Namespace|Name]
+		public CrossReference getImportedNamespaceNamespaceCrossReference_3_0_0_0() { return cImportedNamespaceNamespaceCrossReference_3_0_0_0; }
 		
 		//Name
-		public RuleCall getImportedPackagePackageNameParserRuleCall_3_0_0_0_1() { return cImportedPackagePackageNameParserRuleCall_3_0_0_0_1; }
+		public RuleCall getImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1() { return cImportedNamespaceNamespaceNameParserRuleCall_3_0_0_0_1; }
 		
 		//('::' | '.')
 		public Alternatives getAlternatives_3_0_1() { return cAlternatives_3_0_1; }
@@ -11061,17 +11061,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'*'
 		public Keyword getAsteriskKeyword_3_0_2() { return cAsteriskKeyword_3_0_2; }
 		
-		//importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
+		//importedNamespace=[SysML::Namespace|ColonQualifiedName] '::' '*'
 		public Group getGroup_3_1() { return cGroup_3_1; }
 		
-		//importedPackage=[SysML::Package|ColonQualifiedName]
-		public Assignment getImportedPackageAssignment_3_1_0() { return cImportedPackageAssignment_3_1_0; }
+		//importedNamespace=[SysML::Namespace|ColonQualifiedName]
+		public Assignment getImportedNamespaceAssignment_3_1_0() { return cImportedNamespaceAssignment_3_1_0; }
 		
-		//[SysML::Package|ColonQualifiedName]
-		public CrossReference getImportedPackagePackageCrossReference_3_1_0_0() { return cImportedPackagePackageCrossReference_3_1_0_0; }
+		//[SysML::Namespace|ColonQualifiedName]
+		public CrossReference getImportedNamespaceNamespaceCrossReference_3_1_0_0() { return cImportedNamespaceNamespaceCrossReference_3_1_0_0; }
 		
 		//ColonQualifiedName
-		public RuleCall getImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1() { return cImportedPackagePackageColonQualifiedNameParserRuleCall_3_1_0_0_1; }
+		public RuleCall getImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1() { return cImportedNamespaceNamespaceColonQualifiedNameParserRuleCall_3_1_0_0_1; }
 		
 		//'::'
 		public Keyword getColonColonKeyword_3_1_1() { return cColonColonKeyword_3_1_1; }
@@ -11079,17 +11079,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'*'
 		public Keyword getAsteriskKeyword_3_1_2() { return cAsteriskKeyword_3_1_2; }
 		
-		//importedPackage=[SysML::Package|DotQualifiedName] '.' '*'
+		//importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*'
 		public Group getGroup_3_2() { return cGroup_3_2; }
 		
-		//importedPackage=[SysML::Package|DotQualifiedName]
-		public Assignment getImportedPackageAssignment_3_2_0() { return cImportedPackageAssignment_3_2_0; }
+		//importedNamespace=[SysML::Namespace|DotQualifiedName]
+		public Assignment getImportedNamespaceAssignment_3_2_0() { return cImportedNamespaceAssignment_3_2_0; }
 		
-		//[SysML::Package|DotQualifiedName]
-		public CrossReference getImportedPackagePackageCrossReference_3_2_0_0() { return cImportedPackagePackageCrossReference_3_2_0_0; }
+		//[SysML::Namespace|DotQualifiedName]
+		public CrossReference getImportedNamespaceNamespaceCrossReference_3_2_0_0() { return cImportedNamespaceNamespaceCrossReference_3_2_0_0; }
 		
 		//DotQualifiedName
-		public RuleCall getImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1() { return cImportedPackagePackageDotQualifiedNameParserRuleCall_3_2_0_0_1; }
+		public RuleCall getImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1() { return cImportedNamespaceNamespaceDotQualifiedNameParserRuleCall_3_2_0_0_1; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_3_2_1() { return cFullStopKeyword_3_2_1; }
@@ -14855,9 +14855,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//PackageImport SysML::Import:
 	//	ownedRelationship_comp+=PrefixDocumentation*
 	//	visibility=BasicVisibilityIndicator?
-	//	'import' (importedPackage=[SysML::Package|Name] ('::' | '.') '*'
-	//	| importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-	//	| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';';
+	//	'import' (importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*'
+	//	| importedNamespace=[SysML::Namespace|ColonQualifiedName] '::' '*'
+	//	| importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*') ';';
 	public PackageImportElements getPackageImportAccess() {
 		return pPackageImport;
 	}
@@ -18622,9 +18622,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//Expose SysML::Expose:
 	//	ownedRelationship_comp+=PrefixDocumentation*
 	//	visibility=BasicVisibilityIndicator?
-	//	'expose' (importedPackage=[SysML::Package|Name] ('::' | '.') '*'
-	//	| importedPackage=[SysML::Package|ColonQualifiedName] '::' '*'
-	//	| importedPackage=[SysML::Package|DotQualifiedName] '.' '*') ';';
+	//	'expose' (importedNamespace=[SysML::Namespace|Name] ('::' | '.') '*'
+	//	| importedNamespace=[SysML::Namespace|ColonQualifiedName] '::' '*'
+	//	| importedNamespace=[SysML::Namespace|DotQualifiedName] '.' '*') ';';
 	public ExposeElements getExposeAccess() {
 		return pExpose;
 	}

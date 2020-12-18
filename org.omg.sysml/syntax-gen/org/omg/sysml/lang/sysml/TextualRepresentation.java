@@ -54,6 +54,10 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The natural or artifical language in which the <code>body</code> text is written.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Language</em>' attribute.
 	 * @see #setLanguage(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTextualRepresentation_Language()
@@ -80,6 +84,10 @@ public interface TextualRepresentation extends AnnotatingElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>A textual representation of the <code>representedElement</code> in the given <code>language</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Body</em>' attribute.
 	 * @see #setBody(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getTextualRepresentation_Body()

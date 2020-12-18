@@ -940,7 +940,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public void transform() {
 		super.transform();
-		getEffectiveName();
 		computeValueConnector();
 	}
 	

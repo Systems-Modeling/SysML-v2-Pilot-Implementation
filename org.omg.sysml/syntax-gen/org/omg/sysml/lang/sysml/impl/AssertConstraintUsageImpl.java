@@ -97,7 +97,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
+		return assertionConnector;
 	}
 
 	/**
@@ -179,14 +179,13 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	
 	@Override
 	public EList<Feature> getFeature() {
-		getAssertionConnector();
 		return super.getFeature();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		getAssertionConnector();
+		assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
 	}
 	
 	//

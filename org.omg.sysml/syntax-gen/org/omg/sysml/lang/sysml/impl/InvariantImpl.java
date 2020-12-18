@@ -88,7 +88,7 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
+		return assertionConnector;
 	}
 
 	public static BindingConnector getAssertionConnectorFor(Feature feature, BindingConnector assertionConnector, Feature result) {
@@ -116,14 +116,13 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 
 	@Override
 	public EList<Feature> getFeature() {
-		getAssertionConnector();
 		return super.getFeature();
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		getAssertionConnector();
+		assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
 	}
 	
 	//

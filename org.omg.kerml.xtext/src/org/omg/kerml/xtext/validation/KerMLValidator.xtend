@@ -38,7 +38,6 @@ import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
-import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
@@ -142,15 +141,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 			val relatedElements = r.getRelatedElement
 			if ( relatedElements !== null && relatedElements.length < 2)
 				error(INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
-		}
-	}
-	
-	@Check
-	def checkInvocationExpression(InvocationExpression e) {
-		// If an invocation expression already has instantiated argument connectors, then these will be
-		// validated as existing model content. Otherwise, create and validate the argument connectors.
-		if ((e as InvocationExpressionImpl).basicGetArgumentConnectors() === null) {
-			(e as InvocationExpressionImpl).getArgumentConnectors().forEach[checkBindingConnector]
 		}
 	}
 	 

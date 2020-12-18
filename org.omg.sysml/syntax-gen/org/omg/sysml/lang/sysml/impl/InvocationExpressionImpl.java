@@ -123,7 +123,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return typeFeatures;
 	}
 	
-	public List<BindingConnector> getArgumentConnectors() {
+	public void computeArgumentConnectors() {
 		if (argumentConnectors == null) {
 			argumentConnectors = new ArrayList<>();
 			List<Expression> arguments = getArgument();
@@ -142,10 +142,9 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 				i++;
 			}
 		}
-		return argumentConnectors;
 	}
 	
-	public List<BindingConnector> basicGetArgumentConnectors() {
+	public List<BindingConnector> getArgumentConnectors() {
 		return argumentConnectors;
 	}
 	
@@ -186,7 +185,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void transform() {
 		super.transform();
-		getArgumentConnectors();
+		computeArgumentConnectors();
 	}
 	
 	/**

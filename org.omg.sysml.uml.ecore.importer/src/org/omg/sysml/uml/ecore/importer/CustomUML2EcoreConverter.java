@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -15,6 +17,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
 /**
@@ -31,11 +34,11 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 	public Collection<? extends EObject> convert(Collection<? extends EObject> eObjects, Map<String, String> options,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Collection<? extends EObject> res = super.convert(eObjects, options, diagnostics, context);
-		processReferences();
+		processReferences(diagnostics);
 		return res;
 	}
 
-	private void processReferences() {
+	private void processReferences(DiagnosticChain diagnostics) {
 		for (Entry<Element, EModelElement> entry : elementToEModelElementMap.entrySet()) {
 			Element element = entry.getKey();
 			EModelElement modelElement = entry.getValue();
@@ -72,16 +75,22 @@ public class CustomUML2EcoreConverter extends UML2EcoreConverter {
 
 				// add the normal ref, now that its name is not in use anymore
 				EClass container = (EClass) ((EStructuralFeature) compRef).eContainer();
-				container.getEStructuralFeatures().add(normalRef);
-
-				// move all subsetting to the new reference
-				EAnnotation compSubsets = compRef.getEAnnotation(ANNOTATION__SUBSETS);
-				if (compSubsets != null) {
-					EAnnotation normalSubsets = EcoreFactory.eINSTANCE.createEAnnotation();
-					normalSubsets.setSource(ANNOTATION__SUBSETS);
-					normalRef.getEAnnotations().add(normalSubsets);
-					normalSubsets.getReferences().addAll(compSubsets.getReferences());
-					compRef.getEAnnotations().remove(compSubsets);
+				if (container == null) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, "org.omg.sysml.uml.ecore.importer", 0, 
+							"Feature '" + UMLUtil.getQualifiedText(element) + "' mapping has no container", 
+							new Object[] {element, compRef}));
+				} else {
+					container.getEStructuralFeatures().add(normalRef);
+	
+					// move all subsetting to the new reference
+					EAnnotation compSubsets = compRef.getEAnnotation(ANNOTATION__SUBSETS);
+					if (compSubsets != null) {
+						EAnnotation normalSubsets = EcoreFactory.eINSTANCE.createEAnnotation();
+						normalSubsets.setSource(ANNOTATION__SUBSETS);
+						normalRef.getEAnnotations().add(normalSubsets);
+						normalSubsets.getReferences().addAll(compSubsets.getReferences());
+						compRef.getEAnnotations().remove(compSubsets);
+					}
 				}
 			}
 		}

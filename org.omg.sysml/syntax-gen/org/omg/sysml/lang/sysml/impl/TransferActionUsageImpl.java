@@ -125,7 +125,6 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	// Additional redefinitions and subsets
 
 	public BindingConnector getContextConnector() {
-		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
 		return contextConnector;
 	}
 	
@@ -133,7 +132,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	public void transform() {
 		super.transform();
-		getContextConnector();
+		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
 	}
 	
 	/**

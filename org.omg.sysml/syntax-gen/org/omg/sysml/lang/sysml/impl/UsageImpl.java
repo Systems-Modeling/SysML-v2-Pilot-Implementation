@@ -41,7 +41,6 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
@@ -632,17 +631,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	@Override
-	public BindingConnector getValueConnector() {
+	protected void computeValueConnector() {
 		FeatureValue valuation = getValuation();
-		if (valuation != null) {
-			return super.getValueConnector();
-		} else if (isSubjectParameter()){
+		if (valuation == null && isSubjectParameter()){
 			Feature subjectParameter = getRelevantSubjectParameter();
 			if (subjectParameter != null) {
 				valueConnector = makeBinding(valueConnector, subjectParameter, this);
 			}
 		}
-		return valueConnector;
 	}
 	
 	@Override

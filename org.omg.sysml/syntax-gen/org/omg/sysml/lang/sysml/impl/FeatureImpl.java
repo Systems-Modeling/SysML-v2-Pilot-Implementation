@@ -906,6 +906,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 
 	public BindingConnector getValueConnector() {
+		return valueConnector;
+	}
+	
+	protected void computeValueConnector() {
 		FeatureValue valuation = getValuation();
 		if (valuation != null) {
 			Expression value = valuation.getValue();
@@ -913,7 +917,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				valueConnector = makeValueBinding(valueConnector, ((ExpressionImpl)value).getResult());
 			}
 		}
-		return valueConnector;
 	}
 	
 	@Override
@@ -938,7 +941,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public void transform() {
 		super.transform();
 		getEffectiveName();
-		getValueConnector();
+		computeValueConnector();
 	}
 	
 	// Utility methods

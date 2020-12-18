@@ -131,13 +131,12 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	}
 
 	public BindingConnector getTargetConnector() {
-		targetConnector = makeBinding(targetConnector, getSource(), getItemFeature());
 		return targetConnector;
 	}
 	
 	public void transform() {
 		super.transform();
-		getTargetConnector();
+		targetConnector = makeBinding(targetConnector, getSource(), getItemFeature());
 	}
 	
 /**

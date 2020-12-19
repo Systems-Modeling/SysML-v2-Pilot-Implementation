@@ -2,7 +2,7 @@
  * This package defines the base types for verification cases and related behavioral elements 
  * in the SysML language.
  */
-package Verifications {
+package VerificationCases {
 	private import Cases::Case;
 	private import Cases::cases;
 	private import Requirements::RequirementCheck;
@@ -12,12 +12,12 @@ package Verifications {
 	 * VerificationCase is the most general class of performances of VerificationCaseDefinitions. 
 	 * VericationCase is the base class of all VerificationCaseDefinitions.
 	 */
-	verification def VerificationCase :> Case {
-		ref verification :>> self : VerificationCase;		
-		subject subj;
+	abstract verification def VerificationCase :> Case {
+		ref verification self : VerificationCase :>> Case::self;		
+		subject subj :>> Case::subj;
 		return verdict : VerdictKind :>> result;
 		
-		objective obj {
+		objective obj :>> Case::obj {
 			subject subj = VerificationCase::subj;
 			
 			/**

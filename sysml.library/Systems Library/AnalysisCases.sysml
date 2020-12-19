@@ -2,7 +2,7 @@
  * This package defines the base types for analysis cases and related behavioral elements 
  * in the SysML language.
  */
-package Analyses {
+package AnalysisCases {
 	private import Performances::Evaluation;
 	private import Performances::evaluations;
 	private import Calculations::Calculation;

@@ -1056,7 +1056,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
 		((ConnectorImpl)connector).addConnectorEnd(source);
 		((ConnectorImpl)connector).addConnectorEnd(target);
-		addOwnedFeature(connector);
+		if (((ConnectorImpl)connector).getContextType() == this) {
+			addOwnedFeature(connector);
+		} else {
+			addOwnedMember(connector);
+		}
 		return connector;
 	}
 

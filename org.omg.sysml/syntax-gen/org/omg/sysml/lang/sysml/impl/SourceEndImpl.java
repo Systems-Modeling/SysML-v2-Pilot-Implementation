@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -91,11 +92,11 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	}
 	
 	protected static Feature getPreviousFeature(Feature feature) {
-		Type type = feature.getOwningType();
-		if (type == null) {
+		Namespace owner = feature.getOwningNamespace();
+		if (!(owner instanceof Type)) {
 			return null;
 		} else {
-			EList<FeatureMembership> memberships = type.getOwnedFeatureMembership();
+			EList<FeatureMembership> memberships = ((Type)owner).getOwnedFeatureMembership();
 			for (int i = memberships.indexOf(feature.getOwningFeatureMembership()) - 1; i >= 0; i--) {
 				FeatureMembership membership = memberships.get(i);
 				if (!(membership instanceof TransitionFeatureMembership)) {
@@ -107,7 +108,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 					}
 				}
 			}
-			return type instanceof Feature? getPreviousFeature((Feature)type): null;
+			return owner instanceof Feature? getPreviousFeature((Feature)owner): null;
 		}
 	}
 	

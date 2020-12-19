@@ -125,7 +125,10 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	// Additional redefinitions and subsets
 
 	public BindingConnector getContextConnector() {
-		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
+		Feature contextFeature = getContextFeature();
+		if (contextFeature != null) {
+			contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
+		}
 		return contextConnector;
 	}
 	

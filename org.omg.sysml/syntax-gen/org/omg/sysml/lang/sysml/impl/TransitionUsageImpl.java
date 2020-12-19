@@ -228,7 +228,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	 * @generated NOT
 	 */
 	public Succession basicGetSuccession() {
-		return (Succession)getOwnedFeature().stream().
+		return (Succession)getOwnedMember().stream().
 				filter(feature->feature instanceof Succession).
 				findFirst().orElse(null);
 	}

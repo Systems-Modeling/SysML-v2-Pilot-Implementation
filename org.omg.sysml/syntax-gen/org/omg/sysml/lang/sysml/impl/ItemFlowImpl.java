@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -223,7 +224,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
 	public EList<Feature> getConnectorEnd() {
 		EList<Feature> ends = super.getConnectorEnd();
-		Type owner = getOwningType();
+		Namespace owner = getOwningNamespace();
 		if (owner instanceof Feature) {
 			if (ends.size() >= 2) {
 				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();

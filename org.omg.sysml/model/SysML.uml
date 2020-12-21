@@ -5193,7 +5193,7 @@ else owningNamespace.nameOf(self) endif</body>
   <packagedElement xmi:type="uml:Class" xmi:id="68503a1b-31e4-4927-ab02-fd59045c4c31" name="MetadataOperationExpression" visibility="public">
     <generalization xmi:id="54a5bb59-9a58-474f-af49-69425acbe553" general="7195c02a-f102-4843-88a2-4f3a0217284f"/>
     <generalization xmi:id="67672014-a0d2-4800-b94a-d47d7e7af6f5" general="7bdedcfb-4251-45af-a3d8-2f6eb34190bb"/>
-    <ownedAttribute xmi:id="10784f21-ed3c-40f4-9fdf-d4aba23f9be3" name="argument" visibility="public" type="7bdedcfb-4251-45af-a3d8-2f6eb34190bb" isDerived="true" redefinedProperty="8df13e80-6028-4c00-b26b-10d581ca6fce" association="6fe0c3ac-fa6f-41e7-b48f-6b70708ad023">
+    <ownedAttribute xmi:id="10784f21-ed3c-40f4-9fdf-d4aba23f9be3" name="argument" visibility="public" type="7bdedcfb-4251-45af-a3d8-2f6eb34190bb" isOrdered="true" isDerived="true" redefinedProperty="8df13e80-6028-4c00-b26b-10d581ca6fce" association="6fe0c3ac-fa6f-41e7-b48f-6b70708ad023">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="40facee1-b9a3-41dc-8e4e-5617b5a20216" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="69d4f5c2-fa02-4a3c-9710-71f0e831bf45" name="" visibility="public" value="*"/>
     </ownedAttribute>

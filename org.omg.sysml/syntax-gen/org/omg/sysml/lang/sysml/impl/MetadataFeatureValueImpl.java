@@ -127,7 +127,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public MetadataExpression basicGetMetadataValue() {
 		Expression value = super.getValue();

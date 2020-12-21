@@ -130,7 +130,7 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<MetadataCondition> getViewCondition() {

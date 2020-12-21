@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Type is a Package that is the most general kind of Element supporting the semantics of classification. A Type may be a Classifier or a Feature, defining conditions on what is classified by the Type (see also the description of <code>isSufficient</code>).</p>
+ * <p>A Type is a Namespace that is the most general kind of Element supporting the semantics of classification. A Type may be a Classifier or a Feature, defining conditions on what is classified by the Type (see also the description of <code>isSufficient</code>).</p>
  * 
  * ownedGeneralization = generalization->intersection(ownedElement)
  * multiplicity = feature->select(oclIsKindOf(Multiplicity))
@@ -63,7 +63,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Type extends org.omg.sysml.lang.sysml.Package {
+public interface Type extends Namespace {
 	/**
 	 * Returns the value of the '<em><b>Owned Generalization</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Generalization}.
@@ -81,7 +81,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Generalizations owned by this Type.</p>
+	 * <p>The Generalizations owned by this Type for which the Type is the <code>specific</code> Type.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Generalization</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_OwnedGeneralization()
@@ -121,7 +122,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeatureMembership() <em>Feature Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -167,7 +168,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getFeature() <em>Feature</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMember() <em>Owned Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -195,7 +196,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMember() <em>Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMember() <em>Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -310,7 +311,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMembership() <em>Membership</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMembership() <em>Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -406,7 +407,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Conjugation that is the <code>conjugator</code> of this Type and is owned by it.</p>
+	 * <p>A Conjugation owned by this Type for which the Type is the <code>originalType</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Conjugator</em>' reference.
 	 * @see #setOwnedConjugator(Conjugation)
@@ -495,7 +497,8 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All the <code>memberFeatures</code> of the <code>inheritedMemberships<code> of this Type.</p>
+	 * <p>All the <code>memberFeatures</code> of the <code>inheritedMemberships</code> of this Type.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Inherited Feature</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getType_InheritedFeature()
@@ -512,7 +515,7 @@ public interface Type extends org.omg.sysml.lang.sysml.Package {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getMember() <em>Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getMember() <em>Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

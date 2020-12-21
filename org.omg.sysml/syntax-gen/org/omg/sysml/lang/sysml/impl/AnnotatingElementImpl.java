@@ -91,26 +91,13 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
-		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
-		return annotatedElements;
+		return getAnnotatedElementFor(this);
 	}
-
-	@Override
-	public void transform() {
-		super.transform();
-		EList<Annotation> annotations = getAnnotation();
-		if (annotations.isEmpty()) {
-			Relationship owningRelationship = getOwningRelationship();
-			if (owningRelationship instanceof Annotation) {
-				annotations.add((Annotation)owningRelationship);
-			} else {
-				getOwnedRelationship().stream().
-					filter(rel->rel instanceof Annotation).
-					map(Annotation.class::cast).
-					forEachOrdered(annotations::add);
-			}
-		}
+	
+	public static EList<Element> getAnnotatedElementFor(AnnotatingElement annotatingElement) {
+		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, (ElementImpl)annotatingElement, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
+		annotatingElement.getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
+		return annotatedElements;
 	}
 
 	/**
@@ -126,6 +113,27 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 		return annotation;
 	}
 	
+	public static void transformAnnotatingElement(AnnotatingElement annotatingElement) {
+		EList<Annotation> annotations = annotatingElement.getAnnotation();
+		if (annotations.isEmpty()) {
+			Relationship owningRelationship = annotatingElement.getOwningRelationship();
+			if (owningRelationship instanceof Annotation) {
+				annotations.add((Annotation)owningRelationship);
+			} else {
+				annotatingElement.getOwnedRelationship().stream().
+					filter(rel->rel instanceof Annotation).
+					map(Annotation.class::cast).
+					forEachOrdered(annotations::add);
+			}
+		}
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		transformAnnotatingElement(this);
+	}
+
 	// Utility methods
 	
 	public static String processCommentBody(String body) {

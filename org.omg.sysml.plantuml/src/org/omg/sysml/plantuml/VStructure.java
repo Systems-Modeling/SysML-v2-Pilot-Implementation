@@ -100,7 +100,7 @@ public abstract class VStructure extends VDefault {
         String name = getFeatureName(rf);
         if (name == null) return null;
 
-        org.omg.sysml.lang.sysml.Package pkg = rf.getOwningNamespace();
+        org.omg.sysml.lang.sysml.Namespace pkg = rf.getOwningNamespace();
         if (pkg == null) {
             return name;
         } else {
@@ -202,9 +202,9 @@ public abstract class VStructure extends VDefault {
     }
 
     @Override
-    public String casePackage(org.omg.sysml.lang.sysml.Package pkg) {
+    public String caseNamespace(org.omg.sysml.lang.sysml.Namespace pkg) {
         String name = pkg.getName();
-        if (name == null) return super.casePackage(pkg);
+        if (name == null) return super.caseNamespace(pkg);
 
         flushContexts();
         append("package ");
@@ -213,7 +213,7 @@ public abstract class VStructure extends VDefault {
         addLink(pkg);
         append(" {\n");
         pushIdMap();
-        super.casePackage(pkg);
+        super.caseNamespace(pkg);
         popIdMap(true);
         flushContexts();
         append("}\n");

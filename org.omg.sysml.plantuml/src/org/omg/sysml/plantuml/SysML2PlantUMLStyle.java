@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
@@ -308,7 +309,7 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
-		public String casePackage(org.omg.sysml.lang.sysml.Package p) {
+		public String caseNamespace(Namespace p) {
             return " +-- ";
 		}
 

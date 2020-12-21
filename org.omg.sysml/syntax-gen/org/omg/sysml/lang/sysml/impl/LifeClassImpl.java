@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.LifeClass;
 import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -68,7 +69,7 @@ public class LifeClassImpl extends ClassImpl implements LifeClass {
 	}
 	
 	public void addSuperclassing() {	
-		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		Namespace owner = getOwningNamespace();
 		EList<Superclassing> superclassings = getOwnedSuperclassing();
 		if (owner instanceof Classifier) {
 			if (superclassings.size() < 2) {

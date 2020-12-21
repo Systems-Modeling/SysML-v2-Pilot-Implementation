@@ -27,7 +27,6 @@ package org.omg.kerml.xtext.scoping
 
 import org.eclipse.xtext.naming.QualifiedName
 import org.eclipse.xtext.scoping.IScope
-import org.omg.sysml.lang.sysml.Package
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
 import com.google.common.base.Predicate
@@ -37,6 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.scoping.impl.AbstractScope
 import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.lang.sysml.Namespace
 
 class KerMLGlobalScope extends AbstractScope {
 
@@ -63,7 +63,7 @@ class KerMLGlobalScope extends AbstractScope {
 	}
 	
 	
-	def IScope scopeFor(Package pack) {
+	def IScope scopeFor(Namespace pack) {
 		new KerMLScope(IScope.NULLSCOPE, pack, this.referenceType, this.scopeProvider, false, false, false, null, null)
 	}
 	
@@ -87,8 +87,8 @@ class KerMLGlobalScope extends AbstractScope {
 					if (referenceType.isInstance(root.EObjectOrProxy)) {
 						result = root;
 					}
-				} else if (root.EObjectOrProxy instanceof Package) {
-					result = scopeFor(EcoreUtil.resolve(root.EObjectOrProxy, resource) as Package).
+				} else if (root.EObjectOrProxy instanceof Namespace) {
+					result = scopeFor(EcoreUtil.resolve(root.EObjectOrProxy, resource) as Namespace).
 						getSingleElement(name.skipFirst(1)).addQualification(name.firstSegment)	
 				}
 			}
@@ -103,7 +103,7 @@ class KerMLGlobalScope extends AbstractScope {
 		var Iterable<IEObjectDescription> allElements = rootElements.filter[referenceType.isInstance(EObjectOrProxy)]
 		for (root: rootElements) {
 			val element = root.EObjectOrProxy
-			if (element instanceof Package) {
+			if (element instanceof Namespace) {
 				allElements = Iterables.concat(allElements, 
 					scopeFor(element).allElements.map[addQualification(root.name.firstSegment)]
 				)

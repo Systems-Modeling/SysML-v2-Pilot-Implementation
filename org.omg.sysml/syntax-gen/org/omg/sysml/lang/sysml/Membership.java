@@ -27,7 +27,7 @@ package org.omg.sysml.lang.sysml;
  * '<em><b>Membership</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>Membership is a Relationship between a Package and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Package. The Membership may define a <code>memberName</code> for the Element as a member of the Package and specifies whether or not the Element is publicly visible as a <code>member</code> of the Package from outside the Package. The Element may be owned by the Membership, in which case it is an <code>ownedMember</code> of the Package, or it may be referenced but not owned, in which case it is effectively individually imported into the Package.</p>
+ * <p>Membership is a Relationship between a Namespace and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Namespace. The Membership may define a <code>memberName</code> for the Element as a <code>member</code> of the Namespace and specifies whether or not the Element is publicly visible as a <code>member</code> of the Namespace from outside the Namespace. The Element may be owned by the Namespace, in which case it is an <code>ownedMember</code> of the Namespace, or it may be referenced but not owned, in which case it is effectively individually imported into the Namespace.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -35,11 +35,11 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
@@ -85,7 +85,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Membership of the <code>memberElement</code> in the <code>membershipOwningPackage</code> is publicly visible outside that Package. Unless the <code>membershipOwningPackage</code> is a Type, <code>visibility</code> must be either <code>public</code> or <code>private</code>.</p>
+	 * <p>Whether or not the Membership of the <code>memberElement</code> in the <code>membershipOwningNamespace</code> is publicly visible outside that Namespace. Unless the <code>membershipOwningNamespace</code> is a Type, <code>visibility</code> must be either <code>public</code> or <code>private</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
@@ -125,7 +125,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Element that becomes a <tt>member</tt> of the <tt>membershipOwningPackage</tt> due to this Membership.</p>
+	 * <p>The Element that becomes a <code>member</code> of the <code>membershipOwningNamespace</code> due to this Membership.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Element</em>' reference.
@@ -148,8 +148,8 @@ public interface Membership extends Relationship {
 	void setMemberElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Membership Owning Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp <em>Owned Membership comp</em>}'.
+	 * Returns the value of the '<em><b>Membership Owning Namespace</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp <em>Owned Membership comp</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -158,34 +158,30 @@ public interface Membership extends Relationship {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Membership Owning Package</em>' reference isn't
-	 * clear, there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Package of which the <tt>memberElement</tt> becomes a <tt>member</tt> due to this Membership.</p>
+	 * <p>The Namespace of which the <code>memberElement</code> becomes a <cpde>member</code> due to this Membership.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Membership Owning Package</em>' container reference.
-	 * @see #setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningPackage()
-	 * @see org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp
+	 * @return the value of the '<em>Membership Owning Namespace</em>' container reference.
+	 * @see #setMembershipOwningNamespace(Namespace)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningNamespace()
+	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp
 	 * @model opposite="ownedMembership_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Package getMembershipOwningPackage();
+	Namespace getMembershipOwningNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningPackage <em>Membership Owning Package</em>}' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Membership Owning Package</em>' container reference.
-	 * @see #getMembershipOwningPackage()
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Membership Owning Namespace</em>' container reference.
+	 * @see #getMembershipOwningNamespace()
 	 * @generated
 	 */
-	void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package value);
+	void setMembershipOwningNamespace(Namespace value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Member Element comp</b></em>' containment reference.
@@ -197,7 +193,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <tt>memberElement</tt> of this Membership if it is owned by the Membership as an <tt>ownedRelatedElement</tt>.</p>
+	 * <p>The <code>memberElement</code> of this Membership if it is owned by the Membership as an <code>ownedRelatedElement</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Element comp</em>' containment reference.

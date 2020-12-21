@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.ModelQuery;
+import org.omg.sysml.lang.sysml.MetadataCondition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
@@ -46,8 +46,8 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getView <em>View</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getModelQuery <em>Model Query</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewDefinitionImpl#getViewCondition <em>View Condition</em>}</li>
  * </ul>
  *
  * @generated
@@ -101,38 +101,6 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * @generated
 	 */
 	@Override
-	public ModelQuery getModelQuery() {
-		ModelQuery modelQuery = basicGetModelQuery();
-		return modelQuery != null && modelQuery.eIsProxy() ? (ModelQuery)eResolveProxy((InternalEObject)modelQuery) : modelQuery;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public ModelQuery basicGetModelQuery() {
-		return (ModelQuery)getMember().stream().
-				filter(ModelQuery.class::isInstance).
-				findFirst().orElse(null);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setModelQuery(ModelQuery newModelQuery) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public RenderingUsage getRendering() {
 		RenderingUsage rendering = basicGetRendering();
 		return rendering != null && rendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)rendering) : rendering;
@@ -159,6 +127,16 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<MetadataCondition> getViewCondition() {
+		return new DerivedEObjectEList<>(MetadataCondition.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION, new int[] {SysMLPackage.TYPE__OWNED_MEMBER});
+	}
+
 	@Override
 	protected String getDefaultSupertype() {
 		return VIEW_DEFINITION_SUPERCLASS_DEFAULT;
@@ -176,12 +154,11 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				return getView();
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
 				return getSatisfiedViewpoint();
-			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
-				if (resolve) return getModelQuery();
-				return basicGetModelQuery();
 			case SysMLPackage.VIEW_DEFINITION__RENDERING:
 				if (resolve) return getRendering();
 				return basicGetRendering();
+			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
+				return getViewCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,11 +180,12 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				getSatisfiedViewpoint().clear();
 				getSatisfiedViewpoint().addAll((Collection<? extends ViewpointUsage>)newValue);
 				return;
-			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
-				setModelQuery((ModelQuery)newValue);
-				return;
 			case SysMLPackage.VIEW_DEFINITION__RENDERING:
 				setRendering((RenderingUsage)newValue);
+				return;
+			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
+				getViewCondition().clear();
+				getViewCondition().addAll((Collection<? extends MetadataCondition>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,11 +205,11 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
 				getSatisfiedViewpoint().clear();
 				return;
-			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
-				setModelQuery((ModelQuery)null);
-				return;
 			case SysMLPackage.VIEW_DEFINITION__RENDERING:
 				setRendering((RenderingUsage)null);
+				return;
+			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
+				getViewCondition().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -249,10 +227,10 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				return !getView().isEmpty();
 			case SysMLPackage.VIEW_DEFINITION__SATISFIED_VIEWPOINT:
 				return !getSatisfiedViewpoint().isEmpty();
-			case SysMLPackage.VIEW_DEFINITION__MODEL_QUERY:
-				return basicGetModelQuery() != null;
 			case SysMLPackage.VIEW_DEFINITION__RENDERING:
 				return basicGetRendering() != null;
+			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
+				return !getViewCondition().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

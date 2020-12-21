@@ -2,7 +2,7 @@
  * This package defines the base types for analysis cases and related behavioral elements 
  * in the SysML language.
  */
-package Analyses {
+package AnalysisCases {
 	private import Performances::Evaluation;
 	private import Performances::evaluations;
 	private import Calculations::Calculation;
@@ -14,9 +14,9 @@ package Analyses {
 	 * AnalysisCase is the base class of all AnalysisCaseDefinitions.
 	 */
 	abstract analysis def AnalysisCase :> Case {
-		ref analysis :>> self : AnalysisCase;		
-		subject :>> subj;
-		objective :>> obj;
+		ref analysis self : AnalysisCase :>> Case::self;		
+		subject subj :>> Case::subj;
+		objective obj :>> Case::obj;
 		
 		/**
 		 * Other AnalysisCases carried out as part of the performance of this AnalysisCase.

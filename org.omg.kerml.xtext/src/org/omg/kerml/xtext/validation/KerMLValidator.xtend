@@ -89,11 +89,11 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkMembership(Membership mem){
-		val pack = mem.membershipOwningPackage;	
+		val namesp = mem.membershipOwningNamespace;	
 		// Do not check distinguishability for automatically constructed expressions and binding connectors (to improve performance).
-		if (!(pack instanceof InvocationExpression || pack instanceof FeatureReferenceExpression || pack instanceof LiteralExpression || pack instanceof NullExpression ||
-			  pack instanceof BindingConnector)) {
-			for (e : pack.ownedElement) {
+		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || namesp instanceof NullExpression ||
+			  namesp instanceof BindingConnector)) {
+			for (e : namesp.ownedElement) {
 				if (mem.memberElement !== e && e.humanId !== null && (mem as MembershipImpl).memberEffectiveName == e.humanId) {
 					if (mem.ownedMemberElement !== null) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
@@ -102,7 +102,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 					}
 				}
 			}
-			for (m: pack.ownedMembership) {
+			for (m: namesp.ownedMembership) {
 				if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)) {
 					if (mem.ownedMemberElement !== null) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
@@ -112,8 +112,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 						
 			}
-			if (pack instanceof Type){
-				for (m : pack.inheritedMembership) {
+			if (namesp instanceof Type){
+				for (m : namesp.inheritedMembership) {
 					if (m.memberElement !== mem.memberElement && !mem.isDistinguishableFrom(m)){
 						if (mem.ownedMemberElement !== null) {
 							warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)

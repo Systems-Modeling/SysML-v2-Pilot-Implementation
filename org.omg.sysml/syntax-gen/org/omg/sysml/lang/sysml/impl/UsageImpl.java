@@ -43,6 +43,7 @@ import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -51,6 +52,7 @@ import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -83,6 +85,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
@@ -108,7 +111,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -189,7 +192,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public EList<Membership> getOwnedMembership_comp() {
 		if (ownedMembership_comp == null) {
-			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
+			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE);
 		}
 		return ownedMembership_comp;
 	}
@@ -536,6 +539,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<EnumerationUsage> getNestedEnumeration() {
+		return new DerivedEObjectEList<>(EnumerationUsage.class, this, SysMLPackage.USAGE__NESTED_ENUMERATION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<ActionUsage> getNestedAction() {
 		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -650,13 +663,13 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	// Utility methods
 	
 	public Definition getOwningVariationDefinition() {
-		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		Namespace owner = getOwningNamespace();
 		return owner instanceof Definition && ((Definition)owner).isVariation()? 
 				((Definition)owner): null;
 	}
 
 	public Usage getOwningVariationUsage() {
-		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		Namespace owner = getOwningNamespace();
 		return owner instanceof Usage && ((Usage)owner).isVariation()? ((Usage)owner): null;
 	}
 
@@ -768,6 +781,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				if (resolve) return getOwningUsage();
 				return basicGetOwningUsage();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				if (resolve) return getOwningDefinition();
+				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return getNestedPort();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -818,9 +834,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedRendering();
 			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
 				return getNestedVerificationCase();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				if (resolve) return getOwningDefinition();
-				return basicGetOwningDefinition();
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				return getNestedEnumeration();
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 		}
@@ -842,6 +857,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)newValue);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -942,8 +960,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedVerificationCase().clear();
 				getNestedVerificationCase().addAll((Collection<? extends VerificationCaseUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				getNestedEnumeration().clear();
+				getNestedEnumeration().addAll((Collection<? extends EnumerationUsage>)newValue);
 				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -966,6 +985,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)null);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -1042,8 +1064,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
 				getNestedVerificationCase().clear();
 				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				getNestedEnumeration().clear();
 				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
@@ -1066,6 +1088,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedUsage().isEmpty();
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				return basicGetOwningUsage() != null;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return !getNestedPort().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -1116,8 +1140,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedRendering().isEmpty();
 			case SysMLPackage.USAGE__NESTED_VERIFICATION_CASE:
 				return !getNestedVerificationCase().isEmpty();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				return basicGetOwningDefinition() != null;
+			case SysMLPackage.USAGE__NESTED_ENUMERATION:
+				return !getNestedEnumeration().isEmpty();
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				return !getVariantMembership().isEmpty();
 		}

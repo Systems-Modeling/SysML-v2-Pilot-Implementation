@@ -39,5 +39,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface LiteralExpression extends Expression {
+public interface LiteralExpression extends MetadataExpression {
 } // LiteralExpression

@@ -199,10 +199,10 @@ public class VTree extends VStructure {
     }
 
     @Override
-    public String casePackage(org.omg.sysml.lang.sysml.Package p) {
+    public String caseNamespace(org.omg.sysml.lang.sysml.Namespace p) {
         addRel(p, p, null);
         this.parent = null;
-        return super.casePackage(p);
+        return super.caseNamespace(p);
     }
 
     private void addReq(String keyword, Type typ, String reqId) {

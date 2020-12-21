@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Definition is a Classifier of Usages. The actual kinds of Definitions that may appear in a model are given by the concrete subclasses of Definition.</p>
  * 
- * <p>Normally, a Definition has owned Usages that model <code>features</code> of the thing being defined. A Definition may also have other Definitions nested in it, but this has no semantic significance, other than the nested namespace scoping resulting from the Definition being considered as a Package for any nested Definitions.</p>
+ * <p>Normally, a Definition has owned Usages that model <code>features</code> of the thing being defined. A Definition may also have other Definitions nested in it, but this has no semantic significance, other than the nested scoping resulting from the Definition being considered as a Namespace for any nested Definitions.</p>
  * 
  * <p>However, if a Definition has <code>isVariation</code> = <code>true</code>, then it represents a <em>variation point</em> Definition. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Definition by VariantMembership Relationships. Rather than being <code>features</code> of the Definition, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for an abstract Usage of the variation point Definition.</p>
  * 
@@ -42,7 +42,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
@@ -68,6 +67,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRendering <em>Owned Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -413,13 +414,36 @@ public interface Definition extends Classifier {
 	EList<VerificationCaseUsage> getOwnedVerificationCase();
 
 	/**
+	 * Returns the value of the '<em><b>Owned Enumeration</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EnumerationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedAttribute() <em>Owned Attribute</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The EnumerationUsages that are <code>ownedUsages</code> of this Definition.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Enumeration</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedEnumeration()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enumerationOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<EnumerationUsage> getOwnedEnumeration();
+
+	/**
 	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -696,7 +720,7 @@ public interface Definition extends Classifier {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMember() <em>Owned Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

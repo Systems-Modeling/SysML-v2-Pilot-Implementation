@@ -55,7 +55,8 @@ public interface AnnotatingElement extends Element {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Elements that are annotated by this AnnotatingElement, derived as the <code>annotedElements</code> of the <code>annotations</code> of this AnnotatingElement.</p>
+	 * <p>The Elements that are annotated by this AnnotatingElement, derived as the <code>annotatedElements</code> of the <code>annotations</code> of this AnnotatingElement.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_AnnotatedElement()

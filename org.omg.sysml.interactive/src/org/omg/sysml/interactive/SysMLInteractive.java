@@ -208,7 +208,7 @@ public class SysMLInteractive extends SysMLUtil {
 		if (!resources.isEmpty()) {
 			IScope scope = scopeProvider.getScope(
 					resources.get(resources.size() - 1), 
-					SysMLPackage.eINSTANCE.getPackage_Member(), 
+					SysMLPackage.eINSTANCE.getNamespace_Member(), 
 					new Predicate<IEObjectDescription>() {
 	
 						@Override

@@ -64,7 +64,7 @@ public interface Behavior extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The steps that make up the given Behavior.</p>
+	 * <p>The Steps that make up this Behavior.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Step</em>' reference list.
@@ -92,7 +92,7 @@ public interface Behavior extends Classifier {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The set of parameters that are applied to or returned from the given Behavior. It is also possible to set a direction for <code>parameter</code>.</p>
+	 * <p>The <code>features</code> of this Behavior that are owned by the Behavior via ParameterMemberships. A <code>parameter</code> always has a <code>direction</code>, indicating whether the values of the <code>parameter</code> are passed into and/or out of a performance of the Behavior.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.

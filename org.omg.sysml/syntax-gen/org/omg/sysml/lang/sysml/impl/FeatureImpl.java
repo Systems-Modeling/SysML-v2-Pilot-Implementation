@@ -978,15 +978,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 	}
 	
-	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
-		if (connector == null) {
-			connector = addOwnedBindingConnector(source, target);
-		} else {
-			((BindingConnectorImpl)connector).update(null, source, target);
-		}
-		return connector;
-	}
-	
 	public BindingConnector makeValueBinding(BindingConnector connector, Feature source) {
 		if (connector == null) {
 			connector = addOwnedBindingConnector(getFeaturingType(), source, this);

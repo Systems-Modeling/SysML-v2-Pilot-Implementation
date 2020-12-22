@@ -53,7 +53,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	
-	protected List<BindingConnector> argumentConnectors;
+	protected BindingConnector[] argumentConnectors;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -121,30 +121,37 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return typeFeatures;
 	}
 	
+	public BindingConnector[] getArgumentConnectors() {
+		return argumentConnectors;
+	}
+	
 	public void computeArgumentConnectors() {
+		List<Expression> arguments = getArgument();
 		if (argumentConnectors == null) {
-			argumentConnectors = new ArrayList<>();
-			List<Expression> arguments = getArgument();
-			int i = 0;
-			for (Feature input: getInput()) {
-				List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
-				if (!redefinedFeatures.isEmpty()) {
-					Feature feature = redefinedFeatures.get(0);
-					if (feature != null) {
-						Expression argument = getArgumentForFeature(arguments, feature, i);
-						if (argument != null) {
-							((ElementImpl)argument).transform();
-							argumentConnectors.add(addOwnedBindingConnector(argument.getResult(), input));
-						}
-					}
-				}
+			argumentConnectors = new BindingConnector[arguments.size()];
+		}
+		int i = 0;
+		for (Feature input: getInput()) {
+			if (i >= argumentConnectors.length) {
+				break;
+			}
+			Expression argument = getArgumentForInput(arguments, input, i);
+			if (argument != null) {
+				argumentConnectors[i] = makeBinding(argumentConnectors[i], argument, input);
 				i++;
 			}
 		}
 	}
 	
-	public List<BindingConnector> getArgumentConnectors() {
-		return argumentConnectors;
+	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
+		List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
+		if (!redefinedFeatures.isEmpty()) {
+			Feature feature = redefinedFeatures.get(0);
+			if (feature != null) {
+				return getArgumentForFeature(arguments, feature, argIndex);
+			}
+		}
+		return null;
 	}
 	
 	protected static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {

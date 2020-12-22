@@ -183,18 +183,20 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		
 	@Override 
 	public EList<Feature> getInput() {
-		EList<Feature> inputs = super.getOwnedInput();
-		if (inputs.isEmpty()) {
+		return super.getOwnedInput();
+	}
+	
+	protected void computeInput() {
+		if (getInput().isEmpty()) {
 			Type type = getExpressionType();
 			if (type != null) {
 				for (Feature parameter: type.getInput()) {
 					if (((FeatureImpl)parameter).isParameter() && parameter.getOwner() == type) {
-						inputs.add(createFeatureForParameter(parameter));
+						createFeatureForParameter(parameter);
 					}
 				}
 			}
 		}
-		return inputs;
 	}
 	
 	public Type getExpressionType() {
@@ -203,16 +205,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public EList<Feature> getOutput() {
-		EList<Feature> outputs = super.getOwnedOutput();
-		if (outputs.isEmpty()) {
+		return super.getOwnedOutput();
+	}
+	
+	protected void computeOutput() {
+		if (getOutput().isEmpty()) {
 			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
 			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter_comp(parameter);
 			membership.setMemberName("$result");
 			getOwnedFeatureMembership_comp().add(membership);
-			outputs.add(parameter);
-		}
-		return outputs;
+		}		
 	}
 			
 	protected Feature createFeatureForParameter(Feature parameter) {
@@ -266,8 +269,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public Collection<Feature> getFeaturesRedefinedByType() {
 		// Note: Ensures that all owned inputs and outputs are computed
 		// before checking for redefined features.
-		getInput();
-		getOutput();
+		computeInput();
+		computeOutput();
 		return super.getFeaturesRedefinedByType();
 	}
 	
@@ -275,8 +278,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
-		getInput();
-		getOutput();
+//		computeInput();
+//		computeOutput();
 		return super.getOwnedParameters();
 	}
 	
@@ -286,8 +289,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
 			addImplicitFeaturingTypes();
 		}
-		getInput();
-		getOutput();
+		computeInput();
+		computeOutput();
 	}
 		
 	/**

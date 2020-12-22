@@ -90,21 +90,17 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	@Override
-	public EList<Feature> getInput() {
-		EList<Feature> inputs = super.getOwnedInput();
-		
-		// TODO: Move out of getter.
-		if (inputs.isEmpty()) {
+	protected void computeInput() {
+		if (getInput().isEmpty()) {
 			Type type = getExpressionType();
 			if (type instanceof Function || type instanceof Expression) {
-				return super.getInput();
+				super.computeInput();
 			} else if (type != null) {
 				for (Feature typeFeature: getTypeFeatures()) {
-					inputs.add(createFeatureForParameter(typeFeature));
+					createFeatureForParameter(typeFeature);
 				}
 			}
 		}
-		return inputs;
 	}
 	
 	public List<Feature> getTypeFeatures() {
@@ -119,8 +115,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			Expression argument = getArgumentForFeature(arguments, typeFeature, i);
 			if (argument != null) {
 				typeFeatures.add(typeFeature);
+				i++;
 			}
-			i++;
 		}
 		return typeFeatures;
 	}
@@ -137,6 +133,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 					if (feature != null) {
 						Expression argument = getArgumentForFeature(arguments, feature, i);
 						if (argument != null) {
+							((ElementImpl)argument).transform();
 							argumentConnectors.add(addOwnedBindingConnector(argument.getResult(), input));
 						}
 					}

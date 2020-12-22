@@ -72,13 +72,15 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 				(Expression)((TypeImpl)owningType).getOwnedFeatureByMembership(ResultExpressionMembership.class);
 		if (resultExpression != null) {
 			resultConnector = updateBindingConnectorFor(
-					owningType, resultConnector, resultExpression.getResult(), result);
+					owningType, resultConnector, resultExpression, result);
 		}
 		return resultConnector;
 	}
 	
 	public static BindingConnector updateBindingConnectorFor(
-			Type owningType, BindingConnector connector, Feature source, Feature target) {
+			Type owningType, BindingConnector connector, Expression sourceExpression, Feature target) {
+		((ElementImpl)sourceExpression).transform();
+		Feature source = sourceExpression.getResult();
 		if (connector == null) {
 			connector = ((TypeImpl)owningType).addOwnedBindingConnector(source, target);
 		} else {

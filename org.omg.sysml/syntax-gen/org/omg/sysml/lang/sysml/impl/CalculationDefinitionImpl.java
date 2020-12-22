@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -187,13 +186,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 			type.getOwnedFeatureMembership_comp().add(membership);
 			((FeatureImpl)resultParameter).transform();
 		}
-	}
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		// TODO: Remove this?
-		addResultParameter(this);
-		return super.getOwnedParameters();
 	}
 	
 	@Override

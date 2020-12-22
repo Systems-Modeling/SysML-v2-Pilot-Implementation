@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -178,13 +177,6 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-	@Override
-	public List<Feature> getOwnedParameters() {
-		// TODO: Remove this?
-		CalculationDefinitionImpl.addResultParameter(this);
-		return super.getOwnedParameters();
-	}
-	
 	@Override
 	public void transform() {
 		super.transform();

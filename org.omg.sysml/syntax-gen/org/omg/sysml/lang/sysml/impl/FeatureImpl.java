@@ -909,7 +909,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				valueConnector = makeValueBinding(valueConnector, ((ExpressionImpl)value).getResult());
+				valueConnector = makeValueBinding(valueConnector, value);
 			}
 		}
 	}
@@ -980,6 +980,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 	}
 	
+	public BindingConnector makeBinding(BindingConnector connector, Expression sourceExpression, Feature target) {
+		((ElementImpl)sourceExpression).transform();
+		return makeBinding(connector, sourceExpression.getResult(), target);
+	}
+	
 	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
 		if (connector == null) {
 			connector = addOwnedBindingConnector(source, target);
@@ -989,7 +994,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return connector;
 	}
 	
-	public BindingConnector makeValueBinding(BindingConnector connector, Feature source) {
+	public BindingConnector makeValueBinding(BindingConnector connector, Expression sourceExpression) {
+		((ElementImpl)sourceExpression).transform();
+		Feature source = sourceExpression.getResult();
 		if (connector == null) {
 			connector = addOwnedBindingConnector(getFeaturingType(), source, this);
 		} else {

@@ -115,7 +115,7 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	@Override
 	protected Feature getContextFeature() {
 		Expression target = getTarget();
-		return target == null? null: ((ExpressionImpl)target).getResult();
+		return target == null? null: target.getResult();
 	}
 
 	public ItemFeature getItemFeature() {
@@ -126,17 +126,29 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	}
 	
 	public Feature getSource() {
+		Expression sourceExpression = getSourceExpression();
+		return sourceExpression == null? null: sourceExpression.getResult();
+	}
+	
+	protected Expression getSourceExpression() {
 		List<Expression> expressions = getOwnedExpressions();
-		return expressions.isEmpty()? null: ((ExpressionImpl)expressions.get(0)).getResult();
+		return expressions.isEmpty()? null: expressions.get(0);
 	}
 
 	public BindingConnector getTargetConnector() {
 		return targetConnector;
 	}
 	
+	protected void computeTargetConnector() {
+		Expression sourceExpression = getSourceExpression();
+		if (sourceExpression != null) {
+			targetConnector = makeBinding(targetConnector, sourceExpression, getItemFeature());
+		}
+	}
+	
 	public void transform() {
 		super.transform();
-		targetConnector = makeBinding(targetConnector, getSource(), getItemFeature());
+		computeTargetConnector();
 	}
 	
 /**

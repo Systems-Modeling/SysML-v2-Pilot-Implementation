@@ -144,6 +144,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
+		((FeatureImpl)input).forceComputeRedefinitions();
 		List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
 		if (!redefinedFeatures.isEmpty()) {
 			Feature feature = redefinedFeatures.get(0);

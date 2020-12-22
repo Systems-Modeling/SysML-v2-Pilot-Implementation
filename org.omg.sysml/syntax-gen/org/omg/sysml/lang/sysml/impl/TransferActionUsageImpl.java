@@ -130,10 +130,14 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	protected abstract Feature getContextFeature();
 	
+	protected void computeContextConnector() {
+		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
+	}
+	
 	@Override
 	public void transform() {
 		super.transform();
-		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
+		computeContextConnector();
 	}
 	
 	//

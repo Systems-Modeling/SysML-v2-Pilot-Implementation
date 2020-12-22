@@ -23,13 +23,9 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -60,35 +56,6 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return SysMLPackage.Literals.BINDING_CONNECTOR;
 	}
 
-	public Feature getRelatedFeatureFor(Feature end) {
-		Type owner = getOwningType();
-		return owner instanceof InvocationExpression?
-			getRelatedFeature((InvocationExpression)owner, argIndex(owner), getConnectorEnd().indexOf(end)):
-			null;
-	}
-	
-	protected Feature getRelatedFeature(InvocationExpression expression, int argIndex, int endIndex) {
-		List<Feature> inputs = expression.getInput();
-		if (argIndex < inputs.size()) {
-			Feature input = inputs.get(argIndex);
-			if (endIndex == 0) {
-				Expression argument = 
-						InvocationExpressionImpl.getArgumentForInput(expression.getArgument(), input, argIndex);
-				if (argument != null) {
-					return argument.getResult();
-				}
-			} else if (endIndex == 1) {
-				return input;
-			}
-		}
-		return null;
-	}
-	
-	protected int argIndex(Type expression) {
-		return expression.getOwnedFeature().stream().filter(f->f instanceof BindingConnector)
-				.collect(Collectors.toList()).indexOf(this);
-	}
-	
 	public void update(List<Type> featuringTypes, Feature source, Feature target) {
 		setRelatedFeature(0, source);
 		setRelatedFeature(1, target);

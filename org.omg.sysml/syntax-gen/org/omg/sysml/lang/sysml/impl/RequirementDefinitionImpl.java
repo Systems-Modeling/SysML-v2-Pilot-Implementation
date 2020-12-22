@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -36,7 +35,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
@@ -226,12 +224,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	}
 	
 	// Additional overrides
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		return super.getOwnedParameters();
-	}
-	
+		
 	@Override
 	public void transform() {
 		super.transform();

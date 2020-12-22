@@ -389,11 +389,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	@Override
-	public List<Feature> getOwnedParameters() {
-		return super.getOwnedParameters();
-	}
-	
-	@Override
 	public Feature getNamingFeature() {
 		return isAssumptionConstraint() || isRequirementConstraint()? 
 				getSubsettedConstraint():

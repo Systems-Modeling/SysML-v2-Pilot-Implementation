@@ -151,11 +151,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	public EList<Type> getFeaturingType() {
-		return super.getFeaturingType();		
-	}
-
-	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()?
 				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:

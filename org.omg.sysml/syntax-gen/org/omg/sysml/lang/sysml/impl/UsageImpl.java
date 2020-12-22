@@ -46,7 +46,6 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
@@ -598,11 +597,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			}
 		}
 		return super.getNamingFeature();
-	}
-	
-	@Override
-	public List<FeatureTyping> basicGetOwnedTyping() {
-		return super.basicGetOwnedTyping();
 	}
 	
 	protected void addVariationTyping() {

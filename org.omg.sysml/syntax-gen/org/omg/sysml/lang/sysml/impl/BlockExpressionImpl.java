@@ -22,7 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BlockExpression;
@@ -63,20 +62,6 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 		super();
 	}
 
-	// Additional redefinitions and subsets
-
-	@Override
-	public EList<Feature> getFeature() {
-		getResultConnector();
-		return super.getFeature();
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		resultConnector = getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}
-
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
@@ -101,6 +86,12 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 			((ConnectorImpl) connector).setRelatedFeature(1, target);
 		}
 		return connector;
+	}
+
+	@Override
+	public void transform() {
+		super.transform();
+		resultConnector = getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
 } // BlockExpressionImpl

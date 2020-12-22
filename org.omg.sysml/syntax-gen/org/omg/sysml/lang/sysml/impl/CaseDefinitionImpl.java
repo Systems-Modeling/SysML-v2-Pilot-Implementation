@@ -22,14 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -133,7 +129,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	}
 	
 	public static void computeObjectiveRequirementOf(Type type) {
-		RequirementUsage objective = (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
+		RequirementUsage objective = getObjectiveRequirementOf(type);
 		if (objective == null) {
 			addObjectiveRequirement(type);
 		}
@@ -160,18 +156,6 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	@Override
 	protected String getDefaultSupertype() {
 		return CASE_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
-	// Additional overrides
-	
-	@Override
-	public EList<Feature> getOwnedFeature() {
-		return super.getOwnedFeature();
-	}
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		return super.getOwnedParameters();
 	}
 	
 	@Override

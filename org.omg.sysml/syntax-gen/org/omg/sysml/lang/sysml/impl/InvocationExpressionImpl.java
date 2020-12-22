@@ -92,6 +92,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public EList<Feature> getInput() {
 		EList<Feature> inputs = super.getOwnedInput();
+		
+		// TODO: Move out of getter.
 		if (inputs.isEmpty()) {
 			Type type = getExpressionType();
 			if (type instanceof Function || type instanceof Expression) {

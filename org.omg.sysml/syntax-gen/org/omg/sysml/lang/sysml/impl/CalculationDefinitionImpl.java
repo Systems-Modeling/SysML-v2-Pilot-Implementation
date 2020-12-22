@@ -191,6 +191,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
+		// TODO: Remove this?
 		addResultParameter(this);
 		return super.getOwnedParameters();
 	}

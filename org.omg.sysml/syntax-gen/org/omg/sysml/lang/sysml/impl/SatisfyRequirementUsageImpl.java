@@ -208,10 +208,9 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	}
 	
 	public BindingConnector getSatisfyingFeatureConnector() {
-		BindingConnector connector = (BindingConnector)getOwnedFeature().stream().
+		return (BindingConnector)getOwnedFeature().stream().
 				filter(feature->feature instanceof BindingConnector).
 				findFirst().orElse(null);
-		return connector;
 	}
 
 //	@Override
@@ -224,7 +223,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 		super.transform();
 		BindingConnector connector = getSatisfyingFeatureConnector();
 		if (connector != null) {
-			((ConnectorImpl)connector).setRelatedFeature(0,getSubjectParameter());
+			((ConnectorImpl)connector).setRelatedFeature(0, getSubjectParameter());
 		}
 	}
 

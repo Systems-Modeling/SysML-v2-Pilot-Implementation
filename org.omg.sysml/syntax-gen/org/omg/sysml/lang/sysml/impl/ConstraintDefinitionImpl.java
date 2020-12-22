@@ -167,6 +167,10 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
   		return false;
 	}
 
+	public BindingConnector getResultConnector() {
+		return resultConnector;
+	}
+	
 	// Additional overrides
 
 	@Override
@@ -174,12 +178,9 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
 	@Override
 	public List<Feature> getOwnedParameters() {
+		// TODO: Remove this?
 		CalculationDefinitionImpl.addResultParameter(this);
 		return super.getOwnedParameters();
 	}

@@ -22,7 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -112,13 +111,8 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		assertionConnector = newAssertionConnector;
 	}
 
-	// Additional redefinitions and subsets
+	// Additional overrides
 
-	@Override
-	public EList<Feature> getFeature() {
-		return super.getFeature();
-	}
-	
 	@Override
 	public void transform() {
 		super.transform();

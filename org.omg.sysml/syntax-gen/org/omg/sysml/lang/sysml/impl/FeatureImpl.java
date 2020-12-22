@@ -864,7 +864,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static OCLExpression<EClassifier> IS_FEATURED_WITHIN__TYPE__EOCL_QRY;
-	// Additional redefinitions and subsets
+
+	// Additional derivations and overrides
 	
 	protected String effectiveName = null;
 	

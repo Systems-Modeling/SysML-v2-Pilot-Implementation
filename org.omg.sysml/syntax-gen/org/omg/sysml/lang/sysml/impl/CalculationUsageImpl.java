@@ -250,6 +250,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	
 	@Override
 	public List<Feature> getOwnedParameters() {
+		// TODO: Remove this?
 		CalculationDefinitionImpl.addResultParameter(this);
 		return super.getOwnedParameters();
 	}

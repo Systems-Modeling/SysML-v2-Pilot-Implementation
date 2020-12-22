@@ -22,15 +22,11 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -238,16 +234,6 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	protected boolean hasRelevantSubjectParameter() {
 		Type owningType = getOwningType();
 		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
-	}
-	
-	@Override
-	public EList<Feature> getOwnedFeature() {
-		return super.getOwnedFeature();
-	}
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		return super.getOwnedParameters();
 	}
 	
 	@Override

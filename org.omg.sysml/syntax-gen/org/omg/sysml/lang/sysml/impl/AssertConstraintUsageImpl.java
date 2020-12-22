@@ -178,11 +178,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	}
 	
 	@Override
-	public EList<Feature> getFeature() {
-		return super.getFeature();
-	}
-	
-	@Override
 	public void transform() {
 		super.transform();
 		assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());

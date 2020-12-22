@@ -45,7 +45,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -62,6 +61,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -493,7 +493,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * overriding getGeneralCategories and getRelevantFeatures.
 	 */
 	protected void addRedefinitions(Element skip) {
-		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		Namespace owner = getOwningNamespace();
 		if (owner instanceof Type) {
 			removeEmptyGeneralTypes(Redefinition.class);
 			Type type = getOwningType();
@@ -850,9 +850,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IS_FEATURED_WITHIN__TYPE__EOCL_EXP = "type = null and featuringType->isEmpty() or "+
-"type <> null and featuringType->includes(type) or "+
-"featuringType->exists(t | t.oclIsKindOf(Feature) and t.oclAsType(Feature).isFeaturedWithin(type)) ";
+	protected static final String IS_FEATURED_WITHIN__TYPE__EOCL_EXP = "type = null and feature.featuringType->isEmpty() or"+
+"    type <> null and feature.featuringType->includes(type) or"+
+"    feature.featuringType->exists(t |"+
+"        t.oclIsKindOf(Feature) and"+
+"        t.oclAsType(Feature).isFeaturedWithin(type)) ";
 	/**
 	 * The cached OCL query for the '{@link #isFeaturedWithin(org.omg.sysml.lang.sysml.Type) <em>Is Featured Within</em>}' query operation.
 	 * <!-- begin-user-doc -->
@@ -862,14 +864,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static OCLExpression<EClassifier> IS_FEATURED_WITHIN__TYPE__EOCL_QRY;
-	/**
-	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final OCL EOCL_ENV = OCL.newInstance();
 	// Additional redefinitions and subsets
 	
 	protected String effectiveName = null;
@@ -922,7 +916,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (owningType instanceof BindingConnector) {
 			Feature relatedFeature = ((BindingConnectorImpl)owningType).getRelatedFeatureFor(this);
 			if (relatedFeature != null) {
-				return relatedFeature;
+				return null;
 			}
 		}
 		return super.getDefaultType(defaultNames);
@@ -936,6 +930,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	@Override
 	public void transform() {
+		forceComputeRedefinitions();
 		super.transform();
 		getEffectiveName();
 		getValueConnector();
@@ -944,7 +939,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	// Utility methods
 	
 	protected void addImplicitFeaturingTypes() {
-		org.omg.sysml.lang.sysml.Package owner = getOwningNamespace();
+		Namespace owner = getOwningNamespace();
 		if (owner instanceof Feature) {
 			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
 			if (getOwnedTypeFeaturing().isEmpty()) {

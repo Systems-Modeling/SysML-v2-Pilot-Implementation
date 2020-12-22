@@ -127,7 +127,7 @@ public interface ItemFlow extends Connector, Step {
 	 * <!-- begin-model-doc -->
 	 * <p>A <code>connectorEnd</code> of this ItemFlow. (IMPL)</p>
 	 * 
-	 * <p>TBD. Uses a class from the Interactions IMPL Package.</p>
+	 * <p>TBD. Uses a class from the Interactions IMPL package.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Flow End</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemFlow_ItemFlowEnd()

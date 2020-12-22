@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpression {
+public class LiteralExpressionImpl extends MetadataExpressionImpl implements LiteralExpression {
 
 	public static final String LITERAL_EXPRESSION_SUBSETTING_DEFAULT = "Performances::literalEvaluations";
 

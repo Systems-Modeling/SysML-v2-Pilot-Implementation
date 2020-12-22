@@ -59,7 +59,8 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Steps that map incoming events to the timing of occurrences of the transitionStep. The values of triggerStep subset the list of acceptable events to be received by a Behavior or the object that performs it.</p>
+	 * <p>Steps that map incoming events to the timing of occurrences of the <code>transitionStep</code>. The values of <code>triggerStep</code> subset the list of acceptable events to be received by a Behavior or the object that performs it.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Trigger Step</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_TriggerStep()
@@ -79,7 +80,8 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Steps that represent occurrences that are side effects of the transitionStep occurring.</p>
+	 * <p>Steps that represent occurrences that are side effects of the <code>transitionStep</code> occurring.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Effect Step</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSuccession_EffectStep()
@@ -99,7 +101,7 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>An Expression that must evaluate to true before the transitionStep can occur.</p>
+	 * <p>Expressions that must evaluate to true before the <code>transitionStep</code> can occur.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Guard Expression</em>' reference list.
@@ -125,7 +127,8 @@ public interface Succession extends Connector {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The transitionStep represents a TransitionPerformance, which means that the Succession is interpreted as an occurrence as well as a time ordering of other occurrences.</p>
+	 * <p>A Step that is typed by the Behavior <em>TransitionPerformance</em> (from the Model Library) that has this Succession as its <em><code>transitionLink</code></em>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Transition Step</em>' reference.
 	 * @see #setTransitionStep(Step)

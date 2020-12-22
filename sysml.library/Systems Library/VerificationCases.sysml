@@ -2,7 +2,7 @@
  * This package defines the base types for verification cases and related behavioral elements 
  * in the SysML language.
  */
-package Verifications {
+package VerificationCases {
 	private import Cases::Case;
 	private import Cases::cases;
 	private import Requirements::RequirementCheck;

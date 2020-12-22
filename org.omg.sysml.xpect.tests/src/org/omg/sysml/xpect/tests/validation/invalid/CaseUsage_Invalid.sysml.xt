@@ -16,7 +16,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Calculations.sysml"}
 		File {from ="/library.systems/Cases.sysml"}
-		File {from ="/library.systems/Analyses.sysml"}
+		File {from ="/library.systems/AnalysisCases.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -36,7 +36,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Calculations.sysml"}
 				File {from ="/library.systems/Cases.sysml"}
-				File {from ="/library.systems/Analyses.sysml"}
+				File {from ="/library.systems/AnalysisCases.sysml"}
 			}
 		}
 	}

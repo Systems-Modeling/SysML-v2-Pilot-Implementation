@@ -36,7 +36,7 @@ import "http://www.omg.org/spec/SysML/2.0" as SysML
 /* ROOT PACKAGE */
 
 RootPackage returns SysML::Package :
-	{SysML::Package}PackageBodyElement*
+	{SysML::Package}NamespaceBodyElement*
 ;
 
 /* ELEMENTS */
@@ -174,72 +174,72 @@ TextualRepresentation returns SysML::TextualRepresentation :
     body = REGULAR_COMMENT
 ;
 
-/* PACKAGES */
+/* NAMESPACES */
 
-/* Packages */
-
-Package returns SysML::Package :
-	PackageDeclaration PackageBody 
+Namespace returns SysML::Namespace :
+	NamespaceDeclaration NamespaceBody
 ;
 
-fragment PackageDeclaration returns SysML::Package :
-	'package' Identification?
+fragment NamespaceDeclaration returns SysML::Namespace :
+	'namespace' Identification?
 ;
 
-fragment PackageBody returns SysML::Package :
+fragment NamespaceBody returns SysML::Namespace :
 	  ';' 
 	| '{' ( // Note: PackageBodyElement is expanded here to avoid
 			// infinite loops in the incremental parser.
 		    documentation_comp += OwnedDocumentation
-	      | ownedMembership_comp += PackageMember 
-	      | ownedImport_comp += PackageImport )* 
+	      | ownedMembership_comp += NamespaceMember 
+	      | ownedImport_comp += Import )* 
 	  '}'
 ;
 
-/* Package Bodies */
+/* Namespace Bodies */
 
-fragment PackageBodyElement returns SysML::Package :
+fragment NamespaceBodyElement returns SysML::Namespace :
 	  documentation_comp += OwnedDocumentation
-	| ownedMembership_comp += PackageMember 
-	| ownedImport_comp += PackageImport
+	| ownedMembership_comp += NamespaceMember 
+	| ownedImport_comp += Import
 ;
 
-PackageMember returns SysML::Membership : 
+NamespaceMember returns SysML::Membership : 
 	( ownedRelationship_comp += PrefixDocumentation )*
     ( visibility = BasicVisibilityIndicator )?		
-	( NonFeaturePackageMember | FeaturePackageMember )
+	( NonFeatureNamespaceMember | FeatureNamespaceMember )
 ;
 
-fragment NonFeaturePackageMember returns SysML::Membership :
+fragment NonFeatureNamespaceMember returns SysML::Membership :
 	  ownedMemberElement_comp = NonFeatureElement
 	| ( 'alias' | 'import' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 ;
 
-fragment FeaturePackageMember returns SysML::Membership :
+fragment FeatureNamespaceMember returns SysML::Membership :
 	  ownedMemberElement_comp = FeatureElement
 ;
 
-PackageImport returns SysML::Import :
+Import returns SysML::Import :
 	( ownedRelationship_comp += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
 	'import' (
-	  importedPackage = [SysML::Package|Name] ( '::' | '.' ) '*' 
-	| importedPackage = [SysML::Package|ColonQualifiedName] '::' '*' 
-	| importedPackage = [SysML::Package|DotQualifiedName] '.' '*'
-	) ';'
+	  importedNamespace = [SysML::Namespace|Name] ( '::' | '.' ) 
+	| importedNamespace = [SysML::Namespace|ColonQualifiedName] '::' 
+	| importedNamespace = [SysML::Namespace|DotQualifiedName] '.'
+	)
+	( '*' | isRecursive ?= '**' ) ';'
 ;
 
 enum BasicVisibilityIndicator returns SysML::VisibilityKind:
 	public = 'public' | private = 'private'
 ;
 
-/* Package Elements */
+/* Namespace Elements */
 
 NonFeatureElement returns SysML::Element :
 	  Element
 	| Relationship
 	| Comment
 	| TextualRepresentation
+	| Namespace
 	| Package 
 	| Type
 	| Classifier 
@@ -270,6 +270,16 @@ FeatureElement returns SysML::Feature :
 	| Succession
 	| ItemFlow
 	| SuccessionItemFlow
+;
+
+/* PACKAGES */
+
+Package returns SysML::Package :
+	PackageDeclaration NamespaceBody 
+;
+
+fragment PackageDeclaration returns SysML::Package :
+	'package' Identification?
 ;
 
 /* TYPES */
@@ -305,12 +315,12 @@ fragment TypeBody returns SysML::Type :
 	'{' ( documentation_comp += OwnedDocumentation
 		| ownedMembership_comp += NonFeatureTypeMember 
 		| ownedFeatureMembership_comp += FeatureTypeMember 
-		| ownedImport_comp += PackageImport
+		| ownedImport_comp += Import
 	)* '}'
 ;
 
 NonFeatureTypeMember returns SysML::Membership : 
-	TypeMemberPrefix NonFeaturePackageMember
+	TypeMemberPrefix NonFeatureNamespaceMember
 ;
 
 FeatureTypeMember returns SysML::FeatureMembership : 
@@ -756,7 +766,7 @@ fragment FunctionBody returns SysML::Type :
 	| '{' ( documentation_comp += OwnedDocumentation
 		  | ownedMembership_comp += NonFeatureTypeMember 
 		  | ownedFeatureMembership_comp += FeatureTypeMember
-		  | ownedRelationship_comp += PackageImport
+		  | ownedRelationship_comp += Import
 		  )* 
 		  ( ownedFeatureMembership_comp += ResultExpressionMember )? 
 	  '}'

@@ -39,5 +39,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface NullExpression extends Expression {
+public interface NullExpression extends MetadataExpression {
 } // NullExpression

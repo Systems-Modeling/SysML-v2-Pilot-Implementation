@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * '<em><b>Visibility Kind</b></em>', and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * <p>VisibilityKind is an enumeration whose literals specify the visibility of a Membership of an Element in a Package outside of that Package. Note that &quot;visibility&quot; specifically restricts whether an Element in a Package may be referenced by name from outside the Package and only otherwise restricts access to an Element as provided by specific constraints in the abstract syntax (e.g., preventing the import or inheritance of private Elements).</p>
+ * <p>VisibilityKind is an enumeration whose literals specify the visibility of a Membership of an Element in a Namespace outside of that Namespace. Note that &quot;visibility&quot; specifically restricts whether an Element in a Namespace may be referenced by name from outside the Namespace and only otherwise restricts access to an Element as provided by specific constraints in the abstract syntax (e.g., preventing the import or inheritance of private Elements).</p>
  * 
  * <!-- end-model-doc -->
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getVisibilityKind()
@@ -46,7 +46,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a Membership is publicly visible outside its owning Package.</p>
+	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PUBLIC_VALUE
 	 * @generated
@@ -59,7 +59,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a Membership is not visible outside its owning Package.</p>
+	 * <p>Indicates a Membership is not visible outside its owning Namespace.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PRIVATE_VALUE
 	 * @generated
@@ -72,7 +72,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid for if the owning Package of a Membership is a Type. Indicates that the Membership is visible outside its owning Type only if inherited by direct or indirect specializations of the Type.</p>
+	 * <p>Only valid for if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible outside its owning Type only if inherited by direct or indirect specializations of the Type.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED_VALUE
 	 * @generated
@@ -85,7 +85,7 @@ public enum VisibilityKind implements Enumerator {
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid if the owning Package of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Package that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Package that is not a Type (or if there is no such Package).</p>
+	 * <p>Only valid if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Namespace that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Namespace that is not a Type (or if there is no such Namespace).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PACKAGE_VALUE
@@ -103,7 +103,7 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a Membership is publicly visible outside its owning Package.</p>
+	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PUBLIC
 	 * @model name="public"
@@ -121,7 +121,7 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Indicates a Membership is not visible outside its owning Package.</p>
+	 * <p>Indicates a Membership is not visible outside its owning Namespace.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PRIVATE
 	 * @model name="private"
@@ -139,7 +139,7 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid for if the owning Package of a Membership is a Type. Indicates that the Membership is visible outside its owning Type only if inherited by direct or indirect specializations of the Type.</p>
+	 * <p>Only valid for if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible outside its owning Type only if inherited by direct or indirect specializations of the Type.</p>
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED
 	 * @model name="protected"
@@ -152,12 +152,12 @@ public enum VisibilityKind implements Enumerator {
 	 * The '<em><b>Package</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Package</b></em>' literal object isn't clear, there
+	 * If the meaning of '<em><b>Namespace</b></em>' literal object isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid if the owning Package of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Package that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Package that is not a Type (or if there is no such Package).</p>
+	 * <p>Only valid if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Namespace that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Namespace that is not a Type (or if there is no such Namespace).</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @see #PACKAGE

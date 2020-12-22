@@ -49,8 +49,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class VerificationCaseUsageImpl extends CaseUsageImpl implements VerificationCaseUsage {
 	
-	public static final String VERIFICATION_CASE_SUBSETTING_BASE_DEFAULT = "Verifications::verificationCases";
-	public static final String VERIFICATION_CASE_SUBSETTING_SUBCASE_DEFAULT = "Verifications::VerificationCase::subVerificationCases";
+	public static final String VERIFICATION_CASE_SUBSETTING_BASE_DEFAULT = "VerificationCases::verificationCases";
+	public static final String VERIFICATION_CASE_SUBSETTING_SUBCASE_DEFAULT = "VerificationCases::VerificationCase::subVerificationCases";
 
 	/**
 	 * <!-- begin-user-doc -->

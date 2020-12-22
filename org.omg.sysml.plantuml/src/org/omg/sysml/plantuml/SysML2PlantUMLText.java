@@ -263,8 +263,8 @@ public class SysML2PlantUMLText {
         }
     }
 
-    private static boolean isPackage(EObject eObj) {
-        return eObj instanceof org.omg.sysml.lang.sysml.Package;
+    private static boolean isNamespace(EObject eObj) {
+        return eObj instanceof org.omg.sysml.lang.sysml.Namespace;
     }
 
     private List<EObject> setupVisualizationMode(EObject eObj) {
@@ -301,7 +301,7 @@ public class SysML2PlantUMLText {
     public List<? extends EObject> setupVisualizationEObjects(EObject eObj) {
         if (eObj == null) return null;
         EObject eObjParent = eObj.eContainer();
-        while (eObjParent != null && !isPackage(eObjParent)) {
+        while (eObjParent != null && !isNamespace(eObjParent)) {
             eObjParent = eObjParent.eContainer();
         }
         if (eObjParent != null) {
@@ -309,7 +309,7 @@ public class SysML2PlantUMLText {
             // return setupVisualizationMode(eObjParent);
         }
 
-        if (!isPackage(eObj)) return null;
+        if (!isNamespace(eObj)) return null;
         return setupVisualizationMode(eObj);
     }
 

@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Conjugation;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PortConjugation;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -209,7 +210,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
+	public Namespace getOwningNamespace() {
 		return getOriginalPortDefinition();
 	}
 
@@ -219,7 +220,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
+	public Namespace basicGetOwningNamespace() {
 		return basicGetOriginalPortDefinition();
 	}
 
@@ -228,7 +229,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
+	public void setOwningNamespace(Namespace newOwningNamespace) {
 		if (newOwningNamespace != null && !(newOwningNamespace instanceof PortDefinition)) {
 			throw new IllegalArgumentException("newOwningNamespace must be an instance of PortDefinition");
 		}

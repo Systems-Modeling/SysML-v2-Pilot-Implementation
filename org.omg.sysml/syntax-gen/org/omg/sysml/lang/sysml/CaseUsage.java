@@ -93,7 +93,8 @@ public interface CaseUsage extends CalculationUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameter</cpde> of this CaseUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base CaseDefinition Case from the Systems model library.</p>
+	 * <p>The <code>parameter</code> of this CaseUsage that is owned via a SubjectMembership, which must redefine, directly or indirectly, the <code>subject</code> parameter of the base CaseDefinition Case from the Systems model library.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subject Parameter</em>' reference.
 	 * @see #setSubjectParameter(Usage)

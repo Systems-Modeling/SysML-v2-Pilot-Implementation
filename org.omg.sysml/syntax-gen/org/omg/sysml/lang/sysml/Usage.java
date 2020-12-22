@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A Usage is a usage of a Definition. A Usage may only be an <code>ownedFeature</code> of a Definition or another Usage.</p>
  * 
- * <p>A Usage may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A Usage may also have Definitions nested in it, but this has no semantic significance, other than the nested namespace scoping resulting from the Usage being considered as a Package for any nested Definitions.</p>
+ * <p>A Usage may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A Usage may also have Definitions nested in it, but this has no semantic significance, other than the nested scoping resulting from the Usage being considered as a Namespace for any nested Definitions.</p>
  * 
  * <p>However, if a Usage has <code>isVariation</code> = true, then it represents a <em>variation point</em> Usage. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Usage by VariantMembership Relationships. Rather than being <code>features</code> of the Usage, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for the variation point Usage.</p>
  * <!-- end-model-doc -->
@@ -43,6 +43,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedState <em>Nested State</em>}</li>
@@ -68,7 +69,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedViewpoint <em>Nested Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -189,7 +190,7 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -459,7 +460,7 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Package#getOwnedMember() <em>Owned Member</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -774,6 +775,29 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<VerificationCaseUsage> getNestedVerificationCase();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Enumeration</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.EnumerationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedAttribute() <em>Nested Attribute</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The EnumerationUsages that are <code>nestedUsages</code> of this Usage.<p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Enumeration</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedEnumeration()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='enumerationOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<EnumerationUsage> getNestedEnumeration();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

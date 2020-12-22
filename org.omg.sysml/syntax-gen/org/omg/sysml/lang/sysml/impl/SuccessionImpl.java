@@ -23,22 +23,17 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -59,7 +54,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
 public class SuccessionImpl extends ConnectorImpl implements Succession {
 
 	public static final String SUCCESSION_SUBSETTING_BASE_DEFAULT = "Occurrences::successions";
-	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -143,9 +137,9 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	 * @generated NOT
 	 */
 	public Step basicGetTransitionStep() {
-		Type owningType = getOwningType();
-		return owningType instanceof TransitionUsage?
-				(Step)owningType: null;
+		Namespace owner = getOwningNamespace();
+		return owner instanceof TransitionUsage?
+				(Step)owner: null;
 	}
 
 	/**
@@ -161,22 +155,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 	@Override
 	protected String getDefaultSupertype() {
 		return SUCCESSION_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		Type owningType = getOwningType();
-		return !(owningType instanceof TransitionUsage)? super.getRelevantFeatures(type):
-			   type == owningType? Collections.singletonList(this):
-			   Collections.singletonList((Feature)getDefaultType(TRANSITION_LINK_FEATURE));
-	}
-	
-	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		Type owningType = getOwningType();
-		return owningType instanceof TransitionUsage && type == owningType?
-				Collections.singletonList(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
-				super.getGeneralTypes(type, skip);
 	}
 	
 	/**

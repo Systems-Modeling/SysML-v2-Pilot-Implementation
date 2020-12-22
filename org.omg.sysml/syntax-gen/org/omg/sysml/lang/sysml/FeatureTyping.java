@@ -61,6 +61,7 @@ public interface FeatureTyping extends Generalization {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The Type that is being applied by this FeatureTyping.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Type)

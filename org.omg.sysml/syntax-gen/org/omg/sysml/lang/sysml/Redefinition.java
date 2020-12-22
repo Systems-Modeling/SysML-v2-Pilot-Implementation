@@ -59,7 +59,8 @@ public interface Redefinition extends Subsetting {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is redefining another Feature linked by this Redefinition.</p>
+	 * <p>The Feature that is redefining the <code>redefinedFeature</code> of this Redefinition.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefining Feature</em>' reference.
 	 * @see #setRedefiningFeature(Feature)
@@ -96,7 +97,8 @@ public interface Redefinition extends Subsetting {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that is redefined by another Feature linked by this Redefinition.</p>
+	 * <p>The Feature that is redefined by the <code>redefiningFeature</code> of this Redefinition.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Redefined Feature</em>' reference.
 	 * @see #setRedefinedFeature(Feature)

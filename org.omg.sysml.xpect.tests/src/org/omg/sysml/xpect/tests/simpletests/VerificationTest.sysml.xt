@@ -19,7 +19,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Actions.sysml"}
 		File {from ="/library.systems/Calculations.sysml"}
 		File {from ="/library.systems/Cases.sysml"}
-		File {from ="/library.systems/Verifications.sysml"}
+		File {from ="/library.systems/VerificationCases.sysml"}
 	}
 	Workspace {
 		JavaProject {
@@ -42,7 +42,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Actions.sysml"}
 				File {from ="/library.systems/Calculations.sysml"}
 				File {from ="/library.systems/Cases.sysml"}
-				File {from ="/library.systems/Verifications.sysml"}
+				File {from ="/library.systems/VerificationCases.sysml"}
 			}
 		}
 	}
@@ -69,7 +69,7 @@ package VerificationTest {
 			verify requirement : R;
 		}
 		
-		Verifications::PassIf(v::m == 0)
+		VerificationCases::PassIf(v::m == 0)
 	}
 	
 	verification def VerificationPlan {

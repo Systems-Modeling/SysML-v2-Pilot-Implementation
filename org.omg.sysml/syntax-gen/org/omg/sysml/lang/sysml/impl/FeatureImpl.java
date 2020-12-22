@@ -916,7 +916,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (owningType instanceof BindingConnector) {
 			Feature relatedFeature = ((BindingConnectorImpl)owningType).getRelatedFeatureFor(this);
 			if (relatedFeature != null) {
-				return relatedFeature;
+				return null;
 			}
 		}
 		return super.getDefaultType(defaultNames);
@@ -930,6 +930,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	@Override
 	public void transform() {
+		forceComputeRedefinitions();
 		super.transform();
 		getEffectiveName();
 		getValueConnector();

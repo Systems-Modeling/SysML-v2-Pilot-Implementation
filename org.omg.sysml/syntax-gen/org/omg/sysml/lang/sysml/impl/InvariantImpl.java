@@ -91,13 +91,12 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		return assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
 	}
 
-	public static BindingConnector getAssertionConnectorFor(Feature feature, BindingConnector assertionConnector, Feature result) {
-		Feature literalBoolean = feature.getOwnedFeature().stream().
+	public static BindingConnector getAssertionConnectorFor(FeatureImpl feature, BindingConnector assertionConnector, Feature result) {
+		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
 				filter(f->f instanceof LiteralBoolean).
 				findFirst().orElse(null);
 		if (literalBoolean != null) {
-			assertionConnector = BlockExpressionImpl.updateBindingConnectorFor(
-					feature, assertionConnector, result, ((ExpressionImpl)literalBoolean).getResult());
+			assertionConnector = feature.makeBinding(assertionConnector, result, literalBoolean.getResult());
 		}
 		return assertionConnector;
 	}

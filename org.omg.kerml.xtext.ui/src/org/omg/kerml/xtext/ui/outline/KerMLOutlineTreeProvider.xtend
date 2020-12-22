@@ -385,6 +385,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
+		createImplicitGeneralizationNodes(parentNode, type)
+		_createChildren(parentNode, type as Namespace)
+	}
+	
+	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
 		(type as TypeImpl).forEachImplicitGeneralType[eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
@@ -405,7 +410,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				)
 			}
 		]
-		_createChildren(parentNode, type as Namespace)
 	}
 	
 	def _isLeaf(Association association) {
@@ -427,7 +431,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
-		_createChildren(parentNode, expression as Type)
+		createImplicitGeneralizationNodes(parentNode, expression)
 		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
 				_image(relationship), 

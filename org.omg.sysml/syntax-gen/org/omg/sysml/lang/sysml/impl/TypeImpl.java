@@ -1073,7 +1073,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return connector;
 	}
 	
-	// Other Methods
+	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
+		if (connector == null) {
+			connector = addOwnedBindingConnector(source, target);
+		} else {
+			((BindingConnectorImpl)connector).update(null, source, target);
+		}
+		return connector;
+	}
+	
+// Other Methods
 	
 	@Override
 	public void transform() {

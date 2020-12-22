@@ -5665,17 +5665,17 @@ ruleSourceItemFlowMember returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getSourceItemFlowMemberAccess().getOwnedMemberFeature_compSourceItemFlowParserRuleCall_0());
+				newCompositeNode(grammarAccess.getSourceItemFlowMemberAccess().getOwnedMemberElement_compSourceItemFlowParserRuleCall_0());
 			}
-			lv_ownedMemberFeature_comp_0_0=ruleSourceItemFlow
+			lv_ownedMemberElement_comp_0_0=ruleSourceItemFlow
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getSourceItemFlowMemberRule());
 				}
 				set(
 					$current,
-					"ownedMemberFeature_comp",
-					lv_ownedMemberFeature_comp_0_0,
+					"ownedMemberElement_comp",
+					lv_ownedMemberElement_comp_0_0,
 					"org.omg.sysml.xtext.SysML.SourceItemFlow");
 				afterParserOrEnumRuleCall();
 			}
@@ -13769,17 +13769,17 @@ ruleGuardedTargetSuccession returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getGuardedTargetSuccessionAccess().getOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getGuardedTargetSuccessionAccess().getOwnedMembership_compTransitionSuccessionMemberParserRuleCall_2_0());
 				}
-				lv_ownedFeatureMembership_comp_2_0=ruleTransitionSuccessionMember
+				lv_ownedMembership_comp_2_0=ruleTransitionSuccessionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getGuardedTargetSuccessionRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_2_0,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_2_0,
 						"org.omg.sysml.xtext.SysML.TransitionSuccessionMember");
 					afterParserOrEnumRuleCall();
 				}
@@ -13811,17 +13811,17 @@ ruleDefaultTargetSuccession returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDefaultTargetSuccessionAccess().getOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getDefaultTargetSuccessionAccess().getOwnedMembership_compTransitionSuccessionMemberParserRuleCall_1_0());
 				}
-				lv_ownedFeatureMembership_comp_1_0=ruleTransitionSuccessionMember
+				lv_ownedMembership_comp_1_0=ruleTransitionSuccessionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDefaultTargetSuccessionRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_1_0,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_1_0,
 						"org.omg.sysml.xtext.SysML.TransitionSuccessionMember");
 					afterParserOrEnumRuleCall();
 				}
@@ -13917,17 +13917,17 @@ ruleGuardedSuccession returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getGuardedSuccessionAccess().getOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getGuardedSuccessionAccess().getOwnedMembership_compTransitionSuccessionMemberParserRuleCall_5_0());
 				}
-				lv_ownedFeatureMembership_comp_6_0=ruleTransitionSuccessionMember
+				lv_ownedMembership_comp_6_0=ruleTransitionSuccessionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getGuardedSuccessionRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_6_0,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_6_0,
 						"org.omg.sysml.xtext.SysML.TransitionSuccessionMember");
 					afterParserOrEnumRuleCall();
 				}
@@ -15592,17 +15592,17 @@ ruleTransitionUsage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedMembership_compTransitionSuccessionMemberParserRuleCall_7_0());
 				}
-				lv_ownedFeatureMembership_comp_9_0=ruleTransitionSuccessionMember
+				lv_ownedMembership_comp_9_0=ruleTransitionSuccessionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTransitionUsageRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_9_0,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_9_0,
 						"org.omg.sysml.xtext.SysML.TransitionSuccessionMember");
 					afterParserOrEnumRuleCall();
 				}
@@ -15712,17 +15712,17 @@ ruleTargetTransitionUsage returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTargetTransitionUsageAccess().getOwnedFeatureMembership_compTransitionSuccessionMemberParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getTargetTransitionUsageAccess().getOwnedMembership_compTransitionSuccessionMemberParserRuleCall_4_0());
 				}
-				lv_ownedFeatureMembership_comp_5_0=ruleTransitionSuccessionMember
+				lv_ownedMembership_comp_5_0=ruleTransitionSuccessionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTargetTransitionUsageRule());
 					}
 					add(
 						$current,
-						"ownedFeatureMembership_comp",
-						lv_ownedFeatureMembership_comp_5_0,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_5_0,
 						"org.omg.sysml.xtext.SysML.TransitionSuccessionMember");
 					afterParserOrEnumRuleCall();
 				}
@@ -16095,17 +16095,17 @@ ruleTransitionSuccessionMember returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getTransitionSuccessionMemberAccess().getOwnedMemberFeature_compTransitionSuccessionParserRuleCall_0());
+				newCompositeNode(grammarAccess.getTransitionSuccessionMemberAccess().getOwnedMemberElement_compTransitionSuccessionParserRuleCall_0());
 			}
-			lv_ownedMemberFeature_comp_0_0=ruleTransitionSuccession
+			lv_ownedMemberElement_comp_0_0=ruleTransitionSuccession
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getTransitionSuccessionMemberRule());
 				}
 				set(
 					$current,
-					"ownedMemberFeature_comp",
-					lv_ownedMemberFeature_comp_0_0,
+					"ownedMemberElement_comp",
+					lv_ownedMemberElement_comp_0_0,
 					"org.omg.sysml.xtext.SysML.TransitionSuccession");
 				afterParserOrEnumRuleCall();
 			}

@@ -538,12 +538,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	}
 	
 	private void computeFeaturingType() {
-		Type contextType = getContextType();
-		if (contextType != null && contextType != getOwningType()) {
-			if (getOwnedTypeFeaturing().isEmpty()) {
-				addFeaturingType(contextType);
-			} else {
-				updateFeaturingTypes(Collections.singletonList(contextType));
+		if (getOwningType() == null) {
+			Type contextType = getContextType();
+			if (contextType != null) {
+				if (getOwnedTypeFeaturing().isEmpty()) {
+					addFeaturingType(contextType);
+				} else {
+					updateFeaturingTypes(Collections.singletonList(contextType));
+				}
 			}
 		}
 	}

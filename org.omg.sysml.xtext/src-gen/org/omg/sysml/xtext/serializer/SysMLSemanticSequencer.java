@@ -553,20 +553,12 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_SnapshotFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getSourceItemFlowMemberRule()) {
-					sequence_SourceItemFlowMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getTimeSliceFeatureMemberRule()) {
 					sequence_TimeSliceFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTransitionSourceMemberRule()) {
 					sequence_TransitionSourceMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTransitionSuccessionMemberRule()) {
-					sequence_TransitionSuccessionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTrueLiteralMemberRule()) {
@@ -827,6 +819,14 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else if (rule == grammarAccess.getSatisfactionConnectorMemberRule()) {
 					sequence_SatisfactionConnectorMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSourceItemFlowMemberRule()) {
+					sequence_SourceItemFlowMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTransitionSuccessionMemberRule()) {
+					sequence_TransitionSuccessionMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else break;
@@ -3896,8 +3896,8 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (ownedFeatureMembership_comp+=GuardExpressionMember ownedFeatureMembership_comp+=TransitionSuccessionMember) | 
-	 *         ownedFeatureMembership_comp+=TransitionSuccessionMember
+	 *         (ownedFeatureMembership_comp+=GuardExpressionMember ownedMembership_comp+=TransitionSuccessionMember) | 
+	 *         ownedMembership_comp+=TransitionSuccessionMember
 	 *     )
 	 */
 	protected void sequence_DefaultTargetSuccession_GuardedTargetSuccession(ISerializationContext context, TransitionUsage semanticObject) {
@@ -3910,7 +3910,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     DefaultTargetSuccession returns TransitionUsage
 	 *
 	 * Constraint:
-	 *     ownedFeatureMembership_comp+=TransitionSuccessionMember
+	 *     ownedMembership_comp+=TransitionSuccessionMember
 	 */
 	protected void sequence_DefaultTargetSuccession(ISerializationContext context, TransitionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -5954,7 +5954,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=TransitionSourceMember 
 	 *         ownedFeatureMembership_comp+=GuardExpressionMember 
-	 *         ownedFeatureMembership_comp+=TransitionSuccessionMember
+	 *         ownedMembership_comp+=TransitionSuccessionMember
 	 *     )
 	 */
 	protected void sequence_GuardedSuccession_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypedBy_Typings(ISerializationContext context, TransitionUsage semanticObject) {
@@ -5967,7 +5967,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     GuardedTargetSuccession returns TransitionUsage
 	 *
 	 * Constraint:
-	 *     (ownedFeatureMembership_comp+=GuardExpressionMember ownedFeatureMembership_comp+=TransitionSuccessionMember)
+	 *     (ownedFeatureMembership_comp+=GuardExpressionMember ownedMembership_comp+=TransitionSuccessionMember)
 	 */
 	protected void sequence_GuardedTargetSuccession(ISerializationContext context, TransitionUsage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -6715,7 +6715,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedImport_comp+=EmptyImport ownedFeatureMembership_comp+=TriggerActionMember)? 
 	 *         ownedFeatureMembership_comp+=GuardExpressionMember? 
 	 *         ownedFeatureMembership_comp+=EffectBehaviorMember? 
-	 *         ownedFeatureMembership_comp+=TransitionSuccessionMember
+	 *         ownedMembership_comp+=TransitionSuccessionMember
 	 *     )
 	 */
 	protected void sequence_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TransitionUsage_TypedBy_Typings(ISerializationContext context, TransitionUsage semanticObject) {
@@ -7902,18 +7902,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     SourceItemFlowMember returns FeatureMembership
+	 *     SourceItemFlowMember returns Membership
 	 *
 	 * Constraint:
-	 *     ownedMemberFeature_comp=SourceItemFlow
+	 *     ownedMemberElement_comp=SourceItemFlow
 	 */
-	protected void sequence_SourceItemFlowMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_SourceItemFlowMember(ISerializationContext context, Membership semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSourceItemFlowMemberAccess().getOwnedMemberFeature_compSourceItemFlowParserRuleCall_0(), semanticObject.getOwnedMemberFeature_comp());
+		feeder.accept(grammarAccess.getSourceItemFlowMemberAccess().getOwnedMemberElement_compSourceItemFlowParserRuleCall_0(), semanticObject.getOwnedMemberElement_comp());
 		feeder.finish();
 	}
 	
@@ -7972,7 +7972,7 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (ownedImport_comp+=EmptyImport ownedFeatureMembership_comp+=TriggerActionMember)? 
 	 *         ownedFeatureMembership_comp+=GuardExpressionMember? 
 	 *         ownedFeatureMembership_comp+=EffectBehaviorMember? 
-	 *         ownedFeatureMembership_comp+=TransitionSuccessionMember
+	 *         ownedMembership_comp+=TransitionSuccessionMember
 	 *     )
 	 */
 	protected void sequence_TargetTransitionUsage(ISerializationContext context, TransitionUsage semanticObject) {
@@ -8030,18 +8030,18 @@ public class SysMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     TransitionSuccessionMember returns FeatureMembership
+	 *     TransitionSuccessionMember returns Membership
 	 *
 	 * Constraint:
-	 *     ownedMemberFeature_comp=TransitionSuccession
+	 *     ownedMemberElement_comp=TransitionSuccession
 	 */
-	protected void sequence_TransitionSuccessionMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_TransitionSuccessionMember(ISerializationContext context, Membership semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTransitionSuccessionMemberAccess().getOwnedMemberFeature_compTransitionSuccessionParserRuleCall_0(), semanticObject.getOwnedMemberFeature_comp());
+		feeder.accept(grammarAccess.getTransitionSuccessionMemberAccess().getOwnedMemberElement_compTransitionSuccessionParserRuleCall_0(), semanticObject.getOwnedMemberElement_comp());
 		feeder.finish();
 	}
 	

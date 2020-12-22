@@ -613,8 +613,8 @@ FeatureValue returns SysML::FeatureValue :
 	'=' value_comp = OwnedExpression
 ;
 
-SourceItemFlowMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = SourceItemFlow
+SourceItemFlowMember returns SysML::Membership :
+	ownedMemberElement_comp = SourceItemFlow
 ;
 
 SourceItemFlow returns SysML::ItemFlow :
@@ -1356,18 +1356,18 @@ TargetSuccession returns SysML::Succession :
 
 GuardedTargetSuccession returns SysML::TransitionUsage :
 	ownedFeatureMembership_comp += GuardExpressionMember
-	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+	'then' ownedMembership_comp += TransitionSuccessionMember
 ;
 
 DefaultTargetSuccession returns SysML::TransitionUsage :
-	'else' ownedFeatureMembership_comp += TransitionSuccessionMember
+	'else' ownedMembership_comp += TransitionSuccessionMember
 ;
 
 GuardedSuccession returns SysML::TransitionUsage :
 	SuccessionKeyword ( UsageDeclaration? 'first' )? 
 	ownedFeatureMembership_comp += TransitionSourceMember 
 	ownedFeatureMembership_comp += GuardExpressionMember
-	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+	'then' ownedMembership_comp += TransitionSuccessionMember
 ;
 
 /* STATES */
@@ -1509,7 +1509,7 @@ TransitionUsage returns SysML::TransitionUsage :
 	  ownedFeatureMembership_comp += TriggerActionMember )?
 	( ownedFeatureMembership_comp += GuardExpressionMember )?
 	( ownedFeatureMembership_comp += EffectBehaviorMember )?
-	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+	'then' ownedMembership_comp += TransitionSuccessionMember
 ;
 
 TargetTransitionUsage returns SysML::TransitionUsage :
@@ -1517,7 +1517,7 @@ TargetTransitionUsage returns SysML::TransitionUsage :
 	  ownedFeatureMembership_comp += TriggerActionMember )?
 	( ownedFeatureMembership_comp += GuardExpressionMember )?
 	( ownedFeatureMembership_comp += EffectBehaviorMember )?
-	'then' ownedFeatureMembership_comp += TransitionSuccessionMember
+	'then' ownedMembership_comp += TransitionSuccessionMember
 ;
 
 EmptyImport returns SysML::Import :
@@ -1561,8 +1561,8 @@ EffectBehaviorUsage returns SysML::ActionUsage :
 	  EmptyActionUsage | PerformedActionUsage ( '{' ActionBodyItem* '}' )?
 ;
 
-TransitionSuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TransitionSuccession
+TransitionSuccessionMember returns SysML::Membership :
+	ownedMemberElement_comp = TransitionSuccession
 ;
 
 TransitionSuccession returns SysML::Succession :

@@ -277,13 +277,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	// Utility methods
 	
 	@Override
-	public List<Feature> getOwnedParameters() {
-//		computeInput();
-//		computeOutput();
-		return super.getOwnedParameters();
-	}
-	
-	@Override
 	public void transform() {
 		super.transform();
 		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {

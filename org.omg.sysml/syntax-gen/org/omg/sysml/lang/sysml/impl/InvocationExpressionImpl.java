@@ -137,7 +137,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			}
 			Expression argument = getArgumentForInput(arguments, input, i);
 			if (argument != null) {
-				argumentConnectors[i] = makeBinding(argumentConnectors[i], argument, input);
+				argumentConnectors[i] = makeResultBinding(argumentConnectors[i], argument, input);
 				i++;
 			}
 		}

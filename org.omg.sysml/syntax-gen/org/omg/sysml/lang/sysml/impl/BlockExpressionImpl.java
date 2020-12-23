@@ -29,7 +29,6 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Block
@@ -67,27 +66,13 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	}
 
 	public static BindingConnector getOrCreateResultConnectorFor(
-			Type owningType, BindingConnector resultConnector, Feature result) {
+			TypeImpl type, BindingConnector resultConnector, Feature result) {
 		Expression resultExpression = 
-				(Expression)((TypeImpl)owningType).getOwnedFeatureByMembership(ResultExpressionMembership.class);
+				(Expression)type.getOwnedFeatureByMembership(ResultExpressionMembership.class);
 		if (resultExpression != null) {
-			resultConnector = updateBindingConnectorFor(
-					owningType, resultConnector, resultExpression, result);
+			resultConnector = type.makeResultBinding(resultConnector, resultExpression, result);
 		}
 		return resultConnector;
-	}
-	
-	public static BindingConnector updateBindingConnectorFor(
-			Type owningType, BindingConnector connector, Expression sourceExpression, Feature target) {
-		((ElementImpl)sourceExpression).transform();
-		Feature source = sourceExpression.getResult();
-		if (connector == null) {
-			connector = ((TypeImpl)owningType).addOwnedBindingConnector(source, target);
-		} else {
-			((ConnectorImpl) connector).setRelatedFeature(0, source);
-			((ConnectorImpl) connector).setRelatedFeature(1, target);
-		}
-		return connector;
 	}
 
 	@Override

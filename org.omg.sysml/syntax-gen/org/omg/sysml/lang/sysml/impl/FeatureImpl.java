@@ -969,20 +969,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 	}
 	
-	public BindingConnector makeBinding(BindingConnector connector, Expression sourceExpression, Feature target) {
-		((ElementImpl)sourceExpression).transform();
-		return makeBinding(connector, sourceExpression.getResult(), target);
-	}
-	
-	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
-		if (connector == null) {
-			connector = addOwnedBindingConnector(source, target);
-		} else {
-			((BindingConnectorImpl)connector).update(null, source, target);
-		}
-		return connector;
-	}
-	
 	public BindingConnector makeValueBinding(BindingConnector connector, Expression sourceExpression) {
 		((ElementImpl)sourceExpression).transform();
 		Feature source = sourceExpression.getResult();

@@ -52,6 +52,7 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -1073,7 +1074,21 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return connector;
 	}
 	
-	// Other Methods
+	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
+		if (connector == null) {
+			connector = addOwnedBindingConnector(source, target);
+		} else {
+			((BindingConnectorImpl)connector).update(null, source, target);
+		}
+		return connector;
+	}
+	
+	public BindingConnector makeResultBinding(BindingConnector connector, Expression sourceExpression, Feature target) {
+		((ElementImpl)sourceExpression).transform();
+		return makeBinding(connector, sourceExpression.getResult(), target);
+	}
+		
+// Other Methods
 	
 	@Override
 	public void transform() {

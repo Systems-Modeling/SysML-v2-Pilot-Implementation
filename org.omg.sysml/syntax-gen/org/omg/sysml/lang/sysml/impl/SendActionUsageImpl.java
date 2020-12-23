@@ -142,7 +142,7 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	protected void computeTargetConnector() {
 		Expression sourceExpression = getSourceExpression();
 		if (sourceExpression != null) {
-			targetConnector = makeBinding(targetConnector, sourceExpression, getItemFeature());
+			targetConnector = makeResultBinding(targetConnector, sourceExpression, getItemFeature());
 		}
 	}
 	

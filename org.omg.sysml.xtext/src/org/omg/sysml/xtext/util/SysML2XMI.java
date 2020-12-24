@@ -49,7 +49,7 @@ public class SysML2XMI extends KerML2XMI {
 		super();
 	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(SYSML_XMI_EXTENSION, new XMIResourceFactoryImpl());
 		SysMLStandaloneSetup.doSetup();
-		this.addExtension(".sysml");
+		this.addExtension("." + SYSML_EXTENSION);
 	}
 
 	/**
@@ -60,11 +60,11 @@ public class SysML2XMI extends KerML2XMI {
 	 * @param 	inputPath		the path of a resource that is to be written to a corresponding output resource
 	 * @return	the path for the output resource
 	 */
+	@Override
 	protected String getOutputPath(String inputPath) {
-		String outputPath = inputPath;
-		int i = outputPath.lastIndexOf('.');
+		int i = inputPath.lastIndexOf('.');
 		if (i >= 0) {
-			String extension = outputPath.substring(i + 1);
+			String extension = inputPath.substring(i + 1);
 			if (SYSML_EXTENSION.equals(extension)) {
 				return inputPath.substring(0, i) + "." + SYSML_XMI_EXTENSION;
 			}

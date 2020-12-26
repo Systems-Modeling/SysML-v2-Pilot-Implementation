@@ -152,11 +152,11 @@ mapping SysML::Element::toEntity(): OWL::Entity disjuncts
 
 // Namespace
 
-query SysML::Package::URL(): String {
+query SysML::Namespace::URL(): String {
 	return 'http://www.omg.org/SysML/ontology/' + self.qualifiedName().replace(".", "/");
 }
 
-helper SysML::Package::mapToDeclarations() {
+helper SysML::Namespace::mapToDeclarations() {
 	self.ownedMembership.ownedMemberElement->mapToDeclarations();
 }
 
@@ -166,13 +166,13 @@ helper SysML::Package::mapToDeclarations() {
 //	log('  entity: ' + entity.toString());
 //}
 
-mapping SysML::Package::toDeclaration(): OWL::Declaration {
+mapping SysML::Namespace::toDeclaration(): OWL::Declaration {
 	entity := self.map toEntity();
 //	log('Mapping Namespace ' + valueOf(self.name) + ' to Declaration');
 //	log('  entity: ' + entity.toString());	
 }
 
-abstract mapping SysML::Package::toEntityBase(): OWL::Entity {
+abstract mapping SysML::Namespace::toEntityBase(): OWL::Entity {
 	entityIRI := self.IRI();
 }
 
@@ -244,7 +244,7 @@ helper SysML::Type::mapToDeclarations() {
 }
 
 mapping SysML::Type::toClass(): OWL::Class 
-	inherits SysML::Package::toEntityBase {
+	inherits SysML::Namespace::toEntityBase {
 	log('Mapping Class ' + valueOf(self.name()) + ' to Class ' + valueOf(entityIRI));
 	
 	self.ownedGeneralization->map toSubClassOf();
@@ -355,7 +355,7 @@ helper SysML::Feature::mapMultiplicity(objectProperty: OWL::ObjectProperty, doma
 }
 
 mapping SysML::Feature::toObjectProperty(): OWL::ObjectProperty  
-	inherits SysML::Package::toEntityBase {
+	inherits SysML::Namespace::toEntityBase {
 	log('Mapping Feature ' + valueOf(self.name) + ' to ObjectProperty ' + valueOf(entityIRI));
 
 	var owner = self.owner();

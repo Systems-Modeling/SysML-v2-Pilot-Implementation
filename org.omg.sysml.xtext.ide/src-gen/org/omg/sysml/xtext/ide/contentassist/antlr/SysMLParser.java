@@ -75,6 +75,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAttributeDefKeywordAccess().getAlternatives(), "rule__AttributeDefKeyword__Alternatives");
 			builder.put(grammarAccess.getAttributeUsageKeywordAccess().getAlternatives(), "rule__AttributeUsageKeyword__Alternatives");
 			builder.put(grammarAccess.getAttributeUsageAccess().getAlternatives_1(), "rule__AttributeUsage__Alternatives_1");
+			builder.put(grammarAccess.getEnumerationBodyAccess().getAlternatives(), "rule__EnumerationBody__Alternatives");
 			builder.put(grammarAccess.getItemRefUsageAccess().getAlternatives_1(), "rule__ItemRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getPartDefKeywordAccess().getAlternatives(), "rule__PartDefKeyword__Alternatives");
 			builder.put(grammarAccess.getPartRefUsageAccess().getAlternatives_1(), "rule__PartRefUsage__Alternatives_1");
@@ -272,6 +273,12 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAttributeUsageAccess().getGroup_1_0(), "rule__AttributeUsage__Group_1_0__0");
 			builder.put(grammarAccess.getAttributeUsageAccess().getGroup_1_1(), "rule__AttributeUsage__Group_1_1__0");
 			builder.put(grammarAccess.getAttributeVariantUsageAccess().getGroup(), "rule__AttributeVariantUsage__Group__0");
+			builder.put(grammarAccess.getEnumerationDefKeywordAccess().getGroup(), "rule__EnumerationDefKeyword__Group__0");
+			builder.put(grammarAccess.getEnumerationDefinitionAccess().getGroup(), "rule__EnumerationDefinition__Group__0");
+			builder.put(grammarAccess.getEnumerationBodyAccess().getGroup_1(), "rule__EnumerationBody__Group_1__0");
+			builder.put(grammarAccess.getEnumerationUsageMemberAccess().getGroup(), "rule__EnumerationUsageMember__Group__0");
+			builder.put(grammarAccess.getEnumeratedValueAccess().getGroup(), "rule__EnumeratedValue__Group__0");
+			builder.put(grammarAccess.getEnumerationUsageAccess().getGroup(), "rule__EnumerationUsage__Group__0");
 			builder.put(grammarAccess.getItemDefKeywordAccess().getGroup(), "rule__ItemDefKeyword__Group__0");
 			builder.put(grammarAccess.getItemDefinitionAccess().getGroup(), "rule__ItemDefinition__Group__0");
 			builder.put(grammarAccess.getItemUsageAccess().getGroup(), "rule__ItemUsage__Group__0");
@@ -711,6 +718,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSourceItemFlowAccess().getOwnedFeatureMembership_compAssignment_3(), "rule__SourceItemFlow__OwnedFeatureMembership_compAssignment_3");
 			builder.put(grammarAccess.getSourceItemFlowAccess().getOwnedFeatureMembership_compAssignment_4(), "rule__SourceItemFlow__OwnedFeatureMembership_compAssignment_4");
 			builder.put(grammarAccess.getReferenceVariantUsageAccess().getOwnedRelationship_compAssignment_1_0(), "rule__ReferenceVariantUsage__OwnedRelationship_compAssignment_1_0");
+			builder.put(grammarAccess.getEnumerationBodyAccess().getOwnedMembership_compAssignment_1_1(), "rule__EnumerationBody__OwnedMembership_compAssignment_1_1");
+			builder.put(grammarAccess.getEnumerationUsageMemberAccess().getOwnedVariantUsage_compAssignment_1(), "rule__EnumerationUsageMember__OwnedVariantUsage_compAssignment_1");
 			builder.put(grammarAccess.getItemRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ItemRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getPartRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__PartRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getPortDefinitionAccess().getOwnedMembership_compAssignment_3(), "rule__PortDefinition__OwnedMembership_compAssignment_3");

@@ -45,14 +45,12 @@ package VerificationCases {
 	
 	/**
 	 * VerdictKind is an enumeration of the possible results of a VerificationCase.
-	 * (NOTE: A variation is being used to mock up an enumeration until true
-	 * enumeration notation is introduced.)
 	 */
-	variation attribute def VerdictKind {
-		variant attribute pass;
-		variant attribute fail;
-		variant attribute inconclusive;
-		variant attribute error;
+	enum def VerdictKind {
+		pass;
+		fail;
+		inconclusive;
+		error;
 	}
 	
 	calc def PassIf(in isPassing : Boolean) {

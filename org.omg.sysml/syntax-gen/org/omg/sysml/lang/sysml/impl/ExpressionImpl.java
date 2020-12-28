@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -188,15 +189,18 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	protected void computeInput() {
 		if (getInput().isEmpty()) {
-			Type type = getExpressionType();
-			if (type != null) {
-				for (Feature parameter: type.getInput()) {
-					if (((FeatureImpl)parameter).isParameter() && parameter.getOwner() == type) {
-						createFeatureForParameter(parameter);
-					}
-				}
+			for (Feature parameter: getTypeParameters()) {
+				createFeatureForParameter(parameter);
 			}
 		}
+	}
+	
+	protected List<Feature> getTypeParameters() {
+		Type type = getExpressionType();
+		return type == null? Collections.emptyList():
+			   type.getInput().stream().
+				filter(input->((FeatureImpl)input).isParameter() && input.getOwner() == type).
+				collect(Collectors.toList());
 	}
 	
 	public Type getExpressionType() {
@@ -267,11 +271,25 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public Collection<Feature> getFeaturesRedefinedByType() {
-		// Note: Ensures that all owned inputs and outputs are computed
-		// before checking for redefined features.
-		computeInput();
-		computeOutput();
-		return super.getFeaturesRedefinedByType();
+		Collection<Feature> features = super.getFeaturesRedefinedByType();
+		
+		// If inputs and outputs have not been computed, add effectively
+		// redefined features from the Expression type, without actually
+		// computing the inputs and outputs.
+		if (getInput().isEmpty()) {
+			features.addAll(getTypeParameters());
+		}
+		if (getOutput().isEmpty()) {
+			Type type = getExpressionType();
+			if (type instanceof Function || type instanceof Expression) {
+				Feature result = ((TypeImpl)type).getResultParameter();
+				if (result != null) {
+					features.add(result);
+				}
+			}
+		}
+		
+		return features;
 	}
 	
 	// Utility methods

@@ -103,6 +103,13 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		}
 	}
 	
+	protected List<Feature> getTypeParameters() {
+		Type type = getExpressionType();
+		return type != null && !(type instanceof Function || type instanceof Expression)? 
+				getTypeFeatures(): 
+				super.getTypeParameters();
+	}
+	
 	public List<Feature> getTypeFeatures() {
 		Type type = getExpressionType();
 		List<Feature> typeFeatures = new ArrayList<>();

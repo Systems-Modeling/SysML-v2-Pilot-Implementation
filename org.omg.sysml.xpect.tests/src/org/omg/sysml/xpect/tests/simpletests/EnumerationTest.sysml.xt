@@ -1,0 +1,53 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Attributes.sysml"}
+ 	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Attributes.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package EnumerationTest {
+	
+	attribute def Color {
+		attribute val : ScalarValues::Natural;
+	}
+	
+	enum def ColorKind :> Color {
+		enum red {
+			:>> val = 0;
+		}
+		enum blue {
+			:>> val = 1;
+		}
+		enum green {
+			:>> val = 2;
+		}
+	}
+	
+	enum color : ColorKind;
+	attribute color1 : ColorKind = ColorKind::blue;
+	
+	enum def E1 { a; b; c; }
+	
+	enum def E2;
+	
+}

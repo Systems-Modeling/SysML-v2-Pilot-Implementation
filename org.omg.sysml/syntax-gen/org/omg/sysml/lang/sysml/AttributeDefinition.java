@@ -30,6 +30,8 @@ package org.omg.sysml.lang.sysml;
  *
  * <!-- begin-model-doc -->
  * <p>An AttributeDefinition is a Definition and a DataType of information about a quality or characteristic of a system or part of a system that has no independent identity other than its value. All <code>features</code> of an AttributeDefinition must have <code>isComposite</code> = <code>false</code>.</p>
+ * 
+ * <p>An AttributeDefinition must subclass, directly or indirectly, the base AttributeDefinition AttributeValue from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  *

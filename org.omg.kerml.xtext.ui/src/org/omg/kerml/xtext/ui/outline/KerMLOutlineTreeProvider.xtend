@@ -19,7 +19,6 @@ import org.omg.sysml.lang.sysml.LiteralUnbounded
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.OperatorExpression
-import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.Subsetting
@@ -33,6 +32,7 @@ import org.omg.sysml.lang.sysml.TextualRepresentation
 import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.TypeFeaturing
+import org.omg.sysml.lang.sysml.Namespace
 
 /**
  * Customization of the default outline structure.
@@ -112,8 +112,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
-		if (import_.importedPackage?.name !== null) {
-			text += ' ' + import_.importedPackage.name
+		if (import_.importedNamespace?.name !== null) {
+			text += ' ' + import_.importedNamespace.name
 		}
 		text
 	}
@@ -257,21 +257,21 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def boolean _isLeaf(Import _import) {
-		_import.importedPackage === null && _import.ownedElement.isEmpty
+		_import.importedNamespace === null && _import.ownedElement.isEmpty
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Import _import) {
 		super._createChildren(parentNode, _import)
-		var importedPackage = _import.importedPackage;
+		var importedPackage = _import.importedNamespace;
 		if (importedPackage !== null) {
 			createEObjectNode(parentNode, importedPackage, 
 				importedPackage._image, importedPackage._text, 
-				_import.importOwningPackage == importedPackage || importedPackage._isLeaf
+				_import.importOwningNamespace == importedPackage || importedPackage._isLeaf
 			)
 		}
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Package _package) {
+	def void _createChildren(IOutlineNode parentNode, Namespace _package) {
 		for (childElement : _package.eContents()) {
 			if (!(childElement instanceof Import || childElement instanceof Membership)) {
 				createNode(parentNode, childElement)
@@ -381,10 +381,15 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def _isLeaf(Type type) {
-	    _isLeaf(type as Package) && (type as TypeImpl).isImplicitGeneralTypesEmpty() 	
+	    _isLeaf(type as Namespace) && (type as TypeImpl).isImplicitGeneralTypesEmpty() 	
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
+		createImplicitGeneralizationNodes(parentNode, type)
+		_createChildren(parentNode, type as Namespace)
+	}
+	
+	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
 		(type as TypeImpl).forEachImplicitGeneralType[eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
@@ -405,7 +410,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				)
 			}
 		]
-		_createChildren(parentNode, type as Package)
 	}
 	
 	def _isLeaf(Association association) {
@@ -427,7 +431,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
-		_createChildren(parentNode, expression as Type)
+		createImplicitGeneralizationNodes(parentNode, expression)
 		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
 				_image(relationship), 

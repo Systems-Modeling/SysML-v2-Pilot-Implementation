@@ -60,7 +60,8 @@ public interface Subsetting extends Generalization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that has a more encompassing value set of the pair linked by this Subsetting.</p>
+	 * <p>The Feature that is subsetted by the <code>subsettingFeature</code> of this Subsetting.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subsetted Feature</em>' reference.
 	 * @see #setSubsettedFeature(Feature)
@@ -96,7 +97,8 @@ public interface Subsetting extends Generalization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose set of values is a subset of the set of values of the other member of the pair linked by this Subsetting.</p>
+	 * <p>The Feature that is a subset of the <code>subsettedFeature</code> of this Subsetting.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Subsetting Feature</em>' reference.
 	 * @see #setSubsettingFeature(Feature)
@@ -134,7 +136,8 @@ public interface Subsetting extends Generalization {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature whose set of values is a subset of the set of values of the other member of the pair linked by this Subsetting. It also owns the relationship.</p>
+	 * <p>The Feature that owns this Subsetting relationship, which must also be its <code>subsettingFeature</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature</em>' reference.
 	 * @see #setOwningFeature(Feature)

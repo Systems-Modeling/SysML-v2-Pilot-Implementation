@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A MultiplicityRange is a Multiplicity whose value is defined to be the (inclusive) range of natural numbers given by the result of a <code>lowerBound</code> Expression and the result of an <code>upperBound</code> Expression. The result of the <code>lowerBound</code> Expression shall be of type <em>Natural</em>, while the result of the <code>upperBound</code> Expression shall be of type <em>UnlimitedNatural</em>. If the result of the <code>upperBound</code> Expression is the unbounded value <code>*</code>, then the specified range includes all natural numbers greater than or equal to the <code>lowerBound</code> value.</p>
  * 
+ * bound->forAll(b | b.featuringType = self.featuringType)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -63,7 +64,8 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The Expression whose result provides the lower bound of MultiplicityRange. If no lowerBound Expression is given, then the lower bound shall have the same value as the upper bound, unless the upper bound is unbounded (*), in which case the lower bound shall be 0.
+	 * <p>The Expression whose result provides the lower bound of MultiplicityRange. If no <code>lowerBound</code> Expression is given, then the lower bound shall have the same value as the upper bound, unless the upper bound is unbounded (<code>*</code>), in which case the lower bound shall be 0.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Lower Bound</em>' reference.
 	 * @see #setLowerBound(Expression)
@@ -129,7 +131,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * This feature is a derived union.
 	 * <!-- begin-user-doc -->
@@ -139,7 +141,7 @@ public interface MultiplicityRange extends Multiplicity {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The bound Expressions of the MultiplicityRange. These shall be the only ownedFeatures of the MultiplicityRange.
+	 * <p>The bound Expressions of the MultiplicityRange. These shall be the only <code>ownedMembers</code> of the MultiplicityRange.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Bound</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMultiplicityRange_Bound()

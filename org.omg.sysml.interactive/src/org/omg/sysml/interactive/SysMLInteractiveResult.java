@@ -89,7 +89,7 @@ public class SysMLInteractiveResult {
 			if (rootElement.getName() != null) {
 				buffer.append(SysMLInteractiveUtil.formatElement(rootElement));
 			} else {
-				for (Element member: ((org.omg.sysml.lang.sysml.Package)rootElement).getMember()) {
+				for (Element member: ((org.omg.sysml.lang.sysml.Namespace)rootElement).getMember()) {
 					buffer.append(SysMLInteractiveUtil.formatElement(member));
 				}
 			}

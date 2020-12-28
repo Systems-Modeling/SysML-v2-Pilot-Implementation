@@ -51,7 +51,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements AnalysisCaseDefinition {
 	
-	private static final String ANALYSIS_CASE_DEFINITION_SUPERCLASS_DEFAULT = "Analyses::AnalysisCase";
+	private static final String ANALYSIS_CASE_DEFINITION_SUPERCLASS_DEFAULT = "AnalysisCases::AnalysisCase";
 
 	/**
 	 * <!-- begin-user-doc -->

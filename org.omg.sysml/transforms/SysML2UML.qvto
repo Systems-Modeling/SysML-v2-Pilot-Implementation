@@ -31,7 +31,7 @@ transformation SysML2UML(in sysml: SysML, out uml: UML);
 main() {
 	object Model {
 		name := "Model";
-		packagedElement := sysml.rootObjects()[SysML::Package]->
+		packagedElement := sysml.rootObjects()[SysML::Namespace]->
 			map toNamespace()[UML::PackageableElement];
 	};
 }
@@ -75,45 +75,39 @@ mapping SysML::Element::toClass(): UML::Class
 		SysML::Association::toAssociationClass,
 		SysML::Class::toClass;
 
-// Package
+// Namespace
 
-query SysML::Package::ownedMemberMemberships(): OrderedSet(SysML::Membership) {
+query SysML::Namespace::ownedMemberMemberships(): OrderedSet(SysML::Membership) {
 	return self.ownedMembership[ownedMemberElement <> null];
 }
 
-query SysML::Package::ownedFeatureMemberships(): OrderedSet(SysML::Membership) {
+query SysML::Namespace::ownedFeatureMemberships(): OrderedSet(SysML::Membership) {
 	return self.ownedMemberMemberships()[ownedMemberElement.oclIsKindOf(SysML::Feature)];
 }
 
-query SysML::Package::ownedMembers(): Sequence(SysML::Element) {
+query SysML::Namespace::ownedMembers(): Sequence(SysML::Element) {
 	return self.ownedMemberMemberships().ownedMemberElement;
 }
 
-query SysML::Package::members(): Sequence(SysML::Element) {
+query SysML::Namespace::members(): Sequence(SysML::Element) {
 	return self.ownedMembership.memberElement();
 }
 
-query SysML::Package::features(): Sequence(SysML::Feature) {
+query SysML::Namespace::features(): Sequence(SysML::Feature) {
 	return self.members()[SysML::Feature];
 }
 
-query SysML::Package::hasFeatures(): Boolean {
+query SysML::Namespace::hasFeatures(): Boolean {
 	return self.features()->notEmpty();
 }
 
-mapping SysML::Package::toNamespace(): UML::Namespace
+mapping SysML::Namespace::toNamespace(): UML::Namespace
 	disjuncts 
 		SysML::Association::toAssociationClass,
 		SysML::Class::toClass,
 		SysML::Package::toPackage;
 
-mapping SysML::Package::toPackage(): UML::Package
-	inherits SysML::Element::toNamedElement {
-	packagedElement += self.ownedMemberMemberships()->mapToPackageableElement();
-	packagedElement += self.features()->map toClass();
-}
-
-//query SysML::Package::namingOf(e: Element): Membership {
+//query SysML::Namespace::namingOf(e: Element): Membership {
 //	return self.membership![memberElement = e];
 //}
 
@@ -166,9 +160,17 @@ query toVisibilityKind(visibility : SysML::VisibilityKind): UML::VisibilityKind 
 		endif endif endif endif endif;
 }
 
+// Package
+
+mapping SysML::Package::toPackage(): UML::Package
+	inherits SysML::Element::toNamedElement {
+	packagedElement += self.ownedMemberMemberships()->mapToPackageableElement();
+	packagedElement += self.features()->map toClass();
+}
+
 // CLASSIFICATION
 
-// Category
+// Type
 
 abstract mapping SysML::Type::toClass(): UML::Class
 	inherits SysML::Element::toNamedElement 
@@ -332,8 +334,8 @@ constructor UML::ConnectorEnd::ConnectorEnd(feature: SysML::Feature) {
 	role := feature.late resolveone(UML::Property);
 	var element: SysML::Element := feature;
 	if element.owningMembership <> null and 
-		element.owningMembership.membershipOwningPackage.oclIsKindOf(SysML::Feature) then {
-		partWithPort := element.owningMembership.membershipOwningPackage.late resolveone(UML::Property);
+		element.owningMembership.membershipOwningNamespace.oclIsKindOf(SysML::Feature) then {
+		partWithPort := element.owningMembership.membershipOwningNamespace.late resolveone(UML::Property);
 	} endif;
 }
 

@@ -91,20 +91,27 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
-		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
+		return getAnnotatedElementFor(this);
+	}
+	
+	public static EList<Element> getAnnotatedElementFor(AnnotatingElement annotatingElement) {
+		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, (ElementImpl)annotatingElement, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
+		annotatingElement.getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
 		return annotatedElements;
 	}
 
 	@Override
 	public EList<Annotation> getAnnotation() {
-		EList<Annotation> annotations = getAnnotationGen();
+		return getAnnotationFor(this, getAnnotationGen());
+	}
+	
+	public static EList<Annotation> getAnnotationFor(AnnotatingElement annotatingElement, EList<Annotation> annotations) {
 		if (annotations.isEmpty()) {
-			Relationship owningRelationship = getOwningRelationship();
+			Relationship owningRelationship = annotatingElement.getOwningRelationship();
 			if (owningRelationship instanceof Annotation) {
 				annotations.add((Annotation)owningRelationship);
 			} else {
-				getOwnedRelationship().stream().
+				annotatingElement.getOwnedRelationship().stream().
 					filter(rel->rel instanceof Annotation).
 					map(Annotation.class::cast).
 					forEachOrdered(annotations::add);

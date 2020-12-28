@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Import</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An Import is a Relationship between an <code>importOwningPackage</code> and an <code>importedPackage</code> in which the visible member Elements of the <code>importedPackage</code> become imported <code>members</code> of the <code>importOwningPackage</code>. An Import may be <em>public,</em> in which case the imported <code>members</code> are &quot;re-exported&quot; as publicly visible <code>members</code> of the <code>importOwningPackage</code>, or it may be <em>private,</em> in which case the imported <code>members</code> are private to the <code>importOwningPackage</code>.</p>
+ * <p>An Import is a Relationship between an <code>importOwningNamespace</code> and an <code>importedNamespace</code> in which the visible member Elements of the <code>importedNamespace</code> become imported <code>members</code> of the <code>importOwningNamespace</code>. An Import may be <em>public,</em> in which case the imported <code>members</code> are &quot;re-exported&quot; as publicly visible <code>members</code> of the <code>importOwningNamespace</code>, or it may be <em>private,</em> in which case the imported <code>members</code> are private to the <code>importOwningNamespace</code>.</p>
  * 
  * <!-- end-model-doc -->
  *
@@ -37,9 +37,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportedPackage <em>Imported Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportedNamespace <em>Imported Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Import#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import Owning Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#isRecursive <em>Is Recursive</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Import#getImportOwningNamespace <em>Import Owning Namespace</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport()
@@ -48,7 +49,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Import extends Relationship {
 	/**
-	 * Returns the value of the '<em><b>Imported Package</b></em>' reference.
+	 * Returns the value of the '<em><b>Imported Namespace</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -56,33 +57,30 @@ public interface Import extends Relationship {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getTarget() <em>Target</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imported Package</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Package whose visible <tt>members</tt> are imported by this Import.</p>
+	 * <p>The Namespace whose visible <code>members</code> are imported by this Import.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Imported Package</em>' reference.
-	 * @see #setImportedPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportedPackage()
+	 * @return the value of the '<em>Imported Namespace</em>' reference.
+	 * @see #setImportedNamespace(Namespace)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportedNamespace()
 	 * @model required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='import'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Package getImportedPackage();
+	Namespace getImportedNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportedPackage <em>Imported Package</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Imported Package</em>' reference.
-	 * @see #getImportedPackage()
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportedNamespace <em>Imported Namespace</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Imported Namespace</em>' reference.
+	 * @see #getImportedNamespace()
 	 * @generated
 	 */
-	void setImportedPackage(org.omg.sysml.lang.sysml.Package value);
+	void setImportedNamespace(Namespace value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
@@ -95,7 +93,7 @@ public interface Import extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether the imported <code>members</code> from this Import become public or private <code>members</code> of the <code>importOwningPackage</code>.</p>
+	 * <p>Whether the imported <code>members</code> from this Import become public or private <code>members</code> of the <code>importOwningNamespace</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
@@ -120,8 +118,34 @@ public interface Import extends Relationship {
 	void setVisibility(VisibilityKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Import Owning Package</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Package#getOwnedImport_comp <em>Owned Import comp</em>}'.
+	 * Returns the value of the '<em><b>Is Recursive</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether to recursively import Memberships from all visible, owned sub-namespaces of the <code>importedNamespace</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Recursive</em>' attribute.
+	 * @see #setIsRecursive(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_IsRecursive()
+	 * @model default="false" dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isRecursive();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#isRecursive <em>Is Recursive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Recursive</em>' attribute.
+	 * @see #isRecursive()
+	 * @generated
+	 */
+	void setIsRecursive(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Import Owning Namespace</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport_comp <em>Owned Import comp</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -130,41 +154,35 @@ public interface Import extends Relationship {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Import Owning Package</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Package into which <tt>members</tt> are imported by this Import, which must be the <tt>owningRelatedElement</tt> of the Import.</p>
+	 * <p>The Namespace into which <code>members</cpde> are imported by this Import, which must be the <code>owningRelatedElement</code> of the Import.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Import Owning Package</em>' container reference.
-	 * @see #setImportOwningPackage(org.omg.sysml.lang.sysml.Package)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningPackage()
-	 * @see org.omg.sysml.lang.sysml.Package#getOwnedImport_comp
+	 * @return the value of the '<em>Import Owning Namespace</em>' container reference.
+	 * @see #setImportOwningNamespace(Namespace)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningNamespace()
+	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedImport_comp
 	 * @model opposite="ownedImport_comp" transient="false" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	org.omg.sysml.lang.sysml.Package getImportOwningPackage();
+	Namespace getImportOwningNamespace();
 
 	/**
-	 * Sets the value of the
-	 * '{@link org.omg.sysml.lang.sysml.Import#getImportOwningPackage <em>Import
-	 * Owning Package</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value the new value of the '<em>Import Owning Package</em>' reference.
-	 * @see #getImportOwningPackage()
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportOwningNamespace <em>Import Owning Namespace</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Import Owning Namespace</em>' container reference.
+	 * @see #getImportOwningNamespace()
 	 * @generated
 	 */
-	void setImportOwningPackage(org.omg.sysml.lang.sysml.Package value);
+	void setImportOwningNamespace(Namespace value);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Returns the Memberships of the <code>importedPackage</code> whose <code>memberElements</code> are to become imported <code>members</code> of the <code>importOwningPackage</code>. By default, this is the set of publicly visible Memberships of the <code>importedPackage</code>, but this may be overridden in specializations of Import</p>
+	 * <p>Returns the Memberships of the <code>importedNamespace</code> whose <code>memberElements</code> are to become imported <code>members</code> of the <code>importOwningNamespace</code>. By default, this is the set of publicly visible Memberships of the <code>importedNamespace</code>, but this may be overridden in specializations of Import</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model

@@ -64,7 +64,7 @@ public interface Step extends Feature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>This is the Behavior that types the Step.</p>
+	 * <p>The Behaviors that type this Step.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Behavior</em>' reference list.
@@ -91,6 +91,10 @@ public interface Step extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>features</code> of this Step whose <code>owningFeatureMemberships</code> are <code>ParameterMemberships</code>. Every <code>parameter</code> of a Step must either be inherited from a <code>behavior</code> of the Step or directly or indirectly redefine a parameter of a <code>behavior</code> of the Step.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStep_Parameter()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

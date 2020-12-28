@@ -38,7 +38,6 @@ import org.eclipse.xtext.scoping.IScope
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.Generalization
 import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.Package
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
@@ -47,6 +46,7 @@ import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
+import org.omg.sysml.lang.sysml.Namespace
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -92,10 +92,10 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		} else if (context instanceof Generalization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
-		    context.scope_Namespace(context.membershipOwningPackage, context, reference)
+		    context.scope_Namespace(context.membershipOwningNamespace, context, reference)
 		} else if (context instanceof Import)
-			context.scope_Namespace(context.importOwningPackage, context, reference)
-		else if (context instanceof Package) 
+			context.scope_Namespace(context.importOwningNamespace, context, reference)
+		else if (context instanceof Namespace) 
 			context.scopeFor(reference, null, true, false, null)
 		else if (context instanceof Element)
 			context.scope_owningNamespace(context, reference)
@@ -103,15 +103,15 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			super.getScope(context, reference)
 	}
 	
-	def static Package getParentPackage(Element element) {
-		EcoreUtil2.getContainerOfType(element.eContainer, Package)
+	def static Namespace getParentNamespace(Element element) {
+		EcoreUtil2.getContainerOfType(element.eContainer, Namespace)
 	}
 	
 	def scope_owningNamespace(Element element, EObject context, EReference reference) {
-		element.scope_Namespace(element?.parentPackage, context, reference)
+		element.scope_Namespace(element?.parentNamespace, context, reference)
 	}
 
-	def scope_Namespace(Element element, Package namespace, EObject context, EReference reference) {
+	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference) {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
@@ -157,8 +157,8 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			element.scope_Namespace(qpe, context, reference)
 	}
 	
-	def IScope scopeFor(Package pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
-		val parent = pack.parentPackage
+	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
+		val parent = pack.parentNamespace
 		val outerscope = 
 			if (parent === null) // Root Package
 				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)

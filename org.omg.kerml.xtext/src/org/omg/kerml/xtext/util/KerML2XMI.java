@@ -48,13 +48,14 @@ import org.omg.sysml.util.SysMLUtil;
  */
 public class KerML2XMI extends SysMLUtil {
 	
+	public static final String KERML_EXTENSION = "kerml";
 	public static final String KERML_XMI_EXTENSION = "kermlx";
 	
 	public KerML2XMI() {
 		super();
 	    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(KERML_XMI_EXTENSION, new XMIResourceFactoryImpl());
 		KerMLStandaloneSetup.doSetup();
-		this.addExtension(".kerml");
+		this.addExtension("." + KERML_EXTENSION);
 	}
 	
 	/**

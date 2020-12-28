@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -748,9 +749,9 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	@Override
 	public EList<Element> getSource() {
 		EList<Element> source = new UniqueEList<Element>();
-		org.omg.sysml.lang.sysml.Package membershipOwningPackage = getMembershipOwningPackage();
-		if (membershipOwningPackage != null) {
-			source.add(membershipOwningPackage);
+		Namespace membershipOwningNamespace = getMembershipOwningNamespace();
+		if (membershipOwningNamespace != null) {
+			source.add(membershipOwningNamespace);
 		}
 		return new UnionEObjectEList<Element>(this, SysMLPackage.Literals.RELATIONSHIP__SOURCE, source.size(), source.toArray());
 	}
@@ -795,7 +796,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 */
 	@Override
 	public Element getOwningRelatedElement() {
-		return getMembershipOwningPackage();
+		return getMembershipOwningNamespace();
 	}
 
 	/**
@@ -804,10 +805,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof org.omg.sysml.lang.sysml.Package)) {
-			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of org.omg.sysml.lang.sysml.Package");
+		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
+			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
 		}
-		return basicSetMembershipOwningPackage((org.omg.sysml.lang.sysml.Package) newOwningRelatedElement, msgs);
+		return basicSetMembershipOwningNamespace((Namespace) newOwningRelatedElement, msgs);
 	}
 
 	/**
@@ -816,10 +817,10 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof org.omg.sysml.lang.sysml.Package)) {
-			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of org.omg.sysml.lang.sysml.Package");
+		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
+			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
 		}
-		setMembershipOwningPackage((org.omg.sysml.lang.sysml.Package) newOwningRelatedElement);
+		setMembershipOwningNamespace((Namespace) newOwningRelatedElement);
 	}
 
 	/**
@@ -921,7 +922,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Package getMembershipOwningPackage() {
+	public Namespace getMembershipOwningNamespace() {
 		return getOwningType();
 	}
 
@@ -930,11 +931,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage, NotificationChain msgs) {
-		if (newMembershipOwningPackage != null && !(newMembershipOwningPackage instanceof Type)) {
-			throw new IllegalArgumentException("newMembershipOwningPackage must be an instance of Type");
+	public NotificationChain basicSetMembershipOwningNamespace(Namespace newMembershipOwningNamespace, NotificationChain msgs) {
+		if (newMembershipOwningNamespace != null && !(newMembershipOwningNamespace instanceof Type)) {
+			throw new IllegalArgumentException("newMembershipOwningNamespace must be an instance of Type");
 		}
-		return basicSetOwningType((Type) newMembershipOwningPackage, msgs);
+		return basicSetOwningType((Type) newMembershipOwningNamespace, msgs);
 	}
 
 	/**
@@ -942,11 +943,11 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMembershipOwningPackage(org.omg.sysml.lang.sysml.Package newMembershipOwningPackage) {
-		if (newMembershipOwningPackage != null && !(newMembershipOwningPackage instanceof Type)) {
-			throw new IllegalArgumentException("newMembershipOwningPackage must be an instance of Type");
+	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
+		if (newMembershipOwningNamespace != null && !(newMembershipOwningNamespace instanceof Type)) {
+			throw new IllegalArgumentException("newMembershipOwningNamespace must be an instance of Type");
 		}
-		setOwningType((Type) newMembershipOwningPackage);
+		setOwningType((Type) newMembershipOwningNamespace);
 	}
 
 	/**
@@ -954,7 +955,7 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetMembershipOwningPackage() {
+	public boolean isSetMembershipOwningNamespace() {
   		return false;
 	}
 
@@ -1129,8 +1130,8 @@ public class FeatureMembershipImpl extends MembershipImpl implements FeatureMemb
 				return isSetMemberElement();
 			case SysMLPackage.FEATURE_MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
 				return isSetOwnedMemberElement_comp();
-			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE:
-				return isSetMembershipOwningPackage();
+			case SysMLPackage.FEATURE_MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
+				return isSetMembershipOwningNamespace();
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_DERIVED:
 				return isDerived != IS_DERIVED_EDEFAULT;
 			case SysMLPackage.FEATURE_MEMBERSHIP__IS_READ_ONLY:

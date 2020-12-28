@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Classifier is&nbsp; a Type for model elements that classify:</p>
+ * <p>A Classifier is a Type for model elements that classify:</p>
  * 
  * <ul>
  * 	<li>Things&nbsp;(in the universe) regardless of how Features relate them.&nbsp; These are&nbsp;sequences of exactly one&nbsp;thing (sequence of length 1).</li>
@@ -75,7 +75,8 @@ public interface Classifier extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The relationship leading from the <code>subclass</code> to a more general Classifier and is owned by the <code>subclass</code>.</p>
+	 * <p>All Superclassing Relationships owned by this Classifier for which the Classifier is the <code>subclass</code>.</p>
+	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Superclassing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getClassifier_OwnedSuperclassing()

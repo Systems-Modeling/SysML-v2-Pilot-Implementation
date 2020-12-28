@@ -60,7 +60,8 @@ public interface Expression extends Step {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Function that types the Expression.</p>
+	 * <p>The Function that types this Expression.</p>
+	 * 
 	 * <p>This is the Function that types the Expression.</p>
 	 * 
 	 * <!-- end-model-doc -->
@@ -99,6 +100,10 @@ public interface Expression extends Step {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The single parameter of this Expression whose <code>owningFeatureMembership</code> is a ReturnFeatureMembership. The result of an Expression must either be inherited from its <code>function</code> or (directly or indirectly) redefine the <code>result</code> parameter of its <code>function</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result</em>' reference.
 	 * @see #setResult(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_Result()

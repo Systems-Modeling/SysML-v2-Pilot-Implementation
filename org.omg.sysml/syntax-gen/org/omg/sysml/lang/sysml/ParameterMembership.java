@@ -59,6 +59,10 @@ public interface ParameterMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that is identified as a parameter by this ParameterMembership, which must be the <code>ownedMemberParameter</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Member Parameter</em>' reference.
 	 * @see #setMemberParameter(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getParameterMembership_MemberParameter()
@@ -93,6 +97,10 @@ public interface ParameterMembership extends FeatureMembership {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Feature that is identified as a parameter by this ParameterMembership, which is always owned by the ParameterMembership.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Parameter comp</em>' containment reference.
 	 * @see #setOwnedMemberParameter_comp(Feature)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getParameterMembership_OwnedMemberParameter_comp()

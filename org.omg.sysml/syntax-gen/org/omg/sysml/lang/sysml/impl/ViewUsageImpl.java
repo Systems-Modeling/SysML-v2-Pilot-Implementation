@@ -31,8 +31,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expose;
 import org.omg.sysml.lang.sysml.Import;
+import org.omg.sysml.lang.sysml.MetadataCondition;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -52,8 +55,10 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getExposedPackage <em>Exposed Package</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getExposedNamespace <em>Exposed Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewCondition <em>View Condition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewedElement <em>Viewed Element</em>}</li>
  * </ul>
  *
  * @generated
@@ -139,10 +144,10 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<org.omg.sysml.lang.sysml.Package> getExposedPackage() {
-		EList<org.omg.sysml.lang.sysml.Package> exposedPackages = new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Package.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE);
-		getOwnedImport().stream().filter(Expose.class::isInstance).map(Import::getImportedPackage).forEachOrdered(exposedPackages::add);
-		return exposedPackages;
+	public EList<Namespace> getExposedNamespace() {
+		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE);
+		getOwnedImport().stream().filter(Expose.class::isInstance).map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
+		return exposedNamespace;
 	}
 	
 
@@ -178,6 +183,29 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<MetadataCondition> getViewCondition() {
+		return new DerivedEObjectEList<>(MetadataCondition.class, this, SysMLPackage.VIEW_USAGE__VIEW_CONDITION, new int[] {SysMLPackage.TYPE__OWNED_MEMBER});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<Element> getViewedElement() {
+		// TODO: Apply viewConditions.
+		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
+		getExposedNamespace().stream().flatMap(namespace->namespace.getMember().stream()).forEachOrdered(viewedElements::add);
+		return viewedElements;
+	}
+
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubview()? 
@@ -203,11 +231,15 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				return basicGetViewDefinition();
 			case SysMLPackage.VIEW_USAGE__SATISFIED_VIEWPOINT:
 				return getSatisfiedViewpoint();
-			case SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE:
-				return getExposedPackage();
+			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
+				return getExposedNamespace();
 			case SysMLPackage.VIEW_USAGE__RENDERING:
 				if (resolve) return getRendering();
 				return basicGetRendering();
+			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
+				return getViewCondition();
+			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
+				return getViewedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -228,12 +260,20 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				getSatisfiedViewpoint().clear();
 				getSatisfiedViewpoint().addAll((Collection<? extends ViewpointUsage>)newValue);
 				return;
-			case SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE:
-				getExposedPackage().clear();
-				getExposedPackage().addAll((Collection<? extends org.omg.sysml.lang.sysml.Package>)newValue);
+			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
+				getExposedNamespace().clear();
+				getExposedNamespace().addAll((Collection<? extends Namespace>)newValue);
 				return;
 			case SysMLPackage.VIEW_USAGE__RENDERING:
 				setRendering((RenderingUsage)newValue);
+				return;
+			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
+				getViewCondition().clear();
+				getViewCondition().addAll((Collection<? extends MetadataCondition>)newValue);
+				return;
+			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
+				getViewedElement().clear();
+				getViewedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -253,11 +293,17 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			case SysMLPackage.VIEW_USAGE__SATISFIED_VIEWPOINT:
 				getSatisfiedViewpoint().clear();
 				return;
-			case SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE:
-				getExposedPackage().clear();
+			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
+				getExposedNamespace().clear();
 				return;
 			case SysMLPackage.VIEW_USAGE__RENDERING:
 				setRendering((RenderingUsage)null);
+				return;
+			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
+				getViewCondition().clear();
+				return;
+			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
+				getViewedElement().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -277,10 +323,14 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				return isSetViewDefinition();
 			case SysMLPackage.VIEW_USAGE__SATISFIED_VIEWPOINT:
 				return !getSatisfiedViewpoint().isEmpty();
-			case SysMLPackage.VIEW_USAGE__EXPOSED_PACKAGE:
-				return !getExposedPackage().isEmpty();
+			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
+				return !getExposedNamespace().isEmpty();
 			case SysMLPackage.VIEW_USAGE__RENDERING:
 				return basicGetRendering() != null;
+			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
+				return !getViewCondition().isEmpty();
+			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
+				return !getViewedElement().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

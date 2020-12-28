@@ -12,7 +12,7 @@ package 'Verification Case Definition Example' {
 	}
 		
 	verification def VehicleMassTest {
-		import Verifications::*;
+		import VerificationCases::*;
 
 		subject testVehicle : Vehicle;
 		objective vehicleMassVerificationObjective {

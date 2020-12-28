@@ -59,6 +59,7 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -99,7 +100,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *
  * @generated
  */
-public class TypeImpl extends PackageImpl implements Type {
+public class TypeImpl extends NamespaceImpl implements Type {
 	
 	public static final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
 
@@ -223,7 +224,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public EList<Membership> getOwnedMembership_comp() {
 		if (ownedMembership_comp == null) {
-			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
+			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE);
 		}
 		return ownedMembership_comp;
 	}
@@ -362,7 +363,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	}
 	
 	protected void addImplicitGeneralType(EClass eClass, Type general) {
-		if (!isImplicitGeneralizationFor(eClass, general)) {
+		if (general != null && !isImplicitGeneralizationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
 		}
 	}
@@ -426,7 +427,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public EList<Feature> getOwnedFeature() {
 		return new DerivedEObjectEList<Feature>(
 				Feature.class, this, SysMLPackage.TYPE__OWNED_FEATURE, 
-				new int[]{SysMLPackage.PACKAGE__OWNED_MEMBER});
+				new int[]{SysMLPackage.NAMESPACE__OWNED_MEMBER});
 	}
 
 	/**
@@ -437,7 +438,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	public EList<Feature> getFeature() {
 		return new DerivedEObjectEList<Feature>(
 				Feature.class, this, SysMLPackage.TYPE__FEATURE, 
-				new int[]{SysMLPackage.PACKAGE__MEMBER});
+				new int[]{SysMLPackage.NAMESPACE__MEMBER});
 	}
 
 	/**
@@ -535,7 +536,7 @@ public class TypeImpl extends PackageImpl implements Type {
 	@Override
 	public EList<Membership> getInheritedMembership() {
 		if (inheritedMembership == null) {
-			inheritedMembership = getInheritedMembership(new HashSet<org.omg.sysml.lang.sysml.Package>(), new HashSet<Type>(), true);
+			inheritedMembership = getInheritedMembership(new HashSet<Namespace>(), new HashSet<Type>(), true);
 //			System.out.println("Caching inheritedMembership for " + this);
 		}
 		return inheritedMembership;
@@ -719,19 +720,19 @@ public class TypeImpl extends PackageImpl implements Type {
 		return features;
 	}
 
-	public EList<Membership> getInheritedMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
+	public EList<Membership> getInheritedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> inheritedMemberships = new BasicInternalEList<Membership>(Membership.class);
 		excludedTypes.add(this);
 		Conjugation conjugator = this.getOwnedConjugator();
 		if (conjugator != null) {
 			Type originalType = conjugator.getOriginalType();
 			if (originalType != null && !excludedTypes.contains(originalType)) {
-				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedPackages, excludedTypes, includeProtected));
+				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
 		for (Type general: getSupertypes()) {
 			if (general != null && !excludedTypes.contains(general)) {
-				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedPackages, excludedTypes, includeProtected));
+				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
 		removeRedefinedFeatures(inheritedMemberships);
@@ -754,25 +755,25 @@ public class TypeImpl extends PackageImpl implements Type {
 				collect(Collectors.toSet());
 	}
 	
-	public EList<Membership> getMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
+	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
 		EList<Membership> membership = getOwnedMembership();
-		membership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
-		membership.addAll(getImportedMembership(excludedPackages, excludedTypes, includeProtected));
+		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
+		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, includeProtected));
 		return membership;
 	}	
 	
-	public EList<Membership> getNonPrivateMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> nonPrivateMembership = super.getPublicMembership(excludedPackages, excludedTypes);
+	public EList<Membership> getNonPrivateMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
+		EList<Membership> nonPrivateMembership = super.getPublicMembership(excludedNamespaces, excludedTypes);
 		if (includeProtected) {
 			nonPrivateMembership.addAll(getVisibleOwnedMembership(VisibilityKind.PROTECTED));
 		}
-		nonPrivateMembership.addAll(getInheritedMembership(excludedPackages, excludedTypes, includeProtected));
+		nonPrivateMembership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
 		return nonPrivateMembership;
 	}
 	
 	@Override
-	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Package> excludedPackages, Collection<Type> excludedTypes) {
-		return getNonPrivateMembership(excludedPackages, excludedTypes, false);
+	public EList<Membership> getPublicMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes) {
+		return getNonPrivateMembership(excludedNamespaces, excludedTypes, false);
 	}
 	
 	/**
@@ -1055,7 +1056,11 @@ public class TypeImpl extends PackageImpl implements Type {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
 		((ConnectorImpl)connector).addConnectorEnd(source);
 		((ConnectorImpl)connector).addConnectorEnd(target);
-		addOwnedFeature(connector);
+		if (((ConnectorImpl)connector).getContextType() == this) {
+			addOwnedFeature(connector);
+		} else {
+			addOwnedMember(connector);
+		}
 		return connector;
 	}
 
@@ -1068,7 +1073,16 @@ public class TypeImpl extends PackageImpl implements Type {
 		return connector;
 	}
 	
-	// Other Methods
+	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
+		if (connector == null) {
+			connector = addOwnedBindingConnector(source, target);
+		} else {
+			((BindingConnectorImpl)connector).update(null, source, target);
+		}
+		return connector;
+	}
+	
+// Other Methods
 	
 	@Override
 	public void transform() {

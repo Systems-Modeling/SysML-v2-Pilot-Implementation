@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>An AttributeUsage is a Usage whose type is a DataType. Nominally, if the type is an AttributeDefinition, an AttributeUsage is a usage of a AttributeDefinition to represent the value of some system quality or characteristic. However, other kinds of kernel DataTypes are also allowed, to permit use of DataTypes from the Kernel Library. An AttributeUsage itself as well as all its nested <code>features</code> must have <code>isComposite</code> = <code>false</code>.</p>
  * 
- * <p>A AttributeUsage must subset, directly or indirectly, the base AttributeUsage <code>attributeValues</code> from the Systems model library.</p>
+ * <p>An AttributeUsage must subset, directly or indirectly, the base AttributeUsage <code>attributeValues</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>

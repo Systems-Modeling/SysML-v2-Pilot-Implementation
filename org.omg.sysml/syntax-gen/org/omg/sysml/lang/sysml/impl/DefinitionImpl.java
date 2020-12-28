@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
@@ -71,7 +72,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getUsage <em>Usage</em>}</li>
@@ -97,6 +97,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedViewpoint <em>Owned Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedRendering <em>Owned Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -168,7 +170,7 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public EList<Membership> getOwnedMembership_comp() {
 		if (ownedMembership_comp == null) {
-			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.DEFINITION__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_PACKAGE);
+			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.DEFINITION__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE);
 		}
 		return ownedMembership_comp;
 	}
@@ -308,6 +310,16 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public EList<VerificationCaseUsage> getOwnedVerificationCase() {
 		return new DerivedEObjectEList<>(VerificationCaseUsage.class, this, SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public EList<EnumerationUsage> getOwnedEnumeration() {
+		return new DerivedEObjectEList<>(EnumerationUsage.class, this, SysMLPackage.DEFINITION__OWNED_ENUMERATION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
 
 	/**
@@ -530,8 +542,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return getOwnedPort();
 			case SysMLPackage.DEFINITION__FLOW_FEATURE:
@@ -582,6 +592,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedRendering();
 			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
 				return getOwnedVerificationCase();
+			case SysMLPackage.DEFINITION__OWNED_ENUMERATION:
+				return getOwnedEnumeration();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return getOwnedUsage();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 		}
@@ -597,10 +611,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				getOwnedPort().addAll((Collection<? extends PortUsage>)newValue);
@@ -700,6 +710,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedVerificationCase().clear();
 				getOwnedVerificationCase().addAll((Collection<? extends VerificationCaseUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_ENUMERATION:
+				getOwnedEnumeration().clear();
+				getOwnedEnumeration().addAll((Collection<? extends EnumerationUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
@@ -716,9 +734,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				getOwnedUsage().clear();
-				return;
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				getOwnedPort().clear();
 				return;
@@ -794,6 +809,12 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
 				getOwnedVerificationCase().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_ENUMERATION:
+				getOwnedEnumeration().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				getOwnedUsage().clear();
+				return;
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				return;
@@ -811,8 +832,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		switch (featureID) {
 			case SysMLPackage.DEFINITION__OWNED_MEMBERSHIP_COMP:
 				return ownedMembership_comp != null && !ownedMembership_comp.isEmpty();
-			case SysMLPackage.DEFINITION__OWNED_USAGE:
-				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_PORT:
 				return !getOwnedPort().isEmpty();
 			case SysMLPackage.DEFINITION__FLOW_FEATURE:
@@ -863,6 +882,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedRendering().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_VERIFICATION_CASE:
 				return !getOwnedVerificationCase().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_ENUMERATION:
+				return !getOwnedEnumeration().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_USAGE:
+				return !getOwnedUsage().isEmpty();
 			case SysMLPackage.DEFINITION__VARIANT_MEMBERSHIP:
 				return !getVariantMembership().isEmpty();
 		}

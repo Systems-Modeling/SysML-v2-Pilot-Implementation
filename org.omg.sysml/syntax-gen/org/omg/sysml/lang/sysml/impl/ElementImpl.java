@@ -44,6 +44,7 @@ import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
@@ -433,9 +434,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated
 	 */
 	@Override
-	public org.omg.sysml.lang.sysml.Package getOwningNamespace() {
-		org.omg.sysml.lang.sysml.Package owningNamespace = basicGetOwningNamespace();
-		return owningNamespace != null && owningNamespace.eIsProxy() ? (org.omg.sysml.lang.sysml.Package)eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
+	public Namespace getOwningNamespace() {
+		Namespace owningNamespace = basicGetOwningNamespace();
+		return owningNamespace != null && owningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)owningNamespace) : owningNamespace;
 	}
 
 	/**
@@ -443,9 +444,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public org.omg.sysml.lang.sysml.Package basicGetOwningNamespace() {
+	public Namespace basicGetOwningNamespace() {
 		Membership membership = this.getOwningMembership();
-		return membership == null? null: membership.getMembershipOwningPackage();
+		return membership == null? null: membership.getMembershipOwningNamespace();
 	}
 
 	/**
@@ -453,7 +454,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void setOwningNamespace(org.omg.sysml.lang.sysml.Package newOwningNamespace) {
+	public void setOwningNamespace(Namespace newOwningNamespace) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -838,7 +839,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				setOwningMembership((Membership)newValue);
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				setOwningNamespace((org.omg.sysml.lang.sysml.Package)newValue);
+				setOwningNamespace((Namespace)newValue);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName((String)newValue);
@@ -905,7 +906,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				setOwningMembership((Membership)null);
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
-				setOwningNamespace((org.omg.sysml.lang.sysml.Package)null);
+				setOwningNamespace((Namespace)null);
 				return;
 			case SysMLPackage.ELEMENT__NAME:
 				setName(NAME_EDEFAULT);

@@ -42,5 +42,30 @@ package '15.10-Primitive Data Types' {
 	/* TODO: Specify standardized string encodings. */
 	import Time::DateTime;
 	
-	/* TODO: Define support for enumeration types. */
+	/**
+	 * Enumerations are defined as an implicit restriction of the extend of the
+	 * enumeration type to the listed enumeration values.
+	 * Note: Enumerations are currently limited to attributes.
+	 */
+	enum def ConditionColor {
+		red;
+		yellow;
+		green;
+	}
+	
+	attribute def ConditionLevel {
+		enum associatedColor : ConditionColor;
+	}
+	
+	enum def SeverityEnum :> ConditionLevel {
+		danger { 
+			:>> associatedColor = ConditionColor::red;
+		}
+		warning { 
+			:>> associatedColor = ConditionColor::yellow;
+		}
+		normal { 
+			:>> associatedColor = ConditionColor::green;
+		}
+	}
 }

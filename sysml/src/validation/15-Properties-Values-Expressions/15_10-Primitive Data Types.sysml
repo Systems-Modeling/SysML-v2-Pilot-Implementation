@@ -43,7 +43,7 @@ package '15.10-Primitive Data Types' {
 	import Time::DateTime;
 	
 	/**
-	 * Enumerations are defined as an implicit restriction of the extend of the
+	 * Enumerations are defined as an implicit restriction of the extent of the
 	 * enumeration type to the listed enumeration values.
 	 * Note: Enumerations are currently limited to attributes.
 	 */

@@ -21,7 +21,8 @@ package EnumerationTest {
 		}
 	}
 	
-	enum color : ColorKind = ColorKind::blue;
+	enum color : ColorKind;
+	attribute color1 : ColorKind = ColorKind::blue;
 	
 	/** 
 	 * Note that "blue" can be used without qualification here because,
@@ -29,10 +30,10 @@ package EnumerationTest {
 	 * resolved in the scope of the feature being declared, which inherits
 	 * the members of its type.
 	 */
-	attribute color1 : ColorKind = blue;
+	attribute color2 : ColorKind = blue;
 	
 	/**
-	 * The "enum" keyword is optional for EnumerationUsages used to defined the
+	 * The "enum" keyword is optional for EnumerationUsages used to define the
 	 * enumerated values of an EnumerationDefinition.
 	 */
 	enum def E1 { a; b; c; }

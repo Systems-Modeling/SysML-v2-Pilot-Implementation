@@ -68,4 +68,13 @@ package '15.10-Primitive Data Types' {
 			:>> associatedColor = ConditionColor::green;
 		}
 	}
+	
+	attribute def Diameter :> ISQ::LengthValue;	
+	enum def DiameterChoice :> Diameter {
+		small = 60@[SI::mm];
+		medium = 70@[SI::mm];
+		large = 80@[SI::mm];
+	}	
+	attribute aperatureDiameter: DiameterChoice = DiameterChoice::small;
+	
 }

@@ -45,9 +45,17 @@ package EnumerationTest {
 	
 	enum color : ColorKind;
 	attribute color1 : ColorKind = ColorKind::blue;
+	attribute color2 : ColorKind = blue;
 	
 	enum def E1 { a; b; c; }
-	
 	enum def E2;
+	
+	attribute def Size :> ScalarValues::Real;		
+	enum def SizeChoice :> Size {
+		= 60.0;
+		= 70.0;
+		= 80.0;
+	}	
+	enum size: SizeChoice = 60.0;
 	
 }

@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -174,7 +173,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	}
 	
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
+		return resultConnector;
 	}
 	
 	// Other methods
@@ -190,16 +189,10 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	}
 	
 	@Override
-	public List<Feature> getOwnedParameters() {
-		addResultParameter(this);
-		return super.getOwnedParameters();
-	}
-	
-	@Override
 	public void transform() {
 		super.transform();
 		addResultParameter(this);
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
 	//

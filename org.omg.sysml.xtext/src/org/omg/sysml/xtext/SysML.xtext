@@ -166,6 +166,7 @@ DefinitionElement returns SysML::Element :
 	| TextualRepresentation
 	| Dependency	  
 	| AttributeDefinition
+	| EnumerationDefinition
 	| ItemDefinition
 	| PartDefinition
 	| IndividualDefinition
@@ -187,6 +188,7 @@ DefinitionElement returns SysML::Element :
 	
 UsageElement returns SysML::Usage :
 	  AttributeUsage
+	| EnumerationUsage
 	| ItemUsage
 	| PartUsage
 	| IndividualUsage
@@ -654,6 +656,7 @@ ReferenceVariantUsage returns SysML::ReferenceUsage :
 StructureUsageElement returns SysML::Feature :
 	  ReferenceUsage
 	| AttributeUsage
+	| EnumerationUsage
 	| ItemRefUsage
 	| PartRefUsage
 	| ViewRefUsage
@@ -706,6 +709,7 @@ VariantUsageElement returns SysML::Usage :
 FlowUsageElement returns SysML::Usage :
 	  ReferenceUsage
 	| AttributeUsage
+	| EnumerationUsage
 	| ItemFlowUsage
 	| PartFlowUsage
 	| ViewFlowUsage
@@ -750,7 +754,41 @@ AttributeVariantUsage returns SysML::AttributeUsage :
 	UsagePrefix? AttributeUsageKeyword Usage
 ;
 
-/* ITEM DEFINITIONS */
+/* ENUMERATIONS */
+
+EnumerationKeyword :
+	'enum'
+;
+EnumerationDefKeyword :
+	EnumerationKeyword 'def'
+;
+
+EnumerationUsageKeyword :
+	EnumerationKeyword
+;
+
+EnumerationDefinition returns SysML::EnumerationDefinition :
+	EnumerationDefKeyword DefinitionDeclaration EnumerationBody
+;
+
+fragment EnumerationBody returns SysML::EnumerationDefinition :
+	  ';' 
+	| '{' ( => ownedMembership_comp += EnumerationUsageMember )* '}'
+;
+
+EnumerationUsageMember returns SysML::VariantMembership :
+	DefinitionMemberPrefix ownedVariantUsage_comp = EnumeratedValue
+;
+
+EnumeratedValue returns SysML::EnumerationUsage :
+	EnumerationUsageKeyword? Usage
+;
+
+EnumerationUsage returns SysML::EnumerationUsage :
+	EnumerationUsageKeyword Usage
+;
+
+/* ITEMS */
 
 ItemKeyword :
 	'item'
@@ -780,7 +818,7 @@ ItemRefUsage returns SysML::ItemUsage :
 	UsagePrefix? ( 'ref' ItemUsageKeyword | isComposite ?= ItemUsageKeyword ) Usage
 ;
 
-/* PART DEFINITIONS */
+/* PARTS */
 
 PartKeyword :
 	'part'

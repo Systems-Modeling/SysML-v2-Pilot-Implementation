@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -151,14 +152,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	public EList<Type> getFeaturingType() {
-		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
-			addImplicitFeaturingTypes();
-		}
-		return super.getFeaturingType();		
-	}
-
-	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()?
 				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
@@ -191,18 +184,23 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		
 	@Override 
 	public EList<Feature> getInput() {
-		EList<Feature> inputs = super.getOwnedInput();
-		if (inputs.isEmpty()) {
-			Type type = getExpressionType();
-			if (type != null) {
-				for (Feature parameter: type.getInput()) {
-					if (((FeatureImpl)parameter).isParameter() && parameter.getOwner() == type) {
-						inputs.add(createFeatureForParameter(parameter));
-					}
-				}
+		return super.getOwnedInput();
+	}
+	
+	protected void computeInput() {
+		if (getInput().isEmpty()) {
+			for (Feature parameter: getTypeParameters()) {
+				createFeatureForParameter(parameter);
 			}
 		}
-		return inputs;
+	}
+	
+	protected List<Feature> getTypeParameters() {
+		Type type = getExpressionType();
+		return type == null? Collections.emptyList():
+			   type.getInput().stream().
+				filter(input->((FeatureImpl)input).isParameter() && input.getOwner() == type).
+				collect(Collectors.toList());
 	}
 	
 	public Type getExpressionType() {
@@ -211,16 +209,17 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public EList<Feature> getOutput() {
-		EList<Feature> outputs = super.getOwnedOutput();
-		if (outputs.isEmpty()) {
+		return super.getOwnedOutput();
+	}
+	
+	protected void computeOutput() {
+		if (getOutput().isEmpty()) {
 			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
 			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter_comp(parameter);
 			membership.setMemberName("$result");
 			getOwnedFeatureMembership_comp().add(membership);
-			outputs.add(parameter);
-		}
-		return outputs;
+		}		
 	}
 			
 	protected Feature createFeatureForParameter(Feature parameter) {
@@ -272,28 +271,37 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	public Collection<Feature> getFeaturesRedefinedByType() {
-		// Note: Ensures that all owned inputs and outputs are computed
-		// before checking for redefined features.
-		getInput();
-		getOutput();
-		return super.getFeaturesRedefinedByType();
+		Collection<Feature> features = super.getFeaturesRedefinedByType();
+		
+		// If inputs and outputs have not been computed, add effectively
+		// redefined features from the Expression type, without actually
+		// computing the inputs and outputs.
+		if (getInput().isEmpty()) {
+			features.addAll(getTypeParameters());
+		}
+		if (getOutput().isEmpty()) {
+			Type type = getExpressionType();
+			if (type instanceof Function || type instanceof Expression) {
+				Feature result = ((TypeImpl)type).getResultParameter();
+				if (result != null) {
+					features.add(result);
+				}
+			}
+		}
+		
+		return features;
 	}
 	
 	// Utility methods
 	
 	@Override
-	public List<Feature> getOwnedParameters() {
-		getInput();
-		getOutput();
-		return super.getOwnedParameters();
-	}
-	
-	@Override
 	public void transform() {
 		super.transform();
-		getFeaturingType();
-		getInput();
-		getOutput();
+		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
+			addImplicitFeaturingTypes();
+		}
+		computeInput();
+		computeOutput();
 	}
 		
 	/**

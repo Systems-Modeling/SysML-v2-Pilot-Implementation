@@ -2,6 +2,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Optional;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -12,6 +14,7 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.EnumerationDefinition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -116,6 +119,14 @@ public class EnumerationUsageImpl extends AttributeUsageImpl implements Enumerat
   		return false;
 	}
 
+	/**
+	 * Treat EnumerationUsage like a regular feature for the purposes of effective naming,
+	 * rather than like a normal variant Usage.
+	 */
+	protected Optional<Feature> getVariantSubsettedFeature() {
+		return Optional.empty();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -223,7 +223,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 	
 	public EList<Feature> getConnectorEnd() {
-		EList<Feature> ends = super.getConnectorEnd();
+		// This method cannot be removed otherwise the EMF generator creates a replacement with a different content
+		return super.getConnectorEnd();
+	}
+	
+	public void transformConnectorEnd() {
+		EList<Feature> ends = getConnectorEnd();
 		Namespace owner = getOwningNamespace();
 		if (owner instanceof Feature) {
 			if (ends.size() >= 2) {
@@ -237,7 +242,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 				}
 			}
 		}
-		return ends;
 	}
 
 	/**
@@ -276,7 +280,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public void transform() {
 		super.transform();
-		getConnectorEnd();
+		transformConnectorEnd();
 	}
 	
 	/**

@@ -87,6 +87,8 @@ import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership
 import org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.EnumerationDefinition
+import org.omg.sysml.lang.sysml.EnumerationUsage
 
 /**
  * This class contains custom validation rules. 
@@ -129,6 +131,10 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_STATEUSAGE_MSG = 'A state must be typed by state definitions.'
 	public static val INVALID_ATTRIBUTEUSAGE = 'Invalid attribute usage - invalid type'
 	public static val INVALID_ATTRIBUTEUSAGE_MSG = 'An attribute must be typed by attribute definitions.'
+	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE = 'Invalid attribute usage - too many enumeration types'
+	public static val INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG = 'An enumeration attribute cannot have more than one type.'
+	public static val INVALID_ENUMERATIONUSAGE = 'Invalid enumeration usage - invalid type'
+	public static val INVALID_ENUMERATIONUSAGE_MSG = 'An enumeration must be typed by one enumeration definition.'
 	public static val INVALID_CALCULATIONUSAGE = 'Invalid CalculationUsage - invalid type'
 	public static val INVALID_CALCULATIONUSAGE_MSG = 'A calculation must be typed by one calculation definition.'
 	public static val INVALID_CASEUSAGE = 'Invalid CaseUsage - invalid type'
@@ -247,6 +253,16 @@ class SysMLValidator extends KerMLValidator {
 	@Check //All types must be DataTypes.
 	def checkAttributeUsageTypes(AttributeUsage usg){
 		checkAllTypes(usg, DataType, SysMLValidator.INVALID_ATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ATTRIBUTEUSAGE)
+		if (!(usg instanceof EnumerationUsage)) {
+		val types = (usg as FeatureImpl).allTypes
+			if (types.exists[t | t instanceof EnumerationDefinition] && types.size > 1) {
+				error(INVALID_ENUMERATIONATTRIBUTEUSAGE_MSG, SysMLPackage.eINSTANCE.attributeUsage_AttributeDefinition, SysMLValidator.INVALID_ENUMERATIONATTRIBUTEUSAGE)
+			}
+		}
+	}
+	@Check // Must have exactly one type, which is an EnumerationDefinition
+	def checkEnumerationUsage(EnumerationUsage usg){
+		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
 	}
 	@Check //Must have exactly one type, which is a ViewDefinition. Must have at most one rendering.
 	def checkViewUsageTypes(ViewUsage usg){

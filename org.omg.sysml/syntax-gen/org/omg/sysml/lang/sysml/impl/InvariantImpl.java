@@ -22,7 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -88,7 +87,7 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
+		return assertionConnector;
 	}
 
 	public static BindingConnector getAssertionConnectorFor(FeatureImpl feature, BindingConnector assertionConnector, Feature result) {
@@ -96,7 +95,7 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 				filter(f->f instanceof LiteralBoolean).
 				findFirst().orElse(null);
 		if (literalBoolean != null) {
-			assertionConnector = feature.makeBinding(assertionConnector, result, literalBoolean.getResult());
+			assertionConnector = feature.makeResultBinding(assertionConnector, literalBoolean, result);
 		}
 		return assertionConnector;
 	}
@@ -111,18 +110,12 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		assertionConnector = newAssertionConnector;
 	}
 
-	// Additional redefinitions and subsets
+	// Additional overrides
 
-	@Override
-	public EList<Feature> getFeature() {
-		getAssertionConnector();
-		return super.getFeature();
-	}
-	
 	@Override
 	public void transform() {
 		super.transform();
-		getAssertionConnector();
+		assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
 	}
 	
 	//

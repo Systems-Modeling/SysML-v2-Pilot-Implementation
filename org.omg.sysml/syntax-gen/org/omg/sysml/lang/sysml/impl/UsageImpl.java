@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -592,13 +593,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 
 	@Override
 	protected Feature getNamingFeature() {
-		if (getOwningVariantMembership() != null) {
-			Feature subsettedFeature = getFirstSubsettedFeature().orElse(null);
-			if (subsettedFeature != getOwningVariationUsage()) {
-				return subsettedFeature;
-			}
-		}
-		return super.getNamingFeature();
+		return getVariantSubsettedFeature().orElseGet(super::getNamingFeature);
+	}
+	
+	protected Optional<Feature> getVariantSubsettedFeature() {
+		return getOwningVariantMembership() == null? Optional.empty():
+			getFirstSubsettedFeature().filter(f->f != getOwningVariationUsage());
 	}
 	
 	@Override

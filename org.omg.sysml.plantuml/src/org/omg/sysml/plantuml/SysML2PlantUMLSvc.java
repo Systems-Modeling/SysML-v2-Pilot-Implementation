@@ -71,7 +71,7 @@ public class SysML2PlantUMLSvc {
         if (styles != null) {
             for (String style: styles) {
                 SysML2PlantUMLStyle s = SysML2PlantUMLStyle.get(style);
-                if (s.isEntitled()) addDefault = false;
+                if (s.isPrimary()) addDefault = false;
                 s2Text.addStyle(s);
             }
         }

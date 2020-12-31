@@ -73,12 +73,12 @@ public class SysML2PlantUMLText {
     }
 
     private void resetStyle(SysML2PlantUMLStyle style) {
-        if (!style.isPrimary) return;
+        if (!style.isPrimary()) return;
         SysML2PlantUMLStyle[] ss = new SysML2PlantUMLStyle[styles.size()];
         ss = styles.toArray(ss);
         for (int i = 0; i < ss.length; i++) {
             SysML2PlantUMLStyle s = ss[i];
-            if (s.isPrimary) {
+            if (s.isPrimary()) {
                 styles.remove(i);
             }
         }

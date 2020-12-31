@@ -42,13 +42,11 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
@@ -601,12 +599,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			getFirstSubsettedFeature().filter(f->f != getOwningVariationUsage());
 	}
 	
-	@Override
-	public List<FeatureTyping> basicGetOwnedTyping() {
-		addVariationTyping();
-		return super.basicGetOwnedTyping();
-	}
-	
 	protected void addVariationTyping() {
 		Definition variationDefinition = getOwningVariationDefinition();
 		if (variationDefinition != null && isVariant()) {
@@ -646,23 +638,19 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	@Override
-	public BindingConnector getValueConnector() {
+	protected void computeValueConnector() {
 		FeatureValue valuation = getValuation();
-		if (valuation != null) {
-			return super.getValueConnector();
-		} else if (isSubjectParameter()){
+		if (valuation == null && isSubjectParameter()){
 			Feature subjectParameter = getRelevantSubjectParameter();
 			if (subjectParameter != null) {
 				valueConnector = makeBinding(valueConnector, subjectParameter, this);
 			}
 		}
-		return valueConnector;
 	}
 	
 	@Override
 	public void transform() {
-		basicGetOwnedTyping();
-		getOwnedSubsetting();
+		addVariationTyping();
 		super.transform();
 	}
 	
@@ -720,6 +708,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	protected static Usage basicGetSubjectParameterOf(Type type) {
+		return (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
+	}
+	
+	public static void computeSubjectParameterOf(Type type) {
 		Usage subjectParameter = null;
 		if (type != null) {
 			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
@@ -727,10 +719,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				subjectParameter = addSubjectParameterTo(type);
 			}
 		}
-		return subjectParameter;
 	}
 	
-	public static Usage addSubjectParameterTo(Type type) {
+	private   static Usage addSubjectParameterTo(Type type) {
 		Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 		SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
 		membership.setOwnedSubjectParameter_comp(parameter);

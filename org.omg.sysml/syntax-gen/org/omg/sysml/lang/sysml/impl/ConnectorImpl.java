@@ -537,8 +537,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
 	}
 	
-	@Override
-	public EList<Type> getFeaturingType() {
+	private void computeFeaturingType() {
 		if (getOwningType() == null) {
 			Type contextType = getContextType();
 			if (contextType != null) {
@@ -549,7 +548,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 				}
 			}
 		}
-		return super.getFeaturingType();
 	}
 	
 	// Utility Methods
@@ -650,7 +648,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public void transform() {
 		super.transform();
-		getFeaturingType();
+		computeFeaturingType();
 	}
 	
 	//

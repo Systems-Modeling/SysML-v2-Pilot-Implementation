@@ -53,7 +53,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	
-	protected List<BindingConnector> argumentConnectors;
+	protected BindingConnector[] argumentConnectors;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -90,19 +90,24 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	}
 	
 	@Override
-	public EList<Feature> getInput() {
-		EList<Feature> inputs = super.getOwnedInput();
-		if (inputs.isEmpty()) {
+	protected void computeInput() {
+		if (getInput().isEmpty()) {
 			Type type = getExpressionType();
 			if (type instanceof Function || type instanceof Expression) {
-				return super.getInput();
+				super.computeInput();
 			} else if (type != null) {
 				for (Feature typeFeature: getTypeFeatures()) {
-					inputs.add(createFeatureForParameter(typeFeature));
+					createFeatureForParameter(typeFeature);
 				}
 			}
 		}
-		return inputs;
+	}
+	
+	protected List<Feature> getTypeParameters() {
+		Type type = getExpressionType();
+		return type != null && !(type instanceof Function || type instanceof Expression)? 
+				getTypeFeatures(): 
+				super.getTypeParameters();
 	}
 	
 	public List<Feature> getTypeFeatures() {
@@ -117,36 +122,44 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 			Expression argument = getArgumentForFeature(arguments, typeFeature, i);
 			if (argument != null) {
 				typeFeatures.add(typeFeature);
+				i++;
 			}
-			i++;
 		}
 		return typeFeatures;
 	}
 	
-	public List<BindingConnector> getArgumentConnectors() {
-		if (argumentConnectors == null) {
-			argumentConnectors = new ArrayList<>();
-			List<Expression> arguments = getArgument();
-			int i = 0;
-			for (Feature input: getInput()) {
-				List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
-				if (!redefinedFeatures.isEmpty()) {
-					Feature feature = redefinedFeatures.get(0);
-					if (feature != null) {
-						Expression argument = getArgumentForFeature(arguments, feature, i);
-						if (argument != null) {
-							argumentConnectors.add(addOwnedBindingConnector(argument.getResult(), input));
-						}
-					}
-				}
-				i++;
-			}
-		}
+	public BindingConnector[] getArgumentConnectors() {
 		return argumentConnectors;
 	}
 	
-	public List<BindingConnector> basicGetArgumentConnectors() {
-		return argumentConnectors;
+	public void computeArgumentConnectors() {
+		List<Expression> arguments = getArgument();
+		if (argumentConnectors == null) {
+			argumentConnectors = new BindingConnector[arguments.size()];
+		}
+		int i = 0;
+		for (Feature input: getInput()) {
+			if (i >= argumentConnectors.length) {
+				break;
+			}
+			Expression argument = getArgumentForInput(arguments, input, i);
+			if (argument != null) {
+				argumentConnectors[i] = makeResultBinding(argumentConnectors[i], argument, input);
+				i++;
+			}
+		}
+	}
+	
+	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
+		((FeatureImpl)input).forceComputeRedefinitions();
+		List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
+		if (!redefinedFeatures.isEmpty()) {
+			Feature feature = redefinedFeatures.get(0);
+			if (feature != null) {
+				return getArgumentForFeature(arguments, feature, argIndex);
+			}
+		}
+		return null;
 	}
 	
 	protected static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
@@ -186,7 +199,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public void transform() {
 		super.transform();
-		getArgumentConnectors();
+		computeArgumentConnectors();
 	}
 	
 	/**

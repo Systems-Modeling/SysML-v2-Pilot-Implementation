@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -167,6 +166,10 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
   		return false;
 	}
 
+	public BindingConnector getResultConnector() {
+		return resultConnector;
+	}
+	
 	// Additional overrides
 
 	@Override
@@ -174,21 +177,11 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, getResult());
-	}
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		CalculationDefinitionImpl.addResultParameter(this);
-		return super.getOwnedParameters();
-	}
-	
 	@Override
 	public void transform() {
 		super.transform();
 		CalculationDefinitionImpl.addResultParameter(this);
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
 	/**

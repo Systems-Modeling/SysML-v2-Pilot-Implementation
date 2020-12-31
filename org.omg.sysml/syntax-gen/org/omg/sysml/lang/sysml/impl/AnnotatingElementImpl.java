@@ -100,12 +100,21 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 		return annotatedElements;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Annotation> getAnnotation() {
-		return getAnnotationFor(this, getAnnotationGen());
+		if (annotation == null) {
+			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
+		}
+		return annotation;
 	}
 	
-	public static EList<Annotation> getAnnotationFor(AnnotatingElement annotatingElement, EList<Annotation> annotations) {
+	public static void transformAnnotatingElement(AnnotatingElement annotatingElement) {
+		EList<Annotation> annotations = annotatingElement.getAnnotation();
 		if (annotations.isEmpty()) {
 			Relationship owningRelationship = annotatingElement.getOwningRelationship();
 			if (owningRelationship instanceof Annotation) {
@@ -117,21 +126,14 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 					forEachOrdered(annotations::add);
 			}
 		}
-		return annotations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Annotation> getAnnotationGen() {
-		if (annotation == null) {
-			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
-		}
-		return annotation;
 	}
 	
+	@Override
+	public void transform() {
+		super.transform();
+		transformAnnotatingElement(this);
+	}
+
 	// Utility methods
 	
 	public static String processCommentBody(String body) {

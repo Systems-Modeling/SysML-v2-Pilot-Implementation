@@ -59,5 +59,10 @@ public class AcceptActionUsageImpl extends TransferActionUsageImpl implements Ac
 	protected Feature getContextFeature() {
 		return null;
 	}
+	
+	@Override
+	protected void computeContextConnector() {
+		// TODO: Determine correct context feature to use.
+	}
 
 } //AcceptActionUsageImpl

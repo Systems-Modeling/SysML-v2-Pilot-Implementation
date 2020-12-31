@@ -83,17 +83,13 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 		return AnnotatingElementImpl.getAnnotatedElementFor(this);
 	}
 
-	@Override
-	public EList<Annotation> getAnnotation() {
-		return AnnotatingElementImpl.getAnnotationFor(this, getAnnotationGen());
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Annotation> getAnnotationGen() {
+	@Override
+	public EList<Annotation> getAnnotation() {
 		if (annotation == null) {
 			annotation = new EObjectWithInverseResolvingEList<Annotation>(Annotation.class, this, SysMLPackage.ANNOTATING_FEATURE__ANNOTATION, SysMLPackage.ANNOTATION__ANNOTATING_ELEMENT);
 		}
@@ -162,6 +158,11 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 	 */
 	public boolean isSetOwnedMetadata() {
 		return !getOwnedMetadata().isEmpty();
+	}
+	
+	public void transform() {
+		super.transform();
+		AnnotatingElementImpl.transformAnnotatingElement(this);
 	}
 
 	/**

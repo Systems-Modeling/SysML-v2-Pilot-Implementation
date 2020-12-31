@@ -864,7 +864,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static OCLExpression<EClassifier> IS_FEATURED_WITHIN__TYPE__EOCL_QRY;
-	// Additional redefinitions and subsets
+
+	// Additional derivations and overrides
 	
 	protected String effectiveName = null;
 	
@@ -900,26 +901,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 
 	public BindingConnector getValueConnector() {
+		return valueConnector;
+	}
+	
+	protected void computeValueConnector() {
 		FeatureValue valuation = getValuation();
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				valueConnector = makeValueBinding(valueConnector, ((ExpressionImpl)value).getResult());
+				valueConnector = makeValueBinding(valueConnector, value);
 			}
 		}
-		return valueConnector;
-	}
-	
-	@Override
-	public Type getDefaultType(String... defaultNames) {
-		Type owningType = getOwningType();
-		if (owningType instanceof BindingConnector) {
-			Feature relatedFeature = ((BindingConnectorImpl)owningType).getRelatedFeatureFor(this);
-			if (relatedFeature != null) {
-				return null;
-			}
-		}
-		return super.getDefaultType(defaultNames);
 	}
 	
 	@Override
@@ -932,8 +924,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public void transform() {
 		forceComputeRedefinitions();
 		super.transform();
-		getEffectiveName();
-		getValueConnector();
+		computeValueConnector();
 	}
 	
 	// Utility methods
@@ -978,7 +969,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		}
 	}
 	
-	public BindingConnector makeValueBinding(BindingConnector connector, Feature source) {
+	public BindingConnector makeValueBinding(BindingConnector connector, Expression sourceExpression) {
+		((ElementImpl)sourceExpression).transform();
+		Feature source = sourceExpression.getResult();
 		if (connector == null) {
 			connector = addOwnedBindingConnector(getFeaturingType(), source, this);
 		} else {

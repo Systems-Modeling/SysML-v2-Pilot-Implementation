@@ -4871,7 +4871,7 @@ else owningNamespace.nameOf(self) endif</body>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="0bf18ffe-b870-4f2a-bdc7-9940b2be474f" name="MetadataFeature" visibility="public">
     <generalization xmi:id="_RMIlMEFSEeuACqhnVnSHvw" general="124e57c2-e7ac-4bbd-8ae3-b74186c4259c"/>
-    <ownedAttribute xmi:id="e14fce7e-1979-491f-bcf6-1d1cb6459489" name="metadataFeatureValue" visibility="public" type="31e42889-d7aa-43b6-81b3-41e86408ba2f" isDerived="true" redefinedProperty="ec58580f-851c-4202-a5c6-27b2ec9ac376" association="e5338d2a-1d0a-4581-beb3-8c279dd42bc5">
+    <ownedAttribute xmi:id="e14fce7e-1979-491f-bcf6-1d1cb6459489" name="metadataFeatureValue" visibility="public" type="31e42889-d7aa-43b6-81b3-41e86408ba2f" aggregation="composite" redefinedProperty="ec58580f-851c-4202-a5c6-27b2ec9ac376" association="e5338d2a-1d0a-4581-beb3-8c279dd42bc5">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d6868dc6-4f9a-4c48-b774-f0625f21521e" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3c0fc827-3688-4d3e-aae5-170881e48741" name="" visibility="public" value="1"/>
     </ownedAttribute>
@@ -4888,16 +4888,15 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="a4eb4482-ecbb-4d17-89ea-4c75dc5c196b" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="1b815567-e361-4374-8adc-75fa981eea50" name="" visibility="public" value="1"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="806485ed-5d6d-4d12-8800-b1cf3e2468d1" name="owningMetadataFeature" visibility="public" type="0bf18ffe-b870-4f2a-bdc7-9940b2be474f" redefinedProperty="cfd14843-bce5-4ee1-8fb3-a2fdd0237258 6507856f-a68c-4c3c-b4b5-f6a17faac658" association="e5338d2a-1d0a-4581-beb3-8c279dd42bc5">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cb797c18-26db-4ed4-82b5-37425a2c3a56" name="" visibility="public" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ef0fbca9-6d4c-4dab-9b06-6470ca5afe27" name="" visibility="public" value="1"/>
+    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="e86830ef-5236-4271-8427-c567436efdcf" name="" visibility="public" memberEnd="9f743946-04e1-48ce-9097-b65525c16ac4 591eb622-a431-49b0-9c31-8fd191b9278e">
     <ownedEnd xmi:id="591eb622-a431-49b0-9c31-8fd191b9278e" name="" visibility="public" type="2b4eb448-4bfe-4fb4-9509-33764e4f1fc3" association="e86830ef-5236-4271-8427-c567436efdcf"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="e5338d2a-1d0a-4581-beb3-8c279dd42bc5" name="" visibility="public" memberEnd="e14fce7e-1979-491f-bcf6-1d1cb6459489 806485ed-5d6d-4d12-8800-b1cf3e2468d1">
-    <ownedEnd xmi:id="806485ed-5d6d-4d12-8800-b1cf3e2468d1" name="owningMetadataFeature" visibility="public" type="0bf18ffe-b870-4f2a-bdc7-9940b2be474f" isDerived="true" subsettedProperty="cfd14843-bce5-4ee1-8fb3-a2fdd0237258" association="e5338d2a-1d0a-4581-beb3-8c279dd42bc5">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="cb797c18-26db-4ed4-82b5-37425a2c3a56" name="" visibility="public"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ef0fbca9-6d4c-4dab-9b06-6470ca5afe27" name="" visibility="public" value="1"/>
-    </ownedEnd>
-  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="e5338d2a-1d0a-4581-beb3-8c279dd42bc5" name="" visibility="public" memberEnd="e14fce7e-1979-491f-bcf6-1d1cb6459489 806485ed-5d6d-4d12-8800-b1cf3e2468d1"/>
   <packagedElement xmi:type="uml:Class" xmi:id="e0a535a3-0f42-4798-9214-9980a1cbaa54" name="ReturnParameterMembership" visibility="public">
     <ownedComment xmi:id="28968f85-ba57-4632-9f69-3f5227a4fb0b" annotatedElement="e0a535a3-0f42-4798-9214-9980a1cbaa54">
       <body>&lt;p>A ReturnParameterMembership is a ParameterMembership that indicates that the &lt;code>memberParameter&lt;/code> is the &lt;code>result&lt;/code> parameter of a Function or Expression. The &lt;code>direction&lt;/code> for a ReturnParameterMembership must be &lt;code>out&lt;/code>.&lt;/p></body>
@@ -5214,7 +5213,7 @@ else owningNamespace.nameOf(self) endif</body>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="a6d1a860-be48-43ee-afd7-2e5f2f70fe93" name="" visibility="public" value="*"/>
     </ownedEnd>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="01cfd39c-4dbb-4f4a-bbe1-64798bc2f817" name="" visibility="public" memberEnd="403837ea-763b-44e6-afc8-544223d5b38e 2d6dc7c1-6986-43cd-b6e5-d0045639801d">
+  <packagedElement xmi:type="uml:Association" xmi:id="01cfd39c-4dbb-4f4a-bbe1-64798bc2f817" name="" visibility="public" memberEnd="2d6dc7c1-6986-43cd-b6e5-d0045639801d">
     <ownedEnd xmi:id="2d6dc7c1-6986-43cd-b6e5-d0045639801d" name="reference" visibility="public" type="4743bccb-a49f-4685-b9d4-d92b2e70194e" isDerived="true" subsettedProperty="f7b8fa23-31d7-4311-9742-5754a2260720" association="01cfd39c-4dbb-4f4a-bbe1-64798bc2f817">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="d159b8d7-3505-4826-bf51-a257e8de108b" name="" visibility="public"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="429ee04d-00ef-4bad-a6ea-96f2cedfa08a" name="" visibility="public" value="*"/>
@@ -5270,10 +5269,6 @@ else owningNamespace.nameOf(self) endif</body>
   <packagedElement xmi:type="uml:Class" xmi:id="4743bccb-a49f-4685-b9d4-d92b2e70194e" name="MetadataReferenceExpression" visibility="public">
     <generalization xmi:id="66cbd532-3798-4766-98fc-9538bc954b36" general="a992e14b-0838-46e3-a486-3d4339717f13"/>
     <generalization xmi:id="947fb501-2246-46d0-8855-0be4480335b9" general="7bdedcfb-4251-45af-a3d8-2f6eb34190bb"/>
-    <ownedAttribute xmi:id="403837ea-763b-44e6-afc8-544223d5b38e" name="referent" visibility="public" type="0bf18ffe-b870-4f2a-bdc7-9940b2be474f" isDerived="true" redefinedProperty="a42a34a1-0748-4b76-b3b6-a6770814f850" association="01cfd39c-4dbb-4f4a-bbe1-64798bc2f817">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="f03d7c9e-c8b4-4b11-8c40-2d117ec0368a" name="" visibility="public" value="1"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="c75dc5fc-b56d-47c7-966f-031d02ffb77c" name="" visibility="public" value="1"/>
-    </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="7195c02a-f102-4843-88a2-4f3a0217284f" name="InvocationExpression" visibility="public">
     <ownedComment xmi:id="797c7cb1-e5f7-438b-b7c2-b825665b7df7" annotatedElement="7195c02a-f102-4843-88a2-4f3a0217284f">

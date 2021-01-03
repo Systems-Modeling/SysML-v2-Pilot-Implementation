@@ -60,6 +60,7 @@ fragment OwnedElement returns SysML::Element :
       ownedRelationship_comp += OwnedRelationship
     | documentation_comp += OwnedDocumentation
     | ownedAnnotation_comp += OwnedTextualRepresentationAnnotation
+    | ownedAnnotation_comp += OwnedAnnotatingFeatureAnnotation
 ;
 
 /* Relationships */
@@ -157,10 +158,10 @@ PrefixDocumentationComment returns SysML::Comment :
 /* Textual Representation */
 
 OwnedTextualRepresentationAnnotation returns SysML::Annotation :
-	ownedRelatedElement_comp += OwnedTextualAnnotation
+	ownedRelatedElement_comp += OwnedTextualRepresentation
 ;
 
-OwnedTextualAnnotation returns SysML::TextualRepresentation :
+OwnedTextualRepresentation returns SysML::TextualRepresentation :
 	( 'rep' ( humanId = Name )? )? 
 	'language' language = STRING_VALUE body = REGULAR_COMMENT
 	ownedRelationship_comp += EmptyAnnotation
@@ -172,6 +173,51 @@ TextualRepresentation returns SysML::TextualRepresentation :
     )
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
+;
+
+/* Annotating Features */
+
+OwnedAnnotatingFeatureAnnotation returns SysML::Annotation :
+	ownedRelatedElement_comp += OwnedAnnotatingFeature
+;
+
+OwnedAnnotatingFeature returns SysML::AnnotatingFeature :
+	'metadata' ( humanId = Name ( ':' | 'typed' 'by' ) )? ownedRelationship_comp += metadataTyping 
+	ownedRelationship_comp += EmptyAnnotation 
+	AnnotatingFeatureBody
+;
+
+AnnotatingFeature returns SysML::AnnotatingFeature :
+	( '@' | 'metadata' ) AnnotatingFeatureDeclaration 
+	( 'about' ownedRelationship_comp += Annotation ( ',' ownedRelationship_comp += Annotation )* 
+	| ownedRelationship_comp += EmptyAnnotation
+	)	
+	AnnotatingFeatureBody
+;
+
+fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
+	( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship_comp += metadataTyping
+;
+
+metadataTyping returns SysML::FeatureTyping :
+	type = [SysML::DataType | QualifiedName]
+;
+
+fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
+	';' | '{' ( ownedFeatureMembership_comp += MetadataFeatureMember )* '}'
+;
+
+MetadataFeatureMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = MetadataFeature
+;
+
+MetadataFeature returns SysML::MetadataFeature :
+	'feature'? ( ':>>' | 'redefines')? ownedRelationship_comp += OwnedRedefinition 
+	'=' metadataFeatureValue_comp = MetadataFeatureValue ';'
+;
+
+MetadataFeatureValue returns SysML::MetadataFeatureValue :
+	metadataValue_comp = MetadataExpression
 ;
 
 /* NAMESPACES */
@@ -239,6 +285,7 @@ NonFeatureElement returns SysML::Element :
 	| Relationship
 	| Comment
 	| TextualRepresentation
+	| AnnotatingFeature
 	| Namespace
 	| Package 
 	| Type
@@ -455,7 +502,10 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 
 fragment MultiplicityPart returns SysML::Feature :
 	ownedMembership_comp += MultiplicityMember 
-	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
+	// NOTE: Can't use "&" here because of use of predication elsewhere.
+	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	)?
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
@@ -1129,12 +1179,6 @@ BaseExpression returns SysML::Expression :
 	| '(' OwnedExpression ')'
 ;
 
-// Null Expressions
-
-NullExpression returns SysML::NullExpression :
-	{SysML::NullExpression} 'null'
-;
-
 // Feature Reference Expressions
 
 FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
@@ -1179,7 +1223,53 @@ ExtentExpression_Deprecated returns SysML::OperatorExpression :
 	ownedFeatureMembership_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
 ;
 
-/* Literal Expressions */
+/* MetadataExpressions */
+
+MetadataExpressionMember returns SysML::FeatureMembership : 
+	ownedMemberFeature_comp = MetadataExpression
+;
+
+MetadataExpression returns SysML::MetadataExpression :
+	  NullExpression
+	| LiteralExpression
+	| MetadataReferenceExpression
+	| MetadataOperationExpression 
+	| '(' MetadataExpression ')'
+;
+
+MetadataReferenceExpression returns SysML::MetadataReferenceExpression :
+	ownedFeatureMembership_comp += FeatureReferenceMember
+;
+
+MetadataOperationExpression returns SysML::MetadataExpression :
+	ownedRelationship_comp += OwnedFeatureTyping '(' MetadataArgumentList? ')'
+;
+
+fragment MetadataArgumentList returns SysML::Expression :
+	MetadataPositionalArgumentList | MetadataNamedArgumentList
+;
+
+fragment MetadataPositionalArgumentList returns SysML::Expression :
+	ownedFeatureMembership_comp += MetadataExpressionMember 
+	( ',' ownedFeatureMembership_comp += MetadataExpressionMember )*
+;
+
+fragment MetadataNamedArgumentList returns SysML::Expression :
+	ownedFeatureMembership_comp += MetadataNamedExpressionMember 
+	( ',' ownedFeatureMembership_comp += MetadataNamedExpressionMember )*
+;
+
+MetadataNamedExpressionMember returns SysML::FeatureMembership :
+	memberName = Name '=>' ownedMemberFeature_comp = MetadataExpression
+;
+
+// Null Expressions
+
+NullExpression returns SysML::NullExpression :
+	{SysML::NullExpression} 'null'
+;
+
+// Literal Expressions
 
 LiteralExpression returns SysML::LiteralExpression :
 	  LiteralBoolean 

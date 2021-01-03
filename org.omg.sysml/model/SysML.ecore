@@ -3461,14 +3461,13 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetadataFeature" eSuperTypes="#//Feature">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataFeatureValue" ordered="false"
-        lowerBound="1" eType="#//MetadataFeatureValue" volatile="true" transient="true"
-        derived="true">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="owningMetadataFeature"/>
-      </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataFeatureValue_comp"
+        ordered="false" lowerBound="1" eType="#//MetadataFeatureValue" containment="true"
+        eOpposite="#//MetadataFeatureValue/owningMetadataFeature">
       <eAnnotations source="redefines" references="#//Namespace/ownedMembership_comp"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataFeatureValue" lowerBound="1"
+        eType="#//MetadataFeatureValue" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetadataFeatureValue" eSuperTypes="#//FeatureValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metadataValue_comp" ordered="false"
@@ -3477,6 +3476,10 @@
         <details key="body" value="metadataValuation"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//FeatureValue/value_comp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningMetadataFeature"
+        ordered="false" eType="#//MetadataFeature" eOpposite="#//MetadataFeature/metadataFeatureValue_comp">
+      <eAnnotations source="redefines" references="#//Membership/membershipOwningNamespace #//FeatureValue/featureWithValue"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metadataValue" lowerBound="1"
         eType="#//MetadataExpression" volatile="true" transient="true" derived="true"/>

@@ -94,6 +94,41 @@ TextualRepresentation returns SysML::TextualRepresentation :
     body = REGULAR_COMMENT
 ;
 
+/* Annotating Features */
+
+AnnotatingFeature returns SysML::AnnotatingFeature :
+	( '@' | 'metadata' ) AnnotatingFeatureDeclaration 
+	( 'about' ownedRelationship_comp += Annotation ( ',' ownedRelationship_comp += Annotation )* 
+	| ownedRelationship_comp += EmptyAnnotation
+	)	
+	AnnotatingFeatureBody
+;
+
+fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
+	( Identification DefinedByKeyword )? ownedRelationship_comp += metadataTyping
+;
+
+metadataTyping returns SysML::FeatureTyping :
+	type = [SysML::DataType | QualifiedName]
+;
+
+fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
+	';' | '{' ( ownedFeatureMembership_comp += MetadataFeatureMember )* '}'
+;
+
+MetadataFeatureMember returns SysML::FeatureMembership :
+	ownedMemberFeature_comp = MetadataFeature
+;
+
+MetadataFeature returns SysML::MetadataFeature :
+	'feature'? ( ':>>' | 'redefines')? ownedRelationship_comp += OwnedRedefinition 
+	'=' metadataFeatureValue_comp = MetadataFeatureValue ';'
+;
+
+MetadataFeatureValue returns SysML::MetadataFeatureValue :
+	metadataValue_comp = MetadataExpression
+;
+
 /* PACKAGES */
 
 /* Packages */
@@ -164,6 +199,7 @@ DefinitionElement returns SysML::Element :
 	  Package
 	| Comment
 	| TextualRepresentation
+	| AnnotatingFeature
 	| Dependency	  
 	| AttributeDefinition
 	| EnumerationDefinition
@@ -296,7 +332,10 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 
 fragment MultiplicityPart returns SysML::Feature :
 	ownedMembership_comp += MultiplicityMember 
-	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
+	// NOTE: Can't use "&" here because of use of predication elsewhere.
+	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	)?
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
@@ -2330,6 +2369,46 @@ BaseExpression returns SysML::Expression :
 	| InvocationExpression 
 	| ExtentExpression_Deprecated
 	| '(' OwnedExpression ')'
+;
+
+/* MetadataExpressions */
+
+MetadataExpressionMember returns SysML::FeatureMembership : 
+	ownedMemberFeature_comp = MetadataExpression
+;
+
+MetadataExpression returns SysML::MetadataExpression :
+	  NullExpression
+	| LiteralExpression
+	| MetadataReferenceExpression
+	| MetadataOperationExpression 
+	| '(' MetadataExpression ')'
+;
+
+MetadataReferenceExpression returns SysML::MetadataReferenceExpression :
+	ownedFeatureMembership_comp += FeatureReferenceMember
+;
+
+MetadataOperationExpression returns SysML::MetadataExpression :
+	ownedRelationship_comp += OwnedFeatureTyping '(' MetadataArgumentList? ')'
+;
+
+fragment MetadataArgumentList returns SysML::Expression :
+	MetadataPositionalArgumentList | MetadataNamedArgumentList
+;
+
+fragment MetadataPositionalArgumentList returns SysML::Expression :
+	ownedFeatureMembership_comp += MetadataExpressionMember 
+	( ',' ownedFeatureMembership_comp += MetadataExpressionMember )*
+;
+
+fragment MetadataNamedArgumentList returns SysML::Expression :
+	ownedFeatureMembership_comp += MetadataNamedExpressionMember 
+	( ',' ownedFeatureMembership_comp += MetadataNamedExpressionMember )*
+;
+
+MetadataNamedExpressionMember returns SysML::FeatureMembership :
+	memberName = Name '=>' ownedMemberFeature_comp = MetadataExpression
 ;
 
 // Null Expressions

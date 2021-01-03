@@ -72472,13 +72472,22 @@ public interface SysMLPackage extends EPackage {
 	int METADATA_FEATURE__IS_NONUNIQUE = FEATURE__IS_NONUNIQUE;
 
 	/**
+	 * The feature id for the '<em><b>Metadata Feature Value comp</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP = FEATURE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Metadata Feature Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA_FEATURE__METADATA_FEATURE_VALUE = FEATURE_FEATURE_COUNT + 0;
+	int METADATA_FEATURE__METADATA_FEATURE_VALUE = FEATURE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Metadata Feature</em>' class.
@@ -72487,7 +72496,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA_FEATURE_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 1;
+	int METADATA_FEATURE_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Names Of</em>' operation.
@@ -73211,13 +73220,22 @@ public interface SysMLPackage extends EPackage {
 	int METADATA_FEATURE_VALUE__METADATA_VALUE_COMP = FEATURE_VALUE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Owning Metadata Feature</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE = FEATURE_VALUE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Metadata Value</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA_FEATURE_VALUE__METADATA_VALUE = FEATURE_VALUE_FEATURE_COUNT + 1;
+	int METADATA_FEATURE_VALUE__METADATA_VALUE = FEATURE_VALUE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Metadata Feature Value</em>' class.
@@ -73226,7 +73244,7 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METADATA_FEATURE_VALUE_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 2;
+	int METADATA_FEATURE_VALUE_FEATURE_COUNT = FEATURE_VALUE_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Is Distinguishable From</em>' operation.
@@ -95249,6 +95267,17 @@ public interface SysMLPackage extends EPackage {
 	EClass getMetadataFeature();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue_comp <em>Metadata Feature Value comp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Metadata Feature Value comp</em>'.
+	 * @see org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue_comp()
+	 * @see #getMetadataFeature()
+	 * @generated
+	 */
+	EReference getMetadataFeature_MetadataFeatureValue_comp();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue <em>Metadata Feature Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95279,6 +95308,17 @@ public interface SysMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMetadataFeatureValue_MetadataValue_comp();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getOwningMetadataFeature <em>Owning Metadata Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Owning Metadata Feature</em>'.
+	 * @see org.omg.sysml.lang.sysml.MetadataFeatureValue#getOwningMetadataFeature()
+	 * @see #getMetadataFeatureValue()
+	 * @generated
+	 */
+	EReference getMetadataFeatureValue_OwningMetadataFeature();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getMetadataValue <em>Metadata Value</em>}'.
@@ -99728,6 +99768,14 @@ public interface SysMLPackage extends EPackage {
 		EClass METADATA_FEATURE = eINSTANCE.getMetadataFeature();
 
 		/**
+		 * The meta object literal for the '<em><b>Metadata Feature Value comp</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP = eINSTANCE.getMetadataFeature_MetadataFeatureValue_comp();
+
+		/**
 		 * The meta object literal for the '<em><b>Metadata Feature Value</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -99752,6 +99800,14 @@ public interface SysMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference METADATA_FEATURE_VALUE__METADATA_VALUE_COMP = eINSTANCE.getMetadataFeatureValue_MetadataValue_comp();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Metadata Feature</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE = eINSTANCE.getMetadataFeatureValue_OwningMetadataFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Metadata Value</b></em>' reference feature.

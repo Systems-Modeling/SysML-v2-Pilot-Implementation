@@ -48,13 +48,13 @@ package '15.10-Primitive Data Types' {
 	 * Note: Enumerations are currently limited to attributes.
 	 */
 	enum def ConditionColor {
-		red;
-		yellow;
-		green;
+		enum red;
+		enum yellow;
+		enum green;
 	}
 	
 	attribute def ConditionLevel {
-		enum associatedColor : ConditionColor;
+		attribute associatedColor : ConditionColor;
 	}
 	
 	enum def SeverityEnum :> ConditionLevel {

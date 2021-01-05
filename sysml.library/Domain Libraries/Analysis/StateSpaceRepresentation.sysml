@@ -18,14 +18,15 @@ package StateSpaceRepresentation {
     
     /** StateSpaceDynamics is the simplest form of State Space Representation,
         and nextState directly computes the stateSpace of the next timestep. */
-    abstract action def StateSpaceDynamics(in input: Input, out output: Output) {
+    abstract action def StateSpaceDynamics {
+    	in attribute input: Input;
+    	
         abstract calc nextState: NextState;
         abstract calc getOutput: GetOutput;
         attribute stateSpace: StateSpace;
 
         // To be revised when bind allows an expression
-        attribute newOutput: Output = getOutput(input, stateSpace);
-        bind output = newOutput;
+       	out attribute output: Output = getOutput(input, stateSpace);
     }
    
     /** The definition of the time derivative of StateSpace, which means dx/dt, where x is StateSpace */
@@ -68,7 +69,7 @@ package StateSpaceRepresentation {
     abstract action def DiscreteStateSpaceDynamics :> StateSpaceDynamics {
         abstract calc difference: Difference;
         calc :>> nextState: NextState(input: Input, stateSpace: StateSpace, timeStep: TimeValue) result: StateSpace {
-            value diff: StateSpace = difference(input, stateSpace);
+            attribute diff: StateSpace = difference(input, stateSpace);
             calc addDiff: AddDiff(stateSpace, diff) return result;
         }
     }

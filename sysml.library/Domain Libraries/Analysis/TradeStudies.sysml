@@ -1,10 +1,25 @@
+/**
+ * This package provides a simple framework for defining trade-off study analysis cases.
+ */
 package TradeStudies {
 	import Base::Anything;
 	import ScalarValues::*;
 	import ScalarFunctions::*;
 	
-	calc def ObjectiveFunction(alternative : Anything) result : ScalarValue[1];
+	/**
+	 * An ObjectiveFunction is a calculation that evaluates a TradeStudy alternative,
+	 * producing a ScalarValue that can be comparted with the evaluation of other
+	 * alternativs.
+	 */
+	abstract calc def ObjectiveFunction(alternative : Anything) result : ScalarValue[1];
 	
+	/**
+	 * A TradeStudyObjective is the base definition for the objective of a TradeStudy.
+	 * The requirement is to choose from a given set of alternatives the selectedAlternative
+	 * for that has the best evaluation according to a given ObjectiveFunction. What
+	 * value is considered "best" is not defined in the abstract base definition but must be
+	 * computed in any concrete specialization.
+	 */
 	abstract requirement def TradeStudyObjective {
 		subject selectedAlternative : Anything;
 		in ref alternatives : Anything[1..*];
@@ -13,25 +28,67 @@ package TradeStudies {
 				
 		require constraint { fn(selectedAlternative) == best }
 	}
-		
+	
+	/**
+	 * A MaximizeObjective is a TradeStudyObjective that requires that the 
+	 * selectedAlternative have the maximum ObjectiveFunction value of all the
+	 * given alternatives.
+	 */
 	requirement def MinimizeObjective :> TradeStudyObjective {
 		out attribute :>> best = alternatives->minimize x (fn(x));
 	}
 	
+	/**
+	 * A MinimizeObjective is a TradeStudyObjective that requires that the 
+	 * selectedAlternative have the maximum ObjectiveFunction value of all the
+	 * given alternatives.
+	 */
 	requirement def MaximizeObjective :> TradeStudyObjective {
 		out attribute :>> best = alternatives->maximize x (fn(x));
 	}
 	
-	analysis def TradeStudy {
+	/**
+	 * A TradeStudy is an analysis case whose subject is a set of alternatives
+	 * (at least one) and whose result is a selection of one of those alternatives.
+	 * The alternatives are evaluated based on a given ObjectiveFunction and the
+	 * selection is made such that it satisfies the objective of the TradeStudy
+	 * (which must be a TradeStudyObjective).
+	 */
+	abstract analysis def TradeStudy {
+		/**
+		 * The set of alternatives being considered in this TradeStudy. 
+		 * 
+		 * In a TradeStudy usage, bind this feature to the actual collection of
+		 * alternatives to be considered.
+		 */
 		subject studyAlternatives : Anything[1..*];
-		calc objectiveFunction : ObjectiveFunction;
 		
+		/**
+		 * The ObjectiveFunction to be used to evaluate the alternatives.
+		 * 
+		 * In a TradeStudy usage, redefine this feature to provide the desired
+		 * calculation (or bind it to a calculation usage that does so).
+		 */
+		abstract calc objectiveFunction : ObjectiveFunction;
+		
+		/**
+		 * The objective of this TradeStudy.
+		 * 
+		 * Redefine this feature to give it a definition that is a concrete
+		 * specialization of TradeStudyObjective. That can either be one of the
+		 * specializations provided in this package, or a more specific user-
+		 * defined one.
+		 */
 		objective tradeStudyObjective : TradeStudyObjective {
 			in ref :>> alternatives = studyAlternatives;
 			in calc :>> fn = objectiveFunction;
 		}
 		
-		return ref selectedAlternative = studyAlternatives->selectOne a (objectiveFunction(a))[1];
+		/**
+		 * The alternative selected by this TradeStudy, which is the one that meets the
+		 * requirement of the tradeStudyObjective.
+		 */
+		return ref selectedAlternative = studyAlternatives->selectOne a (tradeStudyObjective(a));
 	}
 	
 }

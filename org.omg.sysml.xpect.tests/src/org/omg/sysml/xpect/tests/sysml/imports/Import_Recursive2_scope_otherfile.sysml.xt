@@ -1,0 +1,30 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.sysml.imports.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File "Import_Recursive2.sysml" {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="Import_Recursive2.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package RecursiveImport {
+  
+   import P::**;
+
+	//All X, Y and Z are visible here.
+	part x: X;	
+	part y: Y;
+	part z: Z;
+	part s: S1;
+	part t: T1;
+	part u: U1;
+}

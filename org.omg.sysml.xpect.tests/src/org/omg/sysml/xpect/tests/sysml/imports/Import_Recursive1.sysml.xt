@@ -1,43 +1,54 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
+XPECT_SETUP org.omg.sysml.xpect.tests.sysml.imports.SysMLTests
 	ResourceSet {
 		ThisFile {}
-		File "Import_Recursive1.sysml" {}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="Import_Recursive1.sysml"}
 			}
 		}
 	}
 END_SETUP 
 */
 
-// XPECT noErrors --> ""
 package RecursiveImport {
+	
+	import P::**;
   
-  /*
-  package P {
-  	part def X;
-    package Q {
-      part def Y;
-      package R {
-        part def Z;
-      }
-    }
-  }
-   */ 
-  
-  	//import p::**; here is essentially equivalent to
-   	import P::*;
-	import P::Q::*;
-	import P::Q::R::*;
+	package P {
+		part def X;
+		package Q {
+			part def Y;
+			package R {
+        		part def Z;
+      		}
+		}
+	
+	}
 
-	//All X, Y and Z are visible here.
-	part x: X;	
+	//* XPECT scope at X ---
+	    P.X, RecursiveImport.P.X,
+	    P.Q.Y,  RecursiveImport.P.Q.Y,
+	    P.Q.R.Z, RecursiveImport.P.Q.R.Z,
+	   
+	    X,RecursiveImport.X,  
+	    Q.Y, RecursiveImport.Q.Y,
+	    Q.R.Z, RecursiveImport.Q.R.Z,
+	   
+		Y, RecursiveImport.Y,
+		R.Z, RecursiveImport.R.Z,
+	 	
+		Z, RecursiveImport.Z,
+	   
+	    x,RecursiveImport.x, 
+	    y, RecursiveImport.y,
+		z, RecursiveImport.z
+	--- */
+
+	part x: X;
 	part y: Y;
 	part z: Z;
-	
+	 
 }

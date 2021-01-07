@@ -1,0 +1,78 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.sysml.imports.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="Import_Recursive3.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="Import_Recursive3.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package RecursiveImport {
+  
+  
+   	import P::**;
+
+	//* XPECT scope at X ---
+	P.X,
+	P.X.X1, 
+	P.Q.Y, 
+	P.Q.R.Z, 
+	
+	X, RecursiveImport.X,
+	X.X1, RecursiveImport.X.X1,
+	X1, RecursiveImport.X1,
+	Q.Y, RecursiveImport.Q.Y,
+	Q.R.Z,  RecursiveImport.Q.R.Z,	  
+	Y, RecursiveImport.Y,
+	R.Z, RecursiveImport.R.Z,
+	Z, RecursiveImport.Z,
+	
+	P.S.S1, 
+	P.S.S1.X1, 
+	P.S.T.T1, 
+	P.S.T.U.U1,
+	
+	S.S1, RecursiveImport.S.S1,
+	S.S1.X1, RecursiveImport.S.S1.X1,
+	S1.X1, RecursiveImport.S1.X1,
+	S.T.T1, RecursiveImport.S.T.T1,
+	S.T.U.U1, RecursiveImport.S.T.U.U1,
+	
+	S1, RecursiveImport.S1,
+	T.T1, RecursiveImport.T.T1,
+	T1,  RecursiveImport.T1,
+	T.U.U1, RecursiveImport.T.U.U1,
+	U.U1, RecursiveImport.U.U1,
+	U1, RecursiveImport.U1,
+	
+	x, RecursiveImport.x,
+	y, RecursiveImport.y,
+	z, RecursiveImport.z,
+	s, RecursiveImport.s,
+	t, RecursiveImport.t,
+	u, RecursiveImport.u,
+	x1, RecursiveImport.x1,
+	xx1, RecursiveImport.xx1,
+	
+	x.X1, RecursiveImport.x.X1,
+	s.X1, RecursiveImport.s.X1,
+	
+	--- */
+	part x: X;	
+	part y: Y;
+	part z: Z;
+	part s: S1;
+	part t: T1;
+	part u: U1;
+	part x1: X1;
+	part xx1: S1.X1;
+}

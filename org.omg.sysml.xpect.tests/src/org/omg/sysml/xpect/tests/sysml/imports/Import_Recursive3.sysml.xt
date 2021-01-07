@@ -37,10 +37,18 @@ package RecursiveImport {
     }
     
   }
- 
-   	import P::**;
-
-	//* XPECT scope at X ---
+  
+  import P::**;
+	part x: X;	
+	part y: Y;
+	part z: Z;
+	part s: S1;
+	part t: T1;
+	part u: U1;
+	part x1: X1;
+	
+	
+	//* XPECT scope at S1.X1 ---
 	P.X, RecursiveImport.P.X,
 	P.X.X1, RecursiveImport.P.X.X1,
 	P.Q.Y, RecursiveImport.P.Q.Y,
@@ -86,12 +94,6 @@ package RecursiveImport {
 	s.X1, RecursiveImport.s.X1,
 	
 	--- */
-	part x: X;	
-	part y: Y;
-	part z: Z;
-	part s: S1;
-	part t: T1;
-	part u: U1;
-	part x1: X1;
+	
 	part xx1: S1.X1;
 }

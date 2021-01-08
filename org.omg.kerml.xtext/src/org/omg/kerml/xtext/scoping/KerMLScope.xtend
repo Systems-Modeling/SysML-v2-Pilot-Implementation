@@ -343,17 +343,9 @@ class KerMLScope extends AbstractScope {
 			if (r instanceof Membership) {
 				var memberElement = r.ownedMemberElement
 				if (memberElement instanceof Namespace) {
-					if (memberElement.owned(qn, false, false, ownedvisited, visited, newHashSet)) {
-						return true
-					}
-					if (memberElement.gen(qn, visited, newHashSet)) {
-						return true;
-					}
-					if (memberElement.imp(qn, false, visited)) {
-						return true;
-					}
-					val found = resolveRecursiveImport((memberElement as Namespace), qn, ownedvisited, visited)
-					if (found) 	return true
+					var found = memberElement.resolve(qn, false, false, visited, newHashSet)
+						|| resolveRecursiveImport((memberElement as Namespace), qn, ownedvisited, visited)
+					if (found) return true
 				}						
 			}
 		}

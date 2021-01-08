@@ -1,0 +1,51 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package Test {
+
+	package Test1 {
+		import VP::**;
+
+		part def A specializes c_Public_Id;
+		//XPECT linkedName at A --> Test.Test1.A
+		part def B specializes A;
+		
+		//XPECT linkedName at VP2.A --> Test.VP.VP2.A
+		part def C specializes VP2.A;
+
+		//XPECT linkedName at A_Id --> Test.VP.VP2.A
+		part def D specializes A_Id;
+	
+	}
+
+	package VP {
+			
+		package VP1 {	
+			public part def id 'c_Public_Id' c_Public {
+				private part def c_private{}
+				public part def c_public{}
+				protected part def c_protected{}
+			}
+		}
+		
+		package VP2 {
+			public part def id 'A_Id' A;
+		}
+	}
+	
+}
+
+	

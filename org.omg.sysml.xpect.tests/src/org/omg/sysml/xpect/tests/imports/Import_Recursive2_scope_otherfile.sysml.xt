@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.sysml.imports.SysMLTests
+XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File "Import_Recursive2.sysml" {}

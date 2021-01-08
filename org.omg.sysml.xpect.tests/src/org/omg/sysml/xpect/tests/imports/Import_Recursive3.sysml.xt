@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.sysml.imports.SysMLTests
+XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
 	ResourceSet {
 		ThisFile {}
 	}
@@ -39,13 +39,14 @@ package RecursiveImport {
   }
   
   import P::**;
+  	part x1: X1;
 	part x: X;	
 	part y: Y;
 	part z: Z;
 	part s: S1;
 	part t: T1;
 	part u: U1;
-	part x1: X1;
+	
 	
 	
 	//* XPECT scope at S1.X1 ---

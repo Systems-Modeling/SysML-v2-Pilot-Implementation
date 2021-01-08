@@ -1,4 +1,4 @@
-package org.omg.sysml.xpect.tests.sysml.imports;
+package org.omg.sysml.xpect.tests.imports;
 
 import org.junit.runner.RunWith;
 import org.eclipse.xpect.runner.XpectRunner;

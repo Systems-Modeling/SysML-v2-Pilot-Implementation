@@ -25,7 +25,6 @@ package StateSpaceRepresentation {
         abstract calc getOutput: GetOutput;
         attribute stateSpace: StateSpace;
 
-        // To be revised when bind allows an expression
        	out attribute output: Output = getOutput(input, stateSpace);
     }
    

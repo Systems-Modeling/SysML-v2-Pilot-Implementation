@@ -1,6 +1,5 @@
 package '10b-Trade-off Among Alternative Configurations' {
 	import ScalarValues::Real;
-	import ISQ::*;
 	import TradeStudies::*;
 	import Definitions::*;
 	import Usages::*;
@@ -10,8 +9,8 @@ package '10b-Trade-off Among Alternative Configurations' {
 		part def Vehicle;
 		
 		part def Engine {
-			power : PowerValue;
-			mass : MassValue;
+			power : ISQ::PowerValue;
+			mass : ISQ::MassValue;
 			efficiency : Real;
 			reliability : Real;
 			cost : Real;
@@ -65,19 +64,25 @@ package '10b-Trade-off Among Alternative Configurations' {
 
 		/** Evaluation function with criteria power, mass, efficency and cost. */
 		calc def EngineEvaluation 
-			(power : PowerValue, mass : MassValue, efficiency : Real, cost : Real ) 
+			(power : ISQ::PowerValue, mass : ISQ::MassValue, efficiency : Real, cost : Real) 
 			evaluation : Real {
 				// Compute evaluation...
 			}
 			
 		analysis engineTradeStudy : TradeStudy {
-			subject :>> studyAlternatives : Engine[1..*] = all engineChoice;
-			objective :>> tradeStudyObjective : MaximizeObjective;
+			subject : Engine[1..*] = all engineChoice;
+			objective : MaximizeObjective;
 
 			calc :>> objectiveFunction {
-				in part :>> alternative : Engine;
+				in part engine :>> alternative : Engine;
+				
+				calc powerRollup (engine) return power:>ISQ::power;
+				calc massRollup (engine) return mass:>ISQ::mass;
+				calc efficiencyRollup (engine) return efficiency: Real;
+				calc costRollup (engine) return cost: Real;
+				
 				return :>> result : Real = EngineEvaluation(
-					alternative::power, alternative::mass, alternative::efficiency, alternative::cost
+					powerRollup::power, massRollup::mass, efficiencyRollup::efficiency, costRollup::cost
 				);
 			}
 			

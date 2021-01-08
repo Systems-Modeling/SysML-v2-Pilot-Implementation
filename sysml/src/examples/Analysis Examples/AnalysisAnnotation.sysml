@@ -6,7 +6,7 @@ package AnalysisAnnotation {
 	action def ComputeDynamics {
 		metadata ToolExecution {
 			toolName = "ModelCenter";
-			URL = "aserv://localhost/Vehicle/Equation1";
+			uri = "aserv://localhost/Vehicle/Equation1";
 		}
 			
 		in dt : TimeValue             { @ToolVariable { name = "deltaT"; } }

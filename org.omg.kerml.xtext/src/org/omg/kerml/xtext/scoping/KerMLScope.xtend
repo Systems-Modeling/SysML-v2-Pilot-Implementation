@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
 
+
 class KerMLScope extends AbstractScope {
 	
 	protected Namespace pack		
@@ -329,11 +330,36 @@ class KerMLScope extends AbstractScope {
 				if (found) {
 					return true
 				}
+				if (e.isRecursive)
+					resolveRecursiveImport(e.importedNamespace, qn,  newHashSet, visited)
 			}
 		}
 		return false
 	}
 	
+	protected def boolean resolveRecursiveImport(Namespace pack, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited){
+		
+		for (r: pack.ownedRelationship) {
+			if (r instanceof Membership) {
+				var memberElement = r.ownedMemberElement
+				if (memberElement instanceof Namespace) {
+					if (memberElement.owned(qn, false, false, ownedvisited, visited, newHashSet)) {
+						return true
+					}
+					if (memberElement.gen(qn, visited, newHashSet)) {
+						return true;
+					}
+					if (memberElement.imp(qn, false, visited)) {
+						return true;
+					}
+					val found = resolveRecursiveImport((memberElement as Namespace), qn, ownedvisited, visited)
+					if (found) 	return true
+				}						
+			}
+		}
+		return false
+	}
+
 	protected def boolean resolveIfUnvisited(Namespace pack, QualifiedName qn, boolean checkIfAdded, Set<Namespace> visited, Set<Element> redefined) {
 		var found = false
 		if (pack !== null && !pack.eIsProxy && !visited.contains(pack)) {

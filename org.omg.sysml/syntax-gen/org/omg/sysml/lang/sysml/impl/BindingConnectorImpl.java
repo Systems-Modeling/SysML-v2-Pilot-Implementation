@@ -60,7 +60,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		setRelatedFeature(0, source);
 		setRelatedFeature(1, target);
 		if (featuringTypes != null) {
-			updateFeaturingTypes(featuringTypes);
+			addFeaturingTypes(featuringTypes);
 		}
 	}
 	

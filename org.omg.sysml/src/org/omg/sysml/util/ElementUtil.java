@@ -28,9 +28,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class ElementUtil {
@@ -43,6 +45,10 @@ public class ElementUtil {
 		((TypeImpl)type).addImplicitGeneralizations();
 	}
 	
+	public static void addImplicitTypeFeaturings(Feature feature) {
+		((FeatureImpl)feature).addImplicitTypeFeaturing();
+	}
+	
 	public static void transformAll(Element root, boolean generateImplicitElements) {
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
@@ -53,6 +59,9 @@ public class ElementUtil {
 		}
 		if (generateImplicitElements && root instanceof Type) {
 			addImplicitGeneralizations((Type)root);
+		}
+		if (generateImplicitElements && root instanceof Feature) {
+			addImplicitTypeFeaturings((Feature)root);
 		}
 	}
 	

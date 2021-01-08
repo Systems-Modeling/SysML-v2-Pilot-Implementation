@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -514,8 +513,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		if (contextType != null && contextType != getOwningType()) {
 			if (getOwnedTypeFeaturing().isEmpty()) {
 				addFeaturingType(getContextType());
-			} else {
-				updateFeaturingTypes(Collections.singletonList(getContextType()));
 			}
 		}
 	}

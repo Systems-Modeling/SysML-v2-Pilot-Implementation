@@ -33,6 +33,8 @@ import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.TypeFeaturing
 import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.impl.FeatureImpl
 
 /**
  * Customization of the default outline structure.
@@ -386,6 +388,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
 		createImplicitGeneralizationNodes(parentNode, type)
+		if (type instanceof Feature) {
+			createImplicitTypeFeaturingNodes(parentNode, type)
+		}
 		_createChildren(parentNode, type as Namespace)
 	}
 	
@@ -412,6 +417,29 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		]
 	}
 	
+	def createImplicitTypeFeaturingNodes(IOutlineNode parentNode, Feature feature) {
+		(feature as FeatureImpl).forEachImplicitFeaturingType[featuringType |
+			/*
+			 * TODO here image dispatcher should be called with a type that
+			 * returns that appropriate icon for generalizations, but there
+			 * are no such icons added yet; in the future, the generalType
+			 * reference might return an unexpected icon if at a later point
+			 * type-specific icons are added.
+			 */
+			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
+				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
+			)
+			
+			// Traversal does not know about the new node, children have to be created here
+			if (featuringType !== null) {
+				createEObjectNode(implicitNode, featuringType, 
+					featuringType._image, featuringType._text, 
+					true
+				)
+			}
+		]
+	}
+	
 	def _isLeaf(Association association) {
 		false
 	}
@@ -432,6 +460,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
 		createImplicitGeneralizationNodes(parentNode, expression)
+		createImplicitTypeFeaturingNodes(parentNode, expression)
 		for (Relationship relationship : expression.ownedRelationship) {
 			createEObjectNode(parentNode, relationship, 
 				_image(relationship), 

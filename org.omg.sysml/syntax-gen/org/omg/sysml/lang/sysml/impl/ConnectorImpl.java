@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -541,11 +540,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		if (getOwningType() == null) {
 			Type contextType = getContextType();
 			if (contextType != null) {
-				if (getOwnedTypeFeaturing().isEmpty()) {
-					addFeaturingType(contextType);
-				} else {
-					updateFeaturingTypes(Collections.singletonList(contextType));
-				}
+				addFeaturingType(contextType);
 			}
 		}
 	}

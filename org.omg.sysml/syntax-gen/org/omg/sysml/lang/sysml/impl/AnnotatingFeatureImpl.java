@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
@@ -26,6 +25,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -148,7 +148,9 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 	 */
 	@Override
 	public EList<MetadataFeature> getOwnedMetadata() {
-		return new DerivedEObjectEList<>(MetadataFeature.class, this, SysMLPackage.ANNOTATING_FEATURE__OWNED_METADATA, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		EList<MetadataFeature> ownedMetadata = new NonNotifyingEObjectEList<>(MetadataFeature.class, this, SysMLPackage.ANNOTATING_FEATURE__OWNED_METADATA);
+		super.getOwnedFeature().stream().filter(MetadataFeature.class::isInstance).map(MetadataFeature.class::cast).forEachOrdered(ownedMetadata::add);
+		return ownedMetadata;
 	}
 
 	/**

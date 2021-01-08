@@ -501,8 +501,16 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Multiplicity(context, (MultiplicityRange) semanticObject); 
 				return; 
 			case SysMLPackage.NAMESPACE:
-				sequence_Identification_NamespaceBody(context, (Namespace) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getNamespaceRule()
+						|| rule == grammarAccess.getNonFeatureElementRule()) {
+					sequence_Identification_NamespaceBody(context, (Namespace) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getRootNamespaceRule()) {
+					sequence_NamespaceBodyElement_RootNamespace(context, (Namespace) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.NULL_EXPRESSION:
 				sequence_NullExpression_SequenceConstructionExpression(context, (NullExpression) semanticObject); 
 				return; 
@@ -559,16 +567,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.PACKAGE:
-				if (rule == grammarAccess.getNonFeatureElementRule()
-						|| rule == grammarAccess.getPackageRule()) {
-					sequence_Identification_NamespaceBody(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getRootPackageRule()) {
-					sequence_NamespaceBodyElement_RootPackage(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
-					return; 
-				}
-				else break;
+				sequence_Identification_NamespaceBody(context, (org.omg.sysml.lang.sysml.Package) semanticObject); 
+				return; 
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
 				if (rule == grammarAccess.getBodyParameterMemberRule()) {
 					sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
@@ -3491,12 +3491,12 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     RootPackage returns Package
+	 *     RootNamespace returns Namespace
 	 *
 	 * Constraint:
 	 *     (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NamespaceMember | ownedImport_comp+=Import)*
 	 */
-	protected void sequence_NamespaceBodyElement_RootPackage(ISerializationContext context, org.omg.sysml.lang.sysml.Package semanticObject) {
+	protected void sequence_NamespaceBodyElement_RootNamespace(ISerializationContext context, Namespace semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

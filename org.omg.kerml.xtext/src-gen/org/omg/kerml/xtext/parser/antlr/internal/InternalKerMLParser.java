@@ -179,7 +179,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
         @Override
         protected String getFirstRuleName() {
-        	return "RootPackage";
+        	return "RootNamespace";
        	}
 
        	@Override
@@ -190,28 +190,28 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
 
-    // $ANTLR start "entryRuleRootPackage"
-    // InternalKerML.g:65:1: entryRuleRootPackage returns [EObject current=null] : iv_ruleRootPackage= ruleRootPackage EOF ;
-    public final EObject entryRuleRootPackage() throws RecognitionException {
+    // $ANTLR start "entryRuleRootNamespace"
+    // InternalKerML.g:65:1: entryRuleRootNamespace returns [EObject current=null] : iv_ruleRootNamespace= ruleRootNamespace EOF ;
+    public final EObject entryRuleRootNamespace() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRootPackage = null;
+        EObject iv_ruleRootNamespace = null;
 
 
         try {
-            // InternalKerML.g:65:52: (iv_ruleRootPackage= ruleRootPackage EOF )
-            // InternalKerML.g:66:2: iv_ruleRootPackage= ruleRootPackage EOF
+            // InternalKerML.g:65:54: (iv_ruleRootNamespace= ruleRootNamespace EOF )
+            // InternalKerML.g:66:2: iv_ruleRootNamespace= ruleRootNamespace EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getRootPackageRule()); 
+               newCompositeNode(grammarAccess.getRootNamespaceRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleRootPackage=ruleRootPackage();
+            iv_ruleRootNamespace=ruleRootNamespace();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleRootPackage; 
+               current =iv_ruleRootNamespace; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -227,12 +227,12 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleRootPackage"
+    // $ANTLR end "entryRuleRootNamespace"
 
 
-    // $ANTLR start "ruleRootPackage"
-    // InternalKerML.g:72:1: ruleRootPackage returns [EObject current=null] : ( () (this_NamespaceBodyElement_1= ruleNamespaceBodyElement[$current] )* ) ;
-    public final EObject ruleRootPackage() throws RecognitionException {
+    // $ANTLR start "ruleRootNamespace"
+    // InternalKerML.g:72:1: ruleRootNamespace returns [EObject current=null] : ( () (this_NamespaceBodyElement_1= ruleNamespaceBodyElement[$current] )* ) ;
+    public final EObject ruleRootNamespace() throws RecognitionException {
         EObject current = null;
 
         EObject this_NamespaceBodyElement_1 = null;
@@ -254,7 +254,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               				current = forceCreateModelElement(
-              					grammarAccess.getRootPackageAccess().getPackageAction_0(),
+              					grammarAccess.getRootNamespaceAccess().getNamespaceAction_0(),
               					current);
               			
             }
@@ -279,9 +279,9 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      				if (current==null) {
-            	      					current = createModelElement(grammarAccess.getRootPackageRule());
+            	      					current = createModelElement(grammarAccess.getRootNamespaceRule());
             	      				}
-            	      				newCompositeNode(grammarAccess.getRootPackageAccess().getNamespaceBodyElementParserRuleCall_1());
+            	      				newCompositeNode(grammarAccess.getRootNamespaceAccess().getNamespaceBodyElementParserRuleCall_1());
             	      			
             	    }
             	    pushFollow(FOLLOW_3);
@@ -325,7 +325,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleRootPackage"
+    // $ANTLR end "ruleRootNamespace"
 
 
     // $ANTLR start "ruleIdentification"

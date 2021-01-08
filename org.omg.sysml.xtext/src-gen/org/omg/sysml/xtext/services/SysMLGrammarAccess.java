@@ -25,21 +25,21 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarElementFinder {
 	
-	public class RootPackageElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RootPackage");
+	public class RootNamespaceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RootNamespace");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cNamespaceAction_0 = (Action)cGroup.eContents().get(0);
 		private final RuleCall cPackageBodyElementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* ROOT PACKAGE */ RootPackage SysML::Package:
-		//	{SysML::Package} PackageBodyElement*;
+		///* ROOT PACKAGE */ RootNamespace SysML::Namespace:
+		//	{SysML::Namespace} PackageBodyElement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Package} PackageBodyElement*
+		//{SysML::Namespace} PackageBodyElement*
 		public Group getGroup() { return cGroup; }
 		
-		//{SysML::Package}
-		public Action getPackageAction_0() { return cPackageAction_0; }
+		//{SysML::Namespace}
+		public Action getNamespaceAction_0() { return cNamespaceAction_0; }
 		
 		//PackageBodyElement*
 		public RuleCall getPackageBodyElementParserRuleCall_1() { return cPackageBodyElementParserRuleCall_1; }
@@ -764,7 +764,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedImport_compAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cOwnedImport_compImportParserRuleCall_2_0 = (RuleCall)cOwnedImport_compAssignment_2.eContents().get(0);
 		
-		///* Package Bodies */ fragment PackageBodyElement returns SysML::Package:
+		///* Package Bodies */ fragment PackageBodyElement returns SysML::Namespace:
 		//	documentation_comp+=OwnedDocumentation
 		//	| ownedMembership_comp+=PackageMember
 		//	| ownedImport_comp+=Import;
@@ -14339,7 +14339,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Keyword getRequirementVerifyKeyword_0() { return cRequirementVerifyKeyword_0; }
 	}
 	
-	private final RootPackageElements pRootPackage;
+	private final RootNamespaceElements pRootNamespace;
 	private final IdentificationElements pIdentification;
 	private final CommentElements pComment;
 	private final AnnotationElements pAnnotation;
@@ -14829,7 +14829,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	@Inject
 	public SysMLGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.pRootPackage = new RootPackageElements();
+		this.pRootNamespace = new RootNamespaceElements();
 		this.pIdentification = new IdentificationElements();
 		this.pComment = new CommentElements();
 		this.pAnnotation = new AnnotationElements();
@@ -15338,14 +15338,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 
 	
-	///* ROOT PACKAGE */ RootPackage SysML::Package:
-	//	{SysML::Package} PackageBodyElement*;
-	public RootPackageElements getRootPackageAccess() {
-		return pRootPackage;
+	///* ROOT PACKAGE */ RootNamespace SysML::Namespace:
+	//	{SysML::Namespace} PackageBodyElement*;
+	public RootNamespaceElements getRootNamespaceAccess() {
+		return pRootNamespace;
 	}
 	
-	public ParserRule getRootPackageRule() {
-		return getRootPackageAccess().getRule();
+	public ParserRule getRootNamespaceRule() {
+		return getRootNamespaceAccess().getRule();
 	}
 	
 	///* BASIC ELEMENTS */ fragment Identification returns SysML::Element:
@@ -15550,7 +15550,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getPackageBodyAccess().getRule();
 	}
 	
-	///* Package Bodies */ fragment PackageBodyElement returns SysML::Package:
+	///* Package Bodies */ fragment PackageBodyElement returns SysML::Namespace:
 	//	documentation_comp+=OwnedDocumentation
 	//	| ownedMembership_comp+=PackageMember
 	//	| ownedImport_comp+=Import;

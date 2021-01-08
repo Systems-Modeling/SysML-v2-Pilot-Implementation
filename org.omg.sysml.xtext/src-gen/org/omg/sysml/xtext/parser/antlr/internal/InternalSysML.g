@@ -44,7 +44,7 @@ import org.omg.sysml.xtext.services.SysMLGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "RootPackage";
+    	return "RootNamespace";
    	}
 
    	@Override
@@ -61,15 +61,15 @@ import org.omg.sysml.xtext.services.SysMLGrammarAccess;
     }
 }
 
-// Entry rule entryRuleRootPackage
-entryRuleRootPackage returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRootPackageRule()); }
-	iv_ruleRootPackage=ruleRootPackage
-	{ $current=$iv_ruleRootPackage.current; }
+// Entry rule entryRuleRootNamespace
+entryRuleRootNamespace returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRootNamespaceRule()); }
+	iv_ruleRootNamespace=ruleRootNamespace
+	{ $current=$iv_ruleRootNamespace.current; }
 	EOF;
 
-// Rule RootPackage
-ruleRootPackage returns [EObject current=null]
+// Rule RootNamespace
+ruleRootNamespace returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -80,16 +80,16 @@ ruleRootPackage returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getRootPackageAccess().getPackageAction_0(),
+					grammarAccess.getRootNamespaceAccess().getNamespaceAction_0(),
 					$current);
 			}
 		)
 		(
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getRootPackageRule());
+					$current = createModelElement(grammarAccess.getRootNamespaceRule());
 				}
-				newCompositeNode(grammarAccess.getRootPackageAccess().getPackageBodyElementParserRuleCall_1());
+				newCompositeNode(grammarAccess.getRootNamespaceAccess().getPackageBodyElementParserRuleCall_1());
 			}
 			this_PackageBodyElement_1=rulePackageBodyElement[$current]
 			{

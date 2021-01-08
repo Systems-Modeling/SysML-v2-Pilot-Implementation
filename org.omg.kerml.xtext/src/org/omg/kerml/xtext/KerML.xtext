@@ -33,10 +33,10 @@ grammar org.omg.kerml.xtext.KerML hidden (WS, ML_NOTE, SL_NOTE)
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
 import "http://www.omg.org/spec/SysML/2.0" as SysML
 
-/* ROOT PACKAGE */
+/* ROOT NAMESPACE */
 
-RootPackage returns SysML::Package :
-	{SysML::Package}NamespaceBodyElement*
+RootNamespace returns SysML::Namespace :
+	{SysML::Namespace}NamespaceBodyElement*
 ;
 
 /* ELEMENTS */

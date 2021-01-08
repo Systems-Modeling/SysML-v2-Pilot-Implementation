@@ -25,21 +25,21 @@ import org.eclipse.xtext.service.GrammarProvider;
 @Singleton
 public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarElementFinder {
 	
-	public class RootPackageElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.RootPackage");
+	public class RootNamespaceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.RootNamespace");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPackageAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cNamespaceAction_0 = (Action)cGroup.eContents().get(0);
 		private final RuleCall cNamespaceBodyElementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		///* ROOT PACKAGE */ RootPackage SysML::Package:
-		//	{SysML::Package} NamespaceBodyElement*;
+		///* ROOT NAMESPACE */ RootNamespace SysML::Namespace:
+		//	{SysML::Namespace} NamespaceBodyElement*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SysML::Package} NamespaceBodyElement*
+		//{SysML::Namespace} NamespaceBodyElement*
 		public Group getGroup() { return cGroup; }
 		
-		//{SysML::Package}
-		public Action getPackageAction_0() { return cPackageAction_0; }
+		//{SysML::Namespace}
+		public Action getNamespaceAction_0() { return cNamespaceAction_0; }
 		
 		//NamespaceBodyElement*
 		public RuleCall getNamespaceBodyElementParserRuleCall_1() { return cNamespaceBodyElementParserRuleCall_1; }
@@ -7921,7 +7921,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public Keyword getInoutInoutKeyword_2_0() { return cInoutInoutKeyword_2_0; }
 	}
 	
-	private final RootPackageElements pRootPackage;
+	private final RootNamespaceElements pRootNamespace;
 	private final IdentificationElements pIdentification;
 	private final ElementElements pElement;
 	private final ElementBodyElements pElementBody;
@@ -8168,7 +8168,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	@Inject
 	public KerMLGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.pRootPackage = new RootPackageElements();
+		this.pRootNamespace = new RootNamespaceElements();
 		this.pIdentification = new IdentificationElements();
 		this.pElement = new ElementElements();
 		this.pElementBody = new ElementBodyElements();
@@ -8434,14 +8434,14 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 
 	
-	///* ROOT PACKAGE */ RootPackage SysML::Package:
-	//	{SysML::Package} NamespaceBodyElement*;
-	public RootPackageElements getRootPackageAccess() {
-		return pRootPackage;
+	///* ROOT NAMESPACE */ RootNamespace SysML::Namespace:
+	//	{SysML::Namespace} NamespaceBodyElement*;
+	public RootNamespaceElements getRootNamespaceAccess() {
+		return pRootNamespace;
 	}
 	
-	public ParserRule getRootPackageRule() {
-		return getRootPackageAccess().getRule();
+	public ParserRule getRootNamespaceRule() {
+		return getRootNamespaceAccess().getRule();
 	}
 	
 	///* ELEMENTS */ /* Elements */ fragment Identification returns SysML::Element:

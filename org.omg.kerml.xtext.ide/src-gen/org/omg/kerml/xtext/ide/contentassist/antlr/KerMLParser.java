@@ -130,7 +130,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBasicVisibilityIndicatorAccess().getAlternatives(), "rule__BasicVisibilityIndicator__Alternatives");
 			builder.put(grammarAccess.getVisibilityIndicatorAccess().getAlternatives(), "rule__VisibilityIndicator__Alternatives");
 			builder.put(grammarAccess.getFeatureDirectionAccess().getAlternatives(), "rule__FeatureDirection__Alternatives");
-			builder.put(grammarAccess.getRootPackageAccess().getGroup(), "rule__RootPackage__Group__0");
+			builder.put(grammarAccess.getRootNamespaceAccess().getGroup(), "rule__RootNamespace__Group__0");
 			builder.put(grammarAccess.getIdentificationAccess().getGroup_0(), "rule__Identification__Group_0__0");
 			builder.put(grammarAccess.getElementAccess().getGroup(), "rule__Element__Group__0");
 			builder.put(grammarAccess.getElementBodyAccess().getGroup_1(), "rule__ElementBody__Group_1__0");

@@ -186,23 +186,23 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
 
 
 
-    // $ANTLR start "entryRuleRootPackage"
-    // InternalKerML.g:54:1: entryRuleRootPackage : ruleRootPackage EOF ;
-    public final void entryRuleRootPackage() throws RecognitionException {
+    // $ANTLR start "entryRuleRootNamespace"
+    // InternalKerML.g:54:1: entryRuleRootNamespace : ruleRootNamespace EOF ;
+    public final void entryRuleRootNamespace() throws RecognitionException {
         try {
-            // InternalKerML.g:55:1: ( ruleRootPackage EOF )
-            // InternalKerML.g:56:1: ruleRootPackage EOF
+            // InternalKerML.g:55:1: ( ruleRootNamespace EOF )
+            // InternalKerML.g:56:1: ruleRootNamespace EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRootPackageRule()); 
+               before(grammarAccess.getRootNamespaceRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleRootPackage();
+            ruleRootNamespace();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRootPackageRule()); 
+               after(grammarAccess.getRootNamespaceRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -217,30 +217,30 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleRootPackage"
+    // $ANTLR end "entryRuleRootNamespace"
 
 
-    // $ANTLR start "ruleRootPackage"
-    // InternalKerML.g:63:1: ruleRootPackage : ( ( rule__RootPackage__Group__0 ) ) ;
-    public final void ruleRootPackage() throws RecognitionException {
+    // $ANTLR start "ruleRootNamespace"
+    // InternalKerML.g:63:1: ruleRootNamespace : ( ( rule__RootNamespace__Group__0 ) ) ;
+    public final void ruleRootNamespace() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:67:2: ( ( ( rule__RootPackage__Group__0 ) ) )
-            // InternalKerML.g:68:2: ( ( rule__RootPackage__Group__0 ) )
+            // InternalKerML.g:67:2: ( ( ( rule__RootNamespace__Group__0 ) ) )
+            // InternalKerML.g:68:2: ( ( rule__RootNamespace__Group__0 ) )
             {
-            // InternalKerML.g:68:2: ( ( rule__RootPackage__Group__0 ) )
-            // InternalKerML.g:69:3: ( rule__RootPackage__Group__0 )
+            // InternalKerML.g:68:2: ( ( rule__RootNamespace__Group__0 ) )
+            // InternalKerML.g:69:3: ( rule__RootNamespace__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRootPackageAccess().getGroup()); 
+               before(grammarAccess.getRootNamespaceAccess().getGroup()); 
             }
-            // InternalKerML.g:70:3: ( rule__RootPackage__Group__0 )
-            // InternalKerML.g:70:4: rule__RootPackage__Group__0
+            // InternalKerML.g:70:3: ( rule__RootNamespace__Group__0 )
+            // InternalKerML.g:70:4: rule__RootNamespace__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__RootPackage__Group__0();
+            rule__RootNamespace__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -248,7 +248,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRootPackageAccess().getGroup()); 
+               after(grammarAccess.getRootNamespaceAccess().getGroup()); 
             }
 
             }
@@ -268,7 +268,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRootPackage"
+    // $ANTLR end "ruleRootNamespace"
 
 
     // $ANTLR start "ruleIdentification"
@@ -28503,23 +28503,23 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__FeatureDirection__Alternatives"
 
 
-    // $ANTLR start "rule__RootPackage__Group__0"
-    // InternalKerML.g:7722:1: rule__RootPackage__Group__0 : rule__RootPackage__Group__0__Impl rule__RootPackage__Group__1 ;
-    public final void rule__RootPackage__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__RootNamespace__Group__0"
+    // InternalKerML.g:7722:1: rule__RootNamespace__Group__0 : rule__RootNamespace__Group__0__Impl rule__RootNamespace__Group__1 ;
+    public final void rule__RootNamespace__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:7726:1: ( rule__RootPackage__Group__0__Impl rule__RootPackage__Group__1 )
-            // InternalKerML.g:7727:2: rule__RootPackage__Group__0__Impl rule__RootPackage__Group__1
+            // InternalKerML.g:7726:1: ( rule__RootNamespace__Group__0__Impl rule__RootNamespace__Group__1 )
+            // InternalKerML.g:7727:2: rule__RootNamespace__Group__0__Impl rule__RootNamespace__Group__1
             {
             pushFollow(FOLLOW_3);
-            rule__RootPackage__Group__0__Impl();
+            rule__RootNamespace__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RootPackage__Group__1();
+            rule__RootNamespace__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -28538,12 +28538,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RootPackage__Group__0"
+    // $ANTLR end "rule__RootNamespace__Group__0"
 
 
-    // $ANTLR start "rule__RootPackage__Group__0__Impl"
-    // InternalKerML.g:7734:1: rule__RootPackage__Group__0__Impl : ( () ) ;
-    public final void rule__RootPackage__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RootNamespace__Group__0__Impl"
+    // InternalKerML.g:7734:1: rule__RootNamespace__Group__0__Impl : ( () ) ;
+    public final void rule__RootNamespace__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -28555,7 +28555,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:7740:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRootPackageAccess().getPackageAction_0()); 
+               before(grammarAccess.getRootNamespaceAccess().getNamespaceAction_0()); 
             }
             // InternalKerML.g:7741:2: ()
             // InternalKerML.g:7741:3: 
@@ -28563,7 +28563,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRootPackageAccess().getPackageAction_0()); 
+               after(grammarAccess.getRootNamespaceAccess().getNamespaceAction_0()); 
             }
 
             }
@@ -28579,21 +28579,21 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RootPackage__Group__0__Impl"
+    // $ANTLR end "rule__RootNamespace__Group__0__Impl"
 
 
-    // $ANTLR start "rule__RootPackage__Group__1"
-    // InternalKerML.g:7749:1: rule__RootPackage__Group__1 : rule__RootPackage__Group__1__Impl ;
-    public final void rule__RootPackage__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__RootNamespace__Group__1"
+    // InternalKerML.g:7749:1: rule__RootNamespace__Group__1 : rule__RootNamespace__Group__1__Impl ;
+    public final void rule__RootNamespace__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalKerML.g:7753:1: ( rule__RootPackage__Group__1__Impl )
-            // InternalKerML.g:7754:2: rule__RootPackage__Group__1__Impl
+            // InternalKerML.g:7753:1: ( rule__RootNamespace__Group__1__Impl )
+            // InternalKerML.g:7754:2: rule__RootNamespace__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__RootPackage__Group__1__Impl();
+            rule__RootNamespace__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -28612,12 +28612,12 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RootPackage__Group__1"
+    // $ANTLR end "rule__RootNamespace__Group__1"
 
 
-    // $ANTLR start "rule__RootPackage__Group__1__Impl"
-    // InternalKerML.g:7760:1: rule__RootPackage__Group__1__Impl : ( ( ruleNamespaceBodyElement )* ) ;
-    public final void rule__RootPackage__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RootNamespace__Group__1__Impl"
+    // InternalKerML.g:7760:1: rule__RootNamespace__Group__1__Impl : ( ( ruleNamespaceBodyElement )* ) ;
+    public final void rule__RootNamespace__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -28629,7 +28629,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             // InternalKerML.g:7766:2: ( ruleNamespaceBodyElement )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRootPackageAccess().getNamespaceBodyElementParserRuleCall_1()); 
+               before(grammarAccess.getRootNamespaceAccess().getNamespaceBodyElementParserRuleCall_1()); 
             }
             // InternalKerML.g:7767:2: ( ruleNamespaceBodyElement )*
             loop100:
@@ -28661,7 +28661,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRootPackageAccess().getNamespaceBodyElementParserRuleCall_1()); 
+               after(grammarAccess.getRootNamespaceAccess().getNamespaceBodyElementParserRuleCall_1()); 
             }
 
             }
@@ -28681,7 +28681,7 @@ public class InternalKerMLParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RootPackage__Group__1__Impl"
+    // $ANTLR end "rule__RootNamespace__Group__1__Impl"
 
 
     // $ANTLR start "rule__Identification__Group_0__0"

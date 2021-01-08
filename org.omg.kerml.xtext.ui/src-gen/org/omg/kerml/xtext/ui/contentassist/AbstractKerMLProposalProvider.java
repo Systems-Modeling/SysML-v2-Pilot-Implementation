@@ -766,7 +766,7 @@ public abstract class AbstractKerMLProposalProvider extends AbstractJavaBasedCon
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 
-	public void complete_RootPackage(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void complete_RootNamespace(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 	public void complete_Identification(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

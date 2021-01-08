@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.TypeFeaturing
 import org.omg.sysml.lang.sysml.Namespace
+import java.net.URLDecoder
 
 /**
  * Customization of the default outline structure.
@@ -55,6 +56,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + name;
 		}
 		text 
+	}
+	
+	def String _text(Namespace namespace) {
+		if (namespace.eContainer !== null)
+			(namespace as Element)._text
+		else
+			'Root ' + URLDecoder.decode(namespace.eResource.URI.lastSegment, "UTF-8")
 	}
 	
 	def String _text(VisibilityKind visibility) {

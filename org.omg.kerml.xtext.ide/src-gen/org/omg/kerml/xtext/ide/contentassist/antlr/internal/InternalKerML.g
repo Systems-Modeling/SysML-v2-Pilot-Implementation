@@ -50,25 +50,25 @@ import org.omg.kerml.xtext.services.KerMLGrammarAccess;
 	}
 }
 
-// Entry rule entryRuleRootPackage
-entryRuleRootPackage
+// Entry rule entryRuleRootNamespace
+entryRuleRootNamespace
 :
-{ before(grammarAccess.getRootPackageRule()); }
-	 ruleRootPackage
-{ after(grammarAccess.getRootPackageRule()); } 
+{ before(grammarAccess.getRootNamespaceRule()); }
+	 ruleRootNamespace
+{ after(grammarAccess.getRootNamespaceRule()); } 
 	 EOF 
 ;
 
-// Rule RootPackage
-ruleRootPackage 
+// Rule RootNamespace
+ruleRootNamespace 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getRootPackageAccess().getGroup()); }
-		(rule__RootPackage__Group__0)
-		{ after(grammarAccess.getRootPackageAccess().getGroup()); }
+		{ before(grammarAccess.getRootNamespaceAccess().getGroup()); }
+		(rule__RootNamespace__Group__0)
+		{ after(grammarAccess.getRootNamespaceAccess().getGroup()); }
 	)
 ;
 finally {
@@ -7719,53 +7719,53 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RootPackage__Group__0
+rule__RootNamespace__Group__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RootPackage__Group__0__Impl
-	rule__RootPackage__Group__1
+	rule__RootNamespace__Group__0__Impl
+	rule__RootNamespace__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RootPackage__Group__0__Impl
+rule__RootNamespace__Group__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRootPackageAccess().getPackageAction_0()); }
+	{ before(grammarAccess.getRootNamespaceAccess().getNamespaceAction_0()); }
 	()
-	{ after(grammarAccess.getRootPackageAccess().getPackageAction_0()); }
+	{ after(grammarAccess.getRootNamespaceAccess().getNamespaceAction_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RootPackage__Group__1
+rule__RootNamespace__Group__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__RootPackage__Group__1__Impl
+	rule__RootNamespace__Group__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RootPackage__Group__1__Impl
+rule__RootNamespace__Group__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getRootPackageAccess().getNamespaceBodyElementParserRuleCall_1()); }
+	{ before(grammarAccess.getRootNamespaceAccess().getNamespaceBodyElementParserRuleCall_1()); }
 	(ruleNamespaceBodyElement)*
-	{ after(grammarAccess.getRootPackageAccess().getNamespaceBodyElementParserRuleCall_1()); }
+	{ after(grammarAccess.getRootNamespaceAccess().getNamespaceBodyElementParserRuleCall_1()); }
 )
 ;
 finally {

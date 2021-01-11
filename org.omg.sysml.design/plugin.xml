@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="org.omg.sysml.design.Activator"
+               id="org.omg.sysml.design"
+	       name="sysml">
+    </component>
+  </extension>
+  <extension
+        point="org.eclipse.sirius.sessionManagerListener">
+     <listener
+           class="org.omg.sysml.design.ReadOnlyXtextSessionManagerListener">
+     </listener>
+  </extension>
+</plugin>

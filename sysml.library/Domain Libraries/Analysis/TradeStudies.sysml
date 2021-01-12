@@ -9,9 +9,15 @@ package TradeStudies {
 	/**
 	 * An ObjectiveFunction is a calculation that evaluates a TradeStudy alternative,
 	 * producing a ScalarValue that can be comparted with the evaluation of other
-	 * alternativs.
+	 * alternatives.
 	 */
-	abstract calc def ObjectiveFunction(alternative : Anything) result : ScalarValue[1];
+	abstract calc def ObjectiveFunction {
+		/** The alternative to be evaluated. */
+		in alternative : Anything; 
+		
+		/** A ScalarValue representing the evaluation of the given alternative. */
+		return result : ScalarValue[1]; 
+	}
 	
 	/**
 	 * A TradeStudyObjective is the base definition for the objective of a TradeStudy.
@@ -21,12 +27,41 @@ package TradeStudies {
 	 * computed in any concrete specialization.
 	 */
 	abstract requirement def TradeStudyObjective {
+		/**
+		 * The alternative that should be selected, as evaluated using the given 
+		 * ObjectiveFunction.
+		 */
 		subject selectedAlternative : Anything;
+		
+		/**
+		 * The alternatives being considered in the TradeStudy for which this TradeStudyObjective 
+		 * is the objective.
+		 */
 		in ref alternatives : Anything[1..*];
+		
+		/**
+		 * The ObjectiveFunction to be used in evaluating the given alternatives.
+		 */
 		in calc fn : ObjectiveFunction;
+		
+		/**
+		 * Out of the evaluation results of all the given alternatives, the one that is considered 
+		 * "best", in the sense that it is the value the selectedAlternative should have. This 
+		 * value must be computed in any concrete specialization of TradeStudyObjective.
+		 */
 		out attribute best : ScalarValue;
 				
 		require constraint { fn(selectedAlternative) == best }
+	}
+	
+	/**
+	 * A MinimizeObjective is a TradeStudyObjective that requires that the 
+	 * selectedAlternative have the minimum ObjectiveFunction value of all the
+	 * given alternatives.
+	 */
+	requirement def MinimizeObjective :> TradeStudyObjective {
+		/** For a MinimizeObjective, the best value is the minimum one. */
+		out attribute :>> best = alternatives->minimize x (fn(x));
 	}
 	
 	/**
@@ -34,16 +69,8 @@ package TradeStudies {
 	 * selectedAlternative have the maximum ObjectiveFunction value of all the
 	 * given alternatives.
 	 */
-	requirement def MinimizeObjective :> TradeStudyObjective {
-		out attribute :>> best = alternatives->minimize x (fn(x));
-	}
-	
-	/**
-	 * A MinimizeObjective is a TradeStudyObjective that requires that the 
-	 * selectedAlternative have the maximum ObjectiveFunction value of all the
-	 * given alternatives.
-	 */
 	requirement def MaximizeObjective :> TradeStudyObjective {
+		/** For a MinimizeObjective, the best value is the maximum one. */
 		out attribute :>> best = alternatives->maximize x (fn(x));
 	}
 	

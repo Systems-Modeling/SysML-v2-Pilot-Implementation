@@ -167,12 +167,7 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 
 	@Override
 	public EList<Feature> getFeature() {
-		getResultConnector();
 		return super.getFeature();
-	}
-	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
 	}
 	
 	@Override

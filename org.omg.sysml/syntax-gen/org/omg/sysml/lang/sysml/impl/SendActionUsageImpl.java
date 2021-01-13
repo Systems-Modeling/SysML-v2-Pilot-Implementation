@@ -135,10 +135,6 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 		return expressions.isEmpty()? null: expressions.get(0);
 	}
 
-	public BindingConnector getTargetConnector() {
-		return targetConnector;
-	}
-	
 	protected void computeTargetConnector() {
 		Expression sourceExpression = getSourceExpression();
 		if (sourceExpression != null) {

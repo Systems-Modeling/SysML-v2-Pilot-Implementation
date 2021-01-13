@@ -61,10 +61,6 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 		super();
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-
 	public static BindingConnector getOrCreateResultConnectorFor(
 			TypeImpl type, BindingConnector resultConnector, Feature result) {
 		Expression resultExpression = 

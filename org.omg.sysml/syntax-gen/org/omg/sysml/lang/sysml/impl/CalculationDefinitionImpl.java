@@ -172,10 +172,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
 	// Other methods
 	
 	public static void addResultParameter(Type type) {

@@ -149,10 +149,6 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 		return FUNCTION_SUPERCLASS_DEFAULT;
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
 	@Override
 	public void transform() {
 		super.transform();

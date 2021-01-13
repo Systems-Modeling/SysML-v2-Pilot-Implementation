@@ -122,12 +122,6 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 		return TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT;
 	}
 	
-	// 
-
-	public BindingConnector getContextConnector() {
-		return contextConnector;
-	}
-	
 	protected abstract Feature getContextFeature();
 	
 	protected void computeContextConnector() {

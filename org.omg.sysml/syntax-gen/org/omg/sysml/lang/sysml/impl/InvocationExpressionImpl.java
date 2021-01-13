@@ -128,10 +128,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return typeFeatures;
 	}
 	
-	public BindingConnector[] getArgumentConnectors() {
-		return argumentConnectors;
-	}
-	
 	public void computeArgumentConnectors() {
 		List<Expression> arguments = getArgument();
 		if (argumentConnectors == null) {

@@ -322,7 +322,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	@Override
 	public EList<Feature> getFeature() {
-		getResultConnector();
 		return super.getFeature();
 	}
 	
@@ -354,10 +353,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	public void setResult(Feature newResult) {
 		throw new UnsupportedOperationException();
-	}
-
-	public BindingConnector getResultConnector() {
-		return resultConnector;
 	}
 	
 	// Additional Overrides

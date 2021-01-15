@@ -436,6 +436,15 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}	
 	
+	@Override
+	public void cleanDerivedValues() {
+		if (resultConnector != null) {
+			removeOwnedBindingConnector(resultConnector);
+			resultConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
 	//
 	
 	/**

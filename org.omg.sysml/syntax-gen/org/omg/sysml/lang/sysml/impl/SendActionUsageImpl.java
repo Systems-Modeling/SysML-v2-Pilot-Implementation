@@ -147,7 +147,16 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 		computeTargetConnector();
 	}
 	
-/**
+	@Override
+	public void cleanDerivedValues() {
+		if (targetConnector != null) {
+			removeOwnedBindingConnector(targetConnector);
+			targetConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

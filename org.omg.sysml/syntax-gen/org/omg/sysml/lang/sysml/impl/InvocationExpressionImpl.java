@@ -198,6 +198,17 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		computeArgumentConnectors();
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		if (argumentConnectors != null) {
+			for (BindingConnector argumentConnector : argumentConnectors) {
+				removeOwnedBindingConnector(argumentConnector);
+			}
+			argumentConnectors = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

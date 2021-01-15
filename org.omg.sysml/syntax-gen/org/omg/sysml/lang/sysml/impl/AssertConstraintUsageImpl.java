@@ -183,6 +183,15 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 		assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		if (assertionConnector != null) {
+			removeOwnedBindingConnector(assertionConnector);
+			assertionConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
 	//
 	
 	/**

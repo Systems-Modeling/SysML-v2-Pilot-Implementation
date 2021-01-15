@@ -32,15 +32,15 @@ import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Documentation;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.lang.sysml.impl.ElementImpl;
 
 public class KerMLLinker extends LazyLinker {
 
 	@Override
 	protected void clearReferences(EObject obj) {
 		super.clearReferences(obj);
-		if (obj instanceof TypeImpl) {
-			((TypeImpl) obj).cleanImplicitGeneralization();
+		if (obj instanceof ElementImpl) {
+			((ElementImpl) obj).clearCaches();
 		}
 	}
 	

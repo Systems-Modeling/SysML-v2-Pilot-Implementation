@@ -134,6 +134,15 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 		computeContextConnector();
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		if (contextConnector != null) {
+			removeOwnedBindingConnector(contextConnector);
+			contextConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
 	//
 	
 	/**

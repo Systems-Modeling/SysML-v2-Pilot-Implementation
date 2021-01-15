@@ -76,5 +76,14 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 		super.transform();
 		resultConnector = getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		if (resultConnector != null) {
+			removeOwnedBindingConnector(resultConnector);
+			resultConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
 
 } // BlockExpressionImpl

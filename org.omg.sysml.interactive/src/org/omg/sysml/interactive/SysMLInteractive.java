@@ -74,6 +74,7 @@ public class SysMLInteractive extends SysMLUtil {
 	public static final String DOMAIN_LIBRARIES_DIRECTORY = "Domain Libraries";
 	public static final String QUANTITIES_AND_UNITS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Quantities and Units";
 	public static final String GEOMETRY_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Geometry";
+	public static final String ANALYSIS_DIRECTORY = DOMAIN_LIBRARIES_DIRECTORY + "/Analysis";
 	public static final String KERML_EXTENSION = ".kerml";
 	public static final String SYSML_EXTENSION = ".sysml";
 	
@@ -132,6 +133,7 @@ public class SysMLInteractive extends SysMLUtil {
 			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Time" + SYSML_EXTENSION, false, SYSML_EXTENSION);
 			
 			this.readAll(path + GEOMETRY_DIRECTORY, false, SYSML_EXTENSION);
+			this.readAll(path + ANALYSIS_DIRECTORY, false, SYSML_EXTENSION);
 
 		}
 	}

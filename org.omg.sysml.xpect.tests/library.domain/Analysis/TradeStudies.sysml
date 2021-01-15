@@ -16,7 +16,7 @@ package TradeStudies {
 		in ref alternative : Anything; 
 		
 		/** A ScalarValue representing the evaluation of the given alternative. */
-		return attribute result : ScalarValue[1]; 
+		return ref result : ScalarValue[1]; 
 	}
 	
 	/**

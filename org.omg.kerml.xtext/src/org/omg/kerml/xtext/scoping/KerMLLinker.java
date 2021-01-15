@@ -40,7 +40,7 @@ public class KerMLLinker extends LazyLinker {
 	protected void clearReferences(EObject obj) {
 		super.clearReferences(obj);
 		if (obj instanceof TypeImpl) {
-			((TypeImpl) obj).cleanImplicitGeneralization();
+			((TypeImpl) obj).cleanDerivedValues();
 		}
 	}
 	

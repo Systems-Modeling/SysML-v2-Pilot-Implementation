@@ -184,6 +184,15 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		if (resultConnector != null) {
+			removeOwnedBindingConnector(resultConnector);
+			resultConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

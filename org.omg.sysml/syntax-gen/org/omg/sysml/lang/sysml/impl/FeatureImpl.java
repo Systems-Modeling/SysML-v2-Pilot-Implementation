@@ -932,6 +932,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		computeValueConnector();
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		if (valueConnector != null) {
+			removeOwnedBindingConnector(valueConnector);
+			valueConnector = null;
+		}
+		super.cleanDerivedValues();
+	}
+	
 	// Utility methods
 	
 	protected void addImplicitFeaturingTypes() {

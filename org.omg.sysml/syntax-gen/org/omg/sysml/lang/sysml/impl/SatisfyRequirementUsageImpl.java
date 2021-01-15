@@ -100,7 +100,10 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetAssertionConnector() {
-		return assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
+		if (assertionConnector == null) {
+			assertionConnector = InvariantImpl.getAssertionConnectorFor(this, this.getResult());
+		}
+		return assertionConnector;
 	}
 
 	/**

@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -272,8 +273,13 @@ public class TypeImpl extends NamespaceImpl implements Type {
  		}
 	}
 	
-
-	public void cleanImplicitGeneralization() {
+	/**
+	 * Removes derived values such as implicit generalizations or binding connectors
+	 * added by an in-place transformation from the model. This method is regularly
+	 * called by the Xtext linker when cleaning up references to make the next linking
+	 * cycle start from a clean state.
+	 */
+	public void cleanDerivedValues() {
 		implicitGeneralTypes.clear();
 	}
 	
@@ -286,7 +292,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				getOwnedRelationship_comp().add(newGeneralization);
 			}
 		}
-		cleanImplicitGeneralization();
+		cleanDerivedValues();
 	}
 	
 	public boolean isImplicitGeneralTypesEmpty() {
@@ -1074,18 +1080,23 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return connector;
 	}
 	
-	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
-		if (connector == null) {
-			connector = addOwnedBindingConnector(source, target);
-		} else {
-			((BindingConnectorImpl)connector).update(null, source, target);
-		}
-		return connector;
+	protected void removeOwnedBindingConnector(BindingConnector connector) {
+		EList<? extends Membership> membershipList = (((ConnectorImpl)connector).getContextType() == this)
+				? getOwnedFeatureMembership_comp()
+				: getOwnedMembership_comp();
+		membershipList.stream()
+			.filter(m -> Objects.equals(connector, m.getOwnedMemberElement_comp()))
+			.findFirst()
+			.ifPresent(membershipList::remove);
 	}
 	
-	public BindingConnector makeResultBinding(BindingConnector connector, Expression sourceExpression, Feature target) {
+	public BindingConnector makeBinding(Feature source, Feature target) {
+		return addOwnedBindingConnector(source, target);
+	}
+	
+	public BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
 		((ElementImpl)sourceExpression).transform();
-		return makeBinding(connector, sourceExpression.getResult(), target);
+		return makeBinding(sourceExpression.getResult(), target);
 	}
 		
 // Other Methods

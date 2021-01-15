@@ -167,7 +167,6 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 
 	@Override
 	public EList<Feature> getFeature() {
-		getResultConnector();
 		return super.getFeature();
 	}
 	
@@ -179,6 +178,15 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	public void transform() {
 		super.transform();
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	}
+
+	@Override
+	public void cleanDerivedValues() {
+		if (resultConnector != null) {
+			removeOwnedBindingConnector(resultConnector);
+			resultConnector = null;
+		}
+		super.cleanDerivedValues();
 	}
 
 	/**

@@ -112,29 +112,7 @@ public class SysMLInteractive extends SysMLUtil {
 			SysMLLibraryUtil.setModelLibraryDirectory(path);
 			this.readAll(path + KERNEL_LIBRARY_DIRECTORY, false, KERML_EXTENSION);
 			this.readAll(path + SYSTEMS_LIBRARY_DIRECTORY, false, SYSML_EXTENSION);
-			
-			// TODO: Replace this hardcoding with a configuration mechanism.
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Quantities" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/UnitsAndScales" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/QuantityCalculations" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQ" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQAcoustics" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQAtomicNuclear" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQCharacteristicNumbers" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQChemistryMolecular" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQElectromagnetism" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQLight" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQMechanics" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQSpaceTime" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/ISQThermodynamics" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SIPrefixes" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/SI" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/USCustomaryUnits" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			this.readAll(path + QUANTITIES_AND_UNITS_DIRECTORY + "/Time" + SYSML_EXTENSION, false, SYSML_EXTENSION);
-			
-			this.readAll(path + GEOMETRY_DIRECTORY, false, SYSML_EXTENSION);
-			this.readAll(path + ANALYSIS_DIRECTORY, false, SYSML_EXTENSION);
-
+			this.readAll(path + DOMAIN_LIBRARIES_DIRECTORY, false, SYSML_EXTENSION);
 		}
 	}
 	

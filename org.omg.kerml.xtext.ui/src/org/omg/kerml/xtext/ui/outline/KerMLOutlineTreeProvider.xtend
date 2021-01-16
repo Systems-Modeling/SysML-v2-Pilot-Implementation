@@ -59,9 +59,9 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(Namespace namespace) {
-		if (namespace.eContainer !== null)
+		if (namespace.eContainer !== null || namespace.eResource === null)
 			(namespace as Element)._text
-		else
+		else 
 			'Root ' + URLDecoder.decode(namespace.eResource.URI.lastSegment, "UTF-8")
 	}
 	

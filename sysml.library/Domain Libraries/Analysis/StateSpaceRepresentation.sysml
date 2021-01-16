@@ -42,7 +42,7 @@ package StateSpaceRepresentation {
         in initialState: StateSpace,
         in timeInterval: TimeValue) return result: StateSpace;
     
-    /** ContinuousStateSpaceDynamics representes continuous behavior.
+    /** ContinuousStateSpaceDynamics represents continuous behavior.
         derivative needs to return a time derivative of stateSpace, i.e. dx/dt. */
     abstract action def ContinuousStateSpaceDynamics :> StateSpaceDynamics {
         abstract calc derivative: Derivative;

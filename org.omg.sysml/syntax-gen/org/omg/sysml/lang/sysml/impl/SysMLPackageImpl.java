@@ -5265,8 +5265,18 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getMetadataFeature_MetadataFeatureValue() {
+	public EReference getMetadataFeature_MetadataFeatureValue_comp() {
 		return (EReference)metadataFeatureEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMetadataFeature_MetadataFeatureValue() {
+		return (EReference)metadataFeatureEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -5295,8 +5305,18 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getMetadataFeatureValue_MetadataValue() {
+	public EReference getMetadataFeatureValue_OwningMetadataFeature() {
 		return (EReference)metadataFeatureValueEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getMetadataFeatureValue_MetadataValue() {
+		return (EReference)metadataFeatureValueEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -6744,10 +6764,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		createEReference(annotatingFeatureEClass, ANNOTATING_FEATURE__OWNED_METADATA);
 
 		metadataFeatureEClass = createEClass(METADATA_FEATURE);
+		createEReference(metadataFeatureEClass, METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP);
 		createEReference(metadataFeatureEClass, METADATA_FEATURE__METADATA_FEATURE_VALUE);
 
 		metadataFeatureValueEClass = createEClass(METADATA_FEATURE_VALUE);
 		createEReference(metadataFeatureValueEClass, METADATA_FEATURE_VALUE__METADATA_VALUE_COMP);
+		createEReference(metadataFeatureValueEClass, METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE);
 		createEReference(metadataFeatureValueEClass, METADATA_FEATURE_VALUE__METADATA_VALUE);
 
 		featureValueEClass = createEClass(FEATURE_VALUE);
@@ -7605,10 +7627,12 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		initEReference(getAnnotatingFeature_OwnedMetadata(), this.getMetadataFeature(), null, "ownedMetadata", null, 0, -1, AnnotatingFeature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(metadataFeatureEClass, MetadataFeature.class, "MetadataFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMetadataFeature_MetadataFeatureValue(), this.getMetadataFeatureValue(), null, "metadataFeatureValue", null, 1, 1, MetadataFeature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getMetadataFeature_MetadataFeatureValue_comp(), this.getMetadataFeatureValue(), this.getMetadataFeatureValue_OwningMetadataFeature(), "metadataFeatureValue_comp", null, 1, 1, MetadataFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getMetadataFeature_MetadataFeatureValue(), this.getMetadataFeatureValue(), null, "metadataFeatureValue", null, 1, 1, MetadataFeature.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(metadataFeatureValueEClass, MetadataFeatureValue.class, "MetadataFeatureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetadataFeatureValue_MetadataValue_comp(), this.getMetadataExpression(), null, "metadataValue_comp", null, 1, 1, MetadataFeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getMetadataFeatureValue_OwningMetadataFeature(), this.getMetadataFeature(), this.getMetadataFeature_MetadataFeatureValue_comp(), "owningMetadataFeature", null, 0, 1, MetadataFeatureValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getMetadataFeatureValue_MetadataValue(), this.getMetadataExpression(), null, "metadataValue", null, 1, 1, MetadataFeatureValue.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureValueEClass, FeatureValue.class, "FeatureValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -8433,7 +8457,7 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 			 URI.createURI(eNS_URI).appendFragment("//Type/ownedFeature")
 		   });
 		addAnnotation
-		  (getMetadataFeature_MetadataFeatureValue(),
+		  (getMetadataFeature_MetadataFeatureValue_comp(),
 		   source,
 		   new String[] {
 		   },
@@ -8447,6 +8471,15 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   },
 		   new URI[] {
 			 URI.createURI(eNS_URI).appendFragment("//FeatureValue/value_comp")
+		   });
+		addAnnotation
+		  (getMetadataFeatureValue_OwningMetadataFeature(),
+		   source,
+		   new String[] {
+		   },
+		   new URI[] {
+			 URI.createURI(eNS_URI).appendFragment("//Membership/membershipOwningNamespace"),
+			 URI.createURI(eNS_URI).appendFragment("//FeatureValue/featureWithValue")
 		   });
 		addAnnotation
 		  (getFeatureValue_Value_comp(),
@@ -10982,12 +11015,6 @@ public class SysMLPackageImpl extends EPackageImpl implements SysMLPackage {
 		   source,
 		   new String[] {
 			   "body", "owningAnnotatingFeature"
-		   });
-		addAnnotation
-		  (getMetadataFeature_MetadataFeatureValue(),
-		   source,
-		   new String[] {
-			   "body", "owningMetadataFeature"
 		   });
 		addAnnotation
 		  (getMetadataFeatureValue_MetadataValue_comp(),

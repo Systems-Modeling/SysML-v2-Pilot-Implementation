@@ -33,8 +33,9 @@ import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.TypeFeaturing
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.lang.sysml.Feature
+import java.net.URLDecoder
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
+import org.omg.sysml.lang.sysml.Feature
 
 /**
  * Customization of the default outline structure.
@@ -57,6 +58,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + name;
 		}
 		text 
+	}
+	
+	def String _text(Namespace namespace) {
+		if (namespace.eContainer !== null || namespace.eResource === null)
+			(namespace as Element)._text
+		else 
+			'Root ' + URLDecoder.decode(namespace.eResource.URI.lastSegment, "UTF-8")
 	}
 	
 	def String _text(VisibilityKind visibility) {
@@ -429,7 +437,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
 				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
 			)
-			
+
 			// Traversal does not know about the new node, children have to be created here
 			if (featuringType !== null) {
 				createEObjectNode(implicitNode, featuringType, 

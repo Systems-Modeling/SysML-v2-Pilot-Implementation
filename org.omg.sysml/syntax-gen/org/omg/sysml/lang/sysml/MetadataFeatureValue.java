@@ -13,6 +13,7 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getMetadataValue_comp <em>Metadata Value comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getOwningMetadataFeature <em>Owning Metadata Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getMetadataValue <em>Metadata Value</em>}</li>
  * </ul>
  *
@@ -54,6 +55,42 @@ public interface MetadataFeatureValue extends FeatureValue {
 	 * @generated
 	 */
 	void setMetadataValue_comp(MetadataExpression value);
+
+	/**
+	 * Returns the value of the '<em><b>Owning Metadata Feature</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue_comp <em>Metadata Feature Value comp</em>}'.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace() <em>Membership Owning Namespace</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureValue#getFeatureWithValue() <em>Feature With Value</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owning Metadata Feature</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owning Metadata Feature</em>' container reference.
+	 * @see #setOwningMetadataFeature(MetadataFeature)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeatureValue_OwningMetadataFeature()
+	 * @see org.omg.sysml.lang.sysml.MetadataFeature#getMetadataFeatureValue_comp
+	 * @model opposite="metadataFeatureValue_comp" transient="false" ordered="false"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	MetadataFeature getOwningMetadataFeature();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.MetadataFeatureValue#getOwningMetadataFeature <em>Owning Metadata Feature</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owning Metadata Feature</em>' container reference.
+	 * @see #getOwningMetadataFeature()
+	 * @generated
+	 */
+	void setOwningMetadataFeature(MetadataFeature value);
 
 	/**
 	 * Returns the value of the '<em><b>Metadata Value</b></em>' reference.

@@ -5,6 +5,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/Base.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
  		File {from ="/library.systems/Items.sysml"}
  		File {from ="/library.systems/Parts.sysml"}
  		File {from ="/library.systems/Ports.sysml"}
@@ -15,6 +16,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Performances.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
@@ -29,16 +31,21 @@ package VariabilityTest {
 	part def P {
 		attribute a;
 	}
+	
+	part def Q :> P;
 	attribute def B;
 	variation part def V :> P {
-		variant part x {
+		variant part x : Q {
 			attribute b : B :>> a;
 		}
 	}
-
+	
+	part q : Q;
 	variation part v : P {
-		variant part y {
+		variant q {
 			attribute b : B :>> a;
 		}
 	}
+	
+	part y : P = v::q;
 }

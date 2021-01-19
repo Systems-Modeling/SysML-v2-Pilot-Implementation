@@ -1,0 +1,66 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+		File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.domain/Analysis/AnalysisTooling.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+				File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.domain/Analysis/AnalysisTooling.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package AnalysisAnnotation {
+	import ScalarValues::Real;
+	import AnalysisTooling::*;
+	
+	action def ComputeDynamics {
+		metadata ToolExecution {
+			toolName = "ModelCenter";
+			uri = "aserv://localhost/Vehicle/Equation1";
+		}
+			
+		in dt : Real          { @ToolVariable { name = "deltaT"; } }
+		in whlpwr : Real      { @ToolVariable { name = "power"; } }
+		in Cd : Real          { @ToolVariable { name = "C_D"; } }
+		in Cf: Real           { @ToolVariable { name = "C_F"; } }
+		in tm :Real           { @ToolVariable { name = "mass"; } }
+		in v_in : Real        { @ToolVariable { name = "v0"; } }
+		in x_in : Real        { @ToolVariable { name = "x0"; } }
+		
+		out a_out : Real      { @ToolVariable { name = "a"; } }
+		out v_out : Real      { @ToolVariable { name = "v"; } }
+		out x_out : Real      { @ToolVariable { name = "x"; } }
+			
+	}
+
+}

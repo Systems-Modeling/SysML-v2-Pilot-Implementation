@@ -86,11 +86,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		return CLASSIFIER_SUPERCLASS_DEFAULT;
 	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

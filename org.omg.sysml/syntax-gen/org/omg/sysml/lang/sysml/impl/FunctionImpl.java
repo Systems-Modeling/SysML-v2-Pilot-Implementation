@@ -150,13 +150,13 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	}
 
 	public BindingConnector getResultConnector() {
-		return resultConnector = BlockExpressionImpl.getResultConnectorFor(this, resultConnector, this.getResult());
+		return resultConnector;
 	}
 	
 	@Override
 	public void transform() {
 		super.transform();
-		getResultConnector();
+		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
 	/**

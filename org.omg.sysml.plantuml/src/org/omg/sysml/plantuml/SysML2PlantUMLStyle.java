@@ -183,7 +183,7 @@ public class SysML2PlantUMLStyle {
         }
     }
 
-    public final boolean isPrimary;
+    private final boolean isPrimary;
     public final String name;
     public final String title;
     public final String commandStr;
@@ -235,8 +235,8 @@ public class SysML2PlantUMLStyle {
         add(false, name, title, commandStr, null, options);
     }
 
-    public boolean isEntitled() {
-        return title != null;
+    public boolean isPrimary() {
+        return isPrimary;
     }
 
     public static Collection<String> getStyleTitles() {

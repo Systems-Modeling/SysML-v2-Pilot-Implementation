@@ -38,11 +38,9 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
-import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TextualRepresentation;
 
 /**
  * <!-- begin-user-doc -->
@@ -134,7 +132,7 @@ public class AnnotationImpl extends RelationshipImpl implements Annotation {
 	public Element basicGetAnnotatedElement() {
 		if (annotatedElement == null) {
 			annotatedElement = getOwningRelatedElement();
-			if (annotatedElement instanceof Comment || annotatedElement instanceof TextualRepresentation) {
+			if (annotatedElement instanceof AnnotatingElement) {
 				Element owner = annotatedElement.getOwner();
 				if (owner != null) {
 					annotatedElement = owner;

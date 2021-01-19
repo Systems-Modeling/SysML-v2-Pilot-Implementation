@@ -10,9 +10,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MetadataExpression;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -24,6 +28,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureValueImpl#getMetadataValue_comp <em>Metadata Value comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureValueImpl#getOwningMetadataFeature <em>Owning Metadata Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureValueImpl#getMetadataValue <em>Metadata Value</em>}</li>
  * </ul>
  *
@@ -119,6 +124,58 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	@Override
+	public MetadataFeature getOwningMetadataFeature() {
+		if (eContainerFeatureID() != SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE) return null;
+		return (MetadataFeature)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwningMetadataFeature(MetadataFeature newOwningMetadataFeature, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newOwningMetadataFeature, SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setOwningMetadataFeature(MetadataFeature newOwningMetadataFeature) {
+		if (newOwningMetadataFeature != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE && newOwningMetadataFeature != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningMetadataFeature))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningMetadataFeature != null)
+				msgs = ((InternalEObject)newOwningMetadataFeature).eInverseAdd(this, SysMLPackage.METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP, MetadataFeature.class, msgs);
+			msgs = basicSetOwningMetadataFeature(newOwningMetadataFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE, newOwningMetadataFeature, newOwningMetadataFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningMetadataFeature() {
+		return getOwningMetadataFeature() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public MetadataExpression getMetadataValue() {
 		MetadataExpression metadataValue = basicGetMetadataValue();
 		return metadataValue != null && metadataValue.eIsProxy() ? (MetadataExpression)eResolveProxy((InternalEObject)metadataValue) : metadataValue;
@@ -142,91 +199,6 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	@Override
 	public void setMetadataValue(MetadataExpression newMetadataValue) {
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				return basicSetMetadataValue_comp(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				return getMetadataValue_comp();
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				if (resolve) return getMetadataValue();
-				return basicGetMetadataValue();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				setMetadataValue_comp((MetadataExpression)newValue);
-				return;
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				setMetadataValue((MetadataExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				setMetadataValue_comp((MetadataExpression)null);
-				return;
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				setMetadataValue((MetadataExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__VALUE_COMP:
-				return isSetValue_comp();
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				return isSetMetadataValue_comp();
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				return basicGetMetadataValue() != null;
-		}
-		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -270,6 +242,223 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 */
 	public boolean isSetValue_comp() {
   		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Namespace getMembershipOwningNamespace() {
+		return getOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMembershipOwningNamespace(Namespace newMembershipOwningNamespace, NotificationChain msgs) {
+		if (newMembershipOwningNamespace != null && !(newMembershipOwningNamespace instanceof MetadataFeature)) {
+			throw new IllegalArgumentException("newMembershipOwningNamespace must be an instance of MetadataFeature");
+		}
+		return basicSetOwningMetadataFeature((MetadataFeature) newMembershipOwningNamespace, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
+		if (newMembershipOwningNamespace != null && !(newMembershipOwningNamespace instanceof MetadataFeature)) {
+			throw new IllegalArgumentException("newMembershipOwningNamespace must be an instance of MetadataFeature");
+		}
+		setOwningMetadataFeature((MetadataFeature) newMembershipOwningNamespace);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMembershipOwningNamespace() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getFeatureWithValue() {
+		return getOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetFeatureWithValue() {
+		return getOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setFeatureWithValue(Feature newFeatureWithValue) {
+		if (newFeatureWithValue != null && !(newFeatureWithValue instanceof MetadataFeature)) {
+			throw new IllegalArgumentException("newFeatureWithValue must be an instance of MetadataFeature");
+		}
+		if (newFeatureWithValue != null) {
+			setOwningMetadataFeature((MetadataFeature) newFeatureWithValue);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFeatureWithValue() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningMetadataFeature((MetadataFeature)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
+				return basicSetMetadataValue_comp(null, msgs);
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				return basicSetOwningMetadataFeature(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP, MetadataFeature.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
+				return getMetadataValue_comp();
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				return getOwningMetadataFeature();
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
+				if (resolve) return getMetadataValue();
+				return basicGetMetadataValue();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
+				setMetadataValue_comp((MetadataExpression)newValue);
+				return;
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				setOwningMetadataFeature((MetadataFeature)newValue);
+				return;
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
+				setMetadataValue((MetadataExpression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
+				setMetadataValue_comp((MetadataExpression)null);
+				return;
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				setOwningMetadataFeature((MetadataFeature)null);
+				return;
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
+				setMetadataValue((MetadataExpression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.METADATA_FEATURE_VALUE__VALUE_COMP:
+				return isSetValue_comp();
+			case SysMLPackage.METADATA_FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
+				return isSetMembershipOwningNamespace();
+			case SysMLPackage.METADATA_FEATURE_VALUE__FEATURE_WITH_VALUE:
+				return isSetFeatureWithValue();
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
+				return isSetMetadataValue_comp();
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				return isSetOwningMetadataFeature();
+			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
+				return basicGetMetadataValue() != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //MetadataFeatureValueImpl

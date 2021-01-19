@@ -122,22 +122,25 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 		return TRANSFER_ACTION_SUBSETTING_TRANSFER_DEFAULT;
 	}
 	
-	// Additional redefinitions and subsets
+	// 
 
 	public BindingConnector getContextConnector() {
-		Feature contextFeature = getContextFeature();
-		if (contextFeature != null) {
-			contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
-		}
 		return contextConnector;
 	}
 	
 	protected abstract Feature getContextFeature();
 	
+	protected void computeContextConnector() {
+		contextConnector = makeBinding(contextConnector, getContextFeature(), getContext());
+	}
+	
+	@Override
 	public void transform() {
 		super.transform();
-		getContextConnector();
+		computeContextConnector();
 	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

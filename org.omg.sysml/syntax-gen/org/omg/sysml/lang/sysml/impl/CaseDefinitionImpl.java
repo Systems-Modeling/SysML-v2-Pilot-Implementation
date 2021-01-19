@@ -22,14 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -93,6 +89,10 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	public Usage basicGetSubjectParameter() {
 		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
+	
+	private void computeSubjectParameter() {
+		UsageImpl.computeSubjectParameterOf(this);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,11 +125,14 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	}
 	
 	public static RequirementUsage getObjectiveRequirementOf(Type type) {
-		RequirementUsage objective = (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
+		return (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
+	}
+	
+	public static void computeObjectiveRequirementOf(Type type) {
+		RequirementUsage objective = getObjectiveRequirementOf(type);
 		if (objective == null) {
 			addObjectiveRequirement(type);
 		}
-		return objective;
 	}
 	
 	public static RequirementUsage addObjectiveRequirement(Type type) {
@@ -155,28 +158,12 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 		return CASE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
-	// Additional overrides
-	
-	@Override
-	public EList<Feature> getOwnedFeature() {
-		basicGetObjectiveRequirement();
-		return super.getOwnedFeature();
-	}
-	
-	@Override
-	public List<Feature> getOwnedParameters() {
-		basicGetSubjectParameter();
-		return super.getOwnedParameters();
-	}
-	
 	@Override
 	public void transform() {
 		super.transform();
-		basicGetSubjectParameter();
-		basicGetObjectiveRequirement();
+		computeSubjectParameter();
+		computeObjectiveRequirementOf(this);
 	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

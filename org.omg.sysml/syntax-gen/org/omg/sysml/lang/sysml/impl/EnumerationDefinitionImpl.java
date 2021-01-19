@@ -147,5 +147,10 @@ public class EnumerationDefinitionImpl extends AttributeDefinitionImpl implement
 	public boolean isSetVariant() {
   		return false;
 	}
+	
+	@Override
+	public boolean isVariation() {
+		return true;
+	}
 
 } //EnumerationDefinitionImpl

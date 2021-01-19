@@ -437,7 +437,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
 				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
 			)
-
 			// Traversal does not know about the new node, children have to be created here
 			if (featuringType !== null) {
 				createEObjectNode(implicitNode, featuringType, 

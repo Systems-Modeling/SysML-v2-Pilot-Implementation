@@ -1,5 +1,6 @@
 //*
-XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+
 	ResourceSet {
 		ThisFile {} 
  		File {from ="/library.kernel/Base.kerml"}
@@ -89,3 +90,4 @@ package KernelLibraryTest {
 		
 	
 }
+

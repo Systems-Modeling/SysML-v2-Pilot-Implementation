@@ -1,14 +1,14 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
 	ResourceSet {
 		ThisFile {}
-		File "Import_Recursive1.sysml" {}
+		File "Import_Recursive1.kerml" {}
 	}
 	Workspace {
 		JavaProject {
 			SrcFolder {
 				ThisFile {}
-				File {from ="Import_Recursive1.sysml"}
+				File {from ="Import_Recursive1.kerml"}
 			}
 		}
 	}
@@ -39,8 +39,8 @@ package RecursiveImport {
 	z, RecursiveImport.z,
 	--- */
 	
-	part x: X;	
-	part y: Y;
-	part z: Z;
+	x: X;	
+	y: Y;
+	z: Z;
 	 
 }

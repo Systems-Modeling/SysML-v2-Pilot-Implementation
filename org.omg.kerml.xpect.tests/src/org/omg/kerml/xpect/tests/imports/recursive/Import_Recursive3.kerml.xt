@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
 	ResourceSet {
 		ThisFile {}
 	}
@@ -17,21 +17,23 @@ END_SETUP
 package RecursiveImport {
   
   package P {
-    part def X {
-    	part def X1;
+    package X {
+    	class X1 {
+    		class X2;
+    	}
     }
     package Q {
-      part def Y;
+      class Y;
       package R {
-        part def Z;
+        class Z;
       }
     }
     package S {
-      part def S1 specializes X;
+      class S1 specializes X1;
       package T {
-        part def T1;
+        class T1;
         package U {
-        	part def U1;
+        	class U1;
         }
       }
     }
@@ -39,25 +41,25 @@ package RecursiveImport {
   }
   
   import P::**;
-  	part x1: X1;
-	part x: X;	
-	part y: Y;
-	part z: Z;
-	part s: S1;
-	part t: T1;
-	part u: U1;
+  	x1: X1;
+	y: Y;
+	z: Z;
+	s: S1;
+	t: T1;
+	u: U1;
 	
 	
 	
-	//* XPECT scope at S1.X1 ---
-	P.X, RecursiveImport.P.X,
+	//* XPECT scope at S.S1.X2 ---
 	P.X.X1, RecursiveImport.P.X.X1,
+	P.X.X1.X2, RecursiveImport.P.X.X1.X2,
 	P.Q.Y, RecursiveImport.P.Q.Y,
 	P.Q.R.Z, RecursiveImport.P.Q.R.Z,
 	
-	X, RecursiveImport.X,
 	X.X1, RecursiveImport.X.X1,
+	X.X1.X2, RecursiveImport.X.X1.X2,
 	X1, RecursiveImport.X1,
+	X1.X2, RecursiveImport.X1.X2,
 	Q.Y, RecursiveImport.Q.Y,
 	Q.R.Z,  RecursiveImport.Q.R.Z,	  
 	Y, RecursiveImport.Y,
@@ -65,13 +67,13 @@ package RecursiveImport {
 	Z, RecursiveImport.Z,
 	
 	P.S.S1, RecursiveImport.P.S.S1,
-	P.S.S1.X1, RecursiveImport.P.S.S1.X1,
+	P.S.S1.X2, RecursiveImport.P.S.S1.X2,
 	P.S.T.T1, RecursiveImport.P.S.T.T1,
 	P.S.T.U.U1, RecursiveImport.P.S.T.U.U1,
 	
 	S.S1, RecursiveImport.S.S1,
-	S.S1.X1, RecursiveImport.S.S1.X1,
-	S1.X1, RecursiveImport.S1.X1,
+	S.S1.X2, RecursiveImport.S.S1.X2,
+	S1.X2, RecursiveImport.S1.X2,
 	S.T.T1, RecursiveImport.S.T.T1,
 	S.T.U.U1, RecursiveImport.S.T.U.U1,
 	
@@ -82,19 +84,17 @@ package RecursiveImport {
 	U.U1, RecursiveImport.U.U1,
 	U1, RecursiveImport.U1,
 	
-	x, RecursiveImport.x,
 	y, RecursiveImport.y,
 	z, RecursiveImport.z,
 	s, RecursiveImport.s,
 	t, RecursiveImport.t,
 	u, RecursiveImport.u,
 	x1, RecursiveImport.x1,
+	x1.X2, RecursiveImport.x1.X2,
 	xx1, RecursiveImport.xx1,
-	
-	x.X1, RecursiveImport.x.X1,
-	s.X1, RecursiveImport.s.X1,
+	s.X2, RecursiveImport.s.X2,
 	
 	--- */
 	
-	part xx1: S1.X1;
+	xx1: S.S1.X2;
 }

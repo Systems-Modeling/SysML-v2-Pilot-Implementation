@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.sysml.xpect.tests.imports.SysMLTests
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
 	ResourceSet {
 		ThisFile {}
 	}
@@ -17,19 +17,19 @@ END_SETUP
 package RecursiveImport {
   
   package P {
-    part def X;
+     class X;
     package Q {
-      part def Y;
+       class Y;
       package R {
-        part def Z;
+         class Z;
       }
     }
     package S {
-      part def S1;
+       class S1;
       package T {
-        part def T1;
+         class T1;
         package U {
-        	part def U1;
+        	 class U1;
         }
       }
     }
@@ -39,11 +39,11 @@ package RecursiveImport {
    	import P::**;
 
 	//All X, Y and Z are visible here.
-	part x: X;	
-	part y: Y;
-	part z: Z;
-	part s: S1;
-	part t: T1;
-	part u: U1;
+	 x: X;	
+	 y: Y;
+	 z: Z;
+	 s: S1;
+	 t: T1;
+	 u: U1;
 	
 }

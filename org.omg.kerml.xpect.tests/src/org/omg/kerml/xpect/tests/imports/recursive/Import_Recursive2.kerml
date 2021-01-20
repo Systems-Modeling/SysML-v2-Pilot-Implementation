@@ -1,17 +1,17 @@
  package P {
-    part def X;
+    class X;
     package Q {
-      part def Y;
+      class Y;
       package R {
-        part def Z;
+        class Z;
       }
     }
     package S {
-      part def S1;
+      class S1;
       package T {
-        part def T1;
+        class T1;
         package U {
-        	part def U1;
+        	class U1;
         }
       }
     }

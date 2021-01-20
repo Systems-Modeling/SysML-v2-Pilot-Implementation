@@ -327,24 +327,21 @@ class KerMLScope extends AbstractScope {
 				val found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
 					e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet)
 				scopeProvider.removeVisited(e)
-				if (found) {
-					return true
-				}
-				if (e.isRecursive)
-					resolveRecursiveImport(e.importedNamespace, qn,  newHashSet, visited)
+				if (found) 	return true
+				if (e.isRecursive && e.importedNamespace instanceof org.omg.sysml.lang.sysml.Package)
+					resolveRecursiveImport(e.importedNamespace as org.omg.sysml.lang.sysml.Package , qn,  newHashSet, visited)
 			}
 		}
 		return false
 	}
 	
-	protected def boolean resolveRecursiveImport(Namespace pack, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited){
-		
+	protected def boolean resolveRecursiveImport(org.omg.sysml.lang.sysml.Package pack, QualifiedName qn, Set<Namespace> ownedvisited, Set<Namespace> visited){
 		for (r: pack.ownedRelationship) {
 			if (r instanceof Membership) {
 				var memberElement = r.ownedMemberElement
-				if (memberElement instanceof Namespace) {
+				if (memberElement instanceof org.omg.sysml.lang.sysml.Package) {
 					var found = memberElement.resolve(qn, false, false, visited, newHashSet)
-						|| resolveRecursiveImport((memberElement as Namespace), qn, ownedvisited, visited)
+						|| resolveRecursiveImport((memberElement as org.omg.sysml.lang.sysml.Package), qn, ownedvisited, visited)
 					if (found) return true
 				}						
 			}

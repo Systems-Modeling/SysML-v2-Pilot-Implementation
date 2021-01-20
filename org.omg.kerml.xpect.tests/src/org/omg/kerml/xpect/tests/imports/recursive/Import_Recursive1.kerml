@@ -1,9 +1,9 @@
  package P {
-    part def X;
+    class X;
     package Q {
-      part def Y;
+      class Y;
       package R {
-        part def Z;
+        class Z;
       }
     }
   }

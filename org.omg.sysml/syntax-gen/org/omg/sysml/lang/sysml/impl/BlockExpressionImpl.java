@@ -85,10 +85,7 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (resultConnector != null) {
-			removeOwnedBindingConnector(resultConnector);
-			resultConnector = null;
-		}
+		resultConnector = null;
 		super.cleanDerivedValues();
 	}
 

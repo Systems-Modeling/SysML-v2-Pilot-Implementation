@@ -197,10 +197,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (resultConnector != null) {
-			removeOwnedBindingConnector(resultConnector);
-			resultConnector = null;
-		}
+		resultConnector = null;
 		super.cleanDerivedValues();
 	}
 	

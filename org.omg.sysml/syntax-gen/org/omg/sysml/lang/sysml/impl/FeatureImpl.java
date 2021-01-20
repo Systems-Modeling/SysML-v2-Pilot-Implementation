@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -914,7 +915,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			if (value != null) {
-				valueConnector = makeValueBinding(valueConnector, value);
+				valueConnector = makeValueBinding(value);
 			}
 		}
 	}
@@ -934,10 +935,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (valueConnector != null) {
-			removeOwnedBindingConnector(valueConnector);
-			valueConnector = null;
-		}
+		valueConnector = null;
 		super.cleanDerivedValues();
 	}
 	
@@ -967,22 +965,23 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public void addImplicitTypeFeaturing() {
 		for (Type type : implicitFeaturingTypes) {
-			TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
-			featuring.setFeaturingType(type);
-			featuring.setFeatureOfType(this);
-			getOwnedRelationship_comp().add(featuring);
+			boolean featuringRequired = getOwnedRelationship_comp().stream().
+				filter(TypeFeaturing.class::isInstance).
+				map(TypeFeaturing.class::cast).
+				noneMatch(f -> Objects.equals(f.getFeatureOfType(), this)
+						&& Objects.equals(f.getFeaturingType(), type));
+			if (featuringRequired) {
+				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
+				featuring.setFeaturingType(type);
+				featuring.setFeatureOfType(this);
+				getOwnedRelationship_comp().add(featuring);
+			}
 		}
 	}
 	
-	public BindingConnector makeValueBinding(BindingConnector connector, Expression sourceExpression) {
+	public BindingConnector makeValueBinding(Expression sourceExpression) {
 		((ElementImpl)sourceExpression).transform();
-		Feature source = sourceExpression.getResult();
-		if (connector == null) {
-			connector = addOwnedBindingConnector(getFeaturingType(), source, this);
-		} else {
-			((BindingConnectorImpl)connector).update(getFeaturingType(), source, this);
-		}
-		return connector;
+		return addImplicitBindingConnector(getFeaturingType(), sourceExpression.getResult(), this);
 	}
 	
 	public boolean isObjectFeature() {

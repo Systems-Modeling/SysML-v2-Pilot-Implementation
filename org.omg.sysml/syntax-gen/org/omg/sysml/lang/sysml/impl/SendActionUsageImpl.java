@@ -153,10 +153,7 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (targetConnector != null) {
-			removeOwnedBindingConnector(targetConnector);
-			targetConnector = null;
-		}
+		targetConnector = null;
 		super.cleanDerivedValues();
 	}
 	

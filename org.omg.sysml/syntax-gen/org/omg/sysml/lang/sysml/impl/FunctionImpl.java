@@ -161,10 +161,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (resultConnector != null) {
-			removeOwnedBindingConnector(resultConnector);
-			resultConnector = null;
-		}
+		resultConnector = null;
 		super.cleanDerivedValues();
 	}
 

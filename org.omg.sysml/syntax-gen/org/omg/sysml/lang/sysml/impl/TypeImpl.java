@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -266,6 +265,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * The lists must not contain null values and the current type.
 	 */
 	protected Map<EClass, List<Type>> implicitGeneralTypes = new HashMap<>();
+	protected List<BindingConnector> implicitMemberBindingConnectors = new ArrayList<>();
+	protected List<BindingConnector> implicitFeatureBindingConnectors = new ArrayList<>();
 	
 	public void computeImplicitGeneralTypes() {
 		if (!isConjugated()) {
@@ -280,7 +281,17 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * cycle start from a clean state.
 	 */
 	public void cleanDerivedValues() {
+		cleanImplicitGeneralTypes();
+		cleanImplicitBindingConnectors();
+	}
+
+	private void cleanImplicitGeneralTypes() {
 		implicitGeneralTypes.clear();
+	}
+	
+	private void cleanImplicitBindingConnectors() {
+		implicitMemberBindingConnectors.clear();
+		implicitFeatureBindingConnectors.clear();
 	}
 	
 	public void addImplicitGeneralizations() {
@@ -292,7 +303,19 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				getOwnedRelationship_comp().add(newGeneralization);
 			}
 		}
-		cleanDerivedValues();
+		cleanImplicitGeneralTypes();
+	}
+	
+	public List<Membership> addImplicitBindingConnectors() {
+		List<Membership> createdMemberships = new ArrayList<>();
+		for (BindingConnector connector : implicitFeatureBindingConnectors) {
+			createdMemberships.add(addOwnedFeature(connector));
+		}
+		for (BindingConnector connector : implicitMemberBindingConnectors) {
+			createdMemberships.add(addOwnedMember(connector));
+		}
+		cleanImplicitBindingConnectors();
+		return createdMemberships;
 	}
 	
 	public boolean isImplicitGeneralTypesEmpty() {
@@ -301,6 +324,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	
 	public Collection<EClass> getImplicitGeneralTypeKinds() {
 		return implicitGeneralTypes.keySet();
+	}
+	
+	public List<BindingConnector> getImplicitBindingConnectors() {
+		return Stream.concat(implicitMemberBindingConnectors.stream(), implicitFeatureBindingConnectors.stream())
+				.collect(Collectors.toList());
 	}
 	
 	public List<Type> getImplicitGeneralTypes() {
@@ -1058,43 +1086,33 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		getOwnedFeatureMembership_comp().add(membership);
 		return membership;
 	}
-
-	public BindingConnector addOwnedBindingConnector(Feature source, Feature target) {
+	
+	protected BindingConnector addImplicitBindingConnector(Feature source, Feature target) {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
 		((ConnectorImpl)connector).addConnectorEnd(source);
 		((ConnectorImpl)connector).addConnectorEnd(target);
 		if (((ConnectorImpl)connector).getContextType() == this) {
-			addOwnedFeature(connector);
+			implicitFeatureBindingConnectors.add(connector);
 		} else {
-			addOwnedMember(connector);
+			implicitMemberBindingConnectors.add(connector);
 		}
 		return connector;
 	}
 
-	public BindingConnector addOwnedBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
+	protected BindingConnector addImplicitBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
 		((ConnectorImpl)connector).addConnectorEnd(source);
 		((ConnectorImpl)connector).addConnectorEnd(target);
-		addOwnedMember(connector);
+		implicitMemberBindingConnectors.add(connector);
 		((FeatureImpl)connector).addFeaturingTypes(featuringTypes);
 		return connector;
 	}
 	
-	protected void removeOwnedBindingConnector(BindingConnector connector) {
-		EList<? extends Membership> membershipList = (((ConnectorImpl)connector).getContextType() == this)
-				? getOwnedFeatureMembership_comp()
-				: getOwnedMembership_comp();
-		membershipList.stream()
-			.filter(m -> Objects.equals(connector, m.getOwnedMemberElement_comp()))
-			.findFirst()
-			.ifPresent(membershipList::remove);
+	protected BindingConnector makeBinding(Feature source, Feature target) {
+		return addImplicitBindingConnector(source, target);
 	}
 	
-	public BindingConnector makeBinding(Feature source, Feature target) {
-		return addOwnedBindingConnector(source, target);
-	}
-	
-	public BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
+	protected BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
 		((ElementImpl)sourceExpression).transform();
 		return makeBinding(sourceExpression.getResult(), target);
 	}

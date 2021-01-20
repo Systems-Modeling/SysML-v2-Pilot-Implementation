@@ -182,10 +182,7 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 
 	@Override
 	public void cleanDerivedValues() {
-		if (resultConnector != null) {
-			removeOwnedBindingConnector(resultConnector);
-			resultConnector = null;
-		}
+		resultConnector = null;
 		super.cleanDerivedValues();
 	}
 

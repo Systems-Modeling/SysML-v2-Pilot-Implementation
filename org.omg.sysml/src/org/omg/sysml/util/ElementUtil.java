@@ -24,11 +24,15 @@
 
 package org.omg.sysml.util;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
@@ -49,7 +53,20 @@ public class ElementUtil {
 		((FeatureImpl)feature).addImplicitTypeFeaturing();
 	}
 	
+	public static void addImplicitBindingConnectors(Type type) {
+		List<Membership> addedMemberships = ((TypeImpl)type).addImplicitBindingConnectors();
+		// This is required as the owned relationships call of the type will not return
+		// the newly created binding connectors so we have to ensure the transform
+		// function is used appropriately
+		for (Membership m : addedMemberships) {
+			transformAll(m.getMemberElement(), true);
+		}
+	}
+	
 	public static void transformAll(Element root, boolean generateImplicitElements) {
+		if (generateImplicitElements && root instanceof Type) {
+			addImplicitBindingConnectors((Type) root);
+		}
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
 			transformAll(relationship, generateImplicitElements);

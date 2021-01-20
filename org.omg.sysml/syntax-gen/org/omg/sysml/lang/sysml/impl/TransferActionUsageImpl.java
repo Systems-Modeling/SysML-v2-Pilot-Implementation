@@ -144,10 +144,7 @@ public abstract class TransferActionUsageImpl extends ActionUsageImpl implements
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (contextConnector != null) {
-			removeOwnedBindingConnector(contextConnector);
-			contextConnector = null;
-		}
+		contextConnector = null;
 		super.cleanDerivedValues();
 	}
 	

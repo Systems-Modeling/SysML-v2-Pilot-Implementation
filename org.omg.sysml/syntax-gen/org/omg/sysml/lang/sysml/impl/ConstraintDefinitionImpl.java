@@ -186,10 +186,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (resultConnector != null) {
-			removeOwnedBindingConnector(resultConnector);
-			resultConnector = null;
-		}
+		resultConnector = null;
 		super.cleanDerivedValues();
 	}
 	

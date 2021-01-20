@@ -442,10 +442,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (resultConnector != null) {
-			removeOwnedBindingConnector(resultConnector);
-			resultConnector = null;
-		}
+		resultConnector = null;
 		super.cleanDerivedValues();
 	}
 	

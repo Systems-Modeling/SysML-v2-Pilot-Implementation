@@ -122,10 +122,7 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (assertionConnector != null) {
-			removeOwnedBindingConnector(assertionConnector);
-			assertionConnector = null;
-		}
+		assertionConnector = null;
 		super.cleanDerivedValues();
 	}
 	

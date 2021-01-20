@@ -187,10 +187,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (assertionConnector != null) {
-			removeOwnedBindingConnector(assertionConnector);
-			assertionConnector = null;
-		}
+		assertionConnector = null;
 		super.cleanDerivedValues();
 	}
 	

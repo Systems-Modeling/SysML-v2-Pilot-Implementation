@@ -204,12 +204,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public void cleanDerivedValues() {
-		if (argumentConnectors != null) {
-			for (BindingConnector argumentConnector : argumentConnectors) {
-				removeOwnedBindingConnector(argumentConnector);
-			}
-			argumentConnectors = null;
-		}
+		argumentConnectors = null;
 		super.cleanDerivedValues();
 	}
 	

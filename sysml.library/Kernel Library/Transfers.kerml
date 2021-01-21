@@ -4,7 +4,7 @@
 package Transfers {
 	private import Base::Anything;
 	private import Occurrences::*;
-	private import Objects::*;
+	private import Links::*;
 	private import Performances::Performance;
 	private import Performances::performances;
 	private import ScalarValues::Boolean;
@@ -15,18 +15,18 @@ package Transfers {
 	 * transfer of items from an output feature of the source of the interaction to an input
 	 * feature of the target of the interaction.
 	 */
-	interaction Transfer specializes Performance, BinaryLinkObject {
+	interaction Transfer specializes Performance, BinaryLink {
 		/**
 		 * The entity whose output is the source of the items to be transferred.
 		 */
-		end feature transferSource: Occurrence[0..*] redefines BinaryLinkObject::source {
+		end feature transferSource: Occurrence[0..*] redefines BinaryLink::source {
 			out feature sourceOutput: Occurrence[0..*];
 		}
 		
 		/**
 		 * The entity whose input is the target of the items to be transferred.
 		 */
-		end feature transferTarget: Occurrence[0..*] redefines BinaryLinkObject::target {
+		end feature transferTarget: Occurrence[0..*] redefines BinaryLink::target {
 			in feature targetInput: Occurrence[0..*];
 		}
 		
@@ -55,7 +55,7 @@ package Transfers {
 		/**
 		 * The link from the transfer source to the items it is outputing.
 		 */
-		assoc SourceOutputLink specializes BinaryLinkObject {
+		assoc struct SourceOutputLink {
 			end feature source: Occurrence[1];
 			end feature target: Occurrence[1..*] redefines target, transferSource::sourceOutput;
 		}
@@ -71,7 +71,7 @@ package Transfers {
 		/**
 		 * The link from the transfer source to the items it is inputing.
 		 */
-		assoc TargetInputLink specializes BinaryLinkObject {
+		assoc struct TargetInputLink {
 			end feature source: Occurrence[1..*] redefines source, transferTarget::targetInput;
 			end feature target: Occurrence[1];
 		}
@@ -122,7 +122,7 @@ package Transfers {
 	 	end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, HappensBefore::earlierOccurrence;
 	  	end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, HappensBefore::laterOccurrence;
 	  	
-	  	feature self: TransferBefore redefines Object::self;
+	  	feature self: TransferBefore redefines Performance::self;
 	  	
 	  	succession transferSource then self;
 	  	succession self then transferTarget;
@@ -132,9 +132,9 @@ package Transfers {
 	 * transfers is a specialization of performances and binaryLinks restricted to type 
 	 * Transfer. It is the default subsetting for streaming item flows.
 	 */
-	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinkObjects {
-		end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinkObjects::source;
-		end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinkObjects::target;
+	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
+		end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
+		end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
 	}
 	  
 	/**

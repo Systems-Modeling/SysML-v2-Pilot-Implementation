@@ -1668,19 +1668,21 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cTypeParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cClassifierParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
 		private final RuleCall cClassParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cDataTypeParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cAssociationParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cInteractionParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cBehaviorParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cFunctionParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cPredicateParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cGeneralizationParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
-		private final RuleCall cConjugationParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
-		private final RuleCall cFeatureTypingParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
-		private final RuleCall cSuperclassingParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
-		private final RuleCall cSubsettingParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
-		private final RuleCall cRedefinitionParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
-		private final RuleCall cTypeFeaturingParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cStructureParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cDataTypeParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final RuleCall cAssociationParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cAssociationStructureParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cInteractionParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cBehaviorParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cFunctionParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cPredicateParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
+		private final RuleCall cGeneralizationParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
+		private final RuleCall cConjugationParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cFeatureTypingParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cSuperclassingParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
+		private final RuleCall cSubsettingParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cRedefinitionParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
+		private final RuleCall cTypeFeaturingParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
 		
 		///* Namespace Elements */ NonFeatureElement SysML::Element:
 		//	Element
@@ -1693,8 +1695,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//	| Type
 		//	| Classifier
 		//	| Class
+		//	| Structure
 		//	| DataType
 		//	| Association
+		//	| AssociationStructure
 		//	| Interaction
 		//	| Behavior
 		//	| Function
@@ -1709,8 +1713,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//Element | Relationship | Comment | TextualRepresentation | AnnotatingFeature | Namespace | Package | Type | Classifier |
-		//Class | DataType | Association | Interaction | Behavior | Function | Predicate | Generalization | Conjugation |
-		//FeatureTyping | Superclassing | Subsetting | Redefinition | TypeFeaturing
+		//Class | Structure | DataType | Association | AssociationStructure | Interaction | Behavior | Function | Predicate |
+		//Generalization | Conjugation | FeatureTyping | Superclassing | Subsetting | Redefinition | TypeFeaturing
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Element
@@ -1743,44 +1747,50 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Class
 		public RuleCall getClassParserRuleCall_9() { return cClassParserRuleCall_9; }
 		
+		//Structure
+		public RuleCall getStructureParserRuleCall_10() { return cStructureParserRuleCall_10; }
+		
 		//DataType
-		public RuleCall getDataTypeParserRuleCall_10() { return cDataTypeParserRuleCall_10; }
+		public RuleCall getDataTypeParserRuleCall_11() { return cDataTypeParserRuleCall_11; }
 		
 		//Association
-		public RuleCall getAssociationParserRuleCall_11() { return cAssociationParserRuleCall_11; }
+		public RuleCall getAssociationParserRuleCall_12() { return cAssociationParserRuleCall_12; }
+		
+		//AssociationStructure
+		public RuleCall getAssociationStructureParserRuleCall_13() { return cAssociationStructureParserRuleCall_13; }
 		
 		//Interaction
-		public RuleCall getInteractionParserRuleCall_12() { return cInteractionParserRuleCall_12; }
+		public RuleCall getInteractionParserRuleCall_14() { return cInteractionParserRuleCall_14; }
 		
 		//Behavior
-		public RuleCall getBehaviorParserRuleCall_13() { return cBehaviorParserRuleCall_13; }
+		public RuleCall getBehaviorParserRuleCall_15() { return cBehaviorParserRuleCall_15; }
 		
 		//Function
-		public RuleCall getFunctionParserRuleCall_14() { return cFunctionParserRuleCall_14; }
+		public RuleCall getFunctionParserRuleCall_16() { return cFunctionParserRuleCall_16; }
 		
 		//Predicate
-		public RuleCall getPredicateParserRuleCall_15() { return cPredicateParserRuleCall_15; }
+		public RuleCall getPredicateParserRuleCall_17() { return cPredicateParserRuleCall_17; }
 		
 		//Generalization
-		public RuleCall getGeneralizationParserRuleCall_16() { return cGeneralizationParserRuleCall_16; }
+		public RuleCall getGeneralizationParserRuleCall_18() { return cGeneralizationParserRuleCall_18; }
 		
 		//Conjugation
-		public RuleCall getConjugationParserRuleCall_17() { return cConjugationParserRuleCall_17; }
+		public RuleCall getConjugationParserRuleCall_19() { return cConjugationParserRuleCall_19; }
 		
 		//FeatureTyping
-		public RuleCall getFeatureTypingParserRuleCall_18() { return cFeatureTypingParserRuleCall_18; }
+		public RuleCall getFeatureTypingParserRuleCall_20() { return cFeatureTypingParserRuleCall_20; }
 		
 		//Superclassing
-		public RuleCall getSuperclassingParserRuleCall_19() { return cSuperclassingParserRuleCall_19; }
+		public RuleCall getSuperclassingParserRuleCall_21() { return cSuperclassingParserRuleCall_21; }
 		
 		//Subsetting
-		public RuleCall getSubsettingParserRuleCall_20() { return cSubsettingParserRuleCall_20; }
+		public RuleCall getSubsettingParserRuleCall_22() { return cSubsettingParserRuleCall_22; }
 		
 		//Redefinition
-		public RuleCall getRedefinitionParserRuleCall_21() { return cRedefinitionParserRuleCall_21; }
+		public RuleCall getRedefinitionParserRuleCall_23() { return cRedefinitionParserRuleCall_23; }
 		
 		//TypeFeaturing
-		public RuleCall getTypeFeaturingParserRuleCall_22() { return cTypeFeaturingParserRuleCall_22; }
+		public RuleCall getTypeFeaturingParserRuleCall_24() { return cTypeFeaturingParserRuleCall_24; }
 	}
 	public class FeatureElementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureElement");
@@ -3823,6 +3833,38 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//TypeBody
 		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
 	}
+	public class StructureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Structure");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
+		private final Keyword cStructKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cClassifierDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cTypeBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		
+		///* STRUCTURES */ Structure SysML::Structure:
+		//	isAbstract?='abstract'? 'struct'
+		//	ClassifierDeclaration TypeBody;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//isAbstract?='abstract'? 'struct' ClassifierDeclaration TypeBody
+		public Group getGroup() { return cGroup; }
+		
+		//isAbstract?='abstract'?
+		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
+		
+		//'abstract'
+		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
+		
+		//'struct'
+		public Keyword getStructKeyword_1() { return cStructKeyword_1; }
+		
+		//ClassifierDeclaration
+		public RuleCall getClassifierDeclarationParserRuleCall_2() { return cClassifierDeclarationParserRuleCall_2; }
+		
+		//TypeBody
+		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
+	}
 	public class AssociationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Association");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -3854,6 +3896,42 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//TypeBody
 		public RuleCall getTypeBodyParserRuleCall_3() { return cTypeBodyParserRuleCall_3; }
+	}
+	public class AssociationStructureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.AssociationStructure");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsAbstractAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsAbstractAbstractKeyword_0_0 = (Keyword)cIsAbstractAssignment_0.eContents().get(0);
+		private final Keyword cAssocKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cStructKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cClassifierDeclarationParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cTypeBodyParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		
+		//AssociationStructure SysML::AssociationStructure:
+		//	isAbstract?='abstract'? 'assoc' 'struct'
+		//	ClassifierDeclaration TypeBody;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//isAbstract?='abstract'? 'assoc' 'struct' ClassifierDeclaration TypeBody
+		public Group getGroup() { return cGroup; }
+		
+		//isAbstract?='abstract'?
+		public Assignment getIsAbstractAssignment_0() { return cIsAbstractAssignment_0; }
+		
+		//'abstract'
+		public Keyword getIsAbstractAbstractKeyword_0_0() { return cIsAbstractAbstractKeyword_0_0; }
+		
+		//'assoc'
+		public Keyword getAssocKeyword_1() { return cAssocKeyword_1; }
+		
+		//'struct'
+		public Keyword getStructKeyword_2() { return cStructKeyword_2; }
+		
+		//ClassifierDeclaration
+		public RuleCall getClassifierDeclarationParserRuleCall_3() { return cClassifierDeclarationParserRuleCall_3; }
+		
+		//TypeBody
+		public RuleCall getTypeBodyParserRuleCall_4() { return cTypeBodyParserRuleCall_4; }
 	}
 	public class ConnectorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.Connector");
@@ -7792,7 +7870,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final LiteralUnlimitedNaturalMemberElements pLiteralUnlimitedNaturalMember;
 	private final DataTypeElements pDataType;
 	private final ClassElements pClass;
+	private final StructureElements pStructure;
 	private final AssociationElements pAssociation;
+	private final AssociationStructureElements pAssociationStructure;
 	private final ConnectorElements pConnector;
 	private final ConnectorDeclarationElements pConnectorDeclaration;
 	private final BinaryConnectorDeclarationElements pBinaryConnectorDeclaration;
@@ -8031,7 +8111,9 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pLiteralUnlimitedNaturalMember = new LiteralUnlimitedNaturalMemberElements();
 		this.pDataType = new DataTypeElements();
 		this.pClass = new ClassElements();
+		this.pStructure = new StructureElements();
 		this.pAssociation = new AssociationElements();
+		this.pAssociationStructure = new AssociationStructureElements();
 		this.pConnector = new ConnectorElements();
 		this.pConnectorDeclaration = new ConnectorDeclarationElements();
 		this.pBinaryConnectorDeclaration = new BinaryConnectorDeclarationElements();
@@ -8673,8 +8755,10 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| Type
 	//	| Classifier
 	//	| Class
+	//	| Structure
 	//	| DataType
 	//	| Association
+	//	| AssociationStructure
 	//	| Interaction
 	//	| Behavior
 	//	| Function
@@ -9301,6 +9385,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getClassAccess().getRule();
 	}
 	
+	///* STRUCTURES */ Structure SysML::Structure:
+	//	isAbstract?='abstract'? 'struct'
+	//	ClassifierDeclaration TypeBody;
+	public StructureElements getStructureAccess() {
+		return pStructure;
+	}
+	
+	public ParserRule getStructureRule() {
+		return getStructureAccess().getRule();
+	}
+	
 	///* ASSOCIATIONS */ Association SysML::Association:
 	//	isAbstract?='abstract'? 'assoc'
 	//	ClassifierDeclaration TypeBody;
@@ -9310,6 +9405,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getAssociationRule() {
 		return getAssociationAccess().getRule();
+	}
+	
+	//AssociationStructure SysML::AssociationStructure:
+	//	isAbstract?='abstract'? 'assoc' 'struct'
+	//	ClassifierDeclaration TypeBody;
+	public AssociationStructureElements getAssociationStructureAccess() {
+		return pAssociationStructure;
+	}
+	
+	public ParserRule getAssociationStructureRule() {
+		return getAssociationStructureAccess().getRule();
 	}
 	
 	///* CONNECTORS */ /* Connectors */ Connector SysML::Connector:

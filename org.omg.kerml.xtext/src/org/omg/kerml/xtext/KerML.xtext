@@ -291,8 +291,10 @@ NonFeatureElement returns SysML::Element :
 	| Type
 	| Classifier 
 	| Class
+	| Structure
 	| DataType 
 	| Association
+	| AssociationStructure
 	| Interaction
 	| Behavior
 	| Function
@@ -636,10 +638,23 @@ Class returns SysML::Class :
 	ClassifierDeclaration TypeBody
 ;
 
+/* STRUCTURES */
+
+Structure returns SysML::Structure :
+	( isAbstract ?= 'abstract' )? 'struct' 
+	ClassifierDeclaration TypeBody
+;
+
+
 /* ASSOCIATIONS */
 
 Association returns SysML::Association :
 	( isAbstract ?= 'abstract' )? 'assoc' 
+	ClassifierDeclaration TypeBody
+;
+
+AssociationStructure returns SysML::AssociationStructure :
+	( isAbstract ?= 'abstract' )? 'assoc' 'struct'
 	ClassifierDeclaration TypeBody
 ;
 

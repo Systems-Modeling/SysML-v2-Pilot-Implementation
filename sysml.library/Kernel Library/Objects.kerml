@@ -12,30 +12,30 @@ package Objects {
 	/**
 	 * Object is the most general class of structural occurrences that may change over time.
 	 */
-	abstract class Object specializes Occurrence {
+	abstract struct Object specializes Occurrence {
 		feature self: Object redefines Occurrence::self;
 		
 		/**
 		 * Performances in which this object is involved.
 		 */
-		feature involvingPerformances: Performance[0..*] subsets performances;
+		step involvingPerformances: Performance[0..*] subsets performances;
 		
 		/**
 		 * Performances which are enacted by this object.
 		 */
-		abstract feature enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
+		abstract step enactedPerformances: Performance[0..*] subsets involvingPerformances, suboccurrences;
 	}
 	
 	/**
 	 * LinkObject is the most general association structure, being both a Link and an Object.
 	 */
-	abstract assoc LinkObject specializes Link, Object;
+	abstract assoc struct LinkObject specializes Link, Object;
 	
 	/**
 	 * BinaryLinkObject is the most general binary association structure, being both a 
 	 * BinaryLink and a LinkObject.
 	 */
-	assoc BinaryLinkObject specializes BinaryLink, LinkObject {
+	assoc struct BinaryLinkObject specializes BinaryLink, LinkObject {
 		end feature source: Anything[0..*] nonunique subsets BinaryLink::source;
 	    end feature target: Anything[0..*] nonunique subsets BinaryLink::target;
 	}

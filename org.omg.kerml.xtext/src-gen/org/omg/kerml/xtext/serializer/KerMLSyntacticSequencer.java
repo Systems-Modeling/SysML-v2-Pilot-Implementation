@@ -482,6 +482,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '~' | 'conjugates'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'assoc' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'behavior' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'class' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
@@ -490,7 +491,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'function' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     (rule start) 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     humanId=Name (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'class' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
@@ -499,6 +502,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'function' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     isAbstract?='abstract' 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     name=Name (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=ClassifierConjugation
@@ -1033,6 +1037,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>' | 'specializes'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'assoc' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'behavior' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'class' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
@@ -1041,7 +1046,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'function' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     (rule start) 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     humanId=Name (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'class' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
@@ -1050,6 +1057,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'function' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     isAbstract?='abstract' 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
@@ -1108,6 +1116,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'assoc' 'struct' (ambiguity) (rule start)
 	 *     (rule start) 'assoc' (ambiguity) (rule start)
 	 *     (rule start) 'behavior' (ambiguity) (rule start)
 	 *     (rule start) 'class' (ambiguity) (rule start)
@@ -1116,7 +1125,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'feature' (ambiguity) (rule start)
 	 *     (rule start) 'interaction' (ambiguity) (rule start)
 	 *     (rule start) 'step' (ambiguity) (rule start)
+	 *     (rule start) 'struct' (ambiguity) (rule start)
 	 *     humanId=Name (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'class' (ambiguity) (rule end)
@@ -1125,6 +1136,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'feature' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'struct' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isSufficient?='all' (ambiguity) (rule end)

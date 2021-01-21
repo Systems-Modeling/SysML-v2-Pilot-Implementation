@@ -241,7 +241,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMultiplicityAccess().getGroup_1(), "rule__Multiplicity__Group_1__0");
 			builder.put(grammarAccess.getDataTypeAccess().getGroup(), "rule__DataType__Group__0");
 			builder.put(grammarAccess.getClassAccess().getGroup(), "rule__Class__Group__0");
+			builder.put(grammarAccess.getStructureAccess().getGroup(), "rule__Structure__Group__0");
 			builder.put(grammarAccess.getAssociationAccess().getGroup(), "rule__Association__Group__0");
+			builder.put(grammarAccess.getAssociationStructureAccess().getGroup(), "rule__AssociationStructure__Group__0");
 			builder.put(grammarAccess.getConnectorAccess().getGroup(), "rule__Connector__Group__0");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getGroup(), "rule__BinaryConnectorDeclaration__Group__0");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getGroup_0_0(), "rule__BinaryConnectorDeclaration__Group_0_0__0");
@@ -503,7 +505,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedMemberElement_compAssignment(), "rule__LiteralUnlimitedNaturalMember__OwnedMemberElement_compAssignment");
 			builder.put(grammarAccess.getDataTypeAccess().getIsAbstractAssignment_0(), "rule__DataType__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getClassAccess().getIsAbstractAssignment_0(), "rule__Class__IsAbstractAssignment_0");
+			builder.put(grammarAccess.getStructureAccess().getIsAbstractAssignment_0(), "rule__Structure__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getAssociationAccess().getIsAbstractAssignment_0(), "rule__Association__IsAbstractAssignment_0");
+			builder.put(grammarAccess.getAssociationStructureAccess().getIsAbstractAssignment_0(), "rule__AssociationStructure__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getConnectorAccess().getIsAbstractAssignment_0(), "rule__Connector__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getIsSufficientAssignment_0_1_0(), "rule__BinaryConnectorDeclaration__IsSufficientAssignment_0_1_0");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__BinaryConnectorDeclaration__OwnedFeatureMembership_compAssignment_1");

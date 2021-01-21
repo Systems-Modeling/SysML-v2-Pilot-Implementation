@@ -22,7 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -110,9 +109,8 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 	 * @generated NOT
 	 */
 	public IndividualDefinition basicGetIndividualDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> items = super.getItemDefinition();
-		return (IndividualDefinition)items.stream().
-				filter(type->type instanceof IndividualDefinition).
+		return (IndividualDefinition)super.getItemDefinition().stream().
+				filter(IndividualDefinition.class::isInstance).
 				findFirst().orElse(null);
 	}
 

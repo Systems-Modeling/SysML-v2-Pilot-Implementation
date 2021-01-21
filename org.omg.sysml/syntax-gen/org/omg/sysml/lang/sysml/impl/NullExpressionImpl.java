@@ -33,7 +33,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class NullExpressionImpl extends MetadataExpressionImpl implements NullExpression {
+public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
 
 	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Performances::nullEvaluations";
 

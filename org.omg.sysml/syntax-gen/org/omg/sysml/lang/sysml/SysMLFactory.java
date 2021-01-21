@@ -429,6 +429,24 @@ public interface SysMLFactory extends EFactory {
 	Connector createConnector();
 
 	/**
+	 * Returns a new object of class '<em>Association Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Association Structure</em>'.
+	 * @generated
+	 */
+	AssociationStructure createAssociationStructure();
+
+	/**
+	 * Returns a new object of class '<em>Structure</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Structure</em>'.
+	 * @generated
+	 */
+	Structure createStructure();
+
+	/**
 	 * Returns a new object of class '<em>Data Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -436,6 +454,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	DataType createDataType();
+
+	/**
+	 * Returns a new object of class '<em>Element Filter Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Filter Membership</em>'.
+	 * @generated
+	 */
+	ElementFilterMembership createElementFilterMembership();
 
 	/**
 	 * Returns a new object of class '<em>Port Usage</em>'.
@@ -661,24 +688,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	RenderingDefinition createRenderingDefinition();
-
-	/**
-	 * Returns a new object of class '<em>Metadata Condition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metadata Condition</em>'.
-	 * @generated
-	 */
-	MetadataCondition createMetadataCondition();
-
-	/**
-	 * Returns a new object of class '<em>Metadata Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metadata Expression</em>'.
-	 * @generated
-	 */
-	MetadataExpression createMetadataExpression();
 
 	/**
 	 * Returns a new object of class '<em>Verification Case Usage</em>'.
@@ -1122,15 +1131,6 @@ public interface SysMLFactory extends EFactory {
 	LiteralReal createLiteralReal();
 
 	/**
-	 * Returns a new object of class '<em>Metadata Operation Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metadata Operation Expression</em>'.
-	 * @generated
-	 */
-	MetadataOperationExpression createMetadataOperationExpression();
-
-	/**
 	 * Returns a new object of class '<em>Literal Unbounded</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1212,15 +1212,6 @@ public interface SysMLFactory extends EFactory {
 	LiteralString createLiteralString();
 
 	/**
-	 * Returns a new object of class '<em>Element Filter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element Filter</em>'.
-	 * @generated
-	 */
-	ElementFilter createElementFilter();
-
-	/**
 	 * Returns a new object of class '<em>Item Flow</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1264,15 +1255,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	NullExpression createNullExpression();
-
-	/**
-	 * Returns a new object of class '<em>Metadata Reference Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Metadata Reference Expression</em>'.
-	 * @generated
-	 */
-	MetadataReferenceExpression createMetadataReferenceExpression();
 
 	/**
 	 * Returns a new object of class '<em>Feature Reference Expression</em>'.

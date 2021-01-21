@@ -7,6 +7,10 @@ package org.omg.sysml.lang.sysml;
  * A representation of the model object '<em><b>Metadata Feature</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>A MetadataFeature is an <code>ownedFeature</code> of an AnnotatingFeature that redefines a Feature of the <code>metadataType</code> and binds a value to it.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -35,6 +39,9 @@ public interface MetadataFeature extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The required MetadataFeatureValue for this MetadataFeature that gives the <code>metadataValue</code> for it in the context of its owning AnnotatingFeature.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metadata Feature Value comp</em>' containment reference.
 	 * @see #setMetadataFeatureValue_comp(MetadataFeatureValue)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMetadataFeature_MetadataFeatureValue_comp()

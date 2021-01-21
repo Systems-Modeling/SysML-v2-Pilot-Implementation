@@ -58,7 +58,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q;
 	protected AbstractElementAlias match_ItemFlowUsage_RefKeyword_1_q;
-	protected AbstractElementAlias match_MetadataExpression_LeftParenthesisKeyword_4_0_a;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
 	protected AbstractElementAlias match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
 	protected AbstractElementAlias match_NonUsagePackageMember_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1;
@@ -122,7 +121,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getInterfaceDefBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getInterfaceDefBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getInterfaceDefBodyAccess().getSemicolonKeyword_0()));
 		match_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q = new TokenAlias(false, true, grammarAccess.getInterfaceUsageDeclarationAccess().getConnectorKeywordParserRuleCall_0_1_0());
 		match_ItemFlowUsage_RefKeyword_1_q = new TokenAlias(false, true, grammarAccess.getItemFlowUsageAccess().getRefKeyword_1());
-		match_MetadataExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getMetadataExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
 		match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getRedefinesKeyword_1_1()));
 		match_NonUsagePackageMember_AliasKeyword_1_0_0_or_ImportKeyword_1_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getNonUsagePackageMemberAccess().getAliasKeyword_1_0_0()), new TokenAlias(false, false, grammarAccess.getNonUsagePackageMemberAccess().getImportKeyword_1_0_1()));
@@ -894,8 +892,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ItemFlowUsage_RefKeyword_1_q.equals(syntax))
 				emit_ItemFlowUsage_RefKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_MetadataExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
-				emit_MetadataExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature_FeatureKeyword_0_q.equals(syntax))
 				emit_MetadataFeature_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q.equals(syntax))
@@ -1816,12 +1812,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     humanId=Name (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
 	 *     humanId=Name (ambiguity) ownedMembership_comp+=LifeClassMembership
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -1829,6 +1825,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' IndividualDefKeyword (ambiguity) ownedMembership_comp+=LifeClassMembership
 	 *     isAbstract?='abstract' IndividualUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' ItemDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' PartDefKeyword (ambiguity) (rule end)
@@ -1839,8 +1837,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' TimeSliceKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
 	 *     isAbstract?='abstract' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' ViewDefKeyword (ambiguity) (rule end)
 	 *     isComposite?=IndividualUsageKeyword (ambiguity) (rule end)
@@ -1862,12 +1858,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
 	 *     isOrdered?='ordered' (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -1875,6 +1871,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' AttributeUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' IndividualDefKeyword (ambiguity) ownedMembership_comp+=LifeClassMembership
 	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
+	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' ItemDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' PartDefKeyword (ambiguity) (rule end)
@@ -1885,8 +1883,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isVariation?='variation' TimeSliceKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
 	 *     isVariation?='variation' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' ViewDefKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
@@ -2172,24 +2168,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedMembership_comp+=SourceItemFlowMember
 	 */
 	protected void emit_ItemFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) 'null' (rule start)
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) value=BooleanValue
-	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
-	 *     (rule start) (ambiguity) value=RealValue
-	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 */
-	protected void emit_MetadataExpression_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

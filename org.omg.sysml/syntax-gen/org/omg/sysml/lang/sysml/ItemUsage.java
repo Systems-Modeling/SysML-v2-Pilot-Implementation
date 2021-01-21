@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemUsage is a Usage whose type is a Class. Nominally, if the type is an ItemDefinition, an ItemUsage is a Usage of that ItemDefinition within a system. However, other types of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+ * <p>An ItemUsage is a Usage whose type is a Class. Nominally, if the type is an ItemDefinition, an ItemUsage is a Usage of that ItemDefinition within a system. However, other types of Kernel Structure are also allowed, to permit use of Structures from the Kernel Library.</p>
  * 
  * <p>An ItemUsage must subset, directly or indirectly, the base ItemUsage <code>items</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -49,7 +49,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ItemUsage extends Usage {
 	/**
 	 * Returns the value of the '<em><b>Item Definition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Structure}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -68,6 +68,6 @@ public interface ItemUsage extends Usage {
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Class> getItemDefinition();
+	EList<Structure> getItemDefinition();
 
 } // ItemUsage

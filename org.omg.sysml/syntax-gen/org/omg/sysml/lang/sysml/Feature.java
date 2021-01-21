@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  * type = typing.type
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
+ * allSupertypes()->includes(Kernel Library::things)
  * <!-- end-model-doc -->
  *
  * <p>

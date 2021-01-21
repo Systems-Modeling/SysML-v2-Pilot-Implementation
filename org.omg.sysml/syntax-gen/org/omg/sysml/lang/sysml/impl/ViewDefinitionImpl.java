@@ -29,12 +29,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.MetadataCondition;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,8 +134,10 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	 * @generated NOT
 	 */
 	@Override
-	public EList<MetadataCondition> getViewCondition() {
-		return new DerivedEObjectEList<>(MetadataCondition.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION, new int[] {SysMLPackage.TYPE__OWNED_MEMBER});
+	public EList<Expression> getViewCondition() {
+		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
+		getElementFilters().forEachOrdered(viewConditions::add);
+		return viewConditions;
 	}
 
 	@Override
@@ -185,7 +188,7 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 				return;
 			case SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION:
 				getViewCondition().clear();
-				getViewCondition().addAll((Collection<? extends MetadataCondition>)newValue);
+				getViewCondition().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

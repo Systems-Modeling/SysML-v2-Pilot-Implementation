@@ -52,10 +52,8 @@ import org.omg.sysml.lang.sysml.LiteralReal;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.MetadataExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
-import org.omg.sysml.lang.sysml.MetadataReferenceExpression;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.NullExpression;
@@ -300,16 +298,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ItemFlowFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMetadataExpressionMemberRule()) {
-					sequence_MetadataExpressionMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getMetadataFeatureMemberRule()) {
 					sequence_MetadataFeatureMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getMetadataNamedExpressionMemberRule()) {
-					sequence_MetadataNamedExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
@@ -440,7 +430,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 						|| rule == grammarAccess.getSequenceElementListRule()
 						|| action == grammarAccess.getSequenceElementListAccess().getOperatorExpressionOperand_compAction_1_0()
 						|| rule == grammarAccess.getBaseExpressionRule()
-						|| rule == grammarAccess.getMetadataExpressionRule()
 						|| rule == grammarAccess.getLiteralExpressionRule()
 						|| rule == grammarAccess.getLiteralBooleanRule()) {
 					sequence_LiteralBoolean(context, (LiteralBoolean) semanticObject); 
@@ -485,17 +474,11 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					return; 
 				}
 				else break;
-			case SysMLPackage.METADATA_EXPRESSION:
-				sequence_MetadataNamedArgumentList_MetadataOperationExpression_MetadataPositionalArgumentList(context, (MetadataExpression) semanticObject); 
-				return; 
 			case SysMLPackage.METADATA_FEATURE:
 				sequence_MetadataFeature(context, (MetadataFeature) semanticObject); 
 				return; 
 			case SysMLPackage.METADATA_FEATURE_VALUE:
 				sequence_MetadataFeatureValue(context, (MetadataFeatureValue) semanticObject); 
-				return; 
-			case SysMLPackage.METADATA_REFERENCE_EXPRESSION:
-				sequence_MetadataReferenceExpression(context, (MetadataReferenceExpression) semanticObject); 
 				return; 
 			case SysMLPackage.MULTIPLICITY_RANGE:
 				sequence_Multiplicity(context, (MultiplicityRange) semanticObject); 
@@ -1316,10 +1299,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         documentation_comp+=OwnedDocumentation? 
+	 *         ownedMembership_comp+=NonFeatureTypeMember? 
 	 *         (
-	 *             (ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
-	 *             documentation_comp+=OwnedDocumentation?
+	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             ownedMembership_comp+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1343,10 +1326,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         documentation_comp+=OwnedDocumentation? 
+	 *         ownedMembership_comp+=NonFeatureTypeMember? 
 	 *         (
-	 *             (ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
-	 *             documentation_comp+=OwnedDocumentation?
+	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             ownedMembership_comp+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -3029,7 +3012,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SequenceElementList returns LiteralBoolean
 	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralBoolean
 	 *     BaseExpression returns LiteralBoolean
-	 *     MetadataExpression returns LiteralBoolean
 	 *     LiteralExpression returns LiteralBoolean
 	 *     LiteralBoolean returns LiteralBoolean
 	 *
@@ -3107,7 +3089,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SequenceElementList returns LiteralInteger
 	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralInteger
 	 *     BaseExpression returns LiteralInteger
-	 *     MetadataExpression returns LiteralInteger
 	 *     LiteralExpression returns LiteralInteger
 	 *     LiteralInteger returns LiteralInteger
 	 *     LiteralUnlimitedNatural returns LiteralInteger
@@ -3168,7 +3149,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SequenceElementList returns LiteralReal
 	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralReal
 	 *     BaseExpression returns LiteralReal
-	 *     MetadataExpression returns LiteralReal
 	 *     LiteralExpression returns LiteralReal
 	 *     LiteralReal returns LiteralReal
 	 *
@@ -3228,7 +3208,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SequenceElementList returns LiteralString
 	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralString
 	 *     BaseExpression returns LiteralString
-	 *     MetadataExpression returns LiteralString
 	 *     LiteralExpression returns LiteralString
 	 *     LiteralString returns LiteralString
 	 *
@@ -3288,7 +3267,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SequenceElementList returns LiteralUnbounded
 	 *     SequenceElementList.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     BaseExpression returns LiteralUnbounded
-	 *     MetadataExpression returns LiteralUnbounded
 	 *     LiteralExpression returns LiteralUnbounded
 	 *     LiteralUnbounded returns LiteralUnbounded
 	 *     LiteralUnlimitedNatural returns LiteralUnbounded
@@ -3321,24 +3299,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     MetadataExpressionMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     ownedMemberFeature_comp=MetadataExpression
-	 */
-	protected void sequence_MetadataExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataExpressionMemberAccess().getOwnedMemberFeature_compMetadataExpressionParserRuleCall_0(), semanticObject.getOwnedMemberFeature_comp());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     MetadataFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -3360,7 +3320,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     MetadataFeatureValue returns MetadataFeatureValue
 	 *
 	 * Constraint:
-	 *     metadataValue_comp=MetadataExpression
+	 *     metadataValue_comp=OwnedExpression
 	 */
 	protected void sequence_MetadataFeatureValue(ISerializationContext context, MetadataFeatureValue semanticObject) {
 		if (errorAcceptor != null) {
@@ -3368,7 +3328,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataFeatureValueAccess().getMetadataValue_compMetadataExpressionParserRuleCall_0(), semanticObject.getMetadataValue_comp());
+		feeder.accept(grammarAccess.getMetadataFeatureValueAccess().getMetadataValue_compOwnedExpressionParserRuleCall_0(), semanticObject.getMetadataValue_comp());
 		feeder.finish();
 	}
 	
@@ -3381,59 +3341,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (ownedRelationship_comp+=OwnedRedefinition metadataFeatureValue_comp=MetadataFeatureValue)
 	 */
 	protected void sequence_MetadataFeature(ISerializationContext context, MetadataFeature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     MetadataExpression returns MetadataExpression
-	 *     MetadataOperationExpression returns MetadataExpression
-	 *
-	 * Constraint:
-	 *     (
-	 *         ownedRelationship_comp+=OwnedFeatureTyping 
-	 *         (
-	 *             (ownedFeatureMembership_comp+=MetadataExpressionMember ownedFeatureMembership_comp+=MetadataExpressionMember*) | 
-	 *             (ownedFeatureMembership_comp+=MetadataNamedExpressionMember ownedFeatureMembership_comp+=MetadataNamedExpressionMember*)
-	 *         )?
-	 *     )
-	 */
-	protected void sequence_MetadataNamedArgumentList_MetadataOperationExpression_MetadataPositionalArgumentList(ISerializationContext context, MetadataExpression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     MetadataNamedExpressionMember returns FeatureMembership
-	 *
-	 * Constraint:
-	 *     (memberName=Name ownedMemberFeature_comp=MetadataExpression)
-	 */
-	protected void sequence_MetadataNamedExpressionMember(ISerializationContext context, FeatureMembership semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_NAME));
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataNamedExpressionMemberAccess().getMemberNameNameParserRuleCall_0_0(), semanticObject.getMemberName());
-		feeder.accept(grammarAccess.getMetadataNamedExpressionMemberAccess().getOwnedMemberFeature_compMetadataExpressionParserRuleCall_2_0(), semanticObject.getOwnedMemberFeature_comp());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     MetadataExpression returns MetadataReferenceExpression
-	 *     MetadataReferenceExpression returns MetadataReferenceExpression
-	 *
-	 * Constraint:
-	 *     ownedFeatureMembership_comp+=FeatureReferenceMember
-	 */
-	protected void sequence_MetadataReferenceExpression(ISerializationContext context, MetadataReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -3559,7 +3466,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     SequenceElementList returns NullExpression
 	 *     SequenceElementList.OperatorExpression_1_0 returns NullExpression
 	 *     BaseExpression returns NullExpression
-	 *     MetadataExpression returns NullExpression
 	 *     NullExpression returns NullExpression
 	 *
 	 * Constraint:

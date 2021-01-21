@@ -159,17 +159,17 @@ public interface ViewUsage extends PartUsage {
 
 	/**
 	 * Returns the value of the '<em><b>View Condition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.MetadataCondition}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMembers</code> of the ViewUsage that are <code>MetadataConditions</code>, which specify conditions on Elements to be rendered in a view.</p>
+	 * <p>The Expressions related to this ViewUsage by ElementFilterMemberships, which specify conditions on Elements to be rendered in a view.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewUsage_ViewCondition()
@@ -178,7 +178,7 @@ public interface ViewUsage extends PartUsage {
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<MetadataCondition> getViewCondition();
+	EList<Expression> getViewCondition();
 
 	/**
 	 * Returns the value of the '<em><b>Viewed Element</b></em>' reference list.

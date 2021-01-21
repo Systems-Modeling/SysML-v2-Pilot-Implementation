@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -36,6 +37,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -47,6 +49,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationUsageImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationUsageImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.CalculationUsageImpl#getCalculationDefinition <em>Calculation Definition</em>}</li>
  * </ul>
  *
@@ -54,6 +57,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class CalculationUsageImpl extends ActionUsageImpl implements CalculationUsage {
 
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
 	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
 	public static final String CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT = "Calculations::Calculation::subcalculations";
 	
@@ -119,6 +131,30 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated
 	 */
 	@Override
+	public boolean isModelLevelEvaluable() {
+		// TODO: implement this method to return the 'Is Model Level Evaluable' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		// TODO: implement this method to set the 'Is Model Level Evaluable' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Function getCalculationDefinition() {
 		Function calculationDefinition = basicGetCalculationDefinition();
 		return calculationDefinition != null && calculationDefinition.eIsProxy() ? (Function)eResolveProxy((InternalEObject)calculationDefinition) : calculationDefinition;
@@ -152,6 +188,17 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 */
 	public boolean isSetCalculationDefinition() {
 		return basicGetCalculationDefinition() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> evaluate(Element target) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -269,6 +316,8 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
 				if (resolve) return getCalculationDefinition();
 				return basicGetCalculationDefinition();
@@ -289,6 +338,9 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 				return;
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
 				setResult((Feature)newValue);
+				return;
+			case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
 				return;
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
 				setCalculationDefinition((Function)newValue);
@@ -311,6 +363,9 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
 				setResult((Feature)null);
 				return;
+			case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				return;
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
 				setCalculationDefinition((Function)null);
 				return;
@@ -332,6 +387,8 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 				return isSetFunction();
 			case SysMLPackage.CALCULATION_USAGE__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 			case SysMLPackage.CALCULATION_USAGE__ACTION_DEFINITION:
 				return isSetActionDefinition();
 			case SysMLPackage.CALCULATION_USAGE__CALCULATION_DEFINITION:
@@ -351,6 +408,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 			switch (derivedFeatureID) {
 				case SysMLPackage.CALCULATION_USAGE__FUNCTION: return SysMLPackage.EXPRESSION__FUNCTION;
 				case SysMLPackage.CALCULATION_USAGE__RESULT: return SysMLPackage.EXPRESSION__RESULT;
+				case SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -368,10 +426,41 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 			switch (baseFeatureID) {
 				case SysMLPackage.EXPRESSION__FUNCTION: return SysMLPackage.CALCULATION_USAGE__FUNCTION;
 				case SysMLPackage.EXPRESSION__RESULT: return SysMLPackage.CALCULATION_USAGE__RESULT;
+				case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.CALCULATION_USAGE__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Expression.class) {
+			switch (baseOperationID) {
+				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CALCULATION_USAGE___EVALUATE__ELEMENT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.CALCULATION_USAGE___EVALUATE__ELEMENT:
+				return evaluate((Element)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //CalculationUsageImpl

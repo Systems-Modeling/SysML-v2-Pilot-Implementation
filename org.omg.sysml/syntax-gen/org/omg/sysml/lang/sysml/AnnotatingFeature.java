@@ -9,6 +9,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Annotating Feature</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * <p>An AnnotatingFeature is a Feature that is used to annotate another Element with metadata. The AnnotatingFeature is typed by a DataType and binds metadata values to all the <code>features</code> of that DataType.</p>
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -36,6 +40,9 @@ public interface AnnotatingFeature extends Feature, AnnotatingElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>type</code> of this AnnotatingFeature, which must be a DataType.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metadata Type</em>' reference.
 	 * @see #setMetadataType(DataType)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingFeature_MetadataType()
@@ -70,6 +77,9 @@ public interface AnnotatingFeature extends Feature, AnnotatingElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedFeatures</code> of this AnnotatingFeature, each of which must redefine a <code>feature</code> of the <code>metadataType</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingFeature_OwnedMetadata()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

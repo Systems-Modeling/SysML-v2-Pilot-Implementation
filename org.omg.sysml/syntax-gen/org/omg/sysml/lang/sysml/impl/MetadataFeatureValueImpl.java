@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.MetadataExpression;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -43,7 +42,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 * @ordered
 	 */
-	protected MetadataExpression metadataValue_comp;
+	protected Expression metadataValue_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +69,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	@Override
-	public MetadataExpression getMetadataValue_comp() {
+	public Expression getMetadataValue_comp() {
 		return metadataValue_comp;
 	}
 
@@ -79,8 +78,8 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMetadataValue_comp(MetadataExpression newMetadataValue_comp, NotificationChain msgs) {
-		MetadataExpression oldMetadataValue_comp = metadataValue_comp;
+	public NotificationChain basicSetMetadataValue_comp(Expression newMetadataValue_comp, NotificationChain msgs) {
+		Expression oldMetadataValue_comp = metadataValue_comp;
 		metadataValue_comp = newMetadataValue_comp;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP, oldMetadataValue_comp, newMetadataValue_comp);
@@ -95,7 +94,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	@Override
-	public void setMetadataValue_comp(MetadataExpression newMetadataValue_comp) {
+	public void setMetadataValue_comp(Expression newMetadataValue_comp) {
 		if (newMetadataValue_comp != metadataValue_comp) {
 			NotificationChain msgs = null;
 			if (metadataValue_comp != null)
@@ -176,9 +175,9 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	@Override
-	public MetadataExpression getMetadataValue() {
-		MetadataExpression metadataValue = basicGetMetadataValue();
-		return metadataValue != null && metadataValue.eIsProxy() ? (MetadataExpression)eResolveProxy((InternalEObject)metadataValue) : metadataValue;
+	public Expression getMetadataValue() {
+		Expression metadataValue = basicGetMetadataValue();
+		return metadataValue != null && metadataValue.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)metadataValue) : metadataValue;
 	}
 
 	/**
@@ -186,9 +185,8 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public MetadataExpression basicGetMetadataValue() {
-		Expression value = super.getValue();
-		return value instanceof MetadataExpression? (MetadataExpression)value: null;
+	public Expression basicGetMetadataValue() {
+		return super.getValue();
 	}
 
 	/**
@@ -197,7 +195,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated NOT
 	 */
 	@Override
-	public void setMetadataValue(MetadataExpression newMetadataValue) {
+	public void setMetadataValue(Expression newMetadataValue) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -217,10 +215,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	public NotificationChain basicSetValue_comp(Expression newValue_comp, NotificationChain msgs) {
-		if (newValue_comp != null && !(newValue_comp instanceof MetadataExpression)) {
-			throw new IllegalArgumentException("newValue_comp must be an instance of MetadataExpression");
-		}
-		return basicSetMetadataValue_comp((MetadataExpression) newValue_comp, msgs);
+		return basicSetMetadataValue_comp(newValue_comp, msgs);
 	}
 
 	/**
@@ -229,10 +224,7 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	public void setValue_comp(Expression newValue_comp) {
-		if (newValue_comp != null && !(newValue_comp instanceof MetadataExpression)) {
-			throw new IllegalArgumentException("newValue_comp must be an instance of MetadataExpression");
-		}
-		setMetadataValue_comp((MetadataExpression) newValue_comp);
+		setMetadataValue_comp(newValue_comp);
 	}
 
 	/**
@@ -404,13 +396,13 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				setMetadataValue_comp((MetadataExpression)newValue);
+				setMetadataValue_comp((Expression)newValue);
 				return;
 			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
 				setOwningMetadataFeature((MetadataFeature)newValue);
 				return;
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				setMetadataValue((MetadataExpression)newValue);
+				setMetadataValue((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -425,13 +417,13 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				setMetadataValue_comp((MetadataExpression)null);
+				setMetadataValue_comp((Expression)null);
 				return;
 			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
 				setOwningMetadataFeature((MetadataFeature)null);
 				return;
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				setMetadataValue((MetadataExpression)null);
+				setMetadataValue((Expression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -447,10 +439,10 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 		switch (featureID) {
 			case SysMLPackage.METADATA_FEATURE_VALUE__VALUE_COMP:
 				return isSetValue_comp();
-			case SysMLPackage.METADATA_FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
-				return isSetMembershipOwningNamespace();
 			case SysMLPackage.METADATA_FEATURE_VALUE__FEATURE_WITH_VALUE:
 				return isSetFeatureWithValue();
+			case SysMLPackage.METADATA_FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
+				return isSetMembershipOwningNamespace();
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
 				return isSetMetadataValue_comp();
 			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:

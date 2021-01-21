@@ -217,7 +217,7 @@ MetadataFeature returns SysML::MetadataFeature :
 ;
 
 MetadataFeatureValue returns SysML::MetadataFeatureValue :
-	metadataValue_comp = MetadataExpression
+	metadataValue_comp = OwnedExpression
 ;
 
 /* NAMESPACES */
@@ -1221,46 +1221,6 @@ NamedExpressionMember returns SysML::FeatureMembership :
 
 ExtentExpression_Deprecated returns SysML::OperatorExpression :
 	ownedFeatureMembership_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
-;
-
-/* MetadataExpressions */
-
-MetadataExpressionMember returns SysML::FeatureMembership : 
-	ownedMemberFeature_comp = MetadataExpression
-;
-
-MetadataExpression returns SysML::MetadataExpression :
-	  NullExpression
-	| LiteralExpression
-	| MetadataReferenceExpression
-	| MetadataOperationExpression 
-	| '(' MetadataExpression ')'
-;
-
-MetadataReferenceExpression returns SysML::MetadataReferenceExpression :
-	ownedFeatureMembership_comp += FeatureReferenceMember
-;
-
-MetadataOperationExpression returns SysML::MetadataExpression :
-	ownedRelationship_comp += OwnedFeatureTyping '(' MetadataArgumentList? ')'
-;
-
-fragment MetadataArgumentList returns SysML::Expression :
-	MetadataPositionalArgumentList | MetadataNamedArgumentList
-;
-
-fragment MetadataPositionalArgumentList returns SysML::Expression :
-	ownedFeatureMembership_comp += MetadataExpressionMember 
-	( ',' ownedFeatureMembership_comp += MetadataExpressionMember )*
-;
-
-fragment MetadataNamedArgumentList returns SysML::Expression :
-	ownedFeatureMembership_comp += MetadataNamedExpressionMember 
-	( ',' ownedFeatureMembership_comp += MetadataNamedExpressionMember )*
-;
-
-MetadataNamedExpressionMember returns SysML::FeatureMembership :
-	memberName = Name '=>' ownedMemberFeature_comp = MetadataExpression
 ;
 
 // Null Expressions

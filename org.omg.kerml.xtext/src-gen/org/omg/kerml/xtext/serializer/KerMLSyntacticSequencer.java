@@ -52,7 +52,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1;
 	protected AbstractElementAlias match_Generalization_GeneralizationKeyword_0_0_q;
 	protected AbstractElementAlias match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
-	protected AbstractElementAlias match_MetadataExpression_LeftParenthesisKeyword_4_0_a;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
 	protected AbstractElementAlias match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
 	protected AbstractElementAlias match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -114,7 +113,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getGeneralizationAccess().getColonGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getGeneralizationAccess().getSpecializesKeyword_3_1()));
 		match_Generalization_GeneralizationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getGeneralizationAccess().getGeneralizationKeyword_0_0());
 		match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getImportAccess().getFullStopKeyword_3_0_1_1()));
-		match_MetadataExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getMetadataExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
 		match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getRedefinesKeyword_1_1()));
 		match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getSemicolonKeyword_0()));
@@ -216,8 +214,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Generalization_GeneralizationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
 				emit_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_MetadataExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
-				emit_MetadataExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature_FeatureKeyword_0_q.equals(syntax))
 				emit_MetadataFeature_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q.equals(syntax))
@@ -740,24 +736,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     importedNamespace=[Namespace|Name] (ambiguity) isRecursive?='**'
 	 */
 	protected void emit_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) 'null' (rule start)
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) value=BooleanValue
-	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
-	 *     (rule start) (ambiguity) value=RealValue
-	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 */
-	protected void emit_MetadataExpression_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

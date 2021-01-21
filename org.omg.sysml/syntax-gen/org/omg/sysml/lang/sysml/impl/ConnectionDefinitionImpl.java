@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.ConnectionDefinition;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
@@ -482,13 +483,13 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				return getOwnedRelatedElement();
 			case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE:
 				return getRelatedType();
-			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
-				return getAssociationEnd();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				if (resolve) return getSourceType();
 				return basicGetSourceType();
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE:
 				return getTargetType();
+			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
+				return getAssociationEnd();
 			case SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END:
 				return getConnectionEnd();
 		}
@@ -523,16 +524,16 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
-				getAssociationEnd().clear();
-				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
-				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE:
 				getTargetType().clear();
 				getTargetType().addAll((Collection<? extends Type>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
+				getAssociationEnd().clear();
+				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END:
 				getConnectionEnd().clear();
@@ -565,14 +566,14 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 			case SysMLPackage.CONNECTION_DEFINITION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
-				getAssociationEnd().clear();
-				return;
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				setSourceType((Type)null);
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE:
 				getTargetType().clear();
+				return;
+			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
+				getAssociationEnd().clear();
 				return;
 			case SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END:
 				getConnectionEnd().clear();
@@ -605,12 +606,12 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				return isSetRelatedType();
 			case SysMLPackage.CONNECTION_DEFINITION__END_FEATURE:
 				return isSetEndFeature();
-			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
-				return isSetAssociationEnd();
 			case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE:
 				return isSetSourceType();
 			case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE:
 				return isSetTargetType();
+			case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END:
+				return isSetAssociationEnd();
 			case SysMLPackage.CONNECTION_DEFINITION__CONNECTION_END:
 				return isSetConnectionEnd();
 		}
@@ -638,9 +639,14 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 		if (baseClass == Association.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE: return SysMLPackage.ASSOCIATION__RELATED_TYPE;
-				case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END: return SysMLPackage.ASSOCIATION__ASSOCIATION_END;
 				case SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE: return SysMLPackage.ASSOCIATION__SOURCE_TYPE;
 				case SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE: return SysMLPackage.ASSOCIATION__TARGET_TYPE;
+				case SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END: return SysMLPackage.ASSOCIATION__ASSOCIATION_END;
+				default: return -1;
+			}
+		}
+		if (baseClass == AssociationStructure.class) {
+			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
@@ -668,9 +674,14 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 		if (baseClass == Association.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.ASSOCIATION__RELATED_TYPE: return SysMLPackage.CONNECTION_DEFINITION__RELATED_TYPE;
-				case SysMLPackage.ASSOCIATION__ASSOCIATION_END: return SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END;
 				case SysMLPackage.ASSOCIATION__SOURCE_TYPE: return SysMLPackage.CONNECTION_DEFINITION__SOURCE_TYPE;
 				case SysMLPackage.ASSOCIATION__TARGET_TYPE: return SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE;
+				case SysMLPackage.ASSOCIATION__ASSOCIATION_END: return SysMLPackage.CONNECTION_DEFINITION__ASSOCIATION_END;
+				default: return -1;
+			}
+		}
+		if (baseClass == AssociationStructure.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

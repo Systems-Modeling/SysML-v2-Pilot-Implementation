@@ -27,6 +27,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -44,6 +46,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -411,6 +415,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		membership.setOwnedMemberElement_comp(element);
 		getOwnedMembership_comp().add(membership);
 		return membership;
+	}
+	
+	public <M extends Membership, T> Stream<T> getOwnedMembersByMembership(Class<M> kind, Class<T> type) {
+		return getOwnedMembership().stream().
+				filter(kind::isInstance).
+				map(Membership::getMemberElement).map(type::cast);
+	}
+	
+	public Stream<Expression> getElementFilters() {
+		return getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class);
 	}
 	
 	//

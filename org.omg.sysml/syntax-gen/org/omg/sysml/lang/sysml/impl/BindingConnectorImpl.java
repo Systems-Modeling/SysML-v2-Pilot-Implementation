@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
 
-	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Objects::selfLinks";
+	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Links::selfLinks";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

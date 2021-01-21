@@ -162,6 +162,11 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Behavior.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.INTERACTION__STEP: return SysMLPackage.BEHAVIOR__STEP;
@@ -178,6 +183,11 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Behavior.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.BEHAVIOR__STEP: return SysMLPackage.INTERACTION__STEP;

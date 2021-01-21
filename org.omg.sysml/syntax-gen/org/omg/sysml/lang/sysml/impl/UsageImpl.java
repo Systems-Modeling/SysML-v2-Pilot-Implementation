@@ -85,7 +85,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
@@ -112,6 +111,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -777,9 +777,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				if (resolve) return getOwningUsage();
 				return basicGetOwningUsage();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				if (resolve) return getOwningDefinition();
-				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return getNestedPort();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -832,6 +829,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedVerificationCase();
 			case SysMLPackage.USAGE__NESTED_ENUMERATION:
 				return getNestedEnumeration();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				if (resolve) return getOwningDefinition();
+				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				return getVariantMembership();
 		}
@@ -853,9 +853,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)newValue);
-				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -960,6 +957,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedEnumeration().clear();
 				getNestedEnumeration().addAll((Collection<? extends EnumerationUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
+				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
@@ -981,9 +981,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)null);
-				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -1063,6 +1060,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_ENUMERATION:
 				getNestedEnumeration().clear();
 				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
+				return;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				getVariantMembership().clear();
 				return;
@@ -1084,8 +1084,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedUsage().isEmpty();
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				return basicGetOwningUsage() != null;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return !getNestedPort().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -1138,6 +1136,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedVerificationCase().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ENUMERATION:
 				return !getNestedEnumeration().isEmpty();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
 				return !getVariantMembership().isEmpty();
 		}

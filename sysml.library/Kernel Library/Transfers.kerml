@@ -15,18 +15,18 @@ package Transfers {
 	 * transfer of items from an output feature of the source of the interaction to an input
 	 * feature of the target of the interaction.
 	 */
-	interaction Transfer specializes Performance, BinaryLink {
+	interaction Transfer specializes Performance, BinaryLinkObject {
 		/**
 		 * The entity whose output is the source of the items to be transferred.
 		 */
-		end feature transferSource: Occurrence[0..*] redefines BinaryLink::source {
+		end feature transferSource: Occurrence[0..*] redefines BinaryLinkObject::source {
 			out feature sourceOutput: Occurrence[0..*];
 		}
 		
 		/**
 		 * The entity whose input is the target of the items to be transferred.
 		 */
-		end feature transferTarget: Occurrence[0..*] redefines BinaryLink::target {
+		end feature transferTarget: Occurrence[0..*] redefines BinaryLinkObject::target {
 			in feature targetInput: Occurrence[0..*];
 		}
 		
@@ -55,7 +55,7 @@ package Transfers {
 		/**
 		 * The link from the transfer source to the items it is outputing.
 		 */
-		assoc SourceOutputLink {
+		assoc SourceOutputLink specializes BinaryLinkObject {
 			end feature source: Occurrence[1];
 			end feature target: Occurrence[1..*] redefines target, transferSource::sourceOutput;
 		}
@@ -71,7 +71,7 @@ package Transfers {
 		/**
 		 * The link from the transfer source to the items it is inputing.
 		 */
-		assoc TargetInputLink {
+		assoc TargetInputLink specializes BinaryLinkObject {
 			end feature source: Occurrence[1..*] redefines source, transferTarget::targetInput;
 			end feature target: Occurrence[1];
 		}
@@ -111,7 +111,7 @@ package Transfers {
 		/**
 		 * If isInstant is true, then the start and end of the transfer happen at the same time.
 		 */
-		connector instant: SelfLink[0..1] from startShot[1] to endShot[1];
+		binding instant[0..1] of startShot[1] = endShot[1];
 	}
 	 
 	/**
@@ -132,9 +132,9 @@ package Transfers {
 	 * transfers is a specialization of performances and binaryLinks restricted to type 
 	 * Transfer. It is the default subsetting for streaming item flows.
 	 */
-	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinks {
-		end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinks::source;
-		end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinks::target;
+	step transfers: Transfer[0..*] nonunique subsets performances, binaryLinkObjects {
+		end feature transferSource: Occurrence[0..*] redefines Transfer::transferSource, binaryLinkObjects::source;
+		end feature transferTarget: Occurrence[0..*] redefines Transfer::transferTarget, binaryLinkObjects::target;
 	}
 	  
 	/**

@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>Behaviors provide a place to describe changes in objects over time. Behaviors can be decomposed into steps and be characterized by parameters.</p>
  * 
+ * allSupertypes()->includes(Kernel Library::Performance)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -47,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Behavior extends Classifier {
+public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	/**
 	 * Returns the value of the '<em><b>Step</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Step}.

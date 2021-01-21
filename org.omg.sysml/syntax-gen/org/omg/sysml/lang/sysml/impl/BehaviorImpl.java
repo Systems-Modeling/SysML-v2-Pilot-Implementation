@@ -50,7 +50,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *
  * @generated
  */
-public class BehaviorImpl extends ClassifierImpl implements Behavior {
+public class BehaviorImpl extends ClassImpl implements Behavior {
 
 	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
 

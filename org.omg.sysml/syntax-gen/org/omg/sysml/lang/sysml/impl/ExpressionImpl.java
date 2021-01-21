@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -57,12 +58,22 @@ import org.omg.sysml.lang.sysml.Type;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ExpressionImpl#getFunction <em>Function</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ExpressionImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ExpressionImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
 	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::evaluations";
 	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subevaluations";
 	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
@@ -269,6 +280,41 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		throw new UnsupportedOperationException();
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isModelLevelEvaluable() {
+		// TODO: implement this method to return the 'Is Model Level Evaluable' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		// TODO: implement this method to set the 'Is Model Level Evaluable' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> evaluate(Element target) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
 	@Override
 	public Collection<Feature> getFeaturesRedefinedByType() {
 		Collection<Feature> features = super.getFeaturesRedefinedByType();
@@ -318,6 +364,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			case SysMLPackage.EXPRESSION__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -335,6 +383,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				return;
 			case SysMLPackage.EXPRESSION__RESULT:
 				setResult((Feature)newValue);
+				return;
+			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -354,6 +405,9 @@ public class ExpressionImpl extends StepImpl implements Expression {
 			case SysMLPackage.EXPRESSION__RESULT:
 				setResult((Feature)null);
 				return;
+			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -372,8 +426,24 @@ public class ExpressionImpl extends StepImpl implements Expression {
 				return isSetFunction();
 			case SysMLPackage.EXPRESSION__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT:
+				return evaluate((Element)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ExpressionImpl

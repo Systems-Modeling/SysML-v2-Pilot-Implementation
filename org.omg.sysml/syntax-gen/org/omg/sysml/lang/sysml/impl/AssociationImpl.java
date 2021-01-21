@@ -57,17 +57,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getAssociationEnd <em>Association End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTargetType <em>Target Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getAssociationEnd <em>Association End</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AssociationImpl extends ClassImpl implements Association {
+public class AssociationImpl extends ClassifierImpl implements Association {
 
-	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Objects::Link";
-	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Objects::BinaryLink";
+	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Links::Link";
+	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Links::BinaryLink";
 
 	/**
 	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
@@ -203,6 +203,25 @@ public class AssociationImpl extends ClassImpl implements Association {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Feature> getEndFeature() {
+		return getAssociationEnd();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetEndFeature() {
+  		return false;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT // derived
@@ -275,7 +294,8 @@ public class AssociationImpl extends ClassImpl implements Association {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetAssociationEnd() {
@@ -386,23 +406,6 @@ public class AssociationImpl extends ClassImpl implements Association {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Feature> getEndFeature() {
-		return getAssociationEnd();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetEndFeature() {
-  		return false;
-	}
-
-	/**
 	 * If the Association has no Superclassings, then create one whose superclass is
 	 * the appropriate default library class.
 	 */
@@ -478,13 +481,13 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return getOwnedRelatedElement();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return getRelatedType();
-			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
-				return getAssociationEnd();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				if (resolve) return getSourceType();
 				return basicGetSourceType();
 			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
 				return getTargetType();
+			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
+				return getAssociationEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -516,16 +519,16 @@ public class AssociationImpl extends ClassImpl implements Association {
 				getOwnedRelatedElement().clear();
 				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
-			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
-				getAssociationEnd().clear();
-				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
-				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
 				getTargetType().clear();
 				getTargetType().addAll((Collection<? extends Type>)newValue);
+				return;
+			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
+				getAssociationEnd().clear();
+				getAssociationEnd().addAll((Collection<? extends Feature>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -553,14 +556,14 @@ public class AssociationImpl extends ClassImpl implements Association {
 			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
 				getOwnedRelatedElement().clear();
 				return;
-			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
-				getAssociationEnd().clear();
-				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)null);
 				return;
 			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
 				getTargetType().clear();
+				return;
+			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
+				getAssociationEnd().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -589,12 +592,12 @@ public class AssociationImpl extends ClassImpl implements Association {
 				return isSetRelatedType();
 			case SysMLPackage.ASSOCIATION__END_FEATURE:
 				return isSetEndFeature();
-			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
-				return isSetAssociationEnd();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				return isSetSourceType();
 			case SysMLPackage.ASSOCIATION__TARGET_TYPE:
 				return isSetTargetType();
+			case SysMLPackage.ASSOCIATION__ASSOCIATION_END:
+				return isSetAssociationEnd();
 		}
 		return super.eIsSet(featureID);
 	}

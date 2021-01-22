@@ -13302,6 +13302,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cOwnedRelationship_compAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compOwnedSubsettingParserRuleCall_0 = (RuleCall)cOwnedRelationship_compAssignment.eContents().get(0);
 		
+		//// Note: Use subsetting here in order to inherit typeing of referent.
 		//FeatureReference SysML::ReferenceUsage:
 		//	ownedRelationship_comp+=OwnedSubsetting;
 		@Override public ParserRule getRule() { return rule; }
@@ -19864,6 +19865,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFeatureReferenceMemberAccess().getRule();
 	}
 	
+	//// Note: Use subsetting here in order to inherit typeing of referent.
 	//FeatureReference SysML::ReferenceUsage:
 	//	ownedRelationship_comp+=OwnedSubsetting;
 	public FeatureReferenceElements getFeatureReferenceAccess() {

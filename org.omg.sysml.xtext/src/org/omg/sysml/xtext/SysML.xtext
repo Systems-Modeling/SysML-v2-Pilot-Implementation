@@ -2387,6 +2387,7 @@ FeatureReferenceMember returns SysML::ReturnParameterMembership :
 	ownedMemberFeature_comp = FeatureReference
 ;
 
+// Note: Use subsetting here in order to inherit typeing of referent.
 FeatureReference returns SysML::ReferenceUsage :
 	ownedRelationship_comp += OwnedSubsetting
 ;

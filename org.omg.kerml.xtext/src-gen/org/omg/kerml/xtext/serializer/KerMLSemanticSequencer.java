@@ -226,11 +226,8 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ConnectorEndMember(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureTypeMemberRule()) {
-					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getEndFeatureMemberRule()) {
+				else if (rule == grammarAccess.getFeatureTypeMemberRule()
+						|| rule == grammarAccess.getEndFeatureMemberRule()) {
 					sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (EndFeatureMembership) semanticObject); 
 					return; 
 				}
@@ -1335,10 +1332,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         ownedRelationship_comp+=Import? 
+	 *         ownedFeatureMembership_comp+=FeatureTypeMember? 
 	 *         (
-	 *             (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember)? 
-	 *             ownedRelationship_comp+=Import?
+	 *             (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NonFeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             ownedFeatureMembership_comp+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1362,10 +1359,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         ownedRelationship_comp+=Import? 
+	 *         ownedFeatureMembership_comp+=FeatureTypeMember? 
 	 *         (
-	 *             (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember)? 
-	 *             ownedRelationship_comp+=Import?
+	 *             (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=NonFeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             ownedFeatureMembership_comp+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1778,10 +1775,11 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     FeatureTypeMember returns EndFeatureMembership
+	 *     EndFeatureMember returns EndFeatureMembership
 	 *
 	 * Constraint:
 	 *     (
-	 *         ownedRelationship_comp+=PrefixDocumentation? 
+	 *         ownedRelationship_comp+=PrefixDocumentation* 
 	 *         visibility=VisibilityIndicator? 
 	 *         direction=FeatureDirection? 
 	 *         (isComposite?='composite' | isPortion?='portion')? 
@@ -1793,25 +1791,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
-	
-	// This method is commented out because it has the same signature as another method in this class.
-	// This is probably a bug in Xtext's serializer, please report it here: 
-	// https://bugs.eclipse.org/bugs/enter_bug.cgi?product=TMF
-	//
-	// Contexts:
-	//     EndFeatureMember returns EndFeatureMembership
-	//
-	// Constraint:
-	//     (
-	//         ownedRelationship_comp+=PrefixDocumentation* 
-	//         visibility=VisibilityIndicator? 
-	//         direction=FeatureDirection? 
-	//         (isComposite?='composite' | isPortion?='portion')? 
-	//         isPort?='port'? 
-	//         ownedMemberFeature_comp=FeatureElement
-	//     )
-	//
-	// protected void sequence_EndFeatureMember_FeatureMemberFlags_TypeMemberPrefix(ISerializationContext context, EndFeatureMembership semanticObject) { }
 	
 	/**
 	 * Contexts:

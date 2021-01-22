@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -42,6 +43,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FeatureReferenceExpressionImpl extends ExpressionImpl implements FeatureReferenceExpression {
+	
+	private BindingConnector referenceConnector;
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -86,6 +90,12 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	@Override
 	public void setReferent(Feature newReferent) {
 		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public void transform() {
+		super.transform();
+		referenceConnector = makeBinding(referenceConnector, getReferent(), getResult());
 	}
 
 	/**

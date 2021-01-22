@@ -87,31 +87,31 @@ package Transfers {
 		 * The start of the transfer happens during the output of each of the items from the
 		 * transferSource. 
 		 */
-		connector sending: HappensDuring[1..*] from startShot[1] to sourceOutputLink[1..*];
+		private connector sending: HappensDuring[1..*] from startShot[1] to sourceOutputLink[1..*];
 		
 		/**
 		 * If isMove is true, then all items leave the transferSource at the start
 		 * of the transfer.
 		 */	
-		connector moving: HappensWhile[0..*] from sourceOutputLink::endShot[0..*] to startShot[0..1];
-		inv { !isMove | size(moving) == size(sourceOutputLink) }
+		private connector moving: HappensWhile[0..*] from sourceOutputLink::endShot[0..*] to startShot[0..1];
+		private inv { !isMove | size(moving) == size(sourceOutputLink) }
 		
 		/**
 		 * If isPush is true, then the transfer begins when the items are available
 		 * at the source.
 		 */
-		connector pushing: HappensWhile[0..*] from sourceOutputLink::startShot[0..*] to startShot[0..1];
-		inv { !isPush | size(pushing) == size(sourceOutputLink) }
+		private connector pushing: HappensWhile[0..*] from sourceOutputLink::startShot[0..*] to startShot[0..1];
+		private inv { !isPush | size(pushing) == size(sourceOutputLink) }
 		
 		/**
 		 * The input of each of the items to the transferTarget starts at the end of the transfer.
 		 */
-		connector delivering: HappensWhile[1..*] from targetInputLink::startShot[1..*] to endShot[1];
+		private connector delivering: HappensWhile[1..*] from targetInputLink::startShot[1..*] to endShot[1];
 		
 		/**
 		 * If isInstant is true, then the start and end of the transfer happen at the same time.
 		 */
-		binding instant[0..1] of startShot[1] = endShot[1];
+		private binding instant[0..1] of startShot[1] = endShot[1];
 	}
 	 
 	/**
@@ -124,8 +124,8 @@ package Transfers {
 	  	
 	  	feature self: TransferBefore redefines Performance::self;
 	  	
-	  	succession transferSource then self;
-	  	succession self then transferTarget;
+	  	private succession transferSource then self;
+	  	private succession self then transferTarget;
 	}
 	
 	/**

@@ -3,6 +3,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
         ResourceSet {
                 ThisFile {}
                     File {from ="/library.kernel/Base.kerml"}
+                    File {from ="/library.kernel/Links.kerml"}
                     File {from ="/library.kernel/Objects.kerml"}
                     File {from ="/library.kernel/Performances.kerml"}
                     File {from ="/library.kernel/ScalarValues.kerml"}
@@ -28,6 +29,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                         SrcFolder {
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
+                    			File {from ="/library.kernel/Links.kerml"}
                                 File {from ="/library.kernel/Objects.kerml"}
                                 File {from ="/library.kernel/Performances.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}

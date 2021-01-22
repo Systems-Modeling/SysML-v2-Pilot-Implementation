@@ -7,6 +7,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/Base.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ControlFunctions.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
 		File {from ="/library.kernel/Performances.kerml"}
@@ -20,6 +21,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/Base.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.kernel/ControlFunctions.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
 				File {from ="/library.kernel/Performances.kerml"}

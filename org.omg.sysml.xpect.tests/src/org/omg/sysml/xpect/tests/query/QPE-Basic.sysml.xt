@@ -2,6 +2,7 @@
         ResourceSet {
                 ThisFile {}
                 File {from ="/library.kernel/Base.kerml"}
+                File {from ="/library.kernel/Links.kerml"}
                 File {from ="/library.kernel/Occurrences.kerml"}
                 File {from ="/library.kernel/Objects.kerml"}
                 File {from ="/library.kernel/Performances.kerml"}
@@ -16,6 +17,7 @@
                         SrcFolder {
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
+                                File {from ="/library.kernel/Links.kerml"}
                                 File {from ="/library.kernel/Occurrences.kerml"}
                  				File {from ="/library.kernel/Objects.kerml"}
                 				File {from ="/library.kernel/Performances.kerml"}

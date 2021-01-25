@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -162,6 +162,11 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Behavior.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.INTERACTION__STEP: return SysMLPackage.BEHAVIOR__STEP;
@@ -178,6 +183,11 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Behavior.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.BEHAVIOR__STEP: return SysMLPackage.INTERACTION__STEP;

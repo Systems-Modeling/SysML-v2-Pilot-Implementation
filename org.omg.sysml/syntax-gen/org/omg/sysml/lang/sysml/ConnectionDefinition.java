@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConnectionDefinition is a PartDefinition that is also an Association, with two or more end features. The <code>associationEnds</code> of a ConnectionUsage must be Usages.</p>
+ * <p>A ConnectionDefinition is a PartDefinition that is also an AssociationStructure, with two or more end features. The <code>associationEnds</code> of a ConnectionDefinition must be Usages.</p>
  * 
  * <p>A ConnectionDefinition must subset, directly or indirectly, the base ConnectionDefinition Connection from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -47,7 +47,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ConnectionDefinition extends PartDefinition, Association {
+public interface ConnectionDefinition extends PartDefinition, AssociationStructure {
 
 	/**
 	 * Returns the value of the '<em><b>Connection End</b></em>' reference list.

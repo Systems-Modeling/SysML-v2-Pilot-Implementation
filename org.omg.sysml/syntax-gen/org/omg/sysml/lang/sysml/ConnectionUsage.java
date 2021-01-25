@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ConnectionUsage is a Connector that is also a Usage. Nominally, if its type is a ConnectionDefinition, then a ConnectionUsage is a Usage of that ConnectionDefinition, representing a connection between parts of a system. However, other kinds of kernel Associations are also allowed, to permit use of Associations from the Kernel Library (such as the default BinaryLink).</p>
+ * <p>A ConnectionUsage is a Connector that is also a Usage. Nominally, if its type is a ConnectionDefinition, then a ConnectionUsage is a Usage of that ConnectionDefinition, representing a connection between parts of a system. However, other kinds of kernel AssociationStructures are also allowed, to permit use of Associations from the Kernel Library (such as the default BinaryLink).</p>
  * 
  * <p>A ConnectionUsage must subset the base ConnectionUsage <code>connections</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -51,7 +51,7 @@ public interface ConnectionUsage extends PartUsage, Connector {
 
 	/**
 	 * Returns the value of the '<em><b>Connection Definition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Association}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AssociationStructure}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -70,5 +70,5 @@ public interface ConnectionUsage extends PartUsage, Connector {
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	EList<Association> getConnectionDefinition();
+	EList<AssociationStructure> getConnectionDefinition();
 } // ConnectorUsage

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,7 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -61,6 +63,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintDefinition <em>Constraint Definition</em>}</li>
  * </ul>
  *
@@ -68,6 +71,15 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
 	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
 	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
 	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
@@ -153,6 +165,17 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 */
 	public boolean isSetConstraintDefinition() {
 		return basicGetConstraintDefinition() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Element> evaluate(Element target) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -356,6 +379,30 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isModelLevelEvaluable() {
+		// TODO: implement this method to return the 'Is Model Level Evaluable' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		// TODO: implement this method to set the 'Is Model Level Evaluable' attribute
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
@@ -461,6 +508,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
@@ -494,6 +543,9 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				setResult((Feature)newValue);
 				return;
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
+				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)newValue);
 				return;
@@ -524,6 +576,9 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				setResult((Feature)null);
 				return;
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)null);
 				return;
@@ -552,6 +607,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return isSetFunction();
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				return isSetPredicate();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
@@ -578,6 +635,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONSTRAINT_USAGE__FUNCTION: return SysMLPackage.EXPRESSION__FUNCTION;
 				case SysMLPackage.CONSTRAINT_USAGE__RESULT: return SysMLPackage.EXPRESSION__RESULT;
+				case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -608,6 +666,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			switch (baseFeatureID) {
 				case SysMLPackage.EXPRESSION__FUNCTION: return SysMLPackage.CONSTRAINT_USAGE__FUNCTION;
 				case SysMLPackage.EXPRESSION__RESULT: return SysMLPackage.CONSTRAINT_USAGE__RESULT;
+				case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -618,6 +677,46 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Step.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == Expression.class) {
+			switch (baseOperationID) {
+				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == BooleanExpression.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT:
+				return evaluate((Element)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ConstraintUsageImpl

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,8 +33,8 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -175,13 +175,13 @@ public class StepImpl extends FeatureImpl implements Step {
 	
 	public static boolean isEnactedPerformance(Feature step) {
 		Type owningType = step.getOwningType();
-		return owningType instanceof Class ||
+		return owningType instanceof Structure ||
 				owningType instanceof Feature && 
-					((FeatureImpl)owningType).isObjectFeature();
+					((FeatureImpl)owningType).isStructureFeature();
 	}
 	
 	public static boolean isIncomingTransfer(Feature step) {
-		return step.getOwnedFeature().stream().anyMatch(f->f instanceof ItemFeature);
+		return step.getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
 	}
 	
 	public static boolean isCompositePerformanceFeature(Feature step) {

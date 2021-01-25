@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A ViewDefinition is a PartDefinition that specifies how a view artifact is constructed to satisfy a <code>viewpoint</code>. It specifies a <code>modelQuery</code> to define the model content to be presented and a <code>rendering</code> to define how the model content is presented.</p>
+ * <p>A ViewDefinition is a PartDefinition that specifies how a view artifact is constructed to satisfy a <code>viewpoint</code>. It specifies a <code>viewConditions</code> to define the model content to be presented and a <code>rendering</code> to define how the model content is presented.</p>
  * 
  * </p>A ViewDefinition must subclass, directly or indirectly, the base ViewDefinition View from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -131,17 +131,17 @@ public interface ViewDefinition extends PartDefinition {
 
 	/**
 	 * Returns the value of the '<em><b>View Condition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.MetadataCondition}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Expression}.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getOwnedFeature() <em>Owned Feature</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMembers</code> of the ViewDefinition that are <code>MetadataConditions</code>, which specify conditions on Elements to be rendered in a view.</p>
+	 * <p>The Expressions related to this ViewDefinition by ElementFilterMemberships, which specify conditions on Elements to be rendered in a view.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewDefinition_ViewCondition()
@@ -150,6 +150,6 @@ public interface ViewDefinition extends PartDefinition {
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	EList<MetadataCondition> getViewCondition();
+	EList<Expression> getViewCondition();
 
 } // ViewDefinition

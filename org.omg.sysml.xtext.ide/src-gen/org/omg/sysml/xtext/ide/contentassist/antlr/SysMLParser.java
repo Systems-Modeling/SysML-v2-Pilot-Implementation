@@ -169,8 +169,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives(), "rule__SequenceConstructionExpression__Alternatives");
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getAlternatives_1_2(), "rule__SequenceConstructionExpression__Alternatives_1_2");
 			builder.put(grammarAccess.getBaseExpressionAccess().getAlternatives(), "rule__BaseExpression__Alternatives");
-			builder.put(grammarAccess.getMetadataExpressionAccess().getAlternatives(), "rule__MetadataExpression__Alternatives");
-			builder.put(grammarAccess.getMetadataArgumentListAccess().getAlternatives(), "rule__MetadataArgumentList__Alternatives");
 			builder.put(grammarAccess.getArgumentListAccess().getAlternatives(), "rule__ArgumentList__Alternatives");
 			builder.put(grammarAccess.getLiteralExpressionAccess().getAlternatives(), "rule__LiteralExpression__Alternatives");
 			builder.put(grammarAccess.getBooleanValueAccess().getAlternatives(), "rule__BooleanValue__Alternatives");
@@ -586,13 +584,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceElementListAccess().getGroup(), "rule__SequenceElementList__Group__0");
 			builder.put(grammarAccess.getSequenceElementListAccess().getGroup_1(), "rule__SequenceElementList__Group_1__0");
 			builder.put(grammarAccess.getBaseExpressionAccess().getGroup_5(), "rule__BaseExpression__Group_5__0");
-			builder.put(grammarAccess.getMetadataExpressionAccess().getGroup_4(), "rule__MetadataExpression__Group_4__0");
-			builder.put(grammarAccess.getMetadataOperationExpressionAccess().getGroup(), "rule__MetadataOperationExpression__Group__0");
-			builder.put(grammarAccess.getMetadataPositionalArgumentListAccess().getGroup(), "rule__MetadataPositionalArgumentList__Group__0");
-			builder.put(grammarAccess.getMetadataPositionalArgumentListAccess().getGroup_1(), "rule__MetadataPositionalArgumentList__Group_1__0");
-			builder.put(grammarAccess.getMetadataNamedArgumentListAccess().getGroup(), "rule__MetadataNamedArgumentList__Group__0");
-			builder.put(grammarAccess.getMetadataNamedArgumentListAccess().getGroup_1(), "rule__MetadataNamedArgumentList__Group_1__0");
-			builder.put(grammarAccess.getMetadataNamedExpressionMemberAccess().getGroup(), "rule__MetadataNamedExpressionMember__Group__0");
 			builder.put(grammarAccess.getNullExpressionAccess().getGroup(), "rule__NullExpression__Group__0");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getGroup(), "rule__InvocationExpression__Group__0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getGroup(), "rule__PositionalArgumentList__Group__0");
@@ -999,15 +990,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getOperand_compAssignment_1_2_1_2(), "rule__SequenceConstructionExpression__Operand_compAssignment_1_2_1_2");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperatorAssignment_1_1(), "rule__SequenceElementList__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperand_compAssignment_1_2(), "rule__SequenceElementList__Operand_compAssignment_1_2");
-			builder.put(grammarAccess.getMetadataExpressionMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__MetadataExpressionMember__OwnedMemberFeature_compAssignment");
-			builder.put(grammarAccess.getMetadataReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__MetadataReferenceExpression__OwnedFeatureMembership_compAssignment");
-			builder.put(grammarAccess.getMetadataOperationExpressionAccess().getOwnedRelationship_compAssignment_0(), "rule__MetadataOperationExpression__OwnedRelationship_compAssignment_0");
-			builder.put(grammarAccess.getMetadataPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__MetadataPositionalArgumentList__OwnedFeatureMembership_compAssignment_0");
-			builder.put(grammarAccess.getMetadataPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__MetadataPositionalArgumentList__OwnedFeatureMembership_compAssignment_1_1");
-			builder.put(grammarAccess.getMetadataNamedArgumentListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__MetadataNamedArgumentList__OwnedFeatureMembership_compAssignment_0");
-			builder.put(grammarAccess.getMetadataNamedArgumentListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__MetadataNamedArgumentList__OwnedFeatureMembership_compAssignment_1_1");
-			builder.put(grammarAccess.getMetadataNamedExpressionMemberAccess().getMemberNameAssignment_0(), "rule__MetadataNamedExpressionMember__MemberNameAssignment_0");
-			builder.put(grammarAccess.getMetadataNamedExpressionMemberAccess().getOwnedMemberFeature_compAssignment_2(), "rule__MetadataNamedExpressionMember__OwnedMemberFeature_compAssignment_2");
 			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedFeatureMembership_compAssignment");
 			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__FeatureReferenceMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getFeatureReferenceAccess().getOwnedRelationship_compAssignment(), "rule__FeatureReference__OwnedRelationship_compAssignment");

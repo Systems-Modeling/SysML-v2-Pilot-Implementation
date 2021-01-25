@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -112,12 +112,6 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 				collect(Collectors.toList());
 	}
 	
-	@Override
-	protected Feature getContextFeature() {
-		Expression target = getTarget();
-		return target == null? null: target.getResult();
-	}
-
 	public ItemFeature getItemFeature() {
 		return super.getOwnedFeature().stream().
 				filter(f->f instanceof ItemFeature).
@@ -146,6 +140,17 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 		}
 	}
 	
+	@Override
+	protected Feature getContextFeature() {
+		Expression target = getTarget();
+		if (target == null) {
+			return null;
+		} else {
+			((ElementImpl)target).transform();
+			return target.getResult();
+		}
+	}
+
 	public void transform() {
 		super.transform();
 		computeTargetConnector();

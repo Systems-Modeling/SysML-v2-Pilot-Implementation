@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,6 +37,7 @@ import org.eclipse.emf.common.util.EList;
  *     allSupertypes()->includes(
  *         if numend = 2 then Kernel Library::BinaryLink
  *         else Kernel Library::Link)
+ * oclIsKindOf(Structure) = oclIsKindOf(AssociationStructure)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,16 +45,16 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getRelatedType <em>Related Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Association#getAssociationEnd <em>Association End</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Association#getTargetType <em>Target Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Association#getAssociationEnd <em>Association End</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation()
  * @model
  * @generated
  */
-public interface Association extends org.omg.sysml.lang.sysml.Class, Relationship {
+public interface Association extends Classifier, Relationship {
 	/**
 	 * Returns the value of the '<em><b>Related Type</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Type}.
@@ -83,36 +84,6 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @generated
 	 */
 	EList<Type> getRelatedType();
-
-	/**
-	 * Returns the value of the '<em><b>Association End</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getEndFeature() <em>End Feature</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Association End</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>features</code> of the Association that that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p>
-	 * 
-	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Association End</em>' reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()
-	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='associationWithEnd'"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	EList<Feature> getAssociationEnd();
 
 	/**
 	 * Returns the value of the '<em><b>Source Type</b></em>' reference.
@@ -185,5 +156,31 @@ public interface Association extends org.omg.sysml.lang.sysml.Class, Relationshi
 	 * @generated
 	 */
 	EList<Type> getTargetType();
+
+	/**
+	 * Returns the value of the '<em><b>Association End</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Feature}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Type#getEndFeature() <em>End Feature</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>features</code> of the Association that that identifying the things that can be related by it. An Association must have at least two <code>associationEnds</code>. When it has exactly two, the Association is called a <em>binary</em> Association.</p>
+	 * 
+	 * <p>The ends of the Association determine which elements are eligible to be related by instances of the Association.</p>
+	 * 
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Association End</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAssociation_AssociationEnd()
+	 * @model lower="2" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='associationWithEnd'"
+	 *        annotation="redefines"
+	 * @generated
+	 */
+	EList<Feature> getAssociationEnd();
 
 } // Association

@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml;
@@ -8,6 +28,10 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Annotating Feature</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * <p>An AnnotatingFeature is a Feature that is used to annotate another Element with metadata. The AnnotatingFeature is typed by a DataType and binds metadata values to all the <code>features</code> of that DataType.</p>
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
@@ -36,6 +60,9 @@ public interface AnnotatingFeature extends Feature, AnnotatingElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>type</code> of this AnnotatingFeature, which must be a DataType.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Metadata Type</em>' reference.
 	 * @see #setMetadataType(DataType)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingFeature_MetadataType()
@@ -70,6 +97,9 @@ public interface AnnotatingFeature extends Feature, AnnotatingElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedFeatures</code> of this AnnotatingFeature, each of which must redefine a <code>feature</code> of the <code>metadataType</code>.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingFeature_OwnedMetadata()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"

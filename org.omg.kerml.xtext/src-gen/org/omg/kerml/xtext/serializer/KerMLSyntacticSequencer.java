@@ -52,7 +52,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1;
 	protected AbstractElementAlias match_Generalization_GeneralizationKeyword_0_0_q;
 	protected AbstractElementAlias match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1;
-	protected AbstractElementAlias match_MetadataExpression_LeftParenthesisKeyword_4_0_a;
 	protected AbstractElementAlias match_MetadataFeature_FeatureKeyword_0_q;
 	protected AbstractElementAlias match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q;
 	protected AbstractElementAlias match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -114,7 +113,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Generalization_ColonGreaterThanSignKeyword_3_0_or_SpecializesKeyword_3_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getGeneralizationAccess().getColonGreaterThanSignKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getGeneralizationAccess().getSpecializesKeyword_3_1()));
 		match_Generalization_GeneralizationKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getGeneralizationAccess().getGeneralizationKeyword_0_0());
 		match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getImportAccess().getColonColonKeyword_3_0_1_0()), new TokenAlias(false, false, grammarAccess.getImportAccess().getFullStopKeyword_3_0_1_1()));
-		match_MetadataExpression_LeftParenthesisKeyword_4_0_a = new TokenAlias(true, true, grammarAccess.getMetadataExpressionAccess().getLeftParenthesisKeyword_4_0());
 		match_MetadataFeature_FeatureKeyword_0_q = new TokenAlias(false, true, grammarAccess.getMetadataFeatureAccess().getFeatureKeyword_0());
 		match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getColonGreaterThanSignGreaterThanSignKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMetadataFeatureAccess().getRedefinesKeyword_1_1()));
 		match_NamespaceBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getNamespaceBodyAccess().getSemicolonKeyword_0()));
@@ -216,8 +214,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Generalization_GeneralizationKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1.equals(syntax))
 				emit_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_MetadataExpression_LeftParenthesisKeyword_4_0_a.equals(syntax))
-				emit_MetadataExpression_LeftParenthesisKeyword_4_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature_FeatureKeyword_0_q.equals(syntax))
 				emit_MetadataFeature_FeatureKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q.equals(syntax))
@@ -486,6 +482,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '~' | 'conjugates'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'assoc' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'behavior' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'class' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
@@ -494,7 +491,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'function' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     (rule start) 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     humanId=Name (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'class' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
@@ -503,6 +502,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'function' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
+	 *     isAbstract?='abstract' 'struct' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     name=Name (ambiguity) ownedRelationship_comp+=ClassifierConjugation
 	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=ClassifierConjugation
@@ -740,24 +740,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     importedNamespace=[Namespace|Name] (ambiguity) isRecursive?='**'
 	 */
 	protected void emit_Import_ColonColonKeyword_3_0_1_0_or_FullStopKeyword_3_0_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '('*
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) 'null' (rule start)
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) value=BooleanValue
-	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
-	 *     (rule start) (ambiguity) value=RealValue
-	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 */
-	protected void emit_MetadataExpression_LeftParenthesisKeyword_4_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -1055,6 +1037,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':>' | 'specializes'
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'assoc' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'behavior' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'class' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
@@ -1063,7 +1046,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'function' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'interaction' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     (rule start) 'predicate' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     (rule start) 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     humanId=Name (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'class' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
@@ -1072,6 +1057,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'function' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isAbstract?='abstract' 'predicate' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
+	 *     isAbstract?='abstract' 'struct' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
 	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedSuperclassing
@@ -1130,6 +1116,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'assoc' 'struct' (ambiguity) (rule start)
 	 *     (rule start) 'assoc' (ambiguity) (rule start)
 	 *     (rule start) 'behavior' (ambiguity) (rule start)
 	 *     (rule start) 'class' (ambiguity) (rule start)
@@ -1138,7 +1125,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'feature' (ambiguity) (rule start)
 	 *     (rule start) 'interaction' (ambiguity) (rule start)
 	 *     (rule start) 'step' (ambiguity) (rule start)
+	 *     (rule start) 'struct' (ambiguity) (rule start)
 	 *     humanId=Name (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'assoc' 'struct' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'assoc' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'behavior' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'class' (ambiguity) (rule end)
@@ -1147,6 +1136,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' 'feature' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'interaction' (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'step' (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'struct' (ambiguity) (rule end)
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     isSufficient?='all' (ambiguity) (rule end)

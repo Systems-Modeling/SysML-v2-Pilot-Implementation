@@ -324,12 +324,12 @@ class KerMLScope extends AbstractScope {
 				// NOTE: Exclude the import e to avoid possible circular name resolution
 				// when resolving a proxy for e.importedNamespace.
 				scopeProvider.addVisited(e)
-				val found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
+				var found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
 					e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet)
 				scopeProvider.removeVisited(e)
-				if (found) 	return true
-				if (e.isRecursive && e.importedNamespace instanceof org.omg.sysml.lang.sysml.Package)
-					resolveRecursiveImport(e.importedNamespace as org.omg.sysml.lang.sysml.Package , qn,  newHashSet, visited)
+				if (!found && e.isRecursive && e.importedNamespace instanceof org.omg.sysml.lang.sysml.Package)
+					found = resolveRecursiveImport(e.importedNamespace as org.omg.sysml.lang.sysml.Package, qn, newHashSet, visited)
+				if (found) return true
 			}
 		}
 		return false
@@ -340,9 +340,9 @@ class KerMLScope extends AbstractScope {
 			if (r instanceof Membership) {
 				var memberElement = r.ownedMemberElement
 				if (memberElement instanceof org.omg.sysml.lang.sysml.Package) {
-					var found = memberElement.resolve(qn, false, false, visited, newHashSet)
-						|| resolveRecursiveImport((memberElement as org.omg.sysml.lang.sysml.Package), qn, ownedvisited, visited)
-					if (found) return true
+					if (memberElement.resolve(qn, false, false, visited, newHashSet)
+						|| resolveRecursiveImport(memberElement, qn, ownedvisited, visited))
+						return true
 				}						
 			}
 		}

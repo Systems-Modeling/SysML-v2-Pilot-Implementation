@@ -1,0 +1,33 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package RecursiveImport {
+  
+	package P {
+		package P1 {
+			class A;
+		}
+		private package P2 {
+			class B;
+		}
+	}
+	  
+	import P::**;
+	
+	x : A;
+	//XPECT errors ---> "Couldn't resolve reference to Type 'B'." at "B"
+	y : B;
+	
+}

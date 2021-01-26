@@ -1,0 +1,100 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package RecursiveImport {
+  
+  package P {
+    package X {
+    	class X1 {
+    		class X2;
+    	}
+    }
+    package Q {
+      class Y;
+      package R {
+        class Z;
+      }
+    }
+    package S {
+      class S1 specializes X1;
+      package T {
+        class T1;
+        package U {
+        	class U1;
+        }
+      }
+    }
+    
+  }
+  
+  import P::**;
+  	x1: X1;
+	y: Y;
+	z: Z;
+	s: S1;
+	t: T1;
+	u: U1;
+	
+	
+	
+	//* XPECT scope at S.S1.X2 ---
+	P.X.X1, RecursiveImport.P.X.X1,
+	P.X.X1.X2, RecursiveImport.P.X.X1.X2,
+	P.Q.Y, RecursiveImport.P.Q.Y,
+	P.Q.R.Z, RecursiveImport.P.Q.R.Z,
+	
+	X.X1, RecursiveImport.X.X1,
+	X.X1.X2, RecursiveImport.X.X1.X2,
+	X1, RecursiveImport.X1,
+	X1.X2, RecursiveImport.X1.X2,
+	Q.Y, RecursiveImport.Q.Y,
+	Q.R.Z,  RecursiveImport.Q.R.Z,	  
+	Y, RecursiveImport.Y,
+	R.Z, RecursiveImport.R.Z,
+	Z, RecursiveImport.Z,
+	
+	P.S.S1, RecursiveImport.P.S.S1,
+	P.S.S1.X2, RecursiveImport.P.S.S1.X2,
+	P.S.T.T1, RecursiveImport.P.S.T.T1,
+	P.S.T.U.U1, RecursiveImport.P.S.T.U.U1,
+	
+	S.S1, RecursiveImport.S.S1,
+	S.S1.X2, RecursiveImport.S.S1.X2,
+	S1.X2, RecursiveImport.S1.X2,
+	S.T.T1, RecursiveImport.S.T.T1,
+	S.T.U.U1, RecursiveImport.S.T.U.U1,
+	
+	S1, RecursiveImport.S1,
+	T.T1, RecursiveImport.T.T1,
+	T1,  RecursiveImport.T1,
+	T.U.U1, RecursiveImport.T.U.U1,
+	U.U1, RecursiveImport.U.U1,
+	U1, RecursiveImport.U1,
+	
+	y, RecursiveImport.y,
+	z, RecursiveImport.z,
+	s, RecursiveImport.s,
+	t, RecursiveImport.t,
+	u, RecursiveImport.u,
+	x1, RecursiveImport.x1,
+	x1.X2, RecursiveImport.x1.X2,
+	xx1, RecursiveImport.xx1,
+	s.X2, RecursiveImport.s.X2,
+	
+	--- */
+	
+	xx1: S.S1.X2;
+}

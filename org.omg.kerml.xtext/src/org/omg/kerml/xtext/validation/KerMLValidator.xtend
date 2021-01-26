@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.Import
 
 /**
  * This class contains custom validation rules. 
@@ -60,16 +61,18 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG = "Output feature must conform to input feature"
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG = "Bound features should have conforming types"
-	public static val INVALID_FEATURE_NO_TYPE = 'Invalid Feature - Mandatory typing'
-	public static val INVALID_FEATURE_NO_TYPE_MSG = "Features must have at least one type"
-	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS = 'Invalid Relationship - Related element minimum validation'
-	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG = "Relationships must have at least two related elements"
+	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
+	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
+	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
+	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG = "Relationships must have at least two related elements"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishablity"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member ID"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_IMPORT__RECURSIVE_NAMESPACE = "Invalid Import - Recursive namespace"
+	public static val INVALID_IMPORT__RECURSIVE_NAMESPACE_MSG = "Only packages can be recursively imported"
 		
 	@Check
 	def checkElement(Element elm) {
@@ -125,13 +128,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-	}	
+	}
+	
+	@Check
+	def checkImport(Import i) {
+		if (i.isRecursive && !(i.importedNamespace instanceof org.omg.sysml.lang.sysml.Package)) {
+			error(INVALID_IMPORT__RECURSIVE_NAMESPACE_MSG, i, SysMLPackage.eINSTANCE.import_ImportedNamespace, INVALID_IMPORT__RECURSIVE_NAMESPACE)
+		}
+	}
 	
 	@Check
 	def checkFeature(Feature f){
 		val types = (f as FeatureImpl).type;
 		if (types !== null && types.isEmpty)
-			error(INVALID_FEATURE_NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
+			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
 	}
 	
 	@Check
@@ -140,7 +150,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
 			if (relatedElements !== null && relatedElements.length < 2)
-				error(INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
+				error(INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP__RELATED_ELEMENTS)	
 		}
 	}
 	 

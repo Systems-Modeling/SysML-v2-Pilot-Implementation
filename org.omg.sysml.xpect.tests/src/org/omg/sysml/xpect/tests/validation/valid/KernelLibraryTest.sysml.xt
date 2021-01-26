@@ -1,0 +1,93 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+
+	ResourceSet {
+		ThisFile {} 
+ 		File {from ="/library.kernel/Base.kerml"}
+       	File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/Performances.kerml"}
+		File {from ="/library.kernel/ControlPerformances.kerml"}
+		File {from ="/library.kernel/TransitionPerformances.kerml"}
+		File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.kernel/ScalarFunctions.kerml"}
+		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+ 		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+		File {from ="/library.systems/Calculations.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQLight.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQMechanics.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQThermodynamics.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {} 
+		 		File {from ="/library.kernel/Base.kerml"}
+		       	File {from ="/library.kernel/Occurrences.kerml"}
+		       	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/Performances.kerml"}
+				File {from ="/library.kernel/ControlPerformances.kerml"}
+				File {from ="/library.kernel/TransitionPerformances.kerml"}
+				File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.kernel/ScalarFunctions.kerml"}
+				File {from ="/library.kernel/ScalarValues.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+		 		File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+				File {from ="/library.systems/Calculations.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQElectromagnetism.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQLight.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQMechanics.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQSpaceTime.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQThermodynamics.sysml"}
+			}
+		}
+	}
+END_SETUP
+*/
+	
+	
+// XPECT noErrors ---> ""
+package KernelLibraryTest {
+
+	import ScalarValues::**; //import ScalarValues::Real;
+	import ScalarFunctions::**; //import ScalarFunctions::sum;
+	import ISQ::**; //ISQ::MassValue
+	
+	part vehicle {
+		attribute m: Real;
+		attribute totalMass: MassValue;
+		
+		part eng {
+			attribute m: Real;
+		}
+		
+		part trans {
+			attribute m: Real;
+		}
+	}
+	
+	calc def MassSum (partMasses : Real[0..*]) totalMass : Real {
+		sum(partMasses)
+	}
+	
+	calc ms: MassSum (
+		partMasses = {vehicle::eng::m, vehicle::trans::m})
+	
+	totalMass = vehicle::m;
+		
+	
+}
+

@@ -1,0 +1,30 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+	ResourceSet {
+		ThisFile {}
+		File "Import_Recursive2.kerml" {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="Import_Recursive2.kerml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package RecursiveImport {
+  
+   import P::**;
+
+	//All X, Y and Z are visible here.
+	x: X;	
+	y: Y;
+	z: Z;
+	s: S1;
+	t: T1;
+	u: U1;
+}

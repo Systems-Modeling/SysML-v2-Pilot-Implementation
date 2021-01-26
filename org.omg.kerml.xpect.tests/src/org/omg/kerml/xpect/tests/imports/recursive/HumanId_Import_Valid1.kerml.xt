@@ -1,0 +1,58 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package Test {
+
+	package Test1 {
+		import VP::**;
+		//* XPECT scope at c_Public ---
+		A, A.c_public, Test1.A, Test1.A.c_public, Test.Test1.A, Test.Test1.A.c_public, 
+		c_Public, Test1.c_Public, Test.Test1.c_Public, VP.VP1.c_Public, Test.VP.VP1.c_Public,  
+		c_Public.c_public, Test1.c_Public.c_public, Test.Test1.c_Public.c_public, VP.VP1.c_Public.c_public, Test.VP.VP1.c_Public.c_public,
+		c_Public_Id, Test1.c_Public_Id, Test.Test1.c_Public_Id, VP.VP1.c_Public_Id, Test.VP.VP1.c_Public_Id,
+		c_Public_Id.c_public, Test1.c_Public_Id.c_public, Test.Test1.c_Public_Id.c_public, VP.VP1.c_Public_Id.c_public, Test.VP.VP1.c_Public_Id.c_public,
+		VP.VP2.A, Test.VP.VP2.A, VP.VP2.A_Id, Test.VP.VP2.A_Id,
+		
+		VP1.c_Public, Test1.VP1.c_Public, Test.Test1.VP1.c_Public,
+		VP1.c_Public_Id, Test1.VP1.c_Public_Id, Test.Test1.VP1.c_Public_Id,
+		VP1.c_Public.c_public, Test1.VP1.c_Public.c_public, Test.Test1.VP1.c_Public.c_public,
+		VP1.c_Public_Id.c_public, Test1.VP1.c_Public_Id.c_public, Test.Test1.VP1.c_Public_Id.c_public,
+		A_Id, A, Test1.A, Test1.A_Id, Test.Test1.A, Test.Test1.A_Id,
+		VP2.A_Id, VP2.A, Test1.VP2.A, Test1.VP2.A_Id, Test.Test1.VP2.A, Test.Test1.VP2.A_Id,
+		
+		--- */
+		class A specializes c_Public_Id;
+	
+	}
+
+	package VP {
+			
+		package VP1 {	
+			public class id 'c_Public_Id' c_Public {
+				private class c_private{}
+				public class c_public{}
+				protected class c_protected{}
+			}
+		}
+		
+		package VP2 {
+			public class id 'A_Id' A;
+		}
+	}
+	
+}
+
+	

@@ -397,15 +397,33 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
 			Namespace owningNamespace = this.getImportOwningNamespace();
 			excludedNamespaces.add(owningNamespace);
-			EList<Membership> namespaceMembership = 
-					((NamespaceImpl) importedNamespace).getPublicMembership(excludedNamespaces,excludedTypes);
-			importedMembership.addAll(namespaceMembership);
-			if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
-				nonpublicMembership.addAll(namespaceMembership);
-			}
+			importMembershipFrom(importedNamespace, importedMembership, nonpublicMembership, 
+					excludedNamespaces, excludedTypes, this.isRecursive);
 			excludedNamespaces.remove(owningNamespace);
 		}
 		return importedMembership;
+	}
+	
+	protected void importMembershipFrom(Namespace importedNamespace, EList<Membership> importedMembership,
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
+			Collection<Type> excludedTypes, boolean isRecursive) {
+		EList<Membership> namespaceMembership = 
+				((NamespaceImpl) importedNamespace).getPublicMembership(excludedNamespaces, excludedTypes);
+		importedMembership.addAll(namespaceMembership);
+		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
+			nonpublicMembership.addAll(namespaceMembership);
+		}
+		if (isRecursive) {
+			excludedNamespaces.add(importedNamespace);
+			for (Membership membership: namespaceMembership) {
+				Element ownedMember = membership.getOwnedMemberElement();
+				if (ownedMember instanceof org.omg.sysml.lang.sysml.Package) {
+					importMembershipFrom((Namespace)ownedMember, importedMembership, nonpublicMembership, 
+							excludedNamespaces, excludedTypes, true);
+				}
+			}
+			excludedNamespaces.remove(importedNamespace);
+		}
 	}
 
 	//

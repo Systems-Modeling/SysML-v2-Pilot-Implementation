@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>Expression</b></em>'. <!-- end-user-doc -->
@@ -37,6 +39,7 @@ package org.omg.sysml.lang.sysml;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Expression#getFunction <em>Function</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Expression#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Expression#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression()
@@ -123,4 +126,40 @@ public interface Expression extends Step {
 	 * @generated
 	 */
 	void setResult(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Model Level Evaluable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Expression meets the constraints necessary to be evaluated at <em>model level</em>, that is, using metadata within the model.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Model Level Evaluable</em>' attribute.
+	 * @see #setIsModelLevelEvaluable(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getExpression_IsModelLevelEvaluable()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	boolean isModelLevelEvaluable();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Expression#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Model Level Evaluable</em>' attribute.
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 */
+	void setIsModelLevelEvaluable(boolean value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If this Expression <code>isModelLevelEvaluable</code>, then evaluate it using the <code>target</code> as the context Element for resolving Feature names and testing classification. The result is a collection of Elements, each of which must be a LiteralExpression or an AnnotatingFeature.</p>
+	 * <!-- end-model-doc -->
+	 * @model unique="false" targetRequired="true" targetOrdered="false"
+	 * @generated
+	 */
+	EList<Element> evaluate(Element target);
 } // Expression

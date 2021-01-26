@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
@@ -297,12 +298,12 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Association> getConnectionDefinition() {
-		EList<Association> associations = 
-				new NonNotifyingEObjectEList<>(Association.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
+	public EList<AssociationStructure> getConnectionDefinition() {
+		EList<AssociationStructure> associations = 
+				new NonNotifyingEObjectEList<>(AssociationStructure.class, this, SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION);
 		super.getType().stream().
-			filter(type->type instanceof Association).
-			map(type->(Association)type).
+			filter(AssociationStructure.class::isInstance).
+			map(AssociationStructure.class::cast).
 			forEachOrdered(associations::add);
 		return associations;
 	}
@@ -672,7 +673,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 				return;
 			case SysMLPackage.CONNECTION_USAGE__CONNECTION_DEFINITION:
 				getConnectionDefinition().clear();
-				getConnectionDefinition().addAll((Collection<? extends Association>)newValue);
+				getConnectionDefinition().addAll((Collection<? extends AssociationStructure>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

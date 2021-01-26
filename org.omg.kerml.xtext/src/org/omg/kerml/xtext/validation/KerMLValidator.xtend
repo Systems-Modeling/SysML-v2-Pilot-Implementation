@@ -139,13 +139,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
-			if ( relatedElements !== null && relatedElements.length < 2)
+			if (relatedElements !== null && relatedElements.length < 2)
 				error(INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
 		}
 	}
 	 
 	@Check
 	def checkConnector(Connector c){
+		if (c.owner instanceof FeatureReferenceExpression) {
+			return // ignore reference connectors in FeatureReferenceExpressions for now
+		}
+		
 		var relatedFeatures = c.relatedFeature
 		
 		// Allow related features that are inherited by the owner of the connector

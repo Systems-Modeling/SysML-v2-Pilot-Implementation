@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -66,11 +66,11 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -109,6 +109,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
 	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::dataValues";
+	public static final String OCCURRENCE_FEATURE_SUBSETTING_DEFAULT = "Occurrences::occurrences";
 	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Objects::objects";
 	
 	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
@@ -390,8 +391,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return hasObjectType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-			   hasValueType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+		return hasStructureType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+			   hasClassType()? OCCURRENCE_FEATURE_SUBSETTING_DEFAULT:
+			   hasDataType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
 			   FEATURE_SUBSETTING_DEFAULT;
 	}
 	
@@ -984,21 +986,26 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return addImplicitBindingConnector(getFeaturingType(), sourceExpression.getResult(), this);
 	}
 	
-	public boolean isObjectFeature() {
-		return getType().stream().anyMatch(type->type instanceof Class);
+	public boolean isStructureFeature() {
+		return getType().stream().anyMatch(Structure.class::isInstance);
 	}
 	
-	public boolean isValueFeature() {
-		return getType().stream().anyMatch(type->type instanceof DataType);
+	public boolean isDataFeature() {
+		return getType().stream().anyMatch(DataType.class::isInstance);
 	}
 	
-	public boolean hasObjectType() {
-		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof Class) ||
-			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Class.class::isInstance);
+	public boolean hasClassType() {
+		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance) ||
+			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance);
 	}
 	
-	public boolean hasValueType() {
-		return basicGetOwnedTyping().stream().anyMatch(typing->typing.getType() instanceof DataType) ||
+	public boolean hasStructureType() {
+		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(Structure.class::isInstance) ||
+			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
+	}
+	
+	public boolean hasDataType() {
+		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(DataType.class::isInstance) ||
 			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
 	}
 	

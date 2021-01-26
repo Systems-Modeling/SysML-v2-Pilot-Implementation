@@ -1,20 +1,40 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.lang.sysml.ElementFilter;
-import org.omg.sysml.lang.sysml.MetadataCondition;
-import org.omg.sysml.lang.sysml.Relationship;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -26,25 +46,12 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getFilterCondition <em>Filter Condition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getFilter_comp <em>Filter comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.PackageImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sysml.Package {
-	/**
-	 * The cached value of the '{@link #getFilter_comp() <em>Filter comp</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFilter_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ElementFilter> filter_comp;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,92 +74,103 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Relationship> getOwnedRelationship_comp() {
-		if (ownedRelationship_comp == null) {
-			ownedRelationship_comp = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.PACKAGE__OWNED_RELATIONSHIP_COMP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
-		}
-		return ownedRelationship_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public EList<MetadataCondition> getFilterCondition() {
-		EList<MetadataCondition> filterConditions = new NonNotifyingEObjectEList<>(MetadataCondition.class, this, SysMLPackage.PACKAGE__FILTER_CONDITION);
-		getFilter().stream().map(ElementFilter::getCondition).forEachOrdered(filterConditions::add);
+	public EList<Expression> getFilterCondition() {
+		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.PACKAGE__FILTER_CONDITION);
+		getElementFilters().forEachOrdered(filterConditions::add);
 		return filterConditions;
 	}
 
 	/**
+	 * The cached OCL expression body for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<ElementFilter> getFilter_comp() {
-		if (filter_comp == null) {
-			filter_comp = new EObjectContainmentWithInverseEList<ElementFilter>(ElementFilter.class, this, SysMLPackage.PACKAGE__FILTER_COMP, SysMLPackage.ELEMENT_FILTER__FILTERED_PACKAGE);
-		}
-		return filter_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public EList<ElementFilter> getFilter() {
-		return getFilter_comp();
-	}
-
-	/**
-	 * The array of superset feature identifiers for the '{@link #getFilter() <em>Filter</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFilter()
+	 * @see #includeAsMember(org.omg.sysml.lang.sysml.Element)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] FILTER_ESUPERSETS = new int[] {SysMLPackage.PACKAGE__OWNED_RELATIONSHIP_COMP};
+	protected static final String INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP = "let metadataAnnotations: Sequence(Element) = "+
+"    element.ownedAnnotation.annotatingElement->"+
+"        select(oclIsKindOf(AnnotatingFeature) in"+
+"    self.filterCondition->exists(cond | "+
+"        metadataAnnotations->forAll(elem | "+
+"            self.checkCondition(elem, cond))";
+	/**
+	 * The cached OCL query for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #includeAsMember(org.omg.sysml.lang.sysml.Element)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.PACKAGE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.PACKAGE__FILTER_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFilter_comp()).basicAdd(otherEnd, msgs);
+	public boolean includeAsMember(Element element) {
+		if (INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY == null) {
+			OCL.Helper helper = EOCL_ENV.createOCLHelper();
+			helper.setOperationContext(SysMLPackage.Literals.PACKAGE, SysMLPackage.Literals.PACKAGE.getEAllOperations().get(4));
+			try {
+				INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY = helper.createQuery(INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP);
+			}
+			catch (ParserException pe) {
+				throw new UnsupportedOperationException(pe.getLocalizedMessage());
+			}
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		OCL.Query query = EOCL_ENV.createQuery(INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY);
+		EvaluationEnvironment<?, ?, ?, ?, ?> environment = query.getEvaluationEnvironment();
+		environment.add("element", element);
+		return ((Boolean) query.evaluate(this)).booleanValue();
 	}
 
 	/**
+	 * The cached OCL expression body for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP = "let result: Element = condition.evaluate(element) in"+
+"    result.oclIsKindOf(LiteralBoolean) and "+
+"    result.oclAsType(LiteralBoolean).value";
+	/**
+	 * The cached OCL query for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.PACKAGE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.PACKAGE__FILTER_COMP:
-				return ((InternalEList<?>)getFilter_comp()).basicRemove(otherEnd, msgs);
+	public boolean checkCondition(Element element, Expression condition) {
+		if (CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY == null) {
+			OCL.Helper helper = EOCL_ENV.createOCLHelper();
+			helper.setOperationContext(SysMLPackage.Literals.PACKAGE, SysMLPackage.Literals.PACKAGE.getEAllOperations().get(5));
+			try {
+				CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY = helper.createQuery(CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP);
+			}
+			catch (ParserException pe) {
+				throw new UnsupportedOperationException(pe.getLocalizedMessage());
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		OCL.Query query = EOCL_ENV.createQuery(CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY);
+		EvaluationEnvironment<?, ?, ?, ?, ?> environment = query.getEvaluationEnvironment();
+		environment.add("element", element);
+		environment.add("condition", condition);
+		return ((Boolean) query.evaluate(this)).booleanValue();
 	}
 
 	/**
@@ -165,10 +183,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		switch (featureID) {
 			case SysMLPackage.PACKAGE__FILTER_CONDITION:
 				return getFilterCondition();
-			case SysMLPackage.PACKAGE__FILTER_COMP:
-				return getFilter_comp();
-			case SysMLPackage.PACKAGE__FILTER:
-				return getFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,15 +198,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		switch (featureID) {
 			case SysMLPackage.PACKAGE__FILTER_CONDITION:
 				getFilterCondition().clear();
-				getFilterCondition().addAll((Collection<? extends MetadataCondition>)newValue);
-				return;
-			case SysMLPackage.PACKAGE__FILTER_COMP:
-				getFilter_comp().clear();
-				getFilter_comp().addAll((Collection<? extends ElementFilter>)newValue);
-				return;
-			case SysMLPackage.PACKAGE__FILTER:
-				getFilter().clear();
-				getFilter().addAll((Collection<? extends ElementFilter>)newValue);
+				getFilterCondition().addAll((Collection<? extends Expression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -209,12 +215,6 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 			case SysMLPackage.PACKAGE__FILTER_CONDITION:
 				getFilterCondition().clear();
 				return;
-			case SysMLPackage.PACKAGE__FILTER_COMP:
-				getFilter_comp().clear();
-				return;
-			case SysMLPackage.PACKAGE__FILTER:
-				getFilter().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,16 +227,26 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.PACKAGE__OWNED_RELATIONSHIP_COMP:
-				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
 			case SysMLPackage.PACKAGE__FILTER_CONDITION:
 				return !getFilterCondition().isEmpty();
-			case SysMLPackage.PACKAGE__FILTER_COMP:
-				return filter_comp != null && !filter_comp.isEmpty();
-			case SysMLPackage.PACKAGE__FILTER:
-				return !getFilter().isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.PACKAGE___INCLUDE_AS_MEMBER__ELEMENT:
+				return includeAsMember((Element)arguments.get(0));
+			case SysMLPackage.PACKAGE___CHECK_CONDITION__ELEMENT_EXPRESSION:
+				return checkCondition((Element)arguments.get(0), (Expression)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //PackageImpl

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,8 +33,8 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expose;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.MetadataCondition;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -189,8 +189,10 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<MetadataCondition> getViewCondition() {
-		return new DerivedEObjectEList<>(MetadataCondition.class, this, SysMLPackage.VIEW_USAGE__VIEW_CONDITION, new int[] {SysMLPackage.TYPE__OWNED_MEMBER});
+	public EList<Expression> getViewCondition() {
+		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
+		getElementFilters().forEachOrdered(viewConditions::add);
+		return viewConditions;
 	}
 
 	/**
@@ -269,7 +271,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				return;
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				getViewCondition().clear();
-				getViewCondition().addAll((Collection<? extends MetadataCondition>)newValue);
+				getViewCondition().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
 				getViewedElement().clear();

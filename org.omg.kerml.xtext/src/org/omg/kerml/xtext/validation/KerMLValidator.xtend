@@ -46,7 +46,6 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
-import org.omg.sysml.lang.sysml.Import
 
 /**
  * This class contains custom validation rules. 
@@ -71,8 +70,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
-	public static val INVALID_IMPORT__RECURSIVE_NAMESPACE = "Invalid Import - Recursive namespace"
-	public static val INVALID_IMPORT__RECURSIVE_NAMESPACE_MSG = "Only packages can be recursively imported"
 		
 	@Check
 	def checkElement(Element elm) {
@@ -128,13 +125,6 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-	}
-	
-	@Check
-	def checkImport(Import i) {
-		if (i.isRecursive && !(i.importedNamespace instanceof org.omg.sysml.lang.sysml.Package)) {
-			error(INVALID_IMPORT__RECURSIVE_NAMESPACE_MSG, i, SysMLPackage.eINSTANCE.import_ImportedNamespace, INVALID_IMPORT__RECURSIVE_NAMESPACE)
-		}
 	}
 	
 	@Check

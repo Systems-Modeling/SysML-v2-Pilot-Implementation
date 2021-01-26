@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
 		File {from ="Import_Recursive3.kerml"}
@@ -28,6 +28,7 @@ package RecursiveImport {
 	P.Q.R.Z, 
 	
 	X, RecursiveImport.X,
+	X1, RecursiveImport.X1,
 	X.X1, RecursiveImport.X.X1,
 	Q.Y, RecursiveImport.Q.Y,
 	Q.R.Z,  RecursiveImport.Q.R.Z,	  

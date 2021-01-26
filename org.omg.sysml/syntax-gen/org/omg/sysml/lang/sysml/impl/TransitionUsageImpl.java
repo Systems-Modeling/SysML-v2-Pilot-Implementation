@@ -268,13 +268,25 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	protected void computeReferenceConnector() {
 		Succession succession = getSuccession();
 		((ElementImpl)succession).transform();
-		successionConnector = makeBinding(successionConnector, succession, getTransitionLinkFeature());		
+		successionConnector = makeBinding(succession, getTransitionLinkFeature());
 	}
 	
 	@Override
+	public void cleanDerivedValues() {
+		successionConnector = null;
+		super.cleanDerivedValues();
+	}
+	
+	public BindingConnector getSuccessionConnector() {
+		return successionConnector;
+	}
+
+	@Override
 	public void transform() {
 		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
-		computeReferenceConnector();
+		if (successionConnector == null) {
+			computeReferenceConnector();
+		}
 		
 		super.transform();
 	}

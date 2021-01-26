@@ -95,9 +95,21 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	@Override
 	public void transform() {
 		super.transform();
-		referenceConnector = makeBinding(referenceConnector, getReferent(), getResult());
+		if (referenceConnector == null) {
+			referenceConnector = makeBinding(getReferent(), getResult());
+		}
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		referenceConnector = null;
+		super.cleanDerivedValues();
 	}
 
+	public BindingConnector getReferenceConnector() {
+		return referenceConnector;
+	}
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

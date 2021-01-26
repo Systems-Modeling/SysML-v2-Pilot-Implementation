@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
 
-	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Objects::selfLinks";
+	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Links::selfLinks";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -60,7 +60,7 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		setRelatedFeature(0, source);
 		setRelatedFeature(1, target);
 		if (featuringTypes != null) {
-			updateFeaturingTypes(featuringTypes);
+			addFeaturingTypes(featuringTypes);
 		}
 	}
 	

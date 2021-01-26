@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -79,8 +78,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConnectorImpl extends FeatureImpl implements Connector {
 	
-	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Objects::links";
-	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Objects::binaryLinks";
+	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Links::links";
+	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Links::binaryLinks";
+	public static final String CONNECTOR_OBJECT_SUBSETTING_DEFAULT = "Objects::linkObjects";
+	public static final String BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT = "Objects::binaryLinkObjects";
 	
 	/**
 	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
@@ -532,20 +533,20 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return getConnectorEnd().size() > 2? 
-				CONNECTOR_SUBSETTING_DEFAULT:
-				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
+		return isStructureFeature()?
+				getConnectorEnd().size() > 2? 
+					CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
+					BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
+				getConnectorEnd().size() > 2? 
+					CONNECTOR_SUBSETTING_DEFAULT:
+					BINARY_CONNECTOR_SUBSETTING_DEFAULT;
 	}
 	
 	private void computeFeaturingType() {
 		if (getOwningType() == null) {
 			Type contextType = getContextType();
 			if (contextType != null) {
-				if (getOwnedTypeFeaturing().isEmpty()) {
-					addFeaturingType(contextType);
-				} else {
-					updateFeaturingTypes(Collections.singletonList(contextType));
-				}
+				addFeaturingType(contextType);
 			}
 		}
 	}

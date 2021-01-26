@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,6 +32,7 @@ package org.omg.sysml.lang.sysml;
  * <p>An Expression that provides a basic value as a result.</p>
  * 
  * <p>A LiteralExpression must be typed by a specialization of Evaluation with no input parameters and a single value as its result.</p>
+ * isModelLevelEvaluable = true
  * <!-- end-model-doc -->
  *
  *
@@ -39,5 +40,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface LiteralExpression extends MetadataExpression {
+public interface LiteralExpression extends Expression {
 } // LiteralExpression

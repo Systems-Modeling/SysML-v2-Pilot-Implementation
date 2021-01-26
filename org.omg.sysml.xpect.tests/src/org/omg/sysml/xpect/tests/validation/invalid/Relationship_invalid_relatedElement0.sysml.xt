@@ -3,6 +3,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	ResourceSet {
 		ThisFile {}
 		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
        	File {from ="/library.kernel/Performances.kerml"}
@@ -16,6 +17,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 			SrcFolder {
 				ThisFile {}
 				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
         		File {from ="/library.kernel/Occurrences.kerml"}
  		      	File {from ="/library.kernel/Objects.kerml"}
  		      	File {from ="/library.kernel/Performances.kerml"}
@@ -52,8 +54,6 @@ package BindingConnectorExample {
 		"no viable alternative at input 'b0'" at "b0"
 		--- */
 		// XPECT warnings ---> "Duplicate owned member name" at "b0"
-		bind b0::p0::myIn to b0::p1::myOut;
-		
-		
+		bind b0::p0::myIn to b0::p1::myOut;	
 	} 
 }

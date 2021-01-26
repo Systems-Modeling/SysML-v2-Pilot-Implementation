@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,7 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -110,9 +109,8 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 	 * @generated NOT
 	 */
 	public IndividualDefinition basicGetIndividualDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> items = super.getItemDefinition();
-		return (IndividualDefinition)items.stream().
-				filter(type->type instanceof IndividualDefinition).
+		return (IndividualDefinition)super.getItemDefinition().stream().
+				filter(IndividualDefinition.class::isInstance).
 				findFirst().orElse(null);
 	}
 

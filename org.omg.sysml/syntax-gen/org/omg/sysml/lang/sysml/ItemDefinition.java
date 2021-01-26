@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemDefinition is a Definition of a Class of things that may be acted on by a system or parts of a system, which do not necessarily perform actions themselves. This includes items that can be exchanged between parts of a system, such as water or electrical signals.</p>
+ * <p>An ItemDefinition is a Definition of the Structure of things that may be acted on by a system or parts of a system, which do not necessarily perform actions themselves. This includes items that can be exchanged between parts of a system, such as water or electrical signals.</p>
  * 
  * <p>An ItemDefinition must subclass, directly or indirectly, the base ItemDefinition Item from the Systems model library.</p>
  * 
@@ -40,5 +40,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface ItemDefinition extends Definition, org.omg.sysml.lang.sysml.Class {
+public interface ItemDefinition extends Definition, Structure {
 } // ItemDefinition

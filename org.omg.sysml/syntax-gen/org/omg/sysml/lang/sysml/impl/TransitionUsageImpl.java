@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,9 +30,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -60,6 +63,11 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
 	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitions";
+	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
+	
+	private BindingConnector successionConnector;
+	private Feature transitionLinkFeature;
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -242,6 +250,36 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public void setSuccession(Succession newSuccession) {
 		throw new UnsupportedOperationException();
 	}
+	
+	// Transformation
+	
+	protected Feature getTransitionLinkFeature() {
+		if (transitionLinkFeature == null) {
+			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
+			Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+			redefinition.setRedefiningFeature(transitionLinkFeature);
+			redefinition.setRedefinedFeature((Feature)getDefaultType(TRANSITION_LINK_FEATURE));
+			transitionLinkFeature.getOwnedRelationship_comp().add(redefinition);
+			addOwnedFeature(transitionLinkFeature);
+		}
+		return transitionLinkFeature;
+	}
+	
+	protected void computeReferenceConnector() {
+		Succession succession = getSuccession();
+		((ElementImpl)succession).transform();
+		successionConnector = makeBinding(successionConnector, succession, getTransitionLinkFeature());		
+	}
+	
+	@Override
+	public void transform() {
+		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
+		computeReferenceConnector();
+		
+		super.transform();
+	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc -->

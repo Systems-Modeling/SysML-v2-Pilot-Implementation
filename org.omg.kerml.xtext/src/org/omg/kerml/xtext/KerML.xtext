@@ -1093,12 +1093,14 @@ EqualityOperator :
 // Classification Expressions
 
 ClassificationExpression returns SysML::Expression :
-	RelationalExpression ( {SysML::OperatorExpression.operand_comp += current}
+	  RelationalExpression ( {SysML::OperatorExpression.operand_comp += current}
 		operator = ClassificationOperator ownedFeatureMembership_comp += TypeReferenceMember )?
+	| {SysML::OperatorExpression} operand_comp += SelfReferenceExpression 
+		operator = ClassificationOperator ownedFeatureMembership_comp += TypeReferenceMember
 ;
 
 ClassificationOperator :
-	'instanceof' | 'hastype' | 'istype'
+	'instanceof' | 'hastype' | 'istype' | '@'
 ;
 
 TypeReferenceMember returns SysML::FeatureMembership :
@@ -1107,6 +1109,18 @@ TypeReferenceMember returns SysML::FeatureMembership :
 
 TypeReference returns SysML::Feature :
 	ownedRelationship_comp += OwnedFeatureTyping
+;
+
+SelfReferenceExpression returns SysML::FeatureReferenceExpression :
+	ownedFeatureMembership_comp += SelfReferenceMember
+;
+
+SelfReferenceMember returns SysML::ReturnParameterMembership :
+	ownedMemberFeature_comp = EmptyFeature
+;
+
+EmptyFeature returns SysML::Feature :
+	{SysML::Feature}
 ;
 
 // Relational Expressions
@@ -1153,7 +1167,7 @@ ExponentiationOperator :
 
 UnitsExpression returns SysML::Expression :
 	UnaryExpression ( {SysML::OperatorExpression.operand_comp += current} 
-		operator = '@' '[' operand_comp += OwnedExpression ']' )?		
+		operator = '@[' operand_comp += OwnedExpression ']' )?		
 ;
 
 // Unary Expressions

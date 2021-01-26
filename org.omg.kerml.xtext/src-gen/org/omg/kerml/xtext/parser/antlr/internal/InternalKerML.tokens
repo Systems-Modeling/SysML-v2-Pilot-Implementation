@@ -1,4 +1,4 @@
-'!'=117
+'!'=118
 '!='=106
 '&&'=101
 '&'=104
@@ -9,7 +9,7 @@
 '+'=114
 ','=22
 '-'=115
-'->'=118
+'->'=119
 '.'=42
 '..'=75
 '/'=116
@@ -28,6 +28,7 @@
 '?'=98
 '??'=99
 '@'=32
+'@['=117
 '['=45
 ']'=46
 '^'=103
@@ -35,7 +36,7 @@
 'abstract'=49
 'alias'=38
 'all'=51
-'allInstances'=119
+'allInstances'=120
 'as'=40
 'assoc'=79
 'behavior'=88
@@ -54,7 +55,7 @@
 'element'=15
 'end'=60
 'expr'=90
-'false'=122
+'false'=123
 'feature'=33
 'featured'=66
 'featuring'=70
@@ -67,8 +68,8 @@
 'hastype'=108
 'id'=14
 'import'=39
-'in'=127
-'inout'=129
+'in'=128
+'inout'=130
 'instanceof'=107
 'interaction'=95
 'inv'=94
@@ -78,18 +79,18 @@
 'metadata'=28
 'namespace'=37
 'nonunique'=68
-'null'=120
+'null'=121
 'of'=71
 'ordered'=67
-'out'=128
+'out'=129
 'package'=47
-'packaged'=126
+'packaged'=127
 'port'=63
 'portion'=62
 'predicate'=93
-'private'=124
-'protected'=125
-'public'=123
+'private'=125
+'protected'=126
+'public'=124
 'redefines'=35
 'redefinition'=74
 'relationship'=19
@@ -105,7 +106,7 @@
 'succession'=85
 'then'=87
 'to'=20
-'true'=121
+'true'=122
 'type'=50
 'typed'=30
 'typing'=72
@@ -154,6 +155,7 @@ T__126=126
 T__127=127
 T__128=128
 T__129=129
+T__130=130
 T__14=14
 T__15=15
 T__16=16

@@ -269,8 +269,9 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ConnectorEnd(context, (Feature) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getEmptyParameterRule()) {
-					sequence_EmptyParameter(context, (Feature) semanticObject); 
+				else if (rule == grammarAccess.getEmptyParameterRule()
+						|| rule == grammarAccess.getEmptyFeatureRule()) {
+					sequence_EmptyFeature_EmptyParameter(context, (Feature) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeatureReferenceRule()) {
@@ -339,8 +340,55 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				}
 				else break;
 			case SysMLPackage.FEATURE_REFERENCE_EXPRESSION:
-				sequence_FeatureReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
-				return; 
+				if (rule == grammarAccess.getOwnedExpressionRule()
+						|| rule == grammarAccess.getConditionalExpressionRule()
+						|| action == grammarAccess.getConditionalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getNullCoalescingExpressionRule()
+						|| action == grammarAccess.getNullCoalescingExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getConditionalOrExpressionRule()
+						|| action == grammarAccess.getConditionalOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getConditionalAndExpressionRule()
+						|| action == grammarAccess.getConditionalAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getOrExpressionRule()
+						|| action == grammarAccess.getOrExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getXorExpressionRule()
+						|| action == grammarAccess.getXorExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getAndExpressionRule()
+						|| action == grammarAccess.getAndExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getEqualityExpressionRule()
+						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getClassificationExpressionRule()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_0_1_0()
+						|| rule == grammarAccess.getRelationalExpressionRule()
+						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getAdditiveExpressionRule()
+						|| action == grammarAccess.getAdditiveExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getMultiplicativeExpressionRule()
+						|| action == grammarAccess.getMultiplicativeExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getExponentiationExpressionRule()
+						|| action == grammarAccess.getExponentiationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getUnitsExpressionRule()
+						|| action == grammarAccess.getUnitsExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getUnaryExpressionRule()
+						|| rule == grammarAccess.getExtentExpressionRule()
+						|| rule == grammarAccess.getSequenceExpressionRule()
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperand_compAction_1_0_0()
+						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperand_compAction_1_1_0()
+						|| rule == grammarAccess.getSequenceConstructionExpressionRule()
+						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperand_compAction_1_2_0_0()
+						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperand_compAction_1_2_1_0()
+						|| rule == grammarAccess.getSequenceElementListRule()
+						|| action == grammarAccess.getSequenceElementListAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| rule == grammarAccess.getBaseExpressionRule()
+						|| rule == grammarAccess.getFeatureReferenceExpressionRule()) {
+					sequence_FeatureReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSelfReferenceExpressionRule()) {
+					sequence_SelfReferenceExpression(context, (FeatureReferenceExpression) semanticObject); 
+					return; 
+				}
+				else break;
 			case SysMLPackage.FEATURE_TYPING:
 				if (rule == grammarAccess.getExpressionTypingRule()) {
 					sequence_ExpressionTyping(context, (FeatureTyping) semanticObject); 
@@ -434,7 +482,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 						|| rule == grammarAccess.getEqualityExpressionRule()
 						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
 						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_0_1_0()
 						|| rule == grammarAccess.getRelationalExpressionRule()
 						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
 						|| rule == grammarAccess.getAdditiveExpressionRule()
@@ -546,7 +594,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 						|| rule == grammarAccess.getEqualityExpressionRule()
 						|| action == grammarAccess.getEqualityExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
 						|| rule == grammarAccess.getClassificationExpressionRule()
-						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
+						|| action == grammarAccess.getClassificationExpressionAccess().getOperatorExpressionOperand_compAction_0_1_0()
 						|| rule == grammarAccess.getRelationalExpressionRule()
 						|| action == grammarAccess.getRelationalExpressionAccess().getOperatorExpressionOperand_compAction_1_0()
 						|| rule == grammarAccess.getAdditiveExpressionRule()
@@ -646,6 +694,10 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					sequence_ReturnParameterMember(context, (ReturnParameterMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getSelfReferenceMemberRule()) {
+					sequence_SelfReferenceMember(context, (ReturnParameterMembership) semanticObject); 
+					return; 
+				}
 				else break;
 			case SysMLPackage.STEP:
 				if (rule == grammarAccess.getFeatureElementRule()
@@ -742,12 +794,17 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (operand_comp+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand_comp+=AndExpression) | 
 	 *         (operand_comp+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand_comp+=EqualityExpression) | 
 	 *         (operand_comp+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand_comp+=ClassificationExpression) | 
-	 *         (operand_comp+=ClassificationExpression_OperatorExpression_1_0 operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember) | 
+	 *         (
+	 *             operand_comp+=ClassificationExpression_OperatorExpression_0_1_0 
+	 *             operator=ClassificationOperator 
+	 *             ownedFeatureMembership_comp+=TypeReferenceMember
+	 *         ) | 
+	 *         (operand_comp+=SelfReferenceExpression operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember) | 
 	 *         (operand_comp+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand_comp+=AdditiveExpression) | 
 	 *         (operand_comp+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand_comp+=MultiplicativeExpression) | 
 	 *         (operand_comp+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand_comp+=ExponentiationExpression) | 
 	 *         (operand_comp+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand_comp+=UnitsExpression) | 
-	 *         (operand_comp+=UnitsExpression_OperatorExpression_1_0 operator='@' operand_comp+=OwnedExpression) | 
+	 *         (operand_comp+=UnitsExpression_OperatorExpression_1_0 operator='@[' operand_comp+=OwnedExpression) | 
 	 *         (operator=UnaryOperator operand_comp+=ExtentExpression) | 
 	 *         (operator='all' ownedFeatureMembership_comp+=TypeReferenceMember) | 
 	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_0_0 operator='[' operand_comp+=OwnedExpression) | 
@@ -783,7 +840,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns OperatorExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     ClassificationExpression returns OperatorExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns OperatorExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns OperatorExpression
 	 *     RelationalExpression returns OperatorExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns OperatorExpression
 	 *     AdditiveExpression returns OperatorExpression
@@ -820,12 +877,17 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (operand_comp+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand_comp+=AndExpression) | 
 	 *         (operand_comp+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand_comp+=EqualityExpression) | 
 	 *         (operand_comp+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand_comp+=ClassificationExpression) | 
-	 *         (operand_comp+=ClassificationExpression_OperatorExpression_1_0 operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember) | 
+	 *         (
+	 *             operand_comp+=ClassificationExpression_OperatorExpression_0_1_0 
+	 *             operator=ClassificationOperator 
+	 *             ownedFeatureMembership_comp+=TypeReferenceMember
+	 *         ) | 
+	 *         (operand_comp+=SelfReferenceExpression operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember) | 
 	 *         (operand_comp+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand_comp+=AdditiveExpression) | 
 	 *         (operand_comp+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand_comp+=MultiplicativeExpression) | 
 	 *         (operand_comp+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand_comp+=ExponentiationExpression) | 
 	 *         (operand_comp+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand_comp+=UnitsExpression) | 
-	 *         (operand_comp+=UnitsExpression_OperatorExpression_1_0 operator='@' operand_comp+=OwnedExpression) | 
+	 *         (operand_comp+=UnitsExpression_OperatorExpression_1_0 operator='@[' operand_comp+=OwnedExpression) | 
 	 *         (operator=UnaryOperator operand_comp+=ExtentExpression) | 
 	 *         (operator='all' ownedFeatureMembership_comp+=TypeReferenceMember) | 
 	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_0_0 operator='[' operand_comp+=OwnedExpression) | 
@@ -1612,6 +1674,19 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     EmptyParameter returns Feature
+	 *     EmptyFeature returns Feature
+	 *
+	 * Constraint:
+	 *     {Feature}
+	 */
+	protected void sequence_EmptyFeature_EmptyParameter(ISerializationContext context, Feature semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     EmptyItemFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -1636,18 +1711,6 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     {ItemFeature}
 	 */
 	protected void sequence_EmptyItemFeature(ISerializationContext context, ItemFeature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     EmptyParameter returns Feature
-	 *
-	 * Constraint:
-	 *     {Feature}
-	 */
-	protected void sequence_EmptyParameter(ISerializationContext context, Feature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2219,7 +2282,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns FeatureReferenceExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     ClassificationExpression returns FeatureReferenceExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns FeatureReferenceExpression
 	 *     RelationalExpression returns FeatureReferenceExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns FeatureReferenceExpression
 	 *     AdditiveExpression returns FeatureReferenceExpression
@@ -3012,7 +3075,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns InvocationExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     ClassificationExpression returns InvocationExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns InvocationExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns InvocationExpression
 	 *     RelationalExpression returns InvocationExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns InvocationExpression
 	 *     AdditiveExpression returns InvocationExpression
@@ -3157,7 +3220,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns LiteralBoolean
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     ClassificationExpression returns LiteralBoolean
-	 *     ClassificationExpression.OperatorExpression_1_0 returns LiteralBoolean
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralBoolean
 	 *     RelationalExpression returns LiteralBoolean
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralBoolean
 	 *     AdditiveExpression returns LiteralBoolean
@@ -3234,7 +3297,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns LiteralInteger
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     ClassificationExpression returns LiteralInteger
-	 *     ClassificationExpression.OperatorExpression_1_0 returns LiteralInteger
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralInteger
 	 *     RelationalExpression returns LiteralInteger
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralInteger
 	 *     AdditiveExpression returns LiteralInteger
@@ -3294,7 +3357,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns LiteralReal
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     ClassificationExpression returns LiteralReal
-	 *     ClassificationExpression.OperatorExpression_1_0 returns LiteralReal
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralReal
 	 *     RelationalExpression returns LiteralReal
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralReal
 	 *     AdditiveExpression returns LiteralReal
@@ -3353,7 +3416,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns LiteralString
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralString
 	 *     ClassificationExpression returns LiteralString
-	 *     ClassificationExpression.OperatorExpression_1_0 returns LiteralString
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralString
 	 *     RelationalExpression returns LiteralString
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralString
 	 *     AdditiveExpression returns LiteralString
@@ -3412,7 +3475,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns LiteralUnbounded
 	 *     EqualityExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     ClassificationExpression returns LiteralUnbounded
-	 *     ClassificationExpression.OperatorExpression_1_0 returns LiteralUnbounded
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns LiteralUnbounded
 	 *     RelationalExpression returns LiteralUnbounded
 	 *     RelationalExpression.OperatorExpression_1_0 returns LiteralUnbounded
 	 *     AdditiveExpression returns LiteralUnbounded
@@ -3611,7 +3674,7 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualityExpression returns NullExpression
 	 *     EqualityExpression.OperatorExpression_1_0 returns NullExpression
 	 *     ClassificationExpression returns NullExpression
-	 *     ClassificationExpression.OperatorExpression_1_0 returns NullExpression
+	 *     ClassificationExpression.OperatorExpression_0_1_0 returns NullExpression
 	 *     RelationalExpression returns NullExpression
 	 *     RelationalExpression.OperatorExpression_1_0 returns NullExpression
 	 *     AdditiveExpression returns NullExpression
@@ -3943,6 +4006,36 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getReturnParameterMemberAccess().getOwnedMemberParameter_compParameterParserRuleCall_0(), semanticObject.getOwnedMemberParameter_comp());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SelfReferenceExpression returns FeatureReferenceExpression
+	 *
+	 * Constraint:
+	 *     ownedFeatureMembership_comp+=SelfReferenceMember
+	 */
+	protected void sequence_SelfReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SelfReferenceMember returns ReturnParameterMembership
+	 *
+	 * Constraint:
+	 *     ownedMemberFeature_comp=EmptyFeature
+	 */
+	protected void sequence_SelfReferenceMember(ISerializationContext context, ReturnParameterMembership semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSelfReferenceMemberAccess().getOwnedMemberFeature_compEmptyFeatureParserRuleCall_0(), semanticObject.getOwnedMemberFeature_comp());
 		feeder.finish();
 	}
 	

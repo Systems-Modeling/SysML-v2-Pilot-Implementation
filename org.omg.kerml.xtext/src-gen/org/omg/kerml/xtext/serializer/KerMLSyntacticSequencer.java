@@ -354,6 +354,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
+	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
@@ -376,6 +377,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
+	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=FeatureReferenceMember
@@ -396,6 +398,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' | '(')+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
@@ -427,6 +430,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' '{'*)+
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
 	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}

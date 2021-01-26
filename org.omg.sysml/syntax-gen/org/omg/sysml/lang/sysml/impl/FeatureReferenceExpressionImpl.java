@@ -44,6 +44,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class FeatureReferenceExpressionImpl extends ExpressionImpl implements FeatureReferenceExpression {
 	
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
 	private BindingConnector referenceConnector;
 	
 	/**
@@ -80,7 +82,13 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 */
 	public Feature basicGetReferent() {
 		Feature result = getResult();
-		return result == null? null: ((FeatureImpl)result).getFirstSubsettedFeature().orElse(null);
+		if (result == null) {
+			return null;
+		} else {
+			((FeatureImpl)result).forceComputeRedefinitions();
+			return ((FeatureImpl)result).getFirstSubsettedFeature().
+					orElseGet(()->(Feature)getDefaultType(SELF_REFERENCE_FEATURE));
+		}
 	}
 
 	/**

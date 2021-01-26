@@ -12498,46 +12498,87 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class ClassificationExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ClassificationExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cRelationalExpressionParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOperatorClassificationOperatorParserRuleCall_1_1_0 = (RuleCall)cOperatorAssignment_1_1.eContents().get(0);
-		private final Assignment cOwnedFeatureMembership_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_1_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_2.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final RuleCall cRelationalExpressionParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
+		private final Group cGroup_0_1 = (Group)cGroup_0.eContents().get(1);
+		private final Action cOperatorExpressionOperand_compAction_0_1_0 = (Action)cGroup_0_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_0_1_1 = (Assignment)cGroup_0_1.eContents().get(1);
+		private final RuleCall cOperatorClassificationOperatorParserRuleCall_0_1_1_0 = (RuleCall)cOperatorAssignment_0_1_1.eContents().get(0);
+		private final Assignment cOwnedFeatureMembership_compAssignment_0_1_2 = (Assignment)cGroup_0_1.eContents().get(2);
+		private final RuleCall cOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_0_1_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_0_1_2.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Action cOperatorExpressionAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperand_compSelfReferenceExpressionParserRuleCall_1_1_0 = (RuleCall)cOperand_compAssignment_1_1.eContents().get(0);
+		private final Assignment cOperatorAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOperatorClassificationOperatorParserRuleCall_1_2_0 = (RuleCall)cOperatorAssignment_1_2.eContents().get(0);
+		private final Assignment cOwnedFeatureMembership_compAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_1_3_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1_3.eContents().get(0);
 		
 		//// Classification Expressions
 		//ClassificationExpression SysML::Expression:
 		//	RelationalExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ClassificationOperator
-		//	ownedFeatureMembership_comp+=TypeReferenceMember)?;
+		//	ownedFeatureMembership_comp+=TypeReferenceMember)?
+		//	| {SysML::OperatorExpression} operand_comp+=SelfReferenceExpression
+		//	operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//RelationalExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ClassificationOperator
+		//ownedFeatureMembership_comp+=TypeReferenceMember)? | {SysML::OperatorExpression} operand_comp+=SelfReferenceExpression
+		//operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//RelationalExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ClassificationOperator
 		//ownedFeatureMembership_comp+=TypeReferenceMember)?
-		public Group getGroup() { return cGroup; }
+		public Group getGroup_0() { return cGroup_0; }
 		
 		//RelationalExpression
-		public RuleCall getRelationalExpressionParserRuleCall_0() { return cRelationalExpressionParserRuleCall_0; }
+		public RuleCall getRelationalExpressionParserRuleCall_0_0() { return cRelationalExpressionParserRuleCall_0_0; }
 		
 		//({SysML::OperatorExpression.operand_comp+=current} operator=ClassificationOperator
 		//ownedFeatureMembership_comp+=TypeReferenceMember)?
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_0_1() { return cGroup_0_1; }
 		
 		//{SysML::OperatorExpression.operand_comp+=current}
-		public Action getOperatorExpressionOperand_compAction_1_0() { return cOperatorExpressionOperand_compAction_1_0; }
+		public Action getOperatorExpressionOperand_compAction_0_1_0() { return cOperatorExpressionOperand_compAction_0_1_0; }
 		
 		//operator=ClassificationOperator
-		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
+		public Assignment getOperatorAssignment_0_1_1() { return cOperatorAssignment_0_1_1; }
 		
 		//ClassificationOperator
-		public RuleCall getOperatorClassificationOperatorParserRuleCall_1_1_0() { return cOperatorClassificationOperatorParserRuleCall_1_1_0; }
+		public RuleCall getOperatorClassificationOperatorParserRuleCall_0_1_1_0() { return cOperatorClassificationOperatorParserRuleCall_0_1_1_0; }
 		
 		//ownedFeatureMembership_comp+=TypeReferenceMember
-		public Assignment getOwnedFeatureMembership_compAssignment_1_2() { return cOwnedFeatureMembership_compAssignment_1_2; }
+		public Assignment getOwnedFeatureMembership_compAssignment_0_1_2() { return cOwnedFeatureMembership_compAssignment_0_1_2; }
 		
 		//TypeReferenceMember
-		public RuleCall getOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_1_2_0() { return cOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_1_2_0; }
+		public RuleCall getOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_0_1_2_0() { return cOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_0_1_2_0; }
+		
+		//{SysML::OperatorExpression} operand_comp+=SelfReferenceExpression operator=ClassificationOperator
+		//ownedFeatureMembership_comp+=TypeReferenceMember
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{SysML::OperatorExpression}
+		public Action getOperatorExpressionAction_1_0() { return cOperatorExpressionAction_1_0; }
+		
+		//operand_comp+=SelfReferenceExpression
+		public Assignment getOperand_compAssignment_1_1() { return cOperand_compAssignment_1_1; }
+		
+		//SelfReferenceExpression
+		public RuleCall getOperand_compSelfReferenceExpressionParserRuleCall_1_1_0() { return cOperand_compSelfReferenceExpressionParserRuleCall_1_1_0; }
+		
+		//operator=ClassificationOperator
+		public Assignment getOperatorAssignment_1_2() { return cOperatorAssignment_1_2; }
+		
+		//ClassificationOperator
+		public RuleCall getOperatorClassificationOperatorParserRuleCall_1_2_0() { return cOperatorClassificationOperatorParserRuleCall_1_2_0; }
+		
+		//ownedFeatureMembership_comp+=TypeReferenceMember
+		public Assignment getOwnedFeatureMembership_compAssignment_1_3() { return cOwnedFeatureMembership_compAssignment_1_3; }
+		
+		//TypeReferenceMember
+		public RuleCall getOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_1_3_0() { return cOwnedFeatureMembership_compTypeReferenceMemberParserRuleCall_1_3_0; }
 	}
 	public class ClassificationOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ClassificationOperator");
@@ -12545,12 +12586,13 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cInstanceofKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cHastypeKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cIstypeKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		private final Keyword cCommercialAtKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//ClassificationOperator:
-		//	'instanceof' | 'hastype' | 'istype';
+		//	'instanceof' | 'hastype' | 'istype' | '@';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'instanceof' | 'hastype' | 'istype'
+		//'instanceof' | 'hastype' | 'istype' | '@'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//'instanceof'
@@ -12561,6 +12603,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'istype'
 		public Keyword getIstypeKeyword_2() { return cIstypeKeyword_2; }
+		
+		//'@'
+		public Keyword getCommercialAtKeyword_3() { return cCommercialAtKeyword_3; }
 	}
 	public class TypeReferenceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TypeReferenceMember");
@@ -12591,6 +12636,47 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//OwnedFeatureTyping
 		public RuleCall getOwnedRelationship_compOwnedFeatureTypingParserRuleCall_0() { return cOwnedRelationship_compOwnedFeatureTypingParserRuleCall_0; }
+	}
+	public class SelfReferenceExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SelfReferenceExpression");
+		private final Assignment cOwnedFeatureMembership_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedFeatureMembership_compSelfReferenceMemberParserRuleCall_0 = (RuleCall)cOwnedFeatureMembership_compAssignment.eContents().get(0);
+		
+		//SelfReferenceExpression SysML::FeatureReferenceExpression:
+		//	ownedFeatureMembership_comp+=SelfReferenceMember;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedFeatureMembership_comp+=SelfReferenceMember
+		public Assignment getOwnedFeatureMembership_compAssignment() { return cOwnedFeatureMembership_compAssignment; }
+		
+		//SelfReferenceMember
+		public RuleCall getOwnedFeatureMembership_compSelfReferenceMemberParserRuleCall_0() { return cOwnedFeatureMembership_compSelfReferenceMemberParserRuleCall_0; }
+	}
+	public class SelfReferenceMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.SelfReferenceMember");
+		private final Assignment cOwnedMemberFeature_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedMemberFeature_compEmptyFeatureParserRuleCall_0 = (RuleCall)cOwnedMemberFeature_compAssignment.eContents().get(0);
+		
+		//SelfReferenceMember SysML::ReturnParameterMembership:
+		//	ownedMemberFeature_comp=EmptyFeature;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ownedMemberFeature_comp=EmptyFeature
+		public Assignment getOwnedMemberFeature_compAssignment() { return cOwnedMemberFeature_compAssignment; }
+		
+		//EmptyFeature
+		public RuleCall getOwnedMemberFeature_compEmptyFeatureParserRuleCall_0() { return cOwnedMemberFeature_compEmptyFeatureParserRuleCall_0; }
+	}
+	public class EmptyFeatureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.EmptyFeature");
+		private final Action cFeatureAction = (Action)rule.eContents().get(1);
+		
+		//EmptyFeature SysML::Feature:
+		//	{SysML::Feature};
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SysML::Feature}
+		public Action getFeatureAction() { return cFeatureAction; }
 	}
 	public class RelationalExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.RelationalExpression");
@@ -12842,47 +12928,42 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cOperatorExpressionOperand_compAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final Keyword cOperatorCommercialAtKeyword_1_1_0 = (Keyword)cOperatorAssignment_1_1.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cOperand_compAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cOperand_compOwnedExpressionParserRuleCall_1_3_0 = (RuleCall)cOperand_compAssignment_1_3.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final Keyword cOperatorCommercialAtLeftSquareBracketKeyword_1_1_0 = (Keyword)cOperatorAssignment_1_1.eContents().get(0);
+		private final Assignment cOperand_compAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cOperand_compOwnedExpressionParserRuleCall_1_2_0 = (RuleCall)cOperand_compAssignment_1_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//// Units Expressions
 		//UnitsExpression SysML::Expression:
-		//	UnaryExpression ({SysML::OperatorExpression.operand_comp+=current} operator='@' '[' operand_comp+=OwnedExpression
-		//	']')?;
+		//	UnaryExpression ({SysML::OperatorExpression.operand_comp+=current} operator='@[' operand_comp+=OwnedExpression ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//UnaryExpression ({SysML::OperatorExpression.operand_comp+=current} operator='@' '[' operand_comp+=OwnedExpression ']')?
+		//UnaryExpression ({SysML::OperatorExpression.operand_comp+=current} operator='@[' operand_comp+=OwnedExpression ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//UnaryExpression
 		public RuleCall getUnaryExpressionParserRuleCall_0() { return cUnaryExpressionParserRuleCall_0; }
 		
-		//({SysML::OperatorExpression.operand_comp+=current} operator='@' '[' operand_comp+=OwnedExpression ']')?
+		//({SysML::OperatorExpression.operand_comp+=current} operator='@[' operand_comp+=OwnedExpression ']')?
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::OperatorExpression.operand_comp+=current}
 		public Action getOperatorExpressionOperand_compAction_1_0() { return cOperatorExpressionOperand_compAction_1_0; }
 		
-		//operator='@'
+		//operator='@['
 		public Assignment getOperatorAssignment_1_1() { return cOperatorAssignment_1_1; }
 		
-		//'@'
-		public Keyword getOperatorCommercialAtKeyword_1_1_0() { return cOperatorCommercialAtKeyword_1_1_0; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_1_2() { return cLeftSquareBracketKeyword_1_2; }
+		//'@['
+		public Keyword getOperatorCommercialAtLeftSquareBracketKeyword_1_1_0() { return cOperatorCommercialAtLeftSquareBracketKeyword_1_1_0; }
 		
 		//operand_comp+=OwnedExpression
-		public Assignment getOperand_compAssignment_1_3() { return cOperand_compAssignment_1_3; }
+		public Assignment getOperand_compAssignment_1_2() { return cOperand_compAssignment_1_2; }
 		
 		//OwnedExpression
-		public RuleCall getOperand_compOwnedExpressionParserRuleCall_1_3_0() { return cOperand_compOwnedExpressionParserRuleCall_1_3_0; }
+		public RuleCall getOperand_compOwnedExpressionParserRuleCall_1_2_0() { return cOperand_compOwnedExpressionParserRuleCall_1_2_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_1_4() { return cRightSquareBracketKeyword_1_4; }
+		public Keyword getRightSquareBracketKeyword_1_3() { return cRightSquareBracketKeyword_1_3; }
 	}
 	public class UnaryExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.UnaryExpression");
@@ -14735,6 +14816,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final ClassificationOperatorElements pClassificationOperator;
 	private final TypeReferenceMemberElements pTypeReferenceMember;
 	private final TypeReferenceElements pTypeReference;
+	private final SelfReferenceExpressionElements pSelfReferenceExpression;
+	private final SelfReferenceMemberElements pSelfReferenceMember;
+	private final EmptyFeatureElements pEmptyFeature;
 	private final RelationalExpressionElements pRelationalExpression;
 	private final RelationalOperatorElements pRelationalOperator;
 	private final AdditiveExpressionElements pAdditiveExpression;
@@ -15224,6 +15308,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pClassificationOperator = new ClassificationOperatorElements();
 		this.pTypeReferenceMember = new TypeReferenceMemberElements();
 		this.pTypeReference = new TypeReferenceElements();
+		this.pSelfReferenceExpression = new SelfReferenceExpressionElements();
+		this.pSelfReferenceMember = new SelfReferenceMemberElements();
+		this.pEmptyFeature = new EmptyFeatureElements();
 		this.pRelationalExpression = new RelationalExpressionElements();
 		this.pRelationalOperator = new RelationalOperatorElements();
 		this.pAdditiveExpression = new AdditiveExpressionElements();
@@ -19846,7 +19933,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//// Classification Expressions
 	//ClassificationExpression SysML::Expression:
 	//	RelationalExpression ({SysML::OperatorExpression.operand_comp+=current} operator=ClassificationOperator
-	//	ownedFeatureMembership_comp+=TypeReferenceMember)?;
+	//	ownedFeatureMembership_comp+=TypeReferenceMember)?
+	//	| {SysML::OperatorExpression} operand_comp+=SelfReferenceExpression
+	//	operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember;
 	public ClassificationExpressionElements getClassificationExpressionAccess() {
 		return pClassificationExpression;
 	}
@@ -19856,7 +19945,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ClassificationOperator:
-	//	'instanceof' | 'hastype' | 'istype';
+	//	'instanceof' | 'hastype' | 'istype' | '@';
 	public ClassificationOperatorElements getClassificationOperatorAccess() {
 		return pClassificationOperator;
 	}
@@ -19883,6 +19972,36 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getTypeReferenceRule() {
 		return getTypeReferenceAccess().getRule();
+	}
+	
+	//SelfReferenceExpression SysML::FeatureReferenceExpression:
+	//	ownedFeatureMembership_comp+=SelfReferenceMember;
+	public SelfReferenceExpressionElements getSelfReferenceExpressionAccess() {
+		return pSelfReferenceExpression;
+	}
+	
+	public ParserRule getSelfReferenceExpressionRule() {
+		return getSelfReferenceExpressionAccess().getRule();
+	}
+	
+	//SelfReferenceMember SysML::ReturnParameterMembership:
+	//	ownedMemberFeature_comp=EmptyFeature;
+	public SelfReferenceMemberElements getSelfReferenceMemberAccess() {
+		return pSelfReferenceMember;
+	}
+	
+	public ParserRule getSelfReferenceMemberRule() {
+		return getSelfReferenceMemberAccess().getRule();
+	}
+	
+	//EmptyFeature SysML::Feature:
+	//	{SysML::Feature};
+	public EmptyFeatureElements getEmptyFeatureAccess() {
+		return pEmptyFeature;
+	}
+	
+	public ParserRule getEmptyFeatureRule() {
+		return getEmptyFeatureAccess().getRule();
 	}
 	
 	//// Relational Expressions
@@ -19973,8 +20092,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Units Expressions
 	//UnitsExpression SysML::Expression:
-	//	UnaryExpression ({SysML::OperatorExpression.operand_comp+=current} operator='@' '[' operand_comp+=OwnedExpression
-	//	']')?;
+	//	UnaryExpression ({SysML::OperatorExpression.operand_comp+=current} operator='@[' operand_comp+=OwnedExpression ']')?;
 	public UnitsExpressionElements getUnitsExpressionAccess() {
 		return pUnitsExpression;
 	}

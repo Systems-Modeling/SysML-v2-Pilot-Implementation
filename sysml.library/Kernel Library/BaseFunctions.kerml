@@ -41,6 +41,10 @@ package BaseFunctions {
 		abstract feature 'type': Anything;
 	}
 	
+	abstract function '@'(x: Anything): Boolean {
+		abstract feature 'type': Anything;
+	}
+	
 	/** Deprecated */
 	abstract function 'instanceof'(x: Anything): Boolean {
 		abstract feature 'type': Anything;

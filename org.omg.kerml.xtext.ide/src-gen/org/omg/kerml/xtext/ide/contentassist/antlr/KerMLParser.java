@@ -106,6 +106,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0_0_1(), "rule__ItemFlowDeclaration__Alternatives_0_0_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getAlternatives(), "rule__ItemFeature__Alternatives");
 			builder.put(grammarAccess.getEqualityOperatorAccess().getAlternatives(), "rule__EqualityOperator__Alternatives");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getAlternatives(), "rule__ClassificationExpression__Alternatives");
 			builder.put(grammarAccess.getClassificationOperatorAccess().getAlternatives(), "rule__ClassificationOperator__Alternatives");
 			builder.put(grammarAccess.getRelationalOperatorAccess().getAlternatives(), "rule__RelationalOperator__Alternatives");
 			builder.put(grammarAccess.getAdditiveOperatorAccess().getAlternatives(), "rule__AdditiveOperator__Alternatives");
@@ -329,7 +330,8 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAndExpressionAccess().getGroup_1(), "rule__AndExpression__Group_1__0");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getGroup(), "rule__EqualityExpression__Group__0");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getGroup_1(), "rule__EqualityExpression__Group_1__0");
-			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup(), "rule__ClassificationExpression__Group__0");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup_0(), "rule__ClassificationExpression__Group_0__0");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup_0_1(), "rule__ClassificationExpression__Group_0_1__0");
 			builder.put(grammarAccess.getClassificationExpressionAccess().getGroup_1(), "rule__ClassificationExpression__Group_1__0");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getGroup(), "rule__RelationalExpression__Group__0");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getGroup_1(), "rule__RelationalExpression__Group_1__0");
@@ -612,10 +614,15 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAndExpressionAccess().getOperand_compAssignment_1_2(), "rule__AndExpression__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getOperatorAssignment_1_1(), "rule__EqualityExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getEqualityExpressionAccess().getOperand_compAssignment_1_2(), "rule__EqualityExpression__Operand_compAssignment_1_2");
-			builder.put(grammarAccess.getClassificationExpressionAccess().getOperatorAssignment_1_1(), "rule__ClassificationExpression__OperatorAssignment_1_1");
-			builder.put(grammarAccess.getClassificationExpressionAccess().getOwnedFeatureMembership_compAssignment_1_2(), "rule__ClassificationExpression__OwnedFeatureMembership_compAssignment_1_2");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOperatorAssignment_0_1_1(), "rule__ClassificationExpression__OperatorAssignment_0_1_1");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOwnedFeatureMembership_compAssignment_0_1_2(), "rule__ClassificationExpression__OwnedFeatureMembership_compAssignment_0_1_2");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOperand_compAssignment_1_1(), "rule__ClassificationExpression__Operand_compAssignment_1_1");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOperatorAssignment_1_2(), "rule__ClassificationExpression__OperatorAssignment_1_2");
+			builder.put(grammarAccess.getClassificationExpressionAccess().getOwnedFeatureMembership_compAssignment_1_3(), "rule__ClassificationExpression__OwnedFeatureMembership_compAssignment_1_3");
 			builder.put(grammarAccess.getTypeReferenceMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__TypeReferenceMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getTypeReferenceAccess().getOwnedRelationship_compAssignment(), "rule__TypeReference__OwnedRelationship_compAssignment");
+			builder.put(grammarAccess.getSelfReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__SelfReferenceExpression__OwnedFeatureMembership_compAssignment");
+			builder.put(grammarAccess.getSelfReferenceMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__SelfReferenceMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperatorAssignment_1_1(), "rule__RelationalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getRelationalExpressionAccess().getOperand_compAssignment_1_2(), "rule__RelationalExpression__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getAdditiveExpressionAccess().getOperatorAssignment_1_1(), "rule__AdditiveExpression__OperatorAssignment_1_1");
@@ -625,7 +632,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExponentiationExpressionAccess().getOperatorAssignment_1_1(), "rule__ExponentiationExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getExponentiationExpressionAccess().getOperand_compAssignment_1_2(), "rule__ExponentiationExpression__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getUnitsExpressionAccess().getOperatorAssignment_1_1(), "rule__UnitsExpression__OperatorAssignment_1_1");
-			builder.put(grammarAccess.getUnitsExpressionAccess().getOperand_compAssignment_1_3(), "rule__UnitsExpression__Operand_compAssignment_1_3");
+			builder.put(grammarAccess.getUnitsExpressionAccess().getOperand_compAssignment_1_2(), "rule__UnitsExpression__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOperatorAssignment_0_1(), "rule__UnaryExpression__OperatorAssignment_0_1");
 			builder.put(grammarAccess.getUnaryExpressionAccess().getOperand_compAssignment_0_2(), "rule__UnaryExpression__Operand_compAssignment_0_2");
 			builder.put(grammarAccess.getExtentExpressionAccess().getOperatorAssignment_0_1(), "rule__ExtentExpression__OperatorAssignment_0_1");

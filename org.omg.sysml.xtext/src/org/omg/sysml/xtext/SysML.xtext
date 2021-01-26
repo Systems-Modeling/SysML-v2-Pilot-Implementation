@@ -155,8 +155,13 @@ fragment PackageBody returns SysML::Package :
 
 fragment PackageBodyElement returns SysML::Namespace :
 	  documentation_comp += OwnedDocumentation
+	| ownedMembership_comp += ElementFilterMember
 	| ownedMembership_comp += PackageMember 
 	| ownedImport_comp += Import
+;
+
+ElementFilterMember returns SysML::ElementFilterMembership :
+	'filter' condition_comp = OwnedExpression ';'
 ;
 
 PackageMember returns SysML::Membership : 
@@ -177,7 +182,7 @@ fragment UsagePackageMember returns SysML::Membership :
 Import returns SysML::Import :
 	( ownedRelationship_comp += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
-	'import' ImportedNamespace ';'
+	'import' ( ImportedNamespace | ImportedFilterPackage ) ';'
 ;
 
 fragment ImportedNamespace returns SysML::Import :
@@ -187,6 +192,23 @@ fragment ImportedNamespace returns SysML::Import :
 	| importedNamespace = [SysML::Namespace|DotQualifiedName] '.'
 	)
 	( '*' | isRecursive ?= '**' )
+;
+
+fragment ImportedFilterPackage returns SysML::Import :
+	ownedRelatedElement_comp += FilterPackage
+;
+
+FilterPackage returns SysML::Package :
+	ownedImport_comp += FilterPackageImport
+	( '[' ownedMembership_comp += FilterPackageMember ']' )+
+;
+
+FilterPackageImport returns SysML::Import :
+	ImportedNamespace
+;
+
+FilterPackageMember returns SysML::ElementFilterMembership :
+	condition_comp = OwnedExpression
 ;
 
 enum BasicVisibilityIndicator returns SysML::VisibilityKind:
@@ -2035,7 +2057,17 @@ ViewDefKeyword :
 ;
 
 ViewDefinition returns SysML::ViewDefinition :
-	DefinitionPrefix? ViewDefKeyword DefinitionDeclaration DefinitionBody
+	DefinitionPrefix? ViewDefKeyword DefinitionDeclaration ViewDefinitionBody
+;
+
+fragment ViewDefinitionBody returns SysML::ViewDefinition :
+	  ';' 
+	| '{' ViewDefinitionBodyItem* '}'
+;
+
+fragment ViewDefinitionBodyItem returns SysML::ViewDefinition :
+	  DefinitionBodyItem
+	| ownedMembership_comp += ElementFilterMember
 ;
 
 /* View Usages */
@@ -2053,7 +2085,8 @@ ViewFlowUsage returns SysML::ViewUsage :
 ;
 
 ViewRefUsage returns SysML::ViewUsage :
-	UsagePrefix? ( 'ref' ViewUsageKeyword | isComposite ?= ViewUsageKeyword ) UsageDeclaration? ValueOrFlowPart? ViewBody
+	UsagePrefix? ( 'ref' ViewUsageKeyword | isComposite ?= ViewUsageKeyword ) 
+	UsageDeclaration? ValueOrFlowPart? ViewBody
 ;
 
 fragment ViewBody returns SysML::ViewUsage :
@@ -2063,13 +2096,14 @@ fragment ViewBody returns SysML::ViewUsage :
 
 fragment ViewBodyItem returns SysML::ViewUsage :
 	  DefinitionBodyItem
+	| ownedMembership_comp += ElementFilterMember
 	| ownedImport_comp += Expose
 ;
 
 Expose returns SysML::Expose :
 	( ownedRelationship_comp += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
-	'expose' ImportedNamespace ';'
+	'expose' ( ImportedNamespace | ImportedFilterPackage ) ';'
 ;
 
 /* VIEWPOINTS */

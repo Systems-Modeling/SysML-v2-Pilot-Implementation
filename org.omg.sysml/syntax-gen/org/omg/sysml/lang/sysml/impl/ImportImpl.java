@@ -277,13 +277,19 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	public Namespace basicGetImportedNamespace() {
 		if (importedNamespace == null) {
-			Namespace owningNamespace = getImportOwningNamespace();
-			if (owningNamespace instanceof TransitionUsage) {
-				// Fill in the empty import inserted into a trigger usage in order to make the namespace
-				// of the trigger action visible.
-				EList<? extends Namespace> triggers = ((TransitionUsage)owningNamespace).getTriggerAction();
-				if (!triggers.isEmpty()) {
-					importedNamespace = triggers.get(0);
+			EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+			if (!ownedRelatedElement.isEmpty() && ownedRelatedElement.get(0) instanceof Namespace) {
+				// Fill in the implicit import for a filter package.
+				importedNamespace = (Namespace)ownedRelatedElement.get(0);
+			} else {
+				Namespace owningNamespace = getImportOwningNamespace();
+				if (owningNamespace instanceof TransitionUsage) {
+					// Fill in the empty import inserted into a trigger usage in order to make the namespace
+					// of the trigger action visible.
+					EList<? extends Namespace> triggers = ((TransitionUsage)owningNamespace).getTriggerAction();
+					if (!triggers.isEmpty()) {
+						importedNamespace = triggers.get(0);
+					}
 				}
 			}
 		}

@@ -207,7 +207,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkImplicitBindingConnectors(Type type) {
-		(type as TypeImpl).implicitBindingConnectors.forEach[doCheckBindingConnector(type)]
+		(type as TypeImpl).forEachImplicitBindingConnector[doCheckBindingConnector(type)]
 	}
 	
 	//return related subtypes

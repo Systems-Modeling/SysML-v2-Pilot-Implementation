@@ -32,10 +32,14 @@ import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode;
  * generalization classes that do not expect a related EObject to be added.
  *
  */
-public class ImplicitGeneralizationNode extends AbstractOutlineNode {
+public class ImplicitNode extends AbstractOutlineNode {
 
-	public ImplicitGeneralizationNode(IOutlineNode parent, Image image, EClass eClass) {
+	public ImplicitNode(IOutlineNode parent, Image image, EClass eClass) {
 		super(parent, image, eClass.getName() + " (implicit)", false);
+	}
+	
+	public ImplicitNode(IOutlineNode parent, Image image, String text) {
+		super(parent, image, text + " (implicit)", false);
 	}
 	
 }

@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -326,9 +327,22 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return implicitGeneralTypes.keySet();
 	}
 	
-	public List<BindingConnector> getImplicitBindingConnectors() {
-		return Stream.concat(implicitMemberBindingConnectors.stream(), implicitFeatureBindingConnectors.stream())
-				.collect(Collectors.toList());
+	public void forEachImplicitBindingConnector(Consumer<BindingConnector> consumer) {
+		Stream.concat(implicitMemberBindingConnectors.stream(), implicitFeatureBindingConnectors.stream())
+				.forEach(consumer);
+	}
+	
+	/**
+	 * Executes the given consumer function with all implicit binding connectors and
+	 * their corresponding membership type (Membership or FeatureMembership)
+	 */
+	public void forEachImplicitBindingConnector(BiConsumer<BindingConnector, EClass> consumer) {
+		for (BindingConnector connector : implicitFeatureBindingConnectors) {
+			consumer.accept(connector, SysMLPackage.Literals.FEATURE_MEMBERSHIP);
+		}
+		for (BindingConnector connector : implicitMemberBindingConnectors) {
+			consumer.accept(connector, SysMLPackage.Literals.MEMBERSHIP);
+		}
 	}
 	
 	public List<Type> getImplicitGeneralTypes() {

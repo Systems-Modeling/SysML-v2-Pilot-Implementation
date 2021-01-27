@@ -333,12 +333,12 @@ class KerMLScope extends AbstractScope {
 		return false
 	}
 	
-	protected def boolean resolveRecursiveImport(org.omg.sysml.lang.sysml.Package pack, QualifiedName qn, Set<Namespace> visited){
-		for (r: pack.ownedRelationship) {
+	protected def boolean resolveRecursiveImport(Namespace ns, QualifiedName qn, Set<Namespace> visited){
+		for (r: ns.ownedRelationship) {
 			if (r instanceof Membership) {
 				if (r.visibility == VisibilityKind.PUBLIC) {
 					var memberElement = r.ownedMemberElement
-					if (memberElement instanceof org.omg.sysml.lang.sysml.Package) {
+					if (memberElement instanceof Namespace) {
 						if (memberElement.resolveIfUnvisited(qn, false, visited, newHashSet, true))
 							return true
 					}
@@ -353,8 +353,8 @@ class KerMLScope extends AbstractScope {
 		if (ns !== null && !ns.eIsProxy && !visited.contains(ns)) {
 			visited.add(ns)
 			found = ns.resolve(qn, checkIfAdded, false, visited, redefined)
-			if (!found && isRecursive && ns instanceof org.omg.sysml.lang.sysml.Package) {
-				found = resolveRecursiveImport(ns as org.omg.sysml.lang.sysml.Package, qn, visited)
+			if (!found && isRecursive) {
+				found = resolveRecursiveImport(ns, qn, visited)
 			}
 			visited.remove(ns)
 		}

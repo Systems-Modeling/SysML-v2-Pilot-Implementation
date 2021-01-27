@@ -7,5 +7,5 @@ import org.eclipse.xpect.xtext.lib.tests.XtextTests;
 
 @RunWith(XpectRunner.class)
 @XpectTestFiles(fileExtensions = "xt")
-public class KerMLTests extends XtextTests {
+public class KerMLImportRecursiveTest extends XtextTests {
 }

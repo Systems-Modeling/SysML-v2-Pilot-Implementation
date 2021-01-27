@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
 		File "Import_Recursive2.kerml" {}

@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLTests
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
 	ResourceSet {
 		ThisFile {}
 	}
@@ -32,7 +32,6 @@ package RecursiveImport {
   import P::C::**;
   x1: C1;
   x2: C1.C2;
-  //XPECT errors ---> "Couldn't resolve reference to Type 'C2'." at "C2"
   x2_invalid: C2;
   
   import P::C::C1::P3::**;

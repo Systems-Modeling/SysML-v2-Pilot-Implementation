@@ -4,6 +4,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 	ResourceSet {
 		ThisFile {} 
  		File {from ="/library.kernel/Base.kerml"}
+ 		File {from ="/library.kernel/Links.kerml"}
        	File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
@@ -31,6 +32,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 			SrcFolder {
 				ThisFile {} 
 		 		File {from ="/library.kernel/Base.kerml"}
+		 		File {from ="/library.kernel/Links.kerml"}
 		       	File {from ="/library.kernel/Occurrences.kerml"}
 		       	File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}

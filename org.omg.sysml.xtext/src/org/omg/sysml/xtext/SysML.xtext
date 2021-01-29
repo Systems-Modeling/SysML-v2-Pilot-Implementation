@@ -2325,7 +2325,7 @@ MultiplicativeExpression returns SysML::Expression :
 ;
 
 MultiplicativeOperator :
-	'*' | '/' 
+	'*' | '/' | "%"
 ;
 
 ExponentiationExpression returns SysML::Expression :

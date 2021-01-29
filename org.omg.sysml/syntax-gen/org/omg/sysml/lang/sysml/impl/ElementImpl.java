@@ -653,6 +653,33 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	// Additional
 	
+	public String getQualifiedName() {
+		String name = escapeName(getName());
+		Namespace owningNamespace = getOwningNamespace();
+		if (owningNamespace == null) {
+			return null;
+		} else if (owningNamespace.getOwner() == null) {
+			return name;
+		} else {
+			String qualification = ((ElementImpl)owningNamespace).getQualifiedName();
+			if (qualification == null) {
+				return null;
+			} else {
+				return qualification + "::" + name;
+			}
+		}
+
+	}
+	
+	public static String escapeName(String name) {
+		return (name == null || name.isEmpty() || isIdentifier(name))? name:
+			   "'" + ElementImpl.escapeString(name) + "'";	
+	}
+	
+	public static boolean isIdentifier(String name) {
+		return name.matches("[a-zA-Z_]\\w*");
+	}
+
 	String name;
 	
 	/**

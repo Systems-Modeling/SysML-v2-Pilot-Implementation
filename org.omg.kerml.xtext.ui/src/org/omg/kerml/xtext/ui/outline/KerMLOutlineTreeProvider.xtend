@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.Namespace
 import java.net.URLDecoder
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.Expression
 
 /**
  * Customization of the default outline structure.
@@ -150,11 +151,19 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _Text(LiteralString literal) {
+	def String _text(Expression expression) {
+		var text = (expression as Type)._text
+		if (expression.isModelLevelEvaluable) {
+			text += " model-level"
+		}
+		text
+	}
+	
+	def String _text(LiteralString literal) {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String literalText(LiteralBoolean literal) {
+	def String _text(LiteralBoolean literal) {
 		literal.metaclassText + ' ' + literal.value
 	}
 	

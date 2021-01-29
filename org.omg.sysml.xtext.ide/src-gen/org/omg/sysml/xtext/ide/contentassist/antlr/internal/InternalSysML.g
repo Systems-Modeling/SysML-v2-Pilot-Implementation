@@ -14924,6 +14924,12 @@ rule__MultiplicativeOperator__Alternatives
 		'/'
 		{ after(grammarAccess.getMultiplicativeOperatorAccess().getSolidusKeyword_1()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getMultiplicativeOperatorAccess().getPercentSignKeyword_2()); }
+		'%'
+		{ after(grammarAccess.getMultiplicativeOperatorAccess().getPercentSignKeyword_2()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);

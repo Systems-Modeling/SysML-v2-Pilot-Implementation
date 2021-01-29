@@ -23,6 +23,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -132,7 +134,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		// TODO: Implement to check for model-level evaluability.
 		return false;
 	}
 
@@ -190,12 +191,10 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> evaluate(Element target) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new BasicEList<>();
 	}
 
 	/**

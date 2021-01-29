@@ -27,10 +27,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
@@ -60,6 +63,34 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	 */
 	protected InvocationExpressionImpl() {
 		super();
+	}
+
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return functionIsModelLevelEvaluable() && argumentsAreModelLevelEvaluable();
+	}
+	
+	public boolean functionIsModelLevelEvaluable() {
+		return getFunctionImpl() != null;
+	}
+	
+	public boolean argumentsAreModelLevelEvaluable() {
+		for (Expression argument: getArgument()) {
+			if (!argument.isModelLevelEvaluable()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	@Override
+	public EList<Element> evaluate(Element target) {
+		ModelLevelFunction function = getFunctionImpl();
+		return function == null? new BasicEList<>(): function.invoke(this, target);
+	}
+	
+	protected ModelLevelFunction getFunctionImpl() {
+		return ModelLevelFunction.getFunctionImpl(getFunction());
 	}
 
 	/**

@@ -382,24 +382,21 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		// TODO: implement this method to return the 'Is Model Level Evaluable' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		// TODO: Implement to check for model-level evaluability.
+		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		// TODO: implement this method to set the 'Is Model Level Evaluable' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

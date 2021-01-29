@@ -643,7 +643,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMetadataFeatureValueAccess().getMetadataValue_compAssignment(), "rule__MetadataFeatureValue__MetadataValue_compAssignment");
 			builder.put(grammarAccess.getPackageBodyAccess().getDocumentation_compAssignment_1_1_0(), "rule__PackageBody__Documentation_compAssignment_1_1_0");
 			builder.put(grammarAccess.getPackageBodyAccess().getOwnedMembership_compAssignment_1_1_1(), "rule__PackageBody__OwnedMembership_compAssignment_1_1_1");
-			builder.put(grammarAccess.getPackageBodyAccess().getOwnedImport_compAssignment_1_1_2(), "rule__PackageBody__OwnedImport_compAssignment_1_1_2");
+			builder.put(grammarAccess.getPackageBodyAccess().getOwnedMembership_compAssignment_1_1_2(), "rule__PackageBody__OwnedMembership_compAssignment_1_1_2");
+			builder.put(grammarAccess.getPackageBodyAccess().getOwnedImport_compAssignment_1_1_3(), "rule__PackageBody__OwnedImport_compAssignment_1_1_3");
 			builder.put(grammarAccess.getPackageBodyElementAccess().getDocumentation_compAssignment_0(), "rule__PackageBodyElement__Documentation_compAssignment_0");
 			builder.put(grammarAccess.getPackageBodyElementAccess().getOwnedMembership_compAssignment_1(), "rule__PackageBodyElement__OwnedMembership_compAssignment_1");
 			builder.put(grammarAccess.getPackageBodyElementAccess().getOwnedMembership_compAssignment_2(), "rule__PackageBodyElement__OwnedMembership_compAssignment_2");

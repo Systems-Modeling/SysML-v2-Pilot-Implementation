@@ -147,6 +147,7 @@ fragment PackageBody returns SysML::Package :
 			// infinite loops in the incremental parser.
 		    documentation_comp += OwnedDocumentation
 	      | ownedMembership_comp += PackageMember 
+	      | ownedMembership_comp += ElementFilterMember
 	      | ownedImport_comp += Import )* 
 	  '}'
 ;

@@ -65,15 +65,17 @@ package ElementFilterTest {
 	}
 	
 	package 'Safety Features' {
-		import vehicle1_c1::**[@Safety];
+		import vehicle1_c1::**;
+		filter @Safety;
 	}
 	
 	package 'Security Features' {
-		import vehicle1_c1::**[@Security];
+		import vehicle1_c1::interior::*[@Security];
 	}
 	
 	package 'Safety & Security Features' {
-		import vehicle1_c1::**[@Safety || @Security];
+		import vehicle1_c1::**;
+		filter @Safety || @Security;
 	}
 	
 	package 'Mandatory Features' {

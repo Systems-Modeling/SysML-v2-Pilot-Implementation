@@ -704,31 +704,37 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cDocumentation_compOwnedDocumentationParserRuleCall_1_1_0_0 = (RuleCall)cDocumentation_compAssignment_1_1_0.eContents().get(0);
 		private final Assignment cOwnedMembership_compAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
 		private final RuleCall cOwnedMembership_compPackageMemberParserRuleCall_1_1_1_0 = (RuleCall)cOwnedMembership_compAssignment_1_1_1.eContents().get(0);
-		private final Assignment cOwnedImport_compAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
-		private final RuleCall cOwnedImport_compImportParserRuleCall_1_1_2_0 = (RuleCall)cOwnedImport_compAssignment_1_1_2.eContents().get(0);
+		private final Assignment cOwnedMembership_compAssignment_1_1_2 = (Assignment)cAlternatives_1_1.eContents().get(2);
+		private final RuleCall cOwnedMembership_compElementFilterMemberParserRuleCall_1_1_2_0 = (RuleCall)cOwnedMembership_compAssignment_1_1_2.eContents().get(0);
+		private final Assignment cOwnedImport_compAssignment_1_1_3 = (Assignment)cAlternatives_1_1.eContents().get(3);
+		private final RuleCall cOwnedImport_compImportParserRuleCall_1_1_3_0 = (RuleCall)cOwnedImport_compAssignment_1_1_3.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		
 		//fragment PackageBody returns SysML::Package:
 		//	';'
 		//	| '{' (documentation_comp+=OwnedDocumentation
 		//	| ownedMembership_comp+=PackageMember
+		//	| ownedMembership_comp+=ElementFilterMember
 		//	| ownedImport_comp+=Import)*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//';' | '{' (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=PackageMember | ownedImport_comp+=Import)* '}'
+		//';' | '{' (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=PackageMember |
+		//ownedMembership_comp+=ElementFilterMember | ownedImport_comp+=Import)* '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_0() { return cSemicolonKeyword_0; }
 		
-		//'{' (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=PackageMember | ownedImport_comp+=Import)* '}'
+		//'{' (documentation_comp+=OwnedDocumentation | ownedMembership_comp+=PackageMember |
+		//ownedMembership_comp+=ElementFilterMember | ownedImport_comp+=Import)* '}'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_1_0() { return cLeftCurlyBracketKeyword_1_0; }
 		
-		//(documentation_comp+=OwnedDocumentation | ownedMembership_comp+=PackageMember | ownedImport_comp+=Import)*
+		//(documentation_comp+=OwnedDocumentation | ownedMembership_comp+=PackageMember |
+		//ownedMembership_comp+=ElementFilterMember | ownedImport_comp+=Import)*
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
 		//// Note: PackageBodyElement is expanded here to avoid
@@ -745,11 +751,17 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//PackageMember
 		public RuleCall getOwnedMembership_compPackageMemberParserRuleCall_1_1_1_0() { return cOwnedMembership_compPackageMemberParserRuleCall_1_1_1_0; }
 		
+		//ownedMembership_comp+=ElementFilterMember
+		public Assignment getOwnedMembership_compAssignment_1_1_2() { return cOwnedMembership_compAssignment_1_1_2; }
+		
+		//ElementFilterMember
+		public RuleCall getOwnedMembership_compElementFilterMemberParserRuleCall_1_1_2_0() { return cOwnedMembership_compElementFilterMemberParserRuleCall_1_1_2_0; }
+		
 		//ownedImport_comp+=Import
-		public Assignment getOwnedImport_compAssignment_1_1_2() { return cOwnedImport_compAssignment_1_1_2; }
+		public Assignment getOwnedImport_compAssignment_1_1_3() { return cOwnedImport_compAssignment_1_1_3; }
 		
 		//Import
-		public RuleCall getOwnedImport_compImportParserRuleCall_1_1_2_0() { return cOwnedImport_compImportParserRuleCall_1_1_2_0; }
+		public RuleCall getOwnedImport_compImportParserRuleCall_1_1_3_0() { return cOwnedImport_compImportParserRuleCall_1_1_3_0; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_2() { return cRightCurlyBracketKeyword_1_2; }
@@ -15595,6 +15607,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	';'
 	//	| '{' (documentation_comp+=OwnedDocumentation
 	//	| ownedMembership_comp+=PackageMember
+	//	| ownedMembership_comp+=ElementFilterMember
 	//	| ownedImport_comp+=Import)*
 	//	'}';
 	public PackageBodyElements getPackageBodyAccess() {

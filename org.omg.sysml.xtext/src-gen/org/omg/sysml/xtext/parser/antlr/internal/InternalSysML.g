@@ -1276,9 +1276,29 @@ rulePackageBody[EObject in_current]  returns [EObject current=in_current]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getPackageBodyAccess().getOwnedImport_compImportParserRuleCall_1_1_2_0());
+							newCompositeNode(grammarAccess.getPackageBodyAccess().getOwnedMembership_compElementFilterMemberParserRuleCall_1_1_2_0());
 						}
-						lv_ownedImport_comp_4_0=ruleImport
+						lv_ownedMembership_comp_4_0=ruleElementFilterMember
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getPackageBodyRule());
+							}
+							add(
+								$current,
+								"ownedMembership_comp",
+								lv_ownedMembership_comp_4_0,
+								"org.omg.sysml.xtext.SysML.ElementFilterMember");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+				    |
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getPackageBodyAccess().getOwnedImport_compImportParserRuleCall_1_1_3_0());
+						}
+						lv_ownedImport_comp_5_0=ruleImport
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getPackageBodyRule());
@@ -1286,16 +1306,16 @@ rulePackageBody[EObject in_current]  returns [EObject current=in_current]
 							add(
 								$current,
 								"ownedImport_comp",
-								lv_ownedImport_comp_4_0,
+								lv_ownedImport_comp_5_0,
 								"org.omg.sysml.xtext.SysML.Import");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 			)*
-			otherlv_5='}'
+			otherlv_6='}'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2());
+				newLeafNode(otherlv_6, grammarAccess.getPackageBodyAccess().getRightCurlyBracketKeyword_1_2());
 			}
 		)
 	)

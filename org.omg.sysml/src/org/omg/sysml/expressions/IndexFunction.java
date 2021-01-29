@@ -25,17 +25,19 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class ListSizeFunction extends ModelLevelFunction {
+public class IndexFunction extends ModelLevelFunction {
 
 	@Override
 	public String getFunctionName() {
-		return "BaseFunctions::size";
+		return "BaseFunctions::'['";
 	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		EList<Element> list = evaluateArgument(invocation, 0, target);
-		return integerResult(list.size());
+		Integer index = integerValue(invocation, 1, target);
+		return index == null || index < 1 || index > list.size()? nullList():
+			   singletonList(list.get(index - 1));
 	}
 
 }

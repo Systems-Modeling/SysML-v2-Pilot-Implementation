@@ -55,6 +55,10 @@ public abstract class ModelLevelFunction {
 		put(new SizeFunction());
 		put(new IsEmptyFunction());
 		put(new NotEmptyFunction());
+		put(new IncludesFunction());
+		put(new ListConcatFunction());
+		put(new IndexFunction());
+		
 		put(new IsTypeFunction());
 		put(new AtFunction());
 		
@@ -78,10 +82,6 @@ public abstract class ModelLevelFunction {
 		put(new ConditionalFunction());
 		put(new ConditionalAndFunction());
 		put(new ConditionalOrFunction());
-		
-		put(new ListConcatFunction());
-		put(new ListSizeFunction());
-		put(new ListIndexFunction());
 		
 		put(new StringLengthFunction());
 		put(new StringSubstringFunction());

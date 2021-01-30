@@ -13,7 +13,7 @@ cache:
 install: mvn dependency:resolve --batch-mode
 script:
   - mvn clean --batch-mode
-  - mvn package --batch-mode
+  - mvn install --batch-mode
 deploy:
   - provider: script
     script: .ci/deploy.sh

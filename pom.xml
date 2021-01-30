@@ -31,6 +31,7 @@
   <artifactId>org.omg.sysml.parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
+
   <modules>
     <module>org.omg.sysml</module>
     <module>org.omg.kerml.xtext</module>
@@ -238,4 +239,13 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Systems-Modeling Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/Systems-Modeling/SysML-v2-Pilot-Implementation</url>
+    </repository>
+  </distributionManagement>
+
 </project>

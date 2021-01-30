@@ -10,6 +10,7 @@ cache:
     - $HOME/.m2
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+install: mvn dependency:resolve --batch-mode
 script:
   - mvn clean --batch-mode
   - mvn package --batch-mode

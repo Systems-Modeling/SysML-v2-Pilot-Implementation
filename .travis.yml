@@ -19,8 +19,7 @@ deploy:
     script: .ci/deploy.sh
     skip_cleanup: true
     on:
-      # branch: master
-      branch: ST6RI-323
+      branch: master
       tags: false
   - provider: script
     script: .ci/release.sh

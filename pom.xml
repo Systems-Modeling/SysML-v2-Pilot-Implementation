@@ -2,6 +2,7 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
   <properties>
     <revision>0.9.0-SNAPSHOT</revision>
     <tycho-version>1.6.0</tycho-version>
@@ -24,7 +25,6 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <xtext.version>2.22.0</xtext.version>
   </properties>
-
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.omg.sysml</groupId>
@@ -73,43 +73,44 @@
       </plugin>
 
       <plugin>
-	<groupId>org.eclipse.tycho</groupId>
-	<artifactId>tycho-p2-repository-plugin</artifactId>
-	<version>${tycho-version}</version>
-	<configuration>
-	  <includeAllDependencies>false</includeAllDependencies>
-	</configuration>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-repository-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <includeAllDependencies>false</includeAllDependencies>
+        </configuration>
       </plugin>
 
       <plugin>
-	<groupId>org.eclipse.tycho.extras</groupId>
-	<artifactId>tycho-source-feature-plugin</artifactId>
-	<version>${tycho-version}</version>
-	<executions>
-	  <execution>
-	    <id>source-feature</id>
-	    <phase>package</phase>
-	    <goals>
-	      <goal>source-feature</goal>
-	    </goals>
-	  </execution>
-	</executions>
-	<configuration>
-	  <excludes/>
-	</configuration>
+        <groupId>org.eclipse.tycho.extras</groupId>
+        <artifactId>tycho-source-feature-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>source-feature</id>
+            <phase>package</phase>
+            <goals>
+              <goal>source-feature</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes/>
+        </configuration>
       </plugin>
+
       <plugin>
-	<groupId>org.eclipse.tycho</groupId>
-	<artifactId>tycho-source-plugin</artifactId>
-	<version>${tycho-version}</version>
-	<executions>
-	  <execution>
-	    <id>plugin-source</id>
-	    <goals>
-	      <goal>plugin-source</goal>
-	    </goals>
-	  </execution>
-	</executions>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-source-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>plugin-source</id>
+            <goals>
+              <goal>plugin-source</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -120,7 +121,6 @@
           <strictVersions>false</strictVersions>
         </configuration>
       </plugin>
-
 
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -143,7 +143,7 @@
                     <include name="*/pom.xml"/>
                   </fileset>
                   <regexp pattern="&lt;version>[0-9][^&lt;]*&lt;/version>"/>
-                  <substitution expression="&lt;version>${maven-version}&lt;/version>"/>           
+                  <substitution expression="&lt;version>${maven-version}&lt;/version>"/>
                 </replaceregexp>
                 -->
                 <replaceregexp byline="true" flags="i">
@@ -169,6 +169,7 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
@@ -212,27 +213,28 @@
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
         </plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.5</version>
-					<executions>
-						<execution>
-							<id>gen-clean</id>
-							<goals>
-								<goal>clean</goal>
-							</goals>
-							<configuration>
-								<filesets>
-									<fileset>
-										<directory>${basedir}/xtend-gen</directory>
-										<excludes>**/.gitignore</excludes>
-									</fileset>
-								</filesets>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.5</version>
+          <executions>
+            <execution>
+              <id>gen-clean</id>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+              <configuration>
+                <filesets>
+                  <fileset>
+                    <directory>${basedir}/xtend-gen</directory>
+                    <excludes>**/.gitignore</excludes>
+                  </fileset>
+                </filesets>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>

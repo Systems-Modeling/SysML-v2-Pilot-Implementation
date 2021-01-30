@@ -5,6 +5,16 @@ cache:
   directories:
     - $HOME/.m2
 script:
-  - mvn clean
-  - mvn package
-
+  - mvn clean --batch-mode
+  - mvn package --batch-mode
+deploy:
+  - provider: script
+    script: .ci/deploy.sh
+    on:
+      # branch: master
+      branch: ST6RI-323
+      tags: false
+  - provider: script
+    script: .ci/release.sh
+    on:
+      tags: true

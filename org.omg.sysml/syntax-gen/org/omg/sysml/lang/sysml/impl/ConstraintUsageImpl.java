@@ -365,7 +365,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 
 	/**

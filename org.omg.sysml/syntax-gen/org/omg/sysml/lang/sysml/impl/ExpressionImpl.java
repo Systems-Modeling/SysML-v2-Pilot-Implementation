@@ -268,7 +268,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 	
 	/**
@@ -323,7 +323,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		if (getOutput().isEmpty()) {
 			Type type = getExpressionType();
 			if (type instanceof Function || type instanceof Expression) {
-				Feature result = ((TypeImpl)type).getResultParameter();
+				Feature result = ((TypeImpl)type).getOwnedResultParameter();
 				if (result != null) {
 					features.add(result);
 				}

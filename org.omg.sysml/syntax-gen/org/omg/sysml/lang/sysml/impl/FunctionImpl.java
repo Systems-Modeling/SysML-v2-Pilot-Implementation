@@ -112,7 +112,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return super.getResultParameter();
+		return super.getOwnedResultParameter();
 	}
 
 	/**

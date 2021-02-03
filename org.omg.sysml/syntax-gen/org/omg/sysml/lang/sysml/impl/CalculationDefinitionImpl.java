@@ -123,7 +123,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 	
 	/**

@@ -114,7 +114,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 
 	/**

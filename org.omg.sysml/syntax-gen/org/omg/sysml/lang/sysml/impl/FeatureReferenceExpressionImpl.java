@@ -126,7 +126,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public EList<Element> evaluate(Element target) {
 		if (target instanceof Type) {
 			Feature referent = getReferent();
-			if (referent == getSelfReferenceFeature()) {
+			if (((TypeImpl)referent).conformsTo(getSelfReferenceFeature())) {
 				EList<Element> result = new BasicEList<>();
 				result.add(target);
 				return result;

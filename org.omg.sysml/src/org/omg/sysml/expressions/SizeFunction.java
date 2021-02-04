@@ -33,7 +33,8 @@ public class SizeFunction extends ModelLevelFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		return integerResult(evaluateArgument(invocation, 0, target).size());
+		EList<Element> list = evaluateArgument(invocation, 0, target);
+		return list == null? null: integerResult(list.size());
 	}
 
 }

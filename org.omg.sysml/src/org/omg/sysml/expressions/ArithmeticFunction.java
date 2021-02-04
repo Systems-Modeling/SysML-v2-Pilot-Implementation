@@ -28,23 +28,23 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public abstract class ArithmeticFunction extends ModelLevelFunction {
 	
 	protected EList<Element> unaryIntegerOp(int x) {
-		return nullList();
+		return null;
 	}
 	
 	protected EList<Element> unaryRealOp(double x) {
-		return nullList();
+		return null;
 	}
 
 	protected EList<Element> binaryIntegerOp(int x, int y) {
-		return nullList();
+		return null;
 	}
 	
 	protected EList<Element> binaryRealOp(double x, double y) {
-		return nullList();
+		return null;
 	}
 
 	protected EList<Element> binaryStringOp(String x, String y) {
-		return nullList();
+		return null;
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public abstract class ArithmeticFunction extends ModelLevelFunction {
 			   x_int != null && y_real != null? binaryRealOp(x_int, y_real):
 			   x_real != null && y_real != null? binaryRealOp(x_real, y_real):
 			   x_string != null && y_string != null? binaryStringOp(x_string, y_string):
-			   nullList();
+			   null;
 	}
 
 }

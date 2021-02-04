@@ -36,7 +36,7 @@ public class NotEqualsFunction extends ModelLevelFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		EList<Element> x = evaluateArgument(invocation, 0, target);
 		EList<Element> y = evaluateArgument(invocation, 1, target);
-		return booleanResult(!equal(x, y));
+		return x == null || y == null? null: booleanResult(!equal(x, y));
 	}
 
 }

@@ -132,7 +132,7 @@ public abstract class ModelLevelFunction {
 	
 	protected static Element argumentValue(InvocationExpression invocation, int i, Element target) {
 		EList<Element> argumentValues = evaluateArgument(invocation, i, target);
-		return argumentValues.size() != 1? null: argumentValues.get(0);
+		return argumentValues == null || argumentValues.size() != 1? null: argumentValues.get(0);
 	}
 	
 	protected static Boolean booleanValue(InvocationExpression invocation, int i, Element target) {
@@ -160,9 +160,13 @@ public abstract class ModelLevelFunction {
 	}
 	
 	protected static EList<Element> singletonList(Element element) {
-		EList<Element> result = new BasicEList<>();
-		result.add(element);
-		return result;
+		if (element == null) {
+			return null;
+		} else {
+			EList<Element> result = new BasicEList<>();
+			result.add(element);
+			return result;
+		}
 	}
 	
 	protected static EList<Element> booleanResult(boolean value) {
@@ -205,7 +209,7 @@ public abstract class ModelLevelFunction {
 			   x_value.equals(y_value);
 	}
 	
-	protected static boolean equal(List<Element> x, List<Element> y) {
+	protected static Boolean equal(List<Element> x, List<Element> y) {
 		if (x.size() != y.size()) {
 			return false;
 		} else {

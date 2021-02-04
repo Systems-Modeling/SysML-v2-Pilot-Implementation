@@ -28,11 +28,11 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public abstract class BooleanFunction extends ModelLevelFunction {
 	
 	protected EList<Element> unaryBooleanOp(boolean x) {
-		return nullList();
+		return null;
 	}
 	
 	protected EList<Element> binaryBooleanOp(boolean x, boolean y) {
-		return nullList();
+		return null;
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public abstract class BooleanFunction extends ModelLevelFunction {
 		Boolean y_bool = booleanValue(invocation, 1, target);
 		return x_bool != null && y_bool != null? binaryBooleanOp(x_bool, y_bool):
 			   x_bool != null && numberOfArgs(invocation) == 1? unaryBooleanOp(x_bool):
-			   nullList();
+			   null;
 	}
 
 }

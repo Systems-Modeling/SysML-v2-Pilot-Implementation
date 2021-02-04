@@ -31,12 +31,12 @@ public class IncludesFunction extends ModelLevelFunction {
 		return "BaseFunctions::includes";
 	}
 	
-
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
+		EList<Element> list = evaluateArgument(invocation, 0, target);
 		Element value = argumentValue(invocation, 1, target);
-		return value == null? nullList(): 
-			booleanResult(evaluateArgument(invocation, 0, target).stream().anyMatch(x->equal(x, value)));
+		return list == null && value == null? null: 
+			booleanResult(list.stream().anyMatch(x->equal(x, value)));
 	}
 
 }

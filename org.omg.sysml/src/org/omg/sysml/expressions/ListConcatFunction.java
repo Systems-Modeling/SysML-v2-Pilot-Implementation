@@ -35,8 +35,12 @@ public class ListConcatFunction extends ModelLevelFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		EList<Element> list = evaluateArgument(invocation, 0, target);
-		list.addAll(evaluateArgument(invocation, 1, target));
-		return list;
+		if (list == null) {
+			return null;
+		} else {
+			list.addAll(evaluateArgument(invocation, 1, target));
+			return list;
+		}
 	}
 
 }

@@ -65,8 +65,8 @@ public class IsTypeFunction extends ModelLevelFunction {
 		Type testedType = getTestedType(invocation);
 		if (testedType != null) {
 			EList<Element> values = evaluateArgument(invocation, 0, target);
-			if (!values.isEmpty()) {
-				return booleanResult(isType(invocation, values.get(0), testedType));
+			if (values != null) {
+				return booleanResult(!values.isEmpty() && isType(invocation, values.get(0), testedType));
 			}
 		}
 		return null;

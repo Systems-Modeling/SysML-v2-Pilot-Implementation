@@ -33,7 +33,8 @@ public class NotEmptyFunction extends ModelLevelFunction {
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		return booleanResult(evaluateArgument(invocation, 0, target).isEmpty());
+		EList<Element> list = evaluateArgument(invocation, 0, target);
+		return list == null? null: booleanResult(!list.isEmpty());
 	}
 
 }

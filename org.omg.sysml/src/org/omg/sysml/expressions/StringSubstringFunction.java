@@ -37,9 +37,9 @@ public class StringSubstringFunction extends ModelLevelFunction {
 		String x = stringValue(invocation, 0, target);
 		Integer lower = integerValue(invocation, 1, target);
 		Integer upper = integerValue(invocation, 2, target);
-		return x == null || lower == null || upper == null ||
+		return x == null || lower == null || upper == null? null:
 			   lower < 1 || upper > x.length() || lower > upper + 1 ? nullList(): 
-			stringResult(x.substring(lower - 1, upper));
+			   stringResult(x.substring(lower - 1, upper));
 	}
 
 }

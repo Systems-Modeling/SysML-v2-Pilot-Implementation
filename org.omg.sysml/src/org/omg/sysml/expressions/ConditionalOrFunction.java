@@ -44,7 +44,7 @@ public class ConditionalOrFunction extends ModelLevelFunction {
 				}
 			}
 		}
-		return nullList();
+		return null;
 	}
 
 }

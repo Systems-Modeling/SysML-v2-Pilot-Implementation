@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
@@ -86,7 +85,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public EList<Element> evaluate(Element target) {
 		ModelLevelFunction function = getFunctionImpl();
-		return function == null? new BasicEList<>(): function.invoke(this, target);
+		return function == null? null: function.invoke(this, target);
 	}
 	
 	protected ModelLevelFunction getFunctionImpl() {

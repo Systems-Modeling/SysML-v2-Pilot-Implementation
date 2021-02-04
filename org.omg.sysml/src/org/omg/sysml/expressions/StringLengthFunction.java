@@ -35,7 +35,7 @@ public class StringLengthFunction extends ModelLevelFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		String x = stringValue(invocation, 0, target);
-		return x == null? nullList(): integerResult(x.length());
+		return x == null? null: integerResult(x.length());
 	}
 
 }

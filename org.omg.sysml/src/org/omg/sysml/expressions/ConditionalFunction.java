@@ -34,7 +34,7 @@ public class ConditionalFunction extends ModelLevelFunction {
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		Boolean test = booleanValue(invocation, 0, target);
-		return test == null? nullList():
+		return test == null? null:
 			   test? evaluateArgument(invocation, 1, target):
 			   evaluateArgument(invocation, 2, target);
 	}

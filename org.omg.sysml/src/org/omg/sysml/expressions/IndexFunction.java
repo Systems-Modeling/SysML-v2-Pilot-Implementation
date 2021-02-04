@@ -36,7 +36,8 @@ public class IndexFunction extends ModelLevelFunction {
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		EList<Element> list = evaluateArgument(invocation, 0, target);
 		Integer index = integerValue(invocation, 1, target);
-		return index == null || index < 1 || index > list.size()? nullList():
+		return list == null || index == null? null:
+			   index == null || index < 1 || index > list.size()? nullList():
 			   singletonList(list.get(index - 1));
 	}
 

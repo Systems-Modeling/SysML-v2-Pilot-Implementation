@@ -1,7 +1,7 @@
-/*****************************************************************************
+/**
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019 Model Driven Solutions, Inc.
- *    
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -19,16 +19,18 @@
  * 
  * Contributors:
  *  Ed Seidewitz, MDS
- * 
- *****************************************************************************/
-package org.omg.kerml.xpect
+ */
+package org.omg.sysml.xpect;
 
-import org.omg.kerml.xtext.scoping.KerMLGlobalScopeProvider
+import com.google.common.base.Predicate;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider;
 
-class KerMLXpectGlobalScopeProvider extends KerMLGlobalScopeProvider {
+public class SysMLXpectGlobalScopeProvider extends SysMLGlobalScopeProvider {
 	
-	override getRootFilter() {
-		return [!"Base".equals(name.firstSegment)]
-	}
-	
+  @Override
+  public Predicate<IEObjectDescription> getRootFilter() {
+    return description -> (!"Base".equals(description.getName().getFirstSegment()));
+  }
+  
 }

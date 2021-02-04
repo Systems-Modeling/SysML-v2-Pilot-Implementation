@@ -26,11 +26,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -40,11 +40,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
@@ -217,7 +217,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	public EList<Membership> getImportedMembership() {
 		if (importedMembership == null) {
-			importedMembership = this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), false);
+			importedMembership = importedMemberships();
 //			System.out.println("Caching importedMembership for " + this);
 		}
 		return importedMembership;
@@ -349,23 +349,10 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Membership> importedMemberships() {
-		if (IMPORTED_MEMBERSHIPS__EOCL_QRY == null) {
-			OCL.Helper helper = EOCL_ENV.createOCLHelper();
-			helper.setOperationContext(SysMLPackage.Literals.NAMESPACE, SysMLPackage.Literals.NAMESPACE.getEAllOperations().get(3));
-			try {
-				IMPORTED_MEMBERSHIPS__EOCL_QRY = helper.createQuery(IMPORTED_MEMBERSHIPS__EOCL_EXP);
-			}
-			catch (ParserException pe) {
-				throw new UnsupportedOperationException(pe.getLocalizedMessage());
-			}
-		}
-		OCL.Query query = EOCL_ENV.createQuery(IMPORTED_MEMBERSHIPS__EOCL_QRY);
-		@SuppressWarnings("unchecked")
-		Collection<Membership> result = (Collection<Membership>) query.evaluate(this);
-		return new BasicEList.UnmodifiableEList<Membership>(result.size(), result.toArray());
+		return this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), false);
 	}
 
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
@@ -427,7 +414,21 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		return getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class);
 	}
 	
-	//
+	/**
+	 * Include AnnotatingFeatures that are members of this Namespace.
+	 */
+	@Override
+	public List<AnnotatingFeature> getAllAnnotatingFeatures() {
+		List<AnnotatingFeature> annotatingFeatures = super.getAllAnnotatingFeatures();
+		getOwnedMember().stream().
+			filter(AnnotatingFeature.class::isInstance).
+			map(AnnotatingFeature.class::cast).
+			filter(feature->feature.getAnnotatedElement().contains(this)).
+			forEach(annotatingFeatures::add);
+		return annotatingFeatures;
+	}
+
+//
 	
 	/**
 	 * <!-- begin-user-doc -->

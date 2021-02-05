@@ -423,7 +423,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 			excludedNamespaces.add(importedNamespace);
 			for (Membership membership: namespaceMembership) {
 				Element ownedMember = membership.getOwnedMemberElement();
-				if (ownedMember instanceof org.omg.sysml.lang.sysml.Package) {
+				if (ownedMember instanceof Namespace) {
 					importMembershipFrom((Namespace)ownedMember, importedMembership, nonpublicMembership, 
 							excludedNamespaces, excludedTypes, true);
 				}

@@ -284,7 +284,7 @@ fragment ImportedFilterPackage returns SysML::Import :
 
 FilterPackage returns SysML::Package :
 	ownedImport_comp += FilterPackageImport
-	( '[' ownedMembership_comp += FilterPackageMember ']' )+
+	( ownedMembership_comp += FilterPackageMember )+
 ;
 
 FilterPackageImport returns SysML::Import :
@@ -292,7 +292,11 @@ FilterPackageImport returns SysML::Import :
 ;
 
 FilterPackageMember returns SysML::ElementFilterMembership :
-	condition_comp = OwnedExpression
+	visibility = FilterPackageMemberVisibility condition_comp = OwnedExpression ']'
+;
+
+enum FilterPackageMemberVisibility returns SysML::VisibilityKind :
+	private = '['
 ;
 
 enum BasicVisibilityIndicator returns SysML::VisibilityKind:

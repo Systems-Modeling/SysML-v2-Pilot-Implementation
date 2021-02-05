@@ -1929,33 +1929,23 @@ ruleFilterPackage returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_1='['
-			{
-				newLeafNode(otherlv_1, grammarAccess.getFilterPackageAccess().getLeftSquareBracketKeyword_1_0());
-			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getFilterPackageAccess().getOwnedMembership_compFilterPackageMemberParserRuleCall_1_1_0());
+				{
+					newCompositeNode(grammarAccess.getFilterPackageAccess().getOwnedMembership_compFilterPackageMemberParserRuleCall_1_0());
+				}
+				lv_ownedMembership_comp_1_0=ruleFilterPackageMember
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFilterPackageRule());
 					}
-					lv_ownedMembership_comp_2_0=ruleFilterPackageMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getFilterPackageRule());
-						}
-						add(
-							$current,
-							"ownedMembership_comp",
-							lv_ownedMembership_comp_2_0,
-							"org.omg.sysml.xtext.SysML.FilterPackageMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"ownedMembership_comp",
+						lv_ownedMembership_comp_1_0,
+						"org.omg.sysml.xtext.SysML.FilterPackageMember");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			otherlv_3=']'
-			{
-				newLeafNode(otherlv_3, grammarAccess.getFilterPackageAccess().getRightSquareBracketKeyword_1_2());
-			}
 		)+
 	)
 ;
@@ -2005,22 +1995,47 @@ ruleFilterPackageMember returns [EObject current=null]
 }:
 	(
 		(
-			{
-				newCompositeNode(grammarAccess.getFilterPackageMemberAccess().getCondition_compOwnedExpressionParserRuleCall_0());
-			}
-			lv_condition_comp_0_0=ruleOwnedExpression
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getFilterPackageMemberRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getFilterPackageMemberAccess().getVisibilityFilterPackageMemberVisibilityEnumRuleCall_0_0());
 				}
-				set(
-					$current,
-					"condition_comp",
-					lv_condition_comp_0_0,
-					"org.omg.sysml.xtext.SysML.OwnedExpression");
-				afterParserOrEnumRuleCall();
-			}
+				lv_visibility_0_0=ruleFilterPackageMemberVisibility
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFilterPackageMemberRule());
+					}
+					set(
+						$current,
+						"visibility",
+						lv_visibility_0_0,
+						"org.omg.sysml.xtext.SysML.FilterPackageMemberVisibility");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFilterPackageMemberAccess().getCondition_compOwnedExpressionParserRuleCall_1_0());
+				}
+				lv_condition_comp_1_0=ruleOwnedExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFilterPackageMemberRule());
+					}
+					set(
+						$current,
+						"condition_comp",
+						lv_condition_comp_1_0,
+						"org.omg.sysml.xtext.SysML.OwnedExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2=']'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getFilterPackageMemberAccess().getRightSquareBracketKeyword_2());
+		}
 	)
 ;
 
@@ -26511,6 +26526,23 @@ ruleDotQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
 				afterParserOrEnumRuleCall();
 			}
 		)+
+	)
+;
+
+// Rule FilterPackageMemberVisibility
+ruleFilterPackageMemberVisibility returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		enumLiteral_0='['
+		{
+			$current = grammarAccess.getFilterPackageMemberVisibilityAccess().getPrivateEnumLiteralDeclaration().getEnumLiteral().getInstance();
+			newLeafNode(enumLiteral_0, grammarAccess.getFilterPackageMemberVisibilityAccess().getPrivateEnumLiteralDeclaration());
+		}
 	)
 ;
 

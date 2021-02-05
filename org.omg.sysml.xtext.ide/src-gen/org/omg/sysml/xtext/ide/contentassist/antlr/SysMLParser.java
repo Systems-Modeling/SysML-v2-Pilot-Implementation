@@ -222,7 +222,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImportedNamespaceAccess().getGroup_0_1(), "rule__ImportedNamespace__Group_0_1__0");
 			builder.put(grammarAccess.getImportedNamespaceAccess().getGroup_0_2(), "rule__ImportedNamespace__Group_0_2__0");
 			builder.put(grammarAccess.getFilterPackageAccess().getGroup(), "rule__FilterPackage__Group__0");
-			builder.put(grammarAccess.getFilterPackageAccess().getGroup_1(), "rule__FilterPackage__Group_1__0");
+			builder.put(grammarAccess.getFilterPackageMemberAccess().getGroup(), "rule__FilterPackageMember__Group__0");
 			builder.put(grammarAccess.getTypeBodyAccess().getGroup_1(), "rule__TypeBody__Group_1__0");
 			builder.put(grammarAccess.getNonFeatureTypeMemberAccess().getGroup(), "rule__NonFeatureTypeMember__Group__0");
 			builder.put(grammarAccess.getTypeMemberPrefixAccess().getGroup(), "rule__TypeMemberPrefix__Group__0");
@@ -664,8 +664,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImportedNamespaceAccess().getIsRecursiveAssignment_1_1(), "rule__ImportedNamespace__IsRecursiveAssignment_1_1");
 			builder.put(grammarAccess.getImportedFilterPackageAccess().getOwnedRelatedElement_compAssignment(), "rule__ImportedFilterPackage__OwnedRelatedElement_compAssignment");
 			builder.put(grammarAccess.getFilterPackageAccess().getOwnedImport_compAssignment_0(), "rule__FilterPackage__OwnedImport_compAssignment_0");
-			builder.put(grammarAccess.getFilterPackageAccess().getOwnedMembership_compAssignment_1_1(), "rule__FilterPackage__OwnedMembership_compAssignment_1_1");
-			builder.put(grammarAccess.getFilterPackageMemberAccess().getCondition_compAssignment(), "rule__FilterPackageMember__Condition_compAssignment");
+			builder.put(grammarAccess.getFilterPackageAccess().getOwnedMembership_compAssignment_1(), "rule__FilterPackage__OwnedMembership_compAssignment_1");
+			builder.put(grammarAccess.getFilterPackageMemberAccess().getVisibilityAssignment_0(), "rule__FilterPackageMember__VisibilityAssignment_0");
+			builder.put(grammarAccess.getFilterPackageMemberAccess().getCondition_compAssignment_1(), "rule__FilterPackageMember__Condition_compAssignment_1");
 			builder.put(grammarAccess.getTypeBodyAccess().getDocumentation_compAssignment_1_1_0(), "rule__TypeBody__Documentation_compAssignment_1_1_0");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedMembership_compAssignment_1_1_1(), "rule__TypeBody__OwnedMembership_compAssignment_1_1_1");
 			builder.put(grammarAccess.getTypeBodyAccess().getOwnedFeatureMembership_compAssignment_1_1_2(), "rule__TypeBody__OwnedFeatureMembership_compAssignment_1_1_2");

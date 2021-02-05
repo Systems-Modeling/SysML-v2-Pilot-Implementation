@@ -187,7 +187,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImportedNamespaceAccess().getGroup_0_1(), "rule__ImportedNamespace__Group_0_1__0");
 			builder.put(grammarAccess.getImportedNamespaceAccess().getGroup_0_2(), "rule__ImportedNamespace__Group_0_2__0");
 			builder.put(grammarAccess.getFilterPackageAccess().getGroup(), "rule__FilterPackage__Group__0");
-			builder.put(grammarAccess.getFilterPackageAccess().getGroup_1(), "rule__FilterPackage__Group_1__0");
+			builder.put(grammarAccess.getFilterPackageMemberAccess().getGroup(), "rule__FilterPackageMember__Group__0");
 			builder.put(grammarAccess.getPackageAccess().getGroup(), "rule__Package__Group__0");
 			builder.put(grammarAccess.getPackageDeclarationAccess().getGroup(), "rule__PackageDeclaration__Group__0");
 			builder.put(grammarAccess.getPackageBodyAccess().getGroup_1(), "rule__PackageBody__Group_1__0");
@@ -443,8 +443,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getImportedNamespaceAccess().getIsRecursiveAssignment_1_1(), "rule__ImportedNamespace__IsRecursiveAssignment_1_1");
 			builder.put(grammarAccess.getImportedFilterPackageAccess().getOwnedRelatedElement_compAssignment(), "rule__ImportedFilterPackage__OwnedRelatedElement_compAssignment");
 			builder.put(grammarAccess.getFilterPackageAccess().getOwnedImport_compAssignment_0(), "rule__FilterPackage__OwnedImport_compAssignment_0");
-			builder.put(grammarAccess.getFilterPackageAccess().getOwnedMembership_compAssignment_1_1(), "rule__FilterPackage__OwnedMembership_compAssignment_1_1");
-			builder.put(grammarAccess.getFilterPackageMemberAccess().getCondition_compAssignment(), "rule__FilterPackageMember__Condition_compAssignment");
+			builder.put(grammarAccess.getFilterPackageAccess().getOwnedMembership_compAssignment_1(), "rule__FilterPackage__OwnedMembership_compAssignment_1");
+			builder.put(grammarAccess.getFilterPackageMemberAccess().getVisibilityAssignment_0(), "rule__FilterPackageMember__VisibilityAssignment_0");
+			builder.put(grammarAccess.getFilterPackageMemberAccess().getCondition_compAssignment_1(), "rule__FilterPackageMember__Condition_compAssignment_1");
 			builder.put(grammarAccess.getPackageBodyAccess().getDocumentation_compAssignment_1_1_0(), "rule__PackageBody__Documentation_compAssignment_1_1_0");
 			builder.put(grammarAccess.getPackageBodyAccess().getOwnedMembership_compAssignment_1_1_1(), "rule__PackageBody__OwnedMembership_compAssignment_1_1_1");
 			builder.put(grammarAccess.getPackageBodyAccess().getOwnedMembership_compAssignment_1_1_2(), "rule__PackageBody__OwnedMembership_compAssignment_1_1_2");

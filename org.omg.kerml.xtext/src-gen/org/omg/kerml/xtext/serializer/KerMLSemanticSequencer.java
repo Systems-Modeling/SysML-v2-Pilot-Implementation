@@ -2444,15 +2444,18 @@ public class KerMLSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FilterPackageMember returns ElementFilterMembership
 	 *
 	 * Constraint:
-	 *     condition_comp=OwnedExpression
+	 *     (visibility=FilterPackageMemberVisibility condition_comp=OwnedExpression)
 	 */
 	protected void sequence_FilterPackageMember(ISerializationContext context, ElementFilterMembership semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__VISIBILITY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__VISIBILITY));
 			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.ELEMENT_FILTER_MEMBERSHIP__CONDITION_COMP) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.ELEMENT_FILTER_MEMBERSHIP__CONDITION_COMP));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFilterPackageMemberAccess().getCondition_compOwnedExpressionParserRuleCall_0(), semanticObject.getCondition_comp());
+		feeder.accept(grammarAccess.getFilterPackageMemberAccess().getVisibilityFilterPackageMemberVisibilityEnumRuleCall_0_0(), semanticObject.getVisibility());
+		feeder.accept(grammarAccess.getFilterPackageMemberAccess().getCondition_compOwnedExpressionParserRuleCall_1_0(), semanticObject.getCondition_comp());
 		feeder.finish();
 	}
 	

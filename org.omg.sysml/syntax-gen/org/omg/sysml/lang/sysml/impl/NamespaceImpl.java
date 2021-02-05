@@ -217,7 +217,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	public EList<Membership> getImportedMembership() {
 		if (importedMembership == null) {
-			importedMembership = importedMemberships();
+			importedMembership = getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), false);
 //			System.out.println("Caching importedMembership for " + this);
 		}
 		return importedMembership;
@@ -352,7 +352,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated NOT
 	 */
 	public EList<Membership> importedMemberships() {
-		return this.getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), false);
+		return getImportedMembership();
 	}
 
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.

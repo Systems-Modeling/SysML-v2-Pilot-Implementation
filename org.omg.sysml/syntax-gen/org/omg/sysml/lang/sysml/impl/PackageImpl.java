@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -84,8 +85,9 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		return filterConditions;
 	}
 
-	public EList<Membership> importedMemberships() {
-		EList<Membership> importedMemberships = super.importedMemberships();
+	@Override
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean onlyPublic) {
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, onlyPublic);
 		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
 		return importedMemberships;
 	}

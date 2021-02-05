@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Namespace;
 
 public class SysMLInteractiveResult {
 	
@@ -89,7 +90,7 @@ public class SysMLInteractiveResult {
 			if (rootElement.getName() != null) {
 				buffer.append(SysMLInteractiveUtil.formatElement(rootElement));
 			} else {
-				for (Element member: ((org.omg.sysml.lang.sysml.Namespace)rootElement).getMember()) {
+				for (Element member: ((Namespace)rootElement).getMember()) {
 					buffer.append(SysMLInteractiveUtil.formatElement(member));
 				}
 			}

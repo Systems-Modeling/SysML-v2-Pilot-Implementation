@@ -5,3 +5,5 @@ build
 data
 log
 scrap
+/.gradle/
+/.settings/

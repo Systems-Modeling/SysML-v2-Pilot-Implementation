@@ -1,5 +1,7 @@
 .gradle
+.settings
 .ipynb_checkpoints
 *.ipynb
 build
 target
+bin

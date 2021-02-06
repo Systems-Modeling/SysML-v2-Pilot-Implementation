@@ -8,6 +8,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
     <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
+    <xpect-repository>https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository</xpect-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -23,6 +24,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <xtext.version>2.22.0</xtext.version>
+    <junit.version>3.0.0-M5</junit.version>
   </properties>
 
 
@@ -236,4 +238,26 @@
       </plugins>
     </pluginManagement>
   </build>
+  
+  <profiles>
+  	<profile>
+      <id>runTests</id>
+      <activation>
+      	<property>
+      	  <name>!xpect.tests.skip</name>
+      	</property>
+      </activation>
+      <repositories>
+	    <repository>
+	      <id>xpect</id>
+	      <url>${xpect-repository}</url>
+	      <layout>p2</layout>
+	    </repository>
+      </repositories>
+      <modules>
+      	<module>org.omg.kerml.xpect.tests</module>
+      	<module>org.omg.sysml.xpect.tests</module>
+      </modules>
+    </profile>
+  </profiles>
 </project>

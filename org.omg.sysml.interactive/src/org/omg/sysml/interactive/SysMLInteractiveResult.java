@@ -84,18 +84,13 @@ public class SysMLInteractiveResult {
 	}
 	
 	public String formatRootElement() {
-		StringBuilder buffer = new StringBuilder();
 		Element rootElement = this.getRootElement();
-		if (rootElement != null) {
-			if (rootElement.getName() != null) {
-				buffer.append(SysMLInteractiveUtil.formatElement(rootElement));
-			} else {
-				for (Element member: ((Namespace)rootElement).getMember()) {
-					buffer.append(SysMLInteractiveUtil.formatElement(member));
-				}
-			}
-		}
-		return buffer.toString();
+		return rootElement == null? "":
+			!(rootElement instanceof Namespace) || rootElement.getOwner() != null? 
+				SysMLInteractiveUtil.formatElement(rootElement):
+		    ((Namespace)rootElement).getOwnedMember().stream().
+				map(SysMLInteractiveUtil::formatElement).
+				collect(Collectors.joining());
 	}
 	
 	public String formatIssues() {

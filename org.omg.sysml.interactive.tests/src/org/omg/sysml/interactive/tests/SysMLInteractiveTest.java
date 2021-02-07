@@ -43,7 +43,7 @@ public abstract class SysMLInteractiveTest {
 	
 	public SysMLInteractive getSysMLInteractiveInstance() {
 		SysMLInteractive instance = SysMLInteractive.getInstance();
-		System.out.println("Library path is: " + getLibraryPath());
+		instance.setVerbose(false);
 		instance.loadLibrary(getLibraryPath());
 		return instance;
 	}

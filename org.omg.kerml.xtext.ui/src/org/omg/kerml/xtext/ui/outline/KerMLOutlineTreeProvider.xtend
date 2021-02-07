@@ -496,6 +496,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 				false
 			);
 		}
+		createImplicitBindingConnectorNodes(parentNode, expression)
 	}
 	
 	override _createNode(DocumentRootNode parentNode, EObject modelElement) {

@@ -21,6 +21,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -39,6 +40,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Documentation;
@@ -653,6 +655,33 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 
 	// Additional
 	
+	public String getQualifiedName() {
+		String name = escapeName(getName());
+		Namespace owningNamespace = getOwningNamespace();
+		if (owningNamespace == null) {
+			return null;
+		} else if (owningNamespace.getOwner() == null) {
+			return name;
+		} else {
+			String qualification = ((ElementImpl)owningNamespace).getQualifiedName();
+			if (qualification == null) {
+				return null;
+			} else {
+				return qualification + "::" + name;
+			}
+		}
+
+	}
+	
+	public static String escapeName(String name) {
+		return (name == null || name.isEmpty() || isIdentifier(name))? name:
+			   "'" + ElementImpl.escapeString(name) + "'";	
+	}
+	
+	public static boolean isIdentifier(String name) {
+		return name.matches("[a-zA-Z_]\\w*");
+	}
+
 	String name;
 	
 	/**
@@ -685,6 +714,19 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				map(Comment::getBody).
 				findFirst().orElse(null);
 	}
+	
+	/**
+	 * Get all the AnnotatingFeatures relevant to this Element. By default, these are just those that
+	 * are related to the Element by ownedAnnotations.
+	 */
+	public List<AnnotatingFeature> getAllAnnotatingFeatures() {
+		return getOwnedAnnotation().stream().
+				map(Annotation::getAnnotatingElement).
+				filter(AnnotatingFeature.class::isInstance).
+				map(AnnotatingFeature.class::cast).
+				collect(Collectors.toList());
+	}
+
 	
 	/**
 	 * Clear cached member derivations.

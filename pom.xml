@@ -42,6 +42,7 @@
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
     <module>org.omg.sysml.interactive</module>
+    <module>org.omg.sysml.interactive.tests</module>
     <module>org.omg.sysml.jupyter.kernel</module>
     <module>org.omg.sysml.jupyter.jupyterlab</module>
     <module>org.omg.sysml.jupyter.installer</module>

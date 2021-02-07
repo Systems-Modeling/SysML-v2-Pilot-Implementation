@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -44,7 +43,12 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 	protected NullExpressionImpl() {
 		super();
 	}
-
+	
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return true;
+	}
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

@@ -58,13 +58,14 @@ public abstract class SysMLUtil {
 	protected final List<String> extensions = new ArrayList<String>();
 	protected final ResourceDescriptionsData index;
 	
+	protected boolean isVerbose = true;
+	
 	protected SysMLUtil() {
 		this(new ResourceDescriptionsData(new ArrayList<>()));
 	}
 	
 	protected SysMLUtil(ResourceDescriptionsData resourceDescriptionData) {
-		@SuppressWarnings("unused")
-		SysMLPackage sysml = SysMLPackage.eINSTANCE;
+		SysMLPackage.eINSTANCE.getName();
 		this.resourceSet = new ResourceSetImpl();
 		this.index = resourceDescriptionData;
 		ResourceDescriptionsData.ResourceSetAdapter.installResourceDescriptionsData(this.resourceSet, this.index);
@@ -80,6 +81,17 @@ public abstract class SysMLUtil {
 	}
 	
 	/**
+	 * Print the given line only if verbose mode is on.
+	 * 
+	 * @param 	line			the line to be printed
+	 */
+	protected void println(String line) {
+		if (isVerbose) {
+			System.out.println(line);
+		}
+	}
+	
+	/**
 	 * Add a resource to the Xtext index.
 	 * 
 	 * @param 	resource		the resource to be added
@@ -88,7 +100,25 @@ public abstract class SysMLUtil {
 		URI uri = resource.getURI();
 		IResourceServiceProvider resourceServiceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(uri);
 		Manager manager = resourceServiceProvider.getResourceDescriptionManager();
-		this.index.addDescription(uri, manager.getResourceDescription(resource));		
+		this.index.addDescription(uri, manager.getResourceDescription(resource));
+	}
+	
+	/**
+	 * Return whether verbose mode is on or off.
+	 * 
+	 * @return	whether verbose mode is on or off
+	 */
+	public boolean isVerbose() {
+		return this.isVerbose;
+	}
+	
+	/**
+	 * Set verbose mode on or off.
+	 * 
+	 * @param	isverbose	whether verbose mode is on or off
+	 */
+	public void setVerbose(boolean isVerbose) {
+		this.isVerbose = isVerbose;
 	}
 	
 	/**
@@ -155,7 +185,7 @@ public abstract class SysMLUtil {
 	 * @return	the opened resource
 	 */
 	public Resource readResource(final String path) {
-		System.out.println("Reading " + path + "...");
+		println("Reading " + path + "...");
 		return this.getResource(path);
 	}
 	

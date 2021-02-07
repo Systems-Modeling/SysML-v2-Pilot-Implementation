@@ -24,18 +24,20 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -83,6 +85,13 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 		return filterConditions;
 	}
 
+	@Override
+	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean onlyPublic) {
+		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, onlyPublic);
+		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
+		return importedMemberships;
+	}
+
 	/**
 	 * The cached OCL expression body for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -110,25 +119,19 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean includeAsMember(Element element) {
-		if (INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY == null) {
-			OCL.Helper helper = EOCL_ENV.createOCLHelper();
-			helper.setOperationContext(SysMLPackage.Literals.PACKAGE, SysMLPackage.Literals.PACKAGE.getEAllOperations().get(4));
-			try {
-				INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY = helper.createQuery(INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP);
-			}
-			catch (ParserException pe) {
-				throw new UnsupportedOperationException(pe.getLocalizedMessage());
-			}
+		if (element == null) {
+			return false;
+		} else {
+			List<AnnotatingFeature> annotatingFeatures = ((ElementImpl)element).getAllAnnotatingFeatures();
+			return getFilterCondition().stream().allMatch(cond->
+				annotatingFeatures.isEmpty()? checkCondition(null, cond):
+				annotatingFeatures.stream().anyMatch(elem->checkCondition(elem, cond)));
 		}
-		OCL.Query query = EOCL_ENV.createQuery(INCLUDE_AS_MEMBER__ELEMENT__EOCL_QRY);
-		EvaluationEnvironment<?, ?, ?, ?, ?> environment = query.getEvaluationEnvironment();
-		environment.add("element", element);
-		return ((Boolean) query.evaluate(this)).booleanValue();
 	}
-
+	
 	/**
 	 * The cached OCL expression body for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -153,24 +156,17 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean checkCondition(Element element, Expression condition) {
-		if (CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY == null) {
-			OCL.Helper helper = EOCL_ENV.createOCLHelper();
-			helper.setOperationContext(SysMLPackage.Literals.PACKAGE, SysMLPackage.Literals.PACKAGE.getEAllOperations().get(5));
-			try {
-				CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY = helper.createQuery(CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP);
-			}
-			catch (ParserException pe) {
-				throw new UnsupportedOperationException(pe.getLocalizedMessage());
-			}
+		if (condition == null) {
+			return true;
+		} else {
+			EList<Element> result = condition.evaluate(element);
+			// If condition is ill-formed, ignore it.
+			return result == null || result.size() != 1 || !(result.get(0) instanceof LiteralBoolean) || 
+				   ((LiteralBoolean)result.get(0)).isValue();
 		}
-		OCL.Query query = EOCL_ENV.createQuery(CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_QRY);
-		EvaluationEnvironment<?, ?, ?, ?, ?> environment = query.getEvaluationEnvironment();
-		environment.add("element", element);
-		environment.add("condition", condition);
-		return ((Boolean) query.evaluate(this)).booleanValue();
 	}
 
 	/**

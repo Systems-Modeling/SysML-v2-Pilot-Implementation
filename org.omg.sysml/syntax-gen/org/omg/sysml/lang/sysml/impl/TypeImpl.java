@@ -984,16 +984,21 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		List<Feature> parameters = getOwnedParameters();
 		parameters.removeIf(p->((FeatureImpl)p).isResultParameter());
 		int n = parameters.size();
+		Feature resultParameter = getOwnedResultParameter();
 		for (Type general: getSupertypes()) {
 			if (general != null && !visited.contains(general)) {
 				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
+				if (resultParameter == null) {
+					resultParameter = inheritedParameters.stream().
+							filter(p->((FeatureImpl)p).isResultParameter()).
+							findFirst().orElse(null);
+				}
 				inheritedParameters.removeIf(p->((FeatureImpl)p).isResultParameter());
 				if (inheritedParameters.size() > n) {
 					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
 				}
 			}
 		}
-		Feature resultParameter = getResultParameter();
 		if (resultParameter != null) {
 			parameters.add(resultParameter);
 		}
@@ -1040,10 +1045,33 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return outputs;
 	}
 	
-	protected Feature getResultParameter() {
+	protected Feature getOwnedResultParameter() {
 		return getOwnedParameters().stream().
 				filter(p->((FeatureImpl)p).isResultParameter()).
 				findFirst().orElse(null);
+	}
+	
+	protected Feature getResultParameter() {
+		// NOTE: This method will fill in an inherited result Parameter if this Type does not
+		// have an owned result Parameter. It is for use when transform may have not yet been
+		// called on this Type.
+		return getResultParameter(new HashSet<>());
+	}
+	
+	protected Feature getResultParameter(Set<Type> visited) {
+		visited.add(this);
+		Feature resultParameter = getOwnedResultParameter();
+		if (resultParameter == null) {
+			for (Type general: getSupertypes()) {
+				if (general != null && !visited.contains(general)) {
+					resultParameter = ((TypeImpl)general).getResultParameter(visited);
+					if (resultParameter != null) {
+						break;
+					}
+				}
+			}
+		}
+		return resultParameter;
 	}
 	
 	public FeatureMembership addOwnedFeature(Feature feature) {

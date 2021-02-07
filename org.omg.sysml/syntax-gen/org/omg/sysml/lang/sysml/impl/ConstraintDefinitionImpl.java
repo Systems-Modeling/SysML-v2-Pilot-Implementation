@@ -133,7 +133,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 
 	/**

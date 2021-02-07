@@ -70,28 +70,17 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 		val segmentCount = name.getSegmentCount
 		switch (segmentCount) {
 			case 0: return ""
-			case 1: return escapeName(name.getFirstSegment)
+			case 1: return ElementImpl.escapeName(name.getFirstSegment)
 			default: {
 				val builder = new StringBuilder;
-				builder.append(escapeName(name.getFirstSegment))
+				builder.append(ElementImpl.escapeName(name.getFirstSegment))
 				for (var i = 1; i < segmentCount; i++) {
 					builder.append("::")
-					builder.append(escapeName(name.getSegment(i)))
+					builder.append(ElementImpl.escapeName(name.getSegment(i)))
 				}
 				return builder.toString()
 			}
 		}
 	}
 	
-	def escapeName(String name) {
-		if (name === null || name.isEmpty || name.isIdentifier)
-			name
-		else
-			"'" + ElementImpl.escapeString(name) + "'"	
-	}
-	
-	def isIdentifier(String name) {
-		name.matches("[a-zA-Z_] \\w*")
-	}
-
 }

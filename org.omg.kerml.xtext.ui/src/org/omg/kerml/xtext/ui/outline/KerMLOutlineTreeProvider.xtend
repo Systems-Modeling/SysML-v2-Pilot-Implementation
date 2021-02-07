@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.Namespace
 import java.net.URLDecoder
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.Expression
 
 /**
  * Customization of the default outline structure.
@@ -122,10 +123,17 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
-		if (import_.importedNamespace?.name !== null) {
-			text += ' ' + import_.importedNamespace.name
+		var imp = import_
+		if (import_.importedNamespace?.owningRelationship === import_) {
+			if (!import_.importedNamespace.ownedImport.isEmpty) {
+				imp = import_.importedNamespace.ownedImport.get(0)
+				text = text + ' filter'
+			}
 		}
-		text
+		if (imp.importedNamespace?.name !== null) {
+			text += ' ' + imp.importedNamespace.name
+		}
+		text + if (imp.isRecursive) "::**" else "::*"
 	}
 	
 	def String _text(Type type) {
@@ -143,11 +151,19 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _Text(LiteralString literal) {
+	def String _text(Expression expression) {
+		var text = (expression as Type)._text
+		if (expression.isModelLevelEvaluable) {
+			text += " model-level"
+		}
+		text
+	}
+	
+	def String _text(LiteralString literal) {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String literalText(LiteralBoolean literal) {
+	def String _text(LiteralBoolean literal) {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
@@ -272,11 +288,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Import _import) {
 		super._createChildren(parentNode, _import)
-		var importedPackage = _import.importedNamespace;
-		if (importedPackage !== null) {
-			createEObjectNode(parentNode, importedPackage, 
-				importedPackage._image, importedPackage._text, 
-				_import.importOwningNamespace == importedPackage || importedPackage._isLeaf
+		var importedNamespace = _import.importedNamespace;
+		if (importedNamespace !== null && importedNamespace.owningRelationship !== _import) {
+			createEObjectNode(parentNode, importedNamespace, 
+				importedNamespace._image, importedNamespace._text, 
+				_import.importOwningNamespace == importedNamespace || importedNamespace._isLeaf
 			)
 		}
 	}

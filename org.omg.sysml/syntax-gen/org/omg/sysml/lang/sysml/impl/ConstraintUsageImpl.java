@@ -26,6 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -170,12 +171,10 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> evaluate(Element target) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new BasicEList<>();
 	}
 
 	/**
@@ -366,7 +365,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 
 	/**
@@ -382,24 +381,20 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		// TODO: implement this method to return the 'Is Model Level Evaluable' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		// TODO: implement this method to set the 'Is Model Level Evaluable' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

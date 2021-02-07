@@ -56,18 +56,17 @@ class KerMLScope extends AbstractScope {
 	protected KerMLScopeProvider scopeProvider
 	protected boolean isInsideScope //false if initialized from KerMLGlobalScope
 	protected boolean isFirstScope
-	protected boolean isRedefinition
-	
+	protected boolean isRedefinition	
 	protected Element skip = null
+	protected Element element
+	protected Type scopingType
 	
 	protected QualifiedName targetqn;
 	protected Map<Element, Set<QualifiedName>> elements
 	protected Set<QualifiedName> visitedqns
 	protected boolean findFirst = false;
-	
 	protected boolean isShadowing = false;
-	protected Element element
-	protected Type scopingType
+	protected Set<org.omg.sysml.lang.sysml.Package> importingPackages = new HashSet()
 
 	new(IScope parent, Namespace ns, EClass referenceType, KerMLScopeProvider scopeProvider, boolean isFirstScope, boolean isRedefinition, Element element, Element skip) {
 		this(parent, ns, referenceType, scopeProvider, true, isFirstScope, isRedefinition, element, skip)
@@ -148,7 +147,7 @@ class KerMLScope extends AbstractScope {
 	}
 	
 	protected def void addName(Map<Element, Set<QualifiedName>> elements, QualifiedName qn, Element el) {
-		if (referenceType.isInstance(el)) {
+		if (referenceType.isInstance(el) && el.includeAsMember) {
 			var qns = elements.get(el)
 			if (qns === null) {
 				elements.put(el, newHashSet(qn))
@@ -156,6 +155,10 @@ class KerMLScope extends AbstractScope {
 				qns.add(qn)
 			}					
 		}
+	}
+	
+	protected def boolean isIncludeAsMember(Element el) {
+		importingPackages.forall[includeAsMember(el)]
 	}
 	
 	protected def boolean owned(Namespace ns, QualifiedName qn, boolean checkIfAdded, boolean isInsideScope, Set<Namespace> ownedvisited, Set<Namespace> visited, Set<Element> redefined) {
@@ -321,13 +324,20 @@ class KerMLScope extends AbstractScope {
 	protected def boolean imp(Namespace ns, QualifiedName qn, boolean isInsideScope, Set<Namespace> visited) {
 		for (e: ns.ownedImport) {
 			if (!scopeProvider.visited.contains(e)) {
-				// NOTE: Exclude the import e to avoid possible circular name resolution
-				// when resolving a proxy for e.importedNamespace.
-				scopeProvider.addVisited(e)
-				var found = (isInsideScope || e.visibility == VisibilityKind.PUBLIC) &&
-					e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, e.isRecursive)
-				scopeProvider.removeVisited(e)
-				if (found) return true
+				if (isInsideScope || e.visibility == VisibilityKind.PUBLIC) {
+					if (ns instanceof org.omg.sysml.lang.sysml.Package) {
+						if (!ns.filterCondition.isEmpty) {
+							importingPackages.add(ns)
+						}
+					}
+					// NOTE: Exclude the import e to avoid possible circular name resolution
+					// when resolving a proxy for e.importedNamespace.
+					scopeProvider.addVisited(e)
+					val found = e.importedNamespace.resolveIfUnvisited(qn, true, visited, newHashSet, e.isRecursive)
+					scopeProvider.removeVisited(e)
+					importingPackages.remove(ns)
+					if (found) return true
+				}
 			}
 		}
 		return false
@@ -337,7 +347,7 @@ class KerMLScope extends AbstractScope {
 		for (r: ns.ownedRelationship) {
 			if (r instanceof Membership) {
 				if (r.visibility == VisibilityKind.PUBLIC) {
-					var memberElement = r.ownedMemberElement
+					val memberElement = r.ownedMemberElement
 					if (memberElement instanceof Namespace) {
 						if (memberElement.resolveIfUnvisited(qn, false, visited, newHashSet, true))
 							return true

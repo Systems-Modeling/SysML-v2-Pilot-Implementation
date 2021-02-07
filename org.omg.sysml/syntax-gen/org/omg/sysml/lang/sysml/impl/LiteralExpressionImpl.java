@@ -22,8 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -43,6 +45,18 @@ public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpr
 	 */
 	protected LiteralExpressionImpl() {
 		super();
+	}
+
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return true;
+	}
+	
+	@Override
+	public EList<Element> evaluate(Element target) {
+		EList<Element> result = new BasicEList<Element>();
+		result.add(this);
+		return result;
 	}
 
 	@Override

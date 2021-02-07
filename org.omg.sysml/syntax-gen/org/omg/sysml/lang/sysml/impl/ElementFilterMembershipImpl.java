@@ -147,24 +147,19 @@ public class ElementFilterMembershipImpl extends MembershipImpl implements Eleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Expression basicGetCondition() {
-		// TODO: implement this method to return the 'Condition' reference
-		// -> do not perform proxy resolution
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return getCondition_comp();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setCondition(Expression newCondition) {
-		// TODO: implement this method to set the 'Condition' reference
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

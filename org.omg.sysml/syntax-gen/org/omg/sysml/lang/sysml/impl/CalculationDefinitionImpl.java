@@ -195,6 +195,12 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		resultConnector = null;
+		super.cleanDerivedValues();
+	}
+	
 	//
 
 	/**

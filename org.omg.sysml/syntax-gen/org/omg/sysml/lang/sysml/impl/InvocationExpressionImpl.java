@@ -166,16 +166,16 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		List<Expression> arguments = getArgument();
 		if (argumentConnectors == null) {
 			argumentConnectors = new BindingConnector[arguments.size()];
-		}
-		int i = 0;
-		for (Feature input: getInput()) {
-			if (i >= argumentConnectors.length) {
-				break;
-			}
-			Expression argument = getArgumentForInput(arguments, input, i);
-			if (argument != null) {
-				argumentConnectors[i] = makeResultBinding(argumentConnectors[i], argument, input);
-				i++;
+			int i = 0;
+			for (Feature input: getInput()) {
+				if (i >= argumentConnectors.length) {
+					break;
+				}
+				Expression argument = getArgumentForInput(arguments, input, i);
+				if (argument != null) {
+					argumentConnectors[i] = makeResultBinding(argument, input);
+					i++;
+				}
 			}
 		}
 	}
@@ -230,6 +230,12 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public void transform() {
 		super.transform();
 		computeArgumentConnectors();
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		argumentConnectors = null;
+		super.cleanDerivedValues();
 	}
 	
 	/**

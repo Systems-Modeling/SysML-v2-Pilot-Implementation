@@ -37,6 +37,10 @@ import java.net.URLDecoder
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Expression
+import org.eclipse.swt.graphics.Image
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
 
 /**
  * Customization of the default outline structure.
@@ -194,13 +198,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def createRelatedElements(IOutlineNode parentNode, Relationship relationship) {
 		for (source: relationship.source) {
-			createEObjectNode(parentNode, source, 
+			createNode(parentNode, source, 
 				_image(source), 'from ' + source._text, 
 				true
 			)
 		}
 		for (target: relationship.target) {
-			createEObjectNode(parentNode, target, 
+			createNode(parentNode, target, 
 				_image(target), 'to ' + target._text, 
 				true
 			)
@@ -214,7 +218,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Annotation annotation) {
 		super._createChildren(parentNode, annotation)
 		if (annotation.annotatedElement !== null) {
-			createEObjectNode(parentNode, annotation.annotatedElement, 
+			createNode(parentNode, annotation.annotatedElement, 
 				_image(annotation.annotatedElement), annotation.annotatedElement._text, 
 				true
 			)
@@ -266,7 +270,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var memberElement = membership.memberElement;
 		if (membership.ownedMemberElement === null && 
 				memberElement !== null) {
-			createEObjectNode(parentNode, memberElement, 
+			createNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 
 				true
 			)
@@ -290,7 +294,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		super._createChildren(parentNode, _import)
 		var importedNamespace = _import.importedNamespace;
 		if (importedNamespace !== null && importedNamespace.owningRelationship !== _import) {
-			createEObjectNode(parentNode, importedNamespace, 
+			createNode(parentNode, importedNamespace, 
 				importedNamespace._image, importedNamespace._text, 
 				_import.importOwningNamespace == importedNamespace || importedNamespace._isLeaf
 			)
@@ -317,13 +321,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, TypeFeaturing featuring) {
 		if (featuring.featureOfType !== null && featuring.featureOfType !== featuring.eContainer) {
-			createEObjectNode(parentNode, featuring.featureOfType, 
+			createNode(parentNode, featuring.featureOfType, 
 				featuring.featureOfType._image, featuring.featureOfType._text, 
 				true
 			)			
 		}
 		if (featuring.featuringType !== null) {
-			createEObjectNode(parentNode, featuring.featuringType, 
+			createNode(parentNode, featuring.featuringType, 
 				featuring.featuringType._image, featuring.featuringType._text, 
 				true
 			)
@@ -336,13 +340,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
 		if (generalization.specific !== null && generalization.specific !== generalization.eContainer) {
-			createEObjectNode(parentNode, generalization.specific, 
+			createNode(parentNode, generalization.specific, 
 				generalization.specific._image, generalization.specific._text, 
 				true
 			)			
 		}
 		if (generalization.general !== null) {
-			createEObjectNode(parentNode, generalization.general, 
+			createNode(parentNode, generalization.general, 
 				generalization.general._image, generalization.general._text, 
 				true
 			)
@@ -355,13 +359,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
 		if (redefinition.redefiningFeature !== null && redefinition.redefiningFeature !== redefinition.eContainer) {
-			createEObjectNode(parentNode, redefinition.redefiningFeature, 
+			createNode(parentNode, redefinition.redefiningFeature, 
 				redefinition.redefiningFeature._image, redefinition.redefiningFeature._text, 
 				true
 			)			
 		}
 		if (redefinition.redefinedFeature !== null) {
-			createEObjectNode(parentNode, redefinition.redefinedFeature, 
+			createNode(parentNode, redefinition.redefinedFeature, 
 				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
 				true
 			)
@@ -374,13 +378,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
 		if (subsetting.subsettingFeature !== null && subsetting.subsettingFeature !== subsetting.eContainer) {
-			createEObjectNode(parentNode, subsetting.subsettingFeature, 
+			createNode(parentNode, subsetting.subsettingFeature, 
 				subsetting.subsettingFeature._image, subsetting.subsettingFeature._text, 
 				true
 			)			
 		}
 		if (subsetting.subsettedFeature !== null) {
-			createEObjectNode(parentNode, subsetting.subsettedFeature, 
+			createNode(parentNode, subsetting.subsettedFeature, 
 				_image(subsetting.subsettedFeature), subsetting.subsettedFeature._text, 
 				true
 			)
@@ -393,13 +397,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Conjugation conjugation) {
 		if (conjugation.conjugatedType !== null && conjugation.conjugatedType !== conjugation.eContainer) {
-			createEObjectNode(parentNode, conjugation.conjugatedType, 
+			createNode(parentNode, conjugation.conjugatedType, 
 				conjugation.conjugatedType._image, conjugation.conjugatedType._text, 
 				true
 			)			
 		}
 		if (conjugation.originalType !== null) {
-			createEObjectNode(parentNode, conjugation.originalType, 
+			createNode(parentNode, conjugation.originalType, 
 				_image(conjugation.originalType), conjugation.originalType._text, 
 				true
 			)
@@ -416,6 +420,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			createImplicitTypeFeaturingNodes(parentNode, type)
 		}
 		_createChildren(parentNode, type as Namespace)
+		createImplicitBindingConnectorNodes(parentNode, type)
 	}
 	
 	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
@@ -427,13 +432,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			 * reference might return an unexpected icon if at a later point
 			 * type-specific icons are added.
 			 */
-			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
+			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(generalType), eClass
 			)
 			
 			// Traversal does not know about the new node, children have to be created here
 			if (generalType !== null) {
-				createEObjectNode(implicitNode, generalType, 
+				createNode(implicitNode, generalType, 
 					generalType._image, generalType._text, 
 					true
 				)
@@ -450,16 +455,31 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			 * reference might return an unexpected icon if at a later point
 			 * type-specific icons are added.
 			 */
-			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
+			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
 			)
 			// Traversal does not know about the new node, children have to be created here
 			if (featuringType !== null) {
-				createEObjectNode(implicitNode, featuringType, 
+				createNode(implicitNode, featuringType, 
 					featuringType._image, featuringType._text, 
 					true
 				)
 			}
+		]
+	}
+	
+	def createImplicitBindingConnectorNodes(IOutlineNode parentNode, Type type) {
+		(type as TypeImpl).forEachImplicitBindingConnector[connector, eClass |
+			/*
+			 * TODO here image dispatcher should be called with a type that
+			 * returns that appropriate icon for generalizations, but there
+			 * are no such icons added yet; in the future, the generalType
+			 * reference might return an unexpected icon if at a later point
+			 * type-specific icons are added.
+			 */
+			val implicitNode = new ImplicitNode(parentNode, 
+				imageDispatcher.invoke(connector), eClass)
+			implicitNode.createNode(connector, imageDispatcher.invoke(connector), connector.eClass.getName, false)
 		]
 	}
 	
@@ -485,12 +505,45 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		createImplicitGeneralizationNodes(parentNode, expression)
 		createImplicitTypeFeaturingNodes(parentNode, expression)
 		for (Relationship relationship : expression.ownedRelationship) {
-			createEObjectNode(parentNode, relationship, 
+			createNode(parentNode, relationship, 
 				_image(relationship), 
 				if (relationship instanceof Membership) (relationship as Membership)._text 
 				else relationship._text, 
 				false
 			);
+		}
+		createImplicitBindingConnectorNodes(parentNode, expression)
+	}
+	
+	override _createNode(DocumentRootNode parentNode, EObject modelElement) {
+		var text = textDispatcher.invoke(modelElement);
+		if (text === null) {
+			text = modelElement.eResource().getURI().trimFileExtension().lastSegment();
+		}
+		createNode(parentNode, modelElement, imageDispatcher.invoke(modelElement), text.toString,
+				isLeafDispatcher.invoke(modelElement));
+	}
+	
+	override _createNode(IOutlineNode parentNode, EObject modelElement) {
+		var Object text = textDispatcher.invoke(modelElement);
+		val isLeaf = isLeafDispatcher.invoke(modelElement);
+		if (text === null && isLeaf)
+			return;
+		val Image image = imageDispatcher.invoke(modelElement);
+		createNode(parentNode, modelElement, image, text.toString, isLeaf);
+	}
+	
+	private def AbstractOutlineNode createNode(IOutlineNode parentNode, EObject modelElement, Image image, String text,
+			boolean isLeaf) {
+		if (modelElement.eResource !== null) {
+			super.createEObjectNode(parentNode, modelElement, image, text, isLeaf)
+		} else {
+			val node = new ImplicitNode(parentNode, image, text)
+			if (modelElement instanceof ElementImpl) {
+				modelElement.transform
+			}
+			createChildrenDispatcher.invoke(node, modelElement)
+			node
 		}
 	}
 	

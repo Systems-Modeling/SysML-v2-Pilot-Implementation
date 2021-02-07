@@ -158,6 +158,12 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 		super.transform();
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		resultConnector = null;
+		super.cleanDerivedValues();
+	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

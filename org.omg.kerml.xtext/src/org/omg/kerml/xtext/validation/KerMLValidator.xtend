@@ -194,6 +194,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkBindingConnector(BindingConnector bc){
+		doCheckBindingConnector(bc, bc)
+	}
+	
+	private def doCheckBindingConnector(BindingConnector bc, Element location) {
 		val rf = bc.relatedFeature
 		if (rf.length !== 2) {
 			return //ignore binding connectors with invalid syntax
@@ -219,8 +223,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
 				f2ConformsTof1.filter[!empty].length != f1types.length)
-				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
+				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
+	}
+	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		(type as TypeImpl).forEachImplicitBindingConnector[doCheckBindingConnector(type)]
 	}
 	
 	//return related subtypes

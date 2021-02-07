@@ -296,6 +296,12 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());;
 	}
 	
+	@Override
+	public void cleanDerivedValues() {
+		resultConnector = null;
+		super.cleanDerivedValues();
+	}
+	
 	//
 
 	/**

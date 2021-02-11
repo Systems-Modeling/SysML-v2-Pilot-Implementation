@@ -79,7 +79,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_1_0_0_q;
 	protected AbstractElementAlias match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_TypeFeaturing_OfKeyword_1_1_q;
-	protected AbstractElementAlias match_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -141,14 +140,25 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_TextualRepresentation_RepKeyword_0_1_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_1_0_0());
 		match_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getTypeBodyAccess().getSemicolonKeyword_0()));
 		match_TypeFeaturing_OfKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getTypeFeaturingAccess().getOfKeyword_1_1());
-		match_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getTypedByAccess().getTypedKeyword_0_1_0()), new TokenAlias(false, false, grammarAccess.getTypedByAccess().getByKeyword_0_1_1())), new TokenAlias(false, false, grammarAccess.getTypedByAccess().getColonKeyword_0_0()));
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getDefinedByKeywordRule())
+			return getDefinedByKeywordToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * DefinedByKeyword :
+	 * 	':' | 'defined' 'by'
+	 * ;
+	 */
+	protected String getDefinedByKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ":";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -270,8 +280,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TypeFeaturing_OfKeyword_1_1_q.equals(syntax))
 				emit_TypeFeaturing_OfKeyword_1_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__.equals(syntax))
-				emit_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -669,18 +677,18 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) (':' | ('typed' 'by')) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) (':>' | 'subsets') ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) (':>>' | 'redefines') ownedRelationship_comp+=OwnedRedefinition
 	 *     (rule start) (ambiguity) ('~' | 'conjugates') ownedRelationship_comp+=FeatureConjugation
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) isSufficient?='all'
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) (':' | ('typed' 'by')) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) (':>' | 'subsets') ownedRelationship_comp+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) (':>>' | 'redefines') ownedRelationship_comp+=OwnedRedefinition
 	 *     isAbstract?='abstract' (ambiguity) ('~' | 'conjugates') ownedRelationship_comp+=FeatureConjugation
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
 	 *     isAbstract?='abstract' (ambiguity) isSufficient?='all'
 	 *     isAbstract?='abstract' (ambiguity) name=Name
 	 *     isAbstract?='abstract' (ambiguity) ownedMembership_comp+=MultiplicityMember
@@ -854,9 +862,9 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) (':' | ('typed' 'by')) ownedRelationship_comp+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) (':>' | 'subsets') ownedRelationship_comp+=OwnedSubsetting
 	 *     (rule start) (ambiguity) (':>>' | 'redefines') ownedRelationship_comp+=OwnedRedefinition
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) isSufficient?='all'
 	 *     (rule start) (ambiguity) name=Name
 	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
@@ -1191,46 +1199,6 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'featuring' (ambiguity) featureOfType=[Feature|QualifiedName]
 	 */
 	protected void emit_TypeFeaturing_OfKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ':' | ('typed' 'by')
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'binding' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'bool' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'connector' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'expr' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'feature'? (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'flow' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'inv' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'step' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'stream' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) 'succession' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     humanId=Name (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'binding' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'bool' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'connector' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'expr' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'feature'? (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'flow' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'inv' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'step' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'stream' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' 'succession' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isOrdered?='ordered' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isSufficient?='all' (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     name=Name (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
-	 */
-	protected void emit_TypedBy_ColonKeyword_0_0_or___TypedKeyword_0_1_0_ByKeyword_0_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

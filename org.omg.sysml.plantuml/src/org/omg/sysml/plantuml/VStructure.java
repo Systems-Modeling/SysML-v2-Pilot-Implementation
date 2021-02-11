@@ -51,7 +51,11 @@ public abstract class VStructure extends VDefault {
             text = text.replace("\n", "\\n");
         }
         text = text.trim();
-        append(text);
+        if (text.endsWith(";")) {
+        	append(text, 0, text.length() - 1);
+        } else {
+        	append(text);
+        }
     }
 
     private static Pattern patEq = Pattern.compile("^\\s*=");

@@ -37,6 +37,8 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EnumerationDefinition;
+import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -116,6 +118,8 @@ public class VCompartment extends VStructure {
         private static int featureCompare(Feature f1, Feature f2) {
             int v = featureMetaclassCompare(f1, f2);
             if (v != 0) return v;
+            // The order or EnumerationUsage needs to be stable.
+            if (f1 instanceof EnumerationUsage) return 0;
             return featureNameCompare(f1, f2);
         }
 
@@ -281,6 +285,14 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseVariantMembership(VariantMembership vm) {
+        if (base instanceof EnumerationDefinition) {
+            Element e = vm.getMemberElement();
+            if (e instanceof EnumerationUsage) {
+                EnumerationUsage eu = (EnumerationUsage) e;
+            	addFeature(eu, null, null, true, true, null);
+                return "";
+            }
+        }
         rec(vm, true);
         return "";
     }
@@ -327,6 +339,27 @@ public class VCompartment extends VStructure {
         }
     }
 
+    private EClass addTitle(EClass prev, FeatureEntry fe, boolean isClassic) {
+        EClass ec1 = fe.f.eClass();
+        if (ec1.equals(prev)) return prev;
+        if (ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
+            if (isClassic) {
+                append("-- attributes --\n");
+            }
+        } else {
+            append("-- ");
+            append(getTitle(fe.f));
+            append(" --\n");
+        }
+        return ec1;
+    }
+
+    private void appendTextOfEnum(Element e) {
+        append("<i>");
+        appendText(getText(e), true);
+        append("</i>");
+    }
+
     private void addFeatures(List<FeatureEntry> es, int level) {
         Collections.sort(es);
         final boolean isClassic = styleValue("classic") != null;
@@ -336,21 +369,8 @@ public class VCompartment extends VStructure {
         for (int i = 0; i < size; i++) {
             FeatureEntry fe = es.get(i);
             if (level == 0) {
-                EClass ec1 = fe.f.eClass();
-                if (!ec1.equals(ec0)) {
-                    ec0 = ec1;
-                    if (ec1.equals(SysMLPackage.Literals.ATTRIBUTE_USAGE)) {
-                        if (isClassic) {
-                            append("-- attributes --\n");
-                        }
-                    } else {
-                        append("-- ");
-                        append(getTitle(fe.f));
-                        append(" --\n");
-                    }
-                }
-            }
-            if (level > 0) {
+                ec0 = addTitle(ec0, fe, isClassic);
+            } else {
                 for (int j = 0; j < level; j++) {
                     append("|_");
                 }
@@ -359,7 +379,14 @@ public class VCompartment extends VStructure {
             if (fe.prefix != null) {
                 append(fe.prefix);
             }
-            if (getFeatureName(fe.f) == null) {
+            if (fe.f instanceof EnumerationUsage) {
+                if (getFeatureName(fe.f) == null) {
+                    appendTextOfEnum(fe.f);
+                } else {
+                    addFeatureText(fe.f);
+                }
+                append('\n');
+            } else if (getFeatureName(fe.f) == null) {
                 addAnonymouseFeatureText(fe.f);
                 append('\n');
             } else if (addFeatureText(fe.f)) {

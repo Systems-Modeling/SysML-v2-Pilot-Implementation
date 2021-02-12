@@ -31,10 +31,10 @@ import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LifeClass;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
@@ -61,9 +61,9 @@ public abstract class VStructure extends VDefault {
     private static Pattern patEq = Pattern.compile("^\\s*=");
     private boolean addFeatureMembershipText(Feature f) {
         boolean flag = false;
-        for (FeatureMembership fm: f.getOwnedFeatureMembership()) {
-            if (fm instanceof FeatureValue) {
-                FeatureValue fv = (FeatureValue) fm;
+        for (Membership m: f.getOwnedMembership()) {
+            if (m instanceof FeatureValue) {
+                FeatureValue fv = (FeatureValue) m;
                 String text = getText(fv);
                 if (text == null) continue;
                 if (!patEq.matcher(text).lookingAt()) {
@@ -72,8 +72,8 @@ public abstract class VStructure extends VDefault {
                 appendText(text, true);
                 append("; ");
                 flag = true;
-            } else if (fm instanceof ResultExpressionMembership) {
-                ResultExpressionMembership rem = (ResultExpressionMembership) fm;
+            } else if (m instanceof ResultExpressionMembership) {
+                ResultExpressionMembership rem = (ResultExpressionMembership) m;
                 Expression ex = rem.getOwnedResultExpression();
                 String text = getText(ex);
                 if (text == null) continue;

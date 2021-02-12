@@ -613,7 +613,6 @@ Subsetting returns SysML::Subsetting :
     ( ':>' | 'subsets' ) subsettedFeature = [SysML::Feature | QualifiedName] ';'
 ;
 
-@Override
 OwnedSubsetting returns SysML::Subsetting:
 	subsettedFeature = [SysML::Feature|QualifiedName]
 ;

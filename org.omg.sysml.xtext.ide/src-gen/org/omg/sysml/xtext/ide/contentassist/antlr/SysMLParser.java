@@ -1022,8 +1022,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperatorAssignment_1_1(), "rule__SequenceElementList__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperand_compAssignment_1_2(), "rule__SequenceElementList__Operand_compAssignment_1_2");
 			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedFeatureMembership_compAssignment");
-			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__FeatureReferenceMember__OwnedMemberFeature_compAssignment");
-			builder.put(grammarAccess.getFeatureReferenceAccess().getOwnedRelationship_compAssignment(), "rule__FeatureReference__OwnedRelationship_compAssignment");
+			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberFeatureAssignment(), "rule__FeatureReferenceMember__MemberFeatureAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compAssignment_0(), "rule__InvocationExpression__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__PositionalArgumentList__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__PositionalArgumentList__OwnedFeatureMembership_compAssignment_1_1");

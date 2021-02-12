@@ -2184,7 +2184,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final CrossReference cSubsettedFeatureFeatureCrossReference_0 = (CrossReference)cSubsettedFeatureAssignment.eContents().get(0);
 		private final RuleCall cSubsettedFeatureFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cSubsettedFeatureFeatureCrossReference_0.eContents().get(1);
 		
-		//@Override
 		//OwnedSubsetting SysML::Subsetting:
 		//	subsettedFeature=[SysML::Feature|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
@@ -13989,7 +13988,6 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getOwnedFeatureTypingAccess().getRule();
 	}
 	
-	//@Override
 	//OwnedSubsetting SysML::Subsetting:
 	//	subsettedFeature=[SysML::Feature|QualifiedName];
 	public OwnedSubsettingElements getOwnedSubsettingAccess() {
@@ -18219,25 +18217,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFeatureReferenceExpressionAccess().getRule();
 	}
 	
-	//FeatureReferenceMember SysML::ReturnParameterMembership:
-	//	ownedMemberFeature_comp=FeatureReference;
+	//FeatureReferenceMember SysML::FeatureMembership:
+	//	memberFeature=[SysML::Feature|QualifiedName];
 	public KerMLExpressionsGrammarAccess.FeatureReferenceMemberElements getFeatureReferenceMemberAccess() {
 		return gaKerMLExpressions.getFeatureReferenceMemberAccess();
 	}
 	
 	public ParserRule getFeatureReferenceMemberRule() {
 		return getFeatureReferenceMemberAccess().getRule();
-	}
-	
-	//// Note: Use subsetting here in order to inherit typing of referent.
-	//FeatureReference SysML::Feature:
-	//	ownedRelationship_comp+=super::OwnedSubsetting;
-	public KerMLExpressionsGrammarAccess.FeatureReferenceElements getFeatureReferenceAccess() {
-		return gaKerMLExpressions.getFeatureReferenceAccess();
-	}
-	
-	public ParserRule getFeatureReferenceRule() {
-		return getFeatureReferenceAccess().getRule();
 	}
 	
 	//// Invocation Expressions

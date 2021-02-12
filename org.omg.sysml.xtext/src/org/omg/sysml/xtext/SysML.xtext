@@ -412,7 +412,6 @@ OwnedFeatureTyping returns SysML::FeatureTyping :
 	type = [SysML::Type | QualifiedName]
 ;
 
-@Override
 OwnedSubsetting returns SysML::Subsetting:
 	subsettedFeature = [SysML::Feature|QualifiedName]
 ;

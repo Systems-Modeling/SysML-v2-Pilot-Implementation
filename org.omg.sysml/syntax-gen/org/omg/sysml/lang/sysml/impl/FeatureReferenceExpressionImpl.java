@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -92,9 +93,13 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
+		return getReferentFeature().orElseGet(this::getSelfReferenceFeature);
+	}
+	
+	protected Optional<Feature> getReferentFeature() {
 		return getOwnedFeatureMembership().stream().
-				map(FeatureMembership::getMemberFeature).
-				findFirst().orElseGet(this::getSelfReferenceFeature);
+				filter(mem->!(mem instanceof ParameterMembership)).
+				map(FeatureMembership::getMemberFeature).findFirst();
 	}
 	
 	protected Feature getSelfReferenceFeature() {
@@ -157,7 +162,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	
 	protected void addResultSubsetting() {
 		Feature result = getResult();
-		if (result != getSelfReferenceFeature()) {
+		if (getReferentFeature().isPresent()) {
 			((FeatureImpl)result).addImplicitGeneralType(
 					SysMLPackage.eINSTANCE.getSubsetting(), getReferent());
 		}

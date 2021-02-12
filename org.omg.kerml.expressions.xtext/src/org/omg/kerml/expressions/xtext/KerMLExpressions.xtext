@@ -150,6 +150,10 @@ TypeReference returns SysML::Feature :
 	ownedRelationship_comp += OwnedFeatureTyping
 ;
 
+OwnedFeatureTyping returns SysML::FeatureTyping :
+	type = [SysML::Type | QualifiedName]
+;
+
 SelfReferenceExpression returns SysML::FeatureReferenceExpression :
 	ownedFeatureMembership_comp += SelfReferenceMember
 ;
@@ -161,8 +165,6 @@ SelfReferenceMember returns SysML::ReturnParameterMembership :
 EmptyFeature returns SysML::Feature :
 	{SysML::Feature}
 ;
-
-
 
 // Relational Expressions
 
@@ -255,35 +257,19 @@ BodyExpression returns SysML::BlockExpression :
 	   => ( ownedFeatureMembership_comp += BodyParameterMember 
 	   	    ( ownedFeatureMembership_comp += BodyParameterMember )* 
 	        '(' ownedFeatureMembership_comp += ResultExpressionMember ')' )
-	 | ownedRelationship_comp += ExpressionTyping
+	 | ownedRelationship_comp += OwnedFeatureTyping
+;
+
+ResultExpressionMember returns SysML::ResultExpressionMembership :
+	ownedResultExpression_comp = OwnedExpression
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
 	memberName = Name ownedMemberParameter_comp = BodyParameter
 ;
 
-BodyParameter returns SysML::Usage :
-	{SysML::ReferenceUsage} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
-;
-
-fragment MultiplicityPart returns SysML::Feature :
-	ownedMembership_comp += MultiplicityMember 
-	// NOTE: Can't use "&" here because of use of predication elsewhere.
-	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
-	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
-	)?
-;
-
-fragment TypedBy returns SysML::Feature :
-	DefinedByKeyword ownedRelationship_comp += OwnedFeatureTyping
-;
-
-DefinedByKeyword :
-	':' | 'defined' 'by'
-;
-
-ExpressionTyping returns SysML::FeatureTyping :
-	type = [ SysML::Function | QualifiedName ]
+BodyParameter returns SysML::Feature :
+	{SysML::Feature}
 ;
 
 SequenceConstructionExpression returns SysML::Expression :
@@ -297,26 +283,6 @@ SequenceConstructionExpression returns SysML::Expression :
 
 SequenceElementList returns SysML::Expression :	
 	OwnedExpression ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList )?
-;
-
-/* MULTIPLICITIES */
-
-MultiplicityMember returns SysML::Membership :
-	ownedMemberElement_comp = Multiplicity
-;
-
-Multiplicity returns SysML::MultiplicityRange :
-	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
-	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
-;
-
-LiteralIntegerMember returns SysML::Membership :
-	ownedMemberElement_comp = LiteralInteger
-;
-
-LiteralUnlimitedNaturalMember returns SysML::Membership :
-	ownedMemberElement_comp = LiteralUnlimitedNatural
 ;
 
 /* Base Expressions */
@@ -343,6 +309,10 @@ FeatureReferenceMember returns SysML::ReturnParameterMembership :
 // Note: Use subsetting here in order to inherit typing of referent.
 FeatureReference returns SysML::Feature :
 	ownedRelationship_comp += OwnedSubsetting
+;
+
+OwnedSubsetting returns SysML::Subsetting:
+	subsettedFeature = [SysML::Feature|QualifiedName]
 ;
 
 // Invocation Expressions
@@ -430,52 +400,6 @@ ColonQualifiedName:
 DotQualifiedName:
 	Name ('.' Name)+;
 	
-/* Documentation */
-
-OwnedDocumentation returns SysML::Documentation :
-	documentingComment_comp = DocumentationComment
-;
-
-DocumentationComment returns SysML::Comment :
-	'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
-;
-
-PrefixDocumentation returns SysML::Annotation :
-	ownedRelatedElement_comp += PrefixDocumentationComment
-;
-
-PrefixDocumentationComment returns SysML::Comment :
-	( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
-;
-
-/* Common elements expressions depend on */
-
-OwnedFeatureTyping returns SysML::FeatureTyping :
-	type = [SysML::Type | QualifiedName]
-;
-
-OwnedSubsetting returns SysML::Subsetting:
-	subsettedFeature = [SysML::Feature|QualifiedName]
-;
-
-OwnedRedefinition returns SysML::Redefinition:
-	redefinedFeature = [SysML::Feature | QualifiedName] 
-;
-
-
-ResultExpressionMember returns SysML::ResultExpressionMembership :
-	DefinitionMemberPrefix ownedResultExpression_comp = OwnedExpression
-;
-
-enum VisibilityIndicator returns SysML::VisibilityKind :
-	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
-;
-
-fragment DefinitionMemberPrefix returns SysML::Membership :
-	( ownedRelationship_comp += PrefixDocumentation )*
-    ( visibility = VisibilityIndicator )?
-;
-
 /* TERMINALS */
 terminal DECIMAL_VALUE returns Ecore::EInt:
 	'0'..'9' ('0'..'9')*;

@@ -137,6 +137,24 @@ EmptyAnnotation returns SysML::Annotation :
 	{SysML::Annotation}
 ;
 
+/* Documentation */
+
+OwnedDocumentation returns SysML::Documentation :
+	documentingComment_comp = DocumentationComment
+;
+
+DocumentationComment returns SysML::Comment :
+	'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
+;
+
+PrefixDocumentation returns SysML::Annotation :
+	ownedRelatedElement_comp += PrefixDocumentationComment
+;
+
+PrefixDocumentationComment returns SysML::Comment :
+	( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+;
+
 /* Textual Representation */
 
 OwnedTextualRepresentationAnnotation returns SysML::Annotation :
@@ -379,6 +397,10 @@ fragment ConjugationPart returns SysML::Type :
 	( '~' | 'conjugates' ) ownedRelationship_comp += OwnedConjugation
 ;
 
+MultiplicityMember returns SysML::Membership :
+	ownedMemberElement_comp = Multiplicity
+;
+
 fragment TypeBody returns SysML::Type :
 	';' | 
 	'{' ( documentation_comp += OwnedDocumentation
@@ -389,11 +411,20 @@ fragment TypeBody returns SysML::Type :
 ;
 
 NonFeatureTypeMember returns SysML::Membership : 
-	DefinitionMemberPrefix NonFeatureNamespaceMember
+	TypeMemberPrefix NonFeatureNamespaceMember
 ;
 
 FeatureTypeMember returns SysML::FeatureMembership : 
 	FeatureMember | EndFeatureMember
+;
+
+fragment TypeMemberPrefix returns SysML::Membership :
+	( ownedRelationship_comp += PrefixDocumentation )*
+    ( visibility = VisibilityIndicator )?
+;
+
+enum VisibilityIndicator returns SysML::VisibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
 ;
 
 /* Generalization */
@@ -423,14 +454,14 @@ OwnedConjugation returns SysML::Conjugation :
 /* Feature Membership */
 
 FeatureMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix FeatureMemberFlags 
+	TypeMemberPrefix FeatureMemberFlags 
 	( ownedMemberFeature_comp = FeatureElement
 	| 'feature'? ( memberName = Name )? 'is' memberFeature = [SysML::Feature|QualifiedName] ';'
 	)
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix 'end' FeatureMemberFlags ownedMemberFeature_comp = FeatureElement
+	TypeMemberPrefix 'end' FeatureMemberFlags ownedMemberFeature_comp = FeatureElement
 ;
 
 fragment FeatureMemberFlags returns SysML::FeatureMembership :
@@ -513,12 +544,24 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 	| MultiplicityPart FeatureSpecialization*
 ;
 
+fragment MultiplicityPart returns SysML::Feature :
+	ownedMembership_comp += MultiplicityMember 
+	// NOTE: Can't use "&" here because of use of predication elsewhere.
+	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	)?
+;
+
 fragment FeatureSpecialization returns SysML::Feature :
 	Typings | Subsettings | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
 	TypedBy ( ',' ownedRelationship_comp += OwnedFeatureTyping )*
+;
+
+fragment TypedBy returns SysML::Feature :
+	( ':' | 'typed' 'by' ) ownedRelationship_comp += OwnedFeatureTyping
 ;
 
 fragment Subsettings returns SysML::Feature :
@@ -557,6 +600,11 @@ FeatureTyping returns SysML::FeatureTyping :
     (':' | 'typed' 'by') type = [SysML::Feature | QualifiedName] ';'
 ;
 
+@Override
+OwnedFeatureTyping returns SysML::FeatureTyping :
+	type = [SysML::Type | QualifiedName]
+;
+
 /* Subsetting */
 
 Subsetting returns SysML::Subsetting :
@@ -565,12 +613,21 @@ Subsetting returns SysML::Subsetting :
     ( ':>' | 'subsets' ) subsettedFeature = [SysML::Feature | QualifiedName] ';'
 ;
 
+@Override
+OwnedSubsetting returns SysML::Subsetting:
+	subsettedFeature = [SysML::Feature|QualifiedName]
+;
+
 /* Redefinition */
 
 Redefinition returns SysML::Redefinition :
 	( 'generalization' Identification? )?
     'redefinition' redefiningFeature = [SysML::Feature | QualifiedName]
     ( ':>>' | 'redefines' ) redefinedFeature = [SysML::Feature | QualifiedName] ';'
+;
+
+OwnedRedefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature | QualifiedName] 
 ;
 
 /* Feature Conjugation */
@@ -591,6 +648,22 @@ fragment ValuePart returns SysML::Feature :
 
 FeatureValue returns SysML::FeatureValue :
 	value_comp = OwnedExpression
+;
+
+/* MULTIPLICITIES */
+
+Multiplicity returns SysML::MultiplicityRange :
+	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
+	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
+	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
+;
+
+LiteralIntegerMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralInteger
+;
+
+LiteralUnlimitedNaturalMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralUnlimitedNatural
 ;
 
 /* CLASSIFICATION */
@@ -808,6 +881,11 @@ fragment FunctionBody returns SysML::Type :
 	  '}'
 ;
 
+@Override
+ResultExpressionMember returns SysML::ResultExpressionMembership :
+	TypeMemberPrefix ownedResultExpression_comp = OwnedExpression
+;
+
 /* Expressions */
 
 Expression returns SysML::BlockExpression :
@@ -921,4 +999,11 @@ ItemFlowFeatureMember returns SysML::FeatureMembership :
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
 	ownedRelationship_comp += OwnedRedefinition
+;
+
+/* EXPRESSIONS */
+
+@Override
+BodyParameter returns SysML::Feature :
+	{SysML::Feature} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
 ;

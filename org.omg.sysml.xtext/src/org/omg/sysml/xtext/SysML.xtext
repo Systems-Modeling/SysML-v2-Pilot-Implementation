@@ -66,6 +66,24 @@ EmptyAnnotation returns SysML::Annotation :
 	{SysML::Annotation}
 ;
 
+/* Documentation */
+
+OwnedDocumentation returns SysML::Documentation :
+	documentingComment_comp = DocumentationComment
+;
+
+DocumentationComment returns SysML::Comment :
+	'doc' ( 'id' humanId = Name )? body = REGULAR_COMMENT
+;
+
+PrefixDocumentation returns SysML::Annotation :
+	ownedRelatedElement_comp += PrefixDocumentationComment
+;
+
+PrefixDocumentationComment returns SysML::Comment :
+	( 'doc' ( 'id' humanId = Name )? )? body = DOCUMENTATION_COMMENT
+;
+
 /* Textual Representation */
 
 TextualRepresentation returns SysML::TextualRepresentation :
@@ -280,6 +298,10 @@ fragment TypeMemberPrefix returns SysML::Membership :
     ( visibility = VisibilityIndicator )?
 ;
 
+enum VisibilityIndicator returns SysML::VisibilityKind :
+	public = 'public' | private = 'private' | protected = 'protected'
+;
+
 /* Feature Memberships */
 
 FeatureMember returns SysML::FeatureMembership :
@@ -335,12 +357,28 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 	| MultiplicityPart FeatureSpecialization*
 ;
 
+fragment MultiplicityPart returns SysML::Feature :
+	ownedMembership_comp += MultiplicityMember 
+	// NOTE: Can't use "&" here because of use of predication elsewhere.
+	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	)?
+;
+
 fragment FeatureSpecialization returns SysML::Feature :
 	Typings | Subsettings | Redefinitions
 ;
 
 fragment Typings returns SysML::Feature :
 	TypedBy ( ',' ownedRelationship_comp += OwnedFeatureTyping )*
+;
+
+fragment TypedBy returns SysML::Feature :
+	DefinedByKeyword ownedRelationship_comp += OwnedFeatureTyping
+;
+
+DefinedByKeyword :
+	':' | 'defined' 'by'
 ;
 
 fragment Subsettings returns SysML::Feature :
@@ -365,6 +403,42 @@ fragment Redefines returns SysML::Feature :
 
 RedefinesKeyword :
 	':>>' | 'redefines'
+;
+
+/* Feature Typing, Subsetting and Redefinition */
+
+@Override
+OwnedFeatureTyping returns SysML::FeatureTyping :
+	type = [SysML::Type | QualifiedName]
+;
+
+@Override
+OwnedSubsetting returns SysML::Subsetting:
+	subsettedFeature = [SysML::Feature|QualifiedName]
+;
+
+OwnedRedefinition returns SysML::Redefinition:
+	redefinedFeature = [SysML::Feature | QualifiedName] 
+;
+
+/* Multiplicity */
+
+MultiplicityMember returns SysML::Membership :
+	ownedMemberElement_comp = Multiplicity
+;
+
+Multiplicity returns SysML::MultiplicityRange :
+	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
+	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
+	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
+;
+
+LiteralIntegerMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralInteger
+;
+
+LiteralUnlimitedNaturalMember returns SysML::Membership :
+	ownedMemberElement_comp = LiteralUnlimitedNatural
 ;
 
 /* CONNECTORS */
@@ -568,6 +642,11 @@ IndividualUsageMember returns SysML::FeatureMembership :
 FlowUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix direction = FeatureDirection
 	ownedMemberFeature_comp = FlowUsageElement
+;
+
+fragment DefinitionMemberPrefix returns SysML::Membership :
+	( ownedRelationship_comp += PrefixDocumentation )*
+    ( visibility = VisibilityIndicator )?
 ;
 
 /* Usages */
@@ -1645,6 +1724,11 @@ ReturnParameterFlowUsageMember returns SysML::ReturnParameterMembership :
 	ownedMemberParameter_comp = FlowUsageElement
 ;
 
+@Override
+ResultExpressionMember returns SysML::ResultExpressionMembership :
+	DefinitionMemberPrefix ownedResultExpression_comp = OwnedExpression
+;
+
 /* Calculation Usages */
 
 CalculationUsageKeyword :
@@ -2097,10 +2181,9 @@ OwnedExpression returns SysML::Expression :
 	 KerMLExpressions::OwnedExpression | QueryPathExpression
 ;
 
-// Note: Use subsetting here in order to inherit typeing of referent.
-@Override 
-FeatureReference returns SysML::ReferenceUsage :
-	ownedRelationship_comp += OwnedSubsetting
+@Override
+BodyParameter returns SysML::ReferenceUsage :
+	{SysML::ReferenceUsage} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
 ;
 
 /* QUERY PATH EXPRESSIONS */

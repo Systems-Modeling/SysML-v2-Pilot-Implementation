@@ -33,8 +33,10 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -91,14 +93,13 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		Feature result = getResult();
-		if (result == null) {
-			return null;
-		} else {
-			((FeatureImpl)result).forceComputeRedefinitions();
-			return ((FeatureImpl)result).getFirstSubsettedFeature().
-					orElseGet(this::getSelfReferenceFeature);
-		}
+		return getReferentFeature().orElseGet(this::getSelfReferenceFeature);
+	}
+	
+	protected Optional<Feature> getReferentFeature() {
+		return getOwnedFeatureMembership().stream().
+				filter(mem->!(mem instanceof ParameterMembership)).
+				map(FeatureMembership::getMemberFeature).findFirst();
 	}
 	
 	protected Feature getSelfReferenceFeature() {
@@ -152,13 +153,27 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		}
 		return new BasicEList<>();
 	}
+	
+	protected void addReferenceConnector() {
+		if (referenceConnector == null) {
+			referenceConnector = makeBinding(getReferent(), getResult());
+		}
+	}
+	
+	protected void addResultSubsetting() {
+		Feature result = getResult();
+		if (getReferentFeature().isPresent()) {
+			((FeatureImpl)result).addImplicitGeneralType(
+					SysMLPackage.eINSTANCE.getSubsetting(), getReferent());
+		}
+	}
 		
 	@Override
 	public void transform() {
 		super.transform();
-		if (referenceConnector == null) {
-			referenceConnector = makeBinding(getReferent(), getResult());
-		}
+		addReferenceConnector();
+		// Add subsetting in order to inherit typing of referent.
+		addResultSubsetting();
 	}
 	
 	@Override

@@ -35,12 +35,15 @@
   <packaging>pom</packaging>
   <modules>
     <module>org.omg.sysml</module>
+    <module>org.omg.kerml.expressions.xtext</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>
-    <module>org.omg.kerml.xtext.ui</module>
-    <module>org.omg.sysml.xtext.ui</module>
+    <module>org.omg.kerml.expressions.xtext.ide</module>
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
+    <module>org.omg.kerml.expressions.xtext.ui</module>
+    <module>org.omg.kerml.xtext.ui</module>
+    <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.sysml.interactive</module>
     <module>org.omg.sysml.interactive.tests</module>
     <module>org.omg.sysml.jupyter.kernel</module>

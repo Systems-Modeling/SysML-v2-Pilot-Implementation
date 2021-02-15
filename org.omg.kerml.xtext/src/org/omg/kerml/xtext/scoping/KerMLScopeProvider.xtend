@@ -81,9 +81,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			}
 		    var subsettingFeature = context.subsettingFeature
 		    var owningType = subsettingFeature?.owningType
-		    if (owningType instanceof QueryPathExpression) {
-			    return subsettingFeature.scope_QueryPathExpression(owningType, context, reference)
-		    } else if (owningType instanceof Connector) {
+			if (owningType instanceof Connector) {
 		    	if (owningType.connectorEnd.contains(subsettingFeature)) {
 		    		return owningType.scope_owningNamespace(context, reference)
 		    	}
@@ -92,7 +90,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		} else if (context instanceof Generalization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
-		    context.scope_Namespace(context.membershipOwningNamespace, context, reference)
+			var owningNamespace = context.membershipOwningNamespace
+		    if (owningNamespace instanceof QueryPathExpression)
+			    context.scope_QueryPathExpression(owningNamespace as QueryPathExpression, context, reference)
+		    else 
+	    		context.scope_Namespace(owningNamespace, context, reference)
 		} else if (context instanceof Import)
 			context.scope_Namespace(context.importOwningNamespace, context, reference)
 		else if (context instanceof Namespace) 

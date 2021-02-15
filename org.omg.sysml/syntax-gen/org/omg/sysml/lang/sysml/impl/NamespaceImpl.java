@@ -407,7 +407,9 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	public <M extends Membership, T> Stream<T> getOwnedMembersByMembership(Class<M> kind, Class<T> type) {
 		return getOwnedMembership().stream().
 				filter(kind::isInstance).
-				map(Membership::getMemberElement).map(type::cast);
+				map(Membership::getMemberElement).
+				filter(type::isInstance).
+				map(type::cast);
 	}
 	
 	public Stream<Expression> getElementFilters() {

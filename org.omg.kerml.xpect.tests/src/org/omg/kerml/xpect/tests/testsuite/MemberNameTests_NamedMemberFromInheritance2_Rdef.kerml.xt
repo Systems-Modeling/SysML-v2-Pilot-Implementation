@@ -25,12 +25,16 @@ package test{
 	//* XPECT scope at AA ---
 	   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.b, B.b_alias,
 	   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.b, test.B.b_alias,
+	   	   A.self,  A.a.self,  A.aa.self,  AA.self,  AA.a.self,  AA.aa.self,  B.self,  B.b.self,  B.b_alias.self, 
+	   test.A.self,  test.A.a.self,  test.A.aa.self,  test.AA.self,  test.AA.a.self,  test.AA.aa.self,  test.B.self,  test.B.b.self,  test.B.b_alias.self, 
 		--- */
 	//XPECT linkedName at AA --> test.A
 	feature B redefines AA{
 		//* XPECT scope at aa ---
 			   A, A.a, A.aa, AA, AA.a, AA.aa, B, B.b, B.b_alias, a, aa, 
 			   test.A, test.A.a, test.A.aa, test.AA, test.AA.a, test.AA.aa, test.B, test.B.b, test.B.b_alias,
+			   			   A.self,  A.a.self,  A.aa.self,  AA.self,  AA.a.self,  AA.aa.self,  B.self,  B.b.self,  B.b_alias.self,  a.self,  aa.self,  
+			   test.A.self,  test.A.a.self,  test.A.aa.self,  test.AA.self,  test.AA.a.self,  test.AA.aa.self,  test.B.self,  test.B.b.self,  test.B.b_alias.self,self 
 		--- */
 		//XPECT linkedName at aa --> test.A.a
 		feature b redefines aa;

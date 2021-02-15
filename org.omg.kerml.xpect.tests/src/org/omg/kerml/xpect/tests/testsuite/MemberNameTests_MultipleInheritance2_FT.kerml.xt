@@ -23,6 +23,8 @@ package test{
 	//* XPECT scope at A ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
+		 		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self, 
 	--- */
 	feature B : A{
 	//scope test a here get Caused by: java.lang.RuntimeException: The EReference 'Element.ownedRelationship' found at ...	--- */
@@ -32,6 +34,8 @@ package test{
 	//* XPECT scope at B ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
+		 		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self, 
 	--- */
 	feature C : B{
 		feature c : a;
@@ -39,6 +43,8 @@ package test{
 	//* XPECT scope at C::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, 
+		 		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self, 
 	--- */
 	feature D : C::a;
 }

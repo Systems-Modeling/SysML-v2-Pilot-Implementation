@@ -38,6 +38,15 @@ package test{
 		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.b, test.inner.B.b.a1,
 		    test.inner1, test.inner1.B, test.inner1.B.b,
 		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+			a1.self,  
+		    A.self,  A.a1.self,  B.self,  B.b.self,  
+			inner.A.self,  inner.A.a1.self,  test.inner.A.self,  test.inner.A.a1.self, 
+			inner.self,  inner.B.self,  inner.B.b.self,  inner.B.b.a1.self, 
+			inner1.A.self,  inner1.A.a1.self,  test.inner1.A.self,  test.inner1.A.a1.self, 
+			inner1.self,  inner1.B.self,  inner1.B.b.self, 
+		    test.A.self,  test.A.a2.self,  test.inner.self,  test.inner.B.self,  test.inner.B.b.self,  test.inner.B.b.a1.self, 
+		    test.inner1.self,  test.inner1.B.self,  test.inner1.B.b.self, 
+		    OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, self
 		--- */
 			feature b redefines a1{}
 		}

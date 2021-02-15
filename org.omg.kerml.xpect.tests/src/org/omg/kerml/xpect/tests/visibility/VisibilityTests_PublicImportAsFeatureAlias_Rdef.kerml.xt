@@ -31,6 +31,13 @@ package Classes {
 		   Try, Try.feature4, Try.featurepublic, 
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
 		 VisibilityPackage.c_Public_alias,
+		 aliass.self, feature4.self, featurepublic.self,
+		   featurepublic.c_public.self, Try.featurepublic.c_public.self, Classes.Try.featurepublic.c_public.self,
+		   Aliass.self, Aliass.c_public.self, 
+		   Classes.Aliass.self, Classes.Aliass.c_public.self, Classes.Try.self, Classes.Try.feature4.self, Classes.Try.featurepublic.self, Classes.aliass.self, 
+		   Try.self, Try.feature4.self, Try.featurepublic.self, 
+	  	 VisibilityPackage.c_clazz.self, VisibilityPackage.c_clazz.c_Public.self, VisibilityPackage.c_Public.self, VisibilityPackage.c_Public.c_public.self, VisibilityPackage.c_Public_alias.alias_public.self, VisibilityPackage.c_Public_alias.c_public.self, 
+		 VisibilityPackage.c_Public_alias.self,self
 	--- */
 		//XPECT linkedName at aliass --> VisibilityPackage.c_Public.c_public
 		feature feature4 subsets aliass;
@@ -43,6 +50,13 @@ package Classes {
 		   Try, Try.feature4, Try.featurepublic, 
 	  	 VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public, VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias.alias_public, VisibilityPackage.c_Public_alias.c_public, 
 		 VisibilityPackage.c_Public_alias,
+		   aliass.self, feature4.self, featurepublic.self,
+		   featurepublic.c_public.self, Try.featurepublic.c_public.self, Classes.Try.featurepublic.c_public.self,
+		   Aliass.self, Aliass.c_public.self, 
+		   Classes.Aliass.self, Classes.Aliass.c_public.self, Classes.Try.self, Classes.Try.feature4.self, Classes.Try.featurepublic.self, Classes.aliass.self, 
+		   Try.self, Try.feature4.self, Try.featurepublic.self, 
+	  	 VisibilityPackage.c_clazz.self, VisibilityPackage.c_clazz.c_Public.self, VisibilityPackage.c_Public.self, VisibilityPackage.c_Public.c_public.self, VisibilityPackage.c_Public_alias.alias_public.self, VisibilityPackage.c_Public_alias.c_public.self, 
+		 VisibilityPackage.c_Public_alias.self, self
 	--- */
 		feature featurepublic subsets Aliass;
 	}

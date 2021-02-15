@@ -31,7 +31,16 @@ package test{
  		   test_alias, test_alias.a,
  		   test.test_alias, test.test_alias.a,  
  		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.A.a_alias,
- 		   PackageAlias1.AA, PackageAlias1.AA.aa,  PackageAlias1.AA.aa_alias
+ 		   PackageAlias1.AA, PackageAlias1.AA.aa,  PackageAlias1.AA.aa_alias,
+		   	   	   PackageAlias1.A_alias.self,  PackageAlias1.A_alias.a.self,  PackageAlias1.A_alias.a_alias.self, 
+ 		   PackageAlias1.AA_alias.self,  PackageAlias1.AA_alias.aa.self,   PackageAlias1.AA_alias.aa_alias.self, 
+	   	   AA.aa_alias.self,  AA_alias.aa_alias.self, A_alias.a_alias.self,  test_alias.a_alias.self,  test.AA.aa_alias.self,  test.AA_alias.aa_alias.self,  test.A_alias.a_alias.self,  test.test_alias.a_alias.self, 
+ 		   A.self,  AA.self,  AA.aa.self,  AA_alias.self,  AA_alias.aa.self,  A_alias.self,  A_alias.a.self,  test_a.self, 
+ 		   test.A.self,  test.AA.self, 	test.AA.aa.self,  test.AA_alias.self,  test.AA_alias.aa.self,  test.A_alias.self,  test.A_alias.a.self,  test.test_a.self, 
+ 		   test_alias.self,  test_alias.a.self, 
+ 		   test.test_alias.self,  test.test_alias.a.self,   
+ 		   PackageAlias1.A.self,  PackageAlias1.A.a.self,  PackageAlias1.A.a_alias.self, 
+ 		   PackageAlias1.AA.self,  PackageAlias1.AA.aa.self,   PackageAlias1.AA.aa_alias.self
  		   --- */
 	feature test_a : A{} //rename test_A to test_a because xpect linking and scoping throw RuntimeError
 	
@@ -45,6 +54,14 @@ package test{
  		   test_alias, test_alias.a,
  		   test.test_alias, test.test_alias.a,  
  		   PackageAlias1.A, PackageAlias1.A.a, PackageAlias1.AA, PackageAlias1.AA.aa, PackageAlias1.A.a_alias, PackageAlias1.AA.aa_alias, 
+		          PackageAlias1.A_alias.self,  PackageAlias1.A_alias.a.self,  PackageAlias1.A_alias.a_alias.self, 
+ 		   PackageAlias1.AA_alias.self,  PackageAlias1.AA_alias.aa.self,   PackageAlias1.AA_alias.aa_alias.self, 
+		   AA.aa_alias.self,  AA_alias.aa_alias.self, A_alias.a_alias.self,  test_alias.a_alias.self,  test.AA.aa_alias.self,  test.AA_alias.aa_alias.self,  test.A_alias.a_alias.self,  test.test_alias.a_alias.self, 
+		   A.self,  AA.self,  AA.aa.self,  AA_alias.self,  AA_alias.aa.self,  A_alias.self,  A_alias.a.self,  test_a.self, 
+ 		   test.A.self,  test.AA.self, 	test.AA.aa.self,  test.AA_alias.self,  test.AA_alias.aa.self,  test.A_alias.self,  test.A_alias.a.self,  test.test_a.self, 
+ 		   test_alias.self,  test_alias.a.self, 
+ 		   test.test_alias.self,  test.test_alias.a.self,   
+ 		   PackageAlias1.A.self,  PackageAlias1.A.a.self,  PackageAlias1.AA.self,  PackageAlias1.AA.aa.self,  PackageAlias1.A.a_alias.self,  PackageAlias1.AA.aa_alias.self,  
  		   --- */
 	feature test_alias : A_alias{}
 }

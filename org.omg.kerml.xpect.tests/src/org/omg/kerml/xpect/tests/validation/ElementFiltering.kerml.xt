@@ -23,7 +23,6 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 END_SETUP 
 */
 
-// XPECT noErrors ---> ""
 package ElementFilterTest {
 	datatype PartInfo {
 		feature isMandatory: ScalarValues::Boolean[0..1];
@@ -59,8 +58,7 @@ package ElementFilterTest {
 		classifier d :> driverAirBag;
 		classifier g :> bumper;  
 		classifier j :> antilockBrakes;
-		
-		//not
+
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
 		classifier a :> alarm; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
@@ -80,7 +78,6 @@ package ElementFilterTest {
 		classifier g :> bumper;  
 		classifier j :> antilockBrakes;
 		
-		//not
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
 		classifier a :> alarm; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
@@ -168,12 +165,14 @@ package ElementFilterTest {
 		import vehicle1_c1::**;
 		filter @Safety || @Security;
 		
-		classifier a :> alarm;
+		//safety
 		classifier b :> seatBelt; 
 		classifier d :> driverAirBag;  
 		classifier g :> bumper; 
+		classifier j :> antilockBrakes;
+		//security
+		classifier a :> alarm;
 		classifier h :> keylessEntry; 
-		classifier j :> antilockBrakes; 
 		
 		//not
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
@@ -186,12 +185,14 @@ package ElementFilterTest {
 	package 'Safety & Security Features_2' {
 		import vehicle1_c1::**[@Safety || @Security];
 		
-		classifier a :> alarm;
+		//safety
 		classifier b :> seatBelt; 
 		classifier d :> driverAirBag;  
 		classifier g :> bumper; 
+		classifier j :> antilockBrakes;
+		//security
+		classifier a :> alarm;
 		classifier h :> keylessEntry; 
-		classifier j :> antilockBrakes; 
 		
 		//not
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
@@ -201,6 +202,31 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
 		classifier i :> wheel;  
 	}
+	
+	package 'Safety & Security Features_3' {
+		import vehicle1_c1::**[@Safety && @Security];
+		
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
+		classifier a :> alarm; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'seatBelt'." at "seatBelt"
+		classifier b :> seatBelt;
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
+		classifier c :> frontSeat; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'driverAirBag'." at "driverAirBag"
+		classifier d :> driverAirBag; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'body'." at "body"
+		classifier f :> body; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'bumper'." at "bumper"
+		classifier g :> bumper; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
+		classifier h :> keylessEntry;  
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
+		classifier i :> wheel; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'antilockBrakes'." at "antilockBrakes"
+		classifier j :> antilockBrakes; 
+	}
+	
+	
 
 	package 'Mandatory Features' {
 		import vehicle1_c1::**; 
@@ -218,77 +244,66 @@ package ElementFilterTest {
 	
 	package 'Mandatory Features_true_1' {
 		import vehicle1_c1::**[PartInfo::isMandatory];
+		classifier b :> seatBelt; 
 		
-		//true
-		classifier b :> seatBelt; //true - explicitly defined
-		
-	    //false or not defined
-	//bug errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
-		classifier a :> alarm; //false - defined in datatype  //bug?
-	//bug errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
-		classifier c :> frontSeat; //false - not defined //bug?
-	// bug errors --> "Couldn't resolve reference to Classifier 'driverAirBag'." at "driverAirBag"
-		classifier d :> driverAirBag; //false - not defined //bug?
-	//bug errors --> "Couldn't resolve reference to Classifier 'body'." at "body"
-		classifier f :> body; //false - not defined //bug?
-	//bug errors --> "Couldn't resolve reference to Classifier 'bumper'." at "bumper"
-		classifier g :> bumper; //false - nod defined //bug?
-	//bug errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
-		classifier h :> keylessEntry; //fase - defined in datatype 
-	//bug errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
-		classifier i :> wheel; //false - not defined //bug?
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
+		classifier a :> alarm; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
+		classifier c :> frontSeat; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'driverAirBag'." at "driverAirBag"
+		classifier d :> driverAirBag; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'body'." at "body"
+		classifier f :> body; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'bumper'." at "bumper"
+		classifier g :> bumper; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
+		classifier h :> keylessEntry;  
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
+		classifier i :> wheel; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'antilockBrakes'." at "antilockBrakes"
-		classifier j :> antilockBrakes; //false - explicitly defined
+		classifier j :> antilockBrakes; 
 	}
 	package 'Mandatory Features_true_2' {
 		import vehicle1_c1::**[PartInfo::isMandatory == true]; 
-	//true
-		classifier b :> seatBelt; //true - explicitly defined
-		
-	//false or not defined
+		classifier b :> seatBelt; 
+
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
-		classifier a :> alarm; //false - defined in datatype  //bug?
+		classifier a :> alarm; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
-		classifier c :> frontSeat; //false - not defined //bug?
+		classifier c :> frontSeat; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'driverAirBag'." at "driverAirBag"
-		classifier d :> driverAirBag; //false - not defined //bug?
+		classifier d :> driverAirBag; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'body'." at "body"
-		classifier f :> body; //false - not defined //bug?
+		classifier f :> body; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'bumper'." at "bumper"
-		classifier g :> bumper; //false - nod defined //bug?
+		classifier g :> bumper; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
-		classifier h :> keylessEntry; //fase - defined in datatype 
+		classifier h :> keylessEntry;  
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
-		classifier i :> wheel; //false - not defined //bug?
+		classifier i :> wheel; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'antilockBrakes'." at "antilockBrakes"
-		classifier j :> antilockBrakes; //false - explicitly defined
+		classifier j :> antilockBrakes; 
 	}
 	package 'Mandatory Features_false' {
 		import vehicle1_c1::**[PartInfo::isMandatory == false]; 
-	//true
-		// XPECT errors --> "Couldn't resolve reference to Classifier 'seatBelt'." at "seatBelt"
-		classifier b :> seatBelt; //true - explicitly defined
+		classifier j :> antilockBrakes; 
 		
-	//false
-	//bug
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
-		classifier a :> alarm; //false - defined in datatype  
-	//bug
-		// XPECT errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
-		classifier h :> keylessEntry; //fase - defined in datatype
-		classifier j :> antilockBrakes; //false - explicitly defined
-		
-	//not defined
-		//XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
-		classifier c :> frontSeat; //false - not defined 
+		classifier a :> alarm; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'seatBelt'." at "seatBelt"
+		classifier b :> seatBelt;
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'frontSeat'." at "frontSeat"
+		classifier c :> frontSeat; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'driverAirBag'." at "driverAirBag"
-		classifier d :> driverAirBag; //false - not defined 
+		classifier d :> driverAirBag; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'body'." at "body"
-		classifier f :> body; //false - not defined 
+		classifier f :> body; 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'bumper'." at "bumper"
-		classifier g :> bumper; //false - nod defined 
+		classifier g :> bumper; 
+		// XPECT errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
+		classifier h :> keylessEntry;  
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
-		classifier i :> wheel; //false - not defined 
+		classifier i :> wheel; 
 		
 	}
 	

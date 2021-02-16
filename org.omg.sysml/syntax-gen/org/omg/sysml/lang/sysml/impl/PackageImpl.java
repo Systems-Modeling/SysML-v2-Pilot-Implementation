@@ -100,12 +100,12 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP = "let metadataAnnotations: Sequence(Element) = "+
+	protected static final String INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP = "let metadataAnnotations: Sequence(AnnotatingElement) = "+
 "    element.ownedAnnotation.annotatingElement->"+
-"        select(oclIsKindOf(AnnotatingFeature) in"+
-"    self.filterCondition->exists(cond | "+
-"        metadataAnnotations->forAll(elem | "+
-"            self.checkCondition(elem, cond))";
+"        select(oclIsKindOf(AnnotatingFeature)) in"+
+"    self.filterCondition->forAll(cond | "+
+"        metadataAnnotations->exists(elem | "+
+"            self.checkCondition(elem, cond)))";
 	/**
 	 * The cached OCL query for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' query operation.
 	 * <!-- begin-user-doc -->
@@ -140,9 +140,10 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP = "let result: Element = condition.evaluate(element) in"+
-"    result.oclIsKindOf(LiteralBoolean) and "+
-"    result.oclAsType(LiteralBoolean).value";
+	protected static final String CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP = "let results: Sequence(Element) = condition.evaluate(element) in"+
+"    result->size() = 1 and"+
+"    results->at(1).oclIsKindOf(LiteralBoolean) and "+
+"    results->at(1).oclAsType(LiteralBoolean).value";
 	/**
 	 * The cached OCL query for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' query operation.
 	 * <!-- begin-user-doc -->

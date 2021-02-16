@@ -29,13 +29,52 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * An AcceptActionUsage is a TransferActionUsage the specifies the acceptance of an incomingTransfer from its context. 
+ * <p>An AcceptActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition AcceptAction from the Systems model library. It specifies the acceptance of an <code>incomingTransfer</code> from the Occurrence given by the result of its <code>receiverArgument</code> Expression. The payload of the accepted Transfer is output on its <code>items</code> parameter.</p>
  * <!-- end-model-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getReceiverArgument <em>Receiver Argument</em>}</li>
+ * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage()
  * @model
  * @generated
  */
-public interface AcceptActionUsage extends TransferActionUsage {
+public interface AcceptActionUsage extends ActionUsage {
+
+	/**
+	 * Returns the value of the '<em><b>Receiver Argument</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An Expression whose result is bound to the <code>receiver</code> input parameter of this AcceptActionUsage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Receiver Argument</em>' reference.
+	 * @see #setReceiverArgument(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAcceptActionUsage_ReceiverArgument()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='accepActionUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Expression getReceiverArgument();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.AcceptActionUsage#getReceiverArgument <em>Receiver Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Receiver Argument</em>' reference.
+	 * @see #getReceiverArgument()
+	 * @generated
+	 */
+	void setReceiverArgument(Expression value);
 } // AcceptActionUsage

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
@@ -81,7 +82,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	@Override
 	public EList<Expression> getFilterCondition() {
 		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.PACKAGE__FILTER_CONDITION);
-		getElementFilters().forEachOrdered(filterConditions::add);
+		getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(filterConditions::add);
 		return filterConditions;
 	}
 
@@ -122,13 +123,17 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated NOT
 	 */
 	public boolean includeAsMember(Element element) {
+		return checkConditionsOn(element, getFilterCondition());
+	}
+	
+	public static boolean checkConditionsOn(Element element, List<Expression> conditions) {
 		if (element == null) {
 			return false;
 		} else {
 			List<AnnotatingFeature> annotatingFeatures = ((ElementImpl)element).getAllAnnotatingFeatures();
-			return getFilterCondition().stream().allMatch(cond->
-				annotatingFeatures.isEmpty()? checkCondition(null, cond):
-				annotatingFeatures.stream().anyMatch(elem->checkCondition(elem, cond)));
+			return conditions.stream().allMatch(cond->
+				annotatingFeatures.isEmpty()? checkConditionOn(null, cond):
+				annotatingFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
 		}
 	}
 	
@@ -160,6 +165,10 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated NOT
 	 */
 	public boolean checkCondition(Element element, Expression condition) {
+		return checkConditionOn(element, condition);
+	}
+	
+	public static boolean checkConditionOn(Element element, Expression condition) {
 		if (condition == null) {
 			return true;
 		} else {

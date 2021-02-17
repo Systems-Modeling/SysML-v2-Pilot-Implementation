@@ -969,6 +969,14 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		}
 	}
 	
+	public <M extends Membership, T> Stream<T> getInheritedMembersByMembership(Class<M> kind, Class<T> type) {
+		return getInheritedMembership().stream().
+				filter(kind::isInstance).
+				map(Membership::getOwnedMemberElement).
+				filter(type::isInstance).
+				map(type::cast);
+	}
+	
 	public <T extends Membership> Stream<Feature> getFeaturesByMembership(Class<T> kind) {
 		return getFeatureMembership().stream().
 				filter(kind::isInstance).
@@ -982,7 +990,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	public <T extends Membership> Stream<Feature> getOwnedFeaturesByMembership(Class<T> kind) {
 		return getOwnedFeatureMembership().stream().
 				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature).
+				map(FeatureMembership::getOwnedMemberFeature).
 				filter(f->f != null);
 	}
 	

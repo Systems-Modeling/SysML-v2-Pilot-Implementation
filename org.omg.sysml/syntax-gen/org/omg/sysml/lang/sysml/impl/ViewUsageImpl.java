@@ -200,7 +200,13 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	@Override
 	public EList<Expression> getViewCondition() {
 		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
-		getMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		return viewConditions;
+	}
+	
+	public EList<Expression> getAllViewConditions() {
+		EList<Expression> viewConditions = getViewCondition();
+		getInheritedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
 	}
 
@@ -216,7 +222,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			flatMap(imp->imp.importedMembership().stream()).
 			map(Membership::getMemberElement).
 			forEachOrdered(viewedElements::add);
-		EList<Expression> viewConditions = getViewCondition();
+		EList<Expression> viewConditions = getAllViewConditions();
 		viewedElements.removeIf(element->!PackageImpl.checkConditionsOn(element, viewConditions));
 		return viewedElements;
 	}

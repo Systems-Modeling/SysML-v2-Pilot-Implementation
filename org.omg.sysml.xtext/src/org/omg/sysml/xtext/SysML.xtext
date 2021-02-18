@@ -671,15 +671,15 @@ fragment UsageBody returns SysML::Usage :
 ;
 
 fragment ValuePart returns SysML::Feature :
-	  ownedMembership_comp += FeatureValue
+	  '=' ownedMembership_comp += FeatureValue
 ;
 
 fragment ValueOrFlowPart returns SysML::Feature :
-	ownedMembership_comp += ( FeatureValue | SourceItemFlowMember )
+	ValuePart | ownedMembership_comp += SourceItemFlowMember
 ;
 
 FeatureValue returns SysML::FeatureValue :
-	'=' value_comp = OwnedExpression
+	value_comp = OwnedExpression
 ;
 
 SourceItemFlowMember returns SysML::Membership :
@@ -1403,8 +1403,28 @@ AcceptNode returns SysML::AcceptActionUsage :
 ;
 
 fragment AcceptNodeDeclaration returns SysML::ActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember
-	( 'action' UsageDeclaration )? 'accept'ownedFeatureMembership_comp += ItemFeatureMember
+	( 'action' UsageDeclaration )? 'accept' AcceptParameterPart
+;
+
+fragment AcceptParameterPart returns SysML::ActionUsage :
+	ownedFeatureMembership_comp += ItemParameterMember
+	( 'for' ownedFeatureMembership_comp += NodeParameterMember 
+	| ownedFeatureMembership_comp += EmptyParameterMember
+	)
+;
+
+ItemParameterMember returns SysML::ParameterMembership :
+	ownedMemberParameter_comp = ItemParameter
+;
+
+ItemParameter returns SysML::ReferenceUsage :
+	  Identification? ItemParameterSpecializationPart
+    | ownedRelationship_comp += OwnedFeatureTyping ( ownedMembership_comp += MultiplicityMember )?
+;
+
+fragment ItemParameterSpecializationPart returns SysML::Feature :
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
+	| MultiplicityPart FeatureSpecialization+
 ;
 
 SendNode returns SysML::SendActionUsage :
@@ -1412,9 +1432,16 @@ SendNode returns SysML::SendActionUsage :
 ;
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
-	( 'action' UsageDeclaration )? 'send' ownedFeatureMembership_comp += OwnedExpressionMember 
-	'to' ownedFeatureMembership_comp += OwnedExpressionMember
+	( 'action' UsageDeclaration )? 'send' ownedFeatureMembership_comp += NodeParameterMember 
+	'to' ownedFeatureMembership_comp += NodeParameterMember
+;
+
+NodeParameterMember returns SysML::ParameterMembership :
+	ownedMemberParameter_comp = NodeParameter
+;
+
+NodeParameter returns SysML::Usage :
+	{SysML::ReferenceUsage} ownedMembership_comp += FeatureValue
 ;
 
 ControlNode returns SysML::ControlNode :
@@ -1642,8 +1669,7 @@ enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
 ;
 
 TriggerAction returns SysML::AcceptActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember
-	ownedFeatureMembership_comp += ItemFeatureMember
+	AcceptParameterPart
 ;
 
 GuardExpressionMember returns SysML::TransitionFeatureMembership :

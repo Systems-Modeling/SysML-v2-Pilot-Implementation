@@ -47,6 +47,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
+	public static final String ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::acceptActions";
+	public static final String ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::acceptSubactions";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -93,6 +96,13 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 		return null;
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT:
+					ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

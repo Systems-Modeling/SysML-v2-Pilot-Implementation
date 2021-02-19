@@ -37,12 +37,12 @@ import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleStereotypeSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
 
-public class VComposite extends VStructure {
+public class VComposite extends VMixed {
     private static final SysML2PlantUMLStyle style
     = new SysML2PlantUMLStyle
     ("VComposite",
       null,
-     "skinparam ranksep 8\n"
+     "skinparam ranksep 10\n"
      + "skinparam rectangle {\n backgroundColor<<block>> LightGreen\n}\n",
      new StyleSwitch(null, new StyleStereotypeSwitch() {
          @Override

@@ -99,6 +99,10 @@ public class VMixed extends VTree {
         super(vt, parent);
     }
 
+    public VMixed(Visitor vt) {
+        super(vt);
+    }
+
     public VMixed() {
         super();
     }

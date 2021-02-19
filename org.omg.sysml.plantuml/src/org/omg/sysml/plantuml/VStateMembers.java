@@ -26,34 +26,24 @@ package org.omg.sysml.plantuml;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class VStateMembers extends VDefault {
+public class VStateMembers extends VBehavior {
     private List<String> descriptions = null;
-    private List<PRelation> entryExitTransitions = null;
-
-    private void addEntryExitTransitions(PRelation pr) {
-        if (entryExitTransitions == null) {
-            entryExitTransitions = new ArrayList<PRelation>();
-        }
-        entryExitTransitions.add(pr);
-    }
 
     private String convertToDescription(StateSubactionMembership sam) {
         ActionUsage au = sam.getAction();
@@ -65,7 +55,13 @@ public class VStateMembers extends VDefault {
         sb.append(sam.getKind().getName());
         sb.append("**/ ");
 
-        String name = au.getName();
+        String name;
+        if ((au instanceof SendActionUsage)
+            || (au instanceof AcceptActionUsage)) {
+            name = getText(au);
+        } else {
+            name = au.getName();
+        }
         if ((name == null) || (name.isEmpty())) {
             for (Subsetting ss: au.getOwnedSubsetting()) {
                 Feature f = ss.getSubsettedFeature();
@@ -122,20 +118,20 @@ public class VStateMembers extends VDefault {
 
     public String startStateUsage(Type typ) {
         traverse(typ);
-        String name = getName(typ);
-        if ((name != null) && (descriptions != null)) {
-            int size = descriptions.size();
-            outputPRelations(entryExitTransitions);
-            for (int i = 0; i < size; i++) {
-                append("desc ");
-                addNameWithId(typ, name, false);
-                append(" : ");
-                append(descriptions.get(i));
-                append('\n');
+        if (descriptions != null) {
+            String name = getName(typ);
+            if (name != null) {
+                int size = descriptions.size();
+                for (int i = 0; i < size; i++) {
+                    append("desc ");
+                    addNameWithId(typ, name, false);
+                    append(" : ");
+                    append(descriptions.get(i));
+                    append('\n');
+                }
             }
-        } else {
-            outputPRelations(entryExitTransitions);
         }
+        outputEntryExitTransitions();
         closeBlock();
         return "";
     }
@@ -224,16 +220,6 @@ public class VStateMembers extends VDefault {
         return ls.toString();
     }
 
-    private boolean isDoneAction(Feature f) {
-        if (!(f instanceof ActionUsage)) return false;
-        if (!("done".equals(f.getName()))) return false;
-        ActionUsage au = (ActionUsage) f;
-        for (Behavior b: au.getActionDefinition()) {
-            if ("Action".equals(b.getName())) return true;
-        }
-        return false;
-    }
-
     @Override
     public String caseTransitionUsage(TransitionUsage tu) {
         String description = convertToDescription(tu);
@@ -245,38 +231,6 @@ public class VStateMembers extends VDefault {
             addEntryExitTransitions(new PRelation(src, tgt, tu, description));
         } else {
             addPRelation(src, tgt, tu, description);
-        }
-        return "";
-    }
-
-    @Override
-    public String caseSuccession(Succession su) {
-        Element src = null;
-        Element dest = null;
-        for (FeatureMembership fm2: su.getOwnedFeatureMembership()) {
-            Feature f2 = fm2.getMemberFeature();
-            if (f2 instanceof SourceEnd) {
-                if (src == null) {
-                    src = getEnd(f2);
-                }
-            } else {
-                if (dest == null) {
-                    dest = getEnd(f2);
-                }
-            }
-        }
-
-        if (!(src instanceof StateUsage)) {
-            src = null;
-        }
-        if (!(dest instanceof StateUsage)) {
-            dest = null;
-        }
-        if ((src == null) && (dest == null)) return "";
-        if ((src == null) || (dest == null)) {
-            addEntryExitTransitions(new PRelation(src, dest, su, null));
-        } else {
-            addPRelation(src, dest, su);
         }
         return "";
     }

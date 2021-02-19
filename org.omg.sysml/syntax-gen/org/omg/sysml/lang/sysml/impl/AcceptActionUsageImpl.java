@@ -133,7 +133,8 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 * (or this AcceptActionUsage if it is not contained in any other ActionUsage), unless that
 	 * ActionUsage is itself owned by an ActionDefinition.
 	 */
-	// TODO: Determine a default receiver for an AcceptActionUsage contained in an ActionDefinition.
+	// TODO: Determine the proper default receiver for an AcceptActionUsage contained in an 
+	// ActionDefinition or performed by a PartDefinition or PartUsage.
 	protected Feature getDefaultReceiver() {
 		Feature receiver = this;
 		Element owner = receiver.getOwner();
@@ -141,13 +142,15 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 			receiver = (Feature)owner;
 			owner = receiver.getOwner();
 		}
-		return owner instanceof ActionDefinition? null: receiver;
+		return owner instanceof ActionDefinition? this: receiver;
 	}
 	
 	public void addDefaultReceiverBinding() {
-		Feature receiverParameter = getReceiverParameter();
-		if (receiverParameter != null) {
-			addImplicitBindingConnector(getDefaultReceiver(), receiverParameter);
+		if (getReceiverArgument() == null) {
+			Feature receiverParameter = getReceiverParameter();
+			if (receiverParameter != null) {
+				addImplicitBindingConnector(getDefaultReceiver(), receiverParameter);
+			}
 		}
 	}
 	

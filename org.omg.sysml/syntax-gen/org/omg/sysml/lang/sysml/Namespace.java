@@ -202,7 +202,7 @@ public interface Namespace extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Memberships in this Package that result from Import Relationships between the Package and other Packages. This excludes any Membership from one imported Package that would be indistinguishable from a Membership imported from another Package or from an <code>ownedMembership</code> of this Package.</p>
+	 * <p>The Memberships in this Namespace that result from Import Relationships between the Namespace and other Namespaces. This excludes any Membership from one imported Namespace that would be indistinguishable from a Membership imported from another Namespace or from an <code>ownedMembership</code> of this Namespace.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Imported Membership</em>' reference list.

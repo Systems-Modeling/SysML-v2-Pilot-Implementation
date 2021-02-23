@@ -22,19 +22,30 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Accept Action Usage</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl#getReceiverArgument <em>Receiver Argument</em>}</li>
+ * </ul>
  *
  * @generated
  */
-public class AcceptActionUsageImpl extends TransferActionUsageImpl implements AcceptActionUsage {
+public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -55,14 +66,100 @@ public class AcceptActionUsageImpl extends TransferActionUsageImpl implements Ac
 		return SysMLPackage.Literals.ACCEPT_ACTION_USAGE;
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
-	protected Feature getContextFeature() {
+	public Expression getReceiverArgument() {
+		Expression receiverArgument = basicGetReceiverArgument();
+		return receiverArgument != null && receiverArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)receiverArgument) : receiverArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Expression basicGetReceiverArgument() {
+		List<Feature> parameters = getOwnedParameters();
+		if (parameters.size() > 1) {
+			FeatureValue valuation = ((FeatureImpl)parameters.get(1)).getValuation();
+			if (valuation != null) {
+				return valuation.getValue();
+			}
+		}
 		return null;
 	}
-	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	protected void computeContextConnector() {
-		// TODO: Determine correct context feature to use.
+	public void setReceiverArgument(Expression newReceiverArgument) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
+				if (resolve) return getReceiverArgument();
+				return basicGetReceiverArgument();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
+				setReceiverArgument((Expression)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
+				setReceiverArgument((Expression)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SysMLPackage.ACCEPT_ACTION_USAGE__RECEIVER_ARGUMENT:
+				return basicGetReceiverArgument() != null;
+		}
+		return super.eIsSet(featureID);
 	}
 
 } //AcceptActionUsageImpl

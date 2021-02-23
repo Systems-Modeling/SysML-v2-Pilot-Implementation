@@ -38,6 +38,12 @@ import org.eclipse.emf.ecore.EObject;
  * ownedElement = ownedRelationship.ownedRelatedElement
  * owner = owningRelationship.owningRelatedElement
  * documentingComment = documentation.documentingComment
+ * qualifiedName =
+ *     if owningNamespace = null then null
+ *     else if owningNamespace.owner = null then escapedName()
+ *     else if owningNamespace.qualifiedName = null then null
+ *     else owningNamespace.qualifiedName + "::" + escapedName()
+ *     endif endif endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -56,6 +62,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp <em>Owned Annotation comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getDocumentationComment <em>Documentation Comment</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getAliasId <em>Alias Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getHumanId <em>Human Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}</li>
@@ -295,6 +302,31 @@ public interface Element extends EObject {
 	EList<TextualRepresentation> getOwnedTextualRepresentation();
 
 	/**
+	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The name of this Element, if it has one, qualified by the name of its <code>owningNamespace</code>, if it has one. The <code>qualifiedName<code> is represented in a form that is valid according to the KerML textual concrete syntax.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Qualified Name</em>' attribute.
+	 * @see #setQualifiedName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_QualifiedName()
+	 * @model dataType="org.omg.sysml.lang.types.String" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	String getQualifiedName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getQualifiedName <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
+	 * @see #getQualifiedName()
+	 * @generated
+	 */
+	void setQualifiedName(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Alias Id</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
@@ -481,5 +513,16 @@ public interface Element extends EObject {
 	 * @generated
 	 */
 	EList<Annotation> getOwnedAnnotation();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Return either the <code>name</code> of this Element, if this has the form of a basic name (or is null), or, otherwise, its representation as a restricted name that according to the lexical structure of the KerML textual notation (i.e., with special characters escaped and surrounded by single quote characters).<p>
+	 * <!-- end-model-doc -->
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
+	 * @generated
+	 */
+	String escapedName();
 	
 } // Element

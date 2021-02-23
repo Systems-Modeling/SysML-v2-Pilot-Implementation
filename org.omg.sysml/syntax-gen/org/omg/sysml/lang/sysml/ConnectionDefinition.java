@@ -33,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-model-doc -->
  * <p>A ConnectionDefinition is a PartDefinition that is also an AssociationStructure, with two or more end features. The <code>associationEnds</code> of a ConnectionDefinition must be Usages.</p>
  * 
- * <p>A ConnectionDefinition must subset, directly or indirectly, the base ConnectionDefinition Connection from the Systems model library.</p>
+ * <p>A ConnectionDefinition must subclass, directly or indirectly, the base ConnectionDefinition Connection from the Systems model library.</p>
  * <!-- end-model-doc -->
  *
  * <p>

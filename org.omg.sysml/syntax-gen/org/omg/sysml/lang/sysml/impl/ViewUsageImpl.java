@@ -23,6 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -32,9 +33,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expose;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Import;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
@@ -146,8 +149,14 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	@Override
 	public EList<Namespace> getExposedNamespace() {
 		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE);
-		getOwnedImport().stream().filter(Expose.class::isInstance).map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
+		getExposeImports().map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
 		return exposedNamespace;
+	}
+	
+	public Stream<Expose> getExposeImports() {
+		return getOwnedImport().stream().
+				filter(Expose.class::isInstance).
+				map(Expose.class::cast);
 	}
 	
 
@@ -191,7 +200,13 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	@Override
 	public EList<Expression> getViewCondition() {
 		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
-		getElementFilters().forEachOrdered(viewConditions::add);
+		getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		return viewConditions;
+	}
+	
+	public EList<Expression> getAllViewConditions() {
+		EList<Expression> viewConditions = getViewCondition();
+		getInheritedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
 	}
 
@@ -202,9 +217,13 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 */
 	@Override
 	public EList<Element> getViewedElement() {
-		// TODO: Apply viewConditions.
 		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
-		getExposedNamespace().stream().flatMap(namespace->namespace.getMember().stream()).forEachOrdered(viewedElements::add);
+		getExposeImports().
+			flatMap(imp->imp.importedMembership().stream()).
+			map(Membership::getMemberElement).
+			forEachOrdered(viewedElements::add);
+		EList<Expression> viewConditions = getAllViewConditions();
+		viewedElements.removeIf(element->!PackageImpl.checkConditionsOn(element, viewConditions));
 		return viewedElements;
 	}
 
@@ -217,7 +236,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	
 	public boolean isSubview() {
 		Type owningType = getOwningType();
-		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
+		return owningType instanceof ViewDefinition || owningType instanceof ViewUsage;
 	}
 	
 	/**

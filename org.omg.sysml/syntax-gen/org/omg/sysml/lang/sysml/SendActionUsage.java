@@ -29,45 +29,86 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A SendActionUsage is an ActionUsage that is a Transfer of items sent to a specific target. The <code>context</code> Feature of a SendUsageAction is the <code>result</code> of the <code>target</code> Expression for the SendUsageAction.</p>
+ * <p>A SendActionUsage is an ActionUsage that is typed, directly or indirectly, by the ActionDefinition SendAction from the Systems model library. It specifies the sending of a payload given by the result of its <code>itemsArgument</code> Expression via a Transfer that becomes and <code>incomingTransfer</code> of the Occurrence given by the result of its <code>receiverArgument</code> Expression.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.SendActionUsage#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.SendActionUsage#getReceiverArgument <em>Receiver Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.SendActionUsage#getItemsArgument <em>Items Argument</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage()
  * @model
  * @generated
  */
-public interface SendActionUsage extends TransferActionUsage {
+public interface SendActionUsage extends ActionUsage {
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Receiver Argument</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * The target Expression of a SendActionUsage specifies the target Occurrence to which the SendActionUsage transfers items. The result Parameter of the Expression is the context of the SendActionUsage.
+	 * <p>An Expression whose result is bound to the <code>receiver</code> input parameter of this SendActionUsage.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(Expression)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_Target()
+	 * @return the value of the '<em>Receiver Argument</em>' reference.
+	 * @see #setReceiverArgument(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_ReceiverArgument()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sendActionUsage'"
+	 *        annotation="subsets"
 	 * @generated
 	 */
-	Expression getTarget();
+	Expression getReceiverArgument();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.SendActionUsage#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.SendActionUsage#getReceiverArgument <em>Receiver Argument</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Receiver Argument</em>' reference.
+	 * @see #getReceiverArgument()
 	 * @generated
 	 */
-	void setTarget(Expression value);
+	void setReceiverArgument(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Items Argument</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember() <em>Owned Member</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>An Expression whose result is bound to the <code>items</code> input parameter of this SendActionUsage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Items Argument</em>' reference.
+	 * @see #setItemsArgument(Expression)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getSendActionUsage_ItemsArgument()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='sendingActionUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	Expression getItemsArgument();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.SendActionUsage#getItemsArgument <em>Items Argument</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Items Argument</em>' reference.
+	 * @see #getItemsArgument()
+	 * @generated
+	 */
+	void setItemsArgument(Expression value);
 } // SendActionUsage

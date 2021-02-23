@@ -29,6 +29,8 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
+ * <p>A Structure is a Class of objects in the modeled universe that are primarily structural in nature. While an Object is not itself behavioral, it may be involved in and acted on by Behaviors, and it may be the performer of some of them.</p>
+ * 
  * allSupertypes()->includes(Kernel Library::Object)
  * <!-- end-model-doc -->
  *

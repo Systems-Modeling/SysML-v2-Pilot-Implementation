@@ -69,6 +69,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRendering <em>Owned Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
@@ -435,6 +436,29 @@ public interface Definition extends Classifier {
 	 * @generated
 	 */
 	EList<EnumerationUsage> getOwnedEnumeration();
+
+	/**
+	 * Returns the value of the '<em><b>Owned Allocation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AllocationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Definition#getOwnedConnection() <em>Owned Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The AllocationUsages that are <code>ownedUsages</code> of this Definition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Allocation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_OwnedAllocation()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<AllocationUsage> getOwnedAllocation();
 
 	/**
 	 * Returns the value of the '<em><b>Variant Membership</b></em>' reference list.

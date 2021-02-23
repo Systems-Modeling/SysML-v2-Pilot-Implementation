@@ -613,10 +613,6 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_FeatureMember_TypeMemberPrefix(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
-					sequence_FeatureReferenceMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getGuardedSuccessionMemberRule()) {
 					sequence_GuardedSuccessionMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -647,10 +643,6 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getTimeSliceFeatureMemberRule()) {
 					sequence_TimeSliceFeatureMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTransitionSourceMemberRule()) {
-					sequence_TransitionSourceMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTrueLiteralMemberRule()) {
@@ -937,6 +929,10 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_ConjugatedPortDefinitionMember(context, (Membership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
+					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getLifeClassMembershipRule()) {
 					sequence_LifeClassMembership(context, (Membership) semanticObject); 
 					return; 
@@ -968,6 +964,10 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else if (rule == grammarAccess.getSourceItemFlowMemberRule()) {
 					sequence_SourceItemFlowMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getTransitionSourceMemberRule()) {
+					sequence_TransitionSourceMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getTransitionSuccessionMemberRule()) {
@@ -7047,7 +7047,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
 	 *             )?
 	 *         )* 
-	 *         ownedFeatureMembership_comp+=TransitionSourceMember 
+	 *         ownedMembership_comp+=TransitionSourceMember 
 	 *         ownedFeatureMembership_comp+=GuardExpressionMember 
 	 *         ownedMembership_comp+=TransitionSuccessionMember
 	 *     )
@@ -7913,7 +7913,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *                 ((isOrdered?='ordered' isNonunique?='nonunique'?) | (isNonunique?='nonunique' isOrdered?='ordered'?))?
 	 *             )?
 	 *         )* 
-	 *         ownedFeatureMembership_comp+=TransitionSourceMember 
+	 *         ownedMembership_comp+=TransitionSourceMember 
 	 *         (ownedImport_comp+=EmptyImport ownedFeatureMembership_comp+=TriggerActionMember)? 
 	 *         ownedFeatureMembership_comp+=GuardExpressionMember? 
 	 *         ownedFeatureMembership_comp+=EffectBehaviorMember? 
@@ -8572,7 +8572,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     BaseExpression returns QueryPathExpression
 	 *
 	 * Constraint:
-	 *     ownedFeatureMembership_comp+=FeatureReferenceMember
+	 *     ownedMembership_comp+=FeatureReferenceMember
 	 */
 	protected void sequence_QueryHeadExpression(ISerializationContext context, QueryPathExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -8584,7 +8584,7 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     QueryNameExpression returns QueryPathExpression
 	 *
 	 * Constraint:
-	 *     ownedFeatureMembership_comp+=FeatureReferenceMember
+	 *     ownedMembership_comp+=FeatureReferenceMember
 	 */
 	protected void sequence_QueryNameExpression(ISerializationContext context, QueryPathExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -8893,18 +8893,18 @@ public class SysMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     TransitionSourceMember returns FeatureMembership
+	 *     TransitionSourceMember returns Membership
 	 *
 	 * Constraint:
-	 *     memberFeature=[Feature|QualifiedName]
+	 *     memberElement=[Feature|QualifiedName]
 	 */
-	protected void sequence_TransitionSourceMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_TransitionSourceMember(ISerializationContext context, Membership semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTransitionSourceMemberAccess().getMemberFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE, false));
+		feeder.accept(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
 		feeder.finish();
 	}
 	

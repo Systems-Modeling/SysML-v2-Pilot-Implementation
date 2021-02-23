@@ -174,8 +174,8 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getOperand_compAssignment_1_2_1_2(), "rule__SequenceConstructionExpression__Operand_compAssignment_1_2_1_2");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperatorAssignment_1_1(), "rule__SequenceElementList__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperand_compAssignment_1_2(), "rule__SequenceElementList__Operand_compAssignment_1_2");
-			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedFeatureMembership_compAssignment");
-			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberFeatureAssignment(), "rule__FeatureReferenceMember__MemberFeatureAssignment");
+			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedMembership_compAssignment");
+			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementAssignment(), "rule__FeatureReferenceMember__MemberElementAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compAssignment_0(), "rule__InvocationExpression__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__PositionalArgumentList__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__PositionalArgumentList__OwnedFeatureMembership_compAssignment_1_1");

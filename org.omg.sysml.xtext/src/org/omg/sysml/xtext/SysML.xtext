@@ -1497,7 +1497,7 @@ DefaultTargetSuccession returns SysML::TransitionUsage :
 
 GuardedSuccession returns SysML::TransitionUsage :
 	SuccessionKeyword ( UsageDeclaration? 'first' )? 
-	ownedFeatureMembership_comp += TransitionSourceMember 
+	ownedMembership_comp += TransitionSourceMember 
 	ownedFeatureMembership_comp += GuardExpressionMember
 	'then' ownedMembership_comp += TransitionSuccessionMember
 ;
@@ -1636,7 +1636,7 @@ TransitionUsageKeyword :
 
 TransitionUsage returns SysML::TransitionUsage :
 	TransitionUsageKeyword ( UsageDeclaration? 'first' )? 
-	ownedFeatureMembership_comp += TransitionSourceMember 
+	ownedMembership_comp += TransitionSourceMember 
 	( ownedImport_comp += EmptyImport
 	  ownedFeatureMembership_comp += TriggerActionMember )?
 	( ownedFeatureMembership_comp += GuardExpressionMember )?
@@ -1656,8 +1656,8 @@ EmptyImport returns SysML::Import :
 	{SysML::Import}
 ;
 
-TransitionSourceMember returns SysML::FeatureMembership :
-	memberFeature = [SysML::Feature|QualifiedName]
+TransitionSourceMember returns SysML::Membership :
+	memberElement = [SysML::Feature|QualifiedName]
 ;
 
 TriggerActionMember returns SysML::TransitionFeatureMembership :
@@ -2229,9 +2229,9 @@ QueryNameExpression returns SysML::QueryPathExpression :
     | isDescendants ?= '/'
     | @traversal
     */
-    ownedFeatureMembership_comp += FeatureReferenceMember
+    ownedMembership_comp += FeatureReferenceMember
 ;
 
 QueryHeadExpression returns SysML::QueryPathExpression :
-	'./' ownedFeatureMembership_comp += FeatureReferenceMember
+	'./' ownedMembership_comp += FeatureReferenceMember
 ;

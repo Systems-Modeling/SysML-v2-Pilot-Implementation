@@ -44916,7 +44916,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleGuardedSuccession"
-    // InternalSysML.g:15177:1: ruleGuardedSuccession returns [EObject current=null] : ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) ) ;
+    // InternalSysML.g:15177:1: ruleGuardedSuccession returns [EObject current=null] : ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) ) ;
     public final EObject ruleGuardedSuccession() throws RecognitionException {
         EObject current = null;
 
@@ -44924,7 +44924,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         Token otherlv_5=null;
         EObject this_UsageDeclaration_1 = null;
 
-        EObject lv_ownedFeatureMembership_comp_3_0 = null;
+        EObject lv_ownedMembership_comp_3_0 = null;
 
         EObject lv_ownedFeatureMembership_comp_4_0 = null;
 
@@ -44935,11 +44935,11 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:15183:2: ( ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) ) )
-            // InternalSysML.g:15184:2: ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) )
+            // InternalSysML.g:15183:2: ( ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) ) )
+            // InternalSysML.g:15184:2: ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) )
             {
-            // InternalSysML.g:15184:2: ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) )
-            // InternalSysML.g:15185:3: ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) )
+            // InternalSysML.g:15184:2: ( ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) ) )
+            // InternalSysML.g:15185:3: ruleSuccessionKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( (lv_ownedFeatureMembership_comp_4_0= ruleGuardExpressionMember ) ) otherlv_5= 'then' ( (lv_ownedMembership_comp_6_0= ruleTransitionSuccessionMember ) )
             {
             if ( state.backtracking==0 ) {
 
@@ -45044,19 +45044,19 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSysML.g:15211:3: ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) )
-            // InternalSysML.g:15212:4: (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember )
+            // InternalSysML.g:15211:3: ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) )
+            // InternalSysML.g:15212:4: (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember )
             {
-            // InternalSysML.g:15212:4: (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember )
-            // InternalSysML.g:15213:5: lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember
+            // InternalSysML.g:15212:4: (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember )
+            // InternalSysML.g:15213:5: lv_ownedMembership_comp_3_0= ruleTransitionSourceMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getGuardedSuccessionAccess().getOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0());
+              					newCompositeNode(grammarAccess.getGuardedSuccessionAccess().getOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0());
               				
             }
             pushFollow(FOLLOW_146);
-            lv_ownedFeatureMembership_comp_3_0=ruleTransitionSourceMember();
+            lv_ownedMembership_comp_3_0=ruleTransitionSourceMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -45067,8 +45067,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_3_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_3_0,
               						"org.omg.sysml.xtext.SysML.TransitionSourceMember");
               					afterParserOrEnumRuleCall();
               				
@@ -49474,7 +49474,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTransitionUsage"
-    // InternalSysML.g:16793:1: ruleTransitionUsage returns [EObject current=null] : ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) ) ;
+    // InternalSysML.g:16793:1: ruleTransitionUsage returns [EObject current=null] : ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) ) ;
     public final EObject ruleTransitionUsage() throws RecognitionException {
         EObject current = null;
 
@@ -49482,7 +49482,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         Token otherlv_8=null;
         EObject this_UsageDeclaration_1 = null;
 
-        EObject lv_ownedFeatureMembership_comp_3_0 = null;
+        EObject lv_ownedMembership_comp_3_0 = null;
 
         EObject lv_ownedImport_comp_4_0 = null;
 
@@ -49499,11 +49499,11 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSysML.g:16799:2: ( ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) ) )
-            // InternalSysML.g:16800:2: ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) )
+            // InternalSysML.g:16799:2: ( ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) ) )
+            // InternalSysML.g:16800:2: ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) )
             {
-            // InternalSysML.g:16800:2: ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) )
-            // InternalSysML.g:16801:3: ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) )
+            // InternalSysML.g:16800:2: ( ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) ) )
+            // InternalSysML.g:16801:3: ruleTransitionUsageKeyword ( (this_UsageDeclaration_1= ruleUsageDeclaration[$current] )? otherlv_2= 'first' )? ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) ) ( ( (lv_ownedImport_comp_4_0= ruleEmptyImport ) ) ( (lv_ownedFeatureMembership_comp_5_0= ruleTriggerActionMember ) ) )? ( (lv_ownedFeatureMembership_comp_6_0= ruleGuardExpressionMember ) )? ( (lv_ownedFeatureMembership_comp_7_0= ruleEffectBehaviorMember ) )? otherlv_8= 'then' ( (lv_ownedMembership_comp_9_0= ruleTransitionSuccessionMember ) )
             {
             if ( state.backtracking==0 ) {
 
@@ -49608,19 +49608,19 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSysML.g:16827:3: ( (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember ) )
-            // InternalSysML.g:16828:4: (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember )
+            // InternalSysML.g:16827:3: ( (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember ) )
+            // InternalSysML.g:16828:4: (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember )
             {
-            // InternalSysML.g:16828:4: (lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember )
-            // InternalSysML.g:16829:5: lv_ownedFeatureMembership_comp_3_0= ruleTransitionSourceMember
+            // InternalSysML.g:16828:4: (lv_ownedMembership_comp_3_0= ruleTransitionSourceMember )
+            // InternalSysML.g:16829:5: lv_ownedMembership_comp_3_0= ruleTransitionSourceMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0());
+              					newCompositeNode(grammarAccess.getTransitionUsageAccess().getOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0());
               				
             }
             pushFollow(FOLLOW_166);
-            lv_ownedFeatureMembership_comp_3_0=ruleTransitionSourceMember();
+            lv_ownedMembership_comp_3_0=ruleTransitionSourceMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -49631,8 +49631,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_3_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_3_0,
               						"org.omg.sysml.xtext.SysML.TransitionSourceMember");
               					afterParserOrEnumRuleCall();
               				
@@ -50346,7 +50346,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getTransitionSourceMemberAccess().getMemberFeatureFeatureCrossReference_0());
+              				newCompositeNode(grammarAccess.getTransitionSourceMemberAccess().getMemberElementFeatureCrossReference_0());
               			
             }
             pushFollow(FOLLOW_2);
@@ -68235,33 +68235,33 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQueryNameExpression"
-    // InternalSysML.g:23159:1: ruleQueryNameExpression returns [EObject current=null] : ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) ) ;
+    // InternalSysML.g:23159:1: ruleQueryNameExpression returns [EObject current=null] : ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) ) ;
     public final EObject ruleQueryNameExpression() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedFeatureMembership_comp_0_0 = null;
+        EObject lv_ownedMembership_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:23165:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) ) )
-            // InternalSysML.g:23166:2: ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) )
+            // InternalSysML.g:23165:2: ( ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) ) )
+            // InternalSysML.g:23166:2: ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) )
             {
-            // InternalSysML.g:23166:2: ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) )
-            // InternalSysML.g:23167:3: (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember )
+            // InternalSysML.g:23166:2: ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) )
+            // InternalSysML.g:23167:3: (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember )
             {
-            // InternalSysML.g:23167:3: (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember )
-            // InternalSysML.g:23168:4: lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember
+            // InternalSysML.g:23167:3: (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember )
+            // InternalSysML.g:23168:4: lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getQueryNameExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getQueryNameExpressionAccess().getOwnedMembership_compFeatureReferenceMemberParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedFeatureMembership_comp_0_0=ruleFeatureReferenceMember();
+            lv_ownedMembership_comp_0_0=ruleFeatureReferenceMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -68272,8 +68272,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               				}
               				add(
               					current,
-              					"ownedFeatureMembership_comp",
-              					lv_ownedFeatureMembership_comp_0_0,
+              					"ownedMembership_comp",
+              					lv_ownedMembership_comp_0_0,
               					"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceMember");
               				afterParserOrEnumRuleCall();
               			
@@ -68346,23 +68346,23 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQueryHeadExpression"
-    // InternalSysML.g:23195:1: ruleQueryHeadExpression returns [EObject current=null] : (otherlv_0= './' ( (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember ) ) ) ;
+    // InternalSysML.g:23195:1: ruleQueryHeadExpression returns [EObject current=null] : (otherlv_0= './' ( (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember ) ) ) ;
     public final EObject ruleQueryHeadExpression() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        EObject lv_ownedFeatureMembership_comp_1_0 = null;
+        EObject lv_ownedMembership_comp_1_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:23201:2: ( (otherlv_0= './' ( (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember ) ) ) )
-            // InternalSysML.g:23202:2: (otherlv_0= './' ( (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember ) ) )
+            // InternalSysML.g:23201:2: ( (otherlv_0= './' ( (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember ) ) ) )
+            // InternalSysML.g:23202:2: (otherlv_0= './' ( (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember ) ) )
             {
-            // InternalSysML.g:23202:2: (otherlv_0= './' ( (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember ) ) )
-            // InternalSysML.g:23203:3: otherlv_0= './' ( (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember ) )
+            // InternalSysML.g:23202:2: (otherlv_0= './' ( (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember ) ) )
+            // InternalSysML.g:23203:3: otherlv_0= './' ( (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember ) )
             {
             otherlv_0=(Token)match(input,119,FOLLOW_4); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -68370,19 +68370,19 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getQueryHeadExpressionAccess().getFullStopSolidusKeyword_0());
               		
             }
-            // InternalSysML.g:23207:3: ( (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember ) )
-            // InternalSysML.g:23208:4: (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember )
+            // InternalSysML.g:23207:3: ( (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember ) )
+            // InternalSysML.g:23208:4: (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember )
             {
-            // InternalSysML.g:23208:4: (lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember )
-            // InternalSysML.g:23209:5: lv_ownedFeatureMembership_comp_1_0= ruleFeatureReferenceMember
+            // InternalSysML.g:23208:4: (lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember )
+            // InternalSysML.g:23209:5: lv_ownedMembership_comp_1_0= ruleFeatureReferenceMember
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_1_0());
+              					newCompositeNode(grammarAccess.getQueryHeadExpressionAccess().getOwnedMembership_compFeatureReferenceMemberParserRuleCall_1_0());
               				
             }
             pushFollow(FOLLOW_2);
-            lv_ownedFeatureMembership_comp_1_0=ruleFeatureReferenceMember();
+            lv_ownedMembership_comp_1_0=ruleFeatureReferenceMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -68393,8 +68393,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               					}
               					add(
               						current,
-              						"ownedFeatureMembership_comp",
-              						lv_ownedFeatureMembership_comp_1_0,
+              						"ownedMembership_comp",
+              						lv_ownedMembership_comp_1_0,
               						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceMember");
               					afterParserOrEnumRuleCall();
               				
@@ -76234,33 +76234,33 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureReferenceExpression"
-    // InternalSysML.g:25852:1: ruleFeatureReferenceExpression returns [EObject current=null] : ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) ) ;
+    // InternalSysML.g:25852:1: ruleFeatureReferenceExpression returns [EObject current=null] : ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) ) ;
     public final EObject ruleFeatureReferenceExpression() throws RecognitionException {
         EObject current = null;
 
-        EObject lv_ownedFeatureMembership_comp_0_0 = null;
+        EObject lv_ownedMembership_comp_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSysML.g:25858:2: ( ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) ) )
-            // InternalSysML.g:25859:2: ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) )
+            // InternalSysML.g:25858:2: ( ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) ) )
+            // InternalSysML.g:25859:2: ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) )
             {
-            // InternalSysML.g:25859:2: ( (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember ) )
-            // InternalSysML.g:25860:3: (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember )
+            // InternalSysML.g:25859:2: ( (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember ) )
+            // InternalSysML.g:25860:3: (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember )
             {
-            // InternalSysML.g:25860:3: (lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember )
-            // InternalSysML.g:25861:4: lv_ownedFeatureMembership_comp_0_0= ruleFeatureReferenceMember
+            // InternalSysML.g:25860:3: (lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember )
+            // InternalSysML.g:25861:4: lv_ownedMembership_comp_0_0= ruleFeatureReferenceMember
             {
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_0());
+              				newCompositeNode(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedMembership_compFeatureReferenceMemberParserRuleCall_0());
               			
             }
             pushFollow(FOLLOW_2);
-            lv_ownedFeatureMembership_comp_0_0=ruleFeatureReferenceMember();
+            lv_ownedMembership_comp_0_0=ruleFeatureReferenceMember();
 
             state._fsp--;
             if (state.failed) return current;
@@ -76271,8 +76271,8 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
               				}
               				add(
               					current,
-              					"ownedFeatureMembership_comp",
-              					lv_ownedFeatureMembership_comp_0_0,
+              					"ownedMembership_comp",
+              					lv_ownedMembership_comp_0_0,
               					"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceMember");
               				afterParserOrEnumRuleCall();
               			
@@ -76371,7 +76371,7 @@ public class InternalSysMLParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
 
-              				newCompositeNode(grammarAccess.getFeatureReferenceMemberAccess().getMemberFeatureFeatureCrossReference_0());
+              				newCompositeNode(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementFeatureCrossReference_0());
               			
             }
             pushFollow(FOLLOW_2);

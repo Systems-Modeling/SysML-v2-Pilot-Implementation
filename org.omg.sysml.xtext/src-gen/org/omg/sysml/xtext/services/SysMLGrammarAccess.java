@@ -8241,8 +8241,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cUsageDeclarationParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Keyword cFirstKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedFeatureMembership_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_2.eContents().get(0);
+		private final Assignment cOwnedMembership_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0 = (RuleCall)cOwnedMembership_compAssignment_2.eContents().get(0);
 		private final Assignment cOwnedFeatureMembership_compAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cOwnedFeatureMembership_compGuardExpressionMemberParserRuleCall_3_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_3.eContents().get(0);
 		private final Keyword cThenKeyword_4 = (Keyword)cGroup.eContents().get(4);
@@ -8251,12 +8251,12 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//GuardedSuccession SysML::TransitionUsage:
 		//	SuccessionKeyword (UsageDeclaration? 'first')?
-		//	ownedFeatureMembership_comp+=TransitionSourceMember
+		//	ownedMembership_comp+=TransitionSourceMember
 		//	ownedFeatureMembership_comp+=GuardExpressionMember
 		//	'then' ownedMembership_comp+=TransitionSuccessionMember;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//SuccessionKeyword (UsageDeclaration? 'first')? ownedFeatureMembership_comp+=TransitionSourceMember
+		//SuccessionKeyword (UsageDeclaration? 'first')? ownedMembership_comp+=TransitionSourceMember
 		//ownedFeatureMembership_comp+=GuardExpressionMember 'then' ownedMembership_comp+=TransitionSuccessionMember
 		public Group getGroup() { return cGroup; }
 		
@@ -8272,11 +8272,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'first'
 		public Keyword getFirstKeyword_1_1() { return cFirstKeyword_1_1; }
 		
-		//ownedFeatureMembership_comp+=TransitionSourceMember
-		public Assignment getOwnedFeatureMembership_compAssignment_2() { return cOwnedFeatureMembership_compAssignment_2; }
+		//ownedMembership_comp+=TransitionSourceMember
+		public Assignment getOwnedMembership_compAssignment_2() { return cOwnedMembership_compAssignment_2; }
 		
 		//TransitionSourceMember
-		public RuleCall getOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0() { return cOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0; }
+		public RuleCall getOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0() { return cOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0; }
 		
 		//ownedFeatureMembership_comp+=GuardExpressionMember
 		public Assignment getOwnedFeatureMembership_compAssignment_3() { return cOwnedFeatureMembership_compAssignment_3; }
@@ -9097,8 +9097,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cUsageDeclarationParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Keyword cFirstKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedFeatureMembership_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_2.eContents().get(0);
+		private final Assignment cOwnedMembership_compAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0 = (RuleCall)cOwnedMembership_compAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cOwnedImport_compAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final RuleCall cOwnedImport_compEmptyImportParserRuleCall_3_0_0 = (RuleCall)cOwnedImport_compAssignment_3_0.eContents().get(0);
@@ -9114,14 +9114,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//TransitionUsage SysML::TransitionUsage:
 		//	TransitionUsageKeyword (UsageDeclaration? 'first')?
-		//	ownedFeatureMembership_comp+=TransitionSourceMember (ownedImport_comp+=EmptyImport
+		//	ownedMembership_comp+=TransitionSourceMember (ownedImport_comp+=EmptyImport
 		//	ownedFeatureMembership_comp+=TriggerActionMember)?
 		//	ownedFeatureMembership_comp+=GuardExpressionMember?
 		//	ownedFeatureMembership_comp+=EffectBehaviorMember?
 		//	'then' ownedMembership_comp+=TransitionSuccessionMember;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//TransitionUsageKeyword (UsageDeclaration? 'first')? ownedFeatureMembership_comp+=TransitionSourceMember
+		//TransitionUsageKeyword (UsageDeclaration? 'first')? ownedMembership_comp+=TransitionSourceMember
 		//(ownedImport_comp+=EmptyImport ownedFeatureMembership_comp+=TriggerActionMember)?
 		//ownedFeatureMembership_comp+=GuardExpressionMember? ownedFeatureMembership_comp+=EffectBehaviorMember? 'then'
 		//ownedMembership_comp+=TransitionSuccessionMember
@@ -9139,11 +9139,11 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'first'
 		public Keyword getFirstKeyword_1_1() { return cFirstKeyword_1_1; }
 		
-		//ownedFeatureMembership_comp+=TransitionSourceMember
-		public Assignment getOwnedFeatureMembership_compAssignment_2() { return cOwnedFeatureMembership_compAssignment_2; }
+		//ownedMembership_comp+=TransitionSourceMember
+		public Assignment getOwnedMembership_compAssignment_2() { return cOwnedMembership_compAssignment_2; }
 		
 		//TransitionSourceMember
-		public RuleCall getOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0() { return cOwnedFeatureMembership_compTransitionSourceMemberParserRuleCall_2_0; }
+		public RuleCall getOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0() { return cOwnedMembership_compTransitionSourceMemberParserRuleCall_2_0; }
 		
 		//(ownedImport_comp+=EmptyImport ownedFeatureMembership_comp+=TriggerActionMember)?
 		public Group getGroup_3() { return cGroup_3; }
@@ -9259,22 +9259,22 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class TransitionSourceMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TransitionSourceMember");
-		private final Assignment cMemberFeatureAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cMemberFeatureFeatureCrossReference_0 = (CrossReference)cMemberFeatureAssignment.eContents().get(0);
-		private final RuleCall cMemberFeatureFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cMemberFeatureFeatureCrossReference_0.eContents().get(1);
+		private final Assignment cMemberElementAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cMemberElementFeatureCrossReference_0 = (CrossReference)cMemberElementAssignment.eContents().get(0);
+		private final RuleCall cMemberElementFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cMemberElementFeatureCrossReference_0.eContents().get(1);
 		
-		//TransitionSourceMember SysML::FeatureMembership:
-		//	memberFeature=[SysML::Feature|QualifiedName];
+		//TransitionSourceMember SysML::Membership:
+		//	memberElement=[SysML::Feature|QualifiedName];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//memberFeature=[SysML::Feature|QualifiedName]
-		public Assignment getMemberFeatureAssignment() { return cMemberFeatureAssignment; }
+		//memberElement=[SysML::Feature|QualifiedName]
+		public Assignment getMemberElementAssignment() { return cMemberElementAssignment; }
 		
 		//[SysML::Feature|QualifiedName]
-		public CrossReference getMemberFeatureFeatureCrossReference_0() { return cMemberFeatureFeatureCrossReference_0; }
+		public CrossReference getMemberElementFeatureCrossReference_0() { return cMemberElementFeatureCrossReference_0; }
 		
 		//QualifiedName
-		public RuleCall getMemberFeatureFeatureQualifiedNameParserRuleCall_0_1() { return cMemberFeatureFeatureQualifiedNameParserRuleCall_0_1; }
+		public RuleCall getMemberElementFeatureQualifiedNameParserRuleCall_0_1() { return cMemberElementFeatureQualifiedNameParserRuleCall_0_1; }
 	}
 	public class TriggerActionMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TriggerActionMember");
@@ -12336,44 +12336,44 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class QueryNameExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.QueryNameExpression");
-		private final Assignment cOwnedFeatureMembership_compAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_0 = (RuleCall)cOwnedFeatureMembership_compAssignment.eContents().get(0);
+		private final Assignment cOwnedMembership_compAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedMembership_compFeatureReferenceMemberParserRuleCall_0 = (RuleCall)cOwnedMembership_compAssignment.eContents().get(0);
 		
 		//QueryNameExpression SysML::QueryPathExpression:
-		//	ownedFeatureMembership_comp+=FeatureReferenceMember;
+		//	ownedMembership_comp+=FeatureReferenceMember;
 		@Override public ParserRule getRule() { return rule; }
 		
 		///* isParent ?= '..'
 		//    | isDescendants ?= '/'
 		//    | @traversal
-		//    */ ownedFeatureMembership_comp+=FeatureReferenceMember
-		public Assignment getOwnedFeatureMembership_compAssignment() { return cOwnedFeatureMembership_compAssignment; }
+		//    */ ownedMembership_comp+=FeatureReferenceMember
+		public Assignment getOwnedMembership_compAssignment() { return cOwnedMembership_compAssignment; }
 		
 		//FeatureReferenceMember
-		public RuleCall getOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_0() { return cOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_0; }
+		public RuleCall getOwnedMembership_compFeatureReferenceMemberParserRuleCall_0() { return cOwnedMembership_compFeatureReferenceMemberParserRuleCall_0; }
 	}
 	public class QueryHeadExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.QueryHeadExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFullStopSolidusKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOwnedFeatureMembership_compAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_1_0 = (RuleCall)cOwnedFeatureMembership_compAssignment_1.eContents().get(0);
+		private final Assignment cOwnedMembership_compAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedMembership_compFeatureReferenceMemberParserRuleCall_1_0 = (RuleCall)cOwnedMembership_compAssignment_1.eContents().get(0);
 		
 		//QueryHeadExpression SysML::QueryPathExpression:
-		//	'./' ownedFeatureMembership_comp+=FeatureReferenceMember;
+		//	'./' ownedMembership_comp+=FeatureReferenceMember;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'./' ownedFeatureMembership_comp+=FeatureReferenceMember
+		//'./' ownedMembership_comp+=FeatureReferenceMember
 		public Group getGroup() { return cGroup; }
 		
 		//'./'
 		public Keyword getFullStopSolidusKeyword_0() { return cFullStopSolidusKeyword_0; }
 		
-		//ownedFeatureMembership_comp+=FeatureReferenceMember
-		public Assignment getOwnedFeatureMembership_compAssignment_1() { return cOwnedFeatureMembership_compAssignment_1; }
+		//ownedMembership_comp+=FeatureReferenceMember
+		public Assignment getOwnedMembership_compAssignment_1() { return cOwnedMembership_compAssignment_1; }
 		
 		//FeatureReferenceMember
-		public RuleCall getOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_1_0() { return cOwnedFeatureMembership_compFeatureReferenceMemberParserRuleCall_1_0; }
+		public RuleCall getOwnedMembership_compFeatureReferenceMemberParserRuleCall_1_0() { return cOwnedMembership_compFeatureReferenceMemberParserRuleCall_1_0; }
 	}
 	
 	public class FilterPackageMemberVisibilityElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -16379,7 +16379,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//GuardedSuccession SysML::TransitionUsage:
 	//	SuccessionKeyword (UsageDeclaration? 'first')?
-	//	ownedFeatureMembership_comp+=TransitionSourceMember
+	//	ownedMembership_comp+=TransitionSourceMember
 	//	ownedFeatureMembership_comp+=GuardExpressionMember
 	//	'then' ownedMembership_comp+=TransitionSuccessionMember;
 	public GuardedSuccessionElements getGuardedSuccessionAccess() {
@@ -16652,7 +16652,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//TransitionUsage SysML::TransitionUsage:
 	//	TransitionUsageKeyword (UsageDeclaration? 'first')?
-	//	ownedFeatureMembership_comp+=TransitionSourceMember (ownedImport_comp+=EmptyImport
+	//	ownedMembership_comp+=TransitionSourceMember (ownedImport_comp+=EmptyImport
 	//	ownedFeatureMembership_comp+=TriggerActionMember)?
 	//	ownedFeatureMembership_comp+=GuardExpressionMember?
 	//	ownedFeatureMembership_comp+=EffectBehaviorMember?
@@ -16689,8 +16689,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getEmptyImportAccess().getRule();
 	}
 	
-	//TransitionSourceMember SysML::FeatureMembership:
-	//	memberFeature=[SysML::Feature|QualifiedName];
+	//TransitionSourceMember SysML::Membership:
+	//	memberElement=[SysML::Feature|QualifiedName];
 	public TransitionSourceMemberElements getTransitionSourceMemberAccess() {
 		return pTransitionSourceMember;
 	}
@@ -17903,7 +17903,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//QueryNameExpression SysML::QueryPathExpression:
-	//	ownedFeatureMembership_comp+=FeatureReferenceMember;
+	//	ownedMembership_comp+=FeatureReferenceMember;
 	public QueryNameExpressionElements getQueryNameExpressionAccess() {
 		return pQueryNameExpression;
 	}
@@ -17913,7 +17913,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//QueryHeadExpression SysML::QueryPathExpression:
-	//	'./' ownedFeatureMembership_comp+=FeatureReferenceMember;
+	//	'./' ownedMembership_comp+=FeatureReferenceMember;
 	public QueryHeadExpressionElements getQueryHeadExpressionAccess() {
 		return pQueryHeadExpression;
 	}
@@ -18418,7 +18418,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Feature Reference Expressions
 	//FeatureReferenceExpression SysML::FeatureReferenceExpression:
-	//	ownedFeatureMembership_comp+=FeatureReferenceMember;
+	//	ownedMembership_comp+=FeatureReferenceMember;
 	public KerMLExpressionsGrammarAccess.FeatureReferenceExpressionElements getFeatureReferenceExpressionAccess() {
 		return gaKerMLExpressions.getFeatureReferenceExpressionAccess();
 	}
@@ -18427,8 +18427,8 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFeatureReferenceExpressionAccess().getRule();
 	}
 	
-	//FeatureReferenceMember SysML::FeatureMembership:
-	//	memberFeature=[SysML::Feature|QualifiedName];
+	//FeatureReferenceMember SysML::Membership:
+	//	memberElement=[SysML::Feature|QualifiedName];
 	public KerMLExpressionsGrammarAccess.FeatureReferenceMemberElements getFeatureReferenceMemberAccess() {
 		return gaKerMLExpressions.getFeatureReferenceMemberAccess();
 	}

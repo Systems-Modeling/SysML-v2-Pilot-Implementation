@@ -868,7 +868,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getGuardedTargetSuccessionAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__GuardedTargetSuccession__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getGuardedTargetSuccessionAccess().getOwnedMembership_compAssignment_2(), "rule__GuardedTargetSuccession__OwnedMembership_compAssignment_2");
 			builder.put(grammarAccess.getDefaultTargetSuccessionAccess().getOwnedMembership_compAssignment_1(), "rule__DefaultTargetSuccession__OwnedMembership_compAssignment_1");
-			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__GuardedSuccession__OwnedFeatureMembership_compAssignment_2");
+			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedMembership_compAssignment_2(), "rule__GuardedSuccession__OwnedMembership_compAssignment_2");
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedFeatureMembership_compAssignment_3(), "rule__GuardedSuccession__OwnedFeatureMembership_compAssignment_3");
 			builder.put(grammarAccess.getGuardedSuccessionAccess().getOwnedMembership_compAssignment_5(), "rule__GuardedSuccession__OwnedMembership_compAssignment_5");
 			builder.put(grammarAccess.getStateDefinitionAccess().getIsAbstractAssignment_0(), "rule__StateDefinition__IsAbstractAssignment_0");
@@ -899,7 +899,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTargetTransitionUsageMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__TargetTransitionUsageMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getStateRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__StateRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getExhibitStateUsageAccess().getOwnedRelationship_compAssignment_2_0_0(), "rule__ExhibitStateUsage__OwnedRelationship_compAssignment_2_0_0");
-			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__TransitionUsage__OwnedFeatureMembership_compAssignment_2");
+			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedMembership_compAssignment_2(), "rule__TransitionUsage__OwnedMembership_compAssignment_2");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedImport_compAssignment_3_0(), "rule__TransitionUsage__OwnedImport_compAssignment_3_0");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedFeatureMembership_compAssignment_3_1(), "rule__TransitionUsage__OwnedFeatureMembership_compAssignment_3_1");
 			builder.put(grammarAccess.getTransitionUsageAccess().getOwnedFeatureMembership_compAssignment_4(), "rule__TransitionUsage__OwnedFeatureMembership_compAssignment_4");
@@ -910,7 +910,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__TargetTransitionUsage__OwnedFeatureMembership_compAssignment_1");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedFeatureMembership_compAssignment_2(), "rule__TargetTransitionUsage__OwnedFeatureMembership_compAssignment_2");
 			builder.put(grammarAccess.getTargetTransitionUsageAccess().getOwnedMembership_compAssignment_4(), "rule__TargetTransitionUsage__OwnedMembership_compAssignment_4");
-			builder.put(grammarAccess.getTransitionSourceMemberAccess().getMemberFeatureAssignment(), "rule__TransitionSourceMember__MemberFeatureAssignment");
+			builder.put(grammarAccess.getTransitionSourceMemberAccess().getMemberElementAssignment(), "rule__TransitionSourceMember__MemberElementAssignment");
 			builder.put(grammarAccess.getTriggerActionMemberAccess().getKindAssignment_0(), "rule__TriggerActionMember__KindAssignment_0");
 			builder.put(grammarAccess.getTriggerActionMemberAccess().getOwnedMemberFeature_compAssignment_1(), "rule__TriggerActionMember__OwnedMemberFeature_compAssignment_1");
 			builder.put(grammarAccess.getGuardExpressionMemberAccess().getKindAssignment_0(), "rule__GuardExpressionMember__KindAssignment_0");
@@ -970,8 +970,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedFeatureMembership_compAssignment_1_2(), "rule__QueryPathExpression__OwnedFeatureMembership_compAssignment_1_2");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperand_compAssignment_2_2(), "rule__QueryPathExpression__Operand_compAssignment_2_2");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedFeatureMembership_compAssignment_2_3_2(), "rule__QueryPathExpression__OwnedFeatureMembership_compAssignment_2_3_2");
-			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__QueryNameExpression__OwnedFeatureMembership_compAssignment");
-			builder.put(grammarAccess.getQueryHeadExpressionAccess().getOwnedFeatureMembership_compAssignment_1(), "rule__QueryHeadExpression__OwnedFeatureMembership_compAssignment_1");
+			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedMembership_compAssignment(), "rule__QueryNameExpression__OwnedMembership_compAssignment");
+			builder.put(grammarAccess.getQueryHeadExpressionAccess().getOwnedMembership_compAssignment_1(), "rule__QueryHeadExpression__OwnedMembership_compAssignment_1");
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedMemberFeature_compAssignment(), "rule__OwnedExpressionMember__OwnedMemberFeature_compAssignment");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperand_compAssignment_1_2(), "rule__ConditionalExpression__Operand_compAssignment_1_2");
@@ -1032,8 +1032,8 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceConstructionExpressionAccess().getOperand_compAssignment_1_2_1_2(), "rule__SequenceConstructionExpression__Operand_compAssignment_1_2_1_2");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperatorAssignment_1_1(), "rule__SequenceElementList__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getSequenceElementListAccess().getOperand_compAssignment_1_2(), "rule__SequenceElementList__Operand_compAssignment_1_2");
-			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedFeatureMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedFeatureMembership_compAssignment");
-			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberFeatureAssignment(), "rule__FeatureReferenceMember__MemberFeatureAssignment");
+			builder.put(grammarAccess.getFeatureReferenceExpressionAccess().getOwnedMembership_compAssignment(), "rule__FeatureReferenceExpression__OwnedMembership_compAssignment");
+			builder.put(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementAssignment(), "rule__FeatureReferenceMember__MemberElementAssignment");
 			builder.put(grammarAccess.getInvocationExpressionAccess().getOwnedRelationship_compAssignment_0(), "rule__InvocationExpression__OwnedRelationship_compAssignment_0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_0(), "rule__PositionalArgumentList__OwnedFeatureMembership_compAssignment_0");
 			builder.put(grammarAccess.getPositionalArgumentListAccess().getOwnedFeatureMembership_compAssignment_1_1(), "rule__PositionalArgumentList__OwnedFeatureMembership_compAssignment_1_1");

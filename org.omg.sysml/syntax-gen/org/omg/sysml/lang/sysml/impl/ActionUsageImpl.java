@@ -57,8 +57,9 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
 	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
 	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
-	public static final String STATE_BASE = "States::State";
-	public static final String TRANSITION_BASE = "States::Transition";
+	public static final String STATE_BASE = "States::StateAction";
+	public static final String TRANSITION_BASE = "States::TransitionAction";
+	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -174,7 +175,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		return membership instanceof StateSubactionMembership?
 					STATE_BASE + "::" + ((StateSubactionMembership)membership).getKind().toString() + "Action": 
 			   membership instanceof TransitionFeatureMembership? 
-					TRANSITION_BASE + "::" + ((TransitionFeatureMembership)membership).getKind().toString(): 
+					TRANSITION_BASE + "::" + TRANSITION_REDEFINED_FEATURES[((TransitionFeatureMembership)membership).getKind().getValue()]: 
 					null;
 	}
 	

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020 California Institute of Technology/Jet Propulsion Laboratory
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -89,6 +89,8 @@ import org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
+import org.omg.sysml.lang.sysml.AllocationUsage
+import org.omg.sysml.lang.sysml.AllocationDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -123,6 +125,8 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_CONNECTIONUSAGE_MSG = 'A connection must be typed by connection definitions.'
 	public static val INVALID_INTERFACEUSAGE = 'Invalid InterfaceUsage - invalid type'
 	public static val INVALID_INTERFACEUSAGE_MSG = 'An interface must be typed by one interface definition.'
+	public static val INVALID_ALLOCATIONUSAGE = 'Invalid AllocationUsage - invalid type'
+	public static val INVALID_ALLOCATIONUSAGE_MSG = 'An allocation must be typed by allocation definitions.'
 	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
 	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by one port definition.'
 	public static val INVALID_REQUIREMENTUSAGE = 'Invalid RequirementUsage - invalid type'
@@ -231,12 +235,16 @@ class SysMLValidator extends KerMLValidator {
 	}
 	@Check //All types must be Associations.
 	def checkConnectionUsageTypes(ConnectionUsage usg){
-		if (!(usg instanceof InterfaceUsage))	
+		if (!(usg instanceof InterfaceUsage || usg instanceof AllocationUsage))	
 			checkAllTypes(usg, Association, SysMLValidator.INVALID_CONNECTIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_CONNECTIONUSAGE)
 	}
 	@Check //Must have exactly one type, which is an InterfaceDefinitions.
 	def checkInterfaceUsageTypes(InterfaceUsage usg){
 		checkOneType(usg, InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE_MSG, SysMLPackage.eINSTANCE.interfaceUsage_InterfaceDefinition, SysMLValidator.INVALID_INTERFACEUSAGE)
+	}
+	@Check //All types must be AllocationDefinitions.
+	def checkAllocationUsageTypes(AllocationUsage usg){
+		checkAllTypes(usg, AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_ALLOCATIONUSAGE)
 	}
 	@Check //Must have exactly one type, which is a PortDefinition. 
 	def checkPortUsageTypes(PortUsage usg){
@@ -264,7 +272,7 @@ class SysMLValidator extends KerMLValidator {
 	def checkEnumerationUsage(EnumerationUsage usg){
 		checkOneType(usg, EnumerationDefinition, INVALID_ENUMERATIONUSAGE_MSG, SysMLPackage.eINSTANCE.enumerationUsage_EnumerationDefinition, INVALID_ENUMERATIONUSAGE)
 	}
-	@Check //Must have exactly one type, which is a ViewDefinition. Must have at most one rendering.
+	@Check //Must have exactly one type, which is a ViewDefinition.
 	def checkViewUsageTypes(ViewUsage usg){
 		checkOneType(usg, ViewDefinition, SysMLValidator.INVALID_VIEWUSAGE_MSG, SysMLPackage.eINSTANCE.viewUsage_ViewDefinition, SysMLValidator.INVALID_VIEWUSAGE)
 	}

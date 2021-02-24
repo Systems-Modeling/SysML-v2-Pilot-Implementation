@@ -564,6 +564,24 @@ public interface SysMLFactory extends EFactory {
 	AttributeDefinition createAttributeDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Allocation Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Allocation Usage</em>'.
+	 * @generated
+	 */
+	AllocationUsage createAllocationUsage();
+
+	/**
+	 * Returns a new object of class '<em>Allocation Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Allocation Definition</em>'.
+	 * @generated
+	 */
+	AllocationDefinition createAllocationDefinition();
+
+	/**
 	 * Returns a new object of class '<em>State Subaction Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

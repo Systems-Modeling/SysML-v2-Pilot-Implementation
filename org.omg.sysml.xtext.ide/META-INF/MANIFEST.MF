@@ -9,7 +9,9 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.omg.sysml.xtext,
  org.eclipse.xtext.ide,
  org.eclipse.xtext.xbase.ide,
- org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.omg.kerml.expressions.xtext,
+ org.omg.kerml.expressions.xtext.ide
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.xtext.ide.contentassist.antlr,
  org.omg.sysml.xtext.ide.contentassist.antlr.internal

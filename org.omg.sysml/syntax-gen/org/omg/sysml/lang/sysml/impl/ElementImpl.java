@@ -20,6 +20,7 @@
  *******************************************************************************/
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -73,6 +74,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentation_comp <em>Documentation comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentationComment <em>Documentation Comment</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedTextualRepresentation <em>Owned Textual Representation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getHumanId <em>Human Id</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ElementImpl#getDocumentation <em>Documentation</em>}</li>
@@ -151,6 +153,16 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected EList<Documentation> documentation_comp;
+
+	/**
+	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIED_NAME_EDEFAULT = null;
 
 	/**
 	 * The default value of the '{@link #getHumanId() <em>Human Id</em>}' attribute.
@@ -653,26 +665,48 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 */
 	protected static final int[] OWNED_ANNOTATION_ESUPERSETS = new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP};
 
-	// Additional
-	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public String getQualifiedName() {
-		String name = escapeName(getName());
 		Namespace owningNamespace = getOwningNamespace();
 		if (owningNamespace == null) {
 			return null;
 		} else if (owningNamespace.getOwner() == null) {
-			return name;
+			return escapedName();
 		} else {
 			String qualification = ((ElementImpl)owningNamespace).getQualifiedName();
 			if (qualification == null) {
 				return null;
 			} else {
-				return qualification + "::" + name;
+				return qualification + "::" + escapedName();
 			}
 		}
-
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setQualifiedName(String newQualifiedName) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String escapedName() {
+		return escapeName(getName());
+	}
+
 	public static String escapeName(String name) {
 		return (name == null || name.isEmpty() || isIdentifier(name))? name:
 			   "'" + ElementImpl.escapeString(name) + "'";	
@@ -682,6 +716,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		return name.matches("[a-zA-Z_]\\w*");
 	}
 
+	// Additional
+	
 	String name;
 	
 	/**
@@ -841,6 +877,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getDocumentationComment();
 			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
 				return getOwnedTextualRepresentation();
+			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
+				return getQualifiedName();
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				return getHumanId();
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
@@ -905,6 +943,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				getOwnedTextualRepresentation().clear();
 				getOwnedTextualRepresentation().addAll((Collection<? extends TextualRepresentation>)newValue);
 				return;
+			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
+				setQualifiedName((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				setHumanId((String)newValue);
 				return;
@@ -968,6 +1009,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
 				getOwnedTextualRepresentation().clear();
 				return;
+			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				setHumanId(HUMAN_ID_EDEFAULT);
 				return;
@@ -1018,6 +1062,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return !getDocumentationComment().isEmpty();
 			case SysMLPackage.ELEMENT__OWNED_TEXTUAL_REPRESENTATION:
 				return !getOwnedTextualRepresentation().isEmpty();
+			case SysMLPackage.ELEMENT__QUALIFIED_NAME:
+				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 			case SysMLPackage.ELEMENT__HUMAN_ID:
 				return HUMAN_ID_EDEFAULT == null ? humanId != null : !HUMAN_ID_EDEFAULT.equals(humanId);
 			case SysMLPackage.ELEMENT__OWNED_RELATIONSHIP:
@@ -1028,6 +1074,20 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return !getOwnedAnnotation().isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.ELEMENT___ESCAPED_NAME:
+				return escapedName();
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

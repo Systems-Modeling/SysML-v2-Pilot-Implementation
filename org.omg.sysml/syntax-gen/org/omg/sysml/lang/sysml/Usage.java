@@ -69,6 +69,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
@@ -798,6 +799,29 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<EnumerationUsage> getNestedEnumeration();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Allocation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AllocationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The AllocationUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Allocation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAllocation()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<AllocationUsage> getNestedAllocation();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

@@ -46,8 +46,6 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.ElementFilterMembership;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -407,11 +405,17 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	public <M extends Membership, T> Stream<T> getOwnedMembersByMembership(Class<M> kind, Class<T> type) {
 		return getOwnedMembership().stream().
 				filter(kind::isInstance).
-				map(Membership::getMemberElement).map(type::cast);
+				map(Membership::getOwnedMemberElement).
+				filter(type::isInstance).
+				map(type::cast);
 	}
 	
-	public Stream<Expression> getElementFilters() {
-		return getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class);
+	public <M extends Membership, T> Stream<T> getMembersByMembership(Class<M> kind, Class<T> type) {
+		return getMembership().stream().
+				filter(kind::isInstance).
+				map(Membership::getMemberElement).
+				filter(type::isInstance).
+				map(type::cast);
 	}
 	
 	/**

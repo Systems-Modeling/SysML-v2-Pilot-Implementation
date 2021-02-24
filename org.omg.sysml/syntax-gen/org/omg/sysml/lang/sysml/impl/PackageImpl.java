@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
@@ -81,7 +82,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	@Override
 	public EList<Expression> getFilterCondition() {
 		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.PACKAGE__FILTER_CONDITION);
-		getElementFilters().forEachOrdered(filterConditions::add);
+		getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(filterConditions::add);
 		return filterConditions;
 	}
 
@@ -100,12 +101,12 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP = "let metadataAnnotations: Sequence(Element) = "+
+	protected static final String INCLUDE_AS_MEMBER__ELEMENT__EOCL_EXP = "let metadataAnnotations: Sequence(AnnotatingElement) = "+
 "    element.ownedAnnotation.annotatingElement->"+
-"        select(oclIsKindOf(AnnotatingFeature) in"+
-"    self.filterCondition->exists(cond | "+
-"        metadataAnnotations->forAll(elem | "+
-"            self.checkCondition(elem, cond))";
+"        select(oclIsKindOf(AnnotatingFeature)) in"+
+"    self.filterCondition->forAll(cond | "+
+"        metadataAnnotations->exists(elem | "+
+"            self.checkCondition(elem, cond)))";
 	/**
 	 * The cached OCL query for the '{@link #includeAsMember(org.omg.sysml.lang.sysml.Element) <em>Include As Member</em>}' query operation.
 	 * <!-- begin-user-doc -->
@@ -122,13 +123,17 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated NOT
 	 */
 	public boolean includeAsMember(Element element) {
+		return checkConditionsOn(element, getFilterCondition());
+	}
+	
+	public static boolean checkConditionsOn(Element element, List<Expression> conditions) {
 		if (element == null) {
 			return false;
 		} else {
 			List<AnnotatingFeature> annotatingFeatures = ((ElementImpl)element).getAllAnnotatingFeatures();
-			return getFilterCondition().stream().allMatch(cond->
-				annotatingFeatures.isEmpty()? checkCondition(null, cond):
-				annotatingFeatures.stream().anyMatch(elem->checkCondition(elem, cond)));
+			return conditions.stream().allMatch(cond->
+				annotatingFeatures.isEmpty()? checkConditionOn(null, cond):
+				annotatingFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
 		}
 	}
 	
@@ -140,9 +145,10 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP = "let result: Element = condition.evaluate(element) in"+
-"    result.oclIsKindOf(LiteralBoolean) and "+
-"    result.oclAsType(LiteralBoolean).value";
+	protected static final String CHECK_CONDITION__ELEMENT_EXPRESSION__EOCL_EXP = "let results: Sequence(Element) = condition.evaluate(element) in"+
+"    result->size() = 1 and"+
+"    results->at(1).oclIsKindOf(LiteralBoolean) and "+
+"    results->at(1).oclAsType(LiteralBoolean).value";
 	/**
 	 * The cached OCL query for the '{@link #checkCondition(org.omg.sysml.lang.sysml.Element, org.omg.sysml.lang.sysml.Expression) <em>Check Condition</em>}' query operation.
 	 * <!-- begin-user-doc -->
@@ -159,6 +165,10 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated NOT
 	 */
 	public boolean checkCondition(Element element, Expression condition) {
+		return checkConditionOn(element, condition);
+	}
+	
+	public static boolean checkConditionOn(Element element, Expression condition) {
 		if (condition == null) {
 			return true;
 		} else {

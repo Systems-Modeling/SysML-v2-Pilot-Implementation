@@ -52,7 +52,7 @@ The project provides a configuration file for the [Eclipse Installer](https://wi
       * http://download.eclipse.org/releases/2020-06
 
    * (Optional) For PlantUML visualization, you need to install PlantUML-Eclipse with SysMLv2 extensions from
-     the update site of https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/ with Help > Install New Software.
+     the update site of https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates with Help > Install New Software.
 
 2. Clone our GitHub repository from the URL below.
    * https://github.com/Systems-Modeling/SySML-v2-Pilot-Implementation.git

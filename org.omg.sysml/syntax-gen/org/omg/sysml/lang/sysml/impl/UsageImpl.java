@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -111,6 +112,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
@@ -549,6 +551,16 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @generated NOT
 	 */
 	@Override
+	public EList<AllocationUsage> getNestedAllocation() {
+		return new DerivedEObjectEList<>(AllocationUsage.class, this, SysMLPackage.USAGE__NESTED_ALLOCATION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<ActionUsage> getNestedAction() {
 		return new DerivedEObjectEList<>(ActionUsage.class, this, SysMLPackage.USAGE__NESTED_ACTION, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -829,6 +841,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedVerificationCase();
 			case SysMLPackage.USAGE__NESTED_ENUMERATION:
 				return getNestedEnumeration();
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				return getNestedAllocation();
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				if (resolve) return getOwningDefinition();
 				return basicGetOwningDefinition();
@@ -957,6 +971,10 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedEnumeration().clear();
 				getNestedEnumeration().addAll((Collection<? extends EnumerationUsage>)newValue);
 				return;
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				getNestedAllocation().clear();
+				getNestedAllocation().addAll((Collection<? extends AllocationUsage>)newValue);
+				return;
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				setOwningDefinition((Definition)newValue);
 				return;
@@ -1060,6 +1078,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_ENUMERATION:
 				getNestedEnumeration().clear();
 				return;
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				getNestedAllocation().clear();
+				return;
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				setOwningDefinition((Definition)null);
 				return;
@@ -1136,6 +1157,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedVerificationCase().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ENUMERATION:
 				return !getNestedEnumeration().isEmpty();
+			case SysMLPackage.USAGE__NESTED_ALLOCATION:
+				return !getNestedAllocation().isEmpty();
 			case SysMLPackage.USAGE__OWNING_DEFINITION:
 				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:

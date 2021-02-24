@@ -173,9 +173,9 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 			return true;
 		} else {
 			EList<Element> result = condition.evaluate(element);
-			// If condition is ill-formed, ignore it.
-			return result == null || result.size() != 1 || !(result.get(0) instanceof LiteralBoolean) || 
-				   ((LiteralBoolean)result.get(0)).isValue();
+			return result == null || // If condition is ill-formed, ignore it.
+					result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
+					((LiteralBoolean)result.get(0)).isValue();
 		}
 	}
 

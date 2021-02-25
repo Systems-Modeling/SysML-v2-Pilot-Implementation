@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitFeatureRelationships;
 
 /**
  * <!-- begin-user-doc -->
@@ -339,7 +340,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public void transform() {
 		super.transform();
 		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
-			addImplicitFeaturingTypes();
+			ImplicitFeatureRelationships.getOrCreateAdapter(this).
+				addImplicitFeaturingTypes();
 		}
 		computeInput();
 		computeOutput();

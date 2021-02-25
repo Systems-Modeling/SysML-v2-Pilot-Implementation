@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitTypeRelationships;
 
 /**
  * <!-- begin-user-doc -->
@@ -245,9 +246,9 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
 			Type owningType = getOwningType();
 			if (owningType instanceof IndividualDefinition) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
+				ImplicitTypeRelationships.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
 			} else if (owningType instanceof IndividualUsage) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
+				ImplicitTypeRelationships.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
 			}
 		}
 	}
@@ -261,7 +262,7 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 			Type type = owningType instanceof IndividualUsage? 
 					((IndividualUsage)owningType).getIndividualDefinition(): 
 					owningType;
-			((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
+			ImplicitTypeRelationships.getOrCreateAdapter((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 		}
 	}
 	

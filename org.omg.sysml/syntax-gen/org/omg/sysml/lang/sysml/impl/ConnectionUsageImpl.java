@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitFeatureRelationships;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -514,7 +515,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		Type contextType = getContextType();
 		if (contextType != null && contextType != getOwningType()) {
 			if (getOwnedTypeFeaturing().isEmpty()) {
-				addFeaturingType(getContextType());
+				ImplicitFeatureRelationships.getOrCreateAdapter(this).
+					addFeaturingType(getContextType());
 			}
 		}
 	}

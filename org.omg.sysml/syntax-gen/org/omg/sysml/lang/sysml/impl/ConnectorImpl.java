@@ -43,6 +43,7 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitFeatureRelationships;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
@@ -546,7 +547,8 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		if (getOwningType() == null) {
 			Type contextType = getContextType();
 			if (contextType != null) {
-				addFeaturingType(contextType);
+				ImplicitFeatureRelationships.getOrCreateAdapter(this).
+					addFeaturingType(contextType);
 			}
 		}
 	}

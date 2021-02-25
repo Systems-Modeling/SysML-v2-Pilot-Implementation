@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitFeatureRelationships;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding
@@ -60,7 +61,8 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		setRelatedFeature(0, source);
 		setRelatedFeature(1, target);
 		if (featuringTypes != null) {
-			addFeaturingTypes(featuringTypes);
+			ImplicitFeatureRelationships.getOrCreateAdapter(this).
+				addFeaturingTypes(featuringTypes);
 		}
 	}
 	

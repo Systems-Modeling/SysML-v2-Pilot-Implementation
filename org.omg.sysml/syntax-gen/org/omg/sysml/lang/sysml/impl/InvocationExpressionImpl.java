@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitTypeRelationships;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -223,7 +224,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public Type getExpressionType() {
 		List<FeatureTyping> typing = basicGetOwnedTyping();
-		return typing.isEmpty()? getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
+		return typing.isEmpty()? ImplicitTypeRelationships.getOrCreateAdapter(this).getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
 	}
 	
 	@Override

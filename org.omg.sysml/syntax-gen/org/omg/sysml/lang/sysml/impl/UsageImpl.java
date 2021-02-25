@@ -73,6 +73,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.ImplicitTypeRelationships;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -614,7 +615,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	protected void addVariationTyping() {
 		Definition variationDefinition = getOwningVariationDefinition();
 		if (variationDefinition != null && isVariant()) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+			ImplicitTypeRelationships.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
 		}		
 	}
 	
@@ -627,7 +628,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	protected void addVariationSubsetting() {
 		Usage variationUsage = getOwningVariationUsage();
 		if (variationUsage != null && isVariant()) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
+			ImplicitTypeRelationships.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
 		}
 	}
 	

@@ -39,6 +39,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ImplicitTypeRelationships;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -163,7 +164,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	protected void addResultSubsetting() {
 		Feature result = getResult();
 		if (getReferentFeature().isPresent()) {
-			((FeatureImpl)result).addImplicitGeneralType(
+			ImplicitTypeRelationships.getOrCreateAdapter(result).addImplicitGeneralType(
 					SysMLPackage.eINSTANCE.getSubsetting(), getReferent());
 		}
 	}

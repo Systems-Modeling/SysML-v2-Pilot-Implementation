@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.ElementImpl;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class ElementUtil {
 	
@@ -45,15 +43,15 @@ public class ElementUtil {
 	}
 	
 	public static void addImplicitGeneralizations(Type type) {
-		((TypeImpl)type).addImplicitGeneralizations();
+		ImplicitTypeRelationships.getOrCreateAdapter(type).addImplicitGeneralizations();
 	}
 	
 	public static void addImplicitTypeFeaturings(Feature feature) {
-		((FeatureImpl)feature).addImplicitTypeFeaturing();
+		ImplicitFeatureRelationships.getOrCreateAdapter(feature).addImplicitTypeFeaturing();
 	}
 	
 	public static void addImplicitBindingConnectors(Type type) {
-		List<Membership> addedMemberships = ((TypeImpl)type).addImplicitBindingConnectors();
+		List<Membership> addedMemberships = ImplicitTypeRelationships.getOrCreateAdapter(type).addImplicitBindingConnectors();
 		// This is required as the owned relationships call of the type will not return
 		// the newly created binding connectors so we have to ensure the transform
 		// function is used appropriately

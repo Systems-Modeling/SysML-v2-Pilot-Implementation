@@ -1,5 +1,5 @@
 //* 
-XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest
 	ResourceSet {
 		ThisFile {}
 			File {from ="/library/Base.kerml"}
@@ -23,20 +23,17 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 END_SETUP 
 */
 
-package ElementFilterTest {
-	datatype PartInfo {
+package Import_Filtered {
+	datatype Safety {
 		feature isMandatory: ScalarValues::Boolean[0..1];
 	}
-	datatype Safety :> PartInfo;
-	datatype Security :> PartInfo {
-		feature :> isMandatory = false;
-	}
+	datatype Security;
 	
 	classifier vehicle1_c1 {
 		classifier interior {
 			classifier alarm {@Security;}
-			classifier seatBelt[2] {@Safety{isMandatory = true;}}
-			classifier frontSeat[2];
+			classifier seatBelt {@Safety{isMandatory = true;}}
+			classifier frontSeat;
 			classifier driverAirBag {@Safety;}
 		}
 		classifier bodyAssy {
@@ -45,8 +42,8 @@ package ElementFilterTest {
 			classifier keylessEntry {@Security;}
 		}
 		classifier wheelAssy {
-			classifier wheel[2];
-			classifier antilockBrakes[2] {@Safety{isMandatory = false;}}
+			classifier wheel;
+			classifier antilockBrakes {@Safety{isMandatory = false;}}
 		}
 	}
 	
@@ -70,6 +67,7 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
 		classifier i :> wheel;  
 	}
+	
 	package 'Safety Features_2' {
 		import vehicle1_c1::**[@Safety];
 		
@@ -89,6 +87,7 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
 		classifier i :> wheel;  
 	}
+	
 	package 'Security Features' {
 		import vehicle1_c1::interior::*[@Security];
 		
@@ -113,6 +112,7 @@ package ElementFilterTest {
 		classifier j :> antilockBrakes; 
 		
 	}
+	
 	package 'Security Features_1' {
 		import vehicle1_c1::**[@Security];
 		
@@ -136,6 +136,7 @@ package ElementFilterTest {
 		classifier j :> antilockBrakes; 
 		
 	}
+	
 	package 'Security Features_2' {
 		import vehicle1_c1::**;
 		filter @Security;
@@ -182,6 +183,7 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
 		classifier i :> wheel;  
 	}
+	
 	package 'Safety & Security Features_2' {
 		import vehicle1_c1::**[@Safety || @Security];
 		
@@ -226,24 +228,8 @@ package ElementFilterTest {
 		classifier j :> antilockBrakes; 
 	}
 	
-	
-
-	package 'Mandatory Features' {
-		import vehicle1_c1::**; 
-
-		classifier a :> alarm;   
-		classifier b :> seatBelt; 
-		classifier c :> frontSeat;  
-		classifier d :> driverAirBag;  
-		classifier f :> body;  
-		classifier g :> bumper;  
-		classifier h :> keylessEntry;  
-		classifier i :> wheel;  
-		classifier j :> antilockBrakes; 
-	}
-	
 	package 'Mandatory Features_true_1' {
-		import vehicle1_c1::**[PartInfo::isMandatory];
+		import vehicle1_c1::**[Safety::isMandatory];
 		classifier b :> seatBelt; 
 		
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
@@ -263,8 +249,9 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'antilockBrakes'." at "antilockBrakes"
 		classifier j :> antilockBrakes; 
 	}
+	
 	package 'Mandatory Features_true_2' {
-		import vehicle1_c1::**[PartInfo::isMandatory == true]; 
+		import vehicle1_c1::**[Safety::isMandatory == true]; 
 		classifier b :> seatBelt; 
 
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
@@ -284,8 +271,9 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'antilockBrakes'." at "antilockBrakes"
 		classifier j :> antilockBrakes; 
 	}
+	
 	package 'Mandatory Features_false' {
-		import vehicle1_c1::**[PartInfo::isMandatory == false]; 
+		import vehicle1_c1::**[Safety::isMandatory == false]; 
 		classifier j :> antilockBrakes; 
 		
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'alarm'." at "alarm"
@@ -303,10 +291,8 @@ package ElementFilterTest {
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'keylessEntry'." at "keylessEntry"
 		classifier h :> keylessEntry;  
 		// XPECT errors --> "Couldn't resolve reference to Classifier 'wheel'." at "wheel"
-		classifier i :> wheel; 
-		
-	}
-	
+		classifier i :> wheel; 		
+	}	
 }
 
 	

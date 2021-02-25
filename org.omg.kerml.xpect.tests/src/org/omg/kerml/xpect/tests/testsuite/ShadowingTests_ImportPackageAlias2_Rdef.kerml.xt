@@ -42,7 +42,24 @@ package test{
  		    PackageAlias2.AA, PackageAlias2.AA.aa, PackageAlias2.AA.aa_alias, 
  		    PackageAlias2.AA_alias,PackageAlias2.AA_alias.aa, PackageAlias2.AA_alias.aa_alias, 
  		     
- 		   	PackageAlias2.B, PackageAlias2.B.a, PackageAlias2.B.b,  PackageAlias2.B.a_alias,	   
+ 		   	PackageAlias2.B, PackageAlias2.B.a, PackageAlias2.B.b,  PackageAlias2.B.a_alias,	  
+			test_A.self,  test.test_A.self, 
+	        A.self,  test.A.self,  
+			A_alias.self,  test.A_alias.self, 
+			AA.self,  AA.aa.self,  AA.aa_alias.self,  test.AA.self,  test.AA.aa.self,  test.AA.aa_alias.self,  
+			AA_alias.self,  AA_alias.aa.self,  AA_alias.aa_alias.self,  test.AA_alias.self,  test.AA_alias.aa.self, test.AA_alias.aa_alias.self, 
+ 		        
+ 		    PackageAlias1.A.self,  PackageAlias1.A.a.self,  PackageAlias1.A.a_alias.self,  
+ 		    PackageAlias1.A_alias.self,  PackageAlias1.A_alias.a.self,  PackageAlias1.A_alias.a_alias.self, 
+ 		    PackageAlias1.AA.self,  PackageAlias1.AA.aa.self,  PackageAlias1.AA.aa_alias.self,  
+ 		    PackageAlias1.AA_alias.self, PackageAlias1.AA_alias.aa.self,  PackageAlias1.AA_alias.aa_alias.self,  
+ 		   
+ 		    PackageAlias2.A.self,  PackageAlias2.A.a.self,  PackageAlias2.A.a_alias.self,  
+ 		    PackageAlias2.A_alias.self,  PackageAlias2.A_alias.a.self,  PackageAlias2.A_alias.a_alias.self, 
+ 		    PackageAlias2.AA.self,  PackageAlias2.AA.aa.self,  PackageAlias2.AA.aa_alias.self,  
+ 		    PackageAlias2.AA_alias.self, PackageAlias2.AA_alias.aa.self,  PackageAlias2.AA_alias.aa_alias.self,  
+ 		     
+ 		   	PackageAlias2.B.self,  PackageAlias2.B.a.self,  PackageAlias2.B.b.self,   PackageAlias2.B.a_alias.self, 	   			
  	--- */
 	feature test_A redefines A_alias{}
 }

@@ -22,29 +22,36 @@ package test{
 	//* XPECT scope at A ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
- 	
+		A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self,  E.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self,  test.E.self, 
 	--- */
 	feature B : A {
 		//not able to test a Caused by: java.lang.RuntimeException: The EReference 'Element.ownedRelationship' found at ... a, A.a
 		//\n		fe|ature b : a {... is not valid here.
-		//scope at a --> a, A.a
+		//scope at a --> a, A.a, a.self, A.a.self
 		feature b : a {}
 	}
 	//* XPECT scope at B ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+				A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self,  E.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self,  test.E.self, 
  	--- */
 	feature C : B{
 		//XPECT linkedName at A::a --> test.A.a
 		//* XPECT scope at A::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E, 
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+				A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self,  E.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self,  test.E.self, 
  	--- */
 		feature c : a {}
 	}
 	//* XPECT scope at A::a ---
  		A, A.a, B, B.a, B.b, C, C.a, C.b, C.c, D, E,
  		test.A, test.A.a, test.B, test.B.a, test.B.b, test.C, test.C.a, test.C.b, test.C.c, test.D, test.E,
+				A.self,  A.a.self,  B.self,  B.a.self,  B.b.self,  C.self,  C.a.self,  C.b.self,  C.c.self,  D.self,  E.self, 
+ 		test.A.self,  test.A.a.self,  test.B.self,  test.B.a.self,  test.B.b.self,  test.C.self,  test.C.a.self,  test.C.b.self,  test.C.c.self,  test.D.self,  test.E.self, 
  	--- */
 	feature D : A::a{} 
 	feature E {} //added because E was causing parsing problem (confused with Exponent)

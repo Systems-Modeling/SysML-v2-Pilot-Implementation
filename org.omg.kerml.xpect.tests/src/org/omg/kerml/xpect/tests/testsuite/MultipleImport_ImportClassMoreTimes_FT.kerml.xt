@@ -34,6 +34,15 @@ package test{
 		   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c, 
 		   	OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c,
 		   	OuterPackage3.D, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c,  OuterPackage3.D.f, OuterPackage3.D.f.a1,
+			 D.b.self,  D.c.self,  D.f.self,  EE.b.self,  EE.c.self,  EE.f.self,  EE.try.self,   test.D.b.self,  test.D.c.self,  test.D.f.self,  test.EE.b.self,  test.EE.c.self,  test.EE.f.self,  test.EE.try.self, 
+		   D.b.a1.self,  D.f.a1.self,  EE.b.a1.self,  EE.f.a1.self,  EE.try.a1.self,  D.self,  EE.self,  
+		   test.D.b.a1.self,  test.D.f.a1.self,  test.EE.b.a1.self,  test.EE.f.a1.self,  test.EE.try.a1.self,  test.D.self,  test.EE.self, 
+	   		OuterPackage.A.self,  										OuterPackage.A.a1.self,  
+		   	OuterPackage.B.self,   OuterPackage.B.b.self,   OuterPackage.B.b.a1.self,  
+		   	OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self,  
+		   	OuterPackage2.C.self,  OuterPackage2.C.b.self,  OuterPackage2.C.b.a1.self,  OuterPackage2.C.c.self,  
+		   	OuterPackage3.C.self,  OuterPackage3.C.b.self,  OuterPackage3.C.b.a1.self,  OuterPackage3.C.c.self, 
+		   	OuterPackage3.D.self,  OuterPackage3.D.b.self,  OuterPackage3.D.b.a1.self,  OuterPackage3.D.c.self,   OuterPackage3.D.f.self,  OuterPackage3.D.f.a1.self, 
 	--- */
 	feature EE : D {
 		//XPECT linkedName at b --> OuterPackage.B.b
@@ -49,6 +58,17 @@ package test{
 		   	OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c, 
 		   	OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c,
 		   	OuterPackage3.D, OuterPackage3.D.b, OuterPackage3.D.b.a1, OuterPackage3.D.c,  OuterPackage3.D.f, OuterPackage3.D.f.a1,
+					   D.b.a1.self,  D.f.a1.self,   EE.b.a1.self,   EE.f.a1.self,   EE.try.a1.self,  
+		   test.D.b.a1.self,  test.D.f.a1.self,  test.EE.b.a1.self,  test.EE.f.a1.self,  test.EE.try.a1.self,  
+		   b.a1.self,  f.a1.self, try.self,  try.a1.self, 
+		   D.self,  D.b.self,  D.c.self,  D.f.self,  EE.self,  EE.b.self,  EE.c.self,  EE.f.self,  EE.try.self,  b.self,  c.self,  f.self, 
+		   test.D.self,  test.D.b.self,  test.D.c.self,  test.D.f.self,  test.EE.self,  test.EE.b.self,  test.EE.c.self,  test.EE.f.self,  test.EE.try.self,  
+	   		OuterPackage.A.self,  										OuterPackage.A.a1.self,  
+		   	OuterPackage.B.self,   OuterPackage.B.b.self,   OuterPackage.B.b.a1.self,  
+		   	OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self,  
+		   	OuterPackage2.C.self,  OuterPackage2.C.b.self,  OuterPackage2.C.b.a1.self,  OuterPackage2.C.c.self,  
+		   	OuterPackage3.C.self,  OuterPackage3.C.b.self,  OuterPackage3.C.b.a1.self,  OuterPackage3.C.c.self, 
+		   	OuterPackage3.D.self,  OuterPackage3.D.b.self,  OuterPackage3.D.b.a1.self,  OuterPackage3.D.c.self,   OuterPackage3.D.f.self,  OuterPackage3.D.f.a1.self,self 
 	--- */
 		feature try : b;
 	}

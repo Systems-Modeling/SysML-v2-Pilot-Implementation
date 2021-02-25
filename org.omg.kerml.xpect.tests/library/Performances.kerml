@@ -6,12 +6,12 @@ package Performances {
 	private import Base::things;
 	private import Occurrences::Occurrence;
 	private import Objects::Object;
-	private import Objects::BinaryLink;
+	private import Objects::BinaryLinkObject;
 	
 	/**
 	 * Performance is the most general class of behavioral occurrences that may be performed over time.
 	 */
-	abstract behavior Performance() specializes Occurrence {
+	abstract behavior Performance specializes Occurrence () {
 		feature self: Performance redefines Occurrence::self;
 		
 		/**
@@ -54,31 +54,31 @@ package Performances {
 	 * Evaluation is the most general class of functions that may be evaluated to compute
 	 * a result.
 	 */
-	abstract function Evaluation(): Anything[0..*] specializes Performance;
+	abstract function Evaluation specializes Performance (): Anything[0..*];
 	
 	/**
 	 * BooleanEvaluation is a specialization of Evaluation that is the most general class of
 	 * predicates that may be evaluated to produce a Boolean truth value.
 	 */
-	abstract predicate BooleanEvaluation(): ScalarValues::Boolean[1] specializes Evaluation;
+	abstract predicate BooleanEvaluation specializes Evaluation (): ScalarValues::Boolean[1];
 	
 	/**
 	 * LiteralEvaluation is a specialization of Evaluation for the case of literal expressions.
 	 */				
-	abstract function LiteralEvaluation(): ScalarValues::ScalarValue[1] specializes Evaluation;
+	abstract function LiteralEvaluation specializes Evaluation (): ScalarValues::ScalarValue[1];
 	
 	/**
 	 * NullEvaluation is a specialization of Evaluation for the case of null expressions.
 	 */
-	function NullEvaluation(): Anything[0..0] specializes Evaluation;
+	function NullEvaluation specializes Evaluation (): Anything[0..0];
 
 	/** 
 	 * Involves asserts that the behavior carried out by the involvingPerformance involves the
 	 * involvedObject.
 	 */
-	assoc Involves {
-		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLink::source;
-		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLink::target;
+	assoc Involves specializes BinaryLinkObject {
+		end feature involvingPerformance: Performance[0..*] redefines Object::involvingPerformances, BinaryLinkObject::source;
+		end feature involvedObject: Object[0..*] redefines Performance::involvedObjects, BinaryLinkObject::target;
 	}
 	
 	/**

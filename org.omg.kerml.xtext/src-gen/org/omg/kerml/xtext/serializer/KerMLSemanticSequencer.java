@@ -303,10 +303,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_FeatureMember_FeatureMemberFlags_TypeMemberPrefix(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
-					sequence_FeatureReferenceMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
 				else if (rule == grammarAccess.getItemFeatureMemberRule()) {
 					sequence_ItemFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -522,6 +518,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.MEMBERSHIP:
 				if (rule == grammarAccess.getNamespaceMemberRule()) {
 					sequence_FeatureNamespaceMember_NamespaceMember_NonFeatureNamespaceMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
+					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getLiteralIntegerMemberRule()) {
@@ -1227,10 +1227,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         documentation_comp+=OwnedDocumentation? 
+	 *         ownedMembership_comp+=NonFeatureTypeMember? 
 	 *         (
-	 *             (ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
-	 *             documentation_comp+=OwnedDocumentation?
+	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             ownedMembership_comp+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1254,10 +1254,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         documentation_comp+=OwnedDocumentation? 
+	 *         ownedMembership_comp+=NonFeatureTypeMember? 
 	 *         (
-	 *             (ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
-	 *             documentation_comp+=OwnedDocumentation?
+	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             ownedMembership_comp+=NonFeatureTypeMember?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )

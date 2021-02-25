@@ -8791,7 +8791,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//// Feature Reference Expressions
 	//FeatureReferenceExpression SysML::FeatureReferenceExpression:
-	//	ownedFeatureMembership_comp+=FeatureReferenceMember;
+	//	ownedMembership_comp+=FeatureReferenceMember;
 	public KerMLExpressionsGrammarAccess.FeatureReferenceExpressionElements getFeatureReferenceExpressionAccess() {
 		return gaKerMLExpressions.getFeatureReferenceExpressionAccess();
 	}
@@ -8800,8 +8800,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getFeatureReferenceExpressionAccess().getRule();
 	}
 	
-	//FeatureReferenceMember SysML::FeatureMembership:
-	//	memberFeature=[SysML::Feature|QualifiedName];
+	//FeatureReferenceMember SysML::Membership:
+	//	memberElement=[SysML::Feature|QualifiedName];
 	public KerMLExpressionsGrammarAccess.FeatureReferenceMemberElements getFeatureReferenceMemberAccess() {
 		return gaKerMLExpressions.getFeatureReferenceMemberAccess();
 	}

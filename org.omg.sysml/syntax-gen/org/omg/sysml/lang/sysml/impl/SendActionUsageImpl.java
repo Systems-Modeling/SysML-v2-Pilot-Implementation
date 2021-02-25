@@ -49,6 +49,10 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUsage {
+
+	public static final String SEND_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::sendActions";
+	public static final String SEND_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::sendSubactions";
+
 	/**
 	 * The cached value of the BindingConnector from the result of the target Expression of this SendAction to 
 	 * its ItemFeature.
@@ -148,6 +152,13 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					SEND_ACTION_SUBSETTING_SUBACTION_DEFAULT:
+					SEND_ACTION_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

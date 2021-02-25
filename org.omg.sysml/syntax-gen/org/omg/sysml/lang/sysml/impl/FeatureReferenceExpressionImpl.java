@@ -33,9 +33,9 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -97,9 +97,12 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	}
 	
 	protected Optional<Feature> getReferentFeature() {
-		return getOwnedFeatureMembership().stream().
+		return getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
-				map(FeatureMembership::getMemberFeature).findFirst();
+				map(Membership::getMemberElement).
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast).
+				findFirst();
 	}
 	
 	protected Feature getSelfReferenceFeature() {

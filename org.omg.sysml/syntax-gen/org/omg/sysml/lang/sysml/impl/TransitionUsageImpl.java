@@ -62,7 +62,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
-	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitions";
+	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitionActions";
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 	
 	private BindingConnector successionConnector;

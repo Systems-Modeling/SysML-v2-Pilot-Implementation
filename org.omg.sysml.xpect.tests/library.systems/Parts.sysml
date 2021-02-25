@@ -9,17 +9,17 @@ package Parts {
 	private import Items::items;
 	private import Ports::Port;
 	private import Actions::Action;
-	private import States::State;
+	private import States::StateAction;
 	
 	/**
 	 * Part is the most general class of objects that represent all or a part of a system.
 	 * Part is the base type of all PartDefinitions.
 	 */
 	abstract part def Part :> Item {
-		ref :>> self: Part;
+		ref self: Part :>> Item::self;
 		
-		part :>> start: Part;
-		part :>> done: Part;
+		part start: Part :>> Item::start;
+		part done: Part :>> Item::done;
 		
 		/**
 		 * Ports that are on this Part.
@@ -34,7 +34,7 @@ package Parts {
 		/**
 		 * States that are exhibited by this Part.
 		 */
-		abstract ref state exhibitedStates: State[0..*] :> performedActions;
+		abstract ref state exhibitedStates: StateAction[0..*] :> performedActions;
 	}
 	
 	/** 

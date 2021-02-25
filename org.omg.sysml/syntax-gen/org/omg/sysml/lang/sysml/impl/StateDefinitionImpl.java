@@ -57,7 +57,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
 
-	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::State";
+	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::StateAction";
 	
 	/**
 	 * <!-- begin-user-doc -->

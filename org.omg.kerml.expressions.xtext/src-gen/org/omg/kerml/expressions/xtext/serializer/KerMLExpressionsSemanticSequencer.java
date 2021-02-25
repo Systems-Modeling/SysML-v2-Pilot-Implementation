@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.LiteralReal;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.LiteralUnbounded;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -64,10 +65,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			case SysMLPackage.FEATURE_MEMBERSHIP:
 				if (rule == grammarAccess.getBodyExpressionMemberRule()) {
 					sequence_BodyExpressionMember(context, (FeatureMembership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeatureReferenceMemberRule()) {
-					sequence_FeatureReferenceMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getNamedExpressionMemberRule()) {
@@ -153,6 +150,9 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 				return; 
 			case SysMLPackage.LITERAL_UNBOUNDED:
 				sequence_LiteralUnbounded(context, (LiteralUnbounded) semanticObject); 
+				return; 
+			case SysMLPackage.MEMBERSHIP:
+				sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
 				return; 
 			case SysMLPackage.NULL_EXPRESSION:
 				sequence_NullExpression_SequenceConstructionExpression(context, (NullExpression) semanticObject); 
@@ -478,7 +478,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     FeatureReferenceExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
-	 *     ownedFeatureMembership_comp+=FeatureReferenceMember
+	 *     ownedMembership_comp+=FeatureReferenceMember
 	 */
 	protected void sequence_FeatureReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -487,18 +487,18 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     FeatureReferenceMember returns FeatureMembership
+	 *     FeatureReferenceMember returns Membership
 	 *
 	 * Constraint:
-	 *     memberFeature=[Feature|QualifiedName]
+	 *     memberElement=[Feature|QualifiedName]
 	 */
-	protected void sequence_FeatureReferenceMember(ISerializationContext context, FeatureMembership semanticObject) {
+	protected void sequence_FeatureReferenceMember(ISerializationContext context, Membership semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE));
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFeatureReferenceMemberAccess().getMemberFeatureFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_MEMBERSHIP__MEMBER_FEATURE, false));
+		feeder.accept(grammarAccess.getFeatureReferenceMemberAccess().getMemberElementFeatureQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
 		feeder.finish();
 	}
 	

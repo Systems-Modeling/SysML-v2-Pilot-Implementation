@@ -41,10 +41,10 @@ package States {
 	 * It is the base type of all TransitionUsages.
 	 */
 	action def TransitionAction :> Action, StateTransitionPerformance {
-		ref action :>> transitionLinkSource: Action;
-		action :>> effect: Action;		
+		ref action transitionLinkSource: Action :>> StateTransitionPerformance::transitionLinkSource;
+		action effect: Action :>> StateTransitionPerformance::effect;		
 		action accepter: AcceptAction {
-			ref :>> incomingTransfersToSelf;
+			ref incomingTransfersToSelf :>> AcceptAction::incomingTransfersToSelf;
 		}
 		bind trigger = accepter.incomingTransfersToSelf;
 	}

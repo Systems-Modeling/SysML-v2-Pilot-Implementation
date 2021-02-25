@@ -101,6 +101,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInterfaceDefBodyAccess().getAlternatives_1_1(), "rule__InterfaceDefBody__Alternatives_1_1");
 			builder.put(grammarAccess.getInterfaceUsageMemberAccess().getAlternatives(), "rule__InterfaceUsageMember__Alternatives");
 			builder.put(grammarAccess.getInterfaceUsageDeclarationAccess().getAlternatives(), "rule__InterfaceUsageDeclaration__Alternatives");
+			builder.put(grammarAccess.getAllocationUsageDeclarationAccess().getAlternatives(), "rule__AllocationUsageDeclaration__Alternatives");
 			builder.put(grammarAccess.getIndividualRefUsageAccess().getAlternatives_1(), "rule__IndividualRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getTimeSliceRefUsageAccess().getAlternatives_1(), "rule__TimeSliceRefUsage__Alternatives_1");
 			builder.put(grammarAccess.getSnapshotRefUsageAccess().getAlternatives_1(), "rule__SnapshotRefUsage__Alternatives_1");
@@ -347,6 +348,13 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInterfaceUsageAccess().getGroup(), "rule__InterfaceUsage__Group__0");
 			builder.put(grammarAccess.getInterfaceUsageDeclarationAccess().getGroup_0(), "rule__InterfaceUsageDeclaration__Group_0__0");
 			builder.put(grammarAccess.getInterfaceUsageDeclarationAccess().getGroup_0_1(), "rule__InterfaceUsageDeclaration__Group_0_1__0");
+			builder.put(grammarAccess.getAllocationDefKeywordAccess().getGroup(), "rule__AllocationDefKeyword__Group__0");
+			builder.put(grammarAccess.getAllocationDefinitionAccess().getGroup(), "rule__AllocationDefinition__Group__0");
+			builder.put(grammarAccess.getAllocationDefDeclarationAccess().getGroup(), "rule__AllocationDefDeclaration__Group__0");
+			builder.put(grammarAccess.getAllocationUsageAccess().getGroup(), "rule__AllocationUsage__Group__0");
+			builder.put(grammarAccess.getAllocationUsageDeclarationAccess().getGroup_0(), "rule__AllocationUsageDeclaration__Group_0__0");
+			builder.put(grammarAccess.getAllocationUsageDeclarationAccess().getGroup_0_2(), "rule__AllocationUsageDeclaration__Group_0_2__0");
+			builder.put(grammarAccess.getAllocationUsageDeclarationAccess().getGroup_1(), "rule__AllocationUsageDeclaration__Group_1__0");
 			builder.put(grammarAccess.getIndividualDefKeywordAccess().getGroup(), "rule__IndividualDefKeyword__Group__0");
 			builder.put(grammarAccess.getIndividualDefinitionAccess().getGroup(), "rule__IndividualDefinition__Group__0");
 			builder.put(grammarAccess.getIndividualUsageAccess().getGroup(), "rule__IndividualUsage__Group__0");

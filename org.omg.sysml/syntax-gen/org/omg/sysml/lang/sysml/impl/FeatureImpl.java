@@ -756,7 +756,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public boolean isFeaturedWithin(Type type) {
 		List<Type> featuringTypes = getFeaturingType();
-		return type == null && featuringTypes.isEmpty() ||
+		return featuringTypes.isEmpty() ||
 			   type != null && featuringTypes.contains(type) ||
 			   featuringTypes.stream().anyMatch(featuringType->
 					   featuringType instanceof Feature &&
@@ -1035,15 +1035,19 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
+				filter(s->!(s instanceof Redefinition)).
 				map(Subsetting::getSubsettedFeature);
 		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
+		// Note: Build on getSubsettedNotRedefinedFeatures here because it is overridden in some subclasses.
 		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
+		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
+				map(Redefinition::getRedefinedFeature);
 		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
-		return Stream.concat(subsettedFeatures, implicitRedefinedFeatures).
+		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
 				collect(Collectors.toList());
 	}
 	

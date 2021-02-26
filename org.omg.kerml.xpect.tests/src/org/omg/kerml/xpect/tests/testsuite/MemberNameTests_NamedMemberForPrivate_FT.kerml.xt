@@ -22,6 +22,8 @@ package test {
 		//* XPECT scope at k ---
 		   		hello, hello.test, k, something, 
 		   		test,
+				   		hello.self,  hello.test.self,  k.self,  something.self,  self,
+		   		test.self, 
 		--- */
 		//XPECT linkedName at k --> test.something
 		feature test : k{}

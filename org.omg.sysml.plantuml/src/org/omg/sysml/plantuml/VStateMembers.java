@@ -30,7 +30,6 @@ import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.StateDefinition;
@@ -174,13 +173,7 @@ public class VStateMembers extends VBehavior {
             if (s == null) continue;
             switch (tfm.getKind()) {
             case TRIGGER:
-                VTraverser v = new VTraverser(this) {
-                    public String caseItemFeature(ItemFeature itemFeature) {
-                        addFeatureTypeText("", itemFeature);
-                        return "";
-                    }
-                };
-                triggerString = v.traverse(s);
+                triggerString = getText(s);
                 break;
             case GUARD:
                 guardString = getText(s);

@@ -23,11 +23,15 @@ package test{
 //* XPECT scope at A ---
 	   	A, A.a, A.aa, B, B.b, B.b_alias, test.B.b, test.B.b_alias,
 	   	test.A, test.A.a, test.A.aa, test.B,
+			   	A.self,  A.a.self,  A.aa.self,  B.self,  B.b.self,  B.b_alias.self,  test.B.b.self,  test.B.b_alias.self, 
+	   	test.A.self,  test.A.a.self,  test.A.aa.self,  test.B.self, 
 --- */
 	feature B redefines A{
 		//* XPECT scope at aa ---
 	    A, A.a, A.aa, B, B.b, B.b_alias, a, aa, 
 	    test.A, test.A.a, test.A.aa,test.B, test.B.b, test.B.b_alias, 
+			    A.self,  A.a.self,  A.aa.self,  B.self,  B.b.self,  B.b_alias.self,  a.self,  aa.self,  
+	    test.A.self,  test.A.a.self,  test.A.aa.self, test.B.self,  test.B.b.self,  test.B.b_alias.self, self
 --- */
 //		XPECT linkedName at aa --> test.A.a
 		feature b redefines aa;

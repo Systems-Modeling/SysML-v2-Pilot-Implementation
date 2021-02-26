@@ -24,6 +24,8 @@ package test{
 	//* XPECT scope at A ---
 		    A, A.a1, B.A, B.A.a2, B, B.b, 
 		    test.A, test.A.a1, test.B, test.B.A, test.B.A.a2, test.B.b,
+				    A.self, A.a1.self,  B.A.self,  B.A.a2.self,  B.self,  B.b.self,  
+		    test.A.self,  test.A.a1.self,  test.B.self,  test.B.A.self,  test.B.A.a2.self,  test.B.b.self, 
 		--- */
 	feature B subsets A{
 		feature A{
@@ -32,7 +34,10 @@ package test{
 		//XPECT linkedName at a1 --> test.A.a1
 		//* XPECT scope at a1 ---
 		    A, A.a1, B, B.A, B.A.a2, B.b, a1, test.A, test.A.a1, test.B, test.B.A,
-		    test.B.A.a2, test.B.b
+		    test.B.A.a2, test.B.b,
+			
+		    A.self,  A.a1.self,  B.self,  B.A.self,  B.A.a2.self,  B.b.self,  a1.self,  test.A.self,  test.A.a1.self,  test.B.self,  test.B.A.self, 
+		    test.B.A.a2.self,  test.B.b.self, self
 		--- */
 		feature b redefines a1{}
 	}

@@ -25,6 +25,10 @@ package test{
 		   a.A, a.A.a, a.a,
  		   a, A, A.a,  A.a.a, test.A.a.a, test.A.a.A, test.A.a.A.a,
  		   test.A, test.A.a, 
+		      test.A.A.self,  test.A.A.a.self,  test.A.A.a.a.self, 
+		   a.A.self,  a.A.a.self,  a.a.self, 
+ 		   a.self,  A.self,  A.a.self,   A.a.a.self,  test.A.a.a.self,  test.A.a.A.self,  test.A.a.A.a.self, 
+ 		   test.A.self,  test.A.a.self,  self
 		   --- */
 		feature a : A;
 	}

@@ -235,6 +235,7 @@ DefinitionElement returns SysML::Element :
 	| IndividualDefinition
 	| ConnectionDefinition
 	| InterfaceDefinition
+	| AllocationDefinition
 	| PortDefinition
 	| ActionDefinition
 	| CalculationDefinition
@@ -261,6 +262,7 @@ UsageElement returns SysML::Usage :
 	| ConnectionUsage
 	| Connector
 	| InterfaceUsage
+	| AllocationUsage
 	| ActionUsage
 	| CalculationUsage
 	| StateUsage
@@ -732,6 +734,7 @@ StructureUsageElement returns SysML::Feature :
 	| ConnectionUsage
 	| Connector
 	| InterfaceUsage
+	| AllocationUsage
 	| BindingConnector
 	| Succession
 	| ItemFlow
@@ -769,6 +772,7 @@ VariantUsageElement returns SysML::Usage :
 	| ConnectionUsage
 	| Connector
 	| InterfaceUsage
+	| AllocationUsage
 	| IndividualUsageElement
 	| BehaviorUsageElement
 ;
@@ -1126,6 +1130,45 @@ InterfaceUsage returns SysML::InterfaceUsage :
 
 fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
 	UsageDeclaration? ( ConnectorKeyword ConnectorPart )? | ConnectorPart
+;
+
+/* ALLOCATIONS */
+
+/* Allocation Definitions */
+
+AllocationKeyword :
+	'allocation'
+;
+
+AllocationDefKeyword :
+	AllocationKeyword 'def'
+;
+
+AllocationDefinition returns SysML::AllocationDefinition :
+	AllocationDefDeclaration ConnectionBody
+;
+
+fragment AllocationDefDeclaration returns SysML::AllocationDefinition :
+	DefinitionPrefix? AllocationDefKeyword DefinitionDeclaration
+;
+
+/* AllocationUsage Usages */
+
+AllocationUsageKeyword :
+	AllocationKeyword
+;
+
+AllocateKeyword :
+	'allocate'
+;
+
+AllocationUsage returns SysML::AllocationUsage :	 
+	UsagePrefix? AllocationUsageDeclaration ConnectionBody
+;
+
+fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
+	    AllocationUsageKeyword UsageDeclaration? ( AllocateKeyword ConnectorPart )?
+	  | AllocateKeyword ConnectorPart
 ;
 
 /* INDIVIDUALS */

@@ -64,7 +64,6 @@ import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -611,13 +610,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			getFirstSubsettedFeature().filter(f->f != getOwningVariationUsage());
 	}
 	
-	protected void addVariationTyping() {
-		Definition variationDefinition = getOwningVariationDefinition();
-		if (variationDefinition != null && isVariant()) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
-		}		
-	}
-	
 	@Override
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		addVariationSubsetting();
@@ -650,7 +642,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	@Override
-	protected void computeValueConnector() {
+	public void computeValueConnector() {
 		FeatureValue valuation = getValuation();
 		if (valuation == null && isSubjectParameter()){
 			Feature subjectParameter = getRelevantSubjectParameter();
@@ -660,12 +652,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		} else {
 			super.computeValueConnector();
 		}
-	}
-	
-	@Override
-	public void transform() {
-		addVariationTyping();
-		super.transform();
 	}
 	
 	// Utility methods
@@ -723,24 +709,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	protected static Usage basicGetSubjectParameterOf(Type type) {
 		return (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
-	}
-	
-	public static void computeSubjectParameterOf(Type type) {
-		Usage subjectParameter = null;
-		if (type != null) {
-			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
-			if (subjectParameter == null) {
-				subjectParameter = addSubjectParameterTo(type);
-			}
-		}
-	}
-	
-	private   static Usage addSubjectParameterTo(Type type) {
-		Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-		SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-		membership.setOwnedSubjectParameter_comp(parameter);
-		type.getOwnedFeatureMembership_comp().add(membership);
-		return parameter;
 	}
 	
 	//

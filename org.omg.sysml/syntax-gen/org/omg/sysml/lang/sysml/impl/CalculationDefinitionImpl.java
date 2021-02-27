@@ -33,13 +33,10 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,27 +169,14 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
+	// Other methods
+	
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
 	
-	// Other methods
-	
-	public static void addResultParameter(Type type) {
-		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
-			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			membership.setOwnedMemberParameter_comp(resultParameter);
-			type.getOwnedFeatureMembership_comp().add(membership);
-			((FeatureImpl)resultParameter).transform();
-		}
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	public void setResultConnector(BindingConnector resultConnector) {
+		this.resultConnector = resultConnector;
 	}
 	
 	@Override

@@ -182,11 +182,6 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 		return !getOwnedMetadata().isEmpty();
 	}
 	
-	public void transform() {
-		super.transform();
-		AnnotatingElementImpl.transformAnnotatingElement(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

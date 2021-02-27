@@ -33,9 +33,7 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -251,56 +249,32 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		throw new UnsupportedOperationException();
 	}
 	
-	// Transformation
+	// Other
 	
-	protected void updateTransitionLinkRedefinition() {
-		// NOTE: This Redefinition can't be implicit, or it ends up getting removed during
-		// the Redefinition computation part of the general implicit typing mechanism.
-		Redefinition redefinition;
-		EList<Redefinition> redefinitions = transitionLinkFeature.getOwnedRedefinition();
-		if (redefinitions.isEmpty()) {
-			redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-			redefinition.setRedefiningFeature(transitionLinkFeature);
-			transitionLinkFeature.getOwnedRelationship_comp().add(redefinition);
-		} else {
-			redefinition = redefinitions.get(0);
-		}
-		redefinition.setRedefinedFeature((Feature)getDefaultType(TRANSITION_LINK_FEATURE));
+	public Feature getBaseTransitionLinkFeature() {
+		return (Feature)getDefaultType(TRANSITION_LINK_FEATURE);
 	}
 	
-	protected Feature getTransitionLinkFeature() {
-		if (transitionLinkFeature == null) {
-			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
-			addOwnedFeature(transitionLinkFeature);
-		}
-		updateTransitionLinkRedefinition();
+	public Feature getTransitionLinkFeature() {
 		return transitionLinkFeature;
 	}
 	
-	protected void computeReferenceConnector() {
-		Succession succession = getSuccession();
-		((ElementImpl)succession).transform();
-		successionConnector = makeBinding(succession, getTransitionLinkFeature());
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		successionConnector = null;
-		super.cleanDerivedValues();
+	public void setTransitionLinkFeature(Feature transitionLinkFeature) {
+		this.transitionLinkFeature = transitionLinkFeature;
 	}
 	
 	public BindingConnector getSuccessionConnector() {
 		return successionConnector;
 	}
+	
+	public void setSuccessionConnector(BindingConnector successionConnector) {
+		this.successionConnector = successionConnector;
+	}
 
 	@Override
-	public void transform() {
-		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
-		if (successionConnector == null) {
-			computeReferenceConnector();
-		}
-		
-		super.transform();
+	public void cleanDerivedValues() {
+		successionConnector = null;
+		super.cleanDerivedValues();
 	}
 	
 	//

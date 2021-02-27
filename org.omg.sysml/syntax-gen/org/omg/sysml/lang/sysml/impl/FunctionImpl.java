@@ -148,15 +148,15 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	protected String getDefaultSupertype() {
 		return FUNCTION_SUPERCLASS_DEFAULT;
 	}
+	
+	// Other
 
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	public void setResultConnector(BindingConnector resultConnector) {
+		this.resultConnector = resultConnector;
 	}
 	
 	@Override
@@ -164,6 +164,8 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 		resultConnector = null;
 		super.cleanDerivedValues();
 	}
+	
+	//
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

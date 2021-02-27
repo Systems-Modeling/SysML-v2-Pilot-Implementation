@@ -542,15 +542,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 					BINARY_CONNECTOR_SUBSETTING_DEFAULT;
 	}
 	
-	private void computeFeaturingType() {
-		if (getOwningType() == null) {
-			Type contextType = getContextType();
-			if (contextType != null) {
-				addFeaturingType(contextType);
-			}
-		}
-	}
-	
 	// Utility Methods
 	
 	private Type contextType = null;
@@ -643,16 +634,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			orElseGet(()->((FeatureImpl)connectorEnd).createSubsetting()).
 			setSubsettedFeature(relatedFeature);
 	}
-	
-	//
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeFeaturingType();
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

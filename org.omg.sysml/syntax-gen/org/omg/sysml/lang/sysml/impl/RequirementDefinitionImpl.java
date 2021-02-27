@@ -123,10 +123,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 	
-	private void computeSubjectParameter() {
-		UsageImpl.computeSubjectParameterOf(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -223,16 +219,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
-	// Additional overrides
-		
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -508,16 +508,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
   		return false;
 	}
 	
-	// Other overrides
-	
-	private void computeFeaturingType() {
-		Type contextType = getContextType();
-		if (contextType != null && contextType != getOwningType()) {
-			if (getOwnedTypeFeaturing().isEmpty()) {
-				addFeaturingType(getContextType());
-			}
-		}
-	}
+	// Other
 	
 	private Type contextType = null;
 	private boolean isComputeContextType = true;
@@ -528,12 +519,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			contextType = ConnectorImpl.getContextType(this);
 		}
 		return contextType;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeFeaturingType();
 	}
 	
 	//

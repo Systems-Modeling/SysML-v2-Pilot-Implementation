@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.sysml.lang.sysml.AnnotatingElement;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
@@ -113,27 +112,6 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 		return annotation;
 	}
 	
-	public static void transformAnnotatingElement(AnnotatingElement annotatingElement) {
-		EList<Annotation> annotations = annotatingElement.getAnnotation();
-		if (annotations.isEmpty()) {
-			Relationship owningRelationship = annotatingElement.getOwningRelationship();
-			if (owningRelationship instanceof Annotation) {
-				annotations.add((Annotation)owningRelationship);
-			} else {
-				annotatingElement.getOwnedRelationship().stream().
-					filter(rel->rel instanceof Annotation).
-					map(Annotation.class::cast).
-					forEachOrdered(annotations::add);
-			}
-		}
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		transformAnnotatingElement(this);
-	}
-
 	// Utility methods
 	
 	public static String processCommentBody(String body) {

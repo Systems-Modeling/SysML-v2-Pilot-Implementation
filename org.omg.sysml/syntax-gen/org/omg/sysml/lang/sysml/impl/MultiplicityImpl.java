@@ -62,10 +62,4 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 		return Collections.emptyList();
 	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-		addImplicitFeaturingTypes();
-	}
-
 } // MultiplicityImpl

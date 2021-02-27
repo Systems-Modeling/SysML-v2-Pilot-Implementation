@@ -96,7 +96,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		return getReferentFeature().orElseGet(this::getSelfReferenceFeature);
 	}
 	
-	protected Optional<Feature> getReferentFeature() {
+	public Optional<Feature> getReferentFeature() {
 		return getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
 				map(Membership::getMemberElement).
@@ -157,26 +157,14 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		return new BasicEList<>();
 	}
 	
-	protected void addReferenceConnector() {
-		if (referenceConnector == null) {
-			referenceConnector = makeBinding(getReferent(), getResult());
-		}
+	// Other
+		
+	public BindingConnector getReferenceConnector() {
+		return referenceConnector;
 	}
 	
-	protected void addResultSubsetting() {
-		Feature result = getResult();
-		if (getReferentFeature().isPresent()) {
-			((FeatureImpl)result).addImplicitGeneralType(
-					SysMLPackage.eINSTANCE.getSubsetting(), getReferent());
-		}
-	}
-		
-	@Override
-	public void transform() {
-		super.transform();
-		addReferenceConnector();
-		// Add subsetting in order to inherit typing of referent.
-		addResultSubsetting();
+	public void setReferenceConnector(BindingConnector referenceConnector) {
+		this.referenceConnector = referenceConnector;
 	}
 	
 	@Override
@@ -184,11 +172,9 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		referenceConnector = null;
 		super.cleanDerivedValues();
 	}
-
-	public BindingConnector getReferenceConnector() {
-		return referenceConnector;
-	}
 	
+	//
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

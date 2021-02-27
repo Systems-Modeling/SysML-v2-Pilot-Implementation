@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -90,10 +89,6 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 	
-	private void computeSubjectParameter() {
-		UsageImpl.computeSubjectParameterOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,21 +123,6 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 		return (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
 	}
 	
-	public static void computeObjectiveRequirementOf(Type type) {
-		RequirementUsage objective = getObjectiveRequirementOf(type);
-		if (objective == null) {
-			addObjectiveRequirement(type);
-		}
-	}
-	
-	public static RequirementUsage addObjectiveRequirement(Type type) {
-		RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
-		ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
-		membership.setOwnedObjectiveRequirement_comp(objective);
-		type.getOwnedFeatureMembership_comp().add(membership);
-		return objective;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,14 +137,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	protected String getDefaultSupertype() {
 		return CASE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		computeObjectiveRequirementOf(this);
-	}
-	
+		
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

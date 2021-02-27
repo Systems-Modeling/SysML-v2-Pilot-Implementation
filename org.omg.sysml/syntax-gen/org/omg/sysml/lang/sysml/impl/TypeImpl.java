@@ -68,6 +68,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -286,39 +287,15 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		cleanImplicitBindingConnectors();
 	}
 
-	private void cleanImplicitGeneralTypes() {
+	public void cleanImplicitGeneralTypes() {
 		implicitGeneralTypes.clear();
 	}
 	
-	private void cleanImplicitBindingConnectors() {
+	public void cleanImplicitBindingConnectors() {
 		implicitMemberBindingConnectors.clear();
 		implicitFeatureBindingConnectors.clear();
 	}
-	
-	public void addImplicitGeneralizations() {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
-			for (Type general : implicitGeneralTypes.get(eClass)) {
-				Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
-				newGeneralization.setGeneral(general);
-				newGeneralization.setSpecific(this);
-				getOwnedRelationship_comp().add(newGeneralization);
-			}
-		}
-		cleanImplicitGeneralTypes();
-	}
-	
-	public List<Membership> addImplicitBindingConnectors() {
-		List<Membership> createdMemberships = new ArrayList<>();
-		for (BindingConnector connector : implicitFeatureBindingConnectors) {
-			createdMemberships.add(addOwnedFeature(connector));
-		}
-		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			createdMemberships.add(addOwnedMember(connector));
-		}
-		cleanImplicitBindingConnectors();
-		return createdMemberships;
-	}
-	
+		
 	public boolean isImplicitGeneralTypesEmpty() {
 		return implicitGeneralTypes.isEmpty();
 	}
@@ -411,7 +388,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		}
 	}
 	
-	protected void addImplicitGeneralType(EClass eClass, Type general) {
+	public void addImplicitGeneralType(EClass eClass, Type general) {
 		if (general != null && !isImplicitGeneralizationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
 		}
@@ -1137,7 +1114,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return membership;
 	}
 	
-	protected BindingConnector addImplicitBindingConnector(Feature source, Feature target) {
+	public BindingConnector addImplicitBindingConnector(Feature source, Feature target) {
 		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
 		((ConnectorImpl)connector).addConnectorEnd(source);
 		((ConnectorImpl)connector).addConnectorEnd(target);
@@ -1158,24 +1135,15 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return connector;
 	}
 	
-	protected BindingConnector makeBinding(Feature source, Feature target) {
+	public BindingConnector makeBinding(Feature source, Feature target) {
 		return addImplicitBindingConnector(source, target);
 	}
 	
-	protected BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
-		((ElementImpl)sourceExpression).transform();
+	public BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
+		ElementUtil.transform(sourceExpression);
 		return makeBinding(sourceExpression.getResult(), target);
 	}
 		
-// Other Methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		clearCaches();
-		computeImplicitGeneralTypes();
-	}
-	
 	//
 	
 	/**

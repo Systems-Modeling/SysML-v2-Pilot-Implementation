@@ -771,12 +771,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
-	 * Trigger in-place model transformations.
-	 */
-	public void transform() {		
-	}
-	
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

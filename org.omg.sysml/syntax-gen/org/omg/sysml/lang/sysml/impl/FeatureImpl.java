@@ -29,7 +29,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -53,6 +52,7 @@ import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
@@ -912,7 +912,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return valueConnector;
 	}
 	
-	protected void computeValueConnector() {
+	public void computeValueConnector() {
 		FeatureValue valuation = getValuation();
 		if (valuation != null) {
 			Expression value = valuation.getValue();
@@ -929,29 +929,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	@Override
-	public void transform() {
-		forceComputeRedefinitions();
-		super.transform();
-		computeValueConnector();
-	}
-	
-	@Override
 	public void cleanDerivedValues() {
 		valueConnector = null;
 		super.cleanDerivedValues();
 	}
 	
 	// Utility methods
-	
-	protected void addImplicitFeaturingTypes() {
-		Namespace owner = getOwningNamespace();
-		if (owner instanceof Feature) {
-			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (implicitFeaturingTypes.isEmpty()) {
-				addFeaturingTypes(ownerFeaturingTypes);
-			}
-		}
-	}
 	
 	public void addFeaturingType(Type type) {
 		implicitFeaturingTypes.add(type);
@@ -965,24 +948,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		implicitFeaturingTypes.forEach(action);
 	}
 	
-	public void addImplicitTypeFeaturing() {
-		for (Type type : implicitFeaturingTypes) {
-			boolean featuringRequired = getOwnedRelationship_comp().stream().
-				filter(TypeFeaturing.class::isInstance).
-				map(TypeFeaturing.class::cast).
-				noneMatch(f -> Objects.equals(f.getFeatureOfType(), this)
-						&& Objects.equals(f.getFeaturingType(), type));
-			if (featuringRequired) {
-				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
-				featuring.setFeaturingType(type);
-				featuring.setFeatureOfType(this);
-				getOwnedRelationship_comp().add(featuring);
-			}
-		}
+	public boolean isImplicitFeaturingTypesEmpty() {
+		return implicitFeaturingTypes.isEmpty();
 	}
 	
 	public BindingConnector makeValueBinding(Expression sourceExpression) {
-		((ElementImpl)sourceExpression).transform();
+		ElementUtil.transform(sourceExpression);
 		return addImplicitBindingConnector(getFeaturingType(), sourceExpression.getResult(), this);
 	}
 	

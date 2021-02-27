@@ -39,8 +39,6 @@ import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -227,23 +225,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 		return super.getConnectorEnd();
 	}
 	
-	public void transformConnectorEnd() {
-		EList<Feature> ends = getConnectorEnd();
-		Namespace owner = getOwningNamespace();
-		if (owner instanceof Feature) {
-			if (ends.size() >= 2) {
-				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
-				List<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					Redefinition redefinition = redefinitions.get(0);
-					if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
-						redefinition.setRedefinedFeature((Feature)owner);
-					}
-				}
-			}
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -275,12 +256,6 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return StepImpl.getRelevantFeaturesOf(this);
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		transformConnectorEnd();
 	}
 	
 	/**

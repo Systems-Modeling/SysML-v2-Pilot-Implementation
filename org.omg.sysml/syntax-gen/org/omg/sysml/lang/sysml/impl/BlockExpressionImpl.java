@@ -25,9 +25,6 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BlockExpression;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -64,25 +61,11 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
-
-	public static BindingConnector getOrCreateResultConnectorFor(
-			TypeImpl type, BindingConnector resultConnector, Feature result) {
-		if (resultConnector == null) {
-			Expression resultExpression = 
-					(Expression)type.getOwnedFeatureByMembership(ResultExpressionMembership.class);
-			if (resultExpression != null) {
-				resultConnector = type.makeResultBinding(resultExpression, result);
-			}
-		}
-		return resultConnector;
-	}
-
-	@Override
-	public void transform() {
-		super.transform();
-		resultConnector = getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}
 	
+	public void setResultConnector(BindingConnector resultConnector) {
+		this.resultConnector = resultConnector;
+	}
+
 	@Override
 	public void cleanDerivedValues() {
 		resultConnector = null;

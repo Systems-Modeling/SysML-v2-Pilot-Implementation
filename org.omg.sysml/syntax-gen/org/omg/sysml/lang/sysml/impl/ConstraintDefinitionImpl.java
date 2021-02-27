@@ -166,22 +166,19 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
   		return false;
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Additional overrides
-
 	@Override
 	protected String getDefaultSupertype() {
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-	@Override
-	public void transform() {
-		super.transform();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	// Additional
+
+	public BindingConnector getResultConnector() {
+		return resultConnector;
+	}
+	
+	public void setResultConnector(BindingConnector resultConnector) {
+		this.resultConnector = resultConnector;
 	}
 	
 	@Override
@@ -189,6 +186,8 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		resultConnector = null;
 		super.cleanDerivedValues();
 	}
+	
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

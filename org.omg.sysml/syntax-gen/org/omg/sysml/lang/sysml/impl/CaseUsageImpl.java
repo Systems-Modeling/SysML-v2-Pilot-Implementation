@@ -92,10 +92,6 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 		return CaseDefinitionImpl.getObjectiveRequirementOf(this);
 	}
 	
-	private void computeObjectiveRequirement() {
-		CaseDefinitionImpl.computeObjectiveRequirementOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,10 +122,6 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 		return UsageImpl.basicGetSubjectParameterOf(this);
 	}
 	
-	private void computeSubjectParameter() {
-		UsageImpl.computeSubjectParameterOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -234,13 +226,6 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	protected boolean hasRelevantSubjectParameter() {
 		Type owningType = getOwningType();
 		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		computeObjectiveRequirement();
 	}
 	
 	//

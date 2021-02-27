@@ -283,17 +283,14 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 					CALCULATION_SUBSETTING_BASE_DEFAULT;
 	}
 	
+	// Other methods
+	
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
 	
-	// Other methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());;
+	public void setResultConnector(BindingConnector resultConnector) {
+		this.resultConnector = resultConnector;
 	}
 	
 	@Override

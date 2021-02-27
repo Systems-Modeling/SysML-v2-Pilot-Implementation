@@ -397,11 +397,15 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
+	// Additional
+	
 	public BindingConnector getResultConnector() {
 		return resultConnector;
 	}
 	
-	// Additional Overrides
+	public void setResultConnector(BindingConnector resultConnector) {
+		this.resultConnector = resultConnector;
+	}
 	
 	@Override
 	protected boolean hasRelevantSubjectParameter() {
@@ -421,12 +425,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	protected Usage basicGetSubjectParameter() {
 		return isRequirement()? basicGetSubjectParameterOf(this): null;
-	}
-	
-	protected void computeSubjectParameter() {
-		if (isRequirement()) {
-			UsageImpl.computeSubjectParameterOf(this);
-		}
 	}
 	
 	@Override
@@ -473,14 +471,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		}
 		return subsettingRequirementFeature;
 	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}	
 	
 	@Override
 	public void cleanDerivedValues() {

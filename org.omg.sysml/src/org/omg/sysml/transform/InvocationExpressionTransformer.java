@@ -73,20 +73,17 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 	public void computeArgumentConnectors() {
 		InvocationExpressionImpl expression = (InvocationExpressionImpl)getElement();
 		List<Expression> arguments = expression.getArgument();
-		if (expression.getArgumentConnectors() == null) {
-			BindingConnector[] argumentConnectors = new BindingConnector[arguments.size()];
-			int i = 0;
-			for (Feature input: expression.getInput()) {
-				if (i >= argumentConnectors.length) {
-					break;
-				}
-				Expression argument = getArgumentForInput(arguments, input, i);
-				if (argument != null) {
-					argumentConnectors[i] = expression.makeResultBinding(argument, input);
-					i++;
-				}
+		BindingConnector[] argumentConnectors = new BindingConnector[arguments.size()];
+		int i = 0;
+		for (Feature input: expression.getInput()) {
+			if (i >= argumentConnectors.length) {
+				break;
 			}
-			expression.setArgumentConnectors(argumentConnectors);
+			Expression argument = getArgumentForInput(arguments, input, i);
+			if (argument != null) {
+				argumentConnectors[i] = expression.makeResultBinding(argument, input);
+				i++;
+			}
 		}
 	}
 	

@@ -22,7 +22,6 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.BlockExpression;
-import org.omg.sysml.lang.sysml.impl.BlockExpressionImpl;
 
 public class BlockExpressionTransformer extends ExpressionTransformer {
 
@@ -36,10 +35,8 @@ public class BlockExpressionTransformer extends ExpressionTransformer {
 	
 	@Override
 	public void transform() {
-		BlockExpressionImpl expression = (BlockExpressionImpl)getElement();
 		super.transform();
-		expression.setResultConnector(
-				getOrCreateResultConnectorFor(expression, expression.getResultConnector(), expression.getResult()));
+		createResultConnector(getElement().getResult());
 	}
 
 }

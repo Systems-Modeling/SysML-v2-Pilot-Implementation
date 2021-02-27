@@ -22,12 +22,6 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.CalculationDefinition;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.CalculationDefinitionImpl;
-import org.omg.sysml.util.ElementUtil;
 
 public class CalculationDefinitionTransformer extends ActionDefinitionTransformer {
 
@@ -39,23 +33,10 @@ public class CalculationDefinitionTransformer extends ActionDefinitionTransforme
 		return (CalculationDefinition)super.getElement();
 	}
 	
-	public static void addResultParameter(Type type) {
-		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
-			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			membership.setOwnedMemberParameter_comp(resultParameter);
-			type.getOwnedFeatureMembership_comp().add(membership);
-			ElementUtil.transform(resultParameter);
-		}
-	}
-	
 	@Override
 	public void transform() {
-		CalculationDefinitionImpl definition = (CalculationDefinitionImpl)getElement();
 		super.transform();
-		addResultParameter(definition);
-		definition.setResultConnector(
-				ExpressionTransformer.getOrCreateResultConnectorFor(
-						definition, definition.getResultConnector(), definition.getResult()));
+		addResultParameter();
+		createResultConnector(getElement().getResult());
 	}
 }

@@ -21,11 +21,7 @@
 
 package org.omg.sysml.transform;
 
-import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Invariant;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class InvariantTransformer extends BooleanExpressionTransformer {
 
@@ -38,21 +34,11 @@ public class InvariantTransformer extends BooleanExpressionTransformer {
 		return (Invariant)super.getElement();
 	}
 	
-	public static BindingConnector getAssertionConnectorFor(Feature feature, Feature result) {
-		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
-				filter(f->f instanceof LiteralBoolean).
-				findFirst().orElse(null);
-		return literalBoolean == null? null:
-			((FeatureImpl)feature).makeResultBinding(literalBoolean, result);
-	}
-	
 	@Override
 	public void transform() {
 		Invariant invariant = getElement();
 		super.transform();
-		if (invariant.getAssertionConnector() == null) {
-			invariant.setAssertionConnector(getAssertionConnectorFor(invariant, invariant.getResult()));
-		}
+		invariant.setAssertionConnector(computeAssertionConnector(invariant.getResult()));
 	}
 	
 }

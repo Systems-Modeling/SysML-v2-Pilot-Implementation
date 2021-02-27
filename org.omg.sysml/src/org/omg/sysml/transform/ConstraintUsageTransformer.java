@@ -21,10 +21,13 @@
 
 package org.omg.sysml.transform;
 
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl;
 
 public class ConstraintUsageTransformer extends UsageTransformer {
+
+	protected BindingConnector resultConnector = null;
 
 	public ConstraintUsageTransformer(ConstraintUsage element) {
 		super(element);
@@ -47,10 +50,8 @@ public class ConstraintUsageTransformer extends UsageTransformer {
 		ConstraintUsageImpl constraint = (ConstraintUsageImpl)getElement();
 		super.transform();
 		computeSubjectParameter();
-		CalculationDefinitionTransformer.addResultParameter(getElement());
-		constraint.setResultConnector(
-				ExpressionTransformer.getOrCreateResultConnectorFor(
-						constraint, constraint.getResultConnector(), constraint.getResult()));
+		addResultParameter();
+		createResultConnector(constraint.getResult());
 	}	
 	
 }

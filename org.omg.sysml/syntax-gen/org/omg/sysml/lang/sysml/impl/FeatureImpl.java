@@ -178,10 +178,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
-	/**
-	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
-	 */
-	protected BindingConnector valueConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -908,30 +904,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				findFirst().orElse(null);
 	}
 
-	public BindingConnector getValueConnector() {
-		return valueConnector;
-	}
-	
-	public void computeValueConnector() {
-		FeatureValue valuation = getValuation();
-		if (valuation != null) {
-			Expression value = valuation.getValue();
-			if (value != null) {
-				valueConnector = makeValueBinding(value);
-			}
-		}
-	}
-	
 	@Override
 	public void computeImplicitGeneralTypes() {
 		addComputedRedefinitions(null);
 		super.computeImplicitGeneralTypes();
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		valueConnector = null;
-		super.cleanDerivedValues();
 	}
 	
 	// Utility methods

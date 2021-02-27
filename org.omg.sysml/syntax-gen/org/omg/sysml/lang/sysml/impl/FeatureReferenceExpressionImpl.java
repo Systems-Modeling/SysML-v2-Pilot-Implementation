@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -57,8 +56,6 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
 	
 	private Feature selfReferenceFeature = null;
-	
-	private BindingConnector referenceConnector;
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -157,24 +154,6 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		return new BasicEList<>();
 	}
 	
-	// Other
-		
-	public BindingConnector getReferenceConnector() {
-		return referenceConnector;
-	}
-	
-	public void setReferenceConnector(BindingConnector referenceConnector) {
-		this.referenceConnector = referenceConnector;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		referenceConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

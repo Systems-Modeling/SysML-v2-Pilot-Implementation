@@ -22,9 +22,7 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.ConnectorImpl;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class ConnectorTransformer extends FeatureTransformer {
 
@@ -37,18 +35,10 @@ public class ConnectorTransformer extends FeatureTransformer {
 		return (Connector)super.getElement();
 	}
 
-	protected static void computeFeaturingTypeFor(Connector connector, Type contextType) {
-		if (contextType != null && connector.getOwningType() == null && 
-			connector.getOwnedTypeFeaturing().isEmpty()) {
-			((FeatureImpl)connector).addFeaturingType(contextType);
-		}
-	}
-	
 	@Override
 	public void transform() {
-		Connector connector = getElement();
 		super.transform();
-		computeFeaturingTypeFor(connector, ((ConnectorImpl)connector).getContextType());
+		addFeaturingType(((ConnectorImpl)getElement()).getContextType());
 	}
 	
 }

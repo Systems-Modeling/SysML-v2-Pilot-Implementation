@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
@@ -88,13 +87,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	private Type subsettingBaseDefault;
 	private Type subsettingAssumptionFeature;
 	private Type subsettingRequirementFeature;
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this ConstraintUsage.
-	 */
-	protected BindingConnector resultConnector = null;
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -399,16 +391,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 
 	// Additional
 	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	public void setResultConnector(BindingConnector resultConnector) {
-		this.resultConnector = resultConnector;
-	}
-	
 	@Override
-	protected boolean hasRelevantSubjectParameter() {
+	public boolean hasRelevantSubjectParameter() {
 		Type owningType = getOwningType();
 		return isRequirement() && 
 			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
@@ -470,12 +454,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			subsettingRequirementFeature = getDefaultType(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		return subsettingRequirementFeature;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
 	}
 	
 	//

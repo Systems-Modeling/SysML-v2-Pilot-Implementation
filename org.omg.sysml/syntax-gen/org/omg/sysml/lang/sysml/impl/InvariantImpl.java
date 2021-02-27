@@ -98,16 +98,6 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		assertionConnector = newAssertionConnector;
 	}
 
-	// Additional overrides
-
-	@Override
-	public void cleanDerivedValues() {
-		assertionConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -223,7 +223,7 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	// Additional overrides
 	
 	@Override
-	protected boolean hasRelevantSubjectParameter() {
+	public boolean hasRelevantSubjectParameter() {
 		Type owningType = getOwningType();
 		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
 	}

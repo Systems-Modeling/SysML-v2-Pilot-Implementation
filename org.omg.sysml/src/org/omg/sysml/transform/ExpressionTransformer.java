@@ -21,17 +21,14 @@
 
 package org.omg.sysml.transform;
 
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.impl.ExpressionImpl;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class ExpressionTransformer extends StepTransformer {
 
@@ -42,18 +39,6 @@ public class ExpressionTransformer extends StepTransformer {
 	@Override
 	public Expression getElement() {
 		return (Expression)super.getElement();
-	}
-
-	public static BindingConnector getOrCreateResultConnectorFor(
-		TypeImpl type, BindingConnector resultConnector, Feature result) {
-		if (resultConnector == null) {
-			Expression resultExpression = 
-					(Expression)type.getOwnedFeatureByMembership(ResultExpressionMembership.class);
-			if (resultExpression != null) {
-				resultConnector = type.makeResultBinding(resultExpression, result);
-			}
-		}
-		return resultConnector;
 	}
 
 	protected Feature createFeatureForParameter(Feature parameter) {

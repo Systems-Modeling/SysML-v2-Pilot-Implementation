@@ -21,10 +21,13 @@
 
 package org.omg.sysml.transform;
 
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 import org.omg.sysml.lang.sysml.impl.ConstraintDefinitionImpl;
 
 public class ConstraintDefinitionTransformer extends DefinitionTransformer {
+
+	protected BindingConnector resultConnector = null;
 
 	public ConstraintDefinitionTransformer(ConstraintDefinition element) {
 		super(element);
@@ -39,10 +42,8 @@ public class ConstraintDefinitionTransformer extends DefinitionTransformer {
 	public void transform() {
 		ConstraintDefinitionImpl definition = (ConstraintDefinitionImpl)getElement();
 		super.transform();
-		CalculationDefinitionTransformer.addResultParameter(definition);
-		definition.setResultConnector(
-				ExpressionTransformer.getOrCreateResultConnectorFor(
-						definition, definition.getResultConnector(), definition.getResult()));
+		addResultParameter();
+		createResultConnector(definition.getResult());
 	}
 	
 }

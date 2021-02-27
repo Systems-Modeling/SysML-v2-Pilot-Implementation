@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
@@ -56,13 +55,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class CalculationDefinitionImpl extends ActionDefinitionImpl implements CalculationDefinition {
 
 	public static final String CALCULATION_DEFINITION_SUPERCLASS_DEFAULT = "Calculations::Calculation";
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this FunctionDefinition.
-	 */
-	protected BindingConnector resultConnector = null;
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,24 +161,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
-	// Other methods
-	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	public void setResultConnector(BindingConnector resultConnector) {
-		this.resultConnector = resultConnector;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

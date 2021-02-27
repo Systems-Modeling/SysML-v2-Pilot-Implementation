@@ -25,8 +25,10 @@
 package org.omg.sysml.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -42,9 +44,23 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.transform.Transformer;
 import org.omg.sysml.transform.TransformerFactory;
 
 public class ElementUtil {
+	
+	private static Set<Element> transformedElements;
+	
+	private static Set<Element> getTransformedElements() {
+		if (transformedElements == null) {
+			transformedElements = new HashSet<>();
+		}
+		return transformedElements;
+	}
+	
+	public static boolean isTransformed(Element element) {
+		return getTransformedElements().contains(element);
+	}
 	
 	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {
 		for (Resource resource: resourceSet.getResources()) {
@@ -80,7 +96,21 @@ public class ElementUtil {
 	}
 	
 	public static void transform(Element element) {
-		TransformerFactory.createTransformer(element).transform();
+		Set<Element> transformedElements = getTransformedElements();
+		if (!transformedElements.contains(element)) {
+			Transformer transformer = TransformerFactory.createTransformer(element);
+			if (transformer != null) {
+				transformer.transform();
+			}
+			transformedElements.add(element);
+		}
+	}
+	
+	public static void clean(Element element) {
+		getTransformedElements().remove(element);
+		if (element instanceof TypeImpl) {
+			((TypeImpl)element).cleanImplicitValues();
+		}
 	}
 	
 	public static void addImplicitGeneralizations(Type type) {

@@ -48,7 +48,6 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
@@ -641,19 +640,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return super.isIgnoredParameter() || isSubjectParameter();
 	}
 	
-	@Override
-	public void computeValueConnector() {
-		FeatureValue valuation = getValuation();
-		if (valuation == null && isSubjectParameter()){
-			Feature subjectParameter = getRelevantSubjectParameter();
-			if (valueConnector == null && subjectParameter != null) {
-				valueConnector = makeBinding(subjectParameter, this);
-			}
-		} else {
-			super.computeValueConnector();
-		}
-	}
-	
 	// Utility methods
 	
 	public Definition getOwningVariationDefinition() {
@@ -684,24 +670,11 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 		return getOwningFeatureMembership() instanceof SubjectMembership;
 	}
 
-	/**
-	 * Return the relevant subject parameter to which this Usage should be bound.
-	 */
-	public Feature getRelevantSubjectParameter() {
-		Type owningType = getOwningType();		
-		if (owningType instanceof Usage && !owningType.isAbstract()) {
-			if (((UsageImpl)owningType).hasRelevantSubjectParameter()) {
-				return getSubjectParameterOf(((Usage)owningType).getOwningType());
-			}
-		}
-		return null;
-	}
-	
-	protected boolean hasRelevantSubjectParameter() {
+	public boolean hasRelevantSubjectParameter() {
 		return false;
 	}
 	
-	protected static Usage getSubjectParameterOf(Type type) {
+	public static Usage getSubjectParameterOf(Type type) {
 		return type instanceof Definition? ((DefinitionImpl)type).getSubjectParameter():
 			   type instanceof Usage? ((UsageImpl)type).getSubjectParameter():
 			   null;

@@ -40,9 +40,7 @@ public class FeatureReferenceExpressionTransformer extends ExpressionTransformer
 	
 	protected void addReferenceConnector() {
 		FeatureReferenceExpressionImpl expression = (FeatureReferenceExpressionImpl)getElement();
-		if (expression.getReferenceConnector() == null) {
-			expression.setReferenceConnector(expression.makeBinding(expression.getReferent(), expression.getResult()));
-		}
+		expression.makeBinding(expression.getReferent(), expression.getResult());
 	}
 
 	protected void addResultSubsetting() {

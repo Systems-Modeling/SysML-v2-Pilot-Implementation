@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Succession;
@@ -61,10 +60,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
 	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitionActions";
-	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 	
-	private BindingConnector successionConnector;
-	private Feature transitionLinkFeature;
+	protected Feature transitionLinkFeature = null;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -249,11 +246,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		throw new UnsupportedOperationException();
 	}
 	
-	// Other
-	
-	public Feature getBaseTransitionLinkFeature() {
-		return (Feature)getDefaultType(TRANSITION_LINK_FEATURE);
-	}
+	// Additional
 	
 	public Feature getTransitionLinkFeature() {
 		return transitionLinkFeature;
@@ -263,22 +256,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		this.transitionLinkFeature = transitionLinkFeature;
 	}
 	
-	public BindingConnector getSuccessionConnector() {
-		return successionConnector;
-	}
-	
-	public void setSuccessionConnector(BindingConnector successionConnector) {
-		this.successionConnector = successionConnector;
-	}
-
-	@Override
-	public void cleanDerivedValues() {
-		successionConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

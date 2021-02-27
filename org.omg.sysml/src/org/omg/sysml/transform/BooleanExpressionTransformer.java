@@ -22,7 +22,6 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.BooleanExpression;
-import org.omg.sysml.lang.sysml.impl.BooleanExpressionImpl;
 
 public class BooleanExpressionTransformer extends ExpressionTransformer {
 
@@ -37,11 +36,8 @@ public class BooleanExpressionTransformer extends ExpressionTransformer {
 
 	@Override
 	public void transform() {
-		BooleanExpressionImpl expression = (BooleanExpressionImpl)getElement();
 		super.transform();
-		expression.setResultConnector(
-				ExpressionTransformer.getOrCreateResultConnectorFor(
-						expression, expression.getResultConnector(), expression.getResult()));
+		createResultConnector(getElement().getResult());
 	}
 
 }

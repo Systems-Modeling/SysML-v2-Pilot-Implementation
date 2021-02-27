@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
@@ -71,13 +70,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
 	public static final String CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT = "Calculations::Calculation::subcalculations";
 	
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this FunctionUsage.
-	 */
-	protected BindingConnector resultConnector = null;
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -283,24 +275,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 					CALCULATION_SUBSETTING_BASE_DEFAULT;
 	}
 	
-	// Other methods
-	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	public void setResultConnector(BindingConnector resultConnector) {
-		this.resultConnector = resultConnector;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

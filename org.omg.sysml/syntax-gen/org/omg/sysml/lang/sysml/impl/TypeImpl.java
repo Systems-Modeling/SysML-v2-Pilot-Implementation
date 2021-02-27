@@ -282,7 +282,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * called by the Xtext linker when cleaning up references to make the next linking
 	 * cycle start from a clean state.
 	 */
-	public void cleanDerivedValues() {
+	public void cleanImplicitValues() {
 		cleanImplicitGeneralTypes();
 		cleanImplicitBindingConnectors();
 	}

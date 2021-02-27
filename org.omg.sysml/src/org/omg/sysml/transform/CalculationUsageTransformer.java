@@ -21,10 +21,12 @@
 
 package org.omg.sysml.transform;
 
+import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.CalculationUsage;
-import org.omg.sysml.lang.sysml.impl.CalculationUsageImpl;
 
 public class CalculationUsageTransformer extends ActionUsageTransformer {
+
+	protected BindingConnector resultConnector = null;
 
 	public CalculationUsageTransformer(CalculationUsage element) {
 		super(element);
@@ -36,11 +38,8 @@ public class CalculationUsageTransformer extends ActionUsageTransformer {
 	
 	@Override
 	public void transform() {
-		CalculationUsageImpl usage = (CalculationUsageImpl)getElement();
 		super.transform();
-		CalculationDefinitionTransformer.addResultParameter(usage);
-		usage.setResultConnector(
-				ExpressionTransformer.getOrCreateResultConnectorFor(
-						usage, usage.getResultConnector(), usage.getResult()));
+		addResultParameter();
+		createResultConnector(getElement().getResult());
 	}
 }

@@ -39,9 +39,7 @@ public class FunctionTransformer extends BehaviorTransformer {
 	public void transform() {
 		FunctionImpl function = (FunctionImpl)getElement();
 		super.transform();
-		function.setResultConnector(
-				ExpressionTransformer.getOrCreateResultConnectorFor(
-						function, function.getResultConnector(), function.getResult()));
+		createResultConnector(function.getResult());
 	}
 	
 }

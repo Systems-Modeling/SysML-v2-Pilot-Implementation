@@ -177,12 +177,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 		return StepImpl.isEnactedPerformance(this);
 	}
 	
-	@Override
-	public void cleanDerivedValues() {
-		assertionConnector = null;
-		super.cleanDerivedValues();
-	}
-	
 	//
 	
 	/**

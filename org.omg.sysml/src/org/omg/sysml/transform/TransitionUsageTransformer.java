@@ -28,9 +28,12 @@ import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.impl.TransitionUsageImpl;
+import org.omg.sysml.lang.sysml.impl.TypeImpl;
 import org.omg.sysml.util.ElementUtil;
 
 public class TransitionUsageTransformer extends ActionUsageTransformer {
+
+	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 
 	public TransitionUsageTransformer(TransitionUsage element) {
 		super(element);
@@ -41,8 +44,7 @@ public class TransitionUsageTransformer extends ActionUsageTransformer {
 		return (TransitionUsage)super.getElement();
 	}
 
-	protected static void updateTransitionLinkRedefinition(TransitionUsageImpl transition, Feature transitionLinkFeature) {
-		// NOTE: This Redefinition can't be implicit, or it ends up getting removed during
+	protected void updateTransitionLinkRedefinition(Feature transitionLinkFeature) {
 		// the Redefinition computation part of the general implicit typing mechanism.
 		Redefinition redefinition;
 		EList<Redefinition> redefinitions = transitionLinkFeature.getOwnedRedefinition();
@@ -53,7 +55,7 @@ public class TransitionUsageTransformer extends ActionUsageTransformer {
 		} else {
 			redefinition = redefinitions.get(0);
 		}
-		redefinition.setRedefinedFeature(transition.getBaseTransitionLinkFeature());
+		redefinition.setRedefinedFeature((Feature)TypeImpl.getLibraryType(getElement(), TRANSITION_LINK_FEATURE));
 	}
 	
 	protected Feature getTransitionLinkFeature() {
@@ -64,18 +66,15 @@ public class TransitionUsageTransformer extends ActionUsageTransformer {
 			transition.addOwnedFeature(transitionLinkFeature);
 			transition.setTransitionLinkFeature(transitionLinkFeature);
 		}
-		updateTransitionLinkRedefinition(transition, transitionLinkFeature);
+		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;
 	}
 	
 	protected void computeReferenceConnector() {
 		TransitionUsageImpl transition = (TransitionUsageImpl)getElement();
-		if (transition.getSuccessionConnector() == null) {
-			Succession succession = transition.getSuccession();
-			ElementUtil.transform(succession);
-			transition.setSuccessionConnector(
-					transition.makeBinding(succession, getTransitionLinkFeature()));
-		}
+		Succession succession = transition.getSuccession();
+		ElementUtil.transform(succession);
+		transition.makeBinding(succession, getTransitionLinkFeature());
 	}
 	
 	@Override

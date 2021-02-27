@@ -25,7 +25,6 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
@@ -49,12 +48,6 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 
 	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::booleanEvaluations";
 	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subBooleanEvaluations";
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this BooleanExpression.
-	 */
-	protected BindingConnector resultConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,20 +163,6 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 		return super.getFeature();
 	}
 	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	public void setResultConnector(BindingConnector resultConnector) {
-		this.resultConnector = resultConnector;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

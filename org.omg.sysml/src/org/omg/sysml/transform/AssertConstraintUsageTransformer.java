@@ -37,9 +37,7 @@ public class AssertConstraintUsageTransformer extends ConstraintUsageTransformer
 	public void transform() {
 		AssertConstraintUsage usage = getElement();
 		super.transform();
-		if (usage.getAssertionConnector() == null) {
-			usage.setAssertionConnector(InvariantTransformer.getAssertionConnectorFor(usage, usage.getResult()));
-		}
+		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
 	}
 	
 }

@@ -31,7 +31,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.expressions.ModelLevelFunction;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -55,7 +54,6 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	
-	protected BindingConnector[] argumentConnectors;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -179,20 +177,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public Type getExpressionType() {
 		List<FeatureTyping> typing = basicGetOwnedTyping();
 		return typing.isEmpty()? getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
-	}
-	
-	public BindingConnector[] getArgumentConnectors() {
-		return argumentConnectors;
-	}
-	
-	public void setArgumentConnectors(BindingConnector[] argumentConnectors) {
-		this.argumentConnectors = argumentConnectors;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		argumentConnectors = null;
-		super.cleanDerivedValues();
 	}
 	
 	//

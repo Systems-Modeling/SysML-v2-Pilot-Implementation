@@ -21,31 +21,22 @@
 
 package org.omg.sysml.transform;
 
-import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.lang.sysml.impl.ConnectorImpl;
-import org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
 
-public class SatisfyRequirementUsageTransformer extends RequirementUsageTransformer {
-	
-	public SatisfyRequirementUsageTransformer(SatisfyRequirementUsage element) {
+public class NamespaceTransformer extends ElementTransformer {
+
+	public NamespaceTransformer(Namespace element) {
 		super(element);
 	}
 	
-	@Override
-	public SatisfyRequirementUsage getElement() {
-		return (SatisfyRequirementUsage)super.getElement();
+	public Namespace getElement() {
+		return (Namespace)super.getElement();
 	}
-
-	@Override
+	
 	public void transform() {
-		SatisfyRequirementUsageImpl usage = (SatisfyRequirementUsageImpl)getElement();
 		super.transform();
-		BindingConnector connector = usage.getSatisfyingFeatureConnector();
-		if (connector != null) {
-			((ConnectorImpl)connector).setRelatedFeature(0, usage.getSubjectParameter());
-		}
-		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
+		((NamespaceImpl)getElement()).clearCaches();
 	}
 
 }

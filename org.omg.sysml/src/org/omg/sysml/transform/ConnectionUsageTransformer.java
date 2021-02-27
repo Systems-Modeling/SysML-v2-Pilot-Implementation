@@ -35,21 +35,10 @@ public class ConnectionUsageTransformer extends PartUsageTransformer {
 		return (ConnectionUsage)super.getElement();
 	}
 
-//	protected void computeFeaturingType() {
-//		ConnectionUsageImpl connection = (ConnectionUsageImpl)getElement();
-//		Type contextType = connection.getContextType();
-//		if (contextType != null && contextType != connection.getOwningType()) {
-//			if (connection.getOwnedTypeFeaturing().isEmpty()) {
-//				connection.addFeaturingType(contextType);
-//			}
-//		}
-//	}
-	
 	@Override
 	public void transform() {
-		ConnectionUsage connector = getElement();
 		super.transform();
-		ConnectorTransformer.computeFeaturingTypeFor(connector, ((ConnectionUsageImpl)connector).getContextType());
+		addFeaturingType(((ConnectionUsageImpl)getElement()).getContextType());
 	}
 	
 }

@@ -21,10 +21,16 @@
 
 package org.omg.sysml.transform;
 
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.util.ElementUtil;
 
-public class TypeTransformer extends ElementTransformer {
+public class TypeTransformer extends NamespaceTransformer {
 
 	public TypeTransformer(Type element) {
 		super(element);
@@ -34,12 +40,30 @@ public class TypeTransformer extends ElementTransformer {
 		return (Type)super.getElement();
 	}
 	
+	public void addResultParameter() {
+		Type type = getElement();
+		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
+			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+			membership.setOwnedMemberParameter_comp(resultParameter);
+			type.getOwnedFeatureMembership_comp().add(membership);
+			ElementUtil.transform(resultParameter);
+		}
+	}
+	
+	public void createResultConnector(Feature result) {
+		TypeImpl type = (TypeImpl)getElement();
+		Expression resultExpression = 
+				(Expression)type.getOwnedFeatureByMembership(ResultExpressionMembership.class);
+		if (resultExpression != null) {
+			type.makeResultBinding(resultExpression, result);
+		}
+	}
+
 	@Override
 	public void transform() {
-		TypeImpl type = (TypeImpl)getElement();
 		super.transform();
-		type.clearCaches();
-		type.computeImplicitGeneralTypes();
+		((TypeImpl)getElement()).computeImplicitGeneralTypes();
 	}
 	
 }

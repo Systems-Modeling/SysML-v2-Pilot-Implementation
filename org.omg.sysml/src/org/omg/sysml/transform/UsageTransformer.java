@@ -22,6 +22,8 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -39,6 +41,33 @@ public class UsageTransformer extends FeatureTransformer {
 	@Override
 	public Usage getElement() {
 		return (Usage)super.getElement();
+	}
+	
+	/**
+	 * Return the relevant subject parameter to which a Usage should be bound.
+	 */
+	public Feature getRelevantSubjectParameterFor(UsageImpl usage) {
+		Type owningType = usage.getOwningType();		
+		if (owningType instanceof Usage && !owningType.isAbstract()) {
+			if (((UsageImpl)owningType).hasRelevantSubjectParameter()) {
+				return UsageImpl.getSubjectParameterOf(((Usage)owningType).getOwningType());
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public void computeValueConnector() {
+		UsageImpl usage = (UsageImpl)getElement();
+		FeatureValue valuation = usage.getValuation();
+		if (valuation == null && usage.isSubjectParameter()){
+			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
+			if (subjectParameter != null) {
+				usage.makeBinding(subjectParameter, usage);
+			}
+		} else {
+			super.computeValueConnector();
+		}
 	}
 	
 	private static Usage addSubjectParameterTo(Type type) {

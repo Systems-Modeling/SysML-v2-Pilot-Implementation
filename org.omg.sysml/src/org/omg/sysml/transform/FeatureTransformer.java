@@ -22,7 +22,11 @@
 package org.omg.sysml.transform;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.FeatureImpl;
@@ -38,6 +42,14 @@ public class FeatureTransformer extends TypeTransformer {
 		return (Feature)super.getElement();
 	}
 	
+	protected void addFeaturingType(Type featuringType) {
+		Feature feature = getElement();
+		if (featuringType != null && feature.getOwningType() == null && 
+			feature.getOwnedTypeFeaturing().isEmpty()) {
+			((FeatureImpl)feature).addFeaturingType(featuringType);
+		}
+	}
+	
 	protected void addImplicitFeaturingTypes() {
 		FeatureImpl feature = (FeatureImpl)getElement();
 		Namespace owner = feature.getOwningNamespace();
@@ -49,12 +61,31 @@ public class FeatureTransformer extends TypeTransformer {
 		}
 	}
 	
+	public BindingConnector computeAssertionConnector(Feature result) {
+		Feature feature = getElement();
+		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
+				filter(f->f instanceof LiteralBoolean).
+				findFirst().orElse(null);
+		return literalBoolean == null? null:
+			((FeatureImpl)feature).makeResultBinding(literalBoolean, result);
+	}
+	
+	protected void computeValueConnector() {
+		FeatureImpl feature = (FeatureImpl)getElement();
+		FeatureValue valuation = feature.getValuation();
+		if (valuation != null) {
+			Expression value = valuation.getValue();
+			valuation.setValueConnector(value == null? null:
+				feature.makeValueBinding(value));
+		}
+	}
+	
 	@Override
 	public void transform() {
 		FeatureImpl feature = (FeatureImpl)getElement();
 		feature.forceComputeRedefinitions();
 		super.transform();
-		feature.computeValueConnector();
+		computeValueConnector();
 	}
 
 }

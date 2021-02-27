@@ -172,6 +172,11 @@ public class TransformerFactory extends SysMLSwitch<Transformer> {
 	}
 	
 	@Override
+	public Transformer caseNamespace(Namespace element) {
+		return new NamespaceTransformer(element);
+	}
+	
+	@Override
 	public Transformer casePartUsage(PartUsage element) {
 		return new PartUsageTransformer(element);
 	}

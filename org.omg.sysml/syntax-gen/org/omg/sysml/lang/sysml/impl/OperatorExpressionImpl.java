@@ -44,6 +44,7 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.transform.TransformerUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -327,7 +328,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 		@Override
 		protected void delegateAdd(Expression object) {
-			addOwnedFeature(object);
+			TransformerUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object);
 		}
 
 		@Override

@@ -29,8 +29,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
-import org.omg.sysml.lang.sysml.impl.UsageImpl;
 
 public class UsageTransformer extends FeatureTransformer {
 
@@ -46,53 +44,42 @@ public class UsageTransformer extends FeatureTransformer {
 	/**
 	 * Return the relevant subject parameter to which a Usage should be bound.
 	 */
-	public Feature getRelevantSubjectParameterFor(UsageImpl usage) {
+	public Feature getRelevantSubjectParameterFor(Usage usage) {
 		Type owningType = usage.getOwningType();		
-		if (owningType instanceof Usage && !owningType.isAbstract()) {
-			if (((UsageImpl)owningType).hasRelevantSubjectParameter()) {
-				return UsageImpl.getSubjectParameterOf(((Usage)owningType).getOwningType());
-			}
-		}
-		return null;
+		return !(owningType instanceof Usage) || owningType.isAbstract() || 
+			   !TransformerUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
+			   TransformerUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
 	}
 	
 	@Override
 	public void computeValueConnector() {
-		UsageImpl usage = (UsageImpl)getElement();
-		FeatureValue valuation = usage.getValuation();
-		if (valuation == null && usage.isSubjectParameter()){
+		Usage usage = getElement();
+		FeatureValue valuation = TransformerUtil.getValuationFor(usage);
+		if (valuation == null && TransformerUtil.isSubjectParameter(usage)){
 			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
 			if (subjectParameter != null) {
-				usage.makeBinding(subjectParameter, usage);
+				TransformerUtil.addBindingConnectorTo(usage, subjectParameter, usage);
 			}
 		} else {
 			super.computeValueConnector();
 		}
 	}
 	
-	private static Usage addSubjectParameterTo(Type type) {
-		Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-		SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-		membership.setOwnedSubjectParameter_comp(parameter);
-		type.getOwnedFeatureMembership_comp().add(membership);
-		return parameter;
-	}
-	
 	public static void computeSubjectParameterOf(Type type) {
-		Usage subjectParameter = null;
-		if (type != null) {
-			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
-			if (subjectParameter == null) {
-				subjectParameter = addSubjectParameterTo(type);
-			}
+		if (type != null && 
+			type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
+			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
+			membership.setOwnedSubjectParameter_comp(parameter);
+			type.getOwnedFeatureMembership_comp().add(membership);
 		}
 	}
 	
 	protected void addVariationTyping() {
-		UsageImpl usage = (UsageImpl)getElement();
-		Definition variationDefinition = usage.getOwningVariationDefinition();
-		if (variationDefinition != null && usage.isVariant()) {
-			usage.addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+		Usage usage = getElement();
+		Definition variationDefinition = TransformerUtil.getOwningVariationDefinitionFor(usage);
+		if (variationDefinition != null && TransformerUtil.isVariant(usage)) {
+			TransformerUtil.addGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
 		}		
 	}
 	

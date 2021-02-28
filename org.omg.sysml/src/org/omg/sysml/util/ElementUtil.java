@@ -29,10 +29,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
@@ -46,8 +46,24 @@ import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
 import org.omg.sysml.transform.Transformer;
 import org.omg.sysml.transform.TransformerFactory;
+import org.omg.sysml.transform.TransformerUtil;
 
 public class ElementUtil {
+	
+	private ElementUtil() {
+	}
+	
+	/**
+	 * Get documentation text for this element, as given by the body of the first documentation comment
+	 * annotating the element (if any).
+	 */
+	public static String getDocumentationTextFor(Element element) {
+		return element.getDocumentationComment().stream().
+				map(Comment::getBody).
+				findFirst().orElse(null);
+	}
+	
+	// Transformation 
 	
 	private static Set<Element> transformedElements;
 	
@@ -113,6 +129,8 @@ public class ElementUtil {
 		}
 	}
 	
+	// Implicit elements
+	
 	public static void addImplicitGeneralizations(Type type) {
 		((TypeImpl)type).forEachImplicitGeneralType((eClass, general)->{
 			Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
@@ -143,9 +161,9 @@ public class ElementUtil {
 		List<Membership> addedMemberships = new ArrayList<>();
 		((TypeImpl)type).forEachImplicitBindingConnector((connector, eClass)->{
 			if (eClass == SysMLPackage.Literals.FEATURE_MEMBERSHIP) {
-				addedMemberships.add(((TypeImpl)type).addOwnedFeature(connector));
+				addedMemberships.add(TransformerUtil.addOwnedFeatureTo(type, connector));
 			} else {
-				addedMemberships.add(((TypeImpl)type).addOwnedMember(connector));
+				addedMemberships.add(TransformerUtil.addOwnedMemberTo(type, connector));
 			}
 		});
 		((TypeImpl)type).cleanImplicitBindingConnectors();

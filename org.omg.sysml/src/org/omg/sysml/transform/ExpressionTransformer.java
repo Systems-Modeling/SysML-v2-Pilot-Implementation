@@ -28,7 +28,6 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.impl.ExpressionImpl;
 
 public class ExpressionTransformer extends StepTransformer {
 
@@ -45,7 +44,7 @@ public class ExpressionTransformer extends StepTransformer {
 		if (parameter == null) {
 			return null;
 		} else {
-			ExpressionImpl expression = (ExpressionImpl)getElement();
+			Expression expression = getElement();
 			Feature feature = SysMLFactory.eINSTANCE.createFeature();
 			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
 			membership.setOwnedMemberFeature_comp(feature);
@@ -60,16 +59,16 @@ public class ExpressionTransformer extends StepTransformer {
 	}
 	
 	protected void computeInput() {
-		ExpressionImpl expression = (ExpressionImpl)getElement();
+		Expression expression = getElement();
 		if (expression.getInput().isEmpty()) {
-			for (Feature parameter: expression.getTypeParameters()) {
+			for (Feature parameter: TransformerUtil.getTypeParametersOf(expression)) {
 				createFeatureForParameter(parameter);
 			}
 		}
 	}
 	
 	protected void computeOutput() {
-		ExpressionImpl expression = (ExpressionImpl)getElement();
+		Expression expression = getElement();
 		if (expression.getOutput().isEmpty()) {
 			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
 			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
@@ -81,7 +80,7 @@ public class ExpressionTransformer extends StepTransformer {
 			
 	@Override
 	public void transform() {
-		ExpressionImpl expression = (ExpressionImpl)getElement();
+		Expression expression = getElement();
 		super.transform();
 		if (expression.getOwningNamespace() instanceof Multiplicity || 
 				expression.getOwningMembership() instanceof FeatureValue) {

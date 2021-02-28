@@ -23,7 +23,6 @@ package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl;
 
 public class ConstraintUsageTransformer extends UsageTransformer {
 
@@ -39,15 +38,15 @@ public class ConstraintUsageTransformer extends UsageTransformer {
 	}
 	
 	protected void computeSubjectParameter() {
-		ConstraintUsageImpl constraint = (ConstraintUsageImpl)getElement();
-		if (constraint.isRequirement()) {
+		ConstraintUsage constraint = getElement();
+		if (TransformerUtil.isRequirement(constraint)) {
 			computeSubjectParameterOf(constraint);
 		}
 	}
 	
 	@Override
 	public void transform() {
-		ConstraintUsageImpl constraint = (ConstraintUsageImpl)getElement();
+		ConstraintUsage constraint = getElement();
 		super.transform();
 		computeSubjectParameter();
 		addResultParameter();

@@ -39,7 +39,7 @@ public class AcceptActionUsageTransformer extends ElementTransformer {
 		if (action.getReceiverArgument() == null) {
 			Feature receiverParameter = action.getReceiverParameter();
 			if (receiverParameter != null) {
-				action.addImplicitBindingConnector(getDefaultReceiver(), receiverParameter);
+				TransformerUtil.addBindingConnectorTo(action, getDefaultReceiver(), receiverParameter);
 			}
 		}
 	}

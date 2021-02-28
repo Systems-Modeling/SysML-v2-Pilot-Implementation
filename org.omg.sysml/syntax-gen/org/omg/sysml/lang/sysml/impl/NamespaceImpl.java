@@ -50,7 +50,6 @@ import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -394,13 +393,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 	
 	// Utility Methods
-	
-	public Membership addOwnedMember(Element element) {
-		Membership membership = SysMLFactory.eINSTANCE.createMembership();
-		membership.setOwnedMemberElement_comp(element);
-		getOwnedMembership_comp().add(membership);
-		return membership;
-	}
 	
 	public <M extends Membership, T> Stream<T> getOwnedMembersByMembership(Class<M> kind, Class<T> type) {
 		return getOwnedMembership().stream().

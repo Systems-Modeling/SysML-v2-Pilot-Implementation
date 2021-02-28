@@ -49,10 +49,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
@@ -72,7 +70,6 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -936,11 +933,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	// Utility methods
 	
-	public BindingConnector makeValueBinding(Expression sourceExpression) {
-		ElementUtil.transform(sourceExpression);
-		return addImplicitBindingConnector(getFeaturingType(), sourceExpression.getResult(), this);
-	}
-	
 	public boolean isStructureFeature() {
 		return getType().stream().anyMatch(Structure.class::isInstance);
 	}
@@ -962,23 +954,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public boolean hasDataType() {
 		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(DataType.class::isInstance) ||
 			   getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
-	}
-	
-	public Subsetting createSubsetting() {
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettingFeature(this);
-		getOwnedRelationship_comp().add(subsetting);
-		return subsetting;
-	}
-	
-	public Optional<Subsetting> basicGetFirstSubsetting() {
-		return basicGetOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).findFirst();
-	}
-	
-	public Optional<Subsetting> getFirstSubsetting() {
-		return getOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).findFirst();
 	}
 	
 	public Optional<Feature> getFirstSubsettedFeature() {
@@ -1025,15 +1000,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		// Ensure that the redefinitions for this feature are recomputed. 
 		forceComputeRedefinitions();
 		
-		addAllRedefinedFeatures(redefinedFeatures);
+		addAllRedefinedFeaturesTo(redefinedFeatures);
 		return redefinedFeatures;
 	}
 	
-	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures) {
+	protected void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
 		redefinedFeatures.add(this);
 		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
-			if (!redefinedFeatures.contains(redefinedFeature)) {
-				((FeatureImpl)redefinedFeature).addAllRedefinedFeatures(redefinedFeatures);
+			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
+				((FeatureImpl)redefinedFeature).addAllRedefinedFeaturesTo(redefinedFeatures);
 			}
 		});
 	}

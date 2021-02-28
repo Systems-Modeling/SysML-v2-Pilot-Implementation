@@ -27,8 +27,7 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.impl.TransitionUsageImpl;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 
 public class TransitionUsageTransformer extends ActionUsageTransformer {
@@ -55,26 +54,26 @@ public class TransitionUsageTransformer extends ActionUsageTransformer {
 		} else {
 			redefinition = redefinitions.get(0);
 		}
-		redefinition.setRedefinedFeature((Feature)TypeImpl.getLibraryType(getElement(), TRANSITION_LINK_FEATURE));
+		redefinition.setRedefinedFeature((Feature)SysMLLibraryUtil.getLibraryType(getElement(), TRANSITION_LINK_FEATURE));
 	}
 	
 	protected Feature getTransitionLinkFeature() {
-		TransitionUsageImpl transition = (TransitionUsageImpl)getElement();
-		Feature transitionLinkFeature = transition.getTransitionLinkFeature();
+		TransitionUsage transition = getElement();
+		Feature transitionLinkFeature = TransformerUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
 			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
-			transition.addOwnedFeature(transitionLinkFeature);
-			transition.setTransitionLinkFeature(transitionLinkFeature);
+			TransformerUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
+			TransformerUtil.setTransitionLinkFeatureOf(transition, transitionLinkFeature);
 		}
 		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;
 	}
 	
 	protected void computeReferenceConnector() {
-		TransitionUsageImpl transition = (TransitionUsageImpl)getElement();
+		TransitionUsage transition = getElement();
 		Succession succession = transition.getSuccession();
 		ElementUtil.transform(succession);
-		transition.makeBinding(succession, getTransitionLinkFeature());
+		TransformerUtil.addBindingConnectorTo(transition, succession, getTransitionLinkFeature());
 	}
 	
 	@Override

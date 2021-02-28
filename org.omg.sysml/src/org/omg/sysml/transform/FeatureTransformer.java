@@ -29,7 +29,6 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureTransformer extends TypeTransformer {
 	
@@ -46,17 +45,17 @@ public class FeatureTransformer extends TypeTransformer {
 		Feature feature = getElement();
 		if (featuringType != null && feature.getOwningType() == null && 
 			feature.getOwnedTypeFeaturing().isEmpty()) {
-			((FeatureImpl)feature).addFeaturingType(featuringType);
+			TransformerUtil.addFeaturingTypeTo(feature, featuringType);
 		}
 	}
 	
 	protected void addImplicitFeaturingTypes() {
-		FeatureImpl feature = (FeatureImpl)getElement();
+		Feature feature = getElement();
 		Namespace owner = feature.getOwningNamespace();
 		if (owner instanceof Feature) {
 			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (feature.isImplicitFeaturingTypesEmpty()) {
-				feature.addFeaturingTypes(ownerFeaturingTypes);
+			if (TransformerUtil.isImplicitFeaturingTypesEmpty(feature)) {
+				TransformerUtil.addFeaturingTypesTo(feature, ownerFeaturingTypes);
 			}
 		}
 	}
@@ -67,23 +66,22 @@ public class FeatureTransformer extends TypeTransformer {
 				filter(f->f instanceof LiteralBoolean).
 				findFirst().orElse(null);
 		return literalBoolean == null? null:
-			((FeatureImpl)feature).makeResultBinding(literalBoolean, result);
+			TransformerUtil.addResultBindingTo(feature, literalBoolean, result);
 	}
 	
 	protected void computeValueConnector() {
-		FeatureImpl feature = (FeatureImpl)getElement();
-		FeatureValue valuation = feature.getValuation();
+		Feature feature = getElement();
+		FeatureValue valuation = TransformerUtil.getValuationFor(feature);
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			valuation.setValueConnector(value == null? null:
-				feature.makeValueBinding(value));
+				TransformerUtil.addValueBindingTo(feature, value));
 		}
 	}
 	
 	@Override
 	public void transform() {
-		FeatureImpl feature = (FeatureImpl)getElement();
-		feature.forceComputeRedefinitions();
+		TransformerUtil.forceComputeRedefinitionsFor(getElement());
 		super.transform();
 		computeValueConnector();
 	}

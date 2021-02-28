@@ -23,8 +23,6 @@ package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.lang.sysml.impl.ConnectorImpl;
-import org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl;
 
 public class SatisfyRequirementUsageTransformer extends RequirementUsageTransformer {
 	
@@ -39,11 +37,11 @@ public class SatisfyRequirementUsageTransformer extends RequirementUsageTransfor
 
 	@Override
 	public void transform() {
-		SatisfyRequirementUsageImpl usage = (SatisfyRequirementUsageImpl)getElement();
+		SatisfyRequirementUsage usage = getElement();
 		super.transform();
-		BindingConnector connector = usage.getSatisfyingFeatureConnector();
+		BindingConnector connector = TransformerUtil.getSatisfyingFeatureConnectorOf(usage);
 		if (connector != null) {
-			((ConnectorImpl)connector).setRelatedFeature(0, usage.getSubjectParameter());
+			TransformerUtil.setRelatedFeatureOf(connector, 0, usage.getSubjectParameter());
 		}
 		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
 	}

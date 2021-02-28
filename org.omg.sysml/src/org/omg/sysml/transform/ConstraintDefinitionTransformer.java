@@ -23,7 +23,6 @@ package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
-import org.omg.sysml.lang.sysml.impl.ConstraintDefinitionImpl;
 
 public class ConstraintDefinitionTransformer extends DefinitionTransformer {
 
@@ -40,7 +39,7 @@ public class ConstraintDefinitionTransformer extends DefinitionTransformer {
 
 	@Override
 	public void transform() {
-		ConstraintDefinitionImpl definition = (ConstraintDefinitionImpl)getElement();
+		ConstraintDefinition definition = getElement();
 		super.transform();
 		addResultParameter();
 		createResultConnector(definition.getResult());

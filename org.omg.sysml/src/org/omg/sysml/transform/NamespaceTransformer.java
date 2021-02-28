@@ -22,7 +22,6 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
 
 public class NamespaceTransformer extends ElementTransformer {
 
@@ -36,7 +35,7 @@ public class NamespaceTransformer extends ElementTransformer {
 	
 	public void transform() {
 		super.transform();
-		((NamespaceImpl)getElement()).clearCaches();
+		TransformerUtil.clearCachesOf(getElement());
 	}
 
 }

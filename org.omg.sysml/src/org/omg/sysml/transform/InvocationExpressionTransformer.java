@@ -29,8 +29,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
-import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl;
 
 public class InvocationExpressionTransformer extends ExpressionTransformer {
 
@@ -45,13 +43,13 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 
 	@Override
 	protected void computeInput() {
-		InvocationExpressionImpl expression = (InvocationExpressionImpl)getElement();
+		InvocationExpression expression = getElement();
 		if (expression.getInput().isEmpty()) {
-			Type type = expression.getExpressionType();
+			Type type = TransformerUtil.getExpressionTypeOf(expression);
 			if (type instanceof Function || type instanceof Expression) {
 				super.computeInput();
 			} else if (type != null) {
-				for (Feature typeFeature: expression.getTypeFeatures()) {
+				for (Feature typeFeature: TransformerUtil.getTypeFeaturesOf(expression)) {
 					createFeatureForParameter(typeFeature);
 				}
 			}
@@ -59,19 +57,19 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 	}
 	
 	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
-		((FeatureImpl)input).forceComputeRedefinitions();
-		List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
+		TransformerUtil.forceComputeRedefinitionsFor(input);
+		List<Feature> redefinedFeatures = TransformerUtil.getRedefinedFeaturesOf(input);
 		if (!redefinedFeatures.isEmpty()) {
 			Feature feature = redefinedFeatures.get(0);
 			if (feature != null) {
-				return InvocationExpressionImpl.getArgumentForFeature(arguments, feature, argIndex);
+				return TransformerUtil.getArgumentForFeature(arguments, feature, argIndex);
 			}
 		}
 		return null;
 	}
 	
 	public void computeArgumentConnectors() {
-		InvocationExpressionImpl expression = (InvocationExpressionImpl)getElement();
+		InvocationExpression expression = getElement();
 		List<Expression> arguments = expression.getArgument();
 		BindingConnector[] argumentConnectors = new BindingConnector[arguments.size()];
 		int i = 0;
@@ -81,7 +79,7 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 			}
 			Expression argument = getArgumentForInput(arguments, input, i);
 			if (argument != null) {
-				argumentConnectors[i] = expression.makeResultBinding(argument, input);
+				argumentConnectors[i] = TransformerUtil.addResultBindingTo(expression, argument, input);
 				i++;
 			}
 		}

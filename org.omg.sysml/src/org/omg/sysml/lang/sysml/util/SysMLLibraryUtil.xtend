@@ -27,6 +27,7 @@ package org.omg.sysml.lang.sysml.util
 import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.emf.ecore.resource.Resource
 import org.omg.sysml.lang.sysml.Element
+import org.omg.sysml.lang.sysml.Type
 
 class SysMLLibraryUtil {
 	
@@ -55,4 +56,13 @@ class SysMLLibraryUtil {
 		return getInstance(context.eResource)?.getElement(context, name)
 	}
 	
+	def static Type getLibraryType(Element context, String... defaultNames) {
+		for (String defaultName: defaultNames) {
+			val element = getLibraryElement(context, defaultName);
+			if (element instanceof Type) {
+				return element;
+			}
+		}
+		return null;
+	}
 }

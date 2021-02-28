@@ -508,21 +508,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
   		return false;
 	}
 	
-	// Other
-	
-	private Type contextType = null;
-	private boolean isComputeContextType = true;
-	
-	public Type getContextType() {
-		if (isComputeContextType) {
-			isComputeContextType = false;
-			contextType = ConnectorImpl.getContextType(this);
-		}
-		return contextType;
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

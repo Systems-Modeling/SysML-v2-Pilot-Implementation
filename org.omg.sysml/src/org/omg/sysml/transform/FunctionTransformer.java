@@ -22,7 +22,6 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.impl.FunctionImpl;
 
 public class FunctionTransformer extends BehaviorTransformer {
 
@@ -37,9 +36,8 @@ public class FunctionTransformer extends BehaviorTransformer {
 
 	@Override
 	public void transform() {
-		FunctionImpl function = (FunctionImpl)getElement();
 		super.transform();
-		createResultConnector(function.getResult());
+		createResultConnector(getElement().getResult());
 	}
 	
 }

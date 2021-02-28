@@ -222,13 +222,11 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	EList<Type> types = null;
-	Set<Type> implicitFeaturingTypes = new LinkedHashSet<>();
 	
 	@Override
 	public void clearCaches() {
 		super.clearCaches();
 		types = null;
-		implicitFeaturingTypes = new LinkedHashSet<>();
 	}
 
 	/**
@@ -910,7 +908,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		super.computeImplicitGeneralTypes();
 	}
 	
-	// Utility methods
+	// Implicit featuring types
+	
+	Set<Type> implicitFeaturingTypes = new LinkedHashSet<>();
+	
+	@Override
+	public void cleanImplicitValues() {
+		super.cleanImplicitValues();
+		implicitFeaturingTypes = new LinkedHashSet<>();
+	}
 	
 	public void addFeaturingType(Type type) {
 		implicitFeaturingTypes.add(type);
@@ -927,6 +933,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public boolean isImplicitFeaturingTypesEmpty() {
 		return implicitFeaturingTypes.isEmpty();
 	}
+	
+	// Utility methods
 	
 	public BindingConnector makeValueBinding(Expression sourceExpression) {
 		ElementUtil.transform(sourceExpression);

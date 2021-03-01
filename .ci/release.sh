@@ -2,5 +2,5 @@
 
 set -e
 
-mvn versions:set -DremoveSnapshot=true --batch-mode
+./mvnw versions:set -DremoveSnapshot=true --batch-mode
 . "`dirname "$0"`/deploy.sh"

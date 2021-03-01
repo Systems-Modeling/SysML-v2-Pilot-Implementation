@@ -2,4 +2,4 @@
 
 set -e
 
-mvn deploy --settings "`dirname "$0"`/settings.xml" --batch-mode
+./mvnw deploy --settings "`dirname "$0"`/settings.xml" --batch-mode

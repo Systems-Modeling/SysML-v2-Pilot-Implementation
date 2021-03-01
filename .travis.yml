@@ -12,8 +12,8 @@ cache:
     - $HOME/.gradle/wrapper/
 install: skip
 script:
-  - mvn clean --batch-mode
-  - mvn install --batch-mode
+  - ./mvnw clean --batch-mode
+  - ./mvnw install --batch-mode
 deploy:
   - provider: script
     script: .ci/deploy.sh

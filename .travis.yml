@@ -10,7 +10,7 @@ cache:
     - $HOME/.m2
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
-install: mvn dependency:resolve -DexcludeGroupIds=org.omg.sysml --batch-mode
+install: skip
 script:
   - mvn clean --batch-mode
   - mvn install --batch-mode

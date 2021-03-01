@@ -1,6 +1,7 @@
 /*
  * SysML 2 Pilot Implementation
  * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2021 Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,6 +27,7 @@ import io.github.spencerpark.jupyter.kernel.magic.LineMagicParseContext;
 import io.github.spencerpark.jupyter.kernel.magic.registry.Magics;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
+import org.omg.sysml.jupyter.kernel.magic.Listing;
 import org.omg.sysml.jupyter.kernel.magic.MyMagicParser;
 import org.omg.sysml.jupyter.kernel.magic.Publish;
 import org.omg.sysml.jupyter.kernel.magic.Show;
@@ -61,6 +63,7 @@ public class SysMLKernel extends BaseKernel {
         Optional.ofNullable(System.getenv(ISysML.GRAPHVIZ_PATH_KEY)).ifPresent(interactive::setGraphVizPath);
 
         this.magics = new Magics();
+        this.magics.registerMagics(Listing.class);
         this.magics.registerMagics(Show.class);
         this.magics.registerMagics(Publish.class);
         this.magics.registerMagics(Viz.class);

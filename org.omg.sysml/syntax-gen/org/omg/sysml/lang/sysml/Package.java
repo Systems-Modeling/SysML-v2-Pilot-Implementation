@@ -61,7 +61,7 @@ public interface Package extends Namespace {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Filter Condition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPackage_FilterCondition()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='conditionedPackage'"
 	 *        annotation="subsets"
 	 * @generated
@@ -75,7 +75,7 @@ public interface Package extends Namespace {
 	 * <p>Determine whether the given <code>element</code> meets all the <code>filterConditions</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let metadataAnnotations: Sequence(Element) = \n    element.ownedAnnotation.annotatingElement-&gt;\n        select(oclIsKindOf(AnnotatingFeature) in\n    self.filterCondition-&gt;exists(cond | \n        metadataAnnotations-&gt;forAll(elem | \n            self.checkCondition(elem, cond))'"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let metadataAnnotations: Sequence(AnnotatingElement) = \n    element.ownedAnnotation.annotatingElement-&gt;\n        select(oclIsKindOf(AnnotatingFeature)) in\n    self.filterCondition-&gt;forAll(cond | \n        metadataAnnotations-&gt;exists(elem | \n            self.checkCondition(elem, cond)))'"
 	 * @generated
 	 */
 	boolean includeAsMember(Element element);
@@ -87,7 +87,7 @@ public interface Package extends Namespace {
 	 * <p>Model-level evaluate the given <code>condition</code> Expression with the given <code>element</code> as its target. If the result is a LiteralBoolean, return its <code>value</code>. Otherwise return <em>false</em>.</p>
 	 * <!-- end-model-doc -->
 	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" ordered="false" elementRequired="true" elementOrdered="false" conditionRequired="true" conditionOrdered="false"
-	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let result: Element = condition.evaluate(element) in\n    result.oclIsKindOf(LiteralBoolean) and \n    result.oclAsType(LiteralBoolean).value'"
+	 *        annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='let results: Sequence(Element) = condition.evaluate(element) in\n    result-&gt;size() = 1 and\n    results-&gt;at(1).oclIsKindOf(LiteralBoolean) and \n    results-&gt;at(1).oclAsType(LiteralBoolean).value'"
 	 * @generated
 	 */
 	boolean checkCondition(Element element, Expression condition);

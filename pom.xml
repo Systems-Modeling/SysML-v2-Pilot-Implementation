@@ -4,11 +4,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.9.0-SNAPSHOT</revision>
+    <revision>0.10.0-SNAPSHOT</revision>
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
-    <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
+    <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
+    <xpect-repository>https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository</xpect-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -24,6 +25,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <xtext.version>2.22.0</xtext.version>
+    <junit.version>3.0.0-M5</junit.version>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
@@ -34,13 +36,17 @@
 
   <modules>
     <module>org.omg.sysml</module>
+    <module>org.omg.kerml.expressions.xtext</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>
-    <module>org.omg.kerml.xtext.ui</module>
-    <module>org.omg.sysml.xtext.ui</module>
+    <module>org.omg.kerml.expressions.xtext.ide</module>
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
+    <module>org.omg.kerml.expressions.xtext.ui</module>
+    <module>org.omg.kerml.xtext.ui</module>
+    <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.sysml.interactive</module>
+    <module>org.omg.sysml.interactive.tests</module>
     <module>org.omg.sysml.jupyter.kernel</module>
     <module>org.omg.sysml.jupyter.jupyterlab</module>
     <module>org.omg.sysml.jupyter.installer</module>
@@ -130,13 +136,15 @@
           <execution>
             <id>set-version</id>
             <phase>validate</phase>
-            <configuration>
-              <target>
-                <property name="maven-version" value="${project.version}"/>
-                <script language="javascript">
-                  project.setProperty('bundle-version', project.getProperty('maven-version').
-                  replace("-SNAPSHOT", ".qualifier"));
-                </script>
+	    <configuration>
+	      <target>
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+			 classpathref="maven.plugin.classpath"/>
+		<property name="maven-version" value="${project.version}"/>
+		<propertyregex property="bundle-version"
+			       input="${maven-version}"
+			       regexp="-SNAPSHOT"
+			       replace=".qualifier"/>
                 <echo> Set the versions to POM: ${maven-version}, Bundle: ${bundle-version} </echo>
                 <!-- Currently no need to change the versions of child poms but left it for future use.
                 <replaceregexp byline="true" flags="i">
@@ -169,6 +177,19 @@
             </goals>
           </execution>
         </executions>
+	<dependencies>
+	  <dependency>
+	    <groupId>ant-contrib</groupId>
+	    <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -247,5 +268,27 @@
       <url>https://maven.pkg.github.com/Systems-Modeling/SysML-v2-Pilot-Implementation</url>
     </repository>
   </distributionManagement>
+
+  <profiles>
+  	<profile>
+      <id>runTests</id>
+      <activation>
+      	<property>
+      	  <name>!xpect.tests.skip</name>
+      	</property>
+      </activation>
+      <repositories>
+	    <repository>
+	      <id>xpect</id>
+	      <url>${xpect-repository}</url>
+	      <layout>p2</layout>
+	    </repository>
+      </repositories>
+      <modules>
+      	<module>org.omg.kerml.xpect.tests</module>
+      	<module>org.omg.sysml.xpect.tests</module>
+      </modules>
+    </profile>
+  </profiles>
 
 </project>

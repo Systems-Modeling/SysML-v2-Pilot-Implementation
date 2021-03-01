@@ -34,6 +34,16 @@ package test{
 		   	OuterPackage2.A, OuterPackage2.A.a1, OuterPackage.B,  OuterPackage.B.b,  OuterPackage.B.b.a1, 
 	   											 OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
 		   										 OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
+												 	       C.b.self,  C.c.self,  B.b.self,  Test.c.self,  Test.try.self,  test.C.b.self,  test.C.c.self,  test.Test.c.self,  test.Test.try.self, 
+	       B.b.a1.self,  C.b.a1.self,  test.C.b.a1.self, 
+	       Test.try.a1.self,  test.Test.try.a1.self, 
+		   Test.self,  test.Test.self, 
+		   A.self,  A.a1.self,  B.self, C.self, 
+		   test.A.self,  test.A.a1.self,  test.B.self,  test.C.self,  test.B.b.self,  test.B.b.a1.self, 
+		   OuterPackage.A.self,   OuterPackage.A.a1.self,  
+		   	OuterPackage2.A.self,  OuterPackage2.A.a1.self,  OuterPackage.B.self,   OuterPackage.B.b.self,   OuterPackage.B.b.a1.self,  
+	   											 OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self,  
+		   										 OuterPackage2.C.self,  OuterPackage2.C.b.self,  OuterPackage2.C.b.a1.self,  OuterPackage2.C.c.self, 
 	--- */
 	feature Test redefines C {
 		//XPECT linkedName at b --> OuterPackage.B.b
@@ -50,6 +60,18 @@ OuterPackage.A,  OuterPackage.A.a1,
 		   	OuterPackage2.A, OuterPackage2.A.a1, OuterPackage.B,  OuterPackage.B.b,  OuterPackage.B.b.a1, 
 	   											 OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1, 
 		   										 OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.b.a1, OuterPackage2.C.c,
+												 		   B.b.a1.self,  C.b.a1.self,  test.B.b.a1.self,  test.C.b.a1.self, 
+	       Test.try.a1.self,  test.Test.try.a1.self, 
+	       b.a1.self, 
+		   b.self,  c.self,  
+		   Test.self,  Test.c.self,  Test.try.self, 
+		   test.Test.self,  test.Test.c.self,  test.Test.try.self,  
+		   A.self,  A.a1.self,  B.self,  B.b.self,  C.self,  C.b.self,  C.c.self,  
+		   test.A.self,  test.A.a1.self,  test.B.self,  test.B.b.self,  test.C.self,  test.C.b.self,  test.C.c.self, 
+OuterPackage.A.self,   OuterPackage.A.a1.self,  
+		   	OuterPackage2.A.self,  OuterPackage2.A.a1.self,  OuterPackage.B.self,   OuterPackage.B.b.self,   OuterPackage.B.b.a1.self,  
+	   											 OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self,  
+		   										 OuterPackage2.C.self,  OuterPackage2.C.b.self,  OuterPackage2.C.b.a1.self,  OuterPackage2.C.c.self,self 
 	--- */
 		feature try redefines b;
 	}

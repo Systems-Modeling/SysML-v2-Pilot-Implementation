@@ -31,6 +31,10 @@ package test{
  		b, b.aa,
  		test.A, test.A.a, test.A.a.aa, test.B, test.B.b, test.B.b.aa, test.C,
 		test.C.c2, test.C.c2.aa, test.D, test.D.d,
+		  		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.b.self,  B.b.aa.self,  C.self,  C.c2.self,  C.c2.aa.self,  D.self,  D.d.self,  
+ 		b.self,  b.aa.self, 
+ 		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.b.self,  test.B.b.aa.self,  test.C.self, 
+		test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.d.self, self
 	--- */
 		feature c2 redefines b {}
 	}
@@ -41,6 +45,10 @@ package test{
 		C,C.c2, C.c2.aa, D, D.d, aa,
 		test.A, test.A.a, test.A.a.aa, test.B, test.B.b, test.B.b.aa,
 		test.C, test.C.c2, test.C.c2.aa, test.D, test.D.d,
+		 		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.b.self,  B.b.aa.self,  
+		C.self, C.c2.self,  C.c2.aa.self,  D.self,  D.d.self,  aa.self, 
+		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.b.self,  test.B.b.aa.self, 
+		test.C.self,  test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.d.self, self
 	--- */
 		feature d redefines aa {}
 	}

@@ -33,6 +33,10 @@ package test{
  		a, a.aa, b, b.aa, c1, c1.aa, c2, c2.aa,
  		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa, test.C, test.C.a, test.C.a.aa,
 		test.C.b, test.C.b.aa, test.C.c1, test.C.c1.aa, test.C.c2, test.C.c2.aa, test.D, test.D.aa, test.D.d,
+		 		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.a.self,  B.a.aa.self,  B.b.self,  B.b.aa.self,  C.self,  C.a.self,  C.a.aa.self,  C.b.self,  C.b.aa.self,  C.c1.self,  C.c1.aa.self,  C.c2.self,  C.c2.aa.self,  D.self,  D.aa.self,  D.d.self,  
+ 		a.self,  a.aa.self,  b.self,  b.aa.self,  c1.self,  c1.aa.self,  c2.self,  c2.aa.self, 
+ 		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.a.self,  test.B.a.aa.self,  test.B.b.self,  test.B.b.aa.self,  test.C.self,  test.C.a.self,  test.C.a.aa.self, 
+		test.C.b.self,  test.C.b.aa.self,  test.C.c1.self,  test.C.c1.aa.self,  test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.aa.self,  test.D.d.self, self 
 	--- */
 		feature c2 : b {}
 	}
@@ -43,6 +47,10 @@ package test{
 		C, C.a, C.a.aa, C.b, C.b.aa, C.c1, C.c1.aa, C.c2, C.c2.aa, D, D.aa, D.d, aa, d,
 		test.A, test.A.a, test.A.a.aa, test.B, test.B.a, test.B.a.aa, test.B.b, test.B.b.aa,
 		test.C, test.C.a, test.C.a.aa, test.C.b, test.C.b.aa, test.C.c1, test.C.c1.aa, test.C.c2, test.C.c2.aa, test.D, test.D.aa, test.D.d,
+		 		A.self,  A.a.self,  A.a.aa.self,  B.self,  B.a.self,  B.a.aa.self,  B.b.self,  B.b.aa.self,  
+		C.self,  C.a.self,  C.a.aa.self,  C.b.self,  C.b.aa.self,  C.c1.self,  C.c1.aa.self,  C.c2.self,  C.c2.aa.self,  D.self,  D.aa.self,  D.d.self,  aa.self,  d.self, 
+		test.A.self,  test.A.a.self,  test.A.a.aa.self,  test.B.self,  test.B.a.self,  test.B.a.aa.self,  test.B.b.self,  test.B.b.aa.self, 
+		test.C.self,  test.C.a.self,  test.C.a.aa.self,  test.C.b.self,  test.C.b.aa.self,  test.C.c1.self,  test.C.c1.aa.self,  test.C.c2.self,  test.C.c2.aa.self,  test.D.self,  test.D.aa.self,  test.D.d.self,self 
 	--- */
 		feature d : aa  {}
 	}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2019-2021 Model Driven Solutions, Inc.
  * Copyright (c) 2020 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -54,6 +54,8 @@ import org.eclipse.xtext.validation.Issue;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.plantuml.SysML2PlantUMLLinkProvider;
@@ -63,7 +65,8 @@ import org.omg.sysml.util.traversal.Traversal;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 import org.omg.sysml.xtext.SysMLStandaloneSetup;
 
-import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
@@ -165,6 +168,10 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public SysMLInteractiveResult eval(String input) {
+		return eval(input, true);
+	}
+	
+	public SysMLInteractiveResult eval(String input, boolean isAddResource) {
 		this.next();
 		try {
 			this.parse(input);
@@ -173,7 +180,7 @@ public class SysMLInteractive extends SysMLUtil {
 			SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, issues);
 			if (result.hasErrors()) {
 				this.removeResource();
-			} else {
+			} else if (isAddResource) {
 				this.addResourceToIndex(resource);
 			}
 			return result;
@@ -189,15 +196,7 @@ public class SysMLInteractive extends SysMLUtil {
 			IScope scope = scopeProvider.getScope(
 					resources.get(resources.size() - 1), 
 					SysMLPackage.eINSTANCE.getNamespace_Member(), 
-					new Predicate<IEObjectDescription>() {
-	
-						@Override
-						public boolean apply(IEObjectDescription description) {
-							EObject object = description.getEObjectOrProxy();
-							return inputResources.contains(object.eResource());
-						}
-					
-					});
+					Predicates.alwaysTrue());
 			IEObjectDescription description = scope.getSingleElement(
 					this.qualifiedNameConverter.toQualifiedName(name));
 			if (description != null) {
@@ -206,6 +205,40 @@ public class SysMLInteractive extends SysMLUtil {
 			}
 		}
 		return null;
+	}
+	
+	public String listLibrary() {
+		this.counter++;
+		try {
+			List<Membership> globalMemberships = 
+					resourceSet.getResources().stream().
+					filter(r->!inputResources.contains(r)).
+					flatMap(r->r.getContents().stream()).
+					filter(Namespace.class::isInstance).
+					flatMap(n->((Namespace)n).publicMemberships().stream()).
+					collect(Collectors.toList());
+			return SysMLInteractiveUtil.formatMembershipList(globalMemberships);
+		} catch (Exception e) {
+			return SysMLInteractiveUtil.formatException(e);
+		}
+	}
+	
+	public String listQuery(String query) {
+		if (!query.endsWith(";")) {
+			query += ";";
+		}
+		SysMLInteractiveResult result = this.eval("import " + query, false);
+		if (result.hasErrors()) {
+			return result.toString();
+		} else {
+			List<Membership> memberships = ((Namespace)result.getRootElement()).publicMemberships();
+			this.removeResource();
+			return SysMLInteractiveUtil.formatMembershipList(memberships);
+		}
+	}
+	
+	public String list(String query) {
+		return Strings.isNullOrEmpty(query)? listLibrary(): listQuery(query);
 	}
 	
 	public String show(String name) {
@@ -218,46 +251,35 @@ public class SysMLInteractive extends SysMLUtil {
 			return SysMLInteractiveUtil.formatException(e);
 		}
 	}
-
-    private class LinkProvider implements SysML2PlantUMLLinkProvider {
-    	private Map<EObject, UUID> elementMap = new HashMap<EObject, UUID>(); 
-
-        @Override
-        public String getLinkString(EObject eObj) {
-        	UUID uuid = elementMap.get(eObj);
-        	if (uuid == null) {
-        		uuid = UUID.randomUUID();
-        		elementMap.put(eObj,  uuid);
-        	}
-
-            return "psysml:" + uuid.toString();
-        }
-
-        @Override
-        public String getText(EObject eObj) {
-            ICompositeNode node = NodeModelUtils.getNode(eObj);
-            if (node == null) return null;
-            return node.getText();
-        }
-    }
-
-    protected SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
-        if (sysml2PlantUMLSvc == null) {
-            sysml2PlantUMLSvc = new SysML2PlantUMLSvc(new LinkProvider());
-        }
-        return sysml2PlantUMLSvc;
-    }
-
-	public void setGraphVizPath(String path) {
-		getSysML2PlantUMLSvc().setGraphVizPath(path);
+	
+	public String publish(String name) {
+		this.counter++;
+		try {
+			Element element = this.resolve(name);
+			if (element == null) {
+				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
+			} else if (!inputResources.contains(element.eResource())) {
+				return "ERROR:'" + name + "' is a library element\n";
+			} else {
+				String modelName = element.getName() + " " + new Date();
+				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
+				processingFacade.getTraversal().visit(element);
+				processingFacade.commit();
+				System.out.println();
+				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
+			}
+		} catch (Exception e) {
+			return SysMLInteractiveUtil.formatException(e);
+		}
 	}
-
-    private static List<String> filterStyle(List<String> styles, String name) {
-        return styles.stream()
-            .filter(x -> !x.toUpperCase().equals(name))
-            .collect(Collectors.toList());
-    }
-
+	
+	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
+		System.out.println("API base path: " + this.apiBasePath);
+		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
+		processingFacade.setTraversal(new Traversal(processingFacade));
+		return processingFacade;
+	}
+	
 	public VizResult viz(List<String> names, List<String> views, List<String> styles) {
 		this.counter++;
         List<EObject> elements = new ArrayList<EObject>(names.size());
@@ -297,30 +319,43 @@ public class SysMLInteractive extends SysMLUtil {
 		return this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"));
 	}
 	
-	protected ApiElementProcessingFacade getProcessingFacade(String modelName) {
-		System.out.println("API base path: " + this.apiBasePath);
-		ApiElementProcessingFacade processingFacade = new ApiElementProcessingFacade(modelName, this.apiBasePath);	
-		processingFacade.setTraversal(new Traversal(processingFacade));
-		return processingFacade;
-	}
-	
-	public String publish(String name) {
-		this.counter++;
-		try {
-			Element element = this.resolve(name);
-			if (element == null) {
-				return "ERROR:Couldn't resolve reference to Element '" + name + "'\n";
-			} else {
-				String modelName = element.getName() + " " + new Date();
-				ApiElementProcessingFacade processingFacade = this.getProcessingFacade(modelName);
-				processingFacade.getTraversal().visit(element);
-				processingFacade.commit();
-				System.out.println();
-				return "Saved to Project " + modelName + " (" + processingFacade.getProjectId() + ")\n";
-			}
-		} catch (Exception e) {
-			return SysMLInteractiveUtil.formatException(e);
-		}
+    private static List<String> filterStyle(List<String> styles, String name) {
+        return styles.stream()
+            .filter(x -> !x.toUpperCase().equals(name))
+            .collect(Collectors.toList());
+    }
+
+    private class LinkProvider implements SysML2PlantUMLLinkProvider {
+    	private Map<EObject, UUID> elementMap = new HashMap<EObject, UUID>(); 
+
+        @Override
+        public String getLinkString(EObject eObj) {
+        	UUID uuid = elementMap.get(eObj);
+        	if (uuid == null) {
+        		uuid = UUID.randomUUID();
+        		elementMap.put(eObj,  uuid);
+        	}
+
+            return "psysml:" + uuid.toString();
+        }
+
+        @Override
+        public String getText(EObject eObj) {
+            ICompositeNode node = NodeModelUtils.getNode(eObj);
+            if (node == null) return null;
+            return node.getText();
+        }
+    }
+
+    protected SysML2PlantUMLSvc getSysML2PlantUMLSvc() {
+        if (sysml2PlantUMLSvc == null) {
+            sysml2PlantUMLSvc = new SysML2PlantUMLSvc(new LinkProvider());
+        }
+        return sysml2PlantUMLSvc;
+    }
+
+	public void setGraphVizPath(String path) {
+		getSysML2PlantUMLSvc().setGraphVizPath(path);
 	}
 	
 	public void run(String input) {
@@ -350,10 +385,12 @@ public class SysMLInteractive extends SysMLUtil {
 	        		} else {
 	        			int i = input.indexOf(' ');
 	        			String command = i == -1? input: input.substring(0, i);
-	        			String argument = i == -1? "": input.substring(i + 1);
+	        			String argument = i == -1? "": input.substring(i + 1).trim();
 	        			
 	        			if ("%exit".equals(command)) {
 	        				break;
+	        			} else if ("%list".equals(command)) {
+	        				System.out.print(this.list(argument));
 	        			} else if ("%show".equals(command)) {
 	        				if (!"".equals(argument)) {
 	        					System.out.print(this.show(argument));

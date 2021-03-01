@@ -3,3 +3,4 @@
 *.ipynb
 build
 target
+bin

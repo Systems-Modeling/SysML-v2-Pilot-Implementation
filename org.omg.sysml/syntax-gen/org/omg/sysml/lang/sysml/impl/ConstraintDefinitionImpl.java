@@ -133,7 +133,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 
 	/**
@@ -182,6 +182,12 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 		super.transform();
 		CalculationDefinitionImpl.addResultParameter(this);
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		resultConnector = null;
+		super.cleanDerivedValues();
 	}
 	
 	/**

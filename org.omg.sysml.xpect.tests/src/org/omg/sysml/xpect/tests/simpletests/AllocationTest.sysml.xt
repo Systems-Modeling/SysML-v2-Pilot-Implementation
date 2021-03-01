@@ -1,0 +1,64 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+ 		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Allocations.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+       			File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Allocations.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package AllocationTest {
+	part def Logical {
+		part component;
+	}
+	
+	part def Physical {
+		part assembly {
+			part element;
+		}
+	}
+	
+	part l : Logical {
+		part :>> component;
+	}
+	part p : Physical {
+		part :>> assembly {
+			part :>> element;
+		}
+	}
+	
+	allocation def Logical_to_Physical {
+		end logical : Logical;
+		end physical : Physical;
+	}
+	
+	allocation allocation1 : Logical_to_Physical allocate l to p;	
+	allocation allocation2 : Logical_to_Physical allocate (
+		logical => l,
+		physical => p
+	);
+
+	allocate l::component to p::assembly::element;
+}

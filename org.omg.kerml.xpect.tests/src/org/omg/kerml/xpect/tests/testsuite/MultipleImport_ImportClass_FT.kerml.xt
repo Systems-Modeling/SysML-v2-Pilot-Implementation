@@ -30,6 +30,13 @@ package test{
 		   C, D, test.C, test.D,
 		   OuterPackage2.B, OuterPackage2.B.b, OuterPackage2.B.b.a1,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage2.C,
+		     C.b.self,  C.c.self,  D.b.self,  D.c.self,  D.try.self,  OuterPackage2.C.c.self,   OuterPackage.B.b.self, OuterPackage2.C.b.a1.self,  OuterPackage.B.b.a1.self,  OuterPackage2.C.b.self, 
+	   	   test.C.b.self,  test.C.c.self,  test.D.c.self,  test.D.b.self,  test.D.try.self, 
+	   	   C.b.a1.self,  D.b.a1.self,  D.try.a1.self,  
+		   test.C.b.a1.self,  test.D.b.a1.self,  test.D.try.a1.self, 
+		   C.self,  D.self,  test.C.self,  test.D.self, 
+		   OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self, 
+		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage2.C.self, 
 	--- */
 	feature D : C {
 		//XPECT linkedName at b --> OuterPackage.B.b
@@ -42,6 +49,14 @@ package test{
 		   OuterPackage2.C, OuterPackage2.C.c, OuterPackage2.C.b.a1, OuterPackage2.C.b,
 		   b, c,
 		   test.C, test.C.b, test.C.c, test.D, test.D.b, test.D.c, test.D.try, try,
+		    C.b.a1.self,  D.b.a1.self,  D.try.a1.self,  b.a1.self,  try.a1.self, 
+		   test.C.b.a1.self,  test.D.b.a1.self,  test.D.try.a1.self,  
+		   C.self,  C.b.self,  C.c.self,  D.self,  D.b.self,  D.c.self,  D.try.self,  
+		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self,   
+		   OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self, 
+		   OuterPackage2.C.self,  OuterPackage2.C.c.self,  OuterPackage2.C.b.a1.self,  OuterPackage2.C.b.self, 
+		   b.self,  c.self, 
+		   test.C.self,  test.C.b.self,  test.C.c.self,  test.D.self,  test.D.b.self,  test.D.c.self,  test.D.try.self,  try.self,self 
   	--- */
 		feature try: b;
 	}

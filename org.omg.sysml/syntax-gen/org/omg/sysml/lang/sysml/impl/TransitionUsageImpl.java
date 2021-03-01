@@ -62,7 +62,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
-	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitions";
+	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitionActions";
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 	
 	private BindingConnector successionConnector;
@@ -253,28 +253,52 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	
 	// Transformation
 	
+	protected void updateTransitionLinkRedefinition() {
+		// NOTE: This Redefinition can't be implicit, or it ends up getting removed during
+		// the Redefinition computation part of the general implicit typing mechanism.
+		Redefinition redefinition;
+		EList<Redefinition> redefinitions = transitionLinkFeature.getOwnedRedefinition();
+		if (redefinitions.isEmpty()) {
+			redefinition = SysMLFactory.eINSTANCE.createRedefinition();
+			redefinition.setRedefiningFeature(transitionLinkFeature);
+			transitionLinkFeature.getOwnedRelationship_comp().add(redefinition);
+		} else {
+			redefinition = redefinitions.get(0);
+		}
+		redefinition.setRedefinedFeature((Feature)getDefaultType(TRANSITION_LINK_FEATURE));
+	}
+	
 	protected Feature getTransitionLinkFeature() {
 		if (transitionLinkFeature == null) {
 			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
-			Redefinition redefinition = SysMLFactory.eINSTANCE.createRedefinition();
-			redefinition.setRedefiningFeature(transitionLinkFeature);
-			redefinition.setRedefinedFeature((Feature)getDefaultType(TRANSITION_LINK_FEATURE));
-			transitionLinkFeature.getOwnedRelationship_comp().add(redefinition);
 			addOwnedFeature(transitionLinkFeature);
 		}
+		updateTransitionLinkRedefinition();
 		return transitionLinkFeature;
 	}
 	
 	protected void computeReferenceConnector() {
 		Succession succession = getSuccession();
 		((ElementImpl)succession).transform();
-		successionConnector = makeBinding(successionConnector, succession, getTransitionLinkFeature());		
+		successionConnector = makeBinding(succession, getTransitionLinkFeature());
 	}
 	
 	@Override
+	public void cleanDerivedValues() {
+		successionConnector = null;
+		super.cleanDerivedValues();
+	}
+	
+	public BindingConnector getSuccessionConnector() {
+		return successionConnector;
+	}
+
+	@Override
 	public void transform() {
 		// Note: Needs to come first, before clearing and recomputation of inheritance cache.
-		computeReferenceConnector();
+		if (successionConnector == null) {
+			computeReferenceConnector();
+		}
 		
 		super.transform();
 	}

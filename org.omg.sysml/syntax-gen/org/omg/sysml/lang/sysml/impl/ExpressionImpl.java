@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -267,7 +268,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 	
 	/**
@@ -283,36 +284,30 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isModelLevelEvaluable() {
-		// TODO: implement this method to return the 'Is Model Level Evaluable' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return false;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
-		// TODO: implement this method to set the 'Is Model Level Evaluable' attribute
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Element> evaluate(Element target) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return new BasicEList<>();
 	}
 
 	@Override
@@ -328,7 +323,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		if (getOutput().isEmpty()) {
 			Type type = getExpressionType();
 			if (type instanceof Function || type instanceof Expression) {
-				Feature result = ((TypeImpl)type).getResultParameter();
+				Feature result = ((TypeImpl)type).getOwnedResultParameter();
 				if (result != null) {
 					features.add(result);
 				}

@@ -46,6 +46,8 @@ import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.ElementFilterMembership
+import org.omg.sysml.lang.sysml.MetadataFeatureValue
 
 /**
  * This class contains custom validation rules. 
@@ -70,6 +72,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
+	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 		
 	@Check
 	def checkElement(Element elm) {
@@ -128,6 +134,22 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 	
 	@Check
+	def checkElementFilterMembership(ElementFilterMembership efm) {
+		val condition = efm.condition
+		if (condition !== null && !condition.isModelLevelEvaluable) {
+			error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
+		}
+	}
+	
+	@Check
+	def checkMetadataFeatureValue(MetadataFeatureValue mfv) {
+		val value = mfv.metadataValue
+		if (value !== null && !value.isModelLevelEvaluable) {
+			error(INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG, mfv, SysMLPackage.eINSTANCE.metadataFeatureValue_MetadataValue, INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL)
+		}
+	}
+	
+	@Check
 	def checkFeature(Feature f){
 		val types = (f as FeatureImpl).type;
 		if (types !== null && types.isEmpty)
@@ -172,6 +194,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkBindingConnector(BindingConnector bc){
+		doCheckBindingConnector(bc, bc)
+	}
+	
+	private def doCheckBindingConnector(BindingConnector bc, Element location) {
 		val rf = bc.relatedFeature
 		if (rf.length !== 2) {
 			return //ignore binding connectors with invalid syntax
@@ -197,8 +223,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 			
 			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
 				f2ConformsTof1.filter[!empty].length != f1types.length)
-				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
+				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
+	}
+	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		(type as TypeImpl).forEachImplicitBindingConnector[doCheckBindingConnector(type)]
 	}
 	
 	//return related subtypes

@@ -15,5 +15,5 @@
       </description>
    </category-def>
    <repository-reference location="https://download.eclipse.org/releases/2020-06" enabled="true" />
-   <repository-reference location="https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/1.1" enabled="true" />
+   <repository-reference location="https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates" enabled="true" />
 </site>

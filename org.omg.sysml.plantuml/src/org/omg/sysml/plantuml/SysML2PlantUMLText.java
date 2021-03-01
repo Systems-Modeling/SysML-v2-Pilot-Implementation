@@ -149,17 +149,26 @@ public class SysML2PlantUMLText {
         return styleDefaultSwitch.styleStereotypeSwitch.doSwitch(e);
     }
 
-    private static Pattern patMetaclassName = Pattern.compile("^(\\p{L}+?)(Definition|Usage)$");
+    private static Pattern patMetaclassName = Pattern.compile("^((Enum)(?>eration)|(\\p{L}+?))(Definition|Usage)$");
     public static String getStereotypeName(Type typ) {
+        /*
+        if (typ instanceof EnumerationUsage) {
+            return "enum";
+        } else if (typ instanceof EnumerationDefinition) {
+            return "enum def";
+        }
+        */
         String str = typ.eClass().getName();
         if (str == null) return "";
         if (str.isEmpty()) return str;
         Matcher m = patMetaclassName.matcher(str);
         if (m.matches()) {
-            if ("Definition".equals(m.group(2))) {
-                str = m.group(1) + " def";
-            } else {
-                str = m.group(1);
+            str = m.group(2);
+            if (str == null) {
+                str = m.group(3);
+            }
+            if ("Definition".equals(m.group(4))) {
+                str = str + " def";
             }
         }
 

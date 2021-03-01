@@ -180,7 +180,15 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	@Override
 	public void transform() {
 		super.transform();
-		assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
+		if (assertionConnector == null) {
+			assertionConnector = InvariantImpl.getAssertionConnectorFor(this, this.getResult());
+		}
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		assertionConnector = null;
+		super.cleanDerivedValues();
 	}
 	
 	//

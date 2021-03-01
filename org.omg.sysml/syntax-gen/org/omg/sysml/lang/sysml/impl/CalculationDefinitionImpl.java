@@ -123,7 +123,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return getOwnedResultParameter();
 	}
 	
 	/**
@@ -193,6 +193,12 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 		super.transform();
 		addResultParameter(this);
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		resultConnector = null;
+		super.cleanDerivedValues();
 	}
 	
 	//

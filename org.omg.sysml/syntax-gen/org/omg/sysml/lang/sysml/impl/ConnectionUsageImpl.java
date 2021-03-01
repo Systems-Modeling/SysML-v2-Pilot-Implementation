@@ -242,7 +242,8 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
-		new ArrayList<Feature>(getConnectorEnd()).stream().forEach(end->
+		new ArrayList<Feature>(getConnectorEnd()).stream().
+			filter(end->end != null).forEach(end->
 			((FeatureImpl)end).getFirstSubsettedFeature().
 			ifPresent(relatedFeatures::add));
 		return relatedFeatures;

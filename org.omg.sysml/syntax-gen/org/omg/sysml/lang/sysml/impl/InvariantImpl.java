@@ -90,14 +90,14 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		return assertionConnector;
 	}
 
-	public static BindingConnector getAssertionConnectorFor(FeatureImpl feature, BindingConnector assertionConnector, Feature result) {
+	public static BindingConnector getAssertionConnectorFor(FeatureImpl feature, Feature result) {
 		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
 				filter(f->f instanceof LiteralBoolean).
 				findFirst().orElse(null);
 		if (literalBoolean != null) {
-			assertionConnector = feature.makeResultBinding(assertionConnector, literalBoolean, result);
+			return feature.makeResultBinding(literalBoolean, result);
 		}
-		return assertionConnector;
+		return null;
 	}
 	
 	/**
@@ -115,7 +115,15 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 	@Override
 	public void transform() {
 		super.transform();
-		assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
+		if (assertionConnector == null) {
+			assertionConnector = getAssertionConnectorFor(this, this.getResult());
+		}
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		assertionConnector = null;
+		super.cleanDerivedValues();
 	}
 	
 	//

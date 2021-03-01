@@ -112,7 +112,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return super.getResultParameter();
+		return super.getOwnedResultParameter();
 	}
 
 	/**
@@ -157,6 +157,12 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	public void transform() {
 		super.transform();
 		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
+	}
+	
+	@Override
+	public void cleanDerivedValues() {
+		resultConnector = null;
+		super.cleanDerivedValues();
 	}
 
 	/**

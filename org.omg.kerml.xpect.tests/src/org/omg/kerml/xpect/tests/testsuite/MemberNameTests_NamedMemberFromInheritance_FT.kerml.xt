@@ -23,6 +23,8 @@ package test{
 //* XPECT scope at A ---
 	   	A, A.a, A.aa, B, B.a, B.aa, B.b, B.b_alias, test.B.b, test.B.b_alias,
 	   	test.A, test.A.a, test.A.aa, test.B, test.B.a, test.B.aa,
+			   	A.self,  A.a.self,  A.aa.self,  B.self,  B.a.self,  B.aa.self,  B.b.self,  B.b_alias.self,  test.B.b.self,  test.B.b_alias.self, 
+	   	test.A.self,  test.A.a.self,  test.A.aa.self,  test.B.self,  test.B.a.self,  test.B.aa.self, 
 --- */
 	feature B : A{
 		feature b: aa;

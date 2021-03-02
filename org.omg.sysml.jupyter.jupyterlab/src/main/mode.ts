@@ -55,9 +55,9 @@ export function defineSysMLv2Mode(): void {
 				"'": function(stream: CodeMirror.StringStream) {
 					let b_escaped = false;
 					let s_next;
-					while(null !== (s_next = stream.next())) {
-						if(s_next === "'" && !b_escaped) break;
-						b_escaped = !b_escaped && s_next === '\\';
+					while(null != (s_next = stream.next())) {
+						if(s_next == "'" && !b_escaped) break;
+						b_escaped = !b_escaped && s_next == '\\';
 					}
 					return 'variable';
 				},

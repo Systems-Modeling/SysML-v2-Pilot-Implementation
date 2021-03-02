@@ -30,11 +30,12 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
@@ -95,51 +96,67 @@ public abstract class VBehavior extends VDefault {
         return "";
     }
 
-    @Override
-    public String caseSendActionUsage(SendActionUsage sau) {
-        String text = null;
-        for (FeatureMembership fm: sau.getOwnedFeatureMembership()) {
-            Feature f = fm.getMemberFeature();
-            if (f instanceof InvocationExpression) {
-                text = getText(f);
-            } else if (f instanceof FeatureReferenceExpression) {
-                FeatureReferenceExpression ref = (FeatureReferenceExpression) f;
-                addPRelation(sau, ref.getReferent(), sau, "<<send to>>");
+    private boolean resolveReference(Feature f, ActionUsage au, boolean send) {
+        if (!(f instanceof ReferenceUsage)) return false;
+        boolean flag = true;
+        for (Membership m: f.getOwnedMembership()) {
+            if (m instanceof FeatureValue) {
+                FeatureValue fv = (FeatureValue) m;
+                Expression e = fv.getValue();
+                if (e instanceof FeatureReferenceExpression) {
+                    FeatureReferenceExpression fre = (FeatureReferenceExpression) e;
+                    addPRelation(au, fre.getReferent(), au, send ? "<<send to>>" : "<<receive for>>");
+                    continue;
+                }
             }
+            flag = false;
         }
-        if (text == null) {
-            text = getName(sau);
-            if (text == null) {
-                text = "noname";
-            }
-        }
-        addPUMLLine(sau, "send ", text);
-        append('\n');
-        return "";
+        return flag;
     }
 
-    // TODO: It should be refactored with caseSendActionUsage
+    private boolean addSendAcceptActionUsage(ActionUsage au, boolean send) {
+        StringBuilder text = new StringBuilder();
+        List<Feature> params = au.getParameter();
+        final int size = params.size() - 1;
+        if (size < 0) return false;
+        for (int i = 0; i < size; i++) {
+            Feature f = params.get(i);
+            if (text.length() > 0) {
+                text.append(", ");
+            }
+            text.append(getText(f));
+        }
+
+        Feature last = params.get(size);
+        if (!resolveReference(last, au, send)) {
+        	String lastStr = getText(last);
+        	if ((lastStr != null) && !lastStr.isEmpty()) {
+                text.append(send ? " to " : " for ");
+                text.append(getText(last));
+        	}
+        }
+        if (text.length() == 0) {
+            String name = getName(au);
+            if (name == null) {
+                name = "noname";
+            }
+            text.append(name);
+        }
+        addPUMLLine(au, send ? "send " : "accept ", text.toString());
+        append('\n');
+        return true;
+    }
+
+    @Override
+    public String caseSendActionUsage(SendActionUsage sau) {
+        if (addSendAcceptActionUsage(sau, true)) return "";
+        return null;
+    }
+
     @Override
     public String caseAcceptActionUsage(AcceptActionUsage aau) {
-        String text = null;
-        for (FeatureMembership fm: aau.getOwnedFeatureMembership()) {
-            Feature f = fm.getMemberFeature();
-            if (f instanceof InvocationExpression) {
-                text = getText(f);
-            } else if (f instanceof FeatureReferenceExpression) {
-                FeatureReferenceExpression ref = (FeatureReferenceExpression) f;
-                addPRelation(ref.getReferent(), aau, aau, "<<receive from>>");
-            }
-        }
-        if (text == null) {
-            text = getName(aau);
-            if (text == null) {
-                text = "noname";
-            }
-        }
-        addPUMLLine(aau, "accept ", text);
-        append('\n');
-        return "";
+        if (addSendAcceptActionUsage(aau, false)) return "";
+        return null;
     }
 
 

@@ -161,6 +161,24 @@ public class VStateMembers extends VBehavior {
         }
     }
 
+    private String triggerToText(Step s) {
+        Visitor v = new Visitor(this) {
+            public String caseFeature(Feature f) {
+                addFeatureTypeText("", f);
+                return "";
+            }
+        };
+        for (Feature f: s.getParameter()) {
+            v.visit(f);
+        }
+        String str = v.getString();
+        if (str.isEmpty()) {
+            return getText(s);
+        } else {
+            return str;
+        }
+    }
+
     private String convertToDescription(TransitionUsage tu) {
         String triggerString = null;
         String guardString = null;
@@ -173,7 +191,7 @@ public class VStateMembers extends VBehavior {
             if (s == null) continue;
             switch (tfm.getKind()) {
             case TRIGGER:
-                triggerString = getText(s);
+                triggerString = triggerToText(s);
                 break;
             case GUARD:
                 guardString = getText(s);

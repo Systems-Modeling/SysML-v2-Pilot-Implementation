@@ -1354,20 +1354,22 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cSnapshotUsageParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cPortUsageParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cConnectionUsageParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cConnectorParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cInterfaceUsageParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cAllocationUsageParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final RuleCall cActionUsageParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
-		private final RuleCall cCalculationUsageParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
-		private final RuleCall cStateUsageParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
-		private final RuleCall cConstraintUsageParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
-		private final RuleCall cRequirementUsageParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
-		private final RuleCall cCaseUsageParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
-		private final RuleCall cAnalysisCaseUsageParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
-		private final RuleCall cVerificationCaseUsageParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
-		private final RuleCall cViewUsageParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
-		private final RuleCall cViewpointUsageParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
-		private final RuleCall cRenderingUsageParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cAssertConstraintUsageParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cConnectorParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cInterfaceUsageParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final RuleCall cAllocationUsageParserRuleCall_12 = (RuleCall)cAlternatives.eContents().get(12);
+		private final RuleCall cActionUsageParserRuleCall_13 = (RuleCall)cAlternatives.eContents().get(13);
+		private final RuleCall cCalculationUsageParserRuleCall_14 = (RuleCall)cAlternatives.eContents().get(14);
+		private final RuleCall cStateUsageParserRuleCall_15 = (RuleCall)cAlternatives.eContents().get(15);
+		private final RuleCall cConstraintUsageParserRuleCall_16 = (RuleCall)cAlternatives.eContents().get(16);
+		private final RuleCall cRequirementUsageParserRuleCall_17 = (RuleCall)cAlternatives.eContents().get(17);
+		private final RuleCall cSatisfyRequirementUsageParserRuleCall_18 = (RuleCall)cAlternatives.eContents().get(18);
+		private final RuleCall cCaseUsageParserRuleCall_19 = (RuleCall)cAlternatives.eContents().get(19);
+		private final RuleCall cAnalysisCaseUsageParserRuleCall_20 = (RuleCall)cAlternatives.eContents().get(20);
+		private final RuleCall cVerificationCaseUsageParserRuleCall_21 = (RuleCall)cAlternatives.eContents().get(21);
+		private final RuleCall cViewUsageParserRuleCall_22 = (RuleCall)cAlternatives.eContents().get(22);
+		private final RuleCall cViewpointUsageParserRuleCall_23 = (RuleCall)cAlternatives.eContents().get(23);
+		private final RuleCall cRenderingUsageParserRuleCall_24 = (RuleCall)cAlternatives.eContents().get(24);
 		
 		//UsageElement SysML::Usage:
 		//	AttributeUsage
@@ -1379,6 +1381,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//	| SnapshotUsage
 		//	| PortUsage
 		//	| ConnectionUsage
+		//	| AssertConstraintUsage
 		//	| Connector
 		//	| InterfaceUsage
 		//	| AllocationUsage
@@ -1387,6 +1390,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//	| StateUsage
 		//	| ConstraintUsage
 		//	| RequirementUsage
+		//	| SatisfyRequirementUsage
 		//	| CaseUsage
 		//	| AnalysisCaseUsage
 		//	| VerificationCaseUsage
@@ -1396,9 +1400,9 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		@Override public ParserRule getRule() { return rule; }
 		
 		//AttributeUsage | EnumerationUsage | ItemUsage | PartUsage | IndividualUsage | TimeSliceUsage | SnapshotUsage | PortUsage
-		//| ConnectionUsage | Connector | InterfaceUsage | AllocationUsage | ActionUsage | CalculationUsage | StateUsage |
-		//ConstraintUsage | RequirementUsage | CaseUsage | AnalysisCaseUsage | VerificationCaseUsage | ViewUsage | ViewpointUsage
-		//| RenderingUsage
+		//| ConnectionUsage | AssertConstraintUsage | Connector | InterfaceUsage | AllocationUsage | ActionUsage |
+		//CalculationUsage | StateUsage | ConstraintUsage | RequirementUsage | SatisfyRequirementUsage | CaseUsage |
+		//AnalysisCaseUsage | VerificationCaseUsage | ViewUsage | ViewpointUsage | RenderingUsage
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//AttributeUsage
@@ -1428,47 +1432,53 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//ConnectionUsage
 		public RuleCall getConnectionUsageParserRuleCall_8() { return cConnectionUsageParserRuleCall_8; }
 		
+		//AssertConstraintUsage
+		public RuleCall getAssertConstraintUsageParserRuleCall_9() { return cAssertConstraintUsageParserRuleCall_9; }
+		
 		//Connector
-		public RuleCall getConnectorParserRuleCall_9() { return cConnectorParserRuleCall_9; }
+		public RuleCall getConnectorParserRuleCall_10() { return cConnectorParserRuleCall_10; }
 		
 		//InterfaceUsage
-		public RuleCall getInterfaceUsageParserRuleCall_10() { return cInterfaceUsageParserRuleCall_10; }
+		public RuleCall getInterfaceUsageParserRuleCall_11() { return cInterfaceUsageParserRuleCall_11; }
 		
 		//AllocationUsage
-		public RuleCall getAllocationUsageParserRuleCall_11() { return cAllocationUsageParserRuleCall_11; }
+		public RuleCall getAllocationUsageParserRuleCall_12() { return cAllocationUsageParserRuleCall_12; }
 		
 		//ActionUsage
-		public RuleCall getActionUsageParserRuleCall_12() { return cActionUsageParserRuleCall_12; }
+		public RuleCall getActionUsageParserRuleCall_13() { return cActionUsageParserRuleCall_13; }
 		
 		//CalculationUsage
-		public RuleCall getCalculationUsageParserRuleCall_13() { return cCalculationUsageParserRuleCall_13; }
+		public RuleCall getCalculationUsageParserRuleCall_14() { return cCalculationUsageParserRuleCall_14; }
 		
 		//StateUsage
-		public RuleCall getStateUsageParserRuleCall_14() { return cStateUsageParserRuleCall_14; }
+		public RuleCall getStateUsageParserRuleCall_15() { return cStateUsageParserRuleCall_15; }
 		
 		//ConstraintUsage
-		public RuleCall getConstraintUsageParserRuleCall_15() { return cConstraintUsageParserRuleCall_15; }
+		public RuleCall getConstraintUsageParserRuleCall_16() { return cConstraintUsageParserRuleCall_16; }
 		
 		//RequirementUsage
-		public RuleCall getRequirementUsageParserRuleCall_16() { return cRequirementUsageParserRuleCall_16; }
+		public RuleCall getRequirementUsageParserRuleCall_17() { return cRequirementUsageParserRuleCall_17; }
+		
+		//SatisfyRequirementUsage
+		public RuleCall getSatisfyRequirementUsageParserRuleCall_18() { return cSatisfyRequirementUsageParserRuleCall_18; }
 		
 		//CaseUsage
-		public RuleCall getCaseUsageParserRuleCall_17() { return cCaseUsageParserRuleCall_17; }
+		public RuleCall getCaseUsageParserRuleCall_19() { return cCaseUsageParserRuleCall_19; }
 		
 		//AnalysisCaseUsage
-		public RuleCall getAnalysisCaseUsageParserRuleCall_18() { return cAnalysisCaseUsageParserRuleCall_18; }
+		public RuleCall getAnalysisCaseUsageParserRuleCall_20() { return cAnalysisCaseUsageParserRuleCall_20; }
 		
 		//VerificationCaseUsage
-		public RuleCall getVerificationCaseUsageParserRuleCall_19() { return cVerificationCaseUsageParserRuleCall_19; }
+		public RuleCall getVerificationCaseUsageParserRuleCall_21() { return cVerificationCaseUsageParserRuleCall_21; }
 		
 		//ViewUsage
-		public RuleCall getViewUsageParserRuleCall_20() { return cViewUsageParserRuleCall_20; }
+		public RuleCall getViewUsageParserRuleCall_22() { return cViewUsageParserRuleCall_22; }
 		
 		//ViewpointUsage
-		public RuleCall getViewpointUsageParserRuleCall_21() { return cViewpointUsageParserRuleCall_21; }
+		public RuleCall getViewpointUsageParserRuleCall_23() { return cViewpointUsageParserRuleCall_23; }
 		
 		//RenderingUsage
-		public RuleCall getRenderingUsageParserRuleCall_22() { return cRenderingUsageParserRuleCall_22; }
+		public RuleCall getRenderingUsageParserRuleCall_24() { return cRenderingUsageParserRuleCall_24; }
 	}
 	public class TypeBodyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.TypeBody");
@@ -14045,6 +14055,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| SnapshotUsage
 	//	| PortUsage
 	//	| ConnectionUsage
+	//	| AssertConstraintUsage
 	//	| Connector
 	//	| InterfaceUsage
 	//	| AllocationUsage
@@ -14053,6 +14064,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| StateUsage
 	//	| ConstraintUsage
 	//	| RequirementUsage
+	//	| SatisfyRequirementUsage
 	//	| CaseUsage
 	//	| AnalysisCaseUsage
 	//	| VerificationCaseUsage

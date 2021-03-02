@@ -26,6 +26,7 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.DecisionNode;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ForkNode;
@@ -41,7 +42,9 @@ public class VActionMembers extends VBehavior {
 
     private void addNode(Feature f, String type) {
         String name = f.getName();
-        if (name == null) return;
+        if (name == null) {
+            name = "noname";
+        }
         append(type);
         append(' ');
         addNameWithId(f, name, true);
@@ -88,6 +91,12 @@ public class VActionMembers extends VBehavior {
     @Override
     public String caseConnector(Connector c) {
         addConnector(c);
+        return "";
+    }
+
+    @Override
+    public String caseDecisionNode(DecisionNode dn) {
+        addNode(dn, "choice");
         return "";
     }
 

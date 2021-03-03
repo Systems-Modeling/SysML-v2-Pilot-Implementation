@@ -2380,128 +2380,146 @@ ruleUsageElement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getConnectorParserRuleCall_9());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getAssertConstraintUsageParserRuleCall_9());
 		}
-		this_Connector_9=ruleConnector
+		this_AssertConstraintUsage_9=ruleAssertConstraintUsage
 		{
-			$current = $this_Connector_9.current;
+			$current = $this_AssertConstraintUsage_9.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getInterfaceUsageParserRuleCall_10());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getConnectorParserRuleCall_10());
 		}
-		this_InterfaceUsage_10=ruleInterfaceUsage
+		this_Connector_10=ruleConnector
 		{
-			$current = $this_InterfaceUsage_10.current;
+			$current = $this_Connector_10.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getAllocationUsageParserRuleCall_11());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getInterfaceUsageParserRuleCall_11());
 		}
-		this_AllocationUsage_11=ruleAllocationUsage
+		this_InterfaceUsage_11=ruleInterfaceUsage
 		{
-			$current = $this_AllocationUsage_11.current;
+			$current = $this_InterfaceUsage_11.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getActionUsageParserRuleCall_12());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getAllocationUsageParserRuleCall_12());
 		}
-		this_ActionUsage_12=ruleActionUsage
+		this_AllocationUsage_12=ruleAllocationUsage
 		{
-			$current = $this_ActionUsage_12.current;
+			$current = $this_AllocationUsage_12.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getCalculationUsageParserRuleCall_13());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getActionUsageParserRuleCall_13());
 		}
-		this_CalculationUsage_13=ruleCalculationUsage
+		this_ActionUsage_13=ruleActionUsage
 		{
-			$current = $this_CalculationUsage_13.current;
+			$current = $this_ActionUsage_13.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getStateUsageParserRuleCall_14());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getCalculationUsageParserRuleCall_14());
 		}
-		this_StateUsage_14=ruleStateUsage
+		this_CalculationUsage_14=ruleCalculationUsage
 		{
-			$current = $this_StateUsage_14.current;
+			$current = $this_CalculationUsage_14.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getConstraintUsageParserRuleCall_15());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getStateUsageParserRuleCall_15());
 		}
-		this_ConstraintUsage_15=ruleConstraintUsage
+		this_StateUsage_15=ruleStateUsage
 		{
-			$current = $this_ConstraintUsage_15.current;
+			$current = $this_StateUsage_15.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getRequirementUsageParserRuleCall_16());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getConstraintUsageParserRuleCall_16());
 		}
-		this_RequirementUsage_16=ruleRequirementUsage
+		this_ConstraintUsage_16=ruleConstraintUsage
 		{
-			$current = $this_RequirementUsage_16.current;
+			$current = $this_ConstraintUsage_16.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getCaseUsageParserRuleCall_17());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getRequirementUsageParserRuleCall_17());
 		}
-		this_CaseUsage_17=ruleCaseUsage
+		this_RequirementUsage_17=ruleRequirementUsage
 		{
-			$current = $this_CaseUsage_17.current;
+			$current = $this_RequirementUsage_17.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getAnalysisCaseUsageParserRuleCall_18());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getSatisfyRequirementUsageParserRuleCall_18());
 		}
-		this_AnalysisCaseUsage_18=ruleAnalysisCaseUsage
+		this_SatisfyRequirementUsage_18=ruleSatisfyRequirementUsage
 		{
-			$current = $this_AnalysisCaseUsage_18.current;
+			$current = $this_SatisfyRequirementUsage_18.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getVerificationCaseUsageParserRuleCall_19());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getCaseUsageParserRuleCall_19());
 		}
-		this_VerificationCaseUsage_19=ruleVerificationCaseUsage
+		this_CaseUsage_19=ruleCaseUsage
 		{
-			$current = $this_VerificationCaseUsage_19.current;
+			$current = $this_CaseUsage_19.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getViewUsageParserRuleCall_20());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getAnalysisCaseUsageParserRuleCall_20());
 		}
-		this_ViewUsage_20=ruleViewUsage
+		this_AnalysisCaseUsage_20=ruleAnalysisCaseUsage
 		{
-			$current = $this_ViewUsage_20.current;
+			$current = $this_AnalysisCaseUsage_20.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getViewpointUsageParserRuleCall_21());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getVerificationCaseUsageParserRuleCall_21());
 		}
-		this_ViewpointUsage_21=ruleViewpointUsage
+		this_VerificationCaseUsage_21=ruleVerificationCaseUsage
 		{
-			$current = $this_ViewpointUsage_21.current;
+			$current = $this_VerificationCaseUsage_21.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getUsageElementAccess().getRenderingUsageParserRuleCall_22());
+			newCompositeNode(grammarAccess.getUsageElementAccess().getViewUsageParserRuleCall_22());
 		}
-		this_RenderingUsage_22=ruleRenderingUsage
+		this_ViewUsage_22=ruleViewUsage
 		{
-			$current = $this_RenderingUsage_22.current;
+			$current = $this_ViewUsage_22.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getUsageElementAccess().getViewpointUsageParserRuleCall_23());
+		}
+		this_ViewpointUsage_23=ruleViewpointUsage
+		{
+			$current = $this_ViewpointUsage_23.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getUsageElementAccess().getRenderingUsageParserRuleCall_24());
+		}
+		this_RenderingUsage_24=ruleRenderingUsage
+		{
+			$current = $this_RenderingUsage_24.current;
 			afterParserOrEnumRuleCall();
 		}
 	)

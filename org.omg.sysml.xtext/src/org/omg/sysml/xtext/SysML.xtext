@@ -260,6 +260,7 @@ UsageElement returns SysML::Usage :
 	| SnapshotUsage
 	| PortUsage
 	| ConnectionUsage
+	| AssertConstraintUsage
 	| Connector
 	| InterfaceUsage
 	| AllocationUsage
@@ -268,6 +269,7 @@ UsageElement returns SysML::Usage :
 	| StateUsage
 	| ConstraintUsage
 	| RequirementUsage
+	| SatisfyRequirementUsage
 	| CaseUsage
 	| AnalysisCaseUsage
 	| VerificationCaseUsage

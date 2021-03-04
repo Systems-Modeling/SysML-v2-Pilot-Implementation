@@ -237,6 +237,10 @@ public class VTree extends VStructure {
         super(vt);
         this.parent = parent;
     }
+    
+    public VTree(Visitor vt) {
+    	super(vt);
+    }
 
     public VTree() {
         super();

@@ -334,6 +334,18 @@ public class SysML2PlantUMLStyle {
 		}
 
 		@Override
+		public String caseSendActionUsage(SendActionUsage sau) {
+            // Send a message to object
+            return " ..>> ";
+		}
+
+		@Override
+		public String caseAcceptActionUsage(AcceptActionUsage sau) {
+            // Send a message to object
+            return " <<.. ";
+		}
+
+		@Override
 		public String caseDependency(Dependency dep) {
             return " ..>> ";
 		}

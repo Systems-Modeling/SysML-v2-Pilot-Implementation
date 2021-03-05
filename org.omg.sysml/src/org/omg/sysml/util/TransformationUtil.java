@@ -19,7 +19,7 @@
  *  
  *******************************************************************************/
 
-package org.omg.sysml.transform;
+package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -60,13 +60,10 @@ import org.omg.sysml.lang.sysml.impl.SatisfyRequirementUsageImpl;
 import org.omg.sysml.lang.sysml.impl.TransitionUsageImpl;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
 import org.omg.sysml.lang.sysml.impl.UsageImpl;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.ImplicitFeatureRelationships;
-import org.omg.sysml.util.ImplicitTypeRelationships;
 
-public class TransformerUtil {
+public class TransformationUtil {
 	
-	private TransformerUtil() {
+	private TransformationUtil() {
 	}
 	
 	public static ImplicitTypeRelationships getImplicitTypeRelationshipsAdapter(Type target) {

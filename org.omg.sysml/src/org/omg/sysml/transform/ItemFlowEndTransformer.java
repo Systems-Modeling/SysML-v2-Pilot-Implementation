@@ -22,6 +22,7 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.util.TransformationUtil;
 
 public class ItemFlowEndTransformer extends FeatureTransformer {
 
@@ -36,7 +37,7 @@ public class ItemFlowEndTransformer extends FeatureTransformer {
 
 	@Override
 	public void transform() {
-		TransformerUtil.addItemFlowEndSubsettingTo(getElement());
+		TransformationUtil.addItemFlowEndSubsettingTo(getElement());
 		super.transform();
 	}
 	

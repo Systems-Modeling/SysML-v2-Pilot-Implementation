@@ -6,6 +6,7 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl;
+import org.omg.sysml.util.TransformationUtil;
 
 public class AcceptActionUsageTransformer extends ElementTransformer {
 
@@ -39,7 +40,7 @@ public class AcceptActionUsageTransformer extends ElementTransformer {
 		if (action.getReceiverArgument() == null) {
 			Feature receiverParameter = action.getReceiverParameter();
 			if (receiverParameter != null) {
-				TransformerUtil.addBindingConnectorTo(action, getDefaultReceiver(), receiverParameter);
+				TransformationUtil.addBindingConnectorTo(action, getDefaultReceiver(), receiverParameter);
 			}
 		}
 	}

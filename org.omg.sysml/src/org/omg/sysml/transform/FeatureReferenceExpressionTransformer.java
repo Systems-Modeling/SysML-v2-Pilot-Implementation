@@ -24,6 +24,7 @@ package org.omg.sysml.transform;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TransformationUtil;
 
 public class FeatureReferenceExpressionTransformer extends ExpressionTransformer {
 
@@ -38,14 +39,14 @@ public class FeatureReferenceExpressionTransformer extends ExpressionTransformer
 	
 	protected void addReferenceConnector() {
 		FeatureReferenceExpression expression = getElement();
-		TransformerUtil.addBindingConnectorTo(expression, expression.getReferent(), expression.getResult());
+		TransformationUtil.addBindingConnectorTo(expression, expression.getReferent(), expression.getResult());
 	}
 
 	protected void addResultSubsetting() {
 		FeatureReferenceExpression expression = getElement();
 		Feature result = expression.getResult();
-		if (TransformerUtil.hasReferentFeature(expression)) {
-			TransformerUtil.addGeneralTypeTo(result,
+		if (TransformationUtil.hasReferentFeature(expression)) {
+			TransformationUtil.addGeneralTypeTo(result,
 					SysMLPackage.eINSTANCE.getSubsetting(), expression.getReferent());
 		}
 	}

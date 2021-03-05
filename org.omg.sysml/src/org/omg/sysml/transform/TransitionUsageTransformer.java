@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.TransformationUtil;
 
 public class TransitionUsageTransformer extends ActionUsageTransformer {
 
@@ -59,11 +60,11 @@ public class TransitionUsageTransformer extends ActionUsageTransformer {
 	
 	protected Feature getTransitionLinkFeature() {
 		TransitionUsage transition = getElement();
-		Feature transitionLinkFeature = TransformerUtil.getTransitionLinkFeatureOf(transition);
+		Feature transitionLinkFeature = TransformationUtil.getTransitionLinkFeatureOf(transition);
 		if (transitionLinkFeature == null) {
 			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
-			TransformerUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
-			TransformerUtil.setTransitionLinkFeatureOf(transition, transitionLinkFeature);
+			TransformationUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
+			TransformationUtil.setTransitionLinkFeatureOf(transition, transitionLinkFeature);
 		}
 		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;
@@ -73,7 +74,7 @@ public class TransitionUsageTransformer extends ActionUsageTransformer {
 		TransitionUsage transition = getElement();
 		Succession succession = transition.getSuccession();
 		ElementUtil.transform(succession);
-		TransformerUtil.addBindingConnectorTo(transition, succession, getTransitionLinkFeature());
+		TransformationUtil.addBindingConnectorTo(transition, succession, getTransitionLinkFeature());
 	}
 	
 	@Override

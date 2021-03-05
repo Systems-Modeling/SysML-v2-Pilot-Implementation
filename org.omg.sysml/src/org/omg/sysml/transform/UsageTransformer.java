@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TransformationUtil;
 
 public class UsageTransformer extends FeatureTransformer {
 
@@ -47,18 +48,18 @@ public class UsageTransformer extends FeatureTransformer {
 	public Feature getRelevantSubjectParameterFor(Usage usage) {
 		Type owningType = usage.getOwningType();		
 		return !(owningType instanceof Usage) || owningType.isAbstract() || 
-			   !TransformerUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
-			   TransformerUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
+			   !TransformationUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
+			   TransformationUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
 	}
 	
 	@Override
 	public void computeValueConnector() {
 		Usage usage = getElement();
-		FeatureValue valuation = TransformerUtil.getValuationFor(usage);
-		if (valuation == null && TransformerUtil.isSubjectParameter(usage)){
+		FeatureValue valuation = TransformationUtil.getValuationFor(usage);
+		if (valuation == null && TransformationUtil.isSubjectParameter(usage)){
 			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
 			if (subjectParameter != null) {
-				TransformerUtil.addBindingConnectorTo(usage, subjectParameter, usage);
+				TransformationUtil.addBindingConnectorTo(usage, subjectParameter, usage);
 			}
 		} else {
 			super.computeValueConnector();
@@ -77,9 +78,9 @@ public class UsageTransformer extends FeatureTransformer {
 	
 	protected void addVariationTyping() {
 		Usage usage = getElement();
-		Definition variationDefinition = TransformerUtil.getOwningVariationDefinitionFor(usage);
-		if (variationDefinition != null && TransformerUtil.isVariant(usage)) {
-			TransformerUtil.addGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+		Definition variationDefinition = TransformationUtil.getOwningVariationDefinitionFor(usage);
+		if (variationDefinition != null && TransformationUtil.isVariant(usage)) {
+			TransformationUtil.addGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
 		}		
 	}
 	

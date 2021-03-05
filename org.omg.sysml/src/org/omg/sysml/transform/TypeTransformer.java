@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.TransformationUtil;
 
 public class TypeTransformer extends NamespaceTransformer {
 
@@ -53,16 +54,16 @@ public class TypeTransformer extends NamespaceTransformer {
 	public void createResultConnector(Feature result) {
 		Type type = getElement();
 		Expression resultExpression = 
-				(Expression)TransformerUtil.getOwnedFeatureByMembershipIn(type, ResultExpressionMembership.class);
+				(Expression)TransformationUtil.getOwnedFeatureByMembershipIn(type, ResultExpressionMembership.class);
 		if (resultExpression != null) {
-			TransformerUtil.addResultBindingTo(type, resultExpression, result);
+			TransformationUtil.addResultBindingTo(type, resultExpression, result);
 		}
 	}
 
 	@Override
 	public void transform() {
 		super.transform();
-		TransformerUtil.computeImplicitGeneralTypesFor(getElement());
+		TransformationUtil.computeImplicitGeneralTypesFor(getElement());
 	}
 	
 }

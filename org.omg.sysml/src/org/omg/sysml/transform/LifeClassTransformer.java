@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Superclassing;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.util.TransformationUtil;
 
 public class LifeClassTransformer extends ClassTransformer {
 
@@ -61,7 +62,7 @@ public class LifeClassTransformer extends ClassTransformer {
 		LifeClass lifeClass = getElement();
 		Multiplicity multiplicity = lifeClass.getMultiplicity();
 		if (multiplicity == null || multiplicity.getOwningType() != this) {
-			TransformerUtil.addOwnedFeatureTo(lifeClass, createSingletonMultiplicity());
+			TransformationUtil.addOwnedFeatureTo(lifeClass, createSingletonMultiplicity());
 		}
 	}
 	
@@ -70,11 +71,11 @@ public class LifeClassTransformer extends ClassTransformer {
 		
 		LiteralInteger bound = SysMLFactory.eINSTANCE.createLiteralInteger();
 		bound.setValue(0);
-		TransformerUtil.addOwnedFeatureTo(multiplicity, bound);
+		TransformationUtil.addOwnedFeatureTo(multiplicity, bound);
 		
 		bound = SysMLFactory.eINSTANCE.createLiteralInteger();
 		bound.setValue(1);
-		TransformerUtil.addOwnedFeatureTo(multiplicity, bound);
+		TransformationUtil.addOwnedFeatureTo(multiplicity, bound);
 		
 		return multiplicity;
 	}

@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TransformationUtil;
 
 public class FeatureTransformer extends TypeTransformer {
 	
@@ -45,7 +46,7 @@ public class FeatureTransformer extends TypeTransformer {
 		Feature feature = getElement();
 		if (featuringType != null && feature.getOwningType() == null && 
 			feature.getOwnedTypeFeaturing().isEmpty()) {
-			TransformerUtil.addFeaturingTypeTo(feature, featuringType);
+			TransformationUtil.addFeaturingTypeTo(feature, featuringType);
 		}
 	}
 	
@@ -54,8 +55,8 @@ public class FeatureTransformer extends TypeTransformer {
 		Namespace owner = feature.getOwningNamespace();
 		if (owner instanceof Feature) {
 			EList<Type> ownerFeaturingTypes = ((Feature)owner).getFeaturingType();
-			if (TransformerUtil.isImplicitFeaturingTypesEmpty(feature)) {
-				TransformerUtil.addFeaturingTypesTo(feature, ownerFeaturingTypes);
+			if (TransformationUtil.isImplicitFeaturingTypesEmpty(feature)) {
+				TransformationUtil.addFeaturingTypesTo(feature, ownerFeaturingTypes);
 			}
 		}
 	}
@@ -66,22 +67,22 @@ public class FeatureTransformer extends TypeTransformer {
 				filter(f->f instanceof LiteralBoolean).
 				findFirst().orElse(null);
 		return literalBoolean == null? null:
-			TransformerUtil.addResultBindingTo(feature, literalBoolean, result);
+			TransformationUtil.addResultBindingTo(feature, literalBoolean, result);
 	}
 	
 	protected void computeValueConnector() {
 		Feature feature = getElement();
-		FeatureValue valuation = TransformerUtil.getValuationFor(feature);
+		FeatureValue valuation = TransformationUtil.getValuationFor(feature);
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			valuation.setValueConnector(value == null? null:
-				TransformerUtil.addValueBindingTo(feature, value));
+				TransformationUtil.addValueBindingTo(feature, value));
 		}
 	}
 	
 	@Override
 	public void transform() {
-		TransformerUtil.forceComputeRedefinitionsFor(getElement());
+		TransformationUtil.forceComputeRedefinitionsFor(getElement());
 		super.transform();
 		computeValueConnector();
 	}

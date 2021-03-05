@@ -29,6 +29,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TransformationUtil;
 
 public class InvocationExpressionTransformer extends ExpressionTransformer {
 
@@ -45,11 +46,11 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 	protected void computeInput() {
 		InvocationExpression expression = getElement();
 		if (expression.getInput().isEmpty()) {
-			Type type = TransformerUtil.getExpressionTypeOf(expression);
+			Type type = TransformationUtil.getExpressionTypeOf(expression);
 			if (type instanceof Function || type instanceof Expression) {
 				super.computeInput();
 			} else if (type != null) {
-				for (Feature typeFeature: TransformerUtil.getTypeFeaturesOf(expression)) {
+				for (Feature typeFeature: TransformationUtil.getTypeFeaturesOf(expression)) {
 					createFeatureForParameter(typeFeature);
 				}
 			}
@@ -57,12 +58,12 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 	}
 	
 	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
-		TransformerUtil.forceComputeRedefinitionsFor(input);
-		List<Feature> redefinedFeatures = TransformerUtil.getRedefinedFeaturesOf(input);
+		TransformationUtil.forceComputeRedefinitionsFor(input);
+		List<Feature> redefinedFeatures = TransformationUtil.getRedefinedFeaturesOf(input);
 		if (!redefinedFeatures.isEmpty()) {
 			Feature feature = redefinedFeatures.get(0);
 			if (feature != null) {
-				return TransformerUtil.getArgumentForFeature(arguments, feature, argIndex);
+				return TransformationUtil.getArgumentForFeature(arguments, feature, argIndex);
 			}
 		}
 		return null;
@@ -79,7 +80,7 @@ public class InvocationExpressionTransformer extends ExpressionTransformer {
 			}
 			Expression argument = getArgumentForInput(arguments, input, i);
 			if (argument != null) {
-				argumentConnectors[i] = TransformerUtil.addResultBindingTo(expression, argument, input);
+				argumentConnectors[i] = TransformationUtil.addResultBindingTo(expression, argument, input);
 				i++;
 			}
 		}

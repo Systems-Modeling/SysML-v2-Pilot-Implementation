@@ -45,8 +45,8 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ImplicitTypeRelationships;
-import org.omg.sysml.transform.TransformerUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TransformationUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -329,7 +329,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 		@Override
 		protected void delegateAdd(Expression object) {
-			TransformerUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object);
+			TransformationUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object);
 		}
 
 		@Override

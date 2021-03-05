@@ -22,6 +22,7 @@
 package org.omg.sysml.transform;
 
 import org.omg.sysml.lang.sysml.ConnectionUsage;
+import org.omg.sysml.util.TransformationUtil;
 
 public class ConnectionUsageTransformer extends PartUsageTransformer {
 
@@ -37,7 +38,7 @@ public class ConnectionUsageTransformer extends PartUsageTransformer {
 	@Override
 	public void transform() {
 		super.transform();
-		addFeaturingType(TransformerUtil.getContextTypeFor(getElement()));
+		addFeaturingType(TransformationUtil.getContextTypeFor(getElement()));
 	}
 	
 }

@@ -45,7 +45,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
-import org.omg.sysml.transform.TransformerUtil;
 
 /**
  * This adapter implementation can be used to store the implicit relationships
@@ -129,10 +128,10 @@ public class ImplicitTypeRelationships extends AdapterImpl {
 		TypeImpl type = (TypeImpl) getTarget();
 		List<Membership> createdMemberships = new ArrayList<>();
 		for (BindingConnector connector : implicitFeatureBindingConnectors) {
-			createdMemberships.add(TransformerUtil.addOwnedFeatureTo(type, connector));
+			createdMemberships.add(TransformationUtil.addOwnedFeatureTo(type, connector));
 		}
 		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			createdMemberships.add(TransformerUtil.addOwnedMemberTo(type, connector));
+			createdMemberships.add(TransformationUtil.addOwnedMemberTo(type, connector));
 		}
 		cleanImplicitBindingConnectors();
 		return createdMemberships;

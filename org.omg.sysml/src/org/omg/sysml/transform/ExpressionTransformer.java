@@ -28,6 +28,7 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.util.TransformationUtil;
 
 public class ExpressionTransformer extends StepTransformer {
 
@@ -61,7 +62,7 @@ public class ExpressionTransformer extends StepTransformer {
 	protected void computeInput() {
 		Expression expression = getElement();
 		if (expression.getInput().isEmpty()) {
-			for (Feature parameter: TransformerUtil.getTypeParametersOf(expression)) {
+			for (Feature parameter: TransformationUtil.getTypeParametersOf(expression)) {
 				createFeatureForParameter(parameter);
 			}
 		}

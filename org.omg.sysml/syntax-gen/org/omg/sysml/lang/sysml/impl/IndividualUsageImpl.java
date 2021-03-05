@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
@@ -34,6 +33,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -245,9 +245,9 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
 			Type owningType = getOwningType();
 			if (owningType instanceof IndividualDefinition) {
-				TypeAdapter.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
+				ElementUtil.getTypeAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
 			} else if (owningType instanceof IndividualUsage) {
-				TypeAdapter.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
+				ElementUtil.getTypeAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
 			}
 		}
 	}
@@ -261,7 +261,7 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 			Type type = owningType instanceof IndividualUsage? 
 					((IndividualUsage)owningType).getIndividualDefinition(): 
 					owningType;
-			TypeAdapter.getOrCreateAdapter((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
+					ElementUtil.getTypeAdapter(feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 		}
 	}
 	

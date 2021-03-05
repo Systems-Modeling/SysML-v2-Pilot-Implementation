@@ -21,41 +21,27 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.util.TransformationUtil;
 
-public class ElementAdapter extends AdapterImpl {
-	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
+public class NamespaceAdapter extends ElementAdapter {
+
+	public NamespaceAdapter(Namespace element) {
+		super(element);
 	}
 	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+	public Namespace getTarget() {
+		return (Namespace)super.getTarget();
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
+	public boolean isAdapterForType(Object type) {
+		return type instanceof Namespace;
 	}
 
-	public boolean isTransformed() {
-		return isTransformed;
-	}
-	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
-		}
-	}
-	
 	public void doTransform() {
-		// By default, do nothing.
+		super.doTransform();
+		TransformationUtil.clearCachesOf(getTarget());
 	}
-		
+
 }

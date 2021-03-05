@@ -21,41 +21,22 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.BlockExpression;
 
-public class ElementAdapter extends AdapterImpl {
-	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
+public class BlockExpressionAdapter extends ExpressionAdapter {
+
+	public BlockExpressionAdapter(BlockExpression element) {
+		super(element);
 	}
 	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+	public BlockExpression getTarget() {
+		return (BlockExpression)super.getTarget();
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
+	public void doTransform() {
+		super.doTransform();
+		createResultConnector(getTarget().getResult());
 	}
 
-	public boolean isTransformed() {
-		return isTransformed;
-	}
-	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
-		}
-	}
-	
-	public void doTransform() {
-		// By default, do nothing.
-	}
-		
 }

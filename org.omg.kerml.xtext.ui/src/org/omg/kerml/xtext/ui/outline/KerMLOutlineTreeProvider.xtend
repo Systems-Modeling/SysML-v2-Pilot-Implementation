@@ -41,8 +41,6 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
 import org.omg.sysml.util.ElementUtil
-import org.omg.sysml.adapter.TypeAdapter
-import org.omg.sysml.adapter.FeatureAdapter
 
 /**
  * Customization of the default outline structure.
@@ -413,7 +411,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def _isLeaf(Type type) {
-	    _isLeaf(type as Namespace) && TypeAdapter.getOrCreateAdapter(type).isImplicitGeneralTypesEmpty() 	
+	    _isLeaf(type as Namespace) && ElementUtil.getTypeAdapter(type).isImplicitGeneralTypesEmpty() 	
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
@@ -427,7 +425,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
-		TypeAdapter.getOrCreateAdapter(type).forEachImplicitGeneralType[eClass, generalType |
+		ElementUtil.getTypeAdapter(type).forEachImplicitGeneralType[eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -450,7 +448,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def createImplicitTypeFeaturingNodes(IOutlineNode parentNode, Feature feature) {
-		FeatureAdapter.getOrCreateAdapter(feature).forEachImplicitFeaturingType[featuringType |
+		ElementUtil.getFeatureAdapter(feature).forEachImplicitFeaturingType[featuringType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -472,7 +470,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def createImplicitBindingConnectorNodes(IOutlineNode parentNode, Type type) {
-		TypeAdapter.getOrCreateAdapter(type).forEachImplicitBindingConnector[connector, eClass |
+		ElementUtil.getTypeAdapter(type).forEachImplicitBindingConnector[connector, eClass |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there

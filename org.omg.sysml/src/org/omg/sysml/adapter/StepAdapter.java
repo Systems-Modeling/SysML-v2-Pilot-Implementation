@@ -21,41 +21,17 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Step;
 
-public class ElementAdapter extends AdapterImpl {
+public class StepAdapter extends FeatureAdapter {
 	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
-	}
-	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+	public StepAdapter(Step element) {
+		super(element);
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
+	public Step getTarget() {
+		return (Step)super.getTarget();
 	}
 
-	public boolean isTransformed() {
-		return isTransformed;
-	}
-	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
-		}
-	}
-	
-	public void doTransform() {
-		// By default, do nothing.
-	}
-		
 }

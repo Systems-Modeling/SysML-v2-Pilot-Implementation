@@ -49,7 +49,9 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TransformationUtil;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -62,8 +64,6 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.adapter.FeatureAdapter;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
@@ -268,7 +268,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				map(typing->typing.getType()).
 				filter(type->type != null).
 				collect(Collectors.toList());
-		types.addAll(TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
+		types.addAll(ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
 		return types;
 	}
 	
@@ -446,8 +446,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (owningType != null) {
 			featuringTypes.add(getOwningType());
 		}
-		FeatureAdapter.getOrCreateAdapter(this)
-			.forEachImplicitFeaturingType(featuringTypes::add);
+		ElementUtil.getFeatureAdapter(this).forEachImplicitFeaturingType(featuringTypes::add);
 		return featuringTypes;
 	}
 	
@@ -460,7 +459,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
 			forEachOrdered(redefinedFeatures::add);
 		
-		TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.eINSTANCE.getRedefinition())
+		ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.eINSTANCE.getRedefinition())
 				.stream().
 				map(Feature.class::cast).
 				forEachOrdered(redefinedFeatures::add);
@@ -480,7 +479,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void addComputedRedefinitions(Element skip) {
 		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
-			TypeAdapter.getOrCreateAdapter(this).removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
+			ElementUtil.getTypeAdapter(this).removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
 			addRedefinitions(skip);
 			isComputeRedefinitions = false;
 		}
@@ -495,7 +494,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void addRedefinitions(Element skip) {
 		Namespace owner = getOwningNamespace();
 		if (owner instanceof Type) {
-			removeEmptyGeneralTypes(Redefinition.class);
+			TransformationUtil.removeEmptyGeneralTypesFor(this, Redefinition.class);
 			Type type = getOwningType();
 			int i = getRelevantFeatures(type).indexOf(this);
 			if (i >= 0) {
@@ -504,7 +503,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 					if (i < features.size()) {
 						Feature redefinedFeature = features.get(i);
 						if (redefinedFeature != null && redefinedFeature != this) {
-							TypeAdapter.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
+							ElementUtil.getTypeAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
 						}
 					}
 				}
@@ -916,17 +915,17 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public boolean hasClassType() {
 		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance) ||
-				TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance);
+				ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance);
 	}
 	
 	public boolean hasStructureType() {
 		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(Structure.class::isInstance) ||
-				TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
+				ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
 	}
 	
 	public boolean hasDataType() {
 		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(DataType.class::isInstance) ||
-				TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
+				ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
 	}
 	
 	public Optional<Feature> getFirstSubsettedFeature() {
@@ -935,7 +934,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitSubsettedFeatures = TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
+		Stream<Feature> implicitSubsettedFeatures = ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
 				filter(s->!(s instanceof Redefinition)).
@@ -948,7 +947,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
 				map(Redefinition::getRedefinedFeature);
-		Stream<Feature> implicitRedefinedFeatures = TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinedFeatures = ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
 		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
 				collect(Collectors.toList());
@@ -956,7 +955,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public List<Feature> getRedefinedFeatures() {
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitRedefinedFeatures = TypeAdapter.getOrCreateAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinedFeatures = ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
 				map(Redefinition::getRedefinedFeature);

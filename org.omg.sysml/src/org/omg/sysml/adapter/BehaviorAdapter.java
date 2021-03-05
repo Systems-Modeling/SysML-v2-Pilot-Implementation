@@ -21,41 +21,21 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Behavior;
 
-public class ElementAdapter extends AdapterImpl {
-	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
-	}
-	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+/**
+ * @author seidewitz
+ *
+ */
+public class BehaviorAdapter extends ClassAdapter {
+
+	public BehaviorAdapter(Behavior element) {
+		super(element);
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
+	public Behavior getTarget() {
+		return (Behavior)super.getTarget();
 	}
 
-	public boolean isTransformed() {
-		return isTransformed;
-	}
-	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
-		}
-	}
-	
-	public void doTransform() {
-		// By default, do nothing.
-	}
-		
 }

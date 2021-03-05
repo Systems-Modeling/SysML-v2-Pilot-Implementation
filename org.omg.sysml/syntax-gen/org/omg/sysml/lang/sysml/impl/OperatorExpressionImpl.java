@@ -39,12 +39,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TransformationUtil;
 
@@ -199,7 +199,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	public List<FeatureTyping> basicGetOwnedTyping() {
 		String operator = getOperator();
 		if (operator != null) {
-			TypeAdapter.getOrCreateAdapter(this).addDefaultGeneralType(
+			ElementUtil.getTypeAdapter(this).addDefaultGeneralType(
 					SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		}
 		return Collections.emptyList();

@@ -28,8 +28,6 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.adapter.FeatureAdapter;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -40,11 +38,13 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -55,6 +55,7 @@ import org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl;
 import org.omg.sysml.lang.sysml.impl.ExpressionImpl;
 import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.lang.sysml.impl.FeatureReferenceExpressionImpl;
+import org.omg.sysml.lang.sysml.impl.GeneralizationImpl;
 import org.omg.sysml.lang.sysml.impl.InvocationExpressionImpl;
 import org.omg.sysml.lang.sysml.impl.ItemFlowEndImpl;
 import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
@@ -66,14 +67,6 @@ import org.omg.sysml.lang.sysml.impl.UsageImpl;
 public class TransformationUtil {
 	
 	private TransformationUtil() {
-	}
-	
-	public static TypeAdapter getImplicitTypeRelationshipsAdapter(Type target) {
-		return TypeAdapter.getOrCreateAdapter(target);
-	}
-	
-	public static FeatureAdapter getImplicitFeatureRelationshipsAdapter(Feature target) {
-		return FeatureAdapter.getOrCreateAdapter(target);
 	}
 	
 	// Namespace
@@ -103,11 +96,20 @@ public class TransformationUtil {
 	}
 	
 	public static void addGeneralTypeTo(Type type, EClass kind, Type generalType) {
-		getImplicitTypeRelationshipsAdapter(type).addImplicitGeneralType(kind, generalType);
+		ElementUtil.getTypeAdapter(type).addImplicitGeneralType(kind, generalType);
 	}
 	
 	public static void computeImplicitGeneralTypesFor(Type type) {
 		((TypeImpl)type).computeImplicitGeneralTypes();
+	}
+	
+	public static <T extends Generalization> void removeEmptyGeneralTypesFor(Type type, Class<T> kind) {
+		List<Relationship> ownedRelationships = type.getOwnedRelationship_comp();
+		for (Generalization generalization: ((TypeImpl)type).basicGetOwnedGeneralization(kind)) {
+			if (((GeneralizationImpl)generalization).basicGetGeneral() == null) {
+				ownedRelationships.remove(generalization);
+			}
+		}
 	}
 	
 	public static BindingConnector createBindingConnector(Feature source, Feature target) {
@@ -118,11 +120,11 @@ public class TransformationUtil {
 	}
 	
 	public static void addMemberBindingConnectorTo(Type type, BindingConnector connector) {
-		getImplicitTypeRelationshipsAdapter(type).addImplicitMemberBindingConnector(connector);
+		ElementUtil.getTypeAdapter(type).addImplicitMemberBindingConnector(connector);
 	}
 	
 	public static void addFeatureBindingConnectorTo(Type type, BindingConnector connector) {
-		getImplicitTypeRelationshipsAdapter(type).addImplicitFeatureBindingConnector(connector);
+		ElementUtil.getTypeAdapter(type).addImplicitFeatureBindingConnector(connector);
 	}
 	
 	public static BindingConnector addBindingConnectorTo(Type type, Feature source, Feature target) {
@@ -137,7 +139,7 @@ public class TransformationUtil {
 
 	protected static BindingConnector addBindingConnectorTo(Type type, Collection<Type> featuringTypes, Feature source, Feature target) {
 		BindingConnector connector = createBindingConnector(source, target);
-		getImplicitTypeRelationshipsAdapter(type).addImplicitMemberBindingConnector(connector);
+		ElementUtil.getTypeAdapter(type).addImplicitMemberBindingConnector(connector);
 		addFeaturingTypesTo(connector, featuringTypes);
 		return connector;
 	}
@@ -162,15 +164,15 @@ public class TransformationUtil {
 	}
 	
 	public static boolean isImplicitFeaturingTypesEmpty(Feature feature) {
-		return getImplicitFeatureRelationshipsAdapter(feature).isImplicitFeaturingTypesEmpty();
+		return ElementUtil.getFeatureAdapter(feature).isImplicitFeaturingTypesEmpty();
 	}
 	
 	public static void addFeaturingTypeTo(Feature feature, Type featuringType) {
-		getImplicitFeatureRelationshipsAdapter(feature).addFeaturingType(featuringType);
+		ElementUtil.getFeatureAdapter(feature).addFeaturingType(featuringType);
 	}
 	
 	public static void addFeaturingTypesTo(Feature feature, Collection<Type> featuringTypes) {
-		getImplicitFeatureRelationshipsAdapter(feature).addFeaturingTypes(featuringTypes);
+		ElementUtil.getFeatureAdapter(feature).addFeaturingTypes(featuringTypes);
 	}
 
 	public static BindingConnector addValueBindingTo(Feature feature, Expression sourceExpression) {

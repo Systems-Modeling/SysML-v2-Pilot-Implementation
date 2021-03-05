@@ -33,7 +33,6 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -52,6 +51,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -312,7 +312,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	protected void addSubsetting(String subsettedFeatureName) {
 		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
 		if (feature != null) {
-			TypeAdapter.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
+			ElementUtil.getTypeAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
 		}
 	}
 

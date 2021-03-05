@@ -21,41 +21,28 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.ConstraintDefinition;
 
-public class ElementAdapter extends AdapterImpl {
-	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
-	}
-	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+public class ConstraintDefinitionAdapter extends DefinitionAdapter {
+
+	protected BindingConnector resultConnector = null;
+
+	public ConstraintDefinitionAdapter(ConstraintDefinition element) {
+		super(element);
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
+	public ConstraintDefinition getTarget() {
+		return (ConstraintDefinition)super.getTarget();
 	}
 
-	public boolean isTransformed() {
-		return isTransformed;
-	}
-	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
-		}
-	}
-	
+	@Override
 	public void doTransform() {
-		// By default, do nothing.
+		ConstraintDefinition definition = getTarget();
+		super.doTransform();
+		addResultParameter();
+		createResultConnector(definition.getResult());
 	}
-		
+	
 }

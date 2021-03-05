@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.sysml.adapter.ElementAdapter;
 import org.omg.sysml.adapter.FeatureAdapter;
+import org.omg.sysml.adapter.ElementAdapterFactory;
 import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
@@ -37,13 +38,13 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.transformer.Transformer;
-import org.omg.sysml.transformer.TransformerFactory;
 
 public class ElementUtil {
 	
 	private ElementUtil() {
 	}
+	
+	// General
 	
 	/**
 	 * Get documentation text for this element, as given by the body of the first documentation comment
@@ -53,6 +54,24 @@ public class ElementUtil {
 		return element.getDocumentationComment().stream().
 				map(Comment::getBody).
 				findFirst().orElse(null);
+	}
+	
+	// Adapters
+	
+	public static ElementAdapter getElementAdapter(Element target) {
+		return ElementAdapterFactory.getAdapter(target);
+	}
+	
+	public static TypeAdapter getTypeAdapter(Type target) {
+		return (TypeAdapter)getElementAdapter(target);
+	}
+
+	public static FeatureAdapter getFeatureAdapter(Feature target) {
+		return (FeatureAdapter)getElementAdapter(target);
+	}
+	
+	public static void clean(Element element) {
+		ElementAdapterFactory.removeAdapter(element);
 	}
 	
 	// Transformation 
@@ -91,35 +110,28 @@ public class ElementUtil {
 	}
 	
 	public static void transform(Element element) {
-		if (!isTransformed(element)) {
-			Transformer transformer = TransformerFactory.createTransformer(element);
-			if (transformer != null) {
-				transformer.transform();
-			}
-			ElementAdapter.getOrCreateAdapter(element).setIsTransformed();
+		ElementAdapter transformer = getElementAdapter(element);
+		if (transformer != null) {
+			transformer.transform();
 		}
 	}
 	
 	public static boolean isTransformed(Element element) {
-		return ElementAdapter.getOrCreateAdapter(element).isTransformed();
-	}
-	
-	public static void clean(Element element) {
-		ElementAdapter.removeAdapter(element);
+		return getElementAdapter(element).isTransformed();
 	}
 	
 	// Implicit elements
 	
 	public static void addImplicitGeneralizations(Type type) {
-		TypeAdapter.getOrCreateAdapter(type).addImplicitGeneralizations();
+		ElementUtil.getTypeAdapter(type).addImplicitGeneralizations();
 	}
 	
 	public static void addImplicitTypeFeaturings(Feature feature) {
-		FeatureAdapter.getOrCreateAdapter(feature).addImplicitTypeFeaturings();
+		ElementUtil.getFeatureAdapter(feature).addImplicitTypeFeaturings();
 	}
 	
 	public static void addImplicitBindingConnectors(Type type) {
-		List<Membership> addedMemberships = TypeAdapter.getOrCreateAdapter(type).addImplicitBindingConnectors();
+		List<Membership> addedMemberships = ElementUtil.getTypeAdapter(type).addImplicitBindingConnectors();
 		// This is required as the owned relationships call of the type will not return
 		// the newly created binding connectors so we have to ensure the transform
 		// function is used appropriately
@@ -127,5 +139,5 @@ public class ElementUtil {
 			transformAll(m.getMemberElement(), true);
 		}
 	}
-	
+
 }

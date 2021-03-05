@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -51,7 +51,7 @@ public class KerMLLinker extends LazyLinker {
 			// The Relationship#source and #target features are overridden
 			// in each subtype to provide specific derived implementations that
 			// are regenerated each time they are accessed so there is no need to
-			// delete them; and as of May 2020, generic references as not supported
+			// delete them; and as of May 2020, generic references are not supported
 			// in concrete syntax, making it a safe to not clear them during linking.
 			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__SOURCE) || 
 			Objects.equals(ref, SysMLPackage.Literals.RELATIONSHIP__TARGET) ||

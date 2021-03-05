@@ -6,22 +6,19 @@
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
- * You should have received a copy of the GNU Lesser General Public License
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- * 
+ *  
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
- * 
- * Contributors:
- *  Zoltan Ujhelyi, MDS
- *  Ed Seidewitz, MDS
- * 
- *****************************************************************************/
+ *  
+ *******************************************************************************/
+
 package org.omg.sysml.adapter;
 
 import java.util.ArrayList;
@@ -37,21 +34,31 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.ResultExpressionMembership;
+import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TransformationUtil;
 
-/**
- * This adapter implementation can be used to store the implicit relationships
- * for each type, including generalizations and binding connectors and provides
- * some utility methods to ease its access.
- */
-public class TypeAdapter extends ElementAdapter {
+public class TypeAdapter extends NamespaceAdapter {
 
+	public TypeAdapter(Type element) {
+		super(element);
+	}
+	
+	public Type getTarget() {
+		return (Type)super.getTarget();
+	}
+	
+	// Implicit Elements
+	
 	/**
 	 * Contains the required ends for implicit generalizations like implicit
 	 * superclassing, subsetting, featuretyping and redefinitions for future access.
@@ -60,33 +67,6 @@ public class TypeAdapter extends ElementAdapter {
 	protected Map<EClass, List<Type>> implicitGeneralTypes = new HashMap<>();
 	protected List<BindingConnector> implicitMemberBindingConnectors = new ArrayList<>();
 	protected List<BindingConnector> implicitFeatureBindingConnectors = new ArrayList<>();
-	
-	public static TypeAdapter getOrCreateAdapter(Type target) {
-		return (TypeAdapter)getOrCreateAdapter(target, TypeAdapter.class);
-	}
-
-	public TypeAdapter() {
-		super();
-	}
-	
-	public TypeAdapter(ElementAdapter other) {
-		super(other);
-		if (other instanceof TypeAdapter) {
-			this.implicitGeneralTypes = ((TypeAdapter)other).implicitGeneralTypes;
-			this.implicitMemberBindingConnectors = ((TypeAdapter)other).implicitMemberBindingConnectors;
-			this.implicitFeatureBindingConnectors = ((TypeAdapter)other).implicitFeatureBindingConnectors;
-		}
-	}
-
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type instanceof Type;
-	}
-
-	@Override
-	public Type getTarget() {
-		return (Type)super.getTarget();
-	}
 	
 	public void cleanImplicitGeneralTypes() {
 		implicitGeneralTypes.clear();
@@ -183,7 +163,7 @@ public class TypeAdapter extends ElementAdapter {
 	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
 		TypeImpl type = (TypeImpl)getTarget();
-		type.removeEmptyGeneralTypes(kind);
+		TransformationUtil.removeEmptyGeneralTypesFor(type, kind);
 		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
 				type.basicGetOwnedGeneralization(kind).isEmpty()) {
 			Type general = type.getDefaultType(superTypeNames);
@@ -211,8 +191,7 @@ public class TypeAdapter extends ElementAdapter {
 				action.accept(eClass, supertype);
 			}
 		}
-	}
-	
+	}	
 
 	public void addImplicitFeatureBindingConnector(BindingConnector connector) {
 		implicitFeatureBindingConnectors.add(connector);
@@ -220,6 +199,34 @@ public class TypeAdapter extends ElementAdapter {
 	
 	public void addImplicitMemberBindingConnector(BindingConnector connector) {
 		implicitMemberBindingConnectors.add(connector);
+	}
+	
+	// Transformation
+	
+	public void addResultParameter() {
+		Type type = getTarget();
+		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
+			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
+			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
+			membership.setOwnedMemberParameter_comp(resultParameter);
+			type.getOwnedFeatureMembership_comp().add(membership);
+			ElementUtil.transform(resultParameter);
+		}
+	}
+	
+	public void createResultConnector(Feature result) {
+		Type type = getTarget();
+		Expression resultExpression = 
+				(Expression)TransformationUtil.getOwnedFeatureByMembershipIn(type, ResultExpressionMembership.class);
+		if (resultExpression != null) {
+			TransformationUtil.addResultBindingTo(type, resultExpression, result);
+		}
+	}
+
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		TransformationUtil.computeImplicitGeneralTypesFor(getTarget());
 	}
 	
 }

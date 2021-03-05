@@ -21,41 +21,23 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 
-public class ElementAdapter extends AdapterImpl {
-	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
+public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
+
+	public AssertConstraintUsageAdapter(AssertConstraintUsage element) {
+		super(element);
 	}
 	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+	public AssertConstraintUsage getTarget() {
+		return (AssertConstraintUsage)super.getTarget();
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
-	}
-
-	public boolean isTransformed() {
-		return isTransformed;
-	}
-	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
-		}
-	}
-	
 	public void doTransform() {
-		// By default, do nothing.
+		AssertConstraintUsage usage = getTarget();
+		super.doTransform();
+		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
 	}
-		
+	
 }

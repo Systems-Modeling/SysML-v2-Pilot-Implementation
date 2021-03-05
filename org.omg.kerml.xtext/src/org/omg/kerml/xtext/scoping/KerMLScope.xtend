@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
-import org.omg.sysml.lang.sysml.impl.TypeImpl
 import java.util.HashSet
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
@@ -47,7 +46,9 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.adapter.TypeAdapter
+import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.TransformationUtil
+import org.omg.sysml.lang.sysml.impl.TypeImpl
 
 class KerMLScope extends AbstractScope {
 	
@@ -289,7 +290,7 @@ class KerMLScope extends AbstractScope {
 				newRedefined.addAll(redefined)
 				newRedefined.addAll(ns.redefinedFeatures)
 			}
-			for (e: (ns as TypeImpl).ownedGeneralization) {
+			for (e: ns.ownedGeneralization) {
 				if (!scopeProvider.visited.contains(e)) {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
@@ -303,10 +304,9 @@ class KerMLScope extends AbstractScope {
 			}
 			if (!scopeProvider.visited.contains(ns)) {
 				scopeProvider.addVisited(ns);
-				(ns as TypeImpl).computeImplicitGeneralTypes
+				TransformationUtil.computeImplicitGeneralTypesFor(ns)
 				scopeProvider.removeVisited(ns)
-				val typeAdapter = TypeAdapter.getOrCreateAdapter(ns)
-				for (type : typeAdapter.getImplicitGeneralTypes) {
+				for (type : ElementUtil.getTypeAdapter(ns).getImplicitGeneralTypes) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false)
 					if (found) {
 						return true

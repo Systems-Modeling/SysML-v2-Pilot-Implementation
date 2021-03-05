@@ -14,6 +14,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.util.ElementUtil;
 
 public class SysMLInteractiveUtil {
 
@@ -60,7 +61,7 @@ public class SysMLInteractiveUtil {
 		} else {
 			if (element instanceof TypeImpl) {
 				TypeImpl type = (TypeImpl)element;
-				TypeAdapter typeAdapter = TypeAdapter.getOrCreateAdapter(type);
+				TypeAdapter typeAdapter = ElementUtil.getTypeAdapter(type);
 				for (EClass kind: typeAdapter.getImplicitGeneralTypeKinds()) {
 					for (Type supertype: typeAdapter.getImplicitGeneralTypes(kind)) {
 						formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind);

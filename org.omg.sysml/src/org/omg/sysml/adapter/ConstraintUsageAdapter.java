@@ -21,41 +21,37 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.util.TransformationUtil;
 
-public class ElementAdapter extends AdapterImpl {
-	
-	protected Class<?> kind;
-	protected boolean isTransformed = false;
-	
-	public ElementAdapter(Element element) {
-		super();
-		kind = element.getClass();
-	}
-	
-	public Element getTarget() {
-		return (Element)super.getTarget();
+public class ConstraintUsageAdapter extends UsageAdapter {
+
+	protected BindingConnector resultConnector = null;
+
+	public ConstraintUsageAdapter(ConstraintUsage element) {
+		super(element);
 	}
 	
 	@Override
-	public boolean isAdapterForType(Object object) {
-		return kind.isInstance(object);
-	}
-
-	public boolean isTransformed() {
-		return isTransformed;
+	public ConstraintUsage getTarget() {
+		return (ConstraintUsage)super.getTarget();
 	}
 	
-	public void transform() {
-		if (!isTransformed) {
-			doTransform();
-			isTransformed = true;
+	protected void computeSubjectParameter() {
+		ConstraintUsage constraint = getTarget();
+		if (TransformationUtil.isRequirement(constraint)) {
+			computeSubjectParameterOf(constraint);
 		}
 	}
 	
+	@Override
 	public void doTransform() {
-		// By default, do nothing.
-	}
-		
+		ConstraintUsage constraint = getTarget();
+		super.doTransform();
+		computeSubjectParameter();
+		addResultParameter();
+		createResultConnector(constraint.getResult());
+	}	
+	
 }

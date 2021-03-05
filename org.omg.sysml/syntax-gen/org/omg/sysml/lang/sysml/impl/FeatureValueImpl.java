@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -76,8 +77,6 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	
-	protected BindingConnector valueConnector;
 	
 	protected FeatureValueImpl() {
 		super();
@@ -299,7 +298,8 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetValueConnector() {
-		return valueConnector;
+		Feature feature = getFeatureWithValue();
+		return feature == null? null: ElementUtil.getFeatureAdapter(feature).getValueConnector();
 	}
 
 	/**
@@ -309,7 +309,7 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	 */
 	@Override
 	public void setValueConnector(BindingConnector newValueConnector) {
-		valueConnector = newValueConnector;
+		throw new UnsupportedOperationException();
 	}
 
 	/**

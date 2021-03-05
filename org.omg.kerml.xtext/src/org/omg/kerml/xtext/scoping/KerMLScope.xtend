@@ -47,7 +47,7 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.util.ImplicitTypeRelationships
+import org.omg.sysml.adapter.TypeAdapter
 
 class KerMLScope extends AbstractScope {
 	
@@ -305,7 +305,7 @@ class KerMLScope extends AbstractScope {
 				scopeProvider.addVisited(ns);
 				(ns as TypeImpl).computeImplicitGeneralTypes
 				scopeProvider.removeVisited(ns)
-				val typeAdapter = ImplicitTypeRelationships.getOrCreateAdapter(ns)
+				val typeAdapter = TypeAdapter.getOrCreateAdapter(ns)
 				for (type : typeAdapter.getImplicitGeneralTypes) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false)
 					if (found) {

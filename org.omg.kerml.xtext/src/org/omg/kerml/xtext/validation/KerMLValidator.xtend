@@ -48,7 +48,7 @@ import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
-import org.omg.sysml.util.ImplicitTypeRelationships
+import org.omg.sysml.adapter.TypeAdapter
 
 /**
  * This class contains custom validation rules. 
@@ -230,7 +230,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkImplicitBindingConnectors(Type type) {
-		ImplicitTypeRelationships.getOrCreateAdapter(type).forEachImplicitBindingConnector[doCheckBindingConnector(type)]
+		TypeAdapter.getOrCreateAdapter(type).forEachImplicitBindingConnector[doCheckBindingConnector(type)]
 	}
 	
 	//return related subtypes

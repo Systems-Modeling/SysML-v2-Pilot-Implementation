@@ -27,7 +27,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ImplicitTypeRelationships;
+import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -64,7 +64,7 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 
 	@Override
 	protected void addComputedRedefinitions(Element skip) {
-		if (!ImplicitTypeRelationships.getOrCreateAdapter(this).isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+		if (!TypeAdapter.getOrCreateAdapter(this).isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
 			addRedefinitions(skip);
 		}
 	}

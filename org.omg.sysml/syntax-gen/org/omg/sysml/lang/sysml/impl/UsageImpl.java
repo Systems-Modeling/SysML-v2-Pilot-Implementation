@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AllocationUsage;
 import org.omg.sysml.lang.sysml.AnalysisCaseUsage;
@@ -71,7 +72,6 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
-import org.omg.sysml.util.ImplicitTypeRelationships;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -619,7 +619,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	protected void addVariationSubsetting() {
 		Usage variationUsage = getOwningVariationUsage();
 		if (variationUsage != null && isVariant()) {
-			ImplicitTypeRelationships.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
+			TypeAdapter.getOrCreateAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
 		}
 	}
 	

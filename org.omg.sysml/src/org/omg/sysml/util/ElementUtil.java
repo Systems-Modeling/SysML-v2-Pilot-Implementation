@@ -24,20 +24,21 @@
 
 package org.omg.sysml.util;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.omg.sysml.adapter.ElementAdapter;
+import org.omg.sysml.adapter.FeatureAdapter;
+import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.transform.Transformer;
-import org.omg.sysml.transform.TransformerFactory;
+import org.omg.sysml.transformer.Transformer;
+import org.omg.sysml.transformer.TransformerFactory;
 
 public class ElementUtil {
 	
@@ -55,19 +56,6 @@ public class ElementUtil {
 	}
 	
 	// Transformation 
-	
-	private static Set<Element> transformedElements;
-	
-	private static Set<Element> getTransformedElements() {
-		if (transformedElements == null) {
-			transformedElements = new HashSet<>();
-		}
-		return transformedElements;
-	}
-	
-	public static boolean isTransformed(Element element) {
-		return getTransformedElements().contains(element);
-	}
 	
 	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {
 		for (Resource resource: resourceSet.getResources()) {
@@ -103,35 +91,35 @@ public class ElementUtil {
 	}
 	
 	public static void transform(Element element) {
-		Set<Element> transformedElements = getTransformedElements();
-		if (!transformedElements.contains(element)) {
+		if (!isTransformed(element)) {
 			Transformer transformer = TransformerFactory.createTransformer(element);
 			if (transformer != null) {
 				transformer.transform();
 			}
-			transformedElements.add(element);
+			ElementAdapter.getOrCreateAdapter(element).setIsTransformed();
 		}
 	}
 	
+	public static boolean isTransformed(Element element) {
+		return ElementAdapter.getOrCreateAdapter(element).isTransformed();
+	}
+	
 	public static void clean(Element element) {
-		getTransformedElements().remove(element);
-		if (element instanceof Type) {
-			ImplicitTypeRelationships.removeAdapter((Type)element);
-		}
+		ElementAdapter.removeAdapter(element);
 	}
 	
 	// Implicit elements
 	
 	public static void addImplicitGeneralizations(Type type) {
-		ImplicitTypeRelationships.getOrCreateAdapter(type).addImplicitGeneralizations();
+		TypeAdapter.getOrCreateAdapter(type).addImplicitGeneralizations();
 	}
 	
 	public static void addImplicitTypeFeaturings(Feature feature) {
-		ImplicitFeatureRelationships.getOrCreateAdapter(feature).addImplicitTypeFeaturings();
+		FeatureAdapter.getOrCreateAdapter(feature).addImplicitTypeFeaturings();
 	}
 	
 	public static void addImplicitBindingConnectors(Type type) {
-		List<Membership> addedMemberships = ImplicitTypeRelationships.getOrCreateAdapter(type).addImplicitBindingConnectors();
+		List<Membership> addedMemberships = TypeAdapter.getOrCreateAdapter(type).addImplicitBindingConnectors();
 		// This is required as the owned relationships call of the type will not return
 		// the newly created binding connectors so we have to ensure the transform
 		// function is used appropriately

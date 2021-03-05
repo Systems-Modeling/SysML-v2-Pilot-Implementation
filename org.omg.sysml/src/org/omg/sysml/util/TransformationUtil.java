@@ -28,6 +28,8 @@ import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.omg.sysml.adapter.FeatureAdapter;
+import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -66,12 +68,12 @@ public class TransformationUtil {
 	private TransformationUtil() {
 	}
 	
-	public static ImplicitTypeRelationships getImplicitTypeRelationshipsAdapter(Type target) {
-		return ImplicitTypeRelationships.getOrCreateAdapter(target);
+	public static TypeAdapter getImplicitTypeRelationshipsAdapter(Type target) {
+		return TypeAdapter.getOrCreateAdapter(target);
 	}
 	
-	public static ImplicitFeatureRelationships getImplicitFeatureRelationshipsAdapter(Feature target) {
-		return ImplicitFeatureRelationships.getOrCreateAdapter(target);
+	public static FeatureAdapter getImplicitFeatureRelationshipsAdapter(Feature target) {
+		return FeatureAdapter.getOrCreateAdapter(target);
 	}
 	
 	// Namespace

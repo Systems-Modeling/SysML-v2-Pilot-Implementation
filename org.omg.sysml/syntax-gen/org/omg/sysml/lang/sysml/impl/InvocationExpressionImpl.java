@@ -30,6 +30,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
+import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -39,7 +40,6 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ImplicitTypeRelationships;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -177,7 +177,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	@Override
 	public Type getExpressionType() {
 		List<FeatureTyping> typing = basicGetOwnedTyping();
-		return typing.isEmpty()? ImplicitTypeRelationships.getOrCreateAdapter(this).getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
+		return typing.isEmpty()? TypeAdapter.getOrCreateAdapter(this).getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
 	}
 	
 	//

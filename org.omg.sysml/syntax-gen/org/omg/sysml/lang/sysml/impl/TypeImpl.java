@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
+import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Type;
@@ -61,7 +62,6 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ImplicitTypeRelationships;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -270,7 +270,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	protected void addDefaultGeneralType() {
-		ImplicitTypeRelationships.getOrCreateAdapter(this).addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+		TypeAdapter.getOrCreateAdapter(this).addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	protected EClass getGeneralizationEClass() {
@@ -790,7 +790,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			.map(Generalization::getGeneral)
 			.forEachOrdered(ownedGeneralEnds::add);
 		computeImplicitGeneralTypes();
-		ownedGeneralEnds.addAll(ImplicitTypeRelationships.
+		ownedGeneralEnds.addAll(TypeAdapter.
 					getOrCreateAdapter(this).
 					getImplicitGeneralTypes());
 		return ownedGeneralEnds;

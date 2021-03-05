@@ -25,6 +25,9 @@ package test{
 			A.B.B, A1.A.B.B, B.B, test.A.A.B.B, test.A1.A.B.B,
 		    A, A.B, A1, A1.A, A1.A.B, B, 
 		    test.A, test.A.A, test.A.A.B, test.A1, test.A1.A, test.A1.A.B,
+						A.B.B.self,  A1.A.B.B.self,  B.B.self,  test.A.A.B.B.self,  test.A1.A.B.B.self, 
+		    A.self,  A.B.self,  A1.self,  A1.A.self,  A1.A.B.self,  B.self,  
+		    test.A.self,  test.A.A.self,  test.A.A.B.self,  test.A1.self,  test.A1.A.self,  test.A1.A.B.self, self
 		--- */
 			feature B : A{}
 		}

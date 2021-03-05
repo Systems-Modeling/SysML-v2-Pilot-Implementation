@@ -29,7 +29,7 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
@@ -96,15 +96,16 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 		if (!(owner instanceof Type)) {
 			return null;
 		} else {
-			EList<FeatureMembership> memberships = ((Type)owner).getOwnedFeatureMembership();
-			for (int i = memberships.indexOf(feature.getOwningFeatureMembership()) - 1; i >= 0; i--) {
-				FeatureMembership membership = memberships.get(i);
+			EList<Membership> memberships = ((Type)owner).getOwnedMembership();
+			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
+				Membership membership = memberships.get(i);
 				if (!(membership instanceof TransitionFeatureMembership)) {
-					Feature previousFeature = memberships.get(i).getMemberFeature();
-					if (!(((FeatureImpl)previousFeature).isParameter() || 
-						  previousFeature instanceof Connector || 
-						  previousFeature instanceof TransitionUsage)) {
-						return previousFeature;
+					Element previousElement = memberships.get(i).getMemberElement();
+					if (previousElement instanceof Feature &&
+						!(((FeatureImpl)previousElement).isParameter() || 
+						  previousElement instanceof Connector || 
+						  previousElement instanceof TransitionUsage)) {
+						return (Feature)previousElement;
 					}
 				}
 			}

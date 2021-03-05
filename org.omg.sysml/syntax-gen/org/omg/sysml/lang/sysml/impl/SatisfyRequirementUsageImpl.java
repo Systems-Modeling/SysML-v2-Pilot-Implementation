@@ -100,9 +100,6 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetAssertionConnector() {
-		if (assertionConnector == null) {
-			assertionConnector = InvariantImpl.getAssertionConnectorFor(this, this.getResult());
-		}
 		return assertionConnector;
 	}
 
@@ -113,7 +110,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 */
 	@Override
 	public void setAssertionConnector(BindingConnector newAssertionConnector) {
-		throw new UnsupportedOperationException();
+		assertionConnector = newAssertionConnector;
 	}
 
 	/**
@@ -220,15 +217,6 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 //	protected Feature getNamingFeature() {
 //		return getSatisfiedRequirement();
 //	}
-
-	@Override
-	public void transform() {
-		super.transform();
-		BindingConnector connector = getSatisfyingFeatureConnector();
-		if (connector != null) {
-			((ConnectorImpl)connector).setRelatedFeature(0, getSubjectParameter());
-		}
-	}
 
 	/**
 	 * <!-- begin-user-doc -->

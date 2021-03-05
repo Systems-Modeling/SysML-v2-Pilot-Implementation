@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Zoltan Ujhelyi, MDS
+ *  Ed Seidewitz, MDS
  * 
  *****************************************************************************/
 package org.omg.sysml.util;
@@ -38,14 +39,13 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.ConnectorImpl;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.transform.TransformerUtil;
 
 /**
  * This adapter implementation can be used to store the implicit relationships
@@ -129,10 +129,10 @@ public class ImplicitTypeRelationships extends AdapterImpl {
 		TypeImpl type = (TypeImpl) getTarget();
 		List<Membership> createdMemberships = new ArrayList<>();
 		for (BindingConnector connector : implicitFeatureBindingConnectors) {
-			createdMemberships.add(type.addOwnedFeature(connector));
+			createdMemberships.add(TransformerUtil.addOwnedFeatureTo(type, connector));
 		}
 		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			createdMemberships.add(type.addOwnedMember(connector));
+			createdMemberships.add(TransformerUtil.addOwnedMemberTo(type, connector));
 		}
 		cleanImplicitBindingConnectors();
 		return createdMemberships;
@@ -228,24 +228,13 @@ public class ImplicitTypeRelationships extends AdapterImpl {
 		}
 	}
 	
-	public BindingConnector addImplicitBindingConnector(Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		((ConnectorImpl)connector).addConnectorEnd(source);
-		((ConnectorImpl)connector).addConnectorEnd(target);
-		if (((ConnectorImpl)connector).getContextType() == this) {
-			implicitFeatureBindingConnectors.add(connector);
-		} else {
-			implicitMemberBindingConnectors.add(connector);
-		}
-		return connector;
-	}
 
-	public BindingConnector addImplicitBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		((ConnectorImpl)connector).addConnectorEnd(source);
-		((ConnectorImpl)connector).addConnectorEnd(target);
-		implicitMemberBindingConnectors.add(connector);
-		ImplicitFeatureRelationships.getOrCreateAdapter(connector).addFeaturingTypes(featuringTypes);
-		return connector;
+	public void addImplicitFeatureBindingConnector(BindingConnector connector) {
+		implicitFeatureBindingConnectors.add(connector);
 	}
+	
+	public void addImplicitMemberBindingConnector(BindingConnector connector) {
+		implicitMemberBindingConnectors.add(connector);
+	}
+	
 }

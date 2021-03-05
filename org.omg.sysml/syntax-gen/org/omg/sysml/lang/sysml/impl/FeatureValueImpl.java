@@ -76,6 +76,9 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	
+	protected BindingConnector valueConnector;
+	
 	protected FeatureValueImpl() {
 		super();
 	}
@@ -296,8 +299,7 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	 * @generated NOT
 	 */
 	public BindingConnector basicGetValueConnector() {
-		Feature feature = getFeatureWithValue();
-		return feature == null? null: ((FeatureImpl)feature).getValueConnector();
+		return valueConnector;
 	}
 
 	/**
@@ -307,7 +309,7 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	 */
 	@Override
 	public void setValueConnector(BindingConnector newValueConnector) {
-		throw new UnsupportedOperationException();
+		valueConnector = newValueConnector;
 	}
 
 	/**

@@ -47,7 +47,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.util.ImplicitFeatureRelationships;
@@ -71,7 +70,6 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
@@ -177,10 +175,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * @ordered
 	 */
 	protected static final boolean IS_NONUNIQUE_EDEFAULT = false;
-	/**
-	 * The cached value of the BindingConnector from this Feature to the result of a value Expression.
-	 */
-	protected BindingConnector valueConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,7 +224,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	public void clearCaches() {
 		super.clearCaches();
 		types = null;
-		ImplicitFeatureRelationships.getOrCreateAdapter(this).removeAllImplicitFeaturingTypes();
 	}
 
 	/**
@@ -755,7 +748,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public boolean isFeaturedWithin(Type type) {
 		List<Type> featuringTypes = getFeaturingType();
-		return type == null && featuringTypes.isEmpty() ||
+		return featuringTypes.isEmpty() ||
 			   type != null && featuringTypes.contains(type) ||
 			   featuringTypes.stream().anyMatch(featuringType->
 					   featuringType instanceof Feature &&
@@ -907,44 +900,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				findFirst().orElse(null);
 	}
 
-	public BindingConnector getValueConnector() {
-		return valueConnector;
-	}
-	
-	protected void computeValueConnector() {
-		FeatureValue valuation = getValuation();
-		if (valuation != null) {
-			Expression value = valuation.getValue();
-			if (value != null) {
-				valueConnector = makeValueBinding(value);
-			}
-		}
-	}
-	
 	@Override
 	public void computeImplicitGeneralTypes() {
 		addComputedRedefinitions(null);
 		super.computeImplicitGeneralTypes();
-	}
-	
-	@Override
-	public void transform() {
-		forceComputeRedefinitions();
-		super.transform();
-		computeValueConnector();
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		valueConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	// Utility methods
-	
-	public BindingConnector makeValueBinding(Expression sourceExpression) {
-		((ElementImpl)sourceExpression).transform();
-		return ImplicitTypeRelationships.getOrCreateAdapter(this).addImplicitBindingConnector(getFeaturingType(), sourceExpression.getResult(), this);
 	}
 	
 	public boolean isStructureFeature() {
@@ -970,23 +929,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				ImplicitTypeRelationships.getOrCreateAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
 	}
 	
-	public Subsetting createSubsetting() {
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettingFeature(this);
-		getOwnedRelationship_comp().add(subsetting);
-		return subsetting;
-	}
-	
-	public Optional<Subsetting> basicGetFirstSubsetting() {
-		return basicGetOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).findFirst();
-	}
-	
-	public Optional<Subsetting> getFirstSubsetting() {
-		return getOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).findFirst();
-	}
-	
 	public Optional<Feature> getFirstSubsettedFeature() {
 		return getSubsettedNotRedefinedFeatures().findFirst();
 	}
@@ -996,15 +938,19 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		Stream<Feature> implicitSubsettedFeatures = ImplicitTypeRelationships.getOrCreateAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
+				filter(s->!(s instanceof Redefinition)).
 				map(Subsetting::getSubsettedFeature);
 		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
 	}
 	
 	public List<Feature> getSubsettedFeatures() {
+		// Note: Build on getSubsettedNotRedefinedFeatures here because it is overridden in some subclasses.
 		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
+		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
+				map(Redefinition::getRedefinedFeature);
 		Stream<Feature> implicitRedefinedFeatures = ImplicitTypeRelationships.getOrCreateAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
-		return Stream.concat(subsettedFeatures, implicitRedefinedFeatures).
+		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
 				collect(Collectors.toList());
 	}
 	
@@ -1027,15 +973,15 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		// Ensure that the redefinitions for this feature are recomputed. 
 		forceComputeRedefinitions();
 		
-		addAllRedefinedFeatures(redefinedFeatures);
+		addAllRedefinedFeaturesTo(redefinedFeatures);
 		return redefinedFeatures;
 	}
 	
-	protected void addAllRedefinedFeatures(Set<Feature> redefinedFeatures) {
+	protected void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
 		redefinedFeatures.add(this);
 		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
-			if (!redefinedFeatures.contains(redefinedFeature)) {
-				((FeatureImpl)redefinedFeature).addAllRedefinedFeatures(redefinedFeatures);
+			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
+				((FeatureImpl)redefinedFeature).addAllRedefinedFeaturesTo(redefinedFeatures);
 			}
 		});
 	}

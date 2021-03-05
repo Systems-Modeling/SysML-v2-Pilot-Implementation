@@ -32,6 +32,11 @@ package test{
 		    A, A.a1, B, B.a1, B.b, inner, inner.B, inner.B.a1, inner.B.b,
 		    test.A, test.A.a2, test.inner, test.inner.B, test.inner.B.a1, test.inner.B.b,
 		    OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+						inner.A.self,  inner.A.a1.self,  test.inner.A.self,  test.inner.A.a1.self, 
+		    b.self,  a1.self,  
+		    A.self,  A.a1.self,  B.self,  B.a1.self,  B.b.self,  inner.self,  inner.B.self,  inner.B.a1.self,  inner.B.b.self, 
+		    test.A.self,  test.A.a2.self,  test.inner.self,  test.inner.B.self,  test.inner.B.a1.self,  test.inner.B.b.self, 
+		    OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, self
 		--- */
 			feature b : a1{}
 		}

@@ -42,6 +42,7 @@ import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
 import org.omg.sysml.util.ImplicitTypeRelationships
 import org.omg.sysml.util.ImplicitFeatureRelationships
+import org.omg.sysml.util.ElementUtil
 
 /**
  * Customization of the default outline structure.
@@ -541,8 +542,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			super.createEObjectNode(parentNode, modelElement, image, text, isLeaf)
 		} else {
 			val node = new ImplicitNode(parentNode, image, text)
-			if (modelElement instanceof ElementImpl) {
-				modelElement.transform
+			if (modelElement instanceof Element) {
+				ElementUtil.transform(modelElement);
 			}
 			createChildrenDispatcher.invoke(node, modelElement)
 			node

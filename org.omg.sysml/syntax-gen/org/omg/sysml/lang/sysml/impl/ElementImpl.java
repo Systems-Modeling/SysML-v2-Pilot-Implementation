@@ -742,16 +742,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
-	 * Get documentation text for this element, as given by the body of the first documentation comment
-	 * annotating the element (if any).
-	 */
-	public String getDocumentationText() {
-		return getDocumentationComment().stream().
-				map(Comment::getBody).
-				findFirst().orElse(null);
-	}
-	
-	/**
 	 * Get all the AnnotatingFeatures relevant to this Element. By default, these are just those that
 	 * are related to the Element by ownedAnnotations.
 	 */
@@ -768,12 +758,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * Clear cached member derivations.
 	 */
 	public void clearCaches() {		
-	}
-	
-	/**
-	 * Trigger in-place model transformations.
-	 */
-	public void transform() {		
 	}
 	
 	/**

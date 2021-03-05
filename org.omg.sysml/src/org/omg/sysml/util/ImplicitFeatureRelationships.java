@@ -116,7 +116,7 @@ public class ImplicitFeatureRelationships extends ImplicitTypeRelationships {
 		implicitFeaturingTypes = new LinkedHashSet<>();
 	}
 	
-	public void addImplicitTypeFeaturing() {
+	public void addImplicitTypeFeaturings() {
 		for (Type type : implicitFeaturingTypes) {
 			Feature feature = getTarget();
 			boolean featuringRequired = feature.getOwnedRelationship_comp().stream().
@@ -131,6 +131,10 @@ public class ImplicitFeatureRelationships extends ImplicitTypeRelationships {
 				feature.getOwnedRelationship_comp().add(featuring);
 			}
 		}
+	}
+	
+	public boolean isImplicitFeaturingTypesEmpty() {
+		return implicitFeaturingTypes.isEmpty();
 	}
 
 }

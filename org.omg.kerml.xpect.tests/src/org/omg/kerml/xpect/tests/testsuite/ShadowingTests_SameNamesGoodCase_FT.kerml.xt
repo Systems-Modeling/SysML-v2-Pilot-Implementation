@@ -24,6 +24,8 @@ package test{
 	//* XPECT scope at A ---
 		    A, A.a1, B.A, B.A.a2, B, B.a1, B.b, 
 		    test.A, test.A.a1, test.B, test.B.a1, test.B.A, test.B.A.a2, test.B.b,
+			A.self,  A.a1.self,  B.A.self,  B.A.a2.self,  B.self,  B.a1.self,  B.b.self,  
+		    test.A.self,  test.A.a1.self,  test.B.self,  test.B.a1.self,  test.B.A.self,  test.B.A.a2.self,  test.B.b.self,
 		--- */
 	feature B : A{
 		feature A{
@@ -34,6 +36,9 @@ package test{
 		    b, a1,  
 		    A, A.a2, B, B.a1, B.A, B.A.a2, B.b, 
 		    test.A, test.A.a1, test.B, test.B.a1, test.B.A, test.B.A.a2, test.B.b,
+					    b.self,  a1.self,   
+		    A.self,  A.a2.self,  B.self,  B.a1.self,  B.A.self,  B.A.a2.self,  B.b.self,  
+		    test.A.self,  test.A.a1.self,  test.B.self,  test.B.a1.self,  test.B.A.self,  test.B.A.a2.self,  test.B.b.self, self
 		--- */
 		feature b : a1{}
 	}

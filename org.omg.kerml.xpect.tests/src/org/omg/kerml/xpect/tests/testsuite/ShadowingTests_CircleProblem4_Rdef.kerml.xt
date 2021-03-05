@@ -26,6 +26,11 @@ package Test1{
 	   	   A.B.b.B, Test1.A.B.b.B,
 		   A, A.B, Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.B.b.B.b, Test1.A.B.b.b, Test1.A.b, OuterPackage.B.b,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b.a1,
+		    A.B.B.self,  Test1.A.B.B.self,  A.B.B.b.self,    Test1.A.B.B.b.self,  
+	       A.B.b.self,    
+	   	   A.B.b.B.self,  Test1.A.B.b.B.self, 
+		   A.self,  A.B.self,  Test1.A.self,  Test1.A.B.self,  Test1.A.B.b.self,       OuterPackage.B.b.self, 
+		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.a1.self, 
 	--- */
 	feature A redefines A.B {
 		feature B {
@@ -37,6 +42,12 @@ package Test1{
 			   	A, A.B, A.B.b, A.b, B, B.b, 
 			   	Test1.A, Test1.A.B, Test1.A.B.b, Test1.A.b, b,
 			   	OuterPackage.A, OuterPackage.A.a1, OuterPackage.B,OuterPackage.B.b, OuterPackage.B.b.a1,
+			   	 A.B.B.self,  A.B.B.b.self,   Test1.A.B.B.self,  Test1.A.B.B.b.self,  
+			    b.B.self,  
+			    A.B.b.B.self,       Test1.A.B.b.B.self,   
+			   	A.self,  A.B.self,  A.B.b.self,    B.self,  B.b.self,  
+			   	Test1.A.self,  Test1.A.B.self,  Test1.A.B.b.self,   b.self, 
+			   	OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self, OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, self
 			--- */
 			feature b subsets B; //added this line to see the scope of B
 		}

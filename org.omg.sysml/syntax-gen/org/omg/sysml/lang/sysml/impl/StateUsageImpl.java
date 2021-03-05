@@ -55,8 +55,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 
-	public static final String STATE_SUBSETTING_BASE_DEFAULT = "States::states";
-	public static final String STATE_SUBSETTING_SUBSTATE_DEFAULT = "States::State::substates";
+	public static final String STATE_SUBSETTING_BASE_DEFAULT = "States::stateActions";
+	public static final String STATE_SUBSETTING_SUBSTATE_DEFAULT = "States::StateAction::substates";
 	
 	protected boolean isCheckSubsetting = true;
 	

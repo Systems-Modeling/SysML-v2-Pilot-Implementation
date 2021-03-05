@@ -27,6 +27,11 @@ package test {
 		   Try, Try.a1, A, A.a1, B,
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, 
 		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+		   B.b.self,  test.try.self,  try.self,  test.B.b.self, 
+	       B.b.a1.self,  test.B.b.a1.self,  try.a1.self,  test.try.a1.self, 
+		   Try.self,  Try.a1.self,  A.self,  A.a1.self,  B.self, 
+		   test.Try.self,  test.Try.a1.self,  test.A.self,  test.A.a1.self,  test.B.self,  
+		   OuterPackage.A.self, OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, 
 	--- */
 	feature Try redefines A{}
 	//XPECT linkedName at B::b --> OuterPackage.B.b
@@ -35,6 +40,10 @@ package test {
 		   Try, Try.a1, A, A.a1, B, B.b, try,
 		   test.Try, test.Try.a1, test.A, test.A.a1, test.B, test.B.b, test.try, 
 		   OuterPackage.A,OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
+		   	       B.b.a1.self,  test.B.b.a1.self,  try.a1.self,  test.try.a1.self, 
+		   Try.self,  Try.a1.self,  A.self,  A.a1.self,  B.self,  B.b.self,  try.self, 
+		   test.Try.self,  test.Try.a1.self,  test.A.self,  test.A.a1.self,  test.B.self,  test.B.b.self,  test.try.self,  
+		   OuterPackage.A.self, OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, 
 	--- */
 	feature try redefines B::b;
 }

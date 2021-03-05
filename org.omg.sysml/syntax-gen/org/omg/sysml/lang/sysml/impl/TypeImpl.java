@@ -39,17 +39,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -257,22 +254,10 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				collect(Collectors.toList());
 	}
 	
-
-	
 	public void computeImplicitGeneralTypes() {
 		if (!isConjugated()) {
 			addDefaultGeneralType();
  		}
-	}
-	
-	/**
-	 * Removes derived values such as implicit generalizations or binding connectors
-	 * added by an in-place transformation from the model. This method is regularly
-	 * called by the Xtext linker when cleaning up references to make the next linking
-	 * cycle start from a clean state.
-	 */
-	public void cleanDerivedValues() {
-		ImplicitTypeRelationships.removeAdapter(this);
 	}
 	
 	public <T extends Generalization> void removeEmptyGeneralTypes(Class<T> kind) {
@@ -314,17 +299,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	public Type getDefaultType(String... defaultNames) {
-		return getLibraryType(this, defaultNames);
-	}
-	
-	public static Type getLibraryType(Element context, String... defaultNames) {
-		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(context, defaultName);
-			if (element instanceof Type) {
-				return (Type)element;
-			}
-		}
-		return null;
+		return SysMLLibraryUtil.getLibraryType(this, defaultNames);
 	}
 	
 	/**
@@ -1001,32 +976,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			}
 		}
 		return resultParameter;
-	}
-	
-	public FeatureMembership addOwnedFeature(Feature feature) {
-		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-		membership.setOwnedMemberFeature_comp(feature);
-		getOwnedFeatureMembership_comp().add(membership);
-		return membership;
-	}
-	
-	protected BindingConnector makeBinding(Feature source, Feature target) {
-		return ImplicitTypeRelationships.getOrCreateAdapter(this).
-				addImplicitBindingConnector(source, target);
-	}
-	
-	protected BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
-		((ElementImpl)sourceExpression).transform();
-		return makeBinding(sourceExpression.getResult(), target);
-	}
-		
-	// Other Methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		clearCaches();
-		computeImplicitGeneralTypes();
 	}
 	
 	//

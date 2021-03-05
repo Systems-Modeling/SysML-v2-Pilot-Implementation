@@ -27,6 +27,11 @@ package Classes {
 	  	VisibilityPackage.c_Public_alias.alias_public, 
 	  	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
 	   	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  
+			Try.self,  Try.c_public.self,  Try.feature4.self,  Classes.Try.self,  Classes.Try.c_public.self,  Classes.Try.feature4.self,  
+ 		c_Public.self,  c_Public.c_public.self,  Classes.c_Public.self,  Classes.c_Public.c_public.self,   
+	  	VisibilityPackage.c_Public_alias.alias_public.self,  
+	  	VisibilityPackage.c_Public.self,  VisibilityPackage.c_Public.c_public.self,  VisibilityPackage.c_Public_alias.self,  VisibilityPackage.c_Public_alias.c_public.self, 
+	   	VisibilityPackage.c_clazz.self,  VisibilityPackage.c_clazz.c_Public.self,   
 		--- */
 	feature Try subsets c_Public {
 		//XPECT linkedName at c_public --> VisibilityPackage.c_Public.c_public
@@ -37,6 +42,12 @@ package Classes {
 	  	VisibilityPackage.c_Public_alias.alias_public, 
 	  	VisibilityPackage.c_Public, VisibilityPackage.c_Public.c_public, VisibilityPackage.c_Public_alias, VisibilityPackage.c_Public_alias.c_public,
 	   	VisibilityPackage.c_clazz, VisibilityPackage.c_clazz.c_Public,  
+		feature4.self,  c_public.self,  
+    	Try.self,  Try.c_public.self,  Try.feature4.self,  Classes.Try.self,  Classes.Try.c_public.self,  Classes.Try.feature4.self,  
+ 		c_Public.self,  c_Public.c_public.self,  Classes.c_Public.self,  Classes.c_Public.c_public.self,   
+	  	VisibilityPackage.c_Public_alias.alias_public.self,  
+	  	VisibilityPackage.c_Public.self,  VisibilityPackage.c_Public.c_public.self,  VisibilityPackage.c_Public_alias.self,  VisibilityPackage.c_Public_alias.c_public.self, 
+	   	VisibilityPackage.c_clazz.self,  VisibilityPackage.c_clazz.c_Public.self, self, 
 	--- */
 		feature feature4 subsets c_public;
 	}

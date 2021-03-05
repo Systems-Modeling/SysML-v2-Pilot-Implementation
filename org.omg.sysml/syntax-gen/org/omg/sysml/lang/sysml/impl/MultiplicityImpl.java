@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ImplicitFeatureRelationships;
 
 /**
  * <!-- begin-user-doc --> 
@@ -63,11 +62,4 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 		return Collections.emptyList();
 	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-		ImplicitFeatureRelationships.getOrCreateAdapter(this).
-			addImplicitFeaturingTypes();
-	}
-
 } // MultiplicityImpl

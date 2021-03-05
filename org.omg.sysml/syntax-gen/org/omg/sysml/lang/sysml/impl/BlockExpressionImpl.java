@@ -23,11 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BlockExpression;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -37,12 +33,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BlockExpressionImpl extends ExpressionImpl implements BlockExpression {
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this BlockExpression.
-	 */
-	protected BindingConnector resultConnector = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -59,34 +49,6 @@ public class BlockExpressionImpl extends ExpressionImpl implements BlockExpressi
 	 */
 	protected BlockExpressionImpl() {
 		super();
-	}
-
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-
-	public static BindingConnector getOrCreateResultConnectorFor(
-			TypeImpl type, BindingConnector resultConnector, Feature result) {
-		if (resultConnector == null) {
-			Expression resultExpression = 
-					(Expression)type.getOwnedFeatureByMembership(ResultExpressionMembership.class);
-			if (resultExpression != null) {
-				resultConnector = type.makeResultBinding(resultExpression, result);
-			}
-		}
-		return resultConnector;
-	}
-
-	@Override
-	public void transform() {
-		super.transform();
-		resultConnector = getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
 	}
 
 } // BlockExpressionImpl

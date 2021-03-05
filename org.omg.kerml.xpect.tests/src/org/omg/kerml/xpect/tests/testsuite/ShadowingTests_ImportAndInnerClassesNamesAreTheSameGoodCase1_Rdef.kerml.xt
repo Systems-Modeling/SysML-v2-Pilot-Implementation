@@ -28,6 +28,9 @@ package test{
 		    A, A.a2, B, 
 		    test.A, test.A.a2, test.B, 
 		    OuterPackage.A.a1, OuterPackage.B, OuterPackage.A, OuterPackage.B.b, OuterPackage.B.b.a1,
+			 A.self,  A.a2.self,  B.self,  
+		    test.A.self,  test.A.a2.self,  test.B.self,  
+		    OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.A.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, 
 		--- */
 	feature B redefines A::a2 {}
 }

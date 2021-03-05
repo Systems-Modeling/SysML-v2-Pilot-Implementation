@@ -74,7 +74,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 		addComputedRedefinitions(null);
 	}
 
-	protected void addItemFlowEndSubsetting() {
+	public void addItemFlowEndSubsetting() {
 		EList<Feature> features = getOwnedFeature();
 		if (!features.isEmpty()) {
 			List<Redefinition> redefinitions = ((FeatureImpl) features.get(0)).basicGetOwnedRedefinition();
@@ -98,12 +98,6 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		return getOwnedFeature();
-	}
-	
-	@Override
-	public void transform() {
-		addItemFlowEndSubsetting();
-		super.transform();
 	}
 	
 } // ItemFlowEndImpl

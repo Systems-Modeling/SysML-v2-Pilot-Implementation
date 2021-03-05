@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Namespace
+import org.omg.sysml.lang.sysml.Redefinition
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -80,11 +81,13 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				return context.owningMembership.scope_owningNamespace(context, reference)
 			}
 		    var subsettingFeature = context.subsettingFeature
-		    var owningType = subsettingFeature?.owningType
-			if (owningType instanceof Connector) {
-		    	if (owningType.connectorEnd.contains(subsettingFeature)) {
-		    		return owningType.scope_owningNamespace(context, reference)
-		    	}
+		    if (!(context instanceof Redefinition)) {
+			    var owningType = subsettingFeature?.owningType
+				if (owningType instanceof Connector) {
+			    	if (owningType.connectorEnd.contains(subsettingFeature)) {
+			    		return owningType.scope_owningNamespace(context, reference)
+			    	}
+			    }
 		    }
 			subsettingFeature.scope_owningNamespace(context, reference)
 		} else if (context instanceof Generalization)

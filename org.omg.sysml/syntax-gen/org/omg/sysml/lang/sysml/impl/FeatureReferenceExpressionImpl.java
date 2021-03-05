@@ -29,17 +29,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ImplicitTypeRelationships;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -58,8 +56,6 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
 	
 	private Feature selfReferenceFeature = null;
-	
-	private BindingConnector referenceConnector;
 	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -97,10 +93,13 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 		return getReferentFeature().orElseGet(this::getSelfReferenceFeature);
 	}
 	
-	protected Optional<Feature> getReferentFeature() {
-		return getOwnedFeatureMembership().stream().
+	public Optional<Feature> getReferentFeature() {
+		return getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
-				map(FeatureMembership::getMemberFeature).findFirst();
+				map(Membership::getMemberElement).
+				filter(Feature.class::isInstance).
+				map(Feature.class::cast).
+				findFirst();
 	}
 	
 	protected Feature getSelfReferenceFeature() {
@@ -153,38 +152,6 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 			}
 		}
 		return new BasicEList<>();
-	}
-	
-	protected void addReferenceConnector() {
-		if (referenceConnector == null) {
-			referenceConnector = makeBinding(getReferent(), getResult());
-		}
-	}
-	
-	protected void addResultSubsetting() {
-		Feature result = getResult();
-		if (getReferentFeature().isPresent()) {
-			ImplicitTypeRelationships.getOrCreateAdapter(result).addImplicitGeneralType(
-					SysMLPackage.eINSTANCE.getSubsetting(), getReferent());
-		}
-	}
-		
-	@Override
-	public void transform() {
-		super.transform();
-		addReferenceConnector();
-		// Add subsetting in order to inherit typing of referent.
-		addResultSubsetting();
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		referenceConnector = null;
-		super.cleanDerivedValues();
-	}
-
-	public BindingConnector getReferenceConnector() {
-		return referenceConnector;
 	}
 	
 	/**

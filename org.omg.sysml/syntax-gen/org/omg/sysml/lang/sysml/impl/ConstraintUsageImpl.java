@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
@@ -89,13 +88,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	private Type subsettingBaseDefault;
 	private Type subsettingAssumptionFeature;
 	private Type subsettingRequirementFeature;
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this ConstraintUsage.
-	 */
-	protected BindingConnector resultConnector = null;
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -398,14 +390,10 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Additional Overrides
+	// Additional
 	
 	@Override
-	protected boolean hasRelevantSubjectParameter() {
+	public boolean hasRelevantSubjectParameter() {
 		Type owningType = getOwningType();
 		return isRequirement() && 
 			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
@@ -422,12 +410,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	protected Usage basicGetSubjectParameter() {
 		return isRequirement()? basicGetSubjectParameterOf(this): null;
-	}
-	
-	protected void computeSubjectParameter() {
-		if (isRequirement()) {
-			UsageImpl.computeSubjectParameterOf(this);
-		}
 	}
 	
 	@Override
@@ -473,20 +455,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			subsettingRequirementFeature = getDefaultType(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		return subsettingRequirementFeature;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}	
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
 	}
 	
 	//

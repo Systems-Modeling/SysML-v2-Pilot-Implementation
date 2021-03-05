@@ -41,14 +41,10 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ImplicitFeatureRelationships;
 
 /**
  * <!-- begin-user-doc -->
@@ -200,15 +196,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return super.getOwnedInput();
 	}
 	
-	protected void computeInput() {
-		if (getInput().isEmpty()) {
-			for (Feature parameter: getTypeParameters()) {
-				createFeatureForParameter(parameter);
-			}
-		}
-	}
-	
-	protected List<Feature> getTypeParameters() {
+	public List<Feature> getTypeParameters() {
 		Type type = getExpressionType();
 		return type == null? Collections.emptyList():
 			   type.getInput().stream().
@@ -223,33 +211,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	public EList<Feature> getOutput() {
 		return super.getOwnedOutput();
-	}
-	
-	protected void computeOutput() {
-		if (getOutput().isEmpty()) {
-			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
-			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			membership.setOwnedMemberParameter_comp(parameter);
-			membership.setMemberName("$result");
-			getOwnedFeatureMembership_comp().add(membership);
-		}		
-	}
-			
-	protected Feature createFeatureForParameter(Feature parameter) {
-		if (parameter == null) {
-			return null;
-		} else {
-			Feature feature = SysMLFactory.eINSTANCE.createFeature();
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
-			membership.setOwnedMemberFeature_comp(feature);
-			membership.setMemberName("$" + parameter.getName());
-			getOwnedFeatureMembership_comp().add(membership);
-			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
-			if (parameterMembership != null) {
-				membership.setDirection(parameterMembership.getDirection());
-			}			
-			return feature;
-		}
 	}
 	
 	/**
@@ -334,19 +295,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return features;
 	}
 	
-	// Utility methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
-			ImplicitFeatureRelationships.getOrCreateAdapter(this).
-				addImplicitFeaturingTypes();
-		}
-		computeInput();
-		computeOutput();
-	}
-		
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

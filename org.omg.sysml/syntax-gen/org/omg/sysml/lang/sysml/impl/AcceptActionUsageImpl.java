@@ -47,6 +47,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
+	public static final String ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::acceptActions";
+	public static final String ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::acceptSubactions";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,16 +86,23 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 * @generated NOT
 	 */
 	public Expression basicGetReceiverArgument() {
-		List<Feature> parameters = getOwnedParameters();
-		if (parameters.size() > 1) {
-			FeatureValue valuation = ((FeatureImpl)parameters.get(1)).getValuation();
+		Feature receiverParameter = getReceiverParameter();
+		if (receiverParameter != null) {
+			FeatureValue valuation = ((FeatureImpl)receiverParameter).getValuation();
 			if (valuation != null) {
 				return valuation.getValue();
 			}
 		}
 		return null;
 	}
-
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT:
+					ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT;
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,7 +112,21 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	public void setReceiverArgument(Expression newReceiverArgument) {
 		throw new UnsupportedOperationException();
 	}
+	
+	// Other
 
+	public Feature getItemsParameter() {
+		List<Feature> parameters = getOwnedParameters();
+		return parameters.isEmpty()? null: parameters.get(0);
+	}
+
+	public Feature getReceiverParameter() {
+		List<Feature> parameters = getOwnedParameters();
+		return parameters.size() < 2? null: parameters.get(1);
+	}
+	
+	//
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

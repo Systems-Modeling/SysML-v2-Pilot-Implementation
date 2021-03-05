@@ -26,6 +26,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class AllocationDefinitionImpl extends ConnectionDefinitionImpl implements AllocationDefinition {
+
+	public static final String ALLOCATION_DEFINITION_SUPERCLASS_DEFAULT = "Allocations::Allocation";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -53,6 +56,13 @@ public class AllocationDefinitionImpl extends ConnectionDefinitionImpl implement
 	@Override
 	public EList<AllocationUsage> getAllocation() {
 		return new DerivedEObjectEList<>(AllocationUsage.class, this, SysMLPackage.ALLOCATION_DEFINITION__ALLOCATION, new int[] {SysMLPackage.TYPE__FEATURE});
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return getOwnedEndFeature().size() > 2? 
+					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
+					ALLOCATION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

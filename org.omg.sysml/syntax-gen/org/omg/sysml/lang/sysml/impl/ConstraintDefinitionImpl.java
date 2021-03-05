@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -59,13 +58,6 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	
 	public static final String CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT = "Constraints::ConstraintCheck";
 	
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this ConstraintDefinition.
-	 */
-	protected BindingConnector resultConnector = null;
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,30 +158,11 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
   		return false;
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Additional overrides
-
 	@Override
 	protected String getDefaultSupertype() {
 		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
-	@Override
-	public void transform() {
-		super.transform();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -22,13 +22,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ImplicitFeatureRelationships;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding
@@ -57,15 +53,6 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return SysMLPackage.Literals.BINDING_CONNECTOR;
 	}
 
-	public void update(List<Type> featuringTypes, Feature source, Feature target) {
-		setRelatedFeature(0, source);
-		setRelatedFeature(1, target);
-		if (featuringTypes != null) {
-			ImplicitFeatureRelationships.getOrCreateAdapter(this).
-				addFeaturingTypes(featuringTypes);
-		}
-	}
-	
 	@Override
 	protected String getDefaultSupertype() {
 		return BINDING_CONNECTOR_SUBSETTING_DEFAULT;

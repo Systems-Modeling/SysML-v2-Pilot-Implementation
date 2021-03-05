@@ -31,7 +31,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.expressions.ModelLevelFunction;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
@@ -56,7 +55,6 @@ import org.omg.sysml.util.ImplicitTypeRelationships;
  */
 public class InvocationExpressionImpl extends ExpressionImpl implements InvocationExpression {
 	
-	protected BindingConnector[] argumentConnectors;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -120,21 +118,10 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
 	}
 	
-	@Override
-	protected void computeInput() {
-		if (getInput().isEmpty()) {
-			Type type = getExpressionType();
-			if (type instanceof Function || type instanceof Expression) {
-				super.computeInput();
-			} else if (type != null) {
-				for (Feature typeFeature: getTypeFeatures()) {
-					createFeatureForParameter(typeFeature);
-				}
-			}
-		}
-	}
+	// Other
 	
-	protected List<Feature> getTypeParameters() {
+	@Override
+	public List<Feature> getTypeParameters() {
 		Type type = getExpressionType();
 		return type != null && !(type instanceof Function || type instanceof Expression)? 
 				getTypeFeatures(): 
@@ -159,41 +146,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return typeFeatures;
 	}
 	
-	public BindingConnector[] getArgumentConnectors() {
-		return argumentConnectors;
-	}
-	
-	public void computeArgumentConnectors() {
-		List<Expression> arguments = getArgument();
-		if (argumentConnectors == null) {
-			argumentConnectors = new BindingConnector[arguments.size()];
-			int i = 0;
-			for (Feature input: getInput()) {
-				if (i >= argumentConnectors.length) {
-					break;
-				}
-				Expression argument = getArgumentForInput(arguments, input, i);
-				if (argument != null) {
-					argumentConnectors[i] = makeResultBinding(argument, input);
-					i++;
-				}
-			}
-		}
-	}
-	
-	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
-		((FeatureImpl)input).forceComputeRedefinitions();
-		List<Feature> redefinedFeatures = ((FeatureImpl)input).getRedefinedFeatures();
-		if (!redefinedFeatures.isEmpty()) {
-			Feature feature = redefinedFeatures.get(0);
-			if (feature != null) {
-				return getArgumentForFeature(arguments, feature, argIndex);
-			}
-		}
-		return null;
-	}
-	
-	protected static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
+	public static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
 		Expression argument = null;
 		if (!arguments.isEmpty()) {
 			argument = arguments.get(0);
@@ -227,17 +180,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		return typing.isEmpty()? ImplicitTypeRelationships.getOrCreateAdapter(this).getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : typing.get(0).getType();
 	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-		computeArgumentConnectors();
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		argumentConnectors = null;
-		super.cleanDerivedValues();
-	}
+	//
 	
 	/**
 	 * <!-- begin-user-doc -->

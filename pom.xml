@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <properties>
-    <revision>0.9.0-SNAPSHOT</revision>
+    <revision>0.10.0-SNAPSHOT</revision>
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
@@ -135,13 +135,15 @@
           <execution>
             <id>set-version</id>
             <phase>validate</phase>
-            <configuration>
-              <target>
-                <property name="maven-version" value="${project.version}"/>
-                <script language="javascript">
-                  project.setProperty('bundle-version', project.getProperty('maven-version').
-                  replace("-SNAPSHOT", ".qualifier"));
-                </script>
+	    <configuration>
+	      <target>
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+			 classpathref="maven.plugin.classpath"/>
+		<property name="maven-version" value="${project.version}"/>
+		<propertyregex property="bundle-version"
+			       input="${maven-version}"
+			       regexp="-SNAPSHOT"
+			       replace=".qualifier"/>
                 <echo> Set the versions to POM: ${maven-version}, Bundle: ${bundle-version} </echo>
                 <!-- Currently no need to change the versions of child poms but left it for future use.
                 <replaceregexp byline="true" flags="i">
@@ -174,6 +176,19 @@
             </goals>
           </execution>
         </executions>
+	<dependencies>
+	  <dependency>
+	    <groupId>ant-contrib</groupId>
+	    <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

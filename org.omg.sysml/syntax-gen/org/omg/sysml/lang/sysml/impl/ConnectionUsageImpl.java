@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -377,7 +378,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated NOT
 	 */
 	public Feature basicGetSourceFeature() {
-		return ConnectorImpl.getSourceFeatureOf(this);
+		return ConnectorUtil.getSourceFeatureOf(this);
 	}
 
 	/**
@@ -407,7 +408,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public EList<Feature> getTargetFeature() {
 		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTION_USAGE__TARGET_FEATURE);
-		ConnectorImpl.addTargetFeatures(this, targetFeatures);
+		ConnectorUtil.addTargetFeatures(this, targetFeatures);
 		return targetFeatures;
 	}
 
@@ -427,7 +428,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 */
 	public EList<Feature> path(Feature relatedFeature) {
 		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
-		ConnectorImpl.getPath(path, getOwningNamespace(), relatedFeature);
+		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
 		return path;
 	}
 

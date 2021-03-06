@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -133,7 +134,7 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return !isParameter() && !isEnd() && isRender()? getRenderFeatures(type):
+		return !FeatureUtil.isParameter(this) && !isEnd() && isRender()? getRenderFeatures(type):
 			   super.getRelevantFeatures(type);
 	}
 	

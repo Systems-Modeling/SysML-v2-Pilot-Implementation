@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -271,7 +272,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 * @generated NOT
 	 */
 	public Type basicGetSourceType() {
-		return AssociationImpl.getSourceTypeOf(this);
+		return TypeUtil.getSourceTypeOf(this);
 	}
 
 	/**
@@ -301,7 +302,7 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	@Override
 	public EList<Type> getTargetType() {
 		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.CONNECTION_DEFINITION__TARGET_TYPE);
-		AssociationImpl.addTargetTypes(this, targetType);
+		TypeUtil.addTargetTypes(this, targetType);
 		return targetType;
 	}
 	

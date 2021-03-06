@@ -29,7 +29,9 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class UsageAdapter extends FeatureAdapter {
 
@@ -42,24 +44,36 @@ public class UsageAdapter extends FeatureAdapter {
 		return (Usage)super.getTarget();
 	}
 	
+	// Utility
+	
+	public Usage getSubjectParameter() {
+		return null;
+	}
+	
+	public boolean hasRelevantSubjectParameter() {
+		return false;
+	}
+	
+	// Transformation
+	
 	/**
 	 * Return the relevant subject parameter to which a Usage should be bound.
 	 */
 	public Feature getRelevantSubjectParameterFor(Usage usage) {
 		Type owningType = usage.getOwningType();		
 		return !(owningType instanceof Usage) || owningType.isAbstract() || 
-			   !TransformationUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
-			   TransformationUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
+			   !UsageUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
+			   TypeUtil.getSubjectParameterOf(((Usage)owningType).getOwningType());
 	}
 	
 	@Override
 	public void computeValueConnector() {
 		Usage usage = getTarget();
-		FeatureValue valuation = TransformationUtil.getValuationFor(usage);
-		if (valuation == null && TransformationUtil.isSubjectParameter(usage)){
+		FeatureValue valuation = FeatureUtil.getValuationFor(usage);
+		if (valuation == null && UsageUtil.isSubjectParameter(usage)){
 			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
 			if (subjectParameter != null) {
-				TransformationUtil.addBindingConnectorTo(usage, subjectParameter, usage);
+				TypeUtil.addBindingConnectorTo(usage, subjectParameter, usage);
 			}
 		} else {
 			super.computeValueConnector();
@@ -78,9 +92,9 @@ public class UsageAdapter extends FeatureAdapter {
 	
 	protected void addVariationTyping() {
 		Usage usage = getTarget();
-		Definition variationDefinition = TransformationUtil.getOwningVariationDefinitionFor(usage);
-		if (variationDefinition != null && TransformationUtil.isVariant(usage)) {
-			TransformationUtil.addGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+		Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
+		if (variationDefinition != null && UsageUtil.isVariant(usage)) {
+			TypeUtil.addImplicitGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
 		}		
 	}
 	

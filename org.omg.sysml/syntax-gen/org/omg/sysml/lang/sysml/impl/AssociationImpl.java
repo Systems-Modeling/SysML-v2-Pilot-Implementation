@@ -40,6 +40,7 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -319,14 +320,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @generated NOT
 	 */
 	public Type basicGetSourceType() {
-		return getSourceTypeOf(this);
+		return TypeUtil.getSourceTypeOf(this);
 	}
 	
-	public static Type getSourceTypeOf(Association association) {
-		EList<Type> relatedType = association.getRelatedType();
-		return relatedType.size() == 2? relatedType.get(0): null;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -354,20 +350,10 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public EList<Type> getTargetType() {
 		EList<Type> targetType = new NonNotifyingEObjectEList<>(Type.class, this, SysMLPackage.ASSOCIATION__TARGET_TYPE);
-		addTargetTypes(this, targetType);
+		TypeUtil.addTargetTypes(this, targetType);
 		return targetType;
 	}
 	
-	public static void addTargetTypes(Association association, EList<Type> targetTypes) {
-		EList<Type> relatedTypes = association.getRelatedType();
-		if (relatedTypes.size() == 2) {
-			targetTypes.add(relatedTypes.get(1));
-		} else {
-			targetTypes.addAll(relatedTypes);
-		}
-	}
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

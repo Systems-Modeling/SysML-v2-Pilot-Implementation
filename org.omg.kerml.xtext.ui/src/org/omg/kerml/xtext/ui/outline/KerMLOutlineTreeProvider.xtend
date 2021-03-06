@@ -41,6 +41,8 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
 import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.FeatureUtil
 
 /**
  * Customization of the default outline structure.
@@ -411,7 +413,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def _isLeaf(Type type) {
-	    _isLeaf(type as Namespace) && ElementUtil.getTypeAdapter(type).isImplicitGeneralTypesEmpty() 	
+	    _isLeaf(type as Namespace) && TypeUtil.isImplicitGeneralTypesEmpty(type) 	
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
@@ -425,7 +427,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
-		ElementUtil.getTypeAdapter(type).forEachImplicitGeneralType[eClass, generalType |
+		TypeUtil.forEachImplicitGeneralTypeOf(type, [eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -444,11 +446,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 					true
 				)
 			}
-		]
+		])
 	}
 	
 	def createImplicitTypeFeaturingNodes(IOutlineNode parentNode, Feature feature) {
-		ElementUtil.getFeatureAdapter(feature).forEachImplicitFeaturingType[featuringType |
+		FeatureUtil.forEachImplicitFeaturingTypeOf(feature, [featuringType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -466,11 +468,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 					true
 				)
 			}
-		]
+		])
 	}
 	
 	def createImplicitBindingConnectorNodes(IOutlineNode parentNode, Type type) {
-		ElementUtil.getTypeAdapter(type).forEachImplicitBindingConnector[connector, eClass |
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, eClass |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -481,7 +483,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(connector), eClass)
 			implicitNode.createNode(connector, imageDispatcher.invoke(connector), connector.eClass.getName, false)
-		]
+		])
 	}
 	
 	def _isLeaf(Association association) {

@@ -90,15 +90,11 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		return getAnnotatedElementFor(this);
-	}
-	
-	public static EList<Element> getAnnotatedElementFor(AnnotatingElement annotatingElement) {
-		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, (ElementImpl)annotatingElement, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
-		annotatingElement.getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
+		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_ELEMENT__ANNOTATED_ELEMENT);
+		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
 		return annotatedElements;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,32 +108,6 @@ public class AnnotatingElementImpl extends ElementImpl implements AnnotatingElem
 		return annotation;
 	}
 	
-	// Utility methods
-	
-	public static String processCommentBody(String body) {
-		if (body != null) {
-			// \* - a literal *
-			body = body.replaceFirst("/\\*\\*", "").replaceFirst("/\\*", "").replaceFirst("^\\s*", "");
-			body = body.endsWith("*/") ? body.substring(0, body.length()-2) : body;
-			String[] lines = body.split("\\r?\\n");
-			if ( lines.length == 1 ) 
-				body = lines[0];
-			else {
-				StringBuilder builder = new StringBuilder();
-				for (int i = 0; i < lines.length; i++) {
-					String s = lines[i].replaceFirst("^\\s*", ""); //strip initial white space(not include line breaks) - by splitting no line breaks at the end
-					s = s.startsWith("*") ? (s.startsWith("* ")? s.replaceFirst("\\*\\s{1}", "") : s.replaceFirst("\\*", "")) : s;
-					//add simply back new Line
-					builder = (i != 0 ) ? builder.append("\n").append(s): builder.append(s);
-				}
-				body = builder.toString();
-			}
-		}
-		return body;
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

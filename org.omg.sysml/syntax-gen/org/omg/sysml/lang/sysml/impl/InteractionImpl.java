@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.Interaction;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -85,7 +86,7 @@ public class InteractionImpl extends AssociationImpl implements Interaction {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.FUNCTION__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 

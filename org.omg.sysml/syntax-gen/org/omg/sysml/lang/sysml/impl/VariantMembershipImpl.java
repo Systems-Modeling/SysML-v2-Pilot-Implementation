@@ -29,9 +29,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
@@ -211,20 +209,6 @@ public class VariantMembershipImpl extends MembershipImpl implements VariantMemb
 	public boolean isSetOwnedMemberElement_comp() {
   		return false;
 	}
-
-	// Utility Methods
-
-	public Definition getOwningVariationDefinition() {
-		Namespace owningNamespace = super.getMembershipOwningNamespace();
-		return owningNamespace instanceof Definition && ((Definition)owningNamespace).isVariation()? (Definition)owningNamespace: null;
-	}
-
-	public Usage getOwningVariationUsage() {
-		Namespace owningNamespace = super.getMembershipOwningNamespace();
-		return owningNamespace instanceof Usage && ((Usage)owningNamespace).isVariation()? (Usage)owningNamespace: null;
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

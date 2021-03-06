@@ -22,7 +22,7 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.util.ConnectorUtil;
 
 public class ConnectorAdapter extends FeatureAdapter {
 
@@ -38,7 +38,7 @@ public class ConnectorAdapter extends FeatureAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		addFeaturingTypeIfNecessary(TransformationUtil.getContextTypeFor(getTarget()));
+		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
 	}
 	
 }

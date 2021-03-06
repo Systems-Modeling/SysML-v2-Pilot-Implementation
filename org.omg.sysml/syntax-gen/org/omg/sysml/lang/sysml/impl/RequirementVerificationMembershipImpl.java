@@ -39,8 +39,6 @@ import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
-import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 /**
@@ -230,21 +228,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	public void setOwnedRequirement(RequirementUsage newOwnedRequirement) {
 	}
 	
-	// Utility methods
-	
-	public boolean isLegalVerification() {
-		Type owningType = getOwningType();
-		if (owningType instanceof RequirementUsage && ((RequirementUsageImpl)owningType).isObjective()) {
-			owningType = ((RequirementUsage)owningType).getOwningType();
-			return owningType instanceof VerificationCaseDefinition || 
-				   owningType instanceof VerificationCaseUsage;
-		} else {
-			return false;
-		}
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -33,22 +33,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -172,7 +170,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 
 	/**
@@ -197,7 +195,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 
 	@Override
 	public void setReqId(String newReqId) {
-		setReqIdGen(unescapeString(newReqId));
+		setReqIdGen(ElementUtil.unescapeString(newReqId));
 	}
 	
 	/**
@@ -259,7 +257,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubrequirement()? 
+		return UsageUtil.isSubrequirement(this)? 
 				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
 				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
 	}
@@ -333,36 +331,11 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
   		return false;
 	}
 	
-	// Utility methods
-	
-	public boolean isSubrequirement() {
-		Type owningType = getOwningType();
-		return !isAssumptionConstraint() &&
-			   (owningType instanceof RequirementDefinition || 
-			    owningType instanceof RequirementUsage);
-	}
-
-	public boolean isVerifiedRequirement() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return membership instanceof RequirementVerificationMembership &&
-			   ((RequirementVerificationMembershipImpl)membership).isLegalVerification();
-	}
-	
-	public boolean isObjective() {
-		return getOwningFeatureMembership() instanceof ObjectiveMembership;
-	}
-	
-	public RequirementUsage getObjectiveRequirementOf(Type type) {
-		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
-			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
-			   null;
-	}
-	
 	// Additional overrides
 	
 	@Override
 	public void addRequirementSubsetting() {
-		if (isVerifiedRequirement()) {
+		if (UsageUtil.isVerifiedRequirement(this)) {
 			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
 		} else {
 			super.addRequirementSubsetting();
@@ -384,7 +357,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return isObjective()? Collections.singletonList(getObjectiveRequirementOf(type)):
+		return UsageUtil.isObjective(this)? Collections.singletonList(TypeUtil.getObjectiveRequirementOf(type)):
 			   super.getRelevantFeatures(type);
 	}
 	

@@ -29,8 +29,8 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +86,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 	
 	/**
@@ -116,11 +116,7 @@ public class CaseDefinitionImpl extends CalculationDefinitionImpl implements Cas
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return getObjectiveRequirementOf(this);
-	}
-	
-	public static RequirementUsage getObjectiveRequirementOf(Type type) {
-		return (RequirementUsage)((TypeImpl)type).getOwnedFeatureByMembership(ObjectiveMembership.class);
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(this, ObjectiveMembership.class);
 	}
 	
 	/**

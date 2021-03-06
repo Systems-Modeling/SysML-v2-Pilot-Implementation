@@ -46,9 +46,7 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
-import org.omg.sysml.util.ElementUtil
-import org.omg.sysml.util.TransformationUtil
-import org.omg.sysml.lang.sysml.impl.TypeImpl
+import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope {
 	
@@ -265,7 +263,7 @@ class KerMLScope extends AbstractScope {
 	}
 	
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){
-		for(Type g: (general as TypeImpl).supertypes) {
+		for(Type g: TypeUtil.getSupertypesOf(general)) {
 			if (g == protectedOwningPackage || 
 				 g.isInheritedProtected(protectedOwningPackage)) {
 				return true
@@ -304,9 +302,9 @@ class KerMLScope extends AbstractScope {
 			}
 			if (!scopeProvider.visited.contains(ns)) {
 				scopeProvider.addVisited(ns);
-				TransformationUtil.computeImplicitGeneralTypesFor(ns)
+				TypeUtil.computeImplicitGeneralTypesFor(ns)
 				scopeProvider.removeVisited(ns)
-				for (type : ElementUtil.getTypeAdapter(ns).getImplicitGeneralTypes) {
+				for (type : TypeUtil.getImplicitGeneralTypesFor(ns)) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false)
 					if (found) {
 						return true

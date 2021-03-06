@@ -22,6 +22,7 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Usage;
 
 public class DefinitionAdapter extends ClassifierAdapter {
 	
@@ -33,5 +34,11 @@ public class DefinitionAdapter extends ClassifierAdapter {
 	public Definition getTarget() {
 		return (Definition)super.getTarget();
 	}
+	
+	// Utility
 
+	public Usage getSubjectParameter() {
+		return null;
+	}
+	
 }

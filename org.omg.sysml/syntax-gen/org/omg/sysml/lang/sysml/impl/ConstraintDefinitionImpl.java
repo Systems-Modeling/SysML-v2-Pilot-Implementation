@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -84,7 +85,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 */
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -125,7 +126,7 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**

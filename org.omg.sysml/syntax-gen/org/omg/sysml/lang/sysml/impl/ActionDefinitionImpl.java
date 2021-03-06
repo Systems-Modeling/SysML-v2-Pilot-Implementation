@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,7 +97,7 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -112,13 +113,11 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 				new int[] {SysMLPackage.TYPE__FEATURE});
 	}
 
+	@Override
 	protected String getDefaultSupertype() {
 		return ACTION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
-	/**
-	 * Return the non-parameter abstract features of the Activity.
-	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		return Collections.emptyList();

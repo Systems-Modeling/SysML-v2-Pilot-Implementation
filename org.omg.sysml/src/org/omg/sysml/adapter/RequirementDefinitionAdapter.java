@@ -22,6 +22,7 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.Usage;
 
 public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 
@@ -32,6 +33,15 @@ public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 	public RequirementDefinition getTarget() {
 		return (RequirementDefinition)super.getTarget();
 	}
+
+	// Utility
+	
+	@Override
+	public Usage getSubjectParameter() {
+		return getTarget().getSubjectParameter();
+	}
+	
+	// Transformation
 
 	@Override
 	public void doTransform() {

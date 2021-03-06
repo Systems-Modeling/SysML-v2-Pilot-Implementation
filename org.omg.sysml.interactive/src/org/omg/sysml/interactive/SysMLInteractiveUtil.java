@@ -8,13 +8,11 @@ import java.util.stream.Collectors;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
-import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class SysMLInteractiveUtil {
 
@@ -59,14 +57,10 @@ public class SysMLInteractiveUtil {
 				}
 			}
 		} else {
-			if (element instanceof TypeImpl) {
-				TypeImpl type = (TypeImpl)element;
-				TypeAdapter typeAdapter = ElementUtil.getTypeAdapter(type);
-				for (EClass kind: typeAdapter.getImplicitGeneralTypeKinds()) {
-					for (Type supertype: typeAdapter.getImplicitGeneralTypes(kind)) {
-						formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind);
-					}
-				}
+			if (element instanceof Type) {
+				TypeUtil.forEachImplicitGeneralTypeOf((Type)element, (kind, supertype)->
+					formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind)
+				);
 			}
 			
 			for (Relationship subrelationship: element.getOwnedRelationship()) {

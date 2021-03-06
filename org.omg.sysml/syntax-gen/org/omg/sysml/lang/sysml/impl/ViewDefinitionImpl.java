@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -137,7 +138,7 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 	@Override
 	public EList<Expression> getViewCondition() {
 		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
-		getMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
 	}
 

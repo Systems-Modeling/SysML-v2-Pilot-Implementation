@@ -23,14 +23,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -55,14 +53,13 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -261,7 +258,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	protected void addDefaultGeneralType() {
-		ElementUtil.getTypeAdapter(this).addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+		TypeUtil.addDefaultGeneralTypeTo(this, getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	protected EClass getGeneralizationEClass() {
@@ -573,9 +570,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				findFirst().orElse(null);
 		if (multiplicity == null) {
 			visited.add(this);
-			List<Type> superTypes = getSupertypes();
+			List<Type> superTypes = TypeUtil.getSupertypesOf(this);
 			if (!superTypes.isEmpty()) {
-				Type general = getSupertypes().get(0);
+				Type general = TypeUtil.getSupertypesOf(this).get(0);
 				if (general != null && !visited.contains(general)) { 
 					multiplicity = ((TypeImpl)general).getMultiplicity(visited);
 				}
@@ -616,7 +613,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
-		for (Type general: getSupertypes()) {
+		for (Type general: TypeUtil.getSupertypesOf(this)) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
@@ -746,7 +743,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			return ((TypeImpl)originalType).getAllSuperTypes(visited);
 		} else {
 			EList<Type> superTypes = new BasicEList<>();
-			getSupertypes().stream().
+			TypeUtil.getSupertypesOf(this).stream().
 				forEachOrdered(superType->{
 					if (superType != null && !visited.contains(superType)) {
 						visited.add(superType);
@@ -767,208 +764,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return ownedMemberships;
 	}
 
-	// Utility Methods
-	
-	public List<Type> getSupertypes() {
-		return getSupertypes(null);
-	}
-	
-	public List<Type> getSupertypes(Element skip) {
-		List<Type> ownedGeneralEnds = new ArrayList<>(); 
-		getOwnedGeneralization()
-			.stream()
-			.filter(gen -> gen != skip)
-			.map(Generalization::getGeneral)
-			.forEachOrdered(ownedGeneralEnds::add);
-		computeImplicitGeneralTypes();
-		ownedGeneralEnds.addAll(ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes());
-		return ownedGeneralEnds;
-	}
-	
-	public boolean conformsTo(Type supertype) {
-		return conformsTo(supertype, new HashSet<>());
-	}
-	
-	// Note: Generalizations are allowed to be cyclic.
-	protected boolean conformsTo(Type supertype, Set<Type> visited) {
-		if (this == supertype) {
-			return true;
-		} else {
-			visited.add(this);
-			if (isConjugated()) {
-				Type originalType = getOwnedConjugator().getOriginalType();
-				return !visited.contains(originalType) && ((TypeImpl)originalType).conformsTo(supertype);
-			} else {
-				return getSupertypes().stream().
-					anyMatch(type->!visited.contains(type) && 
-							((TypeImpl)type).conformsTo(supertype, visited));
-			}
-		}
-	}
-	
-	public <M extends Membership, T> Stream<T> getInheritedMembersByMembership(Class<M> kind, Class<T> type) {
-		return getInheritedMembership().stream().
-				filter(kind::isInstance).
-				map(Membership::getOwnedMemberElement).
-				filter(type::isInstance).
-				map(type::cast);
-	}
-	
-	public <T extends Membership> Stream<Feature> getFeaturesByMembership(Class<T> kind) {
-		return getFeatureMembership().stream().
-				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature);
-	}
-	
-	public <T extends Membership> Feature getFeatureByMembership(Class<T> kind) {
-		return getFeaturesByMembership(kind).findFirst().orElse(null);
-	}
-	
-	public <T extends Membership> Stream<Feature> getOwnedFeaturesByMembership(Class<T> kind) {
-		return getOwnedFeatureMembership().stream().
-				filter(kind::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
-				filter(f->f != null);
-	}
-	
-	public <T extends Membership> Feature getOwnedFeatureByMembership(Class<T> kind) {
-		return getOwnedFeaturesByMembership(kind).findFirst().orElse(null);
-	}
-	
-	public List<Feature> getPublicFeatures() {
-		return publicMemberships().stream().
-				filter(FeatureMembership.class::isInstance).
-				map(FeatureMembership.class::cast).
-				map(FeatureMembership::getMemberFeature).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getAllEndFeatures() {
-		return getAllEndFeatures(new HashSet<>());
-	}
-	
-	protected List<Feature> getAllEndFeatures(Set<Type> visited) {
-		visited.add(this);
-		List<Feature> ends = getOwnedEndFeatures();
-		int n = ends.size();
-		for (Type general: getSupertypes()) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures(visited);
-				if (inheritedEnds.size() > n) {
-					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
-				}
-			}
-		}
-		return ends;
-	}
-	
-	public List<Feature> getOwnedEndFeatures() {
-		return getOwnedFeature().stream().
-				filter(Feature::isEnd).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getAllParameters() {
-		return getAllParameters(new HashSet<>());
-	}
-	
-	protected List<Feature> getAllParameters(Set<Type> visited) {
-		visited.add(this);
-		List<Feature> parameters = getOwnedParameters();
-		parameters.removeIf(p->((FeatureImpl)p).isResultParameter());
-		int n = parameters.size();
-		Feature resultParameter = getOwnedResultParameter();
-		for (Type general: getSupertypes()) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
-				if (resultParameter == null) {
-					resultParameter = inheritedParameters.stream().
-							filter(p->((FeatureImpl)p).isResultParameter()).
-							findFirst().orElse(null);
-				}
-				inheritedParameters.removeIf(p->((FeatureImpl)p).isResultParameter());
-				if (inheritedParameters.size() > n) {
-					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
-				}
-			}
-		}
-		if (resultParameter != null) {
-			parameters.add(resultParameter);
-		}
-		return parameters;
-	}
-	
-	public List<Feature> getOwnedParameters() {
-		return getOwnedFeaturesByMembership(ParameterMembership.class).collect(Collectors.toList());
-	}
-	
-	public EList<Feature> getOwnedInput() {
-		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.IN.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getOwnedMemberFeature();
-					if (feature != null) {
-						inputs.add(feature);
-					}
-				}
-			}
-		}
-		return inputs;
-	}
-	
-	public EList<Feature> getOwnedOutput() {
-		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.OUT.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getOwnedMemberFeature();
-					if (feature != null) {
-						outputs.add(feature);
-					}
-				}
-			}
-		}
-		return outputs;
-	}
-	
-	protected Feature getOwnedResultParameter() {
-		return getOwnedParameters().stream().
-				filter(p->((FeatureImpl)p).isResultParameter()).
-				findFirst().orElse(null);
-	}
-	
-	protected Feature getResultParameter() {
-		// NOTE: This method will fill in an inherited result Parameter if this Type does not
-		// have an owned result Parameter. It is for use when transform may have not yet been
-		// called on this Type.
-		return getResultParameter(new HashSet<>());
-	}
-	
-	protected Feature getResultParameter(Set<Type> visited) {
-		visited.add(this);
-		Feature resultParameter = getOwnedResultParameter();
-		if (resultParameter == null) {
-			for (Type general: getSupertypes()) {
-				if (general != null && !visited.contains(general)) {
-					resultParameter = ((TypeImpl)general).getResultParameter(visited);
-					if (resultParameter != null) {
-						break;
-					}
-				}
-			}
-		}
-		return resultParameter;
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

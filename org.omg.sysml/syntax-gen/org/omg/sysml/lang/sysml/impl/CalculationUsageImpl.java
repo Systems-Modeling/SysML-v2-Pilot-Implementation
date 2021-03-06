@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -106,7 +107,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**

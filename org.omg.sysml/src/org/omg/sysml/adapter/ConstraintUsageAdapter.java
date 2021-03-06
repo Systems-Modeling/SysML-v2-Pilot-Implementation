@@ -23,7 +23,11 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 
 public class ConstraintUsageAdapter extends UsageAdapter {
 
@@ -38,9 +42,34 @@ public class ConstraintUsageAdapter extends UsageAdapter {
 		return (ConstraintUsage)super.getTarget();
 	}
 	
+	// Utility
+	
+	@Override
+	public Usage getSubjectParameter() {
+		return basicGetSubjectParameter();
+	}
+	
+	protected Usage basicGetSubjectParameter() {
+		ConstraintUsage target = getTarget();
+		return isRequirement()? TypeUtil.basicGetSubjectParameterOf(target): null;
+	}	
+	
+	@Override
+	public boolean hasRelevantSubjectParameter() {
+		Type owningType = getTarget().getOwningType();
+		return isRequirement() && 
+			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
+	}
+	
+	public boolean isRequirement() {
+		return getTarget().getType().stream().anyMatch(RequirementDefinition.class::isInstance);
+	}
+	
+	// Transformation
+	
 	protected void computeSubjectParameter() {
 		ConstraintUsage constraint = getTarget();
-		if (TransformationUtil.isRequirement(constraint)) {
+		if (isRequirement()) {
 			computeSubjectParameterOf(constraint);
 		}
 	}

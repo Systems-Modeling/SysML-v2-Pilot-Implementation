@@ -37,6 +37,7 @@ import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -193,7 +194,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public Feature basicGetSatisfyingFeature() {
-		BindingConnector connector = getSatisfyingFeatureConnector();		
+		BindingConnector connector = UsageUtil.getSatisfyingFeatureConnectorOf(this);		
 		return connector == null? null: connector.getRelatedFeature().get(1);
 	}
 
@@ -207,12 +208,6 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 		throw new UnsupportedOperationException();
 	}
 	
-	public BindingConnector getSatisfyingFeatureConnector() {
-		return (BindingConnector)getOwnedFeature().stream().
-				filter(feature->feature instanceof BindingConnector).
-				findFirst().orElse(null);
-	}
-
 //	@Override
 //	protected Feature getNamingFeature() {
 //		return getSatisfiedRequirement();

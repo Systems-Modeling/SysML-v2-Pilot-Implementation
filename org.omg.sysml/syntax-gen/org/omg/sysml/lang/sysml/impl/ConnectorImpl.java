@@ -41,12 +41,13 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -426,14 +427,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated NOT
 	 */
 	public Feature basicGetSourceFeature() {
-		return getSourceFeatureOf(this);
+		return ConnectorUtil.getSourceFeatureOf(this);
 	}
 	
-	public static Feature getSourceFeatureOf(Connector connector) {
-		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		return relatedFeatures.size() == 2? relatedFeatures.get(0): null;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -461,19 +457,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public EList<Feature> getTargetFeature() {
 		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
-		addTargetFeatures(this, targetFeatures);
+		ConnectorUtil.addTargetFeatures(this, targetFeatures);
 		return targetFeatures;
 	}
 	
-	public static void addTargetFeatures(Connector connector, EList<Feature> targetFeatures) {
-		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		if (relatedFeatures.size() == 2) {
-			targetFeatures.add(relatedFeatures.get(1));
-		} else {
-			targetFeatures.addAll(relatedFeatures);
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -512,23 +499,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public EList<Feature> path(Feature relatedFeature) {
 		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
-		getPath(path, getOwningNamespace(), relatedFeature);
+		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
 		return path;
-	}
-
-	public static void getPath(EList<Feature> path, Namespace start, Feature feature) {
-		if (feature != null) {
-			Namespace owningNamespace = feature.getOwningNamespace();
-			if (owningNamespace instanceof Feature && owningNamespace != start) {
-				getPath(path, start, (Feature)owningNamespace);
-			}
-			path.add(feature);
-		}
 	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isStructureFeature()?
+		return FeatureUtil.isStructureFeature(this)?
 				getConnectorEnd().size() > 2? 
 					CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
 					BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT:

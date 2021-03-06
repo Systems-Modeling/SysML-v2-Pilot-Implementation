@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
@@ -102,7 +103,7 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 				if (!(membership instanceof TransitionFeatureMembership)) {
 					Element previousElement = memberships.get(i).getMemberElement();
 					if (previousElement instanceof Feature &&
-						!(((FeatureImpl)previousElement).isParameter() || 
+						!(FeatureUtil.isParameter((Feature)previousElement) || 
 						  previousElement instanceof Connector || 
 						  previousElement instanceof TransitionUsage)) {
 						return (Feature)previousElement;

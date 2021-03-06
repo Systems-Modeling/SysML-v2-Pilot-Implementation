@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -174,7 +175,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	}
 	
 	public boolean isEnactedPerformance() {
-		return StepImpl.isEnactedPerformance(this);
+		return FeatureUtil.isEnactedPerformance(this);
 	}
 	
 	//

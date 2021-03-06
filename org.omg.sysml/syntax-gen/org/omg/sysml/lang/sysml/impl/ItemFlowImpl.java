@@ -33,7 +33,9 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -118,7 +120,7 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ITEM_FLOW__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -250,12 +252,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	}
 	
 	public boolean isSubtransfer() {
-		return StepImpl.isPerformanceFeature(this);
+		return FeatureUtil.isPerformanceFeature(this);
 	}
 	
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
-		return StepImpl.getRelevantFeaturesOf(this);
+		return TypeUtil.getItemFeaturesOf(this);
 	}
 	
 	/**

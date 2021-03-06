@@ -40,6 +40,7 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -286,7 +287,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	@Override
 	public void setMemberName(String newMemberName) {
 		isNameSet = true;
-		setMemberNameGen(unescapeString(newMemberName));
+		setMemberNameGen(ElementUtil.unescapeString(newMemberName));
 	}
 	
 	/**

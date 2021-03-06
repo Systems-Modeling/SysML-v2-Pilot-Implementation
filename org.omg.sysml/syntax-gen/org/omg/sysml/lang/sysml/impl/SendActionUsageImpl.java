@@ -33,6 +33,8 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,9 +97,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated NOT
 	 */
 	public Expression basicGetReceiverArgument() {
-		List<Feature> parameters = getOwnedParameters();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
 		if (parameters.size() > 1) {
-			FeatureValue valuation = ((FeatureImpl)parameters.get(1)).getValuation();
+			FeatureValue valuation = FeatureUtil.getValuationFor(parameters.get(1));
 			if (valuation != null) {
 				return valuation.getValue();
 			}
@@ -132,9 +134,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated NOT
 	 */
 	public Expression basicGetItemsArgument() {
-		List<Feature> parameters = getOwnedParameters();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
 		if (parameters.size() > 0) {
-			FeatureValue valuation = ((FeatureImpl)parameters.get(0)).getValuation();
+			FeatureValue valuation = FeatureUtil.getValuationFor(parameters.get(0));
 			if (valuation != null) {
 				return valuation.getValue();
 			}

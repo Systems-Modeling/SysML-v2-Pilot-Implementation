@@ -21,8 +21,15 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.lang.sysml.Redefinition;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class ItemFlowEndAdapter extends FeatureAdapter {
 
@@ -34,10 +41,28 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 	public ItemFlowEnd getTarget() {
 		return (ItemFlowEnd)super.getTarget();
 	}
+	
+	// Transformation
+	
+	public void addItemFlowEndSubsetting() {
+		EList<Feature> features = getTarget().getOwnedFeature();
+		if (!features.isEmpty()) {
+			List<Redefinition> redefinitions = ((FeatureImpl) features.get(0)).basicGetOwnedRedefinition();
+			if (!redefinitions.isEmpty()) {
+				Feature feature = redefinitions.get(0).getRedefinedFeature();
+				if (feature != null) {
+					Type owner = feature.getOwningType();
+					if (owner instanceof Feature) {
+						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner);
+					}
+				}
+			}
+		}
+	}	
 
 	@Override
 	public void doTransform() {
-		TransformationUtil.addItemFlowEndSubsettingTo(getTarget());
+		addItemFlowEndSubsetting();
 		super.doTransform();
 	}
 	

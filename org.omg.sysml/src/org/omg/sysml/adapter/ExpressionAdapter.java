@@ -21,6 +21,10 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -28,7 +32,9 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public class ExpressionAdapter extends StepAdapter {
 
@@ -40,6 +46,22 @@ public class ExpressionAdapter extends StepAdapter {
 	public Expression getTarget() {
 		return (Expression)super.getTarget();
 	}
+	
+	// Utility
+	
+	public Type getExpressionType() {
+		return getTarget().getFunction();
+	}		
+	
+	public List<Feature> getTypeParameters() {
+		Type type = getExpressionType();
+		return type == null? Collections.emptyList():
+			   type.getInput().stream().
+				filter(input->FeatureUtil.isParameter(input) && input.getOwner() == type).
+				collect(Collectors.toList());
+	}
+	
+	// Transformation
 
 	protected Feature createFeatureForParameter(Feature parameter) {
 		if (parameter == null) {
@@ -62,7 +84,7 @@ public class ExpressionAdapter extends StepAdapter {
 	protected void computeInput() {
 		Expression expression = getTarget();
 		if (expression.getInput().isEmpty()) {
-			for (Feature parameter: TransformationUtil.getTypeParametersOf(expression)) {
+			for (Feature parameter: ExpressionUtil.getTypeParametersOf(expression)) {
 				createFeatureForParameter(parameter);
 			}
 		}

@@ -34,10 +34,11 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -90,16 +91,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		return getReferentFeature().orElseGet(this::getSelfReferenceFeature);
-	}
-	
-	public Optional<Feature> getReferentFeature() {
-		return getOwnedMembership().stream().
-				filter(mem->!(mem instanceof ParameterMembership)).
-				map(Membership::getMemberElement).
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast).
-				findFirst();
+		return ExpressionUtil.getReferentFeatureFor(this).orElseGet(this::getSelfReferenceFeature);
 	}
 	
 	protected Feature getSelfReferenceFeature() {
@@ -127,7 +119,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public EList<Element> evaluate(Element target) {
 		if (target instanceof Type) {
 			Feature referent = getReferent();
-			if (((TypeImpl)referent).conformsTo(getSelfReferenceFeature())) {
+			if (TypeUtil.conforms(referent, getSelfReferenceFeature())) {
 				EList<Element> result = new BasicEList<>();
 				result.add(target);
 				return result;
@@ -137,7 +129,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 						filter(f->f.getRedefinedFeatures().contains(referent)).
 						findFirst();
 				if (feature.isPresent()) {
-					FeatureValue featureValue = feature.get().getValuation();
+					FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());
 					if (featureValue != null) {
 						Expression value = featureValue.getValue();
 						if (value != null) {

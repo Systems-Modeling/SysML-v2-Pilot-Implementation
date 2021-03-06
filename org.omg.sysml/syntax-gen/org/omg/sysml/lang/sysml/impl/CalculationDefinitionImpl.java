@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -112,7 +113,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 	
 	/**

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -95,7 +96,7 @@ public class CommentImpl extends AnnotatingElementImpl implements Comment {
 	 */
 	@Override
 	public void setBody(String newBody) {
-		setBodyGen(processCommentBody(newBody));
+		setBodyGen(ElementUtil.processCommentBody(newBody));
 	}
 	
 	/**

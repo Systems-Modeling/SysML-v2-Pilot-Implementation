@@ -37,6 +37,7 @@ import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -125,7 +126,7 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	
 	@Override
 	public void setLanguage(String newLanguage) {
-		setLanguageGen(unescapeString(newLanguage));
+		setLanguageGen(ElementUtil.unescapeString(newLanguage));
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class TextualRepresentationImpl extends AnnotatingElementImpl implements 
 	
 	@Override
 	public void setBody(String newBody) {
-		setBodyGen(processCommentBody(newBody));
+		setBodyGen(ElementUtil.processCommentBody(newBody));
 	}
 
 	/**

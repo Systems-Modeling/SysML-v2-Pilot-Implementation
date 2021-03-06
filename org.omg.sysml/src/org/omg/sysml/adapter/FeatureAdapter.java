@@ -23,7 +23,6 @@ package org.omg.sysml.adapter;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -34,10 +33,9 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
 	
@@ -80,23 +78,6 @@ public class FeatureAdapter extends TypeAdapter {
 		implicitFeaturingTypes = new LinkedHashSet<>();
 	}
 	
-	public void addImplicitTypeFeaturings() {
-		for (Type type : implicitFeaturingTypes) {
-			Feature feature = getTarget();
-			boolean featuringRequired = feature.getOwnedRelationship_comp().stream().
-				filter(TypeFeaturing.class::isInstance).
-				map(TypeFeaturing.class::cast).
-				noneMatch(f -> Objects.equals(f.getFeatureOfType(), getTarget())
-						&& Objects.equals(f.getFeaturingType(), type));
-			if (featuringRequired) {
-				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
-				featuring.setFeaturingType(type);
-				featuring.setFeatureOfType(feature);
-				feature.getOwnedRelationship_comp().add(featuring);
-			}
-		}
-	}
-	
 	public boolean isImplicitFeaturingTypesEmpty() {
 		return implicitFeaturingTypes.isEmpty();
 	}
@@ -134,22 +115,22 @@ public class FeatureAdapter extends TypeAdapter {
 				filter(f->f instanceof LiteralBoolean).
 				findFirst().orElse(null);
 		return literalBoolean == null? null:
-			TransformationUtil.addResultBindingTo(feature, literalBoolean, result);
+			TypeUtil.addResultBindingTo(feature, literalBoolean, result);
 	}
 	
 	protected void computeValueConnector() {
 		Feature feature = getTarget();
-		FeatureValue valuation = TransformationUtil.getValuationFor(feature);
+		FeatureValue valuation = FeatureUtil.getValuationFor(feature);
 		if (valuation != null) {
 			Expression value = valuation.getValue();
 			valueConnector = value == null? null:
-				TransformationUtil.addValueBindingTo(feature, value);
+				FeatureUtil.addValueBindingTo(feature, value);
 		}
 	}
 	
 	@Override
 	public void doTransform() {
-		TransformationUtil.forceComputeRedefinitionsFor(getTarget());
+		FeatureUtil.forceComputeRedefinitionsFor(getTarget());
 		super.doTransform();
 		computeValueConnector();
 	}

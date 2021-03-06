@@ -61,8 +61,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	
 	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitionActions";
 	
-	protected Feature transitionLinkFeature = null;
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,16 +242,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	@Override
 	public void setSuccession(Succession newSuccession) {
 		throw new UnsupportedOperationException();
-	}
-	
-	// Additional
-	
-	public Feature getTransitionLinkFeature() {
-		return transitionLinkFeature;
-	}
-	
-	public void setTransitionLinkFeature(Feature transitionLinkFeature) {
-		this.transitionLinkFeature = transitionLinkFeature;
 	}
 	
 	/**

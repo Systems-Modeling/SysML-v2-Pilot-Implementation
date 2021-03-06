@@ -37,7 +37,6 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -45,7 +44,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.impl.TypeImpl;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
 
@@ -77,32 +76,6 @@ public class TypeAdapter extends NamespaceAdapter {
 		implicitFeatureBindingConnectors.clear();
 	}
 
-	public void addImplicitGeneralizations() {
-		Type type = getTarget();
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
-			for (Type general : implicitGeneralTypes.get(eClass)) {
-				Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
-				newGeneralization.setGeneral(general);
-				newGeneralization.setSpecific(type);
-				type.getOwnedRelationship_comp().add(newGeneralization);
-			}
-		}
-		cleanImplicitGeneralTypes();
-	}
-	
-	public List<Membership> addImplicitBindingConnectors() {
-		TypeImpl type = (TypeImpl) getTarget();
-		List<Membership> createdMemberships = new ArrayList<>();
-		for (BindingConnector connector : implicitFeatureBindingConnectors) {
-			createdMemberships.add(TransformationUtil.addOwnedFeatureTo(type, connector));
-		}
-		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			createdMemberships.add(TransformationUtil.addOwnedMemberTo(type, connector));
-		}
-		cleanImplicitBindingConnectors();
-		return createdMemberships;
-	}
-	
 	public boolean isImplicitGeneralTypesEmpty() {
 		return implicitGeneralTypes.isEmpty();
 	}
@@ -163,7 +136,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
 		TypeImpl type = (TypeImpl)getTarget();
-		TransformationUtil.removeEmptyGeneralTypesFor(type, kind);
+		TypeUtil.removeEmptyGeneralTypesFor(type, kind);
 		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
 				type.basicGetOwnedGeneralization(kind).isEmpty()) {
 			Type general = type.getDefaultType(superTypeNames);
@@ -217,16 +190,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void createResultConnector(Feature result) {
 		Type type = getTarget();
 		Expression resultExpression = 
-				(Expression)TransformationUtil.getOwnedFeatureByMembershipIn(type, ResultExpressionMembership.class);
+				(Expression)TypeUtil.getOwnedFeatureByMembershipIn(type, ResultExpressionMembership.class);
 		if (resultExpression != null) {
-			TransformationUtil.addResultBindingTo(type, resultExpression, result);
+			TypeUtil.addResultBindingTo(type, resultExpression, result);
 		}
 	}
 
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		TransformationUtil.computeImplicitGeneralTypesFor(getTarget());
+		TypeUtil.computeImplicitGeneralTypesFor(getTarget());
 	}
 	
 }

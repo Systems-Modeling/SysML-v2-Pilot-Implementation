@@ -39,7 +39,7 @@ import org.omg.sysml.lang.sysml.LiteralReal;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
+import org.omg.sysml.util.TypeUtil;
 
 public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 	
@@ -49,7 +49,7 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		Element member = members.get(0);
 		assertTrue("'" + text + "': Not an expression", member instanceof Expression);
 		Expression resultExpression = 
-				(Expression)((FeatureImpl)member).getOwnedFeatureByMembership(ResultExpressionMembership.class);
+				(Expression)TypeUtil.getOwnedFeatureByMembershipIn((Expression)member, ResultExpressionMembership.class);
 		assertNotNull("'" + text + "': No result expression", resultExpression);
 		return resultExpression;
 	}

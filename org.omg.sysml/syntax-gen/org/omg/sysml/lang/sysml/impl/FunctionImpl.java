@@ -34,6 +34,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -104,7 +105,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return super.getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**

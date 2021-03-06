@@ -22,7 +22,6 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -34,12 +33,13 @@ import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -102,7 +102,7 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	
 	@Override
 	public Function getFunction() {
-		Type type = getExpressionType();
+		Type type = ExpressionUtil.getExpressionTypeOf(this);
 		return type instanceof Function? (Function)type:
 			   type instanceof Expression? ((Expression)type).getFunction():
 			   (Function)getDefaultType(FunctionImpl.FUNCTION_SUPERCLASS_DEFAULT);
@@ -121,65 +121,14 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	// Other
 	
 	@Override
-	public List<Feature> getTypeParameters() {
-		Type type = getExpressionType();
-		return type != null && !(type instanceof Function || type instanceof Expression)? 
-				getTypeFeatures(): 
-				super.getTypeParameters();
-	}
-	
-	public List<Feature> getTypeFeatures() {
-		Type type = getExpressionType();
-		List<Feature> typeFeatures = new ArrayList<>();
-		List<Expression> arguments = getArgument();
-		int i = 0;
-		for (Feature typeFeature: (((TypeImpl)type).getPublicFeatures())) {
-			if (i >= arguments.size()) {
-				break;
-			}
-			Expression argument = getArgumentForFeature(arguments, typeFeature, i);
-			if (argument != null) {
-				typeFeatures.add(typeFeature);
-				i++;
-			}
-		}
-		return typeFeatures;
-	}
-	
-	public static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
-		Expression argument = null;
-		if (!arguments.isEmpty()) {
-			argument = arguments.get(0);
-			String argumentName = argument.getName();
-			String featureName = feature.getName();
-			if (argumentName == null || featureName == null) {
-				if (index < arguments.size()) {
-					argument = arguments.get(index);
-				}
-			} else {
-				argument = arguments.stream().filter(a->featureName.equals(a.getName())).findFirst().orElse(null);
-			}
-		}
-		return argument;
-	}
-
-	@Override
 	public List<Feature> getRelevantFeatures() {
-		Type type = getExpressionType();
+		Type type = ExpressionUtil.getExpressionTypeOf(this);
 		int m = type == null ? 0 : 
-			(int)((TypeImpl)type).getAllParameters().stream().
-				filter(p->((FeatureImpl)p).isInput()).count();
+			(int)TypeUtil.getAllParametersOf(this).stream().
+				filter(FeatureUtil::isInputParameter).count();
 		List<Feature> features = super.getOwnedFeature();
 		int n = features.size();
 		return m >= n ? Collections.emptyList() : features.subList(m, n);
-	}
-	
-	@Override
-	public Type getExpressionType() {
-		List<FeatureTyping> typing = basicGetOwnedTyping();
-		return typing.isEmpty()? 
-				ElementUtil.getTypeAdapter(this).getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : 
-				typing.get(0).getType();
 	}
 	
 	//

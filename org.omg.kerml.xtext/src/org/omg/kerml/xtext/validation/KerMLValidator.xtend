@@ -36,10 +36,8 @@ import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.Relationship
-import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
@@ -48,7 +46,7 @@ import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
-import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.TypeUtil
 
 /**
  * This class contains custom validation rules. 
@@ -152,7 +150,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkFeature(Feature f){
-		val types = (f as FeatureImpl).type;
+		val types = f.type;
 		if (types !== null && types.isEmpty)
 			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
 	}
@@ -216,8 +214,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 //				error(INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
 //		} else { 
 			//Binding type conformance
-			val f1types = (rf.get(0) as FeatureImpl).type
-			val f2types = (rf.get(1) as FeatureImpl).type
+			val f1types = rf.get(0).type
+			val f2types = rf.get(1).type
 						 
 			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
 			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
@@ -230,7 +228,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkImplicitBindingConnectors(Type type) {
-		ElementUtil.getTypeAdapter(type).forEachImplicitBindingConnector[doCheckBindingConnector(type)]
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | connector.doCheckBindingConnector(type)])
 	}
 	
 	//return related subtypes
@@ -246,7 +244,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 
 	protected def boolean conformsTo(Type subtype, Type supertype) {
-		supertype === null || (subtype as TypeImpl).conformsTo(supertype);
+		supertype === null || TypeUtil.conforms(subtype, supertype);
 	}
 	
 }

@@ -49,29 +49,25 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
-import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 
 /**
@@ -268,14 +264,14 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				map(typing->typing.getType()).
 				filter(type->type != null).
 				collect(Collectors.toList());
-		types.addAll(ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.eINSTANCE.getFeatureTyping()));
+		types.addAll(TypeUtil.getImplicitGeneralTypesFor(this, SysMLPackage.eINSTANCE.getFeatureTyping()));
 		return types;
 	}
 	
 	protected static void removeRedundantTypes(List<Type> types) {
 		for (int i = types.size() - 1; i >= 0 ; i--) {
 			Type type = types.get(i);
-			if (types.stream().anyMatch(otherType->otherType != type && ((TypeImpl)otherType).conformsTo(type))) {
+			if (types.stream().anyMatch(otherType->otherType != type && TypeUtil.conforms(otherType, type))) {
 				types.remove(i);
 			}
 		}
@@ -352,7 +348,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			return feature.isOrdered;
 		} else {
 			visited.add(feature);
-			for (Feature subsettedFeature: ((FeatureImpl)feature).getSubsettedFeatures()) {
+			for (Feature subsettedFeature: feature.getSubsettedFeatures()) {
 				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
 						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
 					return true;
@@ -382,9 +378,9 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return hasStructureType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-			   hasClassType()? OCCURRENCE_FEATURE_SUBSETTING_DEFAULT:
-			   hasDataType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
+		return FeatureUtil.hasStructureType(this)? OBJECT_FEATURE_SUBSETTING_DEFAULT:
+			   FeatureUtil.hasClassType(this)? OCCURRENCE_FEATURE_SUBSETTING_DEFAULT:
+			   FeatureUtil.hasDataType(this)? VALUE_FEATURE_SUBSETTING_DEFAULT:
 			   FEATURE_SUBSETTING_DEFAULT;
 	}
 	
@@ -446,7 +442,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		if (owningType != null) {
 			featuringTypes.add(getOwningType());
 		}
-		ElementUtil.getFeatureAdapter(this).forEachImplicitFeaturingType(featuringTypes::add);
+		FeatureUtil.forEachImplicitFeaturingTypeOf(this, featuringTypes::add);
 		return featuringTypes;
 	}
 	
@@ -459,7 +455,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
 			forEachOrdered(redefinedFeatures::add);
 		
-		ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.eINSTANCE.getRedefinition())
+		TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.eINSTANCE.getRedefinition())
 				.stream().
 				map(Feature.class::cast).
 				forEachOrdered(redefinedFeatures::add);
@@ -479,7 +475,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void addComputedRedefinitions(Element skip) {
 		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
 		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
-			ElementUtil.getTypeAdapter(this).removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
+			TypeUtil.removeImplicitGeneralTypeFrom(this, SysMLPackage.eINSTANCE.getRedefinition());
 			addRedefinitions(skip);
 			isComputeRedefinitions = false;
 		}
@@ -494,7 +490,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void addRedefinitions(Element skip) {
 		Namespace owner = getOwningNamespace();
 		if (owner instanceof Type) {
-			TransformationUtil.removeEmptyGeneralTypesFor(this, Redefinition.class);
+			TypeUtil.removeEmptyGeneralTypesFor(this, Redefinition.class);
 			Type type = getOwningType();
 			int i = getRelevantFeatures(type).indexOf(this);
 			if (i >= 0) {
@@ -503,7 +499,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 					if (i < features.size()) {
 						Feature redefinedFeature = features.get(i);
 						if (redefinedFeature != null && redefinedFeature != this) {
-							ElementUtil.getTypeAdapter(this).addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
+							TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
 						}
 					}
 				}
@@ -518,7 +514,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		List<Type> generalTypes = new ArrayList<>();
-		for (Type generalType: ((TypeImpl)type).getSupertypes(skip)) {
+		for (Type generalType: TypeUtil.getSupertypesOf(type, skip)) {
 			if (!generalTypes.contains(generalType)) {
 				generalTypes.add(generalType);
 			}
@@ -532,8 +528,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 * otherwise return the relevant features of the type.
 	 */
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return isEnd()? ((TypeImpl)type).getAllEndFeatures():
-			   isParameter()? getParameterRelevantFeatures(type):
+		return isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+			   FeatureUtil.isParameter(this)? getParameterRelevantFeatures(type):
 			   type != null? ((TypeImpl)type).getRelevantFeatures():
 			   Collections.emptyList();
 	}
@@ -545,8 +541,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
 		if (type != null) {
-			if (isResultParameter()) {
-				Feature resultParameter = ((TypeImpl)type).getResultParameter();
+			if (FeatureUtil.isResultParameter(this)) {
+				Feature resultParameter = TypeUtil.getResultParameterOf(type);
 				if (resultParameter != null) {
 					return Collections.singletonList(resultParameter);
 				}
@@ -559,12 +555,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected List<Feature> getRelevantParameters(TypeImpl type) {
 		Type owningType = getOwningType();
-		return type == owningType? filterIgnoredParameters(type.getOwnedParameters()): 
+		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
 			   owningType instanceof InvocationExpression && 
-			        type == ((InvocationExpressionImpl)owningType).getExpressionType() &&
+			        type == ExpressionUtil.getExpressionTypeOf((InvocationExpression)owningType) &&
 			   		!(type instanceof Function || type instanceof Expression)? 
-			   				((InvocationExpressionImpl)owningType).getTypeFeatures():
-			   filterIgnoredParameters(type.getAllParameters());
+			   				ExpressionUtil.getTypeFeaturesOf((InvocationExpression)owningType):
+			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type));
 	}
 	
 	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
@@ -574,7 +570,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected boolean isIgnoredParameter() {
-		return isResultParameter();
+		return FeatureUtil.isResultParameter(this);
 	}
 	
 	/**
@@ -893,39 +889,10 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			redefinedFeatures.get(0);
 	}
 	
-	public FeatureValue getValuation() {
-		return (FeatureValue)getOwnedMembership().stream().
-				filter(FeatureValue.class::isInstance).
-				findFirst().orElse(null);
-	}
-
 	@Override
 	public void computeImplicitGeneralTypes() {
 		addComputedRedefinitions(null);
 		super.computeImplicitGeneralTypes();
-	}
-	
-	public boolean isStructureFeature() {
-		return getType().stream().anyMatch(Structure.class::isInstance);
-	}
-	
-	public boolean isDataFeature() {
-		return getType().stream().anyMatch(DataType.class::isInstance);
-	}
-	
-	public boolean hasClassType() {
-		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance) ||
-				ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance);
-	}
-	
-	public boolean hasStructureType() {
-		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(Structure.class::isInstance) ||
-				ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
-	}
-	
-	public boolean hasDataType() {
-		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(DataType.class::isInstance) ||
-				ElementUtil.getTypeAdapter(this).getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
 	}
 	
 	public Optional<Feature> getFirstSubsettedFeature() {
@@ -934,7 +901,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitSubsettedFeatures = ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().
+		Stream<Feature> implicitSubsettedFeatures = TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.Literals.SUBSETTING).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
 				filter(s->!(s instanceof Redefinition)).
@@ -947,7 +914,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
 				map(Redefinition::getRedefinedFeature);
-		Stream<Feature> implicitRedefinedFeatures = ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinedFeatures = TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
 		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
 				collect(Collectors.toList());
@@ -955,7 +922,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public List<Feature> getRedefinedFeatures() {
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitRedefinedFeatures = ElementUtil.getTypeAdapter(this).getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinedFeatures = TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
 				map(Redefinition::getRedefinedFeature);
@@ -983,33 +950,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				((FeatureImpl)redefinedFeature).addAllRedefinedFeaturesTo(redefinedFeatures);
 			}
 		});
-	}
-	
-	public boolean isParameter() {
-		return getOwningMembership() instanceof ParameterMembership;
-	}
-
-	public boolean isResultParameter() {
-		return getOwningMembership() instanceof ReturnParameterMembership;
-	}
-	
-	public boolean isInput() {
-		FeatureDirectionKind direction = getDirection();
-		return direction == FeatureDirectionKind.IN || direction == FeatureDirectionKind.INOUT;
-	}
-	
-	public boolean isOutputParameter() {
-		FeatureDirectionKind direction = getDirection();
-		return direction == FeatureDirectionKind.OUT || direction == FeatureDirectionKind.INOUT;
-	}
-	
-	public FeatureDirectionKind getDirection() {
-		Type owningType = getOwningType();
-		if (owningType == null) {
-			return null;
-		} else {
-			return directionFor(owningType);
-		}
 	}
 	
 	//

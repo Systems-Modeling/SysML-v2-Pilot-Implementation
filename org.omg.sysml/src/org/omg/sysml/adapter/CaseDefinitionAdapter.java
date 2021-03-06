@@ -26,6 +26,7 @@ import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 
 public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 
@@ -38,6 +39,15 @@ public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 		return (CaseDefinition)super.getTarget();
 	}
 
+	// Utility
+	
+	@Override
+	public Usage getSubjectParameter() {
+		return getTarget().getSubjectParameter();
+	}
+	
+	// Transformation
+	
 	public static RequirementUsage addObjectiveRequirementTo(Type type) {
 		RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
 		ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();

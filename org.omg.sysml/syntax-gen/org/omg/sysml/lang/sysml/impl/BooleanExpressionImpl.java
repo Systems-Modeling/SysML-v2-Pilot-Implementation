@@ -30,6 +30,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -153,7 +154,7 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance()?
+		return FeatureUtil.isCompositePerformanceFeature(this)?
 				BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
 				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}

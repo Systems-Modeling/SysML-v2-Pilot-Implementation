@@ -23,13 +23,15 @@ package org.omg.sysml.adapter;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
 
@@ -43,7 +45,9 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	public TransitionUsage getTarget() {
 		return (TransitionUsage)super.getTarget();
 	}
-
+	
+	// Transformation
+	
 	protected void updateTransitionLinkRedefinition(Feature transitionLinkFeature) {
 		// the Redefinition computation part of the general implicit typing mechanism.
 		Redefinition redefinition;
@@ -58,23 +62,21 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		redefinition.setRedefinedFeature((Feature)SysMLLibraryUtil.getLibraryType(getTarget(), TRANSITION_LINK_FEATURE));
 	}
 	
-	protected Feature getTransitionLinkFeature() {
+	protected Feature computeReferenceConnector() {
 		TransitionUsage transition = getTarget();
-		Feature transitionLinkFeature = TransformationUtil.getTransitionLinkFeatureOf(transition);
+		Feature transitionLinkFeature = transition.getOwnedFeatureMembership().stream().
+				filter(m->!(m instanceof TransitionFeatureMembership)).
+				map(FeatureMembership::getMemberFeature).
+				findFirst().orElse(null);
 		if (transitionLinkFeature == null) {
 			transitionLinkFeature = SysMLFactory.eINSTANCE.createFeature();
-			TransformationUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
-			TransformationUtil.setTransitionLinkFeatureOf(transition, transitionLinkFeature);
+			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
+			Succession succession = transition.getSuccession();
+			ElementUtil.transform(succession);
+			TypeUtil.addBindingConnectorTo(transition, succession, transitionLinkFeature);
 		}
 		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;
-	}
-	
-	protected void computeReferenceConnector() {
-		TransitionUsage transition = getTarget();
-		Succession succession = transition.getSuccession();
-		ElementUtil.transform(succession);
-		TransformationUtil.addBindingConnectorTo(transition, succession, getTransitionLinkFeature());
 	}
 	
 	@Override

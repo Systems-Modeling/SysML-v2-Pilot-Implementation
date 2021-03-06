@@ -21,15 +21,21 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TransformationUtil;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class InvocationExpressionAdapter extends ExpressionAdapter {
 
@@ -41,16 +47,71 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	public InvocationExpression getTarget() {
 		return (InvocationExpression)super.getTarget();
 	}
+	
+	// Utility
 
+	@Override
+	public Type getExpressionType() {
+		List<FeatureTyping> typing = ((FeatureImpl)getTarget()).basicGetOwnedTyping();
+		return typing.isEmpty()? 
+				getFirstImplicitGeneralType(SysMLPackage.Literals.FEATURE_TYPING) : 
+				typing.get(0).getType();
+	}
+	
+	@Override
+	public List<Feature> getTypeParameters() {
+		Type type = getExpressionType();
+		return type != null && !(type instanceof Function || type instanceof Expression)? 
+				getTypeFeatures(): 
+				super.getTypeParameters();
+	}
+	
+	public List<Feature> getTypeFeatures() {
+		Type type = getExpressionType();
+		List<Feature> typeFeatures = new ArrayList<>();
+		List<Expression> arguments = getTarget().getArgument();
+		int i = 0;
+		for (Feature typeFeature: (TypeUtil.getPublicFeaturesOf(type))) {
+			if (i >= arguments.size()) {
+				break;
+			}
+			Expression argument = getArgumentForFeature(arguments, typeFeature, i);
+			if (argument != null) {
+				typeFeatures.add(typeFeature);
+				i++;
+			}
+		}
+		return typeFeatures;
+	}
+	
+	public static Expression getArgumentForFeature(List<Expression> arguments, Feature feature, int index) {
+		Expression argument = null;
+		if (!arguments.isEmpty()) {
+			argument = arguments.get(0);
+			String argumentName = argument.getName();
+			String featureName = feature.getName();
+			if (argumentName == null || featureName == null) {
+				if (index < arguments.size()) {
+					argument = arguments.get(index);
+				}
+			} else {
+				argument = arguments.stream().filter(a->featureName.equals(a.getName())).findFirst().orElse(null);
+			}
+		}
+		return argument;
+	}
+
+	// Transformation
+	
 	@Override
 	protected void computeInput() {
 		InvocationExpression expression = getTarget();
 		if (expression.getInput().isEmpty()) {
-			Type type = TransformationUtil.getExpressionTypeOf(expression);
+			Type type = getExpressionType();
 			if (type instanceof Function || type instanceof Expression) {
 				super.computeInput();
 			} else if (type != null) {
-				for (Feature typeFeature: TransformationUtil.getTypeFeaturesOf(expression)) {
+				for (Feature typeFeature: ExpressionUtil.getTypeFeaturesOf(expression)) {
 					createFeatureForParameter(typeFeature);
 				}
 			}
@@ -58,12 +119,12 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 	}
 	
 	public static Expression getArgumentForInput(List<Expression> arguments, Feature input, int argIndex) {
-		TransformationUtil.forceComputeRedefinitionsFor(input);
-		List<Feature> redefinedFeatures = TransformationUtil.getRedefinedFeaturesOf(input);
+		FeatureUtil.forceComputeRedefinitionsFor(input);
+		List<Feature> redefinedFeatures = FeatureUtil.getRedefinedFeaturesOf(input);
 		if (!redefinedFeatures.isEmpty()) {
 			Feature feature = redefinedFeatures.get(0);
 			if (feature != null) {
-				return TransformationUtil.getArgumentForFeature(arguments, feature, argIndex);
+				return getArgumentForFeature(arguments, feature, argIndex);
 			}
 		}
 		return null;
@@ -80,7 +141,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 			}
 			Expression argument = getArgumentForInput(arguments, input, i);
 			if (argument != null) {
-				argumentConnectors[i] = TransformationUtil.addResultBindingTo(expression, argument, input);
+				argumentConnectors[i] = TypeUtil.addResultBindingTo(expression, argument, input);
 				i++;
 			}
 		}

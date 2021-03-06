@@ -41,7 +41,9 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,7 +122,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 	
 	/**
@@ -145,7 +147,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	
 	@Override
 	public void setReqId(String newReqId) {
-		setReqIdGen(unescapeString(newReqId));
+		setReqIdGen(ElementUtil.unescapeString(newReqId));
 	}
 	
 

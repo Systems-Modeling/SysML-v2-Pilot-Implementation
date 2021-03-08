@@ -25,9 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Invariant;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -90,16 +88,6 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		return assertionConnector;
 	}
 
-	public static BindingConnector getAssertionConnectorFor(FeatureImpl feature, Feature result) {
-		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
-				filter(f->f instanceof LiteralBoolean).
-				findFirst().orElse(null);
-		if (literalBoolean != null) {
-			return feature.makeResultBinding(literalBoolean, result);
-		}
-		return null;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,24 +98,6 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		assertionConnector = newAssertionConnector;
 	}
 
-	// Additional overrides
-
-	@Override
-	public void transform() {
-		super.transform();
-		if (assertionConnector == null) {
-			assertionConnector = getAssertionConnectorFor(this, this.getResult());
-		}
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		assertionConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

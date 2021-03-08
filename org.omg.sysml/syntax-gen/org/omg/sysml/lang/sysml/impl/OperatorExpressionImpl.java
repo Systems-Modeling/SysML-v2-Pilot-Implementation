@@ -45,6 +45,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -197,7 +198,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	public List<FeatureTyping> basicGetOwnedTyping() {
 		String operator = getOperator();
 		if (operator != null) {
-			addDefaultGeneralType(
+			TypeUtil.addDefaultGeneralTypeTo(this,
 					SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		}
 		return Collections.emptyList();
@@ -327,7 +328,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 		@Override
 		protected void delegateAdd(Expression object) {
-			addOwnedFeature(object);
+			TypeUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object);
 		}
 
 		@Override

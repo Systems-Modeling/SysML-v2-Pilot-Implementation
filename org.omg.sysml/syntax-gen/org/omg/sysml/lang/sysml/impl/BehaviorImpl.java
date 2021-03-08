@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -34,8 +33,8 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -88,7 +87,7 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -102,15 +101,9 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 	 */
 	@Override
 	public List<Feature> getRelevantFeatures() {
-		return getRelevantFeaturesFor(this);
+		return TypeUtil.getNonParameterAbstractFeaturesFor(this);
 	}
 	
-	public static List<Feature> getRelevantFeaturesFor(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(feature -> !((FeatureImpl)feature).isParameter() && feature.isAbstract()).
-				collect(Collectors.toList());
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

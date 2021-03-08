@@ -24,21 +24,21 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -82,7 +82,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	@Override
 	public EList<Expression> getFilterCondition() {
 		EList<Expression> filterConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.PACKAGE__FILTER_CONDITION);
-		getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(filterConditions::add);
+		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(filterConditions::add);
 		return filterConditions;
 	}
 
@@ -123,18 +123,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated NOT
 	 */
 	public boolean includeAsMember(Element element) {
-		return checkConditionsOn(element, getFilterCondition());
-	}
-	
-	public static boolean checkConditionsOn(Element element, List<Expression> conditions) {
-		if (element == null) {
-			return false;
-		} else {
-			List<AnnotatingFeature> annotatingFeatures = ((ElementImpl)element).getAllAnnotatingFeatures();
-			return conditions.stream().allMatch(cond->
-				annotatingFeatures.isEmpty()? checkConditionOn(null, cond):
-				annotatingFeatures.stream().anyMatch(elem->checkConditionOn(elem, cond)));
-		}
+		return ExpressionUtil.checkConditionsOn(element, getFilterCondition());
 	}
 	
 	/**
@@ -165,20 +154,9 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	 * @generated NOT
 	 */
 	public boolean checkCondition(Element element, Expression condition) {
-		return checkConditionOn(element, condition);
+		return ExpressionUtil.checkConditionOn(element, condition);
 	}
 	
-	public static boolean checkConditionOn(Element element, Expression condition) {
-		if (condition == null) {
-			return true;
-		} else {
-			EList<Element> result = condition.evaluate(element);
-			return result == null || // If condition is ill-formed, ignore it.
-					result.size() == 1 && result.get(0) instanceof LiteralBoolean && 
-					((LiteralBoolean)result.get(0)).isValue();
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

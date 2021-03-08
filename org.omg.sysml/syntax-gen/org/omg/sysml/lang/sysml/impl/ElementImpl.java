@@ -22,7 +22,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -41,7 +40,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Documentation;
@@ -51,6 +49,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TextualRepresentation;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -201,63 +200,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ELEMENT;
-	}
-	
-	/**
-	 * Converts a string literal or unrestricted name with escaped characters 
-	 * into a string in which the escape sequences are replaced with the corresponding 
-	 * represented characters. If the input string starts with a single or double quote
-	 * character, it is assumed to be a lexically valid unrestricted name or string literal,
-	 * respectively. Otherwise, the input string is returned without change.
-	 */
-	public static String unescapeString(String literal) {
-		if (literal == null || literal.isEmpty() || 
-				literal.charAt(0) != '"' && literal.charAt(0) != '\'') {
-			return literal;
-		} else {
-			StringBuilder s = new StringBuilder();
-			int i = 1;
-			int j = literal.indexOf('\\', 1);
-			while (j >= 0) {
-				char c = literal.charAt(j + 1);
-				s.append(literal.substring(i, j));
-				s.append(
-					c == 'b'? '\b':
-					c == 't'? '\t':
-					c == 'n'? '\n':
-					c == 'f'? '\f':
-					c == 'r'? '\r':
-					c == '"'? '"':
-					c == '\''? '\'':
-					c == '\\'? '\\':
-					' ');
-				i = j + 2;
-				j = literal.indexOf('\\', i);
-			}
-			int n = literal.length();
-			if (n > 1) {
-				s.append(literal.substring(i, n - 1));
-			}
-			return s.toString();
-		}
-	}
-	
-	/**
-	 * Return a string that is the same as the input string,  but with escapable characters
-	 * replaced by appropriate escape sequences.
-	 */
-	public static String escapeString(String str) {
-		StringBuilder s = new StringBuilder();
-		for (int i = 0; i < str.length(); i++) {
-			int c = "\b\t\n\f\r\"'\\".indexOf(str.charAt(i));
-			if (c < 0) {
-				s.append(str.charAt(i));
-			} else {
-				s.append('\\');
-				s.append("btnfr\"'\\".charAt(c));
-			}
-		}
-		return s.toString();
 	}
 	
 	/**
@@ -539,7 +481,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	
 	@Override
 	public void setHumanId(String newHumanId) {
-		setHumanIdGen(unescapeString(newHumanId));
+		setHumanIdGen(ElementUtil.unescapeString(newHumanId));
 	}
 
 	/**
@@ -603,7 +545,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			owningMembership.setMemberName(newName);
 			this.basicSetName(null);
 		} else {
-			this.basicSetName(unescapeString(newName));
+			this.basicSetName(ElementUtil.unescapeString(newName));
 		}
 	}
 	
@@ -704,17 +646,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @generated NOT
 	 */
 	public String escapedName() {
-		return escapeName(getName());
-	}
-
-	public static String escapeName(String name) {
-		return (name == null || name.isEmpty() || isIdentifier(name))? name:
-			   "'" + ElementImpl.escapeString(name) + "'";	
-	}
-	
-	public static boolean isIdentifier(String name) {
-		return name.matches("[a-zA-Z_]\\w*");
-	}
+		return ElementUtil.escapeName(getName());
+	}	
 
 	// Additional
 	
@@ -742,38 +675,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
-	 * Get documentation text for this element, as given by the body of the first documentation comment
-	 * annotating the element (if any).
-	 */
-	public String getDocumentationText() {
-		return getDocumentationComment().stream().
-				map(Comment::getBody).
-				findFirst().orElse(null);
-	}
-	
-	/**
-	 * Get all the AnnotatingFeatures relevant to this Element. By default, these are just those that
-	 * are related to the Element by ownedAnnotations.
-	 */
-	public List<AnnotatingFeature> getAllAnnotatingFeatures() {
-		return getOwnedAnnotation().stream().
-				map(Annotation::getAnnotatingElement).
-				filter(AnnotatingFeature.class::isInstance).
-				map(AnnotatingFeature.class::cast).
-				collect(Collectors.toList());
-	}
-
-	
-	/**
 	 * Clear cached member derivations.
 	 */
 	public void clearCaches() {		
-	}
-	
-	/**
-	 * Trigger in-place model transformations.
-	 */
-	public void transform() {		
 	}
 	
 	/**

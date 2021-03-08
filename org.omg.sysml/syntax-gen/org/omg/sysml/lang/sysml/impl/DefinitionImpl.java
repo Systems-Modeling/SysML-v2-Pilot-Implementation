@@ -507,12 +507,6 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 		return isVariation() || super.isAbstract();
 	}
 	
-	// Utility methods
-	
-	public Usage getSubjectParameter() {
-		return null;
-	}
-	
 	//
 
 	/**

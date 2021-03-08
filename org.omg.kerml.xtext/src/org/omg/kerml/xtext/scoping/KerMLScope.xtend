@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
-import org.omg.sysml.lang.sysml.impl.TypeImpl
 import java.util.HashSet
 import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
@@ -47,7 +46,7 @@ import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
-
+import org.omg.sysml.util.TypeUtil
 
 class KerMLScope extends AbstractScope {
 	
@@ -264,7 +263,7 @@ class KerMLScope extends AbstractScope {
 	}
 	
 	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){
-		for(Type g: (general as TypeImpl).supertypes) {
+		for(Type g: TypeUtil.getSupertypesOf(general)) {
 			if (g == protectedOwningPackage || 
 				 g.isInheritedProtected(protectedOwningPackage)) {
 				return true
@@ -289,7 +288,7 @@ class KerMLScope extends AbstractScope {
 				newRedefined.addAll(redefined)
 				newRedefined.addAll(ns.redefinedFeatures)
 			}
-			for (e: (ns as TypeImpl).ownedGeneralization) {
+			for (e: ns.ownedGeneralization) {
 				if (!scopeProvider.visited.contains(e)) {
 					// NOTE: Exclude the generalization e to avoid possible circular name resolution
 					// when resolving a proxy for e.general.
@@ -303,9 +302,9 @@ class KerMLScope extends AbstractScope {
 			}
 			if (!scopeProvider.visited.contains(ns)) {
 				scopeProvider.addVisited(ns);
-				(ns as TypeImpl).computeImplicitGeneralTypes
+				TypeUtil.computeImplicitGeneralTypesFor(ns)
 				scopeProvider.removeVisited(ns)
-				for (type : (ns as TypeImpl).getImplicitGeneralTypes) {
+				for (type : TypeUtil.getImplicitGeneralTypesFor(ns)) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false)
 					if (found) {
 						return true

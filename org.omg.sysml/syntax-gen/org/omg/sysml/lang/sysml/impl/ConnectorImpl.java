@@ -24,8 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -43,16 +41,14 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -431,14 +427,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated NOT
 	 */
 	public Feature basicGetSourceFeature() {
-		return getSourceFeatureOf(this);
+		return ConnectorUtil.getSourceFeatureOf(this);
 	}
 	
-	public static Feature getSourceFeatureOf(Connector connector) {
-		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		return relatedFeatures.size() == 2? relatedFeatures.get(0): null;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -466,19 +457,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public EList<Feature> getTargetFeature() {
 		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
-		addTargetFeatures(this, targetFeatures);
+		ConnectorUtil.addTargetFeatures(this, targetFeatures);
 		return targetFeatures;
 	}
 	
-	public static void addTargetFeatures(Connector connector, EList<Feature> targetFeatures) {
-		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		if (relatedFeatures.size() == 2) {
-			targetFeatures.add(relatedFeatures.get(1));
-		} else {
-			targetFeatures.addAll(relatedFeatures);
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -517,23 +499,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public EList<Feature> path(Feature relatedFeature) {
 		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
-		getPath(path, getOwningNamespace(), relatedFeature);
+		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
 		return path;
-	}
-
-	public static void getPath(EList<Feature> path, Namespace start, Feature feature) {
-		if (feature != null) {
-			Namespace owningNamespace = feature.getOwningNamespace();
-			if (owningNamespace instanceof Feature && owningNamespace != start) {
-				getPath(path, start, (Feature)owningNamespace);
-			}
-			path.add(feature);
-		}
 	}
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isStructureFeature()?
+		return FeatureUtil.isStructureFeature(this)?
 				getConnectorEnd().size() > 2? 
 					CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
 					BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
@@ -541,118 +513,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 					CONNECTOR_SUBSETTING_DEFAULT:
 					BINARY_CONNECTOR_SUBSETTING_DEFAULT;
 	}
-	
-	private void computeFeaturingType() {
-		if (getOwningType() == null) {
-			Type contextType = getContextType();
-			if (contextType != null) {
-				addFeaturingType(contextType);
-			}
-		}
-	}
-	
-	// Utility Methods
-	
-	private Type contextType = null;
-	private boolean isComputeContextType = true;
-	
-	public Type getContextType() {
-		if (isComputeContextType) {
-			isComputeContextType = false;
-			contextType = getContextType(this);
-		}
-		return contextType;
-	}
-	
-	public static Type getContextType(Connector connector) {
-		Element owner = connector.getOwner();
-		List<Feature> relatedFeatures = connector.getRelatedFeature();
-		
-		// TODO: Handle inherited features more properly when determining context type.
-		if (owner instanceof Type) {
-			List<Feature> ownerInheritedFeatures = ((Type)owner).getInheritedFeature();
-			relatedFeatures.removeAll(ownerInheritedFeatures);
-			if (relatedFeatures.isEmpty()) {
-				return (Type)owner;
-			}
-		}
-		
-		List<Type> commonFeaturingTypes = null;
-		for (Feature relatedFeature: relatedFeatures) {
-			List<Type> featuringTypes = getAllFeaturingTypes(relatedFeature);
-			if (commonFeaturingTypes == null) {
-				commonFeaturingTypes = featuringTypes;
-			} else {
-				commonFeaturingTypes.retainAll(featuringTypes);
-			}
-		}
-		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
-				null: commonFeaturingTypes.get(0);
-	}	
-	
-	/**
-	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
-	 */
-	protected static List<Type> getAllFeaturingTypes(Feature originalFeature) {
-		List<Type> allFeaturingTypes = new ArrayList<>();
-		List<Feature> features = new ArrayList<>();
-		features.add(originalFeature);
-		while (!features.isEmpty()) {
-			List<Feature> nextFeatures = new ArrayList<>();
-			for (Feature feature: features) {
-				List<Type> featuringTypes = feature.getFeaturingType();
-				if (featuringTypes.isEmpty()) {
-					allFeaturingTypes.add(null);
-				} else {
-					for (Type featuringType: featuringTypes) {
-						if (!allFeaturingTypes.contains(featuringType)) {
-							allFeaturingTypes.add(featuringType);
-							if (featuringType instanceof Feature) {
-								nextFeatures.add((Feature)featuringType);
-							}
-						}
-					}
-				}
-			}
-			features = nextFeatures;
-		}
-		return allFeaturingTypes;
-	}
-	
-	public Feature addConnectorEnd(Feature relatedFeature) {
-		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettedFeature(relatedFeature);
-		subsetting.setSubsettingFeature(endFeature);
-		endFeature.getOwnedRelationship_comp().add(subsetting);
-		FeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-		membership.setOwnedMemberFeature_comp(endFeature);
-		getOwnedFeatureMembership_comp().add(membership);
-		return endFeature;
-	}
-	
-	public void setRelatedFeature(int index, Feature relatedFeature) {
-		EList<Feature> connectorEnds = getConnectorEnd();
-		if (index < connectorEnds.size()) {
-			setRelatedFeature(connectorEnds.get(index), relatedFeature);
-		}
-	}
-
-	public static void setRelatedFeature(Feature connectorEnd, Feature relatedFeature) {
-		((FeatureImpl)connectorEnd).basicGetFirstSubsetting().
-			orElseGet(()->((FeatureImpl)connectorEnd).createSubsetting()).
-			setSubsettedFeature(relatedFeature);
-	}
-	
-	//
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeFeaturingType();
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -27,13 +27,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,7 +90,7 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	public Expression basicGetReceiverArgument() {
 		Feature receiverParameter = getReceiverParameter();
 		if (receiverParameter != null) {
-			FeatureValue valuation = ((FeatureImpl)receiverParameter).getValuation();
+			FeatureValue valuation = FeatureUtil.getValuationFor(receiverParameter);
 			if (valuation != null) {
 				return valuation.getValue();
 			}
@@ -119,44 +118,13 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	// Other
 
 	public Feature getItemsParameter() {
-		List<Feature> parameters = getOwnedParameters();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
 		return parameters.isEmpty()? null: parameters.get(0);
 	}
 
 	public Feature getReceiverParameter() {
-		List<Feature> parameters = getOwnedParameters();
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
 		return parameters.size() < 2? null: parameters.get(1);
-	}
-	
-	/**
-	 * The default receiver is the outermost containing ActionUsage of this AcceptActionUsage
-	 * (or this AcceptActionUsage if it is not contained in any other ActionUsage), unless that
-	 * ActionUsage is itself owned by an ActionDefinition.
-	 */
-	// TODO: Determine the proper default receiver for an AcceptActionUsage contained in an 
-	// ActionDefinition or performed by a PartDefinition or PartUsage.
-	protected Feature getDefaultReceiver() {
-		Feature receiver = this;
-		Element owner = receiver.getOwner();
-		while (owner instanceof ActionUsage) {
-			receiver = (Feature)owner;
-			owner = receiver.getOwner();
-		}
-		return owner instanceof ActionDefinition? this: receiver;
-	}
-	
-	public void addDefaultReceiverBinding() {
-		if (getReceiverArgument() == null) {
-			Feature receiverParameter = getReceiverParameter();
-			if (receiverParameter != null) {
-				addImplicitBindingConnector(getDefaultReceiver(), receiverParameter);
-			}
-		}
-	}
-	
-	@Override
-	public void transform() {
-		addDefaultReceiverBinding();
 	}
 	
 	//

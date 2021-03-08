@@ -95,7 +95,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		else if (context instanceof Membership) {
 			var owningNamespace = context.membershipOwningNamespace
 		    if (owningNamespace instanceof QueryPathExpression)
-			    context.scope_QueryPathExpression(owningNamespace as QueryPathExpression, context, reference)
+			    context.scope_QueryPathExpression(owningNamespace, context, reference)
 		    else 
 	    		context.scope_Namespace(owningNamespace, context, reference)
 		} else if (context instanceof Import)

@@ -34,13 +34,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,13 +71,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
 	public static final String CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT = "Calculations::Calculation::subcalculations";
 	
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this FunctionUsage.
-	 */
-	protected BindingConnector resultConnector = null;
-
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,7 +107,7 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**
@@ -283,27 +276,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 					CALCULATION_SUBSETTING_BASE_DEFAULT;
 	}
 	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Other methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());;
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
-	}
-	
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

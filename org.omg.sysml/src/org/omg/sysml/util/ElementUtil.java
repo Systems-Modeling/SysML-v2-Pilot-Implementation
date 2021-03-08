@@ -25,74 +25,212 @@
 package org.omg.sysml.util;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.omg.sysml.adapter.ElementAdapter;
+import org.omg.sysml.adapter.ElementAdapterFactory;
+import org.omg.sysml.lang.sysml.AnnotatingFeature;
+import org.omg.sysml.lang.sysml.Annotation;
+import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.ElementImpl;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class ElementUtil {
 	
-	public static void transform(Element element) {
-		((ElementImpl)element).transform();
+	private ElementUtil() {
 	}
 	
-	public static void addImplicitGeneralizations(Type type) {
-		((TypeImpl)type).addImplicitGeneralizations();
-	}
+	// General
 	
-	public static void addImplicitTypeFeaturings(Feature feature) {
-		((FeatureImpl)feature).addImplicitTypeFeaturing();
-	}
-	
-	public static void addImplicitBindingConnectors(Type type) {
-		List<Membership> addedMemberships = ((TypeImpl)type).addImplicitBindingConnectors();
-		// This is required as the owned relationships call of the type will not return
-		// the newly created binding connectors so we have to ensure the transform
-		// function is used appropriately
-		for (Membership m : addedMemberships) {
-			transformAll(m.getMemberElement(), true);
+	/**
+	 * Converts a string literal or unrestricted name with escaped characters 
+	 * into a string in which the escape sequences are replaced with the corresponding 
+	 * represented characters. If the input string starts with a single or double quote
+	 * character, it is assumed to be a lexically valid unrestricted name or string literal,
+	 * respectively. Otherwise, the input string is returned without change.
+	 */
+	public static String unescapeString(String literal) {
+		if (literal == null || literal.isEmpty() || 
+				literal.charAt(0) != '"' && literal.charAt(0) != '\'') {
+			return literal;
+		} else {
+			StringBuilder s = new StringBuilder();
+			int i = 1;
+			int j = literal.indexOf('\\', 1);
+			while (j >= 0) {
+				char c = literal.charAt(j + 1);
+				s.append(literal.substring(i, j));
+				s.append(
+					c == 'b'? '\b':
+					c == 't'? '\t':
+					c == 'n'? '\n':
+					c == 'f'? '\f':
+					c == 'r'? '\r':
+					c == '"'? '"':
+					c == '\''? '\'':
+					c == '\\'? '\\':
+					' ');
+				i = j + 2;
+				j = literal.indexOf('\\', i);
+			}
+			int n = literal.length();
+			if (n > 1) {
+				s.append(literal.substring(i, n - 1));
+			}
+			return s.toString();
 		}
 	}
 	
-	public static void transformAll(Element root, boolean generateImplicitElements) {
-		if (generateImplicitElements && root instanceof Type) {
-			addImplicitBindingConnectors((Type) root);
+	/**
+	 * Return a string that is the same as the input string,  but with escapable characters
+	 * replaced by appropriate escape sequences.
+	 */
+	public static String escapeString(String str) {
+		StringBuilder s = new StringBuilder();
+		for (int i = 0; i < str.length(); i++) {
+			int c = "\b\t\n\f\r\"'\\".indexOf(str.charAt(i));
+			if (c < 0) {
+				s.append(str.charAt(i));
+			} else {
+				s.append('\\');
+				s.append("btnfr\"'\\".charAt(c));
+			}
+		}
+		return s.toString();
+	}
+
+	public static String escapeName(String name) {
+		return (name == null || name.isEmpty() || isIdentifier(name))? name:
+			   "'" + escapeString(name) + "'";	
+	}
+
+	public static boolean isIdentifier(String name) {
+		return name.matches("[a-zA-Z_]\\w*");
+	}
+
+	/**
+	 * Get documentation text for this element, as given by the body of the first documentation comment
+	 * annotating the element (if any).
+	 */
+	public static String getDocumentationTextFor(Element element) {
+		return element.getDocumentationComment().stream().
+				map(Comment::getBody).
+				findFirst().orElse(null);
+	}
+	
+	// Annotation
+	
+	/**
+	 * Get all the AnnotatingFeatures relevant to this Element. By default, these are just those that
+	 * are related to the Element by ownedAnnotations.
+	 */
+	public static List<AnnotatingFeature> getAllAnnotatingFeaturesOf(Element element) {
+		List<AnnotatingFeature> annotatingFeatures =  element.getOwnedAnnotation().stream().
+				map(Annotation::getAnnotatingElement).
+				filter(AnnotatingFeature.class::isInstance).
+				map(AnnotatingFeature.class::cast).
+				collect(Collectors.toList());
+		if (element instanceof Namespace) {
+			/**
+			 * Include AnnotatingFeatures that are members of a Namespace.
+			 */
+			(((Namespace)element).getOwnedMember()).stream().
+				filter(AnnotatingFeature.class::isInstance).
+				map(AnnotatingFeature.class::cast).
+				filter(feature->feature.getAnnotatedElement().contains(element)).
+				forEach(annotatingFeatures::add);
+			}
+		return annotatingFeatures;
+	}
+
+	public static String processCommentBody(String body) {
+		if (body != null) {
+			body = body.replaceFirst("/\\*\\*", "").replaceFirst("/\\*", "").replaceFirst("^\\s*", "");			
+			if (body.endsWith("*/")) {
+				body = body.substring(0, body.length()-2);
+			}
+			String[] lines = body.split("\\r?\\n");
+			if (lines.length == 1) 
+				body = lines[0];
+			else {
+				StringBuilder builder = new StringBuilder();
+				for (int i = 0; i < lines.length; i++) {
+					// Strip initial white space(not including line breaks) - 
+					// by splitting no line breaks at the end
+					String s = lines[i].replaceFirst("^\\s*", ""); 
+					s = s.startsWith("*") ? (s.startsWith("* ")? s.replaceFirst("\\*\\s{1}", "") : s.replaceFirst("\\*", "")) : s;
+					if (i != 0) {
+						// Add back newline
+						builder.append("\n");
+					}
+					builder.append(s);
+				}
+				body = builder.toString();
+			}
+		}
+		return body;
+	}
+
+	// Adapters
+	
+	public static ElementAdapter getElementAdapter(Element target) {
+		return ElementAdapterFactory.getAdapter(target);
+	}
+	
+	public static void clean(Element element) {
+		ElementAdapterFactory.removeAdapter(element);
+	}
+	
+	// Transformation 
+	
+	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {
+		for (Resource resource: resourceSet.getResources()) {
+			transformAll(resource, addImplicitElements);
+		}
+	}
+
+	public static void transformAll(Resource resource, boolean addImplicitElements) {
+		for (EObject object: resource.getContents()) {
+			if (object instanceof Element) {
+				transformAll((Element)object, addImplicitElements);
+			}
+		}
+	}
+	
+	public static void transformAll(Element root, boolean addImplicitElements) {
+		if (addImplicitElements && root instanceof Type) {
+			TypeUtil.insertImplicitBindingConnectors((Type) root);
 		}
 		transform(root);
 		for (Relationship relationship: root.getOwnedRelationship()) {
-			transformAll(relationship, generateImplicitElements);
+			transformAll(relationship, addImplicitElements);
 			for (Element element: relationship.getOwnedRelatedElement()) {
-				transformAll(element, generateImplicitElements);
+				transformAll(element, addImplicitElements);
 			}
 		}
-		if (generateImplicitElements && root instanceof Type) {
-			addImplicitGeneralizations((Type)root);
+		if (addImplicitElements && root instanceof Type) {
+			TypeUtil.insertImplicitGeneralizations((Type)root);
 		}
-		if (generateImplicitElements && root instanceof Feature) {
-			addImplicitTypeFeaturings((Feature)root);
+		if (addImplicitElements && root instanceof Feature) {
+			FeatureUtil.insertImplicitTypeFeaturings((Feature)root);
 		}
 	}
 	
-	public static void transformAll(Resource resource, boolean generateImplicitElements) {
-		for (EObject object: resource.getContents()) {
-			if (object instanceof Element) {
-				transformAll((Element)object, generateImplicitElements);
-			}
+	public static void transform(Element element) {
+		ElementAdapter transformer = getElementAdapter(element);
+		if (transformer != null) {
+			transformer.transform();
 		}
 	}
 	
-	public static void transformAll(ResourceSet resourceSet, boolean generateImplicitElements) {
-		for (Resource resource: resourceSet.getResources()) {
-			transformAll(resource, generateImplicitElements);
-		}
+	public static boolean isTransformed(Element element) {
+		return getElementAdapter(element).isTransformed();
 	}
 
 }

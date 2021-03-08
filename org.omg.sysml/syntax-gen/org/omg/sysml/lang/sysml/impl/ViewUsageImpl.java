@@ -46,7 +46,10 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -200,13 +203,13 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	@Override
 	public EList<Expression> getViewCondition() {
 		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
-		getOwnedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
 	}
 	
 	public EList<Expression> getAllViewConditions() {
 		EList<Expression> viewConditions = getViewCondition();
-		getInheritedMembersByMembership(ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		TypeUtil.getInheritedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
 	}
 
@@ -223,7 +226,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			map(Membership::getMemberElement).
 			forEachOrdered(viewedElements::add);
 		EList<Expression> viewConditions = getAllViewConditions();
-		viewedElements.removeIf(element->!PackageImpl.checkConditionsOn(element, viewConditions));
+		viewedElements.removeIf(element->!ExpressionUtil.checkConditionsOn(element, viewConditions));
 		return viewedElements;
 	}
 

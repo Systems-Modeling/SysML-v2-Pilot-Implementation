@@ -37,7 +37,9 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,7 +92,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_USAGE__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -159,7 +161,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
-		return StepImpl.getRelevantFeaturesOf(this);
+		return TypeUtil.getItemFeaturesOf(this);
 	}	
 	
 	@Override
@@ -187,7 +189,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	}
 	
 	public boolean isSubperformance() {
-		return StepImpl.isCompositePerformanceFeature(this);
+		return FeatureUtil.isCompositePerformanceFeature(this);
 	}
 	
 	/**

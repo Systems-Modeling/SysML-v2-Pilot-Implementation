@@ -48,12 +48,10 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.EnumerationUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -63,8 +61,6 @@ import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -74,6 +70,8 @@ import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -607,28 +605,14 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 	
 	protected Optional<Feature> getVariantSubsettedFeature() {
-		return getOwningVariantMembership() == null? Optional.empty():
-			getFirstSubsettedFeature().filter(f->f != getOwningVariationUsage());
-	}
-	
-	protected void addVariationTyping() {
-		Definition variationDefinition = getOwningVariationDefinition();
-		if (variationDefinition != null && isVariant()) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
-		}		
+		return UsageUtil.getOwningVariantMembershipFor(this) == null? Optional.empty():
+			getFirstSubsettedFeature().filter(f->f != UsageUtil.getOwningVariationUsageFor(this));
 	}
 	
 	@Override
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		addVariationSubsetting();
+		UsageUtil.addVariationSubsettingTo(this);
 		return super.getSubsettedNotRedefinedFeatures();
-	}
-	
-	protected void addVariationSubsetting() {
-		Usage variationUsage = getOwningVariationUsage();
-		if (variationUsage != null && isVariant()) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
-		}
 	}
 	
 	/**
@@ -636,8 +620,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
-		if (isSubjectParameter()) {
-			Feature typeSubject = getSubjectParameterOf(type);
+		if (UsageUtil.isSubjectParameter(this)) {
+			Feature typeSubject = TypeUtil.getSubjectParameterOf(type);
 			return typeSubject == null? Collections.emptyList(): 
 				Collections.singletonList(typeSubject);
 		}
@@ -646,105 +630,11 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	@Override
 	protected boolean isIgnoredParameter() {
-		return super.isIgnoredParameter() || isSubjectParameter();
-	}
-	
-	@Override
-	protected void computeValueConnector() {
-		FeatureValue valuation = getValuation();
-		if (valuation == null && isSubjectParameter()){
-			Feature subjectParameter = getRelevantSubjectParameter();
-			if (valueConnector == null && subjectParameter != null) {
-				valueConnector = makeBinding(subjectParameter, this);
-			}
-		} else {
-			super.computeValueConnector();
-		}
-	}
-	
-	@Override
-	public void transform() {
-		addVariationTyping();
-		super.transform();
-	}
-	
-	// Utility methods
-	
-	public Definition getOwningVariationDefinition() {
-		Namespace owner = getOwningNamespace();
-		return owner instanceof Definition && ((Definition)owner).isVariation()? 
-				((Definition)owner): null;
-	}
-
-	public Usage getOwningVariationUsage() {
-		Namespace owner = getOwningNamespace();
-		return owner instanceof Usage && ((Usage)owner).isVariation()? ((Usage)owner): null;
-	}
-
-	public VariantMembership getOwningVariantMembership() {
-		Membership owningMembership = getOwningMembership();
-		return owningMembership instanceof VariantMembership? (VariantMembership)owningMembership: null;
-	}
-	
-	public boolean isVariant() {
-		return getOwningMembership() instanceof VariantMembership;
-	}
-
-	public Usage getSubjectParameter() {
-		return null;
-	}
-	
-	public boolean isSubjectParameter() {
-		return getOwningFeatureMembership() instanceof SubjectMembership;
-	}
-
-	/**
-	 * Return the relevant subject parameter to which this Usage should be bound.
-	 */
-	public Feature getRelevantSubjectParameter() {
-		Type owningType = getOwningType();		
-		if (owningType instanceof Usage && !owningType.isAbstract()) {
-			if (((UsageImpl)owningType).hasRelevantSubjectParameter()) {
-				return getSubjectParameterOf(((Usage)owningType).getOwningType());
-			}
-		}
-		return null;
-	}
-	
-	protected boolean hasRelevantSubjectParameter() {
-		return false;
-	}
-	
-	protected static Usage getSubjectParameterOf(Type type) {
-		return type instanceof Definition? ((DefinitionImpl)type).getSubjectParameter():
-			   type instanceof Usage? ((UsageImpl)type).getSubjectParameter():
-			   null;
-	}
-	
-	protected static Usage basicGetSubjectParameterOf(Type type) {
-		return (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
-	}
-	
-	public static void computeSubjectParameterOf(Type type) {
-		Usage subjectParameter = null;
-		if (type != null) {
-			subjectParameter = (Usage)((TypeImpl)type).getOwnedFeatureByMembership(SubjectMembership.class);
-			if (subjectParameter == null) {
-				subjectParameter = addSubjectParameterTo(type);
-			}
-		}
-	}
-	
-	private   static Usage addSubjectParameterTo(Type type) {
-		Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-		SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-		membership.setOwnedSubjectParameter_comp(parameter);
-		type.getOwnedFeatureMembership_comp().add(membership);
-		return parameter;
+		return super.isIgnoredParameter() || UsageUtil.isSubjectParameter(this);
 	}
 	
 	//
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

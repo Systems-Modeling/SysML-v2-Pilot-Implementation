@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
@@ -34,6 +33,7 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -245,23 +245,10 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
 			Type owningType = getOwningType();
 			if (owningType instanceof IndividualDefinition) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
+				TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
 			} else if (owningType instanceof IndividualUsage) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
+				TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), owningType);
 			}
-		}
-	}
-	
-	/**
-	 * This method is used in TimeSliceFeatureImpl and SnapshotFeatureImpl.
-	 */
-	public static void setTypingFor(Feature feature) {
-		Type owningType = feature.getOwningType();
-		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
-			Type type = owningType instanceof IndividualUsage? 
-					((IndividualUsage)owningType).getIndividualDefinition(): 
-					owningType;
-			((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
 		}
 	}
 	

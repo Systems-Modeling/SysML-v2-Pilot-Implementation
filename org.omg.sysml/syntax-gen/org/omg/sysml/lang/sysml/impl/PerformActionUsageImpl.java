@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -140,7 +141,7 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	}
 	
 	public boolean isEnactedPerformance() {
-		return StepImpl.isEnactedPerformance(this);
+		return FeatureUtil.isEnactedPerformance(this);
 	}
 	
 	/**

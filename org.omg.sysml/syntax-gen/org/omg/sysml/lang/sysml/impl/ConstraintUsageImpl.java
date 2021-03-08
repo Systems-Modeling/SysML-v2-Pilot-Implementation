@@ -34,25 +34,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,13 +85,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	private Type subsettingRequirementFeature;
 
 	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this ConstraintUsage.
-	 */
-	protected BindingConnector resultConnector = null;
-
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -123,7 +111,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONSTRAINT_USAGE__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -296,57 +284,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
   		return false;
 	}
 
-	// Additional redefinitions and subsets
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		if (isAssumptionConstraint()) {
-			addAssumptionSubsetting();
-		} else if (isRequirementConstraint()){
-			addRequirementSubsetting();
-		}
-		super.computeImplicitGeneralTypes();
-	}
-	
-	protected void addAssumptionSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
-	}
-	
-	protected void addRequirementSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
-	}
-	
-	protected void addSubsetting(String subsettedFeatureName) {
-		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
-		if (feature != null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
-		}
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return CONSTRAINT_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isAssumptionConstraint() {
-		return getRequirementConstraintKind() == RequirementConstraintKind.ASSUMPTION;
-	}
-	
-	public boolean isRequirementConstraint() {
-		return getRequirementConstraintKind() == RequirementConstraintKind.REQUIREMENT;
-	}
-	
-	public RequirementConstraintKind getRequirementConstraintKind() {
-		FeatureMembership owningMembership = getOwningFeatureMembership();
-		return owningMembership instanceof RequirementConstraintMembership? 
-				((RequirementConstraintMembership)owningMembership).getKind(): null;
-	}
-	
-	@Override
-	public EList<Feature> getFeature() {
-		return super.getFeature();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,7 +301,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**
@@ -397,41 +334,41 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Additional Overrides
+	// Additional
 	
 	@Override
-	protected boolean hasRelevantSubjectParameter() {
-		Type owningType = getOwningType();
-		return isRequirement() && 
-			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
-	}
-	
-	public boolean isRequirement() {
-		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
-	}
-	
-	@Override
-	public Usage getSubjectParameter() {
-		return basicGetSubjectParameter();
-	}
-	
-	protected Usage basicGetSubjectParameter() {
-		return isRequirement()? basicGetSubjectParameterOf(this): null;
-	}
-	
-	protected void computeSubjectParameter() {
-		if (isRequirement()) {
-			UsageImpl.computeSubjectParameterOf(this);
+	public void computeImplicitGeneralTypes() {
+		if (UsageUtil.isAssumptionConstraint(this)) {
+			addAssumptionSubsetting();
+		} else if (UsageUtil.isRequirementConstraint(this)){
+			addRequirementSubsetting();
 		}
+		super.computeImplicitGeneralTypes();
+	}
+	
+	protected void addAssumptionSubsetting() {
+		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+	}
+	
+	protected void addRequirementSubsetting() {
+		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+	}
+	
+	protected void addSubsetting(String subsettedFeatureName) {
+		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
+		if (feature != null) {
+			TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), feature);
+		}
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return CONSTRAINT_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	@Override
 	public Feature getNamingFeature() {
-		return isAssumptionConstraint() || isRequirementConstraint()? 
+		return UsageUtil.isAssumptionConstraint(this) || UsageUtil.isRequirementConstraint(this)? 
 				getSubsettedConstraint():
 			    super.getNamingFeature();
 	}
@@ -472,20 +409,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			subsettingRequirementFeature = getDefaultType(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		return subsettingRequirementFeature;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}	
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
 	}
 	
 	//

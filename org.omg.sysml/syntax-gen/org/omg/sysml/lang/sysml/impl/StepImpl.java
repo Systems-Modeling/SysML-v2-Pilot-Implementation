@@ -24,17 +24,16 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -111,7 +110,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -139,66 +138,19 @@ public class StepImpl extends FeatureImpl implements Step {
 	@Override
 	protected String getDefaultSupertype() {
 		return 
-			isSubperformance()? 
+			FeatureUtil.isCompositePerformanceFeature(this)? 
 				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-			isEnactedPerformance()?
+			FeatureUtil.isEnactedPerformance(this)?
 				STEP_SUBSETTING_OBJECT_DEFAULT:
-			isIncomingTransfer()?
+			FeatureUtil.isIncomingTransfer(this)?
 				STEP_SUBSETTING_TRANSFER_DEFAULT:
 				STEP_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
-		return getRelevantFeaturesOf(this);
+		return TypeUtil.getItemFeaturesOf(this);
 	}	
-	
-	public static List<? extends Feature> getRelevantFeaturesOf(Step step) {
-		return step.getOwnedFeature().stream().
-				filter(f->f instanceof ItemFeature).
-				collect(Collectors.toList());
-	}
-	
-	// Utility methods
-	
-	public boolean isSubperformance() {
-		return isCompositePerformanceFeature(this);
-	}
-	
-	public boolean isEnactedPerformance() {
-		return isEnactedPerformance(this);
-	}
-	
-	public boolean isIncomingTransfer() {
-		return isIncomingTransfer(this);
-	}
-	
-	public static boolean isEnactedPerformance(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Structure ||
-				owningType instanceof Feature && 
-					((FeatureImpl)owningType).isStructureFeature();
-	}
-	
-	public static boolean isIncomingTransfer(Feature step) {
-		return step.getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
-	}
-	
-	public static boolean isCompositePerformanceFeature(Feature step) {
-		return step.isComposite() && isPerformanceFeature(step);
-	}
-	
-	public static boolean isPerformanceFeature(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Behavior || owningType instanceof Step;
-	}	
-	
-	public List<Step> getSubsteps() {
-		return getOwnedFeature().stream().filter(f->f instanceof Step).
-				map(f->(Step)f).collect(Collectors.toList());
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

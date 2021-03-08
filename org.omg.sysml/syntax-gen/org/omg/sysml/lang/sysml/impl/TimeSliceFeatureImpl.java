@@ -31,6 +31,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,13 +73,13 @@ public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeatur
 	}
 	
 	public void computeImplicitGeneralTypes() {
-		IndividualUsageImpl.setTypingFor(this);
+		UsageUtil.setIndividualTypingFor(this);
 		super.computeImplicitGeneralTypes();
 	}
 		
 	@Override
 	protected List<Type> getFeatureTypes() {
-		IndividualUsageImpl.setTypingFor(this);
+		UsageUtil.setIndividualTypingFor(this);
 		return super.getFeatureTypes();
 	}
 

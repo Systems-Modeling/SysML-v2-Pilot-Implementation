@@ -34,13 +34,15 @@ import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.TypeFeaturing
 import org.omg.sysml.lang.sysml.Namespace
 import java.net.URLDecoder
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.Expression
 import org.eclipse.swt.graphics.Image
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.FeatureUtil
 
 /**
  * Customization of the default outline structure.
@@ -411,10 +413,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def _isLeaf(Type type) {
-	    _isLeaf(type as Namespace) && (type as TypeImpl).isImplicitGeneralTypesEmpty() 	
+	    _isLeaf(type as Namespace) && TypeUtil.isImplicitGeneralTypesEmpty(type) 	
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
+		//ImplicitFieldAdapter.getOrCreateAdapter(type).
 		createImplicitGeneralizationNodes(parentNode, type)
 		if (type instanceof Feature) {
 			createImplicitTypeFeaturingNodes(parentNode, type)
@@ -424,7 +427,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
-		(type as TypeImpl).forEachImplicitGeneralType[eClass, generalType |
+		TypeUtil.forEachImplicitGeneralTypeOf(type, [eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -443,11 +446,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 					true
 				)
 			}
-		]
+		])
 	}
 	
 	def createImplicitTypeFeaturingNodes(IOutlineNode parentNode, Feature feature) {
-		(feature as FeatureImpl).forEachImplicitFeaturingType[featuringType |
+		FeatureUtil.forEachImplicitFeaturingTypeOf(feature, [featuringType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -465,11 +468,11 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 					true
 				)
 			}
-		]
+		])
 	}
 	
 	def createImplicitBindingConnectorNodes(IOutlineNode parentNode, Type type) {
-		(type as TypeImpl).forEachImplicitBindingConnector[connector, eClass |
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, eClass |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -480,7 +483,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(connector), eClass)
 			implicitNode.createNode(connector, imageDispatcher.invoke(connector), connector.eClass.getName, false)
-		]
+		])
 	}
 	
 	def _isLeaf(Association association) {
@@ -539,8 +542,8 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			super.createEObjectNode(parentNode, modelElement, image, text, isLeaf)
 		} else {
 			val node = new ImplicitNode(parentNode, image, text)
-			if (modelElement instanceof ElementImpl) {
-				modelElement.transform
+			if (modelElement instanceof Element) {
+				ElementUtil.transform(modelElement);
 			}
 			createChildrenDispatcher.invoke(node, modelElement)
 			node

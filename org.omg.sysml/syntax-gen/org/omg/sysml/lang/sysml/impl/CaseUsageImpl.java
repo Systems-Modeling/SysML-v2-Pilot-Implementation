@@ -28,10 +28,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,13 +90,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return CaseDefinitionImpl.getObjectiveRequirementOf(this);
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(this, ObjectiveMembership.class);
 	}
 	
-	private void computeObjectiveRequirement() {
-		CaseDefinitionImpl.computeObjectiveRequirementOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,13 +120,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 	
-	private void computeSubjectParameter() {
-		UsageImpl.computeSubjectParameterOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -227,23 +220,6 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 					CASE_SUBSETTING_SUBCASE_DEFAULT:
 					CASE_SUBSETTING_BASE_DEFAULT;
 	}
-	
-	// Additional overrides
-	
-	@Override
-	protected boolean hasRelevantSubjectParameter() {
-		Type owningType = getOwningType();
-		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		computeObjectiveRequirement();
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

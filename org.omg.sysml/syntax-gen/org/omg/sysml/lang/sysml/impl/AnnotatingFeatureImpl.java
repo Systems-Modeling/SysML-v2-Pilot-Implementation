@@ -100,7 +100,9 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		return AnnotatingElementImpl.getAnnotatedElementFor(this);
+		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_FEATURE__ANNOTATED_ELEMENT);
+		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
+		return annotatedElements;
 	}
 
 	/**
@@ -182,11 +184,6 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 		return !getOwnedMetadata().isEmpty();
 	}
 	
-	public void transform() {
-		super.transform();
-		AnnotatingElementImpl.transformAnnotatingElement(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

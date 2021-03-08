@@ -26,28 +26,27 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionFeatureKind;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -165,7 +164,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance()?
+		return FeatureUtil.isCompositePerformanceFeature(this)?
 				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
 				EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
@@ -173,7 +172,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();
-		return isTransitionGuard()?
+		return ExpressionUtil.isTransitionGuard(this)?
 					type == owningType? Collections.singletonList(this):
 					Collections.singletonList((Feature)getDefaultType(EXPRESSION_GUARD_FEATURE)):
 			   owningType instanceof FeatureValue? Collections.emptyList():
@@ -183,72 +182,35 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	@Override
 	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		Type owningType = getOwningType();
-		return isTransitionGuard() && type == owningType?
+		return ExpressionUtil.isTransitionGuard(this) && type == owningType?
 				Collections.singletonList(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
 				super.getGeneralTypes(type, skip);
 	}
 	
-	protected boolean isTransitionGuard() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return (membership instanceof TransitionFeatureMembership) &&
-				((TransitionFeatureMembership)membership).getKind() == TransitionFeatureKind.GUARD;
-	}
-		
 	@Override 
 	public EList<Feature> getInput() {
-		return super.getOwnedInput();
-	}
-	
-	protected void computeInput() {
-		if (getInput().isEmpty()) {
-			for (Feature parameter: getTypeParameters()) {
-				createFeatureForParameter(parameter);
-			}
-		}
-	}
-	
-	protected List<Feature> getTypeParameters() {
-		Type type = getExpressionType();
-		return type == null? Collections.emptyList():
-			   type.getInput().stream().
-				filter(input->((FeatureImpl)input).isParameter() && input.getOwner() == type).
-				collect(Collectors.toList());
-	}
-	
-	public Type getExpressionType() {
-		return getFunction();
+		// Only owned inputs
+		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
+		// Note: Using directionOf causes in infinite recursion.
+		getOwnedFeatureMembership().stream().
+			filter(mem->FeatureDirectionKind.IN == mem.getDirection() || 
+				FeatureDirectionKind.INOUT == mem.getDirection()).
+			map(FeatureMembership::getMemberFeature).
+			forEachOrdered(inputs::add);
+		return inputs;
 	}
 	
 	@Override
 	public EList<Feature> getOutput() {
-		return super.getOwnedOutput();
-	}
-	
-	protected void computeOutput() {
-		if (getOutput().isEmpty()) {
-			Feature parameter = SysMLFactory.eINSTANCE.createFeature();
-			ParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			membership.setOwnedMemberParameter_comp(parameter);
-			membership.setMemberName("$result");
-			getOwnedFeatureMembership_comp().add(membership);
-		}		
-	}
-			
-	protected Feature createFeatureForParameter(Feature parameter) {
-		if (parameter == null) {
-			return null;
-		} else {
-			Feature feature = SysMLFactory.eINSTANCE.createFeature();
-			FeatureMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
-			membership.setOwnedMemberFeature_comp(feature);
-			membership.setMemberName("$" + parameter.getName());
-			getOwnedFeatureMembership_comp().add(membership);
-			FeatureMembership parameterMembership = parameter.getOwningFeatureMembership();
-			if (parameterMembership != null) {
-				membership.setDirection(parameterMembership.getDirection());
-			}			
-			return feature;
-		}
+		// Only owned outputs
+		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
+		// Note: Using directionOf causes in infinite recursion.
+		getOwnedFeatureMembership().stream().
+			filter(mem->FeatureDirectionKind.OUT == mem.getDirection() || 
+				FeatureDirectionKind.INOUT == mem.getDirection()).
+			map(FeatureMembership::getMemberFeature).
+			forEachOrdered(outputs::add);
+		return outputs;
 	}
 	
 	/**
@@ -268,7 +230,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 	
 	/**
@@ -309,6 +271,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	public EList<Element> evaluate(Element target) {
 		return new BasicEList<>();
 	}
+	
+	// Other
 
 	@Override
 	public Collection<Feature> getFeaturesRedefinedByType() {
@@ -318,12 +282,12 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		// redefined features from the Expression type, without actually
 		// computing the inputs and outputs.
 		if (getInput().isEmpty()) {
-			features.addAll(getTypeParameters());
+			features.addAll(ExpressionUtil.getTypeParametersOf(this));
 		}
 		if (getOutput().isEmpty()) {
-			Type type = getExpressionType();
+			Type type = ExpressionUtil.getExpressionTypeOf(this);
 			if (type instanceof Function || type instanceof Expression) {
-				Feature result = ((TypeImpl)type).getOwnedResultParameter();
+				Feature result = TypeUtil.getOwnedResultParameterOf(type);
 				if (result != null) {
 					features.add(result);
 				}
@@ -333,18 +297,8 @@ public class ExpressionImpl extends StepImpl implements Expression {
 		return features;
 	}
 	
-	// Utility methods
+	//
 	
-	@Override
-	public void transform() {
-		super.transform();
-		if (getOwningNamespace() instanceof Multiplicity || getOwningMembership() instanceof FeatureValue) {
-			addImplicitFeaturingTypes();
-		}
-		computeInput();
-		computeOutput();
-	}
-		
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

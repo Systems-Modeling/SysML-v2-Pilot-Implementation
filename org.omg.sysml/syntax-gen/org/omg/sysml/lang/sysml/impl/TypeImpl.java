@@ -23,18 +23,12 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -43,17 +37,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -62,13 +53,13 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -254,20 +245,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> List<T> basicGetOwnedGeneralization(Class<T> kind) {
+	public <T extends Generalization> List<T> basicGetOwnedGeneralization(Class<T> kind) {
 		return (List<T>)getOwnedGeneralization_comp().stream().
 				filter(kind::isInstance).
 				collect(Collectors.toList());
 	}
-	
-	/**
-	 * Contains the required ends for implicit generalizations like implicit
-	 * superclassing, subsetting, featuretyping and redefinitions for future access.
-	 * The lists must not contain null values and the current type.
-	 */
-	protected Map<EClass, List<Type>> implicitGeneralTypes = new HashMap<>();
-	protected List<BindingConnector> implicitMemberBindingConnectors = new ArrayList<>();
-	protected List<BindingConnector> implicitFeatureBindingConnectors = new ArrayList<>();
 	
 	public void computeImplicitGeneralTypes() {
 		if (!isConjugated()) {
@@ -275,146 +257,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
  		}
 	}
 	
-	/**
-	 * Removes derived values such as implicit generalizations or binding connectors
-	 * added by an in-place transformation from the model. This method is regularly
-	 * called by the Xtext linker when cleaning up references to make the next linking
-	 * cycle start from a clean state.
-	 */
-	public void cleanDerivedValues() {
-		cleanImplicitGeneralTypes();
-		cleanImplicitBindingConnectors();
-	}
-
-	private void cleanImplicitGeneralTypes() {
-		implicitGeneralTypes.clear();
-	}
-	
-	private void cleanImplicitBindingConnectors() {
-		implicitMemberBindingConnectors.clear();
-		implicitFeatureBindingConnectors.clear();
-	}
-	
-	public void addImplicitGeneralizations() {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
-			for (Type general : implicitGeneralTypes.get(eClass)) {
-				Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
-				newGeneralization.setGeneral(general);
-				newGeneralization.setSpecific(this);
-				getOwnedRelationship_comp().add(newGeneralization);
-			}
-		}
-		cleanImplicitGeneralTypes();
-	}
-	
-	public List<Membership> addImplicitBindingConnectors() {
-		List<Membership> createdMemberships = new ArrayList<>();
-		for (BindingConnector connector : implicitFeatureBindingConnectors) {
-			createdMemberships.add(addOwnedFeature(connector));
-		}
-		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			createdMemberships.add(addOwnedMember(connector));
-		}
-		cleanImplicitBindingConnectors();
-		return createdMemberships;
-	}
-	
-	public boolean isImplicitGeneralTypesEmpty() {
-		return implicitGeneralTypes.isEmpty();
-	}
-	
-	public Collection<EClass> getImplicitGeneralTypeKinds() {
-		return implicitGeneralTypes.keySet();
-	}
-	
-	public void forEachImplicitBindingConnector(Consumer<BindingConnector> consumer) {
-		Stream.concat(implicitMemberBindingConnectors.stream(), implicitFeatureBindingConnectors.stream())
-				.forEach(consumer);
-	}
-	
-	/**
-	 * Executes the given consumer function with all implicit binding connectors and
-	 * their corresponding membership type (Membership or FeatureMembership)
-	 */
-	public void forEachImplicitBindingConnector(BiConsumer<BindingConnector, EClass> consumer) {
-		for (BindingConnector connector : implicitFeatureBindingConnectors) {
-			consumer.accept(connector, SysMLPackage.Literals.FEATURE_MEMBERSHIP);
-		}
-		for (BindingConnector connector : implicitMemberBindingConnectors) {
-			consumer.accept(connector, SysMLPackage.Literals.MEMBERSHIP);
-		}
-	}
-	
-	public List<Type> getImplicitGeneralTypes() {
-		return implicitGeneralTypes.values().stream().
-				flatMap(Collection::stream).
-				collect(Collectors.toList());
-	}
-	
-	public List<Type> getImplicitGeneralTypes(EClass eClass) {
-		return implicitGeneralTypes.keySet().stream().
-				filter(eClass::isSuperTypeOf).
-				flatMap(keyClass->getImplicitGeneralTypesOnly(keyClass).stream()).
-				collect(Collectors.toList());
-	}
-	
-	public List<Type> getImplicitGeneralTypesOnly(EClass eClass) {
-		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList());
-	}
-	
-	public Type getFirstImplicitGeneralType(EClass eClass) {
-		List<Type> types = getImplicitGeneralTypes(eClass);
-		return types.isEmpty() ? null : types.get(0);
-	}
-	
-	public boolean isImplicitGeneralizationDeclaredFor(EClass eClass) {
-		return implicitGeneralTypes.containsKey(eClass);
-	}
-	
-	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
-		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
-	}
-	
-	public void forEachImplicitGeneralType(BiConsumer<EClass, Type> action) {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
-			for (Type supertype : implicitGeneralTypes.get(eClass)) {
-				action.accept(eClass, supertype);
-			}
-		}
-	}
-	
-	protected <T extends Generalization> void removeEmptyGeneralTypes(Class<T> kind) {
-		List<Relationship> ownedRelationships = getOwnedRelationship_comp();
-		for (Generalization generalization: basicGetOwnedGeneralization(kind)) {
-			if (((GeneralizationImpl)generalization).basicGetGeneral() == null) {
-				ownedRelationships.remove(generalization);
-			}
-		}
-	}
-	
 	protected void addDefaultGeneralType() {
-		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
-	}
-	
-	@SuppressWarnings("unchecked")
-	protected void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
-		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
-		removeEmptyGeneralTypes(kind);
-		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
-				basicGetOwnedGeneralization(kind).isEmpty()) {
-			Type general = getDefaultType(superTypeNames);
-			if (general != null && general != this) {
-				List<Type> generalizations = new ArrayList<>();
-				generalizations.add(general);
-				implicitGeneralTypes.put(generalizationEClass, generalizations);
-			}
-		}
-	}
-	
-	protected void addImplicitGeneralType(EClass eClass, Type general) {
-		if (general != null && !isImplicitGeneralizationFor(eClass, general)) {
-			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
-		}
+		TypeUtil.addDefaultGeneralTypeTo(this, getGeneralizationEClass(), getDefaultSupertype());
 	}
 	
 	protected EClass getGeneralizationEClass() {
@@ -442,18 +286,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return generalization;
 	}
 	
-	protected Type getDefaultType(String... defaultNames) {
-		return getLibraryType(this, defaultNames);
-	}
-	
-	public static Type getLibraryType(Element context, String... defaultNames) {
-		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(context, defaultName);
-			if (element instanceof Type) {
-				return (Type)element;
-			}
-		}
-		return null;
+	public Type getDefaultType(String... defaultNames) {
+		return SysMLLibraryUtil.getLibraryType(this, defaultNames);
 	}
 	
 	/**
@@ -736,9 +570,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				findFirst().orElse(null);
 		if (multiplicity == null) {
 			visited.add(this);
-			List<Type> superTypes = getSupertypes();
+			List<Type> superTypes = TypeUtil.getSupertypesOf(this);
 			if (!superTypes.isEmpty()) {
-				Type general = getSupertypes().get(0);
+				Type general = TypeUtil.getSupertypesOf(this).get(0);
 				if (general != null && !visited.contains(general)) { 
 					multiplicity = ((TypeImpl)general).getMultiplicity(visited);
 				}
@@ -779,7 +613,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
-		for (Type general: getSupertypes()) {
+		for (Type general: TypeUtil.getSupertypesOf(this)) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
@@ -909,7 +743,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			return ((TypeImpl)originalType).getAllSuperTypes(visited);
 		} else {
 			EList<Type> superTypes = new BasicEList<>();
-			getSupertypes().stream().
+			TypeUtil.getSupertypesOf(this).stream().
 				forEachOrdered(superType->{
 					if (superType != null && !visited.contains(superType)) {
 						visited.add(superType);
@@ -930,254 +764,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		return ownedMemberships;
 	}
 
-	// Utility Methods
-	
-	public List<Type> getSupertypes() {
-		return getSupertypes(null);
-	}
-	
-	public List<Type> getSupertypes(Element skip) {
-		List<Type> ownedGeneralEnds = new ArrayList<>(); 
-		getOwnedGeneralization()
-			.stream()
-			.filter(gen -> gen != skip)
-			.map(Generalization::getGeneral)
-			.forEachOrdered(ownedGeneralEnds::add);
-		computeImplicitGeneralTypes();
-		ownedGeneralEnds.addAll(getImplicitGeneralTypes());
-		return ownedGeneralEnds;
-	}
-	
-	public boolean conformsTo(Type supertype) {
-		return conformsTo(supertype, new HashSet<>());
-	}
-	
-	// Note: Generalizations are allowed to be cyclic.
-	protected boolean conformsTo(Type supertype, Set<Type> visited) {
-		if (this == supertype) {
-			return true;
-		} else {
-			visited.add(this);
-			if (isConjugated()) {
-				Type originalType = getOwnedConjugator().getOriginalType();
-				return !visited.contains(originalType) && ((TypeImpl)originalType).conformsTo(supertype);
-			} else {
-				return getSupertypes().stream().
-					anyMatch(type->!visited.contains(type) && 
-							((TypeImpl)type).conformsTo(supertype, visited));
-			}
-		}
-	}
-	
-	public <M extends Membership, T> Stream<T> getInheritedMembersByMembership(Class<M> kind, Class<T> type) {
-		return getInheritedMembership().stream().
-				filter(kind::isInstance).
-				map(Membership::getOwnedMemberElement).
-				filter(type::isInstance).
-				map(type::cast);
-	}
-	
-	public <T extends Membership> Stream<Feature> getFeaturesByMembership(Class<T> kind) {
-		return getFeatureMembership().stream().
-				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature);
-	}
-	
-	public <T extends Membership> Feature getFeatureByMembership(Class<T> kind) {
-		return getFeaturesByMembership(kind).findFirst().orElse(null);
-	}
-	
-	public <T extends Membership> Stream<Feature> getOwnedFeaturesByMembership(Class<T> kind) {
-		return getOwnedFeatureMembership().stream().
-				filter(kind::isInstance).
-				map(FeatureMembership::getOwnedMemberFeature).
-				filter(f->f != null);
-	}
-	
-	public <T extends Membership> Feature getOwnedFeatureByMembership(Class<T> kind) {
-		return getOwnedFeaturesByMembership(kind).findFirst().orElse(null);
-	}
-	
-	public List<Feature> getPublicFeatures() {
-		return publicMemberships().stream().
-				filter(FeatureMembership.class::isInstance).
-				map(FeatureMembership.class::cast).
-				map(FeatureMembership::getMemberFeature).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getAllEndFeatures() {
-		return getAllEndFeatures(new HashSet<>());
-	}
-	
-	protected List<Feature> getAllEndFeatures(Set<Type> visited) {
-		visited.add(this);
-		List<Feature> ends = getOwnedEndFeatures();
-		int n = ends.size();
-		for (Type general: getSupertypes()) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures(visited);
-				if (inheritedEnds.size() > n) {
-					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
-				}
-			}
-		}
-		return ends;
-	}
-	
-	public List<Feature> getOwnedEndFeatures() {
-		return getOwnedFeature().stream().
-				filter(Feature::isEnd).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getAllParameters() {
-		return getAllParameters(new HashSet<>());
-	}
-	
-	protected List<Feature> getAllParameters(Set<Type> visited) {
-		visited.add(this);
-		List<Feature> parameters = getOwnedParameters();
-		parameters.removeIf(p->((FeatureImpl)p).isResultParameter());
-		int n = parameters.size();
-		Feature resultParameter = getOwnedResultParameter();
-		for (Type general: getSupertypes()) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
-				if (resultParameter == null) {
-					resultParameter = inheritedParameters.stream().
-							filter(p->((FeatureImpl)p).isResultParameter()).
-							findFirst().orElse(null);
-				}
-				inheritedParameters.removeIf(p->((FeatureImpl)p).isResultParameter());
-				if (inheritedParameters.size() > n) {
-					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
-				}
-			}
-		}
-		if (resultParameter != null) {
-			parameters.add(resultParameter);
-		}
-		return parameters;
-	}
-	
-	public List<Feature> getOwnedParameters() {
-		return getOwnedFeaturesByMembership(ParameterMembership.class).collect(Collectors.toList());
-	}
-	
-	public EList<Feature> getOwnedInput() {
-		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.IN.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getOwnedMemberFeature();
-					if (feature != null) {
-						inputs.add(feature);
-					}
-				}
-			}
-		}
-		return inputs;
-	}
-	
-	public EList<Feature> getOwnedOutput() {
-		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.OUT.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getOwnedMemberFeature();
-					if (feature != null) {
-						outputs.add(feature);
-					}
-				}
-			}
-		}
-		return outputs;
-	}
-	
-	protected Feature getOwnedResultParameter() {
-		return getOwnedParameters().stream().
-				filter(p->((FeatureImpl)p).isResultParameter()).
-				findFirst().orElse(null);
-	}
-	
-	protected Feature getResultParameter() {
-		// NOTE: This method will fill in an inherited result Parameter if this Type does not
-		// have an owned result Parameter. It is for use when transform may have not yet been
-		// called on this Type.
-		return getResultParameter(new HashSet<>());
-	}
-	
-	protected Feature getResultParameter(Set<Type> visited) {
-		visited.add(this);
-		Feature resultParameter = getOwnedResultParameter();
-		if (resultParameter == null) {
-			for (Type general: getSupertypes()) {
-				if (general != null && !visited.contains(general)) {
-					resultParameter = ((TypeImpl)general).getResultParameter(visited);
-					if (resultParameter != null) {
-						break;
-					}
-				}
-			}
-		}
-		return resultParameter;
-	}
-	
-	public FeatureMembership addOwnedFeature(Feature feature) {
-		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-		membership.setOwnedMemberFeature_comp(feature);
-		getOwnedFeatureMembership_comp().add(membership);
-		return membership;
-	}
-	
-	protected BindingConnector addImplicitBindingConnector(Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		((ConnectorImpl)connector).addConnectorEnd(source);
-		((ConnectorImpl)connector).addConnectorEnd(target);
-		if (((ConnectorImpl)connector).getContextType() == this) {
-			implicitFeatureBindingConnectors.add(connector);
-		} else {
-			implicitMemberBindingConnectors.add(connector);
-		}
-		return connector;
-	}
-
-	protected BindingConnector addImplicitBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		((ConnectorImpl)connector).addConnectorEnd(source);
-		((ConnectorImpl)connector).addConnectorEnd(target);
-		implicitMemberBindingConnectors.add(connector);
-		((FeatureImpl)connector).addFeaturingTypes(featuringTypes);
-		return connector;
-	}
-	
-	protected BindingConnector makeBinding(Feature source, Feature target) {
-		return addImplicitBindingConnector(source, target);
-	}
-	
-	protected BindingConnector makeResultBinding(Expression sourceExpression, Feature target) {
-		((ElementImpl)sourceExpression).transform();
-		return makeBinding(sourceExpression.getResult(), target);
-	}
-		
-// Other Methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		clearCaches();
-		computeImplicitGeneralTypes();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

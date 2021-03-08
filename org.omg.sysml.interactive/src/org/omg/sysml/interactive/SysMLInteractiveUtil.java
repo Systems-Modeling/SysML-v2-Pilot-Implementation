@@ -12,7 +12,7 @@ import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.util.TypeUtil;
 
 public class SysMLInteractiveUtil {
 
@@ -57,13 +57,10 @@ public class SysMLInteractiveUtil {
 				}
 			}
 		} else {
-			if (element instanceof TypeImpl) {
-				TypeImpl type = (TypeImpl)element;
-				for (EClass kind: type.getImplicitGeneralTypeKinds()) {
-					for (Type supertype: type.getImplicitGeneralTypes(kind)) {
-						formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind);
-					}
-				}
+			if (element instanceof Type) {
+				TypeUtil.forEachImplicitGeneralTypeOf((Type)element, (kind, supertype)->
+					formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind)
+				);
 			}
 			
 			for (Relationship subrelationship: element.getOwnedRelationship()) {

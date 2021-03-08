@@ -29,7 +29,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.util.TypeUtil;
 
 public class IsTypeFunction extends ModelLevelFunction {
 
@@ -57,7 +57,7 @@ public class IsTypeFunction extends ModelLevelFunction {
 	
 	protected static boolean isType(Element context, Element element, Type type) {
 		return getType(context, element).stream().
-				anyMatch(elementType->((TypeImpl)elementType).conformsTo(type));
+				anyMatch(elementType->TypeUtil.conforms(elementType, type));
 	}
 
 	@Override

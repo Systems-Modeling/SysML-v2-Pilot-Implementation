@@ -26,9 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -44,13 +42,11 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.AnnotatingFeature;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Import;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -392,47 +388,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		}
 		return importedMembership;
 	}
-	
-	// Utility Methods
-	
-	public Membership addOwnedMember(Element element) {
-		Membership membership = SysMLFactory.eINSTANCE.createMembership();
-		membership.setOwnedMemberElement_comp(element);
-		getOwnedMembership_comp().add(membership);
-		return membership;
-	}
-	
-	public <M extends Membership, T> Stream<T> getOwnedMembersByMembership(Class<M> kind, Class<T> type) {
-		return getOwnedMembership().stream().
-				filter(kind::isInstance).
-				map(Membership::getOwnedMemberElement).
-				filter(type::isInstance).
-				map(type::cast);
-	}
-	
-	public <M extends Membership, T> Stream<T> getMembersByMembership(Class<M> kind, Class<T> type) {
-		return getMembership().stream().
-				filter(kind::isInstance).
-				map(Membership::getMemberElement).
-				filter(type::isInstance).
-				map(type::cast);
-	}
-	
-	/**
-	 * Include AnnotatingFeatures that are members of this Namespace.
-	 */
-	@Override
-	public List<AnnotatingFeature> getAllAnnotatingFeatures() {
-		List<AnnotatingFeature> annotatingFeatures = super.getAllAnnotatingFeatures();
-		getOwnedMember().stream().
-			filter(AnnotatingFeature.class::isInstance).
-			map(AnnotatingFeature.class::cast).
-			filter(feature->feature.getAnnotatedElement().contains(this)).
-			forEach(annotatingFeatures::add);
-		return annotatingFeatures;
-	}
-
-//
 	
 	/**
 	 * <!-- begin-user-doc -->

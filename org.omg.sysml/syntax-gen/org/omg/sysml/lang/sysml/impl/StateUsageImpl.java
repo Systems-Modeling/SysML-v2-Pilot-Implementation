@@ -35,7 +35,9 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -214,7 +216,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
-		return StepImpl.getRelevantFeaturesOf(this);
+		return TypeUtil.getItemFeaturesOf(this);
 	}	
 	
 	@Override
@@ -225,7 +227,7 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	}
 	
 	public boolean isSubperformance() {
-		return StepImpl.isCompositePerformanceFeature(this);
+		return FeatureUtil.isCompositePerformanceFeature(this);
 	}
 	
 	/**

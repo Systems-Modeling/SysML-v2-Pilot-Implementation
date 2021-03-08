@@ -85,12 +85,12 @@ import org.omg.sysml.lang.sysml.ObjectiveMembership
 import org.omg.sysml.lang.sysml.ReturnParameterMembership
 import org.omg.sysml.lang.sysml.FeatureMembership
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership
-import org.omg.sysml.lang.sysml.impl.RequirementVerificationMembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
 import org.omg.sysml.lang.sysml.AllocationUsage
 import org.omg.sysml.lang.sysml.AllocationDefinition
+import org.omg.sysml.util.UsageUtil
 
 /**
  * This class contains custom validation rules. 
@@ -311,7 +311,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check // Must be owned by objective of verification case.
 	def checkRequirementVerificationMembership(RequirementVerificationMembership mem) {
-		if (!(mem as RequirementVerificationMembershipImpl).isLegalVerification()) {
+		if (!UsageUtil.isLegalVerification(mem)) {
 			error(INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP_MSG, null, org.omg.sysml.xtext.validation.SysMLValidator.INVALID_REQUIREMENTVERIFICATIONMEMBERSHIP)
 		}
 	}

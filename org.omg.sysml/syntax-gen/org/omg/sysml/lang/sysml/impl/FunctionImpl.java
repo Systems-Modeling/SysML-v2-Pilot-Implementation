@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -52,13 +52,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class FunctionImpl extends BehaviorImpl implements Function {
 
 	public static final String FUNCTION_SUPERCLASS_DEFAULT = "Performances::Evaluation";
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this Function.
-	 */
-	protected BindingConnector resultConnector = null;
-
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -112,7 +105,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	 * @generated NOT // derived
 	 */
 	public Feature basicGetResult() {
-		return super.getOwnedResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**
@@ -148,23 +141,7 @@ public class FunctionImpl extends BehaviorImpl implements Function {
 	protected String getDefaultSupertype() {
 		return FUNCTION_SUPERCLASS_DEFAULT;
 	}
-
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
 	
-	@Override
-	public void transform() {
-		super.transform();
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}
-	
-	@Override
-	public void cleanDerivedValues() {
-		resultConnector = null;
-		super.cleanDerivedValues();
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

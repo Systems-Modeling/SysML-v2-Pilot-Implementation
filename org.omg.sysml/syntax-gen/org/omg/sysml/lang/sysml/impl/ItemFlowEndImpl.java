@@ -26,14 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -63,7 +62,7 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 
 	@Override
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		addItemFlowEndSubsetting();
+		FeatureUtil.addItemFlowEndSubsettingTo(this);
 		return super.getSubsettedNotRedefinedFeatures();
 	}
 	
@@ -71,22 +70,6 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	public void computeImplicitGeneralTypes() {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
 		addComputedRedefinitions(null);
-	}
-
-	protected void addItemFlowEndSubsetting() {
-		EList<Feature> features = getOwnedFeature();
-		if (!features.isEmpty()) {
-			List<Redefinition> redefinitions = ((FeatureImpl) features.get(0)).basicGetOwnedRedefinition();
-			if (!redefinitions.isEmpty()) {
-				Feature feature = redefinitions.get(0).getRedefinedFeature();
-				if (feature != null) {
-					Type owner = feature.getOwningType();
-					if (owner instanceof Feature) {
-						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner);
-					}
-				}
-			}
-		}
 	}
 
 	@Override
@@ -97,12 +80,6 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		return getOwnedFeature();
-	}
-	
-	@Override
-	public void transform() {
-		addItemFlowEndSubsetting();
-		super.transform();
 	}
 	
 } // ItemFlowEndImpl

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2019 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,7 +29,7 @@ package org.omg.kerml.xtext.naming
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.QualifiedName
 import com.google.common.base.Preconditions
-import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.util.ElementUtil
 
 class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 	
@@ -47,7 +47,7 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 			val c = qualifiedNameAsText.charAt(j)
 			val delim = "\'\\.:".indexOf(c)
 			if (isDelimitable && delim > 1) {
-				segments.add(ElementImpl.unescapeString(qualifiedNameAsText.substring(i, j)));
+				segments.add(ElementUtil.unescapeString(qualifiedNameAsText.substring(i, j)));
 				i = j + delim - 1;
 				j = i - 1;
 			} else if (delim == 0) {
@@ -58,7 +58,7 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 			j++
 		}
 		if (i < n && j <= n) {
-			segments.add(ElementImpl.unescapeString(qualifiedNameAsText.substring(i, j)));
+			segments.add(ElementUtil.unescapeString(qualifiedNameAsText.substring(i, j)));
 		}
 		
 		QualifiedName.create(segments)
@@ -70,13 +70,13 @@ class KerMLQualifiedNameConverter implements IQualifiedNameConverter {
 		val segmentCount = name.getSegmentCount
 		switch (segmentCount) {
 			case 0: return ""
-			case 1: return ElementImpl.escapeName(name.getFirstSegment)
+			case 1: return ElementUtil.escapeName(name.getFirstSegment)
 			default: {
 				val builder = new StringBuilder;
-				builder.append(ElementImpl.escapeName(name.getFirstSegment))
+				builder.append(ElementUtil.escapeName(name.getFirstSegment))
 				for (var i = 1; i < segmentCount; i++) {
 					builder.append("::")
-					builder.append(ElementImpl.escapeName(name.getSegment(i)))
+					builder.append(ElementUtil.escapeName(name.getSegment(i)))
 				}
 				return builder.toString()
 			}

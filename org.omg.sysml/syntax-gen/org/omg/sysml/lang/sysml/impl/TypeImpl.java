@@ -54,7 +54,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
@@ -267,23 +266,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	
 	protected String getDefaultSupertype() {
 		return TYPE_GENERALIZATION_DEFAULT;
-	}
-	
-	protected <T extends Generalization> Generalization getDefaultGeneralization(EClass eClass, String... defaultNames) {
-		@SuppressWarnings("unchecked")
-		List<? extends Generalization> generalizations = 
-			basicGetOwnedGeneralization((Class<? extends Generalization>)eClass.getInstanceClass());
-		Generalization generalization = null;
-		if (generalizations.isEmpty()) {
-			Type general = getDefaultType(defaultNames);
-			// Do not add a default generalization of a type to itself.
-			if (general != null && general != this) {
-				generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
-				generalization.setGeneral(general);
-				((GeneralizationImpl)generalization).basicSetSpecific(this);
-			}
-		}
-		return generalization;
 	}
 	
 	public Type getDefaultType(String... defaultNames) {

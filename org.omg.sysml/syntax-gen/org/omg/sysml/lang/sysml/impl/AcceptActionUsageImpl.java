@@ -27,6 +27,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -98,6 +99,17 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 		return null;
 	}
 	
+	@Override
+	public void computeImplicitGeneralTypes() {
+		addComputedRedefinitions(null);
+	}
+	
+	@Override
+	public void addComputedRedefinitions(Element skip) {
+		TypeUtil.addDefaultGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), getDefaultSupertype());
+		super.addComputedRedefinitions(skip);
+	}
+
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()? 

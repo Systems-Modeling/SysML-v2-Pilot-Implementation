@@ -80,7 +80,7 @@ package Actions {
 	 * to a designated receiver Occurrence with a given payload of items.
 	 */
 	action def SendAction(in items[0..*], in receiver: Occurrence[1]) {
-	    ref :>> outgoingTransfersFromSelf: TransferBefore[1] :> receiver::incomingTransfers {
+	    ref outgoingTransfer: TransferBefore[1] :>> outgoingTransfersFromSelf :> receiver::incomingTransfers {
 	    	ref :>> transferSource: SendAction {
 	    		ref :>> sourceOutput = items;
 	    	}
@@ -98,7 +98,7 @@ package Actions {
 	 * outputting the payload of items from the Transfer.
 	 */
 	action def AcceptAction(out items[0..*], in receiver: Occurrence[1]) {
-		ref :>> incomingTransfersToSelf: TransferBefore[1] :> receiver::incomingTransfers {
+		ref incomingTransfer: TransferBefore[1] :>> incomingTransfersToSelf :> receiver::incomingTransfers {
 			ref :>> transferTarget: AcceptAction {
 				ref :>> targetInput = items;
 			}

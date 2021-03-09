@@ -1,13 +1,17 @@
-package 'Signaling Example' {
-	part def Scene;
-	part def Image;
-	part def Picture;
+package 'Messaging Example' {
+	item def Scene;
+	item def Image;
+	item def Picture;
+	
+	attribute def Show {
+		item picture : Picture;
+	}
 	
 	action def Focus(in scene : Scene, out image : Image);
 	action def Shoot(in image : Image, out picture : Picture);
 	action def TakePicture;
 	
-	action display;
+	action screen;
 		
 	action takePicture : TakePicture {
 		action trigger accept scene : Scene;
@@ -22,6 +26,6 @@ package 'Signaling Example' {
 			out item picture;
 		}
 		
-		then send shoot::picture to display;
+		then send Show(shoot::picture) to screen;
 	}
 }

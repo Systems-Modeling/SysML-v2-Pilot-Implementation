@@ -1,4 +1,4 @@
-package 'Action Allocation Example' {
+package 'Action Performance Example' {
 	import 'Action Decomposition'::*;
 	
 	part def Camera;
@@ -6,11 +6,9 @@ package 'Action Allocation Example' {
 	part def Imager;
 	
 	part camera : Camera {
-		ref views : Scene[*] ordered = takePhoto::scene;
-		ref photos : Picture[*] ordered = takePhoto::picture;
 		
 		perform action takePhoto[*] ordered 
-			:> takePicture (in scene, out picture);
+			:> takePicture;
 		
 		part f : AutoFocus {
 			perform takePhoto::focus;			

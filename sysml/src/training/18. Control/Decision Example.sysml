@@ -6,23 +6,27 @@ package 'Decision Example' {
 	part battery;
 	part powerSystem;
 	
+	action def MonitorBattery (out charge : Real);
 	action def AddCharge (in charge : Real);
+	action def EndCharging;
 	
 	action def ChargeBattery {
 		first start;
 
 		then merge continueCharging;
 		
-		then action monitor accept batteryCharge : Real;
+		then action monitor : MonitorBattery {
+			out batteryCharge : Real;
+		}
 		
 		then decide;
 			if monitor::batteryCharge < 100 then addCharge;
-			if monitor::batteryCharge >= 100 then signalCharged;
+			if monitor::batteryCharge >= 100 then endCharging;
 			
 		action addCharge : AddCharge (batteryCharge);
 		then continueCharging;
 		
-		action signalCharged send BatteryCharged() to powerSystem;
+		action endCharging;
 		then done;
 	}
 }

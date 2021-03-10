@@ -887,7 +887,7 @@ ResultExpressionMember returns SysML::ResultExpressionMembership :
 
 /* Expressions */
 
-Expression returns SysML::BlockExpression :
+Expression returns SysML::Expression :
 	( isAbstract ?= 'abstract' )? 'expr' 
 	ExpressionDeclaration FunctionBody
 ;

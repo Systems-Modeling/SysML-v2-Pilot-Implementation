@@ -253,7 +253,7 @@ BodyExpressionMember returns SysML::FeatureMembership :
 	ownedMemberFeature_comp = BodyExpression
 ;
 
-BodyExpression returns SysML::BlockExpression :
+BodyExpression returns SysML::Expression :
 	   => ( ownedFeatureMembership_comp += BodyParameterMember 
 	   	    ( ownedFeatureMembership_comp += BodyParameterMember )* 
 	        '(' ownedFeatureMembership_comp += ResultExpressionMember ')' )

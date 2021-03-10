@@ -29,11 +29,14 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.adapter.ItemFlowEndAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.DataType;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -41,14 +44,19 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.impl.FeatureImpl;
@@ -252,4 +260,36 @@ public class FeatureUtil {
 				collect(Collectors.toList());
 	}
 	
+	// SourceEnds
+
+	public static Feature getSource(Feature owningFeature) {
+		Type type = owningFeature.getOwningType();
+		return owningFeature instanceof BindingConnector && 
+			   type instanceof SatisfyRequirementUsage? 
+					((SatisfyRequirementUsage)type).getSubjectParameter(): 
+					getPreviousFeature(owningFeature);
+	}
+	
+	private static Feature getPreviousFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		if (!(owner instanceof Type)) {
+			return null;
+		} else {
+			EList<Membership> memberships = ((Type)owner).getOwnedMembership();
+			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
+				Membership membership = memberships.get(i);
+				if (!(membership instanceof TransitionFeatureMembership)) {
+					Element previousElement = memberships.get(i).getMemberElement();
+					if (previousElement instanceof Feature &&
+						!(isParameter((Feature)previousElement) || 
+						  previousElement instanceof Connector || 
+						  previousElement instanceof TransitionUsage)) {
+						return (Feature)previousElement;
+					}
+				}
+			}
+			return owner instanceof Feature? getPreviousFeature((Feature)owner): null;
+		}
+	}
+
 }

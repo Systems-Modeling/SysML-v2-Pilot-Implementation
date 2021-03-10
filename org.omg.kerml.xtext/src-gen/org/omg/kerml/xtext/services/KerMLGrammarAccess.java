@@ -5326,7 +5326,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cExpressionDeclarationParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final RuleCall cFunctionBodyParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		///* Expressions */ Expression SysML::BlockExpression:
+		///* Expressions */ Expression SysML::Expression:
 		//	isAbstract?='abstract'? 'expr'
 		//	ExpressionDeclaration FunctionBody;
 		@Override public ParserRule getRule() { return rule; }
@@ -8063,7 +8063,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getResultExpressionMemberAccess().getRule();
 	}
 	
-	///* Expressions */ Expression SysML::BlockExpression:
+	///* Expressions */ Expression SysML::Expression:
 	//	isAbstract?='abstract'? 'expr'
 	//	ExpressionDeclaration FunctionBody;
 	public ExpressionElements getExpressionAccess() {
@@ -8727,7 +8727,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getBodyExpressionMemberAccess().getRule();
 	}
 	
-	//BodyExpression SysML::BlockExpression:
+	//BodyExpression SysML::Expression:
 	//	=> (ownedFeatureMembership_comp+=BodyParameterMember
 	//	ownedFeatureMembership_comp+=BodyParameterMember*
 	//	'(' ownedFeatureMembership_comp+=super::ResultExpressionMember ')') |

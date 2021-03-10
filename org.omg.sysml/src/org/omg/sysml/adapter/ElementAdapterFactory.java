@@ -72,11 +72,6 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseBlockExpression(BlockExpression element) {
-			return new BlockExpressionAdapter(element);
-		}
-		
-		@Override
 		public ElementAdapter caseCalculationDefinition(CalculationDefinition element) {
 			return new CalculationDefinitionAdapter(element);
 		}

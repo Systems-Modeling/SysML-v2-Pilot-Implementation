@@ -1251,7 +1251,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cOwnedRelationship_compAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cOwnedRelationship_compOwnedFeatureTypingParserRuleCall_1_0 = (RuleCall)cOwnedRelationship_compAssignment_1.eContents().get(0);
 		
-		//BodyExpression SysML::BlockExpression:
+		//BodyExpression SysML::Expression:
 		//	=> (ownedFeatureMembership_comp+=BodyParameterMember
 		//	ownedFeatureMembership_comp+=BodyParameterMember*
 		//	'(' ownedFeatureMembership_comp+=ResultExpressionMember ')') | ownedRelationship_comp+=OwnedFeatureTyping;
@@ -2672,7 +2672,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		return getBodyExpressionMemberAccess().getRule();
 	}
 	
-	//BodyExpression SysML::BlockExpression:
+	//BodyExpression SysML::Expression:
 	//	=> (ownedFeatureMembership_comp+=BodyParameterMember
 	//	ownedFeatureMembership_comp+=BodyParameterMember*
 	//	'(' ownedFeatureMembership_comp+=ResultExpressionMember ')') | ownedRelationship_comp+=OwnedFeatureTyping;

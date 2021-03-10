@@ -111,6 +111,7 @@ public class ExpressionAdapter extends StepAdapter {
 		}
 		computeInput();
 		computeOutput();
+		createResultConnector(getTarget().getResult());
 	}
 		
 }

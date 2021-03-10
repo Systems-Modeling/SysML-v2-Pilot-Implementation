@@ -15,7 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.omg.kerml.expressions.xtext.services.KerMLExpressionsGrammarAccess;
-import org.omg.sysml.lang.sysml.BlockExpression;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
@@ -48,8 +48,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SysMLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case SysMLPackage.BLOCK_EXPRESSION:
-				sequence_BodyExpression(context, (BlockExpression) semanticObject); 
+			case SysMLPackage.EXPRESSION:
+				sequence_BodyExpression(context, (Expression) semanticObject); 
 				return; 
 			case SysMLPackage.FEATURE:
 				if (rule == grammarAccess.getEmptyFeatureRule()
@@ -370,7 +370,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	
 	/**
 	 * Contexts:
-	 *     BodyExpression returns BlockExpression
+	 *     BodyExpression returns Expression
 	 *
 	 * Constraint:
 	 *     (
@@ -382,7 +382,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *         ownedRelationship_comp+=OwnedFeatureTyping
 	 *     )
 	 */
-	protected void sequence_BodyExpression(ISerializationContext context, BlockExpression semanticObject) {
+	protected void sequence_BodyExpression(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

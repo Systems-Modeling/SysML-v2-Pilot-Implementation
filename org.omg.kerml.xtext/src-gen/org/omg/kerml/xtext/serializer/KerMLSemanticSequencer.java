@@ -21,7 +21,6 @@ import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.BlockExpression;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.Comment;
@@ -136,17 +135,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 			case SysMLPackage.BINDING_CONNECTOR:
 				sequence_BindingConnector_BindingConnectorDeclaration_FeatureConjugationPart_FeatureDeclaration_Identification_MultiplicityPart_Redefines_Redefinitions_Subsets_Subsettings_TypeBody_TypeFeaturingPart_TypedBy_Typings(context, (BindingConnector) semanticObject); 
 				return; 
-			case SysMLPackage.BLOCK_EXPRESSION:
-				if (rule == grammarAccess.getBodyExpressionRule()) {
-					sequence_BodyExpression(context, (BlockExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFeatureElementRule()
-						|| rule == grammarAccess.getExpressionRule()) {
-					sequence_EmptyReturnParameterPart_Expression_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (BlockExpression) semanticObject); 
-					return; 
-				}
-				else break;
 			case SysMLPackage.BOOLEAN_EXPRESSION:
 				if (rule == grammarAccess.getFeatureElementRule()
 						|| rule == grammarAccess.getBooleanExpressionRule()) {
@@ -248,7 +236,16 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 				}
 				else break;
 			case SysMLPackage.EXPRESSION:
-				if (rule == grammarAccess.getParameterRule()) {
+				if (rule == grammarAccess.getBodyExpressionRule()) {
+					sequence_BodyExpression(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getFeatureElementRule()
+						|| rule == grammarAccess.getExpressionRule()) {
+					sequence_EmptyReturnParameterPart_Expression_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getParameterRule()) {
 					sequence_Identification_MultiplicityPart_Parameter_ParameterDeclaration_Redefines_Subsets_TypedBy(context, (Expression) semanticObject); 
 					return; 
 				}
@@ -1227,10 +1224,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         ownedMembership_comp+=NonFeatureTypeMember? 
+	 *         documentation_comp+=OwnedDocumentation? 
 	 *         (
-	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
-	 *             ownedMembership_comp+=NonFeatureTypeMember?
+	 *             (ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             documentation_comp+=OwnedDocumentation?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1254,10 +1251,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship_comp+=OwnedSuperclassing ownedRelationship_comp+=OwnedSuperclassing*) | ownedRelationship_comp+=ClassifierConjugation)? 
 	 *         (ownedFeatureMembership_comp+=ParameterMember ownedFeatureMembership_comp+=ParameterMember*)? 
 	 *         (ownedFeatureMembership_comp+=ReturnParameterMember | ownedFeatureMembership_comp+=EmptyReturnParameterMember) 
-	 *         ownedMembership_comp+=NonFeatureTypeMember? 
+	 *         documentation_comp+=OwnedDocumentation? 
 	 *         (
-	 *             (documentation_comp+=OwnedDocumentation | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
-	 *             ownedMembership_comp+=NonFeatureTypeMember?
+	 *             (ownedMembership_comp+=NonFeatureTypeMember | ownedFeatureMembership_comp+=FeatureTypeMember | ownedRelationship_comp+=Import)? 
+	 *             documentation_comp+=OwnedDocumentation?
 	 *         )* 
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
@@ -1526,8 +1523,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     FeatureElement returns BlockExpression
-	 *     Expression returns BlockExpression
+	 *     FeatureElement returns Expression
+	 *     Expression returns Expression
 	 *
 	 * Constraint:
 	 *     (
@@ -1590,7 +1587,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ownedFeatureMembership_comp+=ResultExpressionMember?
 	 *     )
 	 */
-	protected void sequence_EmptyReturnParameterPart_Expression_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, BlockExpression semanticObject) {
+	protected void sequence_EmptyReturnParameterPart_Expression_FeatureConjugationPart_FeatureDeclaration_FunctionBody_Identification_MultiplicityPart_Redefines_Redefinitions_ReturnParameterPart_StepParameterList_Subsets_Subsettings_TypeFeaturingPart_TypedBy_Typings_ValuePart(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

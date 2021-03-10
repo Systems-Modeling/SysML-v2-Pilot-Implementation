@@ -18652,7 +18652,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getBodyExpressionMemberAccess().getRule();
 	}
 	
-	//BodyExpression SysML::BlockExpression:
+	//BodyExpression SysML::Expression:
 	//	=> (ownedFeatureMembership_comp+=BodyParameterMember
 	//	ownedFeatureMembership_comp+=BodyParameterMember*
 	//	'(' ownedFeatureMembership_comp+=super::ResultExpressionMember ')') |

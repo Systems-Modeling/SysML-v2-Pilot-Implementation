@@ -148,8 +148,8 @@ public interface Membership extends Relationship {
 	void setMemberElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Membership Owning Namespace</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp <em>Owned Membership comp</em>}'.
+	 * Returns the value of the '<em><b>Membership Owning Namespace</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -163,21 +163,21 @@ public interface Membership extends Relationship {
 	 * <p>The Namespace of which the <code>memberElement</code> becomes a <cpde>member</code> due to this Membership.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Membership Owning Namespace</em>' container reference.
+	 * @return the value of the '<em>Membership Owning Namespace</em>' reference.
 	 * @see #setMembershipOwningNamespace(Namespace)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_MembershipOwningNamespace()
-	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp
-	 * @model opposite="ownedMembership_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMembership
+	 * @model opposite="ownedMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	Namespace getMembershipOwningNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Membership Owning Namespace</em>' container reference.
+	 * @param value the new value of the '<em>Membership Owning Namespace</em>' reference.
 	 * @see #getMembershipOwningNamespace()
 	 * @generated
 	 */

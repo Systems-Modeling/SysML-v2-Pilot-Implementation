@@ -170,30 +170,6 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 * @generated
 	 */
 	@Override
-	public EList<Membership> getOwnedMembership_comp() {
-		EList<Membership> ownedMembership_comp = new UniqueEList<Membership>();
-		MetadataFeatureValue metadataFeatureValue_comp = getMetadataFeatureValue_comp();
-		if (metadataFeatureValue_comp != null) {
-			ownedMembership_comp.add(metadataFeatureValue_comp);
-		}
-		return new UnionEObjectEList<Membership>(this, SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP_COMP, ownedMembership_comp.size(), ownedMembership_comp.toArray());
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMembership_comp() {
-  		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SysMLPackage.METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP:
@@ -279,14 +255,48 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE__OWNED_MEMBERSHIP_COMP:
-				return isSetOwnedMembership_comp();
+			case SysMLPackage.METADATA_FEATURE__OWNED_MEMBERSHIP:
+				return isSetOwnedMembership();
 			case SysMLPackage.METADATA_FEATURE__METADATA_FEATURE_VALUE_COMP:
 				return isSetMetadataFeatureValue_comp();
 			case SysMLPackage.METADATA_FEATURE__METADATA_FEATURE_VALUE:
 				return basicGetMetadataFeatureValue() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Membership> getOwnedMembership() {
+		EList<Membership> ownedMembership = new UniqueEList<Membership>();
+		MetadataFeatureValue metadataFeatureValue_comp = getMetadataFeatureValue_comp();
+		if (metadataFeatureValue_comp != null) {
+			ownedMembership.add(metadataFeatureValue_comp);
+		}
+		return new UnionEObjectEList<Membership>(this, SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP, ownedMembership.size(), ownedMembership.toArray());
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.METADATA_FEATURE__OWNED_RELATIONSHIP_COMP};
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMembership() {
+  		return false;
 	}
 
 } //MetadataFeatureImpl

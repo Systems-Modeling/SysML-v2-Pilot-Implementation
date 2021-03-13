@@ -37,20 +37,20 @@ import org.eclipse.emf.common.util.EList;
  * member = membership.memberElement
  * ownedMember = ownedMembership.ownedMemberElement
  * importedMembership = importedMemberships()
+ * ownedMembership = ownedRelationship->selectByKind(Membership)
+ * ownedImport = ownedRelationship->selectByKind(Import)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMembership <em>Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport_comp <em>Owned Import comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getMember <em>Member</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMember <em>Owned Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getImportedMembership <em>Imported Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace()
@@ -82,30 +82,9 @@ public interface Namespace extends Element {
 	EList<Membership> getMembership();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Import comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Import}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Import#getImportOwningNamespace <em>Import Owning Namespace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Import comp</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Import Relationships for which this Namespace is the <code>importingNamespace</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Import comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedImport_comp()
-	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningNamespace
-	 * @model opposite="importOwningNamespace" containment="true"
-	 * @generated
-	 */
-	EList<Import> getOwnedImport_comp();
-
-	/**
 	 * Returns the value of the '<em><b>Owned Import</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Import}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Import#getImportOwningNamespace <em>Import Owning Namespace</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -118,9 +97,14 @@ public interface Namespace extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Namespace that are Imports, for which the Namespace is the <code>importOwningNamespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Import</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedImport()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Import#getImportOwningNamespace
+	 * @model opposite="importOwningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -215,30 +199,9 @@ public interface Namespace extends Element {
 	EList<Membership> getImportedMembership();
 
 	/**
-	 * Returns the value of the '<em><b>Owned Membership comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Membership comp</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Memberships for which this Namespace is the <code>membershipOwningNamespace</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Membership comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedMembership_comp()
-	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace
-	 * @model opposite="membershipOwningNamespace" containment="true"
-	 * @generated
-	 */
-	EList<Membership> getOwnedMembership_comp();
-
-	/**
 	 * Returns the value of the '<em><b>Owned Membership</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Membership}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -252,9 +215,14 @@ public interface Namespace extends Element {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedRelationships</code> of this Namespace that are Memberships, for which the Namespace is the <code>membershipOwningNamespace</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getNamespace_OwnedMembership()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace
+	 * @model opposite="membershipOwningNamespace" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */

@@ -22,13 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
@@ -36,6 +33,7 @@ import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,9 +79,14 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	 * @generated
 	 */
 	@Override
-	public PortDefinition getPortDefinition() {
-		PortDefinition portDefinition = basicGetPortDefinition();
-		return portDefinition != null && portDefinition.eIsProxy() ? (PortDefinition)eResolveProxy((InternalEObject)portDefinition) : portDefinition;
+	public EList<PortDefinition> getPortDefinition() {
+		EList<PortDefinition> portDefinitions =
+				new NonNotifyingEObjectEList<>(PortDefinition.class, this, SysMLPackage.PORT_USAGE__PORT_DEFINITION);
+		super.getType().stream().
+			filter(PortDefinition.class::isInstance).
+			map(PortDefinition.class::cast).
+			forEachOrdered(portDefinitions::add);
+		return portDefinitions;
 	}
 
 	/**
@@ -104,20 +107,10 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public void setPortDefinition(PortDefinition newPortDefinition) {
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public boolean isSetPortDefinition() {
-		return basicGetPortDefinition() != null;
+		return !getPortDefinition().isEmpty();
 	}
 
 	/**
@@ -167,12 +160,9 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	 */
 	@Override
 	public EList<Type> getType() {
-		EList<Type> type = new UniqueEList<Type>();
-		PortDefinition portDefinition = getPortDefinition();
-		if (portDefinition != null) {
-			type.add(portDefinition);
-		}
-		return new UnionEObjectEList<Type>(this, SysMLPackage.Literals.FEATURE__TYPE, type.size(), type.toArray());
+		@SuppressWarnings("unchecked")
+		EList<Type> portDefinition = (EList<Type>)((EList<?>)getPortDefinition());
+		return portDefinition;
 	}
 
 	/**
@@ -239,8 +229,7 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
-				if (resolve) return getPortDefinition();
-				return basicGetPortDefinition();
+				return getPortDefinition();
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
 				if (resolve) return getPortOwningUsage();
 				return basicGetPortOwningUsage();
@@ -253,11 +242,13 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
-				setPortDefinition((PortDefinition)newValue);
+				getPortDefinition().clear();
+				getPortDefinition().addAll((Collection<? extends PortDefinition>)newValue);
 				return;
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
 				setPortOwningUsage((Usage)newValue);
@@ -275,7 +266,7 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case SysMLPackage.PORT_USAGE__PORT_DEFINITION:
-				setPortDefinition((PortDefinition)null);
+				getPortDefinition().clear();
 				return;
 			case SysMLPackage.PORT_USAGE__PORT_OWNING_USAGE:
 				setPortOwningUsage((Usage)null);

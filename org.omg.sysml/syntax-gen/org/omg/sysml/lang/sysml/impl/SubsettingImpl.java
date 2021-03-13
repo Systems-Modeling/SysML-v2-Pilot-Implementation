@@ -41,9 +41,9 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SubsettingImpl#getOwningFeature <em>Owning Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SubsettingImpl#getSubsettedFeature <em>Subsetted Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.SubsettingImpl#getSubsettingFeature <em>Subsetting Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SubsettingImpl#getOwningFeature <em>Owning Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -342,15 +342,15 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				if (resolve) return getOwningFeature();
+				return basicGetOwningFeature();
 			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
 				if (resolve) return getSubsettedFeature();
 				return basicGetSubsettedFeature();
 			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
 				if (resolve) return getSubsettingFeature();
 				return basicGetSubsettingFeature();
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				if (resolve) return getOwningFeature();
-				return basicGetOwningFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -362,14 +362,14 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				setOwningFeature((Feature)newValue);
+				return;
 			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
 				setSubsettedFeature((Feature)newValue);
 				return;
 			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
 				setSubsettingFeature((Feature)newValue);
-				return;
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				setOwningFeature((Feature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -382,14 +382,14 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				setOwningFeature((Feature)null);
+				return;
 			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
 				setSubsettedFeature((Feature)null);
 				return;
 			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
 				setSubsettingFeature((Feature)null);
-				return;
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				setOwningFeature((Feature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -402,18 +402,18 @@ public class SubsettingImpl extends GeneralizationImpl implements Subsetting {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.SUBSETTING__OWNING_TYPE:
+				return isSetOwningType();
 			case SysMLPackage.SUBSETTING__GENERAL:
 				return isSetGeneral();
 			case SysMLPackage.SUBSETTING__SPECIFIC:
 				return isSetSpecific();
-			case SysMLPackage.SUBSETTING__OWNING_TYPE:
-				return isSetOwningType();
+			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
+				return isSetOwningFeature();
 			case SysMLPackage.SUBSETTING__SUBSETTED_FEATURE:
 				return isSetSubsettedFeature();
 			case SysMLPackage.SUBSETTING__SUBSETTING_FEATURE:
 				return isSetSubsettingFeature();
-			case SysMLPackage.SUBSETTING__OWNING_FEATURE:
-				return isSetOwningFeature();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -60,7 +60,7 @@ public interface AnnotatingElement extends Element {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Annotated Element</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_AnnotatedElement()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='annotatingElement'"
 	 * @generated
 	 */
@@ -78,7 +78,7 @@ public interface AnnotatingElement extends Element {
 	 * @return the value of the '<em>Annotation</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingElement_Annotation()
 	 * @see org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement
-	 * @model opposite="annotatingElement" ordered="false"
+	 * @model opposite="annotatingElement"
 	 * @generated
 	 */
 	EList<Annotation> getAnnotation();

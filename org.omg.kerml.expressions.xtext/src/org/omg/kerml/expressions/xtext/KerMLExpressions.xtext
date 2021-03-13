@@ -133,9 +133,9 @@ EqualityOperator :
 
 ClassificationExpression returns SysML::Expression :
 	  RelationalExpression ( {SysML::OperatorExpression.operand_comp += current}
-		operator = ClassificationOperator ownedFeatureMembership_comp += TypeReferenceMember )?
+		operator = ClassificationOperator ownedRelationship_comp += TypeReferenceMember )?
 	| {SysML::OperatorExpression} operand_comp += SelfReferenceExpression 
-		operator = ClassificationOperator ownedFeatureMembership_comp += TypeReferenceMember
+		operator = ClassificationOperator ownedRelationship_comp += TypeReferenceMember
 ;
 
 ClassificationOperator :
@@ -155,7 +155,7 @@ OwnedFeatureTyping returns SysML::FeatureTyping :
 ;
 
 SelfReferenceExpression returns SysML::FeatureReferenceExpression :
-	ownedFeatureMembership_comp += SelfReferenceMember
+	ownedRelationship_comp += SelfReferenceMember
 ;
 
 SelfReferenceMember returns SysML::ReturnParameterMembership :
@@ -227,7 +227,7 @@ UnaryOperator :
 // Extent Expressions
 
 ExtentExpression returns SysML::Expression :
-	  {SysML::OperatorExpression} operator = 'all' ownedFeatureMembership_comp += TypeReferenceMember
+	  {SysML::OperatorExpression} operator = 'all' ownedRelationship_comp += TypeReferenceMember
 	| SequenceExpression
 ;
 
@@ -235,7 +235,7 @@ ExtentExpression returns SysML::Expression :
 // Extent Expressions (Deprecated)
 @Deprecated
 ExtentExpression_Deprecated returns SysML::OperatorExpression :
-	ownedFeatureMembership_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
+	ownedRelationship_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
 ;
 
 /* Sequence Expressions */
@@ -245,7 +245,7 @@ SequenceExpression returns SysML::Expression :
 	( {SysML::OperatorExpression.operand_comp += current} 
 	  operator = '[' operand_comp += OwnedExpression ']'
 	| {SysML::OperatorExpression.operand_comp += current} '->' 
-	  operator = Name ( ownedFeatureMembership_comp += BodyExpressionMember )+
+	  operator = Name ( ownedRelationship_comp += BodyExpressionMember )+
 	)*
 ;
 
@@ -254,9 +254,9 @@ BodyExpressionMember returns SysML::FeatureMembership :
 ;
 
 BodyExpression returns SysML::Expression :
-	   => ( ownedFeatureMembership_comp += BodyParameterMember 
-	   	    ( ownedFeatureMembership_comp += BodyParameterMember )* 
-	        '(' ownedFeatureMembership_comp += ResultExpressionMember ')' )
+	   => ( ownedRelationship_comp += BodyParameterMember 
+	   	    ( ownedRelationship_comp += BodyParameterMember )* 
+	        '(' ownedRelationship_comp += ResultExpressionMember ')' )
 	 | ownedRelationship_comp += OwnedFeatureTyping
 ;
 
@@ -299,7 +299,7 @@ BaseExpression returns SysML::Expression :
 // Feature Reference Expressions
 
 FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
-	ownedMembership_comp += FeatureReferenceMember
+	ownedRelationship_comp += FeatureReferenceMember
 ;
 
 FeatureReferenceMember returns SysML::Membership :
@@ -317,13 +317,13 @@ fragment ArgumentList returns SysML::Expression :
 ;
 
 fragment PositionalArgumentList returns SysML::Expression :
-	ownedFeatureMembership_comp += OwnedExpressionMember 
-	( ',' ownedFeatureMembership_comp += OwnedExpressionMember )*
+	ownedRelationship_comp += OwnedExpressionMember 
+	( ',' ownedRelationship_comp += OwnedExpressionMember )*
 ;
 
 fragment NamedArgumentList returns SysML::Expression :
-	ownedFeatureMembership_comp += NamedExpressionMember 
-	( ',' ownedFeatureMembership_comp += NamedExpressionMember )*
+	ownedRelationship_comp += NamedExpressionMember 
+	( ',' ownedRelationship_comp += NamedExpressionMember )*
 ;
 
 NamedExpressionMember returns SysML::FeatureMembership :

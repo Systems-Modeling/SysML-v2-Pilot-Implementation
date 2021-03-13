@@ -242,22 +242,18 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *         (operand_comp+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand_comp+=AndExpression) | 
 	 *         (operand_comp+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand_comp+=EqualityExpression) | 
 	 *         (operand_comp+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand_comp+=ClassificationExpression) | 
-	 *         (
-	 *             operand_comp+=ClassificationExpression_OperatorExpression_0_1_0 
-	 *             operator=ClassificationOperator 
-	 *             ownedFeatureMembership_comp+=TypeReferenceMember
-	 *         ) | 
-	 *         (operand_comp+=SelfReferenceExpression operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember) | 
+	 *         (operand_comp+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship_comp+=TypeReferenceMember) | 
+	 *         (operand_comp+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship_comp+=TypeReferenceMember) | 
 	 *         (operand_comp+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand_comp+=AdditiveExpression) | 
 	 *         (operand_comp+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand_comp+=MultiplicativeExpression) | 
 	 *         (operand_comp+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand_comp+=ExponentiationExpression) | 
 	 *         (operand_comp+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand_comp+=UnitsExpression) | 
 	 *         (operand_comp+=UnitsExpression_OperatorExpression_1_0 operator='@[' operand_comp+=OwnedExpression) | 
 	 *         (operator=UnaryOperator operand_comp+=ExtentExpression) | 
-	 *         (operator='all' ownedFeatureMembership_comp+=TypeReferenceMember) | 
-	 *         (ownedFeatureMembership_comp+=TypeReferenceMember operator='allInstances') | 
+	 *         (operator='all' ownedRelationship_comp+=TypeReferenceMember) | 
+	 *         (ownedRelationship_comp+=TypeReferenceMember operator='allInstances') | 
 	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_0_0 operator='[' operand_comp+=OwnedExpression) | 
-	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_1_0 operator=Name ownedFeatureMembership_comp+=BodyExpressionMember+) | 
+	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_1_0 operator=Name ownedRelationship_comp+=BodyExpressionMember+) | 
 	 *         (operand_comp+=SequenceConstructionExpression_OperatorExpression_1_2_0_0 operator=',' operand_comp+=SequenceElementList) | 
 	 *         (operand_comp+=SequenceConstructionExpression_OperatorExpression_1_2_1_0 operator='..' operand_comp+=OwnedExpression) | 
 	 *         (operand_comp+=SequenceElementList_OperatorExpression_1_0 operator=',' operand_comp+=SequenceElementList)
@@ -325,22 +321,18 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *         (operand_comp+=XorExpression_OperatorExpression_1_0 operator=XorOperator operand_comp+=AndExpression) | 
 	 *         (operand_comp+=AndExpression_OperatorExpression_1_0 operator=AndOperator operand_comp+=EqualityExpression) | 
 	 *         (operand_comp+=EqualityExpression_OperatorExpression_1_0 operator=EqualityOperator operand_comp+=ClassificationExpression) | 
-	 *         (
-	 *             operand_comp+=ClassificationExpression_OperatorExpression_0_1_0 
-	 *             operator=ClassificationOperator 
-	 *             ownedFeatureMembership_comp+=TypeReferenceMember
-	 *         ) | 
-	 *         (operand_comp+=SelfReferenceExpression operator=ClassificationOperator ownedFeatureMembership_comp+=TypeReferenceMember) | 
+	 *         (operand_comp+=ClassificationExpression_OperatorExpression_0_1_0 operator=ClassificationOperator ownedRelationship_comp+=TypeReferenceMember) | 
+	 *         (operand_comp+=SelfReferenceExpression operator=ClassificationOperator ownedRelationship_comp+=TypeReferenceMember) | 
 	 *         (operand_comp+=RelationalExpression_OperatorExpression_1_0 operator=RelationalOperator operand_comp+=AdditiveExpression) | 
 	 *         (operand_comp+=AdditiveExpression_OperatorExpression_1_0 operator=AdditiveOperator operand_comp+=MultiplicativeExpression) | 
 	 *         (operand_comp+=MultiplicativeExpression_OperatorExpression_1_0 operator=MultiplicativeOperator operand_comp+=ExponentiationExpression) | 
 	 *         (operand_comp+=ExponentiationExpression_OperatorExpression_1_0 operator=ExponentiationOperator operand_comp+=UnitsExpression) | 
 	 *         (operand_comp+=UnitsExpression_OperatorExpression_1_0 operator='@[' operand_comp+=OwnedExpression) | 
 	 *         (operator=UnaryOperator operand_comp+=ExtentExpression) | 
-	 *         (operator='all' ownedFeatureMembership_comp+=TypeReferenceMember) | 
-	 *         (ownedFeatureMembership_comp+=TypeReferenceMember operator='allInstances') | 
+	 *         (operator='all' ownedRelationship_comp+=TypeReferenceMember) | 
+	 *         (ownedRelationship_comp+=TypeReferenceMember operator='allInstances') | 
 	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_0_0 operator='[' operand_comp+=OwnedExpression) | 
-	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_1_0 operator=Name ownedFeatureMembership_comp+=BodyExpressionMember+) | 
+	 *         (operand_comp+=SequenceExpression_OperatorExpression_1_1_0 operator=Name ownedRelationship_comp+=BodyExpressionMember+) | 
 	 *         (operand_comp+=SequenceConstructionExpression_OperatorExpression_1_2_0_0 operator=',' operand_comp+=SequenceElementList) | 
 	 *         (operand_comp+=SequenceConstructionExpression_OperatorExpression_1_2_1_0 operator='..' operand_comp+=OwnedExpression)
 	 *     )
@@ -374,11 +366,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *
 	 * Constraint:
 	 *     (
-	 *         (
-	 *             ownedFeatureMembership_comp+=BodyParameterMember 
-	 *             ownedFeatureMembership_comp+=BodyParameterMember* 
-	 *             ownedFeatureMembership_comp+=ResultExpressionMember
-	 *         ) | 
+	 *         (ownedRelationship_comp+=BodyParameterMember ownedRelationship_comp+=BodyParameterMember* ownedRelationship_comp+=ResultExpressionMember) | 
 	 *         ownedRelationship_comp+=OwnedFeatureTyping
 	 *     )
 	 */
@@ -426,7 +414,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     ExtentExpression_Deprecated returns OperatorExpression
 	 *
 	 * Constraint:
-	 *     (ownedFeatureMembership_comp+=TypeReferenceMember operator='allInstances')
+	 *     (ownedRelationship_comp+=TypeReferenceMember operator='allInstances')
 	 */
 	protected void sequence_ExtentExpression_Deprecated(ISerializationContext context, OperatorExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -478,7 +466,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     FeatureReferenceExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
-	 *     ownedMembership_comp+=FeatureReferenceMember
+	 *     ownedRelationship_comp+=FeatureReferenceMember
 	 */
 	protected void sequence_FeatureReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -551,8 +539,8 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     (
 	 *         ownedRelationship_comp+=OwnedFeatureTyping 
 	 *         (
-	 *             (ownedFeatureMembership_comp+=OwnedExpressionMember ownedFeatureMembership_comp+=OwnedExpressionMember*) | 
-	 *             (ownedFeatureMembership_comp+=NamedExpressionMember ownedFeatureMembership_comp+=NamedExpressionMember*)
+	 *             (ownedRelationship_comp+=OwnedExpressionMember ownedRelationship_comp+=OwnedExpressionMember*) | 
+	 *             (ownedRelationship_comp+=NamedExpressionMember ownedRelationship_comp+=NamedExpressionMember*)
 	 *         )?
 	 *     )
 	 */
@@ -984,7 +972,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     SelfReferenceExpression returns FeatureReferenceExpression
 	 *
 	 * Constraint:
-	 *     ownedFeatureMembership_comp+=SelfReferenceMember
+	 *     ownedRelationship_comp+=SelfReferenceMember
 	 */
 	protected void sequence_SelfReferenceExpression(ISerializationContext context, FeatureReferenceExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

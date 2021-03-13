@@ -182,7 +182,7 @@ public class TypeAdapter extends NamespaceAdapter {
 			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 			membership.setOwnedMemberParameter_comp(resultParameter);
-			type.getOwnedFeatureMembership_comp().add(membership);
+			type.getOwnedRelationship_comp().add(membership);
 			ElementUtil.transform(resultParameter);
 		}
 	}

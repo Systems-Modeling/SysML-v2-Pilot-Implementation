@@ -32,9 +32,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
@@ -149,40 +146,27 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 	 */
 	@Override
 	public Element getOwningDocumentedElement() {
-		if (eContainerFeatureID() != SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT) return null;
-		return (Element)eInternalContainer();
+		Element owningDocumentedElement = basicGetOwningDocumentedElement();
+		return owningDocumentedElement != null && owningDocumentedElement.eIsProxy() ? (Element)eResolveProxy((InternalEObject)owningDocumentedElement) : owningDocumentedElement;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetOwningDocumentedElement(Element newOwningDocumentedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningDocumentedElement, SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT, msgs);
-		return msgs;
+	public Element basicGetOwningDocumentedElement() {
+		return super.basicGetOwningAnnotatedElement();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwningDocumentedElement(Element newOwningDocumentedElement) {
-		if (newOwningDocumentedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT && newOwningDocumentedElement != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningDocumentedElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningDocumentedElement != null)
-				msgs = ((InternalEObject)newOwningDocumentedElement).eInverseAdd(this, SysMLPackage.ELEMENT__DOCUMENTATION_COMP, Element.class, msgs);
-			msgs = basicSetOwningDocumentedElement(newOwningDocumentedElement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT, newOwningDocumentedElement, newOwningDocumentedElement));
+		super.setOwningAnnotatedElement(newOwningDocumentedElement);
 	}
 
 	/**
@@ -191,7 +175,7 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 	 * @generated
 	 */
 	public boolean isSetOwningDocumentedElement() {
-		return getOwningDocumentedElement() != null;
+		return basicGetOwningDocumentedElement() != null;
 	}
 
 	/**
@@ -317,8 +301,9 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwningAnnotatedElement(Element newOwningAnnotatedElement, NotificationChain msgs) {
-		return basicSetOwningDocumentedElement(newOwningAnnotatedElement, msgs);
+	@Override
+	public Element basicGetOwningAnnotatedElement() {
+		return basicGetOwningDocumentedElement();
 	}
 
 	/**
@@ -357,44 +342,12 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningDocumentedElement((Element)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case SysMLPackage.DOCUMENTATION__DOCUMENTING_COMMENT_COMP:
 				return basicSetDocumentingComment_comp(null, msgs);
-			case SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT:
-				return basicSetOwningDocumentedElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__DOCUMENTATION_COMP, Element.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -408,7 +361,8 @@ public class DocumentationImpl extends AnnotationImpl implements Documentation {
 			case SysMLPackage.DOCUMENTATION__DOCUMENTING_COMMENT_COMP:
 				return getDocumentingComment_comp();
 			case SysMLPackage.DOCUMENTATION__OWNING_DOCUMENTED_ELEMENT:
-				return getOwningDocumentedElement();
+				if (resolve) return getOwningDocumentedElement();
+				return basicGetOwningDocumentedElement();
 			case SysMLPackage.DOCUMENTATION__DOCUMENTING_COMMENT:
 				if (resolve) return getDocumentingComment();
 				return basicGetDocumentingComment();

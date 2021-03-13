@@ -98,7 +98,7 @@ public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Parameter()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredBehavior'"
 	 *        annotation="subsets"
 	 * @generated

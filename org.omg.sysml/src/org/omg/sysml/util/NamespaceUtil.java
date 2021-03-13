@@ -45,7 +45,7 @@ public class NamespaceUtil {
 	public static Membership addOwnedMemberTo(Namespace namespace, Element element) {
 		Membership membership = SysMLFactory.eINSTANCE.createMembership();
 		membership.setOwnedMemberElement_comp(element);
-		namespace.getOwnedMembership_comp().add(membership);
+		namespace.getOwnedRelationship_comp().add(membership);
 		return membership;
 	}
 

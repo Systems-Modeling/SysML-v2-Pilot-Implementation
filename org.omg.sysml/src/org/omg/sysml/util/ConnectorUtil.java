@@ -48,7 +48,7 @@ public class ConnectorUtil {
 		endFeature.getOwnedRelationship_comp().add(subsetting);
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
 		membership.setOwnedMemberFeature_comp(endFeature);
-		connector.getOwnedFeatureMembership_comp().add(membership);
+		connector.getOwnedRelationship_comp().add(membership);
 		return endFeature;
 	}
 

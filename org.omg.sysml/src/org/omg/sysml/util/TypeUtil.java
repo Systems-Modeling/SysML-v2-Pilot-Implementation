@@ -237,7 +237,7 @@ public class TypeUtil {
 	public static FeatureMembership addOwnedFeatureTo(Type type, Feature feature) {
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
 		membership.setOwnedMemberFeature_comp(feature);
-		type.getOwnedFeatureMembership_comp().add(membership);
+		type.getOwnedRelationship_comp().add(membership);
 		return membership;
 	}
 	

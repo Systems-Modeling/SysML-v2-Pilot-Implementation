@@ -51,7 +51,7 @@ public interface MetadataFeature extends Feature {
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership() <em>Owned Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>

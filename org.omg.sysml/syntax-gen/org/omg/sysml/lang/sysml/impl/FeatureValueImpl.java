@@ -27,8 +27,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -45,7 +43,6 @@ import org.omg.sysml.util.FeatureUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getFeatureWithValue <em>Feature With Value</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getValue_comp <em>Value comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.FeatureValueImpl#getValueConnector <em>Value Connector</em>}</li>
@@ -89,64 +86,6 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FEATURE_VALUE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Namespace getMembershipOwningNamespace() {
-		if (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE) return null;
-		return (Namespace)eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMembershipOwningNamespace(Namespace newMembershipOwningNamespace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newMembershipOwningNamespace, SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE, msgs);
-		Resource.Internal eInternalResource = eInternalResource();
-		if (eInternalResource == null || !eInternalResource.isLoading()) {
-			if (featureWithValue != null && featureWithValue != newMembershipOwningNamespace) {
-				setFeatureWithValue(null);
-			}
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
-		if (newMembershipOwningNamespace != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE && newMembershipOwningNamespace != null)) {
-			if (EcoreUtil.isAncestor(this, newMembershipOwningNamespace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newMembershipOwningNamespace != null)
-				msgs = ((InternalEObject)newMembershipOwningNamespace).eInverseAdd(this, SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP_COMP, Namespace.class, msgs);
-			msgs = basicSetMembershipOwningNamespace(newMembershipOwningNamespace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE, newMembershipOwningNamespace, newMembershipOwningNamespace));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMembershipOwningNamespace() {
-		return getMembershipOwningNamespace() != null;
 	}
 
 	/**
@@ -228,22 +167,6 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	@Override
 	public void setValue(Expression newValue) {
 		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetMembershipOwningNamespace((Namespace)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -362,26 +285,10 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
-				return basicSetMembershipOwningNamespace(null, msgs);
 			case SysMLPackage.FEATURE_VALUE__VALUE_COMP:
 				return basicSetValue_comp(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP_COMP, Namespace.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -459,8 +366,6 @@ public class FeatureValueImpl extends MembershipImpl implements FeatureValue {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
-				return isSetMembershipOwningNamespace();
 			case SysMLPackage.FEATURE_VALUE__OWNED_MEMBER_ELEMENT_COMP:
 				return isSetOwnedMemberElement_comp();
 			case SysMLPackage.FEATURE_VALUE__FEATURE_WITH_VALUE:

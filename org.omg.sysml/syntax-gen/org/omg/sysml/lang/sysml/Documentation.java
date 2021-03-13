@@ -81,8 +81,8 @@ public interface Documentation extends Annotation {
 	void setDocumentingComment_comp(Comment value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Documented Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getDocumentation_comp <em>Documentation comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Documented Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -94,21 +94,21 @@ public interface Documentation extends Annotation {
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>annotatedElement</code> of this Documentation, which must own the Relationship.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Documented Element</em>' container reference.
+	 * @return the value of the '<em>Owning Documented Element</em>' reference.
 	 * @see #setOwningDocumentedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDocumentation_OwningDocumentedElement()
-	 * @see org.omg.sysml.lang.sysml.Element#getDocumentation_comp
-	 * @model opposite="documentation_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Element#getDocumentation
+	 * @model opposite="documentation" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	Element getOwningDocumentedElement();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement <em>Owning Documented Element</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement <em>Owning Documented Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Documented Element</em>' container reference.
+	 * @param value the new value of the '<em>Owning Documented Element</em>' reference.
 	 * @see #getOwningDocumentedElement()
 	 * @generated
 	 */

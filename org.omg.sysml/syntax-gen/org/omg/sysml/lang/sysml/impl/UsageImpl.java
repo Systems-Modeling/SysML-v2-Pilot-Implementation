@@ -35,9 +35,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AllocationUsage;
@@ -81,9 +78,9 @@ import org.omg.sysml.util.UsageUtil;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedUsage <em>Nested Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningUsage <em>Owning Usage</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedPort <em>Nested Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAction <em>Nested Action</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedState <em>Nested State</em>}</li>
@@ -95,7 +92,7 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedCase <em>Nested Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedReference <em>Nested Reference</em>}</li>
@@ -111,8 +108,6 @@ import org.omg.sysml.util.UsageUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedEnumeration <em>Nested Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getNestedAllocation <em>Nested Allocation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getOwningDefinition <em>Owning Definition</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.UsageImpl#getVariantMembership <em>Variant Membership</em>}</li>
  * </ul>
  *
  * @generated
@@ -136,16 +131,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * @ordered
 	 */
 	protected boolean isVariation = IS_VARIATION_EDEFAULT;
-	/**
-	 * The cached value of the '{@link #getVariantMembership_comp() <em>Variant Membership comp</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVariantMembership_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<VariantMembership> variantMembership_comp;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,19 +167,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	public NotificationChain basicSetOwningMembership(Membership newOwningMembership, NotificationChain msgs) {
 		return super.basicSetOwningMembership(newOwningMembership, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Membership> getOwnedMembership_comp() {
-		if (ownedMembership_comp == null) {
-			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE);
-		}
-		return ownedMembership_comp;
 	}
 
 	/**
@@ -414,16 +386,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	}
 
 	/**
-	 * The array of superset feature identifiers for the '{@link #getVariantMembership() <em>Variant Membership</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getVariantMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] VARIANT_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP};
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
@@ -570,26 +532,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 */
 	@Override
 	public EList<VariantMembership> getVariantMembership() {
-		EList<VariantMembership> variantMemberships = new NonNotifyingEObjectEList<>(VariantMembership.class, this, SysMLPackage.USAGE__VARIANT_MEMBERSHIP);
-		super.getOwnedMembership().stream().
-			filter(VariantMembership.class::isInstance).
-			map(VariantMembership.class::cast).
-			forEachOrdered(variantMemberships::add);
-		variantMemberships.addAll(getVariantMembership_comp());
-		return variantMemberships;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<VariantMembership> getVariantMembership_comp() {
-		if (variantMembership_comp == null) {
-			variantMembership_comp = new EObjectContainmentEList<VariantMembership>(VariantMembership.class, this, SysMLPackage.USAGE__VARIANT_MEMBERSHIP_COMP);
-		}
-		return variantMembership_comp;
+		return new DerivedEObjectEList<VariantMembership>(VariantMembership.class, this, SysMLPackage.ACTION_USAGE__VARIANT_MEMBERSHIP, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
 	}
 
 	// Additional overrides
@@ -640,37 +583,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership_comp()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP:
-				return ((InternalEList<?>)getOwnedMembership_comp()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP_COMP:
-				return ((InternalEList<?>)getVariantMembership_comp()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -679,6 +591,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				if (resolve) return getOwningUsage();
 				return basicGetOwningUsage();
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				if (resolve) return getOwningDefinition();
+				return basicGetOwningDefinition();
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return getNestedPort();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -701,8 +616,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedCase();
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
 				return getNestedAnalysisCase();
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP_COMP:
-				return getVariantMembership_comp();
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				return getVariantMembership();
 			case SysMLPackage.USAGE__USAGE:
 				return getUsage();
 			case SysMLPackage.USAGE__VARIANT:
@@ -733,11 +648,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return getNestedEnumeration();
 			case SysMLPackage.USAGE__NESTED_ALLOCATION:
 				return getNestedAllocation();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				if (resolve) return getOwningDefinition();
-				return basicGetOwningDefinition();
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				return getVariantMembership();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -757,6 +667,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)newValue);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)newValue);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -801,9 +714,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedAnalysisCase().clear();
 				getNestedAnalysisCase().addAll((Collection<? extends AnalysisCaseUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP_COMP:
-				getVariantMembership_comp().clear();
-				getVariantMembership_comp().addAll((Collection<? extends VariantMembership>)newValue);
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				getVariantMembership().clear();
+				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
 				return;
 			case SysMLPackage.USAGE__USAGE:
 				getUsage().clear();
@@ -865,13 +778,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				getNestedAllocation().clear();
 				getNestedAllocation().addAll((Collection<? extends AllocationUsage>)newValue);
 				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)newValue);
-				return;
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				getVariantMembership().clear();
-				getVariantMembership().addAll((Collection<? extends VariantMembership>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -889,6 +795,9 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return;
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				setOwningUsage((Usage)null);
+				return;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				setOwningDefinition((Definition)null);
 				return;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				getNestedPort().clear();
@@ -923,8 +832,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
 				getNestedAnalysisCase().clear();
 				return;
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP_COMP:
-				getVariantMembership_comp().clear();
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				getVariantMembership().clear();
 				return;
 			case SysMLPackage.USAGE__USAGE:
 				getUsage().clear();
@@ -971,12 +880,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 			case SysMLPackage.USAGE__NESTED_ALLOCATION:
 				getNestedAllocation().clear();
 				return;
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				setOwningDefinition((Definition)null);
-				return;
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				getVariantMembership().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -989,12 +892,12 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.USAGE__OWNED_MEMBERSHIP_COMP:
-				return ownedMembership_comp != null && !ownedMembership_comp.isEmpty();
 			case SysMLPackage.USAGE__NESTED_USAGE:
 				return !getNestedUsage().isEmpty();
 			case SysMLPackage.USAGE__OWNING_USAGE:
 				return basicGetOwningUsage() != null;
+			case SysMLPackage.USAGE__OWNING_DEFINITION:
+				return basicGetOwningDefinition() != null;
 			case SysMLPackage.USAGE__NESTED_PORT:
 				return !getNestedPort().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ACTION:
@@ -1017,8 +920,8 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedCase().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ANALYSIS_CASE:
 				return !getNestedAnalysisCase().isEmpty();
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP_COMP:
-				return variantMembership_comp != null && !variantMembership_comp.isEmpty();
+			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
+				return !getVariantMembership().isEmpty();
 			case SysMLPackage.USAGE__USAGE:
 				return !getUsage().isEmpty();
 			case SysMLPackage.USAGE__VARIANT:
@@ -1049,10 +952,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 				return !getNestedEnumeration().isEmpty();
 			case SysMLPackage.USAGE__NESTED_ALLOCATION:
 				return !getNestedAllocation().isEmpty();
-			case SysMLPackage.USAGE__OWNING_DEFINITION:
-				return basicGetOwningDefinition() != null;
-			case SysMLPackage.USAGE__VARIANT_MEMBERSHIP:
-				return !getVariantMembership().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

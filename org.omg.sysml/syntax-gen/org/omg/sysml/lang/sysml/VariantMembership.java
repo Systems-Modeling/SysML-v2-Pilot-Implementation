@@ -61,7 +61,7 @@ public interface VariantMembership extends Membership {
 	 * @return the value of the '<em>Owned Variant Usage comp</em>' containment reference.
 	 * @see #setOwnedVariantUsage_comp(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getVariantMembership_OwnedVariantUsage_comp()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariantMembership'"
 	 *        annotation="redefines"
 	 * @generated
@@ -89,7 +89,7 @@ public interface VariantMembership extends Membership {
 	 * @return the value of the '<em>Owned Variant Usage</em>' reference.
 	 * @see #setOwnedVariantUsage(Usage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getVariantMembership_OwnedVariantUsage()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 * @generated
 	 */
 	Usage getOwnedVariantUsage();

@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
@@ -239,7 +238,8 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
 			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
 		}
-		return basicSetMembershipOwningNamespace((Namespace) newOwningRelatedElement, msgs);
+		setMembershipOwningNamespace((Namespace) newOwningRelatedElement);
+		return msgs;
 	}
 
 	/**
@@ -332,40 +332,28 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 */
 	@Override
 	public Namespace getMembershipOwningNamespace() {
-		if (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE) return null;
-		return (Namespace)eInternalContainer();
+		Namespace membershipOwningNamespace = basicGetMembershipOwningNamespace();
+		return membershipOwningNamespace != null && membershipOwningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)membershipOwningNamespace) : membershipOwningNamespace;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetMembershipOwningNamespace(Namespace newMembershipOwningNamespace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newMembershipOwningNamespace, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE, msgs);
-		return msgs;
+	public Namespace basicGetMembershipOwningNamespace() {
+		Element owningRelatedElement = super.getOwningRelatedElement();
+		return owningRelatedElement instanceof Namespace? (Namespace)owningRelatedElement: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
-		if (newMembershipOwningNamespace != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE && newMembershipOwningNamespace != null)) {
-			if (EcoreUtil.isAncestor(this, newMembershipOwningNamespace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newMembershipOwningNamespace != null)
-				msgs = ((InternalEObject)newMembershipOwningNamespace).eInverseAdd(this, SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP_COMP, Namespace.class, msgs);
-			msgs = basicSetMembershipOwningNamespace(newMembershipOwningNamespace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE, newMembershipOwningNamespace, newMembershipOwningNamespace));
+		super.basicSetOwningRelatedElement(newMembershipOwningNamespace, null);
 	}
 
 	/**
@@ -374,7 +362,7 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 	 * @generated
 	 */
 	public boolean isSetMembershipOwningNamespace() {
-		return getMembershipOwningNamespace() != null;
+		return basicGetMembershipOwningNamespace() != null;
 	}
 
 	/**
@@ -574,10 +562,6 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetMembershipOwningNamespace((Namespace)otherEnd, msgs);
 			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
 				if (ownedMemberElement_comp != null)
 					msgs = ((InternalEObject)ownedMemberElement_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP, null, msgs);
@@ -596,26 +580,10 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 		switch (featureID) {
 			case SysMLPackage.MEMBERSHIP__OWNED_RELATED_ELEMENT_COMP:
 				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				return basicSetMembershipOwningNamespace(null, msgs);
 			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
 				return basicSetOwnedMemberElement_comp(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP_COMP, Namespace.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -634,7 +602,8 @@ public class MembershipImpl extends RelationshipImpl implements Membership {
 			case SysMLPackage.MEMBERSHIP__VISIBILITY:
 				return getVisibility();
 			case SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE:
-				return getMembershipOwningNamespace();
+				if (resolve) return getMembershipOwningNamespace();
+				return basicGetMembershipOwningNamespace();
 			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT_COMP:
 				return getOwnedMemberElement_comp();
 			case SysMLPackage.MEMBERSHIP__OWNED_MEMBER_ELEMENT:

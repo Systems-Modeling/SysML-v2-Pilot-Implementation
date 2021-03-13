@@ -271,11 +271,9 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMembershipOwningNamespace(Namespace newMembershipOwningNamespace, NotificationChain msgs) {
-		if (newMembershipOwningNamespace != null && !(newMembershipOwningNamespace instanceof MetadataFeature)) {
-			throw new IllegalArgumentException("newMembershipOwningNamespace must be an instance of MetadataFeature");
-		}
-		return basicSetOwningMetadataFeature((MetadataFeature) newMembershipOwningNamespace, msgs);
+	@Override
+	public Namespace basicGetMembershipOwningNamespace() {
+		return getOwningMetadataFeature();
 	}
 
 	/**

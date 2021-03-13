@@ -37,10 +37,10 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isReadOnly <em>Is Read Only</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getMemberFeature <em>Member Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPortion <em>Is Portion</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.FeatureMembership#isPort <em>Is Port</em>}</li>
@@ -288,8 +288,8 @@ public interface FeatureMembership extends Membership, TypeFeaturing {
 	void setDirection(FeatureDirectionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Type</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership <em>Owned Feature Membership</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -305,21 +305,21 @@ public interface FeatureMembership extends Membership, TypeFeaturing {
 	 * <!-- begin-model-doc -->
 	 * <p>The Type that owns this FeatureMembership.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Type</em>' container reference.
+	 * @return the value of the '<em>Owning Type</em>' reference.
 	 * @see #setOwningType(Type)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeatureMembership_OwningType()
-	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership_comp
-	 * @model opposite="ownedFeatureMembership_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Type#getOwnedFeatureMembership
+	 * @model opposite="ownedFeatureMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	Type getOwningType();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwningType <em>Owning Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Type</em>' container reference.
+	 * @param value the new value of the '<em>Owning Type</em>' reference.
 	 * @see #getOwningType()
 	 * @generated
 	 */

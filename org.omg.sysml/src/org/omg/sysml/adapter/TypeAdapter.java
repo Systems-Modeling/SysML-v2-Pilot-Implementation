@@ -140,7 +140,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
 				type.basicGetOwnedGeneralization(kind).isEmpty()) {
 			Type general = type.getDefaultType(superTypeNames);
-			if (general != null && general != this) {
+			if (general != null && general != type) {
 				List<Type> generalizations = new ArrayList<>();
 				generalizations.add(general);
 				implicitGeneralTypes.put(generalizationEClass, generalizations);

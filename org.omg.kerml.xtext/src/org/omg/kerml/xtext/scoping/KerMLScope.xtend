@@ -119,7 +119,7 @@ class KerMLScope extends AbstractScope {
 		this.findFirst = findFirst	
 		this.elements = newHashMap	
 		this.visitedqns = newHashSet
-		resolve()		
+		resolve()
 		elements.keySet.flatMap[key |
 			elements.get(key).map[qn | EObjectDescription.create(qn, key)]
 		]
@@ -178,7 +178,7 @@ class KerMLScope extends AbstractScope {
 
 						// Note: Proxy resolution for memberElement may result in recursive name resolution
 						// (and getting the memberName may also result in accessing the memberElement).
-						// In this case, the membership m should be excluded from the scope, to avoid a 
+						// In this case, the membership r should be excluded from the scope, to avoid a 
 						// cyclic linking error.
 						scopeProvider.addVisited(r)
 						var memberElement = r.ownedMemberElement
@@ -262,10 +262,15 @@ class KerMLScope extends AbstractScope {
 		}
 	}
 	
-	protected def boolean isInheritedProtected(Type general, Element protectedOwningPackage){
+	protected def boolean isInheritedProtected(Type general, Element protectedOwningNamespace) {
+		isInheritedProtected(general, protectedOwningNamespace, newHashSet)
+	}
+	
+	protected def boolean isInheritedProtected(Type general, Element protectedOwningNamespace, Set<Type> visited){
+		visited.add(general);
 		for(Type g: TypeUtil.getSupertypesOf(general)) {
-			if (g == protectedOwningPackage || 
-				 g.isInheritedProtected(protectedOwningPackage)) {
+			if (!visited.contains(g) && (g == protectedOwningNamespace || 
+				 g.isInheritedProtected(protectedOwningNamespace, visited))) {
 				return true
 			}
 		}

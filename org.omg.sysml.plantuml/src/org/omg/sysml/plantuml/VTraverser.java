@@ -24,12 +24,17 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public abstract class VTraverser extends Visitor {
+    private final Set<Namespace> visited;
+
     public String traverse(Namespace n) {
         for (Membership m: n.getOwnedMembership()) {
             // if (visit(m) == null) return null;
@@ -53,18 +58,33 @@ public abstract class VTraverser extends Visitor {
 
     @Override
     public String caseNamespace(Namespace n) {
+        if (visited.contains(n)) {
+            return "";
+        }
+        visited.add(n);
         return traverse(n);
+    }
+
+    private static Set<Namespace> initVisited(Visitor prev) {
+        if (prev instanceof VTraverser) {
+            VTraverser vtprev = (VTraverser) prev;
+            return vtprev.visited;
+        }
+        return new HashSet<Namespace>();
     }
     
     protected VTraverser(Visitor prev, boolean block) {
     	super(prev, block);
+        this.visited = initVisited(prev);
     }
     
     protected VTraverser(Visitor prev) {
     	super(prev);
+        this.visited = initVisited(prev);
     }
     
     protected VTraverser() {
     	super();
+        this.visited = initVisited(null);
     }
 }

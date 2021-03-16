@@ -54,9 +54,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getRelatedType <em>Related Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getSourceType <em>Source Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.AssociationImpl#getTargetType <em>Target Type</em>}</li>
@@ -67,18 +66,18 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AssociationImpl extends ClassifierImpl implements Association {
 
-	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Links::Link";
-	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Links::BinaryLink";
-
 	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement_comp()
+	 * @see #getOwnedRelatedElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedRelatedElement_comp;
+	protected EList<Element> ownedRelatedElement;
+	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Links::Link";
+	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Links::BinaryLink";
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -98,13 +97,14 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		if (ownedRelatedElement == null) {
+			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+		}
+		return ownedRelatedElement;
 	}
 
 	/**
@@ -139,25 +139,12 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getOwnedRelatedElement_comp() {
-		if (ownedRelatedElement_comp == null) {
-			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement_comp;
 	}
 
 	/**
@@ -252,6 +239,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	public boolean isSetRelatedType() {
 		return !getRelatedType().isEmpty();
 	}
+
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -381,7 +369,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT, SysMLPackage.ASSOCIATION__TARGET, SysMLPackage.ASSOCIATION__SOURCE, SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT, SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT, SysMLPackage.ASSOCIATION__TARGET, SysMLPackage.ASSOCIATION__SOURCE};
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -408,8 +396,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -425,8 +413,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
 		}
@@ -441,7 +429,7 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -455,16 +443,14 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 		switch (featureID) {
 			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return getRelatedElement();
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
-				return getOwnedRelatedElement_comp();
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement();
 			case SysMLPackage.ASSOCIATION__TARGET:
 				return getTarget();
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				return getSource();
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return getRelatedType();
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
@@ -486,9 +472,9 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				getOwnedRelatedElement_comp().addAll((Collection<? extends Element>)newValue);
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				setOwningRelatedElement((Element)newValue);
@@ -500,10 +486,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)newValue);
@@ -527,8 +509,8 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				setOwningRelatedElement((Element)null);
@@ -538,9 +520,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				getSource().clear();
-				return;
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.ASSOCIATION__SOURCE_TYPE:
 				setSourceType((Type)null);
@@ -564,16 +543,14 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 		switch (featureID) {
 			case SysMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return isSetRelatedElement();
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP:
-				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
+			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
 			case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT:
 				return getOwningRelatedElement() != null;
 			case SysMLPackage.ASSOCIATION__TARGET:
 				return isSetTarget();
 			case SysMLPackage.ASSOCIATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT:
-				return !getOwnedRelatedElement().isEmpty();
 			case SysMLPackage.ASSOCIATION__RELATED_TYPE:
 				return isSetRelatedType();
 			case SysMLPackage.ASSOCIATION__END_FEATURE:
@@ -596,12 +573,11 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
-				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
+				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				case SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.ASSOCIATION__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.ASSOCIATION__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.ASSOCIATION__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
-				case SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
@@ -616,12 +592,11 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT_COMP;
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.ASSOCIATION__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.ASSOCIATION__SOURCE;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.ASSOCIATION__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}

@@ -69,7 +69,7 @@ import org.omg.sysml.util.TypeUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMembership <em>Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
@@ -189,13 +189,13 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 */
 	@Override
-	public EList<Relationship> getOwnedRelationship_comp() {
-		if (ownedRelationship_comp == null) {
-			ownedRelationship_comp = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
+	public EList<Relationship> getOwnedRelationship() {
+		if (ownedRelationship == null) {
+			ownedRelationship = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
 		}
-		return ownedRelationship_comp;
+		return ownedRelationship;
 	}
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,7 +209,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 
 	public EList<Generalization> getOwnedGeneralization_comp() {
 		EList<Generalization> generalizations = new NonNotifyingEObjectEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		for (Relationship relationship: getOwnedRelationship_comp()) {
+		for (Relationship relationship: getOwnedRelationship()) {
 			if (relationship instanceof Generalization &&
 					this.equals(((Generalization)relationship).getSpecific())) {
 				generalizations.add(((Generalization)relationship));
@@ -432,7 +432,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated NOT
 	 */
 	public Conjugation basicGetOwnedConjugator() {
-		return (Conjugation) getOwnedRelationship_comp().stream().
+		return (Conjugation) getOwnedRelationship().stream().
 				filter(Conjugation.class::isInstance).
 				findFirst().orElse(null);
 	}
@@ -633,7 +633,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_GENERALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP};
+	protected static final int[] OWNED_GENERALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -697,8 +697,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -711,8 +711,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
+				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -905,8 +905,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		switch (featureID) {
 			case SysMLPackage.TYPE__MEMBERSHIP:
 				return isSetMembership();
-			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
-				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
+			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
+				return ownedRelationship != null && !ownedRelationship.isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
 				return !getOwnedFeatureMembership().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE:

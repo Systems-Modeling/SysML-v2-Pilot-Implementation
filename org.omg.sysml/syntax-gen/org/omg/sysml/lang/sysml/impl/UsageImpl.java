@@ -29,7 +29,6 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -48,7 +47,6 @@ import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
@@ -148,25 +146,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.USAGE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
-	public Membership getOwningMembership() {
-		return super.getOwningMembership();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public NotificationChain basicSetOwningMembership(Membership newOwningMembership, NotificationChain msgs) {
-		return super.basicSetOwningMembership(newOwningMembership, msgs);
 	}
 
 	/**

@@ -36,9 +36,8 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Documentation#getDocumentingComment_comp <em>Documenting Comment comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement <em>Owning Documented Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Documentation#getDocumentingComment <em>Documenting Comment</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Documentation#getOwningDocumentedElement <em>Owning Documented Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDocumentation()
@@ -46,40 +45,6 @@ package org.omg.sysml.lang.sysml;
  * @generated
  */
 public interface Documentation extends Annotation {
-	/**
-	 * Returns the value of the '<em><b>Documenting Comment comp</b></em>' containment reference.
-	 * <p>
-	 * This feature redefines the following features:
-	 * </p>
-	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement() <em>Annotating Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
-	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The Comment, which is owned by the Documentation Relationship, that documents the <code>owningDocumentedElement</code> of this Documentation.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Documenting Comment comp</em>' containment reference.
-	 * @see #setDocumentingComment_comp(Comment)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDocumentation_DocumentingComment_comp()
-	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='documentingAnnotation'"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	Comment getDocumentingComment_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Documentation#getDocumentingComment_comp <em>Documenting Comment comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Documenting Comment comp</em>' containment reference.
-	 * @see #getDocumentingComment_comp()
-	 * @generated
-	 */
-	void setDocumentingComment_comp(Comment value);
-
 	/**
 	 * Returns the value of the '<em><b>Owning Documented Element</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getDocumentation <em>Documentation</em>}'.
@@ -116,16 +81,34 @@ public interface Documentation extends Annotation {
 
 	/**
 	 * Returns the value of the '<em><b>Documenting Comment</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatingElement() <em>Annotating Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Documenting Comment</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Comment, which is owned by the Documentation Relationship, that documents the <code>owningDocumentedElement</code> of this Documentation.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Documenting Comment</em>' reference.
 	 * @see #setDocumentingComment(Comment)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDocumentation_DocumentingComment()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='documentingAnnotation'"
+	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Comment getDocumentingComment();

@@ -94,14 +94,15 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A Relationship is an Element that relates two or more other Elements. Some of its &lt;code>relatedElements&lt;/code> may be owned, in which case those &lt;code>ownedRelatedElements&lt;/code> will be deleted from a model if their &lt;code>owningRelationship&lt;/code> is. A Relationship may also be owned by another Element, in which case the &lt;code>ownedRelatedElements&lt;/code> of the Relationship are also considered to be transitively owned by the &lt;code>owningRelatedElement&lt;/code> of the Relationship.&lt;/p>&#xA;&#xA;&lt;p>The &lt;code>relatedElements&lt;/code> of a Relationship are divided into &lt;code>source&lt;/code> and &lt;code>target&lt;/code> Elements. The Relationship is considered to be directed from the &lt;code>source&lt;/code> to the &lt;code>target&lt;/code> Elements. An undirected Relationship may have either all &lt;code>source&lt;/code> or all &lt;code>target&lt;/code> Elements.&lt;/p>&#xA;&#xA;&lt;p>A &amp;quot;relationship Element&amp;quot; in the kernel abstract syntax is generically any Element that is an instance of either Relationship or a direct or indirect specialization of Relationship. Any other kind of Element is a &amp;quot;non-relationship Element&amp;quot;. It is a convention of the kernel abstract syntax that non-relationship Elements are &lt;em>only&lt;/em> related via reified relationship Elements. Any meta-associations directly between non-relationship Elements must be derived from underlying reified Relationships.&lt;/p>&#xA;"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelatedElement_comp"
-        upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/owningRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelatedElement" upperBound="-1"
+        eType="#//Element" containment="true" eOpposite="#//Element/owningRelationship">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;tt>relatedElements&lt;/tt> of this Relationship that are owned by the Relationship.&lt;/p>"/>
       </eAnnotations>
+      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningRelatedElement" ordered="false"
-        eType="#//Element" eOpposite="#//Element/ownedRelationship_comp">
+        eType="#//Element" eOpposite="#//Element/ownedRelationship">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;tt>relatedElement&lt;/tt> of this Relationship that owns the Relationship, if any.&lt;/p>"/>
       </eAnnotations>
@@ -138,10 +139,6 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelatedElement" upperBound="-1"
-        eType="#//Element" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -153,7 +150,7 @@
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningMembership" ordered="false"
-        eType="#//Membership" eOpposite="#//Membership/ownedMemberElement_comp">
+        eType="#//Membership" volatile="true" transient="true" derived="true" eOpposite="#//Membership/ownedMemberElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>owningRelationship&lt;/code> of this Element, if that Relationship is a Membership.&lt;/p>&#xA;"/>
       </eAnnotations>
@@ -166,7 +163,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningRelationship" ordered="false"
-        eType="#//Relationship" eOpposite="#//Relationship/ownedRelatedElement_comp">
+        eType="#//Relationship" eOpposite="#//Relationship/ownedRelatedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Relationship for which this Element is an &lt;tt>ownedRelatedElement&lt;/tt>, if any.&lt;/p>&#xA;"/>
       </eAnnotations>
@@ -184,8 +181,8 @@
         <details key="documentation" value="&lt;p>The primary name of this Element. If the Element is owned by a Namespace, then its &lt;code>name&lt;/code> is derived as the &lt;code>memberName&lt;/code> of the &lt;code>owningMembership&lt;/code> of the Element.&lt;/p>&#xA;"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelationship_comp"
-        upperBound="-1" eType="#//Relationship" containment="true" eOpposite="#//Relationship/owningRelatedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelationship" upperBound="-1"
+        eType="#//Relationship" containment="true" eOpposite="#//Relationship/owningRelatedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Relationships for which this Element is the &lt;tt>owningRelatedElement&lt;/tt>.&lt;/p>"/>
       </eAnnotations>
@@ -214,7 +211,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Element that are Annotations, for which this Element is the &lt;code>annotatedElement&lt;/code>.&lt;/code>"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documentationComment" upperBound="-1"
         eType="#//Comment" volatile="true" transient="true" derived="true">
@@ -257,8 +254,6 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Element/aliasId"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRelationship" upperBound="-1"
-        eType="#//Relationship" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Membership" eSuperTypes="#//Relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -300,15 +295,12 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Relationship/source #//Relationship/owningRelatedElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement_comp"
-        ordered="false" eType="#//Element" containment="true" eOpposite="#//Element/owningMembership">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" ordered="false"
+        eType="#//Element" volatile="true" transient="true" derived="true" eOpposite="#//Element/owningMembership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>memberElement&lt;/code> of this Membership if it is owned by the Membership as an &lt;code>ownedRelatedElement&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberElement" eType="#//Element"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Membership/memberElement #//Relationship/ownedRelatedElement_comp"/>
+      <eAnnotations source="subsets" references="#//Membership/memberElement #//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
@@ -381,7 +373,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Namespace that are Imports, for which the Namespace is the &lt;code>importOwningNamespace&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
         eType="#//Element" volatile="true" transient="true" derived="true">
@@ -414,7 +406,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Namespace that are Memberships, for which the Namespace is the &lt;code>membershipOwningNamespace&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Namespace/membership #//Element/ownedRelationship_comp"/>
+      <eAnnotations source="subsets" references="#//Namespace/membership #//Element/ownedRelationship"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Import" eSuperTypes="#//Relationship">
@@ -461,15 +453,16 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>Documentation is an Annotation whose &lt;code>annotatingElement&lt;/code> is a Comment that provides documentation of the &lt;code>annotatedElement&lt;/code>. Documentation is always an &lt;code>ownedRelationship&lt;/code> of its &lt;code>annotedElement&lt;/code>."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="documentingComment_comp"
-        ordered="false" lowerBound="1" eType="#//Comment" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="documentingComment" ordered="false"
+        lowerBound="1" eType="#//Comment" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="documentingAnnotation"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Comment, which is owned by the Documentation Relationship, that documents the &lt;code>owningDocumentedElement&lt;/code> of this Documentation.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Annotation/annotatingElement #//Relationship/ownedRelatedElement_comp"/>
+      <eAnnotations source="redefines" references="#//Annotation/annotatingElement"/>
+      <eAnnotations source="subsets" references="#//Relationship/ownedRelatedElement"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningDocumentedElement"
         ordered="false" lowerBound="1" eType="#//Element" volatile="true" transient="true"
@@ -479,8 +472,6 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Annotation/owningAnnotatedElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="documentingComment" lowerBound="1"
-        eType="#//Comment" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//Relationship">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -672,7 +663,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>A Conjugation owned by this Type for which the Type is the &lt;code>originalType&lt;/code>.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isConjugated" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
@@ -716,19 +707,20 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Type, for which the Type is the &lt;code>specific&lt;/code> Type.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureMembership" eSuperTypes="#//Membership #//TypeFeaturing">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>FeatureMembership is a Membership for a Feature in a Type that is also a TypeFeaturing Relationship between the Feature and the Type.&lt;/p>&#xA;"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberFeature_comp"
-        ordered="false" eType="#//Feature" containment="true" eOpposite="#//Feature/owningFeatureMembership">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberFeature" ordered="false"
+        eType="#//Feature" volatile="true" transient="true" derived="true" eOpposite="#//Feature/owningFeatureMembership">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>A &lt;code>memberFeature&lt;/code> that is owned by this FeatureMembership and hence an &lt;code>ownedFeature&lt;/code> of the &lt;code>owningType&lt;/code>.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement_comp"/>
+      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement"/>
+      <eAnnotations source="subsets" references="#//FeatureMembership/memberFeature"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" defaultValueLiteral="false">
@@ -783,10 +775,6 @@
         <details key="documentation" value="&lt;p>The Type that owns this FeatureMembership.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Membership/membershipOwningNamespace"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberFeature" eType="#//Feature"
-        volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//FeatureMembership/memberFeature"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeFeaturing" eSuperTypes="#//Relationship">
@@ -890,7 +878,8 @@
       <eAnnotations source="subsets" references="#//Type/ownedGeneralization"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFeatureMembership"
-        ordered="false" eType="#//FeatureMembership" eOpposite="#//FeatureMembership/ownedMemberFeature_comp">
+        ordered="false" eType="#//FeatureMembership" volatile="true" transient="true"
+        derived="true" eOpposite="#//FeatureMembership/ownedMemberFeature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The FeatureMembership that owns this Feature as an &lt;code>ownedMemberFeature&lt;/code>, determining its &lt;code>owningType&lt;/code>.&lt;/p>"/>
       </eAnnotations>
@@ -938,7 +927,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>ownedRelationships&lt;/code> of this Feature that are TypeFeaturings, for which the Feature is the &lt;code>featureOfType&lt;/code>.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="subsets" references="#//Element/ownedRelationship_comp"/>
+      <eAnnotations source="subsets" references="#//Element/ownedRelationship"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isNonunique" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//Boolean" volatile="true"
@@ -2422,18 +2411,16 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A VariantMembership is a Membership between a variation point Definition or Usage and a Usage that represents a variant in the context of that variation. The &lt;code>membershipOwningNamespace&lt;/code> for the VariantMembership must be either a Definition or a Usage with &lt;code>isVariation&lt;/code> = &lt;code>true&lt;/code>.&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVariantUsage_comp"
-        ordered="false" lowerBound="1" eType="#//Usage" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVariantUsage" ordered="false"
+        lowerBound="1" eType="#//Usage" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningVariantMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Usage that represents a variant in the context of the &lt;code>owningVariationDefinition&lt;/code> or &lt;code>owningVariationUsage&lt;/code>.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement_comp"/>
+      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedVariantUsage" lowerBound="1"
-        eType="#//Usage" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnalysisCaseUsage" eSuperTypes="#//CaseUsage">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3094,32 +3081,31 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A SubjectMembership is a ParameterMembership that indicates that its &lt;code>ownedSubjectParameter&lt;/code> is the subject Parameter for its &lt;code>owningType&lt;/code>. The &lt;code>owningType&lt;/code> of a SubjectMembership must be a CaseDefinition, CaseUsage, RequirementDefinition or RequirementUsage.&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubjectParameter_comp"
-        ordered="false" lowerBound="1" eType="#//Usage" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubjectParameter"
+        ordered="false" lowerBound="1" eType="#//Usage" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningSubjectMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Usage that is the &lt;code>ownedMemberParameter&lt;/code> of this SubjectMembership.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//ParameterMembership/ownedMemberParameter_comp"/>
+      <eAnnotations source="redefines" references="#//ParameterMembership/ownedMemberParameter"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSubjectParameter"
-        lowerBound="1" eType="#//Usage" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterMembership" eSuperTypes="#//FeatureMembership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A ParameterMembership is a FeatureMembership that identifies its &lt;code>memberFeature&lt;/code> as a parameter, which is always owned. The default &lt;code>direction&lt;/code> for a ParameterMembership is &lt;code>in&lt;/code>  (unless it is a ReturnParameterMembership). A ParameterMembership must be owned by a Behavior or a Step.&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberParameter_comp"
-        ordered="false" lowerBound="1" eType="#//Feature" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberParameter" ordered="false"
+        lowerBound="1" eType="#//Feature" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningParameterMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Feature that is identified as a parameter by this ParameterMembership, which is always owned by the ParameterMembership.&lt;/p>&#xA;"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="memberParameter" ordered="false"
         lowerBound="1" eType="#//Feature">
@@ -3131,8 +3117,6 @@
       </eAnnotations>
       <eAnnotations source="redefines" references="#//FeatureMembership/memberFeature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMemberParameter" lowerBound="1"
-        eType="#//Feature" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RequirementConstraintMembership" eSuperTypes="#//FeatureMembership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3144,18 +3128,17 @@
         <details key="documentation" value="&lt;p>Whether the RequirementConstraintMembership is for an assumed or required ConstraintUsage.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint_comp" ordered="false"
-        lowerBound="1" eType="#//ConstraintUsage" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" ordered="false"
+        lowerBound="1" eType="#//ConstraintUsage" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="requirementConstraintMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ConstraintUsage that is the &lt;code>ownedMemberFeature&lt;/code> of this RequirementConstraintUsage.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" lowerBound="1"
-        eType="#//ConstraintUsage" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DecisionNode" eSuperTypes="#//ControlNode">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3255,15 +3238,16 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A RequirementVerificationMembership is a RequirementConstraintMembership used in the objective of a VerificationCase to identify a Requirement that is verified by the VerificationCase.&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRequirement_comp"
-        ordered="false" lowerBound="1" eType="#//RequirementUsage" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRequirement" ordered="false"
+        lowerBound="1" eType="#//RequirementUsage" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="requirementVerificationMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The owned Requirement that acts as the &lt;code>constraint&lt;/code> for this RequirementVerificationMembership. This will either be the &lt;code>verifiedRequirement&lt;/code>, or it will subset the &lt;code>verifiedRequirement&lt;/code>.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//RequirementConstraintMembership/constraint_comp"/>
+      <eAnnotations source="redefines" references="#//RequirementConstraintMembership/constraint"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="verifiedRequirement" ordered="false"
         lowerBound="1" eType="#//RequirementUsage" volatile="true" transient="true"
@@ -3275,26 +3259,22 @@
         <details key="documentation" value="&lt;p> The RequirementUsage that is identified as being verified. This is derived as being the first RequirementUsage subset by the &lt;code>owningRequirement&lt;/code>, if there is one, and, otherwise, the &lt;code>owningRequirement&lt;/code> itself.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRequirement" lowerBound="1"
-        eType="#//RequirementUsage" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectiveMembership" eSuperTypes="#//FeatureMembership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>An ObjectiveMembership is a FeatureMembership that indicates that its &lt;code>ownedObjectiveRequirement&lt;/code> is the objective RequirementUsage for its &lt;code>owningType&lt;/code>. The &lt;code>owningType&lt;/code> of an ObjectiveMembership must be a CaseDefinition or CaseUsage.&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedObjectiveRequirement_comp"
-        ordered="false" lowerBound="1" eType="#//RequirementUsage" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedObjectiveRequirement"
+        ordered="false" lowerBound="1" eType="#//RequirementUsage" volatile="true"
+        transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningObjectiveMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The RequirementUsage that is the &lt;p>ownedMemberFeature&lt;/p> of this RequirementUsage.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedObjectiveRequirement"
-        lowerBound="1" eType="#//RequirementUsage" volatile="true" transient="true"
-        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConjugatedPortTyping" eSuperTypes="#//FeatureTyping">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3352,18 +3332,16 @@
         <details key="documentation" value="&lt;p>Whether this TransitionFeatureMembership is for a trigger, guard or effect.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transitionFeature_comp"
-        ordered="false" lowerBound="1" eType="#//Step" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transitionFeature" ordered="false"
+        lowerBound="1" eType="#//Step" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="transitionFeatureMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Step that is the &lt;tt>ownedMemberFeature&lt;/tt> of this TransitionFeatureMembership.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transitionFeature" lowerBound="1"
-        eType="#//Step" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TransitionFeatureKind">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3451,35 +3429,31 @@
         <details key="documentation" value="&lt;p>Whether this StateSubactionMembership is for an entry, do or exit ActionUsage.&lt;/p>"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action_comp" ordered="false"
-        lowerBound="1" eType="#//ActionUsage" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" ordered="false"
+        lowerBound="1" eType="#//ActionUsage" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="stateSubactionMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The ActionUsage that is the &lt;tt>ownedMemberFeature&lt;/tt> of this StateSubactionMembership.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
-        eType="#//ActionUsage" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementFilterMembership" eSuperTypes="#//Membership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>ElementFilterMembership is a Mambership between a Namespace and a model-level evaluable Boolean Expression, asserting that imported &lt;code>members&lt;/code> of the Namespace should be filtered using the &lt;code>condition&lt;/code> Expression. A general Namespace does not define any specific filtering behavior, but such behavior may be defined for various specialized kinds of Namespaces.&lt;/p>&#xA;condition.isModelLevelEvaluable"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition_comp" ordered="false"
-        lowerBound="1" eType="#//Expression" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" ordered="false"
+        lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningFilter"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The model-level evaluable Boolean Expression used to filter the &lt;code>members&lt;/code> of the &lt;code>membershipOwningNamespace&lt;/code> of this ElementFilterMembership.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement_comp"/>
+      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
-        eType="#//Expression" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3598,15 +3572,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="OperatorExpression" eSuperTypes="#//InvocationExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
         lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand_comp" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
         eType="#//Expression" containment="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="operatorExpression"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//InvocationExpression/argument"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
-        eType="#//Expression" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvocationExpression" eSuperTypes="#//Expression">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3697,15 +3669,15 @@
       </eAnnotations>
       <eAnnotations source="subsets" references="#//Membership/membershipOwningNamespace"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value_comp" ordered="false"
-        lowerBound="1" eType="#//Expression" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
+        lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="expressedValuation"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression that provides the value of the &lt;code>FeatureWithValue&lt;/code> as its &lt;code>result&lt;/code>.&lt;/p>&#xA;&#xA;&lt;p>The Expression that provides the value as a result.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement_comp"/>
+      <eAnnotations source="redefines" references="#//Membership/ownedMemberElement"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueConnector" ordered="false"
         lowerBound="1" eType="#//BindingConnector" volatile="true" transient="true"
@@ -3717,8 +3689,6 @@
         <details key="documentation" value="&lt;p>The BindingConnector that binds the result of the &lt;code>value&lt;/code> Expression to the &lt;code>FeatureWithValue.&lt;/p>&#xA;&lt;p>The BindingConnector that assigns the result of the Expression to the Feature.&lt;/p>&#xA;&#xA;&lt;p>The valueConnector must be an ownedFeature of the featureWithValue.&lt;br />&#xA;The source of the valueConnector must be the featureWithValue.&lt;br />&#xA;The target of the valueConnector must be result of the value Expression.&lt;/p>&#xA;"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Expression"
-        volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiplicityRange" eSuperTypes="#//Multiplicity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3761,40 +3731,37 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A MetadataFeatureValue is a FeatureValue that binds a MetadataFeature to a &lt;code>metadataValue&lt;/code> given by a model-level evaluable Expression.&lt;/p>&#xA;metadataValue.isModelLevelEvaluable"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataValue_comp" ordered="false"
-        lowerBound="1" eType="#//Expression" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataValue" ordered="false"
+        lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="metadataValuation"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The &lt;code>value&lt;/code> of this MetadataFeatureValue, which must be given by a model-level evaluable Expression.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureValue/value_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureValue/value"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningMetadataFeature"
-        ordered="false" eType="#//MetadataFeature" eOpposite="#//MetadataFeature/metadataFeatureValue_comp">
+        ordered="false" lowerBound="1" eType="#//MetadataFeature" volatile="true"
+        transient="true" derived="true" eOpposite="#//MetadataFeature/metadataFeatureValue">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The MetadataFeature that owns a certain &lt;code>metadataFeatureValue&lt;/code>.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//FeatureValue/featureWithValue #//Membership/membershipOwningNamespace"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataValue" lowerBound="1"
-        eType="#//Expression" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MetadataFeature" eSuperTypes="#//Feature">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A MetadataFeature is an &lt;code>ownedFeature&lt;/code> of an AnnotatingFeature that redefines a Feature of the &lt;code>metadataType&lt;/code> and binds a value to it.&lt;/p>"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataFeatureValue_comp"
-        ordered="false" lowerBound="1" eType="#//MetadataFeatureValue" containment="true"
-        eOpposite="#//MetadataFeatureValue/owningMetadataFeature">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataFeatureValue" ordered="false"
+        lowerBound="1" eType="#//MetadataFeatureValue" volatile="true" transient="true"
+        derived="true" eOpposite="#//MetadataFeatureValue/owningMetadataFeature">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The required MetadataFeatureValue for this MetadataFeature that gives the &lt;code>metadataValue&lt;/code> for it in the context of its owning AnnotatingFeature.&lt;/p>"/>
       </eAnnotations>
       <eAnnotations source="redefines" references="#//Namespace/ownedMembership"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="metadataFeatureValue" lowerBound="1"
-        eType="#//MetadataFeatureValue" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnnotatingFeature" eSuperTypes="#//Feature #//AnnotatingElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -3822,18 +3789,17 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="&lt;p>A ResultExpressionMembership is a FeatureMembership that indicates that the &lt;code>ownedResultExpression&lt;/code> provides the result values for the Function or Expression that owns it. The owning Function or Expression must contain a BindingConnector between the &lt;code>result&lt;/code> parameter of the &lt;code>ownedResultExpression&lt;/code> and the &lt;code>result&lt;/code> parameter of the Function or Expression.&lt;/p>&#xA;"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedResultExpression_comp"
-        ordered="false" lowerBound="1" eType="#//Expression" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedResultExpression"
+        ordered="false" lowerBound="1" eType="#//Expression" volatile="true" transient="true"
+        derived="true">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
         <details key="body" value="owningResultExpressionMembership"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The Expression that provides the result for the owner of the ResultExpressionMembership.&lt;/p>"/>
       </eAnnotations>
-      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature_comp"/>
+      <eAnnotations source="redefines" references="#//FeatureMembership/ownedMemberFeature"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedResultExpression"
-        lowerBound="1" eType="#//Expression" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReturnParameterMembership" eSuperTypes="#//ParameterMembership">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

@@ -70,6 +70,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PortConjugation getOwnedPortConjugator() {
 		PortConjugation ownedPortConjugator = basicGetOwnedPortConjugator();
 		return ownedPortConjugator != null && ownedPortConjugator.eIsProxy() ? (PortConjugation)eResolveProxy((InternalEObject)ownedPortConjugator) : ownedPortConjugator;
@@ -81,7 +82,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated NOT
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
-		return (PortConjugation) getOwnedRelationship_comp().stream().
+		return (PortConjugation) getOwnedRelationship().stream().
 				filter(PortConjugation.class::isInstance).
 				findFirst().orElse(null);
 	}

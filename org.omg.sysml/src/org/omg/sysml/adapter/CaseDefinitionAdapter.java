@@ -51,8 +51,8 @@ public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 	public static RequirementUsage addObjectiveRequirementTo(Type type) {
 		RequirementUsage objective = SysMLFactory.eINSTANCE.createRequirementUsage();
 		ObjectiveMembership membership = SysMLFactory.eINSTANCE.createObjectiveMembership();
-		membership.setOwnedObjectiveRequirement_comp(objective);
-		type.getOwnedRelationship_comp().add(membership);
+		membership.setOwnedObjectiveRequirement(objective);
+		type.getOwnedRelationship().add(membership);
 		return objective;
 	}
 

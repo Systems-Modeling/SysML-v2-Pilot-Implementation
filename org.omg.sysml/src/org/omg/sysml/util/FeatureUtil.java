@@ -132,7 +132,7 @@ public class FeatureUtil {
 	public static Subsetting addSubsettingTo(Feature feature) {
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettingFeature(feature);
-		feature.getOwnedRelationship_comp().add(subsetting);
+		feature.getOwnedRelationship().add(subsetting);
 		return subsetting;
 	}
 
@@ -217,7 +217,7 @@ public class FeatureUtil {
 	 */
 	public static void insertImplicitTypeFeaturings(Feature feature) {
 		forEachImplicitFeaturingTypeOf(feature, type->{
-			boolean featuringRequired = feature.getOwnedRelationship_comp().stream().
+			boolean featuringRequired = feature.getOwnedRelationship().stream().
 				filter(TypeFeaturing.class::isInstance).
 				map(TypeFeaturing.class::cast).
 				noneMatch(f -> Objects.equals(f.getFeatureOfType(), feature)
@@ -226,7 +226,7 @@ public class FeatureUtil {
 				TypeFeaturing featuring = SysMLFactory.eINSTANCE.createTypeFeaturing();
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
-				feature.getOwnedRelationship_comp().add(featuring);
+				feature.getOwnedRelationship().add(featuring);
 			}
 		});
 	}

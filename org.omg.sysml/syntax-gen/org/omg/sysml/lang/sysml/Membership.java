@@ -39,7 +39,6 @@ package org.omg.sysml.lang.sysml;
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
@@ -184,45 +183,14 @@ public interface Membership extends Relationship {
 	void setMembershipOwningNamespace(Namespace value);
 
 	/**
-	 * Returns the value of the '<em><b>Owned Member Element comp</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Member Element comp</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>memberElement</code> of this Membership if it is owned by the Membership as an <code>ownedRelatedElement</code>.</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Member Element comp</em>' containment reference.
-	 * @see #setOwnedMemberElement_comp(Element)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement_comp()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
-	 * @model opposite="owningMembership" containment="true" ordered="false"
-	 * @generated
-	 */
-	Element getOwnedMemberElement_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp <em>Owned Member Element comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Member Element comp</em>' containment reference.
-	 * @see #getOwnedMemberElement_comp()
-	 * @generated
-	 */
-	void setOwnedMemberElement_comp(Element value);
-
-	/**
 	 * Returns the value of the '<em><b>Owned Member Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningMembership <em>Owning Membership</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getMemberElement() <em>Member Element</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement() <em>Owned Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -230,10 +198,15 @@ public interface Membership extends Relationship {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>memberElement</code> of this Membership if it is owned by the Membership as an <code>ownedRelatedElement</code>.</p>
+	 * 
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Member Element</em>' reference.
 	 * @see #setOwnedMemberElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_OwnedMemberElement()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Element#getOwningMembership
+	 * @model opposite="owningMembership" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */

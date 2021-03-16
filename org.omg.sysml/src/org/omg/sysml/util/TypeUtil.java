@@ -236,8 +236,8 @@ public class TypeUtil {
 
 	public static FeatureMembership addOwnedFeatureTo(Type type, Feature feature) {
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-		membership.setOwnedMemberFeature_comp(feature);
-		type.getOwnedRelationship_comp().add(membership);
+		membership.setOwnedMemberFeature(feature);
+		type.getOwnedRelationship().add(membership);
 		return membership;
 	}
 	
@@ -284,7 +284,7 @@ public class TypeUtil {
 	}
 
 	public static <T extends Generalization> void removeEmptyGeneralTypesFor(Type type, Class<T> kind) {
-		List<Relationship> ownedRelationships = type.getOwnedRelationship_comp();
+		List<Relationship> ownedRelationships = type.getOwnedRelationship();
 		for (Generalization generalization: ((TypeImpl)type).basicGetOwnedGeneralization(kind)) {
 			if (((GeneralizationImpl)generalization).basicGetGeneral() == null) {
 				ownedRelationships.remove(generalization);
@@ -301,7 +301,7 @@ public class TypeUtil {
 			Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
 			newGeneralization.setGeneral(general);
 			newGeneralization.setSpecific(type);
-			type.getOwnedRelationship_comp().add(newGeneralization);			
+			type.getOwnedRelationship().add(newGeneralization);			
 		});
 		adapter.cleanImplicitGeneralTypes();
 	}

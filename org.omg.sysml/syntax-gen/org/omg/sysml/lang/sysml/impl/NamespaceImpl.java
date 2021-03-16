@@ -61,7 +61,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getMembership <em>Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedImport <em>Owned Import</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getMember <em>Member</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.NamespaceImpl#getOwnedMember <em>Owned Member</em>}</li>
@@ -117,11 +117,11 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 */
 	@Override
-	public EList<Relationship> getOwnedRelationship_comp() {
-		if (ownedRelationship_comp == null) {
-			ownedRelationship_comp = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP_COMP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
+	public EList<Relationship> getOwnedRelationship() {
+		if (ownedRelationship == null) {
+			ownedRelationship = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
 		}
-		return ownedRelationship_comp;
+		return ownedRelationship;
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP_COMP};
+	protected static final int[] OWNED_IMPORT_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -209,7 +209,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP_COMP};
+	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 
 	// Operations
 
@@ -423,8 +423,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		switch (featureID) {
 			case SysMLPackage.NAMESPACE__MEMBERSHIP:
 				return isSetMembership();
-			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP_COMP:
-				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
+			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP:
+				return ownedRelationship != null && !ownedRelationship.isEmpty();
 			case SysMLPackage.NAMESPACE__OWNED_IMPORT:
 				return !getOwnedImport().isEmpty();
 			case SysMLPackage.NAMESPACE__MEMBER:
@@ -477,8 +477,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -491,8 +491,8 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP:
+				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

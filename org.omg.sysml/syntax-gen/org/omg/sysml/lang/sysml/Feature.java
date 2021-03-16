@@ -81,7 +81,7 @@ public interface Feature extends Type {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,8 +321,8 @@ public interface Feature extends Type {
 	EList<Type> getFeaturingType();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -338,21 +338,21 @@ public interface Feature extends Type {
 	 * <!-- begin-model-doc -->
 	 * <p>The FeatureMembership that owns this Feature as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
+	 * @return the value of the '<em>Owning Feature Membership</em>' reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp
-	 * @model opposite="ownedMemberFeature_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
+	 * @model opposite="ownedMemberFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureMembership getOwningFeatureMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Feature Membership</em>' container reference.
+	 * @param value the new value of the '<em>Owning Feature Membership</em>' reference.
 	 * @see #getOwningFeatureMembership()
 	 * @generated
 	 */

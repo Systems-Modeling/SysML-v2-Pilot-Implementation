@@ -4923,7 +4923,7 @@ else owningNamespace.nameOf(self) endif</body>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="7df6cede-6475-4f1d-969c-626d6db6ee2a" name="" visibility="public" value="1"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="3b9f3151-fede-4c33-b671-be8f9cda4b8f" name="" visibility="public" value="1"/>
     </ownedAttribute>
-    <ownedAttribute xmi:id="bec73004-8d2f-4395-995d-9075d63180f4" name="documentingComment" visibility="public" type="40a5660e-4260-4601-ac14-6da99c5449cf" aggregation="composite" redefinedProperty="cc997d4c-b6c9-47bd-985f-115ebc369f4d 5ff40f8f-8e18-4298-8a4e-5e6c47254836" association="7f7b3c34-e424-49e6-8a6c-8e9f6c74dce6">
+    <ownedAttribute xmi:id="bec73004-8d2f-4395-995d-9075d63180f4" name="documentingComment" visibility="public" type="40a5660e-4260-4601-ac14-6da99c5449cf" aggregation="composite" redefinedProperty="cc997d4c-b6c9-47bd-985f-115ebc369f4d" subsettedProperty="5ff40f8f-8e18-4298-8a4e-5e6c47254836" association="7f7b3c34-e424-49e6-8a6c-8e9f6c74dce6">
       <ownedComment xmi:id="71557bb5-232d-4240-981b-4f200cea8021" annotatedElement="bec73004-8d2f-4395-995d-9075d63180f4">
         <body>&lt;p>The Comment, which is owned by the Documentation Relationship, that documents the &lt;code>owningDocumentedElement&lt;/code> of this Documentation.&lt;/p></body>
       </ownedComment>

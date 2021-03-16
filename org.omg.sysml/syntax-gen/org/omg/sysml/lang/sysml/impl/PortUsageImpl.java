@@ -76,7 +76,7 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public EList<PortDefinition> getPortDefinition() {

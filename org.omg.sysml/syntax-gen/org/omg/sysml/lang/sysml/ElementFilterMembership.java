@@ -37,7 +37,6 @@ package org.omg.sysml.lang.sysml;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.ElementFilterMembership#getCondition_comp <em>Condition comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ElementFilterMembership#getCondition <em>Condition</em>}</li>
  * </ul>
  *
@@ -47,50 +46,28 @@ package org.omg.sysml.lang.sysml;
  */
 public interface ElementFilterMembership extends Membership {
 	/**
-	 * Returns the value of the '<em><b>Condition comp</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Condition</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement_comp() <em>Owned Member Element comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement() <em>Owned Member Element</em>}'</li>
 	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The model-level evaluable Boolean Expression used to filter the <code>members</code> of the <code>membershipOwningNamespace</code> of this ElementFilterMembership.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Condition comp</em>' containment reference.
-	 * @see #setCondition_comp(Expression)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElementFilterMembership_Condition_comp()
-	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFilter'"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	Expression getCondition_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ElementFilterMembership#getCondition_comp <em>Condition comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition comp</em>' containment reference.
-	 * @see #getCondition_comp()
-	 * @generated
-	 */
-	void setCondition_comp(Expression value);
-
-	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The model-level evaluable Boolean Expression used to filter the <code>members</code> of the <code>membershipOwningNamespace</code> of this ElementFilterMembership.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Condition</em>' reference.
 	 * @see #setCondition(Expression)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElementFilterMembership_Condition()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningFilter'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	Expression getCondition();

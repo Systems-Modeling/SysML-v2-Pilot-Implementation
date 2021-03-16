@@ -85,8 +85,8 @@ public class UsageAdapter extends FeatureAdapter {
 			type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
 			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();
 			SubjectMembership membership = SysMLFactory.eINSTANCE.createSubjectMembership();
-			membership.setOwnedSubjectParameter_comp(parameter);
-			type.getOwnedRelationship_comp().add(membership);
+			membership.setOwnedSubjectParameter(parameter);
+			type.getOwnedRelationship().add(membership);
 		}
 	}
 	

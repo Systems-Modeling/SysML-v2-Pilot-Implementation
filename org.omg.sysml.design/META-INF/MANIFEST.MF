@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.ui,
  org.omg.sysml,
  org.eclipse.sirius.common,
  org.eclipse.xtext,
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction,
+ org.omg.sysml.xtext;bundle-version="0.10.2",
+ org.omg.kerml.xtext;bundle-version="0.10.2"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName

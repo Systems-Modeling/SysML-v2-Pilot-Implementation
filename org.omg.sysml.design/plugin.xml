@@ -13,4 +13,47 @@
            class="org.omg.sysml.design.ReadOnlyXtextSessionManagerListener">
      </listener>
   </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <command
+           id="org.omg.sysml.design.commands.convertToXMI"
+           name="Convert to XMI">
+     </command>
+  </extension>
+  <extension
+        point="org.eclipse.ui.handlers">
+     <handler
+           class="org.omg.sysml.design.handlers.ConvertToXMIHandler"
+           commandId="org.omg.sysml.design.commands.convertToXMI">
+     </handler>
+  </extension>
+  <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.omg.sysml.design.commands.convertToXMI"
+               icon="icons/ModelFile.gif"
+               label="Convert to XMI"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeMenuSelection">
+                  <count
+                        value="+">
+                  </count>
+                  <iterate operator="and" ifEmpty="false">
+                     <adapt type="org.eclipse.core.resources.IFile"/>
+                     <test
+            			property="org.eclipse.core.resources.name"
+			            value="*.sysml">
+			         </test>
+                  </iterate>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
 </plugin>

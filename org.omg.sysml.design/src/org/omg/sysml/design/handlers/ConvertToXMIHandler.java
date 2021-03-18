@@ -39,6 +39,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.omg.sysml.xtext.util.SysML2XMI;
 
+/**
+ * An handler for the convert to XMI action.
+ * 
+ * @author wpiers
+ */
 public class ConvertToXMIHandler extends AbstractHandler {
 
 	@Override

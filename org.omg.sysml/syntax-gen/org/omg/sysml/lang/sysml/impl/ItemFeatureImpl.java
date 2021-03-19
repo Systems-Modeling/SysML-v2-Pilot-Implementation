@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -64,7 +65,7 @@ public class ItemFeatureImpl extends FeatureImpl implements ItemFeature {
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return type == getOwner()? ((TypeImpl)type).getRelevantFeatures():
-				Collections.singletonList((Feature)getDefaultType(ITEM_FLOW_ITEM_FEATURE));
+				Collections.singletonList((Feature)SysMLLibraryUtil.getLibraryType(this, ITEM_FLOW_ITEM_FEATURE));
 	}
 	
 } //ItemFeatureImpl

@@ -29,8 +29,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class AllocationUsageImpl extends ConnectionUsageImpl implements AllocationUsage {
 
-	public static final String ALLOCATION_USAGE_SUBSETTING_DEFAULT = "Allocations::allocations";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,13 +72,6 @@ public class AllocationUsageImpl extends ConnectionUsageImpl implements Allocati
 		return !getAllocationDefinition().isEmpty();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return getConnectorEnd().size() > 2? 
-				ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-				ALLOCATION_USAGE_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

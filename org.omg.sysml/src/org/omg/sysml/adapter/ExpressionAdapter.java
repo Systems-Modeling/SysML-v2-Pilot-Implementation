@@ -33,11 +33,13 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 
 public class ExpressionAdapter extends StepAdapter {
 
+	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::evaluations";
+	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subevaluations";
+	
 	public ExpressionAdapter(Expression element) {
 		super(element);
 	}
@@ -61,6 +63,15 @@ public class ExpressionAdapter extends StepAdapter {
 				collect(Collectors.toList());
 	}
 	
+	// Implicit Generalization
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return FeatureUtil.isCompositePerformanceFeature(getTarget())?
+				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
+				EXPRESSION_SUBSETTING_BASE_DEFAULT;
+	}
+
 	// Transformation
 
 	protected Feature createFeatureForParameter(Feature parameter) {
@@ -82,9 +93,8 @@ public class ExpressionAdapter extends StepAdapter {
 	}
 	
 	protected void computeInput() {
-		Expression expression = getTarget();
-		if (expression.getInput().isEmpty()) {
-			for (Feature parameter: ExpressionUtil.getTypeParametersOf(expression)) {
+		if (getTarget().getInput().isEmpty()) {
+			for (Feature parameter: getTypeParameters()) {
 				createFeatureForParameter(parameter);
 			}
 		}

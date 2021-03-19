@@ -52,6 +52,26 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAllocationDefinition(AllocationDefinition element) {
+			return new AllocationDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAllocationUsage(AllocationUsage element) {
+			return new AllocationUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAnalysisCaseDefinition(AnalysisCaseDefinition element) {
+			return new AnalysisCaseDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAnalysisCaseUsage(AnalysisCaseUsage element) {
+			return new AnalysisCaseUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseAnnotatingElement(AnnotatingElement element) {
 			return new AnnotatingElementAdapter(element);
 		}
@@ -62,8 +82,38 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseAssertConstraintUsage(AssertConstraintUsage element) {
+			return new AssertConstraintUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAssociation(Association element) {
+			return new AssociationAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAssociationStructure(AssociationStructure element) {
+			return new AssociationStructureAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAttributeDefinition(AttributeDefinition element) {
+			return new AttributeDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseAttributeUsage(AttributeUsage element) {
+			return new AttributeUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseBehavior(Behavior element) {
 			return new BehaviorAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseBindingConnector(BindingConnector element) {
+			return new BindingConnectorAdapter(element);
 		}
 		
 		@Override
@@ -102,6 +152,11 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseConnectionDefinition(ConnectionDefinition element) {
+			return new ConnectionDefinitionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseConnectionUsage(ConnectionUsage element) {
 			return new ConnectionUsageAdapter(element);
 		}
@@ -122,6 +177,16 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseDataType(DataType element) {
+			return new DataTypeAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseDecisionNode(DecisionNode element) {
+			return new DecisionNodeAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseDefinition(Definition element) {
 			return new DefinitionAdapter(element);
 		}
@@ -129,6 +194,11 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseElement(Element element) {
 			return new ElementAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseExhibitStateUsage(ExhibitStateUsage element) {
+			return new ExhibitStateUsageAdapter(element);
 		}
 		
 		@Override
@@ -147,8 +217,28 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseForkNode(ForkNode element) {
+			return new ForkNodeAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseFunction(Function element) {
 			return new FunctionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseIndividualUsage(IndividualUsage element) {
+			return new IndividualUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseInterfaceDefinition(InterfaceDefinition element) {
+			return new InterfaceDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseInterfaceUsage(InterfaceUsage element) {
+			return new InterfaceUsageAdapter(element);
 		}
 		
 		@Override
@@ -172,13 +262,33 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseItemDefinition(ItemDefinition element) {
+			return new ItemDefinitionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseItemUsage(ItemUsage element) {
 			return new ItemUsageAdapter(element);
 		}
 		
 		@Override
+		public ElementAdapter caseJoinNode(JoinNode element) {
+			return new JoinNodeAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseLifeClass(LifeClass element) {
 			return new LifeClassAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseLiteralExpression(LiteralExpression element) {
+			return new LiteralExpressionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseMergeNode(MergeNode element) {
+			return new MergeNodeAdapter(element);
 		}
 		
 		@Override
@@ -192,8 +302,53 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseNullExpression(NullExpression element) {
+			return new NullExpressionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseOperatorExpression(OperatorExpression element) {
+			return new OperatorExpressionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePartDefinition(PartDefinition element) {
+			return new PartDefinitionAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter casePartUsage(PartUsage element) {
 			return new PartUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePerformActionUsage(PerformActionUsage element) {
+			return new PerformActionUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePortDefinition(PortDefinition element) {
+			return new PortDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePortUsage(PortUsage element) {
+			return new PortUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter casePredicate(Predicate element) {
+			return new PredicateAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseRenderingDefinition(RenderingDefinition element) {
+			return new RenderingDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseRenderingUsage(RenderingUsage element) {
+			return new RenderingUsageAdapter(element);
 		}
 		
 		@Override
@@ -212,8 +367,58 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseSendActionUsage(SendActionUsage element) {
+			return new SendActionUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSnapshotFeature(SnapshotFeature element) {
+			return new SnapshotFeatureAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSourceEnd(SourceEnd element) {
+			return new SourceEndAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseStateDefinition(StateDefinition element) {
+			return new StateDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseStateUsage(StateUsage element) {
+			return new StateUsageAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseStep(Step element) {
 			return new StepAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseStructure(Structure element) {
+			return new StructureAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSuccession(Succession element) {
+			return new SuccessionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseSuccessionItemFlow(SuccessionItemFlow element) {
+			return new SuccessionItemFlowAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseTargetEnd(TargetEnd element) {
+			return new TargetEndAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseTimeSliceFeature(TimeSliceFeature element) {
+			return new TimeSliceFeatureAdapter(element);
 		}
 		
 		@Override
@@ -229,6 +434,36 @@ public class ElementAdapterFactory {
 		@Override
 		public ElementAdapter caseUsage(Usage element) {
 			return new UsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseVerificationCaseDefinition(VerificationCaseDefinition element) {
+			return new VerificationCaseDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseVerificationCaseUsage(VerificationCaseUsage element) {
+			return new VerificationCaseUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseViewDefinition(ViewDefinition element) {
+			return new ViewDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseViewUsage(ViewUsage element) {
+			return new ViewUsageAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseViewpointDefinition(ViewpointDefinition element) {
+			return new ViewpointDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseViewpointUsage(ViewpointUsage element) {
+			return new ViewpointUsageAdapter(element);
 		}
 	};
 

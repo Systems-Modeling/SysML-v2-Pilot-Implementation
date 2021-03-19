@@ -25,6 +25,8 @@ import org.omg.sysml.lang.sysml.Class;
 
 public class ClassAdapter extends ClassifierAdapter {
 
+	public static final String CLASS_SUPERCLASS_DEFAULT = "Occurrences::Occurrence";
+	
 	public ClassAdapter(Class element) {
 		super(element);
 	}
@@ -32,6 +34,11 @@ public class ClassAdapter extends ClassifierAdapter {
 	@Override
 	public Class getTarget() {
 		return (Class)super.getTarget();
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return CLASS_SUPERCLASS_DEFAULT;
 	}
 
 }

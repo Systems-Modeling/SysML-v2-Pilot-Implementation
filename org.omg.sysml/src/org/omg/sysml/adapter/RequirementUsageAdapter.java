@@ -23,8 +23,14 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.UsageUtil;
 
 public class RequirementUsageAdapter extends ConstraintUsageAdapter {
+	
+	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
+	public static final String REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT = "Requirements::RequirementCheck::subrequirements";
+
+	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
 	
 	public RequirementUsageAdapter(RequirementUsage element) {
 		super(element);
@@ -41,5 +47,23 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	public Usage getSubjectParameter() {
 		return getTarget().getSubjectParameter();
 	}
+	
+	// Implicit Generalization
 
+	@Override
+	protected String getDefaultSupertype() {
+		return UsageUtil.isSubrequirement(getTarget())? 
+				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
+				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	@Override
+	public void addRequirementSubsetting() {
+		if (UsageUtil.isVerifiedRequirement(getTarget())) {
+			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+		} else {
+			super.addRequirementSubsetting();
+		}
+	}
+	
 }

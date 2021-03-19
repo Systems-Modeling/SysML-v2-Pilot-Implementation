@@ -51,8 +51,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class FunctionImpl extends BehaviorImpl implements Function {
 
-	public static final String FUNCTION_SUPERCLASS_DEFAULT = "Performances::Evaluation";
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -137,11 +135,6 @@ public class FunctionImpl extends BehaviorImpl implements Function {
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return FUNCTION_SUPERCLASS_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

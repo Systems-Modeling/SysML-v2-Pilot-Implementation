@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
@@ -51,11 +50,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StepImpl extends FeatureImpl implements Step {
-	
-	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Performances::performances";
-	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subperformances";
-	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Objects::Object::enactedPerformances";
-	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Occurrences::Occurrence::incomingTransfers";
 	
 	protected boolean isCheckSubsetting = true;
 	
@@ -133,18 +127,6 @@ public class StepImpl extends FeatureImpl implements Step {
 	 */
 	public boolean isSetType() {
   		return false;
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return 
-			FeatureUtil.isCompositePerformanceFeature(this)? 
-				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-			FeatureUtil.isEnactedPerformance(this)?
-				STEP_SUBSETTING_OBJECT_DEFAULT:
-			FeatureUtil.isIncomingTransfer(this)?
-				STEP_SUBSETTING_TRANSFER_DEFAULT:
-				STEP_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	@Override

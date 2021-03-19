@@ -56,8 +56,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefinition {
 
-	public static final String ACTION_DEFINITION_SUPERCLASS_DEFAULT = "Actions::Action";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,11 +111,6 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 				new int[] {SysMLPackage.TYPE__FEATURE});
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return ACTION_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		return Collections.emptyList();

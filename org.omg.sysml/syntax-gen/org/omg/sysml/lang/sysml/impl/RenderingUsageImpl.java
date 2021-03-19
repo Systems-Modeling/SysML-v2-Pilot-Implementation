@@ -57,9 +57,6 @@ import org.omg.sysml.util.FeatureUtil;
  */
 public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage {
 	
-	public static final String RENDERING_SUBSETTING_BASE_DEFAULT = "Views::renderings";
-	public static final String RENDERING_SUBSETTING_SUBRENDERING_DEFAULT = "Views::Rendering::subrenderings";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,18 +117,6 @@ public class RenderingUsageImpl extends PartUsageImpl implements RenderingUsage 
 		return basicGetRenderingDefinition() != null;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubrendering()? 
-					RENDERING_SUBSETTING_SUBRENDERING_DEFAULT:
-					RENDERING_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubrendering() {
-		Type owningType = getOwningType();
-		return owningType instanceof RenderingDefinition | owningType instanceof RenderingUsage;
-	}
-	
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return !FeatureUtil.isParameter(this) && !isEnd() && isRender()? getRenderFeatures(type):

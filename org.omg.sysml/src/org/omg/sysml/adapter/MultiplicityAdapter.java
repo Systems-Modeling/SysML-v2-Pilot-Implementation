@@ -25,6 +25,8 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 
 public class MultiplicityAdapter extends FeatureAdapter {
 
+	public static final String MULTIPLICITY_SUBSETTING_DEFAULT = "Base::naturals";
+
 	public MultiplicityAdapter(Multiplicity element) {
 		super(element);
 	}
@@ -34,6 +36,11 @@ public class MultiplicityAdapter extends FeatureAdapter {
 		return (Multiplicity)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return MULTIPLICITY_SUBSETTING_DEFAULT;
+	}
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

@@ -28,10 +28,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -97,11 +95,6 @@ import org.omg.sysml.lang.sysml.Element;
  * @generated
  */
 public class FeatureImpl extends TypeImpl implements Feature {
-	
-	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
-	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::dataValues";
-	public static final String OCCURRENCE_FEATURE_SUBSETTING_DEFAULT = "Occurrences::occurrences";
-	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Objects::objects";
 	
 	public static final String FEATURE_TRANSFER_SOURCE_OUTPUT = "Transfers::Transfer::transferSource::sourceOutput";
 	public static final String FEATURE_TRANSFER_TARGET_INPUT = "Transfers::Transfer::transferTarget::targetInput";
@@ -227,7 +220,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 				((FeatureImpl)originalType).getTypes(types, visitedFeatures);
 			}
 		}
-		for (Feature subsettedFeature: getSubsettedFeatures()) {
+		for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(this)) {
 			if (subsettedFeature != null && !visitedFeatures.contains(subsettedFeature)) {
 				((FeatureImpl)subsettedFeature).getTypes(types, visitedFeatures);
 			}
@@ -235,7 +228,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected List<Type> getFeatureTypes() {
-		List<Type> types = basicGetOwnedTyping().stream().
+		List<Type> types = getOwnedTyping().stream().
 				map(typing->typing.getType()).
 				filter(type->type != null).
 				collect(Collectors.toList());
@@ -323,7 +316,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			return feature.isOrdered;
 		} else {
 			visited.add(feature);
-			for (Feature subsettedFeature: feature.getSubsettedFeatures()) {
+			for (Feature subsettedFeature: FeatureUtil.getSubsettedFeaturesOf(feature)) {
 				if (subsettedFeature != null && !visited.contains(subsettedFeature) && 
 						checkIsOrdered(((FeatureImpl)subsettedFeature), visited)) {
 					return true;
@@ -346,19 +339,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.FEATURE__IS_ORDERED, oldIsOrdered, isOrdered));
 	}
 
-	@Override
-	protected EClass getGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getSubsetting();
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return FeatureUtil.hasStructureType(this)? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-			   FeatureUtil.hasClassType(this)? OCCURRENCE_FEATURE_SUBSETTING_DEFAULT:
-			   FeatureUtil.hasDataType(this)? VALUE_FEATURE_SUBSETTING_DEFAULT:
-			   FEATURE_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,11 +349,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return new DerivedSubsetEObjectEList<>(Redefinition.class, this, SysMLPackage.FEATURE__OWNED_REDEFINITION, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
 	}
 	
-	public List<Redefinition> basicGetOwnedRedefinition() {
-		return basicGetOwnedGeneralization(Redefinition.class);
-	}
-	
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -381,10 +356,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	 */
 	public EList<Subsetting> getOwnedSubsetting() {
 		return new DerivedSubsetEObjectEList<>(Subsetting.class, this, SysMLPackage.FEATURE__OWNED_SUBSETTING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
-	}
-	
-	public List<Subsetting> basicGetOwnedSubsetting() {
-		return basicGetOwnedGeneralization(Subsetting.class);
 	}
 	
 	/**
@@ -395,10 +366,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	@Override
 	public EList<FeatureTyping> getOwnedTyping() {
 		return new DerivedSubsetEObjectEList<>(FeatureTyping.class, this, SysMLPackage.FEATURE__OWNED_TYPING, new int[] {SysMLPackage.FEATURE__OWNED_GENERALIZATION});
-	}
-
-	public List<FeatureTyping> basicGetOwnedTyping() {
-		return basicGetOwnedGeneralization(FeatureTyping.class);
 	}
 	
 	/**
@@ -423,7 +390,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	
 	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
 		addComputedRedefinitions(skip);
-		List<Redefinition> redefinitions = basicGetOwnedRedefinition();
+		EList<Redefinition> redefinitions = getOwnedRedefinition();
 		
 		List<Feature> redefinedFeatures = new ArrayList<>();
 		redefinitions.stream().
@@ -447,8 +414,8 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	/**
 	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
 	 */
-	protected void addComputedRedefinitions(Element skip) {
-		List<Redefinition> ownedRedefinitions = basicGetOwnedRedefinition();
+	public void addComputedRedefinitions(Element skip) {
+		EList<Redefinition> ownedRedefinitions = getOwnedRedefinition();
 		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
 			TypeUtil.removeImplicitGeneralTypeFrom(this, SysMLPackage.eINSTANCE.getRedefinition());
 			addRedefinitions(skip);
@@ -465,7 +432,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	protected void addRedefinitions(Element skip) {
 		Namespace owner = getOwningNamespace();
 		if (owner instanceof Type) {
-			TypeUtil.removeEmptyGeneralTypesFor(this, Redefinition.class);
 			Type type = getOwningType();
 			int i = getRelevantFeatures(type).indexOf(this);
 			if (i >= 0) {
@@ -810,71 +776,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return redefinedFeatures.isEmpty()? null:
 			redefinedFeatures.get(0);
 	}
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-		super.computeImplicitGeneralTypes();
-	}
-	
-	public Optional<Feature> getFirstSubsettedFeature() {
-		return getSubsettedNotRedefinedFeatures().findFirst();
-	}
-	
-	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		computeImplicitGeneralTypes();
-		Stream<Feature> implicitSubsettedFeatures = TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.Literals.SUBSETTING).stream().
-				map(Feature.class::cast);
-		Stream<Feature> ownedSubsettedFeatures = getOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).
-				map(Subsetting::getSubsettedFeature);
-		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
-	}
-	
-	public List<Feature> getSubsettedFeatures() {
-		// Note: Build on getSubsettedNotRedefinedFeatures here because it is overridden in some subclasses.
-		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
-		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
-				map(Redefinition::getRedefinedFeature);
-		Stream<Feature> implicitRedefinedFeatures = TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.Literals.REDEFINITION).stream().
-				map(Feature.class::cast);		
-		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getRedefinedFeatures() {
-		computeImplicitGeneralTypes();
-		Stream<Feature> implicitRedefinedFeatures = TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.Literals.REDEFINITION).stream().
-				map(Feature.class::cast);
-		Stream<Feature> ownedRedefinedFeatures = getOwnedRedefinition().stream().
-				map(Redefinition::getRedefinedFeature);
-		return Stream.concat(ownedRedefinedFeatures, implicitRedefinedFeatures).
-				collect(Collectors.toList());
-	}
-	
-	/**
-	 * Return a set including this Feature and all Features that it redefines directly or indirectly.
-	 */
-	public Set<Feature> getAllRedefinedFeatures() {
-		Set<Feature> redefinedFeatures = new HashSet<>();
-		
-		// Ensure that the redefinitions for this feature are recomputed. 
-		forceComputeRedefinitions();
-		
-		addAllRedefinedFeaturesTo(redefinedFeatures);
-		return redefinedFeatures;
-	}
-	
-	protected void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
-		redefinedFeatures.add(this);
-		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
-			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
-				((FeatureImpl)redefinedFeature).addAllRedefinedFeaturesTo(redefinedFeatures);
-			}
-		});
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -25,6 +25,8 @@ import org.omg.sysml.lang.sysml.Function;
 
 public class FunctionAdapter extends BehaviorAdapter {
 
+	public static final String FUNCTION_SUPERCLASS_DEFAULT = "Performances::Evaluation";
+
 	public FunctionAdapter(Function element) {
 		super(element);
 	}
@@ -34,6 +36,11 @@ public class FunctionAdapter extends BehaviorAdapter {
 		return (Function)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return FUNCTION_SUPERCLASS_DEFAULT;
+	}
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

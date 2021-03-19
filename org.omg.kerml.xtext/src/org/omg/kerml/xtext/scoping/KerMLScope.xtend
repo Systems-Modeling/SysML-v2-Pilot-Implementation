@@ -189,7 +189,7 @@ class KerMLScope extends AbstractScope {
 							val elementqn = qn.append(elementName)
 							if ((isInsideScope || r.visibility == VisibilityKind.PUBLIC || 
 							     r.visibility == VisibilityKind.PROTECTED && scopingType !== null && 
-							     scopingType.isInheritedProtected(r.membershipOwningNamespace)) &&
+							     scopingType.isInheritedProtected(ns)) &&
 							     checkQualifiedName(elementqn, checkIfAdded)) {
 							    // Delay proxy resolution of memberElement for as long as possible (if not caused by getting memberName).
 							    // This can prevent the proxy from being spuriously marked as unresolvable during an earlier phase of the search. 
@@ -307,9 +307,9 @@ class KerMLScope extends AbstractScope {
 			}
 			if (!scopeProvider.visited.contains(ns)) {
 				scopeProvider.addVisited(ns);
-				TypeUtil.computeImplicitGeneralTypesFor(ns)
+				var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
 				scopeProvider.removeVisited(ns)
-				for (type : TypeUtil.getImplicitGeneralTypesFor(ns)) {
+				for (type : implicitTypes) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false)
 					if (found) {
 						return true

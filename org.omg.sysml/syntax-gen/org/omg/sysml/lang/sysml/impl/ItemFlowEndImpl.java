@@ -24,11 +24,9 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
@@ -58,18 +56,6 @@ public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ITEM_FLOW_END;
-	}
-
-	@Override
-	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		FeatureUtil.addItemFlowEndSubsettingTo(this);
-		return super.getSubsettedNotRedefinedFeatures();
-	}
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
-		addComputedRedefinitions(null);
 	}
 
 	@Override

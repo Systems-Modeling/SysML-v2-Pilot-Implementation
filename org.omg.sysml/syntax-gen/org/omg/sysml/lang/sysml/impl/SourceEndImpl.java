@@ -23,10 +23,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -58,22 +56,9 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	}
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
 	public void addComputedRedefinitions(Element skip) {
-		addDefaultGeneralType();
+		TypeUtil.addDefaultGeneralTypeTo(this);
 		super.addComputedRedefinitions(skip);
-	}
-	
-	@Override
-	public Type getDefaultType(String... defaultNames) {
-		Type type = getOwningType();
-		return type instanceof Feature? 
-				FeatureUtil.getSource((Feature)type): 
-				super.getDefaultType(defaultNames);
 	}
 	
 } //SourceEndImpl

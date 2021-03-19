@@ -26,7 +26,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -64,6 +63,7 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -528,13 +528,7 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	
 	protected Optional<Feature> getVariantSubsettedFeature() {
 		return UsageUtil.getOwningVariantMembershipFor(this) == null? Optional.empty():
-			getFirstSubsettedFeature().filter(f->f != UsageUtil.getOwningVariationUsageFor(this));
-	}
-	
-	@Override
-	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
-		UsageUtil.addVariationSubsettingTo(this);
-		return super.getSubsettedNotRedefinedFeatures();
+			FeatureUtil.getFirstSubsettedFeatureOf(this).filter(f->f != UsageUtil.getOwningVariationUsageFor(this));
 	}
 	
 	/**

@@ -36,9 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AssociationStructureImpl extends AssociationImpl implements AssociationStructure {
 
-	public static final String ASSOCIATION_STRUCTURE_SUPERCLASS_DEFAULT = "Objects::LinkObject";
-	public static final String BINARY_ASSOCIATION_STRUCTURE_SUPERCLASS_DEFAULT = "Objects::BinaryLinkObject";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -58,11 +55,4 @@ public class AssociationStructureImpl extends AssociationImpl implements Associa
 		return SysMLPackage.Literals.ASSOCIATION_STRUCTURE;
 	}
 	
-	@Override
-	protected String getDefaultSupertype() {
-		return getOwnedEndFeature().size() > 2 ? ASSOCIATION_STRUCTURE_SUPERCLASS_DEFAULT
-				: BINARY_ASSOCIATION_STRUCTURE_SUPERCLASS_DEFAULT;
-	}
-
-
 } //AssociationStructureImpl

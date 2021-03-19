@@ -22,16 +22,16 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.adapter.ExhibitStateUsageAdapter;
+import org.omg.sysml.adapter.StateUsageAdapter;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
 
 /**
@@ -48,8 +48,6 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStateUsage {
-
-	public static final String EXHIBIT_STATE_SUBSETTING_PART_DEFAULT = "Parts::Part::exhibitedStates";
 
 	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;
@@ -92,27 +90,20 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	public StateUsage basicGetExhibitedState() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
-		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(feature->feature == subsettingBaseDefault || 
-				         feature == subsettingPartDefault)) {
-			return this;
-		} else {
-			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof StateUsage? (StateUsage)subsettedFeature: null;
-		}
+		return FeatureUtil.getSubsettedFeatureOf(this, StateUsage.class, 
+				feature->feature == subsettingBaseDefault && feature == subsettingPartDefault);
 	}
 
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = getDefaultType(STATE_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, StateUsageAdapter.STATE_SUBSETTING_BASE_DEFAULT);
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = getDefaultType(EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, ExhibitStateUsageAdapter.EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
 		}
 		return subsettingPartDefault;
 	}
@@ -132,17 +123,6 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()? 
-				EXHIBIT_STATE_SUBSETTING_PART_DEFAULT:
-				super.getDefaultSupertype();
-	}
-	
-	public boolean isEnactedPerformance() {
-		return FeatureUtil.isEnactedPerformance(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

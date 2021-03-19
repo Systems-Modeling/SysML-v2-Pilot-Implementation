@@ -51,8 +51,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class BehaviorImpl extends ClassImpl implements Behavior {
 
-	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -89,11 +87,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
 		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return BEHAVIOR_SUPERCLASS_DEFAULT;
 	}
 
 	/**

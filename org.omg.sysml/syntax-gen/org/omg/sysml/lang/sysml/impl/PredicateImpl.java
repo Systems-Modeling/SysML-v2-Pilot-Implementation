@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PredicateImpl extends FunctionImpl implements Predicate {
 
-	public static final String PREDICATE_SUPERCLASS_DEFAULT = "Performances::BooleanEvaluation";
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -52,11 +50,6 @@ public class PredicateImpl extends FunctionImpl implements Predicate {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PREDICATE;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return PREDICATE_SUPERCLASS_DEFAULT;
 	}
 
 } // PredicateImpl

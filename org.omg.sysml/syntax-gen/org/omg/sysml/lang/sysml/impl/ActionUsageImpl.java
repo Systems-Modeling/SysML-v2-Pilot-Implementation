@@ -37,7 +37,7 @@ import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -57,8 +57,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
-	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
 	public static final String STATE_BASE = "States::StateAction";
 	public static final String TRANSITION_BASE = "States::TransitionAction";
 	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
@@ -169,7 +167,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 		String redefinedFeature = getRedefinedFeature();
 		return redefinedFeature == null? super.getRelevantFeatures(type):
 			   type == getOwningType()? Collections.singletonList(this):
-			   Collections.singletonList((Feature)getDefaultType(redefinedFeature));
+			   Collections.singletonList((Feature)SysMLLibraryUtil.getLibraryType(this, redefinedFeature));
 	}
 	
 	protected String getRedefinedFeature() {
@@ -179,17 +177,6 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 			   membership instanceof TransitionFeatureMembership? 
 					TRANSITION_BASE + "::" + TRANSITION_REDEFINED_FEATURES[((TransitionFeatureMembership)membership).getKind().getValue()]: 
 					null;
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					ACTION_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubperformance() {
-		return FeatureUtil.isCompositePerformanceFeature(this);
 	}
 	
 	/**

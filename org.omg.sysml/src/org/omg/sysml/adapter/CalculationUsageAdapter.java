@@ -26,6 +26,9 @@ import org.omg.sysml.lang.sysml.CalculationUsage;
 
 public class CalculationUsageAdapter extends ActionUsageAdapter {
 
+	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
+	public static final String CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT = "Calculations::Calculation::subcalculations";
+
 	protected BindingConnector resultConnector = null;
 
 	public CalculationUsageAdapter(CalculationUsage element) {
@@ -34,6 +37,13 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	
 	public CalculationUsage getTarget() {
 		return (CalculationUsage)super.getTarget();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT:
+					CALCULATION_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	@Override

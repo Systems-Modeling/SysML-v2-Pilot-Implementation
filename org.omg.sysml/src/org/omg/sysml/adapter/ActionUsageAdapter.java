@@ -22,9 +22,13 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.util.FeatureUtil;
 
 public class ActionUsageAdapter extends UsageAdapter {
 	
+	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
+	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
+
 	public ActionUsageAdapter(ActionUsage element) {
 		super(element);
 	}
@@ -34,4 +38,15 @@ public class ActionUsageAdapter extends UsageAdapter {
 		return (ActionUsage)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+					ACTION_SUBSETTING_SUBACTION_DEFAULT:
+					ACTION_SUBSETTING_BASE_DEFAULT;
+	}
+	
+	public boolean isSubperformance() {
+		return FeatureUtil.isCompositePerformanceFeature(getTarget());
+	}
+	
 }

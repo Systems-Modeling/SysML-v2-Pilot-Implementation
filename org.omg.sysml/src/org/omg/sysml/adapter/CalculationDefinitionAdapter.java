@@ -25,12 +25,19 @@ import org.omg.sysml.lang.sysml.CalculationDefinition;
 
 public class CalculationDefinitionAdapter extends ActionDefinitionAdapter {
 
+	public static final String CALCULATION_DEFINITION_SUPERCLASS_DEFAULT = "Calculations::Calculation";
+
 	public CalculationDefinitionAdapter(CalculationDefinition element) {
 		super(element);
 	}
 	
 	public CalculationDefinition getTarget() {
 		return (CalculationDefinition)super.getTarget();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 	
 	@Override

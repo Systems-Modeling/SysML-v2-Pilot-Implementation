@@ -50,9 +50,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionItemFlow {
 
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::flows";
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subflows";
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -133,13 +130,6 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubtransfer() ? 
-				SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT: 
-				SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

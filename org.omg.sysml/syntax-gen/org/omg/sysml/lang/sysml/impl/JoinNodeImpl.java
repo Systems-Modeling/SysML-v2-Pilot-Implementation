@@ -57,9 +57,4 @@ public class JoinNodeImpl extends ControlNodeImpl implements JoinNode {
 		return SysMLPackage.Literals.JOIN_NODE;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return JOIN_NODE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 } //JoinNodeImpl

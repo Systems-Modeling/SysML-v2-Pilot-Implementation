@@ -35,7 +35,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -57,11 +56,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 
-	public static final String STATE_SUBSETTING_BASE_DEFAULT = "States::stateActions";
-	public static final String STATE_SUBSETTING_SUBSTATE_DEFAULT = "States::StateAction::substates";
-	
-	protected boolean isCheckSubsetting = true;
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,17 +212,6 @@ public class StateUsageImpl extends ActionUsageImpl implements StateUsage {
 	public List<? extends Feature> getRelevantFeatures() {
 		return TypeUtil.getItemFeaturesOf(this);
 	}	
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-				STATE_SUBSETTING_SUBSTATE_DEFAULT:
-				STATE_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubperformance() {
-		return FeatureUtil.isCompositePerformanceFeature(this);
-	}
 	
 	/**
 	 * <!-- begin-user-doc -->

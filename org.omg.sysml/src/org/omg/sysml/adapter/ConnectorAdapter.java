@@ -23,9 +23,15 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public class ConnectorAdapter extends FeatureAdapter {
 
+	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Links::links";
+	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Links::binaryLinks";
+	public static final String CONNECTOR_OBJECT_SUBSETTING_DEFAULT = "Objects::linkObjects";
+	public static final String BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT = "Objects::binaryLinkObjects";
+	
 	public ConnectorAdapter(Connector feature) {
 		super(feature);
 	}
@@ -35,6 +41,18 @@ public class ConnectorAdapter extends FeatureAdapter {
 		return (Connector)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		Connector target = getTarget();
+		return FeatureUtil.isStructureFeature(target)?
+				target.getConnectorEnd().size() > 2? 
+					CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
+					BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
+				target.getConnectorEnd().size() > 2? 
+					CONNECTOR_SUBSETTING_DEFAULT:
+					BINARY_CONNECTOR_SUBSETTING_DEFAULT;
+	}
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

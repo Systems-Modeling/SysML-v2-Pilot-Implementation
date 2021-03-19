@@ -27,6 +27,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
@@ -63,7 +64,7 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	}
 
 	@Override
-	protected void addComputedRedefinitions(Element skip) {
+	public void addComputedRedefinitions(Element skip) {
 		if (!TypeUtil.isImplicitGeneralizationDeclaredFor(this, SysMLPackage.eINSTANCE.getRedefinition())) {
 			addRedefinitions(skip);
 		}
@@ -72,8 +73,7 @@ public class ItemFlowFeatureImpl extends FeatureImpl implements ItemFlowFeature 
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return type instanceof ItemFlowEnd ? type.getOwnedFeature():
-				Collections.singletonList((Feature)getDefaultType(
-						ITEM_FLOW_INPUT_OUTPUT_FEATURES[getEndIndex()]));
+				Collections.singletonList((Feature)SysMLLibraryUtil.getLibraryType(this, ITEM_FLOW_INPUT_OUTPUT_FEATURES[getEndIndex()]));
 	}
 	
 	protected int getEndIndex() {

@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.omg.sysml.adapter.RequirementUsageAdapter;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
@@ -43,6 +44,7 @@ import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
@@ -68,10 +70,6 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
 
-	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
-	public static final String REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT = "Requirements::RequirementCheck::subrequirements";
-	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
-	
 	private Type subsettingVerificationFeature = null;
 
 	/**
@@ -255,13 +253,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		return constraints;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return UsageUtil.isSubrequirement(this)? 
-				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
-				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,15 +325,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	// Additional overrides
 	
 	@Override
-	public void addRequirementSubsetting() {
-		if (UsageUtil.isVerifiedRequirement(this)) {
-			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
-		} else {
-			super.addRequirementSubsetting();
-		}
-	}
-	
-	@Override
 	protected boolean isIgnoredSubsetting(Feature feature) {
 		return feature == getSubsettingVerificationFeature() ||
 			   super.isIgnoredSubsetting(feature);
@@ -350,7 +332,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	
 	protected Type getSubsettingVerificationFeature() {
 		if (subsettingVerificationFeature == null) {
-			subsettingVerificationFeature = getDefaultType(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+			subsettingVerificationFeature = SysMLLibraryUtil.getLibraryType(this, RequirementUsageAdapter.REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
 		}
 		return subsettingVerificationFeature;
 	}

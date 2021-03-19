@@ -22,8 +22,14 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.util.FeatureUtil;
 
 public class StepAdapter extends FeatureAdapter {
+	
+	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Performances::performances";
+	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subperformances";
+	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Objects::Object::enactedPerformances";
+	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Occurrences::Occurrence::incomingTransfers";
 	
 	public StepAdapter(Step element) {
 		super(element);
@@ -34,4 +40,17 @@ public class StepAdapter extends FeatureAdapter {
 		return (Step)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		Step target = getTarget();
+		return 
+			FeatureUtil.isCompositePerformanceFeature(target)? 
+				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
+			FeatureUtil.isEnactedPerformance(target)?
+				STEP_SUBSETTING_OBJECT_DEFAULT:
+			FeatureUtil.isIncomingTransfer(target)?
+				STEP_SUBSETTING_TRANSFER_DEFAULT:
+				STEP_SUBSETTING_BASE_DEFAULT;
+	}
+	
 }

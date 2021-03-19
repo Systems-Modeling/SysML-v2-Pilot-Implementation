@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.omg.sysml.adapter.TransitionUsageAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -44,8 +45,8 @@ import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -65,6 +66,8 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
+	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
+
 	/**
 	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -74,10 +77,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 * @ordered
 	 */
 	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::evaluations";
-	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subevaluations";
-	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
-	
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -163,18 +163,11 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	}
 	
 	@Override
-	protected String getDefaultSupertype() {
-		return FeatureUtil.isCompositePerformanceFeature(this)?
-				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-				EXPRESSION_SUBSETTING_BASE_DEFAULT;
-	}
-
-	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		Type owningType = getOwningType();
 		return ExpressionUtil.isTransitionGuard(this)?
 					type == owningType? Collections.singletonList(this):
-					Collections.singletonList((Feature)getDefaultType(EXPRESSION_GUARD_FEATURE)):
+					Collections.singletonList((Feature)SysMLLibraryUtil.getLibraryType(this, EXPRESSION_GUARD_FEATURE)):
 			   owningType instanceof FeatureValue? Collections.emptyList():
 			   super.getRelevantFeatures(type);
 	}
@@ -183,7 +176,7 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	protected List<Type> getGeneralTypes(Type type, Element skip) {
 		Type owningType = getOwningType();
 		return ExpressionUtil.isTransitionGuard(this) && type == owningType?
-				Collections.singletonList(getDefaultType(TransitionUsageImpl.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
+				Collections.singletonList(SysMLLibraryUtil.getLibraryType(this, TransitionUsageAdapter.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
 				super.getGeneralTypes(type, skip);
 	}
 	

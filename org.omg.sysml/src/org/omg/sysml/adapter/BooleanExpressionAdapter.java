@@ -22,8 +22,12 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BooleanExpression;
+import org.omg.sysml.util.FeatureUtil;
 
 public class BooleanExpressionAdapter extends ExpressionAdapter {
+
+	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::booleanEvaluations";
+	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subBooleanEvaluations";
 
 	public BooleanExpressionAdapter(BooleanExpression element) {
 		super(element);
@@ -32,6 +36,13 @@ public class BooleanExpressionAdapter extends ExpressionAdapter {
 	@Override
 	public BooleanExpression getTarget() {
 		return (BooleanExpression)super.getTarget();
+	}
+
+	@Override
+	protected String getDefaultSupertype() {
+		return FeatureUtil.isCompositePerformanceFeature(getTarget())?
+				BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
+				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
 
 	@Override

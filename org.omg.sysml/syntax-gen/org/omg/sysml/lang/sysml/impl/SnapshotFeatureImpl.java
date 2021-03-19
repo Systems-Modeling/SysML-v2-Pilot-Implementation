@@ -31,7 +31,8 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,14 +74,8 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	}
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		UsageUtil.setIndividualTypingFor(this);
-		super.computeImplicitGeneralTypes();
-	}
-		
-	@Override
 	protected List<Type> getFeatureTypes() {
-		UsageUtil.setIndividualTypingFor(this);
+		FeatureUtil.setIndividualTypingFor(this);
 		return super.getFeatureTypes();
 	}
 
@@ -92,7 +87,7 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return Collections.singletonList(type == getOwner()? this:
-			   (Feature)getDefaultType(SNAPSHOT_FEATURE_REDEFINED_FEATURE));
+			   (Feature)SysMLLibraryUtil.getLibraryType(this, SNAPSHOT_FEATURE_REDEFINED_FEATURE));
 	}
 
 } //SnapshotFeatureImpl

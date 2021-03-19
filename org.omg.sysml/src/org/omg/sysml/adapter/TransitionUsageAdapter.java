@@ -35,6 +35,7 @@ import org.omg.sysml.util.TypeUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
 
+	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitionActions";
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 
 	public TransitionUsageAdapter(TransitionUsage element) {
@@ -44,6 +45,13 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public TransitionUsage getTarget() {
 		return (TransitionUsage)super.getTarget();
+	}
+	
+	// Implicit Generalization
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return TRANSITION_USAGE_SUBSETTING_DEFAULT;
 	}
 	
 	// Transformation
@@ -73,7 +81,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
 			Succession succession = transition.getSuccession();
 			ElementUtil.transform(succession);
-			TypeUtil.addBindingConnectorTo(transition, succession, transitionLinkFeature);
+			addBindingConnector(succession, transitionLinkFeature);
 		}
 		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;

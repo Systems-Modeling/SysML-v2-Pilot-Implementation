@@ -50,9 +50,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActionUsage {
 	
-	public static final String ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::acceptActions";
-	public static final String ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::acceptSubactions";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -100,23 +97,11 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	}
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
 	public void addComputedRedefinitions(Element skip) {
-		TypeUtil.addDefaultGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), getDefaultSupertype());
+		TypeUtil.addDefaultGeneralTypeTo(this);
 		super.addComputedRedefinitions(skip);
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

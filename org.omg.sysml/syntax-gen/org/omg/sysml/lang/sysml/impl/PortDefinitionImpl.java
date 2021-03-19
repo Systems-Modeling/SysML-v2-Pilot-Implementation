@@ -44,8 +44,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition {
 
-	public static final String PORT_DEFINITION_SUPERCLASS_DEFAULT = "Ports::Port";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,9 +154,4 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 		return super.eIsSet(featureID);
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return PORT_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 } //PortDefinitionImpl

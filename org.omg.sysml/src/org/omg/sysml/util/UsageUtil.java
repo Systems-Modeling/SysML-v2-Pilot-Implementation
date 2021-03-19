@@ -21,14 +21,14 @@
 
 package org.omg.sysml.util;
 
+import java.util.stream.Stream;
+
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.IndividualDefinition;
-import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
@@ -39,7 +39,9 @@ import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
-import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionFeatureKind;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.lang.sysml.VariantMembership;
@@ -76,13 +78,6 @@ public class UsageUtil {
 		return owningMembership instanceof VariantMembership? (VariantMembership)owningMembership: null;
 	}
 
-	public static void addVariationSubsettingTo(Usage usage) {
-		Usage variationUsage = getOwningVariationUsageFor(usage);
-		if (variationUsage != null && isVariant(usage)) {
-			TypeUtil.addImplicitGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
-		}
-	}
-	
 	// Subjects
 
 	public static boolean isSubjectParameter(Usage usage) {
@@ -143,21 +138,15 @@ public class UsageUtil {
 		} else {
 			return false;
 		}
-	}
-
-	// Individuals
-
-	/**
-	 * This method is used for time slice and snapshot features.
-	 */
-	public static void setIndividualTypingFor(Feature feature) {
-		Type owningType = feature.getOwningType();
-		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
-			Type type = owningType instanceof IndividualUsage? 
-					((IndividualUsage)owningType).getIndividualDefinition(): 
-					owningType;
-					TypeUtil.addImplicitGeneralTypeTo(feature, SysMLPackage.eINSTANCE.getFeatureTyping(), type);
-		}
-	}
+	}	
 	
+	// Transitions
+	
+	public static Stream<Feature> getTransitionFeaturesOf(TransitionUsage usage, TransitionFeatureKind kind) {
+		return usage.getOwnedFeatureMembership().stream().
+				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
+				map(mem->mem.getMemberFeature()).
+				filter(f->f != null);
+	}
+		
 }

@@ -21,9 +21,13 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class ClassifierAdapter extends TypeAdapter {
+	
+	public static final String CLASSIFIER_SUPERCLASS_DEFAULT = "Base::Anything";
 	
 	public ClassifierAdapter(Classifier element) {
 		super(element);
@@ -34,4 +38,14 @@ public class ClassifierAdapter extends TypeAdapter {
 		return (Classifier)super.getTarget();
 	}
 
+	@Override
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getSuperclassing();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return CLASSIFIER_SUPERCLASS_DEFAULT;
+	}
+	
 }

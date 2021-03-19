@@ -82,11 +82,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
-	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Links::links";
-	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Links::binaryLinks";
-	public static final String CONNECTOR_OBJECT_SUBSETTING_DEFAULT = "Objects::linkObjects";
-	public static final String BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT = "Objects::binaryLinkObjects";
-	
 	/**
 	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -296,7 +291,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
 		new ArrayList<Feature>(getConnectorEnd()).stream().forEach(end->
-			((FeatureImpl)end).getFirstSubsettedFeature().
+			FeatureUtil.getFirstSubsettedFeatureOf(end).
 			ifPresent(relatedFeatures::add));
 		return relatedFeatures;
 	}
@@ -490,17 +485,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		return path;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return FeatureUtil.isStructureFeature(this)?
-				getConnectorEnd().size() > 2? 
-					CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
-					BINARY_CONNECTOR_OBJECT_SUBSETTING_DEFAULT:
-				getConnectorEnd().size() > 2? 
-					CONNECTOR_SUBSETTING_DEFAULT:
-					BINARY_CONNECTOR_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

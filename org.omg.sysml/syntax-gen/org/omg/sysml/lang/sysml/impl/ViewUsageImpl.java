@@ -42,7 +42,6 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
@@ -71,9 +70,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	
-	public static final String VIEW_SUBSETTING_BASE_DEFAULT = "Views::views";
-	public static final String VIEW_SUBSETTING_SUBVIEW_DEFAULT = "Views::View::subviews";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -230,18 +226,6 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 		return viewedElements;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubview()? 
-					VIEW_SUBSETTING_SUBVIEW_DEFAULT:
-					VIEW_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubview() {
-		Type owningType = getOwningType();
-		return owningType instanceof ViewDefinition || owningType instanceof ViewUsage;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

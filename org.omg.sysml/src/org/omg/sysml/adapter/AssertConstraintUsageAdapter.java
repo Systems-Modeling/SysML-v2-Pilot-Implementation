@@ -22,15 +22,29 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
+import org.omg.sysml.util.FeatureUtil;
 
 public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 
+	public static final String ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT = "Items::Item::assertedConstraints";
+	
 	public AssertConstraintUsageAdapter(AssertConstraintUsage element) {
 		super(element);
 	}
 	
 	public AssertConstraintUsage getTarget() {
 		return (AssertConstraintUsage)super.getTarget();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return isEnactedPerformance()?
+				ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT:
+				super.getDefaultSupertype();
+	}
+	
+	public boolean isEnactedPerformance() {
+		return FeatureUtil.isEnactedPerformance(getTarget());
 	}
 	
 	@Override

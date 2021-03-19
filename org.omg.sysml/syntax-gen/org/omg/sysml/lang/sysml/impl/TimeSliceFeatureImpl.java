@@ -31,7 +31,8 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,14 +73,9 @@ public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeatur
 		return super.basicGetName();
 	}
 	
-	public void computeImplicitGeneralTypes() {
-		UsageUtil.setIndividualTypingFor(this);
-		super.computeImplicitGeneralTypes();
-	}
-		
 	@Override
 	protected List<Type> getFeatureTypes() {
-		UsageUtil.setIndividualTypingFor(this);
+		FeatureUtil.setIndividualTypingFor(this);
 		return super.getFeatureTypes();
 	}
 
@@ -91,7 +87,7 @@ public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeatur
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
 		return Collections.singletonList(type == getOwner()? this:
-			   (Feature)getDefaultType(TIME_SLICE_FEATURE_REDEFINED_FEATURE));
+			   (Feature)SysMLLibraryUtil.getLibraryType(this, TIME_SLICE_FEATURE_REDEFINED_FEATURE));
 	}
 	
 } //TimeSliceFeatureImpl

@@ -80,8 +80,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 	 */
 	protected EList<Element> ownedRelatedElement;
 
-	public static final String CONNECTION_DEFINITION_SUPERCLASS_DEFAULT = "Connections::Connection";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -441,13 +439,6 @@ public class ConnectionDefinitionImpl extends PartDefinitionImpl implements Conn
 				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return getOwnedEndFeature().size() > 2? 
-					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
-					CONNECTION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

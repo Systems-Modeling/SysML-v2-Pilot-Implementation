@@ -24,7 +24,9 @@
 
 package org.omg.sysml.plantuml;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.omg.sysml.lang.sysml.Membership;
@@ -32,7 +34,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public abstract class VTraverser extends Visitor {
-    private final Set<Namespace> visited;
+    private Set<Namespace> visited;
 
     private Membership currentMembership;
     protected Membership getCurrentMembership() {
@@ -44,6 +46,24 @@ public abstract class VTraverser extends Visitor {
     	visited.add(n);
     	return flag;
     }
+
+    private List<Set<Namespace>> listOfVisited = new ArrayList<Set<Namespace>>();
+
+    @Override
+    protected void pushIdMap() {
+        listOfVisited.add(visited);
+        this.visited = new HashSet<Namespace>();
+        super.pushIdMap();
+    }
+
+    @Override
+    protected void popIdMap(boolean keep) {
+        int idx = listOfVisited.size() - 1;
+        this.visited = listOfVisited.get(idx);
+        listOfVisited.remove(idx);
+        super.popIdMap(keep);
+    }
+
 
     public String traverse(Namespace n) {
         for (Membership m: n.getOwnedMembership()) {

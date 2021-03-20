@@ -23,11 +23,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -45,7 +42,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getConstraint_comp <em>Constraint comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
@@ -71,16 +67,6 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @ordered
 	 */
 	protected RequirementConstraintKind kind = KIND_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getConstraint_comp() <em>Constraint comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConstraint_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConstraintUsage constraint_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,60 +116,6 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated
 	 */
 	@Override
-	public ConstraintUsage getConstraint_comp() {
-		return constraint_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetConstraint_comp(ConstraintUsage newConstraint_comp, NotificationChain msgs) {
-		ConstraintUsage oldConstraint_comp = constraint_comp;
-		constraint_comp = newConstraint_comp;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP, oldConstraint_comp, newConstraint_comp);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setConstraint_comp(ConstraintUsage newConstraint_comp) {
-		if (newConstraint_comp != constraint_comp) {
-			NotificationChain msgs = null;
-			if (constraint_comp != null)
-				msgs = ((InternalEObject)constraint_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP, null, msgs);
-			if (newConstraint_comp != null)
-				msgs = ((InternalEObject)newConstraint_comp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP, null, msgs);
-			msgs = basicSetConstraint_comp(newConstraint_comp, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP, newConstraint_comp, newConstraint_comp));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraint_comp() {
-		return constraint_comp != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ConstraintUsage getConstraint() {
 		ConstraintUsage constraint = basicGetConstraint();
 		return constraint != null && constraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)constraint) : constraint;
@@ -195,7 +127,8 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated NOT
 	 */
 	public ConstraintUsage basicGetConstraint() {
-		return getConstraint_comp();
+		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
+		return ownedMemberFeature instanceof ConstraintUsage? (ConstraintUsage)ownedMemberFeature: null;
 	}
 
 	/**
@@ -205,7 +138,16 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 */
 	@Override
 	public void setConstraint(ConstraintUsage newConstraint) {
-		throw new UnsupportedOperationException();
+		super.setOwnedMemberFeature(newConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetConstraint() {
+		return basicGetConstraint() != null;
 	}
 
 	/**
@@ -214,12 +156,39 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP:
-				return basicSetConstraint_comp(null, msgs);
+	public Feature getOwnedMemberFeature() {
+		return getConstraint();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetOwnedMemberFeature() {
+		return basicGetConstraint();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
+		if (newOwnedMemberFeature != null && !(newOwnedMemberFeature instanceof ConstraintUsage)) {
+			throw new IllegalArgumentException("newOwnedMemberFeature must be an instance of ConstraintUsage");
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		setConstraint((ConstraintUsage) newOwnedMemberFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedMemberFeature() {
+  		return false;
 	}
 
 	/**
@@ -232,8 +201,6 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				return getKind();
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP:
-				return getConstraint_comp();
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
 				if (resolve) return getConstraint();
 				return basicGetConstraint();
@@ -251,9 +218,6 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				setKind((RequirementConstraintKind)newValue);
-				return;
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP:
-				setConstraint_comp((ConstraintUsage)newValue);
 				return;
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
 				setConstraint((ConstraintUsage)newValue);
@@ -273,9 +237,6 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP:
-				setConstraint_comp((ConstraintUsage)null);
-				return;
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
 				setConstraint((ConstraintUsage)null);
 				return;
@@ -291,14 +252,12 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				return isSetOwnedMemberFeature_comp();
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				return kind != KIND_EDEFAULT;
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT_COMP:
-				return isSetConstraint_comp();
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
-				return basicGetConstraint() != null;
+				return isSetConstraint();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -317,49 +276,6 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 		result.append(kind);
 		result.append(')');
 		return result.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Feature getOwnedMemberFeature_comp() {
-		return getConstraint_comp();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp, NotificationChain msgs) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof ConstraintUsage)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of ConstraintUsage");
-		}
-		return basicSetConstraint_comp((ConstraintUsage) newOwnedMemberFeature_comp, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof ConstraintUsage)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of ConstraintUsage");
-		}
-		setConstraint_comp((ConstraintUsage) newOwnedMemberFeature_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberFeature_comp() {
-  		return false;
 	}
 
 } //RequirementConstraintMembershipImpl

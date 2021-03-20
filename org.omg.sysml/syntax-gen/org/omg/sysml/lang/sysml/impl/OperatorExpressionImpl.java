@@ -44,7 +44,6 @@ import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -55,7 +54,6 @@ import org.omg.sysml.util.TypeUtil;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand_comp <em>Operand comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.OperatorExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
@@ -86,14 +84,14 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	protected String operator = OPERATOR_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOperand_comp() <em>Operand comp</em>}' containment reference list.
+	 * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperand_comp()
+	 * @see #getOperand()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Expression> operand_comp;
+	protected EList<Expression> operand;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -133,6 +131,10 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
 
+	protected String[] getOperatorQualifiedNames(String op) {
+		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
+	}
+
 	/**
 	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
 	 * as owned features.
@@ -140,36 +142,22 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Expression> getOperand_comp() {
-		if (operand_comp == null) {
-			operand_comp = new OperandEList();
+	public EList<Expression> getOperand() {
+		if (operand == null) {
+			operand = new OperandEList();
 		}
-		return operand_comp;
+		return operand;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOperand_comp() {
-		return operand_comp != null && !operand_comp.isEmpty();
+	public boolean isSetOperand() {
+		return operand != null && !operand.isEmpty();
 	}
 
-	protected String[] getOperatorQualifiedNames(String op) {
-		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	public EList<Expression> getOperand() {
-		EList<Expression> operands = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.OPERATOR_EXPRESSION__OPERAND);
-		operands.addAll(getOperand_comp());
-		return operands;
-	}
-	
 	@Override
 	public Function getFunction() {
 		return (Function)getDefaultType(getOperatorQualifiedNames(getOperator()));
@@ -182,7 +170,7 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 */
 	@Override
 	public EList<Expression> getArgument() {
-		return getOperand_comp();
+		return getOperand();
 	}
 
 	/**
@@ -217,8 +205,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
-				return ((InternalEList<?>)getOperand_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
+				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -232,8 +220,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return getOperator();
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
-				return getOperand_comp();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				return getOperand();
 		}
@@ -250,10 +236,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 		switch (featureID) {
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				setOperator((String)newValue);
-				return;
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
-				getOperand_comp().clear();
-				getOperand_comp().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				getOperand().clear();
@@ -273,9 +255,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				setOperator(OPERATOR_EDEFAULT);
 				return;
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
-				getOperand_comp().clear();
-				return;
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
 				getOperand().clear();
 				return;
@@ -294,10 +273,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 				return isSetArgument();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERATOR:
 				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
-			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND_COMP:
-				return isSetOperand_comp();
 			case SysMLPackage.OPERATOR_EXPRESSION__OPERAND:
-				return !getOperand().isEmpty();
+				return isSetOperand();
 		}
 		return super.eIsSet(featureID);
 	}

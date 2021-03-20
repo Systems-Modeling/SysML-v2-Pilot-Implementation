@@ -75,7 +75,7 @@ public interface Classifier extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>All Superclassing Relationships owned by this Classifier for which the Classifier is the <code>subclass</code>.</p>
+	 * <p>The <code>ownedGeneralizations</code> of this Classifier that are Superclassings, for which the Classifier is the <code>subclass</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Superclassing</em>' reference list.

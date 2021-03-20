@@ -36,13 +36,16 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>However, if a Definition has <code>isVariation</code> = <code>true</code>, then it represents a <em>variation point</em> Definition. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Definition by VariantMembership Relationships. Rather than being <code>features</code> of the Definition, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for an abstract Usage of the variation point Definition.</p>
  * 
+ * variant = variantMembership.ownedVariantUsage
+ * isVariation implies variantMembership = ownedMembership
+ * variantMembership = ownedMembership->selectByKind(VariantMembership)
+ * not isVariation implies variantMembership->isEmpty()
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedPort <em>Owned Port</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getUsage <em>Usage</em>}</li>
@@ -52,7 +55,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedRequirement <em>Owned Requirement</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCalculation <em>Owned Calculation</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#isVariation <em>Is Variation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAnalysisCase <em>Owned Analysis Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedCase <em>Owned Case</em>}</li>
@@ -70,7 +73,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedAllocation <em>Owned Allocation</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Definition#getVariantMembership <em>Variant Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Definition#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition()
@@ -467,7 +470,7 @@ public interface Definition extends Classifier {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership() <em>Owned Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -475,9 +478,13 @@ public interface Definition extends Classifier {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedMemberships</code> of this Definition that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>ownedMemberships</code> of the Definition. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_VariantMembership()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -759,21 +766,5 @@ public interface Definition extends Classifier {
 	 * @generated
 	 */
 	EList<Usage> getVariant();
-
-	/**
-	 * Returns the value of the '<em><b>Variant Membership comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this Definition that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>memberships</code> of the Definition. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Variant Membership comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getDefinition_VariantMembership_comp()
-	 * @model containment="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationDefinition'"
-	 * @generated
-	 */
-	EList<VariantMembership> getVariantMembership_comp();
 
 } // Definition

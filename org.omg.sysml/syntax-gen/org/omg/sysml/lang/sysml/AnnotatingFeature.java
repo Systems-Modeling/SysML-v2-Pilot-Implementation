@@ -102,7 +102,7 @@ public interface AnnotatingFeature extends Feature, AnnotatingElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Metadata</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotatingFeature_OwnedMetadata()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningAnnotatingFeature'"
 	 *        annotation="redefines"
 	 * @generated

@@ -29,7 +29,6 @@ import java.util.HashSet;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -179,40 +178,28 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public Namespace getImportOwningNamespace() {
-		if (eContainerFeatureID() != SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE) return null;
-		return (Namespace)eInternalContainer();
+		Namespace importOwningNamespace = basicGetImportOwningNamespace();
+		return importOwningNamespace != null && importOwningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)importOwningNamespace) : importOwningNamespace;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetImportOwningNamespace(Namespace newImportOwningNamespace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newImportOwningNamespace, SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE, msgs);
-		return msgs;
+	public Namespace basicGetImportOwningNamespace() {
+		Element owningRelatedElement = super.getOwningRelatedElement();
+		return owningRelatedElement instanceof Namespace? (Namespace)owningRelatedElement: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setImportOwningNamespace(Namespace newImportOwningNamespace) {
-		if (newImportOwningNamespace != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE && newImportOwningNamespace != null)) {
-			if (EcoreUtil.isAncestor(this, newImportOwningNamespace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newImportOwningNamespace != null)
-				msgs = ((InternalEObject)newImportOwningNamespace).eInverseAdd(this, SysMLPackage.NAMESPACE__OWNED_IMPORT_COMP, Namespace.class, msgs);
-			msgs = basicSetImportOwningNamespace(newImportOwningNamespace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE, newImportOwningNamespace, newImportOwningNamespace));
+		super.basicSetOwningRelatedElement(newImportOwningNamespace, null);
 	}
 
 	/**
@@ -221,7 +208,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	public boolean isSetImportOwningNamespace() {
-		return getImportOwningNamespace() != null;
+		return basicGetImportOwningNamespace() != null;
 	}
 
 	/**
@@ -335,7 +322,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
 			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
 		}
-		return basicSetImportOwningNamespace((Namespace) newOwningRelatedElement, msgs);
+		setImportOwningNamespace((Namespace) newOwningRelatedElement);
+		return msgs;
 	}
 
 	/**
@@ -439,48 +427,6 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetImportOwningNamespace((Namespace)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				return basicSetImportOwningNamespace(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.NAMESPACE__OWNED_IMPORT_COMP, Namespace.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.IMPORT__IMPORTED_NAMESPACE:
@@ -491,7 +437,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 			case SysMLPackage.IMPORT__IS_RECURSIVE:
 				return isRecursive();
 			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				return getImportOwningNamespace();
+				if (resolve) return getImportOwningNamespace();
+				return basicGetImportOwningNamespace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

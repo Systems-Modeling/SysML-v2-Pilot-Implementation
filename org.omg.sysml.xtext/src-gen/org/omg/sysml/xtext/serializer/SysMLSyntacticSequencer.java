@@ -1014,16 +1014,16 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' ActionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ActionUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ActionUsageParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=EmptyParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=NodeParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
 	 */
 	protected void emit_ActionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1034,69 +1034,69 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ActionUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ActionUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ActionUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) ActionUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) ActionUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) ActionUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) ActionUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ActionUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ActionUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ActionUsageKeyword name=Name
-	 *     (rule start) (ambiguity) ActionUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ActionUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ActionUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ActionUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_ActionFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1107,12 +1107,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (AllocationUsageKeyword AllocateKeyword) | AllocateKeyword
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isAbstract?='abstract' (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isAbstract?='abstract' (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isVariation?='variation' (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isVariation?='variation' (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
+	 *     (rule start) (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     (rule start) (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isAbstract?='abstract' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isVariation?='variation' (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     isVariation?='variation' (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_AllocationUsageDeclaration_AllocateKeywordParserRuleCall_1_0_or___AllocationUsageKeywordParserRuleCall_0_0_AllocateKeywordParserRuleCall_0_2_0__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1123,84 +1123,84 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword name=Name
-	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) AnalysisCaseUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) AnalysisCaseUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) AnalysisCaseUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_AnalysisCaseFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1211,8 +1211,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     ownedRelationship_comp+=Annotation (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=EmptyAnnotation (ambiguity) (rule end)
+	 *     ownedRelationship+=Annotation (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyAnnotation (ambiguity) (rule end)
 	 */
 	protected void emit_AnnotatingFeatureBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1225,7 +1225,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'id' humanId=Name
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=metadataTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1237,23 +1237,23 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) name=Name
-	 *     isAbstract?='abstract' (ambiguity) ownedMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) name=Name
-	 *     isVariation?='variation' (ambiguity) ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1286,7 +1286,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' '('*)*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_5_0_a__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1299,21 +1299,21 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedMembership_comp+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_5_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1325,21 +1325,21 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedMembership_comp+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_5_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1350,13 +1350,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' | '(')+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) './' ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_5_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1368,9 +1368,9 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -1385,13 +1385,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' '{'*)+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) './' ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand_comp+=}
-	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryPathStepExpression.operand+=}
+	 *     (rule start) (ambiguity) {QueryQualifierExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftParenthesisKeyword_5_0_LeftCurlyBracketKeyword_1_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1430,18 +1430,18 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' CalculationUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ConstraintUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ActionUsageParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=CalculationReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=TrueLiteralMember (ambiguity) (rule end)
 	 */
 	protected void emit_CalculationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1452,78 +1452,78 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) CalculationUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) CalculationUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) CalculationUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) CalculationUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) CalculationUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) CalculationUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) CalculationUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) CalculationUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) CalculationUsageKeyword name=Name
-	 *     (rule start) (ambiguity) CalculationUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) CalculationUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) CalculationUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) CalculationUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_CalculationFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1534,7 +1534,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'return'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedMemberParameter_comp=ActionUsageParameter
+	 *     (rule start) (ambiguity) ownedRelatedElement+=ActionUsageParameter
 	 */
 	protected void emit_CalculationReturnParameterMember_ReturnKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1588,16 +1588,16 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' VerificationCaseDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' VerificationCaseUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ActionUsageParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=CalculationReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ReturnParameterMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ReturnParameterMember (ambiguity) (rule end)
 	 */
 	protected void emit_CaseBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1608,84 +1608,84 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) CaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) CaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) CaseUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     (rule start) (ambiguity) CaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) CaseUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) CaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) CaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) CaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) CaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) CaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) CaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) CaseUsageKeyword name=Name
-	 *     (rule start) (ambiguity) CaseUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) CaseUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) CaseUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) CaseUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_CaseFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1708,7 +1708,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'comment'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=EmptyAnnotation
+	 *     (rule start) (ambiguity) ownedRelationship+=EmptyAnnotation
 	 */
 	protected void emit_Comment_CommentKeyword_0_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1735,13 +1735,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' ConnectionDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ConnectionUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
 	 */
 	protected void emit_ConnectionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1752,8 +1752,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ConnectorKeyword | (ConnectionUsageKeyword ConnectorKeyword)
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
+	 *     (rule start) (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     (rule start) (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_ConnectionUsage_Connector_ConnectorKeywordParserRuleCall_1_or___ConnectionUsageKeywordParserRuleCall_1_ConnectorKeywordParserRuleCall_3_0__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1764,78 +1764,78 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ConstraintUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) ConstraintUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ConstraintUsageKeyword name=Name
-	 *     (rule start) (ambiguity) ConstraintUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ConstraintUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ConstraintUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ConstraintUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_ConstraintFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -1850,138 +1850,138 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) 'ref' ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' PartUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref' RenderingUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     (rule start) 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     (rule start) 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     (rule start) 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     (rule start) 'ref'? ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'ref'? PartUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) 'subject' (ambiguity) (rule start)
 	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) (ambiguity) (rule start)
-	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     (rule start) (('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)) (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) (ambiguity) (rule start)
-	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     (rule start) (IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword) (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     (rule start) AttributeDefKeyword (ambiguity) (rule start)
 	 *     (rule start) AttributeUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) EnumerationUsageKeyword? (ambiguity) (rule start)
-	 *     (rule start) IndividualDefKeyword (ambiguity) ownedMembership_comp+=LifeClassMembership
+	 *     (rule start) IndividualDefKeyword (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     (rule start) IndividualUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemDefKeyword (ambiguity) (rule start)
 	 *     (rule start) ItemUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) PartDefKeyword (ambiguity) (rule start)
 	 *     (rule start) PartUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) PortDefKeyword (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
+	 *     (rule start) PortDefKeyword (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     (rule start) ReferenceUsageKeyword (ambiguity) (rule start)
 	 *     (rule start) ReferenceUsageKeyword? (ambiguity) (rule start)
 	 *     (rule start) RenderingDefKeyword (ambiguity) (rule start)
 	 *     (rule start) RenderingUsageKeyword (ambiguity) (rule start)
-	 *     (rule start) SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     (rule start) TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     (rule start) SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     (rule start) TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     humanId=Name (ambiguity) (rule end)
-	 *     humanId=Name (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     humanId=Name (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     humanId=Name (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
-	 *     humanId=Name (ambiguity) ownedMembership_comp+=LifeClassMembership
+	 *     humanId=Name (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
+	 *     humanId=Name (ambiguity) ownedRelationship+=LifeClassMembership
+	 *     humanId=Name (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     humanId=Name (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref'? PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' AttributeUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' IndividualDefKeyword (ambiguity) ownedMembership_comp+=LifeClassMembership
+	 *     isAbstract?='abstract' IndividualDefKeyword (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     isAbstract?='abstract' IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' ItemDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' PartDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' PartUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' PortDefKeyword (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
+	 *     isAbstract?='abstract' PortDefKeyword (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     isAbstract?='abstract' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' ReferenceUsageKeyword? (ambiguity) (rule end)
 	 *     isAbstract?='abstract' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isAbstract?='abstract' SnapshotKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     isAbstract?='abstract' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isComposite?=IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isComposite?=IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isComposite?=IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isComposite?=IndividualUsageKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isComposite?=IndividualUsageKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isComposite?=ItemUsageKeyword (ambiguity) (rule end)
 	 *     isComposite?=PartUsageKeyword (ambiguity) (rule end)
 	 *     isComposite?=RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isComposite?=SnapshotKeyword (ambiguity) (rule end)
-	 *     isComposite?=SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isComposite?=SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isComposite?=SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isComposite?=SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isComposite?=TimeSliceKeyword (ambiguity) (rule end)
-	 *     isComposite?=TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isComposite?=TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isComposite?=TimeSliceKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isComposite?=TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
-	 *     isNonunique?='nonunique' (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isNonunique?='nonunique' (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isNonunique?='nonunique' (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
-	 *     isOrdered?='ordered' (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isOrdered?='ordered' (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref'? PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' AttributeUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' IndividualDefKeyword (ambiguity) ownedMembership_comp+=LifeClassMembership
+	 *     isVariation?='variation' IndividualDefKeyword (ambiguity) ownedRelationship+=LifeClassMembership
 	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isVariation?='variation' IndividualUsageKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
 	 *     isVariation?='variation' ItemDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' PartDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' PartUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' PortDefKeyword (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
+	 *     isVariation?='variation' PortDefKeyword (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
 	 *     isVariation?='variation' ReferenceUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ReferenceUsageKeyword? (ambiguity) (rule end)
 	 *     isVariation?='variation' RenderingDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' SnapshotKeyword (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     isVariation?='variation' TimeSliceKeyword (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
+	 *     isVariation?='variation' SnapshotKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isVariation?='variation' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     isVariation?='variation' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     name=Name (ambiguity) (rule end)
-	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     name=Name (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     name=Name (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
-	 *     name=Name (ambiguity) ownedMembership_comp+=LifeClassMembership
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     ownedMembership_comp+=SourceItemFlowMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=SourceItemFlowMember (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     ownedMembership_comp+=SourceItemFlowMember (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) ownedMembership_comp+=ConjugatedPortDefinitionMember
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) ownedMembership_comp+=LifeClassMembership
-	 *     ownedRelationship_comp+=PortTyping (ambiguity) (rule end)
+	 *     name=Name (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
+	 *     name=Name (ambiguity) ownedRelationship+=LifeClassMembership
+	 *     name=Name (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     name=Name (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     ownedRelationship+=FeatureValue (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) ownedRelationship+=TimeSliceFeatureMember
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) ownedRelationship+=ConjugatedPortDefinitionMember
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) ownedRelationship+=LifeClassMembership
+	 *     ownedRelationship+=PortTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=SourceItemFlowMember (ambiguity) (rule end)
+	 *     ownedRelationship+=SourceItemFlowMember (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     ownedRelationship+=SourceItemFlowMember (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 */
 	protected void emit_DefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2008,14 +2008,14 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isNonunique?='nonunique' (ambiguity) (rule end)
 	 *     isOrdered?='ordered' (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ActionUsageParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=EmptyParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=NodeParameterMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=NodeParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
 	 */
 	protected void emit_EffectBehaviorUsage___LeftCurlyBracketKeyword_1_1_0_RightCurlyBracketKeyword_1_1_2__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2026,22 +2026,22 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     EnumerationUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=SourceItemFlowMember
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_EnumeratedValue_EnumerationUsageKeywordParserRuleCall_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2055,7 +2055,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) EnumerationDefKeyword (ambiguity) (rule start)
 	 *     humanId=Name (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
 	 */
 	protected void emit_EnumerationBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2066,7 +2066,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'first'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) SuccessionKeyword (ambiguity) ownedMembership_comp+=TransitionSourceMember
+	 *     (rule start) SuccessionKeyword (ambiguity) ownedRelationship+=TransitionSourceMember
 	 */
 	protected void emit_GuardedSuccession_FirstKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2090,24 +2090,24 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('ref' IndividualUsageKeyword) | ('ref' TimeSliceKeyword) | ('ref' SnapshotKeyword)
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedRelationship+=SnapshotFeatureMember
+	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedRelationship+=TimeSliceFeatureMember
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=SourceItemFlowMember
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_IndividualRefUsage_SnapshotRefUsage_TimeSliceRefUsage___RefKeyword_1_0_0_IndividualUsageKeywordParserRuleCall_1_0_1___or___RefKeyword_1_0_0_SnapshotKeywordParserRuleCall_1_0_1___or___RefKeyword_1_0_0_TimeSliceKeywordParserRuleCall_1_0_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2118,24 +2118,24 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     IndividualUsageKeyword | TimeSliceKeyword | SnapshotKeyword
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedFeatureMembership_comp+=SnapshotFeatureMember
-	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedFeatureMembership_comp+=TimeSliceFeatureMember
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedRelationship+=SnapshotFeatureMember
+	 *     (rule start) (ambiguity) (';' | ('{' '}')) ownedRelationship+=TimeSliceFeatureMember
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=SourceItemFlowMember
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_IndividualUsage_SnapshotUsage_TimeSliceUsage_IndividualUsageKeywordParserRuleCall_1_or_SnapshotKeywordParserRuleCall_1_or_TimeSliceKeywordParserRuleCall_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2156,13 +2156,13 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' InterfaceDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ConnectorEndMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
 	 */
 	protected void emit_InterfaceDefBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2173,12 +2173,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ConnectorKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) InterfaceUsageKeyword (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     (rule start) InterfaceUsageKeyword (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) '(' ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
+	 *     (rule start) InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     (rule start) InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     isAbstract?='abstract' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) '(' ownedRelationship+=ConnectorEndMember
+	 *     isVariation?='variation' InterfaceUsageKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_InterfaceUsageDeclaration_ConnectorKeywordParserRuleCall_0_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2189,54 +2189,54 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ItemUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ItemUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ItemUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) ItemUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) ItemUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) ItemUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) ItemUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ItemUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ItemUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ItemUsageKeyword name=Name
-	 *     (rule start) (ambiguity) ItemUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ItemUsageKeyword ownedMembership_comp+=SourceItemFlowMember
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ItemUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ItemUsageKeyword ownedRelationship+=SourceItemFlowMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedMembership_comp+=SourceItemFlowMember
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ItemUsageKeyword ownedRelationship+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedMembership_comp+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ItemUsageKeyword ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_ItemFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2247,7 +2247,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'feature'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (':>>' | 'redefines')? ownedRelationship_comp+=OwnedRedefinition
+	 *     (rule start) (ambiguity) (':>>' | 'redefines')? ownedRelationship+=OwnedRedefinition
 	 */
 	protected void emit_MetadataFeature_FeatureKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2258,7 +2258,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (':>>' | 'redefines')?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'feature'? (ambiguity) ownedRelationship_comp+=OwnedRedefinition
+	 *     (rule start) 'feature'? (ambiguity) ownedRelationship+=OwnedRedefinition
 	 */
 	protected void emit_MetadataFeature___ColonGreaterThanSignGreaterThanSignKeyword_1_0_or_RedefinesKeyword_1_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2270,7 +2270,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) memberElement=[Element|QualifiedName]
-	 *     ownedRelationship_comp+=PrefixDocumentation (ambiguity) memberElement=[Element|QualifiedName]
+	 *     ownedRelationship+=PrefixDocumentation (ambiguity) memberElement=[Element|QualifiedName]
 	 *     visibility=BasicVisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
 	 *     visibility=VisibilityIndicator (ambiguity) memberElement=[Element|QualifiedName]
 	 */
@@ -2308,14 +2308,14 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ReferenceUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=SourceItemFlowMember
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_Parameter_ReferenceUsageKeywordParserRuleCall_0_1_1_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2326,54 +2326,54 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) PartUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) PartUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) PartUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) PartUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) PartUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) PartUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) PartUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) PartUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) PartUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) PartUsageKeyword name=Name
-	 *     (rule start) (ambiguity) PartUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) PartUsageKeyword ownedMembership_comp+=SourceItemFlowMember
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) PartUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) PartUsageKeyword ownedRelationship+=SourceItemFlowMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedMembership_comp+=SourceItemFlowMember
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) PartUsageKeyword ownedRelationship+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) PartUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedMembership_comp+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) PartUsageKeyword ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_PartFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2385,23 +2385,23 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=PortTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=PortTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=PortTyping
-	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship+=PortTyping
+	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) name=Name
-	 *     isAbstract?='abstract' (ambiguity) ownedMembership_comp+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=MultiplicityMember
 	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=PortTyping
-	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship+=PortTyping
+	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) name=Name
-	 *     isVariation?='variation' (ambiguity) ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_PortEndUsage_PortUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2423,54 +2423,54 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ReferenceUsageKeyword?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) 'id' humanId=Name
-	 *     (rule start) (ambiguity) '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=SourceItemFlowMember
-	 *     isAbstract?='abstract' (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ownedRelationship+=SourceItemFlowMember
+	 *     isAbstract?='abstract' (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isAbstract?='abstract' (ambiguity) '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=NestedUsageMember
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) name=Name
-	 *     isAbstract?='abstract' (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) ownedMembership_comp+=SourceItemFlowMember
-	 *     isVariation?='variation' (ambiguity) '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ownedRelationship+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isVariation?='variation' (ambiguity) '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) name=Name
-	 *     isVariation?='variation' (ambiguity) ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) ownedMembership_comp+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2507,15 +2507,15 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' RequirementUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ViewpointUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ActionUsageParameterMember ')' (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=CalculationReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=EmptyReturnParameterMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=TrueLiteralMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=ActionUsageParameterMember ')' (ambiguity) (rule end)
+	 *     ownedRelationship+=CalculationReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=EmptyReturnParameterMember (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=TrueLiteralMember (ambiguity) (rule end)
 	 */
 	protected void emit_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2526,66 +2526,66 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) RequirementUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=RequirementConstraintMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=RequirementVerificationMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     (rule start) (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) RequirementUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) RequirementUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) RequirementUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) RequirementUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) RequirementUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) RequirementUsageKeyword name=Name
-	 *     (rule start) (ambiguity) RequirementUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) RequirementUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=RequirementConstraintMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=RequirementVerificationMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) RequirementUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=RequirementConstraintMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=RequirementVerificationMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) RequirementUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_RequirementFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2596,7 +2596,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'return'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedMemberParameter_comp=Parameter
+	 *     (rule start) (ambiguity) ownedRelatedElement+=Parameter
 	 */
 	protected void emit_ReturnParameterMember_ReturnKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2607,72 +2607,72 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) StateUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
 	 *     (rule start) (ambiguity) StateUsageKeyword ';' (rule start)
-	 *     (rule start) (ambiguity) StateUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) StateUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) StateUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=DoActionMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=EntryActionMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=ExitActionMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=TransitionUsageMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
-	 *     (rule start) (ambiguity) StateUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) StateUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=DoActionMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=EntryActionMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=ExitActionMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=TransitionUsageMember
+	 *     (rule start) (ambiguity) StateUsageKeyword '{' ownedRelationship+=VariantUsageMember
+	 *     (rule start) (ambiguity) StateUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) StateUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) StateUsageKeyword name=Name
-	 *     (rule start) (ambiguity) StateUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) StateUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword ';' (rule end)
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=DoActionMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=EntryActionMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=ExitActionMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=TransitionUsageMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=DoActionMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=EntryActionMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=ExitActionMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=TransitionUsageMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword '{' ownedRelationship+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) StateUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword ';' (rule end)
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=DoActionMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=EntryActionMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=ExitActionMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedFeatureMembership_comp+=TransitionUsageMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=DoActionMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=EntryActionMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=ExitActionMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=TransitionUsageMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword '{' ownedRelationship+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) StateUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) StateUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) StateUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_StateFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2683,8 +2683,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'first'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) SuccessionKeyword (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
-	 *     isAbstract?='abstract' SuccessionKeyword (ambiguity) ownedFeatureMembership_comp+=ConnectorEndMember
+	 *     (rule start) SuccessionKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
+	 *     isAbstract?='abstract' SuccessionKeyword (ambiguity) ownedRelationship+=ConnectorEndMember
 	 */
 	protected void emit_SuccessionDeclaration_FirstKeyword_0_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2707,7 +2707,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'rep'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=EmptyAnnotation
+	 *     (rule start) (ambiguity) ownedRelationship+=EmptyAnnotation
 	 */
 	protected void emit_TextualRepresentation_RepKeyword_0_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2718,7 +2718,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'first'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) TransitionUsageKeyword (ambiguity) ownedMembership_comp+=TransitionSourceMember
+	 *     (rule start) TransitionUsageKeyword (ambiguity) ownedRelationship+=TransitionSourceMember
 	 */
 	protected void emit_TransitionUsage_FirstKeyword_1_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2729,8 +2729,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ';' | ('{' '}')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     ownedFeatureMembership_comp+=ConnectorEndMember (ambiguity) (rule end)
-	 *     ownedFeatureMembership_comp+=ItemFlowEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=ConnectorEndMember (ambiguity) (rule end)
+	 *     ownedRelationship+=ItemFlowEndMember (ambiguity) (rule end)
 	 */
 	protected void emit_TypeBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2741,84 +2741,84 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword name=Name
-	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) VerificationCaseUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) VerificationCaseUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ActionNodeMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=BehaviorUsageMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=GuardedSuccessionMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=InitialNodeMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ObjectiveMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ResultExpressionMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=ReturnParameterFlowUsageMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=StructureUsageMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ActionNodeMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=BehaviorUsageMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=GuardedSuccessionMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=InitialNodeMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ObjectiveMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ResultExpressionMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=ReturnParameterFlowUsageMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=StructureUsageMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) VerificationCaseUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_VerificationCaseFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2843,12 +2843,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isVariation?='variation' 'ref'? ViewUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ViewUsageKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedMembership_comp+=FeatureValue (ambiguity) (rule end)
-	 *     ownedMembership_comp+=MultiplicityMember (ambiguity) (rule end)
-	 *     ownedMembership_comp+=SourceItemFlowMember (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedFeatureTyping (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedRedefinition (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=FeatureValue (ambiguity) (rule end)
+	 *     ownedRelationship+=MultiplicityMember (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedFeatureTyping (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedRedefinition (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSubsetting (ambiguity) (rule end)
+	 *     ownedRelationship+=SourceItemFlowMember (ambiguity) (rule end)
 	 */
 	protected void emit_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2864,7 +2864,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isAbstract?='abstract' ViewDefKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' ViewDefKeyword (ambiguity) (rule end)
 	 *     name=Name (ambiguity) (rule end)
-	 *     ownedRelationship_comp+=OwnedSuperclassing (ambiguity) (rule end)
+	 *     ownedRelationship+=OwnedSuperclassing (ambiguity) (rule end)
 	 */
 	protected void emit_ViewDefinitionBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2875,60 +2875,60 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ViewUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ViewUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ViewUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedImport_comp+=Expose
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=ElementFilterMember
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=ElementFilterMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=Expose
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) ViewUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) ViewUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) ViewUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) ViewUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ViewUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ViewUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ViewUsageKeyword name=Name
-	 *     (rule start) (ambiguity) ViewUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     (rule start) (ambiguity) ViewUsageKeyword ownedMembership_comp+=SourceItemFlowMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ViewUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     (rule start) (ambiguity) ViewUsageKeyword ownedRelationship+=SourceItemFlowMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedImport_comp+=Expose
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=ElementFilterMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=ElementFilterMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=Expose
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedMembership_comp+=SourceItemFlowMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ViewUsageKeyword ownedRelationship+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedImport_comp+=Expose
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=ElementFilterMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=ElementFilterMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=Expose
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedMembership_comp+=SourceItemFlowMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ViewUsageKeyword ownedRelationship+=SourceItemFlowMember
 	 */
 	protected void emit_ViewFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -2939,66 +2939,66 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'ref'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     (rule start) (ambiguity) ViewpointUsageKeyword 'id' humanId=Name
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=RequirementConstraintMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=RequirementVerificationMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedImport_comp+=Import
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=Import
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     (rule start) (ambiguity) ViewpointUsageKeyword (';' | ('{' '}')) (rule start)
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     (rule start) (ambiguity) ViewpointUsageKeyword name=Name
-	 *     (rule start) (ambiguity) ViewpointUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     (rule start) (ambiguity) ViewpointUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword 'id' humanId=Name
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=RequirementConstraintMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=RequirementVerificationMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedImport_comp+=Import
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=Import
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword name=Name
-	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword ownedMembership_comp+=MultiplicityMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '(' ')' ownedFeatureMembership_comp+=CalculationReturnParameterMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '(' ownedFeatureMembership_comp+=ActionUsageParameterMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '=' ownedMembership_comp+=FeatureValue
+	 *     isAbstract?='abstract' (ambiguity) ViewpointUsageKeyword ownedRelationship+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '(' ')' ownedRelationship+=CalculationReturnParameterMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '(' ownedRelationship+=ActionUsageParameterMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '=' ownedRelationship+=FeatureValue
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword 'id' humanId=Name
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' documentation_comp+=OwnedDocumentation
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=EmptySuccessionMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=IndividualUsageMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=NestedUsageMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=RequirementConstraintMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=RequirementVerificationMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedFeatureMembership_comp+=SubjectMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedImport_comp+=Import
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedMembership_comp+=NestedDefinitionMember
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedMembership_comp+=VariantUsageMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=EmptySuccessionMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=Import
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=IndividualUsageMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=NestedDefinitionMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=NestedUsageMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=OwnedDocumentation
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=RequirementConstraintMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=RequirementVerificationMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=SubjectMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword '{' ownedRelationship+=VariantUsageMember
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword (';' | ('{' '}')) (rule end)
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword DefinedByKeyword ownedRelationship_comp+=OwnedFeatureTyping
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword RedefinesKeyword ownedRelationship_comp+=OwnedRedefinition
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword SubsetsKeyword ownedRelationship_comp+=OwnedSubsetting
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword DefinedByKeyword ownedRelationship+=OwnedFeatureTyping
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword RedefinesKeyword ownedRelationship+=OwnedRedefinition
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword SubsetsKeyword ownedRelationship+=OwnedSubsetting
 	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword name=Name
-	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword ownedMembership_comp+=MultiplicityMember
+	 *     isVariation?='variation' (ambiguity) ViewpointUsageKeyword ownedRelationship+=MultiplicityMember
 	 */
 	protected void emit_ViewpointFlowUsage_RefKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

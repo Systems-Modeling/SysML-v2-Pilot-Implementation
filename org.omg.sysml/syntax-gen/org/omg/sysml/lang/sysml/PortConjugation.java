@@ -97,7 +97,7 @@ public interface PortConjugation extends Conjugation {
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortConjugation_ConjugatedPortDefinition()
 	 * @see org.omg.sysml.lang.sysml.ConjugatedPortDefinition#getOwnedPortConjugator
-	 * @model opposite="ownedPortConjugator" required="true" ordered="false"
+	 * @model opposite="ownedPortConjugator" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */

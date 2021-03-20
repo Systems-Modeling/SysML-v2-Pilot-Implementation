@@ -51,7 +51,7 @@ public class LifeClassAdapter extends ClassAdapter {
 				Superclassing superclassing = SysMLFactory.eINSTANCE.createSuperclassing();
 				superclassing.setSuperclass((Classifier)owner);
 				superclassing.setSubclass(lifeClass);
-				lifeClass.getOwnedRelationship_comp().add(superclassing);
+				lifeClass.getOwnedRelationship().add(superclassing);
 			} else {
 				superclassings.get(1).setSuperclass((Classifier)owner);
 			}

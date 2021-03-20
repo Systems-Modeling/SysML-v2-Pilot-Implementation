@@ -37,8 +37,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeatureOfType <em>Feature Of Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.TypeFeaturing#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.TypeFeaturing#getFeaturingType <em>Featuring Type</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getTypeFeaturing()
@@ -125,7 +125,7 @@ public interface TypeFeaturing extends Relationship {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Feature that owns this TypeFeaturing (which must also be the <code>featureOfType</code>).</p>
+	 * <p>The Feature that owns this TypeFeaturing and is also the <code>featureOfType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Feature Of Type</em>' reference.
 	 * @see #setOwningFeatureOfType(Feature)

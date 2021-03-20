@@ -107,7 +107,7 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     ('{' '('*)*
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_5_0_a__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -121,17 +121,17 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_5_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -144,17 +144,17 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
 	 *     (rule start) (ambiguity) value=STRING_VALUE
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_5_0__a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -165,10 +165,10 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     ('{' | '(')+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_5_0__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -180,9 +180,9 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) ownedFeatureMembership_comp+=TypeReferenceMember
-	 *     (rule start) (ambiguity) ownedMembership_comp+=FeatureReferenceMember
-	 *     (rule start) (ambiguity) ownedRelationship_comp+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=TypeReferenceMember
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
 	 *     (rule start) (ambiguity) value=RealValue
@@ -197,10 +197,10 @@ public class KerMLExpressionsSyntacticSequencer extends AbstractSyntacticSequenc
 	 *     ('(' '{'*)+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) operand_comp+=SelfReferenceExpression
+	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) {OperatorExpression.operand_comp+=}
+	 *     (rule start) (ambiguity) {OperatorExpression.operand+=}
 	 */
 	protected void emit_BaseExpression_SequenceConstructionExpression___LeftParenthesisKeyword_5_0_LeftCurlyBracketKeyword_1_0_a__p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

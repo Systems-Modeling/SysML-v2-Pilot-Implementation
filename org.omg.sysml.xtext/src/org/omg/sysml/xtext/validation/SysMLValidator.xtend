@@ -128,7 +128,7 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_ALLOCATIONUSAGE = 'Invalid AllocationUsage - invalid type'
 	public static val INVALID_ALLOCATIONUSAGE_MSG = 'An allocation must be typed by allocation definitions.'
 	public static val INVALID_PORTUSAGE = 'Invalid PortUsage - invalid type'
-	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by one port definition.'
+	public static val INVALID_PORTUSAGE_MSG = 'A port must be typed by port definitions.'
 	public static val INVALID_REQUIREMENTUSAGE = 'Invalid RequirementUsage - invalid type'
 	public static val INVALID_REQUIREMENTUSAGE_MSG = 'A requirement must be typed by one requirement definition.'
 	public static val INVALID_STATEUSAGE = 'Invalid StateUsage - invalid type'
@@ -246,9 +246,9 @@ class SysMLValidator extends KerMLValidator {
 	def checkAllocationUsageTypes(AllocationUsage usg){
 		checkAllTypes(usg, AllocationDefinition, SysMLValidator.INVALID_ALLOCATIONUSAGE_MSG, SysMLPackage.eINSTANCE.connector_Association, SysMLValidator.INVALID_ALLOCATIONUSAGE)
 	}
-	@Check //Must have exactly one type, which is a PortDefinition. 
+	@Check //All types must be PortDefinitions. 
 	def checkPortUsageTypes(PortUsage usg){
-		checkOneType(usg, PortDefinition, SysMLValidator.INVALID_PORTUSAGE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, SysMLValidator.INVALID_PORTUSAGE)
+		checkAllTypes(usg, PortDefinition, SysMLValidator.INVALID_PORTUSAGE_MSG, SysMLPackage.eINSTANCE.portUsage_PortDefinition, SysMLValidator.INVALID_PORTUSAGE)
 	}
 	@Check  //Must have exactly one type, which is a RequirementDefinition. 
 	def checkRequirementUsageTypes(RequirementUsage usg){

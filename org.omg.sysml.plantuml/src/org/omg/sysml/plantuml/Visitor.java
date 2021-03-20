@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Subsetting;
@@ -330,7 +331,11 @@ public abstract class Visitor extends SysMLSwitch<String> {
                 
         ss.append(relStr);
 
-        addMultiplicityString(ss, pr.rel);
+        if (pr.rel instanceof Membership) {
+            addMultiplicityString(ss, pr.dest);
+        } else {
+            addMultiplicityString(ss, pr.rel);
+        }
 
         outputPRId(ss, pr.dest);
         ss.append(' ');

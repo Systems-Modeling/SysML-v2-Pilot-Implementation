@@ -26,7 +26,7 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Type;
@@ -47,8 +47,8 @@ public class VMixed extends VTree {
     }
 
     @Override
-    protected VTree newVTree(Element parent) {
-        return new VMixed(this, parent);
+    protected VTree newVTree(Membership membership) {
+        return new VMixed(this, membership);
     }
 
     /***************************************************
@@ -59,7 +59,7 @@ public class VMixed extends VTree {
     public String caseActionDefinition(ActionDefinition ad) {
         VAction va = new VAction(this);
         va.caseActionDefinition(ad);
-        addRel(ad, ad, null);
+        addRel(ad, null);
         va.flush();
         return "";
     }
@@ -68,7 +68,7 @@ public class VMixed extends VTree {
     public String caseActionUsage(ActionUsage au) {
         VAction va = new VAction(this);
         va.caseActionUsage(au);
-        addRel(au, au, null);
+        addRel(au, null);
         va.flush();
         return "";
     }
@@ -95,8 +95,8 @@ public class VMixed extends VTree {
         return "";
     }
 
-    private VMixed(VTree vt, Element parent) {
-        super(vt, parent);
+    private VMixed(VTree vt, Membership membership) {
+        super(vt, membership);
     }
 
     public VMixed(Visitor vt) {

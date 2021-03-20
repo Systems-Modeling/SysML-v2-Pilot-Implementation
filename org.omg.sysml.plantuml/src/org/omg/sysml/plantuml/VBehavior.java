@@ -265,8 +265,11 @@ public abstract class VBehavior extends VDefault {
         String description = convertToDescription(tu);
         Feature src = tu.getSource();
         Feature tgt = tu.getTarget();
-    	if (isDoneAction(tgt)) tgt = null;
-        if ((src == null) && (tgt == null)) return "";
+        if (tgt == null) {
+            if (src == null) return "";
+        } else {
+            if (isDoneAction(tgt)) tgt = null;
+        }
         if ((src == null) || (tgt == null)) {
             addEntryExitTransitions(new PRelation(src, tgt, tu, description));
         } else {

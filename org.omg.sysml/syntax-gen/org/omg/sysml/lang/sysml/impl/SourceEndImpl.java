@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -53,12 +51,6 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SOURCE_END;
-	}
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		TypeUtil.addDefaultGeneralTypeTo(this);
-		super.addComputedRedefinitions(skip);
 	}
 	
 } //SourceEndImpl

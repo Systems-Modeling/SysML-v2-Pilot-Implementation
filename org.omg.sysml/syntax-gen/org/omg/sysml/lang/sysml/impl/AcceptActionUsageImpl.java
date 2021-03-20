@@ -22,18 +22,15 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -86,7 +83,7 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	 * @generated NOT
 	 */
 	public Expression basicGetReceiverArgument() {
-		Feature receiverParameter = getReceiverParameter();
+		Feature receiverParameter = UsageUtil.getReceiverParameterOf(this);
 		if (receiverParameter != null) {
 			FeatureValue valuation = FeatureUtil.getValuationFor(receiverParameter);
 			if (valuation != null) {
@@ -96,12 +93,6 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 		return null;
 	}
 	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		TypeUtil.addDefaultGeneralTypeTo(this);
-		super.addComputedRedefinitions(skip);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,20 +102,6 @@ public class AcceptActionUsageImpl extends ActionUsageImpl implements AcceptActi
 	public void setReceiverArgument(Expression newReceiverArgument) {
 		throw new UnsupportedOperationException();
 	}
-	
-	// Other
-
-	public Feature getItemsParameter() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		return parameters.isEmpty()? null: parameters.get(0);
-	}
-
-	public Feature getReceiverParameter() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		return parameters.size() < 2? null: parameters.get(1);
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

@@ -40,13 +40,13 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
 import java.util.HashSet
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.FeatureUtil
 
 class KerMLScope extends AbstractScope {
 	
@@ -322,7 +322,7 @@ class KerMLScope extends AbstractScope {
 	
 	protected def Set<Feature> redefinedFeatures(Type type) {
 		type.ownedFeature.
-			flatMap[feature|(feature as FeatureImpl).getRedefinedFeaturesWithComputed(skip)].toSet
+			flatMap[feature|FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip)].toSet
 	}
 	
 	protected def boolean imp(Namespace ns, QualifiedName qn, boolean isInsideScope, Set<Namespace> visited) {

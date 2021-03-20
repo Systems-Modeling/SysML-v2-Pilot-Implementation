@@ -142,7 +142,7 @@ public class TypeAdapter extends NamespaceAdapter {
 		Type type = getTarget();
 		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
 				hasNoOwnedGeneralizations(type, kind)) {
-			Type general = getDefaultType(superTypeNames);
+			Type general = getLibraryType(superTypeNames);
 			if (general != null && general != type) {
 				List<Type> generalizations = new ArrayList<>();
 				generalizations.add(general);
@@ -207,8 +207,20 @@ public class TypeAdapter extends NamespaceAdapter {
 		return TYPE_GENERALIZATION_DEFAULT;
 	}
 	
-	public Type getDefaultType(String... defaultNames) {
+	public Type getLibraryType(String... defaultNames) {
 		return SysMLLibraryUtil.getLibraryType(getTarget(), defaultNames);
+	}
+	
+	// Computed Redefinitions
+	
+	/**
+	 * This method returns those features from the target type that should be automatically overridden in its usages.
+	 * By default, there are none.
+	 * 
+	 * @return	Relevant features from the target type that should be redefined in usages.
+	 */
+	public List<? extends Feature> getRelevantFeatures() {
+		return Collections.emptyList();
 	}
 	
 	// Transformation

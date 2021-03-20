@@ -56,7 +56,6 @@ import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureUtil {
 	
@@ -140,15 +139,11 @@ public class FeatureUtil {
 	}
 	
 	public static List<Feature> getRedefinedFeaturesWithComputedOf(Feature feature, Element skip) {
-		return ((FeatureImpl)feature).getRedefinedFeaturesWithComputed(skip);
+		return getFeatureAdapter(feature).getRedefinedFeaturesWithComputed(skip);
 	}
 	
-	public static void addComputedRedefinitionsTo(Feature feature, Element skip) {
-		((FeatureImpl)feature).addComputedRedefinitions(skip);
-	}
-
 	public static void forceComputeRedefinitionsFor(Feature feature) {
-		((FeatureImpl)feature).forceComputeRedefinitions();
+		getFeatureAdapter(feature).forceComputeRedefinitions();
 	}
 	
 	public static Set<Feature> getAllRedefinedFeaturesOf(Feature feature) {
@@ -157,6 +152,10 @@ public class FeatureUtil {
 	
 	public static void addAllRedefinedFeaturesTo(Feature feature, Set<Feature> redefinedFeatures) {
 		getFeatureAdapter(feature).addAllRedefinedFeaturesTo(redefinedFeatures);
+	}
+	
+	public static boolean isIgnoredParameter(Feature feature) {
+		return getFeatureAdapter(feature).isIgnoredParameter();
 	}
 
 	// Feature values

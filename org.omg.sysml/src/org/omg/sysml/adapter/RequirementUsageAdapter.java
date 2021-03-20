@@ -21,8 +21,14 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class RequirementUsageAdapter extends ConstraintUsageAdapter {
@@ -64,6 +70,15 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 		} else {
 			super.addRequirementSubsetting();
 		}
+	}
+	
+	// Computed Redefinition
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return UsageUtil.isObjective(getTarget())? 
+				Collections.singletonList(TypeUtil.getObjectiveRequirementOf(type)):
+			    super.getRelevantFeatures(type);
 	}
 	
 }

@@ -21,12 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Behavior;
+import java.util.List;
 
-/**
- * @author seidewitz
- *
- */
+import org.omg.sysml.lang.sysml.Behavior;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.util.TypeUtil;
+
 public class BehaviorAdapter extends ClassAdapter {
 
 	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
@@ -45,4 +45,12 @@ public class BehaviorAdapter extends ClassAdapter {
 		return BEHAVIOR_SUPERCLASS_DEFAULT;
 	}
 
+	/**
+	 * Return the non-parameter abstract features of the Behavior.
+	 */
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return TypeUtil.getNonParameterAbstractFeaturesFor(getTarget());
+	}
+	
 }

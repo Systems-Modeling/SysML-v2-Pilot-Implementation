@@ -21,9 +21,11 @@
 
 package org.omg.sysml.util;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.omg.sysml.adapter.UsageAdapter;
+import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Definition;
@@ -92,6 +94,18 @@ public class UsageUtil {
 		return (BindingConnector)usage.getOwnedFeature().stream().
 				filter(BindingConnector.class::isInstance).
 				findFirst().orElse(null);	
+	}
+	
+	// Send and Accept Actions
+	
+	public static Feature getItemsParameterOf(ActionUsage action) {
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(action);
+		return parameters.isEmpty()? null: parameters.get(0);
+	}
+
+	public static Feature getReceiverParameterOf(ActionUsage action) {
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(action);
+		return parameters.size() < 2? null: parameters.get(1);
 	}
 	
 	// Constraints

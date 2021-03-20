@@ -23,21 +23,14 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -56,12 +49,6 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class ActionUsageImpl extends UsageImpl implements ActionUsage {
-	
-	public static final String STATE_BASE = "States::StateAction";
-	public static final String TRANSITION_BASE = "States::TransitionAction";
-	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
-	
-	protected boolean isCheckSubsetting = true;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,28 +144,6 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
   		return false;
 	}
 
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(this);
-	}	
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		String redefinedFeature = getRedefinedFeature();
-		return redefinedFeature == null? super.getRelevantFeatures(type):
-			   type == getOwningType()? Collections.singletonList(this):
-			   Collections.singletonList((Feature)SysMLLibraryUtil.getLibraryType(this, redefinedFeature));
-	}
-	
-	protected String getRedefinedFeature() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return membership instanceof StateSubactionMembership?
-					STATE_BASE + "::" + ((StateSubactionMembership)membership).getKind().toString() + "Action": 
-			   membership instanceof TransitionFeatureMembership? 
-					TRANSITION_BASE + "::" + TRANSITION_REDEFINED_FEATURES[((TransitionFeatureMembership)membership).getKind().getValue()]: 
-					null;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -18,12 +18,10 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -50,8 +48,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StepImpl extends FeatureImpl implements Step {
-	
-	protected boolean isCheckSubsetting = true;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,11 +124,6 @@ public class StepImpl extends FeatureImpl implements Step {
 	public boolean isSetType() {
   		return false;
 	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(this);
-	}	
 	
 	/**
 	 * <!-- begin-user-doc -->

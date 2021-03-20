@@ -21,12 +21,15 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class ItemFlowAdapter extends ConnectorAdapter {
 
@@ -51,6 +54,11 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 	
 	protected boolean isSubtransfer() {
 		return FeatureUtil.isPerformanceFeature(getTarget());
+	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return TypeUtil.getItemFeaturesOf(getTarget());
 	}
 	
 	public void transformConnectorEnd() {

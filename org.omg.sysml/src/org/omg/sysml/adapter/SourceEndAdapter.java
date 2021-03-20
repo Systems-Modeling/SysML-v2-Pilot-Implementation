@@ -21,6 +21,7 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.Type;
@@ -39,15 +40,21 @@ public class SourceEndAdapter extends FeatureAdapter {
 
 	@Override
 	public void computeImplicitGeneralTypes() {
-		FeatureUtil.addComputedRedefinitionsTo(getTarget(), null);
+		addComputedRedefinitions(null);
 	}
 	
 	@Override
-	public Type getDefaultType(String... defaultNames) {
+	public void addComputedRedefinitions(Element skip) {
+		addDefaultGeneralType();
+		super.addComputedRedefinitions(skip);
+	}
+	
+	@Override
+	public Type getLibraryType(String... defaultNames) {
 		Type type = getTarget().getOwningType();
 		return type instanceof Feature? 
 				FeatureUtil.getSource((Feature)type): 
-				super.getDefaultType(defaultNames);
+				super.getLibraryType(defaultNames);
 	}
 	
 }

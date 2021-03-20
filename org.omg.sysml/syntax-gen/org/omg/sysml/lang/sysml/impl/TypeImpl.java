@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -574,16 +573,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public EList<Membership> getPublicMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes) {
 		return getNonPrivateMembership(excludedNamespaces, excludedTypes, false);
-	}
-	
-	/**
-	 * This method returns those features from this type that should be automatically overridden in its usages.
-	 * By default, there are none.
-	 * 
-	 * @return	Relevant features from the type that should be redefined in usages.
-	 */
-	public List<? extends Feature> getRelevantFeatures() {
-		return Collections.emptyList();
 	}
 	
 	/**

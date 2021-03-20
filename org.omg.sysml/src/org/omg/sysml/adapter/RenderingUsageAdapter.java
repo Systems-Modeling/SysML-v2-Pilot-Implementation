@@ -21,9 +21,16 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RenderingDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewUsage;
+import org.omg.sysml.util.FeatureUtil;
 
 public class RenderingUsageAdapter extends PartUsageAdapter {
 
@@ -49,6 +56,23 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 	public boolean isSubrendering() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof RenderingDefinition | owningType instanceof RenderingUsage;
+	}
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		RenderingUsage target = getTarget();
+		return !FeatureUtil.isParameter(target) && !target.isEnd() && isRender(target)? getRenderFeatures(type):
+			   super.getRelevantFeatures(type);
+	}
+	
+	protected List<? extends Feature> getRenderFeatures(Type type) {
+		List<Feature> features = type == getTarget().getOwningType()? type.getOwnedFeature(): type.getFeature();
+		return features.stream().filter(RenderingUsage.class::isInstance).collect(Collectors.toList());
+	}
+	
+	public static boolean isRender(RenderingUsage target) {
+		Type owningType = target.getOwningType();
+		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
 	}
 	
 }

@@ -21,7 +21,11 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.util.TypeUtil;
 
 public class StateUsageAdapter extends ActionUsageAdapter {
 
@@ -43,5 +47,10 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 				STATE_SUBSETTING_SUBSTATE_DEFAULT:
 				STATE_SUBSETTING_BASE_DEFAULT;
 	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return TypeUtil.getItemFeaturesOf(getTarget());
+	}	
 	
 }

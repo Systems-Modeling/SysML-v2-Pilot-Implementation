@@ -21,7 +21,9 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -35,12 +37,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.DataType;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
+import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Redefinition;
@@ -48,7 +53,9 @@ import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -137,7 +144,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
-		FeatureUtil.addComputedRedefinitionsTo(getTarget(), null);
+		addComputedRedefinitions(null);
 		super.computeImplicitGeneralTypes();
 	}
 	
@@ -152,7 +159,8 @@ public class FeatureAdapter extends TypeAdapter {
 				map(Feature.class::cast);
 		Stream<Feature> ownedSubsettedFeatures = target.getOwnedSubsetting().stream().
 				filter(s->!(s instanceof Redefinition)).
-				map(Subsetting::getSubsettedFeature);
+				map(Subsetting::getSubsettedFeature).
+				filter(f->f != null);
 		return Stream.concat(ownedSubsettedFeatures, implicitSubsettedFeatures);
 	}
 	
@@ -161,7 +169,8 @@ public class FeatureAdapter extends TypeAdapter {
 		// Note: Build on getSubsettedNotRedefinedFeatures here because it is overridden in some subclasses.
 		Stream<Feature> subsettedFeatures = getSubsettedNotRedefinedFeatures();
 		Stream<Feature> ownedRedefinedFeatures = target.getOwnedRedefinition().stream().
-				map(Redefinition::getRedefinedFeature);
+				map(Redefinition::getRedefinedFeature).
+				filter(f->f != null);
 		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);		
 		return Stream.concat(Stream.concat(subsettedFeatures, ownedRedefinedFeatures), implicitRedefinedFeatures).
@@ -171,10 +180,11 @@ public class FeatureAdapter extends TypeAdapter {
 	public List<Feature> getRedefinedFeatures() {
 		Feature target = getTarget();
 		computeImplicitGeneralTypes();
-		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypesOnly( SysMLPackage.Literals.REDEFINITION).stream().
+		Stream<Feature> implicitRedefinedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.REDEFINITION).stream().
 				map(Feature.class::cast);
 		Stream<Feature> ownedRedefinedFeatures = target.getOwnedRedefinition().stream().
-				map(Redefinition::getRedefinedFeature);
+				map(Redefinition::getRedefinedFeature).
+				filter(f->f != null);
 		return Stream.concat(ownedRedefinedFeatures, implicitRedefinedFeatures).
 				collect(Collectors.toList());
 	}
@@ -186,20 +196,151 @@ public class FeatureAdapter extends TypeAdapter {
 		Set<Feature> redefinedFeatures = new HashSet<>();
 		
 		// Ensure that the redefinitions for this feature are recomputed. 
-		FeatureUtil.forceComputeRedefinitionsFor(getTarget());
+		forceComputeRedefinitions();
 		
 		addAllRedefinedFeaturesTo(redefinedFeatures);
 		return redefinedFeatures;
 	}
 	
 	public void addAllRedefinedFeaturesTo(Set<Feature> redefinedFeatures) {
-		Feature target = getTarget();
-		redefinedFeatures.add(target);
-		FeatureUtil.getRedefinedFeaturesWithComputedOf(target, null).stream().forEach(redefinedFeature->{
+		redefinedFeatures.add(getTarget());
+		getRedefinedFeaturesWithComputed(null).stream().forEach(redefinedFeature->{
 			if (redefinedFeature != null && !redefinedFeatures.contains(redefinedFeature)) {
 				FeatureUtil.addAllRedefinedFeaturesTo(redefinedFeature, redefinedFeatures);
 			}
 		});
+	}
+	
+	// Computed Redefinition
+	
+	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
+		Feature target = getTarget();
+		
+		addComputedRedefinitions(skip);
+		EList<Redefinition> redefinitions = target.getOwnedRedefinition();
+		
+		List<Feature> redefinedFeatures = new ArrayList<>();
+		redefinitions.stream().
+			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
+			forEachOrdered(redefinedFeatures::add);
+		
+		TypeUtil.getImplicitGeneralTypesOnly(target, SysMLPackage.eINSTANCE.getRedefinition())
+				.stream().
+				map(Feature.class::cast).
+				forEachOrdered(redefinedFeatures::add);
+		
+		return redefinedFeatures; 
+	}
+	
+	private boolean isComputeRedefinitions = true;
+	
+	public void forceComputeRedefinitions() {
+		isComputeRedefinitions = true;
+	}
+	
+	/**
+	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
+	 */
+	public void addComputedRedefinitions(Element skip) {
+		EList<Redefinition> ownedRedefinitions = getTarget().getOwnedRedefinition();
+		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
+			removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
+			addRedefinitions(skip);
+			isComputeRedefinitions = false;
+		}
+	}
+	
+	/**
+	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
+	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 
+	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
+	 * overriding getGeneralCategories and getRelevantFeatures.
+	 */
+	protected void addRedefinitions(Element skip) {
+		Feature target = getTarget();
+		Namespace owner = target.getOwningNamespace();
+		if (owner instanceof Type) {
+			Type type = target.getOwningType();
+			int i = getRelevantFeatures(type).indexOf(target);
+			if (i >= 0) {
+				for (Type general: getGeneralTypes(type, skip)) {
+					List<? extends Feature> features = getRelevantFeatures(general);
+					if (i < features.size()) {
+						Feature redefinedFeature = features.get(i);
+						if (redefinedFeature != null && redefinedFeature != target) {
+							addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Get the (ordered) set of Types, more general than the given type, that may have 
+	 * features redefined by this feature. By default this is all general Types of the
+	 * given Type.
+	 */
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		List<Type> generalTypes = new ArrayList<>();
+		for (Type generalType: TypeUtil.getSupertypesOf(type, skip)) {
+			if (!generalTypes.contains(generalType)) {
+				generalTypes.add(generalType);
+			}
+		}
+		return generalTypes;
+	}
+	
+	/**
+	 * Get the relevant Features that may be redefined from the given Type.
+	 * If this is an end Feature, return the end Features of the Type,
+	 * otherwise return the relevant features of the type.
+	 */
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		Feature target = getTarget();
+		return target.isEnd()? TypeUtil.getAllEndFeaturesOf(type):
+			   FeatureUtil.isParameter(target)? getParameterRelevantFeatures(type):
+			   type != null? TypeUtil.getRelevantFeaturesOf(type):
+			   Collections.emptyList();
+	}
+	
+	/**
+	 * Parameters redefine (owned) Parameters of general Types, with a result
+	 * Parameter always redefining the result Parameter of a general Function or
+	 * Expression.
+	 */
+	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
+		if (type != null) {
+			if (FeatureUtil.isResultParameter(getTarget())) {
+				Feature resultParameter = TypeUtil.getResultParameterOf(type);
+				if (resultParameter != null) {
+					return Collections.singletonList(resultParameter);
+				}
+			} else {
+				return getRelevantParameters(type);
+			}
+		}
+		return Collections.emptyList();
+	}
+	
+	protected List<Feature> getRelevantParameters(Type type) {
+		Type owningType = getTarget().getOwningType();
+		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
+			   owningType instanceof InvocationExpression && 
+			        type == ExpressionUtil.getExpressionTypeOf((InvocationExpression)owningType) &&
+			   		!(type instanceof Function || type instanceof Expression)? 
+			   				ExpressionUtil.getTypeFeaturesOf((InvocationExpression)owningType):
+			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type));
+	}
+	
+	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
+		return parameters.stream().
+				filter(p -> !FeatureUtil.isIgnoredParameter(p)).
+				collect(Collectors.toList());
+	}
+	
+	public boolean isIgnoredParameter() {
+		return FeatureUtil.isResultParameter(getTarget());
 	}
 	
 	// Transformation
@@ -276,7 +417,7 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	@Override
 	public void doTransform() {
-		FeatureUtil.forceComputeRedefinitionsFor(getTarget());
+		forceComputeRedefinitions();
 		super.doTransform();
 		computeValueConnector();
 	}

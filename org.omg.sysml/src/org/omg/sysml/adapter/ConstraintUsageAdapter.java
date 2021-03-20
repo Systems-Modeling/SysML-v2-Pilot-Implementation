@@ -83,7 +83,7 @@ public class ConstraintUsageAdapter extends UsageAdapter {
 	}
 	
 	protected void addSubsetting(String subsettedFeatureName) {
-		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
+		Feature feature = (Feature)getLibraryType(subsettedFeatureName);
 		if (feature != null) {
 			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
 		}

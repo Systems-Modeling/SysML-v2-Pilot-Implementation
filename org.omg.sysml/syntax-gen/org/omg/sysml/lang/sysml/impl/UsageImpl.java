@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -65,7 +63,6 @@ import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -529,24 +526,6 @@ public abstract class UsageImpl extends FeatureImpl implements Usage {
 	protected Optional<Feature> getVariantSubsettedFeature() {
 		return UsageUtil.getOwningVariantMembershipFor(this) == null? Optional.empty():
 			FeatureUtil.getFirstSubsettedFeatureOf(this).filter(f->f != UsageUtil.getOwningVariationUsageFor(this));
-	}
-	
-	/**
-	 * A subject Parameter always redefines a subject Parameter.
-	 */
-	@Override
-	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
-		if (UsageUtil.isSubjectParameter(this)) {
-			Feature typeSubject = TypeUtil.getSubjectParameterOf(type);
-			return typeSubject == null? Collections.emptyList(): 
-				Collections.singletonList(typeSubject);
-		}
-		return super.getParameterRelevantFeatures(type);
-	}
-	
-	@Override
-	protected boolean isIgnoredParameter() {
-		return super.isIgnoredParameter() || UsageUtil.isSubjectParameter(this);
 	}
 	
 	//

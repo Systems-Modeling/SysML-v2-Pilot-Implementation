@@ -24,39 +24,52 @@ package org.omg.sysml.adapter;
 import java.util.Collections;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.TimeSliceFeature;
+import org.omg.sysml.lang.sysml.ItemFlowEnd;
+import org.omg.sysml.lang.sysml.ItemFlowFeature;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class TimeSliceFeatureAdapter extends FeatureAdapter {
+public class ItemFlowFeatureAdapter extends FeatureAdapter {
 
-	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";
+	public static final String[] ITEM_FLOW_INPUT_OUTPUT_FEATURES = { "Transfers::Transfer::transferSource::sourceOutput", "Transfers::Transfer::transferTarget::targetInput" };
 
-	public TimeSliceFeatureAdapter(TimeSliceFeature element) {
+	public ItemFlowFeatureAdapter(ItemFlowFeature element) {
 		super(element);
 	}
 	
 	@Override
-	public TimeSliceFeature getTarget() {
-		return (TimeSliceFeature)super.getTarget();
+	public ItemFlowFeature getTarget() {
+		return (ItemFlowFeature)super.getTarget();
 	}
 
-	public void computeImplicitGeneralTypes() {
-		setIndividualTyping();
-		super.computeImplicitGeneralTypes();
-	}
-		
 	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		return Collections.singletonList(null);
+	public void addComputedRedefinitions(Element skip) {
+		if (!isImplicitGeneralizationDeclaredFor(SysMLPackage.eINSTANCE.getRedefinition())) {
+			addRedefinitions(skip);
+		}
 	}
-	
+
 	@Override
 	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		TimeSliceFeature target = getTarget();
-		return Collections.singletonList(type == target.getOwner()? target:
-			   (Feature)getLibraryType(TIME_SLICE_FEATURE_REDEFINED_FEATURE));
+		return type instanceof ItemFlowEnd? type.getOwnedFeature():
+				Collections.singletonList((Feature)getLibraryType(ITEM_FLOW_INPUT_OUTPUT_FEATURES[getEndIndex()]));
 	}
 	
+	protected int getEndIndex() {
+		Type owningType = getTarget().getOwningType();
+		if (owningType != null) {
+			Element connector = owningType.getOwner();
+			if (connector instanceof Connector) {
+				int i = ((Connector)connector).getConnectorEnd().indexOf(owningType);
+				if (i >= 0) {
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
+
 }

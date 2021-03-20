@@ -23,8 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -48,7 +47,6 @@ import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -337,12 +335,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		return subsettingVerificationFeature;
 	}
 
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return UsageUtil.isObjective(this)? Collections.singletonList(TypeUtil.getObjectiveRequirementOf(type)):
-			   super.getRelevantFeatures(type);
-	}
-	
 	//
 
 	/**

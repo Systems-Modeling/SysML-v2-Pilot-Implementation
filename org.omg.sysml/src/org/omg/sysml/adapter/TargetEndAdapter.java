@@ -22,11 +22,12 @@
 package org.omg.sysml.adapter;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.TargetEnd;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
+
 
 public class TargetEndAdapter extends FeatureAdapter {
 
@@ -41,11 +42,17 @@ public class TargetEndAdapter extends FeatureAdapter {
 
 	@Override
 	public void computeImplicitGeneralTypes() {
-		FeatureUtil.addComputedRedefinitionsTo(getTarget(), null);
+		addComputedRedefinitions(null);
 	}
 	
 	@Override
-	public Type getDefaultType(String... defaultNames) {
+	public void addComputedRedefinitions(Element skip) {
+		addDefaultGeneralType();
+		super.addComputedRedefinitions(skip);
+	}
+	
+	@Override
+	public Type getLibraryType(String... defaultNames) {
 		Type type = getTarget().getOwningType();
 		if (type instanceof Feature) {
 			Feature feature = (Feature)type;

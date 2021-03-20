@@ -21,14 +21,18 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.Type;
 
 public class ItemFlowEndAdapter extends FeatureAdapter {
 
@@ -52,9 +56,21 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 	@Override
 	public void computeImplicitGeneralTypes() {
 		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
-		FeatureUtil.addComputedRedefinitionsTo(getTarget(), null);
+		addComputedRedefinitions(null);
+	}
+	
+	// Computed Redefinition
+
+	@Override
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		return type instanceof ItemFlow? new ArrayList<>(((Feature)type).getType()) : super.getGeneralTypes(type, skip);
 	}
 
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return getTarget().getOwnedFeature();
+	}
+	
 	// Transformation
 	
 	public void addItemFlowEndSubsetting() {

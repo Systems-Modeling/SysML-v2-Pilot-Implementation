@@ -252,6 +252,16 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
+		public ElementAdapter caseItemDefinition(ItemDefinition element) {
+			return new ItemDefinitionAdapter(element);
+		}
+		
+		@Override
+		public ElementAdapter caseItemFeature(ItemFeature element) {
+			return new ItemFeatureAdapter(element);
+		}
+		
+		@Override
 		public ElementAdapter caseItemFlow(ItemFlow element) {
 			return new ItemFlowAdapter(element);
 		}
@@ -262,8 +272,8 @@ public class ElementAdapterFactory {
 		}
 		
 		@Override
-		public ElementAdapter caseItemDefinition(ItemDefinition element) {
-			return new ItemDefinitionAdapter(element);
+		public ElementAdapter caseItemFlowFeature(ItemFlowFeature element) {
+			return new ItemFlowFeatureAdapter(element);
 		}
 		
 		@Override

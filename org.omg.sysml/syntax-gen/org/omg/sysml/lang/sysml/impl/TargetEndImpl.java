@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TargetEnd;
 
@@ -52,10 +50,4 @@ public class TargetEndImpl extends FeatureImpl implements TargetEnd {
 		return SysMLPackage.Literals.TARGET_END;
 	}
 
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		TypeUtil.addDefaultGeneralTypeTo(this);
-		super.addComputedRedefinitions(skip);
-	}
-	
 } // TargetEndImpl

@@ -24,9 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -34,18 +31,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.adapter.TransitionUsageAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -66,8 +60,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ExpressionImpl extends StepImpl implements Expression {
 	
-	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
-
 	/**
 	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -160,24 +152,6 @@ public class ExpressionImpl extends StepImpl implements Expression {
 	 */
 	public boolean isSetBehavior() {
   		return false;
-	}
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		Type owningType = getOwningType();
-		return ExpressionUtil.isTransitionGuard(this)?
-					type == owningType? Collections.singletonList(this):
-					Collections.singletonList((Feature)SysMLLibraryUtil.getLibraryType(this, EXPRESSION_GUARD_FEATURE)):
-			   owningType instanceof FeatureValue? Collections.emptyList():
-			   super.getRelevantFeatures(type);
-	}
-	
-	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		Type owningType = getOwningType();
-		return ExpressionUtil.isTransitionGuard(this) && type == owningType?
-				Collections.singletonList(SysMLLibraryUtil.getLibraryType(this, TransitionUsageAdapter.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
-				super.getGeneralTypes(type, skip);
 	}
 	
 	@Override 

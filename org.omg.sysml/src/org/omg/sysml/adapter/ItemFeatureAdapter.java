@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,37 +18,34 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
-package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
-import org.omg.sysml.lang.sysml.SysMLPackage;
+package org.omg.sysml.adapter;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Item
- * Flow End</b></em>'. <!-- end-user-doc -->
- *
- * @generated
- */
-public class ItemFlowEndImpl extends FeatureImpl implements ItemFlowEnd {
+import java.util.Collections;
+import java.util.List;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ItemFlowEndImpl() {
-		super();
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
+
+public class ItemFeatureAdapter extends FeatureAdapter {
+
+	public static final String ITEM_FLOW_ITEM_FEATURE = "Transfers::Transfer::item";
+	
+	public ItemFeatureAdapter(ItemFeature element) {
+		super(element);
 	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
+	
 	@Override
-	protected EClass eStaticClass() {
-		return SysMLPackage.Literals.ITEM_FLOW_END;
+	public ItemFeature getTarget() {
+		return (ItemFeature)super.getTarget();
 	}
 
-} // ItemFlowEndImpl
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return type == getTarget().getOwner()? TypeUtil.getRelevantFeaturesOf(type):
+				Collections.singletonList((Feature)getLibraryType(ITEM_FLOW_ITEM_FEATURE));
+	}
+	
+}

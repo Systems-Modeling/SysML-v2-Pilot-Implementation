@@ -23,9 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,26 +44,20 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
-import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Element;
 
 /**
  * <!-- begin-user-doc -->
@@ -388,132 +380,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return featuringTypes;
 	}
 	
-	public List<Feature> getRedefinedFeaturesWithComputed(Element skip) {
-		addComputedRedefinitions(skip);
-		EList<Redefinition> redefinitions = getOwnedRedefinition();
-		
-		List<Feature> redefinedFeatures = new ArrayList<>();
-		redefinitions.stream().
-			map(r->r == skip? ((RedefinitionImpl)r).basicGetRedefinedFeature(): r.getRedefinedFeature()).
-			forEachOrdered(redefinedFeatures::add);
-		
-		TypeUtil.getImplicitGeneralTypesOnly(this, SysMLPackage.eINSTANCE.getRedefinition())
-				.stream().
-				map(Feature.class::cast).
-				forEachOrdered(redefinedFeatures::add);
-		
-		return redefinedFeatures; 
-	}
-	
-	private boolean isComputeRedefinitions = true;
-	
-	public void forceComputeRedefinitions() {
-		isComputeRedefinitions = true;
-	}
-	
-	/**
-	 * If this Feature has no Redefinitions, compute relevant Redefinitions, as appropriate.
-	 */
-	public void addComputedRedefinitions(Element skip) {
-		EList<Redefinition> ownedRedefinitions = getOwnedRedefinition();
-		if (isComputeRedefinitions && ownedRedefinitions.isEmpty()) {
-			TypeUtil.removeImplicitGeneralTypeFrom(this, SysMLPackage.eINSTANCE.getRedefinition());
-			addRedefinitions(skip);
-			isComputeRedefinitions = false;
-		}
-	}
-	
-	/**
-	 * Compute relevant Redefinitions and add them to this Feature. By default, if this Feature is relevant for its
-	 * owning Type, then it is paired with relevant Features in the same position in Generalizations of the 
-	 * owning Type. The determination of what are relevant Categories and Features can be adjusted by
-	 * overriding getGeneralCategories and getRelevantFeatures.
-	 */
-	protected void addRedefinitions(Element skip) {
-		Namespace owner = getOwningNamespace();
-		if (owner instanceof Type) {
-			Type type = getOwningType();
-			int i = getRelevantFeatures(type).indexOf(this);
-			if (i >= 0) {
-				for (Type general: getGeneralTypes(type, skip)) {
-					List<? extends Feature> features = getRelevantFeatures(general);
-					if (i < features.size()) {
-						Feature redefinedFeature = features.get(i);
-						if (redefinedFeature != null && redefinedFeature != this) {
-							TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Get the (ordered) set of Types, more general than the given type, that may have 
-	 * features redefined by this feature. By default this is all general Types of the
-	 * given Type.
-	 */
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		List<Type> generalTypes = new ArrayList<>();
-		for (Type generalType: TypeUtil.getSupertypesOf(type, skip)) {
-			if (!generalTypes.contains(generalType)) {
-				generalTypes.add(generalType);
-			}
-		}
-		return generalTypes;
-	}
-	
-	/**
-	 * Get the relevant Features that may be redefined from the given Type.
-	 * If this is an end Feature, return the end Features of the Type,
-	 * otherwise return the relevant features of the type.
-	 */
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return isEnd()? TypeUtil.getAllEndFeaturesOf(type):
-			   FeatureUtil.isParameter(this)? getParameterRelevantFeatures(type):
-			   type != null? ((TypeImpl)type).getRelevantFeatures():
-			   Collections.emptyList();
-	}
-	
-	/**
-	 * Parameters redefine (owned) Parameters of general Types, with a result
-	 * Parameter always redefining the result Parameter of a general Function or
-	 * Expression.
-	 */
-	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
-		if (type != null) {
-			if (FeatureUtil.isResultParameter(this)) {
-				Feature resultParameter = TypeUtil.getResultParameterOf(type);
-				if (resultParameter != null) {
-					return Collections.singletonList(resultParameter);
-				}
-			} else {
-				return  getRelevantParameters((TypeImpl)type);
-			}
-		}
-		return Collections.emptyList();
-	}
-	
-	protected List<Feature> getRelevantParameters(TypeImpl type) {
-		Type owningType = getOwningType();
-		return type == owningType? filterIgnoredParameters(TypeUtil.getOwnedParametersOf(type)): 
-			   owningType instanceof InvocationExpression && 
-			        type == ExpressionUtil.getExpressionTypeOf((InvocationExpression)owningType) &&
-			   		!(type instanceof Function || type instanceof Expression)? 
-			   				ExpressionUtil.getTypeFeaturesOf((InvocationExpression)owningType):
-			   filterIgnoredParameters(TypeUtil.getAllParametersOf(type));
-	}
-	
-	protected List<Feature> filterIgnoredParameters(List<Feature> parameters) {
-		return parameters.stream().
-				filter(p -> !((FeatureImpl) p).isIgnoredParameter()).
-				collect(Collectors.toList());
-	}
-	
-	protected boolean isIgnoredParameter() {
-		return FeatureUtil.isResultParameter(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -772,7 +638,7 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	protected Feature getNamingFeature() {
-		List<Feature> redefinedFeatures = getRedefinedFeaturesWithComputed(null);
+		List<Feature> redefinedFeatures = FeatureUtil.getRedefinedFeaturesWithComputedOf(this, null);
 		return redefinedFeatures.isEmpty()? null:
 			redefinedFeatures.get(0);
 	}

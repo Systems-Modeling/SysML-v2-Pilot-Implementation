@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -33,6 +34,7 @@ import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 
 public class ExpressionAdapter extends StepAdapter {
@@ -40,6 +42,8 @@ public class ExpressionAdapter extends StepAdapter {
 	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::evaluations";
 	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subevaluations";
 	
+	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
+
 	public ExpressionAdapter(Expression element) {
 		super(element);
 	}
@@ -71,7 +75,29 @@ public class ExpressionAdapter extends StepAdapter {
 				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
 				EXPRESSION_SUBSETTING_BASE_DEFAULT;
 	}
+	
+	// Computed Redefinition
 
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		Expression target = getTarget();
+		Type owningType = target.getOwningType();
+		return ExpressionUtil.isTransitionGuard(target)?
+					type == owningType? Collections.singletonList(target):
+					Collections.singletonList((Feature)getLibraryType(EXPRESSION_GUARD_FEATURE)):
+			   owningType instanceof FeatureValue? Collections.emptyList():
+			   super.getRelevantFeatures(type);
+	}
+	
+	@Override
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		Expression target = getTarget();
+		Type owningType = target.getOwningType();
+		return ExpressionUtil.isTransitionGuard(target) && type == owningType?
+				Collections.singletonList(getLibraryType(TransitionUsageAdapter.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
+				super.getGeneralTypes(type, skip);
+	}
+	
 	// Transformation
 
 	protected Feature createFeatureForParameter(Feature parameter) {

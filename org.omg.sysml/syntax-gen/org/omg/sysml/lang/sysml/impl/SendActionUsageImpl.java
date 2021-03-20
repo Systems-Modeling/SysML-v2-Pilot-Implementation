@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -36,6 +35,7 @@ import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -132,9 +132,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated NOT
 	 */
 	public Expression basicGetItemsArgument() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		if (parameters.size() > 0) {
-			FeatureValue valuation = FeatureUtil.getValuationFor(parameters.get(0));
+		Feature itemsParameter = UsageUtil.getItemsParameterOf(this);
+		if (itemsParameter != null) {
+			FeatureValue valuation = FeatureUtil.getValuationFor(itemsParameter);
 			if (valuation != null) {
 				return valuation.getValue();
 			}
@@ -152,12 +152,6 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 		throw new UnsupportedOperationException();
 	}
 	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		TypeUtil.addDefaultGeneralTypeTo(this);
-		super.addComputedRedefinitions(skip);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

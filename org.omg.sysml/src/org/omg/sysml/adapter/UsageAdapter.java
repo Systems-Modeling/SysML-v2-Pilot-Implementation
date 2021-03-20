@@ -21,6 +21,8 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.omg.sysml.lang.sysml.Definition;
@@ -70,6 +72,26 @@ public class UsageAdapter extends FeatureAdapter {
 	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		addVariationSubsetting();
 		return super.getSubsettedNotRedefinedFeatures();
+	}
+	
+	// Computed Redefinitions
+	
+	/**
+	 * A subject Parameter always redefines a subject Parameter.
+	 */
+	@Override
+	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
+		if (UsageUtil.isSubjectParameter(getTarget())) {
+			Feature typeSubject = TypeUtil.getSubjectParameterOf(type);
+			return typeSubject == null? Collections.emptyList(): 
+				Collections.singletonList(typeSubject);
+		}
+		return super.getParameterRelevantFeatures(type);
+	}
+	
+	@Override
+	public boolean isIgnoredParameter() {
+		return super.isIgnoredParameter() || UsageUtil.isSubjectParameter(getTarget());
 	}
 	
 	// Transformation

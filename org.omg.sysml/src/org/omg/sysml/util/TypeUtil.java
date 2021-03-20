@@ -325,6 +325,10 @@ public class TypeUtil {
 	
 	// Relevant features
 	
+	public static List<? extends Feature> getRelevantFeaturesOf(Type type) {
+		return getTypeAdapter(type).getRelevantFeatures();
+	}
+	
 	/**
 	 * Get the non-parameter abstract Features. (For use with Behaviors.)
 	 */

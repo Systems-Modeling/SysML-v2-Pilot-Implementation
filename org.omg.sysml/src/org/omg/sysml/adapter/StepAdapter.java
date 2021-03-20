@@ -21,8 +21,12 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class StepAdapter extends FeatureAdapter {
 	
@@ -52,5 +56,10 @@ public class StepAdapter extends FeatureAdapter {
 				STEP_SUBSETTING_TRANSFER_DEFAULT:
 				STEP_SUBSETTING_BASE_DEFAULT;
 	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return TypeUtil.getItemFeaturesOf(getTarget());
+	}	
 	
 }

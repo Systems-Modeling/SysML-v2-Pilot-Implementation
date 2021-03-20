@@ -21,8 +21,8 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SendActionUsage;
-import org.omg.sysml.util.FeatureUtil;
 
 public class SendActionUsageAdapter extends ActionUsageAdapter {
 
@@ -40,9 +40,15 @@ public class SendActionUsageAdapter extends ActionUsageAdapter {
 
 	@Override
 	public void computeImplicitGeneralTypes() {
-		FeatureUtil.addComputedRedefinitionsTo(getTarget(), null);
+		addComputedRedefinitions(null);
 	}
 	
+	@Override
+	public void addComputedRedefinitions(Element skip) {
+		addDefaultGeneralType();
+		super.addComputedRedefinitions(skip);
+	}
+
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubperformance()? 

@@ -21,9 +21,17 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
+import org.omg.sysml.lang.sysml.Type;
 
 public class SnapshotFeatureAdapter extends FeatureAdapter {
+
+	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
 
 	public SnapshotFeatureAdapter(SnapshotFeature element) {
 		super(element);
@@ -40,4 +48,16 @@ public class SnapshotFeatureAdapter extends FeatureAdapter {
 		super.computeImplicitGeneralTypes();
 	}
 		
+	@Override
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		return Collections.singletonList(null);
+	}
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		SnapshotFeature target = getTarget();
+		return Collections.singletonList(type == target.getOwner()? target:
+			   (Feature)getLibraryType(SNAPSHOT_FEATURE_REDEFINED_FEATURE));
+	}
+
 }

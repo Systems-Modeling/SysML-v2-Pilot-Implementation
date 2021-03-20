@@ -22,6 +22,7 @@
 package org.omg.sysml.adapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
@@ -97,7 +98,21 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		}
 		return argument;
 	}
+	
+	// Computed Redefinition
 
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		Expression target = getTarget();
+		Type type = getExpressionType();
+		int m = type == null ? 0 : 
+			(int)TypeUtil.getAllParametersOf(target).stream().
+				filter(FeatureUtil::isInputParameter).count();
+		List<Feature> features = target.getOwnedFeature();
+		int n = features.size();
+		return m >= n ? Collections.emptyList() : features.subList(m, n);
+	}
+	
 	// Transformation
 	
 	@Override

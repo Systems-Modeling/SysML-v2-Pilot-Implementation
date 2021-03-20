@@ -93,6 +93,31 @@ public class SysML2PlantUMLSvc {
 
         return sb.toString();
     }
+    private static final String HELPSTRING =
+    "Usage: %viz [--view=<VIEW>] [--style=<STYLE>...] <NAME> [<NAME>...]\n\n"
+    + "Visualize model elements of <NAME>(s).\n\n"
+    + "<VIEW> is case insensitive and possible candidates are:\n"
+    + "Default: Automatically choose an appropriate view from the given model element names;\n"
+    + "Tree: Show a tree-structural view, like a Block Definition Diagram (BDD);\n"
+    + "Interconnection: Show an interconnection view, like an Internal Block Diagram (IBD);\n"
+    + "State: Show state machines;\n"
+    + "Action: Show actions like an activity diagram;\n"
+    + "MIXED: Show multiple views.\n\n"
+    + "<STYLE> is also case insensitive. Multiple --style options are allowed.  The possible style names are:\n"
+    + "DEFAULT: Standard B&W format;\n"
+    + "STDCOLOR: Standard format with colors;\n"
+    + "PLANTUML: PlantUML format;\n"
+    + "PUMLCODE: Show PlantUML code mainly for debugging;\n"
+    + "TB: Top-to-Bottom orientation; \n"
+    + "LR: Left-to-Right orientation; \n"
+    + "POLYLINE: Polyline style;\n"
+    + "ORTHOLINE: Orthogonal line style;\n"
+    + "COMPTREE: Show tree structures in compartments;";
+
+    public String getHelpString() {
+        // TODO: need to be structured in the future.
+        return HELPSTRING;
+    }
 
 
     public String getSVG(List<EObject> eObjs, List<String> styles) throws IOException {

@@ -30,6 +30,7 @@ public class VizResult {
     	EXCEPTION,
         EMPTY,
         PLANTUML,
+        TEXT,
         SVG
     }
 
@@ -60,6 +61,15 @@ public class VizResult {
         case EMPTY:
             return "";
         case PLANTUML:
+            return result;
+        default:
+            return null;
+        }
+    }
+
+    public String getText() {
+        switch (kind) {
+        case TEXT:
             return result;
         default:
             return null;
@@ -97,6 +107,12 @@ public class VizResult {
     public static VizResult plantumlResult(String plantuml) {
         if (plantuml == null) return emptyResult();
         return new VizResult(Kind.PLANTUML, plantuml);
+    }
+
+
+    public static VizResult textResult(String text) {
+        if (text == null) return emptyResult();
+        return new VizResult(Kind.TEXT, text);
     }
 
     public static VizResult unresolvedResult(String name) {

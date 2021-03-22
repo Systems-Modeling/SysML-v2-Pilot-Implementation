@@ -35,28 +35,30 @@ import org.eclipse.xtext.resource.XtextResource;
  * @author cbrun
  */
 public class ReadOnlyXtextSessionManagerListener extends Stub {
-    @Override
-    public void notify(Session updated, int notification) {
-        super.notify(updated, notification);
-        switch (notification) {
-        case SessionListener.OPENED:
-            changeSavingPolicyIfXtextIsUsed(updated);
-            break;
+	@Override
+	public void notify(Session updated, int notification) {
+		super.notify(updated, notification);
+		switch (notification) {
+		case SessionListener.OPENED:
+			changeSavingPolicyIfXtextIsUsed(updated);
+			break;
 
-        case SessionListener.SEMANTIC_CHANGE:
-            changeSavingPolicyIfXtextIsUsed(updated);
-            break;
-        }
-    }
+		case SessionListener.SEMANTIC_CHANGE:
+			changeSavingPolicyIfXtextIsUsed(updated);
+			break;
+		}
+	}
 
-    private void changeSavingPolicyIfXtextIsUsed(Session session) {
-        TransactionalEditingDomain ted = session.getTransactionalEditingDomain();
-        if (ted != null && !(session.getSavingPolicy() instanceof ReadOnlyXtextSavingPolicy) && containsXtextResources(ted)) {
-            session.setSavingPolicy(new ReadOnlyXtextSavingPolicy());
-        }
-    }
+	private void changeSavingPolicyIfXtextIsUsed(Session session) {
+		TransactionalEditingDomain ted = session.getTransactionalEditingDomain();
+		if (ted != null && !(session.getSavingPolicy() instanceof ReadOnlyXtextSavingPolicy)
+				&& containsXtextResources(ted)) {
+			session.setSavingPolicy(new ReadOnlyXtextSavingPolicy());
+		}
+	}
 
-    protected boolean containsXtextResources(TransactionalEditingDomain ted) {
-        return ted.getResourceSet() != null && ted.getResourceSet().getResources().stream().anyMatch(XtextResource.class::isInstance);
-    }
+	protected boolean containsXtextResources(TransactionalEditingDomain ted) {
+		return ted.getResourceSet() != null
+				&& ted.getResourceSet().getResources().stream().anyMatch(XtextResource.class::isInstance);
+	}
 }

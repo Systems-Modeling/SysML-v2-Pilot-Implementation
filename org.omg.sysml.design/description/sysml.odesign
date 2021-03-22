@@ -1,154 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="sysml" version="12.0.0.2017041100">
   <ownedViewpoints name="SysML">
-    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Package Diagram" titleExpression="aql:self.name + ' Diagram'" domainClass="sysml::Package" enablePopupBars="true">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SysMLv2 Diagram" titleExpression="aql:self.name + ' Diagram'" domainClass="sysml::Namespace" enablePopupBars="true">
       <metamodel href="http://www.omg.org/spec/SysML/2.0#/"/>
       <layout xsi:type="description_1:OrderedTreeLayout"/>
       <defaultLayer name="Default">
-        <edgeMappings name="FeatureTyping" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetFinderExpression="aql:self.type" sourceFinderExpression="aql:self.typedFeature" domainClass="sysml::FeatureTyping" useDomainElement="true">
-          <style lineStyle="dash">
+        <edgeMappings name="ReferenceUsage" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']" targetFinderExpression="aql:self.type -> first()" sourceFinderExpression="aql:self.eContainer().eContainer()" domainClass="ReferenceUsage" useDomainElement="true">
+          <style sourceArrow="Diamond" targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12">
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:self.name">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Specialization" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetFinderExpression="aql:self.superclass" sourceFinderExpression="aql:self.subclass" domainClass="sysml::Superclassing" useDomainElement="true">
-          <style targetArrow="InputClosedArrow" routingStyle="tree">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <edgeMappings name="FeatureLink" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetFinderExpression="aql:self.memberFeature">
-          <style>
+        <edgeMappings name="FeatureTyping" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']" targetFinderExpression="aql:self.type -> first()" sourceFinderExpression="aql:self.eContainer()" domainClass="FeatureTyping" useDomainElement="true">
+          <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            <centerLabelStyleDescription labelSize="12">
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:self.name">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Connector" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetFinderExpression="aql:self.connectorEnd->at(2).oclAsType(sysml::Feature).ownedSubsetting.subsettedFeature" sourceFinderExpression="aql:self.connectorEnd->at(1).oclAsType(sysml::Feature).ownedSubsetting.subsettedFeature" domainClass="sysml::Connector" useDomainElement="true">
-          <style targetArrow="NoDecoration">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="12" showIcon="false" labelExpression="feature:name">
-              <labelFormat>bold</labelFormat>
+        <edgeMappings name="FeatureMembership" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetFinderExpression="aql:self.memberFeature" sourceFinderExpression="aql:self.eContainer()" domainClass="FeatureMembership" useDomainElement="true">
+          <style sourceArrow="FillDiamond" targetArrow="NoDecoration" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:self.name">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="Redefinition" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']" targetFinderExpression="aql:self.redefinedFeature" sourceFinderExpression="aql:self.redefiningFeature" domainClass="sysml::Redefinition" useDomainElement="true">
-          <style targetArrow="InputClosedArrow" routingStyle="tree">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            <centerLabelStyleDescription labelSize="12">
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-            </centerLabelStyleDescription>
-          </style>
-        </edgeMappings>
-        <containerMappings name="Element" preconditionExpression="aql:not self.oclIsKindOf(sysml::Comment)" semanticCandidatesExpression="aql:self.ownedRelationship->collect(r|r.ownedRelatedElement)->select(e| e.isValidContainerElement())" domainClass="sysml::Element" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='Package%20Diagram']/@defaultLayer/@containerMappings[name='Element']">
-          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
+        <containerMappings name="Package" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="Package" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Package'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.getLabel()" labelAlignment="LEFT">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::PartDefinition)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
+        </containerMappings>
+        <containerMappings name="Definition" preconditionExpression="aql:not self.oclIsTypeOf(sysml::ConjugatedPortDefinition)" semanticCandidatesExpression="aql:self.getAllDefinitions()" domainClass="Definition" childrenPresentation="VerticalStack">
+          <subContainerMappings name="ports" preconditionExpression="aql:self.eContents().eContents() -> filter(sysml::PortUsage) -> notEmpty()" semanticCandidatesExpression="var:self" domainClass="Type" childrenPresentation="List">
+            <subNodeMappings name="PortUsage" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="PortUsage">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.getLabel()" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="ports">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::PartUsage)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::PortDefinition)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::PortUsage)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::ItemDefinition)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::ItemUsage)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_orange']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::AttributeDefinition)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='yellow']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::AttributeUsage)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_yellow']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::ActionDefinition)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::ActionUsage)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="2" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='green']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
               <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
             </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::Definition)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
-              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
-            </style>
-          </conditionnalStyles>
-          <conditionnalStyles predicateExpression="aql:self.oclIsKindOf(sysml::Usage)">
-            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="12" labelExpression="aql:self.getLabel()">
+          </subContainerMappings>
+          <subContainerMappings name="itemFlows" preconditionExpression="aql:self.eContents().eContents() -> filter(sysml::ItemFlow) -> notEmpty()" semanticCandidatesExpression="var:self" domainClass="Type" childrenPresentation="List">
+            <subNodeMappings name="ItemFlow" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="ItemFlow">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.getLabel()" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="itemFlows">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
-              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
             </style>
-          </conditionnalStyles>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.getClassLabel()">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="PartUsage" semanticCandidatesExpression="aql:self.getAllPartUsages()" domainClass="PartUsage" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']/@subContainerMappings[name='itemFlows'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']/@subContainerMappings[name='ports']" childrenPresentation="VerticalStack">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.getClassLabel()" roundedCorner="true">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
+          </style>
         </containerMappings>
       </defaultLayer>
     </ownedRepresentations>

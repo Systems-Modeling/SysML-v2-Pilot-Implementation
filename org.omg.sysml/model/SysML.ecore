@@ -396,8 +396,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" ordered="false"
-        lowerBound="1" eType="ecore:EDataType types.ecore#//String" changeable="false"
-        iD="true">
+        lowerBound="1" eType="ecore:EDataType types.ecore#//String" iD="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&lt;p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.&lt;/p>"/>
       </eAnnotations>

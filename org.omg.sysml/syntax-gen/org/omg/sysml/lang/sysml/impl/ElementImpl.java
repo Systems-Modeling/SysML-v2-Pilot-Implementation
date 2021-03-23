@@ -522,6 +522,19 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.ELEMENT__IDENTIFIER, oldIdentifier, identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getName() {
@@ -822,6 +835,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)newValue);
 				return;
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((Namespace)newValue);
 				return;
@@ -891,6 +907,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return;
 			case SysMLPackage.ELEMENT__OWNING_MEMBERSHIP:
 				setOwningMembership((Membership)null);
+				return;
+			case SysMLPackage.ELEMENT__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
 			case SysMLPackage.ELEMENT__OWNING_NAMESPACE:
 				setOwningNamespace((Namespace)null);

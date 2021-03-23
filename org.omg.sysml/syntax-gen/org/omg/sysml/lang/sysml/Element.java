@@ -416,11 +416,22 @@ public interface Element extends EObject {
 	 * <p>The globally unique identifier for this Element. This is intended to be set by tooling, and it must not change during the lifetime of the Element.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(String)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getElement_Identifier()
-	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" changeable="false" ordered="false"
+	 * @model id="true" dataType="org.omg.sysml.lang.types.String" required="true" ordered="false"
 	 * @generated
 	 */
 	String getIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Element#getIdentifier <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #getIdentifier()
+	 * @generated
+	 */
+	void setIdentifier(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

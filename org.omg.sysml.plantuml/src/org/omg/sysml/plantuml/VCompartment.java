@@ -290,7 +290,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseVariantMembership(VariantMembership vm) {
-        if (vm.getOwner() instanceof EnumerationDefinition) {
+        if (vm.getMembershipOwningNamespace() instanceof EnumerationDefinition) {
             Element e = vm.getMemberElement();
             if (e instanceof EnumerationUsage) {
                 EnumerationUsage eu = (EnumerationUsage) e;

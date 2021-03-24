@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" name="sysml" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="sysml" version="12.0.0.2017041100">
   <ownedViewpoints name="SysML">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="SysMLv2 Diagram" titleExpression="aql:self.name + ' Diagram'" domainClass="sysml::Namespace" enablePopupBars="true">
       <metamodel href="http://www.omg.org/spec/SysML/2.0#/"/>
       <layout xsi:type="description_1:OrderedTreeLayout"/>
       <defaultLayer name="Default">
-        <edgeMappings name="ReferenceUsage" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']" targetFinderExpression="aql:self.type -> first()" sourceFinderExpression="aql:self.eContainer().eContainer()" domainClass="ReferenceUsage" useDomainElement="true">
+        <edgeMappings name="PortReferenceUsage" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PortDefinition']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']" targetFinderExpression="aql:self.type -> first()" sourceFinderExpression="aql:self.eContainer().eContainer()" domainClass="ReferenceUsage" useDomainElement="true">
           <style sourceArrow="Diamond" targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:self.name">
@@ -13,7 +13,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="FeatureTyping" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']" targetFinderExpression="aql:self.type -> first()" sourceFinderExpression="aql:self.eContainer()" domainClass="FeatureTyping" useDomainElement="true">
+        <edgeMappings name="PartFeatureTyping" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']" targetFinderExpression="aql:self.type -> first()" sourceFinderExpression="aql:self.eContainer()" domainClass="FeatureTyping" useDomainElement="true">
           <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:self.name">
@@ -21,7 +21,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <edgeMappings name="FeatureMembership" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetFinderExpression="aql:self.memberFeature" sourceFinderExpression="aql:self.eContainer()" domainClass="FeatureMembership" useDomainElement="true">
+        <edgeMappings name="PartFeatureMembership" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" sourceMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetMapping="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" targetFinderExpression="aql:self.memberFeature" sourceFinderExpression="aql:self.eContainer()" domainClass="FeatureMembership" useDomainElement="true">
           <style sourceArrow="FillDiamond" targetArrow="NoDecoration" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription labelSize="10" showIcon="false" labelExpression="aql:self.name">
@@ -29,7 +29,7 @@
             </centerLabelStyleDescription>
           </style>
         </edgeMappings>
-        <containerMappings name="Package" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="Package" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Package'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']">
+        <containerMappings name="Package" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="Package" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Package'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PortDefinition'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']">
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.getLabel()" labelAlignment="LEFT">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelFormat>bold</labelFormat>
@@ -38,9 +38,9 @@
             <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
           </style>
         </containerMappings>
-        <containerMappings name="Definition" preconditionExpression="aql:not self.oclIsTypeOf(sysml::ConjugatedPortDefinition)" semanticCandidatesExpression="aql:self.getAllDefinitions()" domainClass="Definition" childrenPresentation="VerticalStack">
+        <containerMappings name="PartDefinition" preconditionExpression="aql:not self.oclIsTypeOf(sysml::ConjugatedPortDefinition)" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" semanticCandidatesExpression="aql:self.getAllPartDefinitions()" domainClass="PartDefinition" childrenPresentation="VerticalStack">
           <subContainerMappings name="ports" preconditionExpression="aql:self.eContents().eContents() -> filter(sysml::PortUsage) -> notEmpty()" semanticCandidatesExpression="var:self" domainClass="Type" childrenPresentation="List">
-            <subNodeMappings name="PortUsage" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="PortUsage">
+            <subNodeMappings name="PortUsage" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="PortUsage">
               <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.getLabel()" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -56,7 +56,7 @@
             </style>
           </subContainerMappings>
           <subContainerMappings name="itemFlows" preconditionExpression="aql:self.eContents().eContents() -> filter(sysml::ItemFlow) -> notEmpty()" semanticCandidatesExpression="var:self" domainClass="Type" childrenPresentation="List">
-            <subNodeMappings name="ItemFlow" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="ItemFlow">
+            <subNodeMappings name="ItemFlow" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" semanticCandidatesExpression="aql:self.eContents().eContents()" domainClass="ItemFlow">
               <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.getLabel()" labelAlignment="LEFT" labelPosition="node" resizeKind="NSEW">
                 <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
                 <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -79,7 +79,16 @@
             <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
           </style>
         </containerMappings>
-        <containerMappings name="PartUsage" semanticCandidatesExpression="aql:self.getAllPartUsages()" domainClass="PartUsage" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']/@subContainerMappings[name='itemFlows'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Definition']/@subContainerMappings[name='ports']" childrenPresentation="VerticalStack">
+        <containerMappings name="PortDefinition" preconditionExpression="aql:not self.oclIsTypeOf(sysml::ConjugatedPortDefinition)" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" semanticCandidatesExpression="aql:self.getAllPortDefinitions()" domainClass="PortDefinition" childrenPresentation="VerticalStack">
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.getClassLabel()">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="PartUsage" deletionDescription="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='DeleteElement']" labelDirectEdit="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='ElementNameEdit']" semanticCandidatesExpression="aql:self.getAllPartUsages()" domainClass="PartUsage" reusedContainerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']/@subContainerMappings[name='itemFlows'] //@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']/@subContainerMappings[name='ports']" childrenPresentation="VerticalStack">
           <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="10" showIcon="false" labelExpression="aql:self.getClassLabel()" roundedCorner="true">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -88,6 +97,81 @@
             <labelBorderStyle href="environment:/viewpoint#//@labelBorderStyles/@labelBorderStyleDescriptions.1"/>
           </style>
         </containerMappings>
+        <toolSections name="diagram">
+          <ownedTools xsi:type="tool:DirectEditLabel" name="ElementNameEdit" inputLabelExpression="aql:self.name">
+            <mask mask="{0}"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="var:arg0"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="DeleteElement">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.delete()"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="toolbar">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePackage" label="Create Package" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Package']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPackage()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePartDefinition" label="Create Part Definition" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPartDefinition()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePortDefinition" label="Create Port Definition" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PortDefinition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPortDefinition()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePartUsage" label="Create Part Usage" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPartUsage()"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePartFeatureTyping" label="Create Part Feature Typing" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PartFeatureTyping']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createFeatureTyping(target)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePartFeatureMembership" label="Create Part Feature Membership" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PartFeatureMembership']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:target.moveInto(self)"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePortReferenceUsage" label="Create Port Reference Usage" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PortReferenceUsage']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createReferenceUsage(target)"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
       </defaultLayer>
     </ownedRepresentations>
     <ownedJavaExtensions qualifiedClassName="org.omg.sysml.design.Services"/>

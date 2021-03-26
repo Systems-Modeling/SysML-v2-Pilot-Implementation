@@ -29,8 +29,6 @@ import org.omg.sysml.lang.sysml.Structure;
  */
 public class StructureAdapter extends ClassAdapter {
 
-	public static final String STRUCTURE_SUPERCLASS_DEFAULT = "Objects::Object";
-	
 	public StructureAdapter(Structure element) {
 		super(element);
 	}
@@ -38,11 +36,6 @@ public class StructureAdapter extends ClassAdapter {
 	@Override
 	public Structure getTarget() {
 		return (Structure)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return STRUCTURE_SUPERCLASS_DEFAULT;
 	}
 
 }

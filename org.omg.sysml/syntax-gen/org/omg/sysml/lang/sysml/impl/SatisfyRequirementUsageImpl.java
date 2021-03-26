@@ -24,8 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.adapter.AssertConstraintUsageAdapter;
-import org.omg.sysml.adapter.RequirementUsageAdapter;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -37,6 +35,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -56,7 +55,6 @@ import org.omg.sysml.util.UsageUtil;
  */
 public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements SatisfyRequirementUsage {
 
-	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;
 
 	/**
@@ -137,16 +135,10 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
 }
 	
-	protected Type getSubsettingBaseDefault() {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, RequirementUsageAdapter.REQUIREMENT_SUBSETTING_BASE_DEFAULT);
-		}
-		return subsettingBaseDefault;
-	}
-
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, AssertConstraintUsageAdapter.ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "subperformance"));
 		}
 		return subsettingPartDefault;
 	}

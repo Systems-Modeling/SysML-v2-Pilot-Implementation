@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.Succession;
 
 public class SuccessionAdapter extends ConnectorAdapter {
 
-	public static final String SUCCESSION_SUBSETTING_BASE_DEFAULT = "Occurrences::successions";
-
 	public SuccessionAdapter(Succession feature) {
 		super(feature);
 	}
@@ -36,9 +34,4 @@ public class SuccessionAdapter extends ConnectorAdapter {
 		return (Succession)super.getTarget();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return SUCCESSION_SUBSETTING_BASE_DEFAULT;
-	}
-	
 }

@@ -36,12 +36,10 @@ import org.omg.sysml.adapter.FeatureAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -49,7 +47,6 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -67,14 +64,6 @@ public class FeatureUtil {
 	}
 	
 	// Utility
-	
-	public static boolean isStructureFeature(Feature feature) {
-		return feature.getType().stream().anyMatch(Structure.class::isInstance);
-	}
-	
-	public static boolean isDataFeature(Feature feature) {
-		return feature.getType().stream().anyMatch(DataType.class::isInstance);
-	}
 	
 	public static boolean isParameter(Feature feature) {
 		return feature.getOwningMembership() instanceof ParameterMembership;
@@ -230,21 +219,6 @@ public class FeatureUtil {
 
 	// Steps
 	
-	public static boolean isEnactedPerformance(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Structure ||
-				owningType instanceof Feature && 
-					isStructureFeature((Feature)owningType);
-	}
-
-	public static boolean isIncomingTransfer(Feature step) {
-		return step.getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
-	}
-
-	public static boolean isCompositePerformanceFeature(Feature step) {
-		return step.isComposite() && isPerformanceFeature(step);
-	}
-
 	public static boolean isPerformanceFeature(Feature step) {
 		Type owningType = step.getOwningType();
 		return owningType instanceof Behavior || owningType instanceof Step;

@@ -28,13 +28,9 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ItemFlowAdapter extends ConnectorAdapter {
-
-	public static final String ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::transfers";
-	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subtransfers";
 
 	public ItemFlowAdapter(ItemFlow feature) {
 		super(feature);
@@ -47,13 +43,9 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubtransfer()? 
-				ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
-				ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	protected boolean isSubtransfer() {
-		return FeatureUtil.isPerformanceFeature(getTarget());
+		return isSubperformance()? 
+				getDefaultSupertype("subperformance"):
+				getDefaultSupertype("base");
 	}
 	
 	@Override

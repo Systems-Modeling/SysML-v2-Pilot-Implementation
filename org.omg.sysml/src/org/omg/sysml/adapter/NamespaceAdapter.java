@@ -34,11 +34,6 @@ public class NamespaceAdapter extends ElementAdapter {
 		return (Namespace)super.getTarget();
 	}
 	
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type instanceof Namespace;
-	}
-
 	public void doTransform() {
 		super.doTransform();
 		NamespaceUtil.clearCachesOf(getTarget());

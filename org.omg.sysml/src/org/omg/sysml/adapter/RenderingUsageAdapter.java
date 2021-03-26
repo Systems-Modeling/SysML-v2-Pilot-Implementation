@@ -34,9 +34,6 @@ import org.omg.sysml.util.FeatureUtil;
 
 public class RenderingUsageAdapter extends PartUsageAdapter {
 
-	public static final String RENDERING_SUBSETTING_BASE_DEFAULT = "Views::renderings";
-	public static final String RENDERING_SUBSETTING_SUBRENDERING_DEFAULT = "Views::Rendering::subrenderings";
-
 	public RenderingUsageAdapter(RenderingUsage element) {
 		super(element);
 	}
@@ -49,8 +46,8 @@ public class RenderingUsageAdapter extends PartUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubrendering()? 
-					RENDERING_SUBSETTING_SUBRENDERING_DEFAULT:
-					RENDERING_SUBSETTING_BASE_DEFAULT;
+					getDefaultSupertype("subrendering"):
+					getDefaultSupertype("base");
 	}
 	
 	public boolean isSubrendering() {

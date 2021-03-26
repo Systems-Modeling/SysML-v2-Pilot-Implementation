@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.ItemDefinition;
 
 public class ItemDefinitionAdapter extends DefinitionAdapter {
 
-	public static final String ITEM_DEFINITION_SUPERCLASS_DEFAULT = "Items::Item";
-	
 	public ItemDefinitionAdapter(ItemDefinition element) {
 		super(element);
 	}
@@ -34,11 +32,6 @@ public class ItemDefinitionAdapter extends DefinitionAdapter {
 	@Override
 	public ItemDefinition getTarget() {
 		return (ItemDefinition)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return ITEM_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 }

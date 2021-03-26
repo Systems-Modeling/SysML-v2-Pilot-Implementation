@@ -25,9 +25,6 @@ import org.omg.sysml.lang.sysml.SuccessionItemFlow;
 
 public class SuccessionItemFlowAdapter extends ItemFlowAdapter {
 
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::flows";
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subflows";
-
 	public SuccessionItemFlowAdapter(SuccessionItemFlow feature) {
 		super(feature);
 	}
@@ -39,9 +36,9 @@ public class SuccessionItemFlowAdapter extends ItemFlowAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubtransfer() ? 
-				SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT: 
-				SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
+		return isSubperformance() ? 
+				getDefaultSupertype("subtransfer"): 
+				getDefaultSupertype("base");
 	}
 	
 }

@@ -34,7 +34,6 @@ import org.omg.sysml.util.UsageUtil;
 
 public class ConstraintUsageAdapter extends UsageAdapter {
 
-	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
 	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
 	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 
@@ -89,11 +88,6 @@ public class ConstraintUsageAdapter extends UsageAdapter {
 		}
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return CONSTRAINT_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	@Override
 	public void computeImplicitGeneralTypes() {
 		ConstraintUsage target = getTarget();

@@ -24,16 +24,13 @@ package org.omg.sysml.adapter;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.Structure;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
 public class StepAdapter extends FeatureAdapter {
-	
-	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Performances::performances";
-	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subperformances";
-	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Objects::Object::enactedPerformances";
-	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Occurrences::Occurrence::incomingTransfers";
 	
 	public StepAdapter(Step element) {
 		super(element);
@@ -46,17 +43,31 @@ public class StepAdapter extends FeatureAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		Step target = getTarget();
-		return 
-			FeatureUtil.isCompositePerformanceFeature(target)? 
-				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-			FeatureUtil.isEnactedPerformance(target)?
-				STEP_SUBSETTING_OBJECT_DEFAULT:
-			FeatureUtil.isIncomingTransfer(target)?
-				STEP_SUBSETTING_TRANSFER_DEFAULT:
-				STEP_SUBSETTING_BASE_DEFAULT;
+		return getDefaultSupertype(
+			isSubperformance()? 
+				"subperformance":
+			isEnactedPerformance()?
+				"enactedPerformance":
+			isIncomingTransfer()?
+				"incomingTransfer":
+				"base");
 	}
 	
+	public boolean isSubperformance() {
+		return getTarget().isComposite() && super.isSubperformance();
+	}
+	
+	public boolean isEnactedPerformance() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof Structure ||
+				owningType instanceof Feature && 
+					((Feature)owningType).getType().stream().anyMatch(Structure.class::isInstance);
+	}
+
+	public boolean isIncomingTransfer() {
+		return getTarget().getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
+	}
+
 	@Override
 	public List<? extends Feature> getRelevantFeatures() {
 		return TypeUtil.getItemFeaturesOf(getTarget());

@@ -45,11 +45,10 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
-
-	public static final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
 
 	public TypeAdapter(Type element) {
 		super(element);
@@ -204,7 +203,16 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	protected String getDefaultSupertype() {
-		return TYPE_GENERALIZATION_DEFAULT;
+		return getDefaultSupertype("base");
+	}
+	
+	private String defaultSupertype = null;
+	
+	protected String getDefaultSupertype(String kind) {
+		if (defaultSupertype == null) {
+			defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(getTarget().getClass(), kind);
+		}
+		return defaultSupertype;
 	}
 	
 	public Type getLibraryType(String... defaultNames) {

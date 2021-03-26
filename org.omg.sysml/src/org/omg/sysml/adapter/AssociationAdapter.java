@@ -25,9 +25,6 @@ import org.omg.sysml.lang.sysml.Association;
 
 public class AssociationAdapter extends ClassifierAdapter {
 
-	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Links::Link";
-	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Links::BinaryLink";
-
 	public AssociationAdapter(Association element) {
 		super(element);
 	}
@@ -43,8 +40,9 @@ public class AssociationAdapter extends ClassifierAdapter {
 	 */
 	@Override
 	protected String getDefaultSupertype() {
-		return getTarget().getOwnedEndFeature().size() > 2 ? ASSOCIATION_SUPERCLASS_DEFAULT
-				: BINARY_ASSOCIATION_SUPERCLASS_DEFAULT;
+		return getTarget().getOwnedEndFeature().size() > 2 ? 
+				getDefaultSupertype("base") :
+				getDefaultSupertype("binary");
 	}
 
 }

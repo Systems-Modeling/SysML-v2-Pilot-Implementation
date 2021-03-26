@@ -21,12 +21,12 @@
 
 package org.omg.sysml.adapter;
 
+import org.omg.sysml.lang.sysml.PartDefinition;
+import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
-import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.lang.sysml.Type;
 
 public class PerformActionUsageAdapter extends ActionUsageAdapter {
-
-	public static final String PERFORM_ACTION_SUBSETTING_PART_DEFAULT = "Parts::Part::performedActions";
 
 	public PerformActionUsageAdapter(PerformActionUsage element) {
 		super(element);
@@ -40,12 +40,13 @@ public class PerformActionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isEnactedPerformance()? 
-				PERFORM_ACTION_SUBSETTING_PART_DEFAULT:
+				getDefaultSupertype("enactedPerformance"):
 				super.getDefaultSupertype();
 	}
 	
-	public boolean isEnactedPerformance() {
-		return FeatureUtil.isEnactedPerformance(getTarget());
+	public boolean isEnactedPerformance() {		
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof PartDefinition || owningType instanceof PartUsage;
 	}
 	
 }

@@ -28,9 +28,6 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class PortUsageAdapter extends UsageAdapter {
 
-	public static final String PORT_USAGE_SUBSETTING_BASE_DEFAULT = "Ports::ports";
-	public static final String PORT_USAGE_SUBSETTING_PART_DEFAULT = "Parts::Part::ports";
-
 	public PortUsageAdapter(PortUsage element) {
 		super(element);
 	}
@@ -43,8 +40,8 @@ public class PortUsageAdapter extends UsageAdapter {
 	protected String getDefaultSupertype() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof PartDefinition || owningType instanceof PartUsage?
-				PORT_USAGE_SUBSETTING_PART_DEFAULT:
-				PORT_USAGE_SUBSETTING_BASE_DEFAULT;
+				getDefaultSupertype("port"):
+				getDefaultSupertype("base");
 	}
 	
 }

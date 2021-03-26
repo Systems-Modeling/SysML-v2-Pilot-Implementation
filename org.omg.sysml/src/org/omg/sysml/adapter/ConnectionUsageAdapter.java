@@ -26,8 +26,6 @@ import org.omg.sysml.util.ConnectorUtil;
 
 public class ConnectionUsageAdapter extends PartUsageAdapter {
 
-	public static final String CONNECTOR_USAGE_SUBSETTING_DEFAULT = "Connections::connections";
-
 	public ConnectionUsageAdapter(ConnectionUsage element) {
 		super(element);
 	}
@@ -40,8 +38,8 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return getTarget().getConnectorEnd().size() > 2? 
-				ConnectorAdapter.CONNECTOR_SUBSETTING_DEFAULT:
-				CONNECTOR_USAGE_SUBSETTING_DEFAULT;
+				getDefaultSupertype("base"):
+				getDefaultSupertype("binary");
 	}
 	
 	@Override

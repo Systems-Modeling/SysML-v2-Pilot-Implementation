@@ -116,12 +116,17 @@ public class FeatureAdapter extends TypeAdapter {
 		return SysMLPackage.eINSTANCE.getSubsetting();
 	}
 	
+	protected boolean isSubperformance() {
+		return FeatureUtil.isPerformanceFeature(getTarget());
+	}
+	
 	@Override
 	protected String getDefaultSupertype() {
-		return hasStructureType()? OBJECT_FEATURE_SUBSETTING_DEFAULT:
-			   hasClassType()? OCCURRENCE_FEATURE_SUBSETTING_DEFAULT:
-			   hasDataType()? VALUE_FEATURE_SUBSETTING_DEFAULT:
-			   FEATURE_SUBSETTING_DEFAULT;
+		return getDefaultSupertype(
+			hasStructureType()? "object":
+			hasClassType()? "occurrence":
+			hasDataType()? "dataValue":
+			"base");
 	}
 	
 	public boolean hasClassType() {

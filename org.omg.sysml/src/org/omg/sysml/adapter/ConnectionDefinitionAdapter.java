@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.ConnectionDefinition;
 
 public class ConnectionDefinitionAdapter extends AssociationAdapter {
 
-	public static final String CONNECTION_DEFINITION_SUPERCLASS_DEFAULT = "Connections::Connection";
-
 	public ConnectionDefinitionAdapter(ConnectionDefinition element) {
 		super(element);
 	}
@@ -34,13 +32,6 @@ public class ConnectionDefinitionAdapter extends AssociationAdapter {
 	@Override
 	public ConnectionDefinition getTarget() {
 		return (ConnectionDefinition)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return getTarget().getOwnedEndFeature().size() > 2? 
-					ASSOCIATION_SUPERCLASS_DEFAULT: 
-					CONNECTION_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 }

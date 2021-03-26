@@ -25,8 +25,6 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.adapter.ActionUsageAdapter;
-import org.omg.sysml.adapter.PerformActionUsageAdapter;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
@@ -34,6 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,14 +96,16 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, ActionUsageAdapter.ACTION_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, PerformActionUsageAdapter.PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
 		}
 		return subsettingPartDefault;
 	}

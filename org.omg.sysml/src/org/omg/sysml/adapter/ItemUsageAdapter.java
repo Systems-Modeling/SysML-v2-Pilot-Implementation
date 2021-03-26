@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 
 public class ItemUsageAdapter extends UsageAdapter {
 
-	public static final String ITEM_SUBSETTING_DEFAULT = "Items::items";
-
 	public ItemUsageAdapter(ItemUsage element) {
 		super(element);
 	}
@@ -35,9 +33,4 @@ public class ItemUsageAdapter extends UsageAdapter {
 		return (ItemUsage)super.getTarget();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return ITEM_SUBSETTING_DEFAULT;
-	}
-	
 }

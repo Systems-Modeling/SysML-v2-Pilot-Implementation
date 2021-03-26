@@ -21,14 +21,9 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 
 public class ConstraintDefinitionAdapter extends DefinitionAdapter {
-
-	public static final String CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT = "Constraints::ConstraintCheck";
-	
-	protected BindingConnector resultConnector = null;
 
 	public ConstraintDefinitionAdapter(ConstraintDefinition element) {
 		super(element);
@@ -37,11 +32,6 @@ public class ConstraintDefinitionAdapter extends DefinitionAdapter {
 	@Override
 	public ConstraintDefinition getTarget() {
 		return (ConstraintDefinition)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	@Override

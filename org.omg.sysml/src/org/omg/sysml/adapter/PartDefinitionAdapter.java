@@ -25,19 +25,12 @@ import org.omg.sysml.lang.sysml.PartDefinition;
 
 public class PartDefinitionAdapter extends ItemDefinitionAdapter {
 
-	public static final String PART_DEFINITION_SUPERCLASS_DEFAULT = "Parts::Part";
-	
 	public PartDefinitionAdapter(PartDefinition element) {
 		super(element);
 	}
 	
 	public PartDefinition getTarget() {
 		return (PartDefinition)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return PART_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 }

@@ -36,12 +36,10 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 public class ExpressionAdapter extends StepAdapter {
 
-	public static final String EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::evaluations";
-	public static final String EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subevaluations";
-	
 	public static final String EXPRESSION_GUARD_FEATURE = "TransitionPerformances::TransitionPerformance::guard";
 
 	public ExpressionAdapter(Expression element) {
@@ -71,9 +69,9 @@ public class ExpressionAdapter extends StepAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return FeatureUtil.isCompositePerformanceFeature(getTarget())?
-				EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-				EXPRESSION_SUBSETTING_BASE_DEFAULT;
+		return isSubperformance()?
+				getDefaultSupertype("subperformance"):
+				getDefaultSupertype("base");
 	}
 	
 	// Computed Redefinition
@@ -94,7 +92,7 @@ public class ExpressionAdapter extends StepAdapter {
 		Expression target = getTarget();
 		Type owningType = target.getOwningType();
 		return ExpressionUtil.isTransitionGuard(target) && type == owningType?
-				Collections.singletonList(getLibraryType(TransitionUsageAdapter.TRANSITION_USAGE_SUBSETTING_DEFAULT)):
+				Collections.singletonList(getLibraryType(ImplicitGeneralizationMap.getDefaultSupertypeFor(type.getClass(), "base"))):
 				super.getGeneralTypes(type, skip);
 	}
 	

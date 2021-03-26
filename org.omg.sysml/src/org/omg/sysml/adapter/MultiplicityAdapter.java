@@ -29,8 +29,6 @@ import org.omg.sysml.lang.sysml.Type;
 
 public class MultiplicityAdapter extends FeatureAdapter {
 
-	public static final String MULTIPLICITY_SUBSETTING_DEFAULT = "Base::naturals";
-
 	public MultiplicityAdapter(Multiplicity element) {
 		super(element);
 	}
@@ -42,7 +40,7 @@ public class MultiplicityAdapter extends FeatureAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return MULTIPLICITY_SUBSETTING_DEFAULT;
+		return getDefaultSupertype("base");
 	}
 	
 	@Override

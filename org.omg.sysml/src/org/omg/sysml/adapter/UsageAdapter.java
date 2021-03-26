@@ -74,6 +74,11 @@ public class UsageAdapter extends FeatureAdapter {
 		return super.getSubsettedNotRedefinedFeatures();
 	}
 	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
 	// Computed Redefinitions
 	
 	/**

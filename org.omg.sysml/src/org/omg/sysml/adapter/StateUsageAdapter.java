@@ -21,17 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.lang.sysml.Type;
 
 public class StateUsageAdapter extends ActionUsageAdapter {
 
-	public static final String STATE_SUBSETTING_BASE_DEFAULT = "States::stateActions";
-	public static final String STATE_SUBSETTING_SUBSTATE_DEFAULT = "States::StateAction::substates";
-	
 	public StateUsageAdapter(StateUsage element) {
 		super(element);
 	}
@@ -42,15 +37,9 @@ public class StateUsageAdapter extends ActionUsageAdapter {
 	}
 
 	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-				STATE_SUBSETTING_SUBSTATE_DEFAULT:
-				STATE_SUBSETTING_BASE_DEFAULT;
+	public boolean isSubaction() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof StateDefinition || owningType instanceof StateUsage;
 	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(getTarget());
-	}	
 	
 }

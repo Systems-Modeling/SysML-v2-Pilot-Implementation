@@ -23,14 +23,8 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.DataType;
 
-/**
- * @author seidewitz
- *
- */
 public class DataTypeAdapter extends ClassifierAdapter {
 
-	public static final String DATA_TYPE_SUPERCLASS_DEFAULT = "Base::DataValue";
-	
 	public DataTypeAdapter(DataType element) {
 		super(element);
 	}
@@ -38,11 +32,6 @@ public class DataTypeAdapter extends ClassifierAdapter {
 	@Override
 	public DataType getTarget() {
 		return (DataType)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return DATA_TYPE_SUPERCLASS_DEFAULT;
 	}
 
 }

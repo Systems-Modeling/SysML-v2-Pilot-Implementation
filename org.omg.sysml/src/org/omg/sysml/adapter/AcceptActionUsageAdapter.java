@@ -9,9 +9,6 @@ import org.omg.sysml.util.UsageUtil;
 
 public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 
-	public static final String ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::acceptActions";
-	public static final String ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::acceptSubactions";
-
 	public AcceptActionUsageAdapter(AcceptActionUsage action) {
 		super(action);
 	}
@@ -25,13 +22,6 @@ public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public void computeImplicitGeneralTypes() {
 		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					ACCEPT_ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					ACCEPT_ACTION_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	// Computed Redefinition

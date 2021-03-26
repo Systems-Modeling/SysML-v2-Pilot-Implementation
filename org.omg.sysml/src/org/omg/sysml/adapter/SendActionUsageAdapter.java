@@ -26,9 +26,6 @@ import org.omg.sysml.lang.sysml.SendActionUsage;
 
 public class SendActionUsageAdapter extends ActionUsageAdapter {
 
-	public static final String SEND_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::sendActions";
-	public static final String SEND_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::sendSubactions";
-
 	public SendActionUsageAdapter(SendActionUsage element) {
 		super(element);
 	}
@@ -49,11 +46,4 @@ public class SendActionUsageAdapter extends ActionUsageAdapter {
 		super.addComputedRedefinitions(skip);
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					SEND_ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					SEND_ACTION_SUBSETTING_BASE_DEFAULT;
-	}
-	
 }

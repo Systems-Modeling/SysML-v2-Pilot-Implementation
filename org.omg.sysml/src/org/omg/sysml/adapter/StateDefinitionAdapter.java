@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.StateDefinition;
 
 public class StateDefinitionAdapter extends ActionDefinitionAdapter {
 
-	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::StateAction";
-	
 	public StateDefinitionAdapter(StateDefinition element) {
 		super(element);
 	}
@@ -36,9 +34,4 @@ public class StateDefinitionAdapter extends ActionDefinitionAdapter {
 		return (StateDefinition)super.getTarget();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return STATE_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 }

@@ -29,8 +29,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class BehaviorAdapter extends ClassAdapter {
 
-	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
-
 	public BehaviorAdapter(Behavior element) {
 		super(element);
 	}
@@ -38,11 +36,6 @@ public class BehaviorAdapter extends ClassAdapter {
 	@Override
 	public Behavior getTarget() {
 		return (Behavior)super.getTarget();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return BEHAVIOR_SUPERCLASS_DEFAULT;
 	}
 
 	/**

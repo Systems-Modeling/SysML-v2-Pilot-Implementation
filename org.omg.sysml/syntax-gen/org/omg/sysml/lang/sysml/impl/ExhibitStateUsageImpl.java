@@ -24,8 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.adapter.ExhibitStateUsageAdapter;
-import org.omg.sysml.adapter.StateUsageAdapter;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -33,6 +31,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,14 +95,16 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, StateUsageAdapter.STATE_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, ExhibitStateUsageAdapter.EXHIBIT_STATE_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
 		}
 		return subsettingPartDefault;
 	}

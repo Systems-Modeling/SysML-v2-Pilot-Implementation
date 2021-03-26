@@ -28,9 +28,6 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
 
 public class ViewpointUsageAdapter extends RequirementUsageAdapter {
 
-	public static final String VIEWPOINT_SUBSETTING_BASE_DEFAULT = "Views::viewpointChecks";
-	public static final String VIEWPOINT_SUBSETTING_VIEW_DEFAULT = "Views::View::viewpointSatisfactions";
-
 	public ViewpointUsageAdapter(ViewpointUsage element) {
 		super(element);
 	}
@@ -43,8 +40,8 @@ public class ViewpointUsageAdapter extends RequirementUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isSatisfiedViewpoint()?
-					VIEWPOINT_SUBSETTING_VIEW_DEFAULT:
-					VIEWPOINT_SUBSETTING_BASE_DEFAULT;
+					getDefaultSupertype("satisfied"):
+					getDefaultSupertype("base");
 	}
 	
 	public boolean isSatisfiedViewpoint() {

@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.PartUsage;
 
 public class PartUsageAdapter extends ItemUsageAdapter {
 
-	public static final String PART_SUBSETTING_DEFAULT = "Parts::parts";
-
 	public PartUsageAdapter(PartUsage element) {
 		super(element);
 	}
@@ -35,9 +33,4 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 		return (PartUsage)super.getTarget();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return PART_SUBSETTING_DEFAULT;
-	}
-	
 }

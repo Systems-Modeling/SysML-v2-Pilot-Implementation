@@ -27,8 +27,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class ClassifierAdapter extends TypeAdapter {
 	
-	public static final String CLASSIFIER_SUPERCLASS_DEFAULT = "Base::Anything";
-	
 	public ClassifierAdapter(Classifier element) {
 		super(element);
 	}
@@ -41,11 +39,6 @@ public class ClassifierAdapter extends TypeAdapter {
 	@Override
 	protected EClass getGeneralizationEClass() {
 		return SysMLPackage.eINSTANCE.getSuperclassing();
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return CLASSIFIER_SUPERCLASS_DEFAULT;
 	}
 	
 }

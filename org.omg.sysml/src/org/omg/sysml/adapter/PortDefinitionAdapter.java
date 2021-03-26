@@ -25,8 +25,6 @@ import org.omg.sysml.lang.sysml.PortDefinition;
 
 public class PortDefinitionAdapter extends DefinitionAdapter {
 
-	public static final String PORT_DEFINITION_SUPERCLASS_DEFAULT = "Ports::Port";
-	
 	public PortDefinitionAdapter(PortDefinition element) {
 		super(element);
 	}
@@ -35,9 +33,4 @@ public class PortDefinitionAdapter extends DefinitionAdapter {
 		return (PortDefinition)super.getTarget();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return PORT_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 }

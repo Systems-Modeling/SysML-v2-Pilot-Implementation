@@ -33,8 +33,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class LifeClassAdapter extends ClassAdapter {
 
-	public static final String LIFE_CLASS_LIFE_SUPERCLASS = "Occurrences::Life";
-	
 	public LifeClassAdapter(LifeClass element) {
 		super(element);
 	}
@@ -42,13 +40,6 @@ public class LifeClassAdapter extends ClassAdapter {
 	@Override
 	public LifeClass getTarget() {
 		return (LifeClass)super.getTarget();
-	}
-	
-	// Implicit Generalization
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return LIFE_CLASS_LIFE_SUPERCLASS;
 	}
 	
 	// Transformation

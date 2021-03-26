@@ -30,8 +30,6 @@ import org.omg.sysml.lang.sysml.Usage;
 
 public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 
-	public static final String CASE_DEFINITION_SUPERCLASS_DEFAULT = "Cases::Case";
-
 	public CaseDefinitionAdapter(CaseDefinition element) {
 		super(element);
 	}
@@ -48,13 +46,6 @@ public class CaseDefinitionAdapter extends CalculationDefinitionAdapter {
 		return getTarget().getSubjectParameter();
 	}
 	
-	// Implicit Generalization
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return CASE_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-		
 	// Transformation
 	
 	public static RequirementUsage addObjectiveRequirementTo(Type type) {

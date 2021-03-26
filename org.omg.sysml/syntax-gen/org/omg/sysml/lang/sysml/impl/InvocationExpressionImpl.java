@@ -28,7 +28,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.adapter.FunctionAdapter;
 import org.omg.sysml.expressions.ModelLevelFunction;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -39,6 +38,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 
 /**
@@ -105,7 +105,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		Type type = ExpressionUtil.getExpressionTypeOf(this);
 		return type instanceof Function? (Function)type:
 			   type instanceof Expression? ((Expression)type).getFunction():
-			   (Function)SysMLLibraryUtil.getLibraryType(this, FunctionAdapter.FUNCTION_SUPERCLASS_DEFAULT);
+			   (Function)SysMLLibraryUtil.getLibraryType(this, 
+					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
 	}
 
 	/**

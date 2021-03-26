@@ -35,7 +35,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
 
-	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitionActions";
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 
 	public TransitionUsageAdapter(TransitionUsage element) {
@@ -51,7 +50,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	
 	@Override
 	protected String getDefaultSupertype() {
-		return TRANSITION_USAGE_SUBSETTING_DEFAULT;
+		return getDefaultSupertype("base");
 	}
 	
 	// Transformation

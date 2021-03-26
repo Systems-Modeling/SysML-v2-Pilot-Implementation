@@ -29,8 +29,6 @@ import org.omg.sysml.lang.sysml.Feature;
 
 public class ActionDefinitionAdapter extends DefinitionAdapter {
 	
-	public static final String ACTION_DEFINITION_SUPERCLASS_DEFAULT = "Actions::Action";
-	
 	public ActionDefinitionAdapter(ActionDefinition element) {
 		super(element);
 	}
@@ -40,11 +38,6 @@ public class ActionDefinitionAdapter extends DefinitionAdapter {
 		return (ActionDefinition)super.getTarget();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return ACTION_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 	@Override
 	public List<Feature> getRelevantFeatures() {
 		return Collections.emptyList();

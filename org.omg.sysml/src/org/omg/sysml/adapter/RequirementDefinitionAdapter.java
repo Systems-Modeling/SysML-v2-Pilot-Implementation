@@ -26,8 +26,6 @@ import org.omg.sysml.lang.sysml.Usage;
 
 public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 
-	public static final String REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT = "Requirements::RequirementCheck";
-	
 	public RequirementDefinitionAdapter(RequirementDefinition element) {
 		super(element);
 	}
@@ -43,13 +41,6 @@ public class RequirementDefinitionAdapter extends ConstraintDefinitionAdapter {
 		return getTarget().getSubjectParameter();
 	}
 	
-	// Implicit Generalization
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-		
 	// Transformation
 
 	@Override

@@ -24,20 +24,17 @@ package org.omg.sysml.adapter;
 import java.util.Collections;
 import java.util.List;
 
+import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ActionUsageAdapter extends UsageAdapter {
 	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
-	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
-
 	public static final String STATE_BASE = "States::StateAction";
 	public static final String TRANSITION_BASE = "States::TransitionAction";
 	public static final String[] TRANSITION_REDEFINED_FEATURES = {"accepter", "guard", "effect"};
@@ -55,13 +52,14 @@ public class ActionUsageAdapter extends UsageAdapter {
 
 	@Override
 	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					ACTION_SUBSETTING_BASE_DEFAULT;
+		return isSubaction()? 
+					getDefaultSupertype("subaction"):
+					getDefaultSupertype("base");
 	}
 	
-	public boolean isSubperformance() {
-		return FeatureUtil.isCompositePerformanceFeature(getTarget());
+	public boolean isSubaction() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof ActionDefinition || owningType instanceof ActionUsage;
 	}
 	
 	// Computed Redefinition

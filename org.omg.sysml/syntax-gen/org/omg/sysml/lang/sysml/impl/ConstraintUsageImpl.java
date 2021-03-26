@@ -45,6 +45,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -352,21 +353,24 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingAssumptionFeature() {
 		if (subsettingAssumptionFeature == null) {
-			subsettingAssumptionFeature = SysMLLibraryUtil.getLibraryType(this, ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+			subsettingAssumptionFeature = SysMLLibraryUtil.getLibraryType(this, 
+					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
 		}
 		return subsettingAssumptionFeature;
 	}
 
 	protected Type getSubsettingRequirementFeature() {
 		if (subsettingRequirementFeature == null) {
-			subsettingRequirementFeature = SysMLLibraryUtil.getLibraryType(this, ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+			subsettingRequirementFeature = SysMLLibraryUtil.getLibraryType(this, 
+					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		return subsettingRequirementFeature;
 	}

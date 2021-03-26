@@ -33,9 +33,6 @@ import org.omg.sysml.util.UsageUtil;
 
 public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	
-	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
-	public static final String REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT = "Requirements::RequirementCheck::subrequirements";
-
 	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
 	
 	public RequirementUsageAdapter(RequirementUsage element) {
@@ -59,8 +56,8 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return UsageUtil.isSubrequirement(getTarget())? 
-				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
-				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
+				getDefaultSupertype("subrequirement"):
+				getDefaultSupertype("base");
 	}
 	
 	@Override

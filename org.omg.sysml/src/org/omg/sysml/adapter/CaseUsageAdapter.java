@@ -28,9 +28,6 @@ import org.omg.sysml.lang.sysml.Usage;
 
 public class CaseUsageAdapter extends CalculationUsageAdapter {
 
-	public static final String CASE_SUBSETTING_BASE_DEFAULT = "Cases::cases";
-	public static final String CASE_SUBSETTING_SUBCASE_DEFAULT = "Cases::Case::subcases";
-	
 	public CaseUsageAdapter(CaseUsage element) {
 		super(element);
 	}
@@ -56,10 +53,9 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	// Implicit Generalization
 	
 	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					CASE_SUBSETTING_SUBCASE_DEFAULT:
-					CASE_SUBSETTING_BASE_DEFAULT;
+	public boolean isSubaction() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
 	}
 	
 	// Transformation

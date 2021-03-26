@@ -42,8 +42,8 @@ public class ViewUsageAdapter extends PartUsageAdapter {
 	@Override
 	protected String getDefaultSupertype() {
 		return isSubview()? 
-					VIEW_SUBSETTING_SUBVIEW_DEFAULT:
-					VIEW_SUBSETTING_BASE_DEFAULT;
+					getDefaultSupertype("subview"):
+					getDefaultSupertype("base");
 	}
 	
 	public boolean isSubview() {

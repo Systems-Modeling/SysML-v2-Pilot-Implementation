@@ -22,12 +22,11 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 public class CalculationUsageAdapter extends ActionUsageAdapter {
-
-	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
-	public static final String CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT = "Calculations::Calculation::subcalculations";
 
 	protected BindingConnector resultConnector = null;
 
@@ -40,10 +39,9 @@ public class CalculationUsageAdapter extends ActionUsageAdapter {
 	}
 	
 	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT:
-					CALCULATION_SUBSETTING_BASE_DEFAULT;
+	public boolean isSubaction() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof CalculationDefinition || owningType instanceof CalculationUsage;
 	}
 	
 	@Override

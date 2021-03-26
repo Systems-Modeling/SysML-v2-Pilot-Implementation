@@ -87,6 +87,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSubsettingAccess().getAlternatives_3(), "rule__Subsetting__Alternatives_3");
 			builder.put(grammarAccess.getRedefinitionAccess().getAlternatives_3(), "rule__Redefinition__Alternatives_3");
 			builder.put(grammarAccess.getFeatureConjugationPartAccess().getAlternatives_0(), "rule__FeatureConjugationPart__Alternatives_0");
+			builder.put(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementAlternatives_0(), "rule__MultiplicityExpressionMember__OwnedRelatedElementAlternatives_0");
 			builder.put(grammarAccess.getConnectorDeclarationAccess().getAlternatives(), "rule__ConnectorDeclaration__Alternatives");
 			builder.put(grammarAccess.getBinaryConnectorDeclarationAccess().getAlternatives_0(), "rule__BinaryConnectorDeclaration__Alternatives_0");
 			builder.put(grammarAccess.getBindingConnectorDeclarationAccess().getAlternatives_0(), "rule__BindingConnectorDeclaration__Alternatives_0");
@@ -247,7 +248,7 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureConjugationPartAccess().getGroup(), "rule__FeatureConjugationPart__Group__0");
 			builder.put(grammarAccess.getValuePartAccess().getGroup(), "rule__ValuePart__Group__0");
 			builder.put(grammarAccess.getMultiplicityAccess().getGroup(), "rule__Multiplicity__Group__0");
-			builder.put(grammarAccess.getMultiplicityAccess().getGroup_1(), "rule__Multiplicity__Group_1__0");
+			builder.put(grammarAccess.getMultiplicityAccess().getGroup_2(), "rule__Multiplicity__Group_2__0");
 			builder.put(grammarAccess.getDataTypeAccess().getGroup(), "rule__DataType__Group__0");
 			builder.put(grammarAccess.getClassAccess().getGroup(), "rule__Class__Group__0");
 			builder.put(grammarAccess.getStructureAccess().getGroup(), "rule__Structure__Group__0");
@@ -521,10 +522,9 @@ public class KerMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFeatureConjugationAccess().getOriginalTypeAssignment(), "rule__FeatureConjugation__OriginalTypeAssignment");
 			builder.put(grammarAccess.getValuePartAccess().getOwnedRelationshipAssignment_1(), "rule__ValuePart__OwnedRelationshipAssignment_1");
 			builder.put(grammarAccess.getFeatureValueAccess().getOwnedRelatedElementAssignment(), "rule__FeatureValue__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_1_0(), "rule__Multiplicity__OwnedRelationshipAssignment_1_0");
-			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_2(), "rule__Multiplicity__OwnedRelationshipAssignment_2");
-			builder.put(grammarAccess.getLiteralIntegerMemberAccess().getOwnedRelatedElementAssignment(), "rule__LiteralIntegerMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedRelatedElementAssignment(), "rule__LiteralUnlimitedNaturalMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_1(), "rule__Multiplicity__OwnedRelationshipAssignment_1");
+			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_2_1(), "rule__Multiplicity__OwnedRelationshipAssignment_2_1");
+			builder.put(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__MultiplicityExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getDataTypeAccess().getIsAbstractAssignment_0(), "rule__DataType__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getClassAccess().getIsAbstractAssignment_0(), "rule__Class__IsAbstractAssignment_0");
 			builder.put(grammarAccess.getStructureAccess().getIsAbstractAssignment_0(), "rule__Structure__IsAbstractAssignment_0");

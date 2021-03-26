@@ -62,6 +62,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDefinedByKeywordAccess().getAlternatives(), "rule__DefinedByKeyword__Alternatives");
 			builder.put(grammarAccess.getSubsetsKeywordAccess().getAlternatives(), "rule__SubsetsKeyword__Alternatives");
 			builder.put(grammarAccess.getRedefinesKeywordAccess().getAlternatives(), "rule__RedefinesKeyword__Alternatives");
+			builder.put(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementAlternatives_0(), "rule__MultiplicityExpressionMember__OwnedRelatedElementAlternatives_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0(), "rule__ItemFlowDeclaration__Alternatives_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0_0_1(), "rule__ItemFlowDeclaration__Alternatives_0_0_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getAlternatives(), "rule__ItemFeature__Alternatives");
@@ -251,7 +252,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRedefinitionsAccess().getGroup_1(), "rule__Redefinitions__Group_1__0");
 			builder.put(grammarAccess.getRedefinesAccess().getGroup(), "rule__Redefines__Group__0");
 			builder.put(grammarAccess.getMultiplicityAccess().getGroup(), "rule__Multiplicity__Group__0");
-			builder.put(grammarAccess.getMultiplicityAccess().getGroup_1(), "rule__Multiplicity__Group_1__0");
+			builder.put(grammarAccess.getMultiplicityAccess().getGroup_2(), "rule__Multiplicity__Group_2__0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getGroup(), "rule__ConnectorEndMember__Group__0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getGroup_0(), "rule__ConnectorEndMember__Group_0__0");
 			builder.put(grammarAccess.getConnectorEndAccess().getGroup(), "rule__ConnectorEnd__Group__0");
@@ -712,10 +713,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOwnedSubsettingAccess().getSubsettedFeatureAssignment(), "rule__OwnedSubsetting__SubsettedFeatureAssignment");
 			builder.put(grammarAccess.getOwnedRedefinitionAccess().getRedefinedFeatureAssignment(), "rule__OwnedRedefinition__RedefinedFeatureAssignment");
 			builder.put(grammarAccess.getMultiplicityMemberAccess().getOwnedRelatedElementAssignment(), "rule__MultiplicityMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_1_0(), "rule__Multiplicity__OwnedRelationshipAssignment_1_0");
-			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_2(), "rule__Multiplicity__OwnedRelationshipAssignment_2");
-			builder.put(grammarAccess.getLiteralIntegerMemberAccess().getOwnedRelatedElementAssignment(), "rule__LiteralIntegerMember__OwnedRelatedElementAssignment");
-			builder.put(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedRelatedElementAssignment(), "rule__LiteralUnlimitedNaturalMember__OwnedRelatedElementAssignment");
+			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_1(), "rule__Multiplicity__OwnedRelationshipAssignment_1");
+			builder.put(grammarAccess.getMultiplicityAccess().getOwnedRelationshipAssignment_2_1(), "rule__Multiplicity__OwnedRelationshipAssignment_2_1");
+			builder.put(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__MultiplicityExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getMemberNameAssignment_0_0(), "rule__ConnectorEndMember__MemberNameAssignment_0_0");
 			builder.put(grammarAccess.getConnectorEndMemberAccess().getOwnedRelatedElementAssignment_1(), "rule__ConnectorEndMember__OwnedRelatedElementAssignment_1");
 			builder.put(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAssignment_0(), "rule__ConnectorEnd__OwnedRelationshipAssignment_0");

@@ -388,12 +388,12 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_FeatureTyping_Identification(context, (FeatureTyping) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getOwnedFeatureTypingRule()) {
-					sequence_OwnedFeatureTyping(context, (FeatureTyping) semanticObject); 
+				else if (rule == grammarAccess.getMetadataTypingRule()) {
+					sequence_MetadataTyping(context, (FeatureTyping) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getMetadataTypingRule()) {
-					sequence_metadataTyping(context, (FeatureTyping) semanticObject); 
+				else if (rule == grammarAccess.getOwnedFeatureTypingRule()) {
+					sequence_OwnedFeatureTyping(context, (FeatureTyping) semanticObject); 
 					return; 
 				}
 				else break;
@@ -524,12 +524,8 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					sequence_FeatureReferenceMember(context, (Membership) semanticObject); 
 					return; 
 				}
-				else if (rule == grammarAccess.getLiteralIntegerMemberRule()) {
-					sequence_LiteralIntegerMember(context, (Membership) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getLiteralUnlimitedNaturalMemberRule()) {
-					sequence_LiteralUnlimitedNaturalMember(context, (Membership) semanticObject); 
+				else if (rule == grammarAccess.getMultiplicityExpressionMemberRule()) {
+					sequence_MultiplicityExpressionMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getMultiplicityMemberRule()) {
@@ -769,7 +765,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     OwnedAnnotatingFeature returns AnnotatingFeature
 	 *
 	 * Constraint:
-	 *     (humanId=Name? ownedRelationship+=metadataTyping ownedRelationship+=EmptyAnnotation ownedRelationship+=MetadataFeatureMember*)
+	 *     (humanId=Name? ownedRelationship+=MetadataTyping ownedRelationship+=EmptyAnnotation ownedRelationship+=MetadataFeatureMember*)
 	 */
 	protected void sequence_AnnotatingFeatureBody_OwnedAnnotatingFeature(ISerializationContext context, AnnotatingFeature semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -784,7 +780,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 * Constraint:
 	 *     (
 	 *         ((humanId=Name name=Name?) | name=Name)? 
-	 *         ownedRelationship+=metadataTyping 
+	 *         ownedRelationship+=MetadataTyping 
 	 *         ((ownedRelationship+=Annotation ownedRelationship+=Annotation*) | ownedRelationship+=EmptyAnnotation) 
 	 *         ownedRelationship+=MetadataFeatureMember*
 	 *     )
@@ -1153,10 +1149,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=Import? 
+	 *         ownedRelationship+=FeatureTypeMember? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember)? 
-	 *             ownedRelationship+=Import?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1180,10 +1176,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=Import? 
+	 *         ownedRelationship+=FeatureTypeMember? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=FeatureTypeMember)? 
-	 *             ownedRelationship+=Import?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -2585,30 +2581,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     LiteralIntegerMember returns Membership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=LiteralInteger
-	 */
-	protected void sequence_LiteralIntegerMember(ISerializationContext context, Membership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     LiteralUnlimitedNaturalMember returns Membership
-	 *
-	 * Constraint:
-	 *     ownedRelatedElement+=LiteralUnlimitedNatural
-	 */
-	protected void sequence_LiteralUnlimitedNaturalMember(ISerializationContext context, Membership semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     MetadataFeatureMember returns FeatureMembership
 	 *
 	 * Constraint:
@@ -2645,6 +2617,36 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	
 	/**
 	 * Contexts:
+	 *     MetadataTyping returns FeatureTyping
+	 *
+	 * Constraint:
+	 *     type=[DataType|QualifiedName]
+	 */
+	protected void sequence_MetadataTyping(ISerializationContext context, FeatureTyping semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMetadataTypingAccess().getTypeDataTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MultiplicityExpressionMember returns Membership
+	 *
+	 * Constraint:
+	 *     (ownedRelatedElement+=LiteralExpression | ownedRelatedElement+=FeatureReferenceExpression)
+	 */
+	protected void sequence_MultiplicityExpressionMember(ISerializationContext context, Membership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     MultiplicityMember returns Membership
 	 *
 	 * Constraint:
@@ -2660,7 +2662,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *     Multiplicity returns MultiplicityRange
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=LiteralIntegerMember? ownedRelationship+=LiteralUnlimitedNaturalMember)
+	 *     (ownedRelationship+=MultiplicityExpressionMember ownedRelationship+=MultiplicityExpressionMember?)
 	 */
 	protected void sequence_Multiplicity(ISerializationContext context, MultiplicityRange semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -2998,24 +3000,6 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 */
 	protected void sequence_TrueLiteralMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     metadataTyping returns FeatureTyping
-	 *
-	 * Constraint:
-	 *     type=[DataType|QualifiedName]
-	 */
-	protected void sequence_metadataTyping(ISerializationContext context, FeatureTyping semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SysMLPackage.Literals.FEATURE_TYPING__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMetadataTypingAccess().getTypeDataTypeQualifiedNameParserRuleCall_0_1(), semanticObject.eGet(SysMLPackage.Literals.FEATURE_TYPING__TYPE, false));
-		feeder.finish();
 	}
 	
 	

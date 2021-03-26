@@ -1700,7 +1700,7 @@ ruleOwnedAnnotatingFeature returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getOwnedAnnotatingFeatureAccess().getOwnedRelationshipMetadataTypingParserRuleCall_2_0());
 				}
-				lv_ownedRelationship_5_0=rulemetadataTyping
+				lv_ownedRelationship_5_0=ruleMetadataTyping
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getOwnedAnnotatingFeatureRule());
@@ -1709,7 +1709,7 @@ ruleOwnedAnnotatingFeature returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_5_0,
-						"org.omg.kerml.xtext.KerML.metadataTyping");
+						"org.omg.kerml.xtext.KerML.MetadataTyping");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1916,7 +1916,7 @@ ruleAnnotatingFeatureDeclaration[EObject in_current]  returns [EObject current=i
 				{
 					newCompositeNode(grammarAccess.getAnnotatingFeatureDeclarationAccess().getOwnedRelationshipMetadataTypingParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_4_0=rulemetadataTyping
+				lv_ownedRelationship_4_0=ruleMetadataTyping
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAnnotatingFeatureDeclarationRule());
@@ -1925,7 +1925,7 @@ ruleAnnotatingFeatureDeclaration[EObject in_current]  returns [EObject current=i
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_4_0,
-						"org.omg.kerml.xtext.KerML.metadataTyping");
+						"org.omg.kerml.xtext.KerML.MetadataTyping");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1933,15 +1933,15 @@ ruleAnnotatingFeatureDeclaration[EObject in_current]  returns [EObject current=i
 	)
 ;
 
-// Entry rule entryRulemetadataTyping
-entryRulemetadataTyping returns [EObject current=null]:
+// Entry rule entryRuleMetadataTyping
+entryRuleMetadataTyping returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getMetadataTypingRule()); }
-	iv_rulemetadataTyping=rulemetadataTyping
-	{ $current=$iv_rulemetadataTyping.current; }
+	iv_ruleMetadataTyping=ruleMetadataTyping
+	{ $current=$iv_ruleMetadataTyping.current; }
 	EOF;
 
-// Rule metadataTyping
-rulemetadataTyping returns [EObject current=null]
+// Rule MetadataTyping
+ruleMetadataTyping returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -6443,35 +6443,10 @@ ruleMultiplicity returns [EObject current=null]
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedRelationshipLiteralIntegerMemberParserRuleCall_1_0_0());
-					}
-					lv_ownedRelationship_1_0=ruleLiteralIntegerMember
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getMultiplicityRule());
-						}
-						add(
-							$current,
-							"ownedRelationship",
-							lv_ownedRelationship_1_0,
-							"org.omg.kerml.xtext.KerML.LiteralIntegerMember");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_2='..'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getMultiplicityAccess().getFullStopFullStopKeyword_1_1());
-			}
-		)?
-		(
-			(
 				{
-					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedRelationshipLiteralUnlimitedNaturalMemberParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_1_0());
 				}
-				lv_ownedRelationship_3_0=ruleLiteralUnlimitedNaturalMember
+				lv_ownedRelationship_1_0=ruleMultiplicityExpressionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getMultiplicityRule());
@@ -6479,12 +6454,37 @@ ruleMultiplicity returns [EObject current=null]
 					add(
 						$current,
 						"ownedRelationship",
-						lv_ownedRelationship_3_0,
-						"org.omg.kerml.xtext.KerML.LiteralUnlimitedNaturalMember");
+						lv_ownedRelationship_1_0,
+						"org.omg.kerml.xtext.KerML.MultiplicityExpressionMember");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+		(
+			otherlv_2='..'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getMultiplicityAccess().getFullStopFullStopKeyword_2_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMultiplicityAccess().getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_2_1_0());
+					}
+					lv_ownedRelationship_3_0=ruleMultiplicityExpressionMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMultiplicityRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_3_0,
+							"org.omg.kerml.xtext.KerML.MultiplicityExpressionMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
 		otherlv_4=']'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getMultiplicityAccess().getRightSquareBracketKeyword_3());
@@ -6492,15 +6492,15 @@ ruleMultiplicity returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleLiteralIntegerMember
-entryRuleLiteralIntegerMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLiteralIntegerMemberRule()); }
-	iv_ruleLiteralIntegerMember=ruleLiteralIntegerMember
-	{ $current=$iv_ruleLiteralIntegerMember.current; }
+// Entry rule entryRuleMultiplicityExpressionMember
+entryRuleMultiplicityExpressionMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMultiplicityExpressionMemberRule()); }
+	iv_ruleMultiplicityExpressionMember=ruleMultiplicityExpressionMember
+	{ $current=$iv_ruleMultiplicityExpressionMember.current; }
 	EOF;
 
-// Rule LiteralIntegerMember
-ruleLiteralIntegerMember returns [EObject current=null]
+// Rule MultiplicityExpressionMember
+ruleMultiplicityExpressionMember returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -6509,57 +6509,39 @@ ruleLiteralIntegerMember returns [EObject current=null]
 }:
 	(
 		(
-			{
-				newCompositeNode(grammarAccess.getLiteralIntegerMemberAccess().getOwnedRelatedElementLiteralIntegerParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleLiteralInteger
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getLiteralIntegerMemberRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementLiteralExpressionParserRuleCall_0_0());
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralInteger");
-				afterParserOrEnumRuleCall();
-			}
-		)
-	)
-;
-
-// Entry rule entryRuleLiteralUnlimitedNaturalMember
-entryRuleLiteralUnlimitedNaturalMember returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalMemberRule()); }
-	iv_ruleLiteralUnlimitedNaturalMember=ruleLiteralUnlimitedNaturalMember
-	{ $current=$iv_ruleLiteralUnlimitedNaturalMember.current; }
-	EOF;
-
-// Rule LiteralUnlimitedNaturalMember
-ruleLiteralUnlimitedNaturalMember returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalMemberAccess().getOwnedRelatedElementLiteralUnlimitedNaturalParserRuleCall_0());
-			}
-			lv_ownedRelatedElement_0_0=ruleLiteralUnlimitedNatural
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getLiteralUnlimitedNaturalMemberRule());
+				lv_ownedRelatedElement_0_1=ruleLiteralExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMultiplicityExpressionMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_0_1,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralExpression");
+					afterParserOrEnumRuleCall();
 				}
-				add(
-					$current,
-					"ownedRelatedElement",
-					lv_ownedRelatedElement_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.LiteralUnlimitedNatural");
-				afterParserOrEnumRuleCall();
-			}
+				    |
+				{
+					newCompositeNode(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementFeatureReferenceExpressionParserRuleCall_0_1());
+				}
+				lv_ownedRelatedElement_0_2=ruleFeatureReferenceExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMultiplicityExpressionMemberRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_0_2,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -13427,42 +13409,6 @@ ruleLiteralUnbounded returns [EObject current=null]
 		otherlv_1='*'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getLiteralUnboundedAccess().getAsteriskKeyword_1());
-		}
-	)
-;
-
-// Entry rule entryRuleLiteralUnlimitedNatural
-entryRuleLiteralUnlimitedNatural returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalRule()); }
-	iv_ruleLiteralUnlimitedNatural=ruleLiteralUnlimitedNatural
-	{ $current=$iv_ruleLiteralUnlimitedNatural.current; }
-	EOF;
-
-// Rule LiteralUnlimitedNatural
-ruleLiteralUnlimitedNatural returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalAccess().getLiteralIntegerParserRuleCall_0());
-		}
-		this_LiteralInteger_0=ruleLiteralInteger
-		{
-			$current = $this_LiteralInteger_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getLiteralUnlimitedNaturalAccess().getLiteralUnboundedParserRuleCall_1());
-		}
-		this_LiteralUnbounded_1=ruleLiteralUnbounded
-		{
-			$current = $this_LiteralUnbounded_1.current;
-			afterParserOrEnumRuleCall();
 		}
 	)
 ;

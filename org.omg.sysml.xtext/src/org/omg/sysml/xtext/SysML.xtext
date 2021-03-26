@@ -432,16 +432,12 @@ MultiplicityMember returns SysML::Membership :
 
 Multiplicity returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	'[' ( ownedRelationship += LiteralIntegerMember '..' )? 
-	      ownedRelationship += LiteralUnlimitedNaturalMember ']'
+	'[' ownedRelationship += MultiplicityExpressionMember
+	      ( '..' ownedRelationship += MultiplicityExpressionMember )? ']'
 ;
 
-LiteralIntegerMember returns SysML::Membership :
-	ownedRelatedElement += LiteralInteger // ownedMemberElement = LiteralInteger
-;
-
-LiteralUnlimitedNaturalMember returns SysML::Membership :
-	ownedRelatedElement += LiteralUnlimitedNatural // ownedMemberElement = LiteralUnlimitedNatural
+MultiplicityExpressionMember returns SysML::Membership :
+	ownedRelatedElement += ( LiteralExpression | FeatureReferenceExpression ) // ownedMemberElement = ( LiteralExpression | FeatureReferenceExpression )
 ;
 
 /* CONNECTORS */

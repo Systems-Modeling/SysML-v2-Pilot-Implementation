@@ -605,8 +605,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//MetadataFeature SysML::MetadataFeature:
 		//	'feature'? (':>>' | 'redefines')? ownedRelationship+=OwnedRedefinition
-		//	'=' ownedRelationship+=MetadataFeatureValue ';'
-		//	// metadataFeatureValue = MetadataFeatureValue ';'
+		//	'=' ownedRelationship+=MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -826,8 +825,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//ElementFilterMember SysML::ElementFilterMembership:
-		//	'filter' ownedRelatedElement+=OwnedExpression ';'
-		//	// condition = OwnedExpression ';'
+		//	'filter' ownedRelatedElement+=OwnedExpression ';' // condition = OwnedExpression ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1188,8 +1186,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//FilterPackageMember SysML::ElementFilterMembership:
-		//	visibility=FilterPackageMemberVisibility ownedRelatedElement+=OwnedExpression ']'
-		//	// condition = OwnedExpression ']'
+		//	visibility=FilterPackageMemberVisibility ownedRelatedElement+=OwnedExpression ']' // condition = OwnedExpression ']'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -2267,78 +2264,69 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.Multiplicity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cOwnedRelationshipLiteralIntegerMemberParserRuleCall_1_0_0 = (RuleCall)cOwnedRelationshipAssignment_1_0.eContents().get(0);
-		private final Keyword cFullStopFullStopKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedRelationshipAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedRelationshipLiteralUnlimitedNaturalMemberParserRuleCall_2_0 = (RuleCall)cOwnedRelationshipAssignment_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cFullStopFullStopKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cOwnedRelationshipAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_2_1_0 = (RuleCall)cOwnedRelationshipAssignment_2_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Multiplicity SysML::MultiplicityRange: // TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-		//	'[' (ownedRelationship+=LiteralIntegerMember '..')? ownedRelationship+=LiteralUnlimitedNaturalMember ']';
+		//	'[' ownedRelationship+=MultiplicityExpressionMember ('..' ownedRelationship+=MultiplicityExpressionMember)? ']';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-		//'[' (ownedRelationship+=LiteralIntegerMember '..')? ownedRelationship+=LiteralUnlimitedNaturalMember ']'
+		//'[' ownedRelationship+=MultiplicityExpressionMember ('..' ownedRelationship+=MultiplicityExpressionMember)? ']'
 		public Group getGroup() { return cGroup; }
 		
 		//// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
 		//'['
 		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 		
-		//(ownedRelationship+=LiteralIntegerMember '..')?
-		public Group getGroup_1() { return cGroup_1; }
+		//ownedRelationship+=MultiplicityExpressionMember
+		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
 		
-		//ownedRelationship+=LiteralIntegerMember
-		public Assignment getOwnedRelationshipAssignment_1_0() { return cOwnedRelationshipAssignment_1_0; }
+		//MultiplicityExpressionMember
+		public RuleCall getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_1_0() { return cOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_1_0; }
 		
-		//LiteralIntegerMember
-		public RuleCall getOwnedRelationshipLiteralIntegerMemberParserRuleCall_1_0_0() { return cOwnedRelationshipLiteralIntegerMemberParserRuleCall_1_0_0; }
+		//('..' ownedRelationship+=MultiplicityExpressionMember)?
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//'..'
-		public Keyword getFullStopFullStopKeyword_1_1() { return cFullStopFullStopKeyword_1_1; }
+		public Keyword getFullStopFullStopKeyword_2_0() { return cFullStopFullStopKeyword_2_0; }
 		
-		//ownedRelationship+=LiteralUnlimitedNaturalMember
-		public Assignment getOwnedRelationshipAssignment_2() { return cOwnedRelationshipAssignment_2; }
+		//ownedRelationship+=MultiplicityExpressionMember
+		public Assignment getOwnedRelationshipAssignment_2_1() { return cOwnedRelationshipAssignment_2_1; }
 		
-		//LiteralUnlimitedNaturalMember
-		public RuleCall getOwnedRelationshipLiteralUnlimitedNaturalMemberParserRuleCall_2_0() { return cOwnedRelationshipLiteralUnlimitedNaturalMemberParserRuleCall_2_0; }
+		//MultiplicityExpressionMember
+		public RuleCall getOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_2_1_0() { return cOwnedRelationshipMultiplicityExpressionMemberParserRuleCall_2_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
-	public class LiteralIntegerMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.LiteralIntegerMember");
+	public class MultiplicityExpressionMemberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.MultiplicityExpressionMember");
 		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementLiteralIntegerParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final Alternatives cOwnedRelatedElementAlternatives_0 = (Alternatives)cOwnedRelatedElementAssignment.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementLiteralExpressionParserRuleCall_0_0 = (RuleCall)cOwnedRelatedElementAlternatives_0.eContents().get(0);
+		private final RuleCall cOwnedRelatedElementFeatureReferenceExpressionParserRuleCall_0_1 = (RuleCall)cOwnedRelatedElementAlternatives_0.eContents().get(1);
 		
-		//LiteralIntegerMember SysML::Membership:
-		//	ownedRelatedElement+=LiteralInteger // ownedMemberElement = LiteralInteger
-		//;
+		//MultiplicityExpressionMember SysML::Membership:
+		//	ownedRelatedElement+=(LiteralExpression | FeatureReferenceExpression);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelatedElement+=LiteralInteger
+		//ownedRelatedElement+=(LiteralExpression | FeatureReferenceExpression)
 		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
 		
-		//LiteralInteger
-		public RuleCall getOwnedRelatedElementLiteralIntegerParserRuleCall_0() { return cOwnedRelatedElementLiteralIntegerParserRuleCall_0; }
-	}
-	public class LiteralUnlimitedNaturalMemberElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.LiteralUnlimitedNaturalMember");
-		private final Assignment cOwnedRelatedElementAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cOwnedRelatedElementLiteralUnlimitedNaturalParserRuleCall_0 = (RuleCall)cOwnedRelatedElementAssignment.eContents().get(0);
+		//(LiteralExpression | FeatureReferenceExpression)
+		public Alternatives getOwnedRelatedElementAlternatives_0() { return cOwnedRelatedElementAlternatives_0; }
 		
-		//LiteralUnlimitedNaturalMember SysML::Membership:
-		//	ownedRelatedElement+=LiteralUnlimitedNatural // ownedMemberElement = LiteralUnlimitedNatural
-		//;
-		@Override public ParserRule getRule() { return rule; }
+		//LiteralExpression
+		public RuleCall getOwnedRelatedElementLiteralExpressionParserRuleCall_0_0() { return cOwnedRelatedElementLiteralExpressionParserRuleCall_0_0; }
 		
-		//ownedRelatedElement+=LiteralUnlimitedNatural
-		public Assignment getOwnedRelatedElementAssignment() { return cOwnedRelatedElementAssignment; }
-		
-		//LiteralUnlimitedNatural
-		public RuleCall getOwnedRelatedElementLiteralUnlimitedNaturalParserRuleCall_0() { return cOwnedRelatedElementLiteralUnlimitedNaturalParserRuleCall_0; }
+		//FeatureReferenceExpression
+		public RuleCall getOwnedRelatedElementFeatureReferenceExpressionParserRuleCall_0_1() { return cOwnedRelatedElementFeatureReferenceExpressionParserRuleCall_0_1; }
 	}
 	public class ConnectorEndMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConnectorEndMember");
@@ -7090,8 +7078,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//TargetSuccessionMember SysML::FeatureMembership:
-		//	DefinitionMemberPrefix ownedRelatedElement+=ActionTargetSuccession ';'
-		//	// ownedMemberFeature = ActionTargetSuccession ';'
+		//	DefinitionMemberPrefix ownedRelatedElement+=ActionTargetSuccession ';' // ownedMemberFeature = ActionTargetSuccession ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -7118,8 +7105,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//GuardedSuccessionMember SysML::FeatureMembership:
-		//	ownedRelatedElement+=GuardedSuccession ';'
-		//	// ownedMemberFeature = GuardedSuccession ';'
+		//	ownedRelatedElement+=GuardedSuccession ';' // ownedMemberFeature = GuardedSuccession ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -9080,8 +9066,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//TransitionUsageMember SysML::FeatureMembership:
-		//	DefinitionMemberPrefix ownedRelatedElement+=TransitionUsage ';'
-		//	// ownedMemberFeature = TransitionUsage ';'
+		//	DefinitionMemberPrefix ownedRelatedElement+=TransitionUsage ';' // ownedMemberFeature = TransitionUsage ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -9109,8 +9094,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//TargetTransitionUsageMember SysML::FeatureMembership:
-		//	DefinitionMemberPrefix ownedRelatedElement+=TargetTransitionUsage ';'
-		//	// ownedMemberFeature = TargetTransitionUsage ';'
+		//	DefinitionMemberPrefix ownedRelatedElement+=TargetTransitionUsage ';' // ownedMemberFeature = TargetTransitionUsage ';'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -12887,8 +12871,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final OwnedRedefinitionElements pOwnedRedefinition;
 	private final MultiplicityMemberElements pMultiplicityMember;
 	private final MultiplicityElements pMultiplicity;
-	private final LiteralIntegerMemberElements pLiteralIntegerMember;
-	private final LiteralUnlimitedNaturalMemberElements pLiteralUnlimitedNaturalMember;
+	private final MultiplicityExpressionMemberElements pMultiplicityExpressionMember;
 	private final ConnectorEndMemberElements pConnectorEndMember;
 	private final ConnectorEndElements pConnectorEnd;
 	private final BindingKeywordElements pBindingKeyword;
@@ -13321,8 +13304,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pOwnedRedefinition = new OwnedRedefinitionElements();
 		this.pMultiplicityMember = new MultiplicityMemberElements();
 		this.pMultiplicity = new MultiplicityElements();
-		this.pLiteralIntegerMember = new LiteralIntegerMemberElements();
-		this.pLiteralUnlimitedNaturalMember = new LiteralUnlimitedNaturalMemberElements();
+		this.pMultiplicityExpressionMember = new MultiplicityExpressionMemberElements();
 		this.pConnectorEndMember = new ConnectorEndMemberElements();
 		this.pConnectorEnd = new ConnectorEndElements();
 		this.pBindingKeyword = new BindingKeywordElements();
@@ -13870,8 +13852,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//MetadataFeature SysML::MetadataFeature:
 	//	'feature'? (':>>' | 'redefines')? ownedRelationship+=OwnedRedefinition
-	//	'=' ownedRelationship+=MetadataFeatureValue ';'
-	//	// metadataFeatureValue = MetadataFeatureValue ';'
+	//	'=' ownedRelationship+=MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
 	//;
 	public MetadataFeatureElements getMetadataFeatureAccess() {
 		return pMetadataFeature;
@@ -13941,8 +13922,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ElementFilterMember SysML::ElementFilterMembership:
-	//	'filter' ownedRelatedElement+=OwnedExpression ';'
-	//	// condition = OwnedExpression ';'
+	//	'filter' ownedRelatedElement+=OwnedExpression ';' // condition = OwnedExpression ';'
 	//;
 	public ElementFilterMemberElements getElementFilterMemberAccess() {
 		return pElementFilterMember;
@@ -14040,8 +14020,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//FilterPackageMember SysML::ElementFilterMembership:
-	//	visibility=FilterPackageMemberVisibility ownedRelatedElement+=OwnedExpression ']'
-	//	// condition = OwnedExpression ']'
+	//	visibility=FilterPackageMemberVisibility ownedRelatedElement+=OwnedExpression ']' // condition = OwnedExpression ']'
 	//;
 	public FilterPackageMemberElements getFilterPackageMemberAccess() {
 		return pFilterPackageMember;
@@ -14448,7 +14427,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Multiplicity SysML::MultiplicityRange: // TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	//	'[' (ownedRelationship+=LiteralIntegerMember '..')? ownedRelationship+=LiteralUnlimitedNaturalMember ']';
+	//	'[' ownedRelationship+=MultiplicityExpressionMember ('..' ownedRelationship+=MultiplicityExpressionMember)? ']';
 	public MultiplicityElements getMultiplicityAccess() {
 		return pMultiplicity;
 	}
@@ -14457,26 +14436,14 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getMultiplicityAccess().getRule();
 	}
 	
-	//LiteralIntegerMember SysML::Membership:
-	//	ownedRelatedElement+=LiteralInteger // ownedMemberElement = LiteralInteger
-	//;
-	public LiteralIntegerMemberElements getLiteralIntegerMemberAccess() {
-		return pLiteralIntegerMember;
+	//MultiplicityExpressionMember SysML::Membership:
+	//	ownedRelatedElement+=(LiteralExpression | FeatureReferenceExpression);
+	public MultiplicityExpressionMemberElements getMultiplicityExpressionMemberAccess() {
+		return pMultiplicityExpressionMember;
 	}
 	
-	public ParserRule getLiteralIntegerMemberRule() {
-		return getLiteralIntegerMemberAccess().getRule();
-	}
-	
-	//LiteralUnlimitedNaturalMember SysML::Membership:
-	//	ownedRelatedElement+=LiteralUnlimitedNatural // ownedMemberElement = LiteralUnlimitedNatural
-	//;
-	public LiteralUnlimitedNaturalMemberElements getLiteralUnlimitedNaturalMemberAccess() {
-		return pLiteralUnlimitedNaturalMember;
-	}
-	
-	public ParserRule getLiteralUnlimitedNaturalMemberRule() {
-		return getLiteralUnlimitedNaturalMemberAccess().getRule();
+	public ParserRule getMultiplicityExpressionMemberRule() {
+		return getMultiplicityExpressionMemberAccess().getRule();
 	}
 	
 	///* CONNECTORS */ /* Connectors */ ConnectorEndMember SysML::EndFeatureMembership:
@@ -16362,8 +16329,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//TargetSuccessionMember SysML::FeatureMembership:
-	//	DefinitionMemberPrefix ownedRelatedElement+=ActionTargetSuccession ';'
-	//	// ownedMemberFeature = ActionTargetSuccession ';'
+	//	DefinitionMemberPrefix ownedRelatedElement+=ActionTargetSuccession ';' // ownedMemberFeature = ActionTargetSuccession ';'
 	//;
 	public TargetSuccessionMemberElements getTargetSuccessionMemberAccess() {
 		return pTargetSuccessionMember;
@@ -16374,8 +16340,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//GuardedSuccessionMember SysML::FeatureMembership:
-	//	ownedRelatedElement+=GuardedSuccession ';'
-	//	// ownedMemberFeature = GuardedSuccession ';'
+	//	ownedRelatedElement+=GuardedSuccession ';' // ownedMemberFeature = GuardedSuccession ';'
 	//;
 	public GuardedSuccessionMemberElements getGuardedSuccessionMemberAccess() {
 		return pGuardedSuccessionMember;
@@ -16971,8 +16936,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//TransitionUsageMember SysML::FeatureMembership:
-	//	DefinitionMemberPrefix ownedRelatedElement+=TransitionUsage ';'
-	//	// ownedMemberFeature = TransitionUsage ';'
+	//	DefinitionMemberPrefix ownedRelatedElement+=TransitionUsage ';' // ownedMemberFeature = TransitionUsage ';'
 	//;
 	public TransitionUsageMemberElements getTransitionUsageMemberAccess() {
 		return pTransitionUsageMember;
@@ -16983,8 +16947,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//TargetTransitionUsageMember SysML::FeatureMembership:
-	//	DefinitionMemberPrefix ownedRelatedElement+=TargetTransitionUsage ';'
-	//	// ownedMemberFeature = TargetTransitionUsage ';'
+	//	DefinitionMemberPrefix ownedRelatedElement+=TargetTransitionUsage ';' // ownedMemberFeature = TargetTransitionUsage ';'
 	//;
 	public TargetTransitionUsageMemberElements getTargetTransitionUsageMemberAccess() {
 		return pTargetTransitionUsageMember;

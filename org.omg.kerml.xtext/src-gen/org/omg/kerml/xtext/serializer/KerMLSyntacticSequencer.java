@@ -293,8 +293,8 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     humanId=Name (ambiguity) ownedRelationship+=metadataTyping
-	 *     name=Name (ambiguity) ownedRelationship+=metadataTyping
+	 *     humanId=Name (ambiguity) ownedRelationship+=MetadataTyping
+	 *     name=Name (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_AnnotatingFeatureDeclaration_ColonKeyword_0_1_0_or___TypedKeyword_0_1_1_0_ByKeyword_0_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -307,7 +307,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'id' humanId=Name
 	 *     (rule start) (ambiguity) name=Name
-	 *     (rule start) (ambiguity) ownedRelationship+=metadataTyping
+	 *     (rule start) (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_AnnotatingFeature_CommercialAtKeyword_0_0_or_MetadataKeyword_0_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -818,7 +818,7 @@ public class KerMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ':' | ('typed' 'by')
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     humanId=Name (ambiguity) ownedRelationship+=metadataTyping
+	 *     humanId=Name (ambiguity) ownedRelationship+=MetadataTyping
 	 */
 	protected void emit_OwnedAnnotatingFeature_ColonKeyword_1_1_0_or___TypedKeyword_1_1_1_0_ByKeyword_1_1_1_1__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

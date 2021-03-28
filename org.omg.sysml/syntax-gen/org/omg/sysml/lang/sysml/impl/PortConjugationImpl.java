@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -61,16 +59,6 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 * @ordered
 	 */
 	protected PortDefinition originalPortDefinition;
-
-	/**
-	 * The cached value of the '{@link #getConjugatedPortDefinition() <em>Conjugated Port Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConjugatedPortDefinition()
-	 * @generated
-	 * @ordered
-	 */
-	protected ConjugatedPortDefinition conjugatedPortDefinition;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,26 +141,15 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 		return originalPortDefinition != null;
 	}
 
-	@Override
-	public ConjugatedPortDefinition getConjugatedPortDefinition() {
-		return conjugatedPortDefinition == null? basicGetConjugatedPortDefinition(): getConjugatedPortDefinitionGen();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public ConjugatedPortDefinition getConjugatedPortDefinitionGen() {
-		if (conjugatedPortDefinition != null && conjugatedPortDefinition.eIsProxy()) {
-			InternalEObject oldConjugatedPortDefinition = (InternalEObject)conjugatedPortDefinition;
-			conjugatedPortDefinition = (ConjugatedPortDefinition)eResolveProxy(oldConjugatedPortDefinition);
-			if (conjugatedPortDefinition != oldConjugatedPortDefinition) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION, oldConjugatedPortDefinition, conjugatedPortDefinition));
-			}
-		}
-		return conjugatedPortDefinition;
+	@Override
+	public ConjugatedPortDefinition getConjugatedPortDefinition() {
+		ConjugatedPortDefinition conjugatedPortDefinition = basicGetConjugatedPortDefinition();
+		return conjugatedPortDefinition != null && conjugatedPortDefinition.eIsProxy() ? (ConjugatedPortDefinition)eResolveProxy((InternalEObject)conjugatedPortDefinition) : conjugatedPortDefinition;
 	}
 
 	/**
@@ -181,48 +158,18 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 * @generated NOT
 	 */
 	public ConjugatedPortDefinition basicGetConjugatedPortDefinition() {
-		if (conjugatedPortDefinition == null) {
-			Type owningType = super.basicGetOwningType();
-			if (owningType instanceof ConjugatedPortDefinition) {
-				conjugatedPortDefinition = (ConjugatedPortDefinition)owningType;
-			}
-		}
-		return conjugatedPortDefinition;
+		Type owningType = super.basicGetOwningType();
+		return owningType instanceof ConjugatedPortDefinition? (ConjugatedPortDefinition)owningType: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetConjugatedPortDefinition(ConjugatedPortDefinition newConjugatedPortDefinition, NotificationChain msgs) {
-		ConjugatedPortDefinition oldConjugatedPortDefinition = conjugatedPortDefinition;
-		conjugatedPortDefinition = newConjugatedPortDefinition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION, oldConjugatedPortDefinition, newConjugatedPortDefinition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setConjugatedPortDefinition(ConjugatedPortDefinition newConjugatedPortDefinition) {
-		if (newConjugatedPortDefinition != conjugatedPortDefinition) {
-			NotificationChain msgs = null;
-			if (conjugatedPortDefinition != null)
-				msgs = ((InternalEObject)conjugatedPortDefinition).eInverseRemove(this, SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR, ConjugatedPortDefinition.class, msgs);
-			if (newConjugatedPortDefinition != null)
-				msgs = ((InternalEObject)newConjugatedPortDefinition).eInverseAdd(this, SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR, ConjugatedPortDefinition.class, msgs);
-			msgs = basicSetConjugatedPortDefinition(newConjugatedPortDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION, newConjugatedPortDefinition, newConjugatedPortDefinition));
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -231,7 +178,7 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 * @generated
 	 */
 	public boolean isSetConjugatedPortDefinition() {
-		return conjugatedPortDefinition != null;
+		return basicGetConjugatedPortDefinition() != null;
 	}
 
 	/**
@@ -314,36 +261,6 @@ public class PortConjugationImpl extends ConjugationImpl implements PortConjugat
 	 */
 	public boolean isSetOwningType() {
   		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION:
-				if (conjugatedPortDefinition != null)
-					msgs = ((InternalEObject)conjugatedPortDefinition).eInverseRemove(this, SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR, ConjugatedPortDefinition.class, msgs);
-				return basicSetConjugatedPortDefinition((ConjugatedPortDefinition)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION:
-				return basicSetConjugatedPortDefinition(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

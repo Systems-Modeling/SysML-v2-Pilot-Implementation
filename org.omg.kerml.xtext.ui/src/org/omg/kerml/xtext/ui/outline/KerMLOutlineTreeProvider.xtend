@@ -303,20 +303,6 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		}
 	}
 	
-	def void _createChildren(IOutlineNode parentNode, Namespace _package) {
-		for (childElement : _package.eContents()) {
-			if (!(childElement instanceof Import || childElement instanceof Membership)) {
-				createNode(parentNode, childElement)
-			}
-		}
-		for (_import: _package.ownedImport) {
-			createNode(parentNode, _import)
-		}
-		for (membership: _package.ownedMembership) {
-			createNode(parentNode, membership)
-		}
-	}
-	
 	def boolean _isLeaf(TypeFeaturing featuring) {
 		featuring.featuringType === null
 	}

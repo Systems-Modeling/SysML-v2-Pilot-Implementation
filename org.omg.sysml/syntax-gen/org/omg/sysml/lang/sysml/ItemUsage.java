@@ -59,7 +59,7 @@ public interface ItemUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Classes that are the types of this ItemUsage. Nominally, these are ItemDefinitions, but other kinds of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+	 * <p>The Structures that are the types of this ItemUsage. Nominally, these are ItemDefinitions, but other kinds of Kernel Structures are also allowed, to permit use of Structures from the Kernel Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemUsage_ItemDefinition()

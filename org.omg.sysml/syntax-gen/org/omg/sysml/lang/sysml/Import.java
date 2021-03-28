@@ -144,8 +144,8 @@ public interface Import extends Relationship {
 	void setIsRecursive(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Import Owning Namespace</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport_comp <em>Owned Import comp</em>}'.
+	 * Returns the value of the '<em><b>Import Owning Namespace</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedImport <em>Owned Import</em>}'.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -159,21 +159,21 @@ public interface Import extends Relationship {
 	 * <p>The Namespace into which <code>members</cpde> are imported by this Import, which must be the <code>owningRelatedElement</code> of the Import.</p>
 	 * 
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Import Owning Namespace</em>' container reference.
+	 * @return the value of the '<em>Import Owning Namespace</em>' reference.
 	 * @see #setImportOwningNamespace(Namespace)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getImport_ImportOwningNamespace()
-	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedImport_comp
-	 * @model opposite="ownedImport_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedImport
+	 * @model opposite="ownedImport" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */
 	Namespace getImportOwningNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportOwningNamespace <em>Import Owning Namespace</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Import#getImportOwningNamespace <em>Import Owning Namespace</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Import Owning Namespace</em>' container reference.
+	 * @param value the new value of the '<em>Import Owning Namespace</em>' reference.
 	 * @see #getImportOwningNamespace()
 	 * @generated
 	 */

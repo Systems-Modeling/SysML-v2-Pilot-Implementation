@@ -1077,15 +1077,6 @@ public interface SysMLFactory extends EFactory {
 	InvocationExpression createInvocationExpression();
 
 	/**
-	 * Returns a new object of class '<em>Block Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Block Expression</em>'.
-	 * @generated
-	 */
-	BlockExpression createBlockExpression();
-
-	/**
 	 * Returns a new object of class '<em>Parameter Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1255,15 +1246,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	SuccessionItemFlow createSuccessionItemFlow();
-
-	/**
-	 * Returns a new object of class '<em>Instance Creation Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Creation Expression</em>'.
-	 * @generated
-	 */
-	InstanceCreationExpression createInstanceCreationExpression();
 
 	/**
 	 * Returns a new object of class '<em>Null Expression</em>'.

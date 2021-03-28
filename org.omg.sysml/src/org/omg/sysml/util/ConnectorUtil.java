@@ -45,10 +45,10 @@ public class ConnectorUtil {
 		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
 		subsetting.setSubsettedFeature(relatedFeature);
 		subsetting.setSubsettingFeature(endFeature);
-		endFeature.getOwnedRelationship_comp().add(subsetting);
+		endFeature.getOwnedRelationship().add(subsetting);
 		FeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-		membership.setOwnedMemberFeature_comp(endFeature);
-		connector.getOwnedFeatureMembership_comp().add(membership);
+		membership.setOwnedMemberFeature(endFeature);
+		connector.getOwnedRelationship().add(membership);
 		return endFeature;
 	}
 

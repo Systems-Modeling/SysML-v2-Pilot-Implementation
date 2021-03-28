@@ -55,7 +55,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		if (redefinitions.isEmpty()) {
 			redefinition = SysMLFactory.eINSTANCE.createRedefinition();
 			redefinition.setRedefiningFeature(transitionLinkFeature);
-			transitionLinkFeature.getOwnedRelationship_comp().add(redefinition);
+			transitionLinkFeature.getOwnedRelationship().add(redefinition);
 		} else {
 			redefinition = redefinitions.get(0);
 		}

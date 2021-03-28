@@ -23,11 +23,8 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -45,7 +42,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateSubactionMembershipImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.StateSubactionMembershipImpl#getAction_comp <em>Action comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.StateSubactionMembershipImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -71,16 +67,6 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * @ordered
 	 */
 	protected StateSubactionKind kind = KIND_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getAction_comp() <em>Action comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAction_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected ActionUsage action_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,60 +116,6 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * @generated
 	 */
 	@Override
-	public ActionUsage getAction_comp() {
-		return action_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAction_comp(ActionUsage newAction_comp, NotificationChain msgs) {
-		ActionUsage oldAction_comp = action_comp;
-		action_comp = newAction_comp;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP, oldAction_comp, newAction_comp);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setAction_comp(ActionUsage newAction_comp) {
-		if (newAction_comp != action_comp) {
-			NotificationChain msgs = null;
-			if (action_comp != null)
-				msgs = ((InternalEObject)action_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP, null, msgs);
-			if (newAction_comp != null)
-				msgs = ((InternalEObject)newAction_comp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP, null, msgs);
-			msgs = basicSetAction_comp(newAction_comp, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP, newAction_comp, newAction_comp));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetAction_comp() {
-		return action_comp != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public ActionUsage getAction() {
 		ActionUsage action = basicGetAction();
 		return action != null && action.eIsProxy() ? (ActionUsage)eResolveProxy((InternalEObject)action) : action;
@@ -195,7 +127,8 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * @generated NOT
 	 */
 	public ActionUsage basicGetAction() {
-		return getAction_comp();
+		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
+		return ownedMemberFeature instanceof ActionUsage? (ActionUsage)ownedMemberFeature: null;
 	}
 
 	/**
@@ -205,7 +138,16 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 */
 	@Override
 	public void setAction(ActionUsage newAction) {
-		throw new UnsupportedOperationException();
+		super.setOwnedMemberFeature(newAction);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetAction() {
+		return basicGetAction() != null;
 	}
 
 	/**
@@ -214,8 +156,8 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * @generated
 	 */
 	@Override
-	public Feature getOwnedMemberFeature_comp() {
-		return getAction_comp();
+	public Feature getOwnedMemberFeature() {
+		return getAction();
 	}
 
 	/**
@@ -223,11 +165,21 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp, NotificationChain msgs) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof ActionUsage)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of ActionUsage");
+	@Override
+	public Feature basicGetOwnedMemberFeature() {
+		return basicGetAction();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
+		if (newOwnedMemberFeature != null && !(newOwnedMemberFeature instanceof ActionUsage)) {
+			throw new IllegalArgumentException("newOwnedMemberFeature must be an instance of ActionUsage");
 		}
-		return basicSetAction_comp((ActionUsage) newOwnedMemberFeature_comp, msgs);
+		setAction((ActionUsage) newOwnedMemberFeature);
 	}
 
 	/**
@@ -235,34 +187,8 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof ActionUsage)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of ActionUsage");
-		}
-		setAction_comp((ActionUsage) newOwnedMemberFeature_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberFeature_comp() {
+	public boolean isSetOwnedMemberFeature() {
   		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP:
-				return basicSetAction_comp(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -275,8 +201,6 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 		switch (featureID) {
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__KIND:
 				return getKind();
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP:
-				return getAction_comp();
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION:
 				if (resolve) return getAction();
 				return basicGetAction();
@@ -294,9 +218,6 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 		switch (featureID) {
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__KIND:
 				setKind((StateSubactionKind)newValue);
-				return;
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP:
-				setAction_comp((ActionUsage)newValue);
 				return;
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION:
 				setAction((ActionUsage)newValue);
@@ -316,9 +237,6 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP:
-				setAction_comp((ActionUsage)null);
-				return;
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION:
 				setAction((ActionUsage)null);
 				return;
@@ -334,14 +252,12 @@ public class StateSubactionMembershipImpl extends FeatureMembershipImpl implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				return isSetOwnedMemberFeature_comp();
+			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__KIND:
 				return kind != KIND_EDEFAULT;
-			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION_COMP:
-				return isSetAction_comp();
 			case SysMLPackage.STATE_SUBACTION_MEMBERSHIP__ACTION:
-				return basicGetAction() != null;
+				return isSetAction();
 		}
 		return super.eIsSet(featureID);
 	}

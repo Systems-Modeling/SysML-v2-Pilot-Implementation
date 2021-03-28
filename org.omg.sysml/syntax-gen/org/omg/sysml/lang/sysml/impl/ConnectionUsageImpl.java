@@ -58,9 +58,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#isDirected <em>Is Directed</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectionUsageImpl#getConnectorEnd <em>Connector End</em>}</li>
@@ -73,17 +72,18 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsage {
 
-	public static final String CONNECTOR_USAGE_SUBSETTING_DEFAULT = "Connections::connections";
-
 	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement_comp()
+	 * @see #getOwnedRelatedElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedRelatedElement_comp;
+	protected EList<Element> ownedRelatedElement;
+
+	public static final String CONNECTOR_USAGE_SUBSETTING_DEFAULT = "Connections::connections";
+
 	/**
 	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -202,7 +202,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -216,23 +216,11 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 */
 	@Override
-	public EList<Element> getOwnedRelatedElement_comp() {
-		if (ownedRelatedElement_comp == null) {
-			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		if (ownedRelatedElement == null) {
+			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+		}
+		return ownedRelatedElement;
 	}
 
 	/**
@@ -458,7 +446,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_USAGE__TARGET, SysMLPackage.CONNECTION_USAGE__SOURCE, SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTION_USAGE__TARGET, SysMLPackage.CONNECTION_USAGE__SOURCE};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -518,12 +506,12 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -536,10 +524,10 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -553,7 +541,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -568,16 +556,14 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		switch (featureID) {
 			case SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT:
 				return getRelatedElement();
+			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
+			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
 			case SysMLPackage.CONNECTION_USAGE__TARGET:
 				return getTarget();
 			case SysMLPackage.CONNECTION_USAGE__SOURCE:
 				return getSource();
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP:
-				return getOwnedRelatedElement_comp();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
 			case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE:
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
@@ -606,6 +592,13 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
 			case SysMLPackage.CONNECTION_USAGE__TARGET:
 				getTarget().clear();
 				getTarget().addAll((Collection<? extends Element>)newValue);
@@ -613,17 +606,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 			case SysMLPackage.CONNECTION_USAGE__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				getOwnedRelatedElement_comp().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				getAssociation().clear();
@@ -659,20 +641,17 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
 			case SysMLPackage.CONNECTION_USAGE__TARGET:
 				getTarget().clear();
 				return;
 			case SysMLPackage.CONNECTION_USAGE__SOURCE:
 				getSource().clear();
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				return;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.CONNECTION_USAGE__ASSOCIATION:
 				getAssociation().clear();
@@ -706,16 +685,14 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		switch (featureID) {
 			case SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT:
 				return isSetRelatedElement();
+			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
 			case SysMLPackage.CONNECTION_USAGE__TARGET:
 				return isSetTarget();
 			case SysMLPackage.CONNECTION_USAGE__SOURCE:
 				return isSetSource();
-			case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP:
-				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
-			case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT:
-				return !getOwnedRelatedElement().isEmpty();
 			case SysMLPackage.CONNECTION_USAGE__RELATED_FEATURE:
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTION_USAGE__TYPE:
@@ -747,12 +724,11 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
+				case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.CONNECTION_USAGE__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.CONNECTION_USAGE__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
-				case SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
-				case SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
@@ -779,12 +755,11 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.CONNECTION_USAGE__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.CONNECTION_USAGE__SOURCE;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT_COMP;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTION_USAGE__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}

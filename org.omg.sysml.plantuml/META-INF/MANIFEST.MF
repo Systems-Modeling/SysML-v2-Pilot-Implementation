@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: SysML 2 PlantUML visualization
 Bundle-SymbolicName: org.omg.sysml.plantuml
 Automatic-Module-Name: org.omg.sysml.plantuml
-Bundle-Version: 0.10.2.qualifier
+Bundle-Version: 0.11.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.omg.sysml.plantuml
 Import-Package: com.google.inject;version="1.3.0",

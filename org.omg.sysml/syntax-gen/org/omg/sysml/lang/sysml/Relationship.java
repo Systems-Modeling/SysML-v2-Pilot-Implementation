@@ -29,9 +29,9 @@ import org.eclipse.emf.common.util.EList;
  * '<em><b>Relationship</b></em>'. <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A Relationship is an Element that relates two or more other Elements. Some of its <tt>relatedElements</tt> may be owned, in which case those <tt>ownedRelatedElements</tt> will be deleted from a model if their <tt>owningRelationship</tt> is. A Relationship may also be owned by another Element, in which case the <tt>ownedRelatedElements</tt> of the Relationship are also considered to be transitively owned by the <tt>owningRelatedElement</tt> of the Relationship.</p>
+ * <p>A Relationship is an Element that relates two or more other Elements. Some of its <code>relatedElements</code> may be owned, in which case those <code>ownedRelatedElements</code> will be deleted from a model if their <code>owningRelationship</code> is. A Relationship may also be owned by another Element, in which case the <code>ownedRelatedElements</code> of the Relationship are also considered to be transitively owned by the <code>owningRelatedElement</code> of the Relationship.</p>
  * 
- * <p>The <tt>relatedElements</tt> of a Relationship are divided into <tt>source</tt> and <tt>target</tt> Elements. The Relationship is considered to be directed from the <tt>source</tt> to the <tt>target</tt> Elements. An undirected Relationship may have either all <tt>source</tt> or all <tt>target</tt> Elements.</p>
+ * <p>The <code>relatedElements</code> of a Relationship are divided into <code>source</code> and <code>target</code> Elements. The Relationship is considered to be directed from the <code>source</code> to the <code>target</code> Elements. An undirected Relationship may have either all <code>source</code> or all <code>target</code> Elements.</p>
  * 
  * <p>A &quot;relationship Element&quot; in the kernel abstract syntax is generically any Element that is an instance of either Relationship or a direct or indirect specialization of Relationship. Any other kind of Element is a &quot;non-relationship Element&quot;. It is a convention of the kernel abstract syntax that non-relationship Elements are <em>only</em> related via reified relationship Elements. Any meta-associations directly between non-relationship Elements must be derived from underlying reified Relationships.</p>
  * 
@@ -41,12 +41,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getRelatedElement <em>Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getTarget <em>Target</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getSource <em>Source</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Relationship#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship()
@@ -55,8 +54,9 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Relationship extends Element {
 	/**
-	 * Returns the value of the '<em><b>Owned Related Element</b></em>' reference list.
+	 * Returns the value of the '<em><b>Owned Related Element</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -69,9 +69,13 @@ public interface Relationship extends Element {
 	 * list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Related Element</em>' reference list.
+	 * <!-- begin-model-doc -->
+	 * <p>The <tt>relatedElements</tt> of this Relationship that are owned by the Relationship.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Owned Related Element</em>' containment reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwnedRelatedElement()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @see org.omg.sysml.lang.sysml.Element#getOwningRelationship
+	 * @model opposite="owningRelationship" containment="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -79,7 +83,7 @@ public interface Relationship extends Element {
 
 	/**
 	 * Returns the value of the '<em><b>Owning Related Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp <em>Owned Relationship comp</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship <em>Owned Relationship</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -98,8 +102,8 @@ public interface Relationship extends Element {
 	 * @return the value of the '<em>Owning Related Element</em>' container reference.
 	 * @see #setOwningRelatedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwningRelatedElement()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp
-	 * @model opposite="ownedRelationship_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Element#getOwnedRelationship
+	 * @model opposite="ownedRelationship" transient="false" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -114,27 +118,6 @@ public interface Relationship extends Element {
 	 * @generated
 	 */
 	void setOwningRelatedElement(Element value);
-
-	/**
-	 * Returns the value of the '<em><b>Owned Related Element comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Element}.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwningRelationship <em>Owning Relationship</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Owned Related Element comp</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <tt>relatedElements</tt> of this Relationship that are owned by the Relationship.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owned Related Element comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRelationship_OwnedRelatedElement_comp()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwningRelationship
-	 * @model opposite="owningRelationship" containment="true"
-	 * @generated
-	 */
-	EList<Element> getOwnedRelatedElement_comp();
 
 	/**
 	 * Returns the value of the '<em><b>Related Element</b></em>' reference list.

@@ -61,11 +61,6 @@ import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
 	
-	public static final String FEATURE_SUBSETTING_DEFAULT = "Base::things";
-	public static final String VALUE_FEATURE_SUBSETTING_DEFAULT = "Base::dataValues";
-	public static final String OCCURRENCE_FEATURE_SUBSETTING_DEFAULT = "Occurrences::occurrences";
-	public static final String OBJECT_FEATURE_SUBSETTING_DEFAULT = "Objects::objects";
-	
 	public FeatureAdapter(Feature element) {
 		super(element);
 	}

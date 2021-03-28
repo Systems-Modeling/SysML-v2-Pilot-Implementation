@@ -32,11 +32,13 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
@@ -50,12 +52,30 @@ import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
 
+	private EList<Membership> inheritedMembership = null;
+	
 	public TypeAdapter(Type element) {
 		super(element);
 	}
 	
 	public Type getTarget() {
 		return (Type)super.getTarget();
+	}
+	
+	// Caching
+	
+	public EList<Membership> getInheritedMembership() {
+		return inheritedMembership;
+	}
+	
+	public EList<Membership> setInheritedMembership(EList<Membership> inheritedMembership) {
+		this.inheritedMembership = inheritedMembership;
+		return inheritedMembership;
+	}
+		
+	public void clearCaches() {
+		super.clearCaches();
+		inheritedMembership = null;
 	}
 	
 	// Implicit Elements

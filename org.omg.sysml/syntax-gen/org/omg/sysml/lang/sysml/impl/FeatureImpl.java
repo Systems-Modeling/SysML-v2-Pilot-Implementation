@@ -174,14 +174,6 @@ public class FeatureImpl extends TypeImpl implements Feature {
 		return SysMLPackage.Literals.FEATURE;
 	}
 
-	EList<Type> types = null;
-	
-	@Override
-	public void clearCaches() {
-		super.clearCaches();
-		types = null;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,12 +184,12 @@ public class FeatureImpl extends TypeImpl implements Feature {
 	}
 	
 	public EList<Type> getAllTypes() {
-		if (types == null) {
-			types = new NonNotifyingEObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
+		return FeatureUtil.cacheTypesOf(this, ()->{
+			EList<Type> types = new NonNotifyingEObjectEList<Type>(Type.class, this, SysMLPackage.FEATURE__TYPE);
 			getTypes(types, new HashSet<Feature>());
 			removeRedundantTypes(types);
-		}
-		return types;
+			return types;
+		});
 	}
 	
 	protected void getTypes(List<Type> types, Set<Feature> visitedFeatures) {

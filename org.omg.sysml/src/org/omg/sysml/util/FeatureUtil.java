@@ -29,6 +29,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
@@ -61,6 +62,14 @@ public class FeatureUtil {
 
 	protected static FeatureAdapter getFeatureAdapter(Feature target) {
 		return (FeatureAdapter)ElementUtil.getElementAdapter(target);
+	}
+	
+	// Caching
+	
+	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
+		FeatureAdapter adapter = getFeatureAdapter(feature);
+		EList<Type> types = adapter.getTypes();
+		return types == null? adapter.setTypes(supplier.get()): types;
 	}
 	
 	// Utility

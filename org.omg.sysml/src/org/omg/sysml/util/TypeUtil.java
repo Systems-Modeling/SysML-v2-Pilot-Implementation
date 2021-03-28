@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -59,6 +60,14 @@ public class TypeUtil {
 
 	protected static TypeAdapter getTypeAdapter(Type target) {
 		return (TypeAdapter)ElementUtil.getElementAdapter(target);
+	}
+	
+	// Caching
+	
+	public static EList<Membership> cacheInheritedMembershipOf(Type type, Supplier<EList<Membership>> supplier) {	
+		TypeAdapter adapter = getTypeAdapter(type);
+		EList<Membership> membership = adapter.getInheritedMembership();
+		return membership == null? adapter.setInheritedMembership(supplier.get()): membership;
 	}
 	
 	// Supertypes

@@ -61,6 +61,8 @@ import org.omg.sysml.util.TypeUtil;
 
 public class FeatureAdapter extends TypeAdapter {
 	
+	EList<Type> types = null;
+	
 	public FeatureAdapter(Feature element) {
 		super(element);
 	}
@@ -68,6 +70,23 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	public Feature getTarget() {
 		return (Feature)super.getTarget();
+	}
+	
+	// Caching
+	
+	public EList<Type> getTypes() {
+		return types;
+	}
+	
+	public EList<Type> setTypes(EList<Type> types) {
+		this.types = types;
+		return types;
+	}
+		
+	@Override
+	public void clearCaches() {
+		super.clearCaches();
+		types = null;
 	}
 	
 	// Implicit Elements

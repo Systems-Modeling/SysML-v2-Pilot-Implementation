@@ -319,14 +319,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.TYPE__IS_ABSTRACT, oldIsAbstract, isAbstract));
 	}
 	
-	private EList<Membership> inheritedMembership = null;
-	
-	@Override
-	public void clearCaches() {
-		super.clearCaches();
-		inheritedMembership = null;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,11 +326,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	@Override
 	public EList<Membership> getInheritedMembership() {
-		if (inheritedMembership == null) {
-			inheritedMembership = getInheritedMembership(new HashSet<Namespace>(), new HashSet<Type>(), true);
-//			System.out.println("Caching inheritedMembership for " + this);
-		}
-		return inheritedMembership;
+		return TypeUtil.cacheInheritedMembershipOf(this, ()->
+			getInheritedMembership(new HashSet<Namespace>(), new HashSet<Type>(), true));
 	}
 	
 	/**

@@ -280,8 +280,12 @@ public class SysMLInteractive extends SysMLUtil {
 		return processingFacade;
 	}
 	
-	public VizResult viz(List<String> names, List<String> views, List<String> styles) {
+	public VizResult viz(List<String> names, List<String> views, List<String> styles, List<String> help) {
 		this.counter++;
+        if (!help.isEmpty()
+            || (names.isEmpty() && views.isEmpty() && styles.isEmpty())) {
+            return VizResult.textResult(getSysML2PlantUMLSvc().getHelpString());
+        }
         List<EObject> elements = new ArrayList<EObject>(names.size());
 		try {
             for (String name: names) {
@@ -316,7 +320,7 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	protected VizResult viz(String name) {
-		return this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"));
+		return this.viz(Collections.singletonList(name), Collections.emptyList(), Collections.singletonList("PUMLCODE"), Collections.emptyList());
 	}
 	
     private static List<String> filterStyle(List<String> styles, String name) {

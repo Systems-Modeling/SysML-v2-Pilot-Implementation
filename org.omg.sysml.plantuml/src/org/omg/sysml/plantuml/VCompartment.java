@@ -62,14 +62,17 @@ import org.omg.sysml.lang.sysml.VariantMembership;
 public class VCompartment extends VStructure {
     private List<VTree> subtrees = new ArrayList<VTree>();
 
-    private Element base;
     private VTree parent;
 
-    protected boolean rec(Element e, boolean force) {
-        VTree subtree = parent.subtree(base, e, force);
+    protected boolean rec(Membership m, Element e, boolean force) {
+        VTree subtree = parent.subtree(m, e, force);
         if (subtree == null) return false;
         subtrees.add(subtree);
         return true;
+    }
+
+    private boolean recCurrentMembership(Element e, boolean force) {
+        return rec(getCurrentMembership(), e, force);
     }
 
     protected static class FeatureEntry implements Comparable<FeatureEntry> {
@@ -160,7 +163,7 @@ public class VCompartment extends VStructure {
                                       FeatureEntry parent) {
         if (!nocheck && getFeatureName(f) == null) return null;
         if (!norec && (alias == null) && (prefix == null)) {
-            if (rec(f, false)) return null;
+            if (recCurrentMembership(f, false)) return null;
         }
         FeatureEntry fe = new FeatureEntry(f, alias, prefix);
         if (parent == null) {
@@ -193,7 +196,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String casePartUsage(PartUsage pu) {
-        rec(pu, true);
+        recCurrentMembership(pu, true);
         return "";
     }
 
@@ -213,7 +216,7 @@ public class VCompartment extends VStructure {
                     CompTree ct = new CompTree(fe);
                     ct.process(f2);
                 } else {
-                    rec(e, true);
+                    rec(m, e, true);
                 }
             }
         }
@@ -244,48 +247,49 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseReferenceUsage(ReferenceUsage ru) {
-        rec(ru, false);
+        recCurrentMembership(ru, false);
         return "";
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
-        rec(ru, true);
+        recCurrentMembership(ru, true);
         return "";
     }
 
     @Override
     public String caseIndividualUsage(IndividualUsage iu) {
-        rec(iu, true);
+        recCurrentMembership(iu, true);
         return "";
     }
 
     @Override
     public String caseAnalysisCaseUsage(AnalysisCaseUsage au) {
-        rec(au, true);
+        recCurrentMembership(au, true);
         return "";
     }
 
     @Override
     public String caseDefinition(Definition d) {
-        rec(d, true);
+        recCurrentMembership(d, true);
         return "";
+    }
+
+    @Override
+    public String caseFeatureMembership(FeatureMembership fm) {
+        return visitMembership(fm);
     }
 
     @Override
     public String caseMembership(Membership m) {
         Element e = m.getMemberElement();
-        if (e instanceof Feature) {
-            addFeature((Feature) e, m.getMemberName());
-        } else {
-            rec(e, true);
-        }
+        rec(m, e, true);
         return "";
     }
 
     @Override
     public String caseVariantMembership(VariantMembership vm) {
-        if (base instanceof EnumerationDefinition) {
+        if (vm.getMembershipOwningNamespace() instanceof EnumerationDefinition) {
             Element e = vm.getMemberElement();
             if (e instanceof EnumerationUsage) {
                 EnumerationUsage eu = (EnumerationUsage) e;
@@ -293,13 +297,13 @@ public class VCompartment extends VStructure {
                 return "";
             }
         }
-        rec(vm, true);
+        rec(vm, vm, true);
         return "";
     }
 
     @Override
     public String caseObjectiveMembership(ObjectiveMembership om) {
-        rec(om, true);
+        rec(om, om, true);
         return "";
     }
 
@@ -317,7 +321,7 @@ public class VCompartment extends VStructure {
         boolean added = false;
         for (FeatureTyping ft: u.getOwnedTyping()) {
             Type typ = ft.getType();
-            addPRelation(base, typ, sm, "<<subject>>");
+            addPRelation(sm.getMembershipOwningNamespace(), typ, sm, "<<subject>>");
             added = true;
         }
         if (!added) {
@@ -414,8 +418,7 @@ public class VCompartment extends VStructure {
         }
     }
 
-    public void startType(Type typ) {
-        this.base = typ;
+    private void startType(Type typ) {
         traverse(typ);
         addFeatures(featureEntries, 0);
     }
@@ -442,28 +445,28 @@ public class VCompartment extends VStructure {
     @Override
     public String caseStateDefinition(StateDefinition sd) {
         if (!mixedMode) return null;
-        rec(sd, true);
+        recCurrentMembership(sd, true);
         return "";
     }
 
     @Override
     public String caseStateUsage(StateUsage su) {
         if (!mixedMode) return null;
-        rec(su, true);
+        recCurrentMembership(su, true);
         return "";
     }
 
     @Override
     public String caseActionDefinition(ActionDefinition ad) {
         if (!mixedMode) return null;
-        rec(ad, true);
+        recCurrentMembership(ad, true);
         return "";
     }
 
     @Override
     public String caseActionUsage(ActionUsage au) {
         if (!mixedMode) return null;
-        rec(au, true);
+        recCurrentMembership(au, true);
         return "";
     }
 }

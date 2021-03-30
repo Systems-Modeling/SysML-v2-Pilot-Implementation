@@ -49,19 +49,15 @@ public abstract class VTraverser extends Visitor {
 
     private List<Set<Namespace>> listOfVisited = new ArrayList<Set<Namespace>>();
 
-    @Override
-    protected void pushIdMap() {
+    protected void pushVisited() {
         listOfVisited.add(visited);
         this.visited = new HashSet<Namespace>();
-        super.pushIdMap();
     }
 
-    @Override
-    protected void popIdMap(boolean keep) {
+    protected void popVisited() {
         int idx = listOfVisited.size() - 1;
         this.visited = listOfVisited.get(idx);
         listOfVisited.remove(idx);
-        super.popIdMap(keep);
     }
 
 
@@ -76,10 +72,14 @@ public abstract class VTraverser extends Visitor {
         return getString();
     }
 
-    @Override
-    public String caseMembership(Membership m) {
+    protected String visitMembership(Membership m) {
         this.currentMembership = m;
         return visit(m.getMemberElement());
+    }
+
+    @Override
+    public String caseMembership(Membership m) {
+        return visitMembership(m);
     }
 
     @Override

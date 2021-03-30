@@ -277,8 +277,7 @@ public class VCompartment extends VStructure {
 
     @Override
     public String caseFeatureMembership(FeatureMembership fm) {
-    	// Delegate it to VTraverser
-        return super.caseMembership(fm);
+        return visitMembership(fm);
     }
 
     @Override

@@ -217,7 +217,9 @@ public abstract class VStructure extends VDefault {
         addLink(pkg);
         append(" {\n");
         pushIdMap();
+        pushVisited();
         super.caseNamespace(pkg);
+        popVisited();
         popIdMap(true);
         flushContexts();
         append("}\n");

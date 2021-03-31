@@ -270,11 +270,7 @@ Import returns SysML::Import :
 ;
 
 fragment ImportedNamespace returns SysML::Import :
-	(
-	  importedNamespace = [SysML::Namespace|Name] ( '::' | '.' ) 
-	| importedNamespace = [SysML::Namespace|ColonQualifiedName] '::' 
-	| importedNamespace = [SysML::Namespace|DotQualifiedName] '.'
-	)
+	importedNamespace = [SysML::Namespace|QualifiedName] '::' 
 	( '*' | isRecursive ?= '**' )
 ;
 

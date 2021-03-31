@@ -23,8 +23,11 @@ package org.omg.sysml.adapter;
 
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.TypeUtil;
 
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 
@@ -44,6 +47,15 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 
+	protected void addResultSubsetting() {
+		OperatorExpression expression = getTarget();
+		EList<Expression> operands = expression.getOperand();
+		if (!operands.isEmpty()) {
+			TypeUtil.addImplicitGeneralTypeTo(expression.getResult(),
+					SysMLPackage.eINSTANCE.getSubsetting(), operands.get(0).getResult());
+		}
+	}
+	
 	@Override
 	public void computeImplicitGeneralTypes() {
 		OperatorExpression target = getTarget();
@@ -52,6 +64,14 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 			addDefaultGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
 		}
 		super.computeImplicitGeneralTypes();
+	}
+	
+	@Override
+	public void doTransform() {
+		super.doTransform();
+		if ("[".equals(getTarget().getOperator())) {
+			addResultSubsetting();
+		}
 	}
 	
 }

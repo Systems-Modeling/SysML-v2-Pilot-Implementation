@@ -233,12 +233,6 @@ ExtentExpression returns SysML::Expression :
 ;
 
 
-// Extent Expressions (Deprecated)
-@Deprecated
-ExtentExpression_Deprecated returns SysML::OperatorExpression :
-	ownedRelationship += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
-;
-
 /* Sequence Expressions */
 
 SequenceExpression returns SysML::Expression :
@@ -247,7 +241,13 @@ SequenceExpression returns SysML::Expression :
 	  operator = '[' operand += OwnedExpression ']'
 	| {SysML::OperatorExpression.operand += current} '->' 
 	  operator = Name ( ownedRelationship += BodyExpressionMember )+
+	| {SysML::QueryPathStepExpression.operand += current}
+	  '.' operand += FeatureNameExpression
 	)*
+;
+
+FeatureNameExpression returns SysML::QueryPathExpression :
+	ownedRelationship += FeatureReferenceMember
 ;
 
 BodyExpressionMember returns SysML::FeatureMembership :
@@ -295,7 +295,6 @@ BaseExpression returns SysML::Expression :
 	| LiteralExpression 
 	| FeatureReferenceExpression 
 	| InvocationExpression 
-	| ExtentExpression_Deprecated
 	| '(' OwnedExpression ')'
 ;
 
@@ -387,13 +386,7 @@ Name:
 	ID | UNRESTRICTED_NAME;
 
 QualifiedName:
-	Name | ColonQualifiedName | DotQualifiedName;
-
-ColonQualifiedName:
-	Name ('::' Name)+;
-
-DotQualifiedName:
-	Name ('.' Name)+;
+	Name ('::' Name)*;
 	
 /* TERMINALS */
 terminal DECIMAL_VALUE returns Ecore::EInt:

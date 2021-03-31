@@ -216,12 +216,12 @@ package 'Vehicle Analysis Demo' {
 				{1..n-1}->forAll i (
 					StraightLineDynamicsEquations (
 						p => power[i],
-						m => vehicle::mass,
+						m => vehicle.mass,
 						dt => t[i+1] - t[i],
-						x_i => s.position[i],
-						v_i => s.velocity[i],
-						x_f => s.position[i+1],
-						v_f => s.velocity[i+1],
+						x_i => s[i].position,
+						v_i => s[i].velocity,
+						x_f => s[i+1].position,
+						v_f => s[i+1].velocity,
 						a => acceleration[i]                    
 					)
 				)

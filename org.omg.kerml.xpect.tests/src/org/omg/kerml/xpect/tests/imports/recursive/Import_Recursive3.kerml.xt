@@ -50,7 +50,7 @@ package RecursiveImport {
 	
 	
 	
-	//* XPECT scope at S.S1.X2 ---
+	//* XPECT scope at S::S1::X2 ---
 	P.X.X1, RecursiveImport.P.X.X1,
 	P.X.X1.X2, RecursiveImport.P.X.X1.X2,
 	P.Q.Y, RecursiveImport.P.Q.Y,
@@ -97,5 +97,5 @@ package RecursiveImport {
 	
 	--- */
 	
-	xx1: S.S1.X2;
+	xx1: S::S1::X2;
 }

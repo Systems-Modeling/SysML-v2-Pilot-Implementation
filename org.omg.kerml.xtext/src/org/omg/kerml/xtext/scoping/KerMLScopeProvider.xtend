@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.Expression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -136,7 +137,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		return null;
 	}
 
-	def QueryPathExpression prevQueryPath(QueryPathExpression qpe) {
+	def Expression prevQueryPath(QueryPathExpression qpe) {
 		var oe = qpe.owner
 		if (oe instanceof QueryPathStepExpression) {
 			var ops = oe.operand
@@ -144,10 +145,10 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				var op1 = ops.get(0);
 				if (op1 == qpe) {
 					return null;
-				} else if (op1 instanceof QueryPathExpression) {
-					return op1
 				} else if (op1 instanceof QueryPathStepExpression) {
 					return prevQueryPath(op1)
+				} else if (op1 instanceof Expression) {
+					return op1
 				}
 			}
 		}
@@ -157,7 +158,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	def IScope scope_QueryPathExpression(Element element, QueryPathExpression qpe, EObject context, EReference reference) {
 		var prev = prevQueryPath(qpe)
 		if (prev !== null)
-			element.scope_Namespace(prev.referent, context, reference)
+			element.scope_Namespace(prev.result, context, reference)
 		else 
 			element.scope_Namespace(qpe, context, reference)
 	}

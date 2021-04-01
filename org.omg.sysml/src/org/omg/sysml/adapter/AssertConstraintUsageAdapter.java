@@ -22,6 +22,9 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
+import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Type;
 
 public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 
@@ -31,6 +34,18 @@ public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 	
 	public AssertConstraintUsage getTarget() {
 		return (AssertConstraintUsage)super.getTarget();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return isEnactedPerformance()?
+				getDefaultSupertype("enactedPerformance"):
+				super.getDefaultSupertype();
+	}
+	
+	public boolean isEnactedPerformance() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof ItemDefinition || owningType instanceof ItemUsage;
 	}
 	
 	@Override

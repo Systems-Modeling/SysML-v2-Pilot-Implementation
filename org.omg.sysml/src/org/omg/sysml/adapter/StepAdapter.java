@@ -21,7 +21,14 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.List;
+
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Step;
+import org.omg.sysml.lang.sysml.Structure;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 public class StepAdapter extends FeatureAdapter {
 	
@@ -34,4 +41,36 @@ public class StepAdapter extends FeatureAdapter {
 		return (Step)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype(
+			isSubperformance()? 
+				"subperformance":
+			isEnactedPerformance()?
+				"enactedPerformance":
+			isIncomingTransfer()?
+				"incomingTransfer":
+				"base");
+	}
+	
+	public boolean isSubperformance() {
+		return getTarget().isComposite() && super.isSubperformance();
+	}
+	
+	public boolean isEnactedPerformance() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof Structure ||
+				owningType instanceof Feature && 
+					((Feature)owningType).getType().stream().anyMatch(Structure.class::isInstance);
+	}
+
+	public boolean isIncomingTransfer() {
+		return getTarget().getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
+	}
+
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return TypeUtil.getItemFeaturesOf(getTarget());
+	}	
+	
 }

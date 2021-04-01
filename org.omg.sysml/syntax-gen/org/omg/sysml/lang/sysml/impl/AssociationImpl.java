@@ -75,8 +75,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
-	public static final String ASSOCIATION_SUPERCLASS_DEFAULT = "Links::Link";
-	public static final String BINARY_ASSOCIATION_SUPERCLASS_DEFAULT = "Links::BinaryLink";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -377,15 +375,6 @@ public class AssociationImpl extends ClassifierImpl implements Association {
 	 */
 	public boolean isSetRelatedElement() {
   		return false;
-	}
-
-	/**
-	 * If the Association has no Superclassings, then create one whose superclass is
-	 * the appropriate default library class.
-	 */
-	protected String getDefaultSupertype() {
-		return getOwnedEndFeature().size() > 2 ? ASSOCIATION_SUPERCLASS_DEFAULT
-				: BINARY_ASSOCIATION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

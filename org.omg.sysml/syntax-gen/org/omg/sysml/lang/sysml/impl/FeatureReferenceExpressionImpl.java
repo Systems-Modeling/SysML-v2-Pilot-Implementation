@@ -36,6 +36,7 @@ import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -96,7 +97,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	
 	protected Feature getSelfReferenceFeature() {
 		if (selfReferenceFeature == null) {
-			selfReferenceFeature = (Feature)getDefaultType(SELF_REFERENCE_FEATURE);
+			selfReferenceFeature = (Feature)SysMLLibraryUtil.getLibraryType(this, SELF_REFERENCE_FEATURE);
 		}
 		return selfReferenceFeature;
 	}
@@ -126,7 +127,7 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 			} else {
 				Optional<FeatureImpl> feature = ((Type)target).getFeature().stream().
 						map(FeatureImpl.class::cast).
-						filter(f->f.getRedefinedFeatures().contains(referent)).
+						filter(f->FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
 						findFirst();
 				if (feature.isPresent()) {
 					FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());

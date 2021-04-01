@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -56,8 +54,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefinition {
 
-	public static final String ACTION_DEFINITION_SUPERCLASS_DEFAULT = "Actions::Action";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,16 +107,6 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 		return new DerivedEObjectEList<ActionUsage>(ActionUsage.class, this, 
 				SysMLPackage.ACTION_DEFINITION__ACTION, 
 				new int[] {SysMLPackage.TYPE__FEATURE});
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return ACTION_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return Collections.emptyList();
 	}
 
 	/**

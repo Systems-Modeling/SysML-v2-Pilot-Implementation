@@ -21,10 +21,19 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class RequirementUsageAdapter extends ConstraintUsageAdapter {
+	
+	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
 	
 	public RequirementUsageAdapter(RequirementUsage element) {
 		super(element);
@@ -41,5 +50,32 @@ public class RequirementUsageAdapter extends ConstraintUsageAdapter {
 	public Usage getSubjectParameter() {
 		return getTarget().getSubjectParameter();
 	}
+	
+	// Implicit Generalization
 
+	@Override
+	protected String getDefaultSupertype() {
+		return UsageUtil.isSubrequirement(getTarget())? 
+				getDefaultSupertype("subrequirement"):
+				getDefaultSupertype("base");
+	}
+	
+	@Override
+	public void addRequirementSubsetting() {
+		if (UsageUtil.isVerifiedRequirement(getTarget())) {
+			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+		} else {
+			super.addRequirementSubsetting();
+		}
+	}
+	
+	// Computed Redefinition
+	
+	@Override
+	protected List<? extends Feature> getRelevantFeatures(Type type) {
+		return UsageUtil.isObjective(getTarget())? 
+				Collections.singletonList(TypeUtil.getObjectiveRequirementOf(type)):
+			    super.getRelevantFeatures(type);
+	}
+	
 }

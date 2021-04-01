@@ -34,8 +34,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysml.Class {
 	
-	public static final String CLASS_SUPERCLASS_DEFAULT = "Occurrences::Occurrence";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,9 +53,4 @@ public class ClassImpl extends ClassifierImpl implements org.omg.sysml.lang.sysm
 		return SysMLPackage.Literals.CLASS;
 	}
 	
-	@Override
-	protected String getDefaultSupertype() {
-		return CLASS_SUPERCLASS_DEFAULT;
-	}
-
 }

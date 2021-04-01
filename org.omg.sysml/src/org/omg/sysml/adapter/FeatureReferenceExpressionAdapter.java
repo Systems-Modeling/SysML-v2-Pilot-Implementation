@@ -56,7 +56,7 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 	
 	protected void addReferenceConnector() {
 		FeatureReferenceExpression expression = getTarget();
-		TypeUtil.addBindingConnectorTo(expression, expression.getReferent(), expression.getResult());
+		addBindingConnector(expression.getReferent(), expression.getResult());
 	}
 
 	protected void addResultSubsetting() {

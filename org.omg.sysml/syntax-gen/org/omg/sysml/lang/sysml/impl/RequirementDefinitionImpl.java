@@ -64,8 +64,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implements RequirementDefinition {
 	
-	public static final String REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT = "Requirements::RequirementCheck";
-	
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -216,11 +214,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return constraints;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

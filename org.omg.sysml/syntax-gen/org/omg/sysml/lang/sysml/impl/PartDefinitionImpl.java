@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefinition {
 	
-	public static final String PART_DEFINITION_SUPERCLASS_DEFAULT = "Parts::Part";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,11 +53,6 @@ public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefini
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PART_DEFINITION;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return PART_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } // PartDefinitionImpl

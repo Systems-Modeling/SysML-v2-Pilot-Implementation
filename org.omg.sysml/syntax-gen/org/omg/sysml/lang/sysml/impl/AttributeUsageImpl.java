@@ -46,8 +46,6 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
  */
 public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	
-	public static final String ATTRIBUTE_SUBSETTING_DEFAULT = "Base::dataValues";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,11 +110,6 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return ATTRIBUTE_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

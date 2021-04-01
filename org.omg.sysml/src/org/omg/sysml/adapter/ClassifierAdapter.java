@@ -21,7 +21,9 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Classifier;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class ClassifierAdapter extends TypeAdapter {
 	
@@ -34,4 +36,9 @@ public class ClassifierAdapter extends TypeAdapter {
 		return (Classifier)super.getTarget();
 	}
 
+	@Override
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getSuperclassing();
+	}
+	
 }

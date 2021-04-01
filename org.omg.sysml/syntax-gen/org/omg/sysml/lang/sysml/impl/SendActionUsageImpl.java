@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -36,6 +35,7 @@ import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,9 +52,6 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUsage {
-
-	public static final String SEND_ACTION_SUBSETTING_BASE_DEFAULT = "Actions::sendActions";
-	public static final String SEND_ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::sendSubactions";
 
 	/**
 	 * The cached value of the BindingConnector from the result of the target Expression of this SendAction to 
@@ -135,9 +132,9 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	 * @generated NOT
 	 */
 	public Expression basicGetItemsArgument() {
-		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
-		if (parameters.size() > 0) {
-			FeatureValue valuation = FeatureUtil.getValuationFor(parameters.get(0));
+		Feature itemsParameter = UsageUtil.getItemsParameterOf(this);
+		if (itemsParameter != null) {
+			FeatureValue valuation = FeatureUtil.getValuationFor(itemsParameter);
 			if (valuation != null) {
 				return valuation.getValue();
 			}
@@ -153,24 +150,6 @@ public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUs
 	@Override
 	public void setItemsArgument(Expression newItemsArgument) {
 		throw new UnsupportedOperationException();
-	}
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		TypeUtil.addDefaultGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), getDefaultSupertype());
-		super.addComputedRedefinitions(skip);
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					SEND_ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					SEND_ACTION_SUBSETTING_BASE_DEFAULT;
 	}
 	
 	/**

@@ -50,8 +50,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class InterfaceUsageImpl extends ConnectionUsageImpl implements InterfaceUsage {
 	
-	public static final String INTERFACE_CONNECTOR_SUBSETTING_DEFAULT = "Interfaces::interfaces";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,13 +69,6 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 		return SysMLPackage.Literals.INTERFACE_USAGE;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return getConnectorEnd().size() > 2? 
-				ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

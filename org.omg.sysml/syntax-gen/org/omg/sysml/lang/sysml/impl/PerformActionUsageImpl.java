@@ -22,18 +22,17 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,8 +48,6 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class PerformActionUsageImpl extends ActionUsageImpl implements PerformActionUsage {
-
-	public static final String PERFORM_ACTION_SUBSETTING_PART_DEFAULT = "Parts::Part::performedActions";
 
 	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;
@@ -93,27 +90,22 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	public ActionUsage basicGetPerformedAction() {
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
-		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(feature->feature == subsettingBaseDefault || 
-				         feature == subsettingPartDefault)) {
-			return this;
-		} else {
-			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof ActionUsage? (ActionUsage)subsettedFeature: this;
-		}
+		return FeatureUtil.getSubsettedFeatureOf(this, ActionUsage.class, 
+				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
 	}
 
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = getDefaultType(ACTION_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = getDefaultType(PERFORM_ACTION_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
 		}
 		return subsettingPartDefault;
 	}
@@ -133,17 +125,6 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()? 
-				PERFORM_ACTION_SUBSETTING_PART_DEFAULT:
-				super.getDefaultSupertype();
-	}
-	
-	public boolean isEnactedPerformance() {
-		return FeatureUtil.isEnactedPerformance(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

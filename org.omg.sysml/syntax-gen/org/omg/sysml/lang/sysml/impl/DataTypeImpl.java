@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.DataType;
  */
 public class DataTypeImpl extends ClassifierImpl implements DataType {
 	
-	public static final String DATA_TYPE_SUPERCLASS_DEFAULT = "Base::DataValue";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,11 +52,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.DATA_TYPE;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return DATA_TYPE_SUPERCLASS_DEFAULT;
 	}
 
 }

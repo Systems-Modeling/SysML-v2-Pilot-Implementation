@@ -41,6 +41,8 @@ public class LifeClassAdapter extends ClassAdapter {
 	public LifeClass getTarget() {
 		return (LifeClass)super.getTarget();
 	}
+	
+	// Transformation
 
 	public void addSuperclassing() {
 		LifeClass lifeClass = getTarget();

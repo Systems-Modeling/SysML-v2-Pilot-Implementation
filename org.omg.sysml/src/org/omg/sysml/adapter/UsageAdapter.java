@@ -21,6 +21,10 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -54,6 +58,47 @@ public class UsageAdapter extends FeatureAdapter {
 		return false;
 	}
 	
+	// Implicit Generalization
+	
+	public void addVariationSubsetting() {
+		Usage usage = getTarget();
+		Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);
+		if (variationUsage != null && UsageUtil.isVariant(usage)) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
+		}
+	}
+	
+	@Override
+	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
+		addVariationSubsetting();
+		return super.getSubsettedNotRedefinedFeatures();
+	}
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
+	// Computed Redefinitions
+	
+	/**
+	 * A subject Parameter always redefines a subject Parameter.
+	 */
+	@Override
+	public List<? extends Feature> getParameterRelevantFeatures(Type type) {
+		if (UsageUtil.isSubjectParameter(getTarget())) {
+			Feature typeSubject = TypeUtil.getSubjectParameterOf(type);
+			return typeSubject == null? Collections.emptyList(): 
+				Collections.singletonList(typeSubject);
+		}
+		return super.getParameterRelevantFeatures(type);
+	}
+	
+	@Override
+	public boolean isIgnoredParameter() {
+		return super.isIgnoredParameter() || UsageUtil.isSubjectParameter(getTarget());
+	}
+	
 	// Transformation
 	
 	/**
@@ -73,7 +118,7 @@ public class UsageAdapter extends FeatureAdapter {
 		if (valuation == null && UsageUtil.isSubjectParameter(usage)){
 			Feature subjectParameter = getRelevantSubjectParameterFor(usage);
 			if (subjectParameter != null) {
-				TypeUtil.addBindingConnectorTo(usage, subjectParameter, usage);
+				addBindingConnector(subjectParameter, usage);
 			}
 		} else {
 			super.computeValueConnector();
@@ -93,8 +138,8 @@ public class UsageAdapter extends FeatureAdapter {
 	protected void addVariationTyping() {
 		Usage usage = getTarget();
 		Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
-		if (variationDefinition != null && UsageUtil.isVariant(usage)) {
-			TypeUtil.addImplicitGeneralTypeTo(usage, SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
+		if (variationDefinition != null && UsageUtil.isVariant(getTarget())) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
 		}		
 	}
 	

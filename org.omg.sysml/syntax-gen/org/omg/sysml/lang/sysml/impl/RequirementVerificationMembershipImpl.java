@@ -22,17 +22,16 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,27 +91,22 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 		RequirementUsage ownedRequirement = getOwnedRequirement();
 		Type subsettingBaseDefault = getSubsettingBaseDefault();
 		Type subsettingPartDefault = getSubsettingPartDefault();
-		List<Subsetting> subsettings = ((RequirementUsageImpl)ownedRequirement).basicGetOwnedSubsetting();		
-		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(feature->feature == subsettingBaseDefault || 
-				         feature == subsettingPartDefault)) {
-			return ownedRequirement;
-		} else {
-			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof RequirementUsage? (RequirementUsage)subsettedFeature: ownedRequirement;
-		}
+		return FeatureUtil.getSubsettedFeatureOf(ownedRequirement, RequirementUsage.class, 
+				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
 	}
 
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, RequirementUsageImpl.REQUIREMENT_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, AssertConstraintUsageImpl.ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
 		}
 		return subsettingPartDefault;
 	}

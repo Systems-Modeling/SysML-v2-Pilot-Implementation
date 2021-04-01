@@ -39,7 +39,6 @@ import org.omg.sysml.lang.sysml.LiteralUnbounded;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.ElementImpl;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 
 public abstract class ModelLevelFunction {
@@ -100,7 +99,7 @@ public abstract class ModelLevelFunction {
 	
 	public static ModelLevelFunction getFunctionImpl(Function function) {
 		return function == null? null: 
-			getFunctionMap().get(((ElementImpl)function).getQualifiedName());
+			getFunctionMap().get(function.getQualifiedName());
 	}
 	
 	public abstract String getFunctionName();

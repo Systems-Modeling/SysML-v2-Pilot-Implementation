@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -50,8 +49,6 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class BehaviorImpl extends ClassImpl implements Behavior {
-
-	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -91,19 +88,6 @@ public class BehaviorImpl extends ClassImpl implements Behavior {
 		return parameters;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return BEHAVIOR_SUPERCLASS_DEFAULT;
-	}
-
-	/**
-	 * Return the non-parameter abstract features of the Behavior.
-	 */
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return TypeUtil.getNonParameterAbstractFeaturesFor(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

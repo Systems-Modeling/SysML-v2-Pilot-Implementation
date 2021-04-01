@@ -47,8 +47,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class RenderingDefinitionImpl extends PartDefinitionImpl implements RenderingDefinition {
 
-	public static final String RENDERING_DEFINITION_SUPERCLASS_DEFAULT = "Views::Rendering";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,11 +76,6 @@ public class RenderingDefinitionImpl extends PartDefinitionImpl implements Rende
 		return new DerivedEObjectEList<>(RenderingUsage.class, this, SysMLPackage.DEFINITION__OWNED_RENDERING, new int[] {SysMLPackage.DEFINITION__OWNED_USAGE});
 	}
 	
-	@Override
-	public String getDefaultSupertype() {
-		return RENDERING_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

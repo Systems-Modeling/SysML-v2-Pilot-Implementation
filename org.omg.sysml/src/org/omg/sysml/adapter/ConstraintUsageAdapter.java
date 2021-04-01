@@ -23,13 +23,19 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class ConstraintUsageAdapter extends UsageAdapter {
+
+	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
+	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 
 	protected BindingConnector resultConnector = null;
 
@@ -63,6 +69,34 @@ public class ConstraintUsageAdapter extends UsageAdapter {
 	
 	public boolean isRequirement() {
 		return getTarget().getType().stream().anyMatch(RequirementDefinition.class::isInstance);
+	}
+	
+	// Implicit Generalization
+	
+	protected void addAssumptionSubsetting() {
+		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+	}
+	
+	protected void addRequirementSubsetting() {
+		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+	}
+	
+	protected void addSubsetting(String subsettedFeatureName) {
+		Feature feature = (Feature)getLibraryType(subsettedFeatureName);
+		if (feature != null) {
+			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
+		}
+	}
+
+	@Override
+	public void computeImplicitGeneralTypes() {
+		ConstraintUsage target = getTarget();
+		if (UsageUtil.isAssumptionConstraint(target)) {
+			addAssumptionSubsetting();
+		} else if (UsageUtil.isRequirementConstraint(target)){
+			addRequirementSubsetting();
+		}
+		super.computeImplicitGeneralTypes();
 	}
 	
 	// Transformation

@@ -24,8 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -33,6 +31,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.omg.sysml.adapter.ConstraintUsageAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -42,9 +41,11 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -76,9 +77,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @ordered
 	 */
 	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
-	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
-	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
 	
 	private Type subsettingBaseDefault;
 	private Type subsettingAssumptionFeature;
@@ -337,36 +335,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	// Additional
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		if (UsageUtil.isAssumptionConstraint(this)) {
-			addAssumptionSubsetting();
-		} else if (UsageUtil.isRequirementConstraint(this)){
-			addRequirementSubsetting();
-		}
-		super.computeImplicitGeneralTypes();
-	}
-	
-	protected void addAssumptionSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
-	}
-	
-	protected void addRequirementSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
-	}
-	
-	protected void addSubsetting(String subsettedFeatureName) {
-		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
-		if (feature != null) {
-			TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), feature);
-		}
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return CONSTRAINT_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	@Override
 	public Feature getNamingFeature() {
 		return UsageUtil.isAssumptionConstraint(this) || UsageUtil.isRequirementConstraint(this)? 
 				getSubsettedConstraint():
@@ -374,14 +342,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	public ConstraintUsage getSubsettedConstraint() {
-		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
-		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(this::isIgnoredSubsetting)) {
-			return this;
-		} else {
-			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof ConstraintUsage? (ConstraintUsage)subsettedFeature: this;
-		}
+		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, this::isIgnoredSubsetting);
 	}
 	
 	protected boolean isIgnoredSubsetting(Feature feature) {
@@ -392,21 +353,24 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = getDefaultType(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingAssumptionFeature() {
 		if (subsettingAssumptionFeature == null) {
-			subsettingAssumptionFeature = getDefaultType(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+			subsettingAssumptionFeature = SysMLLibraryUtil.getLibraryType(this, 
+					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
 		}
 		return subsettingAssumptionFeature;
 	}
 
 	protected Type getSubsettingRequirementFeature() {
 		if (subsettingRequirementFeature == null) {
-			subsettingRequirementFeature = getDefaultType(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+			subsettingRequirementFeature = SysMLLibraryUtil.getLibraryType(this, 
+					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		return subsettingRequirementFeature;
 	}

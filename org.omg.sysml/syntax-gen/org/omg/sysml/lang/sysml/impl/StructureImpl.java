@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class StructureImpl extends ClassImpl implements Structure {
 	
-	public static final String STRUCTURE_SUPERCLASS_DEFAULT = "Objects::Object";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,11 +53,6 @@ public class StructureImpl extends ClassImpl implements Structure {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.STRUCTURE;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return STRUCTURE_SUPERCLASS_DEFAULT;
 	}
 
 } //StructureImpl

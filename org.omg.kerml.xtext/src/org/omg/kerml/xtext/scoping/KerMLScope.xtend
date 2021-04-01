@@ -40,13 +40,13 @@ import org.omg.sysml.lang.sysml.VisibilityKind
 import org.eclipse.xtext.resource.IEObjectDescription
 import org.eclipse.emf.ecore.EClass
 import java.util.HashSet
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.FeatureUtil
 
 class KerMLScope extends AbstractScope {
 	
@@ -189,7 +189,7 @@ class KerMLScope extends AbstractScope {
 							val elementqn = qn.append(elementName)
 							if ((isInsideScope || r.visibility == VisibilityKind.PUBLIC || 
 							     r.visibility == VisibilityKind.PROTECTED && scopingType !== null && 
-							     scopingType.isInheritedProtected(r.membershipOwningNamespace)) &&
+							     scopingType.isInheritedProtected(ns)) &&
 							     checkQualifiedName(elementqn, checkIfAdded)) {
 							    // Delay proxy resolution of memberElement for as long as possible (if not caused by getting memberName).
 							    // This can prevent the proxy from being spuriously marked as unresolvable during an earlier phase of the search. 
@@ -307,9 +307,9 @@ class KerMLScope extends AbstractScope {
 			}
 			if (!scopeProvider.visited.contains(ns)) {
 				scopeProvider.addVisited(ns);
-				TypeUtil.computeImplicitGeneralTypesFor(ns)
+				var implicitTypes = TypeUtil.getImplicitGeneralTypesFor(ns);
 				scopeProvider.removeVisited(ns)
-				for (type : TypeUtil.getImplicitGeneralTypesFor(ns)) {
+				for (type : implicitTypes) {
 					val found = type.resolveIfUnvisited(qn, false, visited, newRedefined, false)
 					if (found) {
 						return true
@@ -322,7 +322,7 @@ class KerMLScope extends AbstractScope {
 	
 	protected def Set<Feature> redefinedFeatures(Type type) {
 		type.ownedFeature.
-			flatMap[feature|(feature as FeatureImpl).getRedefinedFeaturesWithComputed(skip)].toSet
+			flatMap[feature|FeatureUtil.getRedefinedFeaturesWithComputedOf(feature, skip)].toSet
 	}
 	
 	protected def boolean imp(Namespace ns, QualifiedName qn, boolean isInsideScope, Set<Namespace> visited) {

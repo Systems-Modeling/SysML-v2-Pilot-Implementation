@@ -22,11 +22,11 @@
 package org.omg.sysml.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,22 +40,18 @@ import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.ItemFeature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.impl.GeneralizationImpl;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
 
 public class TypeUtil {
 	
@@ -64,6 +60,14 @@ public class TypeUtil {
 
 	protected static TypeAdapter getTypeAdapter(Type target) {
 		return (TypeAdapter)ElementUtil.getElementAdapter(target);
+	}
+	
+	// Caching
+	
+	public static EList<Membership> cacheInheritedMembershipOf(Type type, Supplier<EList<Membership>> supplier) {	
+		TypeAdapter adapter = getTypeAdapter(type);
+		EList<Membership> membership = adapter.getInheritedMembership();
+		return membership == null? adapter.setInheritedMembership(supplier.get()): membership;
 	}
 	
 	// Supertypes
@@ -79,7 +83,6 @@ public class TypeUtil {
 			.filter(gen -> gen != skip)
 			.map(Generalization::getGeneral)
 			.forEachOrdered(ownedGeneralEnds::add);
-		computeImplicitGeneralTypesFor(type);
 		ownedGeneralEnds.addAll(getImplicitGeneralTypesFor(type));
 		return ownedGeneralEnds;
 	}
@@ -263,10 +266,10 @@ public class TypeUtil {
 		return getTypeAdapter(type).getImplicitGeneralTypesOnly(kind);
 	}
 	
-	public static void addDefaultGeneralTypeTo(Type type, EClass generalizationEClass, String... superTypeNames) {
-		getTypeAdapter(type).addDefaultGeneralType(generalizationEClass, superTypeNames);
+	public static void addDefaultGeneralTypeTo(Type type) {
+		getTypeAdapter(type).addDefaultGeneralType();
 	}
-
+	
 	public static void addImplicitGeneralTypeTo(Type type, EClass kind, Type generalType) {
 		getTypeAdapter(type).addImplicitGeneralType(kind, generalType);
 	}
@@ -279,19 +282,6 @@ public class TypeUtil {
 		getTypeAdapter(type).forEachImplicitGeneralType(action);
 	}
 
-	public static void computeImplicitGeneralTypesFor(Type type) {
-		((TypeImpl)type).computeImplicitGeneralTypes();
-	}
-
-	public static <T extends Generalization> void removeEmptyGeneralTypesFor(Type type, Class<T> kind) {
-		List<Relationship> ownedRelationships = type.getOwnedRelationship();
-		for (Generalization generalization: ((TypeImpl)type).basicGetOwnedGeneralization(kind)) {
-			if (((GeneralizationImpl)generalization).basicGetGeneral() == null) {
-				ownedRelationships.remove(generalization);
-			}
-		}
-	}
-	
 	/**
 	 * Physically insert implicit generalizations into the model.
 	 */
@@ -315,36 +305,6 @@ public class TypeUtil {
 		return connector;
 	}
 
-	public static void addMemberBindingConnectorTo(Type type, BindingConnector connector) {
-		getTypeAdapter(type).addImplicitMemberBindingConnector(connector);
-	}
-
-	public static void addFeatureBindingConnectorTo(Type type, BindingConnector connector) {
-		getTypeAdapter(type).addImplicitFeatureBindingConnector(connector);
-	}
-
-	public static BindingConnector addBindingConnectorTo(Type type, Feature source, Feature target) {
-		BindingConnector connector = createBindingConnector(source, target);
-		if (ConnectorUtil.getContextTypeFor(connector) == type) {
-			addFeatureBindingConnectorTo(type, connector);
-		} else {
-			addMemberBindingConnectorTo(type, connector);
-		}
-		return connector;
-	}
-
-	protected static BindingConnector addBindingConnectorTo(Type type, Collection<Type> featuringTypes, Feature source, Feature target) {
-		BindingConnector connector = createBindingConnector(source, target);
-		getTypeAdapter(type).addImplicitMemberBindingConnector(connector);
-		FeatureUtil.addFeaturingTypesTo(connector, featuringTypes);
-		return connector;
-	}
-
-	public static BindingConnector addResultBindingTo(Type type, Expression sourceExpression, Feature target) {
-		ElementUtil.transform(sourceExpression);
-		return addBindingConnectorTo(type, sourceExpression.getResult(), target);
-	}
-	
 	public static void forEachImplicitBindingConnectorOf(Type type, BiConsumer<BindingConnector, EClass> consumer) {
 		getTypeAdapter(type).forEachImplicitBindingConnector(consumer);
 	}
@@ -373,6 +333,10 @@ public class TypeUtil {
 	}
 	
 	// Relevant features
+	
+	public static List<? extends Feature> getRelevantFeaturesOf(Type type) {
+		return getTypeAdapter(type).getRelevantFeatures();
+	}
 	
 	/**
 	 * Get the non-parameter abstract Features. (For use with Behaviors.)

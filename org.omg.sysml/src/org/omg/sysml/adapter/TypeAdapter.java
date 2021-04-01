@@ -32,28 +32,50 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Generalization;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.TypeUtil;
 
 public class TypeAdapter extends NamespaceAdapter {
 
+	private EList<Membership> inheritedMembership = null;
+	
 	public TypeAdapter(Type element) {
 		super(element);
 	}
 	
 	public Type getTarget() {
 		return (Type)super.getTarget();
+	}
+	
+	// Caching
+	
+	public EList<Membership> getInheritedMembership() {
+		return inheritedMembership;
+	}
+	
+	public EList<Membership> setInheritedMembership(EList<Membership> inheritedMembership) {
+		this.inheritedMembership = inheritedMembership;
+		return inheritedMembership;
+	}
+		
+	public void clearCaches() {
+		super.clearCaches();
+		inheritedMembership = null;
 	}
 	
 	// Implicit Elements
@@ -103,6 +125,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public List<Type> getImplicitGeneralTypes() {
+		computeImplicitGeneralTypes();
 		return implicitGeneralTypes.values().stream().
 				flatMap(Collection::stream).
 				collect(Collectors.toList());
@@ -135,11 +158,10 @@ public class TypeAdapter extends NamespaceAdapter {
 	@SuppressWarnings("unchecked")
 	public void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
 		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
-		TypeImpl type = (TypeImpl)getTarget();
-		TypeUtil.removeEmptyGeneralTypesFor(type, kind);
+		Type type = getTarget();
 		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
-				type.basicGetOwnedGeneralization(kind).isEmpty()) {
-			Type general = type.getDefaultType(superTypeNames);
+				hasNoOwnedGeneralizations(type, kind)) {
+			Type general = getLibraryType(superTypeNames);
 			if (general != null && general != type) {
 				List<Type> generalizations = new ArrayList<>();
 				generalizations.add(general);
@@ -148,6 +170,13 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 	
+	protected static boolean hasNoOwnedGeneralizations(Type type, Class<?> kind) {
+		return type.getOwnedRelationship().stream().
+				filter(kind::isInstance).
+				map(Generalization.class::cast).
+				noneMatch(gen->gen.getSpecific() == type);
+	}
+
 	public void addImplicitGeneralType(EClass eClass, Type general) {
 		if (general != null && !isImplicitGeneralizationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
@@ -174,6 +203,54 @@ public class TypeAdapter extends NamespaceAdapter {
 		implicitMemberBindingConnectors.add(connector);
 	}
 	
+	// Implicit Generalization Computation
+	
+	boolean isComputeImplicitGeneralTypes = true;
+	
+	public void computeImplicitGeneralTypes() {
+		if (isComputeImplicitGeneralTypes && !getTarget().isConjugated()) {
+			addDefaultGeneralType();
+			isComputeImplicitGeneralTypes = false;
+ 		}
+	}
+	
+	public void addDefaultGeneralType() {
+		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
+	}
+	
+	protected EClass getGeneralizationEClass() {
+		return SysMLPackage.eINSTANCE.getGeneralization();
+	}
+	
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
+	private String defaultSupertype = null;
+	
+	protected String getDefaultSupertype(String kind) {
+		if (defaultSupertype == null) {
+			defaultSupertype = ImplicitGeneralizationMap.getDefaultSupertypeFor(getTarget().getClass(), kind);
+		}
+		return defaultSupertype;
+	}
+	
+	public Type getLibraryType(String... defaultNames) {
+		return SysMLLibraryUtil.getLibraryType(getTarget(), defaultNames);
+	}
+	
+	// Computed Redefinitions
+	
+	/**
+	 * This method returns those features from the target type that should be automatically overridden in its usages.
+	 * By default, there are none.
+	 * 
+	 * @return	Relevant features from the target type that should be redefined in usages.
+	 */
+	public List<? extends Feature> getRelevantFeatures() {
+		return Collections.emptyList();
+	}
+	
 	// Transformation
 	
 	public void addResultParameter() {
@@ -187,19 +264,33 @@ public class TypeAdapter extends NamespaceAdapter {
 		}
 	}
 	
+	public BindingConnector addBindingConnector(Feature source, Feature target) {
+		BindingConnector connector = TypeUtil.createBindingConnector(source, target);
+		if (ConnectorUtil.getContextTypeFor(connector) == getTarget()) {
+			addImplicitFeatureBindingConnector(connector);
+		} else {
+			addImplicitMemberBindingConnector(connector);
+		}
+		return connector;
+	}
+
+	public BindingConnector addResultBinding(Expression sourceExpression, Feature target) {
+		ElementUtil.transform(sourceExpression);
+		return addBindingConnector(sourceExpression.getResult(), target);
+	}
+	
 	public void createResultConnector(Feature result) {
-		Type type = getTarget();
 		Expression resultExpression = 
-				(Expression)TypeUtil.getOwnedFeatureByMembershipIn(type, ResultExpressionMembership.class);
+				(Expression)TypeUtil.getOwnedFeatureByMembershipIn(getTarget(), ResultExpressionMembership.class);
 		if (resultExpression != null) {
-			TypeUtil.addResultBindingTo(type, resultExpression, result);
+			addResultBinding(resultExpression, result);
 		}
 	}
 
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		TypeUtil.computeImplicitGeneralTypesFor(getTarget());
+		computeImplicitGeneralTypes();
 	}
 	
 }

@@ -55,8 +55,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class CalculationDefinitionImpl extends ActionDefinitionImpl implements CalculationDefinition {
 
-	public static final String CALCULATION_DEFINITION_SUPERCLASS_DEFAULT = "Calculations::Calculation";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,10 +156,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
   		return false;
 	}
 
-	protected String getDefaultSupertype() {
-		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

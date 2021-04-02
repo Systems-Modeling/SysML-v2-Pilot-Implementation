@@ -54,9 +54,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCaseUsage {
 
-	public static final String ANALYSIS_CASE_SUBSETTING_BASE_DEFAULT = "AnalysisCases::analysisCases";
-	public static final String ANALYSIS_CASE_SUBSETTING_SUBCASE_DEFAULT = "AnalysisCases::AnalysisCase::subAnalysisCases";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,13 +202,6 @@ public class AnalysisCaseUsageImpl extends CaseUsageImpl implements AnalysisCase
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					ANALYSIS_CASE_SUBSETTING_SUBCASE_DEFAULT:
-					ANALYSIS_CASE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

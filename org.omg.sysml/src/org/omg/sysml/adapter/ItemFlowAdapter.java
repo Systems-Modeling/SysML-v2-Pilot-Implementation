@@ -27,9 +27,8 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.lang.sysml.impl.RedefinitionImpl;
+import org.omg.sysml.util.TypeUtil;
 
 public class ItemFlowAdapter extends ConnectorAdapter {
 
@@ -42,6 +41,18 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 		return (ItemFlow)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return isSubperformance()? 
+				getDefaultSupertype("subperformance"):
+				getDefaultSupertype("base");
+	}
+	
+	@Override
+	public List<? extends Feature> getRelevantFeatures() {
+		return TypeUtil.getItemFeaturesOf(getTarget());
+	}
+	
 	public void transformConnectorEnd() {
 		ItemFlow flow = getTarget();
 		EList<Feature> ends = flow.getConnectorEnd();
@@ -49,13 +60,9 @@ public class ItemFlowAdapter extends ConnectorAdapter {
 		if (owner instanceof Feature) {
 			if (ends.size() >= 2) {
 				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
-				List<Redefinition> redefinitions = ((FeatureImpl)endFeatures.get(0)).basicGetOwnedRedefinition();
-				if (!redefinitions.isEmpty()) {
-					Redefinition redefinition = redefinitions.get(0);
-					if (((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null) {
-						redefinition.setRedefinedFeature((Feature)owner);
-					}
-				}
+				endFeatures.get(0).getOwnedRedefinition().stream().findFirst().
+					filter(redefinition->((RedefinitionImpl)redefinition).basicGetRedefinedFeature() == null).
+					ifPresent(redefinition->redefinition.setRedefinedFeature((Feature)owner));
 			}
 		}
 	}

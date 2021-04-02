@@ -27,14 +27,13 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding
- * Connector</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> 
+ * An implementation of the model object '<em><b>Binding Connector</b></em>'. 
+ * <!-- end-user-doc -->
  *
  * @generated
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
-
-	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Links::selfLinks";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -53,9 +52,4 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return SysMLPackage.Literals.BINDING_CONNECTOR;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return BINDING_CONNECTOR_SUBSETTING_DEFAULT;
-	}
-	
 } // BindingConnectorImpl

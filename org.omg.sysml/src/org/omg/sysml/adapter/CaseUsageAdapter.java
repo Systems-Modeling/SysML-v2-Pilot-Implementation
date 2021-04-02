@@ -50,6 +50,14 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
 	}
 	
+	// Implicit Generalization
+	
+	@Override
+	public boolean isSubaction() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
+	}
+	
 	// Transformation
 
 	@Override

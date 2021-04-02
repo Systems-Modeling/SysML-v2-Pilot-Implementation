@@ -34,10 +34,4 @@ public class BooleanExpressionAdapter extends ExpressionAdapter {
 		return (BooleanExpression)super.getTarget();
 	}
 
-	@Override
-	public void doTransform() {
-		super.doTransform();
-		createResultConnector(getTarget().getResult());
-	}
-
 }

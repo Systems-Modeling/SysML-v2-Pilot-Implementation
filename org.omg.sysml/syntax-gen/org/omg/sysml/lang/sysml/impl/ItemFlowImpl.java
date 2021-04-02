@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import org.eclipse.emf.common.util.EList;
@@ -66,9 +65,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 	
-	public static final String ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::transfers";
-	public static final String ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subtransfers";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -238,28 +234,12 @@ public class ItemFlowImpl extends ConnectorImpl implements ItemFlow {
 
 	@Override
 	public boolean basicIsComposite() {
-		if (!isComposite && isSubtransfer()) {
+		if (!isComposite && FeatureUtil.isPerformanceFeature(this)) {
 			isComposite = true;
 		}
 		return isComposite;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubtransfer()? 
-				ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT:
-				ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubtransfer() {
-		return FeatureUtil.isPerformanceFeature(this);
-	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return TypeUtil.getItemFeaturesOf(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -25,15 +25,11 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -228,30 +224,6 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addIndividualDefinition();
-		super.computeImplicitGeneralTypes();
-	}
-	
-	protected boolean needsIndividualDefinition() {
-		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).
-					noneMatch(IndividualDefinition.class::isInstance) &&
-			   basicGetOwnedSubsetting().stream().map(Subsetting::getSubsettedFeature).
-					noneMatch(IndividualUsage.class::isInstance);
-	}
-		
-	protected void addIndividualDefinition() {
-		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
-			Type owningType = getOwningType();
-			if (owningType instanceof IndividualDefinition) {
-				TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
-			} else if (owningType instanceof IndividualUsage) {
-				TypeUtil.addImplicitGeneralTypeTo(this, SysMLPackage.eINSTANCE.getSubsetting(), owningType);
-			}
-		}
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

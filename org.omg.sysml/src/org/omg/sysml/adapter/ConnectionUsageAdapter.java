@@ -36,6 +36,13 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 	}
 
 	@Override
+	protected String getDefaultSupertype() {
+		return getTarget().getConnectorEnd().size() > 2? 
+				getDefaultSupertype("base"):
+				getDefaultSupertype("binary");
+	}
+	
+	@Override
 	public void doTransform() {
 		super.doTransform();
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));

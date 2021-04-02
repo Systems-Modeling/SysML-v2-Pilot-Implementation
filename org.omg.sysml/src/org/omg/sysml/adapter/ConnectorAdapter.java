@@ -36,6 +36,18 @@ public class ConnectorAdapter extends FeatureAdapter {
 	}
 
 	@Override
+	protected String getDefaultSupertype() {
+		Connector target = getTarget();
+		return hasStructureType()?
+				target.getConnectorEnd().size() > 2? 
+					getDefaultSupertype("object"):
+					getDefaultSupertype("binaryObject"):
+				target.getConnectorEnd().size() > 2? 
+					getDefaultSupertype("binary"):
+					getDefaultSupertype("base");
+	}
+	
+	@Override
 	public void doTransform() {
 		super.doTransform();
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));

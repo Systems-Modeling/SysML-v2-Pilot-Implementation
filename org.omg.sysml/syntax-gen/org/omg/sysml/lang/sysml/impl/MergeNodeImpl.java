@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 
-	public static final String MERGE_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::merges";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,9 +55,4 @@ public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 		return SysMLPackage.Literals.MERGE_NODE;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return MERGE_NODE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 } //MergeNodeImpl

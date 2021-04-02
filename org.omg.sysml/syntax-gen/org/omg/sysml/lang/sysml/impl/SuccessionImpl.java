@@ -53,8 +53,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class SuccessionImpl extends ConnectorImpl implements Succession {
 
-	public static final String SUCCESSION_SUBSETTING_BASE_DEFAULT = "Occurrences::successions";
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -152,11 +150,6 @@ public class SuccessionImpl extends ConnectorImpl implements Succession {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return SUCCESSION_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

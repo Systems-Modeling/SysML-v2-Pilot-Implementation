@@ -57,8 +57,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class ConstraintDefinitionImpl extends DefinitionImpl implements ConstraintDefinition {
 	
-	public static final String CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT = "Constraints::ConstraintCheck";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,11 +155,6 @@ public class ConstraintDefinitionImpl extends DefinitionImpl implements Constrai
 	 */
 	public boolean isSetStep() {
   		return false;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return CONSTRAINT_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

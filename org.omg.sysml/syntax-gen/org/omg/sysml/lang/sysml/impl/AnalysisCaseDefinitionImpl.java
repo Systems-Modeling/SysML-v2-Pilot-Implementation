@@ -51,8 +51,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements AnalysisCaseDefinition {
 	
-	private static final String ANALYSIS_CASE_DEFINITION_SUPERCLASS_DEFAULT = "AnalysisCases::AnalysisCase";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -120,11 +118,6 @@ public class AnalysisCaseDefinitionImpl extends CaseDefinitionImpl implements An
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return ANALYSIS_CASE_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

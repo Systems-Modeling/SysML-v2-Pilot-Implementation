@@ -21,15 +21,18 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class ItemFlowEndAdapter extends FeatureAdapter {
 
@@ -42,21 +45,45 @@ public class ItemFlowEndAdapter extends FeatureAdapter {
 		return (ItemFlowEnd)super.getTarget();
 	}
 	
+	// Implicit Generalization
+	
+	@Override
+	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
+		addItemFlowEndSubsetting();
+		return super.getSubsettedNotRedefinedFeatures();
+	}
+	
+	@Override
+	public void computeImplicitGeneralTypes() {
+		// Note: Do not add item flow end subsetting here, to avoid circularity due to name resolution.
+		addComputedRedefinitions(null);
+	}
+	
+	// Computed Redefinition
+
+	@Override
+	protected List<Type> getGeneralTypes(Type type, Element skip) {
+		return type instanceof ItemFlow? new ArrayList<>(((Feature)type).getType()) : super.getGeneralTypes(type, skip);
+	}
+
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return getTarget().getOwnedFeature();
+	}
+	
 	// Transformation
 	
 	public void addItemFlowEndSubsetting() {
 		EList<Feature> features = getTarget().getOwnedFeature();
 		if (!features.isEmpty()) {
-			List<Redefinition> redefinitions = ((FeatureImpl) features.get(0)).basicGetOwnedRedefinition();
-			if (!redefinitions.isEmpty()) {
-				Feature feature = redefinitions.get(0).getRedefinedFeature();
-				if (feature != null) {
-					Type owner = feature.getOwningType();
-					if (owner instanceof Feature) {
-						addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner);
-					}
-				}
-			}
+			features.get(0).getOwnedRedefinition().stream().findFirst().
+				map(Redefinition::getRedefinedFeature).
+				filter(feature->feature != null).
+				map(Feature::getOwningType).
+				filter(Feature.class::isInstance).
+				ifPresent(owner->
+					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owner)
+				);
 		}
 	}	
 

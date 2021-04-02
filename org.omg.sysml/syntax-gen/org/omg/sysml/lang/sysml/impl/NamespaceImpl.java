@@ -50,6 +50,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -162,24 +163,14 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		return ownedMembers;
 	}
 	
-	private EList<Membership> importedMembership = null;
-
-	@Override
-	public void clearCaches() {
-		importedMembership = null;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public EList<Membership> getImportedMembership() {
-		if (importedMembership == null) {
-			importedMembership = getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), false);
-//			System.out.println("Caching importedMembership for " + this);
-		}
-		return importedMembership;
+		return NamespaceUtil.cacheImportedMembershipOf(this, 
+				()-> getImportedMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>(), false));
 	}
 
 	/**

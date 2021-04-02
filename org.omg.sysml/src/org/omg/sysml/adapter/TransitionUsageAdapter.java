@@ -46,6 +46,13 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 		return (TransitionUsage)super.getTarget();
 	}
 	
+	// Implicit Generalization
+	
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
 	// Transformation
 	
 	protected void updateTransitionLinkRedefinition(Feature transitionLinkFeature) {
@@ -73,7 +80,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
 			Succession succession = transition.getSuccession();
 			ElementUtil.transform(succession);
-			TypeUtil.addBindingConnectorTo(transition, succession, transitionLinkFeature);
+			addBindingConnector(succession, transitionLinkFeature);
 		}
 		updateTransitionLinkRedefinition(transitionLinkFeature);
 		return transitionLinkFeature;

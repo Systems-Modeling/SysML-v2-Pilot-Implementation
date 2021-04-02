@@ -21,7 +21,11 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.Multiplicity;
+import org.omg.sysml.lang.sysml.Type;
 
 public class MultiplicityAdapter extends FeatureAdapter {
 
@@ -34,6 +38,16 @@ public class MultiplicityAdapter extends FeatureAdapter {
 		return (Multiplicity)super.getTarget();
 	}
 
+	@Override
+	protected String getDefaultSupertype() {
+		return getDefaultSupertype("base");
+	}
+	
+	@Override
+	protected List<Multiplicity> getRelevantFeatures(Type type) {
+		return Collections.emptyList();
+	}
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();

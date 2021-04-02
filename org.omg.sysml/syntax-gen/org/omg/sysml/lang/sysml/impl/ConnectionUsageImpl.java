@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
@@ -81,8 +82,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 	 * @ordered
 	 */
 	protected EList<Element> ownedRelatedElement;
-
-	public static final String CONNECTOR_USAGE_SUBSETTING_DEFAULT = "Connections::connections";
 
 	/**
 	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
@@ -233,7 +232,7 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
 		new ArrayList<Feature>(getConnectorEnd()).stream().
 			filter(end->end != null).forEach(end->
-			((FeatureImpl)end).getFirstSubsettedFeature().
+			FeatureUtil.getFirstSubsettedFeatureOf(end).
 			ifPresent(relatedFeatures::add));
 		return relatedFeatures;
 	}
@@ -420,13 +419,6 @@ public class ConnectionUsageImpl extends PartUsageImpl implements ConnectionUsag
 		return path;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return getConnectorEnd().size() > 2? 
-				ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-				CONNECTOR_USAGE_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

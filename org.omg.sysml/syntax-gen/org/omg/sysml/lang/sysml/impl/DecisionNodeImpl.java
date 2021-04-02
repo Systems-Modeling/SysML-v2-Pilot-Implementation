@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class DecisionNodeImpl extends ControlNodeImpl implements DecisionNode {
 
-	public static final String DECISION_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::decisions";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,9 +55,4 @@ public class DecisionNodeImpl extends ControlNodeImpl implements DecisionNode {
 		return SysMLPackage.Literals.DECISION_NODE;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return DECISION_NODE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 } //DecisionNodeImpl

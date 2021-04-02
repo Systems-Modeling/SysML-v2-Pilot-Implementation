@@ -22,13 +22,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> 
@@ -55,11 +51,6 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.MULTIPLICITY;
-	}
-	
-	@Override
-	protected List<Multiplicity> getRelevantFeatures(Type type) {
-		return Collections.emptyList();
 	}
 	
 } // MultiplicityImpl

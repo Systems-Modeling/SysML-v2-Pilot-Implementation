@@ -58,8 +58,6 @@ import org.omg.sysml.util.TypeUtil;
  */
 public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDefinition {
 
-	public String STATE_DEFINITION_SUPERCLASS_DEFAULT = "States::StateAction";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,11 +209,6 @@ public class StateDefinitionImpl extends ActionDefinitionImpl implements StateDe
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return STATE_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

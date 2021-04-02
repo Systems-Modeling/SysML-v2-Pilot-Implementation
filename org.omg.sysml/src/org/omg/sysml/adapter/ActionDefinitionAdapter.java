@@ -21,7 +21,11 @@
 
 package org.omg.sysml.adapter;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.omg.sysml.lang.sysml.ActionDefinition;
+import org.omg.sysml.lang.sysml.Feature;
 
 public class ActionDefinitionAdapter extends DefinitionAdapter {
 	
@@ -32,6 +36,11 @@ public class ActionDefinitionAdapter extends DefinitionAdapter {
 	@Override
 	public ActionDefinition getTarget() {
 		return (ActionDefinition)super.getTarget();
+	}
+
+	@Override
+	public List<Feature> getRelevantFeatures() {
+		return Collections.emptyList();
 	}
 
 }

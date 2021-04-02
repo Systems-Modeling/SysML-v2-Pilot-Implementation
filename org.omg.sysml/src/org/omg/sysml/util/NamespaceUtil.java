@@ -21,13 +21,15 @@
 
 package org.omg.sysml.util;
 
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.adapter.NamespaceAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.impl.NamespaceImpl;
 
 public class NamespaceUtil {
 	
@@ -57,8 +59,10 @@ public class NamespaceUtil {
 				map(type::cast);
 	}
 
-	public static void clearCachesOf(Namespace namespace) {
-		((NamespaceImpl)namespace).clearCaches();
+	public static EList<Membership> cacheImportedMembershipOf(Namespace namespace, Supplier<EList<Membership>> supplier) {	
+		NamespaceAdapter adapter = (NamespaceAdapter)ElementUtil.getElementAdapter(namespace);
+		EList<Membership> membership = adapter.getImportedMembership();
+		return membership == null? adapter.setImportedMembership(supplier.get()): membership;
 	}
-
+	
 }

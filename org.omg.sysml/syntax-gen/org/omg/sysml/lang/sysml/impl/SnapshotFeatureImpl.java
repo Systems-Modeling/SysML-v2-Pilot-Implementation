@@ -22,16 +22,13 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +40,6 @@ import org.omg.sysml.util.UsageUtil;
 public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature {
 	
 	public static final String SNAPSHOT_FEATURE_DEFAULT_NAME = "snapshotOf";	
-	public static final String SNAPSHOT_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::snapshotOf";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -73,26 +69,9 @@ public class SnapshotFeatureImpl extends FeatureImpl implements SnapshotFeature 
 	}
 	
 	@Override
-	public void computeImplicitGeneralTypes() {
-		UsageUtil.setIndividualTypingFor(this);
-		super.computeImplicitGeneralTypes();
-	}
-		
-	@Override
 	protected List<Type> getFeatureTypes() {
-		UsageUtil.setIndividualTypingFor(this);
+		FeatureUtil.setIndividualTypingFor(this);
 		return super.getFeatureTypes();
-	}
-
-	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		return Collections.singletonList(null);
-	}
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return Collections.singletonList(type == getOwner()? this:
-			   (Feature)getDefaultType(SNAPSHOT_FEATURE_REDEFINED_FEATURE));
 	}
 
 } //SnapshotFeatureImpl

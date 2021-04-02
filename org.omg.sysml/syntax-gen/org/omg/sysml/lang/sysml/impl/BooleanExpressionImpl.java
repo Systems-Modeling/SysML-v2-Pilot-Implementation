@@ -22,15 +22,12 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BooleanExpression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,9 +43,6 @@ import org.omg.sysml.util.FeatureUtil;
  * @generated
  */
 public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpression {
-
-	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::booleanEvaluations";
-	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subBooleanEvaluations";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,20 +144,6 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
   		return false;
 	}
 
-	// Additional redefinitions and subsets
-
-	@Override
-	protected String getDefaultSupertype() {
-		return FeatureUtil.isCompositePerformanceFeature(this)?
-				BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
-	}
-
-	@Override
-	public EList<Feature> getFeature() {
-		return super.getFeature();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

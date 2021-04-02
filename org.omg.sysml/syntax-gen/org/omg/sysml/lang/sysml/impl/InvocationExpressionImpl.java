@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -37,9 +36,10 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
+
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -105,7 +105,8 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 		Type type = ExpressionUtil.getExpressionTypeOf(this);
 		return type instanceof Function? (Function)type:
 			   type instanceof Expression? ((Expression)type).getFunction():
-			   (Function)getDefaultType(FunctionImpl.FUNCTION_SUPERCLASS_DEFAULT);
+			   (Function)SysMLLibraryUtil.getLibraryType(this, 
+					   ImplicitGeneralizationMap.getDefaultSupertypeFor(FunctionImpl.class, "base"));
 	}
 
 	/**
@@ -117,21 +118,6 @@ public class InvocationExpressionImpl extends ExpressionImpl implements Invocati
 	public EList<Expression> getArgument() {
 		return new DerivedEObjectEList<Expression>(Expression.class, this, SysMLPackage.INVOCATION_EXPRESSION__ARGUMENT, new int[] {SysMLPackage.INVOCATION_EXPRESSION__OWNED_FEATURE});
 	}
-	
-	// Other
-	
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		Type type = ExpressionUtil.getExpressionTypeOf(this);
-		int m = type == null ? 0 : 
-			(int)TypeUtil.getAllParametersOf(this).stream().
-				filter(FeatureUtil::isInputParameter).count();
-		List<Feature> features = super.getOwnedFeature();
-		int n = features.size();
-		return m >= n ? Collections.emptyList() : features.subList(m, n);
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

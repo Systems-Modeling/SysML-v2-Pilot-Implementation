@@ -49,8 +49,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class VerificationCaseDefinitionImpl extends CaseDefinitionImpl implements VerificationCaseDefinition {
 	
-	public static final String VERIFICATION_CASE_DEFINITION_SUPERCLASS_DEFAULT = "VerificationCases::VerificationCase";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,11 +90,6 @@ public class VerificationCaseDefinitionImpl extends CaseDefinitionImpl implement
 				filter(constraint->constraint != null);
 	}
 	
-	@Override
-	protected String getDefaultSupertype() {
-		return VERIFICATION_CASE_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

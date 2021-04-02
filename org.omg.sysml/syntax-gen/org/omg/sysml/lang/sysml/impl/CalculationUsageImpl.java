@@ -68,8 +68,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
 	 * @ordered
 	 */
 	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-	public static final String CALCULATION_SUBSETTING_BASE_DEFAULT = "Calculations::calculations";
-	public static final String CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT = "Calculations::Calculation::subcalculations";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -269,13 +267,6 @@ public class CalculationUsageImpl extends ActionUsageImpl implements Calculation
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					CALCULATION_SUBSETTING_SUBCALCULATION_DEFAULT:
-					CALCULATION_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -26,24 +26,21 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.adapter.FeatureAdapter;
-import org.omg.sysml.adapter.ItemFlowEndAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.FeatureValue;
-import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.ItemFlowEnd;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ParameterMembership;
@@ -51,15 +48,12 @@ import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 
 public class FeatureUtil {
 	
@@ -70,30 +64,15 @@ public class FeatureUtil {
 		return (FeatureAdapter)ElementUtil.getElementAdapter(target);
 	}
 	
+	// Caching
+	
+	public static EList<Type> cacheTypesOf(Feature feature, Supplier<EList<Type>> supplier) {	
+		FeatureAdapter adapter = getFeatureAdapter(feature);
+		EList<Type> types = adapter.getTypes();
+		return types == null? adapter.setTypes(supplier.get()): types;
+	}
+	
 	// Utility
-	
-	public static boolean isStructureFeature(Feature feature) {
-		return feature.getType().stream().anyMatch(Structure.class::isInstance);
-	}
-	
-	public static boolean isDataFeature(Feature feature) {
-		return feature.getType().stream().anyMatch(DataType.class::isInstance);
-	}
-	
-	public static boolean hasClassType(Feature feature) {
-		return ((FeatureImpl)feature).basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance) ||
-				TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(org.omg.sysml.lang.sysml.Class.class::isInstance);
-	}
-	
-	public static boolean hasStructureType(Feature feature) {
-		return ((FeatureImpl)feature).basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(Structure.class::isInstance) ||
-				TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(Structure.class::isInstance);
-	}
-	
-	public static boolean hasDataType(Feature feature) {
-		return ((FeatureImpl)feature).basicGetOwnedTyping().stream().map(FeatureTyping::getType).anyMatch(DataType.class::isInstance) ||
-				TypeUtil.getImplicitGeneralTypesFor(feature, SysMLPackage.Literals.FEATURE_TYPING).stream().anyMatch(DataType.class::isInstance);
-	}
 	
 	public static boolean isParameter(Feature feature) {
 		return feature.getOwningMembership() instanceof ParameterMembership;
@@ -122,11 +101,28 @@ public class FeatureUtil {
 		}
 	}
 	
-// Subsetting and redefinition
+	// Subsetting and redefinition
+	
+	public static List<Feature> getSubsettedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getSubsettedFeatures();
+	}
+
+	public static <T extends Feature> T getSubsettedFeatureOf(T feature, Class<T> kind, Predicate<? super Feature> isIgnored) {
+		return feature.getOwnedSubsetting().stream().
+				map(Subsetting::getSubsettedFeature).
+				filter(isIgnored.negate()).
+				filter(kind::isInstance).
+				map(kind::cast).
+				findFirst().orElse(feature);
+	}
 
 	public static Optional<Subsetting> getFirstOwnedSubsettingOf(Feature feature) {
-		return ((FeatureImpl)feature).basicGetOwnedSubsetting().stream().
-				filter(s->!(s instanceof Redefinition)).findFirst();
+		return feature.getOwnedSubsetting().stream().
+				filter(subsetting->!(subsetting instanceof Redefinition)).findFirst();
+	}
+	
+	public static Optional<Feature> getFirstSubsettedFeatureOf(Feature feature) {
+		return getFeatureAdapter(feature).getFirstSubsettedFeature();
 	}
 
 	public static Subsetting addSubsettingTo(Feature feature) {
@@ -136,16 +132,28 @@ public class FeatureUtil {
 		return subsetting;
 	}
 
-	public static void addItemFlowEndSubsettingTo(ItemFlowEnd itemFlowEnd) {
-		((ItemFlowEndAdapter)getFeatureAdapter(itemFlowEnd)).addItemFlowEndSubsetting();
+	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getRedefinedFeatures();
 	}
 	
-	public static List<Feature> getRedefinedFeaturesOf(Feature feature) {
-		return ((FeatureImpl)feature).getRedefinedFeatures();
+	public static List<Feature> getRedefinedFeaturesWithComputedOf(Feature feature, Element skip) {
+		return getFeatureAdapter(feature).getRedefinedFeaturesWithComputed(skip);
 	}
-
+	
 	public static void forceComputeRedefinitionsFor(Feature feature) {
-		((FeatureImpl)feature).forceComputeRedefinitions();
+		getFeatureAdapter(feature).forceComputeRedefinitions();
+	}
+	
+	public static Set<Feature> getAllRedefinedFeaturesOf(Feature feature) {
+		return getFeatureAdapter(feature).getAllRedefinedFeatures();
+	}
+	
+	public static void addAllRedefinedFeaturesTo(Feature feature, Set<Feature> redefinedFeatures) {
+		getFeatureAdapter(feature).addAllRedefinedFeaturesTo(redefinedFeatures);
+	}
+	
+	public static boolean isIgnoredParameter(Feature feature) {
+		return getFeatureAdapter(feature).isIgnoredParameter();
 	}
 
 	// Feature values
@@ -160,11 +168,6 @@ public class FeatureUtil {
 		return getFeatureAdapter(feature).getValueConnector();
 	}
 
-	public static BindingConnector addValueBindingTo(Feature feature, Expression sourceExpression) {
-		ElementUtil.transform(sourceExpression);
-		return TypeUtil.addBindingConnectorTo(feature, feature.getFeaturingType(), sourceExpression.getResult(), feature);
-	}
-		
 	// Featuring Types
 	
 	/**
@@ -196,14 +199,6 @@ public class FeatureUtil {
 		return allFeaturingTypes;
 	}
 
-	public static boolean isImplicitFeaturingTypesEmpty(Feature feature) {
-		return getFeatureAdapter(feature).isImplicitFeaturingTypesEmpty();
-	}
-
-	public static void addFeaturingTypeTo(Feature feature, Type featuringType) {
-		getFeatureAdapter(feature).addFeaturingType(featuringType);
-	}
-
 	public static void addFeaturingTypesTo(Feature feature, Collection<Type> featuringTypes) {
 		getFeatureAdapter(feature).addFeaturingTypes(featuringTypes);
 	}
@@ -233,21 +228,6 @@ public class FeatureUtil {
 
 	// Steps
 	
-	public static boolean isEnactedPerformance(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Structure ||
-				owningType instanceof Feature && 
-					isStructureFeature((Feature)owningType);
-	}
-
-	public static boolean isIncomingTransfer(Feature step) {
-		return step.getOwnedFeature().stream().anyMatch(ItemFeature.class::isInstance);
-	}
-
-	public static boolean isCompositePerformanceFeature(Feature step) {
-		return step.isComposite() && isPerformanceFeature(step);
-	}
-
 	public static boolean isPerformanceFeature(Feature step) {
 		Type owningType = step.getOwningType();
 		return owningType instanceof Behavior || owningType instanceof Step;
@@ -290,6 +270,15 @@ public class FeatureUtil {
 			}
 			return owner instanceof Feature? getPreviousFeature((Feature)owner): null;
 		}
+	}
+
+	// Individuals
+
+	/**
+	 * This method is used for time slice and snapshot features.
+	 */
+	public static void setIndividualTypingFor(Feature feature) {
+		getFeatureAdapter(feature).setIndividualTyping();
 	}
 
 }

@@ -5,8 +5,7 @@ import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.impl.AcceptActionUsageImpl;
-import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 
@@ -17,6 +16,23 @@ public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 	public AcceptActionUsage getTarget() {
 		return (AcceptActionUsage)super.getTarget();
 	}
+	
+	// Implicit Generalization
+	
+	@Override
+	public void computeImplicitGeneralTypes() {
+		addComputedRedefinitions(null);
+	}
+	
+	// Computed Redefinition
+	
+	@Override
+	public void addComputedRedefinitions(Element skip) {
+		addDefaultGeneralType();
+		super.addComputedRedefinitions(skip);
+	}
+
+	// Transformation
 	
 	/**
 	 * The default receiver is the outermost containing ActionUsage of this AcceptActionUsage
@@ -36,11 +52,11 @@ public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 	}
 	
 	public void addDefaultReceiverBinding() {
-		AcceptActionUsageImpl action = (AcceptActionUsageImpl)getTarget();
-		if (action.getReceiverArgument() == null) {
-			Feature receiverParameter = action.getReceiverParameter();
+		AcceptActionUsage target = getTarget();
+		if (target.getReceiverArgument() == null) {
+			Feature receiverParameter = UsageUtil.getReceiverParameterOf(target);
 			if (receiverParameter != null) {
-				TypeUtil.addBindingConnectorTo(action, getDefaultReceiver(), receiverParameter);
+				addBindingConnector(getDefaultReceiver(), receiverParameter);
 			}
 		}
 	}

@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class LifeClassImpl extends ClassImpl implements LifeClass {
 	
-	public static final String LIFE_CLASS_LIFE_SUPERCLASS = "Occurrences::Life";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,11 +52,6 @@ public class LifeClassImpl extends ClassImpl implements LifeClass {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.LIFE_CLASS;
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return LIFE_CLASS_LIFE_SUPERCLASS;
 	}
 	
 } //LifeClassImpl

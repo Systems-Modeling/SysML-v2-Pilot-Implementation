@@ -26,8 +26,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -51,9 +49,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class PortUsageImpl extends UsageImpl implements PortUsage {
 	
-	public static final String PORT_USAGE_SUBSETTING_BASE_DEFAULT = "Ports::ports";
-	public static final String PORT_USAGE_SUBSETTING_PART_DEFAULT = "Parts::Part::ports";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -212,14 +207,6 @@ public class PortUsageImpl extends UsageImpl implements PortUsage {
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		Type owningType = getOwningType();
-		return owningType instanceof PartDefinition || owningType instanceof PartUsage?
-				PORT_USAGE_SUBSETTING_PART_DEFAULT:
-				PORT_USAGE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -21,10 +21,13 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.util.NamespaceUtil;
 
 public class NamespaceAdapter extends ElementAdapter {
+
+	private EList<Membership> importedMembership = null;
 
 	public NamespaceAdapter(Namespace element) {
 		super(element);
@@ -34,14 +37,17 @@ public class NamespaceAdapter extends ElementAdapter {
 		return (Namespace)super.getTarget();
 	}
 	
-	@Override
-	public boolean isAdapterForType(Object type) {
-		return type instanceof Namespace;
+	public EList<Membership> getImportedMembership() {
+		return importedMembership;
 	}
-
-	public void doTransform() {
-		super.doTransform();
-		NamespaceUtil.clearCachesOf(getTarget());
+	
+	public EList<Membership> setImportedMembership(EList<Membership> importedMembership) {
+		this.importedMembership = importedMembership;
+		return importedMembership;
 	}
-
+	
+	public void clearCaches() {
+		importedMembership = null;
+	}
+	
 }

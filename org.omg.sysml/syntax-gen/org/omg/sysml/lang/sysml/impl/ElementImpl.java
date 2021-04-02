@@ -571,12 +571,6 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	}
 	
 	/**
-	 * Clear cached member derivations.
-	 */
-	public void clearCaches() {		
-	}
-	
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

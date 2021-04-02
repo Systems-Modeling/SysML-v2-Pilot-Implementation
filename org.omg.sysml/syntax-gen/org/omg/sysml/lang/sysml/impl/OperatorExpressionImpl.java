@@ -23,12 +23,10 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -39,11 +37,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.sysml.adapter.OperatorExpressionAdapter;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.TypeUtil;
 
 /**
@@ -60,10 +59,6 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class OperatorExpressionImpl extends InvocationExpressionImpl implements OperatorExpression {
-
-	// TODO: Replace with single library package when global scope supports public
-	// re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "ScalarFunctions", "ControlFunctions" };
 
 	/**
 	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
@@ -131,10 +126,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.OPERATOR_EXPRESSION__OPERATOR, oldOperator, operator));
 	}
 
-	protected String[] getOperatorQualifiedNames(String op) {
-		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
-	}
-
 	/**
 	 * Use a special OperandEList so that operands inserted into the list are automatically actually added
 	 * as owned features.
@@ -160,7 +151,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 	@Override
 	public Function getFunction() {
-		return (Function)getDefaultType(getOperatorQualifiedNames(getOperator()));
+		return (Function)SysMLLibraryUtil.getLibraryType(this, 
+				OperatorExpressionAdapter.getOperatorQualifiedNames(getOperator()));
 	}
 	
 	/**
@@ -180,22 +172,6 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 	 */
 	public boolean isSetArgument() {
   		return false;
-	}
-	
-	@Override
-	public List<FeatureTyping> basicGetOwnedTyping() {
-		String operator = getOperator();
-		if (operator != null) {
-			TypeUtil.addDefaultGeneralTypeTo(this,
-					SysMLPackage.eINSTANCE.getFeatureTyping(), getOperatorQualifiedNames(operator));
-		}
-		return Collections.emptyList();
-	}
-
-	@Override
-	public void computeImplicitGeneralTypes() {
-		basicGetOwnedTyping();
-		super.computeImplicitGeneralTypes();
 	}
 	
 	/**

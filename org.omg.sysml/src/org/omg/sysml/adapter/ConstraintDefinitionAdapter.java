@@ -21,12 +21,9 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintDefinition;
 
 public class ConstraintDefinitionAdapter extends DefinitionAdapter {
-
-	protected BindingConnector resultConnector = null;
 
 	public ConstraintDefinitionAdapter(ConstraintDefinition element) {
 		super(element);

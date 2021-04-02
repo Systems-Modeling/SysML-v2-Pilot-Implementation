@@ -57,8 +57,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefinition {
 
-	public static final String VIEW_DEFINITION_SUPERCLASS_DEFAULT = "Views::View";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,11 +138,6 @@ public class ViewDefinitionImpl extends PartDefinitionImpl implements ViewDefini
 		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
 		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
 		return viewConditions;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return VIEW_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

@@ -47,6 +47,9 @@ public class ElementAdapter extends AdapterImpl {
 		return isTransformed;
 	}
 	
+	public void clearCaches() {
+	}
+	
 	public void transform() {
 		if (!isTransformed) {
 			doTransform();
@@ -55,7 +58,7 @@ public class ElementAdapter extends AdapterImpl {
 	}
 	
 	public void doTransform() {
-		// By default, do nothing.
+		clearCaches();
 	}
 		
 }

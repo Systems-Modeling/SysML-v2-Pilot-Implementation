@@ -41,7 +41,6 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.omg.sysml.lang.sysml.QueryPathExpression
 import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
@@ -49,6 +48,7 @@ import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Expression
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -94,11 +94,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		} else if (context instanceof Generalization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
-			var owningNamespace = context.membershipOwningNamespace
-		    if (owningNamespace instanceof QueryPathExpression)
-			    context.scope_QueryPathExpression(owningNamespace, context, reference)
-		    else 
-	    		context.scope_Namespace(owningNamespace, context, reference)
+	    	context.scope_Namespace(context.membershipOwningNamespace?.relativeNamespace, context, reference)
 		} else if (context instanceof Import)
 			context.scope_Namespace(context.importOwningNamespace, context, reference)
 		else if (context instanceof Namespace) 
@@ -126,43 +122,38 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				if (context instanceof Element) context else null)
 	}
 
-	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
+	def Namespace featureRefNamespace(QueryPathStepExpression qps) {
 		var ops = qps.operand
 		if (ops.size() >= 2) {
 			var op1 = ops.get(1)
-			if (op1 instanceof QueryPathExpression) {
-				return op1
+			if (op1 instanceof FeatureReferenceExpression) {
+				return op1.result
 			}
 		}
 		return null;
 	}
 
-	def Expression prevQueryPath(QueryPathExpression qpe) {
-		var oe = qpe.owner
-		if (oe instanceof QueryPathStepExpression) {
-			var ops = oe.operand
-			if (ops.size() >= 2) {
-				var op1 = ops.get(0);
-				if (op1 == qpe) {
-					return null;
-				} else if (op1 instanceof QueryPathStepExpression) {
-					return prevQueryPath(op1)
-				} else if (op1 instanceof Expression) {
-					return op1
+	def Namespace relativeNamespace(Namespace ns) {
+		var rel = ns
+		if (ns instanceof FeatureReferenceExpression) {
+			val oe = ns.owner
+			if (oe instanceof QueryPathStepExpression) {
+				var ops = oe.operand
+				if (ops.size() >= 2) {
+					var op1 = ops.get(0);
+					if (op1 !== ns) {
+						if (op1 instanceof QueryPathStepExpression) {
+							rel = op1.featureRefNamespace
+						} else if (op1 instanceof Expression) {
+							rel = op1.result
+						}
+					}
 				}
 			}
 		}
-		return null
+		return rel === null? ns: rel
 	}
 
-	def IScope scope_QueryPathExpression(Element element, QueryPathExpression qpe, EObject context, EReference reference) {
-		var prev = prevQueryPath(qpe)
-		if (prev !== null)
-			element.scope_Namespace(prev.result, context, reference)
-		else 
-			element.scope_Namespace(qpe, context, reference)
-	}
-	
 	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
 		val parent = pack.parentNamespace
 		val outerscope = 

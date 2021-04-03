@@ -8654,23 +8654,13 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| {SysML::OperatorExpression.operand+=current} '->'
 	//	operator=Name ownedRelationship+=BodyExpressionMember+
 	//	| {SysML::QueryPathStepExpression.operand+=current}
-	//	'.' operand+=FeatureNameExpression)*;
+	//	'.' operand+=FeatureReferenceExpression)*;
 	public KerMLExpressionsGrammarAccess.SequenceExpressionElements getSequenceExpressionAccess() {
 		return gaKerMLExpressions.getSequenceExpressionAccess();
 	}
 	
 	public ParserRule getSequenceExpressionRule() {
 		return getSequenceExpressionAccess().getRule();
-	}
-	
-	//FeatureNameExpression SysML::QueryPathExpression:
-	//	ownedRelationship+=FeatureReferenceMember;
-	public KerMLExpressionsGrammarAccess.FeatureNameExpressionElements getFeatureNameExpressionAccess() {
-		return gaKerMLExpressions.getFeatureNameExpressionAccess();
-	}
-	
-	public ParserRule getFeatureNameExpressionRule() {
-		return getFeatureNameExpressionAccess().getRule();
 	}
 	
 	//BodyExpressionMember SysML::FeatureMembership:

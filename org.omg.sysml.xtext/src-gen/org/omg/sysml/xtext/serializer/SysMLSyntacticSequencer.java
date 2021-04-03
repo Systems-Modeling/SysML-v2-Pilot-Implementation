@@ -31,6 +31,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q;
 	protected AbstractElementAlias match_BaseExpression_NullExpression_SequenceConstructionExpression_NullKeyword_1_or_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p___NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2_RightParenthesisKeyword_4_2______;
 	protected AbstractElementAlias match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______;
+	protected AbstractElementAlias match_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__p_FullStopSolidusKeyword_0_q__q;
+	protected AbstractElementAlias match_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p_FullStopSolidusKeyword_0_q__q;
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__a;
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p;
 	protected AbstractElementAlias match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__a;
@@ -67,6 +69,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_PartFlowUsage_RefKeyword_1_q;
 	protected AbstractElementAlias match_PortEndUsage_PortUsageKeywordParserRuleCall_1_q;
 	protected AbstractElementAlias match_PrefixDocumentationComment_DocKeyword_0_0_q;
+	protected AbstractElementAlias match_QueryPathExpression_FullStopSolidusKeyword_0_q;
 	protected AbstractElementAlias match_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q;
 	protected AbstractElementAlias match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
 	protected AbstractElementAlias match_RequirementFlowUsage_RefKeyword_1_q;
@@ -95,6 +98,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_AttributeUsage_AttributeUsageKeywordParserRuleCall_1_0_0_q = new TokenAlias(false, true, grammarAccess.getAttributeUsageAccess().getAttributeUsageKeywordParserRuleCall_1_0_0());
 		match_BaseExpression_NullExpression_SequenceConstructionExpression_NullKeyword_1_or_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p___NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2_RightParenthesisKeyword_4_2______ = new AlternativeAlias(false, false, new GroupAlias(false, false, new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0()), new TokenAlias(true, true, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0())), new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2()), new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getRightParenthesisKeyword_4_2())), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()))), new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()));
 		match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______ = new AlternativeAlias(false, false, new GroupAlias(false, false, new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0())), new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNullExpressionAccess().getNullKeyword_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_1_3())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())))), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getRightCurlyBracketKeyword_0_2())));
+		match_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__p_FullStopSolidusKeyword_0_q__q = new GroupAlias(false, true, new AlternativeAlias(true, false, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0())), new TokenAlias(false, true, grammarAccess.getQueryPathExpressionAccess().getFullStopSolidusKeyword_0()));
+		match_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p_FullStopSolidusKeyword_0_q__q = new GroupAlias(false, true, new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0()), new TokenAlias(true, true, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0())), new TokenAlias(false, true, grammarAccess.getQueryPathExpressionAccess().getFullStopSolidusKeyword_0()));
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__a = new GroupAlias(true, true, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0()));
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p = new GroupAlias(true, false, new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(true, true, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0()));
 		match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__a = new AlternativeAlias(true, true, new TokenAlias(false, false, grammarAccess.getBaseExpressionAccess().getLeftParenthesisKeyword_4_0()), new TokenAlias(false, false, grammarAccess.getSequenceConstructionExpressionAccess().getLeftCurlyBracketKeyword_1_0()));
@@ -131,6 +136,7 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_PartFlowUsage_RefKeyword_1_q = new TokenAlias(false, true, grammarAccess.getPartFlowUsageAccess().getRefKeyword_1());
 		match_PortEndUsage_PortUsageKeywordParserRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getPortEndUsageAccess().getPortUsageKeywordParserRuleCall_1());
 		match_PrefixDocumentationComment_DocKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getPrefixDocumentationCommentAccess().getDocKeyword_0_0());
+		match_QueryPathExpression_FullStopSolidusKeyword_0_q = new TokenAlias(false, true, grammarAccess.getQueryPathExpressionAccess().getFullStopSolidusKeyword_0());
 		match_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getReferenceEndUsageAccess().getReferenceUsageKeywordParserRuleCall_1());
 		match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getRequirementBodyAccess().getSemicolonKeyword_0()));
 		match_RequirementFlowUsage_RefKeyword_1_q = new TokenAlias(false, true, grammarAccess.getRequirementFlowUsageAccess().getRefKeyword_1());
@@ -879,6 +885,10 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_BaseExpression_NullExpression_SequenceConstructionExpression_NullKeyword_1_or_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p___NullKeyword_1_or___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2_RightParenthesisKeyword_4_2______(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______.equals(syntax))
 				emit_BaseExpression_NullExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or_____LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p_____LeftCurlyBracketKeyword_0_1_RightCurlyBracketKeyword_0_2___or___NullKeyword_1_RightCurlyBracketKeyword_1_3______(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__p_FullStopSolidusKeyword_0_q__q.equals(syntax))
+				emit_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__p_FullStopSolidusKeyword_0_q__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p_FullStopSolidusKeyword_0_q__q.equals(syntax))
+				emit_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p_FullStopSolidusKeyword_0_q__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__a.equals(syntax))
 				emit_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_BaseExpression_SequenceConstructionExpression___LeftCurlyBracketKeyword_1_0_LeftParenthesisKeyword_4_0_a__p.equals(syntax))
@@ -951,6 +961,8 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_PortEndUsage_PortUsageKeywordParserRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_PrefixDocumentationComment_DocKeyword_0_0_q.equals(syntax))
 				emit_PrefixDocumentationComment_DocKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_QueryPathExpression_FullStopSolidusKeyword_0_q.equals(syntax))
+				emit_QueryPathExpression_FullStopSolidusKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q.equals(syntax))
 				emit_ReferenceEndUsage_ReferenceUsageKeywordParserRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RequirementBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__.equals(syntax))
@@ -1279,6 +1291,28 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     (('{' | '(')+ './'?)?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 */
+	protected void emit_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftCurlyBracketKeyword_1_0_or_LeftParenthesisKeyword_4_0__p_FullStopSolidusKeyword_0_q__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (('(' '{'*)+ './'?)?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 */
+	protected void emit_BaseExpression_QueryPathExpression_SequenceConstructionExpression_____LeftParenthesisKeyword_4_0_LeftCurlyBracketKeyword_1_0_a__p_FullStopSolidusKeyword_0_q__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     ('{' '('*)*
 	 *
 	 * This ambiguous syntax occurs at:
@@ -1295,12 +1329,11 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' '}' (rule start)
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) './'? ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
@@ -1320,12 +1353,11 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) (ambiguity) './'? ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) (('{' '}') | 'null') (rule start)
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
-	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
@@ -1344,7 +1376,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('{' | '(')+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -1362,7 +1393,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '*' (rule start)
-	 *     (rule start) (ambiguity) ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) ownedRelationship+=OwnedFeatureTyping
 	 *     (rule start) (ambiguity) value=BooleanValue
 	 *     (rule start) (ambiguity) value=DECIMAL_VALUE
@@ -1378,7 +1408,6 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ('(' '{'*)+
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) './' ownedRelationship+=FeatureReferenceMember
 	 *     (rule start) (ambiguity) operand+=SelfReferenceExpression
 	 *     (rule start) (ambiguity) operator='all'
 	 *     (rule start) (ambiguity) operator=UnaryOperator
@@ -1877,12 +1906,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     humanId=Name (ambiguity) ownedRelationship+=SnapshotFeatureMember
 	 *     humanId=Name (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -1922,12 +1951,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=SnapshotFeatureMember
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
-	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -2395,6 +2424,18 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) body=DOCUMENTATION_COMMENT
 	 */
 	protected void emit_PrefixDocumentationComment_DocKeyword_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     './'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) ('{' '('*)+ (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 *     (rule start) ('{' | '(')* (ambiguity) ownedRelationship+=FeatureReferenceMember
+	 */
+	protected void emit_QueryPathExpression_FullStopSolidusKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

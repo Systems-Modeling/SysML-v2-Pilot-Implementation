@@ -563,10 +563,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBodyParameterAccess().getGroup_1_0(), "rule__BodyParameter__Group_1_0__0");
 			builder.put(grammarAccess.getBodyParameterAccess().getGroup_1_1(), "rule__BodyParameter__Group_1_1__0");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup(), "rule__QueryPathExpression__Group__0");
-			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_1(), "rule__QueryPathExpression__Group_1__0");
 			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_2(), "rule__QueryPathExpression__Group_2__0");
-			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_2_3(), "rule__QueryPathExpression__Group_2_3__0");
-			builder.put(grammarAccess.getQueryHeadExpressionAccess().getGroup(), "rule__QueryHeadExpression__Group__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_3(), "rule__QueryPathExpression__Group_3__0");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getGroup_3_3(), "rule__QueryPathExpression__Group_3_3__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup(), "rule__ConditionalExpression__Group__0");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getGroup_1(), "rule__ConditionalExpression__Group_1__0");
 			builder.put(grammarAccess.getNullCoalescingExpressionAccess().getGroup(), "rule__NullCoalescingExpression__Group__0");
@@ -965,11 +964,9 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExposeAccess().getVisibilityAssignment_1(), "rule__Expose__VisibilityAssignment_1");
 			builder.put(grammarAccess.getViewpointRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__ViewpointRefUsage__IsCompositeAssignment_1_1");
 			builder.put(grammarAccess.getRenderingRefUsageAccess().getIsCompositeAssignment_1_1(), "rule__RenderingRefUsage__IsCompositeAssignment_1_1");
-			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_1_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_1_2");
-			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_2_2(), "rule__QueryPathExpression__OperandAssignment_2_2");
-			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_3_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2");
-			builder.put(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment(), "rule__QueryNameExpression__OwnedRelationshipAssignment");
-			builder.put(grammarAccess.getQueryHeadExpressionAccess().getOwnedRelationshipAssignment_1(), "rule__QueryHeadExpression__OwnedRelationshipAssignment_1");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_2_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_2_2");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOperandAssignment_3_2(), "rule__QueryPathExpression__OperandAssignment_3_2");
+			builder.put(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipAssignment_3_3_2(), "rule__QueryPathExpression__OwnedRelationshipAssignment_3_3_2");
 			builder.put(grammarAccess.getOwnedExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__OwnedExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperatorAssignment_1_1(), "rule__ConditionalExpression__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getConditionalExpressionAccess().getOperandAssignment_1_2(), "rule__ConditionalExpression__OperandAssignment_1_2");
@@ -1016,7 +1013,6 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperatorAssignment_1_1_2(), "rule__SequenceExpression__OperatorAssignment_1_1_2");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOwnedRelationshipAssignment_1_1_3(), "rule__SequenceExpression__OwnedRelationshipAssignment_1_1_3");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperandAssignment_1_2_2(), "rule__SequenceExpression__OperandAssignment_1_2_2");
-			builder.put(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipAssignment(), "rule__FeatureNameExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getBodyExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_0_0(), "rule__BodyExpression__OwnedRelationshipAssignment_0_0_0");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_0_1(), "rule__BodyExpression__OwnedRelationshipAssignment_0_0_1");

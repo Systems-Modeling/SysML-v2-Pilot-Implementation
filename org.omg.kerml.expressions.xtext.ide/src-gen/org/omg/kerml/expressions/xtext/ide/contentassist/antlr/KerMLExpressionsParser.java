@@ -156,7 +156,6 @@ public class KerMLExpressionsParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperatorAssignment_1_1_2(), "rule__SequenceExpression__OperatorAssignment_1_1_2");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOwnedRelationshipAssignment_1_1_3(), "rule__SequenceExpression__OwnedRelationshipAssignment_1_1_3");
 			builder.put(grammarAccess.getSequenceExpressionAccess().getOperandAssignment_1_2_2(), "rule__SequenceExpression__OperandAssignment_1_2_2");
-			builder.put(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipAssignment(), "rule__FeatureNameExpression__OwnedRelationshipAssignment");
 			builder.put(grammarAccess.getBodyExpressionMemberAccess().getOwnedRelatedElementAssignment(), "rule__BodyExpressionMember__OwnedRelatedElementAssignment");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_0_0(), "rule__BodyExpression__OwnedRelationshipAssignment_0_0_0");
 			builder.put(grammarAccess.getBodyExpressionAccess().getOwnedRelationshipAssignment_0_0_1(), "rule__BodyExpression__OwnedRelationshipAssignment_0_0_1");

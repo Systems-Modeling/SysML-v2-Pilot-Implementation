@@ -2142,9 +2142,9 @@ ruleSequenceExpression returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getSequenceExpressionAccess().getOperandFeatureNameExpressionParserRuleCall_1_2_2_0());
+							newCompositeNode(grammarAccess.getSequenceExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0());
 						}
-						lv_operand_12_0=ruleFeatureNameExpression
+						lv_operand_12_0=ruleFeatureReferenceExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getSequenceExpressionRule());
@@ -2153,49 +2153,13 @@ ruleSequenceExpression returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_12_0,
-								"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureNameExpression");
+								"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceExpression");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 			)
 		)*
-	)
-;
-
-// Entry rule entryRuleFeatureNameExpression
-entryRuleFeatureNameExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getFeatureNameExpressionRule()); }
-	iv_ruleFeatureNameExpression=ruleFeatureNameExpression
-	{ $current=$iv_ruleFeatureNameExpression.current; }
-	EOF;
-
-// Rule FeatureNameExpression
-ruleFeatureNameExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleFeatureReferenceMember
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getFeatureNameExpressionRule());
-				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceMember");
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 

@@ -30,7 +30,6 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.QueryPathExpression;
 import org.omg.sysml.lang.sysml.QueryPathStepExpression;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
@@ -212,9 +211,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 			case SysMLPackage.PARAMETER_MEMBERSHIP:
 				sequence_BodyParameterMember(context, (ParameterMembership) semanticObject); 
 				return; 
-			case SysMLPackage.QUERY_PATH_EXPRESSION:
-				sequence_FeatureNameExpression(context, (QueryPathExpression) semanticObject); 
-				return; 
 			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
 				sequence_SequenceExpression(context, (QueryPathStepExpression) semanticObject); 
 				return; 
@@ -385,18 +381,6 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     {Feature}
 	 */
 	protected void sequence_BodyParameter_EmptyFeature(ISerializationContext context, Feature semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     FeatureNameExpression returns QueryPathExpression
-	 *
-	 * Constraint:
-	 *     ownedRelationship+=FeatureReferenceMember
-	 */
-	protected void sequence_FeatureNameExpression(ISerializationContext context, QueryPathExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1003,7 +987,7 @@ public class KerMLExpressionsSemanticSequencer extends AbstractDelegatingSemanti
 	 *     BaseExpression returns QueryPathStepExpression
 	 *
 	 * Constraint:
-	 *     (operand+=SequenceExpression_QueryPathStepExpression_1_2_0 operand+=FeatureNameExpression)
+	 *     (operand+=SequenceExpression_QueryPathStepExpression_1_2_0 operand+=FeatureReferenceExpression)
 	 */
 	protected void sequence_SequenceExpression(ISerializationContext context, QueryPathStepExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

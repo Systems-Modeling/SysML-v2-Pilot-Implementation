@@ -1025,31 +1025,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleFeatureNameExpression
-entryRuleFeatureNameExpression
-:
-{ before(grammarAccess.getFeatureNameExpressionRule()); }
-	 ruleFeatureNameExpression
-{ after(grammarAccess.getFeatureNameExpressionRule()); } 
-	 EOF 
-;
-
-// Rule FeatureNameExpression
-ruleFeatureNameExpression 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipAssignment()); }
-		(rule__FeatureNameExpression__OwnedRelationshipAssignment)
-		{ after(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleBodyExpressionMember
 entryRuleBodyExpressionMember
 :
@@ -6997,24 +6972,9 @@ rule__SequenceExpression__OperandAssignment_1_2_2
 	}
 :
 	(
-		{ before(grammarAccess.getSequenceExpressionAccess().getOperandFeatureNameExpressionParserRuleCall_1_2_2_0()); }
-		ruleFeatureNameExpression
-		{ after(grammarAccess.getSequenceExpressionAccess().getOperandFeatureNameExpressionParserRuleCall_1_2_2_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__FeatureNameExpression__OwnedRelationshipAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0()); }
-		ruleFeatureReferenceMember
-		{ after(grammarAccess.getFeatureNameExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0()); }
+		{ before(grammarAccess.getSequenceExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0()); }
+		ruleFeatureReferenceExpression
+		{ after(grammarAccess.getSequenceExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0()); }
 	)
 ;
 finally {

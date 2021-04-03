@@ -2251,24 +2251,12 @@ BodyParameter returns SysML::ReferenceUsage :
 /* QUERY PATH EXPRESSIONS */
 
 QueryPathExpression returns SysML::Expression :
-	QueryHeadExpression
+	'./' FeatureReferenceExpression
 	( '[' {SysML::QueryQualifierExpression.operand += current}
          ( ownedRelationship += BodyExpressionMember ) ']' )?
 	( '/' {SysML::QueryPathStepExpression.operand += current}
-		operand += QueryNameExpression
+		operand += FeatureReferenceExpression
 		( '[' {SysML::QueryQualifierExpression.operand += current}
 	         ( ownedRelationship += BodyExpressionMember ) ']' )?
 	)*
-;
-
-QueryNameExpression returns SysML::QueryPathExpression :
-    /* isParent ?= '..'
-    | isDescendants ?= '/'
-    | @traversal
-    */
-    ownedRelationship += FeatureReferenceMember
-;
-
-QueryHeadExpression returns SysML::QueryPathExpression :
-	'./' ownedRelationship += FeatureReferenceMember
 ;

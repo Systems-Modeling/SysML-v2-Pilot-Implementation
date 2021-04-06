@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:46:40Z from standard ISO-80000-7:2019 "Light"
+ * Generated on 2021-04-06T20:54:34Z from standard ISO-80000-7:2019 "Light"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-7:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -15,7 +15,6 @@ package ISQLight {
     private import UnitsAndScales::*;
     private import ISQBase::*;
 
-    private import ISQThermodynamics::energyQuantities;
     private import ISQThermodynamics::EnergyValue;
 
     /**
@@ -39,8 +38,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpeedOfLightInAMediumUnit[1];
     }
-    attribute speedOfLightInAMediumQuantities: SpeedOfLightInAMediumValue[*] nonunique :> scalarQuantities;
-    attribute speedOfLightInAMedium: SpeedOfLightInAMediumValue[1] :> speedOfLightInAMediumQuantities;
+    attribute speedOfLightInAMedium: SpeedOfLightInAMediumValue :> scalarQuantities;
 
     /**
      * source: item 7-1.2 refractive index
@@ -61,8 +59,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RefractiveIndexUnit[1];
     }
-    attribute refractiveIndexQuantities: RefractiveIndexValue[*] nonunique :> scalarQuantities;
-    attribute refractiveIndex: RefractiveIndexValue[1] :> refractiveIndexQuantities;
+    attribute refractiveIndex: RefractiveIndexValue :> scalarQuantities;
 
     /**
      * source: item 7-2.1 radiant energy
@@ -75,7 +72,7 @@ package ISQLight {
      * definition: energy (ISO 80000-5) emitted, transferred or received in form of electromagnetic waves
      * remarks: Radiant energy can be expressed by the time integral of radiant flux (item 7-4.1), Φ_e, over a given duration (ISO 80000-3), Δt `Q_e = int_(Δ t) Φ_e dt` Radiant energy is expressed either as a function of wavelength (ISO 80000-3), λ, as a function of frequency (ISO 80000-3), v, or as a function of wavenumber, σ. (See also 0.1.) The corresponding photometric quantity is “luminous energy” (item 7-12). The corresponding quantity for photons is “photon energy” (item 7-19.2).
      */
-    attribute radiantEnergy: EnergyValue[1] :> energyQuantities;
+    attribute radiantEnergy: EnergyValue :> scalarQuantities;
 
     /**
      * source: item 7-2.2 spectral radiant energy
@@ -99,8 +96,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantEnergyUnit[1];
     }
-    attribute spectralRadiantEnergyQuantities: SpectralRadiantEnergyValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantEnergy: SpectralRadiantEnergyValue[1] :> spectralRadiantEnergyQuantities;
+    attribute spectralRadiantEnergy: SpectralRadiantEnergyValue :> scalarQuantities;
 
     /**
      * source: item 7-3.1 radiant energy density
@@ -124,8 +120,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadiantEnergyDensityUnit[1];
     }
-    attribute radiantEnergyDensityQuantities: RadiantEnergyDensityValue[*] nonunique :> scalarQuantities;
-    attribute radiantEnergyDensity: RadiantEnergyDensityValue[1] :> radiantEnergyDensityQuantities;
+    attribute radiantEnergyDensity: RadiantEnergyDensityValue :> scalarQuantities;
 
     /**
      * source: item 7-3.2 spectral radiant energy density in terms of wavelength
@@ -149,8 +144,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantEnergyDensityInTermsOfWavelengthUnit[1];
     }
-    attribute spectralRadiantEnergyDensityInTermsOfWavelengthQuantities: SpectralRadiantEnergyDensityInTermsOfWavelengthValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantEnergyDensityInTermsOfWavelength: SpectralRadiantEnergyDensityInTermsOfWavelengthValue[1] :> spectralRadiantEnergyDensityInTermsOfWavelengthQuantities;
+    attribute spectralRadiantEnergyDensityInTermsOfWavelength: SpectralRadiantEnergyDensityInTermsOfWavelengthValue :> scalarQuantities;
 
     /**
      * source: item 7-3.3 spectral radiant energy density in terms of wavenumber
@@ -173,8 +167,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantEnergyDensityInTermsOfWavenumberUnit[1];
     }
-    attribute spectralRadiantEnergyDensityInTermsOfWavenumberQuantities: SpectralRadiantEnergyDensityInTermsOfWavenumberValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantEnergyDensityInTermsOfWavenumber: SpectralRadiantEnergyDensityInTermsOfWavenumberValue[1] :> spectralRadiantEnergyDensityInTermsOfWavenumberQuantities;
+    attribute spectralRadiantEnergyDensityInTermsOfWavenumber: SpectralRadiantEnergyDensityInTermsOfWavenumberValue :> scalarQuantities;
 
     /**
      * source: item 7-4.1 radiant flux, radiant power
@@ -198,12 +191,10 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadiantFluxUnit[1];
     }
-    attribute radiantFluxQuantities: RadiantFluxValue[*] nonunique :> scalarQuantities;
-    attribute radiantFlux: RadiantFluxValue[1] :> radiantFluxQuantities;
+    attribute radiantFlux: RadiantFluxValue :> scalarQuantities;
 
     alias RadiantFluxUnit as RadiantPowerUnit;
     alias RadiantFluxValue as RadiantPowerValue;
-    alias radiantFluxQuantities as radiantPowerQuantities;
     alias radiantFlux as radiantPower;
 
     /**
@@ -228,12 +219,10 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantFluxUnit[1];
     }
-    attribute spectralRadiantFluxQuantities: SpectralRadiantFluxValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantFlux: SpectralRadiantFluxValue[1] :> spectralRadiantFluxQuantities;
+    attribute spectralRadiantFlux: SpectralRadiantFluxValue :> scalarQuantities;
 
     alias SpectralRadiantFluxUnit as SpectralRadiantPowerUnit;
     alias SpectralRadiantFluxValue as SpectralRadiantPowerValue;
-    alias spectralRadiantFluxQuantities as spectralRadiantPowerQuantities;
     alias spectralRadiantFlux as spectralRadiantPower;
 
     /**
@@ -258,8 +247,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadiantIntensityUnit[1];
     }
-    attribute radiantIntensityQuantities: RadiantIntensityValue[*] nonunique :> scalarQuantities;
-    attribute radiantIntensity: RadiantIntensityValue[1] :> radiantIntensityQuantities;
+    attribute radiantIntensity: RadiantIntensityValue :> scalarQuantities;
 
     /**
      * source: item 7-5.2 spectral radiant intensity
@@ -283,8 +271,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantIntensityUnit[1];
     }
-    attribute spectralRadiantIntensityQuantities: SpectralRadiantIntensityValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantIntensity: SpectralRadiantIntensityValue[1] :> spectralRadiantIntensityQuantities;
+    attribute spectralRadiantIntensity: SpectralRadiantIntensityValue :> scalarQuantities;
 
     /**
      * source: item 7-6.1 radiance
@@ -307,8 +294,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadianceUnit[1];
     }
-    attribute radianceQuantities: RadianceValue[*] nonunique :> scalarQuantities;
-    attribute radiance: RadianceValue[1] :> radianceQuantities;
+    attribute radiance: RadianceValue :> scalarQuantities;
 
     /**
      * source: item 7-6.2 spectral radiance
@@ -332,8 +318,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadianceUnit[1];
     }
-    attribute spectralRadianceQuantities: SpectralRadianceValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiance: SpectralRadianceValue[1] :> spectralRadianceQuantities;
+    attribute spectralRadiance: SpectralRadianceValue :> scalarQuantities;
 
     /**
      * source: item 7-7.1 irradiance
@@ -356,8 +341,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: IrradianceUnit[1];
     }
-    attribute irradianceQuantities: IrradianceValue[*] nonunique :> scalarQuantities;
-    attribute irradiance: IrradianceValue[1] :> irradianceQuantities;
+    attribute irradiance: IrradianceValue :> scalarQuantities;
 
     /**
      * source: item 7-7.2 spectral irradiance
@@ -381,8 +365,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralIrradianceUnit[1];
     }
-    attribute spectralIrradianceQuantities: SpectralIrradianceValue[*] nonunique :> scalarQuantities;
-    attribute spectralIrradiance: SpectralIrradianceValue[1] :> spectralIrradianceQuantities;
+    attribute spectralIrradiance: SpectralIrradianceValue :> scalarQuantities;
 
     /**
      * source: item 7-8.1 radiant exitance , radiant emittance
@@ -405,12 +388,10 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadiantExitanceUnit[1];
     }
-    attribute radiantExitanceQuantities: RadiantExitanceValue[*] nonunique :> scalarQuantities;
-    attribute radiantExitance: RadiantExitanceValue[1] :> radiantExitanceQuantities;
+    attribute radiantExitance: RadiantExitanceValue :> scalarQuantities;
 
     alias RadiantExitanceUnit as RadiantEmittanceUnit;
     alias RadiantExitanceValue as RadiantEmittanceValue;
-    alias radiantExitanceQuantities as radiantEmittanceQuantities;
     alias radiantExitance as radiantEmittance;
 
     /**
@@ -435,8 +416,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantExitanceUnit[1];
     }
-    attribute spectralRadiantExitanceQuantities: SpectralRadiantExitanceValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantExitance: SpectralRadiantExitanceValue[1] :> spectralRadiantExitanceQuantities;
+    attribute spectralRadiantExitance: SpectralRadiantExitanceValue :> scalarQuantities;
 
     /**
      * source: item 7-9.1 radiant exposure
@@ -459,8 +439,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadiantExposureUnit[1];
     }
-    attribute radiantExposureQuantities: RadiantExposureValue[*] nonunique :> scalarQuantities;
-    attribute radiantExposure: RadiantExposureValue[1] :> radiantExposureQuantities;
+    attribute radiantExposure: RadiantExposureValue :> scalarQuantities;
 
     /**
      * source: item 7-9.2 spectral radiant exposure
@@ -484,8 +463,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralRadiantExposureUnit[1];
     }
-    attribute spectralRadiantExposureQuantities: SpectralRadiantExposureValue[*] nonunique :> scalarQuantities;
-    attribute spectralRadiantExposure: SpectralRadiantExposureValue[1] :> spectralRadiantExposureQuantities;
+    attribute spectralRadiantExposure: SpectralRadiantExposureValue :> scalarQuantities;
 
     /**
      * source: item 7-10.1 luminous efficiency
@@ -506,8 +484,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousEfficiencyUnit[1];
     }
-    attribute luminousEfficiencyQuantities: LuminousEfficiencyValue[*] nonunique :> scalarQuantities;
-    attribute luminousEfficiency: LuminousEfficiencyValue[1] :> luminousEfficiencyQuantities;
+    attribute luminousEfficiency: LuminousEfficiencyValue :> scalarQuantities;
 
     /**
      * source: item 7-10.2 spectral luminous efficiency
@@ -528,8 +505,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralLuminousEfficiencyUnit[1];
     }
-    attribute spectralLuminousEfficiencyQuantities: SpectralLuminousEfficiencyValue[*] nonunique :> scalarQuantities;
-    attribute spectralLuminousEfficiency: SpectralLuminousEfficiencyValue[1] :> spectralLuminousEfficiencyQuantities;
+    attribute spectralLuminousEfficiency: SpectralLuminousEfficiencyValue :> scalarQuantities;
 
     /**
      * source: item 7-11.1 luminous efficacy of radiation
@@ -554,8 +530,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousEfficacyOfRadiationUnit[1];
     }
-    attribute luminousEfficacyOfRadiationQuantities: LuminousEfficacyOfRadiationValue[*] nonunique :> scalarQuantities;
-    attribute luminousEfficacyOfRadiation: LuminousEfficacyOfRadiationValue[1] :> luminousEfficacyOfRadiationQuantities;
+    attribute luminousEfficacyOfRadiation: LuminousEfficacyOfRadiationValue :> scalarQuantities;
 
     /**
      * source: item 7-11.2 spectral luminous efficacy
@@ -580,8 +555,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: SpectralLuminousEfficacyUnit[1];
     }
-    attribute spectralLuminousEfficacyQuantities: SpectralLuminousEfficacyValue[*] nonunique :> scalarQuantities;
-    attribute spectralLuminousEfficacy: SpectralLuminousEfficacyValue[1] :> spectralLuminousEfficacyQuantities;
+    attribute spectralLuminousEfficacy: SpectralLuminousEfficacyValue :> scalarQuantities;
 
     /**
      * source: item 7-11.3 maximum luminous efficacy
@@ -606,8 +580,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: MaximumLuminousEfficacyUnit[1];
     }
-    attribute maximumLuminousEfficacyQuantities: MaximumLuminousEfficacyValue[*] nonunique :> scalarQuantities;
-    attribute maximumLuminousEfficacy: MaximumLuminousEfficacyValue[1] :> maximumLuminousEfficacyQuantities;
+    attribute maximumLuminousEfficacy: MaximumLuminousEfficacyValue :> scalarQuantities;
 
     /**
      * source: item 7-11.4 luminous efficacy of a source
@@ -632,8 +605,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousEfficacyOfASourceUnit[1];
     }
-    attribute luminousEfficacyOfASourceQuantities: LuminousEfficacyOfASourceValue[*] nonunique :> scalarQuantities;
-    attribute luminousEfficacyOfASource: LuminousEfficacyOfASourceValue[1] :> luminousEfficacyOfASourceQuantities;
+    attribute luminousEfficacyOfASource: LuminousEfficacyOfASourceValue :> scalarQuantities;
 
     /**
      * source: item 7-12 luminous energy, quantity of light
@@ -656,12 +628,10 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousEnergyUnit[1];
     }
-    attribute luminousEnergyQuantities: LuminousEnergyValue[*] nonunique :> scalarQuantities;
-    attribute luminousEnergy: LuminousEnergyValue[1] :> luminousEnergyQuantities;
+    attribute luminousEnergy: LuminousEnergyValue :> scalarQuantities;
 
     alias LuminousEnergyUnit as QuantityOfLightUnit;
     alias LuminousEnergyValue as QuantityOfLightValue;
-    alias luminousEnergyQuantities as quantityOfLightQuantities;
     alias luminousEnergy as quantityOfLight;
 
     /**
@@ -684,8 +654,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousFluxUnit[1];
     }
-    attribute luminousFluxQuantities: LuminousFluxValue[*] nonunique :> scalarQuantities;
-    attribute luminousFlux: LuminousFluxValue[1] :> luminousFluxQuantities;
+    attribute luminousFlux: LuminousFluxValue :> scalarQuantities;
 
     /**
      * source: item 7-14 luminous intensity
@@ -699,7 +668,7 @@ package ISQLight {
      * remarks: The definition holds strictly only for a point source. The distribution of the luminous intensities as a function of the direction of emission, e.g. given by the polar angles `(θ,ϕ)` , is used to determine the luminous flux (item 7-13) within a certain solid angle (ISO 80000-3) Ω of a source: `Φ_v = int int_Ω I_v(thη, φ) sin(thη) d φ d thη` Luminous intensity can be derived from the spectral radiant intensity distribution by `I_v = K_m int_0^∞ I_(e,λ)(λ) V(λ) dλ` where K_m is maximum luminous efficacy (item 7-11.3), I_(e,)_λ(λ) is the spectral radiant intensity (item 7-5.2) at wavelength λ(ISO 80000-3), and V(λ) is spectral luminous efficiency (item 7-10.2). The corresponding radiometric quantity is “radiant intensity” (item 7-5.1). The corresponding quantity for photons is “photon intensity” (item 7-21).
      */
 
-    /**
+    /*
      * See package ISQBase for the declarations for item 7-14:
      * base unit LuminousIntensityUnit and quantity type LuminousIntensityValue.
      */
@@ -725,8 +694,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminanceUnit[1];
     }
-    attribute luminanceQuantities: LuminanceValue[*] nonunique :> scalarQuantities;
-    attribute luminance: LuminanceValue[1] :> luminanceQuantities;
+    attribute luminance: LuminanceValue :> scalarQuantities;
 
     /**
      * source: item 7-16 illuminance
@@ -749,8 +717,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: IlluminanceUnit[1];
     }
-    attribute illuminanceQuantities: IlluminanceValue[*] nonunique :> scalarQuantities;
-    attribute illuminance: IlluminanceValue[1] :> illuminanceQuantities;
+    attribute illuminance: IlluminanceValue :> scalarQuantities;
 
     /**
      * source: item 7-17 luminous exitance
@@ -773,8 +740,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousExitanceUnit[1];
     }
-    attribute luminousExitanceQuantities: LuminousExitanceValue[*] nonunique :> scalarQuantities;
-    attribute luminousExitance: LuminousExitanceValue[1] :> luminousExitanceQuantities;
+    attribute luminousExitance: LuminousExitanceValue :> scalarQuantities;
 
     /**
      * source: item 7-18 luminous exposure, quantity of illumination, light exposure
@@ -798,17 +764,14 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousExposureUnit[1];
     }
-    attribute luminousExposureQuantities: LuminousExposureValue[*] nonunique :> scalarQuantities;
-    attribute luminousExposure: LuminousExposureValue[1] :> luminousExposureQuantities;
+    attribute luminousExposure: LuminousExposureValue :> scalarQuantities;
 
     alias LuminousExposureUnit as QuantityOfIlluminationUnit;
     alias LuminousExposureValue as QuantityOfIlluminationValue;
-    alias luminousExposureQuantities as quantityOfIlluminationQuantities;
     alias luminousExposure as quantityOfIllumination;
 
     alias LuminousExposureUnit as LightExposureUnit;
     alias LuminousExposureValue as LightExposureValue;
-    alias luminousExposureQuantities as lightExposureQuantities;
     alias luminousExposure as lightExposure;
 
     /**
@@ -830,12 +793,10 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonNumberUnit[1];
     }
-    attribute photonNumberQuantities: PhotonNumberValue[*] nonunique :> scalarQuantities;
-    attribute photonNumber: PhotonNumberValue[1] :> photonNumberQuantities;
+    attribute photonNumber: PhotonNumberValue :> scalarQuantities;
 
     alias PhotonNumberUnit as NumberOfPhotonsUnit;
     alias PhotonNumberValue as NumberOfPhotonsValue;
-    alias photonNumberQuantities as numberOfPhotonsQuantities;
     alias photonNumber as numberOfPhotons;
 
     /**
@@ -849,7 +810,7 @@ package ISQLight {
      * definition: product of the Planck constant and frequency, expressed by `Q_p = h v` where h is the Planck constant (ISO 80000-1) and v is the frequency (ISO 80000-3) of the corresponding electromagnetic wave
      * remarks: Photon energy can be emitted, transferred or received. For monochromatic radiation, photon energy may be expressed by photon number (item 7-19.1). The corresponding radiometric quantity is “radiant energy” (item 7-2.1). The corresponding photometric quantity is “luminous energy” (item 7-12).
      */
-    attribute photonEnergy: EnergyValue[1] :> energyQuantities;
+    attribute photonEnergy: EnergyValue :> scalarQuantities;
 
     /**
      * source: item 7-20 photon flux
@@ -871,8 +832,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonFluxUnit[1];
     }
-    attribute photonFluxQuantities: PhotonFluxValue[*] nonunique :> scalarQuantities;
-    attribute photonFlux: PhotonFluxValue[1] :> photonFluxQuantities;
+    attribute photonFlux: PhotonFluxValue :> scalarQuantities;
 
     /**
      * source: item 7-21 photon intensity
@@ -894,8 +854,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonIntensityUnit[1];
     }
-    attribute photonIntensityQuantities: PhotonIntensityValue[*] nonunique :> scalarQuantities;
-    attribute photonIntensity: PhotonIntensityValue[1] :> photonIntensityQuantities;
+    attribute photonIntensity: PhotonIntensityValue :> scalarQuantities;
 
     /**
      * source: item 7-22 photon radiance
@@ -918,8 +877,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonRadianceUnit[1];
     }
-    attribute photonRadianceQuantities: PhotonRadianceValue[*] nonunique :> scalarQuantities;
-    attribute photonRadiance: PhotonRadianceValue[1] :> photonRadianceQuantities;
+    attribute photonRadiance: PhotonRadianceValue :> scalarQuantities;
 
     /**
      * source: item 7-23 photon irradiance
@@ -942,8 +900,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonIrradianceUnit[1];
     }
-    attribute photonIrradianceQuantities: PhotonIrradianceValue[*] nonunique :> scalarQuantities;
-    attribute photonIrradiance: PhotonIrradianceValue[1] :> photonIrradianceQuantities;
+    attribute photonIrradiance: PhotonIrradianceValue :> scalarQuantities;
 
     /**
      * source: item 7-24 photon exitance
@@ -966,8 +923,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonExitanceUnit[1];
     }
-    attribute photonExitanceQuantities: PhotonExitanceValue[*] nonunique :> scalarQuantities;
-    attribute photonExitance: PhotonExitanceValue[1] :> photonExitanceQuantities;
+    attribute photonExitance: PhotonExitanceValue :> scalarQuantities;
 
     /**
      * source: item 7-25 photon exposure
@@ -989,8 +945,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: PhotonExposureUnit[1];
     }
-    attribute photonExposureQuantities: PhotonExposureValue[*] nonunique :> scalarQuantities;
-    attribute photonExposure: PhotonExposureValue[1] :> photonExposureQuantities;
+    attribute photonExposure: PhotonExposureValue :> scalarQuantities;
 
     /**
      * source: item 7-26.1 tristimulus values for the CIE 1931 standard colorimetric observer
@@ -1011,8 +966,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: TristimulusValuesForTheCie1931StandardColorimetricObserverUnit[1];
     }
-    attribute tristimulusValuesForTheCie1931StandardColorimetricObserverQuantities: TristimulusValuesForTheCie1931StandardColorimetricObserverValue[*] nonunique :> scalarQuantities;
-    attribute tristimulusValuesForTheCie1931StandardColorimetricObserver: TristimulusValuesForTheCie1931StandardColorimetricObserverValue[1] :> tristimulusValuesForTheCie1931StandardColorimetricObserverQuantities;
+    attribute tristimulusValuesForTheCie1931StandardColorimetricObserver: TristimulusValuesForTheCie1931StandardColorimetricObserverValue :> scalarQuantities;
 
     /**
      * source: item 7-26.2 tristimulus values for the CIE 1964 standard colorimetric observer
@@ -1033,8 +987,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: TristimulusValuesForTheCie1964StandardColorimetricObserverUnit[1];
     }
-    attribute tristimulusValuesForTheCie1964StandardColorimetricObserverQuantities: TristimulusValuesForTheCie1964StandardColorimetricObserverValue[*] nonunique :> scalarQuantities;
-    attribute tristimulusValuesForTheCie1964StandardColorimetricObserver: TristimulusValuesForTheCie1964StandardColorimetricObserverValue[1] :> tristimulusValuesForTheCie1964StandardColorimetricObserverQuantities;
+    attribute tristimulusValuesForTheCie1964StandardColorimetricObserver: TristimulusValuesForTheCie1964StandardColorimetricObserverValue :> scalarQuantities;
 
     /**
      * source: item 7-27.1 CIE colour-matching functions for the CIE 1931 standard colorimetric observer
@@ -1055,8 +1008,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverUnit[1];
     }
-    attribute cieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverQuantities: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue[*] nonunique :> scalarQuantities;
-    attribute cieColourMatchingFunctionsForTheCie1931StandardColorimetricObserver: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue[1] :> cieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverQuantities;
+    attribute cieColourMatchingFunctionsForTheCie1931StandardColorimetricObserver: CieColourMatchingFunctionsForTheCie1931StandardColorimetricObserverValue :> scalarQuantities;
 
     /**
      * source: item 7-27.2 CIE colour-matching functions for the CIE 1964 standard colorimetric observer
@@ -1077,8 +1029,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverUnit[1];
     }
-    attribute cieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverQuantities: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue[*] nonunique :> scalarQuantities;
-    attribute cieColourMatchingFunctionsForTheCie1964StandardColorimetricObserver: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue[1] :> cieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverQuantities;
+    attribute cieColourMatchingFunctionsForTheCie1964StandardColorimetricObserver: CieColourMatchingFunctionsForTheCie1964StandardColorimetricObserverValue :> scalarQuantities;
 
     /**
      * source: item 7-28.1 chromaticity coordinates in the CIE 1931 standard colorimetric system
@@ -1099,8 +1050,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemUnit[1];
     }
-    attribute chromaticityCoordinatesInTheCie1931StandardColorimetricSystemQuantities: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue[*] nonunique :> scalarQuantities;
-    attribute chromaticityCoordinatesInTheCie1931StandardColorimetricSystem: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue[1] :> chromaticityCoordinatesInTheCie1931StandardColorimetricSystemQuantities;
+    attribute chromaticityCoordinatesInTheCie1931StandardColorimetricSystem: ChromaticityCoordinatesInTheCie1931StandardColorimetricSystemValue :> scalarQuantities;
 
     /**
      * source: item 7-28.2 chromaticity coordinates in the CIE 1964 standard colorimetric system
@@ -1121,8 +1071,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemUnit[1];
     }
-    attribute chromaticityCoordinatesInTheCie1964StandardColorimetricSystemQuantities: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue[*] nonunique :> scalarQuantities;
-    attribute chromaticityCoordinatesInTheCie1964StandardColorimetricSystem: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue[1] :> chromaticityCoordinatesInTheCie1964StandardColorimetricSystemQuantities;
+    attribute chromaticityCoordinatesInTheCie1964StandardColorimetricSystem: ChromaticityCoordinatesInTheCie1964StandardColorimetricSystemValue :> scalarQuantities;
 
     /**
      * source: item 7-29.1 colour temperature
@@ -1135,7 +1084,7 @@ package ISQLight {
      * definition: temperature of a Planckian radiator whose radiation has the same chromaticity as that of a given stimulus
      * remarks: 
      */
-    attribute colourTemperature: ThermodynamicTemperatureValue[1] :> thermodynamicTemperatureQuantities;
+    attribute colourTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
 
     /**
      * source: item 7-29.2 correlated colour temperature
@@ -1148,7 +1097,7 @@ package ISQLight {
      * definition: temperature of a Planckian radiator having the chromaticity nearest the chromaticity associated with the given spectral distribution on a modified 1976 CIE Uniform Chromaticity Scale (UCS) diagram where `u',2/3 v'` are the coordinates of the Planckian locus and the test stimulus
      * remarks: 
      */
-    attribute correlatedColourTemperature: ThermodynamicTemperatureValue[1] :> thermodynamicTemperatureQuantities;
+    attribute correlatedColourTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
 
     /**
      * source: item 7-30.1 emissivity
@@ -1169,8 +1118,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: EmissivityUnit[1];
     }
-    attribute emissivityQuantities: EmissivityValue[*] nonunique :> scalarQuantities;
-    attribute emissivity: EmissivityValue[1] :> emissivityQuantities;
+    attribute emissivity: EmissivityValue :> scalarQuantities;
 
     /**
      * source: item 7-30.2 emissivity at a specified wavelength
@@ -1191,8 +1139,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: EmissivityAtASpecifiedWavelengthUnit[1];
     }
-    attribute emissivityAtASpecifiedWavelengthQuantities: EmissivityAtASpecifiedWavelengthValue[*] nonunique :> scalarQuantities;
-    attribute emissivityAtASpecifiedWavelength: EmissivityAtASpecifiedWavelengthValue[1] :> emissivityAtASpecifiedWavelengthQuantities;
+    attribute emissivityAtASpecifiedWavelength: EmissivityAtASpecifiedWavelengthValue :> scalarQuantities;
 
     /**
      * source: item 7-31.1 absorptance
@@ -1213,8 +1160,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: AbsorptanceUnit[1];
     }
-    attribute absorptanceQuantities: AbsorptanceValue[*] nonunique :> scalarQuantities;
-    attribute absorptance: AbsorptanceValue[1] :> absorptanceQuantities;
+    attribute absorptance: AbsorptanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.2 luminous absorptance
@@ -1235,8 +1181,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousAbsorptanceUnit[1];
     }
-    attribute luminousAbsorptanceQuantities: LuminousAbsorptanceValue[*] nonunique :> scalarQuantities;
-    attribute luminousAbsorptance: LuminousAbsorptanceValue[1] :> luminousAbsorptanceQuantities;
+    attribute luminousAbsorptance: LuminousAbsorptanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.3 reflectance
@@ -1257,8 +1202,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: ReflectanceUnit[1];
     }
-    attribute reflectanceQuantities: ReflectanceValue[*] nonunique :> scalarQuantities;
-    attribute reflectance: ReflectanceValue[1] :> reflectanceQuantities;
+    attribute reflectance: ReflectanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.4 luminous reflectance
@@ -1279,8 +1223,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousReflectanceUnit[1];
     }
-    attribute luminousReflectanceQuantities: LuminousReflectanceValue[*] nonunique :> scalarQuantities;
-    attribute luminousReflectance: LuminousReflectanceValue[1] :> luminousReflectanceQuantities;
+    attribute luminousReflectance: LuminousReflectanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.5 transmittance
@@ -1301,8 +1244,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: TransmittanceUnit[1];
     }
-    attribute transmittanceQuantities: TransmittanceValue[*] nonunique :> scalarQuantities;
-    attribute transmittance: TransmittanceValue[1] :> transmittanceQuantities;
+    attribute transmittance: TransmittanceValue :> scalarQuantities;
 
     /**
      * source: item 7-31.6 luminous transmittance
@@ -1323,8 +1265,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousTransmittanceUnit[1];
     }
-    attribute luminousTransmittanceQuantities: LuminousTransmittanceValue[*] nonunique :> scalarQuantities;
-    attribute luminousTransmittance: LuminousTransmittanceValue[1] :> luminousTransmittanceQuantities;
+    attribute luminousTransmittance: LuminousTransmittanceValue :> scalarQuantities;
 
     /**
      * source: item 7-32.1 transmittance optical density, optical density, transmittance density, decadic absorbance
@@ -1345,22 +1286,18 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: TransmittanceOpticalDensityUnit[1];
     }
-    attribute transmittanceOpticalDensityQuantities: TransmittanceOpticalDensityValue[*] nonunique :> scalarQuantities;
-    attribute transmittanceOpticalDensity: TransmittanceOpticalDensityValue[1] :> transmittanceOpticalDensityQuantities;
+    attribute transmittanceOpticalDensity: TransmittanceOpticalDensityValue :> scalarQuantities;
 
     alias TransmittanceOpticalDensityUnit as OpticalDensityUnit;
     alias TransmittanceOpticalDensityValue as OpticalDensityValue;
-    alias transmittanceOpticalDensityQuantities as opticalDensityQuantities;
     alias transmittanceOpticalDensity as opticalDensity;
 
     alias TransmittanceOpticalDensityUnit as TransmittanceDensityUnit;
     alias TransmittanceOpticalDensityValue as TransmittanceDensityValue;
-    alias transmittanceOpticalDensityQuantities as transmittanceDensityQuantities;
     alias transmittanceOpticalDensity as transmittanceDensity;
 
     alias TransmittanceOpticalDensityUnit as DecadicAbsorbanceUnit;
     alias TransmittanceOpticalDensityValue as DecadicAbsorbanceValue;
-    alias transmittanceOpticalDensityQuantities as decadicAbsorbanceQuantities;
     alias transmittanceOpticalDensity as decadicAbsorbance;
 
     /**
@@ -1382,8 +1319,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: NapierianAbsorbanceUnit[1];
     }
-    attribute napierianAbsorbanceQuantities: NapierianAbsorbanceValue[*] nonunique :> scalarQuantities;
-    attribute napierianAbsorbance: NapierianAbsorbanceValue[1] :> napierianAbsorbanceQuantities;
+    attribute napierianAbsorbance: NapierianAbsorbanceValue :> scalarQuantities;
 
     /**
      * source: item 7-33.1 radiance factor
@@ -1404,8 +1340,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: RadianceFactorUnit[1];
     }
-    attribute radianceFactorQuantities: RadianceFactorValue[*] nonunique :> scalarQuantities;
-    attribute radianceFactor: RadianceFactorValue[1] :> radianceFactorQuantities;
+    attribute radianceFactor: RadianceFactorValue :> scalarQuantities;
 
     /**
      * source: item 7-33.2 luminance factor
@@ -1426,8 +1361,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LuminanceFactorUnit[1];
     }
-    attribute luminanceFactorQuantities: LuminanceFactorValue[*] nonunique :> scalarQuantities;
-    attribute luminanceFactor: LuminanceFactorValue[1] :> luminanceFactorQuantities;
+    attribute luminanceFactor: LuminanceFactorValue :> scalarQuantities;
 
     /**
      * source: item 7-34 reflectance factor
@@ -1448,8 +1382,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: ReflectanceFactorUnit[1];
     }
-    attribute reflectanceFactorQuantities: ReflectanceFactorValue[*] nonunique :> scalarQuantities;
-    attribute reflectanceFactor: ReflectanceFactorValue[1] :> reflectanceFactorQuantities;
+    attribute reflectanceFactor: ReflectanceFactorValue :> scalarQuantities;
 
     /**
      * source: item 7-35.1 linear attenuation coefficient, linear extinction coefficient
@@ -1471,12 +1404,10 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LinearAttenuationCoefficientUnit[1];
     }
-    attribute linearAttenuationCoefficientQuantities: LinearAttenuationCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute linearAttenuationCoefficient: LinearAttenuationCoefficientValue[1] :> linearAttenuationCoefficientQuantities;
+    attribute linearAttenuationCoefficient: LinearAttenuationCoefficientValue :> scalarQuantities;
 
     alias LinearAttenuationCoefficientUnit as LinearExtinctionCoefficientUnit;
     alias LinearAttenuationCoefficientValue as LinearExtinctionCoefficientValue;
-    alias linearAttenuationCoefficientQuantities as linearExtinctionCoefficientQuantities;
     alias linearAttenuationCoefficient as linearExtinctionCoefficient;
 
     /**
@@ -1499,8 +1430,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: LinearAbsorptionCoefficientUnit[1];
     }
-    attribute linearAbsorptionCoefficientQuantities: LinearAbsorptionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute linearAbsorptionCoefficient: LinearAbsorptionCoefficientValue[1] :> linearAbsorptionCoefficientQuantities;
+    attribute linearAbsorptionCoefficient: LinearAbsorptionCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 7-36.1 mass attenuation coefficient
@@ -1523,8 +1453,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: MassAttenuationCoefficientUnit[1];
     }
-    attribute massAttenuationCoefficientQuantities: MassAttenuationCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute massAttenuationCoefficient: MassAttenuationCoefficientValue[1] :> massAttenuationCoefficientQuantities;
+    attribute massAttenuationCoefficient: MassAttenuationCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 7-36.2 mass absorption coefficient
@@ -1547,8 +1476,7 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: MassAbsorptionCoefficientUnit[1];
     }
-    attribute massAbsorptionCoefficientQuantities: MassAbsorptionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute massAbsorptionCoefficient: MassAbsorptionCoefficientValue[1] :> massAbsorptionCoefficientQuantities;
+    attribute massAbsorptionCoefficient: MassAbsorptionCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 7-37 molar absorption coefficient
@@ -1571,7 +1499,6 @@ package ISQLight {
         attribute :>> num: Real;
         attribute :>> mRef: MolarAbsorptionCoefficientUnit[1];
     }
-    attribute molarAbsorptionCoefficientQuantities: MolarAbsorptionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute molarAbsorptionCoefficient: MolarAbsorptionCoefficientValue[1] :> molarAbsorptionCoefficientQuantities;
+    attribute molarAbsorptionCoefficient: MolarAbsorptionCoefficientValue :> scalarQuantities;
 
 }

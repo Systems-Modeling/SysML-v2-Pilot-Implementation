@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:46:40Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
+ * Generated on 2021-04-06T20:54:34Z from standard ISO-80000-9:2019 "Physical chemistry and molecular physics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-9:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -15,7 +15,6 @@ package ISQChemistryMolecular {
     private import UnitsAndScales::*;
     private import ISQBase::*;
 
-    private import ISQSpaceTime::angularMeasureQuantities;
     private import ISQSpaceTime::AngularMeasureValue;
 
     /**
@@ -29,7 +28,7 @@ package ISQChemistryMolecular {
      * definition: number of elementary entities of kind X in a system
      * remarks: The elementary entities must be specified and can be atoms, molecules, ions, electrons, other particle, or a specified group of such particles. It is important to always give a precise specification of the entity involved; this should preferably be done by the empirical chemical formula of the material involved.
      */
-    attribute numberOfEntities: CountValue[1] :> countQuantities;
+    attribute numberOfEntities: CountValue :> scalarQuantities;
 
     /**
      * source: item 9-2 amount of substance, number of moles
@@ -43,14 +42,13 @@ package ISQChemistryMolecular {
      * remarks: Amount of substance is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Elementary entities, such as molecules, atoms, ions, electrons, holes and other quasi-particles, double bonds can be used. It is necessary to specify precisely the entity involved, e.g. atoms of hydrogen `H` vs. molecules of hydrogen `H_2`, preferably by giving the molecular chemical formula of the material involved. In the name “amount of substance”, the words “of substance” could be replaced by words specifying the substance concerned, e.g. “amount of hydrogen chloride, `HCl`”, or “amount of benzene, `C_6H_6`”. The name “number of moles” is often used for “amount of substance”, but this is deprecated because the name of a quantity should be distinguished from the name of the unit.
      */
 
-    /**
+    /*
      * See package ISQBase for the declarations for item 9-2:
      * base unit AmountOfSubstanceUnit and quantity type AmountOfSubstanceValue.
      */
 
     alias AmountOfSubstanceUnit as NumberOfMolesUnit;
     alias AmountOfSubstanceValue as NumberOfMolesValue;
-    alias amountOfSubstanceQuantities as numberOfMolesQuantities;
     alias amountOfSubstance as numberOfMoles;
 
     /**
@@ -72,8 +70,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: RelativeAtomicMassUnit[1];
     }
-    attribute relativeAtomicMassQuantities: RelativeAtomicMassValue[*] nonunique :> scalarQuantities;
-    attribute relativeAtomicMass: RelativeAtomicMassValue[1] :> relativeAtomicMassQuantities;
+    attribute relativeAtomicMass: RelativeAtomicMassValue :> scalarQuantities;
 
     /**
      * source: item 9-4 molar mass
@@ -96,8 +93,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarMassUnit[1];
     }
-    attribute molarMassQuantities: MolarMassValue[*] nonunique :> scalarQuantities;
-    attribute molarMass: MolarMassValue[1] :> molarMassQuantities;
+    attribute molarMass: MolarMassValue :> scalarQuantities;
 
     /**
      * source: item 9-5 molar volume
@@ -120,8 +116,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarVolumeUnit[1];
     }
-    attribute molarVolumeQuantities: MolarVolumeValue[*] nonunique :> scalarQuantities;
-    attribute molarVolume: MolarVolumeValue[1] :> molarVolumeQuantities;
+    attribute molarVolume: MolarVolumeValue :> scalarQuantities;
 
     /**
      * source: item 9-6.1 molar internal energy
@@ -146,8 +141,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarInternalEnergyUnit[1];
     }
-    attribute molarInternalEnergyQuantities: MolarInternalEnergyValue[*] nonunique :> scalarQuantities;
-    attribute molarInternalEnergy: MolarInternalEnergyValue[1] :> molarInternalEnergyQuantities;
+    attribute molarInternalEnergy: MolarInternalEnergyValue :> scalarQuantities;
 
     /**
      * source: item 9-6.2 molar enthalpy
@@ -172,8 +166,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarEnthalpyUnit[1];
     }
-    attribute molarEnthalpyQuantities: MolarEnthalpyValue[*] nonunique :> scalarQuantities;
-    attribute molarEnthalpy: MolarEnthalpyValue[1] :> molarEnthalpyQuantities;
+    attribute molarEnthalpy: MolarEnthalpyValue :> scalarQuantities;
 
     /**
      * source: item 9-6.3 molar Helmholtz energy
@@ -198,8 +191,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarHelmholtzEnergyUnit[1];
     }
-    attribute molarHelmholtzEnergyQuantities: MolarHelmholtzEnergyValue[*] nonunique :> scalarQuantities;
-    attribute molarHelmholtzEnergy: MolarHelmholtzEnergyValue[1] :> molarHelmholtzEnergyQuantities;
+    attribute molarHelmholtzEnergy: MolarHelmholtzEnergyValue :> scalarQuantities;
 
     /**
      * source: item 9-6.4 molar Gibbs energy
@@ -224,8 +216,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarGibbsEnergyUnit[1];
     }
-    attribute molarGibbsEnergyQuantities: MolarGibbsEnergyValue[*] nonunique :> scalarQuantities;
-    attribute molarGibbsEnergy: MolarGibbsEnergyValue[1] :> molarGibbsEnergyQuantities;
+    attribute molarGibbsEnergy: MolarGibbsEnergyValue :> scalarQuantities;
 
     /**
      * source: item 9-7 molar heat capacity
@@ -251,8 +242,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarHeatCapacityUnit[1];
     }
-    attribute molarHeatCapacityQuantities: MolarHeatCapacityValue[*] nonunique :> scalarQuantities;
-    attribute molarHeatCapacity: MolarHeatCapacityValue[1] :> molarHeatCapacityQuantities;
+    attribute molarHeatCapacity: MolarHeatCapacityValue :> scalarQuantities;
 
     /**
      * source: item 9-8 molar entropy
@@ -278,8 +268,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarEntropyUnit[1];
     }
-    attribute molarEntropyQuantities: MolarEntropyValue[*] nonunique :> scalarQuantities;
-    attribute molarEntropy: MolarEntropyValue[1] :> molarEntropyQuantities;
+    attribute molarEntropy: MolarEntropyValue :> scalarQuantities;
 
     /**
      * source: item 9-9.1 particle concentration
@@ -301,8 +290,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ParticleConcentrationUnit[1];
     }
-    attribute particleConcentrationQuantities: ParticleConcentrationValue[*] nonunique :> scalarQuantities;
-    attribute particleConcentration: ParticleConcentrationValue[1] :> particleConcentrationQuantities;
+    attribute particleConcentration: ParticleConcentrationValue :> scalarQuantities;
 
     /**
      * source: item 9-9.2 molecular concentration
@@ -315,7 +303,7 @@ package ISQChemistryMolecular {
      * definition: for substance X in a mixture, quotient of number `N_X` of molecules of substance X and volume `V` (ISO 80000-3) of the mixture: `C_X = N_X/V`
      * remarks: 
      */
-    attribute molecularConcentration: ParticleConcentrationValue[1] :> particleConcentrationQuantities;
+    attribute molecularConcentration: ParticleConcentrationValue :> scalarQuantities;
 
     /**
      * source: item 9-10 mass concentration
@@ -338,8 +326,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MassConcentrationUnit[1];
     }
-    attribute massConcentrationQuantities: MassConcentrationValue[*] nonunique :> scalarQuantities;
-    attribute massConcentration: MassConcentrationValue[1] :> massConcentrationQuantities;
+    attribute massConcentration: MassConcentrationValue :> scalarQuantities;
 
     /**
      * source: item 9-11 mass fraction
@@ -360,8 +347,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MassFractionUnit[1];
     }
-    attribute massFractionQuantities: MassFractionValue[*] nonunique :> scalarQuantities;
-    attribute massFraction: MassFractionValue[1] :> massFractionQuantities;
+    attribute massFraction: MassFractionValue :> scalarQuantities;
 
     /**
      * source: item 9-12.1 amount-of-substance concentration
@@ -384,8 +370,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: AmountOfSubstanceConcentrationUnit[1];
     }
-    attribute amountOfSubstanceConcentrationQuantities: AmountOfSubstanceConcentrationValue[*] nonunique :> scalarQuantities;
-    attribute amountOfSubstanceConcentration: AmountOfSubstanceConcentrationValue[1] :> amountOfSubstanceConcentrationQuantities;
+    attribute amountOfSubstanceConcentration: AmountOfSubstanceConcentrationValue :> scalarQuantities;
 
     /**
      * source: item 9-12.2 standard amount-of-substance concentration
@@ -398,7 +383,7 @@ package ISQChemistryMolecular {
      * definition: for substance X, one mole per litre
      * remarks: Decided by the 16th CGPM (1979), both “l” and “L” are allowed for the symbols for the litre.
      */
-    attribute standardAmountOfSubstanceConcentration: AmountOfSubstanceConcentrationValue[1] :> amountOfSubstanceConcentrationQuantities;
+    attribute standardAmountOfSubstanceConcentration: AmountOfSubstanceConcentrationValue :> scalarQuantities;
 
     /**
      * source: item 9-13 amount-of-substance fraction mole fraction
@@ -419,8 +404,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: AmountOfSubstanceFractionMoleFractionUnit[1];
     }
-    attribute amountOfSubstanceFractionMoleFractionQuantities: AmountOfSubstanceFractionMoleFractionValue[*] nonunique :> scalarQuantities;
-    attribute amountOfSubstanceFractionMoleFraction: AmountOfSubstanceFractionMoleFractionValue[1] :> amountOfSubstanceFractionMoleFractionQuantities;
+    attribute amountOfSubstanceFractionMoleFraction: AmountOfSubstanceFractionMoleFractionValue :> scalarQuantities;
 
     /**
      * source: item 9-14 volume fraction
@@ -441,8 +425,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: VolumeFractionUnit[1];
     }
-    attribute volumeFractionQuantities: VolumeFractionValue[*] nonunique :> scalarQuantities;
-    attribute volumeFraction: VolumeFractionValue[1] :> volumeFractionQuantities;
+    attribute volumeFraction: VolumeFractionValue :> scalarQuantities;
 
     /**
      * source: item 9-15 molality
@@ -465,8 +448,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolalityUnit[1];
     }
-    attribute molalityQuantities: MolalityValue[*] nonunique :> scalarQuantities;
-    attribute molality: MolalityValue[1] :> molalityQuantities;
+    attribute molality: MolalityValue :> scalarQuantities;
 
     /**
      * source: item 9-16 latent heat of phase transition, enthalpy of phase transition
@@ -490,12 +472,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: LatentHeatOfPhaseTransitionUnit[1];
     }
-    attribute latentHeatOfPhaseTransitionQuantities: LatentHeatOfPhaseTransitionValue[*] nonunique :> scalarQuantities;
-    attribute latentHeatOfPhaseTransition: LatentHeatOfPhaseTransitionValue[1] :> latentHeatOfPhaseTransitionQuantities;
+    attribute latentHeatOfPhaseTransition: LatentHeatOfPhaseTransitionValue :> scalarQuantities;
 
     alias LatentHeatOfPhaseTransitionUnit as EnthalpyOfPhaseTransitionUnit;
     alias LatentHeatOfPhaseTransitionValue as EnthalpyOfPhaseTransitionValue;
-    alias latentHeatOfPhaseTransitionQuantities as enthalpyOfPhaseTransitionQuantities;
     alias latentHeatOfPhaseTransition as enthalpyOfPhaseTransition;
 
     /**
@@ -521,8 +501,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ChemicalPotentialUnit[1];
     }
-    attribute chemicalPotentialQuantities: ChemicalPotentialValue[*] nonunique :> scalarQuantities;
-    attribute chemicalPotential: ChemicalPotentialValue[1] :> chemicalPotentialQuantities;
+    attribute chemicalPotential: ChemicalPotentialValue :> scalarQuantities;
 
     /**
      * source: item 9-18 absolute activity
@@ -543,8 +522,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: AbsoluteActivityUnit[1];
     }
-    attribute absoluteActivityQuantities: AbsoluteActivityValue[*] nonunique :> scalarQuantities;
-    attribute absoluteActivity: AbsoluteActivityValue[1] :> absoluteActivityQuantities;
+    attribute absoluteActivity: AbsoluteActivityValue :> scalarQuantities;
 
     /**
      * source: item 9-19 partial pressure
@@ -568,8 +546,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: PartialPressureUnit[1];
     }
-    attribute partialPressureQuantities: PartialPressureValue[*] nonunique :> scalarQuantities;
-    attribute partialPressure: PartialPressureValue[1] :> partialPressureQuantities;
+    attribute partialPressure: PartialPressureValue :> scalarQuantities;
 
     /**
      * source: item 9-20 fugacity
@@ -593,8 +570,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: FugacityUnit[1];
     }
-    attribute fugacityQuantities: FugacityValue[*] nonunique :> scalarQuantities;
-    attribute fugacity: FugacityValue[1] :> fugacityQuantities;
+    attribute fugacity: FugacityValue :> scalarQuantities;
 
     /**
      * source: item 9-21 standard chemical potential
@@ -619,8 +595,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: StandardChemicalPotentialUnit[1];
     }
-    attribute standardChemicalPotentialQuantities: StandardChemicalPotentialValue[*] nonunique :> scalarQuantities;
-    attribute standardChemicalPotential: StandardChemicalPotentialValue[1] :> standardChemicalPotentialQuantities;
+    attribute standardChemicalPotential: StandardChemicalPotentialValue :> scalarQuantities;
 
     /**
      * source: item 9-22 activity factor
@@ -641,8 +616,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ActivityFactorUnit[1];
     }
-    attribute activityFactorQuantities: ActivityFactorValue[*] nonunique :> scalarQuantities;
-    attribute activityFactor: ActivityFactorValue[1] :> activityFactorQuantities;
+    attribute activityFactor: ActivityFactorValue :> scalarQuantities;
 
     /**
      * source: item 9-23 standard absolute activity in mixture
@@ -663,8 +637,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: StandardAbsoluteActivityInMixtureUnit[1];
     }
-    attribute standardAbsoluteActivityInMixtureQuantities: StandardAbsoluteActivityInMixtureValue[*] nonunique :> scalarQuantities;
-    attribute standardAbsoluteActivityInMixture: StandardAbsoluteActivityInMixtureValue[1] :> standardAbsoluteActivityInMixtureQuantities;
+    attribute standardAbsoluteActivityInMixture: StandardAbsoluteActivityInMixtureValue :> scalarQuantities;
 
     /**
      * source: item 9-24 activity of solute, relative activity of solute
@@ -685,12 +658,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ActivityOfSoluteUnit[1];
     }
-    attribute activityOfSoluteQuantities: ActivityOfSoluteValue[*] nonunique :> scalarQuantities;
-    attribute activityOfSolute: ActivityOfSoluteValue[1] :> activityOfSoluteQuantities;
+    attribute activityOfSolute: ActivityOfSoluteValue :> scalarQuantities;
 
     alias ActivityOfSoluteUnit as RelativeActivityOfSoluteUnit;
     alias ActivityOfSoluteValue as RelativeActivityOfSoluteValue;
-    alias activityOfSoluteQuantities as relativeActivityOfSoluteQuantities;
     alias activityOfSolute as relativeActivityOfSolute;
 
     /**
@@ -712,8 +683,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ActivityCoefficientUnit[1];
     }
-    attribute activityCoefficientQuantities: ActivityCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute activityCoefficient: ActivityCoefficientValue[1] :> activityCoefficientQuantities;
+    attribute activityCoefficient: ActivityCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 9-26 standard absolute activity in solution
@@ -734,8 +704,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: StandardAbsoluteActivityInSolutionUnit[1];
     }
-    attribute standardAbsoluteActivityInSolutionQuantities: StandardAbsoluteActivityInSolutionValue[*] nonunique :> scalarQuantities;
-    attribute standardAbsoluteActivityInSolution: StandardAbsoluteActivityInSolutionValue[1] :> standardAbsoluteActivityInSolutionQuantities;
+    attribute standardAbsoluteActivityInSolution: StandardAbsoluteActivityInSolutionValue :> scalarQuantities;
 
     /**
      * source: item 9-27.1 activity of solvent, relative activity of solvent
@@ -756,12 +725,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ActivityOfSolventUnit[1];
     }
-    attribute activityOfSolventQuantities: ActivityOfSolventValue[*] nonunique :> scalarQuantities;
-    attribute activityOfSolvent: ActivityOfSolventValue[1] :> activityOfSolventQuantities;
+    attribute activityOfSolvent: ActivityOfSolventValue :> scalarQuantities;
 
     alias ActivityOfSolventUnit as RelativeActivityOfSolventUnit;
     alias ActivityOfSolventValue as RelativeActivityOfSolventValue;
-    alias activityOfSolventQuantities as relativeActivityOfSolventQuantities;
     alias activityOfSolvent as relativeActivityOfSolvent;
 
     /**
@@ -783,12 +750,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: OsmoticFactorOfSolventUnit[1];
     }
-    attribute osmoticFactorOfSolventQuantities: OsmoticFactorOfSolventValue[*] nonunique :> scalarQuantities;
-    attribute osmoticFactorOfSolvent: OsmoticFactorOfSolventValue[1] :> osmoticFactorOfSolventQuantities;
+    attribute osmoticFactorOfSolvent: OsmoticFactorOfSolventValue :> scalarQuantities;
 
     alias OsmoticFactorOfSolventUnit as OsmoticCoefficientOfSolventAUnit;
     alias OsmoticFactorOfSolventValue as OsmoticCoefficientOfSolventAValue;
-    alias osmoticFactorOfSolventQuantities as osmoticCoefficientOfSolventAQuantities;
     alias osmoticFactorOfSolvent as osmoticCoefficientOfSolventA;
 
     /**
@@ -810,8 +775,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: StandardAbsoluteActivityOfSolventUnit[1];
     }
-    attribute standardAbsoluteActivityOfSolventQuantities: StandardAbsoluteActivityOfSolventValue[*] nonunique :> scalarQuantities;
-    attribute standardAbsoluteActivityOfSolvent: StandardAbsoluteActivityOfSolventValue[1] :> standardAbsoluteActivityOfSolventQuantities;
+    attribute standardAbsoluteActivityOfSolvent: StandardAbsoluteActivityOfSolventValue :> scalarQuantities;
 
     /**
      * source: item 9-28 osmotic pressure
@@ -835,8 +799,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: OsmoticPressureUnit[1];
     }
-    attribute osmoticPressureQuantities: OsmoticPressureValue[*] nonunique :> scalarQuantities;
-    attribute osmoticPressure: OsmoticPressureValue[1] :> osmoticPressureQuantities;
+    attribute osmoticPressure: OsmoticPressureValue :> scalarQuantities;
 
     /**
      * source: item 9-29 stoichiometric number of substance
@@ -857,8 +820,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: StoichiometricNumberOfSubstanceUnit[1];
     }
-    attribute stoichiometricNumberOfSubstanceQuantities: StoichiometricNumberOfSubstanceValue[*] nonunique :> scalarQuantities;
-    attribute stoichiometricNumberOfSubstance: StoichiometricNumberOfSubstanceValue[1] :> stoichiometricNumberOfSubstanceQuantities;
+    attribute stoichiometricNumberOfSubstance: StoichiometricNumberOfSubstanceValue :> scalarQuantities;
 
     /**
      * source: item 9-30 affinity of a chemical reaction
@@ -883,8 +845,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: AffinityOfAChemicalReactionUnit[1];
     }
-    attribute affinityOfAChemicalReactionQuantities: AffinityOfAChemicalReactionValue[*] nonunique :> scalarQuantities;
-    attribute affinityOfAChemicalReaction: AffinityOfAChemicalReactionValue[1] :> affinityOfAChemicalReactionQuantities;
+    attribute affinityOfAChemicalReaction: AffinityOfAChemicalReactionValue :> scalarQuantities;
 
     /**
      * source: item 9-31 extent of reaction
@@ -897,7 +858,7 @@ package ISQChemistryMolecular {
      * definition: difference of initial amount `n_(`B in) of substance B (item 9-2) and equilibrium amount` n_(`B eq) of substance B (item 9-2) divided by stoichiometric number `ν_B` of substance B (item 9-29): `ξ = (n_(Beq) - n_(Bin))/ν_B`
      * remarks: See remark to item 9-30.
      */
-    attribute extentOfReaction: AmountOfSubstanceValue[1] :> amountOfSubstanceQuantities;
+    attribute extentOfReaction: AmountOfSubstanceValue :> scalarQuantities;
 
     /**
      * source: item 9-32 standard equilibrium constant, thermodynamic equilibrium constant
@@ -918,12 +879,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: StandardEquilibriumConstantUnit[1];
     }
-    attribute standardEquilibriumConstantQuantities: StandardEquilibriumConstantValue[*] nonunique :> scalarQuantities;
-    attribute standardEquilibriumConstant: StandardEquilibriumConstantValue[1] :> standardEquilibriumConstantQuantities;
+    attribute standardEquilibriumConstant: StandardEquilibriumConstantValue :> scalarQuantities;
 
     alias StandardEquilibriumConstantUnit as ThermodynamicEquilibriumConstantUnit;
     alias StandardEquilibriumConstantValue as ThermodynamicEquilibriumConstantValue;
-    alias standardEquilibriumConstantQuantities as thermodynamicEquilibriumConstantQuantities;
     alias standardEquilibriumConstant as thermodynamicEquilibriumConstant;
 
     /**
@@ -948,8 +907,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: EquilibriumConstantOnPressureBasisUnit[1];
     }
-    attribute equilibriumConstantOnPressureBasisQuantities: EquilibriumConstantOnPressureBasisValue[*] nonunique :> scalarQuantities;
-    attribute equilibriumConstantOnPressureBasis: EquilibriumConstantOnPressureBasisValue[1] :> equilibriumConstantOnPressureBasisQuantities;
+    attribute equilibriumConstantOnPressureBasis: EquilibriumConstantOnPressureBasisValue :> scalarQuantities;
 
     /**
      * source: item 9-34 equilibrium constant on concentration basis
@@ -972,8 +930,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: EquilibriumConstantOnConcentrationBasisUnit[1];
     }
-    attribute equilibriumConstantOnConcentrationBasisQuantities: EquilibriumConstantOnConcentrationBasisValue[*] nonunique :> scalarQuantities;
-    attribute equilibriumConstantOnConcentrationBasis: EquilibriumConstantOnConcentrationBasisValue[1] :> equilibriumConstantOnConcentrationBasisQuantities;
+    attribute equilibriumConstantOnConcentrationBasis: EquilibriumConstantOnConcentrationBasisValue :> scalarQuantities;
 
     /**
      * source: item 9-35.1 microcanonical partition function
@@ -986,7 +943,7 @@ package ISQChemistryMolecular {
      * definition: number of all quantum states `r` consistent with given energy `E` (ISO 80000-4), volume (ISO 80000-3), and external fields: `Ω = sum_r 1`
      * remarks: `S = k ln(Ω)` where `S` is entropy (ISO 80000-5) and `k` is the Boltzmann constant (ISO 80000-1).
      */
-    attribute microcanonicalPartitionFunction: CountValue[1] :> countQuantities;
+    attribute microcanonicalPartitionFunction: CountValue :> scalarQuantities;
 
     /**
      * source: item 9-35.2 canonical partition function
@@ -1007,8 +964,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: CanonicalPartitionFunctionUnit[1];
     }
-    attribute canonicalPartitionFunctionQuantities: CanonicalPartitionFunctionValue[*] nonunique :> scalarQuantities;
-    attribute canonicalPartitionFunction: CanonicalPartitionFunctionValue[1] :> canonicalPartitionFunctionQuantities;
+    attribute canonicalPartitionFunction: CanonicalPartitionFunctionValue :> scalarQuantities;
 
     /**
      * source: item 9-35.3 grand-canonical partition function, grand partition function
@@ -1029,12 +985,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: GrandCanonicalPartitionFunctionUnit[1];
     }
-    attribute grandCanonicalPartitionFunctionQuantities: GrandCanonicalPartitionFunctionValue[*] nonunique :> scalarQuantities;
-    attribute grandCanonicalPartitionFunction: GrandCanonicalPartitionFunctionValue[1] :> grandCanonicalPartitionFunctionQuantities;
+    attribute grandCanonicalPartitionFunction: GrandCanonicalPartitionFunctionValue :> scalarQuantities;
 
     alias GrandCanonicalPartitionFunctionUnit as GrandPartitionFunctionUnit;
     alias GrandCanonicalPartitionFunctionValue as GrandPartitionFunctionValue;
-    alias grandCanonicalPartitionFunctionQuantities as grandPartitionFunctionQuantities;
     alias grandCanonicalPartitionFunction as grandPartitionFunction;
 
     /**
@@ -1056,12 +1010,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolecularPartitionFunctionUnit[1];
     }
-    attribute molecularPartitionFunctionQuantities: MolecularPartitionFunctionValue[*] nonunique :> scalarQuantities;
-    attribute molecularPartitionFunction: MolecularPartitionFunctionValue[1] :> molecularPartitionFunctionQuantities;
+    attribute molecularPartitionFunction: MolecularPartitionFunctionValue :> scalarQuantities;
 
     alias MolecularPartitionFunctionUnit as PartitionFunctionOfAMoleculeUnit;
     alias MolecularPartitionFunctionValue as PartitionFunctionOfAMoleculeValue;
-    alias molecularPartitionFunctionQuantities as partitionFunctionOfAMoleculeQuantities;
     alias molecularPartitionFunction as partitionFunctionOfAMolecule;
 
     /**
@@ -1075,7 +1027,7 @@ package ISQChemistryMolecular {
      * definition: number of different microstates in a subsystem
      * remarks: 
      */
-    attribute statisticalWeightOfSubsystem: CountValue[1] :> countQuantities;
+    attribute statisticalWeightOfSubsystem: CountValue :> scalarQuantities;
 
     /**
      * source: item 9-36.2 degeneracy, multiplicity
@@ -1096,12 +1048,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: DegeneracyUnit[1];
     }
-    attribute degeneracyQuantities: DegeneracyValue[*] nonunique :> scalarQuantities;
-    attribute degeneracy: DegeneracyValue[1] :> degeneracyQuantities;
+    attribute degeneracy: DegeneracyValue :> scalarQuantities;
 
     alias DegeneracyUnit as MultiplicityUnit;
     alias DegeneracyValue as MultiplicityValue;
-    alias degeneracyQuantities as multiplicityQuantities;
     alias degeneracy as multiplicity;
 
     /**
@@ -1128,8 +1078,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarGasConstantUnit[1];
     }
-    attribute molarGasConstantQuantities: MolarGasConstantValue[*] nonunique :> scalarQuantities;
-    attribute molarGasConstant: MolarGasConstantValue[1] :> molarGasConstantQuantities;
+    attribute molarGasConstant: MolarGasConstantValue :> scalarQuantities;
 
     /**
      * source: item 9-37.2 specific gas constant
@@ -1158,7 +1107,7 @@ package ISQChemistryMolecular {
      * definition: for a particle, the average distance `d` (ISO 80000-3) between two successive collisions with other particles
      * remarks: 
      */
-    attribute meanFreePath: LengthValue[1] :> lengthQuantities;
+    attribute meanFreePath: LengthValue :> scalarQuantities;
 
     /**
      * source: item 9-39 diffusion coefficient
@@ -1181,8 +1130,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: DiffusionCoefficientUnit[1];
     }
-    attribute diffusionCoefficientQuantities: DiffusionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute diffusionCoefficient: DiffusionCoefficientValue[1] :> diffusionCoefficientQuantities;
+    attribute diffusionCoefficient: DiffusionCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 9-40.1 thermal diffusion ratio
@@ -1203,8 +1151,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalDiffusionRatioUnit[1];
     }
-    attribute thermalDiffusionRatioQuantities: ThermalDiffusionRatioValue[*] nonunique :> scalarQuantities;
-    attribute thermalDiffusionRatio: ThermalDiffusionRatioValue[1] :> thermalDiffusionRatioQuantities;
+    attribute thermalDiffusionRatio: ThermalDiffusionRatioValue :> scalarQuantities;
 
     /**
      * source: item 9-40.2 thermal diffusion factor
@@ -1225,8 +1172,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalDiffusionFactorUnit[1];
     }
-    attribute thermalDiffusionFactorQuantities: ThermalDiffusionFactorValue[*] nonunique :> scalarQuantities;
-    attribute thermalDiffusionFactor: ThermalDiffusionFactorValue[1] :> thermalDiffusionFactorQuantities;
+    attribute thermalDiffusionFactor: ThermalDiffusionFactorValue :> scalarQuantities;
 
     /**
      * source: item 9-41 thermal diffusion coefficient
@@ -1249,8 +1195,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalDiffusionCoefficientUnit[1];
     }
-    attribute thermalDiffusionCoefficientQuantities: ThermalDiffusionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute thermalDiffusionCoefficient: ThermalDiffusionCoefficientValue[1] :> thermalDiffusionCoefficientQuantities;
+    attribute thermalDiffusionCoefficient: ThermalDiffusionCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 9-42 ionic strength
@@ -1273,8 +1218,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: IonicStrengthUnit[1];
     }
-    attribute ionicStrengthQuantities: IonicStrengthValue[*] nonunique :> scalarQuantities;
-    attribute ionicStrength: IonicStrengthValue[1] :> ionicStrengthQuantities;
+    attribute ionicStrength: IonicStrengthValue :> scalarQuantities;
 
     /**
      * source: item 9-43 degree of dissociation, dissociation fraction
@@ -1295,12 +1239,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: DegreeOfDissociationUnit[1];
     }
-    attribute degreeOfDissociationQuantities: DegreeOfDissociationValue[*] nonunique :> scalarQuantities;
-    attribute degreeOfDissociation: DegreeOfDissociationValue[1] :> degreeOfDissociationQuantities;
+    attribute degreeOfDissociation: DegreeOfDissociationValue :> scalarQuantities;
 
     alias DegreeOfDissociationUnit as DissociationFractionUnit;
     alias DegreeOfDissociationValue as DissociationFractionValue;
-    alias degreeOfDissociationQuantities as dissociationFractionQuantities;
     alias degreeOfDissociation as dissociationFraction;
 
     /**
@@ -1326,8 +1268,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: ElectrolyticConductivityUnit[1];
     }
-    attribute electrolyticConductivityQuantities: ElectrolyticConductivityValue[*] nonunique :> scalarQuantities;
-    attribute electrolyticConductivity: ElectrolyticConductivityValue[1] :> electrolyticConductivityQuantities;
+    attribute electrolyticConductivity: ElectrolyticConductivityValue :> scalarQuantities;
 
     /**
      * source: item 9-45 molar conductivity
@@ -1352,8 +1293,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarConductivityUnit[1];
     }
-    attribute molarConductivityQuantities: MolarConductivityValue[*] nonunique :> scalarQuantities;
-    attribute molarConductivity: MolarConductivityValue[1] :> molarConductivityQuantities;
+    attribute molarConductivity: MolarConductivityValue :> scalarQuantities;
 
     /**
      * source: item 9-46 transport number of the ion B, current fraction of the ion B
@@ -1374,12 +1314,10 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: TransportNumberOfTheIonBUnit[1];
     }
-    attribute transportNumberOfTheIonBQuantities: TransportNumberOfTheIonBValue[*] nonunique :> scalarQuantities;
-    attribute transportNumberOfTheIonB: TransportNumberOfTheIonBValue[1] :> transportNumberOfTheIonBQuantities;
+    attribute transportNumberOfTheIonB: TransportNumberOfTheIonBValue :> scalarQuantities;
 
     alias TransportNumberOfTheIonBUnit as CurrentFractionOfTheIonBUnit;
     alias TransportNumberOfTheIonBValue as CurrentFractionOfTheIonBValue;
-    alias transportNumberOfTheIonBQuantities as currentFractionOfTheIonBQuantities;
     alias transportNumberOfTheIonB as currentFractionOfTheIonB;
 
     /**
@@ -1393,7 +1331,7 @@ package ISQChemistryMolecular {
      * definition: angle through which plane-polarized light is rotated clockwise, as seen when facing the light source, in passing through an optically active medium
      * remarks: 
      */
-    attribute angleOfOpticalRotation: AngularMeasureValue[1] :> angularMeasureQuantities;
+    attribute angleOfOpticalRotation: AngularMeasureValue :> scalarQuantities;
 
     /**
      * source: item 9-48 molar optical rotatory power
@@ -1416,8 +1354,7 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: MolarOpticalRotatoryPowerUnit[1];
     }
-    attribute molarOpticalRotatoryPowerQuantities: MolarOpticalRotatoryPowerValue[*] nonunique :> scalarQuantities;
-    attribute molarOpticalRotatoryPower: MolarOpticalRotatoryPowerValue[1] :> molarOpticalRotatoryPowerQuantities;
+    attribute molarOpticalRotatoryPower: MolarOpticalRotatoryPowerValue :> scalarQuantities;
 
     /**
      * source: item 9-49 specific optical rotatory power
@@ -1440,7 +1377,6 @@ package ISQChemistryMolecular {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificOpticalRotatoryPowerUnit[1];
     }
-    attribute specificOpticalRotatoryPowerQuantities: SpecificOpticalRotatoryPowerValue[*] nonunique :> scalarQuantities;
-    attribute specificOpticalRotatoryPower: SpecificOpticalRotatoryPowerValue[1] :> specificOpticalRotatoryPowerQuantities;
+    attribute specificOpticalRotatoryPower: SpecificOpticalRotatoryPowerValue :> scalarQuantities;
 
 }

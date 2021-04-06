@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:46:40Z from standard ISO-80000-3:2019 "Space and Time"
+ * Generated on 2021-04-06T20:54:34Z from standard ISO-80000-3:2019 "Space and Time"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-3:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -27,7 +27,7 @@ package ISQSpaceTime {
      * remarks: Length does not need to be measured along a straight line. Length is one of the seven base quantities in the International System of Units (ISO 80000-1).
      */
 
-    /**
+    /*
      * See package ISQBase for the declarations for item 3-1.1:
      * base unit LengthUnit and quantity type LengthValue.
      */
@@ -43,7 +43,7 @@ package ISQSpaceTime {
      * definition: minimum length of a straight line segment between two parallel straight lines (in two dimensions) or planes (in three dimensions) that enclose a given geometrical shape
      * remarks: This quantity is non-negative.
      */
-    attribute width: LengthValue[1] :> lengthQuantities;
+    attribute width: LengthValue :> scalarQuantities;
 
     alias width as breadth;
 
@@ -58,7 +58,7 @@ package ISQSpaceTime {
      * definition: minimum length of a straight line segment between a point and a reference line or reference surface
      * remarks: This quantity is usually signed. The sign expresses the position of the particular point with respect to the reference line or surface and is chosen by convention. The symbol `H` is often used to denote altitude, i.e. height above sea level.
      */
-    attribute height: LengthValue[1] :> lengthQuantities;
+    attribute height: LengthValue :> scalarQuantities;
 
     alias height as depth;
 
@@ -75,7 +75,7 @@ package ISQSpaceTime {
      * definition: width (item 3-1.2)
      * remarks: This quantity is non-negative.
      */
-    attribute thickness: LengthValue[1] :> lengthQuantities;
+    attribute thickness: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-1.5 diameter
@@ -88,7 +88,7 @@ package ISQSpaceTime {
      * definition: width (item 3-1.2) of a circle, cylinder or sphere
      * remarks: This quantity is non-negative.
      */
-    attribute diameter: LengthValue[1] :> lengthQuantities;
+    attribute diameter: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-1.6 radius
@@ -101,7 +101,7 @@ package ISQSpaceTime {
      * definition: half of a diameter (item 3-1.5)
      * remarks: This quantity is non-negative.
      */
-    attribute radius: LengthValue[1] :> lengthQuantities;
+    attribute radius: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-1.7 path length, arc length
@@ -114,7 +114,7 @@ package ISQSpaceTime {
      * definition: length of a rectifiable curve between two of its points
      * remarks: The differential path length at a given point of a curve is: `ds = sqrt(dx^2 + dy^2 + dz^2)` where `x`, `y`, and `z` denote the Cartesian coordinates (ISO 80000-2) of the particular point. There are curves which are not rectifiable, for example fractal curves.
      */
-    attribute pathLength: LengthValue[1] :> lengthQuantities;
+    attribute pathLength: LengthValue :> scalarQuantities;
 
     alias pathLength as arcLength;
 
@@ -129,7 +129,7 @@ package ISQSpaceTime {
      * definition: shortest path length (item 3-1.7) between two points in a metric space
      * remarks: A metric space might be curved. An example of a curved metric space is the surface of the Earth. In this case, distances are measured along great circles. A metric is not necessarily Euclidean.
      */
-    attribute distance: LengthValue[1] :> lengthQuantities;
+    attribute distance: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-1.9 radial distance
@@ -142,7 +142,7 @@ package ISQSpaceTime {
      * definition: distance (item 3-1.8), where one point is located on an axis or within a closed non self-intersecting curve or surface
      * remarks: The subscript Q denotes the point from which the radial distance is measured. Examples of closed non self-intersecting curves are circles or ellipses. Examples of closed non self-intersecting surfaces are surfaces of spheres or egg-shaped objects.
      */
-    attribute radialDistance: LengthValue[1] :> lengthQuantities;
+    attribute radialDistance: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-1.10 position vector
@@ -161,8 +161,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
     }
-    attribute positionVectors: Cartesian3dPositionVector[*] nonunique :> vectorQuantities;
-    attribute positionVector: Cartesian3dPositionVector[1] :> positionVectors;
+    attribute positionVector: Cartesian3dPositionVector :> vectorQuantities;
 
     /**
      * source: item 3-1.11 displacement
@@ -181,8 +180,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
     }
-    attribute displacementVectors: Cartesian3dDisplacementVector[*] nonunique :> vectorQuantities;
-    attribute displacementVector: Cartesian3dDisplacementVector[1] :> displacementVectors;
+    attribute displacementVector: Cartesian3dDisplacementVector :> vectorQuantities;
 
     /**
      * source: item 3-1.12 radius of curvature
@@ -195,7 +193,7 @@ package ISQSpaceTime {
      * definition: radius (item 3-1.6) of the osculating circle of a planar curve at a particular point of the curve
      * remarks: The radius of curvature is only defined for curves which are at least twice continuously differentiable.
      */
-    attribute radiusOfCurvature: LengthValue[1] :> lengthQuantities;
+    attribute radiusOfCurvature: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-2 curvature
@@ -217,8 +215,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: CurvatureUnit[1];
     }
-    attribute curvatureQuantities: CurvatureValue[*] nonunique :> scalarQuantities;
-    attribute curvature: CurvatureValue[1] :> curvatureQuantities;
+    attribute curvature: CurvatureValue :> scalarQuantities;
 
     /**
      * source: item 3-3 area
@@ -240,8 +237,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AreaUnit[1];
     }
-    attribute areaQuantities: AreaValue[*] nonunique :> scalarQuantities;
-    attribute area: AreaValue[1] :> areaQuantities;
+    attribute area: AreaValue :> scalarQuantities;
 
     /**
      * source: item 3-4 volume
@@ -263,8 +259,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: VolumeUnit[1];
     }
-    attribute volumeQuantities: VolumeValue[*] nonunique :> scalarQuantities;
-    attribute volume: VolumeValue[1] :> volumeQuantities;
+    attribute volume: VolumeValue :> scalarQuantities;
 
     /**
      * source: item 3-5 angular measure, plane angle
@@ -285,12 +280,10 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AngularMeasureUnit[1];
     }
-    attribute angularMeasureQuantities: AngularMeasureValue[*] nonunique :> scalarQuantities;
-    attribute angularMeasure: AngularMeasureValue[1] :> angularMeasureQuantities;
+    attribute angularMeasure: AngularMeasureValue :> scalarQuantities;
 
     alias AngularMeasureUnit as PlaneAngleUnit;
     alias AngularMeasureValue as PlaneAngleValue;
-    alias angularMeasureQuantities as planeAngleQuantities;
     alias angularMeasure as planeAngle;
 
     /**
@@ -304,7 +297,7 @@ package ISQSpaceTime {
      * definition: quotient of the traversed circular path length (item 3-1.7) of a point in space during a rotation and its distance (item 3-1.8) from the axis or centre of rotation
      * remarks: The rotational displacement is given by: `φ = s/r` where `s` denotes the traversed path length (item 3-1.7) along the periphery of a circle, centred at the vertex of the plane angle, and `r` the radius (item 3-1.6) of that circle. The rotational displacement is signed. The sign denotes the direction of rotation and is chosen by convention. Other symbols are also used.
      */
-    attribute rotationalDisplacement: AngularMeasureValue[1] :> angularMeasureQuantities;
+    attribute rotationalDisplacement: AngularMeasureValue :> scalarQuantities;
 
     alias rotationalDisplacement as angularDisplacement;
 
@@ -319,7 +312,7 @@ package ISQSpaceTime {
      * definition: angular measure (item 3-5) between the positive real axis and the radius of the polar representation of the complex number in the complex plane
      * remarks: The phase angle (often imprecisely referred to as the “phase”) is the argument of a complex number. Other symbols are also used.
      */
-    attribute phaseAngle: AngularMeasureValue[1] :> angularMeasureQuantities;
+    attribute phaseAngle: AngularMeasureValue :> scalarQuantities;
 
     /**
      * source: item 3-8 solid angular measure
@@ -340,8 +333,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: SolidAngularMeasureUnit[1];
     }
-    attribute solidAngularMeasureQuantities: SolidAngularMeasureValue[*] nonunique :> scalarQuantities;
-    attribute solidAngularMeasure: SolidAngularMeasureValue[1] :> solidAngularMeasureQuantities;
+    attribute solidAngularMeasure: SolidAngularMeasureValue :> scalarQuantities;
 
     /**
      * source: item 3-9 duration, time
@@ -355,14 +347,13 @@ package ISQSpaceTime {
      * remarks: Duration is often just called time. Time is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). Duration is a measure of a time interval.
      */
 
-    /**
+    /*
      * See package ISQBase for the declarations for item 3-9:
      * base unit DurationUnit and quantity type DurationValue.
      */
 
     alias DurationUnit as TimeUnit;
     alias DurationValue as TimeValue;
-    alias durationQuantities as timeQuantities;
     alias duration as time;
 
     /**
@@ -389,8 +380,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dVelocityCoordinateSystem[1];
     }
-    attribute velocityVectors: Cartesian3dVelocityVector[*] nonunique :> vectorQuantities;
-    attribute velocityVector: Cartesian3dVelocityVector[1] :> velocityVectors;
+    attribute velocityVector: Cartesian3dVelocityVector :> vectorQuantities;
 
     /**
      * source: item 3-10.2 speed
@@ -413,8 +403,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: SpeedUnit[1];
     }
-    attribute speedQuantities: SpeedValue[*] nonunique :> scalarQuantities;
-    attribute speed: SpeedValue[1] :> speedQuantities;
+    attribute speed: SpeedValue :> scalarQuantities;
 
     /**
      * source: item 3-11 acceleration (scalar)
@@ -437,8 +426,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AccelerationUnit[1];
     }
-    attribute accelerationQuantities: AccelerationValue[*] nonunique :> scalarQuantities;
-    attribute acceleration: AccelerationValue[1] :> accelerationQuantities;
+    attribute acceleration: AccelerationValue :> scalarQuantities;
 
     /**
      * source: item 3-11 acceleration (vector)
@@ -464,8 +452,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAccelerationCoordinateSystem[1];
     }
-    attribute accelerationVectors: Cartesian3dAccelerationVector[*] nonunique :> vectorQuantities;
-    attribute accelerationVector: Cartesian3dAccelerationVector[1] :> accelerationVectors;
+    attribute accelerationVector: Cartesian3dAccelerationVector :> vectorQuantities;
 
     /**
      * source: item 3-12 angular velocity (scalar)
@@ -487,8 +474,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AngularVelocityUnit[1];
     }
-    attribute angularVelocityQuantities: AngularVelocityValue[*] nonunique :> scalarQuantities;
-    attribute angularVelocity: AngularVelocityValue[1] :> angularVelocityQuantities;
+    attribute angularVelocity: AngularVelocityValue :> scalarQuantities;
 
     /**
      * source: item 3-12 angular velocity (vector)
@@ -514,8 +500,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularVelocityCoordinateSystem[1];
     }
-    attribute angularVelocityVectors: Cartesian3dAngularVelocityVector[*] nonunique :> vectorQuantities;
-    attribute angularVelocityVector: Cartesian3dAngularVelocityVector[1] :> angularVelocityVectors;
+    attribute angularVelocityVector: Cartesian3dAngularVelocityVector :> vectorQuantities;
 
     /**
      * source: item 3-13 angular acceleration (scalar)
@@ -537,8 +522,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AngularAccelerationUnit[1];
     }
-    attribute angularAccelerationQuantities: AngularAccelerationValue[*] nonunique :> scalarQuantities;
-    attribute angularAcceleration: AngularAccelerationValue[1] :> angularAccelerationQuantities;
+    attribute angularAcceleration: AngularAccelerationValue :> scalarQuantities;
 
     /**
      * source: item 3-13 angular acceleration (vector)
@@ -564,8 +548,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAngularAccelerationCoordinateSystem[1];
     }
-    attribute angularAccelerationVectors: Cartesian3dAngularAccelerationVector[*] nonunique :> vectorQuantities;
-    attribute angularAccelerationVector: Cartesian3dAngularAccelerationVector[1] :> angularAccelerationVectors;
+    attribute angularAccelerationVector: Cartesian3dAngularAccelerationVector :> vectorQuantities;
 
     /**
      * source: item 3-14 period duration, period
@@ -578,7 +561,7 @@ package ISQSpaceTime {
      * definition: duration (item 3-9) of one cycle of a periodic event
      * remarks: A periodic event is an event that occurs regularly with a fixed time interval.
      */
-    attribute periodDuration: DurationValue[1] :> durationQuantities;
+    attribute periodDuration: DurationValue :> scalarQuantities;
 
     alias periodDuration as period;
 
@@ -593,7 +576,7 @@ package ISQSpaceTime {
      * definition: parameter characterizing the response to a step input of a first-order, linear time-invariant system
      * remarks: If a quantity is a function of the duration (item 3-9) expressed by: `F(t) prop e^(-t/τ)` where `t` denotes the duration (item 3-9), then `τ` denotes the time constant. Here the time constant `τ` applies to an exponentially decaying quantity.
      */
-    attribute timeConstant: DurationValue[1] :> durationQuantities;
+    attribute timeConstant: DurationValue :> scalarQuantities;
 
     /**
      * source: item 3-16 rotation
@@ -606,7 +589,7 @@ package ISQSpaceTime {
      * definition: number of revolutions
      * remarks: `N` is the number (not necessarily an integer) of revolutions, for example, of a rotating body about a given axis. Its value is given by: `N = φ/(2 π)` where `φ` denotes the measure of rotational displacement (item 3-6).
      */
-    attribute rotation: CountValue[1] :> countQuantities;
+    attribute rotation: CountValue :> scalarQuantities;
 
     /**
      * source: item 3-17.1 frequency
@@ -628,8 +611,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: FrequencyUnit[1];
     }
-    attribute frequencyQuantities: FrequencyValue[*] nonunique :> scalarQuantities;
-    attribute frequency: FrequencyValue[1] :> frequencyQuantities;
+    attribute frequency: FrequencyValue :> scalarQuantities;
 
     /**
      * source: item 3-17.2 rotational frequency
@@ -642,7 +624,7 @@ package ISQSpaceTime {
      * definition: duration (item 3-9) of one cycle of a periodic event
      * remarks: The rotational frequency is given by: `n = (dN) / (dt)` where `N` denotes the rotation (item 3-16) and `t` is the duration (item 3-9).
      */
-    attribute rotationalFrequency: FrequencyValue[1] :> frequencyQuantities;
+    attribute rotationalFrequency: FrequencyValue :> scalarQuantities;
 
     /**
      * source: item 3-18 angular frequency
@@ -664,8 +646,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AngularFrequencyUnit[1];
     }
-    attribute angularFrequencyQuantities: AngularFrequencyValue[*] nonunique :> scalarQuantities;
-    attribute angularFrequency: AngularFrequencyValue[1] :> angularFrequencyQuantities;
+    attribute angularFrequency: AngularFrequencyValue :> scalarQuantities;
 
     /**
      * source: item 3-19 wavelength
@@ -678,7 +659,7 @@ package ISQSpaceTime {
      * definition: length (item 3-1.1) of the repetition interval of a wave
      * remarks: 
      */
-    attribute wavelength: LengthValue[1] :> lengthQuantities;
+    attribute wavelength: LengthValue :> scalarQuantities;
 
     /**
      * source: item 3-20 repetency, wavenumber
@@ -700,12 +681,10 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: RepetencyUnit[1];
     }
-    attribute repetencyQuantities: RepetencyValue[*] nonunique :> scalarQuantities;
-    attribute repetency: RepetencyValue[1] :> repetencyQuantities;
+    attribute repetency: RepetencyValue :> scalarQuantities;
 
     alias RepetencyUnit as WavenumberUnit;
     alias RepetencyValue as WavenumberValue;
-    alias repetencyQuantities as wavenumberQuantities;
     alias repetency as wavenumber;
 
     /**
@@ -728,8 +707,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: WaveUnit[1];
     }
-    attribute waveQuantities: WaveValue[*] nonunique :> scalarQuantities;
-    attribute wave: WaveValue[1] :> waveQuantities;
+    attribute wave: WaveValue :> scalarQuantities;
 
     /**
      * source: item 3-21 wave vector (vector)
@@ -755,8 +733,7 @@ package ISQSpaceTime {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dWaveCoordinateSystem[1];
     }
-    attribute waveVectors: Cartesian3dWaveVector[*] nonunique :> vectorQuantities;
-    attribute waveVector: Cartesian3dWaveVector[1] :> waveVectors;
+    attribute waveVector: Cartesian3dWaveVector :> vectorQuantities;
 
     /**
      * source: item 3-22 angular repetency, angular wavenumber
@@ -778,12 +755,10 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AngularRepetencyUnit[1];
     }
-    attribute angularRepetencyQuantities: AngularRepetencyValue[*] nonunique :> scalarQuantities;
-    attribute angularRepetency: AngularRepetencyValue[1] :> angularRepetencyQuantities;
+    attribute angularRepetency: AngularRepetencyValue :> scalarQuantities;
 
     alias AngularRepetencyUnit as AngularWavenumberUnit;
     alias AngularRepetencyValue as AngularWavenumberValue;
-    alias angularRepetencyQuantities as angularWavenumberQuantities;
     alias angularRepetency as angularWavenumber;
 
     /**
@@ -807,12 +782,10 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: PhaseVelocityUnit[1];
     }
-    attribute phaseVelocityQuantities: PhaseVelocityValue[*] nonunique :> scalarQuantities;
-    attribute phaseVelocity: PhaseVelocityValue[1] :> phaseVelocityQuantities;
+    attribute phaseVelocity: PhaseVelocityValue :> scalarQuantities;
 
     alias PhaseVelocityUnit as PhaseSpeedUnit;
     alias PhaseVelocityValue as PhaseSpeedValue;
-    alias phaseVelocityQuantities as phaseSpeedQuantities;
     alias phaseVelocity as phaseSpeed;
 
     /**
@@ -826,7 +799,7 @@ package ISQSpaceTime {
      * definition: speed with which the envelope of a wave propagates in space
      * remarks: The group velocity is given by: `c_g = (d ω)/ (dk)` where `ω` denotes the angular frequency (item 3-18) and `k` the angular repetency (item 3-22).
      */
-    attribute groupVelocity: SpeedValue[1] :> speedQuantities;
+    attribute groupVelocity: SpeedValue :> scalarQuantities;
 
     alias groupVelocity as groupSpeed;
 
@@ -850,8 +823,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: DampingCoefficientUnit[1];
     }
-    attribute dampingCoefficientQuantities: DampingCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute dampingCoefficient: DampingCoefficientValue[1] :> dampingCoefficientQuantities;
+    attribute dampingCoefficient: DampingCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 3-25 logarithmic decrement
@@ -872,8 +844,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: LogarithmicDecrementUnit[1];
     }
-    attribute logarithmicDecrementQuantities: LogarithmicDecrementValue[*] nonunique :> scalarQuantities;
-    attribute logarithmicDecrement: LogarithmicDecrementValue[1] :> logarithmicDecrementQuantities;
+    attribute logarithmicDecrement: LogarithmicDecrementValue :> scalarQuantities;
 
     /**
      * source: item 3-26.1 attenuation, extinction
@@ -894,12 +865,10 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: AttenuationUnit[1];
     }
-    attribute attenuationQuantities: AttenuationValue[*] nonunique :> scalarQuantities;
-    attribute attenuation: AttenuationValue[1] :> attenuationQuantities;
+    attribute attenuation: AttenuationValue :> scalarQuantities;
 
     alias AttenuationUnit as ExtinctionUnit;
     alias AttenuationValue as ExtinctionValue;
-    alias attenuationQuantities as extinctionQuantities;
     alias attenuation as extinction;
 
     /**
@@ -921,8 +890,7 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: PhaseCoefficientUnit[1];
     }
-    attribute phaseCoefficientQuantities: PhaseCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute phaseCoefficient: PhaseCoefficientValue[1] :> phaseCoefficientQuantities;
+    attribute phaseCoefficient: PhaseCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 3-26.3 propagation coefficient
@@ -943,7 +911,6 @@ package ISQSpaceTime {
         attribute :>> num: Real;
         attribute :>> mRef: PropagationCoefficientUnit[1];
     }
-    attribute propagationCoefficientQuantities: PropagationCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute propagationCoefficient: PropagationCoefficientValue[1] :> propagationCoefficientQuantities;
+    attribute propagationCoefficient: PropagationCoefficientValue :> scalarQuantities;
 
 }

@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:46:40Z from standard IEC-80000-6:2008 "Electromagnetism"
+ * Generated on 2021-04-06T20:54:34Z from standard IEC-80000-6:2008 "Electromagnetism"
  * see also https://www.iso.org/obp/ui/#iso:std:iec:80000:-6:ed-1:v1:en,fr
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -15,9 +15,7 @@ package ISQElectromagnetism {
     private import UnitsAndScales::*;
     private import ISQBase::*;
 
-    private import ISQMechanics::powerQuantities;
     private import ISQMechanics::PowerValue;
-    private import ISQThermodynamics::energyQuantities;
     private import ISQThermodynamics::EnergyValue;
 
     /**
@@ -32,7 +30,7 @@ package ISQElectromagnetism {
      * remarks: Electric current is the quantity that can often be measured with an ammeter. The electric current through a surface is the quotient of the electric charge (item 6-2) transferred through the surface during a time interval by the duration of that interval. For a more complete definition, see item 6-8 and IEC 60050-121, item 121-11-13.
      */
 
-    /**
+    /*
      * See package ISQBase for the declarations for item 6-1:
      * base unit ElectricCurrentUnit and quantity type ElectricCurrentValue.
      */
@@ -58,8 +56,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricChargeUnit[1];
     }
-    attribute electricChargeQuantities: ElectricChargeValue[*] nonunique :> scalarQuantities;
-    attribute electricCharge: ElectricChargeValue[1] :> electricChargeQuantities;
+    attribute electricCharge: ElectricChargeValue :> scalarQuantities;
 
     /**
      * source: item 6-3 electric charge density, volumic electric charge
@@ -83,12 +80,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricChargeDensityUnit[1];
     }
-    attribute electricChargeDensityQuantities: ElectricChargeDensityValue[*] nonunique :> scalarQuantities;
-    attribute electricChargeDensity: ElectricChargeDensityValue[1] :> electricChargeDensityQuantities;
+    attribute electricChargeDensity: ElectricChargeDensityValue :> scalarQuantities;
 
     alias ElectricChargeDensityUnit as VolumicElectricChargeUnit;
     alias ElectricChargeDensityValue as VolumicElectricChargeValue;
-    alias electricChargeDensityQuantities as volumicElectricChargeQuantities;
     alias electricChargeDensity as volumicElectricCharge;
 
     /**
@@ -113,12 +108,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceDensityOfElectricChargeUnit[1];
     }
-    attribute surfaceDensityOfElectricChargeQuantities: SurfaceDensityOfElectricChargeValue[*] nonunique :> scalarQuantities;
-    attribute surfaceDensityOfElectricCharge: SurfaceDensityOfElectricChargeValue[1] :> surfaceDensityOfElectricChargeQuantities;
+    attribute surfaceDensityOfElectricCharge: SurfaceDensityOfElectricChargeValue :> scalarQuantities;
 
     alias SurfaceDensityOfElectricChargeUnit as AreicElectricChargeUnit;
     alias SurfaceDensityOfElectricChargeValue as AreicElectricChargeValue;
-    alias surfaceDensityOfElectricChargeQuantities as areicElectricChargeQuantities;
     alias surfaceDensityOfElectricCharge as areicElectricCharge;
 
     /**
@@ -143,12 +136,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: LinearDensityOfElectricChargeUnit[1];
     }
-    attribute linearDensityOfElectricChargeQuantities: LinearDensityOfElectricChargeValue[*] nonunique :> scalarQuantities;
-    attribute linearDensityOfElectricCharge: LinearDensityOfElectricChargeValue[1] :> linearDensityOfElectricChargeQuantities;
+    attribute linearDensityOfElectricCharge: LinearDensityOfElectricChargeValue :> scalarQuantities;
 
     alias LinearDensityOfElectricChargeUnit as LineicElectricChargeUnit;
     alias LinearDensityOfElectricChargeValue as LineicElectricChargeValue;
-    alias linearDensityOfElectricChargeQuantities as lineicElectricChargeQuantities;
     alias linearDensityOfElectricCharge as lineicElectricCharge;
 
     /**
@@ -173,8 +164,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricDipoleMomentUnit[1];
     }
-    attribute electricDipoleMomentQuantities: ElectricDipoleMomentValue[*] nonunique :> scalarQuantities;
-    attribute electricDipoleMoment: ElectricDipoleMomentValue[1] :> electricDipoleMomentQuantities;
+    attribute electricDipoleMoment: ElectricDipoleMomentValue :> scalarQuantities;
 
     /**
      * source: item 6-6 electric dipole moment (vector)
@@ -200,8 +190,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dElectricDipoleMomentCoordinateSystem[1];
     }
-    attribute electricDipoleMomentVectors: Cartesian3dElectricDipoleMomentVector[*] nonunique :> vectorQuantities;
-    attribute electricDipoleMomentVector: Cartesian3dElectricDipoleMomentVector[1] :> electricDipoleMomentVectors;
+    attribute electricDipoleMomentVector: Cartesian3dElectricDipoleMomentVector :> vectorQuantities;
 
     /**
      * source: item 6-7 electric polarization (scalar)
@@ -225,8 +214,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricPolarizationUnit[1];
     }
-    attribute electricPolarizationQuantities: ElectricPolarizationValue[*] nonunique :> scalarQuantities;
-    attribute electricPolarization: ElectricPolarizationValue[1] :> electricPolarizationQuantities;
+    attribute electricPolarization: ElectricPolarizationValue :> scalarQuantities;
 
     /**
      * source: item 6-7 electric polarization (vector)
@@ -252,8 +240,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dElectricPolarizationCoordinateSystem[1];
     }
-    attribute electricPolarizationVectors: Cartesian3dElectricPolarizationVector[*] nonunique :> vectorQuantities;
-    attribute electricPolarizationVector: Cartesian3dElectricPolarizationVector[1] :> electricPolarizationVectors;
+    attribute electricPolarizationVector: Cartesian3dElectricPolarizationVector :> vectorQuantities;
 
     /**
      * source: item 6-8 electric current density, areic electric current (scalar)
@@ -276,8 +263,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricCurrentDensityUnit[1];
     }
-    attribute electricCurrentDensityQuantities: ElectricCurrentDensityValue[*] nonunique :> scalarQuantities;
-    attribute electricCurrentDensity: ElectricCurrentDensityValue[1] :> electricCurrentDensityQuantities;
+    attribute electricCurrentDensity: ElectricCurrentDensityValue :> scalarQuantities;
 
     /**
      * source: item 6-8 electric current density, areic electric current (vector)
@@ -303,11 +289,9 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dElectricCurrentDensityCoordinateSystem[1];
     }
-    attribute electricCurrentDensityVectors: Cartesian3dElectricCurrentDensityVector[*] nonunique :> vectorQuantities;
-    attribute electricCurrentDensityVector: Cartesian3dElectricCurrentDensityVector[1] :> electricCurrentDensityVectors;
+    attribute electricCurrentDensityVector: Cartesian3dElectricCurrentDensityVector :> vectorQuantities;
 
     alias Cartesian3dElectricCurrentDensityCoordinateSystem as Cartesian3dAreicElectricCurrentCoordinateSystem;
-    alias electricCurrentDensityVectors as areicElectricCurrentVectors;
     alias electricCurrentDensityVector as areicElectricCurrentVector;
 
     /**
@@ -331,8 +315,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: LinearElectricCurrentDensityUnit[1];
     }
-    attribute linearElectricCurrentDensityQuantities: LinearElectricCurrentDensityValue[*] nonunique :> scalarQuantities;
-    attribute linearElectricCurrentDensity: LinearElectricCurrentDensityValue[1] :> linearElectricCurrentDensityQuantities;
+    attribute linearElectricCurrentDensity: LinearElectricCurrentDensityValue :> scalarQuantities;
 
     /**
      * source: item 6-9 linear electric current density, lineic electric current (vector)
@@ -358,11 +341,9 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dLinearElectricCurrentDensityCoordinateSystem[1];
     }
-    attribute linearElectricCurrentDensityVectors: Cartesian3dLinearElectricCurrentDensityVector[*] nonunique :> vectorQuantities;
-    attribute linearElectricCurrentDensityVector: Cartesian3dLinearElectricCurrentDensityVector[1] :> linearElectricCurrentDensityVectors;
+    attribute linearElectricCurrentDensityVector: Cartesian3dLinearElectricCurrentDensityVector :> vectorQuantities;
 
     alias Cartesian3dLinearElectricCurrentDensityCoordinateSystem as Cartesian3dLineicElectricCurrentCoordinateSystem;
-    alias linearElectricCurrentDensityVectors as lineicElectricCurrentVectors;
     alias linearElectricCurrentDensityVector as lineicElectricCurrentVector;
 
     /**
@@ -388,8 +369,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricFieldStrengthUnit[1];
     }
-    attribute electricFieldStrengthQuantities: ElectricFieldStrengthValue[*] nonunique :> scalarQuantities;
-    attribute electricFieldStrength: ElectricFieldStrengthValue[1] :> electricFieldStrengthQuantities;
+    attribute electricFieldStrength: ElectricFieldStrengthValue :> scalarQuantities;
 
     /**
      * source: item 6-10 electric field strength (vector)
@@ -415,8 +395,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dElectricFieldStrengthCoordinateSystem[1];
     }
-    attribute electricFieldStrengthVectors: Cartesian3dElectricFieldStrengthVector[*] nonunique :> vectorQuantities;
-    attribute electricFieldStrengthVector: Cartesian3dElectricFieldStrengthVector[1] :> electricFieldStrengthVectors;
+    attribute electricFieldStrengthVector: Cartesian3dElectricFieldStrengthVector :> vectorQuantities;
 
     /**
      * source: item 6-11.1 electric potential
@@ -441,8 +420,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricPotentialUnit[1];
     }
-    attribute electricPotentialQuantities: ElectricPotentialValue[*] nonunique :> scalarQuantities;
-    attribute electricPotential: ElectricPotentialValue[1] :> electricPotentialQuantities;
+    attribute electricPotential: ElectricPotentialValue :> scalarQuantities;
 
     /**
      * source: item 6-11.2 electric potential difference
@@ -467,8 +445,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricPotentialDifferenceUnit[1];
     }
-    attribute electricPotentialDifferenceQuantities: ElectricPotentialDifferenceValue[*] nonunique :> scalarQuantities;
-    attribute electricPotentialDifference: ElectricPotentialDifferenceValue[1] :> electricPotentialDifferenceQuantities;
+    attribute electricPotentialDifference: ElectricPotentialDifferenceValue :> scalarQuantities;
 
     /**
      * source: item 6-11.3 voltage, electric tension
@@ -493,12 +470,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: VoltageUnit[1];
     }
-    attribute voltageQuantities: VoltageValue[*] nonunique :> scalarQuantities;
-    attribute voltage: VoltageValue[1] :> voltageQuantities;
+    attribute voltage: VoltageValue :> scalarQuantities;
 
     alias VoltageUnit as ElectricTensionUnit;
     alias VoltageValue as ElectricTensionValue;
-    alias voltageQuantities as electricTensionQuantities;
     alias voltage as electricTension;
 
     /**
@@ -523,8 +498,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricFluxDensityUnit[1];
     }
-    attribute electricFluxDensityQuantities: ElectricFluxDensityValue[*] nonunique :> scalarQuantities;
-    attribute electricFluxDensity: ElectricFluxDensityValue[1] :> electricFluxDensityQuantities;
+    attribute electricFluxDensity: ElectricFluxDensityValue :> scalarQuantities;
 
     /**
      * source: item 6-12 electric flux density, electric displacement (vector)
@@ -550,11 +524,9 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dElectricFluxDensityCoordinateSystem[1];
     }
-    attribute electricFluxDensityVectors: Cartesian3dElectricFluxDensityVector[*] nonunique :> vectorQuantities;
-    attribute electricFluxDensityVector: Cartesian3dElectricFluxDensityVector[1] :> electricFluxDensityVectors;
+    attribute electricFluxDensityVector: Cartesian3dElectricFluxDensityVector :> vectorQuantities;
 
     alias Cartesian3dElectricFluxDensityCoordinateSystem as Cartesian3dElectricDisplacementCoordinateSystem;
-    alias electricFluxDensityVectors as electricDisplacementVectors;
     alias electricFluxDensityVector as electricDisplacementVector;
 
     /**
@@ -580,8 +552,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: CapacitanceUnit[1];
     }
-    attribute capacitanceQuantities: CapacitanceValue[*] nonunique :> scalarQuantities;
-    attribute capacitance: CapacitanceValue[1] :> capacitanceQuantities;
+    attribute capacitance: CapacitanceValue :> scalarQuantities;
 
     /**
      * source: item 6-14.1 electric constant, permittivity of vacuum
@@ -606,12 +577,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricConstantUnit[1];
     }
-    attribute electricConstantQuantities: ElectricConstantValue[*] nonunique :> scalarQuantities;
-    attribute electricConstant: ElectricConstantValue[1] :> electricConstantQuantities;
+    attribute electricConstant: ElectricConstantValue :> scalarQuantities;
 
     alias ElectricConstantUnit as PermittivityOfVacuumUnit;
     alias ElectricConstantValue as PermittivityOfVacuumValue;
-    alias electricConstantQuantities as permittivityOfVacuumQuantities;
     alias electricConstant as permittivityOfVacuum;
 
     /**
@@ -637,8 +606,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PermittivityUnit[1];
     }
-    attribute permittivityQuantities: PermittivityValue[*] nonunique :> scalarQuantities;
-    attribute permittivity: PermittivityValue[1] :> permittivityQuantities;
+    attribute permittivity: PermittivityValue :> scalarQuantities;
 
     /**
      * source: item 6-15 relative permittivity
@@ -659,8 +627,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: RelativePermittivityUnit[1];
     }
-    attribute relativePermittivityQuantities: RelativePermittivityValue[*] nonunique :> scalarQuantities;
-    attribute relativePermittivity: RelativePermittivityValue[1] :> relativePermittivityQuantities;
+    attribute relativePermittivity: RelativePermittivityValue :> scalarQuantities;
 
     /**
      * source: item 6-16 electric susceptibility
@@ -681,8 +648,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricSusceptibilityUnit[1];
     }
-    attribute electricSusceptibilityQuantities: ElectricSusceptibilityValue[*] nonunique :> scalarQuantities;
-    attribute electricSusceptibility: ElectricSusceptibilityValue[1] :> electricSusceptibilityQuantities;
+    attribute electricSusceptibility: ElectricSusceptibilityValue :> scalarQuantities;
 
     /**
      * source: item 6-17 electric flux
@@ -705,8 +671,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricFluxUnit[1];
     }
-    attribute electricFluxQuantities: ElectricFluxValue[*] nonunique :> scalarQuantities;
-    attribute electricFlux: ElectricFluxValue[1] :> electricFluxQuantities;
+    attribute electricFlux: ElectricFluxValue :> scalarQuantities;
 
     /**
      * source: item 6-18 displacement current density (scalar)
@@ -729,8 +694,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: DisplacementCurrentDensityUnit[1];
     }
-    attribute displacementCurrentDensityQuantities: DisplacementCurrentDensityValue[*] nonunique :> scalarQuantities;
-    attribute displacementCurrentDensity: DisplacementCurrentDensityValue[1] :> displacementCurrentDensityQuantities;
+    attribute displacementCurrentDensity: DisplacementCurrentDensityValue :> scalarQuantities;
 
     /**
      * source: item 6-18 displacement current density (vector)
@@ -756,8 +720,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dDisplacementCurrentDensityCoordinateSystem[1];
     }
-    attribute displacementCurrentDensityVectors: Cartesian3dDisplacementCurrentDensityVector[*] nonunique :> vectorQuantities;
-    attribute displacementCurrentDensityVector: Cartesian3dDisplacementCurrentDensityVector[1] :> displacementCurrentDensityVectors;
+    attribute displacementCurrentDensityVector: Cartesian3dDisplacementCurrentDensityVector :> vectorQuantities;
 
     /**
      * source: item 6-19.1 displacement current
@@ -770,7 +733,7 @@ package ISQElectromagnetism {
      * definition: `I = int_S vec(J_D) * vec(e_n) dA` over a surface `S`, where `vec(J_D)` is displacement current density (item 6-18) en `vec(e_n) dA` is the vector surface element (ISO 80000-3 item 3-3)
      * remarks: See IEC 60050-121, item 121-11-43.
      */
-    attribute displacementCurrent: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute displacementCurrent: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-19.2 total current
@@ -783,7 +746,7 @@ package ISQElectromagnetism {
      * definition: `I_(tot) = I + I_D` where `I` is electric current (item 6-1) and `I_D` is displacement current (item 6-19.1)
      * remarks: See IEC 60050-121, item 121-11-45.
      */
-    attribute totalCurrent: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute totalCurrent: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-20 total current density (scalar)
@@ -806,8 +769,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: TotalCurrentDensityUnit[1];
     }
-    attribute totalCurrentDensityQuantities: TotalCurrentDensityValue[*] nonunique :> scalarQuantities;
-    attribute totalCurrentDensity: TotalCurrentDensityValue[1] :> totalCurrentDensityQuantities;
+    attribute totalCurrentDensity: TotalCurrentDensityValue :> scalarQuantities;
 
     /**
      * source: item 6-20 total current density (vector)
@@ -833,8 +795,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dTotalCurrentDensityCoordinateSystem[1];
     }
-    attribute totalCurrentDensityVectors: Cartesian3dTotalCurrentDensityVector[*] nonunique :> vectorQuantities;
-    attribute totalCurrentDensityVector: Cartesian3dTotalCurrentDensityVector[1] :> totalCurrentDensityVectors;
+    attribute totalCurrentDensityVector: Cartesian3dTotalCurrentDensityVector :> vectorQuantities;
 
     /**
      * source: item 6-21 magnetic flux density (scalar)
@@ -858,8 +819,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticFluxDensityUnit[1];
     }
-    attribute magneticFluxDensityQuantities: MagneticFluxDensityValue[*] nonunique :> scalarQuantities;
-    attribute magneticFluxDensity: MagneticFluxDensityValue[1] :> magneticFluxDensityQuantities;
+    attribute magneticFluxDensity: MagneticFluxDensityValue :> scalarQuantities;
 
     /**
      * source: item 6-21 magnetic flux density (vector)
@@ -885,8 +845,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticFluxDensityCoordinateSystem[1];
     }
-    attribute magneticFluxDensityVectors: Cartesian3dMagneticFluxDensityVector[*] nonunique :> vectorQuantities;
-    attribute magneticFluxDensityVector: Cartesian3dMagneticFluxDensityVector[1] :> magneticFluxDensityVectors;
+    attribute magneticFluxDensityVector: Cartesian3dMagneticFluxDensityVector :> vectorQuantities;
 
     /**
      * source: item 6-22.1 magnetic flux
@@ -911,8 +870,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticFluxUnit[1];
     }
-    attribute magneticFluxQuantities: MagneticFluxValue[*] nonunique :> scalarQuantities;
-    attribute magneticFlux: MagneticFluxValue[1] :> magneticFluxQuantities;
+    attribute magneticFlux: MagneticFluxValue :> scalarQuantities;
 
     /**
      * source: item 6-22.2 linked flux
@@ -937,8 +895,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: LinkedFluxUnit[1];
     }
-    attribute linkedFluxQuantities: LinkedFluxValue[*] nonunique :> scalarQuantities;
-    attribute linkedFlux: LinkedFluxValue[1] :> linkedFluxQuantities;
+    attribute linkedFlux: LinkedFluxValue :> scalarQuantities;
 
     /**
      * source: item 6-23 magnetic moment, magnetic area moment (scalar)
@@ -961,8 +918,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticMomentUnit[1];
     }
-    attribute magneticMomentQuantities: MagneticMomentValue[*] nonunique :> scalarQuantities;
-    attribute magneticMoment: MagneticMomentValue[1] :> magneticMomentQuantities;
+    attribute magneticMoment: MagneticMomentValue :> scalarQuantities;
 
     /**
      * source: item 6-23 magnetic moment, magnetic area moment (vector)
@@ -988,11 +944,9 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticMomentCoordinateSystem[1];
     }
-    attribute magneticMomentVectors: Cartesian3dMagneticMomentVector[*] nonunique :> vectorQuantities;
-    attribute magneticMomentVector: Cartesian3dMagneticMomentVector[1] :> magneticMomentVectors;
+    attribute magneticMomentVector: Cartesian3dMagneticMomentVector :> vectorQuantities;
 
     alias Cartesian3dMagneticMomentCoordinateSystem as Cartesian3dMagneticAreaMomentCoordinateSystem;
-    alias magneticMomentVectors as magneticAreaMomentVectors;
     alias magneticMomentVector as magneticAreaMomentVector;
 
     /**
@@ -1016,8 +970,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagnetizationUnit[1];
     }
-    attribute magnetizationQuantities: MagnetizationValue[*] nonunique :> scalarQuantities;
-    attribute magnetization: MagnetizationValue[1] :> magnetizationQuantities;
+    attribute magnetization: MagnetizationValue :> scalarQuantities;
 
     /**
      * source: item 6-24 magnetization (vector)
@@ -1043,8 +996,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagnetizationCoordinateSystem[1];
     }
-    attribute magnetizationVectors: Cartesian3dMagnetizationVector[*] nonunique :> vectorQuantities;
-    attribute magnetizationVector: Cartesian3dMagnetizationVector[1] :> magnetizationVectors;
+    attribute magnetizationVector: Cartesian3dMagnetizationVector :> vectorQuantities;
 
     /**
      * source: item 6-25 magnetic field strength, magnetizing field (scalar)
@@ -1067,8 +1019,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticFieldStrengthUnit[1];
     }
-    attribute magneticFieldStrengthQuantities: MagneticFieldStrengthValue[*] nonunique :> scalarQuantities;
-    attribute magneticFieldStrength: MagneticFieldStrengthValue[1] :> magneticFieldStrengthQuantities;
+    attribute magneticFieldStrength: MagneticFieldStrengthValue :> scalarQuantities;
 
     /**
      * source: item 6-25 magnetic field strength, magnetizing field (vector)
@@ -1094,11 +1045,9 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticFieldStrengthCoordinateSystem[1];
     }
-    attribute magneticFieldStrengthVectors: Cartesian3dMagneticFieldStrengthVector[*] nonunique :> vectorQuantities;
-    attribute magneticFieldStrengthVector: Cartesian3dMagneticFieldStrengthVector[1] :> magneticFieldStrengthVectors;
+    attribute magneticFieldStrengthVector: Cartesian3dMagneticFieldStrengthVector :> vectorQuantities;
 
     alias Cartesian3dMagneticFieldStrengthCoordinateSystem as Cartesian3dMagnetizingFieldCoordinateSystem;
-    alias magneticFieldStrengthVectors as magnetizingFieldVectors;
     alias magneticFieldStrengthVector as magnetizingFieldVector;
 
     /**
@@ -1124,12 +1073,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticConstantUnit[1];
     }
-    attribute magneticConstantQuantities: MagneticConstantValue[*] nonunique :> scalarQuantities;
-    attribute magneticConstant: MagneticConstantValue[1] :> magneticConstantQuantities;
+    attribute magneticConstant: MagneticConstantValue :> scalarQuantities;
 
     alias MagneticConstantUnit as PermeabilityOfVacuumUnit;
     alias MagneticConstantValue as PermeabilityOfVacuumValue;
-    alias magneticConstantQuantities as permeabilityOfVacuumQuantities;
     alias magneticConstant as permeabilityOfVacuum;
 
     /**
@@ -1155,8 +1102,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PermeabilityUnit[1];
     }
-    attribute permeabilityQuantities: PermeabilityValue[*] nonunique :> scalarQuantities;
-    attribute permeability: PermeabilityValue[1] :> permeabilityQuantities;
+    attribute permeability: PermeabilityValue :> scalarQuantities;
 
     /**
      * source: item 6-27 relative permeability
@@ -1177,8 +1123,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: RelativePermeabilityUnit[1];
     }
-    attribute relativePermeabilityQuantities: RelativePermeabilityValue[*] nonunique :> scalarQuantities;
-    attribute relativePermeability: RelativePermeabilityValue[1] :> relativePermeabilityQuantities;
+    attribute relativePermeability: RelativePermeabilityValue :> scalarQuantities;
 
     /**
      * source: item 6-28 magnetic susceptibility
@@ -1199,8 +1144,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticSusceptibilityUnit[1];
     }
-    attribute magneticSusceptibilityQuantities: MagneticSusceptibilityValue[*] nonunique :> scalarQuantities;
-    attribute magneticSusceptibility: MagneticSusceptibilityValue[1] :> magneticSusceptibilityQuantities;
+    attribute magneticSusceptibility: MagneticSusceptibilityValue :> scalarQuantities;
 
     /**
      * source: item 6-29 magnetic polarization (scalar)
@@ -1224,8 +1168,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticPolarizationUnit[1];
     }
-    attribute magneticPolarizationQuantities: MagneticPolarizationValue[*] nonunique :> scalarQuantities;
-    attribute magneticPolarization: MagneticPolarizationValue[1] :> magneticPolarizationQuantities;
+    attribute magneticPolarization: MagneticPolarizationValue :> scalarQuantities;
 
     /**
      * source: item 6-29 magnetic polarization (vector)
@@ -1251,8 +1194,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticPolarizationCoordinateSystem[1];
     }
-    attribute magneticPolarizationVectors: Cartesian3dMagneticPolarizationVector[*] nonunique :> vectorQuantities;
-    attribute magneticPolarizationVector: Cartesian3dMagneticPolarizationVector[1] :> magneticPolarizationVectors;
+    attribute magneticPolarizationVector: Cartesian3dMagneticPolarizationVector :> vectorQuantities;
 
     /**
      * source: item 6-30 magnetic dipole moment (scalar)
@@ -1277,8 +1219,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticDipoleMomentUnit[1];
     }
-    attribute magneticDipoleMomentQuantities: MagneticDipoleMomentValue[*] nonunique :> scalarQuantities;
-    attribute magneticDipoleMoment: MagneticDipoleMomentValue[1] :> magneticDipoleMomentQuantities;
+    attribute magneticDipoleMoment: MagneticDipoleMomentValue :> scalarQuantities;
 
     /**
      * source: item 6-30 magnetic dipole moment (vector)
@@ -1304,8 +1245,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticDipoleMomentCoordinateSystem[1];
     }
-    attribute magneticDipoleMomentVectors: Cartesian3dMagneticDipoleMomentVector[*] nonunique :> vectorQuantities;
-    attribute magneticDipoleMomentVector: Cartesian3dMagneticDipoleMomentVector[1] :> magneticDipoleMomentVectors;
+    attribute magneticDipoleMomentVector: Cartesian3dMagneticDipoleMomentVector :> vectorQuantities;
 
     /**
      * source: item 6-31 coercivity
@@ -1328,8 +1268,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: CoercivityUnit[1];
     }
-    attribute coercivityQuantities: CoercivityValue[*] nonunique :> scalarQuantities;
-    attribute coercivity: CoercivityValue[1] :> coercivityQuantities;
+    attribute coercivity: CoercivityValue :> scalarQuantities;
 
     /**
      * source: item 6-32 magnetic vector potential (scalar)
@@ -1354,8 +1293,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagneticVectorPotentialUnit[1];
     }
-    attribute magneticVectorPotentialQuantities: MagneticVectorPotentialValue[*] nonunique :> scalarQuantities;
-    attribute magneticVectorPotential: MagneticVectorPotentialValue[1] :> magneticVectorPotentialQuantities;
+    attribute magneticVectorPotential: MagneticVectorPotentialValue :> scalarQuantities;
 
     /**
      * source: item 6-32 magnetic vector potential (vector)
@@ -1381,8 +1319,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dMagneticVectorPotentialCoordinateSystem[1];
     }
-    attribute magneticVectorPotentialVectors: Cartesian3dMagneticVectorPotentialVector[*] nonunique :> vectorQuantities;
-    attribute magneticVectorPotentialVector: Cartesian3dMagneticVectorPotentialVector[1] :> magneticVectorPotentialVectors;
+    attribute magneticVectorPotentialVector: Cartesian3dMagneticVectorPotentialVector :> vectorQuantities;
 
     /**
      * source: item 6-33 electromagnetic energy density, volumic electromagnetic energy
@@ -1406,12 +1343,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ElectromagneticEnergyDensityUnit[1];
     }
-    attribute electromagneticEnergyDensityQuantities: ElectromagneticEnergyDensityValue[*] nonunique :> scalarQuantities;
-    attribute electromagneticEnergyDensity: ElectromagneticEnergyDensityValue[1] :> electromagneticEnergyDensityQuantities;
+    attribute electromagneticEnergyDensity: ElectromagneticEnergyDensityValue :> scalarQuantities;
 
     alias ElectromagneticEnergyDensityUnit as VolumicElectromagneticEnergyUnit;
     alias ElectromagneticEnergyDensityValue as VolumicElectromagneticEnergyValue;
-    alias electromagneticEnergyDensityQuantities as volumicElectromagneticEnergyQuantities;
     alias electromagneticEnergyDensity as volumicElectromagneticEnergy;
 
     /**
@@ -1435,8 +1370,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PoyntingUnit[1];
     }
-    attribute poyntingQuantities: PoyntingValue[*] nonunique :> scalarQuantities;
-    attribute poynting: PoyntingValue[1] :> poyntingQuantities;
+    attribute poynting: PoyntingValue :> scalarQuantities;
 
     /**
      * source: item 6-34 Poynting vector (vector)
@@ -1462,8 +1396,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dPoyntingCoordinateSystem[1];
     }
-    attribute poyntingVectors: Cartesian3dPoyntingVector[*] nonunique :> vectorQuantities;
-    attribute poyntingVector: Cartesian3dPoyntingVector[1] :> poyntingVectors;
+    attribute poyntingVector: Cartesian3dPoyntingVector :> vectorQuantities;
 
     /**
      * source: item 6-35.1 phase speed of electromagnetic waves
@@ -1486,8 +1419,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PhaseSpeedOfElectromagneticWavesUnit[1];
     }
-    attribute phaseSpeedOfElectromagneticWavesQuantities: PhaseSpeedOfElectromagneticWavesValue[*] nonunique :> scalarQuantities;
-    attribute phaseSpeedOfElectromagneticWaves: PhaseSpeedOfElectromagneticWavesValue[1] :> phaseSpeedOfElectromagneticWavesQuantities;
+    attribute phaseSpeedOfElectromagneticWaves: PhaseSpeedOfElectromagneticWavesValue :> scalarQuantities;
 
     /**
      * source: item 6-35.2 speed of light, light speed
@@ -1510,12 +1442,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: SpeedOfLightUnit[1];
     }
-    attribute speedOfLightQuantities: SpeedOfLightValue[*] nonunique :> scalarQuantities;
-    attribute speedOfLight: SpeedOfLightValue[1] :> speedOfLightQuantities;
+    attribute speedOfLight: SpeedOfLightValue :> scalarQuantities;
 
     alias SpeedOfLightUnit as LightSpeedUnit;
     alias SpeedOfLightValue as LightSpeedValue;
-    alias speedOfLightQuantities as lightSpeedQuantities;
     alias speedOfLight as lightSpeed;
 
     /**
@@ -1541,12 +1471,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: SourceVoltageUnit[1];
     }
-    attribute sourceVoltageQuantities: SourceVoltageValue[*] nonunique :> scalarQuantities;
-    attribute sourceVoltage: SourceVoltageValue[1] :> sourceVoltageQuantities;
+    attribute sourceVoltage: SourceVoltageValue :> scalarQuantities;
 
     alias SourceVoltageUnit as SourceTensionUnit;
     alias SourceVoltageValue as SourceTensionValue;
-    alias sourceVoltageQuantities as sourceTensionQuantities;
     alias sourceVoltage as sourceTension;
 
     /**
@@ -1560,7 +1488,7 @@ package ISQElectromagnetism {
      * definition: for an irrotational magnetic field strength `vec(H) =  - nabla V_m` where `vec(H)` is magnetic field strength (item 6-25)
      * remarks: The magnetic scalar potential is not unique since any constant scalar field can be added to it without changing its gradient. See IEC 60050-121, item 121-11-58.
      */
-    attribute scalarMagneticPotential: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute scalarMagneticPotential: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-37.2 magnetic tension
@@ -1573,7 +1501,7 @@ package ISQElectromagnetism {
      * definition: `U_m = int_(vec(r_a) (C))^(vec(r_b)) vec(H) * d(vec(r))` where `vec(H)` is magnetic field strength (item 6-25) and `vec(r)` is position vector (ISO 80000-3, item 3-1.11) along a given curve `C` from point `a` to point `b`
      * remarks: For an irrotational magnetic field strength this quantity is equal to the magnetic potential difference. See IEC 60050-121, item121-11-57.
      */
-    attribute magneticTension: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute magneticTension: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-37.3 magnetomotive force
@@ -1595,8 +1523,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MagnetomotiveForceUnit[1];
     }
-    attribute magnetomotiveForceQuantities: MagnetomotiveForceValue[*] nonunique :> scalarQuantities;
-    attribute magnetomotiveForce: MagnetomotiveForceValue[1] :> magnetomotiveForceQuantities;
+    attribute magnetomotiveForce: MagnetomotiveForceValue :> scalarQuantities;
 
     /**
      * source: item 6-37.4 current linkage
@@ -1609,7 +1536,7 @@ package ISQElectromagnetism {
      * definition: net electric current (item 6-1) through a surface delimited by a closed loop
      * remarks: When `Θ` results from `N` (item 6-38) equal electric currents `I` (item 6-1 ), then `Θ = N I`. See IEC 60050-121 , item 121 -11-46.
      */
-    attribute currentLinkage: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute currentLinkage: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-38 number of turns in a winding
@@ -1622,7 +1549,7 @@ package ISQElectromagnetism {
      * definition: number of turns in a winding (same as the quantity name)
      * remarks: N may be non-integer number, see ISO 80000-3, item 3-14.
      */
-    attribute numberOfTurnsInAWinding: CountValue[1] :> countQuantities;
+    attribute numberOfTurnsInAWinding: CountValue :> scalarQuantities;
 
     /**
      * source: item 6-39 reluctance
@@ -1647,8 +1574,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ReluctanceUnit[1];
     }
-    attribute reluctanceQuantities: ReluctanceValue[*] nonunique :> scalarQuantities;
-    attribute reluctance: ReluctanceValue[1] :> reluctanceQuantities;
+    attribute reluctance: ReluctanceValue :> scalarQuantities;
 
     /**
      * source: item 6-40 permeance
@@ -1673,8 +1599,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PermeanceUnit[1];
     }
-    attribute permeanceQuantities: PermeanceValue[*] nonunique :> scalarQuantities;
-    attribute permeance: PermeanceValue[1] :> permeanceQuantities;
+    attribute permeance: PermeanceValue :> scalarQuantities;
 
     /**
      * source: item 6-41.1 inductance, self inductance
@@ -1699,12 +1624,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: InductanceUnit[1];
     }
-    attribute inductanceQuantities: InductanceValue[*] nonunique :> scalarQuantities;
-    attribute inductance: InductanceValue[1] :> inductanceQuantities;
+    attribute inductance: InductanceValue :> scalarQuantities;
 
     alias InductanceUnit as SelfInductanceUnit;
     alias InductanceValue as SelfInductanceValue;
-    alias inductanceQuantities as selfInductanceQuantities;
     alias inductance as selfInductance;
 
     /**
@@ -1730,8 +1653,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: MutualInductanceUnit[1];
     }
-    attribute mutualInductanceQuantities: MutualInductanceValue[*] nonunique :> scalarQuantities;
-    attribute mutualInductance: MutualInductanceValue[1] :> mutualInductanceQuantities;
+    attribute mutualInductance: MutualInductanceValue :> scalarQuantities;
 
     /**
      * source: item 6-42.1 coupling factor
@@ -1752,8 +1674,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: CouplingFactorUnit[1];
     }
-    attribute couplingFactorQuantities: CouplingFactorValue[*] nonunique :> scalarQuantities;
-    attribute couplingFactor: CouplingFactorValue[1] :> couplingFactorQuantities;
+    attribute couplingFactor: CouplingFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-42.2 leakage factor
@@ -1774,8 +1695,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: LeakageFactorUnit[1];
     }
-    attribute leakageFactorQuantities: LeakageFactorValue[*] nonunique :> scalarQuantities;
-    attribute leakageFactor: LeakageFactorValue[1] :> leakageFactorQuantities;
+    attribute leakageFactor: LeakageFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-43 conductivity
@@ -1800,8 +1720,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ConductivityUnit[1];
     }
-    attribute conductivityQuantities: ConductivityValue[*] nonunique :> scalarQuantities;
-    attribute conductivity: ConductivityValue[1] :> conductivityQuantities;
+    attribute conductivity: ConductivityValue :> scalarQuantities;
 
     /**
      * source: item 6-44 resistivity
@@ -1826,8 +1745,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ResistivityUnit[1];
     }
-    attribute resistivityQuantities: ResistivityValue[*] nonunique :> scalarQuantities;
-    attribute resistivity: ResistivityValue[1] :> resistivityQuantities;
+    attribute resistivity: ResistivityValue :> scalarQuantities;
 
     /**
      * source: item 6-45 electric power, instantaneous power
@@ -1840,7 +1758,7 @@ package ISQElectromagnetism {
      * definition: `p = ui` where `u` is instantaneous voltage (item 6-11 .3) and `i` is instantaneous electric current (item 6-1)
      * remarks: See IEC 60050-131 , item 131-11-30.
      */
-    attribute electricPower: PowerValue[1] :> powerQuantities;
+    attribute electricPower: PowerValue :> scalarQuantities;
 
     alias electricPower as instantaneousPower;
 
@@ -1867,8 +1785,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ResistanceUnit[1];
     }
-    attribute resistanceQuantities: ResistanceValue[*] nonunique :> scalarQuantities;
-    attribute resistance: ResistanceValue[1] :> resistanceQuantities;
+    attribute resistance: ResistanceValue :> scalarQuantities;
 
     /**
      * source: item 6-47 conductance
@@ -1893,8 +1810,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ConductanceUnit[1];
     }
-    attribute conductanceQuantities: ConductanceValue[*] nonunique :> scalarQuantities;
-    attribute conductance: ConductanceValue[1] :> conductanceQuantities;
+    attribute conductance: ConductanceValue :> scalarQuantities;
 
     /**
      * source: item 6-48 phase difference
@@ -1915,8 +1831,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PhaseDifferenceUnit[1];
     }
-    attribute phaseDifferenceQuantities: PhaseDifferenceValue[*] nonunique :> scalarQuantities;
-    attribute phaseDifference: PhaseDifferenceValue[1] :> phaseDifferenceQuantities;
+    attribute phaseDifference: PhaseDifferenceValue :> scalarQuantities;
 
     /**
      * source: item 6-49 electric current phasor
@@ -1929,7 +1844,7 @@ package ISQElectromagnetism {
      * definition: when `i = hat(I) cos(ωt + α)`, where `i` is the electric current (item 6-1 ), `ω` is angular frequency (ISO 80000-3, item 3-16), `t` is time (ISO 80000-3, item 3-7), and `α` is initial phase (ISO 80000-3, item 3-5), then `underline(l) = I e^(jα)`
      * remarks: `underline(l)` is the complex representation of the electric current `i = hat(I) cos(ωt + α)`. `j` is the imaginary unit.
      */
-    attribute electricCurrentPhasor: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute electricCurrentPhasor: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-50 voltage phasor
@@ -1954,8 +1869,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: VoltagePhasorUnit[1];
     }
-    attribute voltagePhasorQuantities: VoltagePhasorValue[*] nonunique :> scalarQuantities;
-    attribute voltagePhasor: VoltagePhasorValue[1] :> voltagePhasorQuantities;
+    attribute voltagePhasor: VoltagePhasorValue :> scalarQuantities;
 
     /**
      * source: item 6-51.1 impedance, complex impedance
@@ -1980,12 +1894,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ImpedanceUnit[1];
     }
-    attribute impedanceQuantities: ImpedanceValue[*] nonunique :> scalarQuantities;
-    attribute impedance: ImpedanceValue[1] :> impedanceQuantities;
+    attribute impedance: ImpedanceValue :> scalarQuantities;
 
     alias ImpedanceUnit as ComplexImpedanceUnit;
     alias ImpedanceValue as ComplexImpedanceValue;
-    alias impedanceQuantities as complexImpedanceQuantities;
     alias impedance as complexImpedance;
 
     /**
@@ -2011,8 +1923,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ResistanceToAlteratingCurrentUnit[1];
     }
-    attribute resistanceToAlteratingCurrentQuantities: ResistanceToAlteratingCurrentValue[*] nonunique :> scalarQuantities;
-    attribute resistanceToAlteratingCurrent: ResistanceToAlteratingCurrentValue[1] :> resistanceToAlteratingCurrentQuantities;
+    attribute resistanceToAlteratingCurrent: ResistanceToAlteratingCurrentValue :> scalarQuantities;
 
     /**
      * source: item 6-51.3 reactance
@@ -2037,8 +1948,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ReactanceUnit[1];
     }
-    attribute reactanceQuantities: ReactanceValue[*] nonunique :> scalarQuantities;
-    attribute reactance: ReactanceValue[1] :> reactanceQuantities;
+    attribute reactance: ReactanceValue :> scalarQuantities;
 
     /**
      * source: item 6-51.4 modulus of impedance
@@ -2063,8 +1973,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfImpedanceUnit[1];
     }
-    attribute modulusOfImpedanceQuantities: ModulusOfImpedanceValue[*] nonunique :> scalarQuantities;
-    attribute modulusOfImpedance: ModulusOfImpedanceValue[1] :> modulusOfImpedanceQuantities;
+    attribute modulusOfImpedance: ModulusOfImpedanceValue :> scalarQuantities;
 
     /**
      * source: item 6-52.1 admittance, complex admittance
@@ -2089,12 +1998,10 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: AdmittanceUnit[1];
     }
-    attribute admittanceQuantities: AdmittanceValue[*] nonunique :> scalarQuantities;
-    attribute admittance: AdmittanceValue[1] :> admittanceQuantities;
+    attribute admittance: AdmittanceValue :> scalarQuantities;
 
     alias AdmittanceUnit as ComplexAdmittanceUnit;
     alias AdmittanceValue as ComplexAdmittanceValue;
-    alias admittanceQuantities as complexAdmittanceQuantities;
     alias admittance as complexAdmittance;
 
     /**
@@ -2108,7 +2015,7 @@ package ISQElectromagnetism {
      * definition: `G = "Re" underline(Y)` where I is admittance (item 6-52.1)
      * remarks: See IEC 60050-131, item 131-12-53.
      */
-    attribute conductanceForAlternatingCurrent: ConductanceValue[1] :> conductanceQuantities;
+    attribute conductanceForAlternatingCurrent: ConductanceValue :> scalarQuantities;
 
     /**
      * source: item 6-52.3 susceptance
@@ -2133,8 +2040,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: SusceptanceUnit[1];
     }
-    attribute susceptanceQuantities: SusceptanceValue[*] nonunique :> scalarQuantities;
-    attribute susceptance: SusceptanceValue[1] :> susceptanceQuantities;
+    attribute susceptance: SusceptanceValue :> scalarQuantities;
 
     /**
      * source: item 6-52.4 modulus of admittance
@@ -2159,8 +2065,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: ModulusOfAdmittanceUnit[1];
     }
-    attribute modulusOfAdmittanceQuantities: ModulusOfAdmittanceValue[*] nonunique :> scalarQuantities;
-    attribute modulusOfAdmittance: ModulusOfAdmittanceValue[1] :> modulusOfAdmittanceQuantities;
+    attribute modulusOfAdmittance: ModulusOfAdmittanceValue :> scalarQuantities;
 
     /**
      * source: item 6-53 quality factor
@@ -2181,8 +2086,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: QualityFactorUnit[1];
     }
-    attribute qualityFactorQuantities: QualityFactorValue[*] nonunique :> scalarQuantities;
-    attribute qualityFactor: QualityFactorValue[1] :> qualityFactorQuantities;
+    attribute qualityFactor: QualityFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-54 loss factor
@@ -2203,8 +2107,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: LossFactorUnit[1];
     }
-    attribute lossFactorQuantities: LossFactorValue[*] nonunique :> scalarQuantities;
-    attribute lossFactor: LossFactorValue[1] :> lossFactorQuantities;
+    attribute lossFactor: LossFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-55 loss angle
@@ -2225,8 +2128,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: LossAngleUnit[1];
     }
-    attribute lossAngleQuantities: LossAngleValue[*] nonunique :> scalarQuantities;
-    attribute lossAngle: LossAngleValue[1] :> lossAngleQuantities;
+    attribute lossAngle: LossAngleValue :> scalarQuantities;
 
     /**
      * source: item 6-56 active power
@@ -2239,7 +2141,7 @@ package ISQElectromagnetism {
      * definition: `P = 1/T int_0^T p dt` where `T` is the period (ISO 80000-3, item 3-12) and `p` is instantaneous power (item 6-45)
      * remarks: In complex notation, `P = "Re" underline(S)` where `underline(S)` is complex power (item 6-59).
      */
-    attribute activePower: PowerValue[1] :> powerQuantities;
+    attribute activePower: PowerValue :> scalarQuantities;
 
     /**
      * source: item 6-57 apparent power
@@ -2252,7 +2154,7 @@ package ISQElectromagnetism {
      * definition: `|underline(S)| = U I` where `U` is rms value of voltage (item 6-11.3 and `I` is rms value of electric current (item 6-1)
      * remarks: `U = sqrt(1/T int_0^T u^2 dt)` and `I = sqrt(1/T int_0^T i^2 dt)`. When `u = sqrt 2 U cos(ωt)` and `i = sqrt 2 I cos(ωt - φ)`, then `P = U I cos(φ)`, `Q = U I sin(φ)` and `λ = cos(φ)` . See IEC 60050-131, item 131-11-41 .
      */
-    attribute apparentPower: PowerValue[1] :> powerQuantities;
+    attribute apparentPower: PowerValue :> scalarQuantities;
 
     /**
      * source: item 6-58 power factor
@@ -2273,8 +2175,7 @@ package ISQElectromagnetism {
         attribute :>> num: Real;
         attribute :>> mRef: PowerFactorUnit[1];
     }
-    attribute powerFactorQuantities: PowerFactorValue[*] nonunique :> scalarQuantities;
-    attribute powerFactor: PowerFactorValue[1] :> powerFactorQuantities;
+    attribute powerFactor: PowerFactorValue :> scalarQuantities;
 
     /**
      * source: item 6-59 complex power
@@ -2287,7 +2188,7 @@ package ISQElectromagnetism {
      * definition: `underline(S) = underline(U) * underline(I)^**` where `underline(U)` is voltage phasor (item 6-50) and `underline(I)^**` is the complex conjugate of the current phasor (item 6-49)
      * remarks: `underline(S) = P + jQ` where `P` is active power (item 6-56) and `Q` is reactive power (item 6-60). See IEC 60050-131, item 131-11-39.
      */
-    attribute complexPower: PowerValue[1] :> powerQuantities;
+    attribute complexPower: PowerValue :> scalarQuantities;
 
     /**
      * source: item 6-60 reactive power
@@ -2300,7 +2201,7 @@ package ISQElectromagnetism {
      * definition: `Q = "Im" underline(S)` where `underline(S)` is complex power (item 6-59)
      * remarks: See IEC 60050-131, item 131-11-44.
      */
-    attribute reactivePower: PowerValue[1] :> powerQuantities;
+    attribute reactivePower: PowerValue :> scalarQuantities;
 
     /**
      * source: item 6-61 non-active power
@@ -2313,7 +2214,7 @@ package ISQElectromagnetism {
      * definition: `Q' = sqrt(|underline(S)|^2 - P^2)` where `|underline(S)|` is apparent power (item 6-57) and `P` is active power (item 6-56)
      * remarks: See IEC 60050-131, item 131-11-43.
      */
-    attribute nonActivePower: PowerValue[1] :> powerQuantities;
+    attribute nonActivePower: PowerValue :> scalarQuantities;
 
     /**
      * source: item 6-62 active energy
@@ -2326,6 +2227,6 @@ package ISQElectromagnetism {
      * definition: `W = int_(t_1)^(t_2) p dt` where `p` is instantaneous power (item 6-45), and the integral interval is the time interval from `t_1` to `t_2`
      * remarks: 
      */
-    attribute activeEnergy: EnergyValue[1] :> energyQuantities;
+    attribute activeEnergy: EnergyValue :> scalarQuantities;
 
 }

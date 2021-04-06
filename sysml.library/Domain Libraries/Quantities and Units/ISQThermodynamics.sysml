@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:46:40Z from standard ISO-80000-5:2019 "Thermodynamics"
+ * Generated on 2021-04-06T20:54:34Z from standard ISO-80000-5:2019 "Thermodynamics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-5:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
@@ -28,14 +28,13 @@ package ISQThermodynamics {
      * remarks: It is measured with a primary thermometer, examples of which are gas thermometers of different kinds, noise thermometers, or radiation thermometers. The Boltzmann constant (ISO 80000-1) relates energy at the individual particle level with thermodynamic temperature. Differences of thermodynamic temperatures or changes may be expressed either in kelvin, symbol K, or in de grees Celsius, symbol °C (item 5-2). Thermodynamic temperature is one of the seven base quantities in the International System of Quantities, ISQ (see ISO 80000-1). The International Temperature Scale of 1990. For the purpose of practical measurements, the International Temperature Scale of 1990, ITS-90, was adopted by CIPM in 1989, which is a close approximation to the thermodynamic temperature scale. The quantities defined by this scale are denoted T_(90) and t_(90), respectively (replacing T_(68) and t_(68) defined by the International Practical Temperature Scale of 1968, IPTS-68), where `t_90/(1 °C) = T_90/(1 K) - 273,1`. The units of T_(90) and t_(90) are the kelvin, symbol K, and the degree Celsius, symbol °C (item 5-2), respectively. For further information, see References^[5^],^[6^]. For ready conversion between temperatures reported on the International Temperature Scale and thermodynamic temperatures the systematic deviations can be found in Reference [7].
      */
 
-    /**
+    /*
      * See package ISQBase for the declarations for item 5-1:
      * base unit ThermodynamicTemperatureUnit and quantity type ThermodynamicTemperatureValue.
      */
 
     alias ThermodynamicTemperatureUnit as TemperatureUnit;
     alias ThermodynamicTemperatureValue as TemperatureValue;
-    alias thermodynamicTemperatureQuantities as temperatureQuantities;
     alias thermodynamicTemperature as temperature;
 
     /**
@@ -58,8 +57,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: CelsiusTemperatureUnit[1];
     }
-    attribute celsiusTemperatureQuantities: CelsiusTemperatureValue[*] nonunique :> scalarQuantities;
-    attribute celsiusTemperature: CelsiusTemperatureValue[1] :> celsiusTemperatureQuantities;
+    attribute celsiusTemperature: CelsiusTemperatureValue :> scalarQuantities;
 
     /**
      * source: item 5-3.1 linear expansion coefficient
@@ -81,8 +79,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: LinearExpansionCoefficientUnit[1];
     }
-    attribute linearExpansionCoefficientQuantities: LinearExpansionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute linearExpansionCoefficient: LinearExpansionCoefficientValue[1] :> linearExpansionCoefficientQuantities;
+    attribute linearExpansionCoefficient: LinearExpansionCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 5-3.2 cubic expansion coefficient
@@ -104,8 +101,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: CubicExpansionCoefficientUnit[1];
     }
-    attribute cubicExpansionCoefficientQuantities: CubicExpansionCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute cubicExpansionCoefficient: CubicExpansionCoefficientValue[1] :> cubicExpansionCoefficientQuantities;
+    attribute cubicExpansionCoefficient: CubicExpansionCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 5-3.3 relative pressure coefficient
@@ -127,8 +123,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: RelativePressureCoefficientUnit[1];
     }
-    attribute relativePressureCoefficientQuantities: RelativePressureCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute relativePressureCoefficient: RelativePressureCoefficientValue[1] :> relativePressureCoefficientQuantities;
+    attribute relativePressureCoefficient: RelativePressureCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 5-4 pressure coefficient
@@ -153,8 +148,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: PressureCoefficientUnit[1];
     }
-    attribute pressureCoefficientQuantities: PressureCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute pressureCoefficient: PressureCoefficientValue[1] :> pressureCoefficientQuantities;
+    attribute pressureCoefficient: PressureCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 5-5.1 isothermal compressibility
@@ -178,8 +172,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: IsothermalCompressibilityUnit[1];
     }
-    attribute isothermalCompressibilityQuantities: IsothermalCompressibilityValue[*] nonunique :> scalarQuantities;
-    attribute isothermalCompressibility: IsothermalCompressibilityValue[1] :> isothermalCompressibilityQuantities;
+    attribute isothermalCompressibility: IsothermalCompressibilityValue :> scalarQuantities;
 
     /**
      * source: item 5-5.2 isentropic compressibility
@@ -203,8 +196,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: IsentropicCompressibilityUnit[1];
     }
-    attribute isentropicCompressibilityQuantities: IsentropicCompressibilityValue[*] nonunique :> scalarQuantities;
-    attribute isentropicCompressibility: IsentropicCompressibilityValue[1] :> isentropicCompressibilityQuantities;
+    attribute isentropicCompressibility: IsentropicCompressibilityValue :> scalarQuantities;
 
     /**
      * source: item 5-6.1 heat, amount of heat
@@ -228,12 +220,10 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: HeatUnit[1];
     }
-    attribute heatQuantities: HeatValue[*] nonunique :> scalarQuantities;
-    attribute heat: HeatValue[1] :> heatQuantities;
+    attribute heat: HeatValue :> scalarQuantities;
 
     alias HeatUnit as AmountOfHeatUnit;
     alias HeatValue as AmountOfHeatValue;
-    alias heatQuantities as amountOfHeatQuantities;
     alias heat as amountOfHeat;
 
     /**
@@ -258,8 +248,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: LatentHeatUnit[1];
     }
-    attribute latentHeatQuantities: LatentHeatValue[*] nonunique :> scalarQuantities;
-    attribute latentHeat: LatentHeatValue[1] :> latentHeatQuantities;
+    attribute latentHeat: LatentHeatValue :> scalarQuantities;
 
     /**
      * source: item 5-7 heat flow rate
@@ -283,8 +272,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: HeatFlowRateUnit[1];
     }
-    attribute heatFlowRateQuantities: HeatFlowRateValue[*] nonunique :> scalarQuantities;
-    attribute heatFlowRate: HeatFlowRateValue[1] :> heatFlowRateQuantities;
+    attribute heatFlowRate: HeatFlowRateValue :> scalarQuantities;
 
     /**
      * source: item 5-8 density of heat flow rate
@@ -307,8 +295,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: DensityOfHeatFlowRateUnit[1];
     }
-    attribute densityOfHeatFlowRateQuantities: DensityOfHeatFlowRateValue[*] nonunique :> scalarQuantities;
-    attribute densityOfHeatFlowRate: DensityOfHeatFlowRateValue[1] :> densityOfHeatFlowRateQuantities;
+    attribute densityOfHeatFlowRate: DensityOfHeatFlowRateValue :> scalarQuantities;
 
     /**
      * source: item 5-9 thermal conductivity
@@ -333,8 +320,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalConductivityUnit[1];
     }
-    attribute thermalConductivityQuantities: ThermalConductivityValue[*] nonunique :> scalarQuantities;
-    attribute thermalConductivity: ThermalConductivityValue[1] :> thermalConductivityQuantities;
+    attribute thermalConductivity: ThermalConductivityValue :> scalarQuantities;
 
     /**
      * source: item 5-10.1 coefficient of heat transfer
@@ -358,8 +344,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: CoefficientOfHeatTransferUnit[1];
     }
-    attribute coefficientOfHeatTransferQuantities: CoefficientOfHeatTransferValue[*] nonunique :> scalarQuantities;
-    attribute coefficientOfHeatTransfer: CoefficientOfHeatTransferValue[1] :> coefficientOfHeatTransferQuantities;
+    attribute coefficientOfHeatTransfer: CoefficientOfHeatTransferValue :> scalarQuantities;
 
     /**
      * source: item 5-10.2 surface coefficient of heat transfer
@@ -383,8 +368,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SurfaceCoefficientOfHeatTransferUnit[1];
     }
-    attribute surfaceCoefficientOfHeatTransferQuantities: SurfaceCoefficientOfHeatTransferValue[*] nonunique :> scalarQuantities;
-    attribute surfaceCoefficientOfHeatTransfer: SurfaceCoefficientOfHeatTransferValue[1] :> surfaceCoefficientOfHeatTransferQuantities;
+    attribute surfaceCoefficientOfHeatTransfer: SurfaceCoefficientOfHeatTransferValue :> scalarQuantities;
 
     /**
      * source: item 5-11 thermal insulance, coefficient of thermal insulance
@@ -408,12 +392,10 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalInsulanceUnit[1];
     }
-    attribute thermalInsulanceQuantities: ThermalInsulanceValue[*] nonunique :> scalarQuantities;
-    attribute thermalInsulance: ThermalInsulanceValue[1] :> thermalInsulanceQuantities;
+    attribute thermalInsulance: ThermalInsulanceValue :> scalarQuantities;
 
     alias ThermalInsulanceUnit as CoefficientOfThermalInsulanceUnit;
     alias ThermalInsulanceValue as CoefficientOfThermalInsulanceValue;
-    alias thermalInsulanceQuantities as coefficientOfThermalInsulanceQuantities;
     alias thermalInsulance as coefficientOfThermalInsulance;
 
     /**
@@ -439,8 +421,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalResistanceUnit[1];
     }
-    attribute thermalResistanceQuantities: ThermalResistanceValue[*] nonunique :> scalarQuantities;
-    attribute thermalResistance: ThermalResistanceValue[1] :> thermalResistanceQuantities;
+    attribute thermalResistance: ThermalResistanceValue :> scalarQuantities;
 
     /**
      * source: item 5-13 thermal conductance
@@ -465,8 +446,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalConductanceUnit[1];
     }
-    attribute thermalConductanceQuantities: ThermalConductanceValue[*] nonunique :> scalarQuantities;
-    attribute thermalConductance: ThermalConductanceValue[1] :> thermalConductanceQuantities;
+    attribute thermalConductance: ThermalConductanceValue :> scalarQuantities;
 
     /**
      * source: item 5-14 thermal diffusivity
@@ -489,8 +469,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalDiffusivityUnit[1];
     }
-    attribute thermalDiffusivityQuantities: ThermalDiffusivityValue[*] nonunique :> scalarQuantities;
-    attribute thermalDiffusivity: ThermalDiffusivityValue[1] :> thermalDiffusivityQuantities;
+    attribute thermalDiffusivity: ThermalDiffusivityValue :> scalarQuantities;
 
     /**
      * source: item 5-15 heat capacity
@@ -515,8 +494,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: HeatCapacityUnit[1];
     }
-    attribute heatCapacityQuantities: HeatCapacityValue[*] nonunique :> scalarQuantities;
-    attribute heatCapacity: HeatCapacityValue[1] :> heatCapacityQuantities;
+    attribute heatCapacity: HeatCapacityValue :> scalarQuantities;
 
     /**
      * source: item 5-16.1 specific heat capacity
@@ -540,8 +518,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificHeatCapacityUnit[1];
     }
-    attribute specificHeatCapacityQuantities: SpecificHeatCapacityValue[*] nonunique :> scalarQuantities;
-    attribute specificHeatCapacity: SpecificHeatCapacityValue[1] :> specificHeatCapacityQuantities;
+    attribute specificHeatCapacity: SpecificHeatCapacityValue :> scalarQuantities;
 
     /**
      * source: item 5-16.2 specific heat capacity at constant pressure
@@ -565,8 +542,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificHeatCapacityAtConstantPressureUnit[1];
     }
-    attribute specificHeatCapacityAtConstantPressureQuantities: SpecificHeatCapacityAtConstantPressureValue[*] nonunique :> scalarQuantities;
-    attribute specificHeatCapacityAtConstantPressure: SpecificHeatCapacityAtConstantPressureValue[1] :> specificHeatCapacityAtConstantPressureQuantities;
+    attribute specificHeatCapacityAtConstantPressure: SpecificHeatCapacityAtConstantPressureValue :> scalarQuantities;
 
     /**
      * source: item 5-16.3 specific heat capacity at constant volume
@@ -590,8 +566,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificHeatCapacityAtConstantVolumeUnit[1];
     }
-    attribute specificHeatCapacityAtConstantVolumeQuantities: SpecificHeatCapacityAtConstantVolumeValue[*] nonunique :> scalarQuantities;
-    attribute specificHeatCapacityAtConstantVolume: SpecificHeatCapacityAtConstantVolumeValue[1] :> specificHeatCapacityAtConstantVolumeQuantities;
+    attribute specificHeatCapacityAtConstantVolume: SpecificHeatCapacityAtConstantVolumeValue :> scalarQuantities;
 
     /**
      * source: item 5-16.4 specific heat capacity at saturated vapour pressure
@@ -615,8 +590,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificHeatCapacityAtSaturatedVapourPressureUnit[1];
     }
-    attribute specificHeatCapacityAtSaturatedVapourPressureQuantities: SpecificHeatCapacityAtSaturatedVapourPressureValue[*] nonunique :> scalarQuantities;
-    attribute specificHeatCapacityAtSaturatedVapourPressure: SpecificHeatCapacityAtSaturatedVapourPressureValue[1] :> specificHeatCapacityAtSaturatedVapourPressureQuantities;
+    attribute specificHeatCapacityAtSaturatedVapourPressure: SpecificHeatCapacityAtSaturatedVapourPressureValue :> scalarQuantities;
 
     /**
      * source: item 5-17.1 ratio of specific heat capacities
@@ -637,8 +611,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: RatioOfSpecificHeatCapacitiesUnit[1];
     }
-    attribute ratioOfSpecificHeatCapacitiesQuantities: RatioOfSpecificHeatCapacitiesValue[*] nonunique :> scalarQuantities;
-    attribute ratioOfSpecificHeatCapacities: RatioOfSpecificHeatCapacitiesValue[1] :> ratioOfSpecificHeatCapacitiesQuantities;
+    attribute ratioOfSpecificHeatCapacities: RatioOfSpecificHeatCapacitiesValue :> scalarQuantities;
 
     /**
      * source: item 5-17.2 isentropic exponent, isentropic expansion factor
@@ -659,12 +632,10 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: IsentropicExponentUnit[1];
     }
-    attribute isentropicExponentQuantities: IsentropicExponentValue[*] nonunique :> scalarQuantities;
-    attribute isentropicExponent: IsentropicExponentValue[1] :> isentropicExponentQuantities;
+    attribute isentropicExponent: IsentropicExponentValue :> scalarQuantities;
 
     alias IsentropicExponentUnit as IsentropicExpansionFactorUnit;
     alias IsentropicExponentValue as IsentropicExpansionFactorValue;
-    alias isentropicExponentQuantities as isentropicExpansionFactorQuantities;
     alias isentropicExponent as isentropicExpansionFactor;
 
     /**
@@ -690,8 +661,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: EntropyUnit[1];
     }
-    attribute entropyQuantities: EntropyValue[*] nonunique :> scalarQuantities;
-    attribute entropy: EntropyValue[1] :> entropyQuantities;
+    attribute entropy: EntropyValue :> scalarQuantities;
 
     /**
      * source: item 5-19 specific entropy
@@ -715,8 +685,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificEntropyUnit[1];
     }
-    attribute specificEntropyQuantities: SpecificEntropyValue[*] nonunique :> scalarQuantities;
-    attribute specificEntropy: SpecificEntropyValue[1] :> specificEntropyQuantities;
+    attribute specificEntropy: SpecificEntropyValue :> scalarQuantities;
 
     /**
      * source: item 5-20.1 energy
@@ -740,8 +709,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: EnergyUnit[1];
     }
-    attribute energyQuantities: EnergyValue[*] nonunique :> scalarQuantities;
-    attribute energy: EnergyValue[1] :> energyQuantities;
+    attribute energy: EnergyValue :> scalarQuantities;
 
     /**
      * source: item 5-20.2 internal energy, thermodynamic energy
@@ -754,7 +722,7 @@ package ISQThermodynamics {
      * definition: energy of a system whose change is given by the amount of the heat (item 5-6.1) transferred to the system and the work (ISO 80000-4) done on the system, provided that the system is closed and no chemical reactions occur
      * remarks: In thermodynamic text books, usually the formula `ΔU = Q + W` is used. Note that the zero of the energy is undefined.
      */
-    attribute internalEnergy: EnergyValue[1] :> energyQuantities;
+    attribute internalEnergy: EnergyValue :> scalarQuantities;
 
     alias internalEnergy as thermodynamicEnergy;
 
@@ -780,8 +748,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: EnthalpyUnit[1];
     }
-    attribute enthalpyQuantities: EnthalpyValue[*] nonunique :> scalarQuantities;
-    attribute enthalpy: EnthalpyValue[1] :> enthalpyQuantities;
+    attribute enthalpy: EnthalpyValue :> scalarQuantities;
 
     /**
      * source: item 5-20.4 Helmholtz energy, Helmholtz function
@@ -794,7 +761,7 @@ package ISQThermodynamics {
      * definition: difference of internal energy of the system and the product of thermodynamic temperature and entropy of the system: `A = U - TS` where `U` is internal energy (item 5-20.2), `T` is thermodynamic temperature (item 5-1), and `S` is entropy (item 5-18)
      * remarks: The name Helmholtz free energy is also used. However, this term is not recommended.
      */
-    attribute helmholtzEnergy: EnergyValue[1] :> energyQuantities;
+    attribute helmholtzEnergy: EnergyValue :> scalarQuantities;
 
     alias helmholtzEnergy as helmholtzFunction;
 
@@ -809,7 +776,7 @@ package ISQThermodynamics {
      * definition: difference of the enthalpy and the product of thermodynamic temperature and entropy of the system: `G = H - T*S` where H is enthalpy (item 5-20.3), `T` is thermodynamic temperature (item 5-1), and `S` is entropy (item 5-18)
      * remarks: The name Gibbs free energy is also used. However, this term is not recommended.
      */
-    attribute gibbsEnergy: EnergyValue[1] :> energyQuantities;
+    attribute gibbsEnergy: EnergyValue :> scalarQuantities;
 
     alias gibbsEnergy as gibbsFunction;
 
@@ -834,8 +801,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificEnergyUnit[1];
     }
-    attribute specificEnergyQuantities: SpecificEnergyValue[*] nonunique :> scalarQuantities;
-    attribute specificEnergy: SpecificEnergyValue[1] :> specificEnergyQuantities;
+    attribute specificEnergy: SpecificEnergyValue :> scalarQuantities;
 
     /**
      * source: item 5-21.2 specific internal energy, specific thermodynamic energy
@@ -848,7 +814,7 @@ package ISQThermodynamics {
      * definition: quotient of internal energy and mass: `u = U/m` where `U` is internal energy (item 5-20.2) and `m` is mass (ISO 80000-4)
      * remarks: 
      */
-    attribute specificInternalEnergy: SpecificEnergyValue[1] :> specificEnergyQuantities;
+    attribute specificInternalEnergy: SpecificEnergyValue :> scalarQuantities;
 
     alias specificInternalEnergy as specificThermodynamicEnergy;
 
@@ -873,8 +839,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificEnthalpyUnit[1];
     }
-    attribute specificEnthalpyQuantities: SpecificEnthalpyValue[*] nonunique :> scalarQuantities;
-    attribute specificEnthalpy: SpecificEnthalpyValue[1] :> specificEnthalpyQuantities;
+    attribute specificEnthalpy: SpecificEnthalpyValue :> scalarQuantities;
 
     /**
      * source: item 5-21.4 specific Helmholtz energy, specific Helmholtz function
@@ -887,7 +852,7 @@ package ISQThermodynamics {
      * definition: quotient of Helmholtz energy and mass: `a = A/m` where A is Helmholtz energy (item 5-20.4) and m is mass (ISO 80000-4)
      * remarks: The name specific Helmholtz free energy is also used. However, this term is not recommended.
      */
-    attribute specificHelmholtzEnergy: SpecificEnergyValue[1] :> specificEnergyQuantities;
+    attribute specificHelmholtzEnergy: SpecificEnergyValue :> scalarQuantities;
 
     alias specificHelmholtzEnergy as specificHelmholtzFunction;
 
@@ -902,7 +867,7 @@ package ISQThermodynamics {
      * definition: quotient of Gibbs energy and mass: `g = G/m` where `G` is Gibbs energy (item 5-20.5) and `m` is mass (ISO 80000-4)
      * remarks: The name specific Gibbs free energy is also used. However, this term is not recommended.
      */
-    attribute specificGibbsEnergy: SpecificEnergyValue[1] :> specificEnergyQuantities;
+    attribute specificGibbsEnergy: SpecificEnergyValue :> scalarQuantities;
 
     alias specificGibbsEnergy as specificGibbsFunction;
 
@@ -929,8 +894,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassieuFunctionUnit[1];
     }
-    attribute massieuFunctionQuantities: MassieuFunctionValue[*] nonunique :> scalarQuantities;
-    attribute massieuFunction: MassieuFunctionValue[1] :> massieuFunctionQuantities;
+    attribute massieuFunction: MassieuFunctionValue :> scalarQuantities;
 
     /**
      * source: item 5-23 Planck function
@@ -955,8 +919,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: PlanckFunctionUnit[1];
     }
-    attribute planckFunctionQuantities: PlanckFunctionValue[*] nonunique :> scalarQuantities;
-    attribute planckFunction: PlanckFunctionValue[1] :> planckFunctionQuantities;
+    attribute planckFunction: PlanckFunctionValue :> scalarQuantities;
 
     /**
      * source: item 5-24 Joule-Thomson coefficient
@@ -981,8 +944,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: JouleThomsonCoefficientUnit[1];
     }
-    attribute jouleThomsonCoefficientQuantities: JouleThomsonCoefficientValue[*] nonunique :> scalarQuantities;
-    attribute jouleThomsonCoefficient: JouleThomsonCoefficientValue[1] :> jouleThomsonCoefficientQuantities;
+    attribute jouleThomsonCoefficient: JouleThomsonCoefficientValue :> scalarQuantities;
 
     /**
      * source: item 5-25.1 thermal efficiency
@@ -1003,8 +965,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: ThermalEfficiencyUnit[1];
     }
-    attribute thermalEfficiencyQuantities: ThermalEfficiencyValue[*] nonunique :> scalarQuantities;
-    attribute thermalEfficiency: ThermalEfficiencyValue[1] :> thermalEfficiencyQuantities;
+    attribute thermalEfficiency: ThermalEfficiencyValue :> scalarQuantities;
 
     /**
      * source: item 5-25.2 maximum thermal efficiency
@@ -1025,8 +986,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MaximumThermalEfficiencyUnit[1];
     }
-    attribute maximumThermalEfficiencyQuantities: MaximumThermalEfficiencyValue[*] nonunique :> scalarQuantities;
-    attribute maximumThermalEfficiency: MaximumThermalEfficiencyValue[1] :> maximumThermalEfficiencyQuantities;
+    attribute maximumThermalEfficiency: MaximumThermalEfficiencyValue :> scalarQuantities;
 
     /**
      * source: item 5-26 specific gas constant
@@ -1050,8 +1010,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: SpecificGasConstantUnit[1];
     }
-    attribute specificGasConstantQuantities: SpecificGasConstantValue[*] nonunique :> scalarQuantities;
-    attribute specificGasConstant: SpecificGasConstantValue[1] :> specificGasConstantQuantities;
+    attribute specificGasConstant: SpecificGasConstantValue :> scalarQuantities;
 
     /**
      * source: item 5-27 mass concentration of water
@@ -1074,8 +1033,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassConcentrationOfWaterUnit[1];
     }
-    attribute massConcentrationOfWaterQuantities: MassConcentrationOfWaterValue[*] nonunique :> scalarQuantities;
-    attribute massConcentrationOfWater: MassConcentrationOfWaterValue[1] :> massConcentrationOfWaterQuantities;
+    attribute massConcentrationOfWater: MassConcentrationOfWaterValue :> scalarQuantities;
 
     /**
      * source: item 5-28 mass concentration of water vapour absolute humidity
@@ -1098,8 +1056,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassConcentrationOfWaterVapourAbsoluteHumidityUnit[1];
     }
-    attribute massConcentrationOfWaterVapourAbsoluteHumidityQuantities: MassConcentrationOfWaterVapourAbsoluteHumidityValue[*] nonunique :> scalarQuantities;
-    attribute massConcentrationOfWaterVapourAbsoluteHumidity: MassConcentrationOfWaterVapourAbsoluteHumidityValue[1] :> massConcentrationOfWaterVapourAbsoluteHumidityQuantities;
+    attribute massConcentrationOfWaterVapourAbsoluteHumidity: MassConcentrationOfWaterVapourAbsoluteHumidityValue :> scalarQuantities;
 
     /**
      * source: item 5-29 mass ratio of water to dry matter
@@ -1120,8 +1077,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassRatioOfWaterToDryMatterUnit[1];
     }
-    attribute massRatioOfWaterToDryMatterQuantities: MassRatioOfWaterToDryMatterValue[*] nonunique :> scalarQuantities;
-    attribute massRatioOfWaterToDryMatter: MassRatioOfWaterToDryMatterValue[1] :> massRatioOfWaterToDryMatterQuantities;
+    attribute massRatioOfWaterToDryMatter: MassRatioOfWaterToDryMatterValue :> scalarQuantities;
 
     /**
      * source: item 5-30 mass ratio of water vapour to dry gas
@@ -1142,8 +1098,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassRatioOfWaterVapourToDryGasUnit[1];
     }
-    attribute massRatioOfWaterVapourToDryGasQuantities: MassRatioOfWaterVapourToDryGasValue[*] nonunique :> scalarQuantities;
-    attribute massRatioOfWaterVapourToDryGas: MassRatioOfWaterVapourToDryGasValue[1] :> massRatioOfWaterVapourToDryGasQuantities;
+    attribute massRatioOfWaterVapourToDryGas: MassRatioOfWaterVapourToDryGasValue :> scalarQuantities;
 
     /**
      * source: item 5-31 mass fraction of water
@@ -1164,8 +1119,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassFractionOfWaterUnit[1];
     }
-    attribute massFractionOfWaterQuantities: MassFractionOfWaterValue[*] nonunique :> scalarQuantities;
-    attribute massFractionOfWater: MassFractionOfWaterValue[1] :> massFractionOfWaterQuantities;
+    attribute massFractionOfWater: MassFractionOfWaterValue :> scalarQuantities;
 
     /**
      * source: item 5-32 mass fraction of dry matter
@@ -1186,8 +1140,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: MassFractionOfDryMatterUnit[1];
     }
-    attribute massFractionOfDryMatterQuantities: MassFractionOfDryMatterValue[*] nonunique :> scalarQuantities;
-    attribute massFractionOfDryMatter: MassFractionOfDryMatterValue[1] :> massFractionOfDryMatterQuantities;
+    attribute massFractionOfDryMatter: MassFractionOfDryMatterValue :> scalarQuantities;
 
     /**
      * source: item 5-33 relative humidity
@@ -1208,8 +1161,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: RelativeHumidityUnit[1];
     }
-    attribute relativeHumidityQuantities: RelativeHumidityValue[*] nonunique :> scalarQuantities;
-    attribute relativeHumidity: RelativeHumidityValue[1] :> relativeHumidityQuantities;
+    attribute relativeHumidity: RelativeHumidityValue :> scalarQuantities;
 
     /**
      * source: item 5-34 relative mass concentration of vapour
@@ -1230,8 +1182,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: RelativeMassConcentrationOfVapourUnit[1];
     }
-    attribute relativeMassConcentrationOfVapourQuantities: RelativeMassConcentrationOfVapourValue[*] nonunique :> scalarQuantities;
-    attribute relativeMassConcentrationOfVapour: RelativeMassConcentrationOfVapourValue[1] :> relativeMassConcentrationOfVapourQuantities;
+    attribute relativeMassConcentrationOfVapour: RelativeMassConcentrationOfVapourValue :> scalarQuantities;
 
     /**
      * source: item 5-35 relative mass ratio of vapour
@@ -1252,8 +1203,7 @@ package ISQThermodynamics {
         attribute :>> num: Real;
         attribute :>> mRef: RelativeMassRatioOfVapourUnit[1];
     }
-    attribute relativeMassRatioOfVapourQuantities: RelativeMassRatioOfVapourValue[*] nonunique :> scalarQuantities;
-    attribute relativeMassRatioOfVapour: RelativeMassRatioOfVapourValue[1] :> relativeMassRatioOfVapourQuantities;
+    attribute relativeMassRatioOfVapour: RelativeMassRatioOfVapourValue :> scalarQuantities;
 
     /**
      * source: item 5-36 dew-point temperature
@@ -1266,6 +1216,6 @@ package ISQThermodynamics {
      * definition: temperature at which water vapour in the air reaches saturation under isobaric conditions
      * remarks: The corresponding Celsius temperature, denoted `t_d`, is still called dew-point temperature. The unit for the corresponding Celsius temperature is degree Celsius, symbol °C.
      */
-    attribute dewPointTemperature: ThermodynamicTemperatureValue[1] :> thermodynamicTemperatureQuantities;
+    attribute dewPointTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
 
 }

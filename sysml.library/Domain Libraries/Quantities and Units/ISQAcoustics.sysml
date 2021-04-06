@@ -1,12 +1,12 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:58:13Z from standard ISO-80000-8:2020 "Acoustics"
+ * Generated on 2021-04-06T20:54:34Z from standard ISO-80000-8:2020 "Acoustics"
  * see also https://www.iso.org/obp/ui/#iso:std:iso:80000:-8:ed-2:v1:en
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
- * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is
- * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system)
+ * Note 2: For vector and tensor quantities currently the unit and quantity value type for their (scalar) magnitude is 
+ * defined, as well as their typical Cartesian 3d VectorMeasurementReference (i.e. coordinate system) 
  * or TensorMeasurementReference.
  */
 package ISQAcoustics {
@@ -15,17 +15,12 @@ package ISQAcoustics {
     private import UnitsAndScales::*;
     private import ISQBase::*;
 
-    private import ISQMechanics::powerQuantities;
     private import ISQMechanics::PowerValue;
-    private import ISQMechanics::pressureQuantities;
     private import ISQMechanics::PressureValue;
-    private import ISQSpaceTime::speedQuantities;
     private import ISQSpaceTime::SpeedValue;
     private import ISQSpaceTime::Cartesian3dVelocityCoordinateSystem;
-    private import ISQSpaceTime::accelerationQuantities;
     private import ISQSpaceTime::AccelerationValue;
     private import ISQSpaceTime::Cartesian3dAccelerationCoordinateSystem;
-    private import ISQThermodynamics::energyQuantities;
     private import ISQThermodynamics::EnergyValue;
 
     /**
@@ -47,8 +42,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: LogarithmicFrequencyRangeUnit[1];
     }
-    attribute logarithmicFrequencyRangeQuantities: LogarithmicFrequencyRangeValue[*] nonunique :> scalarQuantities;
-    attribute logarithmicFrequencyRange: LogarithmicFrequencyRangeValue[1] :> logarithmicFrequencyRangeQuantities;
+    attribute logarithmicFrequencyRange: LogarithmicFrequencyRangeValue :> scalarQuantities;
 
     /**
      * source: item 8-2.1 static pressure
@@ -61,7 +55,7 @@ package ISQAcoustics {
      * definition: pressure (ISO 80000-4) in a medium when no sound wave is present
      * remarks: This definition applies to a medium with zero flow.
      */
-    attribute staticPressure: PressureValue[1] :> pressureQuantities;
+    attribute staticPressure: PressureValue :> scalarQuantities;
 
     /**
      * source: item 8-2.2 sound pressure
@@ -72,9 +66,9 @@ package ISQAcoustics {
      * measurement unit(s): Pa, kg*m^-1*s^-2
      * tensor order: 0
      * definition: difference between instantaneous total pressure and static pressure (item 8-2.1)
-     * remarks:
+     * remarks: 
      */
-    attribute soundPressure: PressureValue[1] :> pressureQuantities;
+    attribute soundPressure: PressureValue :> scalarQuantities;
 
     /**
      * source: item 8-3 sound particle displacement
@@ -85,7 +79,7 @@ package ISQAcoustics {
      * measurement unit(s): m
      * tensor order: 1
      * definition: vector (ISO 80000-2) quantity giving the instantaneous displacement (ISO 80000-3) of a particle in a medium from what would be its position in the absence of sound waves
-     * remarks:
+     * remarks: 
      */
     attribute def Cartesian3dSoundParticleDisplacementVector :> VectorQuantityValue {
         attribute :>> dimensions = {3};
@@ -93,8 +87,7 @@ package ISQAcoustics {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSpatialCoordinateSystem[1];
     }
-    attribute soundParticleDisplacementVectors: Cartesian3dSoundParticleDisplacementVector[*] nonunique :> vectorQuantities;
-    attribute soundParticleDisplacementVector: Cartesian3dSoundParticleDisplacementVector[1] :> soundParticleDisplacementVectors;
+    attribute soundParticleDisplacementVector: Cartesian3dSoundParticleDisplacementVector :> vectorQuantities;
 
     /**
      * source: item 8-4 sound particle velocity
@@ -113,8 +106,7 @@ package ISQAcoustics {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dVelocityCoordinateSystem[1];
     }
-    attribute soundParticleVelocityVectors: Cartesian3dSoundParticleVelocityVector[*] nonunique :> vectorQuantities;
-    attribute soundParticleVelocityVector: Cartesian3dSoundParticleVelocityVector[1] :> soundParticleVelocityVectors;
+    attribute soundParticleVelocityVector: Cartesian3dSoundParticleVelocityVector :> vectorQuantities;
 
     /**
      * source: item 8-5 sound particle acceleration
@@ -133,8 +125,7 @@ package ISQAcoustics {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dAccelerationCoordinateSystem[1];
     }
-    attribute soundParticleAccelerationVectors: Cartesian3dSoundParticleAccelerationVector[*] nonunique :> vectorQuantities;
-    attribute soundParticleAccelerationVector: Cartesian3dSoundParticleAccelerationVector[1] :> soundParticleAccelerationVectors;
+    attribute soundParticleAccelerationVector: Cartesian3dSoundParticleAccelerationVector :> vectorQuantities;
 
     /**
      * source: item 8-6 volume velocity, volume flow rate
@@ -145,9 +136,9 @@ package ISQAcoustics {
      * measurement unit(s): m^3*s^-1
      * tensor order: 0
      * definition: surface integral of the normal component of the sound particle velocity (item 8-4) over a defined surface
-     * remarks:
+     * remarks: 
      */
-    attribute volumeVelocity: SpeedValue[1] :> speedQuantities;
+    attribute volumeVelocity: SpeedValue :> scalarQuantities;
 
     alias volumeVelocity as volumeFlowRate;
 
@@ -173,8 +164,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundEnergyDensityUnit[1];
     }
-    attribute soundEnergyDensityQuantities: SoundEnergyDensityValue[*] nonunique :> scalarQuantities;
-    attribute soundEnergyDensity: SoundEnergyDensityValue[1] :> soundEnergyDensityQuantities;
+    attribute soundEnergyDensity: SoundEnergyDensityValue :> scalarQuantities;
 
     /**
      * source: item 8-8 sound energy
@@ -187,7 +177,7 @@ package ISQAcoustics {
      * definition: integral of sound energy density (item 8-7) over a specified volume
      * remarks: The sound energy in region `R` can be expressed by: `Q = oint_R w(x) d^3x`, where `d^3x` is an element of volume.
      */
-    attribute soundEnergy: EnergyValue[1] :> energyQuantities;
+    attribute soundEnergy: EnergyValue :> scalarQuantities;
 
     /**
      * source: item 8-9 sound power
@@ -200,7 +190,7 @@ package ISQAcoustics {
      * definition: integral over a surface of the product of sound pressure, `p` (item 8-2.2), and the component `u_n` of the particle velocity (item 8-4) in the direction normal to the surface, at a point on the surface
      * remarks: This definition holds for waves in the volume of homogenous fluids or gases. This definition can become inapplicable in situations with a high mean fluid flow. Sound power is for example used to indicate the rate at which energy is radiated by a sound source. Sound power is an oscillatory quantity that can be positive or negative. A positive sound power indicates that the sound power is radiated out of the surface. A negative sound power indicates that the sound power is absorbed into the surface.
      */
-    attribute soundPower: PowerValue[1] :> powerQuantities;
+    attribute soundPower: PowerValue :> scalarQuantities;
 
     /**
      * source: item 8-10 sound intensity (scalar)
@@ -223,8 +213,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundIntensityUnit[1];
     }
-    attribute soundIntensityQuantities: SoundIntensityValue[*] nonunique :> scalarQuantities;
-    attribute soundIntensity: SoundIntensityValue[1] :> soundIntensityQuantities;
+    attribute soundIntensity: SoundIntensityValue :> scalarQuantities;
 
     /**
      * source: item 8-10 sound intensity (vector)
@@ -250,8 +239,7 @@ package ISQAcoustics {
         attribute :>> num: Real[3];
         attribute :>> mRef: Cartesian3dSoundIntensityCoordinateSystem[1];
     }
-    attribute soundIntensityVectors: Cartesian3dSoundIntensityVector[*] nonunique :> vectorQuantities;
-    attribute soundIntensityVector: Cartesian3dSoundIntensityVector[1] :> soundIntensityVectors;
+    attribute soundIntensityVector: Cartesian3dSoundIntensityVector :> vectorQuantities;
 
     /**
      * source: item 8-11 sound exposure
@@ -275,8 +263,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundExposureUnit[1];
     }
-    attribute soundExposureQuantities: SoundExposureValue[*] nonunique :> scalarQuantities;
-    attribute soundExposure: SoundExposureValue[1] :> soundExposureQuantities;
+    attribute soundExposure: SoundExposureValue :> scalarQuantities;
 
     /**
      * source: item 8-12 characteristic impedance of a medium for longitudinal waves
@@ -300,8 +287,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: CharacteristicImpedanceOfAMediumForLongitudinalWavesUnit[1];
     }
-    attribute characteristicImpedanceOfAMediumForLongitudinalWavesQuantities: CharacteristicImpedanceOfAMediumForLongitudinalWavesValue[*] nonunique :> scalarQuantities;
-    attribute characteristicImpedanceOfAMediumForLongitudinalWaves: CharacteristicImpedanceOfAMediumForLongitudinalWavesValue[1] :> characteristicImpedanceOfAMediumForLongitudinalWavesQuantities;
+    attribute characteristicImpedanceOfAMediumForLongitudinalWaves: CharacteristicImpedanceOfAMediumForLongitudinalWavesValue :> scalarQuantities;
 
     /**
      * source: item 8-13 acoustic impedance
@@ -325,8 +311,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: AcousticImpedanceUnit[1];
     }
-    attribute acousticImpedanceQuantities: AcousticImpedanceValue[*] nonunique :> scalarQuantities;
-    attribute acousticImpedance: AcousticImpedanceValue[1] :> acousticImpedanceQuantities;
+    attribute acousticImpedance: AcousticImpedanceValue :> scalarQuantities;
 
     /**
      * source: item 8-14 sound pressure level
@@ -347,8 +332,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundPressureLevelUnit[1];
     }
-    attribute soundPressureLevelQuantities: SoundPressureLevelValue[*] nonunique :> scalarQuantities;
-    attribute soundPressureLevel: SoundPressureLevelValue[1] :> soundPressureLevelQuantities;
+    attribute soundPressureLevel: SoundPressureLevelValue :> scalarQuantities;
 
     /**
      * source: item 8-15 sound power level
@@ -369,8 +353,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundPowerLevelUnit[1];
     }
-    attribute soundPowerLevelQuantities: SoundPowerLevelValue[*] nonunique :> scalarQuantities;
-    attribute soundPowerLevel: SoundPowerLevelValue[1] :> soundPowerLevelQuantities;
+    attribute soundPowerLevel: SoundPowerLevelValue :> scalarQuantities;
 
     /**
      * source: item 8-16 sound exposure level
@@ -391,8 +374,7 @@ package ISQAcoustics {
         attribute :>> num: Real;
         attribute :>> mRef: SoundExposureLevelUnit[1];
     }
-    attribute soundExposureLevelQuantities: SoundExposureLevelValue[*] nonunique :> scalarQuantities;
-    attribute soundExposureLevel: SoundExposureLevelValue[1] :> soundExposureLevelQuantities;
+    attribute soundExposureLevel: SoundExposureLevelValue :> scalarQuantities;
 
     /**
      * source: item 8-17 reverberation time
@@ -405,6 +387,6 @@ package ISQAcoustics {
      * definition: time duration (ISO 80000-3) required for the space-averaged sound energy density (item 8-7) to decrease to `10^(−6)` of its initial value (i.e. for its level to decrease by `60 "@[dB]"`) after the source emission has stopped
      * remarks: The reverberation time can be evaluated based on a dynamic range smaller than `60 "@[dB]"` and extrapolated to a decay time of `60 "@[dB]"`. It is then labelled accordingly `T_n`, where `n` is the dynamic range in `"@[dB]"`. See also ISO 3382-1.
      */
-    attribute reverberationTime: DurationValue[1] :> durationQuantities;
+    attribute reverberationTime: DurationValue :> scalarQuantities;
 
 }

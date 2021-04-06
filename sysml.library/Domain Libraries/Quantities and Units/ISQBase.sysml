@@ -1,6 +1,6 @@
 /**
  * International System of Quantities and Units
- * Generated on 2021-04-05T19:46:40Z from standard ISO/IEC 80000
+ * Generated on 2021-04-06T20:54:34Z from standard ISO/IEC 80000
  *
  * Note 1: In documentation comments, AsciiMath notation (see http://asciimath.org/) is used for mathematical concepts,
  * with Greek letters in Unicode encoding. In running text, AsciiMath is placed between backticks.
@@ -30,8 +30,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: LengthUnit[1];
     }
-    attribute lengthQuantities: LengthValue[*] nonunique :> scalarQuantities;
-    attribute length: LengthValue[1] :> lengthQuantities;
+    attribute length: LengthValue :> scalarQuantities;
 
     /**
      * General spatial coordinate system(s)
@@ -64,8 +63,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: DurationUnit[1];
     }
-    attribute durationQuantities: DurationValue[*] nonunique :> scalarQuantities;
-    attribute duration: DurationValue[1] :> durationQuantities;
+    attribute duration: DurationValue :> scalarQuantities;
 
     /**
      * source: item 4-1 mass
@@ -87,8 +85,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: MassUnit[1];
     }
-    attribute massQuantities: MassValue[*] nonunique :> scalarQuantities;
-    attribute mass: MassValue[1] :> massQuantities;
+    attribute mass: MassValue :> scalarQuantities;
 
     /**
      * source: item 5-1 thermodynamic temperature, temperature
@@ -110,8 +107,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: ThermodynamicTemperatureUnit[1];
     }
-    attribute thermodynamicTemperatureQuantities: ThermodynamicTemperatureValue[*] nonunique :> scalarQuantities;
-    attribute thermodynamicTemperature: ThermodynamicTemperatureValue[1] :> thermodynamicTemperatureQuantities;
+    attribute thermodynamicTemperature: ThermodynamicTemperatureValue :> scalarQuantities;
 
     /**
      * source: item 6-1 electric current
@@ -133,8 +129,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: ElectricCurrentUnit[1];
     }
-    attribute electricCurrentQuantities: ElectricCurrentValue[*] nonunique :> scalarQuantities;
-    attribute electricCurrent: ElectricCurrentValue[1] :> electricCurrentQuantities;
+    attribute electricCurrent: ElectricCurrentValue :> scalarQuantities;
 
     /**
      * source: item 7-14 luminous intensity
@@ -156,8 +151,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: LuminousIntensityUnit[1];
     }
-    attribute luminousIntensityQuantities: LuminousIntensityValue[*] nonunique :> scalarQuantities;
-    attribute luminousIntensity: LuminousIntensityValue[1] :> luminousIntensityQuantities;
+    attribute luminousIntensity: LuminousIntensityValue :> scalarQuantities;
 
     /**
      * source: item 9-2 amount of substance, number of moles
@@ -179,8 +173,7 @@ package ISQBase {
         attribute :>> num: Real;
         attribute :>> mRef: AmountOfSubstanceUnit[1];
     }
-    attribute amountOfSubstanceQuantities: AmountOfSubstanceValue[*] nonunique :> scalarQuantities;
-    attribute amountOfSubstance: AmountOfSubstanceValue[1] :> amountOfSubstanceQuantities;
+    attribute amountOfSubstance: AmountOfSubstanceValue :> scalarQuantities;
 
     /**
      * Declaration of the International System of Quantities (ISQ), 

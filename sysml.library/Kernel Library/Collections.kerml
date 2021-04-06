@@ -5,16 +5,6 @@ package Collections {
 	private import IntegerFunctions::*;
 
 	/**
-	 * KeyValuePair is a tuple of a key and a value for use in Map collections.
-	 * The key must be immutable.
-	 * TODO: Move to ScalarValues?
-	 */
-    datatype KeyValuePair {
-        feature key: Anything[1];
-        feature val: Anything[1];
-    }
-
-	/**
 	 * Collection is the top level abstract supertype of all collection types.
 	 * The name `elements` is used to denote the elements, members or items of the collection.
 	 * Note: In many programming languages `items` is used but that would be confusing because of the SysML v2 Item concept.
@@ -91,6 +81,16 @@ package Collections {
 	 * TODO: Decide whether to keep alias List
 	 */
 	alias Sequence as List;
+
+	/**
+	 * KeyValuePair is a tuple of a key and a value for use in Map collections.
+	 * The key must be immutable.
+	 * TODO: Move to ScalarValues?
+	 */
+    datatype KeyValuePair {
+        feature key: Anything[*] ordered nonunique;
+        feature val: Anything[*] ordered nonunique;
+    }
 
 	/**
 	 * Map is a variable-size, unordered collection of elements that are key-value pairs.

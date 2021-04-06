@@ -4,7 +4,7 @@ package 'Analysis Case Definition Example' {
 	import USCustomaryUnits::*;
 	import BaseFunctions::size;
 	
-	attribute def DistancePerVolumeValue :> QuantityValue;
+	attribute def DistancePerVolumeValue :> ScalarQuantityValue;
     attribute gallon = 231.0 * 'in' ** 3;
 
 	part def Vehicle {

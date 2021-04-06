@@ -4,38 +4,22 @@ package '15_19-Materials with Properties' {
 	import UnitsAndScales::*;
 	import SI::*;
 	
-	// TODO: Move definition of atomic mass and Da to SI
-	part def AtomicMassUnit :> MassUnit;
-        
-    attribute def AtomicMassValue :> QuantityValue {
-		attribute num: Real :>> QuantityValue::num;
-    	ref mRef: AtomicMassUnit :>> QuantityValue::mRef;
+    attribute def AtomicMassValue :> MassValue;
+    
+	attribute def TensileStrengthUnit :> DerivedUnit {
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = T; :>> exponent = -2; }
+        attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }		
+	}
+    
+    attribute def TensileStrengthValue :> ScalarQuantityValue {
+		attribute :>> num: Real;
+    	attribute :>> mRef: TensileStrengthUnit;
     }
     
-    part Da: AtomicMassUnit = AtomicMassUnit(
-    	name => "dalton", 
-    	unitConversion => ConversionByConvention(referenceUnit => kg, conversionFactor => 1.66053906660e-27)
-    );
-
-	// TODO: Move definition of tensile strength and N/mm² to SI
-    part def TensileStrengthUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-			attribute exponent :>> UnitPowerFactor::exponent = -1;
-		}
-		attribute massPowerFactor :>> SIDerivedUnit::massPowerFactor {
-			attribute exponent :>> UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-			attribute exponent :>> UnitPowerFactor::exponent = -2;
-		}
-    }
-    
-    attribute def TensileStrengthValue :> QuantityValue {
-		attribute num: Real redefines QuantityValue::num;
-    	ref mRef: TensileStrengthUnit redefines QuantityValue::mRef;
-    }
-    part 'N/mm²': TensileStrengthUnit = N / mm**2 {
-    	attribute name :>> MeasurementReference::name = "newton per square millimetre";
+    attribute 'N/mm²': TensileStrengthUnit = N / mm**2 {
+    	:>> longName = "newton per square millimetre";
     }
 
     part def Substance;

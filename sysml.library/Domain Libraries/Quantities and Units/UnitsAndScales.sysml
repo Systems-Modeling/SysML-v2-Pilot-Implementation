@@ -77,7 +77,7 @@ package UnitsAndScales {
 	/**
 	 * Representation of a measurement unit.
 	 * 
-	 * Note: MeasurementUnit directly specializes MeasurementReference in order to allow for efficient and intuitive definition of a ratio scale.
+	 * Note: MeasurementUnit directly specializes ScalarMeasurementReference in order to allow for efficient and intuitive definition of a ratio scale.
 	 * 
 	 * A MeasurementUnit can be used in two ways:
 	 * 1. Directly as the mRef in a QuantityValue, which implies that the effective measurement reference is a ratio scale defined by the unit.

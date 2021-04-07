@@ -11,12 +11,12 @@ package USCustomaryUnits {
 	
 	attribute ft: LengthUnit { 
 		:>> longName = "foot"; 
-		:>> unitConversion: ConversionByConvention { :>> referenceUnit = m; :>> conversionFactor = Rat(3048, 10000); }
+		:>> unitConversion: ConversionByConvention { :>> referenceUnit = m; :>> conversionFactor = 3048/10000; }
 	}
 
 	attribute 'in': LengthUnit {
 		:>> longName = "inch";
-		:>> unitConversion: ConversionByConvention { :>> referenceUnit = ft; :>> conversionFactor = Rat(1, 12); }
+		:>> unitConversion: ConversionByConvention { :>> referenceUnit = ft; :>> conversionFactor = 1/12; }
 	}
 
     attribute mi: LengthUnit {
@@ -26,14 +26,14 @@ package USCustomaryUnits {
 
     attribute lb: MassUnit {
     	:>> longName = "pound (avoirdupois)";
-    	:>> unitConversion: ConversionByConvention { :>> referenceUnit = kg; :>> conversionFactor = Rat(4535924, 10000000); }
+    	:>> unitConversion: ConversionByConvention { :>> referenceUnit = kg; :>> conversionFactor = 4535924/10000000; }
     }
 
     attribute 'mi/h': SpeedUnit = mi/h { :>> longName = "mile per hour"; }
     
     attribute lbf: ForceUnit {
 		:>> longName = "pound-force"; 
-		:>> unitConversion: ConversionByConvention { :>> referenceUnit = N; :>> conversionFactor = Rat(4448222, 1000000); }
+		:>> unitConversion: ConversionByConvention { :>> referenceUnit = SI::N; :>> conversionFactor = 4448222/1000000; }
 	}
 
     /*
@@ -46,7 +46,7 @@ package USCustomaryUnits {
 	 */
 	attribute '°F_unit': TemperatureUnit {
 		:>> longName = "degree fahrenheit (relative)";
-		:>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = Rat(5, 9); }
+		:>> unitConversion: ConversionByConvention { :>> referenceUnit = K; :>> conversionFactor = 5/9; }
 	}
 	 
 	/*

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,6 +33,8 @@ import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,8 +52,6 @@ import org.omg.sysml.lang.sysml.Type;
  */
 public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements AssertConstraintUsage {
 
-	public static final String ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT = "Items::Item::assertedConstraints";
-	
 	private Type subsettingBaseDefault;
 	private Type subsettingPartDefault;
 
@@ -142,14 +142,16 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = getDefaultType(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
-			subsettingPartDefault = getDefaultType(ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT);
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
 		}
 		return subsettingPartDefault;
 	}
@@ -164,27 +166,6 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 		throw new UnsupportedOperationException();
 	}
 
-	// Additional redefinitions and subsets
-
-	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()?
-				ASSERT_CONSTRAINT_SUBSETTING_PART_DEFAULT:
-				super.getDefaultSupertype();
-	}
-	
-	public boolean isEnactedPerformance() {
-		return StepImpl.isEnactedPerformance(this);
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		assertionConnector = InvariantImpl.getAssertionConnectorFor(this, assertionConnector, this.getResult());
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

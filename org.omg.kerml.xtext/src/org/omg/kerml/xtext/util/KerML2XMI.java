@@ -65,7 +65,7 @@ public class KerML2XMI extends SysMLUtil {
 	 * @throws 	IOException
 	 */
 	public void writeResource(final Resource resource) throws IOException {
-		System.out.println("Writing " + resource.getURI().toFileString() + "...");
+		println("Writing " + resource.getURI().toFileString() + "...");
 		resource.save(null);
 	}
 	
@@ -78,10 +78,10 @@ public class KerML2XMI extends SysMLUtil {
 	 * @throws 	IOException
 	 */
 	public void write() throws IOException {
-		System.out.println("Resolving proxies...");
+		println("Resolving proxies...");
 		EcoreUtil.resolveAll(this.resourceSet);
 		
-		System.out.println("Transforming...");
+		println("Transforming...");
 		ElementUtil.transformAll(this.resourceSet, true);
 		
 		Set<Resource> outputResources = new HashSet<Resource>();

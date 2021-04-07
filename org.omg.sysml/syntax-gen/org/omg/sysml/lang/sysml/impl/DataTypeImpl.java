@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.DataType;
  */
 public class DataTypeImpl extends ClassifierImpl implements DataType {
 	
-	public static final String DATA_TYPE_SUPERCLASS_DEFAULT = "Base::DataValue";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,11 +52,6 @@ public class DataTypeImpl extends ClassifierImpl implements DataType {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.DATA_TYPE;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return DATA_TYPE_SUPERCLASS_DEFAULT;
 	}
 
 }

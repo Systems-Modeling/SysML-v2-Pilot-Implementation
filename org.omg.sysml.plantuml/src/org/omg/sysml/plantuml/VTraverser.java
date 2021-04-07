@@ -24,12 +24,43 @@
 
 package org.omg.sysml.plantuml;
 
-import org.omg.sysml.lang.sysml.FeatureMembership;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
 
 public abstract class VTraverser extends Visitor {
+    private Set<Namespace> visited;
+
+    private Membership currentMembership;
+    protected Membership getCurrentMembership() {
+        return currentMembership;
+    }
+    
+    protected boolean checkVisited(Namespace n) {
+    	boolean flag = visited.contains(n);
+    	visited.add(n);
+    	return flag;
+    }
+
+    private List<Set<Namespace>> listOfVisited = new ArrayList<Set<Namespace>>();
+
+    protected void pushVisited() {
+        listOfVisited.add(visited);
+        this.visited = new HashSet<Namespace>();
+    }
+
+    protected void popVisited() {
+        int idx = listOfVisited.size() - 1;
+        this.visited = listOfVisited.get(idx);
+        listOfVisited.remove(idx);
+    }
+
+
     public String traverse(Namespace n) {
         for (Membership m: n.getOwnedMembership()) {
             // if (visit(m) == null) return null;
@@ -41,30 +72,44 @@ public abstract class VTraverser extends Visitor {
         return getString();
     }
 
-    @Override
-    public String caseMembership(Membership m) {
+    protected String visitMembership(Membership m) {
+        this.currentMembership = m;
         return visit(m.getMemberElement());
     }
 
     @Override
-    public String caseFeatureMembership(FeatureMembership fm) {
-        return visit(fm.getMemberFeature());
+    public String caseMembership(Membership m) {
+        return visitMembership(m);
     }
 
     @Override
     public String caseNamespace(Namespace n) {
+        if (checkVisited(n)) {
+            return "";
+        }
         return traverse(n);
+    }
+
+    private static Set<Namespace> initVisited(Visitor prev) {
+        if (prev instanceof VTraverser) {
+            VTraverser vtprev = (VTraverser) prev;
+            return vtprev.visited;
+        }
+        return new HashSet<Namespace>();
     }
     
     protected VTraverser(Visitor prev, boolean block) {
     	super(prev, block);
+        this.visited = initVisited(prev);
     }
     
     protected VTraverser(Visitor prev) {
     	super(prev);
+        this.visited = initVisited(prev);
     }
     
     protected VTraverser() {
     	super();
+        this.visited = initVisited(null);
     }
 }

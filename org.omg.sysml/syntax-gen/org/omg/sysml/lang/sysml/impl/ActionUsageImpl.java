@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,21 +23,16 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,13 +49,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class ActionUsageImpl extends UsageImpl implements ActionUsage {
-	
-	public static final String ACTION_SUBSETTING_BASE_DEFAULT = "Actions::actions";
-	public static final String ACTION_SUBSETTING_SUBACTION_DEFAULT = "Actions::Action::subactions";
-	public static final String STATE_BASE = "States::State";
-	public static final String TRANSITION_BASE = "States::Transition";
-	
-	protected boolean isCheckSubsetting = true;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,7 +77,7 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_USAGE__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -156,39 +144,6 @@ public class ActionUsageImpl extends UsageImpl implements ActionUsage {
   		return false;
 	}
 
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return StepImpl.getRelevantFeaturesOf(this);
-	}	
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		String redefinedFeature = getRedefinedFeature();
-		return redefinedFeature == null? super.getRelevantFeatures(type):
-			   type == getOwningType()? Collections.singletonList(this):
-			   Collections.singletonList((Feature)getDefaultType(redefinedFeature));
-	}
-	
-	protected String getRedefinedFeature() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return membership instanceof StateSubactionMembership?
-					STATE_BASE + "::" + ((StateSubactionMembership)membership).getKind().toString() + "Action": 
-			   membership instanceof TransitionFeatureMembership? 
-					TRANSITION_BASE + "::" + ((TransitionFeatureMembership)membership).getKind().toString(): 
-					null;
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					ACTION_SUBSETTING_SUBACTION_DEFAULT:
-					ACTION_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubperformance() {
-		return StepImpl.isCompositePerformanceFeature(this);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

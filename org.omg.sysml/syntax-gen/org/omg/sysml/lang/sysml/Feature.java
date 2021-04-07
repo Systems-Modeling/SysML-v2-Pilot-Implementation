@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,33 +36,35 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>Since Features are Types, their <code>featuringTypes</code> and <code>types</code> can be Features. When both are, Features classify sequences of at least four elements (length &gt; 3), otherwise at least three (length &gt; 2). The <code>featuringTypes</code> of <em>nested</em> Features are Features.</p>
  * 
- * ownedRedefinition = ownedSubsetting->intersection(redefining)
- * referencedType = type - ownedElement
- * ownedSubsetting = ownedGeneralization->intersection(subsetting)
+ * ownedRedefinition = ownedSubsetting->selectByKind(Redefinition)
+ * ownedTypeFeaturing = ownedRelationship->selectByKind(TypeFeaturing)->
+ *     select(tf | tf.featureOfType = self)
+ * ownedSubsetting = ownedGeneralization->selectByKind(Subsetting)
  * isComposite = owningFeatureMembership <> null and owningFeatureMembership.isComposite
- * ownedType = type->intersection(ownedElement)
+ * ownedTyping = ownedGeneralization->selectByKind(FeatureTyping)
  * type = typing.type
  * isEnd = owningFeatureMembership <> null and owningFeatureMembership.oclIsKindOf(EndFeatureMembership)
  * multiplicity <> null implies multiplicity.featuringType = featuringType 
+ * allSupertypes()->includes(Kernel Library::things)
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isUnique <em>Is Unique</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isOrdered <em>Is Ordered</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getType <em>Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedRedefinition <em>Owned Redefinition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedSubsetting <em>Owned Subsetting</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isComposite <em>Is Composite</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isEnd <em>Is End</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getEndOwningType <em>End Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTyping <em>Owned Typing</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#getFeaturingType <em>Featuring Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Feature#getOwnedTypeFeaturing <em>Owned Type Featuring</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Feature#isNonunique <em>Is Nonunique</em>}</li>
  * </ul>
  *
@@ -79,17 +81,17 @@ public interface Feature extends Type {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship_comp() <em>Owned Relationship comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Element#getOwnedRelationship() <em>Owned Relationship</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The TypeFeaturings owned by this Feature, for which it is also the <code>featureOfType</code> of the FeatureTyping.</p>
+	 * <p>The <code>ownedRelationships</code> of this Feature that are TypeFeaturings, for which the Feature is the <code>featureOfType</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Type Featuring</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTypeFeaturing()
 	 * @see org.omg.sysml.lang.sysml.TypeFeaturing#getOwningFeatureOfType
-	 * @model opposite="owningFeatureOfType" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningFeatureOfType" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -210,7 +212,7 @@ public interface Feature extends Type {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_Type()
-	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model required="true" transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='typedFeature'"
 	 * @generated
 	 */
@@ -232,7 +234,8 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Redefinition Relationships owned by this Feature for which it is the <code>redefiningFeature</code>.</p>
+	 * <p>The <code>ownedSubsettings</code> of this Feature that are Redefinitions, for which the Feature is the <code>redefiningFeature</code>.</p>
+	 * 
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Redefinition</em>' reference list.
@@ -261,7 +264,7 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Subsetting Relationships owned by this Feature for which it is the <code>subsettingFeature</code>.</p>
+	 * <p>The <code>ownedGeneralizations</code> of this Feature that are Subsettings, for which the Feature is the <code>subsettingFeature</code>.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Subsetting</em>' reference list.
@@ -290,12 +293,12 @@ public interface Feature extends Type {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The FeatureTypings owned by this Feature, for which it is also the <code>typedFeature</code> of the FeatureTyping.</p>
+	 * <p>The <code>ownedGeneralizations</code> of this Feature that are FeatureTypings, for which the Feature is the <code>typedFeature</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Typing</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwnedTyping()
 	 * @see org.omg.sysml.lang.sysml.FeatureTyping#getOwningFeature
-	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true" ordered="false"
+	 * @model opposite="owningFeature" transient="true" volatile="true" derived="true"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -311,15 +314,15 @@ public interface Feature extends Type {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Featuring Type</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_FeaturingType()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='featureOfType'"
 	 * @generated
 	 */
 	EList<Type> getFeaturingType();
 
 	/**
-	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp <em>Owned Member Feature comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Feature Membership</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature <em>Owned Member Feature</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -335,21 +338,21 @@ public interface Feature extends Type {
 	 * <!-- begin-model-doc -->
 	 * <p>The FeatureMembership that owns this Feature as an <code>ownedMemberFeature</code>, determining its <code>owningType</code>.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Feature Membership</em>' container reference.
+	 * @return the value of the '<em>Owning Feature Membership</em>' reference.
 	 * @see #setOwningFeatureMembership(FeatureMembership)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFeature_OwningFeatureMembership()
-	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp
-	 * @model opposite="ownedMemberFeature_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature
+	 * @model opposite="ownedMemberFeature" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	FeatureMembership getOwningFeatureMembership();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Feature#getOwningFeatureMembership <em>Owning Feature Membership</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Feature Membership</em>' container reference.
+	 * @param value the new value of the '<em>Owning Feature Membership</em>' reference.
 	 * @see #getOwningFeatureMembership()
 	 * @generated
 	 */

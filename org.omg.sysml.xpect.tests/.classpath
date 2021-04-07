@@ -6,7 +6,6 @@
 	<classpathentry kind="src" path="library.domain"/>
 	<classpathentry kind="src" path="library.kernel"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.xtext"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.xtext.ui"/>

@@ -26,7 +26,10 @@ package test{
 	//* XPECT scope at OuterPackage::A::a1 ---
 	   OuterPackage.B.b,
 		   A, A.a2, B, OuterPackage.B.b.a1,
-		   OuterPackage.A,		   OuterPackage.A.a1, OuterPackage.B, test.A, test.A.a2, test.B, 
+		   OuterPackage.A,		   OuterPackage.A.a1, OuterPackage.B, test.A, test.A.a2, test.B,
+  OuterPackage.B.b.self, 
+		   A.self,  A.a2.self,  B.self,  OuterPackage.B.b.a1.self, 
+		   OuterPackage.A.self, 		   OuterPackage.A.a1.self,  OuterPackage.B.self,  test.A.self,  test.A.a2.self,  test.B.self, 		   
 		--- */
 	feature B redefines OuterPackage::A::a1 {} 
 }

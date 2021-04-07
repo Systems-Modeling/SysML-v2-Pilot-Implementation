@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,34 +22,33 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
+import org.omg.sysml.adapter.ConstraintUsageAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,6 +60,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getParameter <em>Parameter</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConstraintUsageImpl#getConstraintDefinition <em>Constraint Definition</em>}</li>
  * </ul>
  *
@@ -68,20 +68,19 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
-	public static final String CONSTRAINT_SUBSETTING_BASE_DEFAULT = "Constraints::constraintChecks";
-	public static final String CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE = "Requirements::RequirementCheck::assumptions";
-	public static final String CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE = "Requirements::RequirementCheck::constraints";
+	/**
+	 * The default value of the '{@link #isModelLevelEvaluable() <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
 	
 	private Type subsettingBaseDefault;
 	private Type subsettingAssumptionFeature;
 	private Type subsettingRequirementFeature;
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this ConstraintUsage.
-	 */
-	protected BindingConnector resultConnector = null;
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -110,7 +109,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONSTRAINT_USAGE__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -153,6 +152,15 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 */
 	public boolean isSetConstraintDefinition() {
 		return basicGetConstraintDefinition() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Element> evaluate(Element target) {
+		return new BasicEList<>();
 	}
 
 	/**
@@ -274,58 +282,6 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
   		return false;
 	}
 
-	// Additional redefinitions and subsets
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		if (isAssumptionConstraint()) {
-			addAssumptionSubsetting();
-		} else if (isRequirementConstraint()){
-			addRequirementSubsetting();
-		}
-		super.computeImplicitGeneralTypes();
-	}
-	
-	protected void addAssumptionSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
-	}
-	
-	protected void addRequirementSubsetting() {
-		addSubsetting(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
-	}
-	
-	protected void addSubsetting(String subsettedFeatureName) {
-		Feature feature = (Feature)getDefaultType(subsettedFeatureName);
-		if (feature != null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
-		}
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return CONSTRAINT_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isAssumptionConstraint() {
-		return getRequirementConstraintKind() == RequirementConstraintKind.ASSUMPTION;
-	}
-	
-	public boolean isRequirementConstraint() {
-		return getRequirementConstraintKind() == RequirementConstraintKind.REQUIREMENT;
-	}
-	
-	public RequirementConstraintKind getRequirementConstraintKind() {
-		FeatureMembership owningMembership = getOwningFeatureMembership();
-		return owningMembership instanceof RequirementConstraintMembership? 
-				((RequirementConstraintMembership)owningMembership).getKind(): null;
-	}
-	
-	@Override
-	public EList<Feature> getFeature() {
-		getResultConnector();
-		return super.getFeature();
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -343,7 +299,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 
 	/**
@@ -356,54 +312,37 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 		throw new UnsupportedOperationException();
 	}
 
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Additional Overrides
-	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	protected boolean hasRelevantSubjectParameter() {
-		Type owningType = getOwningType();
-		return isRequirement() && 
-			   (owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage);
+	public boolean isModelLevelEvaluable() {
+		return false;
 	}
-	
-	public boolean isRequirement() {
-		return getType().stream().anyMatch(RequirementDefinition.class::isInstance);
-	}
-	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
-	public Usage getSubjectParameter() {
-		return basicGetSubjectParameter();
+	public void setIsModelLevelEvaluable(boolean newIsModelLevelEvaluable) {
+		throw new UnsupportedOperationException();
 	}
-	
-	protected Usage basicGetSubjectParameter() {
-		return isRequirement()? basicGetSubjectParameterOf(this): null;
-	}
-	
-	protected void computeSubjectParameter() {
-		if (isRequirement()) {
-			UsageImpl.computeSubjectParameterOf(this);
-		}
-	}
+
+	// Additional
 	
 	@Override
 	public Feature getNamingFeature() {
-		return isAssumptionConstraint() || isRequirementConstraint()? 
+		return UsageUtil.isAssumptionConstraint(this) || UsageUtil.isRequirementConstraint(this)? 
 				getSubsettedConstraint():
 			    super.getNamingFeature();
 	}
 	
 	public ConstraintUsage getSubsettedConstraint() {
-		List<Subsetting> subsettings = basicGetOwnedSubsetting();		
-		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(this::isIgnoredSubsetting)) {
-			return this;
-		} else {
-			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof ConstraintUsage? (ConstraintUsage)subsettedFeature: this;
-		}
+		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, this::isIgnoredSubsetting);
 	}
 	
 	protected boolean isIgnoredSubsetting(Feature feature) {
@@ -414,32 +353,27 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	
 	protected Type getSubsettingBaseDefault() {
 		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = getDefaultType(CONSTRAINT_SUBSETTING_BASE_DEFAULT);
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
 	protected Type getSubsettingAssumptionFeature() {
 		if (subsettingAssumptionFeature == null) {
-			subsettingAssumptionFeature = getDefaultType(CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
+			subsettingAssumptionFeature = SysMLLibraryUtil.getLibraryType(this, 
+					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
 		}
 		return subsettingAssumptionFeature;
 	}
 
 	protected Type getSubsettingRequirementFeature() {
 		if (subsettingRequirementFeature == null) {
-			subsettingRequirementFeature = getDefaultType(CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
+			subsettingRequirementFeature = SysMLLibraryUtil.getLibraryType(this, 
+					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
 		}
 		return subsettingRequirementFeature;
 	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		CalculationDefinitionImpl.addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}	
 	
 	//
 	
@@ -461,6 +395,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable();
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				if (resolve) return getPredicate();
 				return basicGetPredicate();
@@ -494,6 +430,9 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				setResult((Feature)newValue);
 				return;
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable((Boolean)newValue);
+				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)newValue);
 				return;
@@ -524,6 +463,9 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				setResult((Feature)null);
 				return;
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				setIsModelLevelEvaluable(IS_MODEL_LEVEL_EVALUABLE_EDEFAULT);
+				return;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				setPredicate((Predicate)null);
 				return;
@@ -552,6 +494,8 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 				return isSetFunction();
 			case SysMLPackage.CONSTRAINT_USAGE__RESULT:
 				return basicGetResult() != null;
+			case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE:
+				return isModelLevelEvaluable() != IS_MODEL_LEVEL_EVALUABLE_EDEFAULT;
 			case SysMLPackage.CONSTRAINT_USAGE__PREDICATE:
 				return isSetPredicate();
 			case SysMLPackage.CONSTRAINT_USAGE__CONSTRAINT_DEFINITION:
@@ -578,6 +522,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			switch (derivedFeatureID) {
 				case SysMLPackage.CONSTRAINT_USAGE__FUNCTION: return SysMLPackage.EXPRESSION__FUNCTION;
 				case SysMLPackage.CONSTRAINT_USAGE__RESULT: return SysMLPackage.EXPRESSION__RESULT;
+				case SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -608,6 +553,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			switch (baseFeatureID) {
 				case SysMLPackage.EXPRESSION__FUNCTION: return SysMLPackage.CONSTRAINT_USAGE__FUNCTION;
 				case SysMLPackage.EXPRESSION__RESULT: return SysMLPackage.CONSTRAINT_USAGE__RESULT;
+				case SysMLPackage.EXPRESSION__IS_MODEL_LEVEL_EVALUABLE: return SysMLPackage.CONSTRAINT_USAGE__IS_MODEL_LEVEL_EVALUABLE;
 				default: return -1;
 			}
 		}
@@ -618,6 +564,46 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
+		if (baseClass == Step.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == Expression.class) {
+			switch (baseOperationID) {
+				case SysMLPackage.EXPRESSION___EVALUATE__ELEMENT: return SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT;
+				default: return -1;
+			}
+		}
+		if (baseClass == BooleanExpression.class) {
+			switch (baseOperationID) {
+				default: return -1;
+			}
+		}
+		return super.eDerivedOperationID(baseOperationID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case SysMLPackage.CONSTRAINT_USAGE___EVALUATE__ELEMENT:
+				return evaluate((Element)arguments.get(0));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 } //ConstraintUsageImpl

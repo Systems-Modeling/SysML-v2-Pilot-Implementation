@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -33,9 +32,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class NullExpressionImpl extends MetadataExpressionImpl implements NullExpression {
-
-	public static final String NULL_EXPRESSION_SUBSETTING_DEFAULT = "Performances::nullEvaluations";
+public class NullExpressionImpl extends ExpressionImpl implements NullExpression {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -44,7 +41,12 @@ public class NullExpressionImpl extends MetadataExpressionImpl implements NullEx
 	protected NullExpressionImpl() {
 		super();
 	}
-
+	
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return true;
+	}
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -52,11 +54,6 @@ public class NullExpressionImpl extends MetadataExpressionImpl implements NullEx
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.NULL_EXPRESSION;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return NULL_EXPRESSION_SUBSETTING_DEFAULT;
 	}
 
 } // NullExpressionImpl

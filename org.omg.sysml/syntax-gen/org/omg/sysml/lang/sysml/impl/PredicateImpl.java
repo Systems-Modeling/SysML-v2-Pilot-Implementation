@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PredicateImpl extends FunctionImpl implements Predicate {
 
-	public static final String PREDICATE_SUPERCLASS_DEFAULT = "Performances::BooleanEvaluation";
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -52,11 +50,6 @@ public class PredicateImpl extends FunctionImpl implements Predicate {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PREDICATE;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return PREDICATE_SUPERCLASS_DEFAULT;
 	}
 
 } // PredicateImpl

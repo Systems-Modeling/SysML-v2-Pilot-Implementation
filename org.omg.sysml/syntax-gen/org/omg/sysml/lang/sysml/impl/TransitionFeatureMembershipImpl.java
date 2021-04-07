@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,10 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.sysml.lang.sysml.Feature;
@@ -44,7 +41,6 @@ import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionFeatureMembershipImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionFeatureMembershipImpl#getTransitionFeature_comp <em>Transition Feature comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TransitionFeatureMembershipImpl#getTransitionFeature <em>Transition Feature</em>}</li>
  * </ul>
  *
@@ -70,16 +66,6 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * @ordered
 	 */
 	protected TransitionFeatureKind kind = KIND_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getTransitionFeature_comp() <em>Transition Feature comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTransitionFeature_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected Step transitionFeature_comp;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,60 +115,6 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * @generated
 	 */
 	@Override
-	public Step getTransitionFeature_comp() {
-		return transitionFeature_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTransitionFeature_comp(Step newTransitionFeature_comp, NotificationChain msgs) {
-		Step oldTransitionFeature_comp = transitionFeature_comp;
-		transitionFeature_comp = newTransitionFeature_comp;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP, oldTransitionFeature_comp, newTransitionFeature_comp);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setTransitionFeature_comp(Step newTransitionFeature_comp) {
-		if (newTransitionFeature_comp != transitionFeature_comp) {
-			NotificationChain msgs = null;
-			if (transitionFeature_comp != null)
-				msgs = ((InternalEObject)transitionFeature_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP, null, msgs);
-			if (newTransitionFeature_comp != null)
-				msgs = ((InternalEObject)newTransitionFeature_comp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP, null, msgs);
-			msgs = basicSetTransitionFeature_comp(newTransitionFeature_comp, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP, newTransitionFeature_comp, newTransitionFeature_comp));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTransitionFeature_comp() {
-		return transitionFeature_comp != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Step getTransitionFeature() {
 		Step transitionFeature = basicGetTransitionFeature();
 		return transitionFeature != null && transitionFeature.eIsProxy() ? (Step)eResolveProxy((InternalEObject)transitionFeature) : transitionFeature;
@@ -194,7 +126,8 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * @generated NOT
 	 */
 	public Step basicGetTransitionFeature() {
-		return getTransitionFeature_comp();
+		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
+		return ownedMemberFeature instanceof Step? (Step)ownedMemberFeature: null;
 	}
 
 	/**
@@ -204,7 +137,16 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 */
 	@Override
 	public void setTransitionFeature(Step newTransitionFeature) {
-		throw new UnsupportedOperationException();
+		super.setOwnedMemberFeature(newTransitionFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTransitionFeature() {
+		return basicGetTransitionFeature() != null;
 	}
 
 	/**
@@ -213,8 +155,8 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * @generated
 	 */
 	@Override
-	public Feature getOwnedMemberFeature_comp() {
-		return getTransitionFeature_comp();
+	public Feature getOwnedMemberFeature() {
+		return getTransitionFeature();
 	}
 
 	/**
@@ -222,11 +164,21 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp, NotificationChain msgs) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof Step)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of Step");
+	@Override
+	public Feature basicGetOwnedMemberFeature() {
+		return basicGetTransitionFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedMemberFeature(Feature newOwnedMemberFeature) {
+		if (newOwnedMemberFeature != null && !(newOwnedMemberFeature instanceof Step)) {
+			throw new IllegalArgumentException("newOwnedMemberFeature must be an instance of Step");
 		}
-		return basicSetTransitionFeature_comp((Step) newOwnedMemberFeature_comp, msgs);
+		setTransitionFeature((Step) newOwnedMemberFeature);
 	}
 
 	/**
@@ -234,34 +186,8 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedMemberFeature_comp(Feature newOwnedMemberFeature_comp) {
-		if (newOwnedMemberFeature_comp != null && !(newOwnedMemberFeature_comp instanceof Step)) {
-			throw new IllegalArgumentException("newOwnedMemberFeature_comp must be an instance of Step");
-		}
-		setTransitionFeature_comp((Step) newOwnedMemberFeature_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwnedMemberFeature_comp() {
+	public boolean isSetOwnedMemberFeature() {
   		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP:
-				return basicSetTransitionFeature_comp(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -274,8 +200,6 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 		switch (featureID) {
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__KIND:
 				return getKind();
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP:
-				return getTransitionFeature_comp();
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE:
 				if (resolve) return getTransitionFeature();
 				return basicGetTransitionFeature();
@@ -293,9 +217,6 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 		switch (featureID) {
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__KIND:
 				setKind((TransitionFeatureKind)newValue);
-				return;
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP:
-				setTransitionFeature_comp((Step)newValue);
 				return;
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE:
 				setTransitionFeature((Step)newValue);
@@ -315,9 +236,6 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP:
-				setTransitionFeature_comp((Step)null);
-				return;
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE:
 				setTransitionFeature((Step)null);
 				return;
@@ -333,14 +251,12 @@ public class TransitionFeatureMembershipImpl extends FeatureMembershipImpl imple
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE_COMP:
-				return isSetOwnedMemberFeature_comp();
+			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__OWNED_MEMBER_FEATURE:
+				return isSetOwnedMemberFeature();
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__KIND:
 				return kind != KIND_EDEFAULT;
-			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE_COMP:
-				return isSetTransitionFeature_comp();
 			case SysMLPackage.TRANSITION_FEATURE_MEMBERSHIP__TRANSITION_FEATURE:
-				return basicGetTransitionFeature() != null;
+				return isSetTransitionFeature();
 		}
 		return super.eIsSet(featureID);
 	}

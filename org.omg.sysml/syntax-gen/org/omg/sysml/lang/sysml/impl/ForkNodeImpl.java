@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ForkNodeImpl extends ControlNodeImpl implements ForkNode {
 
-	public static final String FORK_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::forks";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,11 +53,6 @@ public class ForkNodeImpl extends ControlNodeImpl implements ForkNode {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.FORK_NODE;
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return FORK_NODE_SUBSETTING_BASE_DEFAULT;
 	}
 	
 } //ForkNodeImpl

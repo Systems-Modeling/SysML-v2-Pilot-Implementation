@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.AttributeDefinition;
  */
 public class AttributeDefinitionImpl extends DefinitionImpl implements AttributeDefinition {
 	
-	public static final String ATTRIBUTE_DEFINITION_SUPERCLASS_DEFAULT = "Base::DataValue";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -54,11 +52,6 @@ public class AttributeDefinitionImpl extends DefinitionImpl implements Attribute
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ATTRIBUTE_DEFINITION;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return ATTRIBUTE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } //AttributeDefinitionImpl

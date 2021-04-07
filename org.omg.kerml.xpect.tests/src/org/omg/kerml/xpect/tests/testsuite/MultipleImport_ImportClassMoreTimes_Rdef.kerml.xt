@@ -34,6 +34,15 @@ package test{
 		   OuterPackage2.C, OuterPackage2.C.b, 	OuterPackage2.C.b.a1, OuterPackage2.C.c,
 		   OuterPackage3.C, OuterPackage3.C.b,  OuterPackage3.C.b.a1, OuterPackage3.C.c,
 		   OuterPackage3.D,  OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
+		   	   	   D.c.self,  D.f.self,  EE.c.self,  EE.try.self,   test.D.c.self,  test.D.f.self,  test.EE.c.self,  test.EE.try.self, 
+		   D.f.a1.self,  EE.try.a1.self,  D.self,  EE.self,  
+		   test.D.f.a1.self,  test.EE.try.a1.self,  test.D.self,  test.EE.self, 
+		   OuterPackage.A.self,  OuterPackage.A.a1.self,  
+		   OuterPackage.B.self,   OuterPackage.B.b.self, 	OuterPackage.B.b.a1.self,  
+		   OuterPackage2.B.self,  OuterPackage2.B.b.self, 	OuterPackage2.B.b.a1.self,  
+		   OuterPackage2.C.self,  OuterPackage2.C.b.self,  	OuterPackage2.C.b.a1.self,  OuterPackage2.C.c.self, 
+		   OuterPackage3.C.self,  OuterPackage3.C.b.self,   OuterPackage3.C.b.a1.self,  OuterPackage3.C.c.self, 
+		   OuterPackage3.D.self,   OuterPackage3.D.c.self,  OuterPackage3.D.f.self,  OuterPackage3.D.f.a1.self, 
 	--- */
 	feature EE subsets D {
 		//XPECT linkedName at D::f --> OuterPackage3.D.f
@@ -49,6 +58,17 @@ package test{
 		   OuterPackage2.C, OuterPackage2.C.b, OuterPackage2.C.c, OuterPackage2.C.b.a1,
 		   OuterPackage3.C, OuterPackage3.C.b, OuterPackage3.C.b.a1, OuterPackage3.C.c,
 		   OuterPackage3.D, OuterPackage3.D.c, OuterPackage3.D.f, OuterPackage3.D.f.a1,
+		    D.self,  D.f.a1.self,   EE.try.a1.self,  
+		   test.D.f.a1.self,  test.EE.try.a1.self,  
+		   f.a1.self, 
+		   D.c.self,  D.f.self,  EE.self,  EE.c.self,  EE.try.self,  c.self,  f.self, 
+		   test.D.self,  test.D.c.self,  test.D.f.self,  test.EE.self,  test.EE.c.self,  test.EE.try.self,  
+		   OuterPackage.A.self,  OuterPackage.A.a1.self,  
+		   OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self,  
+		   OuterPackage2.B.self,  OuterPackage2.B.b.self,  OuterPackage2.B.b.a1.self,  
+		   OuterPackage2.C.self,  OuterPackage2.C.b.self,  OuterPackage2.C.c.self,  OuterPackage2.C.b.a1.self, 
+		   OuterPackage3.C.self,  OuterPackage3.C.b.self,  OuterPackage3.C.b.a1.self,  OuterPackage3.C.c.self, 
+		   OuterPackage3.D.self,  OuterPackage3.D.c.self,  OuterPackage3.D.f.self,  OuterPackage3.D.f.a1.self, self
 	--- */
 		feature try redefines D::f;
 	}

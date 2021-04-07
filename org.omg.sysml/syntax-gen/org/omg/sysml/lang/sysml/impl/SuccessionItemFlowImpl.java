@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -49,9 +49,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionItemFlow {
-
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT = "Transfers::flows";
-	public static final String SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subflows";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -133,13 +130,6 @@ public class SuccessionItemFlowImpl extends ItemFlowImpl implements SuccessionIt
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubtransfer() ? 
-				SUCCESSION_ITEM_FLOW_SUBSETTING_PERFORMANCE_DEFAULT: 
-				SUCCESSION_ITEM_FLOW_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

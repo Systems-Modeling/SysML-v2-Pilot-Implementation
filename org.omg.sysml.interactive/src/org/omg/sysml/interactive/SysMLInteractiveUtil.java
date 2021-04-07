@@ -3,6 +3,7 @@ package org.omg.sysml.interactive;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -11,7 +12,7 @@ import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.impl.TypeImpl;
+import org.omg.sysml.util.TypeUtil;
 
 public class SysMLInteractiveUtil {
 
@@ -29,11 +30,14 @@ public class SysMLInteractiveUtil {
 	}
 	
 	private static void formatElement(StringBuilder buffer, String indentation, Element element, String relationshipTag) {
+		String humanId = element.getHumanId();
 		String name = element.getName();
 		buffer.append(indentation + 
 				relationshipTag + 
 				element.eClass().getName() + 
-				(name == null? "": " " + name) + " (" + element.getIdentifier() + ")\n");
+				(humanId == null? "": " [" + humanId + "]") +
+				(name == null? "": " " + name) + 
+				" (" + element.getIdentifier() + ")\n");
 	}
 	
 	private static void formatExplicitElement(StringBuilder buffer, String indentation, Element element, Relationship relationship) {
@@ -53,13 +57,10 @@ public class SysMLInteractiveUtil {
 				}
 			}
 		} else {
-			if (element instanceof TypeImpl) {
-				TypeImpl type = (TypeImpl)element;
-				for (EClass kind: type.getImplicitGeneralTypeKinds()) {
-					for (Type supertype: type.getImplicitGeneralTypes(kind)) {
-						formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind);
-					}
-				}
+			if (element instanceof Type) {
+				TypeUtil.forEachImplicitGeneralTypeOf((Type)element, (kind, supertype)->
+					formatImplicitElement(buffer, indentation + SysMLInteractiveUtil.INDENT, supertype, kind)
+				);
 			}
 			
 			for (Relationship subrelationship: element.getOwnedRelationship()) {
@@ -98,6 +99,28 @@ public class SysMLInteractiveUtil {
 		StringWriter writer = new StringWriter();
 		exception.printStackTrace(new PrintWriter(writer));
 		return writer.toString();
+	}
+	
+	public static String formatMembershipList(List<Membership> membership) {
+		return membership.stream().
+			map(Membership::getMemberElement).
+			sorted(SysMLInteractiveUtil::compare).
+			map(SysMLInteractiveUtil::formatElement).
+			collect(Collectors.joining());
+	}
+	
+	public static int compare(Element element1, Element element2) {
+		String humanId1 = element1.getHumanId();
+		String humanId2 = element2.getHumanId();
+		String name1 = element1.getName();
+		String name2 = element2.getName();
+		return name1 != null && name2 != null? name1.compareToIgnoreCase(name2):
+			   name1 == null && name2 != null? -1:
+			   name1 != null && name2 == null? 1:
+			   humanId1 != null && humanId2 != null? humanId1.compareToIgnoreCase(humanId2):
+			   humanId1 == null && humanId2 != null? -1:
+			   humanId1 != null && humanId2 == null? 1:
+			   0;
 	}
 	
 }

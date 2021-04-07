@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2018, 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2018, 2021 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
  * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
@@ -28,15 +28,15 @@
  * 
  *****************************************************************************/
 
-grammar org.omg.sysml.xtext.SysML hidden (WS, ML_NOTE, SL_NOTE)
+grammar org.omg.sysml.xtext.SysML with org.omg.kerml.expressions.xtext.KerMLExpressions
 
 import "http://www.eclipse.org/emf/2002/Ecore" as Ecore
 import "http://www.omg.org/spec/SysML/2.0" as SysML
 
 /* ROOT PACKAGE */
 
-RootPackage returns SysML::Package :
-	{SysML::Package} PackageBodyElement*
+RootNamespace returns SysML::Namespace :
+	{SysML::Namespace} PackageBodyElement*
 ;
 
 /* BASIC ELEMENTS */
@@ -51,9 +51,9 @@ fragment Identification returns SysML::Element :
 /* Comments */
 
 Comment returns SysML::Comment :
-	( 'comment' Identification? 'about' ownedRelationship_comp += Annotation
-	  ( ',' ownedRelationship_comp += Annotation )*
-	| ( 'comment' Identification? )? ownedRelationship_comp += EmptyAnnotation
+	( 'comment' Identification? 'about' ownedRelationship += Annotation
+	  ( ',' ownedRelationship += Annotation )*
+	| ( 'comment' Identification? )? ownedRelationship += EmptyAnnotation
 	)
 	body = REGULAR_COMMENT
 ;
@@ -69,7 +69,7 @@ EmptyAnnotation returns SysML::Annotation :
 /* Documentation */
 
 OwnedDocumentation returns SysML::Documentation :
-	documentingComment_comp = DocumentationComment
+	ownedRelatedElement += DocumentationComment // documentingComment = DocumentationComment
 ;
 
 DocumentationComment returns SysML::Comment :
@@ -77,7 +77,7 @@ DocumentationComment returns SysML::Comment :
 ;
 
 PrefixDocumentation returns SysML::Annotation :
-	ownedRelatedElement_comp += PrefixDocumentationComment
+	ownedRelatedElement += PrefixDocumentationComment
 ;
 
 PrefixDocumentationComment returns SysML::Comment :
@@ -87,11 +87,46 @@ PrefixDocumentationComment returns SysML::Comment :
 /* Textual Representation */
 
 TextualRepresentation returns SysML::TextualRepresentation :
-    ( 'rep' Identification? 'about' ownedRelationship_comp += Annotation
-    | ( 'rep' Identification? )? ownedRelationship_comp += EmptyAnnotation
+    ( 'rep' Identification? 'about' ownedRelationship += Annotation
+    | ( 'rep' Identification? )? ownedRelationship += EmptyAnnotation
     )
     'language' language = STRING_VALUE 
     body = REGULAR_COMMENT
+;
+
+/* Annotating Features */
+
+AnnotatingFeature returns SysML::AnnotatingFeature :
+	( '@' | 'metadata' ) AnnotatingFeatureDeclaration 
+	( 'about' ownedRelationship += Annotation ( ',' ownedRelationship += Annotation )* 
+	| ownedRelationship += EmptyAnnotation
+	)	
+	AnnotatingFeatureBody
+;
+
+fragment AnnotatingFeatureDeclaration returns SysML::AnnotatingFeature :
+	( Identification DefinedByKeyword )? ownedRelationship += MetadataTyping
+;
+
+MetadataTyping returns SysML::FeatureTyping :
+	type = [SysML::DataType | QualifiedName]
+;
+
+fragment AnnotatingFeatureBody returns SysML::AnnotatingFeature :
+	';' | '{' ( ownedRelationship += MetadataFeatureMember )* '}'
+;
+
+MetadataFeatureMember returns SysML::FeatureMembership :
+	ownedRelatedElement += MetadataFeature // ownedMemberFeature = MetadataFeature
+;
+
+MetadataFeature returns SysML::MetadataFeature :
+	'feature'? ( ':>>' | 'redefines')? ownedRelationship += OwnedRedefinition 
+	'=' ownedRelationship += MetadataFeatureValue ';' // metadataFeatureValue = MetadataFeatureValue ';'
+;
+
+MetadataFeatureValue returns SysML::MetadataFeatureValue :
+	ownedRelatedElement += OwnedExpression // metadataValue = OwnedExpression
 ;
 
 /* PACKAGES */
@@ -110,39 +145,45 @@ fragment PackageBody returns SysML::Package :
 	  ';' 
 	| '{' ( // Note: PackageBodyElement is expanded here to avoid
 			// infinite loops in the incremental parser.
-		    documentation_comp += OwnedDocumentation
-	      | ownedMembership_comp += PackageMember 
-	      | ownedImport_comp += Import )* 
+		    ownedRelationship += OwnedDocumentation
+	      | ownedRelationship += PackageMember 
+	      | ownedRelationship += ElementFilterMember
+	      | ownedRelationship += Import )* 
 	  '}'
 ;
 
 /* Package Bodies */
 
-fragment PackageBodyElement returns SysML::Package :
-	  documentation_comp += OwnedDocumentation
-	| ownedMembership_comp += PackageMember 
-	| ownedImport_comp += Import
+fragment PackageBodyElement returns SysML::Namespace :
+	  ownedRelationship += OwnedDocumentation
+	| ownedRelationship += ElementFilterMember
+	| ownedRelationship += PackageMember 
+	| ownedRelationship += Import
+;
+
+ElementFilterMember returns SysML::ElementFilterMembership :
+	'filter' ownedRelatedElement += OwnedExpression ';' // condition = OwnedExpression ';'
 ;
 
 PackageMember returns SysML::Membership : 
-	( ownedRelationship_comp += PrefixDocumentation )*
+	( ownedRelationship += PrefixDocumentation )*
     ( visibility = BasicVisibilityIndicator )?		
 	( NonUsagePackageMember | UsagePackageMember )
 ;
 
 fragment NonUsagePackageMember returns SysML::Membership :
-	  ownedMemberElement_comp = DefinitionElement
+	  ownedRelatedElement += DefinitionElement //ownedMemberElement = DefinitionElement
 	| ( 'alias' | 'import' ) memberElement = [SysML::Element|QualifiedName] ( 'as' memberName = Name )? ';'
 ;
 
 fragment UsagePackageMember returns SysML::Membership :
-	  ownedMemberElement_comp = UsageElement
+	  ownedRelatedElement += UsageElement // ownedMemberElement = UsageElement
 ;
 
 Import returns SysML::Import :
-	( ownedRelationship_comp += PrefixDocumentation )*
+	( ownedRelationship += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
-	'import' ImportedNamespace ';'
+	'import' ( ImportedNamespace | ImportedFilterPackage ) ';'
 ;
 
 fragment ImportedNamespace returns SysML::Import :
@@ -152,6 +193,27 @@ fragment ImportedNamespace returns SysML::Import :
 	| importedNamespace = [SysML::Namespace|DotQualifiedName] '.'
 	)
 	( '*' | isRecursive ?= '**' )
+;
+
+fragment ImportedFilterPackage returns SysML::Import :
+	ownedRelatedElement += FilterPackage
+;
+
+FilterPackage returns SysML::Package :
+	ownedRelationship += FilterPackageImport
+	( ownedRelationship += FilterPackageMember )+
+;
+
+FilterPackageImport returns SysML::Import :
+	ImportedNamespace
+;
+
+FilterPackageMember returns SysML::ElementFilterMembership :
+	visibility = FilterPackageMemberVisibility ownedRelatedElement += OwnedExpression ']' // condition = OwnedExpression ']'
+;
+
+enum FilterPackageMemberVisibility returns SysML::VisibilityKind :
+	private = '['
 ;
 
 enum BasicVisibilityIndicator returns SysML::VisibilityKind:
@@ -164,6 +226,7 @@ DefinitionElement returns SysML::Element :
 	  Package
 	| Comment
 	| TextualRepresentation
+	| AnnotatingFeature
 	| Dependency	  
 	| AttributeDefinition
 	| EnumerationDefinition
@@ -172,6 +235,7 @@ DefinitionElement returns SysML::Element :
 	| IndividualDefinition
 	| ConnectionDefinition
 	| InterfaceDefinition
+	| AllocationDefinition
 	| PortDefinition
 	| ActionDefinition
 	| CalculationDefinition
@@ -196,13 +260,16 @@ UsageElement returns SysML::Usage :
 	| SnapshotUsage
 	| PortUsage
 	| ConnectionUsage
+	| AssertConstraintUsage
 	| Connector
 	| InterfaceUsage
+	| AllocationUsage
 	| ActionUsage
 	| CalculationUsage
 	| StateUsage
 	| ConstraintUsage
 	| RequirementUsage
+	| SatisfyRequirementUsage
 	| CaseUsage
 	| AnalysisCaseUsage
 	| VerificationCaseUsage
@@ -215,10 +282,10 @@ UsageElement returns SysML::Usage :
 
 fragment TypeBody returns SysML::Type :
 	';' | 
-	'{' ( documentation_comp += OwnedDocumentation
-		| ownedMembership_comp += NonFeatureTypeMember 
-		| ownedFeatureMembership_comp += FeatureTypeMember 
-		| ownedImport_comp += Import
+	'{' ( ownedRelationship += OwnedDocumentation
+		| ownedRelationship += NonFeatureTypeMember 
+		| ownedRelationship += FeatureTypeMember 
+		| ownedRelationship += Import
 	)* '}'
 ;
 
@@ -231,7 +298,7 @@ FeatureTypeMember returns SysML::FeatureMembership :
 ;
 
 fragment TypeMemberPrefix returns SysML::Membership :
-	( ownedRelationship_comp += PrefixDocumentation )*
+	( ownedRelationship += PrefixDocumentation )*
     ( visibility = VisibilityIndicator )?
 ;
 
@@ -243,12 +310,12 @@ enum VisibilityIndicator returns SysML::VisibilityKind :
 
 FeatureMember returns SysML::FeatureMembership :
 	TypeMemberPrefix direction = FeatureDirection 
-	ownedMemberFeature_comp = FeatureElement
+	ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
 ;
 
 EndFeatureMember returns SysML::EndFeatureMembership :
 	TypeMemberPrefix 'end' direction = FeatureDirection 
-	ownedMemberFeature_comp = FeatureElement
+	ownedRelatedElement += FeatureElement // ownedMemberFeature = FeatureElement
 ;
 
 enum FeatureDirection returns SysML::FeatureDirectionKind:
@@ -268,8 +335,8 @@ FeatureElement returns SysML::Feature :
 /* Superclassing */
 
 fragment SuperclassingPart returns SysML::Classifier :
-	SpecializesKeyword ownedRelationship_comp += OwnedSuperclassing 
-	( ',' ownedRelationship_comp += OwnedSuperclassing )*
+	SpecializesKeyword ownedRelationship += OwnedSuperclassing 
+	( ',' ownedRelationship += OwnedSuperclassing )*
 ;
 
 SpecializesKeyword :
@@ -295,8 +362,11 @@ fragment FeatureSpecializationPart returns SysML::Feature :
 ;
 
 fragment MultiplicityPart returns SysML::Feature :
-	ownedMembership_comp += MultiplicityMember 
-	( isOrdered ?= 'ordered'? & isNonunique ?= 'nonunique'? )
+	ownedRelationship += MultiplicityMember 
+	// NOTE: Can't use "&" here because of use of predication elsewhere.
+	( isOrdered ?= 'ordered' isNonunique ?= 'nonunique'?
+	| isNonunique ?= 'nonunique' isOrdered ?= 'ordered'?
+	)?
 ;
 
 fragment FeatureSpecialization returns SysML::Feature :
@@ -304,11 +374,11 @@ fragment FeatureSpecialization returns SysML::Feature :
 ;
 
 fragment Typings returns SysML::Feature :
-	TypedBy ( ',' ownedRelationship_comp += OwnedFeatureTyping )*
+	TypedBy ( ',' ownedRelationship += OwnedFeatureTyping )*
 ;
 
 fragment TypedBy returns SysML::Feature :
-	DefinedByKeyword ownedRelationship_comp += OwnedFeatureTyping
+	DefinedByKeyword ownedRelationship += OwnedFeatureTyping
 ;
 
 DefinedByKeyword :
@@ -316,11 +386,11 @@ DefinedByKeyword :
 ;
 
 fragment Subsettings returns SysML::Feature :
-	Subsets ( ',' ownedRelationship_comp += OwnedSubsetting )*
+	Subsets ( ',' ownedRelationship += OwnedSubsetting )*
 ;
 
 fragment Subsets returns SysML::Feature :
-	SubsetsKeyword ownedRelationship_comp += OwnedSubsetting 
+	SubsetsKeyword ownedRelationship += OwnedSubsetting 
 ;
 
 SubsetsKeyword :
@@ -328,11 +398,11 @@ SubsetsKeyword :
 ;
 
 fragment Redefinitions returns SysML::Feature :
-	Redefines ( ',' ownedRelationship_comp += OwnedRedefinition )*
+	Redefines ( ',' ownedRelationship += OwnedRedefinition )*
 ;
 
 fragment Redefines returns SysML::Feature :
-	RedefinesKeyword ownedRelationship_comp += OwnedRedefinition
+	RedefinesKeyword ownedRelationship += OwnedRedefinition
 ;
 
 RedefinesKeyword :
@@ -341,6 +411,7 @@ RedefinesKeyword :
 
 /* Feature Typing, Subsetting and Redefinition */
 
+@Override
 OwnedFeatureTyping returns SysML::FeatureTyping :
 	type = [SysML::Type | QualifiedName]
 ;
@@ -356,21 +427,17 @@ OwnedRedefinition returns SysML::Redefinition:
 /* Multiplicity */
 
 MultiplicityMember returns SysML::Membership :
-	ownedMemberElement_comp = Multiplicity
+	ownedRelatedElement += Multiplicity // ownedMemberElement = Multiplicity
 ;
 
 Multiplicity returns SysML::MultiplicityRange :
 	// TODO: Allow general expressions for bounds. (Causes LL parsing issues.)
-	'[' ( ownedMembership_comp += LiteralIntegerMember '..' )? 
-	      ownedMembership_comp += LiteralUnlimitedNaturalMember ']'
+	'[' ownedRelationship += MultiplicityExpressionMember
+	      ( '..' ownedRelationship += MultiplicityExpressionMember )? ']'
 ;
 
-LiteralIntegerMember returns SysML::Membership :
-	ownedMemberElement_comp = LiteralInteger
-;
-
-LiteralUnlimitedNaturalMember returns SysML::Membership :
-	ownedMemberElement_comp = LiteralUnlimitedNatural
+MultiplicityExpressionMember returns SysML::Membership :
+	ownedRelatedElement += ( LiteralExpression | FeatureReferenceExpression ) // ownedMemberElement = ( LiteralExpression | FeatureReferenceExpression )
 ;
 
 /* CONNECTORS */
@@ -378,12 +445,12 @@ LiteralUnlimitedNaturalMember returns SysML::Membership :
 /* Connectors */
 
 ConnectorEndMember returns SysML::EndFeatureMembership :
-	( memberName = Name '=>' )? ownedMemberFeature_comp = ConnectorEnd
+	( memberName = Name '=>' )? ownedRelatedElement += ConnectorEnd // ownedMemberFeature = ConnectorEnd
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship_comp += OwnedSubsetting 
-	( ownedMembership_comp += MultiplicityMember )?
+	ownedRelationship += OwnedSubsetting 
+	( ownedRelationship += MultiplicityMember )?
 ;
 
 /* Binding Connectors */
@@ -399,8 +466,8 @@ BindingConnector returns SysML::BindingConnector :
 
 fragment BindingConnectorDeclaration returns SysML::BindingConnector :
 	( FeatureDeclaration 'as' )?
-	ownedFeatureMembership_comp += ConnectorEndMember '=' 
-	ownedFeatureMembership_comp += ConnectorEndMember
+	ownedRelationship += ConnectorEndMember '=' 
+	ownedRelationship += ConnectorEndMember
 ;
 
 /* Successions */
@@ -415,8 +482,8 @@ Succession returns SysML::Succession :
 
 fragment SuccessionDeclaration returns SysML::Succession :
 	( FeatureDeclaration? 'first' )?
-	ownedFeatureMembership_comp += ConnectorEndMember 'then' 
-	ownedFeatureMembership_comp += ConnectorEndMember
+	ownedRelationship += ConnectorEndMember 'then' 
+	ownedRelationship += ConnectorEndMember
 ;
 
 /* INTERACTIONS */
@@ -443,24 +510,24 @@ SuccessionItemFlow returns SysML::SuccessionItemFlow :
 
 fragment ItemFlowDeclaration returns SysML::ItemFlow :
 	( FeatureDeclaration? 
-      ( 'of'  ownedFeatureMembership_comp += ItemFeatureMember
-      | ownedFeatureMembership_comp += EmptyItemFeatureMember
+      ( 'of'  ownedRelationship += ItemFeatureMember
+      | ownedRelationship += EmptyItemFeatureMember
       ) 'from'
-    | ownedFeatureMembership_comp += EmptyItemFeatureMember
+    | ownedRelationship += EmptyItemFeatureMember
     )
-	ownedFeatureMembership_comp += ItemFlowEndMember 'to' 
-	ownedFeatureMembership_comp += ItemFlowEndMember
+	ownedRelationship += ItemFlowEndMember 'to' 
+	ownedRelationship += ItemFlowEndMember
 ;
 
 ItemFeatureMember returns SysML::FeatureMembership :
-	( memberName = Name DefinedByKeyword )? ownedMemberFeature_comp = ItemFeature
+	( memberName = Name DefinedByKeyword )? ownedRelatedElement += ItemFeature // ownedMemberFeature = ItemFeature
 ;
 
 ItemFeature returns SysML::ItemFeature :
-	  ownedRelationship_comp += OwnedFeatureTyping 
-	  ( ownedMembership_comp += MultiplicityMember )?
-	| ownedMembership_comp += MultiplicityMember
-	  ( ownedRelationship_comp += OwnedFeatureTyping )?
+	  ownedRelationship += OwnedFeatureTyping 
+	  ( ownedRelationship += MultiplicityMember )?
+	| ownedRelationship += MultiplicityMember
+	  ( ownedRelationship += OwnedFeatureTyping )?
 ;
 
 EmptyItemFeature returns SysML::ItemFeature :
@@ -468,39 +535,39 @@ EmptyItemFeature returns SysML::ItemFeature :
 ;
 
 ItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedMemberFeature_comp = ItemFlowEnd
+	ownedRelatedElement += ItemFlowEnd // ownedMemberFeature = ItemFlowEnd
 ;
 
 ItemFlowEnd returns SysML::ItemFlowEnd :
-	ownedFeatureMembership_comp += ItemFlowFeatureMember
+	ownedRelationship += ItemFlowFeatureMember
 ;
 
 EmptyItemFeatureMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EmptyItemFeature
+	ownedRelatedElement += EmptyItemFeature // ownedMemberFeature = EmptyItemFeature
 ;
 
 EmptyItemFlowEnd returns SysML::ItemFlowEnd :
-	ownedFeatureMembership_comp += EmptyItemFlowFeatureMember
+	ownedRelationship += EmptyItemFlowFeatureMember
 ;
 
 ItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = ItemFlowFeature
+	ownedRelatedElement += ItemFlowFeature // ownedMemberFeature = ItemFlowFeature
 ;
 
 ItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship_comp += OwnedRedefinition
+	ownedRelationship += OwnedRedefinition
 ;
 
 EmptyItemFlowEndMember returns SysML::EndFeatureMembership :
-	ownedMemberFeature_comp = EmptyItemFlowEnd
+	ownedRelatedElement += EmptyItemFlowEnd // ownedMemberFeature = EmptyItemFlowEnd
 ;
 
 EmptyItemFlowFeatureMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EmptyItemFlowFeature
+	ownedRelatedElement += EmptyItemFlowFeature // ownedMemberFeature = EmptyItemFlowFeature
 ;
 
 EmptyItemFlowFeature returns SysML::ItemFlowFeature :
-	ownedRelationship_comp += EmptyRedefinition
+	ownedRelationship += EmptyRedefinition
 ;
 
 EmptyRedefinition returns SysML::Redefinition :
@@ -537,13 +604,13 @@ fragment DefinitionBody returns SysML::Type :
 ;
 
 fragment DefinitionBodyItem returns SysML::Type :
-	  documentation_comp += OwnedDocumentation
-	| ownedMembership_comp += NestedDefinitionMember 
-	| ownedMembership_comp += VariantUsageMember
-	| ownedFeatureMembership_comp += NestedUsageMember 
-	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-	  ownedFeatureMembership_comp += IndividualUsageMember
-	| => ownedImport_comp += Import	
+	  ownedRelationship += OwnedDocumentation
+	| ownedRelationship += NestedDefinitionMember 
+	| ownedRelationship += VariantUsageMember
+	| ownedRelationship += NestedUsageMember 
+	| ( ownedRelationship += EmptySuccessionMember )?
+	  ownedRelationship += IndividualUsageMember
+	| => ownedRelationship += Import	
 ;
 
 NestedDefinitionMember returns SysML::Membership : 
@@ -552,7 +619,7 @@ NestedDefinitionMember returns SysML::Membership :
 
 VariantUsageMember returns SysML::VariantMembership :
 	DefinitionMemberPrefix 'variant' 
-	ownedVariantUsage_comp = VariantUsageElement
+	ownedRelatedElement += VariantUsageElement // ownedVariantUsage = VariantUsageElement
 ;
 
 NestedUsageMember returns SysML::FeatureMembership :
@@ -560,24 +627,24 @@ NestedUsageMember returns SysML::FeatureMembership :
 ;
 
 StructureUsageMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = StructureUsageElement
+	DefinitionMemberPrefix ownedRelatedElement += StructureUsageElement // ownedMemberFeature = StructureUsageElement
 ;
 
 BehaviorUsageMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = BehaviorUsageElement
+	DefinitionMemberPrefix ownedRelatedElement += BehaviorUsageElement // ownedMemberFeature = BehaviorUsageElement
 ;
 
 IndividualUsageMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = IndividualUsageElement
+	DefinitionMemberPrefix ownedRelatedElement += IndividualUsageElement // ownedMemberFeature = IndividualUsageElement
 ;
 
 FlowUsageMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix direction = FeatureDirection
-	ownedMemberFeature_comp = FlowUsageElement
+	ownedRelatedElement += FlowUsageElement // ownedMemberFeature = FlowUsageElement
 ;
 
 fragment DefinitionMemberPrefix returns SysML::Membership :
-	( ownedRelationship_comp += PrefixDocumentation )*
+	( ownedRelationship += PrefixDocumentation )*
     ( visibility = VisibilityIndicator )?
 ;
 
@@ -604,26 +671,26 @@ fragment UsageBody returns SysML::Usage :
 ;
 
 fragment ValuePart returns SysML::Feature :
-	  ownedMembership_comp += FeatureValue
+	  '=' ownedRelationship += FeatureValue
 ;
 
 fragment ValueOrFlowPart returns SysML::Feature :
-	ownedMembership_comp += ( FeatureValue | SourceItemFlowMember )
+	ValuePart | ownedRelationship += SourceItemFlowMember
 ;
 
 FeatureValue returns SysML::FeatureValue :
-	'=' value_comp = OwnedExpression
+	ownedRelatedElement += OwnedExpression // value = OwnedExpression
 ;
 
 SourceItemFlowMember returns SysML::Membership :
-	ownedMemberElement_comp = SourceItemFlow
+	ownedRelatedElement += SourceItemFlow // ownedMemberElement = SourceItemFlow
 ;
 
 SourceItemFlow returns SysML::ItemFlow :
 	( ItemFlowKeyword | {SysML::SuccessionItemFlow} SuccessionItemFlowKeyword ) 
-	ownedFeatureMembership_comp += EmptyItemFeatureMember 
-	'from' ownedFeatureMembership_comp += ItemFlowEndMember
-	ownedFeatureMembership_comp += EmptyItemFlowEndMember
+	ownedRelationship += EmptyItemFeatureMember 
+	'from' ownedRelationship += ItemFlowEndMember
+	ownedRelationship += EmptyItemFlowEndMember
 ;
 
 /* Reference Usages */
@@ -647,7 +714,7 @@ ReferenceEndUsage returns SysML::ReferenceUsage :
 // TODO: Find a better way to handle variant references that using ReferenceUsage.
 ReferenceVariantUsage returns SysML::ReferenceUsage :
 	  ReferenceUsage
-	| ownedRelationship_comp += OwnedSubsetting 
+	| ownedRelationship += OwnedSubsetting 
 	  FeatureSpecialization* UsageBody
 ;
 
@@ -665,6 +732,7 @@ StructureUsageElement returns SysML::Feature :
 	| ConnectionUsage
 	| Connector
 	| InterfaceUsage
+	| AllocationUsage
 	| BindingConnector
 	| Succession
 	| ItemFlow
@@ -702,6 +770,7 @@ VariantUsageElement returns SysML::Usage :
 	| ConnectionUsage
 	| Connector
 	| InterfaceUsage
+	| AllocationUsage
 	| IndividualUsageElement
 	| BehaviorUsageElement
 ;
@@ -773,11 +842,11 @@ EnumerationDefinition returns SysML::EnumerationDefinition :
 
 fragment EnumerationBody returns SysML::EnumerationDefinition :
 	  ';' 
-	| '{' ( => ownedMembership_comp += EnumerationUsageMember )* '}'
+	| '{' ( => ownedRelationship += EnumerationUsageMember )* '}'
 ;
 
 EnumerationUsageMember returns SysML::VariantMembership :
-	DefinitionMemberPrefix ownedVariantUsage_comp = EnumeratedValue
+	DefinitionMemberPrefix ownedRelatedElement += EnumeratedValue // ownedVariantUsage = EnumeratedValue
 ;
 
 EnumeratedValue returns SysML::EnumerationUsage :
@@ -862,15 +931,15 @@ PortDefKeyword :
 
 PortDefinition returns SysML::PortDefinition :
 	DefinitionPrefix? PortDefKeyword Definition
-	ownedMembership_comp += ConjugatedPortDefinitionMember
+	ownedRelationship += ConjugatedPortDefinitionMember
 ;
 
 ConjugatedPortDefinitionMember returns SysML::Membership :
-	ownedMemberElement_comp = ConjugatedPortDefinition
+	ownedRelatedElement += ConjugatedPortDefinition // ownedMemberElement = ConjugatedPortDefinition
 ;
 
 ConjugatedPortDefinition returns SysML::ConjugatedPortDefinition :
-	ownedRelationship_comp += PortConjugation
+	ownedRelationship += PortConjugation
 ;
 
 PortConjugation returns SysML::PortConjugation :
@@ -906,8 +975,8 @@ fragment PortSpecialization returns SysML::Usage :
 ;
 
 fragment PortTypings returns SysML::Feature :
-	  DefinedByKeyword ownedRelationship_comp += PortTyping 
-	  ( ',' ownedRelationship_comp += PortTyping )*
+	  DefinedByKeyword ownedRelationship += PortTyping 
+	  ( ',' ownedRelationship += PortTyping )*
 ;
 
 PortTyping returns SysML::FeatureTyping :
@@ -938,13 +1007,13 @@ ConnectionDefinition returns SysML::ConnectionDefinition :
 fragment ConnectionBody returns SysML::Type :
 	  ';'
 	| '{' (
-		  documentation_comp += OwnedDocumentation
-		| ownedMembership_comp += NestedDefinitionMember 
-		| ownedMembership_comp += VariantUsageMember
-		| ownedFeatureMembership_comp += ConnectionUsageMember
-		| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-		  ownedFeatureMembership_comp += IndividualUsageMember
-		| ownedImport_comp += Import
+		  ownedRelationship += OwnedDocumentation
+		| ownedRelationship += NestedDefinitionMember 
+		| ownedRelationship += VariantUsageMember
+		| ownedRelationship += ConnectionUsageMember
+		| ( ownedRelationship += EmptySuccessionMember )?
+		  ownedRelationship += IndividualUsageMember
+		| ownedRelationship += Import
 	  )* '}'
 ;
 
@@ -953,7 +1022,7 @@ ConnectionUsageMember returns SysML::FeatureMembership :
 ;
 
 ConnectionEndMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix 'end' ownedMemberFeature_comp = ConnectionEndElement
+	DefinitionMemberPrefix 'end' ownedRelatedElement += ConnectionEndElement // ownedMemberFeature = ConnectionEndElement
 ;
 
 ConnectionEndElement returns SysML::Feature :
@@ -990,18 +1059,18 @@ fragment ConnectorPart returns SysML::ConnectionUsage :
 ;
 
 fragment BinaryConnectorPart returns SysML::Connector :
-	ownedFeatureMembership_comp += ConnectorEndMember 'to' 
-	ownedFeatureMembership_comp += ConnectorEndMember
+	ownedRelationship += ConnectorEndMember 'to' 
+	ownedRelationship += ConnectorEndMember
 ;
 
 fragment NaryConnectorPart returns SysML::Connector :
-	'(' ownedFeatureMembership_comp += ConnectorEndMember ',' 
-	    ownedFeatureMembership_comp += ConnectorEndMember
-	    ( ',' ownedFeatureMembership_comp += ConnectorEndMember )* ')'
+	'(' ownedRelationship += ConnectorEndMember ',' 
+	    ownedRelationship += ConnectorEndMember
+	    ( ',' ownedRelationship += ConnectorEndMember )* ')'
 ;
 
 EmptySourceEndMember returns SysML::EndFeatureMembership :
-	ownedMemberFeature_comp = EmptySourceEnd
+	ownedRelatedElement += EmptySourceEnd // ownedMemberFeature = EmptySourceEnd
 ;
 
 EmptySourceEnd returns SysML::Feature :
@@ -1031,11 +1100,11 @@ fragment InterfaceDefDeclaration returns SysML::InterfaceDefinition :
 fragment InterfaceDefBody returns SysML::Type :
 	  ';'
 	| '{' ( 
-		  documentation_comp += OwnedDocumentation
-		| ownedMembership_comp += NestedDefinitionMember 
-		| ownedMembership_comp += VariantUsageMember
-		| ownedFeatureMembership_comp += InterfaceUsageMember
-		| ownedImport_comp += Import
+		  ownedRelationship += OwnedDocumentation
+		| ownedRelationship += NestedDefinitionMember 
+		| ownedRelationship += VariantUsageMember
+		| ownedRelationship += InterfaceUsageMember
+		| ownedRelationship += Import
 	)* '}'
 ;
 
@@ -1044,7 +1113,7 @@ InterfaceUsageMember returns SysML::FeatureMembership :
 ;
 
 InterfaceEndMember returns SysML::EndFeatureMembership :
-	DefinitionMemberPrefix 'end' ownedMemberFeature_comp = PortEndUsage
+	DefinitionMemberPrefix 'end' ownedRelatedElement += PortEndUsage // ownedMemberFeature = PortEndUsage
 ;
 
 /* Interface Usages */
@@ -1061,6 +1130,45 @@ fragment InterfaceUsageDeclaration returns SysML::InterfaceUsage :
 	UsageDeclaration? ( ConnectorKeyword ConnectorPart )? | ConnectorPart
 ;
 
+/* ALLOCATIONS */
+
+/* Allocation Definitions */
+
+AllocationKeyword :
+	'allocation'
+;
+
+AllocationDefKeyword :
+	AllocationKeyword 'def'
+;
+
+AllocationDefinition returns SysML::AllocationDefinition :
+	AllocationDefDeclaration ConnectionBody
+;
+
+fragment AllocationDefDeclaration returns SysML::AllocationDefinition :
+	DefinitionPrefix? AllocationDefKeyword DefinitionDeclaration
+;
+
+/* AllocationUsage Usages */
+
+AllocationUsageKeyword :
+	AllocationKeyword
+;
+
+AllocateKeyword :
+	'allocate'
+;
+
+AllocationUsage returns SysML::AllocationUsage :	 
+	UsagePrefix? AllocationUsageDeclaration ConnectionBody
+;
+
+fragment AllocationUsageDeclaration returns SysML::AllocationUsage :
+	    AllocationUsageKeyword UsageDeclaration? ( AllocateKeyword ConnectorPart )?
+	  | AllocateKeyword ConnectorPart
+;
+
 /* INDIVIDUALS */
 
 /* Individual Definitions */
@@ -1075,11 +1183,11 @@ IndividualDefKeyword :
 
 IndividualDefinition returns SysML::IndividualDefinition :
 	DefinitionPrefix? IndividualDefKeyword Definition
-	ownedMembership_comp += LifeClassMembership
+	ownedRelationship += LifeClassMembership
 ;
 
 LifeClassMembership returns SysML::Membership :
-	ownedMemberElement_comp = LifeClass
+	ownedRelatedElement += LifeClass // ownedMemberElement = LifeClass
 ;
 
 LifeClass returns SysML::LifeClass :
@@ -1110,16 +1218,16 @@ IndividualRefUsage returns SysML::IndividualUsage :
 
 TimeSliceUsage returns SysML::IndividualUsage :
 	UsagePrefix? TimeSliceKeyword Usage
-	ownedFeatureMembership_comp += TimeSliceFeatureMember 
+	ownedRelationship += TimeSliceFeatureMember 
 ;
 
 TimeSliceRefUsage returns SysML::IndividualUsage :
 	UsagePrefix? ( 'ref' TimeSliceKeyword | isComposite ?= TimeSliceKeyword ) Usage 
-	ownedFeatureMembership_comp += TimeSliceFeatureMember 
+	ownedRelationship += TimeSliceFeatureMember 
 ;
 
 TimeSliceFeatureMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TimeSliceFeature
+	ownedRelatedElement += TimeSliceFeature // ownedMemberFeature = TimeSliceFeature
 ;
 
 TimeSliceFeature returns SysML::TimeSliceFeature :
@@ -1128,16 +1236,16 @@ TimeSliceFeature returns SysML::TimeSliceFeature :
 
 SnapshotUsage returns SysML::IndividualUsage :
 	UsagePrefix? SnapshotKeyword Usage
-	ownedFeatureMembership_comp += SnapshotFeatureMember
+	ownedRelationship += SnapshotFeatureMember
 ;
 
 SnapshotRefUsage returns SysML::IndividualUsage :
 	UsagePrefix? ( 'ref' SnapshotKeyword | isComposite ?= SnapshotKeyword ) Usage 
-	ownedFeatureMembership_comp += SnapshotFeatureMember 
+	ownedRelationship += SnapshotFeatureMember 
 ;
 
 SnapshotFeatureMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = SnapshotFeature
+	ownedRelatedElement += SnapshotFeature // ownedMemberFeature = SnapshotFeature
 ;
 
 SnapshotFeature returns SysML::SnapshotFeature :
@@ -1147,24 +1255,24 @@ SnapshotFeature returns SysML::SnapshotFeature :
 /* Individual Succession */
 
 EmptySuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = EmptySuccession
+	ownedRelatedElement += EmptySuccession // ownedMemberFeature = EmptySuccession
 ;
 
 EmptySuccession returns SysML::Succession :
-	'then' ownedFeatureMembership_comp += MultiplicitySourceEndMember 
-	ownedFeatureMembership_comp += EmptyTargetEndMember
+	'then' ownedRelationship += MultiplicitySourceEndMember 
+	ownedRelationship += EmptyTargetEndMember
 ;
 
 MultiplicitySourceEndMember returns SysML::EndFeatureMembership :
-	ownedMemberFeature_comp = MultiplicitySourceEnd
+	ownedRelatedElement += MultiplicitySourceEnd // ownedMemberFeature = MultiplicitySourceEnd
 ;
 
 MultiplicitySourceEnd returns SysML::Feature :
-	{SysML::SourceEnd} ( ownedMembership_comp += MultiplicityMember )?
+	{SysML::SourceEnd} ( ownedRelationship += MultiplicityMember )?
 ;
 
 EmptyTargetEndMember returns SysML::EndFeatureMembership :
-	ownedMemberFeature_comp = EmptyTargetEnd
+	ownedRelatedElement += EmptyTargetEnd // ownedMemberFeature = EmptyTargetEnd
 ;
 
 EmptyTargetEnd returns SysML::Feature :
@@ -1192,12 +1300,12 @@ fragment ActionDeclaration returns SysML::ActionDefinition :
 ;
 
 fragment ParameterList returns SysML::Type :
-	'(' ( ownedFeatureMembership_comp += ParameterMember 
-		( ',' ownedFeatureMembership_comp += ParameterMember )* )? ')'
+	'(' ( ownedRelationship += ParameterMember 
+		( ',' ownedRelationship += ParameterMember )* )? ')'
 ;
 
 ParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection )? ownedMemberParameter_comp = Parameter
+	( direction = FeatureDirection )? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
 ;
 
 fragment ActionBody returns SysML::Type :
@@ -1208,25 +1316,25 @@ fragment ActionBody returns SysML::Type :
 ;
 
 fragment ActionBodyItem returns SysML::Type :
-	  documentation_comp += OwnedDocumentation
-	| ownedMembership_comp += NestedDefinitionMember 
-	| ownedMembership_comp += VariantUsageMember
-	| ownedFeatureMembership_comp += ParameterFlowUsageMember
-	| ownedFeatureMembership_comp += StructureUsageMember
-	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-	  ownedFeatureMembership_comp += IndividualUsageMember
-	| ownedFeatureMembership_comp += InitialNodeMember
-	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
-	| ( ownedFeatureMembership_comp += EmptySuccessionMember )? 
-	  ownedFeatureMembership_comp += ( BehaviorUsageMember | ActionNodeMember )
-	  ( ownedFeatureMembership_comp += TargetSuccessionMember )*
-	| ownedFeatureMembership_comp += GuardedSuccessionMember
-	| ownedImport_comp += Import
+	  ownedRelationship += OwnedDocumentation
+	| ownedRelationship += NestedDefinitionMember 
+	| ownedRelationship += VariantUsageMember
+	| ownedRelationship += ParameterFlowUsageMember
+	| ownedRelationship += StructureUsageMember
+	| ( ownedRelationship += EmptySuccessionMember )?
+	  ownedRelationship += IndividualUsageMember
+	| ownedRelationship += InitialNodeMember
+	  ( ownedRelationship += TargetSuccessionMember )*
+	| ( ownedRelationship += EmptySuccessionMember )? 
+	  ownedRelationship += ( BehaviorUsageMember | ActionNodeMember )
+	  ( ownedRelationship += TargetSuccessionMember )*
+	| ownedRelationship += GuardedSuccessionMember
+	| ownedRelationship += Import
 ;
 
 ParameterFlowUsageMember returns SysML::ParameterMembership :
 	DefinitionMemberPrefix direction = FeatureDirection 
-	ownedMemberParameter_comp = FlowUsageElement
+	ownedRelatedElement += FlowUsageElement // ownedMemberParameter = FlowUsageElement
 ;
 
 InitialNodeMember returns SysML::FeatureMembership :
@@ -1235,15 +1343,15 @@ InitialNodeMember returns SysML::FeatureMembership :
 ;
 
 ActionNodeMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = ActionNode
+	DefinitionMemberPrefix ownedRelatedElement += ActionNode // ownedMemberFeature = ActionNode
 ;
 
 TargetSuccessionMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = ActionTargetSuccession ';'
+	DefinitionMemberPrefix ownedRelatedElement += ActionTargetSuccession ';' // ownedMemberFeature = ActionTargetSuccession ';'
 ;
 
 GuardedSuccessionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = GuardedSuccession ';'
+	ownedRelatedElement += GuardedSuccession ';' // ownedMemberFeature = GuardedSuccession ';'
 ;
 
 /* Parameters */
@@ -1303,7 +1411,7 @@ PerformActionUsage returns SysML::PerformActionUsage :
 ;
 
 fragment PerformActionUsageDeclaration returns SysML::ActionUsage :
-   	( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
+   	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
    	| ActionUsageKeyword UsageDeclaration? )
     ( ValuePart | ActionUsageParameterList )?
 ;
@@ -1313,12 +1421,12 @@ fragment ActionUsageDeclaration returns SysML::Step :
 ;
 
 fragment ActionUsageParameterList returns SysML::Type :
-	'(' ( ownedFeatureMembership_comp += ActionUsageParameterMember 
-		  ( ',' ownedFeatureMembership_comp += ActionUsageParameterMember )* )? ')'
+	'(' ( ownedRelationship += ActionUsageParameterMember 
+		  ( ',' ownedRelationship += ActionUsageParameterMember )* )? ')'
 ;
 
 ActionUsageParameterMember returns SysML::ParameterMembership :
-	( direction = FeatureDirection )? ownedMemberParameter_comp = ActionUsageParameter
+	( direction = FeatureDirection )? ownedRelatedElement += ActionUsageParameter // ownedMemberParameter = ActionUsageParameter
 ;
 
 ActionUsageParameter returns SysML::Usage :
@@ -1336,8 +1444,28 @@ AcceptNode returns SysML::AcceptActionUsage :
 ;
 
 fragment AcceptNodeDeclaration returns SysML::ActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember
-	( 'action' UsageDeclaration )? 'accept'ownedFeatureMembership_comp += ItemFeatureMember
+	( 'action' UsageDeclaration )? 'accept' AcceptParameterPart
+;
+
+fragment AcceptParameterPart returns SysML::ActionUsage :
+	ownedRelationship += ItemParameterMember
+	( 'for' ownedRelationship += NodeParameterMember 
+	| ownedRelationship += EmptyParameterMember
+	)
+;
+
+ItemParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += ItemParameter // ownedMemberParameter = ItemParameter
+;
+
+ItemParameter returns SysML::ReferenceUsage :
+	  Identification? ItemParameterSpecializationPart
+    | ownedRelationship += OwnedFeatureTyping ( ownedRelationship += MultiplicityMember )?
+;
+
+fragment ItemParameterSpecializationPart returns SysML::Feature :
+	  ( -> FeatureSpecialization )+ MultiplicityPart? FeatureSpecialization*
+	| MultiplicityPart FeatureSpecialization+
 ;
 
 SendNode returns SysML::SendActionUsage :
@@ -1345,9 +1473,16 @@ SendNode returns SysML::SendActionUsage :
 ;
 
 fragment SendNodeDeclaration returns SysML::ActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember ownedFeatureMembership_comp += EmptyItemFeatureMember
-	( 'action' UsageDeclaration )? 'send' ownedFeatureMembership_comp += OwnedExpressionMember 
-	'to' ownedFeatureMembership_comp += OwnedExpressionMember
+	( 'action' UsageDeclaration )? 'send' ownedRelationship += NodeParameterMember 
+	'to' ownedRelationship += NodeParameterMember
+;
+
+NodeParameterMember returns SysML::ParameterMembership :
+	ownedRelatedElement += NodeParameter // ownedMemberParameter = NodeParameter
+;
+
+NodeParameter returns SysML::Usage :
+	{SysML::ReferenceUsage} ownedRelationship += FeatureValue
 ;
 
 ControlNode returns SysML::ControlNode :
@@ -1374,7 +1509,7 @@ ForkNode returns SysML::ForkNode :
 ;
 
 EmptyParameterMember returns SysML::ParameterMembership :
-	ownedMemberParameter_comp = EmptyParameter
+	ownedRelatedElement += EmptyParameter // ownedMemberParameter = EmptyParameter
 ;
 
 EmptyParameter returns SysML::Usage :
@@ -1388,24 +1523,24 @@ ActionTargetSuccession returns SysML::Feature :
 ;
 
 TargetSuccession returns SysML::Succession :
-	'then' ownedFeatureMembership_comp += MultiplicitySourceEndMember 
-	ownedFeatureMembership_comp += ConnectorEndMember
+	'then' ownedRelationship += MultiplicitySourceEndMember 
+	ownedRelationship += ConnectorEndMember
 ;
 
 GuardedTargetSuccession returns SysML::TransitionUsage :
-	ownedFeatureMembership_comp += GuardExpressionMember
-	'then' ownedMembership_comp += TransitionSuccessionMember
+	ownedRelationship += GuardExpressionMember
+	'then' ownedRelationship += TransitionSuccessionMember
 ;
 
 DefaultTargetSuccession returns SysML::TransitionUsage :
-	'else' ownedMembership_comp += TransitionSuccessionMember
+	'else' ownedRelationship += TransitionSuccessionMember
 ;
 
 GuardedSuccession returns SysML::TransitionUsage :
 	SuccessionKeyword ( UsageDeclaration? 'first' )? 
-	ownedFeatureMembership_comp += TransitionSourceMember 
-	ownedFeatureMembership_comp += GuardExpressionMember
-	'then' ownedMembership_comp += TransitionSuccessionMember
+	ownedRelationship += TransitionSourceMember 
+	ownedRelationship += GuardExpressionMember
+	'then' ownedRelationship += TransitionSuccessionMember
 ;
 
 /* STATES */
@@ -1429,11 +1564,11 @@ fragment StateBody returns SysML::Type :
 ;
 
 fragment StateBodyPart returns SysML::Type :
-	( ownedFeatureMembership_comp += EntryActionMember
-	  ( ownedFeatureMembership_comp += EntryTransitionMember )*
+	( ownedRelationship += EntryActionMember
+	  ( ownedRelationship += EntryTransitionMember )*
 	)?
-	( ownedFeatureMembership_comp += DoActionMember )?
-	( ownedFeatureMembership_comp += ExitActionMember )?
+	( ownedRelationship += DoActionMember )?
+	( ownedRelationship += ExitActionMember )?
 	
 	// Note: Using a syntactic predicate here seems to avoid a possible infinite loop
 	// while incrementally parsing.
@@ -1441,21 +1576,21 @@ fragment StateBodyPart returns SysML::Type :
 ;
 
 fragment StateDefBodyItem returns SysML::Type :
-	  documentation_comp += OwnedDocumentation
-	| ownedMembership_comp += NestedDefinitionMember 
-	| ownedMembership_comp += VariantUsageMember
-	| ownedFeatureMembership_comp += ParameterFlowUsageMember
-	| ownedFeatureMembership_comp += StructureUsageMember
-	| ( ownedFeatureMembership_comp += EmptySuccessionMember )?
-	  ownedFeatureMembership_comp += IndividualUsageMember
-	| ownedFeatureMembership_comp += BehaviorUsageMember
-		( ownedFeatureMembership_comp += TargetTransitionUsageMember )*
-	| ownedFeatureMembership_comp += TransitionUsageMember
-	| ownedImport_comp += Import
+	  ownedRelationship += OwnedDocumentation
+	| ownedRelationship += NestedDefinitionMember 
+	| ownedRelationship += VariantUsageMember
+	| ownedRelationship += ParameterFlowUsageMember
+	| ownedRelationship += StructureUsageMember
+	| ( ownedRelationship += EmptySuccessionMember )?
+	  ownedRelationship += IndividualUsageMember
+	| ownedRelationship += BehaviorUsageMember
+		( ownedRelationship += TargetTransitionUsageMember )*
+	| ownedRelationship += TransitionUsageMember
+	| ownedRelationship += Import
 ;
 
 EntryActionMember returns SysML::StateSubactionMembership :
-	DefinitionMemberPrefix kind = EntryActionKind ownedMemberFeature_comp = StateActionUsage
+	DefinitionMemberPrefix kind = EntryActionKind ownedRelatedElement += StateActionUsage // ownedMemberFeature = StateActionUsage
 ;
 
 EntryActionKind returns SysML::StateSubactionKind :
@@ -1463,7 +1598,7 @@ EntryActionKind returns SysML::StateSubactionKind :
 ;
 
 DoActionMember returns SysML::StateSubactionMembership :
-	DefinitionMemberPrefix kind = DoActionKind ownedMemberFeature_comp = StateActionUsage
+	DefinitionMemberPrefix kind = DoActionKind ownedRelatedElement += StateActionUsage // ownedMemberFeature = StateActionUsage
 ;
 
 DoActionKind returns SysML::StateSubactionKind :
@@ -1471,7 +1606,7 @@ DoActionKind returns SysML::StateSubactionKind :
 ;
 
 ExitActionMember returns SysML::StateSubactionMembership :
-	DefinitionMemberPrefix kind = ExitActionKind ownedMemberFeature_comp = StateActionUsage
+	DefinitionMemberPrefix kind = ExitActionKind ownedRelatedElement += StateActionUsage // ownedMemberFeature = StateActionUsage
 ;
 
 ExitActionKind returns SysML::StateSubactionKind :
@@ -1480,8 +1615,8 @@ ExitActionKind returns SysML::StateSubactionKind :
 
 EntryTransitionMember returns SysML::FeatureMembership :
 	DefinitionMemberPrefix 
-	( ownedMemberFeature_comp = GuardedTargetSuccession 
-	| 'then' ownedMemberFeature_comp = TransitionSuccession
+	( ownedRelatedElement += GuardedTargetSuccession // ownedMemberFeature = GuardedTargetSuccession 
+	| 'then' ownedRelatedElement += TransitionSuccession // ownedMemberFeature = TransitionSuccession
 	) ';'
 ;
 
@@ -1500,11 +1635,11 @@ PerformedActionUsage returns SysML::ActionUsage :
 ;
 
 TransitionUsageMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TransitionUsage ';'
+	DefinitionMemberPrefix ownedRelatedElement += TransitionUsage ';' // ownedMemberFeature = TransitionUsage ';'
 ;
 
 TargetTransitionUsageMember returns SysML::FeatureMembership :
-	DefinitionMemberPrefix ownedMemberFeature_comp = TargetTransitionUsage ';'
+	DefinitionMemberPrefix ownedRelatedElement += TargetTransitionUsage ';' // ownedMemberFeature = TargetTransitionUsage ';'
 ;
 
 /* State Usages */
@@ -1528,7 +1663,7 @@ StateRefUsage returns SysML::StateUsage :
 
 ExhibitStateUsage returns SysML::ExhibitStateUsage :
     UsagePrefix? 'exhibit' 
-    ( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
+    ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | StateUsageKeyword UsageDeclaration?
     )
     ( ValuePart | ActionUsageParameterList )? StateBody
@@ -1542,32 +1677,32 @@ TransitionUsageKeyword :
 
 TransitionUsage returns SysML::TransitionUsage :
 	TransitionUsageKeyword ( UsageDeclaration? 'first' )? 
-	ownedFeatureMembership_comp += TransitionSourceMember 
-	( ownedImport_comp += EmptyImport
-	  ownedFeatureMembership_comp += TriggerActionMember )?
-	( ownedFeatureMembership_comp += GuardExpressionMember )?
-	( ownedFeatureMembership_comp += EffectBehaviorMember )?
-	'then' ownedMembership_comp += TransitionSuccessionMember
+	ownedRelationship += TransitionSourceMember 
+	( ownedRelationship += EmptyImport
+	  ownedRelationship += TriggerActionMember )?
+	( ownedRelationship += GuardExpressionMember )?
+	( ownedRelationship += EffectBehaviorMember )?
+	'then' ownedRelationship += TransitionSuccessionMember
 ;
 
 TargetTransitionUsage returns SysML::TransitionUsage :
-	( ownedImport_comp += EmptyImport
-	  ownedFeatureMembership_comp += TriggerActionMember )?
-	( ownedFeatureMembership_comp += GuardExpressionMember )?
-	( ownedFeatureMembership_comp += EffectBehaviorMember )?
-	'then' ownedMembership_comp += TransitionSuccessionMember
+	( ownedRelationship += EmptyImport
+	  ownedRelationship += TriggerActionMember )?
+	( ownedRelationship += GuardExpressionMember )?
+	( ownedRelationship += EffectBehaviorMember )?
+	'then' ownedRelationship += TransitionSuccessionMember
 ;
 
 EmptyImport returns SysML::Import :
 	{SysML::Import}
 ;
 
-TransitionSourceMember returns SysML::FeatureMembership :
-	memberFeature = [SysML::Feature|QualifiedName]
+TransitionSourceMember returns SysML::Membership :
+	memberElement = [SysML::Feature|QualifiedName]
 ;
 
 TriggerActionMember returns SysML::TransitionFeatureMembership :
-	kind = TriggerFeatureKind ownedMemberFeature_comp = TriggerAction
+	kind = TriggerFeatureKind ownedRelatedElement += TriggerAction // ownedMemberFeature = TriggerAction
 ;
 
 enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
@@ -1575,12 +1710,11 @@ enum TriggerFeatureKind returns SysML::TransitionFeatureKind :
 ;
 
 TriggerAction returns SysML::AcceptActionUsage :
-	ownedFeatureMembership_comp += EmptyParameterMember
-	ownedFeatureMembership_comp += ItemFeatureMember
+	AcceptParameterPart
 ;
 
 GuardExpressionMember returns SysML::TransitionFeatureMembership :
-	kind = GuardFeatureKind ownedMemberFeature_comp = OwnedExpression
+	kind = GuardFeatureKind ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
 ;
 
 enum GuardFeatureKind returns SysML::TransitionFeatureKind :
@@ -1588,7 +1722,7 @@ enum GuardFeatureKind returns SysML::TransitionFeatureKind :
 ;
 
 EffectBehaviorMember returns SysML::TransitionFeatureMembership :
-	kind = EffectFeatureKind ownedMemberFeature_comp = EffectBehaviorUsage
+	kind = EffectFeatureKind ownedRelatedElement += EffectBehaviorUsage // ownedMemberFeature = EffectBehaviorUsage
 ;
 
 enum EffectFeatureKind returns SysML::TransitionFeatureKind :
@@ -1600,12 +1734,12 @@ EffectBehaviorUsage returns SysML::ActionUsage :
 ;
 
 TransitionSuccessionMember returns SysML::Membership :
-	ownedMemberElement_comp = TransitionSuccession
+	ownedRelatedElement += TransitionSuccession // ownedMemberElement = TransitionSuccession
 ;
 
 TransitionSuccession returns SysML::Succession :
-	ownedFeatureMembership_comp += EmptySourceEndMember 
-	ownedFeatureMembership_comp += ConnectorEndMember
+	ownedRelationship += EmptySourceEndMember 
+	ownedRelationship += ConnectorEndMember
 ;
 
 /* CALCULATIONS */
@@ -1623,7 +1757,7 @@ CalculationDefKeyword :
 CalculationDefinition returns SysML::CalculationDefinition :
 	DefinitionPrefix? CalculationDefKeyword CalculationDeclaration 
 	( CalculationBody 
-	| '=' ownedFeatureMembership_comp += ResultExpressionMember ';'
+	| '=' ownedRelationship += ResultExpressionMember ';'
 	)
 ;
 
@@ -1632,32 +1766,33 @@ fragment CalculationDeclaration returns SysML::CalculationDefinition :
 ;
 
 fragment ReturnParameterPart returns SysML::Type :
-	ownedFeatureMembership_comp += ReturnParameterMember
+	ownedRelationship += ReturnParameterMember
 ;
 
 ReturnParameterMember returns SysML::ReturnParameterMembership :
-	'return'? ownedMemberParameter_comp = Parameter
+	'return'? ownedRelatedElement += Parameter // ownedMemberParameter = Parameter
 ;
 
 fragment CalculationBody returns SysML::Type :
 	    ';' 
 	  | '{' => CalculationBodyItem*
-	        ( ownedFeatureMembership_comp += ResultExpressionMember )?
+	        ( ownedRelationship += ResultExpressionMember )?
 	    '}' 
 ;
 
 fragment CalculationBodyItem returns SysML::Type :
 	  ActionBodyItem
-	| ownedFeatureMembership_comp += ReturnParameterFlowUsageMember
+	| ownedRelationship += ReturnParameterFlowUsageMember
 ;
 
 ReturnParameterFlowUsageMember returns SysML::ReturnParameterMembership :
 	DefinitionMemberPrefix 'return' 
-	ownedMemberParameter_comp = FlowUsageElement
+	ownedRelatedElement += FlowUsageElement // ownedMemberParameter = FlowUsageElement
 ;
 
+@Override
 ResultExpressionMember returns SysML::ResultExpressionMembership :
-	DefinitionMemberPrefix ownedResultExpression_comp = OwnedExpression
+	DefinitionMemberPrefix ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
 ;
 
 /* Calculation Usages */
@@ -1688,11 +1823,11 @@ fragment CalculationUsageParameterPart returns SysML::Feature :
 ;
 
 fragment CalculationReturnParameterPart returns SysML::Feature :
-	ownedFeatureMembership_comp += CalculationReturnParameterMember
+	ownedRelationship += CalculationReturnParameterMember
 ;
 
 CalculationReturnParameterMember returns SysML::ReturnParameterMembership :
-	'return'? ownedMemberParameter_comp = ActionUsageParameter
+	'return'? ownedRelatedElement += ActionUsageParameter // ownedMemberParameter = ActionUsageParameter
 ;
 
 /* CONSTRAINTS */
@@ -1716,11 +1851,11 @@ fragment ConstraintDeclaration returns SysML::ConstraintDefinition :
 ;
 
 fragment EmptyReturnParameterPart returns SysML::Type :
-	ownedFeatureMembership_comp += EmptyReturnParameterMember
+	ownedRelationship += EmptyReturnParameterMember
 ;
 
 EmptyReturnParameterMember returns SysML::ReturnParameterMembership :
-	ownedMemberParameter_comp = EmptyParameter
+	ownedRelatedElement += EmptyParameter // ownedMemberParameter = EmptyParameter
 ;
 
 /* Constraint Usages */
@@ -1744,18 +1879,18 @@ ConstraintRefUsage returns SysML::ConstraintUsage :
 
 AssertConstraintUsage returns SysML::AssertConstraintUsage :
 	UsagePrefix? 'assert'
-    ( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
+    ( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | ConstraintUsageKeyword UsageDeclaration? 
     )
     CalculationUsageParameterPart? InvariantPart CalculationBody
 ;
 
 fragment InvariantPart returns SysML::Invariant :
-	ownedFeatureMembership_comp += TrueLiteralMember
+	ownedRelationship += TrueLiteralMember
 ;
 
 TrueLiteralMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TrueLiteralExpression
+	ownedRelatedElement += TrueLiteralExpression // ownedMemberFeature = TrueLiteralExpression
 ;
 
 TrueLiteralExpression returns SysML::LiteralBoolean :
@@ -1784,13 +1919,13 @@ fragment RequirementBody returns SysML::Type :
 
 fragment RequirementBodyItem returns SysML::Type :
 	  DefinitionBodyItem
-	| ownedFeatureMembership_comp += SubjectMember
-	| ownedFeatureMembership_comp += RequirementConstraintMember
-	| ownedFeatureMembership_comp += RequirementVerificationMember
+	| ownedRelationship += SubjectMember
+	| ownedRelationship += RequirementConstraintMember
+	| ownedRelationship += RequirementVerificationMember
 ;
 
 SubjectMember returns SysML::SubjectMembership :
-	DefinitionMemberPrefix ownedSubjectParameter_comp = SubjectUsage
+	DefinitionMemberPrefix ownedRelatedElement += SubjectUsage // ownedSubjectParameter = SubjectUsage
 ;
 
 SubjectUsage returns SysML::ReferenceUsage :
@@ -1799,7 +1934,7 @@ SubjectUsage returns SysML::ReferenceUsage :
 
 RequirementConstraintMember returns SysML::RequirementConstraintMembership :
 	DefinitionMemberPrefix kind = RequirementConstraintKind 
-	ownedMemberFeature_comp = RequirementConstraintUsage
+	ownedRelatedElement += RequirementConstraintUsage // ownedMemberFeature = RequirementConstraintUsage
 ;
 
 enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
@@ -1807,7 +1942,7 @@ enum RequirementConstraintKind returns SysML::RequirementConstraintKind :
 ;
 
 RequirementConstraintUsage returns SysML::ConstraintUsage :
-      ownedRelationship_comp += OwnedSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
       CalculationUsageParameterPart? RequirementBody
     | 'constraint' CalculationUsageDeclaration CalculationBody
 ;
@@ -1833,20 +1968,20 @@ RequirementRefUsage returns SysML::RequirementUsage :
 
 SatisfyRequirementUsage returns SysML::SatisfyRequirementUsage :
 	UsagePrefix? 'satisfy'
-	( ownedRelationship_comp += OwnedSubsetting FeatureSpecializationPart?
+	( ownedRelationship += OwnedSubsetting FeatureSpecializationPart?
     | RequirementUsageKeyword UsageDeclaration? 
     )
     ( ValuePart | ActionUsageParameterList )?
-    ( 'by' ownedMembership_comp += SatisfactionConnectorMember )?
+    ( 'by' ownedRelationship += SatisfactionConnectorMember )?
     InvariantPart RequirementBody
 ;
 
 SatisfactionConnectorMember returns SysML::Membership :
-	ownedMemberElement_comp = SatisfactionConnector
+	ownedRelatedElement += SatisfactionConnector // ownedMemberElement = SatisfactionConnector
 ;
 
 SatisfactionConnector returns SysML::BindingConnector :
-	ownedFeatureMembership_comp += EmptySourceEndMember ownedFeatureMembership_comp += ConnectorEndMember
+	ownedRelationship += EmptySourceEndMember ownedRelationship += ConnectorEndMember
 ;
 
 /* CASES */
@@ -1868,19 +2003,19 @@ CaseDefinition returns SysML::CaseDefinition :
 fragment CaseBody returns SysML::Type :
 	    ';' 
 	  | '{' => CaseBodyItem*
-	        ( ownedFeatureMembership_comp += ResultExpressionMember )?
+	        ( ownedRelationship += ResultExpressionMember )?
 	    '}' 
 ;
 
 fragment CaseBodyItem returns SysML::Type :
 	  CalculationBodyItem
-	| ownedFeatureMembership_comp += SubjectMember 
-	| ownedFeatureMembership_comp += ObjectiveMember
+	| ownedRelationship += SubjectMember 
+	| ownedRelationship += ObjectiveMember
 	
 ;
 
 ObjectiveMember returns SysML::ObjectiveMembership :
-	DefinitionMemberPrefix 'objective' ownedObjectiveRequirement_comp = ObjectiveRequirementUsage
+	DefinitionMemberPrefix 'objective' ownedRelatedElement += ObjectiveRequirementUsage // ownedObjectiveRequirement = ObjectiveRequirementUsage
 ;
 
 ObjectiveRequirementUsage returns SysML::RequirementUsage :
@@ -1970,7 +2105,7 @@ VerificationCaseRefUsage returns SysML::VerificationCaseUsage :
 
 RequirementVerificationMember returns SysML::RequirementVerificationMembership :
 	DefinitionMemberPrefix kind = RequirementVerificationKind 
-	ownedRequirement_comp = RequirementVerificationUsage
+	ownedRelatedElement += RequirementVerificationUsage // ownedRequirement = RequirementVerificationUsage
 ;
 
 enum RequirementVerificationKind returns SysML::RequirementConstraintKind :
@@ -1978,7 +2113,7 @@ enum RequirementVerificationKind returns SysML::RequirementConstraintKind :
 ;
 
 RequirementVerificationUsage returns SysML::RequirementUsage :
-      ownedRelationship_comp += OwnedSubsetting FeatureSpecialization* 
+      ownedRelationship += OwnedSubsetting FeatureSpecialization* 
       CalculationUsageParameterPart? RequirementBody
     | 'requirement' CalculationUsageDeclaration RequirementBody
 ;
@@ -1996,7 +2131,17 @@ ViewDefKeyword :
 ;
 
 ViewDefinition returns SysML::ViewDefinition :
-	DefinitionPrefix? ViewDefKeyword DefinitionDeclaration DefinitionBody
+	DefinitionPrefix? ViewDefKeyword DefinitionDeclaration ViewDefinitionBody
+;
+
+fragment ViewDefinitionBody returns SysML::ViewDefinition :
+	  ';' 
+	| '{' ViewDefinitionBodyItem* '}'
+;
+
+fragment ViewDefinitionBodyItem returns SysML::ViewDefinition :
+	  DefinitionBodyItem
+	| ownedRelationship += ElementFilterMember
 ;
 
 /* View Usages */
@@ -2014,7 +2159,8 @@ ViewFlowUsage returns SysML::ViewUsage :
 ;
 
 ViewRefUsage returns SysML::ViewUsage :
-	UsagePrefix? ( 'ref' ViewUsageKeyword | isComposite ?= ViewUsageKeyword ) UsageDeclaration? ValueOrFlowPart? ViewBody
+	UsagePrefix? ( 'ref' ViewUsageKeyword | isComposite ?= ViewUsageKeyword ) 
+	UsageDeclaration? ValueOrFlowPart? ViewBody
 ;
 
 fragment ViewBody returns SysML::ViewUsage :
@@ -2024,13 +2170,14 @@ fragment ViewBody returns SysML::ViewUsage :
 
 fragment ViewBodyItem returns SysML::ViewUsage :
 	  DefinitionBodyItem
-	| ownedImport_comp += Expose
+	| ownedRelationship += ElementFilterMember
+	| ownedRelationship += Expose
 ;
 
 Expose returns SysML::Expose :
-	( ownedRelationship_comp += PrefixDocumentation )*
+	( ownedRelationship += PrefixDocumentation )*
 	( visibility = BasicVisibilityIndicator )?  
-	'expose' ImportedNamespace ';'
+	'expose' ( ImportedNamespace | ImportedFilterPackage ) ';'
 ;
 
 /* VIEWPOINTS */
@@ -2095,343 +2242,26 @@ RenderingRefUsage returns SysML::RenderingUsage :
 ;
 
 /* EXPRESSIONS */
-
-/* Operator Expressions */
-
-OwnedExpressionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = OwnedExpression
-;
-
+@Override
 OwnedExpression returns SysML::Expression :
-	 ConditionalExpression | QueryPathExpression
+	 KerMLExpressions::OwnedExpression | QueryPathExpression
 ;
 
-// Conditional Test Expressions
-
-ConditionalExpression returns SysML::Expression :
-	NullCoalescingExpression ( {SysML::OperatorExpression.operand_comp += current}
-		operator = ConditionalTestOperator operand_comp += OwnedExpression ':' operand_comp += ConditionalExpression
-	)?
-;
-
-ConditionalTestOperator: 
-	'?'
-;
-
-// Null Coalescing Expressions
-
-NullCoalescingExpression returns SysML::Expression :
-	ConditionalOrExpression ( {SysML::OperatorExpression.operand_comp += current}
-		operator = NullCoalescingOperator operand_comp += ConditionalOrExpression )*
-;
-
-NullCoalescingOperator :
-	'??'
-;
-
-// Conditional Logical Expressions
-
-ConditionalOrExpression returns SysML::Expression :
-	ConditionalAndExpression ( {SysML::OperatorExpression.operand_comp += current}
-		operator = ConditionalOrOperator operand_comp += ConditionalAndExpression )*
-;
-
-ConditionalOrOperator :
-	'||'
-;
-
-ConditionalAndExpression returns SysML::Expression :
-	OrExpression ( {SysML::OperatorExpression.operand_comp += current}
-		operator = ConditionalAndOperator operand_comp += OrExpression )*
-;
-
-ConditionalAndOperator :
-	'&&'
-;
-
-// Logical Expressions
-
-OrExpression returns SysML::Expression :
-	XorExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = OrOperator operand_comp += XorExpression )*
-;
-
-OrOperator :
-	'|'
-;
-
-XorExpression returns SysML::Expression :
-	AndExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = XorOperator operand_comp += AndExpression )*
-;
-
-XorOperator :
-	'^'
-;
-
-AndExpression returns SysML::Expression :
-	EqualityExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = AndOperator operand_comp += EqualityExpression )*
-;
-
-AndOperator :
-	'&'
-;
-
-// Equality Expressions
-
-EqualityExpression returns SysML::Expression :
-	ClassificationExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = EqualityOperator operand_comp += ClassificationExpression )*
-	
-;
-
-EqualityOperator :
-	'==' | '!=' 
-;
-
-// Classification Expressions
-
-ClassificationExpression returns SysML::Expression :
-	RelationalExpression ( {SysML::OperatorExpression.operand_comp += current}
-		operator = ClassificationOperator ownedFeatureMembership_comp += TypeReferenceMember )?
-;
-
-ClassificationOperator :
-	'instanceof' | 'hastype' | 'istype'
-;
-
-TypeReferenceMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = TypeReference
-;
-
-TypeReference returns SysML::Feature :
-	ownedRelationship_comp += OwnedFeatureTyping
-;
-
-// Relational Expressions
-
-RelationalExpression returns SysML::Expression :
-	AdditiveExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = RelationalOperator operand_comp += AdditiveExpression )*
-;
-
-RelationalOperator :
-	'<' | '>' | '<=' | '>='
-;
-
-// Arithmetic Expressions
-
-AdditiveExpression returns SysML::Expression :
-	MultiplicativeExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = AdditiveOperator operand_comp += MultiplicativeExpression )*	
-;
-
-AdditiveOperator :
-	'+' | '-' 
-;
-
-MultiplicativeExpression returns SysML::Expression :
-	ExponentiationExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = MultiplicativeOperator operand_comp += ExponentiationExpression )*	
-;
-
-MultiplicativeOperator :
-	'*' | '/' 
-;
-
-ExponentiationExpression returns SysML::Expression :
-	UnitsExpression ( {SysML::OperatorExpression.operand_comp += current}  
-		operator = ExponentiationOperator operand_comp += UnitsExpression )*		
-;
-
-ExponentiationOperator :
-	'**'
-;
-
-// Units Expressions
-
-UnitsExpression returns SysML::Expression :
-	UnaryExpression ( {SysML::OperatorExpression.operand_comp += current} 
-		operator = '@' '[' operand_comp += OwnedExpression ']' )?		
-;
-
-// Unary Expressions
-
-UnaryExpression returns SysML::Expression:
-	  {SysML::OperatorExpression} operator = UnaryOperator operand_comp += ExtentExpression
-	| ExtentExpression
-;
-
-UnaryOperator :
-	'+' | '-' | '!' | '~'
-;
-
-// Extent Expressions
-
-ExtentExpression returns SysML::Expression :
-	  {SysML::OperatorExpression} operator = 'all' ownedFeatureMembership_comp += TypeReferenceMember
-	| SequenceExpression
-;
-
-/* Sequence Expressions */
-
-SequenceExpression returns SysML::Expression :
-	( SequenceConstructionExpression | BaseExpression )
-	( {SysML::OperatorExpression.operand_comp += current} 
-	  operator = '[' operand_comp += OwnedExpression ']'
-	| {SysML::OperatorExpression.operand_comp += current} '->' 
-	  operator = Name ( ownedFeatureMembership_comp += BodyExpressionMember )+
-	)*
-;
-
-BodyExpressionMember returns SysML::FeatureMembership :
-	ownedMemberFeature_comp = BodyExpression
-;
-
-BodyExpression returns SysML::BlockExpression :
-	   => ( ownedFeatureMembership_comp += BodyParameterMember 
-	   	    ( ownedFeatureMembership_comp += BodyParameterMember )* 
-	        '(' ownedFeatureMembership_comp += ResultExpressionMember ')' )
-	 | ownedRelationship_comp += ExpressionTyping
-;
-
-BodyParameterMember returns SysML::ParameterMembership :
-	memberName = Name ownedMemberParameter_comp = BodyParameter
-;
-
-BodyParameter returns SysML::Usage :
+@Override
+BodyParameter returns SysML::ReferenceUsage :
 	{SysML::ReferenceUsage} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
-;
-
-ExpressionTyping returns SysML::FeatureTyping :
-	type = [ SysML::Function | QualifiedName ]
-;
-
-SequenceConstructionExpression returns SysML::Expression :
-	  {SysML::NullExpression} '{' '}'
-	| '{' OwnedExpression
-	      ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList
-	      | {SysML::OperatorExpression.operand_comp += current} operator = '..' operand_comp += OwnedExpression
-	      )?
-	  '}'
-;
-
-SequenceElementList returns SysML::Expression :	
-	OwnedExpression ( {SysML::OperatorExpression.operand_comp += current} operator = ',' operand_comp += SequenceElementList )?
-;
-
-/* Base Expressions */
-
-BaseExpression returns SysML::Expression :
-	  NullExpression
-	| LiteralExpression 
-	| FeatureReferenceExpression 
-	| InvocationExpression 
-	| ExtentExpression_Deprecated
-	| '(' OwnedExpression ')'
-;
-
-// Null Expressions
-
-NullExpression returns SysML::NullExpression :
-	{SysML::NullExpression} 'null'
-;
-
-// Feature Reference Expressions
-
-FeatureReferenceExpression returns SysML::FeatureReferenceExpression :
-	ownedFeatureMembership_comp += FeatureReferenceMember
-;
-
-FeatureReferenceMember returns SysML::ReturnParameterMembership :
-	ownedMemberFeature_comp = FeatureReference
-;
-
-FeatureReference returns SysML::ReferenceUsage :
-	ownedRelationship_comp += OwnedSubsetting
-;
-
-// Invocation Expressions
-
-InvocationExpression returns SysML::InvocationExpression :
-	ownedRelationship_comp += OwnedFeatureTyping '(' ArgumentList? ')'
-;
-
-fragment ArgumentList returns SysML::Expression :
-	PositionalArgumentList | NamedArgumentList
-;
-
-fragment PositionalArgumentList returns SysML::Expression :
-	ownedFeatureMembership_comp += OwnedExpressionMember ( ',' ownedFeatureMembership_comp += OwnedExpressionMember )*
-;
-
-fragment NamedArgumentList returns SysML::Expression :
-	ownedFeatureMembership_comp += NamedExpressionMember ( ',' ownedFeatureMembership_comp += NamedExpressionMember )*
-;
-
-NamedExpressionMember returns SysML::FeatureMembership :
-	memberName = Name '=>' ownedMemberFeature_comp = OwnedExpression
-;
-
-// Extent Expressions (Deprecated)
-
-ExtentExpression_Deprecated returns SysML::OperatorExpression :
-	  ownedFeatureMembership_comp += TypeReferenceMember '.' operator = 'allInstances' '(' ')'
-;
-
-/* Literal Expressions */
-
-LiteralExpression returns SysML::LiteralExpression :
-	  LiteralBoolean 
-	| LiteralString 
-	| LiteralInteger
-	| LiteralReal 
-	| LiteralUnbounded
-;
-
-LiteralBoolean returns SysML::LiteralBoolean :
-	value = BooleanValue
-;
-
-BooleanValue returns Ecore::EBoolean :
-	'true' | 'false'
-;
-
-LiteralString returns SysML::LiteralString :
-	value = STRING_VALUE
-;
-
-LiteralInteger returns SysML::LiteralInteger:
-	value = DECIMAL_VALUE
-;
-
-LiteralReal returns SysML::LiteralReal:
-	value = RealValue
-;
-
-RealValue returns Ecore::EDouble:
-	DECIMAL_VALUE? '.' ( DECIMAL_VALUE | EXP_VALUE ) | EXP_VALUE
-;
-
-LiteralUnbounded returns SysML::LiteralUnbounded :
-	{SysML::LiteralUnbounded} '*'
-;
-
-LiteralUnlimitedNatural returns SysML::LiteralExpression:
-	LiteralInteger | LiteralUnbounded
 ;
 
 /* QUERY PATH EXPRESSIONS */
 
 QueryPathExpression returns SysML::Expression :
 	QueryHeadExpression
-	( '[' {SysML::QueryQualifierExpression.operand_comp += current}
-         ( ownedFeatureMembership_comp += BodyExpressionMember ) ']' )?
-	( '/' {SysML::QueryPathStepExpression.operand_comp += current}
-		operand_comp += QueryNameExpression
-		( '[' {SysML::QueryQualifierExpression.operand_comp += current}
-	         ( ownedFeatureMembership_comp += BodyExpressionMember ) ']' )?
+	( '[' {SysML::QueryQualifierExpression.operand += current}
+         ( ownedRelationship += BodyExpressionMember ) ']' )?
+	( '/' {SysML::QueryPathStepExpression.operand += current}
+		operand += QueryNameExpression
+		( '[' {SysML::QueryQualifierExpression.operand += current}
+	         ( ownedRelationship += BodyExpressionMember ) ']' )?
 	)*
 ;
 
@@ -2440,59 +2270,9 @@ QueryNameExpression returns SysML::QueryPathExpression :
     | isDescendants ?= '/'
     | @traversal
     */
-    ownedFeatureMembership_comp += FeatureReferenceMember
+    ownedRelationship += FeatureReferenceMember
 ;
 
 QueryHeadExpression returns SysML::QueryPathExpression :
-	'./' ownedFeatureMembership_comp += FeatureReferenceMember
-;        
-
-/* NAMES */
-
-Name :
-	ID | UNRESTRICTED_NAME
+	'./' ownedRelationship += FeatureReferenceMember
 ;
-
-QualifiedName :
-	Name | ColonQualifiedName | DotQualifiedName
-;
-
-ColonQualifiedName :
-	Name ('::' Name)+
-;
-
-DotQualifiedName :
-	Name ('.' Name)+
-;
-
-/* TERMINALS */
-
-//terminal NATURAL_VALUE returns Ecore::EInt :
-//	('0' | '1'..'9' (('_')? '0'..'9')*) | //DECIMAL 
-//	(('0b' | '0B') '0'..'1' (('_')? '0'..'1')*) | // BINARY
-//	(('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F')  (('_')? ('0'..'9'|'a'..'f'|'A'..'F'))*) | // HEX
-//	('0' ('_')? '0'..'7' (('_')? '0'..'7')*) // OCT
-//;
-
-terminal DECIMAL_VALUE returns Ecore::EInt :
-	'0'..'9' ('0'..'9')*
-;
-
-terminal EXP_VALUE :
-	DECIMAL_VALUE ('e' | 'E') ('+' | '-')? DECIMAL_VALUE
-;
-
-terminal ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* ;
-terminal UNRESTRICTED_NAME returns Ecore::EString : 
-	'\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'\'') )* '\'' ;
-
-terminal STRING_VALUE returns Ecore::EString : 
-	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"' ;
-
-terminal REGULAR_COMMENT	: '/*' !'*' -> '*/';
-terminal DOCUMENTATION_COMMENT : '/**' -> '*/' ;
-
-terminal ML_NOTE : '//*' -> '*/';
-terminal SL_NOTE : '//' (!('\n'|'\r') !('\n'|'\r')*)? ('\r'? '\n')?;
-
-terminal WS : (' '|'\t'|'\r'|'\n')+;

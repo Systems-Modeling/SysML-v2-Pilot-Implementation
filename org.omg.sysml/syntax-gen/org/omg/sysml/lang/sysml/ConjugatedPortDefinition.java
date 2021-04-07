@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -63,13 +63,13 @@ public interface ConjugatedPortDefinition extends PortDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortConjugation that is the <tt>ownedConjugator</tt> of this ConjugatedPortDefinition, linking it its <tt>originalPortDefinition</tt>.</p>
+	 * <p>The PortConjugation that is the <code>ownedConjugator</code> of this ConjugatedPortDefinition, linking it its <code>originalPortDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owned Port Conjugator</em>' reference.
 	 * @see #setOwnedPortConjugator(PortConjugation)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getConjugatedPortDefinition_OwnedPortConjugator()
 	 * @see org.omg.sysml.lang.sysml.PortConjugation#getConjugatedPortDefinition
-	 * @model opposite="conjugatedPortDefinition" required="true" ordered="false"
+	 * @model opposite="conjugatedPortDefinition" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
 	 * @generated
 	 */

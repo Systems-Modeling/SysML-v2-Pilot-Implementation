@@ -25,6 +25,9 @@ package testt {
 	//* XPECT scope at B::a ---
    		A, A.a, B, B.a, C,
    		testt.A, testt.A.a, testt.B, testt.B.a, testt.C,
+		A.self,  A.a.self,  B.self,  B.a.self,  C.self, 
+   		testt.A.self,  testt.A.a.self,  testt.B.self,  testt.B.a.self,  testt.C.self, 
+		   		
 	--- */
 	feature C redefines B::a;
 }

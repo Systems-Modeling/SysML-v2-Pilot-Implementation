@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,7 +37,6 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getConstraint_comp <em>Constraint comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getConstraint <em>Constraint</em>}</li>
  * </ul>
  *
@@ -79,54 +78,28 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	void setKind(RequirementConstraintKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Constraint comp</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Constraint</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp() <em>Owned Member Feature comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature() <em>Owned Member Feature</em>}'</li>
 	 * </ul>
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraint comp</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage that is the <code>ownedMemberFeature</code> of this RequirementConstraintUsage.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Constraint comp</em>' containment reference.
-	 * @see #setConstraint_comp(ConstraintUsage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_Constraint_comp()
-	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementConstraintMembership'"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	ConstraintUsage getConstraint_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getConstraint_comp <em>Constraint comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint comp</em>' containment reference.
-	 * @see #getConstraint_comp()
-	 * @generated
-	 */
-	void setConstraint_comp(ConstraintUsage value);
-
-	/**
-	 * Returns the value of the '<em><b>Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraint</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The ConstraintUsage that is the <code>ownedMemberFeature</code> of this RequirementConstraintUsage.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Constraint</em>' reference.
 	 * @see #setConstraint(ConstraintUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_Constraint()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementConstraintMembership'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	ConstraintUsage getConstraint();

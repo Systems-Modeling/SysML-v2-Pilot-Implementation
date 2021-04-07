@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -37,7 +37,6 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.StateSubactionMembership#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.StateSubactionMembership#getAction_comp <em>Action comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.StateSubactionMembership#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -75,46 +74,24 @@ public interface StateSubactionMembership extends FeatureMembership {
 	void setKind(StateSubactionKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Action comp</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Action</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature_comp() <em>Owned Member Feature comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature() <em>Owned Member Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * <p>The ActionUsage that is the <tt>ownedMemberFeature</tt> of this StateSubactionMembership.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Action comp</em>' containment reference.
-	 * @see #setAction_comp(ActionUsage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateSubactionMembership_Action_comp()
-	 * @model containment="true" required="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateSubactionMembership'"
-	 *        annotation="redefines"
-	 * @generated
-	 */
-	ActionUsage getAction_comp();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.StateSubactionMembership#getAction_comp <em>Action comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Action comp</em>' containment reference.
-	 * @see #getAction_comp()
-	 * @generated
-	 */
-	void setAction_comp(ActionUsage value);
-
-	/**
-	 * Returns the value of the '<em><b>Action</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Action</em>' reference.
 	 * @see #setAction(ActionUsage)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getStateSubactionMembership_Action()
-	 * @model required="true" transient="true" volatile="true" derived="true"
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='stateSubactionMembership'"
+	 *        annotation="redefines"
 	 * @generated
 	 */
 	ActionUsage getAction();

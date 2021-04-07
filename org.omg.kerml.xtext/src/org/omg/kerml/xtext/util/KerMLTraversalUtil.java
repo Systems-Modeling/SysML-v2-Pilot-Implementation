@@ -98,7 +98,7 @@ public class KerMLTraversalUtil extends SysMLUtil {
 			this.initialize(new DefaultElementProcessingFacadeImpl());
 			this.read(args);
 			
-			System.out.println("Processing...");
+			println("Processing...");
 			this.process();
 		} catch (Exception e) {
 			e.printStackTrace();

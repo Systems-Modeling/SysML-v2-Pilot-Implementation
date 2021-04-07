@@ -2,12 +2,14 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
   <properties>
-    <revision>0.8.0-SNAPSHOT</revision>
+    <revision>0.11.0-SNAPSHOT</revision>
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
-    <plantuml-repository>https://dl.bintray.com/himi-sysml/plantuml-sysmlv2/updates/</plantuml-repository>
+    <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
+    <xpect-repository>https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository</xpect-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -23,23 +25,28 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
     <xtext.version>2.22.0</xtext.version>
+    <junit.version>3.0.0-M5</junit.version>
   </properties>
-
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.omg.sysml</groupId>
   <artifactId>org.omg.sysml.parent</artifactId>
   <version>${revision}</version>
   <packaging>pom</packaging>
+
   <modules>
     <module>org.omg.sysml</module>
+    <module>org.omg.kerml.expressions.xtext</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>
-    <module>org.omg.kerml.xtext.ui</module>
-    <module>org.omg.sysml.xtext.ui</module>
+    <module>org.omg.kerml.expressions.xtext.ide</module>
     <module>org.omg.kerml.xtext.ide</module>
     <module>org.omg.sysml.xtext.ide</module>
+    <module>org.omg.kerml.expressions.xtext.ui</module>
+    <module>org.omg.kerml.xtext.ui</module>
+    <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.sysml.interactive</module>
+    <module>org.omg.sysml.interactive.tests</module>
     <module>org.omg.sysml.jupyter.kernel</module>
     <module>org.omg.sysml.jupyter.jupyterlab</module>
     <module>org.omg.sysml.jupyter.installer</module>
@@ -73,43 +80,44 @@
       </plugin>
 
       <plugin>
-	<groupId>org.eclipse.tycho</groupId>
-	<artifactId>tycho-p2-repository-plugin</artifactId>
-	<version>${tycho-version}</version>
-	<configuration>
-	  <includeAllDependencies>false</includeAllDependencies>
-	</configuration>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-repository-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <includeAllDependencies>false</includeAllDependencies>
+        </configuration>
       </plugin>
 
       <plugin>
-	<groupId>org.eclipse.tycho.extras</groupId>
-	<artifactId>tycho-source-feature-plugin</artifactId>
-	<version>${tycho-version}</version>
-	<executions>
-	  <execution>
-	    <id>source-feature</id>
-	    <phase>package</phase>
-	    <goals>
-	      <goal>source-feature</goal>
-	    </goals>
-	  </execution>
-	</executions>
-	<configuration>
-	  <excludes/>
-	</configuration>
+        <groupId>org.eclipse.tycho.extras</groupId>
+        <artifactId>tycho-source-feature-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>source-feature</id>
+            <phase>package</phase>
+            <goals>
+              <goal>source-feature</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludes/>
+        </configuration>
       </plugin>
+
       <plugin>
-	<groupId>org.eclipse.tycho</groupId>
-	<artifactId>tycho-source-plugin</artifactId>
-	<version>${tycho-version}</version>
-	<executions>
-	  <execution>
-	    <id>plugin-source</id>
-	    <goals>
-	      <goal>plugin-source</goal>
-	    </goals>
-	  </execution>
-	</executions>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-source-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <executions>
+          <execution>
+            <id>plugin-source</id>
+            <goals>
+              <goal>plugin-source</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
@@ -121,7 +129,6 @@
         </configuration>
       </plugin>
 
-
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>${maven-antrun-plugin.version}</version>
@@ -129,13 +136,15 @@
           <execution>
             <id>set-version</id>
             <phase>validate</phase>
-            <configuration>
-              <target>
-                <property name="maven-version" value="${project.version}"/>
-                <script language="javascript">
-                  project.setProperty('bundle-version', project.getProperty('maven-version').
-                  replace("-SNAPSHOT", ".qualifier"));
-                </script>
+	    <configuration>
+	      <target>
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties"
+			 classpathref="maven.plugin.classpath"/>
+		<property name="maven-version" value="${project.version}"/>
+		<propertyregex property="bundle-version"
+			       input="${maven-version}"
+			       regexp="-SNAPSHOT"
+			       replace=".qualifier"/>
                 <echo> Set the versions to POM: ${maven-version}, Bundle: ${bundle-version} </echo>
                 <!-- Currently no need to change the versions of child poms but left it for future use.
                 <replaceregexp byline="true" flags="i">
@@ -143,7 +152,7 @@
                     <include name="*/pom.xml"/>
                   </fileset>
                   <regexp pattern="&lt;version>[0-9][^&lt;]*&lt;/version>"/>
-                  <substitution expression="&lt;version>${maven-version}&lt;/version>"/>           
+                  <substitution expression="&lt;version>${maven-version}&lt;/version>"/>
                 </replaceregexp>
                 -->
                 <replaceregexp byline="true" flags="i">
@@ -168,7 +177,21 @@
             </goals>
           </execution>
         </executions>
+	<dependencies>
+	  <dependency>
+	    <groupId>ant-contrib</groupId>
+	    <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
       </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
@@ -212,28 +235,60 @@
             <outputDirectory>xtend-gen</outputDirectory>
           </configuration>
         </plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.5</version>
-					<executions>
-						<execution>
-							<id>gen-clean</id>
-							<goals>
-								<goal>clean</goal>
-							</goals>
-							<configuration>
-								<filesets>
-									<fileset>
-										<directory>${basedir}/xtend-gen</directory>
-										<excludes>**/.gitignore</excludes>
-									</fileset>
-								</filesets>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.5</version>
+          <executions>
+            <execution>
+              <id>gen-clean</id>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+              <configuration>
+                <filesets>
+                  <fileset>
+                    <directory>${basedir}/xtend-gen</directory>
+                    <excludes>**/.gitignore</excludes>
+                  </fileset>
+                </filesets>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Systems-Modeling Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/Systems-Modeling/SysML-v2-Pilot-Implementation</url>
+    </repository>
+  </distributionManagement>
+
+  <profiles>
+  	<profile>
+      <id>runTests</id>
+      <activation>
+      	<property>
+      	  <name>!xpect.tests.skip</name>
+      	</property>
+      </activation>
+      <repositories>
+	    <repository>
+	      <id>xpect</id>
+	      <url>${xpect-repository}</url>
+	      <layout>p2</layout>
+	    </repository>
+      </repositories>
+      <modules>
+      	<module>org.omg.kerml.xpect.tests</module>
+      	<module>org.omg.sysml.xpect.tests</module>
+      </modules>
+    </profile>
+  </profiles>
+
 </project>

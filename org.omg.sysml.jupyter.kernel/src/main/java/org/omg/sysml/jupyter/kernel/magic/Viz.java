@@ -34,6 +34,7 @@ public class Viz {
          .varargs("element")
          .keyword("view")
          .keyword("style")
+         .flag("help", 'h', "true")
          .build());
 
     @LineMagic
@@ -43,8 +44,10 @@ public class Viz {
         List<String> elements = vals.get("element");
         List<String> views = vals.get("view");
         List<String> styles = vals.get("style");
+        List<String> help = vals.get("help");
 
-        VizResult vr = ISysML.getKernelInstance().getInteractive().viz(elements, views, styles);
+        VizResult vr = ISysML.getKernelInstance().getInteractive().viz(elements, views, styles, help);
+
         DisplayData dd = new DisplayData();
 
         switch (vr.kind) {
@@ -57,6 +60,8 @@ public class Viz {
         case SVG:
             dd.putSVG(vr.getSVG());
             break;
+        case TEXT:
+            dd.putText(vr.getText());
         }
         return dd;
     }

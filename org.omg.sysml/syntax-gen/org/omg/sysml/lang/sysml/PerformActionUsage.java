@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -53,7 +53,7 @@ public interface PerformActionUsage extends ActionUsage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ActionUsage to be performed by the PerformedActionUsage. It is the <tt>subsettedFeature</tt> of the first owned Subsetting Relationship of the PerformedActionUsage.</p>
+	 * <p>The ActionUsage to be performed by this PerformedActionUsage. It is the <code>subsettedFeature</cpde> of the first owned Subsetting Relationship of the PerformedActionUsage.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Performed Action</em>' reference.
 	 * @see #setPerformedAction(ActionUsage)

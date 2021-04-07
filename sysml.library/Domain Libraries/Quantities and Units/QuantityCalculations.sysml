@@ -5,10 +5,11 @@ package QuantityCalculations {
     import UnitsAndScales::MeasurementReference;
     import UnitsAndScales::DimensionOneValue;
     
-    calc def '@' specializes ScalarFunctions::'@' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;
-    calc def '['(x: NumericalValue, y: ScalarMeasurementReference): QuantityValue;
-    calc def '⟦'(x: NumericalValue, y: ScalarMeasurementReference): QuantityValue;
-	
+    /** Deprecated */
+    calc def '@[' specializes ScalarFunctions::'@[' (x: NumericalValue, y: ScalarMeasurementReference): ScalarQuantityValue;
+    
+    calc def '[' specializes BaseFunctions::'[' (x: NumericalValue, y: ScalarMeasurementReference): QuantityValue;
+
 	calc def Abs specializes NumericalFunctions::Abs (x: ScalarQuantityValue): ScalarQuantityValue;
 
 	calc def '+' specializes NumericalFunctions::'+' (x: ScalarQuantityValue, y: ScalarQuantityValue[0..1]): ScalarQuantityValue;

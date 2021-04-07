@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -45,8 +45,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ClassifierImpl extends TypeImpl implements Classifier {
 	
-	public static final String CLASSIFIER_SUPERCLASS_DEFAULT = "Base::Anything";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,17 +73,6 @@ public class ClassifierImpl extends TypeImpl implements Classifier {
 		return new DerivedSubsetEObjectEList<>(Superclassing.class, this, SysMLPackage.CLASSIFIER__OWNED_SUPERCLASSING, new int[] {SysMLPackage.TYPE__OWNED_GENERALIZATION});
 	}
 
-
-	@Override
-	protected EClass getGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getSuperclassing();
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return CLASSIFIER_SUPERCLASS_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -37,6 +37,7 @@ package PartTest {
 	abstract part def id xx B {
 		public abstract part a: A;
 		port x: ~C;
+		port y: C, D;
 		package P { }
 	}
 	
@@ -44,5 +45,7 @@ package PartTest {
 		private in ref y: B;
 		alias y as z;
 	}
+	
+	port def D;
 	
 }

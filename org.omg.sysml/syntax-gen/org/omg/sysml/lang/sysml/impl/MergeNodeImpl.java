@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 
-	public static final String MERGE_NODE_SUBSETTING_BASE_DEFAULT = "Actions::Action::merges";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,9 +55,4 @@ public class MergeNodeImpl extends ControlNodeImpl implements MergeNode {
 		return SysMLPackage.Literals.MERGE_NODE;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return MERGE_NODE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 } //MergeNodeImpl

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -45,8 +45,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 	
-	public static final String PART_SUBSETTING_DEFAULT = "Parts::parts";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,11 +80,6 @@ public class PartUsageImpl extends ItemUsageImpl implements PartUsage {
 		return partDefinitions;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return PART_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

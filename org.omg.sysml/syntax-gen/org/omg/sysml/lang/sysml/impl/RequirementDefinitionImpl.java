@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -41,7 +41,9 @@ import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -61,8 +63,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * @generated
  */
 public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implements RequirementDefinition {
-	
-	public static final String REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT = "Requirements::RequirementCheck";
 	
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
@@ -120,11 +120,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
-	}
-	
-	private void computeSubjectParameter() {
-		UsageImpl.computeSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 	
 	/**
@@ -149,7 +145,7 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	
 	@Override
 	public void setReqId(String newReqId) {
-		setReqIdGen(unescapeString(newReqId));
+		setReqIdGen(ElementUtil.unescapeString(newReqId));
 	}
 	
 
@@ -217,21 +213,6 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		getRequirementConstraints(this, RequirementConstraintKind.REQUIREMENT).forEachOrdered(constraints::add);
 		return constraints;
 	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return REQUIREMENT_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
-	// Additional overrides
-		
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1,18 +1,34 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.MetadataExpression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -23,23 +39,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureValueImpl#getMetadataValue_comp <em>Metadata Value comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureValueImpl#getMetadataValue <em>Metadata Value</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.MetadataFeatureValueImpl#getOwningMetadataFeature <em>Owning Metadata Feature</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class MetadataFeatureValueImpl extends FeatureValueImpl implements MetadataFeatureValue {
-	/**
-	 * The cached value of the '{@link #getMetadataValue_comp() <em>Metadata Value comp</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMetadataValue_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected MetadataExpression metadataValue_comp;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,63 +71,9 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	@Override
-	public MetadataExpression getMetadataValue_comp() {
-		return metadataValue_comp;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMetadataValue_comp(MetadataExpression newMetadataValue_comp, NotificationChain msgs) {
-		MetadataExpression oldMetadataValue_comp = metadataValue_comp;
-		metadataValue_comp = newMetadataValue_comp;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP, oldMetadataValue_comp, newMetadataValue_comp);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setMetadataValue_comp(MetadataExpression newMetadataValue_comp) {
-		if (newMetadataValue_comp != metadataValue_comp) {
-			NotificationChain msgs = null;
-			if (metadataValue_comp != null)
-				msgs = ((InternalEObject)metadataValue_comp).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP, null, msgs);
-			if (newMetadataValue_comp != null)
-				msgs = ((InternalEObject)newMetadataValue_comp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP, null, msgs);
-			msgs = basicSetMetadataValue_comp(newMetadataValue_comp, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP, newMetadataValue_comp, newMetadataValue_comp));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMetadataValue_comp() {
-		return metadataValue_comp != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public MetadataExpression getMetadataValue() {
-		MetadataExpression metadataValue = basicGetMetadataValue();
-		return metadataValue != null && metadataValue.eIsProxy() ? (MetadataExpression)eResolveProxy((InternalEObject)metadataValue) : metadataValue;
+	public MetadataFeature getOwningMetadataFeature() {
+		MetadataFeature owningMetadataFeature = basicGetOwningMetadataFeature();
+		return owningMetadataFeature != null && owningMetadataFeature.eIsProxy() ? (MetadataFeature)eResolveProxy((InternalEObject)owningMetadataFeature) : owningMetadataFeature;
 	}
 
 	/**
@@ -129,9 +81,9 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public MetadataExpression basicGetMetadataValue() {
-		Expression value = super.getValue();
-		return value instanceof MetadataExpression? (MetadataExpression)value: null;
+	public MetadataFeature basicGetOwningMetadataFeature() {
+		Namespace owningNamespace = super.basicGetMembershipOwningNamespace();
+		return owningNamespace instanceof MetadataFeature? (MetadataFeature)owningNamespace: null;
 	}
 
 	/**
@@ -140,8 +92,17 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated NOT
 	 */
 	@Override
-	public void setMetadataValue(MetadataExpression newMetadataValue) {
-		throw new UnsupportedOperationException();
+	public void setOwningMetadataFeature(MetadataFeature newOwningMetadataFeature) {
+		super.setMembershipOwningNamespace(newOwningMetadataFeature);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwningMetadataFeature() {
+		return basicGetOwningMetadataFeature() != null;
 	}
 
 	/**
@@ -150,12 +111,159 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				return basicSetMetadataValue_comp(null, msgs);
+	public Expression getMetadataValue() {
+		Expression metadataValue = basicGetMetadataValue();
+		return metadataValue != null && metadataValue.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)metadataValue) : metadataValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Expression basicGetMetadataValue() {
+		return super.basicGetValue();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setMetadataValue(Expression newMetadataValue) {
+		super.setValue(newMetadataValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMetadataValue() {
+		return basicGetMetadataValue() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Namespace getMembershipOwningNamespace() {
+		return getOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Namespace basicGetMembershipOwningNamespace() {
+		return basicGetOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMembershipOwningNamespace(Namespace newMembershipOwningNamespace) {
+		if (newMembershipOwningNamespace != null && !(newMembershipOwningNamespace instanceof MetadataFeature)) {
+			throw new IllegalArgumentException("newMembershipOwningNamespace must be an instance of MetadataFeature");
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		setOwningMetadataFeature((MetadataFeature) newMembershipOwningNamespace);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMembershipOwningNamespace() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature getFeatureWithValue() {
+		return getOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Feature basicGetFeatureWithValue() {
+		return basicGetOwningMetadataFeature();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setFeatureWithValue(Feature newFeatureWithValue) {
+		if (newFeatureWithValue != null && !(newFeatureWithValue instanceof MetadataFeature)) {
+			throw new IllegalArgumentException("newFeatureWithValue must be an instance of MetadataFeature");
+		}
+		if (newFeatureWithValue != null) {
+			setOwningMetadataFeature((MetadataFeature) newFeatureWithValue);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetFeatureWithValue() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getValue() {
+		return getMetadataValue();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression basicGetValue() {
+		return basicGetMetadataValue();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(Expression newValue) {
+		setMetadataValue(newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValue() {
+  		return false;
 	}
 
 	/**
@@ -166,11 +274,12 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				return getMetadataValue_comp();
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
 				if (resolve) return getMetadataValue();
 				return basicGetMetadataValue();
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				if (resolve) return getOwningMetadataFeature();
+				return basicGetOwningMetadataFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -183,11 +292,11 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				setMetadataValue_comp((MetadataExpression)newValue);
-				return;
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				setMetadataValue((MetadataExpression)newValue);
+				setMetadataValue((Expression)newValue);
+				return;
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				setOwningMetadataFeature((MetadataFeature)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -201,11 +310,11 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				setMetadataValue_comp((MetadataExpression)null);
-				return;
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				setMetadataValue((MetadataExpression)null);
+				setMetadataValue((Expression)null);
+				return;
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				setOwningMetadataFeature((MetadataFeature)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -219,57 +328,18 @@ public class MetadataFeatureValueImpl extends FeatureValueImpl implements Metada
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE_VALUE__VALUE_COMP:
-				return isSetValue_comp();
-			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE_COMP:
-				return isSetMetadataValue_comp();
+			case SysMLPackage.METADATA_FEATURE_VALUE__VALUE:
+				return isSetValue();
+			case SysMLPackage.METADATA_FEATURE_VALUE__FEATURE_WITH_VALUE:
+				return isSetFeatureWithValue();
+			case SysMLPackage.METADATA_FEATURE_VALUE__MEMBERSHIP_OWNING_NAMESPACE:
+				return isSetMembershipOwningNamespace();
 			case SysMLPackage.METADATA_FEATURE_VALUE__METADATA_VALUE:
-				return basicGetMetadataValue() != null;
+				return isSetMetadataValue();
+			case SysMLPackage.METADATA_FEATURE_VALUE__OWNING_METADATA_FEATURE:
+				return isSetOwningMetadataFeature();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Expression getValue_comp() {
-		return getMetadataValue_comp();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetValue_comp(Expression newValue_comp, NotificationChain msgs) {
-		if (newValue_comp != null && !(newValue_comp instanceof MetadataExpression)) {
-			throw new IllegalArgumentException("newValue_comp must be an instance of MetadataExpression");
-		}
-		return basicSetMetadataValue_comp((MetadataExpression) newValue_comp, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue_comp(Expression newValue_comp) {
-		if (newValue_comp != null && !(newValue_comp instanceof MetadataExpression)) {
-			throw new IllegalArgumentException("newValue_comp must be an instance of MetadataExpression");
-		}
-		setMetadataValue_comp((MetadataExpression) newValue_comp);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetValue_comp() {
-  		return false;
 	}
 
 } //MetadataFeatureValueImpl

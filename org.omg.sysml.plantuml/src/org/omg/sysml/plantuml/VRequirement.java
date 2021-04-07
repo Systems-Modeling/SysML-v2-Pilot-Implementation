@@ -56,7 +56,7 @@ public class VRequirement extends VCompartment {
 
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
-        if (!rec(rcm, false)) {
+        if (!rec(rcm, rcm, false)) {
             String prefix;
             switch (rcm.getKind()) {
             case ASSUMPTION:

@@ -1,0 +1,51 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+// XPECT noErrors --> ""
+package Test {
+
+	package Test1 {
+		import VP::**;
+
+		class A specializes c_Public_Id;
+		//XPECT linkedName at A --> Test.Test1.A
+		class B specializes A;
+		
+		//XPECT linkedName at VP2.A --> Test.VP.VP2.A
+		class C specializes VP2.A;
+
+		//XPECT linkedName at A_Id --> Test.VP.VP2.A
+		class D specializes A_Id;
+	
+	}
+
+	package VP {
+			
+		package VP1 {	
+			public class id 'c_Public_Id' c_Public {
+				private class c_private{}
+				public class c_public{}
+				protected class c_protected{}
+			}
+		}
+		
+		package VP2 {
+			public class id 'A_Id' A;
+		}
+	}
+	
+}
+
+	

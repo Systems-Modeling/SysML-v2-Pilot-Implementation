@@ -27,7 +27,7 @@ public class SysMLParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "RootPackage";
+		return "RootNamespace";
 	}
 
 	public SysMLGrammarAccess getGrammarAccess() {

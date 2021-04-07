@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,12 +22,24 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import java.util.Optional;
+
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature
@@ -42,6 +54,11 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class FeatureReferenceExpressionImpl extends ExpressionImpl implements FeatureReferenceExpression {
+	
+	public static final String SELF_REFERENCE_FEATURE = "Base::Anything::self";
+	
+	private Feature selfReferenceFeature = null;
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -75,8 +92,14 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	 * @generated NOT
 	 */
 	public Feature basicGetReferent() {
-		Feature result = getResult();
-		return result == null? null: ((FeatureImpl)result).getFirstSubsettedFeature().orElse(null);
+		return ExpressionUtil.getReferentFeatureFor(this).orElseGet(this::getSelfReferenceFeature);
+	}
+	
+	protected Feature getSelfReferenceFeature() {
+		if (selfReferenceFeature == null) {
+			selfReferenceFeature = (Feature)SysMLLibraryUtil.getLibraryType(this, SELF_REFERENCE_FEATURE);
+		}
+		return selfReferenceFeature;
 	}
 
 	/**
@@ -87,7 +110,43 @@ public class FeatureReferenceExpressionImpl extends ExpressionImpl implements Fe
 	public void setReferent(Feature newReferent) {
 		throw new UnsupportedOperationException();
 	}
-
+	
+	@Override
+	public boolean isModelLevelEvaluable() {
+		return true;
+	}
+	
+	@Override
+	public EList<Element> evaluate(Element target) {
+		if (target instanceof Type) {
+			Feature referent = getReferent();
+			if (TypeUtil.conforms(referent, getSelfReferenceFeature())) {
+				EList<Element> result = new BasicEList<>();
+				result.add(target);
+				return result;
+			} else {
+				Optional<FeatureImpl> feature = ((Type)target).getFeature().stream().
+						map(FeatureImpl.class::cast).
+						filter(f->FeatureUtil.getRedefinedFeaturesOf(f).contains(referent)).
+						findFirst();
+				if (feature.isPresent()) {
+					FeatureValue featureValue = FeatureUtil.getValuationFor(feature.get());
+					if (featureValue != null) {
+						Expression value = featureValue.getValue();
+						if (value != null) {
+							return value.evaluate(target);
+						}
+					}
+				} else if (referent.getFeaturingType().isEmpty()) {
+					EList<Element> result = new BasicEList<>();
+					result.add(referent);
+					return result;
+				}
+			}
+		}
+		return new BasicEList<>();
+	}
+	
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated

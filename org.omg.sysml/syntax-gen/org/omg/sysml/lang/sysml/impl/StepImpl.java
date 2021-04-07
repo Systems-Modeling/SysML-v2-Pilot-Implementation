@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,22 +18,18 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
-/**
- */
+
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFeature;
-import org.omg.sysml.lang.sysml.Class;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -52,13 +48,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class StepImpl extends FeatureImpl implements Step {
-	
-	public static final String STEP_SUBSETTING_BASE_DEFAULT = "Performances::performances";
-	public static final String STEP_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subperformances";
-	public static final String STEP_SUBSETTING_OBJECT_DEFAULT = "Objects::Object::enactedPerformances";
-	public static final String STEP_SUBSETTING_TRANSFER_DEFAULT = "Occurrences::Occurrence::incomingTransfers";
-	
-	protected boolean isCheckSubsetting = true;
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -111,7 +100,7 @@ public class StepImpl extends FeatureImpl implements Step {
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.STEP__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -135,70 +124,6 @@ public class StepImpl extends FeatureImpl implements Step {
 	public boolean isSetType() {
   		return false;
 	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return 
-			isSubperformance()? 
-				STEP_SUBSETTING_PERFORMANCE_DEFAULT:
-			isEnactedPerformance()?
-				STEP_SUBSETTING_OBJECT_DEFAULT:
-			isIncomingTransfer()?
-				STEP_SUBSETTING_TRANSFER_DEFAULT:
-				STEP_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	@Override
-	public List<? extends Feature> getRelevantFeatures() {
-		return getRelevantFeaturesOf(this);
-	}	
-	
-	public static List<? extends Feature> getRelevantFeaturesOf(Step step) {
-		return step.getOwnedFeature().stream().
-				filter(f->f instanceof ItemFeature).
-				collect(Collectors.toList());
-	}
-	
-	// Utility methods
-	
-	public boolean isSubperformance() {
-		return isCompositePerformanceFeature(this);
-	}
-	
-	public boolean isEnactedPerformance() {
-		return isEnactedPerformance(this);
-	}
-	
-	public boolean isIncomingTransfer() {
-		return isIncomingTransfer(this);
-	}
-	
-	public static boolean isEnactedPerformance(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Class ||
-				owningType instanceof Feature && 
-					((FeatureImpl)owningType).isObjectFeature();
-	}
-	
-	public static boolean isIncomingTransfer(Feature step) {
-		return step.getOwnedFeature().stream().anyMatch(f->f instanceof ItemFeature);
-	}
-	
-	public static boolean isCompositePerformanceFeature(Feature step) {
-		return step.isComposite() && isPerformanceFeature(step);
-	}
-	
-	public static boolean isPerformanceFeature(Feature step) {
-		Type owningType = step.getOwningType();
-		return owningType instanceof Behavior || owningType instanceof Step;
-	}	
-	
-	public List<Step> getSubsteps() {
-		return getOwnedFeature().stream().filter(f->f instanceof Step).
-				map(f->(Step)f).collect(Collectors.toList());
-	}
-	
-	//
 	
 	/**
 	 * <!-- begin-user-doc -->

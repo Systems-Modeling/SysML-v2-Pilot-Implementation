@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,8 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -33,22 +32,21 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.adapter.RequirementUsageAdapter;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,10 +68,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
 
-	public static final String REQUIREMENT_SUBSETTING_BASE_DEFAULT = "Requirements::requirementChecks";
-	public static final String REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT = "Requirements::RequirementCheck::subrequirements";
-	public static final String REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE = "Verifications::VerificationCase::obj::requirementVerifications";
-	
 	private Type subsettingVerificationFeature = null;
 
 	/**
@@ -172,7 +166,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 
 	/**
@@ -197,7 +191,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 
 	@Override
 	public void setReqId(String newReqId) {
-		setReqIdGen(unescapeString(newReqId));
+		setReqIdGen(ElementUtil.unescapeString(newReqId));
 	}
 	
 	/**
@@ -257,13 +251,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 		return constraints;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubrequirement()? 
-				REQUIREMENT_SUBSETTING_SUBREQUIREMENT_DEFAULT:
-				REQUIREMENT_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -333,41 +320,7 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
   		return false;
 	}
 	
-	// Utility methods
-	
-	public boolean isSubrequirement() {
-		Type owningType = getOwningType();
-		return !isAssumptionConstraint() &&
-			   (owningType instanceof RequirementDefinition || 
-			    owningType instanceof RequirementUsage);
-	}
-
-	public boolean isVerifiedRequirement() {
-		FeatureMembership membership = getOwningFeatureMembership();
-		return membership instanceof RequirementVerificationMembership &&
-			   ((RequirementVerificationMembershipImpl)membership).isLegalVerification();
-	}
-	
-	public boolean isObjective() {
-		return getOwningFeatureMembership() instanceof ObjectiveMembership;
-	}
-	
-	public RequirementUsage getObjectiveRequirementOf(Type type) {
-		return type instanceof CaseDefinition? ((CaseDefinition)type).getObjectiveRequirement():
-			   type instanceof CaseUsage? ((CaseUsage)type).getObjectiveRequirement():
-			   null;
-	}
-	
 	// Additional overrides
-	
-	@Override
-	public void addRequirementSubsetting() {
-		if (isVerifiedRequirement()) {
-			addSubsetting(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
-		} else {
-			super.addRequirementSubsetting();
-		}
-	}
 	
 	@Override
 	protected boolean isIgnoredSubsetting(Feature feature) {
@@ -377,17 +330,11 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
 	
 	protected Type getSubsettingVerificationFeature() {
 		if (subsettingVerificationFeature == null) {
-			subsettingVerificationFeature = getDefaultType(REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
+			subsettingVerificationFeature = SysMLLibraryUtil.getLibraryType(this, RequirementUsageAdapter.REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
 		}
 		return subsettingVerificationFeature;
 	}
 
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return isObjective()? Collections.singletonList(getObjectiveRequirementOf(type)):
-			   super.getRelevantFeatures(type);
-	}
-	
 	//
 
 	/**

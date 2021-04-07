@@ -33,6 +33,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.FeatureTyping;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
@@ -52,11 +53,15 @@ public class VTree extends VStructure {
         return style;
     }
 
-    private Element parent;
+    private Membership membership;
 
     protected void addRel(Element typ, Element rel, String text) {
-        if (parent == null) return;
-        addPRelation(parent, typ, rel, text);
+        if (membership == null) return;
+        addPRelation(membership.getMembershipOwningNamespace(), typ, rel, text);
+    }
+    
+    protected void addRel(Element typ, String text) {
+        addRel(typ, membership, text);
     }
 
     @Override
@@ -72,7 +77,7 @@ public class VTree extends VStructure {
 
     @Override
     public String caseAttributeUsage(AttributeUsage au) {
-        if (parent == null) {
+        if (membership == null) {
             addType(au);
         }
         return "";
@@ -102,6 +107,7 @@ public class VTree extends VStructure {
     @Override
     public String caseVariantMembership(VariantMembership vm) {
         Usage u = vm.getOwnedVariantUsage();
+
         String name = vm.getName();
         if (name == null) {
         	name = extractName(u);
@@ -110,8 +116,10 @@ public class VTree extends VStructure {
         	name = "variant";
         }
 
-        addPUMLLine(u, "comp usage ", name);
         addRel(u, vm, "<<variant>>");
+    	if (checkVisited(u)) return "";
+
+        addPUMLLine(u, "comp usage ", name);
         process(new VCompartment(this), u);
 
         return "";
@@ -129,17 +137,19 @@ public class VTree extends VStructure {
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
         ConstraintUsage c = rcm.getConstraint();
+
         switch (rcm.getKind()) {
         case ASSUMPTION:
-            addRel(c, c, "<<assume>>");
+            addRel(c, "<<assume>>");
             break;
         case REQUIREMENT:
-            addRel(c, c, "<<require>>");
+            addRel(c, "<<require>>");
             break;
         default:
-            addRel(c, c, null);
+            addRel(c, null);
             break;
         }
+    	if (checkVisited(c)) return "";
         addType(c, "comp usage ");
         process(new VCompartment(this), c);
         return "";
@@ -162,8 +172,8 @@ public class VTree extends VStructure {
     }
 
     /* VCompartment uses */
-    VTree subtree(Element parent, Element e, boolean force) {
-        VTree vt = newVTree(parent);
+    VTree subtree(Membership membership, Element e, boolean force) {
+        VTree vt = newVTree(membership);
         vt.pushIdMap();
         vt.visit(e);
         if (!(force || vt.hasItems)) {
@@ -175,12 +185,13 @@ public class VTree extends VStructure {
     }
 
     private void addType(Type typ) {
+        addRel(typ, null);
+    	if (checkVisited(typ)) return;
         if (typ instanceof Usage) {
             addType(typ, "comp usage ");
         } else {
             addType(typ, "comp def ");
         }
-        addRel(typ, typ, null);
         process(new VCompartment(this), typ);
     }
 
@@ -200,12 +211,13 @@ public class VTree extends VStructure {
 
     @Override
     public String caseNamespace(org.omg.sysml.lang.sysml.Namespace p) {
-        addRel(p, p, null);
-        this.parent = null;
+        addRel(p, null);
+        this.membership = null;
         return super.caseNamespace(p);
     }
 
     private void addReq(String keyword, Type typ, String reqId) {
+    	if (checkVisited(typ)) return;
         String name = extractName(typ);
         if (name == null) return;
         if (reqId != null) {
@@ -217,29 +229,33 @@ public class VTree extends VStructure {
 
     @Override
     public String caseRequirementDefinition(RequirementDefinition rd) {
-        addRel(rd, rd, null);
+        addRel(rd, null);
         addReq("comp def ", rd, rd.getReqId());
         return "";
     }
 
     @Override
     public String caseRequirementUsage(RequirementUsage ru) {
-        addRel(ru, ru, null);
+        addRel(ru, null);
         addReq("comp usage ", ru, ru.getReqId());
         return "";
     }
 
-    protected VTree newVTree(Element parent) {
-        return new VTree(this, parent);
+    protected VTree newVTree(Membership membership) {
+        return new VTree(this, membership);
     }
 
-    protected VTree(VTree vt, Element parent) {
+    protected VTree(VTree vt, Membership membership) {
         super(vt);
-        this.parent = parent;
+        this.membership = membership;
+    }
+    
+    public VTree(Visitor vt) {
+    	super(vt);
     }
 
     public VTree() {
         super();
-        this.parent = null;
+        this.membership = null;
     }
 }

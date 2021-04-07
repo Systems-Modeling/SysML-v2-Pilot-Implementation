@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -49,9 +49,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class VerificationCaseUsageImpl extends CaseUsageImpl implements VerificationCaseUsage {
 	
-	public static final String VERIFICATION_CASE_SUBSETTING_BASE_DEFAULT = "VerificationCases::verificationCases";
-	public static final String VERIFICATION_CASE_SUBSETTING_SUBCASE_DEFAULT = "VerificationCases::VerificationCase::subVerificationCases";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,13 +115,6 @@ public class VerificationCaseUsageImpl extends CaseUsageImpl implements Verifica
 	}
 
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					VERIFICATION_CASE_SUBSETTING_SUBCASE_DEFAULT:
-					VERIFICATION_CASE_SUBSETTING_BASE_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

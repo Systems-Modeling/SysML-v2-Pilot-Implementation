@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +19,7 @@
  * 
  * Contributors:
  *  Zoltan Ujhelyi
+ *  Ed Seidewitz
  * 
  *****************************************************************************/
 package org.omg.sysml.interactive.tests;
@@ -32,14 +33,11 @@ import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.lang.sysml.Element;
 
-public class GlobalNameRedefinitionTest {
+public class GlobalNameRedefinitionTest extends SysMLInteractiveTest {
 
-	private final static String SYSML_LIBRARY_PATH_KEY = "libraryPath";
-	
 	@Test
 	public void testRedefinitionShadowing() throws Exception {
-		SysMLInteractive instance = SysMLInteractive.createInstance();
-		instance.loadLibrary(System.getProperty(SYSML_LIBRARY_PATH_KEY));
+		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
 		SysMLInteractiveResult result1 = instance.eval("y = 1;");
 		System.out.println(result1);
@@ -58,8 +56,7 @@ public class GlobalNameRedefinitionTest {
 	
 	@Test
 	public void testRedefinitionShadowingMultidigitFiles() throws Exception {
-		SysMLInteractive instance = SysMLInteractive.createInstance();
-		instance.loadLibrary(System.getProperty(SYSML_LIBRARY_PATH_KEY));
+		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
 		// This is used to ensure later requests will get identifiers 9 and 10
 		for (int i=1; i<9; i++) {
@@ -83,8 +80,7 @@ public class GlobalNameRedefinitionTest {
 	
 	@Test
 	public void testNoShadowingCaseSensitive() throws Exception {
-		SysMLInteractive instance = SysMLInteractive.createInstance();
-		instance.loadLibrary(System.getProperty(SYSML_LIBRARY_PATH_KEY));
+		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
 		SysMLInteractiveResult result1 = instance.eval("y = 1;");
 		System.out.println(result1);

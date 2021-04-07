@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.AssociationStructure;
 import org.omg.sysml.lang.sysml.InterfaceUsage;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -49,8 +50,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class InterfaceUsageImpl extends ConnectionUsageImpl implements InterfaceUsage {
 	
-	public static final String INTERFACE_CONNECTOR_SUBSETTING_DEFAULT = "Interfaces::interfaces";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,13 +69,6 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 		return SysMLPackage.Literals.INTERFACE_USAGE;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return getConnectorEnd().size() > 2? 
-				ConnectorImpl.CONNECTOR_SUBSETTING_DEFAULT:
-					INTERFACE_CONNECTOR_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,13 +136,13 @@ public class InterfaceUsageImpl extends ConnectionUsageImpl implements Interface
 	 * @generated
 	 */
 	@Override
-	public EList<Association> getConnectionDefinition() {
-		EList<Association> connectionDefinition = new UniqueEList<Association>();
+	public EList<AssociationStructure> getConnectionDefinition() {
+		EList<AssociationStructure> connectionDefinition = new UniqueEList<AssociationStructure>();
 		InterfaceDefinition interfaceDefinition = getInterfaceDefinition();
 		if (interfaceDefinition != null) {
 			connectionDefinition.add(interfaceDefinition);
 		}
-		return new UnionEObjectEList<Association>(this, SysMLPackage.Literals.CONNECTION_USAGE__CONNECTION_DEFINITION, connectionDefinition.size(), connectionDefinition.toArray());
+		return new UnionEObjectEList<AssociationStructure>(this, SysMLPackage.Literals.CONNECTION_USAGE__CONNECTION_DEFINITION, connectionDefinition.size(), connectionDefinition.toArray());
 	}
 
 	/**

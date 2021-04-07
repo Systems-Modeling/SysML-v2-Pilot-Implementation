@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -8,10 +28,10 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.MetadataFeatureValue;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -64,13 +84,9 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 * @generated NOT
 	 */
 	public MetadataFeatureValue basicGetMetadataFeatureValue() {
-		EList<Membership> ownedMemberships = super.getOwnedMembership();
-		if (ownedMemberships.isEmpty()) {
-			return null;
-		} else {
-			Membership ownedMembership = ownedMemberships.get(0);
-			return ownedMembership instanceof MetadataFeatureValue? (MetadataFeatureValue)ownedMembership: null;
-		}
+		return (MetadataFeatureValue)super.getOwnedMembership().stream().
+				filter(MetadataFeatureValue.class::isInstance).
+				findFirst().orElse(null);
 	}
 
 	/**
@@ -80,7 +96,11 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 */
 	@Override
 	public void setMetadataFeatureValue(MetadataFeatureValue newMetadataFeatureValue) {
-		throw new UnsupportedOperationException();
+		EList<Relationship> ownedRelationships = getOwnedRelationship();
+		ownedRelationships.remove(getMetadataFeatureValue());
+		if (newMetadataFeatureValue != null) {
+			ownedRelationships.add(newMetadataFeatureValue);
+		}
 	}
 
 	/**
@@ -98,21 +118,31 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	 * @generated
 	 */
 	@Override
-	public EList<Membership> getOwnedMembership_comp() {
-		EList<Membership> ownedMembership_comp = new UniqueEList<Membership>();
+	public EList<Membership> getOwnedMembership() {
+		EList<Membership> ownedMembership = new UniqueEList<Membership>();
 		MetadataFeatureValue metadataFeatureValue = getMetadataFeatureValue();
 		if (metadataFeatureValue != null) {
-			ownedMembership_comp.add(metadataFeatureValue);
+			ownedMembership.add(metadataFeatureValue);
 		}
-		return new UnionEObjectEList<Membership>(this, SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP_COMP, ownedMembership_comp.size(), ownedMembership_comp.toArray());
+		return new UnionEObjectEList<Membership>(this, SysMLPackage.Literals.NAMESPACE__OWNED_MEMBERSHIP, ownedMembership.size(), ownedMembership.toArray());
 	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getOwnedMembership() <em>Owned Membership</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwnedMembership()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.METADATA_FEATURE__OWNED_RELATIONSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOwnedMembership_comp() {
+	public boolean isSetOwnedMembership() {
   		return false;
 	}
 
@@ -169,8 +199,8 @@ public class MetadataFeatureImpl extends FeatureImpl implements MetadataFeature 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.METADATA_FEATURE__OWNED_MEMBERSHIP_COMP:
-				return isSetOwnedMembership_comp();
+			case SysMLPackage.METADATA_FEATURE__OWNED_MEMBERSHIP:
+				return isSetOwnedMembership();
 			case SysMLPackage.METADATA_FEATURE__METADATA_FEATURE_VALUE:
 				return isSetMetadataFeatureValue();
 		}

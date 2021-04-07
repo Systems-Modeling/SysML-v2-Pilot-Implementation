@@ -27,6 +27,10 @@ package test{
 		   C, C.c, aliass, aliass.a1,
 		   OuterPackage.A, OuterPackage.A.a1, OuterPackage.B, OuterPackage.B.b, OuterPackage.B.b.a1,
 		   test.C, test.C.c, test.aliass, test.aliass.a1, 
+		   		   C.c.a1.self,  test.C.c.a1.self, 
+		   C.self,  C.c.self,  aliass.self,  aliass.a1.self, 
+		   OuterPackage.A.self,  OuterPackage.A.a1.self,  OuterPackage.B.self,  OuterPackage.B.b.self,  OuterPackage.B.b.a1.self, 
+		   test.C.self,  test.C.c.self,  test.aliass.self,  test.aliass.a1.self, self 
 	--- */
 		feature c redefines aliass;
 	}

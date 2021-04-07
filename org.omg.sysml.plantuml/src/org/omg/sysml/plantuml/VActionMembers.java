@@ -26,10 +26,9 @@ package org.omg.sysml.plantuml;
 
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.DecisionNode;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.ForkNode;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemFlowFeature;
@@ -37,14 +36,15 @@ import org.omg.sysml.lang.sysml.JoinNode;
 import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Redefinition;
-import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.Type;
 
-public class VActionMembers extends VDefault {
+public class VActionMembers extends VBehavior {
 
     private void addNode(Feature f, String type) {
         String name = f.getName();
-        if (name == null) return;
+        if (name == null) {
+            name = "noname";
+        }
         append(type);
         append(' ');
         addNameWithId(f, name, true);
@@ -72,6 +72,7 @@ public class VActionMembers extends VDefault {
 
     public String startAction(Type typ) {
         traverse(typ);
+        outputEntryExitTransitions();
         closeBlock();
         return "";
     }
@@ -88,28 +89,14 @@ public class VActionMembers extends VDefault {
     }
 
     @Override
-    public String caseSuccession(Succession su) {
-        Element src = null;
-        Element dest = null;
-        // We should use getSource() and getTarget() but they are not work so far.
-        for (FeatureMembership fm2: su.getOwnedFeatureMembership()) {
-            Feature f2 = fm2.getMemberFeature();
-            if (src == null) {
-                src = getEnd(f2);
-            } else if (dest == null) {
-                dest = getEnd(f2);
-            } else {
-                break;
-            }
-        }
-        if ((src == null) || (dest == null)) return "";
-        addPRelation(src, dest, su);
+    public String caseConnector(Connector c) {
+        addConnector(c);
         return "";
     }
 
     @Override
-    public String caseConnector(Connector c) {
-        addConnector(c);
+    public String caseDecisionNode(DecisionNode dn) {
+        addNode(dn, "choice");
         return "";
     }
 
@@ -144,9 +131,11 @@ public class VActionMembers extends VDefault {
     }
 
     @Override
-    public String caseActionUsage(ActionUsage su) {
+    public String caseActionUsage(ActionUsage au) {
+        // Start action should be specially visualized as a black circle.
+        if (isStartAction(au)) return "";
         VAction v = new VAction(this);
-        String ret = v.visit(su);
+        String ret = v.visit(au);
         append(ret);
         return ret;
     }

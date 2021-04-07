@@ -6,7 +6,7 @@
 package Occurrences {
 	private import Base::Anything;
 	private import Base::things;
-	private import Objects::*;
+	private import Links::*;
 	
 	private import BaseFunctions::*;
 	
@@ -17,7 +17,7 @@ package Occurrences {
 	 * The features of Occurrence specify the semantics of portions, slices and
 	 * snapshots of an occurrence over time.
 	 */
-	abstract classifier Occurrence specializes Anything {
+	abstract class Occurrence specializes Anything {
 		private import BaseFunctions::size;
 		
 		feature portionOfLife : Life[1] subsets portionOf;
@@ -27,18 +27,18 @@ package Occurrences {
 		/**
 		 * Occurrences that end before this occurrence starts.
 		 */
-		feature predecessors: Occurrence[0..*];
+		feature predecessors: Occurrence[0..*] subsets occurrences;
 		
 		/**
 		 * Occurrences that start after this occcurrence ends.
 		 */
-		feature successors: Occurrence[0..*];
+		feature successors: Occurrence[0..*] subsets occurrences;
 		
 		/**
 		 * Occurrences that start no earlier than and end no later than
 		 * this occurrence, including at least this occurrence.
 		 */
-		feature suboccurrences: Occurrence[1..*];
+		feature suboccurrences: Occurrence[1..*] subsets occurrences;
 		
 		/**
 		 * Occurrences that are portions of this occurrence, including at
@@ -105,13 +105,38 @@ package Occurrences {
 		succession middleShots[0..*] then endShot[1];
 		
 		/**
-		 * The incoming transfers targeting this occurrence. 
+		 * The incoming transfers received by this occurrence. 
 		 */
-		feature all incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+		feature incomingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
 			end feature redefines transferSource;
 			end feature redefines transferTarget;
 		}
-		binding incomingTransfers.transferTarget[*] = self;
+		
+		/**
+		 * The incoming transfers with this occurrence as the target. 
+		 */
+		feature all incomingTransfersToSelf subsets incomingTransfers {
+			end feature redefines transferSource;
+			end feature redefines transferTarget;
+		}
+		binding incomingTransfersToSelf.transferTarget = self;
+
+		/**
+		 * The outgoing transfers sent from this occurrence. 
+		 */
+		feature outgoingTransfers: Transfers::Transfer[0..*] subsets Transfers::transfers {
+			end feature redefines transferSource;
+			end feature redefines transferTarget;
+		}
+		
+		/**
+		 * The outgoing transfers with this occurrence as the source. 
+		 */
+		feature all outgoingTransfersFromSelf subsets outgoingTransfers {
+			end feature redefines transferSource;
+			end feature redefines transferTarget;
+		}
+		binding outgoingTransfersFromSelf.transferSource = self;
 	}
 	
 	abstract class all Life specializes Occurrence {
@@ -120,6 +145,8 @@ package Occurrences {
 		 */
 		binding portionOf = self;
 	}
+	
+	abstract feature occurrences: Occurrence[0..*] subsets things;
 
 	/**
 	 * HappensDuring asserts that the shorterOccurrence happens during the longerOccurrence.

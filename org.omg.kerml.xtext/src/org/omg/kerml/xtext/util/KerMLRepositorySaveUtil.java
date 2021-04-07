@@ -185,13 +185,13 @@ public class KerMLRepositorySaveUtil extends KerMLTraversalUtil {
 				this.initialize();				
 				this.read(args);
 				
-				System.out.println("Transforming" + 
+				println("Transforming" + 
 						(this.isAddImplicitGeneralizations? " (adding implicit generalizations)... ": " ..."));
 				ElementUtil.transformAll(this.resourceSet, this.isAddImplicitGeneralizations);
 				
-				System.out.println("\nBase path is " + this.getBasePath());
-				System.out.println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
-				System.out.println();
+				println("\nBase path is " + this.getBasePath());
+				println("Saving to Project (" + this.getProjectName() + ") " + this.getProjectId());
+				println("");
 				
 				this.process();
 			}

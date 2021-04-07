@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,12 +22,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.BooleanExpression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -46,15 +43,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpression {
-
-	public static final String BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT = "Performances::booleanEvaluations";
-	public static final String BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT = "Performances::Performance::subBooleanEvaluations";
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this BooleanExpression.
-	 */
-	protected BindingConnector resultConnector = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -154,31 +142,6 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
 	 */
 	public boolean isSetFunction() {
   		return false;
-	}
-
-	// Additional redefinitions and subsets
-
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()?
-				BOOLEAN_EXPRESSION_SUBSETTING_PERFORMANCE_DEFAULT:
-				BOOLEAN_EXPRESSION_SUBSETTING_BASE_DEFAULT;
-	}
-
-	@Override
-	public EList<Feature> getFeature() {
-		getResultConnector();
-		return super.getFeature();
-	}
-	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
 	}
 
 	/**

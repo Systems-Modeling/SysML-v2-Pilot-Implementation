@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * 
  * <p>Behaviors provide a place to describe changes in objects over time. Behaviors can be decomposed into steps and be characterized by parameters.</p>
  * 
+ * allSupertypes()->includes(Kernel Library::Performance)
  * <!-- end-model-doc -->
  *
  * <p>
@@ -47,7 +48,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Behavior extends Classifier {
+public interface Behavior extends org.omg.sysml.lang.sysml.Class {
 	/**
 	 * Returns the value of the '<em><b>Step</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Step}.
@@ -97,7 +98,7 @@ public interface Behavior extends Classifier {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getBehavior_Parameter()
-	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 * @model transient="true" volatile="true" derived="true"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='parameteredBehavior'"
 	 *        annotation="subsets"
 	 * @generated

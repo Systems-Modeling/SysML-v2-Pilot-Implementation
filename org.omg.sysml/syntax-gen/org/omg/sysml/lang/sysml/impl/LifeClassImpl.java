@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,15 +22,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.LifeClass;
-import org.omg.sysml.lang.sysml.LiteralInteger;
-import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Superclassing;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -41,8 +34,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class LifeClassImpl extends ClassImpl implements LifeClass {
-	
-	public static final String LIFE_CLASS_LIFE_SUPERCLASS = "Occurrences::Life";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,55 +52,6 @@ public class LifeClassImpl extends ClassImpl implements LifeClass {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.LIFE_CLASS;
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return LIFE_CLASS_LIFE_SUPERCLASS;
-	}
-	
-	public void addSuperclassing() {	
-		Namespace owner = getOwningNamespace();
-		EList<Superclassing> superclassings = getOwnedSuperclassing();
-		if (owner instanceof Classifier) {
-			if (superclassings.size() < 2) {
-				Superclassing superclassing = SysMLFactory.eINSTANCE.createSuperclassing();
-				superclassing.setSuperclass((Classifier)owner);
-				superclassing.setSubclass(this);
-				getOwnedRelationship_comp().add(superclassing);
-			} else {
-				superclassings.get(1).setSuperclass((Classifier)owner);
-			}
-		}
-	}
-	
-	public void addMultiplicity() {
-		Multiplicity multiplicity = super.basicGetMultiplicity();
-		if (multiplicity == null || multiplicity.getOwningType() != this) {
-			multiplicity = createSingletonMultiplicity();
-			addOwnedFeature(multiplicity);
-		}
-	}
-	
-	protected Multiplicity createSingletonMultiplicity() {
-		MultiplicityRangeImpl multiplicity = (MultiplicityRangeImpl)SysMLFactory.eINSTANCE.createMultiplicityRange();
-		
-		LiteralInteger bound = SysMLFactory.eINSTANCE.createLiteralInteger();
-		bound.setValue(0);
-		multiplicity.addOwnedFeature(bound);
-		
-		bound = SysMLFactory.eINSTANCE.createLiteralInteger();
-		bound.setValue(1);
-		multiplicity.addOwnedFeature(bound);
-		
-		return multiplicity;
-	}
-
-	@Override
-	public void transform() {
-		super.transform();
-		addSuperclassing();
-		addMultiplicity();
 	}
 	
 } //LifeClassImpl

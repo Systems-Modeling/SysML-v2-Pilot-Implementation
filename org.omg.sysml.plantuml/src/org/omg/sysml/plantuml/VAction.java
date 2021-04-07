@@ -27,6 +27,7 @@ package org.omg.sysml.plantuml;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleRelSwitch;
 import org.omg.sysml.plantuml.SysML2PlantUMLStyle.StyleSwitch;
@@ -42,6 +43,10 @@ public class VAction extends VDefault {
 		public String caseSuccession(Succession s) {
             return " ..> ";
 		}
+		@Override
+		public String caseTransitionUsage(TransitionUsage tu) {
+            return " ..> ";
+		}
     }, null));
 
     @Override 
@@ -50,7 +55,7 @@ public class VAction extends VDefault {
     }
 
     private void addAction(Type typ) {
-        addRecLine(typ, true);
+        if (!addRecLine(typ, true)) return;
         // addGeneralizations(typ);
         VActionMembers v = new VActionMembers(this);
         v.startAction(typ);

@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -32,8 +52,8 @@ import org.omg.sysml.lang.sysml.TypeFeaturing;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getFeatureOfType <em>Feature Of Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getFeaturingType <em>Featuring Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getOwningFeatureOfType <em>Owning Feature Of Type</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeFeaturingImpl#getFeaturingType <em>Featuring Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -260,7 +280,7 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.TYPE_FEATURING__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -276,12 +296,12 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE:
 				if (resolve) return getFeatureOfType();
 				return basicGetFeatureOfType();
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				if (resolve) return getFeaturingType();
-				return basicGetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				if (resolve) return getOwningFeatureOfType();
 				return basicGetOwningFeatureOfType();
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				if (resolve) return getFeaturingType();
+				return basicGetFeaturingType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,11 +317,11 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)newValue);
 				return;
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				setFeaturingType((Type)newValue);
-				return;
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				setOwningFeatureOfType((Feature)newValue);
+				return;
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				setFeaturingType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -318,11 +338,11 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			case SysMLPackage.TYPE_FEATURING__FEATURE_OF_TYPE:
 				setFeatureOfType((Feature)null);
 				return;
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				setFeaturingType((Type)null);
-				return;
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				setOwningFeatureOfType((Feature)null);
+				return;
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				setFeaturingType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -344,10 +364,10 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 				return isSetSource();
 			case SysMLPackage.TYPE_FEATURING__TARGET:
 				return isSetTarget();
-			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
-				return isSetFeaturingType();
 			case SysMLPackage.TYPE_FEATURING__OWNING_FEATURE_OF_TYPE:
 				return basicGetOwningFeatureOfType() != null;
+			case SysMLPackage.TYPE_FEATURING__FEATURING_TYPE:
+				return isSetFeaturingType();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -435,7 +455,7 @@ public class TypeFeaturingImpl extends RelationshipImpl implements TypeFeaturing
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}

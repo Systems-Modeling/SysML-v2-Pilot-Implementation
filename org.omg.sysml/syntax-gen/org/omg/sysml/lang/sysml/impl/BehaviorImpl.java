@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -34,8 +32,8 @@ import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object
@@ -50,9 +48,7 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *
  * @generated
  */
-public class BehaviorImpl extends ClassifierImpl implements Behavior {
-
-	public static final String BEHAVIOR_SUPERCLASS_DEFAULT = "Performances::Performance";
+public class BehaviorImpl extends ClassImpl implements Behavior {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -88,27 +84,8 @@ public class BehaviorImpl extends ClassifierImpl implements Behavior {
 	 */
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.BEHAVIOR__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return BEHAVIOR_SUPERCLASS_DEFAULT;
-	}
-
-	/**
-	 * Return the non-parameter abstract features of the Behavior.
-	 */
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return getRelevantFeaturesFor(this);
-	}
-	
-	public static List<Feature> getRelevantFeaturesFor(Type type) {
-		return type.getOwnedFeature().stream().
-				filter(feature -> !((FeatureImpl)feature).isParameter() && feature.isAbstract()).
-				collect(Collectors.toList());
 	}
 
 	/**

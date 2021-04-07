@@ -3,7 +3,7 @@
  */
 package org.omg.sysml.xtext.scoping;
 
-import org.eclipse.xtext.scoping.impl.DelegatingScopeProvider;
+import org.omg.kerml.expressions.xtext.scoping.KerMLExpressionsScopeProvider;
 
-public abstract class AbstractSysMLScopeProvider extends DelegatingScopeProvider {
+public abstract class AbstractSysMLScopeProvider extends KerMLExpressionsScopeProvider {
 }

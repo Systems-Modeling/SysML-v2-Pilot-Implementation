@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -44,8 +44,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition {
 
-	public static final String PORT_DEFINITION_SUPERCLASS_DEFAULT = "Ports::Port";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,9 +154,4 @@ public class PortDefinitionImpl extends DefinitionImpl implements PortDefinition
 		return super.eIsSet(featureID);
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return PORT_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
 } //PortDefinitionImpl

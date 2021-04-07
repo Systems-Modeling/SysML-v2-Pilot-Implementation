@@ -32,24 +32,15 @@ package 'Port Example' {
 	port def pd1;
 	port def pd2;
 	part def FA {
-		/* XPECT errors --- 
-		   	"A port must be typed by one port definition." at "port p1 : B;"
-			"Features must have at least one type" at "port p1 : B;"
-		--- */
+		// XPECT errors --> "A port must be typed by port definitions." at "port p1 : B;"
 		port p1 : B;
-		/* XPECT errors --- 
-		   	"A port must be typed by one port definition." at "port p2 : Vt;"
-			"Features must have at least one type" at "port p2 : Vt;"
-		--- */
+		// XPECT errors --> "A port must be typed by port definitions." at "port p2 : Vt;"
 		port p2 : Vt;
-		//XPECT errors --> "A port must be typed by one port definition." at "port two_port_def_types : pd1, pd2;"
+
 		port two_port_def_types: pd1, pd2;
 	}
 	part tank: FA {
-		/* XPECT errors --- 
-		   "A port must be typed by one port definition." at "port pp redefines p1;"
-		   "Features must have at least one type" at "port pp redefines p1;"
-		 --- */
+		// XPECT errors --> "A port must be typed by port definitions." at "port pp redefines p1;"
 		port pp redefines p1;
 	}
 }

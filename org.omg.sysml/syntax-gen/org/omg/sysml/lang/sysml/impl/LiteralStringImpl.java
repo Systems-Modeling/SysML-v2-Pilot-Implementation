@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.ElementUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Literal
@@ -92,7 +93,7 @@ public class LiteralStringImpl extends LiteralExpressionImpl implements LiteralS
 
 	@Override
 	public void setValue(String newValue) {
-		setValueGen(unescapeString(newValue));
+		setValueGen(ElementUtil.unescapeString(newValue));
 	}
 
 	/**

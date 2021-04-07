@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -37,6 +35,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,8 +54,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefinition {
 
-	public static final String ACTION_DEFINITION_SUPERCLASS_DEFAULT = "Actions::Action";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +93,7 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	@Override
 	public EList<Feature> getParameter() {
 		EList<Feature> parameters = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.ACTION_DEFINITION__PARAMETER);
-		parameters.addAll(getAllParameters());
+		parameters.addAll(TypeUtil.getAllParametersOf(this));
 		return parameters;
 	}
 
@@ -110,18 +107,6 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 		return new DerivedEObjectEList<ActionUsage>(ActionUsage.class, this, 
 				SysMLPackage.ACTION_DEFINITION__ACTION, 
 				new int[] {SysMLPackage.TYPE__FEATURE});
-	}
-
-	protected String getDefaultSupertype() {
-		return ACTION_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
-	/**
-	 * Return the non-parameter abstract features of the Activity.
-	 */
-	@Override
-	public List<Feature> getRelevantFeatures() {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -213,6 +198,11 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Behavior.class) {
 			switch (derivedFeatureID) {
 				case SysMLPackage.ACTION_DEFINITION__STEP: return SysMLPackage.BEHAVIOR__STEP;
@@ -230,6 +220,11 @@ public class ActionDefinitionImpl extends DefinitionImpl implements ActionDefini
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == org.omg.sysml.lang.sysml.Class.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == Behavior.class) {
 			switch (baseFeatureID) {
 				case SysMLPackage.BEHAVIOR__STEP: return SysMLPackage.ACTION_DEFINITION__STEP;

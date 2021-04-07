@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,20 +22,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
-import org.omg.sysml.lang.sysml.TransitionUsage;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,54 +51,6 @@ public class SourceEndImpl extends FeatureImpl implements SourceEnd {
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.SOURCE_END;
-	}
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		addDefaultGeneralType();
-		super.addComputedRedefinitions(skip);
-	}
-	
-	@Override
-	public Type getDefaultType(String... defaultNames) {
-		Type type = getOwningType();
-		return type instanceof Feature? 
-				getSource((Feature)type): 
-				super.getDefaultType(defaultNames);
-	}
-	
-	protected Feature getSource(Feature owningFeature) {
-		Type type = owningFeature.getOwningType();
-		return owningFeature instanceof BindingConnector && 
-			   type instanceof SatisfyRequirementUsage? 
-					((SatisfyRequirementUsage)type).getSubjectParameter(): 
-					getPreviousFeature(owningFeature);
-	}
-	
-	protected static Feature getPreviousFeature(Feature feature) {
-		Namespace owner = feature.getOwningNamespace();
-		if (!(owner instanceof Type)) {
-			return null;
-		} else {
-			EList<FeatureMembership> memberships = ((Type)owner).getOwnedFeatureMembership();
-			for (int i = memberships.indexOf(feature.getOwningFeatureMembership()) - 1; i >= 0; i--) {
-				FeatureMembership membership = memberships.get(i);
-				if (!(membership instanceof TransitionFeatureMembership)) {
-					Feature previousFeature = memberships.get(i).getMemberFeature();
-					if (!(((FeatureImpl)previousFeature).isParameter() || 
-						  previousFeature instanceof Connector || 
-						  previousFeature instanceof TransitionUsage)) {
-						return previousFeature;
-					}
-				}
-			}
-			return owner instanceof Feature? getPreviousFeature((Feature)owner): null;
-		}
 	}
 	
 } //SourceEndImpl

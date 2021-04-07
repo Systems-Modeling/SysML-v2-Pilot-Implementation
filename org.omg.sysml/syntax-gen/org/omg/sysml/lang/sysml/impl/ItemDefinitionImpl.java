@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ItemDefinitionImpl extends DefinitionImpl implements ItemDefinition {
 
-	public static final String ITEM_DEFINITION_SUPERCLASS_DEFAULT = "Items::Item";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,11 +53,6 @@ public class ItemDefinitionImpl extends DefinitionImpl implements ItemDefinition
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.ITEM_DEFINITION;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return ITEM_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } //ItemDefinitionImpl

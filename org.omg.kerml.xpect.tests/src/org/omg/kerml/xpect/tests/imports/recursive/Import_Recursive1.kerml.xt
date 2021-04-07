@@ -1,0 +1,54 @@
+//* 
+XPECT_SETUP org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest
+	ResourceSet {
+		ThisFile {}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+			}
+		}
+	}
+END_SETUP 
+*/
+
+package RecursiveImport {
+	
+	import P::**;
+  
+	package P {
+		class X;
+		package Q {
+			class Y;
+			package R {
+        		class Z;
+      		}
+		}
+	
+	}
+
+	//* XPECT scope at X ---
+	    P.X, RecursiveImport.P.X,
+	    P.Q.Y,  RecursiveImport.P.Q.Y,
+	    P.Q.R.Z, RecursiveImport.P.Q.R.Z,
+	   
+	    X,RecursiveImport.X,  
+	    Q.Y, RecursiveImport.Q.Y,
+	    Q.R.Z, RecursiveImport.Q.R.Z,
+	   
+		Y, RecursiveImport.Y,
+		R.Z, RecursiveImport.R.Z,
+	 	
+		Z, RecursiveImport.Z,
+	   
+	    x,RecursiveImport.x, 
+	    y, RecursiveImport.y,
+		z, RecursiveImport.z
+	--- */
+
+	feature x: X;
+	feature y: Y;
+	feature z: Z;
+	 
+}

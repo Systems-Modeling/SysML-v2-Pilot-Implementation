@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,8 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
-import java.util.stream.Stream;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -35,9 +33,9 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +57,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUsage {
 	
-	public static final String TRANSITION_USAGE_SUBSETTING_DEFAULT = "States::transitions";
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -151,18 +148,6 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return TRANSITION_USAGE_SUBSETTING_DEFAULT;
-	}
-	
-	public Stream<Feature> getTransitionFeatures(TransitionFeatureKind kind) {
-		return getOwnedFeatureMembership().stream().
-				filter(mem->(mem instanceof TransitionFeatureMembership) && ((TransitionFeatureMembership)mem).getKind() == kind).
-				map(mem->mem.getMemberFeature()).
-				filter(f->f != null);
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,7 +157,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public EList<AcceptActionUsage> getTriggerAction() {
 		EList<AcceptActionUsage> triggerActions = 
 				new NonNotifyingEObjectEList<>(AcceptActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__TRIGGER_ACTION);
-		getTransitionFeatures(TransitionFeatureKind.TRIGGER).
+		UsageUtil.getTransitionFeaturesOf(this, TransitionFeatureKind.TRIGGER).
 			filter(feature->feature instanceof AcceptActionUsage).
 			map(feature->(AcceptActionUsage)feature).
 			forEachOrdered(triggerActions::add);
@@ -188,7 +173,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public EList<Expression> getGuardExpression() {
 		EList<Expression> guardExpressions = 
 				new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.TRANSITION_USAGE__GUARD_EXPRESSION);
-		getTransitionFeatures(TransitionFeatureKind.GUARD).
+		UsageUtil.getTransitionFeaturesOf(this, TransitionFeatureKind.GUARD).
 			filter(feature->feature instanceof Expression).
 			map(feature->(Expression)feature).
 			forEachOrdered(guardExpressions::add);
@@ -204,7 +189,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public EList<ActionUsage> getEffectAction() {
 		EList<ActionUsage> effectActions = 
 				new NonNotifyingEObjectEList<>(ActionUsage.class, this, SysMLPackage.TRANSITION_USAGE__EFFECT_ACTION);
-		getTransitionFeatures(TransitionFeatureKind.EFFECT).
+		UsageUtil.getTransitionFeaturesOf(this, TransitionFeatureKind.EFFECT).
 			filter(feature->feature instanceof ActionUsage).
 			map(feature->(ActionUsage)feature).
 			forEachOrdered(effectActions::add);
@@ -242,7 +227,7 @@ public class TransitionUsageImpl extends ActionUsageImpl implements TransitionUs
 	public void setSuccession(Succession newSuccession) {
 		throw new UnsupportedOperationException();
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,15 +22,13 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +40,6 @@ import org.omg.sysml.lang.sysml.Type;
 public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeature {
 	
 	public static final String TIME_SLICE_FEATURE_DEFAULT_NAME = "timeSliceOf";	
-	public static final String TIME_SLICE_FEATURE_REDEFINED_FEATURE = "Occurrences::Occurrence::timeSliceOf";
 	
 	/**
 	 * <!-- begin-user-doc -->
@@ -71,26 +68,10 @@ public class TimeSliceFeatureImpl extends FeatureImpl implements TimeSliceFeatur
 		return super.basicGetName();
 	}
 	
-	public void computeImplicitGeneralTypes() {
-		IndividualUsageImpl.setTypingFor(this);
-		super.computeImplicitGeneralTypes();
-	}
-		
 	@Override
 	protected List<Type> getFeatureTypes() {
-		IndividualUsageImpl.setTypingFor(this);
+		FeatureUtil.setIndividualTypingFor(this);
 		return super.getFeatureTypes();
 	}
 
-	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		return Collections.singletonList(null);
-	}
-	
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		return Collections.singletonList(type == getOwner()? this:
-			   (Feature)getDefaultType(TIME_SLICE_FEATURE_REDEFINED_FEATURE));
-	}
-	
 } //TimeSliceFeatureImpl

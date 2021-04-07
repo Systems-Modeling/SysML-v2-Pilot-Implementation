@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,9 +27,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.ViewDefinition;
-import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointDefinition;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 
@@ -47,9 +44,6 @@ import org.omg.sysml.lang.sysml.ViewpointUsage;
  * @generated
  */
 public class ViewpointUsageImpl extends RequirementUsageImpl implements ViewpointUsage {
-
-	public static final String VIEWPOINT_SUBSETTING_BASE_DEFAULT = "Views::viewpointChecks";
-	public static final String VIEWPOINT_SUBSETTING_VIEW_DEFAULT = "Views::View::viewpointSatisfactions";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,18 +102,6 @@ public class ViewpointUsageImpl extends RequirementUsageImpl implements Viewpoin
 	 */
 	public boolean isSetViewpointDefinition() {
 		return basicGetViewpointDefinition() != null;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return isSatisfiedViewpoint()?
-					VIEWPOINT_SUBSETTING_VIEW_DEFAULT:
-					VIEWPOINT_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSatisfiedViewpoint() {
-		Type owningType = getOwningType();
-		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
 	}
 
 	/**

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -24,9 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -44,16 +41,14 @@ import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -64,9 +59,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRelatedElement_comp <em>Owned Related Element comp</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwnedRelatedElement <em>Owned Related Element</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getRelatedFeature <em>Related Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#getAssociation <em>Association</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ConnectorImpl#isDirected <em>Is Directed</em>}</li>
@@ -79,18 +73,15 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConnectorImpl extends FeatureImpl implements Connector {
 	
-	public static final String CONNECTOR_SUBSETTING_DEFAULT = "Objects::links";
-	public static final String BINARY_CONNECTOR_SUBSETTING_DEFAULT = "Objects::binaryLinks";
-	
 	/**
-	 * The cached value of the '{@link #getOwnedRelatedElement_comp() <em>Owned Related Element comp</em>}' containment reference list.
+	 * The cached value of the '{@link #getOwnedRelatedElement() <em>Owned Related Element</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedRelatedElement_comp()
+	 * @see #getOwnedRelatedElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Element> ownedRelatedElement_comp;
+	protected EList<Element> ownedRelatedElement;
 	/**
 	 * The default value of the '{@link #isDirected() <em>Is Directed</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -194,13 +185,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public EList<Element> getOwnedRelatedElement() {
-		EList<Element> ownedRelatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT);
-		ownedRelatedElements.addAll(getOwnedRelatedElement_comp());
-		return ownedRelatedElements;
+		if (ownedRelatedElement == null) {
+			ownedRelatedElement = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
+		}
+		return ownedRelatedElement;
 	}
 
 	/**
@@ -238,25 +230,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwningRelatedElement != null)
-				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Element> getOwnedRelatedElement_comp() {
-		if (ownedRelatedElement_comp == null) {
-			ownedRelatedElement_comp = new EObjectContainmentWithInverseEList<Element>(Element.class, this, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP, SysMLPackage.ELEMENT__OWNING_RELATIONSHIP);
-		}
-		return ownedRelatedElement_comp;
 	}
 
 	/**
@@ -312,7 +291,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public EList<Feature> getRelatedFeature() {
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
 		new ArrayList<Feature>(getConnectorEnd()).stream().forEach(end->
-			((FeatureImpl)end).getFirstSubsettedFeature().
+			FeatureUtil.getFirstSubsettedFeatureOf(end).
 			ifPresent(relatedFeatures::add));
 		return relatedFeatures;
 	}
@@ -344,7 +323,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__TARGET, SysMLPackage.CONNECTOR__SOURCE, SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT};
+	protected static final int[] RELATED_ELEMENT_ESUBSETS = new int[] {SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT, SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT, SysMLPackage.CONNECTOR__TARGET, SysMLPackage.CONNECTOR__SOURCE};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -430,14 +409,9 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 * @generated NOT
 	 */
 	public Feature basicGetSourceFeature() {
-		return getSourceFeatureOf(this);
+		return ConnectorUtil.getSourceFeatureOf(this);
 	}
 	
-	public static Feature getSourceFeatureOf(Connector connector) {
-		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		return relatedFeatures.size() == 2? relatedFeatures.get(0): null;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -465,19 +439,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public EList<Feature> getTargetFeature() {
 		EList<Feature> targetFeatures = new NonNotifyingEObjectEList<>(Feature.class, this, SysMLPackage.CONNECTOR__TARGET_FEATURE);
-		addTargetFeatures(this, targetFeatures);
+		ConnectorUtil.addTargetFeatures(this, targetFeatures);
 		return targetFeatures;
 	}
 	
-	public static void addTargetFeatures(Connector connector, EList<Feature> targetFeatures) {
-		EList<Feature> relatedFeatures = connector.getRelatedFeature();
-		if (relatedFeatures.size() == 2) {
-			targetFeatures.add(relatedFeatures.get(1));
-		} else {
-			targetFeatures.addAll(relatedFeatures);
-		}
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -516,143 +481,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	 */
 	public EList<Feature> path(Feature relatedFeature) {
 		EList<Feature> path = new BasicInternalEList<Feature>(Feature.class);
-		getPath(path, getOwningNamespace(), relatedFeature);
+		ConnectorUtil.getPath(path, getOwningNamespace(), relatedFeature);
 		return path;
 	}
 
-	public static void getPath(EList<Feature> path, Namespace start, Feature feature) {
-		if (feature != null) {
-			Namespace owningNamespace = feature.getOwningNamespace();
-			if (owningNamespace instanceof Feature && owningNamespace != start) {
-				getPath(path, start, (Feature)owningNamespace);
-			}
-			path.add(feature);
-		}
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return getConnectorEnd().size() > 2? 
-				CONNECTOR_SUBSETTING_DEFAULT:
-				BINARY_CONNECTOR_SUBSETTING_DEFAULT;
-	}
-	
-	private void computeFeaturingType() {
-		if (getOwningType() == null) {
-			Type contextType = getContextType();
-			if (contextType != null) {
-				if (getOwnedTypeFeaturing().isEmpty()) {
-					addFeaturingType(contextType);
-				} else {
-					updateFeaturingTypes(Collections.singletonList(contextType));
-				}
-			}
-		}
-	}
-	
-	// Utility Methods
-	
-	private Type contextType = null;
-	private boolean isComputeContextType = true;
-	
-	public Type getContextType() {
-		if (isComputeContextType) {
-			isComputeContextType = false;
-			contextType = getContextType(this);
-		}
-		return contextType;
-	}
-	
-	public static Type getContextType(Connector connector) {
-		Element owner = connector.getOwner();
-		List<Feature> relatedFeatures = connector.getRelatedFeature();
-		
-		// TODO: Handle inherited features more properly when determining context type.
-		if (owner instanceof Type) {
-			List<Feature> ownerInheritedFeatures = ((Type)owner).getInheritedFeature();
-			relatedFeatures.removeAll(ownerInheritedFeatures);
-			if (relatedFeatures.isEmpty()) {
-				return (Type)owner;
-			}
-		}
-		
-		List<Type> commonFeaturingTypes = null;
-		for (Feature relatedFeature: relatedFeatures) {
-			List<Type> featuringTypes = getAllFeaturingTypes(relatedFeature);
-			if (commonFeaturingTypes == null) {
-				commonFeaturingTypes = featuringTypes;
-			} else {
-				commonFeaturingTypes.retainAll(featuringTypes);
-			}
-		}
-		return commonFeaturingTypes == null || commonFeaturingTypes.isEmpty()? 
-				null: commonFeaturingTypes.get(0);
-	}	
-	
-	/**
-	 * Perform a breadth first traversal of featuring types starting with the originalFeature.
-	 */
-	protected static List<Type> getAllFeaturingTypes(Feature originalFeature) {
-		List<Type> allFeaturingTypes = new ArrayList<>();
-		List<Feature> features = new ArrayList<>();
-		features.add(originalFeature);
-		while (!features.isEmpty()) {
-			List<Feature> nextFeatures = new ArrayList<>();
-			for (Feature feature: features) {
-				List<Type> featuringTypes = feature.getFeaturingType();
-				if (featuringTypes.isEmpty()) {
-					allFeaturingTypes.add(null);
-				} else {
-					for (Type featuringType: featuringTypes) {
-						if (!allFeaturingTypes.contains(featuringType)) {
-							allFeaturingTypes.add(featuringType);
-							if (featuringType instanceof Feature) {
-								nextFeatures.add((Feature)featuringType);
-							}
-						}
-					}
-				}
-			}
-			features = nextFeatures;
-		}
-		return allFeaturingTypes;
-	}
-	
-	public Feature addConnectorEnd(Feature relatedFeature) {
-		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
-		Subsetting subsetting = SysMLFactory.eINSTANCE.createSubsetting();
-		subsetting.setSubsettedFeature(relatedFeature);
-		subsetting.setSubsettingFeature(endFeature);
-		endFeature.getOwnedRelationship_comp().add(subsetting);
-		FeatureMembership membership = SysMLFactory.eINSTANCE.createEndFeatureMembership();
-		membership.setOwnedMemberFeature_comp(endFeature);
-		getOwnedFeatureMembership_comp().add(membership);
-		return endFeature;
-	}
-	
-	public void setRelatedFeature(int index, Feature relatedFeature) {
-		EList<Feature> connectorEnds = getConnectorEnd();
-		if (index < connectorEnds.size()) {
-			setRelatedFeature(connectorEnds.get(index), relatedFeature);
-		}
-	}
-
-	public static void setRelatedFeature(Feature connectorEnd, Feature relatedFeature) {
-		((FeatureImpl)connectorEnd).basicGetFirstSubsetting().
-			orElseGet(()->((FeatureImpl)connectorEnd).createSubsetting()).
-			setSubsettedFeature(relatedFeature);
-	}
-	
-	//
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeFeaturingType();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -662,12 +494,12 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement()).basicAdd(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelatedElement_comp()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -680,10 +512,10 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
+				return ((InternalEList<?>)getOwnedRelatedElement()).basicRemove(otherEnd, msgs);
 			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
 				return basicSetOwningRelatedElement(null, msgs);
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
-				return ((InternalEList<?>)getOwnedRelatedElement_comp()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -697,7 +529,7 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP_COMP, Element.class, msgs);
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -712,16 +544,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		switch (featureID) {
 			case SysMLPackage.CONNECTOR__RELATED_ELEMENT:
 				return getRelatedElement();
+			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
+				return getOwnedRelatedElement();
+			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement();
 			case SysMLPackage.CONNECTOR__TARGET:
 				return getTarget();
 			case SysMLPackage.CONNECTOR__SOURCE:
 				return getSource();
-			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement();
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
-				return getOwnedRelatedElement_comp();
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
-				return getOwnedRelatedElement();
 			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
 				return getRelatedFeature();
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
@@ -748,6 +578,13 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
+				return;
+			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)newValue);
+				return;
 			case SysMLPackage.CONNECTOR__TARGET:
 				getTarget().clear();
 				getTarget().addAll((Collection<? extends Element>)newValue);
@@ -755,17 +592,6 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 			case SysMLPackage.CONNECTOR__SOURCE:
 				getSource().clear();
 				getSource().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				getOwnedRelatedElement_comp().addAll((Collection<? extends Element>)newValue);
-				return;
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
-				getOwnedRelatedElement().addAll((Collection<? extends Element>)newValue);
 				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
@@ -797,20 +623,17 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
+				getOwnedRelatedElement().clear();
+				return;
+			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
+				setOwningRelatedElement((Element)null);
+				return;
 			case SysMLPackage.CONNECTOR__TARGET:
 				getTarget().clear();
 				return;
 			case SysMLPackage.CONNECTOR__SOURCE:
 				getSource().clear();
-				return;
-			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
-				setOwningRelatedElement((Element)null);
-				return;
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
-				getOwnedRelatedElement_comp().clear();
-				return;
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
-				getOwnedRelatedElement().clear();
 				return;
 			case SysMLPackage.CONNECTOR__ASSOCIATION:
 				getAssociation().clear();
@@ -841,16 +664,14 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 		switch (featureID) {
 			case SysMLPackage.CONNECTOR__RELATED_ELEMENT:
 				return isSetRelatedElement();
+			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
+				return ownedRelatedElement != null && !ownedRelatedElement.isEmpty();
+			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
 			case SysMLPackage.CONNECTOR__TARGET:
 				return isSetTarget();
 			case SysMLPackage.CONNECTOR__SOURCE:
 				return isSetSource();
-			case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT:
-				return getOwningRelatedElement() != null;
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP:
-				return ownedRelatedElement_comp != null && !ownedRelatedElement_comp.isEmpty();
-			case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT:
-				return !getOwnedRelatedElement().isEmpty();
 			case SysMLPackage.CONNECTOR__RELATED_FEATURE:
 				return isSetRelatedFeature();
 			case SysMLPackage.CONNECTOR__TYPE:
@@ -880,12 +701,11 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (derivedFeatureID) {
+				case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.CONNECTOR__RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				case SysMLPackage.CONNECTOR__TARGET: return SysMLPackage.RELATIONSHIP__TARGET;
 				case SysMLPackage.CONNECTOR__SOURCE: return SysMLPackage.RELATIONSHIP__SOURCE;
-				case SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP;
-				case SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT: return SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
@@ -901,12 +721,11 @@ public class ConnectorImpl extends FeatureImpl implements Connector {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Relationship.class) {
 			switch (baseFeatureID) {
+				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT;
+				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__RELATED_ELEMENT: return SysMLPackage.CONNECTOR__RELATED_ELEMENT;
 				case SysMLPackage.RELATIONSHIP__TARGET: return SysMLPackage.CONNECTOR__TARGET;
 				case SysMLPackage.RELATIONSHIP__SOURCE: return SysMLPackage.CONNECTOR__SOURCE;
-				case SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT: return SysMLPackage.CONNECTOR__OWNING_RELATED_ELEMENT;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT_COMP: return SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT_COMP;
-				case SysMLPackage.RELATIONSHIP__OWNED_RELATED_ELEMENT: return SysMLPackage.CONNECTOR__OWNED_RELATED_ELEMENT;
 				default: return -1;
 			}
 		}

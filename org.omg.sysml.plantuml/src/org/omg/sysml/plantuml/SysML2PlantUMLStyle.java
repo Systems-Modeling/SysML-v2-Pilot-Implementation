@@ -44,12 +44,14 @@ import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemFlow;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.PartDefinition;
@@ -278,6 +280,26 @@ public class SysML2PlantUMLStyle {
 
 
     public static class StyleRelDefaultSwitch extends StyleRelSwitch {
+
+		@Override
+        public String caseMembership(Membership m) {
+            if (m.getOwnedMemberElement() == null) {
+                return " +.. ";
+            } else {
+                return " +-- ";
+            }
+        }
+
+
+		@Override
+        public String caseFeatureMembership(FeatureMembership fm) {
+            if (fm.getOwnedMemberFeature() == null) {
+                return " o-- ";
+            } else {
+                return " *-- ";
+            }
+        }
+
 		@Override
         public String caseFeatureTyping(FeatureTyping e) {
             return " --:|> ";
@@ -331,6 +353,18 @@ public class SysML2PlantUMLStyle {
 		@Override
 		public String caseItemFlow(ItemFlow itemFlow) {
             return " --> ";
+		}
+
+		@Override
+		public String caseSendActionUsage(SendActionUsage sau) {
+            // Send a message to object
+            return " ..>> ";
+		}
+
+		@Override
+		public String caseAcceptActionUsage(AcceptActionUsage sau) {
+            // Send a message to object
+            return " <<.. ";
 		}
 
 		@Override

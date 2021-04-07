@@ -3,30 +3,33 @@ package 'Merge Example' {
 	part def Image;
 	part def Picture;
 	
-	action def Focus(in scene : Scene, out image : Image);
-	action def Shoot(in image : Image, out picture : Picture);	
+	action def Focus(in item scene : Scene, out item image : Image);
+	action def Shoot(in item image : Image, out item picture : Picture);
+	action def Display(in item picture : Picture);
 	action def TakePicture;
-	
-	action display;
 	
 	action takePicture : TakePicture {
 		first start;
 		
 		then merge continue;
 			
-		then action trigger accept scene : Scene;
+		then action trigger {
+			in item scene : Scene;
+		}
 		
-		then action focus : Focus (
-			in scene = trigger::scene, 
-			out image
-		);
+		then action focus : Focus {
+			in item scene stream from trigger::scene;
+			out item image;
+		}
 		
-		then action shoot : Shoot (
-			in image stream from focus::image, 
-			out picture
-		);
+		then action shoot : Shoot {
+			in item image stream from focus::image;
+			out item picture;
+		}
 		
-		then send shoot::picture to display;
+		then action display : Display {
+			in item picture stream from shoot::picture;
+		}
 		
 		then continue;	
 	}

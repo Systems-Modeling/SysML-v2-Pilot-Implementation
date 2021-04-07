@@ -23,7 +23,8 @@ package ScalarFunctions {
 	abstract function Max(x: ScalarValue, y: ScalarValue): ScalarValue;
 	abstract function Min(x: ScalarValue, y: ScalarValue): ScalarValue;
 	
-	abstract function '@'(x: ScalarValue, y: Base::Anything): ScalarValue;
+	/** Deprecated */
+	abstract function '@['(x: ScalarValue, y: Base::Anything): ScalarValue;
 	
 	abstract function '..'(lower: ScalarValue, upper: ScalarValue): ScalarValue[0..*];
 	

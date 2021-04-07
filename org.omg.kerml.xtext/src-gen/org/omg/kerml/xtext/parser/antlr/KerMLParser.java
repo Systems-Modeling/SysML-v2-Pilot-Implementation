@@ -27,7 +27,7 @@ public class KerMLParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "RootPackage";
+		return "RootNamespace";
 	}
 
 	public KerMLGrammarAccess getGrammarAccess() {

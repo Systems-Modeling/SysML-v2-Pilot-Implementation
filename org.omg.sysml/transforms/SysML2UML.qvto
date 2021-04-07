@@ -348,7 +348,6 @@ mapping SysML::Expression::toValueSpecification(): UML::ValueSpecification
 		SysML::NullExpression::toLiteralNull,
 		SysML::LiteralExpression::toLiteralSpecification,
 		SysML::OperatorExpression::toExpression,
-		SysML::InstanceCreationExpression::toExpression,
 //		SysML::SequenceAccessExpression::toExpression,
 //		SysML::SequenceConstructionExpression::toExpression,
 		SysML::FeatureReferenceExpression::toExpression;
@@ -397,12 +396,6 @@ mapping SysML::OperatorExpression::toExpression(): UML::Expression
 	operand := self.operand->map toValueSpecification();
 }
 
-
-mapping SysML::InstanceCreationExpression::toExpression(): UML::Expression
-	inherits SysML::Element::toNamedElement {
-	symbol := 'new ' + self.type![true].name;
-//	operand := self.argument->map toValueSpecification();
-}
 
 /*
 mapping SysML::FeatureAccessExpression::toExpression(): UML::Expression

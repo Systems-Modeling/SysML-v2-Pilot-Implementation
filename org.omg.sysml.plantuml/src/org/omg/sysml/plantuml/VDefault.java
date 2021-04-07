@@ -88,9 +88,9 @@ public class VDefault extends VTraverser {
         addPUMLLine(typ, keyword, name, styleString(typ));
     }
 
-    protected void addRecLine(Type typ, boolean withStyle) {
+    protected boolean addRecLine(Type typ, boolean withStyle) {
     	String name = getName(typ);
-    	if (name == null) return;
+    	if (name == null) return false;
         String keyword;
         if (typ instanceof Usage) {
             keyword = "rec usage ";
@@ -102,6 +102,7 @@ public class VDefault extends VTraverser {
         } else {
             addPUMLLine(typ, keyword, name, null);
         }
+        return true;
     }
 
     @Override

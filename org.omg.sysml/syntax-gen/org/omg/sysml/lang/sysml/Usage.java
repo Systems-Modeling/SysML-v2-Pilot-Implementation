@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,6 +35,10 @@ import org.eclipse.emf.common.util.EList;
  * <p>A Usage may have <code>nestedUsages</code> that model <code>features</code> that apply in the context of the <code>owningUsage</code>. A Usage may also have Definitions nested in it, but this has no semantic significance, other than the nested scoping resulting from the Usage being considered as a Namespace for any nested Definitions.</p>
  * 
  * <p>However, if a Usage has <code>isVariation</code> = true, then it represents a <em>variation point</em> Usage. In this case, all of its <code>members</code> must be <code>variant</code> Usages, related to the Usage by VariantMembership Relationships. Rather than being <code>features</code> of the Usage, <code>variant</code> Usages model different concrete alternatives that can be chosen to fill in for the variation point Usage.</p>
+ * variant = variantMembership.ownedVariantUsage
+ * variantMembership = ownedMembership->selectByKind(VariantMembership)
+ * isVariation implies variantMembership = ownedMembership
+ * not isVariation implies variantMembership->isEmpty()
  * <!-- end-model-doc -->
  *
  * <p>
@@ -55,7 +59,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getFlowFeature <em>Flow Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedCase <em>Nested Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAnalysisCase <em>Nested Analysis Case</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership_comp <em>Variant Membership comp</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getUsage <em>Usage</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariant <em>Variant</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedReference <em>Nested Reference</em>}</li>
@@ -70,7 +74,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedRendering <em>Nested Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedVerificationCase <em>Nested Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedEnumeration <em>Nested Enumeration</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Usage#getVariantMembership <em>Variant Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Usage#getNestedAllocation <em>Nested Allocation</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage()
@@ -190,7 +194,7 @@ public interface Usage extends Feature {
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership_comp() <em>Owned Membership comp</em>}'</li>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership() <em>Owned Membership</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -198,9 +202,13 @@ public interface Usage extends Feature {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The <code>ownedMemberships</code> of this Usage that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>memberships</code> of the Usages. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Variant Membership</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_VariantMembership()
-	 * @model transient="true" volatile="true" derived="true"
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
@@ -436,22 +444,6 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<CaseUsage> getNestedCase();
-
-	/**
-	 * Returns the value of the '<em><b>Variant Membership comp</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.VariantMembership}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>The <code>ownedMemberships</code> of this Usage that are VariantMemberships. If <code>isVariation</code> = true, then this must be all <code>memberships</code> of the Usages. If <code>isVariation</code> = false, then <code>variantMembership</code>must be empty.</p>
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Variant Membership comp</em>' containment reference list.
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_VariantMembership_comp()
-	 * @model containment="true" ordered="false"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='owningVariationUsage'"
-	 * @generated
-	 */
-	EList<VariantMembership> getVariantMembership_comp();
 
 	/**
 	 * Returns the value of the '<em><b>Variant</b></em>' reference list.
@@ -798,6 +790,29 @@ public interface Usage extends Feature {
 	 * @generated
 	 */
 	EList<EnumerationUsage> getNestedEnumeration();
+
+	/**
+	 * Returns the value of the '<em><b>Nested Allocation</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.AllocationUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Usage#getNestedConnection() <em>Nested Connection</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The AllocationUsages that are <code>nestedUsages</code> of this Usage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Nested Allocation</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getUsage_NestedAllocation()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='allocationOwningUsage'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<AllocationUsage> getNestedAllocation();
 
 	/**
 	 * Returns the value of the '<em><b>Nested Action</b></em>' reference list.

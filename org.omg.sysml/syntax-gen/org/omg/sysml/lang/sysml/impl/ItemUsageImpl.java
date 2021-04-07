@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.Structure;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
@@ -47,8 +48,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	
-	public static final String ITEM_SUBSETTING_DEFAULT = "Items::items";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,12 +73,12 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<org.omg.sysml.lang.sysml.Class> getItemDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> itemDefinitions =
-				new NonNotifyingEObjectEList<>(org.omg.sysml.lang.sysml.Class.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
+	public EList<Structure> getItemDefinition() {
+		EList<Structure> itemDefinitions =
+				new NonNotifyingEObjectEList<>(Structure.class, this, SysMLPackage.ITEM_USAGE__ITEM_DEFINITION);
 		super.getType().stream().
-			filter(org.omg.sysml.lang.sysml.Class.class::isInstance).
-			map(org.omg.sysml.lang.sysml.Class.class::cast).
+			filter(Structure.class::isInstance).
+			map(Structure.class::cast).
 			forEachOrdered(itemDefinitions::add);
 		return itemDefinitions;
 	}
@@ -93,11 +92,6 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 		return !getItemDefinition().isEmpty();
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return ITEM_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,7 +117,7 @@ public class ItemUsageImpl extends UsageImpl implements ItemUsage {
 		switch (featureID) {
 			case SysMLPackage.ITEM_USAGE__ITEM_DEFINITION:
 				getItemDefinition().clear();
-				getItemDefinition().addAll((Collection<? extends org.omg.sysml.lang.sysml.Class>)newValue);
+				getItemDefinition().addAll((Collection<? extends Structure>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

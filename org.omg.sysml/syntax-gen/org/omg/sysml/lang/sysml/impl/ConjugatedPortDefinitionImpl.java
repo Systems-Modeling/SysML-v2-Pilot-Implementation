@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,14 +22,8 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -53,16 +47,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements ConjugatedPortDefinition {
 	/**
-	 * The cached value of the '{@link #getOwnedPortConjugator() <em>Owned Port Conjugator</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedPortConjugator()
-	 * @generated
-	 * @ordered
-	 */
-	protected PortConjugation ownedPortConjugator;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -81,26 +65,15 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 		return SysMLPackage.Literals.CONJUGATED_PORT_DEFINITION;
 	}
 	
-	@Override
-	public PortConjugation getOwnedPortConjugator() {
-		return ownedPortConjugator == null? basicGetOwnedPortConjugator(): getOwnedPortConjugatorGen();
-	}	
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PortConjugation getOwnedPortConjugatorGen() {
-		if (ownedPortConjugator != null && ownedPortConjugator.eIsProxy()) {
-			InternalEObject oldOwnedPortConjugator = (InternalEObject)ownedPortConjugator;
-			ownedPortConjugator = (PortConjugation)eResolveProxy(oldOwnedPortConjugator);
-			if (ownedPortConjugator != oldOwnedPortConjugator) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR, oldOwnedPortConjugator, ownedPortConjugator));
-			}
-		}
-		return ownedPortConjugator;
+	@Override
+	public PortConjugation getOwnedPortConjugator() {
+		PortConjugation ownedPortConjugator = basicGetOwnedPortConjugator();
+		return ownedPortConjugator != null && ownedPortConjugator.eIsProxy() ? (PortConjugation)eResolveProxy((InternalEObject)ownedPortConjugator) : ownedPortConjugator;
 	}
 
 	/**
@@ -109,50 +82,19 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated NOT
 	 */
 	public PortConjugation basicGetOwnedPortConjugator() {
-		if (ownedPortConjugator == null) {
-			// Using the _comp reference results in default generalization not considered -
-			// this is not a problem for ConjugatedPortDefinition but might be problematic
-			// for subclasses overriding getOwnedRelationship()
-			ownedPortConjugator = (PortConjugation) getOwnedRelationship_comp().stream().
-					filter(r->r instanceof PortConjugation).
-					findFirst().orElse(null);
-		}
-		return ownedPortConjugator;
+		return (PortConjugation) getOwnedRelationship().stream().
+				filter(PortConjugation.class::isInstance).
+				findFirst().orElse(null);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedPortConjugator(PortConjugation newOwnedPortConjugator, NotificationChain msgs) {
-		PortConjugation oldOwnedPortConjugator = ownedPortConjugator;
-		ownedPortConjugator = newOwnedPortConjugator;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR, oldOwnedPortConjugator, newOwnedPortConjugator);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setOwnedPortConjugator(PortConjugation newOwnedPortConjugator) {
-		if (newOwnedPortConjugator != ownedPortConjugator) {
-			NotificationChain msgs = null;
-			if (ownedPortConjugator != null)
-				msgs = ((InternalEObject)ownedPortConjugator).eInverseRemove(this, SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION, PortConjugation.class, msgs);
-			if (newOwnedPortConjugator != null)
-				msgs = ((InternalEObject)newOwnedPortConjugator).eInverseAdd(this, SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION, PortConjugation.class, msgs);
-			msgs = basicSetOwnedPortConjugator(newOwnedPortConjugator, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR, newOwnedPortConjugator, newOwnedPortConjugator));
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -161,7 +103,7 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 * @generated
 	 */
 	public boolean isSetOwnedPortConjugator() {
-		return ownedPortConjugator != null;
+		return basicGetOwnedPortConjugator() != null;
 	}
 
 	/**
@@ -296,36 +238,6 @@ public class ConjugatedPortDefinitionImpl extends PortDefinitionImpl implements 
 	 */
 	public boolean isSetOwnedConjugator() {
   		return false;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR:
-				if (ownedPortConjugator != null)
-					msgs = ((InternalEObject)ownedPortConjugator).eInverseRemove(this, SysMLPackage.PORT_CONJUGATION__CONJUGATED_PORT_DEFINITION, PortConjugation.class, msgs);
-				return basicSetOwnedPortConjugator((PortConjugation)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.CONJUGATED_PORT_DEFINITION__OWNED_PORT_CONJUGATOR:
-				return basicSetOwnedPortConjugator(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

@@ -1,3 +1,23 @@
+/*******************************************************************************
+ * SysML 2 Pilot Implementation
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
+ *    
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *  
+ * You should have received a copy of theGNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *  
+ * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
+ *  
+ *******************************************************************************/
 /**
  */
 package org.omg.sysml.lang.sysml.impl;
@@ -14,7 +34,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 
 import org.omg.sysml.lang.sysml.AnnotatingElement;
@@ -26,6 +45,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.MetadataFeature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.NonNotifyingEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -80,7 +100,9 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 	 */
 	@Override
 	public EList<Element> getAnnotatedElement() {
-		return AnnotatingElementImpl.getAnnotatedElementFor(this);
+		EList<Element> annotatedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.ANNOTATING_FEATURE__ANNOTATED_ELEMENT);
+		getAnnotation().stream().map(Annotation::getAnnotatedElement).forEachOrdered(annotatedElements::add);
+		return annotatedElements;
 	}
 
 	/**
@@ -148,7 +170,9 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 	 */
 	@Override
 	public EList<MetadataFeature> getOwnedMetadata() {
-		return new DerivedEObjectEList<>(MetadataFeature.class, this, SysMLPackage.ANNOTATING_FEATURE__OWNED_METADATA, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+		EList<MetadataFeature> ownedMetadata = new NonNotifyingEObjectEList<>(MetadataFeature.class, this, SysMLPackage.ANNOTATING_FEATURE__OWNED_METADATA);
+		super.getOwnedFeature().stream().filter(MetadataFeature.class::isInstance).map(MetadataFeature.class::cast).forEachOrdered(ownedMetadata::add);
+		return ownedMetadata;
 	}
 
 	/**
@@ -160,11 +184,6 @@ public class AnnotatingFeatureImpl extends FeatureImpl implements AnnotatingFeat
 		return !getOwnedMetadata().isEmpty();
 	}
 	
-	public void transform() {
-		super.transform();
-		AnnotatingElementImpl.transformAnnotatingElement(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

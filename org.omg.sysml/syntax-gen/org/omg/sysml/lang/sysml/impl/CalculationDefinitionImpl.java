@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,17 +29,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Function;
-import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.CalculationDefinition;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.Step;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -57,15 +54,6 @@ import org.omg.sysml.lang.sysml.Type;
  * @generated
  */
 public class CalculationDefinitionImpl extends ActionDefinitionImpl implements CalculationDefinition {
-
-	public static final String CALCULATION_DEFINITION_SUPERCLASS_DEFAULT = "Calculations::Calculation";
-
-	/**
-	 * The cached value of the BindingConnector from the result of the last
-	 * sub-Expression to the result of this FunctionDefinition.
-	 */
-	protected BindingConnector resultConnector = null;
-
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -123,7 +111,7 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	 * @generated NOT
 	 */
 	public Feature basicGetResult() {
-		return getResultParameter();
+		return TypeUtil.getOwnedResultParameterOf(this);
 	}
 	
 	/**
@@ -167,35 +155,6 @@ public class CalculationDefinitionImpl extends ActionDefinitionImpl implements C
 	public boolean isSetStep() {
   		return false;
 	}
-
-	protected String getDefaultSupertype() {
-		return CALCULATION_DEFINITION_SUPERCLASS_DEFAULT;
-	}
-	
-	public BindingConnector getResultConnector() {
-		return resultConnector;
-	}
-	
-	// Other methods
-	
-	public static void addResultParameter(Type type) {
-		if (type.getOwnedFeatureMembership().stream().noneMatch(ReturnParameterMembership.class::isInstance)) {
-			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
-			Feature resultParameter = SysMLFactory.eINSTANCE.createReferenceUsage();
-			membership.setOwnedMemberParameter_comp(resultParameter);
-			type.getOwnedFeatureMembership_comp().add(membership);
-			((FeatureImpl)resultParameter).transform();
-		}
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		addResultParameter(this);
-		resultConnector = BlockExpressionImpl.getOrCreateResultConnectorFor(this, resultConnector, this.getResult());
-	}
-	
-	//
 
 	/**
 	 * <!-- begin-user-doc -->

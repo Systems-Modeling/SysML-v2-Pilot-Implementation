@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -48,8 +48,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements InterfaceDefinition {
 
-	public static final String INTERFACE_DEFINITION_SUPERCLASS_DEFAULT = "Interfaces::Interface";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,13 +88,6 @@ public class InterfaceDefinitionImpl extends ConnectionDefinitionImpl implements
 	 */
 	public boolean isSetInterfaceEnd() {
 		return !getInterfaceEnd().isEmpty();
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return getOwnedEndFeature().size() > 2? 
-					AssociationImpl.ASSOCIATION_SUPERCLASS_DEFAULT: 
-					INTERFACE_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 	/**

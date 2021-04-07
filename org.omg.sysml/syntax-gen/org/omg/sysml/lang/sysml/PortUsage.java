@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -21,6 +21,8 @@
 /**
  */
 package org.omg.sysml.lang.sysml;
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -48,7 +50,8 @@ package org.omg.sysml.lang.sysml;
  */
 public interface PortUsage extends Usage {
 	/**
-	 * Returns the value of the '<em><b>Port Definition</b></em>' reference.
+	 * Returns the value of the '<em><b>Port Definition</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.PortDefinition}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -62,27 +65,16 @@ public interface PortUsage extends Usage {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The PortDefinition that is the single <tt>type</tt> of this PortUsage.</p>
+	 * <p>The <code>types</code> of this PortUsage, which must all be PortDefinitions.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Port Definition</em>' reference.
-	 * @see #setPortDefinition(PortDefinition)
+	 * @return the value of the '<em>Port Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getPortUsage_PortDefinition()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='definedPort'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	PortDefinition getPortDefinition();
-
-	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.PortUsage#getPortDefinition <em>Port Definition</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Port Definition</em>' reference.
-	 * @see #getPortDefinition()
-	 * @generated
-	 */
-	void setPortDefinition(PortDefinition value);
+	EList<PortDefinition> getPortDefinition();
 
 	/**
 	 * Returns the value of the '<em><b>Port Owning Usage</b></em>' reference.

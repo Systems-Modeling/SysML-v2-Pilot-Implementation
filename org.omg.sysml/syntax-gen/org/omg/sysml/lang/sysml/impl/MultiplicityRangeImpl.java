@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -49,7 +49,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * @generated
  */
 public class MultiplicityRangeImpl extends MultiplicityImpl implements MultiplicityRange {
-	public static final String MULTIPLICITY_RANGE_SUBSETTING_DEFAULT = "Base::naturals";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,11 +192,6 @@ public class MultiplicityRangeImpl extends MultiplicityImpl implements Multiplic
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return MULTIPLICITY_RANGE_SUBSETTING_DEFAULT;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

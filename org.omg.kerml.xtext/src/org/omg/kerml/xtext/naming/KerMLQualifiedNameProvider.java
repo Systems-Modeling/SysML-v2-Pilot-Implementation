@@ -25,7 +25,7 @@ package org.omg.kerml.xtext.naming;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
-import org.omg.sysml.lang.sysml.impl.ElementImpl;
+import org.omg.sysml.util.ElementUtil;
 
 import com.google.common.base.Function;
 
@@ -36,7 +36,7 @@ public class KerMLQualifiedNameProvider extends DefaultDeclarativeQualifiedNameP
 		Function<EObject, String> parentResolver = super.getResolver();
 		return object -> {
 			String unescapedName = parentResolver.apply(object);
-			return unescapedName == null ? null : "'" + ElementImpl.escapeString(unescapedName) + "'";
+			return unescapedName == null ? null : "'" + ElementUtil.escapeString(unescapedName) + "'";
 		};
 	}
 

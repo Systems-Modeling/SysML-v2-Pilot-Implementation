@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,19 +22,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.IndividualDefinition;
 import org.omg.sysml.lang.sysml.IndividualUsage;
 import org.omg.sysml.lang.sysml.SnapshotFeature;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TimeSliceFeature;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,9 +105,8 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 	 * @generated NOT
 	 */
 	public IndividualDefinition basicGetIndividualDefinition() {
-		EList<org.omg.sysml.lang.sysml.Class> items = super.getItemDefinition();
-		return (IndividualDefinition)items.stream().
-				filter(type->type instanceof IndividualDefinition).
+		return (IndividualDefinition)super.getItemDefinition().stream().
+				filter(IndividualDefinition.class::isInstance).
 				findFirst().orElse(null);
 	}
 
@@ -230,43 +224,6 @@ public class IndividualUsageImpl extends ItemUsageImpl implements IndividualUsag
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addIndividualDefinition();
-		super.computeImplicitGeneralTypes();
-	}
-	
-	protected boolean needsIndividualDefinition() {
-		return basicGetOwnedTyping().stream().map(FeatureTyping::getType).
-					noneMatch(IndividualDefinition.class::isInstance) &&
-			   basicGetOwnedSubsetting().stream().map(Subsetting::getSubsettedFeature).
-					noneMatch(IndividualUsage.class::isInstance);
-	}
-		
-	protected void addIndividualDefinition() {
-		if ((isTimeSlice() || isSnapshot()) && needsIndividualDefinition()) {
-			Type owningType = getOwningType();
-			if (owningType instanceof IndividualDefinition) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), owningType);
-			} else if (owningType instanceof IndividualUsage) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), owningType);
-			}
-		}
-	}
-	
-	/**
-	 * This method is used in TimeSliceFeatureImpl and SnapshotFeatureImpl.
-	 */
-	public static void setTypingFor(Feature feature) {
-		Type owningType = feature.getOwningType();
-		if (owningType instanceof IndividualDefinition || owningType instanceof IndividualUsage) {
-			Type type = owningType instanceof IndividualUsage? 
-					((IndividualUsage)owningType).getIndividualDefinition(): 
-					owningType;
-			((FeatureImpl)feature).addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), type);
-		}
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,6 +23,7 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.Collection;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -32,18 +33,22 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expose;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Import;
-import org.omg.sysml.lang.sysml.MetadataCondition;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewDefinition;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,9 +70,6 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  */
 public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	
-	public static final String VIEW_SUBSETTING_BASE_DEFAULT = "Views::views";
-	public static final String VIEW_SUBSETTING_SUBVIEW_DEFAULT = "Views::View::subviews";
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -146,8 +148,14 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	@Override
 	public EList<Namespace> getExposedNamespace() {
 		EList<Namespace> exposedNamespace = new NonNotifyingEObjectEList<>(Namespace.class, this, SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE);
-		getOwnedImport().stream().filter(Expose.class::isInstance).map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
+		getExposeImports().map(Import::getImportedNamespace).forEachOrdered(exposedNamespace::add);
 		return exposedNamespace;
+	}
+	
+	public Stream<Expose> getExposeImports() {
+		return getOwnedImport().stream().
+				filter(Expose.class::isInstance).
+				map(Expose.class::cast);
 	}
 	
 
@@ -189,8 +197,16 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public EList<MetadataCondition> getViewCondition() {
-		return new DerivedEObjectEList<>(MetadataCondition.class, this, SysMLPackage.VIEW_USAGE__VIEW_CONDITION, new int[] {SysMLPackage.TYPE__OWNED_MEMBER});
+	public EList<Expression> getViewCondition() {
+		EList<Expression> viewConditions = new NonNotifyingEObjectEList<>(Expression.class, this, SysMLPackage.VIEW_DEFINITION__VIEW_CONDITION);
+		NamespaceUtil.getOwnedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		return viewConditions;
+	}
+	
+	public EList<Expression> getAllViewConditions() {
+		EList<Expression> viewConditions = getViewCondition();
+		TypeUtil.getInheritedMembersByMembershipIn(this, ElementFilterMembership.class, Expression.class).forEachOrdered(viewConditions::add);
+		return viewConditions;
 	}
 
 	/**
@@ -200,24 +216,16 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 */
 	@Override
 	public EList<Element> getViewedElement() {
-		// TODO: Apply viewConditions.
 		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
-		getExposedNamespace().stream().flatMap(namespace->namespace.getMember().stream()).forEachOrdered(viewedElements::add);
+		getExposeImports().
+			flatMap(imp->imp.importedMembership().stream()).
+			map(Membership::getMemberElement).
+			forEachOrdered(viewedElements::add);
+		EList<Expression> viewConditions = getAllViewConditions();
+		viewedElements.removeIf(element->!ExpressionUtil.checkConditionsOn(element, viewConditions));
 		return viewedElements;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubview()? 
-					VIEW_SUBSETTING_SUBVIEW_DEFAULT:
-					VIEW_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	public boolean isSubview() {
-		Type owningType = getOwningType();
-		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,7 +277,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				return;
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				getViewCondition().clear();
-				getViewCondition().addAll((Collection<? extends MetadataCondition>)newValue);
+				getViewCondition().addAll((Collection<? extends Expression>)newValue);
 				return;
 			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
 				getViewedElement().clear();

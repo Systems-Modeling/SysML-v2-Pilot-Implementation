@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,13 +22,9 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
  * <!-- begin-user-doc --> 
@@ -57,15 +53,4 @@ public class MultiplicityImpl extends FeatureImpl implements Multiplicity {
 		return SysMLPackage.Literals.MULTIPLICITY;
 	}
 	
-	@Override
-	protected List<Multiplicity> getRelevantFeatures(Type type) {
-		return Collections.emptyList();
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		addImplicitFeaturingTypes();
-	}
-
 } // MultiplicityImpl

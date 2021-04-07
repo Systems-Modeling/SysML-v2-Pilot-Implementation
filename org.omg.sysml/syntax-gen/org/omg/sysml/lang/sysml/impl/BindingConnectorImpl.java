@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,22 +22,18 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Binding
- * Connector</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> 
+ * An implementation of the model object '<em><b>Binding Connector</b></em>'. 
+ * <!-- end-user-doc -->
  *
  * @generated
  */
 public class BindingConnectorImpl extends ConnectorImpl implements BindingConnector {
-
-	public static final String BINDING_CONNECTOR_SUBSETTING_DEFAULT = "Objects::selfLinks";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -56,17 +52,4 @@ public class BindingConnectorImpl extends ConnectorImpl implements BindingConnec
 		return SysMLPackage.Literals.BINDING_CONNECTOR;
 	}
 
-	public void update(List<Type> featuringTypes, Feature source, Feature target) {
-		setRelatedFeature(0, source);
-		setRelatedFeature(1, target);
-		if (featuringTypes != null) {
-			updateFeaturingTypes(featuringTypes);
-		}
-	}
-	
-	@Override
-	protected String getDefaultSupertype() {
-		return BINDING_CONNECTOR_SUBSETTING_DEFAULT;
-	}
-	
 } // BindingConnectorImpl

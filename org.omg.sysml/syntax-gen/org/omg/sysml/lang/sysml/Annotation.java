@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -120,13 +120,18 @@ public interface Annotation extends Relationship {
 	void setAnnotatedElement(Element value);
 
 	/**
-	 * Returns the value of the '<em><b>Owning Annotated Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp <em>Owned Annotation comp</em>}'.
+	 * Returns the value of the '<em><b>Owning Annotated Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Element#getOwnedAnnotation <em>Owned Annotation</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Annotation#getAnnotatedElement() <em>Annotated Element</em>}'</li>
+	 * </ul>
+	 * <p>
+	 * This feature redefines the following features:
+	 * </p>
+	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
@@ -134,21 +139,22 @@ public interface Annotation extends Relationship {
 	 * <!-- begin-model-doc -->
 	 * <p>The <code>annotatedElement</code> of this Annotation, when it is also its <code>owningRelatedElement</code>.
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Owning Annotated Element</em>' container reference.
+	 * @return the value of the '<em>Owning Annotated Element</em>' reference.
 	 * @see #setOwningAnnotatedElement(Element)
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getAnnotation_OwningAnnotatedElement()
-	 * @see org.omg.sysml.lang.sysml.Element#getOwnedAnnotation_comp
-	 * @model opposite="ownedAnnotation_comp" transient="false" ordered="false"
+	 * @see org.omg.sysml.lang.sysml.Element#getOwnedAnnotation
+	 * @model opposite="ownedAnnotation" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="redefines"
 	 *        annotation="subsets"
 	 * @generated
 	 */
 	Element getOwningAnnotatedElement();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}' container reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Annotation#getOwningAnnotatedElement <em>Owning Annotated Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owning Annotated Element</em>' container reference.
+	 * @param value the new value of the '<em>Owning Annotated Element</em>' reference.
 	 * @see #getOwningAnnotatedElement()
 	 * @generated
 	 */

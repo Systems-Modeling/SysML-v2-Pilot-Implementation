@@ -36,16 +36,17 @@ import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.BindingConnector
 import org.omg.sysml.lang.sysml.Feature
-import org.omg.sysml.lang.sysml.impl.FeatureImpl
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.Relationship
-import org.omg.sysml.lang.sysml.impl.TypeImpl
 import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
 import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.impl.ElementImpl
+import org.omg.sysml.lang.sysml.ElementFilterMembership
+import org.omg.sysml.lang.sysml.MetadataFeatureValue
+import org.omg.sysml.util.TypeUtil
 
 /**
  * This class contains custom validation rules. 
@@ -60,16 +61,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 	public static val INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG = "Output feature must conform to input feature"
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE = 'Invalid BindingConnector - Binding type conformance'
 	public static val INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG = "Bound features should have conforming types"
-	public static val INVALID_FEATURE_NO_TYPE = 'Invalid Feature - Mandatory typing'
-	public static val INVALID_FEATURE_NO_TYPE_MSG = "Features must have at least one type"
-	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS = 'Invalid Relationship - Related element minimum validation'
-	public static val INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG = "Relationships must have at least two related elements"
+	public static val INVALID_FEATURE__NO_TYPE = 'Invalid Feature - Mandatory typing'
+	public static val INVALID_FEATURE__NO_TYPE_MSG = "Features must have at least one type"
+	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS = 'Invalid Relationship - Related element minimum validation'
+	public static val INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG = "Relationships must have at least two related elements"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY = "Invalid Membership - Distinguishablity"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0 = "Duplicate of owned member ID"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_1 = "Duplicate owned member name"
 	public static val INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_2 = "Duplicate of inherited member name"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY = "Invalid Element - ID distinguishability"
 	public static val INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG = "Duplicate of other ID or member name"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL = "Invalid ElementFilterMembership - Not model-level"
+	public static val INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
+	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL = "Invalid MetadataFeatureValue - Not model-level"
+	public static val INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG = "Must be model-level evaluable"
 		
 	@Check
 	def checkElement(Element elm) {
@@ -125,13 +130,29 @@ class KerMLValidator extends AbstractKerMLValidator {
 			}
 		}
 		
-	}	
+	}
+	
+	@Check
+	def checkElementFilterMembership(ElementFilterMembership efm) {
+		val condition = efm.condition
+		if (condition !== null && !condition.isModelLevelEvaluable) {
+			error(INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL_MSG, efm, SysMLPackage.eINSTANCE.elementFilterMembership_Condition, INVALID_ELEMENT_FILTER_MEMBERSHIP__NOT_MODEL_LEVEL)
+		}
+	}
+	
+	@Check
+	def checkMetadataFeatureValue(MetadataFeatureValue mfv) {
+		val value = mfv.metadataValue
+		if (value !== null && !value.isModelLevelEvaluable) {
+			error(INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL_MSG, mfv, SysMLPackage.eINSTANCE.metadataFeatureValue_MetadataValue, INVALID_METADATA_FEATURE_VALUE__NOT_MODEL_LEVEL)
+		}
+	}
 	
 	@Check
 	def checkFeature(Feature f){
-		val types = (f as FeatureImpl).type;
+		val types = f.type;
 		if (types !== null && types.isEmpty)
-			error(INVALID_FEATURE_NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE_NO_TYPE)
+			error(INVALID_FEATURE__NO_TYPE_MSG, f, SysMLPackage.eINSTANCE.feature_Type, INVALID_FEATURE__NO_TYPE)
 	}
 	
 	@Check
@@ -139,13 +160,17 @@ class KerMLValidator extends AbstractKerMLValidator {
 		// Allow abstract associations and connectors to have less than two ends.
 		if (!(r instanceof Type && (r as Type).isAbstract)) {
 			val relatedElements = r.getRelatedElement
-			if ( relatedElements !== null && relatedElements.length < 2)
-				error(INVALID_RELATIONSHIP_RELATEDELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP_RELATEDELEMENTS)	
+			if (relatedElements !== null && relatedElements.length < 2)
+				error(INVALID_RELATIONSHIP__RELATED_ELEMENTS_MSG, r, SysMLPackage.eINSTANCE.relationship_RelatedElement, INVALID_RELATIONSHIP__RELATED_ELEMENTS)	
 		}
 	}
 	 
 	@Check
 	def checkConnector(Connector c){
+		if (c.owner instanceof FeatureReferenceExpression) {
+			return // ignore reference connectors in FeatureReferenceExpressions for now
+		}
+		
 		var relatedFeatures = c.relatedFeature
 		
 		// Allow related features that are inherited by the owner of the connector
@@ -168,6 +193,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 	
 	@Check
 	def checkBindingConnector(BindingConnector bc){
+		doCheckBindingConnector(bc, bc)
+	}
+	
+	private def doCheckBindingConnector(BindingConnector bc, Element location) {
 		val rf = bc.relatedFeature
 		if (rf.length !== 2) {
 			return //ignore binding connectors with invalid syntax
@@ -185,16 +214,21 @@ class KerMLValidator extends AbstractKerMLValidator {
 //				error(INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__ARGUMENT_TYPE)
 //		} else { 
 			//Binding type conformance
-			val f1types = (rf.get(0) as FeatureImpl).type
-			val f2types = (rf.get(1) as FeatureImpl).type
+			val f1types = rf.get(0).type
+			val f2types = rf.get(1).type
 						 
 			val f1ConformsTof2 = f2types.map[conformsFrom(f1types)]
 			val f2ConformsTof1 = f1types.map[conformsFrom(f2types)]
 			
 			if (f1ConformsTof2.filter[!empty].length != f2types.length &&
 				f2ConformsTof1.filter[!empty].length != f1types.length)
-				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, bc, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
+				warning(INVALID_BINDINGCONNECTOR__BINDING_TYPE_MSG, location, SysMLPackage.eINSTANCE.type_EndFeature, INVALID_BINDINGCONNECTOR__BINDING_TYPE)
 //		}
+	}
+	
+	@Check
+	def checkImplicitBindingConnectors(Type type) {
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, kind | connector.doCheckBindingConnector(type)])
 	}
 	
 	//return related subtypes
@@ -210,7 +244,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 	}
 
 	protected def boolean conformsTo(Type subtype, Type supertype) {
-		supertype === null || (subtype as TypeImpl).conformsTo(supertype);
+		supertype === null || TypeUtil.conforms(subtype, supertype);
 	}
 	
 }

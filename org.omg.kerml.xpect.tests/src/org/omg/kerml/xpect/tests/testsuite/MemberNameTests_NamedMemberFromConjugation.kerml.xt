@@ -25,7 +25,11 @@ package test{
 		A, A.f, A.f_Id, test.A, test.A.f, test.A.f_Id,
 		A_Id, A_Id.f, A_Id.f_Id, test.A_Id, test.A_Id.f, test.A_Id.f_Id,
 		B, B.f, B.f_Id, test.B, test.B.f, test.B.f_Id,
-		g, test.g, h, test.h
+		g, test.g, h, test.h,
+		A.f.self,  A.f_Id.self,  test.A.f.self,  test.A.f_Id.self, 
+		A_Id.f.self,  A_Id.f_Id.self,  test.A_Id.f.self,  test.A_Id.f_Id.self, 
+		B.f.self,  B.f_Id.self,  test.B.f.self,  test.B.f_Id.self, 
+		g.self,  test.g.self,  h.self,  test.h.self
 		--- */
 	class B conjugates A;
 

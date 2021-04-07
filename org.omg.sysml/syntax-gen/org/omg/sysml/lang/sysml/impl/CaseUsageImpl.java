@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,10 +28,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Function;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,9 +51,6 @@ import org.omg.sysml.lang.sysml.Usage;
  */
 public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 
-	public static final String CASE_SUBSETTING_BASE_DEFAULT = "Cases::cases";
-	public static final String CASE_SUBSETTING_SUBCASE_DEFAULT = "Cases::Case::subcases";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,13 +87,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetObjectiveRequirement() {
-		return CaseDefinitionImpl.getObjectiveRequirementOf(this);
+		return (RequirementUsage)TypeUtil.getOwnedFeatureByMembershipIn(this, ObjectiveMembership.class);
 	}
 	
-	private void computeObjectiveRequirement() {
-		CaseDefinitionImpl.computeObjectiveRequirementOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,13 +117,9 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
 	 * @generated NOT
 	 */
 	public Usage basicGetSubjectParameter() {
-		return UsageImpl.basicGetSubjectParameterOf(this);
+		return TypeUtil.basicGetSubjectParameterOf(this);
 	}
 	
-	private void computeSubjectParameter() {
-		UsageImpl.computeSubjectParameterOf(this);
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -221,30 +211,6 @@ public class CaseUsageImpl extends CalculationUsageImpl implements CaseUsage {
   		return false;
 	}
 
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubperformance()? 
-					CASE_SUBSETTING_SUBCASE_DEFAULT:
-					CASE_SUBSETTING_BASE_DEFAULT;
-	}
-	
-	// Additional overrides
-	
-	@Override
-	protected boolean hasRelevantSubjectParameter() {
-		Type owningType = getOwningType();
-		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
-	}
-	
-	@Override
-	public void transform() {
-		super.transform();
-		computeSubjectParameter();
-		computeObjectiveRequirement();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

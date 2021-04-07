@@ -41,11 +41,8 @@ package P {
 		// XPECT warnings --> "Connected features should have a common context" at "connect A::x to y::z;"
 		connect A::x to y::z;
 	}
-	part a {
-		part x;
-	}
 	part b {
-		part y :> a;
+		part y : A;
 		part z;
 		// XPECT warnings --> "Connected features should have a common context" at "connect y::x to z;"
 		connect y::x to z;

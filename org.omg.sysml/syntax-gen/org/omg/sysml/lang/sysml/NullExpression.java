@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,6 +32,7 @@ package org.omg.sysml.lang.sysml;
  * <p>An Expression that results in a null value.</p>
  * 
  * <p>A NullExpression must be typed by a NullEvaluation which results in an empty value.</p>
+ * isModelLevelEvaluable = true
  * <!-- end-model-doc -->
  *
  *
@@ -39,5 +40,5 @@ package org.omg.sysml.lang.sysml;
  * @model
  * @generated
  */
-public interface NullExpression extends MetadataExpression {
+public interface NullExpression extends Expression {
 } // NullExpression

@@ -20,6 +20,7 @@ package test{
 	feature A {}
 	//* XPECT scope at test::A ---
 	   	A, B, test.A, test.B,
+		A.self,  B.self,  test.A.self,  test.B.self, 
   	--- */
 	feature B redefines test::A{}
 }

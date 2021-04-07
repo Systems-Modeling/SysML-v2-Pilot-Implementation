@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>An ItemUsage is a Usage whose type is a Class. Nominally, if the type is an ItemDefinition, an ItemUsage is a Usage of that ItemDefinition within a system. However, other types of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+ * <p>An ItemUsage is a Usage whose type is a Class. Nominally, if the type is an ItemDefinition, an ItemUsage is a Usage of that ItemDefinition within a system. However, other types of Kernel Structure are also allowed, to permit use of Structures from the Kernel Library.</p>
  * 
  * <p>An ItemUsage must subset, directly or indirectly, the base ItemUsage <code>items</code> from the Systems model library.</p>
  * <!-- end-model-doc -->
@@ -49,7 +49,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ItemUsage extends Usage {
 	/**
 	 * Returns the value of the '<em><b>Item Definition</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Class}.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.Structure}.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -59,7 +59,7 @@ public interface ItemUsage extends Usage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The Classes that are the types of this ItemUsage. Nominally, these are ItemDefinitions, but other kinds of Kernel Classes are also allowed, to permit use of Classes from the Kernel Library.</p>
+	 * <p>The Structures that are the types of this ItemUsage. Nominally, these are ItemDefinitions, but other kinds of Kernel Structures are also allowed, to permit use of Structures from the Kernel Library.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Item Definition</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getItemUsage_ItemDefinition()
@@ -68,6 +68,6 @@ public interface ItemUsage extends Usage {
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	EList<org.omg.sysml.lang.sysml.Class> getItemDefinition();
+	EList<Structure> getItemDefinition();
 
 } // ItemUsage

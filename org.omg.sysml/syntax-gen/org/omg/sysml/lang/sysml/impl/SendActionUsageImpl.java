@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,7 +23,6 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -31,9 +30,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.ItemFeature;
+import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.UsageUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,12 +45,14 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getReceiverArgument <em>Receiver Argument</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.SendActionUsageImpl#getItemsArgument <em>Items Argument</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SendActionUsageImpl extends TransferActionUsageImpl implements SendActionUsage {
+public class SendActionUsageImpl extends ActionUsageImpl implements SendActionUsage {
+
 	/**
 	 * The cached value of the BindingConnector from the result of the target Expression of this SendAction to 
 	 * its ItemFeature.
@@ -80,9 +84,9 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	 * @generated
 	 */
 	@Override
-	public Expression getTarget() {
-		Expression target = basicGetTarget();
-		return target != null && target.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)target) : target;
+	public Expression getReceiverArgument() {
+		Expression receiverArgument = basicGetReceiverArgument();
+		return receiverArgument != null && receiverArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)receiverArgument) : receiverArgument;
 	}
 
 	/**
@@ -90,9 +94,15 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public Expression basicGetTarget() {
-		List<Expression> expressions = getOwnedExpressions();
-		return expressions.size() < 2? null: expressions.get(1);
+	public Expression basicGetReceiverArgument() {
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(this);
+		if (parameters.size() > 1) {
+			FeatureValue valuation = FeatureUtil.getValuationFor(parameters.get(1));
+			if (valuation != null) {
+				return valuation.getValue();
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -101,57 +111,48 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	 * @generated NOT
 	 */
 	@Override
-	public void setTarget(Expression newTarget) {
+	public void setReceiverArgument(Expression newReceiverArgument) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Expression getItemsArgument() {
+		Expression itemsArgument = basicGetItemsArgument();
+		return itemsArgument != null && itemsArgument.eIsProxy() ? (Expression)eResolveProxy((InternalEObject)itemsArgument) : itemsArgument;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Expression basicGetItemsArgument() {
+		Feature itemsParameter = UsageUtil.getItemsParameterOf(this);
+		if (itemsParameter != null) {
+			FeatureValue valuation = FeatureUtil.getValuationFor(itemsParameter);
+			if (valuation != null) {
+				return valuation.getValue();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setItemsArgument(Expression newItemsArgument) {
 		throw new UnsupportedOperationException();
 	}
 	
-	public List<Expression> getOwnedExpressions() {
-		return super.getOwnedFeature().stream().
-				filter(f->f instanceof Expression).
-				map(f->(Expression)f).
-				collect(Collectors.toList());
-	}
-	
-	@Override
-	protected Feature getContextFeature() {
-		Expression target = getTarget();
-		return target == null? null: target.getResult();
-	}
-
-	public ItemFeature getItemFeature() {
-		return super.getOwnedFeature().stream().
-				filter(f->f instanceof ItemFeature).
-				map(f->(ItemFeature)f).
-				findFirst().orElse(null);
-	}
-	
-	public Feature getSource() {
-		Expression sourceExpression = getSourceExpression();
-		return sourceExpression == null? null: sourceExpression.getResult();
-	}
-	
-	protected Expression getSourceExpression() {
-		List<Expression> expressions = getOwnedExpressions();
-		return expressions.isEmpty()? null: expressions.get(0);
-	}
-
-	public BindingConnector getTargetConnector() {
-		return targetConnector;
-	}
-	
-	protected void computeTargetConnector() {
-		Expression sourceExpression = getSourceExpression();
-		if (sourceExpression != null) {
-			targetConnector = makeResultBinding(targetConnector, sourceExpression, getItemFeature());
-		}
-	}
-	
-	public void transform() {
-		super.transform();
-		computeTargetConnector();
-	}
-	
-/**
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -159,9 +160,12 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.SEND_ACTION_USAGE__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
+			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
+				if (resolve) return getReceiverArgument();
+				return basicGetReceiverArgument();
+			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
+				if (resolve) return getItemsArgument();
+				return basicGetItemsArgument();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -174,8 +178,11 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.SEND_ACTION_USAGE__TARGET:
-				setTarget((Expression)newValue);
+			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
+				setReceiverArgument((Expression)newValue);
+				return;
+			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
+				setItemsArgument((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -189,8 +196,11 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.SEND_ACTION_USAGE__TARGET:
-				setTarget((Expression)null);
+			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
+				setReceiverArgument((Expression)null);
+				return;
+			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
+				setItemsArgument((Expression)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -204,8 +214,10 @@ public class SendActionUsageImpl extends TransferActionUsageImpl implements Send
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.SEND_ACTION_USAGE__TARGET:
-				return basicGetTarget() != null;
+			case SysMLPackage.SEND_ACTION_USAGE__RECEIVER_ARGUMENT:
+				return basicGetReceiverArgument() != null;
+			case SysMLPackage.SEND_ACTION_USAGE__ITEMS_ARGUMENT:
+				return basicGetItemsArgument() != null;
 		}
 		return super.eIsSet(featureID);
 	}

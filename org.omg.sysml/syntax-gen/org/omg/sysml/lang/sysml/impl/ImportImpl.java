@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,7 +29,6 @@ import java.util.HashSet;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -179,40 +178,28 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public Namespace getImportOwningNamespace() {
-		if (eContainerFeatureID() != SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE) return null;
-		return (Namespace)eInternalContainer();
+		Namespace importOwningNamespace = basicGetImportOwningNamespace();
+		return importOwningNamespace != null && importOwningNamespace.eIsProxy() ? (Namespace)eResolveProxy((InternalEObject)importOwningNamespace) : importOwningNamespace;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public NotificationChain basicSetImportOwningNamespace(Namespace newImportOwningNamespace, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newImportOwningNamespace, SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE, msgs);
-		return msgs;
+	public Namespace basicGetImportOwningNamespace() {
+		Element owningRelatedElement = super.getOwningRelatedElement();
+		return owningRelatedElement instanceof Namespace? (Namespace)owningRelatedElement: null;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void setImportOwningNamespace(Namespace newImportOwningNamespace) {
-		if (newImportOwningNamespace != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE && newImportOwningNamespace != null)) {
-			if (EcoreUtil.isAncestor(this, newImportOwningNamespace))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newImportOwningNamespace != null)
-				msgs = ((InternalEObject)newImportOwningNamespace).eInverseAdd(this, SysMLPackage.NAMESPACE__OWNED_IMPORT_COMP, Namespace.class, msgs);
-			msgs = basicSetImportOwningNamespace(newImportOwningNamespace, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE, newImportOwningNamespace, newImportOwningNamespace));
+		super.basicSetOwningRelatedElement(newImportOwningNamespace, null);
 	}
 
 	/**
@@ -221,7 +208,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	public boolean isSetImportOwningNamespace() {
-		return getImportOwningNamespace() != null;
+		return basicGetImportOwningNamespace() != null;
 	}
 
 	/**
@@ -277,13 +264,19 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	public Namespace basicGetImportedNamespace() {
 		if (importedNamespace == null) {
-			Namespace owningNamespace = getImportOwningNamespace();
-			if (owningNamespace instanceof TransitionUsage) {
-				// Fill in the empty import inserted into a trigger usage in order to make the namespace
-				// of the trigger action visible.
-				EList<? extends Namespace> triggers = ((TransitionUsage)owningNamespace).getTriggerAction();
-				if (!triggers.isEmpty()) {
-					importedNamespace = triggers.get(0);
+			EList<Element> ownedRelatedElement = getOwnedRelatedElement();
+			if (!ownedRelatedElement.isEmpty() && ownedRelatedElement.get(0) instanceof Namespace) {
+				// Fill in the implicit import for a filter package.
+				importedNamespace = (Namespace)ownedRelatedElement.get(0);
+			} else {
+				Namespace owningNamespace = getImportOwningNamespace();
+				if (owningNamespace instanceof TransitionUsage) {
+					// Fill in the empty import inserted into a trigger usage in order to make the namespace
+					// of the trigger action visible.
+					EList<? extends Namespace> triggers = ((TransitionUsage)owningNamespace).getTriggerAction();
+					if (!triggers.isEmpty()) {
+						importedNamespace = triggers.get(0);
+					}
 				}
 			}
 		}
@@ -329,7 +322,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
 			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
 		}
-		return basicSetImportOwningNamespace((Namespace) newOwningRelatedElement, msgs);
+		setImportOwningNamespace((Namespace) newOwningRelatedElement);
+		return msgs;
 	}
 
 	/**
@@ -397,61 +391,37 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		if (importedNamespace != null && !excludedNamespaces.contains(importedNamespace)) {
 			Namespace owningNamespace = this.getImportOwningNamespace();
 			excludedNamespaces.add(owningNamespace);
-			EList<Membership> namespaceMembership = 
-					((NamespaceImpl) importedNamespace).getPublicMembership(excludedNamespaces,excludedTypes);
-			importedMembership.addAll(namespaceMembership);
-			if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
-				nonpublicMembership.addAll(namespaceMembership);
-			}
+			importMembershipFrom(importedNamespace, importedMembership, nonpublicMembership, 
+					excludedNamespaces, excludedTypes, this.isRecursive);
 			excludedNamespaces.remove(owningNamespace);
 		}
 		return importedMembership;
 	}
+	
+	protected void importMembershipFrom(Namespace importedNamespace, EList<Membership> importedMembership,
+			Collection<Membership> nonpublicMembership, Collection<Namespace> excludedNamespaces,
+			Collection<Type> excludedTypes, boolean isRecursive) {
+		EList<Membership> namespaceMembership = 
+				((NamespaceImpl) importedNamespace).getPublicMembership(excludedNamespaces, excludedTypes);
+		importedMembership.addAll(namespaceMembership);
+		if (nonpublicMembership != null && !VisibilityKind.PUBLIC.equals(this.getVisibility())) {
+			nonpublicMembership.addAll(namespaceMembership);
+		}
+		if (isRecursive) {
+			excludedNamespaces.add(importedNamespace);
+			for (Membership membership: namespaceMembership) {
+				Element ownedMember = membership.getOwnedMemberElement();
+				if (ownedMember instanceof Namespace) {
+					importMembershipFrom((Namespace)ownedMember, importedMembership, nonpublicMembership, 
+							excludedNamespaces, excludedTypes, true);
+				}
+			}
+			excludedNamespaces.remove(importedNamespace);
+		}
+	}
 
 	//
 	
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetImportOwningNamespace((Namespace)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				return basicSetImportOwningNamespace(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				return eInternalContainer().eInverseRemove(this, SysMLPackage.NAMESPACE__OWNED_IMPORT_COMP, Namespace.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -467,7 +437,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 			case SysMLPackage.IMPORT__IS_RECURSIVE:
 				return isRecursive();
 			case SysMLPackage.IMPORT__IMPORT_OWNING_NAMESPACE:
-				return getImportOwningNamespace();
+				if (resolve) return getImportOwningNamespace();
+				return basicGetImportOwningNamespace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

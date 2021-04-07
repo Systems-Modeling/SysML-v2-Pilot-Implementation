@@ -1,6 +1,7 @@
 /*
  * SysML 2 Pilot Implementation
  * Copyright (C) 2020  California Institute of Technology ("Caltech")
+ * Copyright (C) 2020-2021  Model Driven Solutions, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,17 +33,17 @@ export function defineSysMLv2Mode(): void {
 		return CodeMirror.getMode(gc_mode, {
 			name: 'clike',
 			keywords: [
-				'about', 'abstract', 'accept', 'action', 'activity', 'alias', 'all', 'allInstances', 'analysis', 'any', 'as', 'assert', 'assoc', 'assume', 'attribute', 'bind', 'block', 'by',
-				'calc', 'case', 'comment', 'connect', 'connection', 'constraint', 'decide', 'def', 'defined', 'dependency', 'do', 'doc', 'else', 'end', 'entry', 'exhibit', 'exit', 'expose',
-				'first', 'flow', 'fork', 'from', 'hastype', 'id', 'if', 'import', 'in', 'inout', 'instanceof', 'interface', 'individual', 'istype', 'item', 'join', 'language', 'link', 'merge',
-				'nonunique', 'objective', 'of', 'ordered', 'out', 'package', 'part', 'perform', 'port', 'private', 'protected', 'public', 'redefines', 'ref', 'rendering', 'rep', 'require',
-				'requirement', 'return', 'satisfy', 'send', 'snapshot', 'specializes', 'state', 'stream', 'subsets', 'subject', 'succession', 'then', 'timeslice', 'to', 'transition', 'type',
-				'value', 'variant', 'variation', 'verification', 'verify', 'view', 'viewpoint',
+				'about', 'abstract', 'accept', 'action', 'activity', 'alias', 'all', 'allInstances', 'allocation', 'allocate', 'analysis', 'any', 'as', 'assert', 'assoc', 'assume', 'attribute', 
+				'bind', 'block', 'by', 'calc', 'case', 'comment', 'connect', 'connection', 'constraint', 'decide', 'def', 'defined', 'dependency', 'do', 'doc', 'else', 'end', 'entry', 'enum', 
+				'exhibit', 'exit', 'expose', 'filter', 'first', 'flow', 'for', 'fork', 'from', 'hastype', 'id', 'if', 'import', 'in', 'inout', 'instanceof', 'interface', 'individual', 'istype', 
+				'item', 'join', 'language', 'link', 'merge', 'metadata', 'nonunique', 'objective', 'of', 'ordered', 'out', 'package', 'part', 'perform', 'port', 'private', 'protected', 'public', 
+				'redefines', 'ref', 'rendering', 'rep', 'require', 'requirement', 'return', 'satisfy', 'send', 'snapshot', 'specializes', 'state', 'stream', 'subsets', 'subject', 'succession', 
+				'then', 'timeslice', 'to', 'transition', 'type', 'value', 'variant', 'variation', 'verification', 'verify', 'view', 'viewpoint',
 			].reduce(f_wordify, {}),
 			defKeywords: [
-				'action', 'activity', 'analysis', 'assoc', 'attribute', 'block', 'calc', 'case', 'comment', 'connection', 'constraint', 'doc', 'def', 'id', 'link', 'individual', 'interface',
-				'item', 'package', 'objective', 'part', 'port', 'ref', 'rendering', 'rep', 'requirement', 'snapshot', 'state', 'timeslice', 'transition', 'type', 'value', 'verification',
-				'view', 'viewpoint',
+				'action', 'activity', 'allocation', 'analysis', 'assoc', 'attribute', 'block', 'calc', 'case', 'comment', 'connection', 'constraint', 'doc', 'def', 'enum', 'id', 'link', 'individual', 
+				'interface', 'item', 'metadata', 'package', 'objective', 'part', 'port', 'ref', 'rendering', 'rep', 'requirement', 'snapshot', 'state', 'timeslice', 'transition', 'type', 'value', 
+				'verification', 'view', 'viewpoint',
 			].reduce(f_wordify, {}),
 			typeFirstDefinitions: true,
 			atoms: ['true', 'false', 'null'].reduce(f_wordify),
@@ -54,7 +55,7 @@ export function defineSysMLv2Mode(): void {
 				"'": function(stream: CodeMirror.StringStream) {
 					let b_escaped = false;
 					let s_next;
-					while(null !== (s_next = stream.next())) {
+					while(s_next = stream.next()) {
 						if(s_next === "'" && !b_escaped) break;
 						b_escaped = !b_escaped && s_next === '\\';
 					}

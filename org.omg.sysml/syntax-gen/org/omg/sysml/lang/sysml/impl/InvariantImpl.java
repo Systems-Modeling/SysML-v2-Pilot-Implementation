@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,9 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.BindingConnector;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Invariant;
-import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 /**
@@ -90,16 +88,6 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		return assertionConnector;
 	}
 
-	public static BindingConnector getAssertionConnectorFor(FeatureImpl feature, BindingConnector assertionConnector, Feature result) {
-		LiteralBoolean literalBoolean = (LiteralBoolean)feature.getOwnedFeature().stream().
-				filter(f->f instanceof LiteralBoolean).
-				findFirst().orElse(null);
-		if (literalBoolean != null) {
-			assertionConnector = feature.makeResultBinding(assertionConnector, literalBoolean, result);
-		}
-		return assertionConnector;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,16 +98,6 @@ public class InvariantImpl extends BooleanExpressionImpl implements Invariant {
 		assertionConnector = newAssertionConnector;
 	}
 
-	// Additional overrides
-
-	@Override
-	public void transform() {
-		super.transform();
-		assertionConnector = getAssertionConnectorFor(this, assertionConnector, this.getResult());
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

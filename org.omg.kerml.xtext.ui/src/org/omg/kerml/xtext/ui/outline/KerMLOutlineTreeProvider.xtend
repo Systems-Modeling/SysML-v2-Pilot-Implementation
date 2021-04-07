@@ -33,6 +33,16 @@ import org.omg.sysml.lang.sysml.Association
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.TypeFeaturing
 import org.omg.sysml.lang.sysml.Namespace
+import java.net.URLDecoder
+import org.omg.sysml.lang.sysml.Feature
+import org.omg.sysml.lang.sysml.Expression
+import org.eclipse.swt.graphics.Image
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode
+import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode
+import org.omg.sysml.util.ElementUtil
+import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.util.FeatureUtil
 
 /**
  * Customization of the default outline structure.
@@ -55,6 +65,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			text += ' ' + name;
 		}
 		text 
+	}
+	
+	def String _text(Namespace namespace) {
+		if (namespace.eContainer !== null || namespace.eResource === null)
+			(namespace as Element)._text
+		else 
+			'Root ' + URLDecoder.decode(namespace.eResource.URI.lastSegment, "UTF-8")
 	}
 	
 	def String _text(VisibilityKind visibility) {
@@ -112,10 +129,17 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (import_.visibility !== null) {
 			text += ' ' + import_.visibility._text
 		}
-		if (import_.importedNamespace?.name !== null) {
-			text += ' ' + import_.importedNamespace.name
+		var imp = import_
+		if (import_.importedNamespace?.owningRelationship === import_) {
+			if (!import_.importedNamespace.ownedImport.isEmpty) {
+				imp = import_.importedNamespace.ownedImport.get(0)
+				text = text + ' filter'
+			}
 		}
-		text
+		if (imp.importedNamespace?.name !== null) {
+			text += ' ' + imp.importedNamespace.name
+		}
+		text + if (imp.isRecursive) "::**" else "::*"
 	}
 	
 	def String _text(Type type) {
@@ -133,11 +157,19 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		text
 	}
 	
-	def String _Text(LiteralString literal) {
+	def String _text(Expression expression) {
+		var text = (expression as Type)._text
+		if (expression.isModelLevelEvaluable) {
+			text += " model-level"
+		}
+		text
+	}
+	
+	def String _text(LiteralString literal) {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
-	def String literalText(LiteralBoolean literal) {
+	def String _text(LiteralBoolean literal) {
 		literal.metaclassText + ' ' + literal.value
 	}
 	
@@ -168,13 +200,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def createRelatedElements(IOutlineNode parentNode, Relationship relationship) {
 		for (source: relationship.source) {
-			createEObjectNode(parentNode, source, 
+			createNode(parentNode, source, 
 				_image(source), 'from ' + source._text, 
 				true
 			)
 		}
 		for (target: relationship.target) {
-			createEObjectNode(parentNode, target, 
+			createNode(parentNode, target, 
 				_image(target), 'to ' + target._text, 
 				true
 			)
@@ -188,7 +220,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	def void _createChildren(IOutlineNode parentNode, Annotation annotation) {
 		super._createChildren(parentNode, annotation)
 		if (annotation.annotatedElement !== null) {
-			createEObjectNode(parentNode, annotation.annotatedElement, 
+			createNode(parentNode, annotation.annotatedElement, 
 				_image(annotation.annotatedElement), annotation.annotatedElement._text, 
 				true
 			)
@@ -240,7 +272,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var memberElement = membership.memberElement;
 		if (membership.ownedMemberElement === null && 
 				memberElement !== null) {
-			createEObjectNode(parentNode, memberElement, 
+			createNode(parentNode, memberElement, 
 				memberElement._image, memberElement._text, 
 				true
 			)
@@ -262,26 +294,12 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Import _import) {
 		super._createChildren(parentNode, _import)
-		var importedPackage = _import.importedNamespace;
-		if (importedPackage !== null) {
-			createEObjectNode(parentNode, importedPackage, 
-				importedPackage._image, importedPackage._text, 
-				_import.importOwningNamespace == importedPackage || importedPackage._isLeaf
+		var importedNamespace = _import.importedNamespace;
+		if (importedNamespace !== null && importedNamespace.owningRelationship !== _import) {
+			createNode(parentNode, importedNamespace, 
+				importedNamespace._image, importedNamespace._text, 
+				_import.importOwningNamespace == importedNamespace || importedNamespace._isLeaf
 			)
-		}
-	}
-	
-	def void _createChildren(IOutlineNode parentNode, Namespace _package) {
-		for (childElement : _package.eContents()) {
-			if (!(childElement instanceof Import || childElement instanceof Membership)) {
-				createNode(parentNode, childElement)
-			}
-		}
-		for (_import: _package.ownedImport) {
-			createNode(parentNode, _import)
-		}
-		for (membership: _package.ownedMembership) {
-			createNode(parentNode, membership)
 		}
 	}
 	
@@ -291,13 +309,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, TypeFeaturing featuring) {
 		if (featuring.featureOfType !== null && featuring.featureOfType !== featuring.eContainer) {
-			createEObjectNode(parentNode, featuring.featureOfType, 
+			createNode(parentNode, featuring.featureOfType, 
 				featuring.featureOfType._image, featuring.featureOfType._text, 
 				true
 			)			
 		}
 		if (featuring.featuringType !== null) {
-			createEObjectNode(parentNode, featuring.featuringType, 
+			createNode(parentNode, featuring.featuringType, 
 				featuring.featuringType._image, featuring.featuringType._text, 
 				true
 			)
@@ -310,13 +328,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Generalization generalization) {
 		if (generalization.specific !== null && generalization.specific !== generalization.eContainer) {
-			createEObjectNode(parentNode, generalization.specific, 
+			createNode(parentNode, generalization.specific, 
 				generalization.specific._image, generalization.specific._text, 
 				true
 			)			
 		}
 		if (generalization.general !== null) {
-			createEObjectNode(parentNode, generalization.general, 
+			createNode(parentNode, generalization.general, 
 				generalization.general._image, generalization.general._text, 
 				true
 			)
@@ -329,13 +347,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def void _createChildren(IOutlineNode parentNode, Redefinition redefinition) {
 		if (redefinition.redefiningFeature !== null && redefinition.redefiningFeature !== redefinition.eContainer) {
-			createEObjectNode(parentNode, redefinition.redefiningFeature, 
+			createNode(parentNode, redefinition.redefiningFeature, 
 				redefinition.redefiningFeature._image, redefinition.redefiningFeature._text, 
 				true
 			)			
 		}
 		if (redefinition.redefinedFeature !== null) {
-			createEObjectNode(parentNode, redefinition.redefinedFeature, 
+			createNode(parentNode, redefinition.redefinedFeature, 
 				redefinition.redefinedFeature._image, redefinition.redefinedFeature._text, 
 				true
 			)
@@ -348,13 +366,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def void _createChildren(IOutlineNode parentNode, Subsetting subsetting) {
 		if (subsetting.subsettingFeature !== null && subsetting.subsettingFeature !== subsetting.eContainer) {
-			createEObjectNode(parentNode, subsetting.subsettingFeature, 
+			createNode(parentNode, subsetting.subsettingFeature, 
 				subsetting.subsettingFeature._image, subsetting.subsettingFeature._text, 
 				true
 			)			
 		}
 		if (subsetting.subsettedFeature !== null) {
-			createEObjectNode(parentNode, subsetting.subsettedFeature, 
+			createNode(parentNode, subsetting.subsettedFeature, 
 				_image(subsetting.subsettedFeature), subsetting.subsettedFeature._text, 
 				true
 			)
@@ -367,13 +385,13 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
 	def void _createChildren(IOutlineNode parentNode, Conjugation conjugation) {
 		if (conjugation.conjugatedType !== null && conjugation.conjugatedType !== conjugation.eContainer) {
-			createEObjectNode(parentNode, conjugation.conjugatedType, 
+			createNode(parentNode, conjugation.conjugatedType, 
 				conjugation.conjugatedType._image, conjugation.conjugatedType._text, 
 				true
 			)			
 		}
 		if (conjugation.originalType !== null) {
-			createEObjectNode(parentNode, conjugation.originalType, 
+			createNode(parentNode, conjugation.originalType, 
 				_image(conjugation.originalType), conjugation.originalType._text, 
 				true
 			)
@@ -381,16 +399,21 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def _isLeaf(Type type) {
-	    _isLeaf(type as Namespace) && (type as TypeImpl).isImplicitGeneralTypesEmpty() 	
+	    _isLeaf(type as Namespace) && TypeUtil.isImplicitGeneralTypesEmpty(type) 	
 	}
 	
 	def void _createChildren(IOutlineNode parentNode, Type type) {		
+		//ImplicitFieldAdapter.getOrCreateAdapter(type).
 		createImplicitGeneralizationNodes(parentNode, type)
+		if (type instanceof Feature) {
+			createImplicitTypeFeaturingNodes(parentNode, type)
+		}
 		_createChildren(parentNode, type as Namespace)
+		createImplicitBindingConnectorNodes(parentNode, type)
 	}
 	
 	def createImplicitGeneralizationNodes(IOutlineNode parentNode, Type type) {
-		(type as TypeImpl).forEachImplicitGeneralType[eClass, generalType |
+		TypeUtil.forEachImplicitGeneralTypeOf(type, [eClass, generalType |
 			/*
 			 * TODO here image dispatcher should be called with a type that
 			 * returns that appropriate icon for generalizations, but there
@@ -398,18 +421,55 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			 * reference might return an unexpected icon if at a later point
 			 * type-specific icons are added.
 			 */
-			val implicitNode = new ImplicitGeneralizationNode(parentNode, 
+			val implicitNode = new ImplicitNode(parentNode, 
 				imageDispatcher.invoke(generalType), eClass
 			)
 			
 			// Traversal does not know about the new node, children have to be created here
 			if (generalType !== null) {
-				createEObjectNode(implicitNode, generalType, 
+				createNode(implicitNode, generalType, 
 					generalType._image, generalType._text, 
 					true
 				)
 			}
-		]
+		])
+	}
+	
+	def createImplicitTypeFeaturingNodes(IOutlineNode parentNode, Feature feature) {
+		FeatureUtil.forEachImplicitFeaturingTypeOf(feature, [featuringType |
+			/*
+			 * TODO here image dispatcher should be called with a type that
+			 * returns that appropriate icon for generalizations, but there
+			 * are no such icons added yet; in the future, the generalType
+			 * reference might return an unexpected icon if at a later point
+			 * type-specific icons are added.
+			 */
+			val implicitNode = new ImplicitNode(parentNode, 
+				imageDispatcher.invoke(featuringType), SysMLPackage.Literals.TYPE_FEATURING
+			)
+			// Traversal does not know about the new node, children have to be created here
+			if (featuringType !== null) {
+				createNode(implicitNode, featuringType, 
+					featuringType._image, featuringType._text, 
+					true
+				)
+			}
+		])
+	}
+	
+	def createImplicitBindingConnectorNodes(IOutlineNode parentNode, Type type) {
+		TypeUtil.forEachImplicitBindingConnectorOf(type, [connector, eClass |
+			/*
+			 * TODO here image dispatcher should be called with a type that
+			 * returns that appropriate icon for generalizations, but there
+			 * are no such icons added yet; in the future, the generalType
+			 * reference might return an unexpected icon if at a later point
+			 * type-specific icons are added.
+			 */
+			val implicitNode = new ImplicitNode(parentNode, 
+				imageDispatcher.invoke(connector), eClass)
+			implicitNode.createNode(connector, imageDispatcher.invoke(connector), connector.eClass.getName, false)
+		])
 	}
 	
 	def _isLeaf(Association association) {
@@ -432,13 +492,47 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	def void _createChildren(IOutlineNode parentNode, OperatorExpression expression) {
 		createImplicitGeneralizationNodes(parentNode, expression)
+		createImplicitTypeFeaturingNodes(parentNode, expression)
 		for (Relationship relationship : expression.ownedRelationship) {
-			createEObjectNode(parentNode, relationship, 
+			createNode(parentNode, relationship, 
 				_image(relationship), 
 				if (relationship instanceof Membership) (relationship as Membership)._text 
 				else relationship._text, 
 				false
 			);
+		}
+		createImplicitBindingConnectorNodes(parentNode, expression)
+	}
+	
+	override _createNode(DocumentRootNode parentNode, EObject modelElement) {
+		var text = textDispatcher.invoke(modelElement);
+		if (text === null) {
+			text = modelElement.eResource().getURI().trimFileExtension().lastSegment();
+		}
+		createNode(parentNode, modelElement, imageDispatcher.invoke(modelElement), text.toString,
+				isLeafDispatcher.invoke(modelElement));
+	}
+	
+	override _createNode(IOutlineNode parentNode, EObject modelElement) {
+		var Object text = textDispatcher.invoke(modelElement);
+		val isLeaf = isLeafDispatcher.invoke(modelElement);
+		if (text === null && isLeaf)
+			return;
+		val Image image = imageDispatcher.invoke(modelElement);
+		createNode(parentNode, modelElement, image, text.toString, isLeaf);
+	}
+	
+	private def AbstractOutlineNode createNode(IOutlineNode parentNode, EObject modelElement, Image image, String text,
+			boolean isLeaf) {
+		if (modelElement.eResource !== null) {
+			super.createEObjectNode(parentNode, modelElement, image, text, isLeaf)
+		} else {
+			val node = new ImplicitNode(parentNode, image, text)
+			if (modelElement instanceof Element) {
+				ElementUtil.transform(modelElement);
+			}
+			createChildrenDispatcher.invoke(node, modelElement)
+			node
 		}
 	}
 	

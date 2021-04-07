@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -22,8 +22,10 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.LiteralExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -33,9 +35,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  *
  * @generated
  */
-public class LiteralExpressionImpl extends MetadataExpressionImpl implements LiteralExpression {
-
-	public static final String LITERAL_EXPRESSION_SUBSETTING_DEFAULT = "Performances::literalEvaluations";
+public class LiteralExpressionImpl extends ExpressionImpl implements LiteralExpression {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -46,8 +46,15 @@ public class LiteralExpressionImpl extends MetadataExpressionImpl implements Lit
 	}
 
 	@Override
-	protected String getDefaultSupertype() {
-		return LITERAL_EXPRESSION_SUBSETTING_DEFAULT;
+	public boolean isModelLevelEvaluable() {
+		return true;
+	}
+	
+	@Override
+	public EList<Element> evaluate(Element target) {
+		EList<Element> result = new BasicEList<Element>();
+		result.add(this);
+		return result;
 	}
 
 	/**

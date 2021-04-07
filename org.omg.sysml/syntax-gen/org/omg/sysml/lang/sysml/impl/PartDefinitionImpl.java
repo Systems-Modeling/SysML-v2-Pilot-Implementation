@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -36,8 +36,6 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  */
 public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefinition {
 	
-	public static final String PART_DEFINITION_SUPERCLASS_DEFAULT = "Parts::Part";
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -55,11 +53,6 @@ public class PartDefinitionImpl extends ItemDefinitionImpl implements PartDefini
 	@Override
 	protected EClass eStaticClass() {
 		return SysMLPackage.Literals.PART_DEFINITION;
-	}
-
-	@Override
-	protected String getDefaultSupertype() {
-		return PART_DEFINITION_SUPERCLASS_DEFAULT;
 	}
 
 } // PartDefinitionImpl

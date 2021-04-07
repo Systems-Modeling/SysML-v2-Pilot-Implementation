@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2020 Model Driven Solutions, Inc.
+ * Copyright (c) 2020-2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,17 +23,11 @@
 package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -42,17 +36,14 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -61,13 +52,12 @@ import org.omg.sysml.lang.sysml.Generalization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.Relationship;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,43 +68,29 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMembership <em>Membership</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship_comp <em>Owned Relationship comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedMembership_comp <em>Owned Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership_comp <em>Owned Feature Membership comp</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedRelationship <em>Owned Relationship</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeature <em>Owned Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInput <em>Input</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isAbstract <em>Is Abstract</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedMembership <em>Inherited Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getEndFeature <em>End Feature</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedEndFeature <em>Owned End Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isSufficient <em>Is Sufficient</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedConjugator <em>Owned Conjugator</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#isConjugated <em>Is Conjugated</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getFeatureMembership <em>Feature Membership</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getInheritedFeature <em>Inherited Feature</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedFeatureMembership <em>Owned Feature Membership</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.TypeImpl#getOwnedGeneralization <em>Owned Generalization</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TypeImpl extends NamespaceImpl implements Type {
 	
-	public static final String TYPE_GENERALIZATION_DEFAULT = "Base::Anything";
-
-	/**
-	 * The cached value of the '{@link #getOwnedFeatureMembership_comp() <em>Owned Feature Membership comp</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedFeatureMembership_comp()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<FeatureMembership> ownedFeatureMembership_comp;
-
 	/**
 	 * The default value of the '{@link #isAbstract() <em>Is Abstract</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -210,24 +186,11 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 */
 	@Override
-	public EList<Relationship> getOwnedRelationship_comp() {
-		if (ownedRelationship_comp == null) {
-			ownedRelationship_comp = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
+	public EList<Relationship> getOwnedRelationship() {
+		if (ownedRelationship == null) {
+			ownedRelationship = new EObjectContainmentWithInverseEList<Relationship>(Relationship.class, this, SysMLPackage.TYPE__OWNED_RELATIONSHIP, SysMLPackage.RELATIONSHIP__OWNING_RELATED_ELEMENT);
 		}
-		return ownedRelationship_comp;
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<Membership> getOwnedMembership_comp() {
-		if (ownedMembership_comp == null) {
-			ownedMembership_comp = new EObjectContainmentWithInverseEList<Membership>(Membership.class, this, SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP, SysMLPackage.MEMBERSHIP__MEMBERSHIP_OWNING_NAMESPACE);
-		}
-		return ownedMembership_comp;
+		return ownedRelationship;
 	}
 
 	/**
@@ -237,177 +200,14 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	public EList<Generalization> getOwnedGeneralization() {
 		EList<Generalization> generalizations = new NonNotifyingEObjectEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		getOwnedGeneralization_comp().stream().filter(gen->((GeneralizationImpl)gen).basicGetGeneral() != null).forEachOrdered(generalizations::add);
+		getOwnedRelationship().stream().
+			filter(Generalization.class::isInstance).
+			map(Generalization.class::cast).
+			filter(gen->gen.getSpecific() == this).
+			forEachOrdered(generalizations::add);
 		return generalizations;
 	}
 
-	public EList<Generalization> getOwnedGeneralization_comp() {
-		EList<Generalization> generalizations = new NonNotifyingEObjectEList<>(Generalization.class, this, SysMLPackage.TYPE__OWNED_GENERALIZATION);
-		for (Relationship relationship: getOwnedRelationship_comp()) {
-			if (relationship instanceof Generalization &&
-					this.equals(((Generalization)relationship).getSpecific())) {
-				generalizations.add(((Generalization)relationship));
-			}
-		}
-		return generalizations;
-	}
-
-	@SuppressWarnings("unchecked")
-	protected <T extends Generalization> List<T> basicGetOwnedGeneralization(Class<T> kind) {
-		return (List<T>)getOwnedGeneralization_comp().stream().
-				filter(kind::isInstance).
-				collect(Collectors.toList());
-	}
-	
-	/**
-	 * Contains the required ends for implicit generalizations like implicit
-	 * superclassing, subsetting, featuretyping and redefinitions for future access.
-	 * The lists must not contain null values and the current type.
-	 */
-	protected Map<EClass, List<Type>> implicitGeneralTypes = new HashMap<>();
-	
-	public void computeImplicitGeneralTypes() {
-		if (!isConjugated()) {
-			addDefaultGeneralType();
- 		}
-	}
-	
-
-	public void cleanImplicitGeneralization() {
-		implicitGeneralTypes.clear();
-	}
-	
-	public void addImplicitGeneralizations() {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
-			for (Type general : implicitGeneralTypes.get(eClass)) {
-				Generalization newGeneralization = (Generalization)SysMLFactory.eINSTANCE.create(eClass);
-				newGeneralization.setGeneral(general);
-				newGeneralization.setSpecific(this);
-				getOwnedRelationship_comp().add(newGeneralization);
-			}
-		}
-		cleanImplicitGeneralization();
-	}
-	
-	public boolean isImplicitGeneralTypesEmpty() {
-		return implicitGeneralTypes.isEmpty();
-	}
-	
-	public Collection<EClass> getImplicitGeneralTypeKinds() {
-		return implicitGeneralTypes.keySet();
-	}
-	
-	public List<Type> getImplicitGeneralTypes() {
-		return implicitGeneralTypes.values().stream().
-				flatMap(Collection::stream).
-				collect(Collectors.toList());
-	}
-	
-	public List<Type> getImplicitGeneralTypes(EClass eClass) {
-		return implicitGeneralTypes.keySet().stream().
-				filter(eClass::isSuperTypeOf).
-				flatMap(keyClass->getImplicitGeneralTypesOnly(keyClass).stream()).
-				collect(Collectors.toList());
-	}
-	
-	public List<Type> getImplicitGeneralTypesOnly(EClass eClass) {
-		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList());
-	}
-	
-	public Type getFirstImplicitGeneralType(EClass eClass) {
-		List<Type> types = getImplicitGeneralTypes(eClass);
-		return types.isEmpty() ? null : types.get(0);
-	}
-	
-	public boolean isImplicitGeneralizationDeclaredFor(EClass eClass) {
-		return implicitGeneralTypes.containsKey(eClass);
-	}
-	
-	public boolean isImplicitGeneralizationFor(EClass eClass, Type general) {
-		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
-	}
-	
-	public void forEachImplicitGeneralType(BiConsumer<EClass, Type> action) {
-		for (EClass eClass : implicitGeneralTypes.keySet()) {
-			for (Type supertype : implicitGeneralTypes.get(eClass)) {
-				action.accept(eClass, supertype);
-			}
-		}
-	}
-	
-	protected <T extends Generalization> void removeEmptyGeneralTypes(Class<T> kind) {
-		List<Relationship> ownedRelationships = getOwnedRelationship_comp();
-		for (Generalization generalization: basicGetOwnedGeneralization(kind)) {
-			if (((GeneralizationImpl)generalization).basicGetGeneral() == null) {
-				ownedRelationships.remove(generalization);
-			}
-		}
-	}
-	
-	protected void addDefaultGeneralType() {
-		addDefaultGeneralType(getGeneralizationEClass(), getDefaultSupertype());
-	}
-	
-	@SuppressWarnings("unchecked")
-	protected void addDefaultGeneralType(EClass generalizationEClass, String... superTypeNames) {
-		Class<? extends Generalization> kind = (Class<? extends Generalization>)generalizationEClass.getInstanceClass();
-		removeEmptyGeneralTypes(kind);
-		if (getImplicitGeneralTypes(generalizationEClass).isEmpty() &&
-				basicGetOwnedGeneralization(kind).isEmpty()) {
-			Type general = getDefaultType(superTypeNames);
-			if (general != null && general != this) {
-				List<Type> generalizations = new ArrayList<>();
-				generalizations.add(general);
-				implicitGeneralTypes.put(generalizationEClass, generalizations);
-			}
-		}
-	}
-	
-	protected void addImplicitGeneralType(EClass eClass, Type general) {
-		if (general != null && !isImplicitGeneralizationFor(eClass, general)) {
-			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
-		}
-	}
-	
-	protected EClass getGeneralizationEClass() {
-		return SysMLPackage.eINSTANCE.getGeneralization();
-	}
-	
-	protected String getDefaultSupertype() {
-		return TYPE_GENERALIZATION_DEFAULT;
-	}
-	
-	protected <T extends Generalization> Generalization getDefaultGeneralization(EClass eClass, String... defaultNames) {
-		@SuppressWarnings("unchecked")
-		List<? extends Generalization> generalizations = 
-			basicGetOwnedGeneralization((Class<? extends Generalization>)eClass.getInstanceClass());
-		Generalization generalization = null;
-		if (generalizations.isEmpty()) {
-			Type general = getDefaultType(defaultNames);
-			// Do not add a default generalization of a type to itself.
-			if (general != null && general != this) {
-				generalization = (Generalization) SysMLFactory.eINSTANCE.create(eClass);
-				generalization.setGeneral(general);
-				((GeneralizationImpl)generalization).basicSetSpecific(this);
-			}
-		}
-		return generalization;
-	}
-	
-	protected Type getDefaultType(String... defaultNames) {
-		return getLibraryType(this, defaultNames);
-	}
-	
-	public static Type getLibraryType(Element context, String... defaultNames) {
-		for (String defaultName: defaultNames) {
-			EObject element = SysMLLibraryUtil.getLibraryElement(context, defaultName);
-			if (element instanceof Type) {
-				return (Type)element;
-			}
-		}
-		return null;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -415,9 +215,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	@Override
 	public EList<FeatureMembership> getOwnedFeatureMembership() {
-		EList<FeatureMembership> ownedFeatureMemberships = new NonNotifyingEObjectEList<>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP);
-		ownedFeatureMemberships.addAll(getOwnedFeatureMembership_comp());
-		return ownedFeatureMemberships;
+		return new DerivedEObjectEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP, new int[] {SysMLPackage.ELEMENT__OWNED_RELATIONSHIP});
 	}
 
 	/**
@@ -521,14 +319,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.TYPE__IS_ABSTRACT, oldIsAbstract, isAbstract));
 	}
 	
-	private EList<Membership> inheritedMembership = null;
-	
-	@Override
-	public void clearCaches() {
-		super.clearCaches();
-		inheritedMembership = null;
-	}
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -536,11 +326,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 */
 	@Override
 	public EList<Membership> getInheritedMembership() {
-		if (inheritedMembership == null) {
-			inheritedMembership = getInheritedMembership(new HashSet<Namespace>(), new HashSet<Type>(), true);
-//			System.out.println("Caching inheritedMembership for " + this);
-		}
-		return inheritedMembership;
+		return TypeUtil.cacheInheritedMembershipOf(this, ()->
+			getInheritedMembership(new HashSet<Namespace>(), new HashSet<Type>(), true));
 	}
 	
 	/**
@@ -595,7 +382,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated NOT
 	 */
 	public Conjugation basicGetOwnedConjugator() {
-		return (Conjugation) getOwnedRelationship_comp().stream().
+		return (Conjugation) getOwnedRelationship().stream().
 				filter(Conjugation.class::isInstance).
 				findFirst().orElse(null);
 	}
@@ -678,8 +465,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated NOT
 	 */
 	public Multiplicity basicGetMultiplicity() {
-		return getMultiplicity(new HashSet<Type>());
-		
+		return getMultiplicity(new HashSet<Type>());	
 	}
 	
 	protected Multiplicity getMultiplicity(Set<Type> visited) {
@@ -688,9 +474,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				findFirst().orElse(null);
 		if (multiplicity == null) {
 			visited.add(this);
-			List<Type> superTypes = getSupertypes();
+			List<Type> superTypes = TypeUtil.getSupertypesOf(this);
 			if (!superTypes.isEmpty()) {
-				Type general = getSupertypes().get(0);
+				Type general = TypeUtil.getSupertypesOf(this).get(0);
 				if (general != null && !visited.contains(general)) { 
 					multiplicity = ((TypeImpl)general).getMultiplicity(visited);
 				}
@@ -731,7 +517,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				inheritedMemberships.addAll(((TypeImpl)originalType).getMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
 		}
-		for (Type general: getSupertypes()) {
+		for (Type general: TypeUtil.getSupertypesOf(this)) {
 			if (general != null && !excludedTypes.contains(general)) {
 				inheritedMemberships.addAll(((TypeImpl)general).getNonPrivateMembership(excludedNamespaces, excludedTypes, includeProtected));
 			}
@@ -745,19 +531,20 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		memberships.removeIf(membership->{
 			Element memberElement = membership.getMemberElement();
 			return memberElement instanceof Feature &&
-				   ((FeatureImpl)memberElement).getAllRedefinedFeatures().stream().
+				   FeatureUtil.getAllRedefinedFeaturesOf((Feature)memberElement).stream().
 				   		anyMatch(redefinedFeatures::contains);
 		});		
 	}
 	
 	public Collection<Feature> getFeaturesRedefinedByType() {
 		return getOwnedFeature().stream().
-				flatMap(feature->((FeatureImpl)feature).getAllRedefinedFeatures().stream()).
+				flatMap(feature->FeatureUtil.getAllRedefinedFeaturesOf(feature).stream()).
 				collect(Collectors.toSet());
 	}
 	
 	public EList<Membership> getMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean includeProtected) {
-		EList<Membership> membership = getOwnedMembership();
+		EList<Membership> membership = new BasicInternalEList<>(Membership.class);
+		membership.addAll(getOwnedMembership());
 		membership.addAll(getInheritedMembership(excludedNamespaces, excludedTypes, includeProtected));
 		membership.addAll(getImportedMembership(excludedNamespaces, excludedTypes, includeProtected));
 		return membership;
@@ -778,16 +565,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	}
 	
 	/**
-	 * This method returns those features from this type that should be automatically overridden in its usages.
-	 * By default, there are none.
-	 * 
-	 * @return	Relevant features from the type that should be redefined in usages.
-	 */
-	public List<? extends Feature> getRelevantFeatures() {
-		return Collections.emptyList();
-	}
-	
-	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedGeneralization() <em>Owned Generalization</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -795,30 +572,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_GENERALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP};
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EList<FeatureMembership> getOwnedFeatureMembership_comp() {
-		if (ownedFeatureMembership_comp == null) {
-			ownedFeatureMembership_comp = new EObjectContainmentWithInverseEList<FeatureMembership>(FeatureMembership.class, this, SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP, SysMLPackage.FEATURE_MEMBERSHIP__OWNING_TYPE);
-		}
-		return ownedFeatureMembership_comp;
-	}
-
-	/**
-	 * The array of superset feature identifiers for the '{@link #getOwnedFeatureMembership() <em>Owned Feature Membership</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwnedFeatureMembership()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_FEATURE_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP};
+	protected static final int[] OWNED_GENERALIZATION_ESUPERSETS = new int[] {SysMLPackage.TYPE__OWNED_RELATIONSHIP};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -861,7 +615,7 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			return ((TypeImpl)originalType).getAllSuperTypes(visited);
 		} else {
 			EList<Type> superTypes = new BasicEList<>();
-			getSupertypes().stream().
+			TypeUtil.getSupertypesOf(this).stream().
 				forEachOrdered(superType->{
 					if (superType != null && !visited.contains(superType)) {
 						visited.add(superType);
@@ -873,232 +627,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		}
 	}
 	
-	// Additional subsets
-	
-	@Override
-	public EList<Membership> getOwnedMembership() {
-		EList<Membership> ownedMemberships = super.getOwnedMembership();
-		ownedMemberships.addAll(getOwnedFeatureMembership());
-		return ownedMemberships;
-	}
-
-	// Utility Methods
-	
-	public List<Type> getSupertypes() {
-		return getSupertypes(null);
-	}
-	
-	public List<Type> getSupertypes(Element skip) {
-		List<Type> ownedGeneralEnds = new ArrayList<>(); 
-		getOwnedGeneralization()
-			.stream()
-			.filter(gen -> gen != skip)
-			.map(Generalization::getGeneral)
-			.forEachOrdered(ownedGeneralEnds::add);
-		computeImplicitGeneralTypes();
-		ownedGeneralEnds.addAll(getImplicitGeneralTypes());
-		return ownedGeneralEnds;
-	}
-	
-	public boolean conformsTo(Type supertype) {
-		return conformsTo(supertype, new HashSet<>());
-	}
-	
-	// Note: Generalizations are allowed to be cyclic.
-	protected boolean conformsTo(Type supertype, Set<Type> visited) {
-		if (this == supertype) {
-			return true;
-		} else {
-			visited.add(this);
-			if (isConjugated()) {
-				Type originalType = getOwnedConjugator().getOriginalType();
-				return !visited.contains(originalType) && ((TypeImpl)originalType).conformsTo(supertype);
-			} else {
-				return getSupertypes().stream().
-					anyMatch(type->!visited.contains(type) && 
-							((TypeImpl)type).conformsTo(supertype, visited));
-			}
-		}
-	}
-	
-	public <T extends Membership> Stream<Feature> getFeaturesByMembership(Class<T> kind) {
-		return getFeatureMembership().stream().
-				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature);
-	}
-	
-	public <T extends Membership> Feature getFeatureByMembership(Class<T> kind) {
-		return getFeaturesByMembership(kind).findFirst().orElse(null);
-	}
-	
-	public <T extends Membership> Stream<Feature> getOwnedFeaturesByMembership(Class<T> kind) {
-		return getOwnedFeatureMembership().stream().
-				filter(kind::isInstance).
-				map(FeatureMembership::getMemberFeature).
-				filter(f->f != null);
-	}
-	
-	public <T extends Membership> Feature getOwnedFeatureByMembership(Class<T> kind) {
-		return getOwnedFeaturesByMembership(kind).findFirst().orElse(null);
-	}
-	
-	public List<Feature> getPublicFeatures() {
-		return publicMemberships().stream().
-				filter(FeatureMembership.class::isInstance).
-				map(FeatureMembership.class::cast).
-				map(FeatureMembership::getMemberFeature).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getAllEndFeatures() {
-		return getAllEndFeatures(new HashSet<>());
-	}
-	
-	protected List<Feature> getAllEndFeatures(Set<Type> visited) {
-		visited.add(this);
-		List<Feature> ends = getOwnedEndFeatures();
-		int n = ends.size();
-		for (Type general: getSupertypes()) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedEnds = ((TypeImpl)general).getAllEndFeatures(visited);
-				if (inheritedEnds.size() > n) {
-					ends.addAll(inheritedEnds.subList(n, inheritedEnds.size()));
-				}
-			}
-		}
-		return ends;
-	}
-	
-	public List<Feature> getOwnedEndFeatures() {
-		return getOwnedFeature().stream().
-				filter(Feature::isEnd).
-				collect(Collectors.toList());
-	}
-	
-	public List<Feature> getAllParameters() {
-		return getAllParameters(new HashSet<>());
-	}
-	
-	protected List<Feature> getAllParameters(Set<Type> visited) {
-		visited.add(this);
-		List<Feature> parameters = getOwnedParameters();
-		parameters.removeIf(p->((FeatureImpl)p).isResultParameter());
-		int n = parameters.size();
-		for (Type general: getSupertypes()) {
-			if (general != null && !visited.contains(general)) {
-				List<Feature> inheritedParameters = ((TypeImpl)general).getAllParameters(visited);
-				inheritedParameters.removeIf(p->((FeatureImpl)p).isResultParameter());
-				if (inheritedParameters.size() > n) {
-					parameters.addAll(inheritedParameters.subList(n, inheritedParameters.size()));
-				}
-			}
-		}
-		Feature resultParameter = getResultParameter();
-		if (resultParameter != null) {
-			parameters.add(resultParameter);
-		}
-		return parameters;
-	}
-	
-	public List<Feature> getOwnedParameters() {
-		return getOwnedFeaturesByMembership(ParameterMembership.class).collect(Collectors.toList());
-	}
-	
-	public EList<Feature> getOwnedInput() {
-		EList<Feature> inputs = new BasicInternalEList<Feature>(Feature.class);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.IN.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getOwnedMemberFeature();
-					if (feature != null) {
-						inputs.add(feature);
-					}
-				}
-			}
-		}
-		return inputs;
-	}
-	
-	public EList<Feature> getOwnedOutput() {
-		EList<Feature> outputs = new BasicInternalEList<Feature>(Feature.class);
-		for (Membership membership: this.getOwnedMembership()) {
-			if (membership instanceof FeatureMembership) {
-				FeatureMembership featureMembership = (FeatureMembership)membership;
-				FeatureDirectionKind direction = featureMembership.getDirection();
-				if (FeatureDirectionKind.OUT.equals(direction) || 
-						FeatureDirectionKind.INOUT.equals(direction)) {
-					Feature feature = featureMembership.getOwnedMemberFeature();
-					if (feature != null) {
-						outputs.add(feature);
-					}
-				}
-			}
-		}
-		return outputs;
-	}
-	
-	protected Feature getResultParameter() {
-		return getOwnedParameters().stream().
-				filter(p->((FeatureImpl)p).isResultParameter()).
-				findFirst().orElse(null);
-	}
-	
-	public FeatureMembership addOwnedFeature(Feature feature) {
-		FeatureMembership membership = SysMLFactory.eINSTANCE.createFeatureMembership();
-		membership.setOwnedMemberFeature_comp(feature);
-		getOwnedFeatureMembership_comp().add(membership);
-		return membership;
-	}
-
-	public BindingConnector addOwnedBindingConnector(Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		((ConnectorImpl)connector).addConnectorEnd(source);
-		((ConnectorImpl)connector).addConnectorEnd(target);
-		if (((ConnectorImpl)connector).getContextType() == this) {
-			addOwnedFeature(connector);
-		} else {
-			addOwnedMember(connector);
-		}
-		return connector;
-	}
-
-	public BindingConnector addOwnedBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
-		BindingConnector connector = SysMLFactory.eINSTANCE.createBindingConnector();
-		((ConnectorImpl)connector).addConnectorEnd(source);
-		((ConnectorImpl)connector).addConnectorEnd(target);
-		addOwnedMember(connector);
-		((FeatureImpl)connector).addFeaturingTypes(featuringTypes);
-		return connector;
-	}
-	
-	public BindingConnector makeBinding(BindingConnector connector, Feature source, Feature target) {
-		if (connector == null) {
-			connector = addOwnedBindingConnector(source, target);
-		} else {
-			((BindingConnectorImpl)connector).update(null, source, target);
-		}
-		return connector;
-	}
-	
-	public BindingConnector makeResultBinding(BindingConnector connector, Expression sourceExpression, Feature target) {
-		((ElementImpl)sourceExpression).transform();
-		return makeBinding(connector, sourceExpression.getResult(), target);
-	}
-		
-// Other Methods
-	
-	@Override
-	public void transform() {
-		super.transform();
-		clearCaches();
-		computeImplicitGeneralTypes();
-	}
-	
-	//
-	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1108,12 +636,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship_comp()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedMembership_comp()).basicAdd(otherEnd, msgs);
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedFeatureMembership_comp()).basicAdd(otherEnd, msgs);
+			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedRelationship()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1126,12 +650,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
-				return ((InternalEList<?>)getOwnedRelationship_comp()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP:
-				return ((InternalEList<?>)getOwnedMembership_comp()).basicRemove(otherEnd, msgs);
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
-				return ((InternalEList<?>)getOwnedFeatureMembership_comp()).basicRemove(otherEnd, msgs);
+			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
+				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1144,14 +664,14 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				return getOwnedGeneralization();
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
-				return getOwnedFeatureMembership_comp();
-			case SysMLPackage.TYPE__FEATURE:
-				return getFeature();
+			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
+				return getOwnedFeatureMembership();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				return getOwnedFeature();
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				return getOwnedEndFeature();
+			case SysMLPackage.TYPE__FEATURE:
+				return getFeature();
 			case SysMLPackage.TYPE__INPUT:
 				return getInput();
 			case SysMLPackage.TYPE__OUTPUT:
@@ -1162,8 +682,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return getInheritedMembership();
 			case SysMLPackage.TYPE__END_FEATURE:
 				return getEndFeature();
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				return getOwnedEndFeature();
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				return isSufficient();
 			case SysMLPackage.TYPE__OWNED_CONJUGATOR:
@@ -1178,8 +696,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				if (resolve) return getMultiplicity();
 				return basicGetMultiplicity();
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
-				return getOwnedFeatureMembership();
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				return getOwnedGeneralization();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1193,21 +711,21 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
-				return;
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
-				getOwnedFeatureMembership_comp().clear();
-				getOwnedFeatureMembership_comp().addAll((Collection<? extends FeatureMembership>)newValue);
-				return;
-			case SysMLPackage.TYPE__FEATURE:
-				getFeature().clear();
-				getFeature().addAll((Collection<? extends Feature>)newValue);
+			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
+				getOwnedFeatureMembership().clear();
+				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
 				return;
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				getOwnedFeature().clear();
 				getOwnedFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				getOwnedEndFeature().clear();
+				getOwnedEndFeature().addAll((Collection<? extends Feature>)newValue);
+				return;
+			case SysMLPackage.TYPE__FEATURE:
+				getFeature().clear();
+				getFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.TYPE__INPUT:
 				getInput().clear();
@@ -1227,10 +745,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__END_FEATURE:
 				getEndFeature().clear();
 				getEndFeature().addAll((Collection<? extends Feature>)newValue);
-				return;
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				getOwnedEndFeature().clear();
-				getOwnedEndFeature().addAll((Collection<? extends Feature>)newValue);
 				return;
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				setIsSufficient((Boolean)newValue);
@@ -1252,9 +766,9 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				setMultiplicity((Multiplicity)newValue);
 				return;
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
-				getOwnedFeatureMembership().clear();
-				getOwnedFeatureMembership().addAll((Collection<? extends FeatureMembership>)newValue);
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				getOwnedGeneralization().clear();
+				getOwnedGeneralization().addAll((Collection<? extends Generalization>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -1268,17 +782,17 @@ public class TypeImpl extends NamespaceImpl implements Type {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				getOwnedGeneralization().clear();
-				return;
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
-				getOwnedFeatureMembership_comp().clear();
-				return;
-			case SysMLPackage.TYPE__FEATURE:
-				getFeature().clear();
+			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
+				getOwnedFeatureMembership().clear();
 				return;
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				getOwnedFeature().clear();
+				return;
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				getOwnedEndFeature().clear();
+				return;
+			case SysMLPackage.TYPE__FEATURE:
+				getFeature().clear();
 				return;
 			case SysMLPackage.TYPE__INPUT:
 				getInput().clear();
@@ -1294,9 +808,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return;
 			case SysMLPackage.TYPE__END_FEATURE:
 				getEndFeature().clear();
-				return;
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				getOwnedEndFeature().clear();
 				return;
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				setIsSufficient(IS_SUFFICIENT_EDEFAULT);
@@ -1316,8 +827,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				setMultiplicity((Multiplicity)null);
 				return;
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
-				getOwnedFeatureMembership().clear();
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				getOwnedGeneralization().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -1333,18 +844,16 @@ public class TypeImpl extends NamespaceImpl implements Type {
 		switch (featureID) {
 			case SysMLPackage.TYPE__MEMBERSHIP:
 				return isSetMembership();
-			case SysMLPackage.TYPE__OWNED_RELATIONSHIP_COMP:
-				return ownedRelationship_comp != null && !ownedRelationship_comp.isEmpty();
-			case SysMLPackage.TYPE__OWNED_MEMBERSHIP_COMP:
-				return ownedMembership_comp != null && !ownedMembership_comp.isEmpty();
-			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
-				return !getOwnedGeneralization().isEmpty();
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP_COMP:
-				return ownedFeatureMembership_comp != null && !ownedFeatureMembership_comp.isEmpty();
-			case SysMLPackage.TYPE__FEATURE:
-				return !getFeature().isEmpty();
+			case SysMLPackage.TYPE__OWNED_RELATIONSHIP:
+				return ownedRelationship != null && !ownedRelationship.isEmpty();
+			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
+				return !getOwnedFeatureMembership().isEmpty();
 			case SysMLPackage.TYPE__OWNED_FEATURE:
 				return !getOwnedFeature().isEmpty();
+			case SysMLPackage.TYPE__OWNED_END_FEATURE:
+				return !getOwnedEndFeature().isEmpty();
+			case SysMLPackage.TYPE__FEATURE:
+				return !getFeature().isEmpty();
 			case SysMLPackage.TYPE__INPUT:
 				return !getInput().isEmpty();
 			case SysMLPackage.TYPE__OUTPUT:
@@ -1355,8 +864,6 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return !getInheritedMembership().isEmpty();
 			case SysMLPackage.TYPE__END_FEATURE:
 				return !getEndFeature().isEmpty();
-			case SysMLPackage.TYPE__OWNED_END_FEATURE:
-				return !getOwnedEndFeature().isEmpty();
 			case SysMLPackage.TYPE__IS_SUFFICIENT:
 				return isSufficient != IS_SUFFICIENT_EDEFAULT;
 			case SysMLPackage.TYPE__OWNED_CONJUGATOR:
@@ -1369,8 +876,8 @@ public class TypeImpl extends NamespaceImpl implements Type {
 				return !getInheritedFeature().isEmpty();
 			case SysMLPackage.TYPE__MULTIPLICITY:
 				return basicGetMultiplicity() != null;
-			case SysMLPackage.TYPE__OWNED_FEATURE_MEMBERSHIP:
-				return !getOwnedFeatureMembership().isEmpty();
+			case SysMLPackage.TYPE__OWNED_GENERALIZATION:
+				return !getOwnedGeneralization().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

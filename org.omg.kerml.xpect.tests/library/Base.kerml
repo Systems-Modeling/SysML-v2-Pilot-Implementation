@@ -8,6 +8,11 @@ package Base {
      * Anything is the top level generalized type in the language. 
      */
 	abstract classifier Anything {
+		/**
+		 * self is a feature that relates everything to itself.
+		 * (This is enforced by tying this feature to Objects::SelfLink::self.)
+		 */
+		feature self: Anything[1] subsets things;		
 	}
 	
 	/**
@@ -17,11 +22,6 @@ package Base {
 	abstract datatype DataValue specializes Anything {
 		feature self: DataValue redefines Anything::self;
 	}
-	
-	/**
-	 * EnumeratedValue is a specialization that is the most general class for enumerated values.
-	 */
-	abstract datatype EnumeratedValue specializes DataValue;
 	
 	/**
 	 * things is the top-level feature in the language.

@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class SizeFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "BaseFunctions::size";
+	public String getOperatorName() {
+		return "size";
 	}
 
 	@Override

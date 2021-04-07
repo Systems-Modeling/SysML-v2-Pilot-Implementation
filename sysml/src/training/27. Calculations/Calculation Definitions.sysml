@@ -1,10 +1,10 @@
 package 'Calculation Definitions' {
 	import ScalarValues::Real;
 	import RealFunctions::Sqrt;
-	import Quantities::QuantityValue;
+	import Quantities::ScalarQuantityValue;
 	import ISQ::*;
 	
-	attribute def PowerValue :> QuantityValue;
+	alias SpeedValue as VelocityValue;
 	
 	calc def Power (whlpwr : PowerValue, Cd : Real, Cf : Real, tm : MassValue, v : VelocityValue ) : PowerValue {
 		attribute drag = Cd * v;

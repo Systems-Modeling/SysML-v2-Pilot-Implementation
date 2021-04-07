@@ -10,8 +10,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 		File {from ="/library.kernel/ControlPerformances.kerml"}
 		File {from ="/library.kernel/IntegerFunctions.kerml"}
 		File {from ="/library.kernel/NaturalFunctions.kerml"}
-		File {from ="/library.kernel/NonScalarFunctions.kerml"}
-		File {from ="/library.kernel/NonScalarValues.kerml"}
 		File {from ="/library.kernel/NumericalFunctions.kerml"}
 		File {from ="/library.kernel/Objects.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
@@ -56,8 +54,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
 				File {from ="/library.kernel/ControlPerformances.kerml"}
 				File {from ="/library.kernel/IntegerFunctions.kerml"}
 				File {from ="/library.kernel/NaturalFunctions.kerml"}
-				File {from ="/library.kernel/NonScalarFunctions.kerml"}
-				File {from ="/library.kernel/NonScalarValues.kerml"}
 				File {from ="/library.kernel/NumericalFunctions.kerml"}
 				File {from ="/library.kernel/Objects.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}

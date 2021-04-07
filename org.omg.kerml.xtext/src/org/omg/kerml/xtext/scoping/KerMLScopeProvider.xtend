@@ -48,6 +48,8 @@ import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Redefinition
+import org.omg.sysml.lang.sysml.InvocationExpression
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -97,7 +99,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		    if (owningNamespace instanceof QueryPathExpression)
 			    context.scope_QueryPathExpression(owningNamespace, context, reference)
 		    else 
-	    		context.scope_Namespace(owningNamespace, context, reference)
+	    		context.scope_nonExpressionNamespace(context, reference)
 		} else if (context instanceof Import)
 			context.scope_Namespace(context.importOwningNamespace, context, reference)
 		else if (context instanceof Namespace) 
@@ -112,10 +114,24 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		EcoreUtil2.getContainerOfType(element.eContainer, Namespace)
 	}
 	
+	def static Namespace getNonExpressionNamespace(Element element) {
+		var namespace = getParentNamespace(element)
+		while (namespace instanceof InvocationExpression || 
+			   namespace instanceof FeatureReferenceExpression
+		) {
+			namespace = getParentNamespace(namespace)
+		}
+		namespace
+	}
+	
 	def scope_owningNamespace(Element element, EObject context, EReference reference) {
 		element.scope_Namespace(element?.parentNamespace, context, reference)
 	}
 
+	def scope_nonExpressionNamespace(Element element, EObject context, EReference reference) {
+		element.scope_Namespace(element?.nonExpressionNamespace, context, reference)
+	}
+	
 	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference) {
 		if (namespace === null)
 			super.getScope(element, reference)		

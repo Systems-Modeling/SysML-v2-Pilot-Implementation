@@ -9,6 +9,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/Performances.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
+		File {from ="/library.kernel/DataFunctions.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
@@ -16,6 +17,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.systems/Constraints.sysml"}
 		File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 		File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+		File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
 		File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
@@ -38,6 +40,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/Performances.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/DataFunctions.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
@@ -45,6 +48,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.systems/Constraints.sysml"}
 				File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 				File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
+				File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
 				File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}

@@ -26,10 +26,15 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
 public class StringLengthFunction extends ModelLevelFunction {
+	
+	@Override
+	public String getPackageName() {
+		return "StringFunctions";
+	}
 
 	@Override
-	public String getFunctionName() {
-		return "StringFunctions::Length";
+	public String getOperatorName() {
+		return "Length";
 	}
 
 	@Override

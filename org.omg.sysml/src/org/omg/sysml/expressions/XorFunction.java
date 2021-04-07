@@ -27,13 +27,13 @@ import org.omg.sysml.lang.sysml.Element;
 public class XorFunction extends BooleanFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "ScalarFunctions::'^'";
+	public String getOperatorName() {
+		return "'^'";
 	}
 	
 	@Override
 	protected EList<Element> binaryBooleanOp(boolean x, boolean y) {
-		return booleanResult(x | y);
+		return booleanResult(x ^ y);
 	}
 
 }

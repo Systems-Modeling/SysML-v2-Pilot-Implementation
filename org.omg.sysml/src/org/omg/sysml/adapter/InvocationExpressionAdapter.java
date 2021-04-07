@@ -32,7 +32,7 @@ import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.lang.sysml.impl.FeatureImpl;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -69,7 +69,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		List<Feature> typeFeatures = new ArrayList<>();
 		List<Expression> arguments = getTarget().getArgument();
 		int i = 0;
-		for (Feature typeFeature: (TypeUtil.getPublicFeaturesOf(type))) {
+		for (Feature typeFeature: TypeUtil.getPublicFeaturesOf(type)) {
 			if (i >= arguments.size()) {
 				break;
 			}
@@ -87,7 +87,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 		if (!arguments.isEmpty()) {
 			argument = arguments.get(0);
 			String argumentName = argument.getName();
-			String featureName = feature.getName();
+			String featureName = ((FeatureImpl)feature).getEffectiveName();
 			if (argumentName == null || featureName == null) {
 				if (index < arguments.size()) {
 					argument = arguments.get(index);
@@ -123,7 +123,7 @@ public class InvocationExpressionAdapter extends ExpressionAdapter {
 			if (type instanceof Function || type instanceof Expression) {
 				super.computeInput();
 			} else if (type != null) {
-				for (Feature typeFeature: ExpressionUtil.getTypeFeaturesOf(expression)) {
+				for (Feature typeFeature: getTypeFeatures()) {
 					createFeatureForParameter(typeFeature);
 				}
 			}

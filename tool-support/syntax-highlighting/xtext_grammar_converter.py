@@ -63,7 +63,7 @@ class DATA:
       ]
     }},
     "quoted-variables": {{
-      "patterns": [{{ "match": "\\\\b(\\\\'[^']+\\\\')\\\\b", "name": "variable.name.quoted.{LANGUAGE_NAME_LOWERCASE}" }}]
+      "patterns": [{{ "match": "('[^\\\\f\\\\n\\\\r\\\\t\\\\v\\\\\\"\\\\\\\\]+?')", "name": "variable.name.quoted.{LANGUAGE_NAME_LOWERCASE}" }}]
     }},
     "comments": {{
       "patterns": [
@@ -177,10 +177,20 @@ class Converter(object):
         xtext_grammar = input_file.read()
         input_file.close()
 
-        xtext_grammar = xtext_grammar.replace("';'", "@SEMICOLON@").replace("'*/'", "@END_COMMENT@").replace("*/", ";")
+        xtext_grammar = xtext_grammar.replace("';'", "@SEMICOLON@").replace("'*/'", "@END_COMMENT@")
 
-        xtext_statements = [stat.replace("@SEMICOLON@", "';'").replace("@END_COMMENT@", "'*/'").strip()
-                            for stat in xtext_grammar.split(";")]
+        # Remove all multiline comments
+        multiline_comment_pattern = re.compile(r"(/\*).*?(\*/)", flags=re.DOTALL)
+        xtext_grammar = re.sub(multiline_comment_pattern, "", xtext_grammar)
+
+        # Remove all single line comments
+        line_comment_pattern = re.compile(r"//.*\n")
+        xtext_grammar = re.sub(line_comment_pattern, "", xtext_grammar)
+
+        # print(f"DEBUG: xtext_grammar with comments removed=\n{xtext_grammar}")
+
+        # Split xtext_grammar into xtext statements and restore the ';' token
+        xtext_statements = [stat.replace("@SEMICOLON@", "';'").strip() for stat in xtext_grammar.split(";")]
 
         single_quote_string_pattern = re.compile(r"['][^']+[']")
         bracket_like_char_pattern = re.compile(r"^(\(|\)|\[|\]|\{|\})")
@@ -189,10 +199,10 @@ class Converter(object):
         brackets_set = set()
         operators_set = set()
 
-        # Collect token literals up to the TERMINALS section
+        # Collect token literals but skip the terminal statements
         for statement in xtext_statements:
-            if statement.startswith("/* TERMINALS"):
-                break
+            if statement.startswith("terminal"):
+                continue
             raw_tokens = single_quote_string_pattern.findall(statement)
             for raw_token in raw_tokens:
                 token = raw_token[1:-1].strip()

@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class IncludesFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "BaseFunctions::includes";
+	public String getOperatorName() {
+		return "includes";
 	}
 	
 	@Override

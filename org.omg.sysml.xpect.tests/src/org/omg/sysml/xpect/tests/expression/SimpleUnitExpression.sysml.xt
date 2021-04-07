@@ -7,10 +7,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
             File {from ="/library.kernel/Objects.kerml"}
             File {from ="/library.kernel/Performances.kerml"}
             File {from ="/library.kernel/ScalarValues.kerml"}
+            File {from ="/library.kernel/DataFunctions.kerml"}
             File {from ="/library.kernel/ScalarFunctions.kerml"}
             File {from ="/library.systems/Items.sysml"}
             File {from ="/library.systems/Parts.sysml"}
 			File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+			File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
             File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
             File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
 			File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}
@@ -30,10 +32,12 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                     File {from ="/library.kernel/Objects.kerml"}
                     File {from ="/library.kernel/Performances.kerml"}
     				File {from ="/library.kernel/ScalarValues.kerml"}
+    				File {from ="/library.kernel/DataFunctions.kerml"}
     				File {from ="/library.kernel/ScalarFunctions.kerml"}
     				File {from ="/library.systems/Items.sysml"}
     				File {from ="/library.systems/Parts.sysml"}
 					File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
+					File {from ="/library.domain/Quantities and Units/ISQBase.sysml"}
 	                File {from ="/library.domain/Quantities and Units/ISQ.sysml"}
 	                File {from ="/library.domain/Quantities and Units/ISQAtomicNuclear.sysml"}
 					File {from ="/library.domain/Quantities and Units/ISQChemistryMolecular.sysml"}

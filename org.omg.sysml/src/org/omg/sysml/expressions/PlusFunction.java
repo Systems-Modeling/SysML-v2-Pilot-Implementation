@@ -28,8 +28,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class PlusFunction extends ArithmeticFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "ScalarFunctions::'+'";
+	public String getOperatorName() {
+		return "'+'";
 	}
 	
 	@Override

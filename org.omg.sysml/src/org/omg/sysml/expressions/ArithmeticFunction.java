@@ -46,6 +46,11 @@ public abstract class ArithmeticFunction extends ModelLevelFunction {
 	protected EList<Element> binaryStringOp(String x, String y) {
 		return null;
 	}
+	
+	@Override
+	public String getPackageName() {
+		return "DataFunctions";
+	}
 
 	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {

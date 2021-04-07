@@ -28,8 +28,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class IndexFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "BaseFunctions::'['";
+	public String getOperatorName() {
+		return "'['";
 	}
 
 	@Override

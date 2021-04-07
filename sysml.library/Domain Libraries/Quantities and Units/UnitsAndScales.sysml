@@ -241,13 +241,6 @@ package UnitsAndScales {
 	}
 	
 	/**
-	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
-	 */
-	attribute def QuantityDimension {
-		attribute quantityPowerFactors: QuantityPowerFactor[*] ordered;
-	}
-
-	/**
 	 * Explicit definitions of "unit of dimension one" also known as "dimensionless unit" as well as the value and quantity of dimension one.
 	 */
 	attribute def DimensionOneUnit :> DerivedUnit {

@@ -50,9 +50,6 @@ package Quantities {
 	alias TensorQuantityValue as QuantityValue;
 	alias tensorQuantities as quantities;
 	
-	// TODO: Remove TEMPORARY HACK	
-	alias quantities as quantity; 
-
 	/**
 	 * A SystemOfQuantities represents the essentials of [VIM] concept "system of quantities" (https://jcgm.bipm.org/vim/en/1.3.html), defined as a
 	 * "set of quantities together with a set of noncontradictory equations relating those quantities".
@@ -74,6 +71,9 @@ package Quantities {
 		attribute exponent: ScalarValues::Real[1];
 	}
 	
+	/**
+	 * Representation of a quantity dimension, which is a product of powers of the set of base quantities defined for a particular system of quantities, scales and units.
+	 */
 	attribute def QuantityDimension {
 		 attribute quantityPowerFactors: QuantityPowerFactor[*] ordered;
 	}

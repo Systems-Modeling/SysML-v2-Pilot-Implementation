@@ -14,6 +14,7 @@ package ISQSpaceTime {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
+    private import ISQBase::isq::*;
 
     /**
      * source: item 3-1.1 length

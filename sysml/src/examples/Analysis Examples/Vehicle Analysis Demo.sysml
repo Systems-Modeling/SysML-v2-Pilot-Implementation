@@ -7,8 +7,8 @@ package 'Vehicle Analysis Demo' {
 	    import USCustomaryUnits::*;
 	    
 	    attribute def DistancePerVolumeUnit :> DerivedUnit {
-	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = 1; }
-	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = L; :>> exponent = -3; }
+	    	private attribute distancePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = 1; }
+	        private attribute volumePF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -3; }
 	        attribute :>> quantityDimension { :>> quantityPowerFactors = {distancePF, volumePF}; }
 	    }
 

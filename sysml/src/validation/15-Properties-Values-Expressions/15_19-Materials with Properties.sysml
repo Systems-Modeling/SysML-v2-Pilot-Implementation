@@ -7,9 +7,9 @@ package '15_19-Materials with Properties' {
     attribute def AtomicMassValue :> MassValue;
     
 	attribute def TensileStrengthUnit :> DerivedUnit {
-        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = ISQBase::L; :>> exponent = -1; }
-        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = M; :>> exponent = 1; }
-        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = ISQBase::T; :>> exponent = -2; }
+        private attribute lengthPF: QuantityPowerFactor[1] { :>> quantity = isq::L; :>> exponent = -1; }
+        private attribute massPF: QuantityPowerFactor[1] { :>> quantity = isq::M; :>> exponent = 1; }
+        private attribute durationPF: QuantityPowerFactor[1] { :>> quantity = isq::T; :>> exponent = -2; }
         attribute :>> quantityDimension { :>> quantityPowerFactors = {lengthPF, massPF, durationPF}; }		
 	}
     

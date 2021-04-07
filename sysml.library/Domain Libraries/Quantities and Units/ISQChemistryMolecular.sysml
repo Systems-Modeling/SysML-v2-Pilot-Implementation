@@ -14,6 +14,7 @@ package ISQChemistryMolecular {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
+    private import ISQBase::isq::*;
 
     private import ISQSpaceTime::AngularMeasureValue;
 

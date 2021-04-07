@@ -14,6 +14,7 @@ package ISQAtomicNuclear {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
+    private import ISQBase::isq::*;
 
     private import ISQElectromagnetism::ElectricChargeValue;
     private import ISQSpaceTime::AngularFrequencyValue;

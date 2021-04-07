@@ -14,6 +14,7 @@ package ISQLight {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
+    private import ISQBase::isq::*;
 
     private import ISQThermodynamics::EnergyValue;
 

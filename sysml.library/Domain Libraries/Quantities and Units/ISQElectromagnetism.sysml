@@ -14,6 +14,7 @@ package ISQElectromagnetism {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
+    private import ISQBase::isq::*;
 
     private import ISQMechanics::PowerValue;
     private import ISQThermodynamics::EnergyValue;

@@ -14,7 +14,7 @@ package ISQThermodynamics {
     private import Quantities::*;
     private import UnitsAndScales::*;
     private import ISQBase::*;
-
+    private import ISQBase::isq::*;
 
     /**
      * source: item 5-1 thermodynamic temperature, temperature

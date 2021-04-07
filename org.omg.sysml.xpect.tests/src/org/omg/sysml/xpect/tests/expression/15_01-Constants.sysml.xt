@@ -4,12 +4,16 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                 ThisFile {}
                     File {from ="/library.kernel/Base.kerml"}
                     File {from ="/library.kernel/Links.kerml"}
-                    File {from ="/library.kernel/Objects.kerml"}
+                    File {from ="/library.kernel/Occurrences.kerml"}
                     File {from ="/library.kernel/Performances.kerml"}
                     File {from ="/library.kernel/ScalarValues.kerml"}
+                    File {from ="/library.kernel/BaseFunctions.kerml"}
+                    File {from ="/library.kernel/DataFunctions.kerml"}
                 	File {from ="/library.kernel/ScalarFunctions.kerml"}
+                	File {from ="/library.kernel/RealFunctions.kerml"}
                 	File {from ="/library.systems/Items.sysml"}
                 	File {from ="/library.systems/Parts.sysml"}
+                	File {from ="/library.systems/Constraints.sysml"}
                 	File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
 					File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 					File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
@@ -30,12 +34,16 @@ XPECT_SETUP org.omg.sysml.xpect.tests.expression.SysMLTests
                                 ThisFile {}
                                 File {from ="/library.kernel/Base.kerml"}
                     			File {from ="/library.kernel/Links.kerml"}
-                                File {from ="/library.kernel/Objects.kerml"}
+                                File {from ="/library.kernel/Occurrences.kerml"}
                                 File {from ="/library.kernel/Performances.kerml"}
                                 File {from ="/library.kernel/ScalarValues.kerml"}
+                                File {from ="/library.kernel/BaseFunctions.kerml"}
+                                File {from ="/library.kernel/DataFunctions.kerml"}
                 				File {from ="/library.kernel/ScalarFunctions.kerml"}
+                				File {from ="/library.kernel/RealFunctions.kerml"}
                 				File {from ="/library.systems/Items.sysml"}
                 				File {from ="/library.systems/Parts.sysml"}
+                				File {from ="/library.systems/Constraints.sysml"}
                 				File {from ="/library.domain/Quantities and Units/USCustomaryUnits.sysml"}
                                 File {from ="/library.domain/Quantities and Units/Quantities.sysml"}
 								File {from ="/library.domain/Quantities and Units/UnitsAndScales.sysml"}
@@ -56,62 +64,58 @@ END_SETUP
 */
 // XPECT noErrors ---> ""
 package '15_01-Constants' {
-	import ScalarValues::*;
-	import Quantities::*;
 	import UnitsAndScales::*;
-	import ISQ::*;
     import SI::*;
-    import USCustomaryUnits::*;
+    import RealFunctions::*;
 
-    /* Math and physical constants should be defined in the model library. */
+    /* TODO: Move mathematical and fundamental physical constants to model library package(s) */
+    /* TODO: Add concept of precision for Real values */
     
-     /**
-     Examples of mathematical constants
-     Note: There should be a way to mark these as "invariant" 
+    /* Note: Value properties that are bound to specific values are constants and have the specified
+     * values in all contexts. It is not legal to redefine them.
+     */    
+    
+    /**
+     * Standard mathematical constants
+     * 
+     * Irrational constants cannot be represented exactly with finite precision.
+     * However, they can be required to be implemented with a attribute that is accurate
+     * to at least a certain precision.
+     * 
+     * (The decimal literals here should be interpreted as being fixed point and exact.)
      */
     package 'Mathematical Constants' {
-        attribute e: Real = 2.71828182845904523536;
-        attribute pi: Real = 3.14159265358979323846;
-    }
-
-    attribute def DimensionOneValue :> QuantityValue {
-		attribute magnitude: Real redefines QuantityValue::num;
-    	attribute scale: DimensionOneUnit redefines QuantityValue::mRef;
-    }
-    
-    attribute def AccelerationUnit :> SIDerivedUnit {
-		attribute lengthPowerFactor :>> SIDerivedUnit::lengthPowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = 1;
-		}
-		attribute timePowerFactor :>> SIDerivedUnit::timePowerFactor {
-			attribute exponent redefines UnitPowerFactor::exponent = -2;
-		}		
-    }
-    attribute def AccelerationValue :> QuantityValue {
-		attribute magnitude: Real redefines QuantityValue::num;
-    	ref scale: AccelerationUnit redefines QuantityValue::mRef;
+        attribute e: Real {
+        	assert constraint { Round(e * 1E20) == 271828182845904523536.0 }
+        }
+        attribute pi: Real {
+        	assert constraint { Round(pi * 1E20) == 314159265358979323846.0 }
+        }
     }
 
     /**
-     Examples of fundamental physical constants
-     Note: There should be a way to mark these as "invariant" 
-     */
-    /**
+     * Standard fundamental physical constants
+     * 
+     * Physical constants have a standard measured attribute to a finite precision.
+     * TODO: Represent physical constant attribute error bounds.
+     *
      * The reference source is:
-     CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2010 Recommended Values - See http://www.codata.org/committees-and-groups/fundamental-physical-constants/tgfc-previous-values-and-publications
+     * CODATA - Task Group on Fundamental Physical Constants (TGFC) - 2018 CODATA recommended values
+     * See https://codata.org/initiatives/strategic-programme/fundamental-physical-constants/
+     * For the actual values see https://pml.nist.gov/cuu/Constants/ 
      */
     package 'Fundamental Physical Constants' {
-        attribute 'fine structure constant': DimensionOneValue = 7.297352569824E-3;
-        attribute 'electron to proton mass ratio': DimensionOneValue = 5.446170217822E-4;
-        attribute 'speed of light in vacuum': SpeedValue = 299792458@[m/s];
-    }
+        attribute 'fine structure constant'      : DimensionOneValue = 7.2973525693E-3[one];  // 2018 CODATA attribute 7.2973525693E-3;  uncertainty = 0.0000000011E-3
+        attribute 'electron to proton mass ratio': DimensionOneValue = 5.44617021487E-4[one]; // 2018 CODATA attribute 5.44617021487E-4; uncertainty = 0.00000000033E-4 
+        attribute 'speed of light in vacuum'     : SpeedValue = 299792458[m/s];               // 2018 CODATA attribute 299792458 m s^-1; (exact)
+     }
 
     package 'Global Context' {
-        attribute 'nominal earth gravitational acceleration': AccelerationValue = 9.80665@[m/(s^2)];
+        attribute 'nominal earth gravitational acceleration': AccelerationValue = 9.80665['m/s²'];
     }
 
     package 'Model X Context' {
-        attribute 'amplifier gain': DimensionOneValue = 3.5;
+        attribute 'amplifier gain': DimensionOneValue = 3.5[one];
     }
-
 }
+

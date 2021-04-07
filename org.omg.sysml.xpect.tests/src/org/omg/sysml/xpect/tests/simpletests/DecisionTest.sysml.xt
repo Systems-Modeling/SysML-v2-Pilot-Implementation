@@ -13,6 +13,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 		File {from ="/library.kernel/Transfers.kerml"}
 		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.kernel/ScalarValues.kerml"}
+		File {from ="/library.kernel/DataFunctions.kerml"}
 		File {from ="/library.kernel/ScalarFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
@@ -36,6 +37,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.simpletests.SysMLTests
 				File {from ="/library.kernel/Transfers.kerml"}
 				File {from ="/library.kernel/ScalarValues.kerml"}
 				File {from ="/library.kernel/BaseFunctions.kerml"}
+				File {from ="/library.kernel/DataFunctions.kerml"}
 				File {from ="/library.kernel/ScalarFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}

@@ -36,6 +36,11 @@ public abstract class BooleanFunction extends ModelLevelFunction {
 	}
 	
 	@Override
+	public String getPackageName() {
+		return "DataFunctions";
+	}
+	
+	@Override
 	public EList<Element> invoke(InvocationExpression invocation, Element target) {
 		Boolean x_bool = booleanValue(invocation, 0, target);
 		Boolean y_bool = booleanValue(invocation, 1, target);

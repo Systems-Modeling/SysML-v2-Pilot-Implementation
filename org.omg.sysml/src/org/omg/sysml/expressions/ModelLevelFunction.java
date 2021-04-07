@@ -102,7 +102,13 @@ public abstract class ModelLevelFunction {
 			getFunctionMap().get(function.getQualifiedName());
 	}
 	
-	public abstract String getFunctionName();
+	public abstract String getOperatorName();
+	public String getPackageName() {
+		return "BaseFunctions";
+	}
+	public String getFunctionName() {
+		return getPackageName() + "::" + getOperatorName();
+	}
 	public abstract EList<Element> invoke(InvocationExpression invocation, Element target);
 	
 	protected static Type getPrimitiveType(Element context, EClass eClass) {

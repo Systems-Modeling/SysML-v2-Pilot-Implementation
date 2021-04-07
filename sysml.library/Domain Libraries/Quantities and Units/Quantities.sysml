@@ -3,6 +3,7 @@
  */
 package Quantities {
 	private import Collections::*;
+	private import ScalarValues::ScalarValue;
 	
 	/**
 	 * The value of a quantity is a tuple of one or more numbers (i.e. mathematical number value) and a reference to a measurement reference.
@@ -30,7 +31,7 @@ package Quantities {
 		attribute :>> mRef: UnitsAndScales::VectorMeasurementReference;
 	}
 	
-	abstract attribute def ScalarQuantityValue :> VectorQuantityValue {
+	abstract attribute def ScalarQuantityValue :> VectorQuantityValue, ScalarValue {
 		attribute :>> mRef: UnitsAndScales::ScalarMeasurementReference;
 	}
 	

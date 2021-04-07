@@ -56,7 +56,7 @@ package UnitsAndScales {
 	 * A MeasurementReference can have zero or more scaleValueDefinition that define particular essential 
 	 * values on a measurement scale.
 	 */
-	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference {
+	abstract attribute def ScalarMeasurementReference :> VectorMeasurementReference, ScalarValue {
 		attribute :>> dimensions: Positive[1] = 1;
 		attribute :>> order = 0;
 		attribute :>> isOrthogonal = true;

@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class NotEmptyFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "BaseFunctions::notEmpty";
+	public String getOperatorName() {
+		return "notEmpty";
 	}
 
 	@Override

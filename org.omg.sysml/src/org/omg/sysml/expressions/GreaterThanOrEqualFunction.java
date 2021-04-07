@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.Element;
 public class GreaterThanOrEqualFunction extends ArithmeticFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "ScalarFunctions::'>='";
+	public String getOperatorName() {
+		return "'>='";
 	}
 	
 	@Override

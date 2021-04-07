@@ -24,11 +24,11 @@ import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 
-public class ConditionalOrFunction extends ModelLevelFunction {
+public class ConditionalOrFunction extends ControlFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "ControlFunctions::'||'";
+	public String getOperatorName() {
+		return "'||'";
 	}
 
 	@Override

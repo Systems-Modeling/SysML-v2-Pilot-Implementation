@@ -29,7 +29,7 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 
 	// TODO: Replace with single library package when global scope supports public re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "ScalarFunctions", "ControlFunctions" };
+	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "DataFunctions", "ControlFunctions" };
 
 	public OperatorExpressionAdapter(OperatorExpression element) {
 		super(element);

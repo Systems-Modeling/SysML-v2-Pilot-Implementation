@@ -18,33 +18,14 @@
  * @license LGPL-3.0-or-later <http://spdx.org/licenses/LGPL-3.0-or-later>
  *  
  *******************************************************************************/
+
 package org.omg.sysml.expressions;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-
-public class ConditionalAndFunction extends ControlFunction {
+public abstract class ControlFunction extends ModelLevelFunction {
 
 	@Override
-	public String getOperatorName() {
-		return "'&&'";
-	}
-
-	@Override
-	public EList<Element> invoke(InvocationExpression invocation, Element target) {
-		Boolean firstValue = booleanValue(invocation, 0, target);
-		if (firstValue != null) {
-			if (!firstValue) {
-				return booleanResult(false);
-			} else {
-				Boolean secondValue = booleanValue(invocation, 1, target);
-				if (secondValue != null) {
-					return booleanResult(secondValue);
-				}
-			}
-		}
-		return null;
+	public String getPackageName() {
+		return "ControlFunctions";
 	}
 
 }

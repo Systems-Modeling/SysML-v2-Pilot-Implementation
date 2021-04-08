@@ -4,7 +4,6 @@
  * See https://www.nist.gov/physical-measurement-laboratory/nist-guide-si-appendix-b
  */
 package USCustomaryUnits {	
-	private import RationalFunctions::Rat;
 	private import UnitsAndScales::*;
 	import ISQ::*;
 	private import SI::*;

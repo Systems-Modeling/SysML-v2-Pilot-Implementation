@@ -43,8 +43,8 @@ public class ConnectorAdapter extends FeatureAdapter {
 					getDefaultSupertype("object"):
 					getDefaultSupertype("binaryObject"):
 				target.getConnectorEnd().size() > 2? 
-					getDefaultSupertype("binary"):
-					getDefaultSupertype("base");
+					getDefaultSupertype("base"):
+					getDefaultSupertype("binary");
 	}
 	
 	@Override

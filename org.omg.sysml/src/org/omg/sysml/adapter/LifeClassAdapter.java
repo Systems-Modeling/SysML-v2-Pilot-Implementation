@@ -49,13 +49,13 @@ public class LifeClassAdapter extends ClassAdapter {
 		Namespace owner = lifeClass.getOwningNamespace();
 		EList<Superclassing> superclassings = lifeClass.getOwnedSuperclassing();
 		if (owner instanceof Classifier) {
-			if (superclassings.size() < 2) {
+			if (superclassings.isEmpty()) {
 				Superclassing superclassing = SysMLFactory.eINSTANCE.createSuperclassing();
 				superclassing.setSuperclass((Classifier)owner);
 				superclassing.setSubclass(lifeClass);
 				lifeClass.getOwnedRelationship().add(superclassing);
 			} else {
-				superclassings.get(1).setSuperclass((Classifier)owner);
+				superclassings.get(0).setSuperclass((Classifier)owner);
 			}
 		}
 	}

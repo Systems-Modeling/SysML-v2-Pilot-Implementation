@@ -21,10 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
-import org.omg.sysml.util.ConnectorUtil;
-import org.omg.sysml.util.UsageUtil;
 
 public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 	
@@ -41,10 +38,6 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 	public void doTransform() {
 		SatisfyRequirementUsage usage = getTarget();
 		super.doTransform();
-		BindingConnector connector = UsageUtil.getSatisfyingFeatureConnectorOf(usage);
-		if (connector != null) {
-			ConnectorUtil.setRelatedFeatureOf(connector, 0, usage.getSubjectParameter());
-		}
 		usage.setAssertionConnector(computeAssertionConnector(usage.getResult()));
 	}
 

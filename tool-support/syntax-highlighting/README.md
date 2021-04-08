@@ -94,6 +94,8 @@ None.
 
 ## Release Notes
 
-### Release 2020-06
+### Release 2021-03
 
+2021-04-08: Updated for release 2021-03 of the KerML and SysML `xtext` language definitions.
+2020-10-15: Updated for release 2020-09 of the KerML and SysML `xtext` language definitions.
 2020-06-22: First release, based on the 2020-06 release of the KerML and SysML `xtext` language definitions.

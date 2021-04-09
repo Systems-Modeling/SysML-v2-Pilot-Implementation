@@ -144,7 +144,8 @@
 		<propertyregex property="bundle-version"
 			       input="${maven-version}"
 			       regexp="-SNAPSHOT"
-			       replace=".qualifier"/>
+			       replace=".qualifier"
+			       defaultValue="${maven-version}"/>
                 <echo> Set the versions to POM: ${maven-version}, Bundle: ${bundle-version} </echo>
                 <!-- Currently no need to change the versions of child poms but left it for future use.
                 <replaceregexp byline="true" flags="i">

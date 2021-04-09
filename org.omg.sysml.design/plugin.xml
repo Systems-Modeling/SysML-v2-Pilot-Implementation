@@ -46,10 +46,16 @@
                   </count>
                   <iterate operator="and" ifEmpty="false">
                      <adapt type="org.eclipse.core.resources.IFile"/>
-                     <test
-            			property="org.eclipse.core.resources.name"
-			            value="*.sysml">
-			         </test>
+                     <or>
+                        <test
+                              property="org.eclipse.core.resources.name"
+                              value="*.sysml">
+                        </test>
+                        <test
+                              property="org.eclipse.core.resources.name"
+                              value="*.kerml">
+                        </test>
+                     </or>
                   </iterate>
                </with>
             </visibleWhen>

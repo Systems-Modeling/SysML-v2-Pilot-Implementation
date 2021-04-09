@@ -20,3 +20,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: %providerName
 Automatic-Module-Name: org.omg.sysml.design
 Export-Package: org.omg.sysml.design
+Bundle-ActivationPolicy: lazy

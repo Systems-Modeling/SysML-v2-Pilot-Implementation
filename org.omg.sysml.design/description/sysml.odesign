@@ -116,35 +116,35 @@
           </ownedTools>
         </toolSections>
         <toolSections name="toolbar">
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePackage" label="Create Package" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Package']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePackage" label="Create Package" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='Package']" iconPath="/org.omg.sysml.design/icons/Package.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPackage()"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePartDefinition" label="Create Part Definition" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePartDefinition" label="Create Part Definition" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartDefinition']" iconPath="/org.omg.sysml.design/icons/PartDefinition.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPartDefinition()"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePortDefinition" label="Create Port Definition" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PortDefinition']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePortDefinition" label="Create Port Definition" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PortDefinition']" iconPath="/org.omg.sysml.design/icons/PortDefinition.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPortDefinition()"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePartUsage" label="Create Part Usage" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="CreatePartUsage" label="Create Part Usage" containerMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@containerMappings[name='PartUsage']" iconPath="/org.omg.sysml.design/icons/PartUsage.gif">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createPartUsage()"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePartFeatureTyping" label="Create Part Feature Typing" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PartFeatureTyping']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePartFeatureTyping" label="Create Part Feature Typing" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PartFeatureTyping']" iconPath="/org.omg.sysml.design/icons/PartFeatureTyping.png">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
@@ -153,22 +153,13 @@
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createFeatureTyping(target)"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePartFeatureMembership" label="Create Part Feature Membership" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PartFeatureMembership']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePartFeatureMembership" label="Create Part Feature Membership" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PartFeatureMembership']" iconPath="/org.omg.sysml.design/icons/PartFeatureMembership.png">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
             <targetViewVariable name="targetView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:target.moveInto(self)"/>
-            </initialOperation>
-          </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="CreatePortReferenceUsage" label="Create Port Reference Usage" edgeMappings="//@ownedViewpoints[name='SysML']/@ownedRepresentations[name='SysMLv2%20Diagram']/@defaultLayer/@edgeMappings[name='PortReferenceUsage']">
-            <sourceVariable name="source"/>
-            <targetVariable name="target"/>
-            <sourceViewVariable name="sourceView"/>
-            <targetViewVariable name="targetView"/>
-            <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="aql:self.createReferenceUsage(target)"/>
             </initialOperation>
           </ownedTools>
         </toolSections>

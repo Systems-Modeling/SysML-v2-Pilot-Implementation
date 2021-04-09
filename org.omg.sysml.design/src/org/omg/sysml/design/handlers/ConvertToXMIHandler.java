@@ -49,6 +49,7 @@ public class ConvertToXMIHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		System.err.println(selection);
 		if (selection instanceof IStructuredSelection) {
 			List<String> allPaths = new ArrayList<>();
 			for (Object selected : ((IStructuredSelection) selection).toList()) {

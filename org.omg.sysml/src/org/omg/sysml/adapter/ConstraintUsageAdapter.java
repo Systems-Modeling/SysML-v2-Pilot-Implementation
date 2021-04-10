@@ -24,6 +24,8 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -97,6 +99,12 @@ public class ConstraintUsageAdapter extends UsageAdapter {
 			addRequirementSubsetting();
 		}
 		super.computeImplicitGeneralTypes();
+	}
+	
+	// Used in subclasses
+	public boolean isEnactedPerformance() {
+		Type owningType = getTarget().getOwningType();
+		return owningType instanceof ItemDefinition || owningType instanceof ItemUsage;
 	}
 	
 	// Transformation

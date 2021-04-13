@@ -89,24 +89,24 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	public RequirementUsage basicGetVerifiedRequirement() {
 		RequirementUsage ownedRequirement = getOwnedRequirement();
-		Type subsettingBaseDefault = getSubsettingBaseDefault();
-		Type subsettingPartDefault = getSubsettingPartDefault();
+		Type subsettingBaseDefault = getSubsettingBaseDefault(ownedRequirement);
+		Type subsettingPartDefault = getSubsettingPartDefault(ownedRequirement);
 		return FeatureUtil.getSubsettedFeatureOf(ownedRequirement, RequirementUsage.class, 
 				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
 	}
 
-	protected Type getSubsettingBaseDefault() {
+	protected Type getSubsettingBaseDefault(RequirementUsage requirement) {
 		if (subsettingBaseDefault == null) {
 			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(requirement.getClass(), "base"));
 		}
 		return subsettingBaseDefault;
 	}
 
-	protected Type getSubsettingPartDefault() {
+	protected Type getSubsettingPartDefault(RequirementUsage requirement) {
 		if (subsettingPartDefault == null) {
 			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(requirement.getClass(), "subrequirement"));
 		}
 		return subsettingPartDefault;
 	}

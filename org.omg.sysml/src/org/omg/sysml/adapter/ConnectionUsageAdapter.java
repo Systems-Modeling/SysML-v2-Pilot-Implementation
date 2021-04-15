@@ -22,7 +22,12 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConnectionUsage;
+import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class ConnectionUsageAdapter extends PartUsageAdapter {
 
@@ -42,10 +47,23 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 				getDefaultSupertype("binary");
 	}
 	
+	protected void addEndSubsetting() {
+		ConnectionUsage target = getTarget();
+		for (Feature end: target.getConnectorEnd()) {
+			Expression expression = end.getOwnedFeature().stream().
+					filter(Expression.class::isInstance).
+					map(Expression.class::cast).
+					findFirst().orElse(null);
+			ElementUtil.transform(expression);
+			TypeUtil.addImplicitGeneralTypeTo(end, SysMLPackage.eINSTANCE.getSubsetting(), expression.getResult());
+		}
+	}
+	
 	@Override
 	public void doTransform() {
 		super.doTransform();
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
+		addEndSubsetting();
 	}
 	
 }

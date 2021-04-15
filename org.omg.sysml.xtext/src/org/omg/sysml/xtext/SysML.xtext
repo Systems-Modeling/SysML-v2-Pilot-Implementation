@@ -445,8 +445,18 @@ ConnectorEndMember returns SysML::EndFeatureMembership :
 ;
 
 ConnectorEnd returns SysML::Feature :
-	ownedRelationship += OwnedSubsetting 
+	ownedRelationship += FeaturePathExpressionMember 
 	( ownedRelationship += MultiplicityMember )?
+;
+
+FeaturePathExpressionMember returns SysML::FeatureMembership :
+	ownedRelatedElement += FeaturePathExpression
+;
+
+FeaturePathExpression returns SysML::Expression :
+	FeatureReferenceExpression
+	( {SysML::QueryPathStepExpression.operand += current}
+	  '.' operand += FeatureReferenceExpression )*
 ;
 
 /* Binding Connectors */

@@ -4014,9 +4014,9 @@ ruleConnectorEnd returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0());
 				}
-				lv_ownedRelationship_0_0=ruleOwnedSubsetting
+				lv_ownedRelationship_0_0=ruleFeaturePathExpressionMember
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
@@ -4025,7 +4025,7 @@ ruleConnectorEnd returns [EObject current=null]
 						$current,
 						"ownedRelationship",
 						lv_ownedRelationship_0_0,
-						"org.omg.sysml.xtext.SysML.OwnedSubsetting");
+						"org.omg.sysml.xtext.SysML.FeaturePathExpressionMember");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -4049,6 +4049,101 @@ ruleConnectorEnd returns [EObject current=null]
 				}
 			)
 		)?
+	)
+;
+
+// Entry rule entryRuleFeaturePathExpressionMember
+entryRuleFeaturePathExpressionMember returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFeaturePathExpressionMemberRule()); }
+	iv_ruleFeaturePathExpressionMember=ruleFeaturePathExpressionMember
+	{ $current=$iv_ruleFeaturePathExpressionMember.current; }
+	EOF;
+
+// Rule FeaturePathExpressionMember
+ruleFeaturePathExpressionMember returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getFeaturePathExpressionMemberAccess().getOwnedRelatedElementFeaturePathExpressionParserRuleCall_0());
+			}
+			lv_ownedRelatedElement_0_0=ruleFeaturePathExpression
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getFeaturePathExpressionMemberRule());
+				}
+				add(
+					$current,
+					"ownedRelatedElement",
+					lv_ownedRelatedElement_0_0,
+					"org.omg.sysml.xtext.SysML.FeaturePathExpression");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleFeaturePathExpression
+entryRuleFeaturePathExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getFeaturePathExpressionRule()); }
+	iv_ruleFeaturePathExpression=ruleFeaturePathExpression
+	{ $current=$iv_ruleFeaturePathExpression.current; }
+	EOF;
+
+// Rule FeaturePathExpression
+ruleFeaturePathExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getFeaturePathExpressionAccess().getFeatureReferenceExpressionParserRuleCall_0());
+		}
+		this_FeatureReferenceExpression_0=ruleFeatureReferenceExpression
+		{
+			$current = $this_FeatureReferenceExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					$current = forceCreateModelElementAndAdd(
+						grammarAccess.getFeaturePathExpressionAccess().getQueryPathStepExpressionOperandAction_1_0(),
+						$current);
+				}
+			)
+			otherlv_2='.'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getFeaturePathExpressionAccess().getFullStopKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getFeaturePathExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_0());
+					}
+					lv_operand_3_0=ruleFeatureReferenceExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getFeaturePathExpressionRule());
+						}
+						add(
+							$current,
+							"operand",
+							lv_operand_3_0,
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
 	)
 ;
 

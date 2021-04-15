@@ -43,10 +43,10 @@ import java.util.HashSet
 import org.omg.sysml.lang.sysml.Feature
 import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Membership
-import org.omg.sysml.lang.sysml.impl.MembershipImpl
 import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.util.TypeUtil
 import org.omg.sysml.util.FeatureUtil
+import org.omg.sysml.lang.sysml.SysMLPackage
 
 class KerMLScope extends AbstractScope {
 	
@@ -115,6 +115,18 @@ class KerMLScope extends AbstractScope {
 	 * truncated). - called when "XPECT scope" is used.
 	 */
 	def resolveInScope(QualifiedName targetqn, boolean findFirst) {
+		
+		// This sets the implicit memberName of a Membership, when the Membership is used
+		//  as an "element import" without an explicit alias name being given.
+		if (this.element instanceof Membership) {
+			if (targetqn !== null && 
+				// Using eIsSet avoids the proxy resolution that would be triggered by a getter.
+				!this.element.eIsSet(SysMLPackage.eINSTANCE.membership_MemberName) && 
+				!this.element.eIsSet(SysMLPackage.eINSTANCE.membership_OwnedMemberElement)) {
+				this.element.memberName = targetqn.lastSegment;
+			}
+		}
+		
 		this.targetqn = targetqn;
 		this.findFirst = findFirst	
 		this.elements = newHashMap	
@@ -170,18 +182,17 @@ class KerMLScope extends AbstractScope {
 			for (r: ns.ownedRelationship) {
 				if (!scopeProvider.visited.contains(r)) {
 					if (r instanceof Membership) {
-					
-						// Note: Use basicGetMemberElement in order to avoid proxy resolution at this point.
-						if (checkElementId(qn, checkIfAdded, (r as MembershipImpl).basicGetMemberElement, ownedvisited, visited)) {
+
+						var memberElement = r.ownedMemberElement
+						if (checkElementId(qn, checkIfAdded, memberElement, ownedvisited, visited)) {
 							return true
 						}
-
+					
 						// Note: Proxy resolution for memberElement may result in recursive name resolution
 						// (and getting the memberName may also result in accessing the memberElement).
 						// In this case, the membership r should be excluded from the scope, to avoid a 
 						// cyclic linking error.
 						scopeProvider.addVisited(r)
-						var memberElement = r.ownedMemberElement
 						var elementName = 
 							if (r.memberName !== null || (isFirstScope && ns == this.ns && memberElement === element)) r.memberName 
 							else (memberElement as ElementImpl)?.effectiveName

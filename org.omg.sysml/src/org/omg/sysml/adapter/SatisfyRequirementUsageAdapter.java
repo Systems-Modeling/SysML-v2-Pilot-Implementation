@@ -35,13 +35,6 @@ public class SatisfyRequirementUsageAdapter extends RequirementUsageAdapter {
 	}
 
 	@Override
-	protected String getDefaultSupertype() {
-		return isEnactedPerformance()?
-				getDefaultSupertype("enactedPerformance"):
-				super.getDefaultSupertype();
-	}
-	
-	@Override
 	public void doTransform() {
 		SatisfyRequirementUsage usage = getTarget();
 		super.doTransform();

@@ -176,8 +176,6 @@ public class ImplicitGeneralizationMap {
 		put(RequirementUsageImpl.class, "base", "Requirements::requirementChecks");
 		put(RequirementUsageImpl.class, "subrequirement", "Requirements::RequirementCheck::subrequirements");
 		
-		put(SatisfyRequirementUsageImpl.class, "enactedPerformance", "Items::Item::assertedConstraints");
-
 		put(SendActionUsageImpl.class, "base", "Actions::sendActions");
 		put(SendActionUsageImpl.class, "subaction", "Actions::Action::sendSubactions");
 		

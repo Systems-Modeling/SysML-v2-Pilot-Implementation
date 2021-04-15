@@ -138,7 +138,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	protected Type getSubsettingPartDefault() {
 		if (subsettingPartDefault == null) {
 			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "subrequirement"));
 		}
 		return subsettingPartDefault;
 	}

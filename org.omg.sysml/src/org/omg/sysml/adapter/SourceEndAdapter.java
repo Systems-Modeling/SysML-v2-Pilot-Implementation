@@ -45,16 +45,20 @@ public class SourceEndAdapter extends FeatureAdapter {
 	public SourceEnd getTarget() {
 		return (SourceEnd)super.getTarget();
 	}
-
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
 	
 	@Override
-	public void addComputedRedefinitions(Element skip) {
+	public void computeImplicitGeneralTypes() {
 		addDefaultGeneralType();
-		super.addComputedRedefinitions(skip);
+	}
+
+	@Override
+	public void addDefaultGeneralType() {
+		Type type = getTarget().getOwningType();
+		if (type instanceof Feature) {
+			addImplicitGeneralType(getGeneralizationEClass(), getSource((Feature)type));
+		} else {
+			super.addDefaultGeneralType();
+		}
 	}
 	
 	public static Feature getSource(Feature owningFeature) {
@@ -87,12 +91,4 @@ public class SourceEndAdapter extends FeatureAdapter {
 		}
 	}
 
-	@Override
-	public Type getLibraryType(String... defaultNames) {
-		Type type = getTarget().getOwningType();
-		return type instanceof Feature? 
-				getSource((Feature)type): 
-				super.getLibraryType(defaultNames);
-	}
-	
 }

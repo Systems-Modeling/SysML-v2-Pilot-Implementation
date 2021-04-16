@@ -297,8 +297,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		var importedNamespace = _import.importedNamespace;
 		if (importedNamespace !== null && importedNamespace.owningRelationship !== _import) {
 			createNode(parentNode, importedNamespace, 
-				importedNamespace._image, importedNamespace._text, 
-				_import.importOwningNamespace == importedNamespace || importedNamespace._isLeaf
+				importedNamespace._image, importedNamespace._text, true
 			)
 		}
 	}

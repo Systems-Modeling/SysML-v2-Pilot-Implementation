@@ -7757,12 +7757,6 @@ rule__VisibilityIndicator__Alternatives
 		('protected')
 		{ after(grammarAccess.getVisibilityIndicatorAccess().getProtectedEnumLiteralDeclaration_2()); }
 	)
-	|
-	(
-		{ before(grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3()); }
-		('packaged')
-		{ after(grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3()); }
-	)
 ;
 finally {
 	restoreStackSize(stackSize);

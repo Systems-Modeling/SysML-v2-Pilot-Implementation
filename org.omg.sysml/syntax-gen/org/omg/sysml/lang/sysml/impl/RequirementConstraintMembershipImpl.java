@@ -31,7 +31,12 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,12 +47,17 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getOwnedConstraint <em>Owned Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementConstraintMembershipImpl#getReferencedConstraint <em>Referenced Constraint</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl implements RequirementConstraintMembership {
+
+	private Type subsettingBaseDefault;
+	private Type subsettingPartDefault;
+
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -116,9 +126,9 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated
 	 */
 	@Override
-	public ConstraintUsage getConstraint() {
-		ConstraintUsage constraint = basicGetConstraint();
-		return constraint != null && constraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)constraint) : constraint;
+	public ConstraintUsage getOwnedConstraint() {
+		ConstraintUsage ownedConstraint = basicGetOwnedConstraint();
+		return ownedConstraint != null && ownedConstraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)ownedConstraint) : ownedConstraint;
 	}
 
 	/**
@@ -126,7 +136,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public ConstraintUsage basicGetConstraint() {
+	public ConstraintUsage basicGetOwnedConstraint() {
 		Feature ownedMemberFeature = super.basicGetOwnedMemberFeature();
 		return ownedMemberFeature instanceof ConstraintUsage? (ConstraintUsage)ownedMemberFeature: null;
 	}
@@ -137,8 +147,8 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated NOT
 	 */
 	@Override
-	public void setConstraint(ConstraintUsage newConstraint) {
-		super.setOwnedMemberFeature(newConstraint);
+	public void setOwnedConstraint(ConstraintUsage newOwnedConstraint) {
+		super.setOwnedMemberFeature(newOwnedConstraint);
 	}
 
 	/**
@@ -146,8 +156,58 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetConstraint() {
-		return basicGetConstraint() != null;
+	public boolean isSetOwnedConstraint() {
+		return basicGetOwnedConstraint() != null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage getReferencedConstraint() {
+		ConstraintUsage referencedConstraint = basicGetReferencedConstraint();
+		return referencedConstraint != null && referencedConstraint.eIsProxy() ? (ConstraintUsage)eResolveProxy((InternalEObject)referencedConstraint) : referencedConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ConstraintUsage basicGetReferencedConstraint() {
+		ConstraintUsage ownedConstraint = getOwnedConstraint();
+		Type subsettingBaseDefault = getSubsettingBaseDefault(ownedConstraint);
+		Type subsettingPartDefault = getSubsettingPartDefault(ownedConstraint);
+		return FeatureUtil.getSubsettedFeatureOf(ownedConstraint, ConstraintUsage.class, 
+				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
+	}
+
+	protected Type getSubsettingBaseDefault(ConstraintUsage constraint) {
+		if (subsettingBaseDefault == null) {
+			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(constraint.getClass(), "base"));
+		}
+		return subsettingBaseDefault;
+	}
+
+	protected Type getSubsettingPartDefault(ConstraintUsage constraint) {
+		if (subsettingPartDefault == null && constraint instanceof RequirementUsage) {
+			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
+					ImplicitGeneralizationMap.getDefaultSupertypeFor(constraint.getClass(), "subrequirement"));
+		}
+		return subsettingPartDefault;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	public void setReferencedConstraint(ConstraintUsage newReferencedConstraint) {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -157,7 +217,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 */
 	@Override
 	public Feature getOwnedMemberFeature() {
-		return getConstraint();
+		return getOwnedConstraint();
 	}
 
 	/**
@@ -167,7 +227,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 */
 	@Override
 	public Feature basicGetOwnedMemberFeature() {
-		return basicGetConstraint();
+		return basicGetOwnedConstraint();
 	}
 
 	/**
@@ -179,7 +239,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 		if (newOwnedMemberFeature != null && !(newOwnedMemberFeature instanceof ConstraintUsage)) {
 			throw new IllegalArgumentException("newOwnedMemberFeature must be an instance of ConstraintUsage");
 		}
-		setConstraint((ConstraintUsage) newOwnedMemberFeature);
+		setOwnedConstraint((ConstraintUsage) newOwnedMemberFeature);
 	}
 
 	/**
@@ -201,9 +261,12 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				return getKind();
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
-				if (resolve) return getConstraint();
-				return basicGetConstraint();
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT:
+				if (resolve) return getOwnedConstraint();
+				return basicGetOwnedConstraint();
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT:
+				if (resolve) return getReferencedConstraint();
+				return basicGetReferencedConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,8 +282,11 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				setKind((RequirementConstraintKind)newValue);
 				return;
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
-				setConstraint((ConstraintUsage)newValue);
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT:
+				setOwnedConstraint((ConstraintUsage)newValue);
+				return;
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT:
+				setReferencedConstraint((ConstraintUsage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -237,8 +303,11 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
-				setConstraint((ConstraintUsage)null);
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT:
+				setOwnedConstraint((ConstraintUsage)null);
+				return;
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT:
+				setReferencedConstraint((ConstraintUsage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -256,8 +325,10 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 				return isSetOwnedMemberFeature();
 			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__KIND:
 				return kind != KIND_EDEFAULT;
-			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__CONSTRAINT:
-				return isSetConstraint();
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__OWNED_CONSTRAINT:
+				return isSetOwnedConstraint();
+			case SysMLPackage.REQUIREMENT_CONSTRAINT_MEMBERSHIP__REFERENCED_CONSTRAINT:
+				return basicGetReferencedConstraint() != null;
 		}
 		return super.eIsSet(featureID);
 	}

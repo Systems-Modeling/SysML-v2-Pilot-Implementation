@@ -33,7 +33,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.omg.sysml.lang.sysml.AddressedConcernMembership;
 import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
@@ -58,6 +60,7 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getSubjectParameter <em>Subject Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.RequirementDefinitionImpl#getAddressedConcern <em>Addressed Concern</em>}</li>
  * </ul>
  *
  * @generated
@@ -182,13 +185,16 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 		return text;
 	}
 	
-	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
+	public static <T extends RequirementConstraintMembership> Stream<ConstraintUsage> getRequirementConstraints(Type owner, Class<T> membershipClass, RequirementConstraintKind kind) {
 		return owner.getOwnedFeatureMembership().stream().
-				filter(mem->(mem instanceof RequirementConstraintMembership) && ((RequirementConstraintMembership)mem).getKind() == kind).
-				map(mem->((RequirementConstraintMembership)mem).getConstraint()).
+				filter(mem->membershipClass.isInstance(mem) && ((RequirementConstraintMembership)mem).getKind() == kind).
+				map(mem->((RequirementConstraintMembership)mem).getOwnedConstraint()).
 				filter(constraint->constraint != null);
 	}
 
+	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
+		return getRequirementConstraints(owner, RequirementConstraintMembership.class, kind);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,6 +226,19 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 	 * @generated
 	 */
 	@Override
+	public EList<ConcernUsage> getAddressedConcern() {
+		EList<ConcernUsage> concerns = new NonNotifyingEObjectEList<>(ConcernUsage.class, this, SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN);
+		getRequirementConstraints(this, AddressedConcernMembership.class, RequirementConstraintKind.REQUIREMENT).
+			map(ConcernUsage.class::cast).forEachOrdered(concerns::add);
+		return concerns;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case SysMLPackage.REQUIREMENT_DEFINITION__REQ_ID:
@@ -233,6 +252,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				if (resolve) return getSubjectParameter();
 				return basicGetSubjectParameter();
+			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
+				return getAddressedConcern();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,6 +285,10 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)newValue);
 				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
+				getAddressedConcern().clear();
+				getAddressedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -291,6 +316,9 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				setSubjectParameter((Usage)null);
 				return;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
+				getAddressedConcern().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -315,6 +343,8 @@ public class RequirementDefinitionImpl extends ConstraintDefinitionImpl implemen
 				return !getRequiredConstraint().isEmpty();
 			case SysMLPackage.REQUIREMENT_DEFINITION__SUBJECT_PARAMETER:
 				return basicGetSubjectParameter() != null;
+			case SysMLPackage.REQUIREMENT_DEFINITION__ADDRESSED_CONCERN:
+				return !getAddressedConcern().isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

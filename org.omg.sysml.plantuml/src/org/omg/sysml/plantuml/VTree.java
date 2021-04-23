@@ -136,7 +136,7 @@ public class VTree extends VStructure {
 
     @Override
     public String caseRequirementConstraintMembership(RequirementConstraintMembership rcm) {
-        ConstraintUsage c = rcm.getConstraint();
+        ConstraintUsage c = rcm.getOwnedConstraint();
 
         switch (rcm.getKind()) {
         case ASSUMPTION:

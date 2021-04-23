@@ -13666,14 +13666,6 @@ ruleVisibilityIndicator returns [Enumerator current=null]
 				newLeafNode(enumLiteral_2, grammarAccess.getVisibilityIndicatorAccess().getProtectedEnumLiteralDeclaration_2());
 			}
 		)
-		    |
-		(
-			enumLiteral_3='packaged'
-			{
-				$current = grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3());
-			}
-		)
 	)
 ;
 

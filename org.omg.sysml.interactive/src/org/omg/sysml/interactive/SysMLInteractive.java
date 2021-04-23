@@ -37,6 +37,7 @@ import java.util.Scanner;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -215,7 +216,7 @@ public class SysMLInteractive extends SysMLUtil {
 					filter(r->!inputResources.contains(r)).
 					flatMap(r->r.getContents().stream()).
 					filter(Namespace.class::isInstance).
-					flatMap(n->((Namespace)n).publicMemberships().stream()).
+					flatMap(n->((Namespace)n).publicMemberships(new BasicEList<>()).stream()).
 					collect(Collectors.toList());
 			return SysMLInteractiveUtil.formatMembershipList(globalMemberships);
 		} catch (Exception e) {
@@ -231,7 +232,7 @@ public class SysMLInteractive extends SysMLUtil {
 		if (result.hasErrors()) {
 			return result.toString();
 		} else {
-			List<Membership> memberships = ((Namespace)result.getRootElement()).publicMemberships();
+			List<Membership> memberships = ((Namespace)result.getRootElement()).publicMemberships(new BasicEList<>());
 			this.removeResource();
 			return SysMLInteractiveUtil.formatMembershipList(memberships);
 		}

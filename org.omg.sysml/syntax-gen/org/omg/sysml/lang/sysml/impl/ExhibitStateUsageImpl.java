@@ -110,7 +110,7 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	}
 
 	@Override
-	protected Feature getNamingFeature() {
+	public Feature namingFeature() {
 		return getExhibitedState();
 	}
 

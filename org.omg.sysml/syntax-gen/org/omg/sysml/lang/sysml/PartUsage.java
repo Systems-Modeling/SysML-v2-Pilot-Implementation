@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A PartUsage is a usage of a PartDefinition to represent a composite part of a system. At least one of the types of the PartUsage must be a PartDefinition.</p>
+ * <p>A PartUsage is a usage of a PartDefinition to represent a system or a part of a system. At least one of the types of the PartUsage must be a PartDefinition.</p>
  * 
  * <p>A PartUsage must subset, directly or indirectly, the base PartUsage <code>parts</code> from the Systems model library.</p>
  * <!-- end-model-doc -->

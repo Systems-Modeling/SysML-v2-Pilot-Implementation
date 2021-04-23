@@ -69,7 +69,7 @@ public class UsageAdapter extends FeatureAdapter {
 	}
 	
 	@Override
-	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
+	public Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		addVariationSubsetting();
 		return super.getSubsettedNotRedefinedFeatures();
 	}
@@ -104,7 +104,7 @@ public class UsageAdapter extends FeatureAdapter {
 	/**
 	 * Return the relevant subject parameter to which a Usage should be bound.
 	 */
-	public Feature getRelevantSubjectParameterFor(Usage usage) {
+	protected Feature getRelevantSubjectParameterFor(Usage usage) {
 		Type owningType = usage.getOwningType();		
 		return !(owningType instanceof Usage) || owningType.isAbstract() || 
 			   !UsageUtil.hasRelevantSubjectParameter((Usage)owningType)? null:
@@ -112,7 +112,7 @@ public class UsageAdapter extends FeatureAdapter {
 	}
 	
 	@Override
-	public void computeValueConnector() {
+	protected void computeValueConnector() {
 		Usage usage = getTarget();
 		FeatureValue valuation = FeatureUtil.getValuationFor(usage);
 		if (valuation == null && UsageUtil.isSubjectParameter(usage)){
@@ -125,7 +125,7 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 	
-	public static void computeSubjectParameterOf(Type type) {
+	protected static void computeSubjectParameterOf(Type type) {
 		if (type != null && 
 			type.getOwnedMembership().stream().noneMatch(SubjectMembership.class::isInstance)) {
 			Usage parameter = SysMLFactory.eINSTANCE.createReferenceUsage();

@@ -9646,31 +9646,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleQueryNameExpression
-entryRuleQueryNameExpression
-:
-{ before(grammarAccess.getQueryNameExpressionRule()); }
-	 ruleQueryNameExpression
-{ after(grammarAccess.getQueryNameExpressionRule()); } 
-	 EOF 
-;
-
-// Rule QueryNameExpression
-ruleQueryNameExpression 
-	@init {
-		int stackSize = keepStackSize();
-	}
-	:
-	(
-		{ before(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment()); }
-		(rule__QueryNameExpression__OwnedRelationshipAssignment)
-		{ after(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipAssignment()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 // Entry rule entryRuleQueryHeadExpression
 entryRuleQueryHeadExpression
 :
@@ -44960,9 +44935,9 @@ rule__QueryPathExpression__Group_1__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1()); }
+	{ before(grammarAccess.getQueryPathExpressionAccess().getPathSelectExpressionOperandAction_1_1()); }
 	()
-	{ after(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1()); }
+	{ after(grammarAccess.getQueryPathExpressionAccess().getPathSelectExpressionOperandAction_1_1()); }
 )
 ;
 finally {
@@ -45068,9 +45043,9 @@ rule__QueryPathExpression__Group_2__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1()); }
+	{ before(grammarAccess.getQueryPathExpressionAccess().getPathStepExpressionOperandAction_2_1()); }
 	()
-	{ after(grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1()); }
+	{ after(grammarAccess.getQueryPathExpressionAccess().getPathStepExpressionOperandAction_2_1()); }
 )
 ;
 finally {
@@ -45176,9 +45151,9 @@ rule__QueryPathExpression__Group_2_3__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_2_3_1()); }
+	{ before(grammarAccess.getQueryPathExpressionAccess().getPathSelectExpressionOperandAction_2_3_1()); }
 	()
-	{ after(grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_2_3_1()); }
+	{ after(grammarAccess.getQueryPathExpressionAccess().getPathSelectExpressionOperandAction_2_3_1()); }
 )
 ;
 finally {
@@ -54874,9 +54849,9 @@ rule__QueryPathExpression__OperandAssignment_2_2
 	}
 :
 	(
-		{ before(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0()); }
-		ruleQueryNameExpression
-		{ after(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0()); }
+		{ before(grammarAccess.getQueryPathExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_2_2_0()); }
+		ruleFeatureReferenceExpression
+		{ after(grammarAccess.getQueryPathExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_2_2_0()); }
 	)
 ;
 finally {
@@ -54892,21 +54867,6 @@ rule__QueryPathExpression__OwnedRelationshipAssignment_2_3_2
 		{ before(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyExpressionMemberParserRuleCall_2_3_2_0()); }
 		ruleBodyExpressionMember
 		{ after(grammarAccess.getQueryPathExpressionAccess().getOwnedRelationshipBodyExpressionMemberParserRuleCall_2_3_2_0()); }
-	)
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__QueryNameExpression__OwnedRelationshipAssignment
-	@init {
-		int stackSize = keepStackSize();
-	}
-:
-	(
-		{ before(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0()); }
-		ruleFeatureReferenceMember
-		{ after(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0()); }
 	)
 ;
 finally {

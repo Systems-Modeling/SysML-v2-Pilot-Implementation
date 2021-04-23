@@ -39,6 +39,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Function#getExpression <em>Expression</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Function#getResult <em>Result</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Function#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction()
@@ -116,4 +117,29 @@ public interface Function extends Behavior {
 	 * @generated
 	 */
 	void setResult(Feature value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Model Level Evaluable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>Whether this Function can be used as the <code>function</code> of a model-level evaluable InvocationExpression.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Is Model Level Evaluable</em>' attribute.
+	 * @see #setIsModelLevelEvaluable(boolean)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getFunction_IsModelLevelEvaluable()
+	 * @model dataType="org.omg.sysml.lang.types.Boolean" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	boolean isModelLevelEvaluable();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Function#isModelLevelEvaluable <em>Is Model Level Evaluable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Model Level Evaluable</em>' attribute.
+	 * @see #isModelLevelEvaluable()
+	 * @generated
+	 */
+	void setIsModelLevelEvaluable(boolean value);
 } // Function

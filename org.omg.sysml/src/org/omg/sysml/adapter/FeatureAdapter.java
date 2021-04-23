@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -167,11 +166,7 @@ public class FeatureAdapter extends TypeAdapter {
 		super.computeImplicitGeneralTypes();
 	}
 	
-	public Optional<Feature> getFirstSubsettedFeature() {
-		return getSubsettedNotRedefinedFeatures().findFirst();
-	}
-	
-	protected Stream<Feature> getSubsettedNotRedefinedFeatures() {
+	public Stream<Feature> getSubsettedNotRedefinedFeatures() {
 		computeImplicitGeneralTypes();
 		Feature target = getTarget();
 		Stream<Feature> implicitSubsettedFeatures = getImplicitGeneralTypesOnly(SysMLPackage.Literals.SUBSETTING).stream().

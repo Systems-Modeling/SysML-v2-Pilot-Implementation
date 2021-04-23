@@ -335,10 +335,10 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	// Additional
 	
 	@Override
-	public Feature getNamingFeature() {
+	public Feature namingFeature() {
 		return UsageUtil.isAssumptionConstraint(this) || UsageUtil.isRequirementConstraint(this)? 
 				getSubsettedConstraint():
-			    super.getNamingFeature();
+			    super.namingFeature();
 	}
 	
 	public ConstraintUsage getSubsettedConstraint() {

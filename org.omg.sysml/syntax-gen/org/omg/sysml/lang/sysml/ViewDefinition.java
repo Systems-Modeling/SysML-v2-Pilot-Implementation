@@ -41,7 +41,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewDefinition#getView <em>View</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewDefinition#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.ViewDefinition#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ViewDefinition#getViewRendering <em>View Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewDefinition#getViewCondition <em>View Condition</em>}</li>
  * </ul>
  *
@@ -97,7 +97,7 @@ public interface ViewDefinition extends PartDefinition {
 	EList<ViewpointUsage> getSatisfiedViewpoint();
 
 	/**
-	 * Returns the value of the '<em><b>Rendering</b></em>' reference.
+	 * Returns the value of the '<em><b>View Rendering</b></em>' reference.
 	 * <p>
 	 * This feature subsets the following features:
 	 * </p>
@@ -107,27 +107,27 @@ public interface ViewDefinition extends PartDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The RenderingUsage to be used to render views defined by this ViewDefinition.<p>
+	 * <p>The RenderingUsage to be used to render views defined by this ViewDefinition. Derived as the <code>referencedRendering</code> of the ViewRenderingMembership of the ViewDefinition. A ViewDefinition may have at most one.<p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Rendering</em>' reference.
-	 * @see #setRendering(RenderingUsage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewDefinition_Rendering()
+	 * @return the value of the '<em>View Rendering</em>' reference.
+	 * @see #setViewRendering(RenderingUsage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewDefinition_ViewRendering()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='renderingOwningViewDefinition'"
 	 *        annotation="subsets"
 	 * @generated
 	 */
-	RenderingUsage getRendering();
+	RenderingUsage getViewRendering();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ViewDefinition#getRendering <em>Rendering</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.ViewDefinition#getViewRendering <em>View Rendering</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Rendering</em>' reference.
-	 * @see #getRendering()
+	 * @param value the new value of the '<em>View Rendering</em>' reference.
+	 * @see #getViewRendering()
 	 * @generated
 	 */
-	void setRendering(RenderingUsage value);
+	void setViewRendering(RenderingUsage value);
 
 	/**
 	 * Returns the value of the '<em><b>View Condition</b></em>' reference list.

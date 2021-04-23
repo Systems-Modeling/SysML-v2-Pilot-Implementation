@@ -42,19 +42,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum VisibilityKind implements Enumerator {
 	/**
-	 * The '<em><b>Public</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
-	 * <!-- end-model-doc -->
-	 * @see #PUBLIC_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PUBLIC(0, "public", "public"),
-
-	/**
 	 * The '<em><b>Private</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -65,52 +52,31 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRIVATE(1, "private", "private"),
+	PRIVATE(0, "private", "private"),
 
 	/**
 	 * The '<em><b>Protected</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid for if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible outside its owning Type only if inherited by direct or indirect specializations of the Type.</p>
+	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes normal access to and import of elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PROTECTED(2, "protected", "protected"),
-
-	/**
-	 * The '<em><b>Package</b></em>' literal object.
+	PROTECTED(1, "protected", "protected"), /**
+	 * The '<em><b>Public</b></em>' literal object.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Namespace that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Namespace that is not a Type (or if there is no such Namespace).</p>
-	 * 
-	 * <!-- end-model-doc -->
-	 * @see #PACKAGE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	PACKAGE(3, "package", "package");
-
-	/**
-	 * The '<em><b>Public</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>Public</b></em>' literal object isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
 	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
 	 * <!-- end-model-doc -->
-	 * @see #PUBLIC
-	 * @model name="public"
+	 * @see #PUBLIC_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PUBLIC_VALUE = 0;
+	PUBLIC(2, "public", "public");
 
 	/**
 	 * The '<em><b>Private</b></em>' literal value.
@@ -128,7 +94,7 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PRIVATE_VALUE = 1;
+	public static final int PRIVATE_VALUE = 0;
 
 	/**
 	 * The '<em><b>Protected</b></em>' literal value.
@@ -139,33 +105,32 @@ public enum VisibilityKind implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid for if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible outside its owning Type only if inherited by direct or indirect specializations of the Type.</p>
+	 * <p>An intermediate level of visibility between <code>public</code> and <code>private</code>. By default, it is equivalent to <code>private</code> for the purposes normal access to and import of elements from a Namespace. However, other Relationships may be specified to include Memberships with <code>protected</code> visibility in the list of <code>memberships</code> for a Namespace (e.g., Generalization).</p>
 	 * <!-- end-model-doc -->
 	 * @see #PROTECTED
 	 * @model name="protected"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROTECTED_VALUE = 2;
+	public static final int PROTECTED_VALUE = 1;
 
 	/**
-	 * The '<em><b>Package</b></em>' literal value.
+	 * The '<em><b>Public</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Namespace</b></em>' literal object isn't clear, there
+	 * If the meaning of '<em><b>Public</b></em>' literal object isn't clear, there
 	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Only valid if the owning Namespace of a Membership is a Type. Indicates that the Membership is visible to all Elements within the nearest enclosing Namespace that is not a Type to which it would have been visible if it had public visibility, but that it is not visible outside the nearest owning Namespace that is not a Type (or if there is no such Namespace).</p>
-	 * 
+	 * <p>Indicates that a Membership is publicly visible outside its owning Namespace.</p>
 	 * <!-- end-model-doc -->
-	 * @see #PACKAGE
-	 * @model name="package"
+	 * @see #PUBLIC
+	 * @model name="public"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PACKAGE_VALUE = 3;
+	public static final int PUBLIC_VALUE = 2;
 
 	/**
 	 * An array of all the '<em><b>Visibility Kind</b></em>' enumerators. <!--
@@ -174,10 +139,9 @@ public enum VisibilityKind implements Enumerator {
 	 * @generated
 	 */
 	private static final VisibilityKind[] VALUES_ARRAY = new VisibilityKind[] {
-			PUBLIC,
 			PRIVATE,
 			PROTECTED,
-			PACKAGE,
+			PUBLIC,
 		};
 
 	/**
@@ -230,10 +194,9 @@ public enum VisibilityKind implements Enumerator {
 	 */
 	public static VisibilityKind get(int value) {
 		switch (value) {
-			case PUBLIC_VALUE: return PUBLIC;
 			case PRIVATE_VALUE: return PRIVATE;
 			case PROTECTED_VALUE: return PROTECTED;
-			case PACKAGE_VALUE: return PACKAGE;
+			case PUBLIC_VALUE: return PUBLIC;
 		}
 		return null;
 	}

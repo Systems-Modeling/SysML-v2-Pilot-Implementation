@@ -26,9 +26,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
@@ -38,7 +40,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.uml2.common.util.DerivedEObjectEList;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
@@ -184,6 +185,16 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 	
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetMembership() {
+		return eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP)
+			|| eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP);
+	}
+
+	/**
 	 * The array of superset feature identifiers for the '{@link #getOwnedImport() <em>Owned Import</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,6 +213,25 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 */
 	protected static final int[] OWNED_MEMBERSHIP_ESUPERSETS = new int[] {SysMLPackage.NAMESPACE__OWNED_RELATIONSHIP};
 
+	/**
+	 * The cached OCL expression body for the '{@link #namesOf(org.omg.sysml.lang.sysml.Element) <em>Names Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #namesOf(org.omg.sysml.lang.sysml.Element)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAMES_OF__ELEMENT__EOCL_EXP = "memberships->select(memberElement = element).effectiveMemberName->asSet()";
+	/**
+	 * The cached OCL query for the '{@link #namesOf(org.omg.sysml.lang.sysml.Element) <em>Names Of</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #namesOf(org.omg.sysml.lang.sysml.Element)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> NAMES_OF__ELEMENT__EOCL_QRY;
+
 	// Operations
 
 	/**
@@ -209,6 +239,7 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
 	public EList<String> namesOf(Element element) {
 		EList<String> names = new EDataTypeEList<>(String.class, this, SysMLPackage.NAMESPACE___NAMES_OF__ELEMENT);
 		getMembership().stream().
@@ -219,10 +250,130 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 	}
 
 	/**
+	 * The cached OCL expression body for the '{@link #publicMemberships(org.eclipse.emf.common.util.EList) <em>Public Memberships</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #publicMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PUBLIC_MEMBERSHIPS__ELIST__EOCL_EXP = "ownedMembership->union(importedMembership(excluded))->"+
+"    select(m | visibilityOf(m) = VisibilityKind::public)";
+	/**
+	 * The cached OCL query for the '{@link #publicMemberships(org.eclipse.emf.common.util.EList) <em>Public Memberships</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #publicMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> PUBLIC_MEMBERSHIPS__ELIST__EOCL_QRY;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	@Override
+	public EList<Membership> publicMemberships(EList<Namespace> excluded) {
+		return getPublicMembership(new HashSet<>(excluded), new HashSet<Type>());
+	}	
+
+	/**
+	 * The cached OCL expression body for the '{@link #visibilityOf(org.omg.sysml.lang.sysml.Membership) <em>Visibility Of</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #visibilityOf(org.omg.sysml.lang.sysml.Membership)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VISIBILITY_OF__MEMBERSHIP__EOCL_EXP = "if importedMemberships->includes(mem) then"+
+"    ownedImport->select(importedMembership()->includes(mem)).visibility"+
+"else if memberships->includes(mem) then"+
+"    mem.visibility"+
+"else"+
+"    VisibilityKind::private"+
+"endif";
+	/**
+	 * The cached OCL query for the '{@link #visibilityOf(org.omg.sysml.lang.sysml.Membership) <em>Visibility Of</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #visibilityOf(org.omg.sysml.lang.sysml.Membership)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> VISIBILITY_OF__MEMBERSHIP__EOCL_QRY;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public VisibilityKind visibilityOf(Membership mem) {
+		Optional<Import> membershipImport = getOwnedImport().stream().
+				filter(imp->imp.importedMembership(new BasicEList<>()).contains(mem)).
+				findAny();
+		return membershipImport.isPresent()? membershipImport.get().getVisibility():
+			   getMembership().contains(mem)? mem.getVisibility():
+			   VisibilityKind.PRIVATE;
+	}
+
+	/**
+	 * The cached OCL expression body for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #importedMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IMPORTED_MEMBERSHIPS__ELIST__EOCL_EXP = "let includedImports : OrderedSet(Import) ="+
+"    ownedImport->excluding(excluded->contains(importOwningNamespace)) in"+
+"excludeCollisions(includedImports.importedMembership(excluded))->"+
+"    select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))";
+	/**
+	 * The cached OCL query for the '{@link #importedMemberships(org.eclipse.emf.common.util.EList) <em>Imported Memberships</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #importedMemberships(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> IMPORTED_MEMBERSHIPS__ELIST__EOCL_QRY;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Membership> importedMemberships(EList<Namespace> excluded) {
+		return getImportedMembership(new HashSet<>(excluded), new HashSet<Type>(), false);
+	}
+
+	/**
+	 * The cached OCL expression body for the '{@link #excludeCollisions(org.eclipse.emf.common.util.EList) <em>Exclude Collisions</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #excludeCollisions(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXCLUDE_COLLISIONS__ELIST__EOCL_EXP = "mem->reject(m1 | mem->exists(m2 | not m1.isDistinguishable(m2)))";
+	/**
+	 * The cached OCL query for the '{@link #excludeCollisions(org.eclipse.emf.common.util.EList) <em>Exclude Collisions</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #excludeCollisions(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> EXCLUDE_COLLISIONS__ELIST__EOCL_QRY;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<Membership> excludeCollisions(EList<Membership> mem) {
 		for (int i = 0; i < mem.size(); i++) {
 			String name1 = mem.get(i).getMemberName();
@@ -243,43 +394,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		return mem;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Membership> publicMemberships() {
-		return getPublicMembership(new HashSet<org.omg.sysml.lang.sysml.Namespace>(), new HashSet<Type>());
-	}
-	
-	/**
-	 * The cached OCL expression body for the '{@link #importedMemberships() <em>Imported Memberships</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #importedMemberships()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IMPORTED_MEMBERSHIPS__EOCL_EXP = "excludeCollisions(ownedImport.importedMembership())->"+
-"    select(m1 | ownedMembership->forAll(m2 | m1.isDistinguishableFrom(m2)))";
-	/**
-	 * The cached OCL query for the '{@link #importedMemberships() <em>Imported Memberships</em>}' query operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #importedMemberships()
-	 * @generated
-	 * @ordered
-	 */
-	protected static OCLExpression<EClassifier> IMPORTED_MEMBERSHIPS__EOCL_QRY;
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<Membership> importedMemberships() {
-		return getImportedMembership();
-	}
-
 	// Note: The excludedTypes parameter is need when this operation is overridden in class Type.
 	public EList<Membership> getPublicMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes) {
 		EList<Membership> publicMembership = getVisibleOwnedMembership(VisibilityKind.PUBLIC);
@@ -441,24 +555,18 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 		switch (operationID) {
 			case SysMLPackage.NAMESPACE___NAMES_OF__ELEMENT:
 				return namesOf((Element)arguments.get(0));
+			case SysMLPackage.NAMESPACE___PUBLIC_MEMBERSHIPS__ELIST:
+				return publicMemberships((EList<Namespace>)arguments.get(0));
+			case SysMLPackage.NAMESPACE___VISIBILITY_OF__MEMBERSHIP:
+				return visibilityOf((Membership)arguments.get(0));
+			case SysMLPackage.NAMESPACE___IMPORTED_MEMBERSHIPS__ELIST:
+				return importedMemberships((EList<Namespace>)arguments.get(0));
 			case SysMLPackage.NAMESPACE___EXCLUDE_COLLISIONS__ELIST:
 				return excludeCollisions((EList<Membership>)arguments.get(0));
-			case SysMLPackage.NAMESPACE___PUBLIC_MEMBERSHIPS:
-				return publicMemberships();
-			case SysMLPackage.NAMESPACE___IMPORTED_MEMBERSHIPS:
-				return importedMemberships();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
-	/**
-	 * The cached environment for evaluating OCL expressions.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final OCL EOCL_ENV = OCL.newInstance();
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -486,16 +594,6 @@ public class NamespaceImpl extends ElementImpl implements Namespace {
 				return ((InternalEList<?>)getOwnedRelationship()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetMembership() {
-		return eIsSet(SysMLPackage.NAMESPACE__IMPORTED_MEMBERSHIP)
-			|| eIsSet(SysMLPackage.NAMESPACE__OWNED_MEMBERSHIP);
 	}
 
 } //NamespaceImpl

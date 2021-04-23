@@ -41,8 +41,6 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.omg.sysml.lang.sysml.QueryPathExpression
-import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
@@ -50,6 +48,7 @@ import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.InvocationExpression
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
+import org.omg.sysml.lang.sysml.PathStepExpression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -96,7 +95,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
 			var owningNamespace = context.membershipOwningNamespace
-		    if (owningNamespace instanceof QueryPathExpression)
+		    if (owningNamespace instanceof FeatureReferenceExpression)
 			    context.scope_QueryPathExpression(owningNamespace, context, reference)
 		    else 
 	    		context.scope_nonExpressionNamespace(context, reference)
@@ -141,28 +140,28 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				if (context instanceof Element) context else null)
 	}
 
-	def QueryPathExpression prevQueryPath(QueryPathStepExpression qps) {
+	def FeatureReferenceExpression prevQueryPath(PathStepExpression qps) {
 		var ops = qps.operand
 		if (ops.size() >= 2) {
 			var op1 = ops.get(1)
-			if (op1 instanceof QueryPathExpression) {
+			if (op1 instanceof FeatureReferenceExpression) {
 				return op1
 			}
 		}
 		return null;
 	}
 
-	def QueryPathExpression prevQueryPath(QueryPathExpression qpe) {
+	def FeatureReferenceExpression prevQueryPath(FeatureReferenceExpression qpe) {
 		var oe = qpe.owner
-		if (oe instanceof QueryPathStepExpression) {
+		if (oe instanceof PathStepExpression) {
 			var ops = oe.operand
 			if (ops.size() >= 2) {
 				var op1 = ops.get(0);
 				if (op1 == qpe) {
 					return null;
-				} else if (op1 instanceof QueryPathExpression) {
+				} else if (op1 instanceof FeatureReferenceExpression) {
 					return op1
-				} else if (op1 instanceof QueryPathStepExpression) {
+				} else if (op1 instanceof PathStepExpression) {
 					return prevQueryPath(op1)
 				}
 			}
@@ -170,12 +169,12 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		return null
 	}
 
-	def IScope scope_QueryPathExpression(Element element, QueryPathExpression qpe, EObject context, EReference reference) {
+	def IScope scope_QueryPathExpression(Element element, FeatureReferenceExpression qpe, EObject context, EReference reference) {
 		var prev = prevQueryPath(qpe)
 		if (prev !== null)
 			element.scope_Namespace(prev.referent, context, reference)
 		else 
-			element.scope_Namespace(qpe, context, reference)
+			element.scope_nonExpressionNamespace(context, reference)
 	}
 	
 	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {

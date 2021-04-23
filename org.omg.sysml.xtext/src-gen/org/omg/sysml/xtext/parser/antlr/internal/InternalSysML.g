@@ -23405,7 +23405,7 @@ ruleQueryPathExpression returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_1_1(),
+						grammarAccess.getQueryPathExpressionAccess().getPathSelectExpressionOperandAction_1_1(),
 						$current);
 				}
 			)
@@ -23441,16 +23441,16 @@ ruleQueryPathExpression returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElementAndAdd(
-						grammarAccess.getQueryPathExpressionAccess().getQueryPathStepExpressionOperandAction_2_1(),
+						grammarAccess.getQueryPathExpressionAccess().getPathStepExpressionOperandAction_2_1(),
 						$current);
 				}
 			)
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOperandQueryNameExpressionParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getQueryPathExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_2_2_0());
 					}
-					lv_operand_7_0=ruleQueryNameExpression
+					lv_operand_7_0=ruleFeatureReferenceExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getQueryPathExpressionRule());
@@ -23459,7 +23459,7 @@ ruleQueryPathExpression returns [EObject current=null]
 							$current,
 							"operand",
 							lv_operand_7_0,
-							"org.omg.sysml.xtext.SysML.QueryNameExpression");
+							"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -23472,7 +23472,7 @@ ruleQueryPathExpression returns [EObject current=null]
 				(
 					{
 						$current = forceCreateModelElementAndAdd(
-							grammarAccess.getQueryPathExpressionAccess().getQueryQualifierExpressionOperandAction_2_3_1(),
+							grammarAccess.getQueryPathExpressionAccess().getPathSelectExpressionOperandAction_2_3_1(),
 							$current);
 					}
 				)
@@ -23501,42 +23501,6 @@ ruleQueryPathExpression returns [EObject current=null]
 				}
 			)?
 		)*
-	)
-;
-
-// Entry rule entryRuleQueryNameExpression
-entryRuleQueryNameExpression returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getQueryNameExpressionRule()); }
-	iv_ruleQueryNameExpression=ruleQueryNameExpression
-	{ $current=$iv_ruleQueryNameExpression.current; }
-	EOF;
-
-// Rule QueryNameExpression
-ruleQueryNameExpression returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			{
-				newCompositeNode(grammarAccess.getQueryNameExpressionAccess().getOwnedRelationshipFeatureReferenceMemberParserRuleCall_0());
-			}
-			lv_ownedRelationship_0_0=ruleFeatureReferenceMember
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getQueryNameExpressionRule());
-				}
-				add(
-					$current,
-					"ownedRelationship",
-					lv_ownedRelationship_0_0,
-					"org.omg.kerml.expressions.xtext.KerMLExpressions.FeatureReferenceMember");
-				afterParserOrEnumRuleCall();
-			}
-		)
 	)
 ;
 

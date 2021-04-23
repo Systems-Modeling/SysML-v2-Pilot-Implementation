@@ -111,7 +111,7 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	}
 	
 	@Override
-	protected Feature getNamingFeature() {
+	public Feature namingFeature() {
 		return getPerformedAction();
 	}
 

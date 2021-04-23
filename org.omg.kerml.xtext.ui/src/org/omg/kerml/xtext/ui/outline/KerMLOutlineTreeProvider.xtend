@@ -24,8 +24,6 @@ import org.omg.sysml.lang.sysml.Relationship
 import org.omg.sysml.lang.sysml.Subsetting
 import org.omg.sysml.lang.sysml.Type
 import org.omg.sysml.lang.sysml.VisibilityKind
-import org.omg.sysml.lang.sysml.impl.TypeImpl
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.Comment
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.TextualRepresentation
@@ -60,7 +58,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (element.humanId !== null) {
 			text += ' id ' + element.humanId
 		}
-		val name = (element as ElementImpl).effectiveName;
+		val name = element.getEffectiveName;
 		if (name !== null) {
 			text += ' ' + name;
 		}
@@ -75,8 +73,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 	
 	def String _text(VisibilityKind visibility) {
-		if (visibility == VisibilityKind.PACKAGE) "packaged"
-		else visibility.toString
+		visibility.toString
 	}
 	
 	def String prefixText(Membership membership) {
@@ -94,7 +91,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (membership.memberName !== null)
 			membership.memberName
 		else {
-			val name = (membership.memberElement as ElementImpl)?.effectiveName;
+			val name = membership.memberElement.getEffectiveName;
 			if (name !== null) name else ""
 		}
 	}
@@ -150,7 +147,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (type.humanId !== null) {
 			text += ' id ' + type.humanId
 		}
-		val name = (type as TypeImpl).effectiveName
+		val name = type.getEffectiveName
 		if (name !== null) {
 			text += ' ' + name;
 		}

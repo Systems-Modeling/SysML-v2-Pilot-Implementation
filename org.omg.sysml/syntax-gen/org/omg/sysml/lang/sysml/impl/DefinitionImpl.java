@@ -43,11 +43,13 @@ import org.omg.sysml.lang.sysml.ItemUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.CalculationUsage;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.StakeholderUsage;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
@@ -93,6 +95,8 @@ import org.omg.sysml.util.NonNotifyingEObjectEList;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedVerificationCase <em>Owned Verification Case</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedEnumeration <em>Owned Enumeration</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedAllocation <em>Owned Allocation</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedConcern <em>Owned Concern</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedStakeholder <em>Owned Stakeholder</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.DefinitionImpl#getOwnedUsage <em>Owned Usage</em>}</li>
  * </ul>
  *
@@ -309,6 +313,26 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 	 * @generated NOT
 	 */
 	@Override
+	public EList<ConcernUsage> getOwnedConcern() {
+		return new DerivedEObjectEList<>(ConcernUsage.class, this, SysMLPackage.DEFINITION__OWNED_CONCERN, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<StakeholderUsage> getOwnedStakeholder() {
+		return new DerivedEObjectEList<>(StakeholderUsage.class, this, SysMLPackage.DEFINITION__OWNED_STAKEHOLDER, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
 	public EList<StateUsage> getOwnedState() {
 		return new DerivedEObjectEList<StateUsage>(StateUsage.class, this, SysMLPackage.DEFINITION__OWNED_STATE, new int[] {SysMLPackage.TYPE__OWNED_FEATURE});
 	}
@@ -511,6 +535,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return getOwnedEnumeration();
 			case SysMLPackage.DEFINITION__OWNED_ALLOCATION:
 				return getOwnedAllocation();
+			case SysMLPackage.DEFINITION__OWNED_CONCERN:
+				return getOwnedConcern();
+			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
+				return getOwnedStakeholder();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return getOwnedUsage();
 		}
@@ -633,6 +661,14 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				getOwnedAllocation().clear();
 				getOwnedAllocation().addAll((Collection<? extends AllocationUsage>)newValue);
 				return;
+			case SysMLPackage.DEFINITION__OWNED_CONCERN:
+				getOwnedConcern().clear();
+				getOwnedConcern().addAll((Collection<? extends ConcernUsage>)newValue);
+				return;
+			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
+				getOwnedStakeholder().clear();
+				getOwnedStakeholder().addAll((Collection<? extends StakeholderUsage>)newValue);
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				getOwnedUsage().addAll((Collection<? extends Usage>)newValue);
@@ -730,6 +766,12 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 			case SysMLPackage.DEFINITION__OWNED_ALLOCATION:
 				getOwnedAllocation().clear();
 				return;
+			case SysMLPackage.DEFINITION__OWNED_CONCERN:
+				getOwnedConcern().clear();
+				return;
+			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
+				getOwnedStakeholder().clear();
+				return;
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				getOwnedUsage().clear();
 				return;
@@ -799,6 +841,10 @@ public abstract class DefinitionImpl extends ClassifierImpl implements Definitio
 				return !getOwnedEnumeration().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_ALLOCATION:
 				return !getOwnedAllocation().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_CONCERN:
+				return !getOwnedConcern().isEmpty();
+			case SysMLPackage.DEFINITION__OWNED_STAKEHOLDER:
+				return !getOwnedStakeholder().isEmpty();
 			case SysMLPackage.DEFINITION__OWNED_USAGE:
 				return !getOwnedUsage().isEmpty();
 		}

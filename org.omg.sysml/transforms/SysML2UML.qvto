@@ -156,8 +156,7 @@ query toVisibilityKind(visibility : SysML::VisibilityKind): UML::VisibilityKind 
 		else if visibility = SysML::VisibilityKind::private then UML::VisibilityKind::private
 		else if visibility = SysML::VisibilityKind::public then UML::VisibilityKind::public
 		else if visibility = SysML::VisibilityKind::protected then UML::VisibilityKind::protected
-		else if visibility = SysML::VisibilityKind::package then UML::VisibilityKind::package
-		endif endif endif endif endif;
+		endif endif endif endif;
 }
 
 // Package

@@ -424,7 +424,7 @@ fragment TypeMemberPrefix returns SysML::Membership :
 ;
 
 enum VisibilityIndicator returns SysML::VisibilityKind :
-	public = 'public' | private = 'private' | protected = 'protected' | package = 'packaged'
+	public = 'public' | private = 'private' | protected = 'protected'
 ;
 
 /* Generalization */

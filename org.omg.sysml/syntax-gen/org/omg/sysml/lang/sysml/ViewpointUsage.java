@@ -22,6 +22,8 @@
  */
 package org.omg.sysml.lang.sysml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -39,6 +41,7 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.ViewpointUsage#getViewpointDefinition <em>Viewpoint Definition</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.ViewpointUsage#getViewpointStakeholder <em>Viewpoint Stakeholder</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointUsage()
@@ -78,5 +81,21 @@ public interface ViewpointUsage extends RequirementUsage {
 	 * @generated
 	 */
 	void setViewpointDefinition(ViewpointDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Viewpoint Stakeholder</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.StakeholderUsage}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The features that identify the stakeholders with concerns addressed by this ViewpointUsage, derived as the <code>ownedStakeholders</code> of the <code>addressedConcerns</code> of this ViewpointUsage.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Viewpoint Stakeholder</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getViewpointUsage_ViewpointStakeholder()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='viewpointForStakeholder'"
+	 * @generated
+	 */
+	EList<StakeholderUsage> getViewpointStakeholder();
 
 } // ViewpointUsage

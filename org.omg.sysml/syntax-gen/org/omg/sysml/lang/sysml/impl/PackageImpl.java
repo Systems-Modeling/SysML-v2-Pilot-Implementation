@@ -24,7 +24,6 @@ package org.omg.sysml.lang.sysml.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -35,6 +34,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
@@ -87,7 +87,7 @@ public class PackageImpl extends NamespaceImpl implements org.omg.sysml.lang.sys
 	}
 
 	@Override
-	public EList<Membership> getImportedMembership(Collection<org.omg.sysml.lang.sysml.Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean onlyPublic) {
+	public EList<Membership> getImportedMembership(Collection<Namespace> excludedNamespaces, Collection<Type> excludedTypes, boolean onlyPublic) {
 		EList<Membership> importedMemberships = super.getImportedMembership(excludedNamespaces, excludedTypes, onlyPublic);
 		importedMemberships.removeIf(membership->!includeAsMember(membership.getMemberElement()));
 		return importedMemberships;

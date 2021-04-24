@@ -61,13 +61,8 @@ package Test3{
 				protected class c_Protect{
 					public class c_publicc{}
 				}
-				packaged class c_Package{
-					public class c_publicc{}
-				}
-				
 				public class c_Public{
 					protected class c_protect{}
-					packaged class c_packagee{}
 				}
 			}
 		}

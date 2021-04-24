@@ -31,13 +31,8 @@ package VisibilityPackage {
 					public class c_publicc{}
 					protected class c_protect{}
 				}
-				packaged class c_Package{
-					public class c_publicc{}
-				}
-				
 				public class c_Public{
 					protected class c_protect{}
-					packaged class c_packagee{}
 					public class c_publicc{}
 				}
 			}

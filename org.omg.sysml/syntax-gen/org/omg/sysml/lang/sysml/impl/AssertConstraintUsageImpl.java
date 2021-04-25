@@ -22,19 +22,14 @@
  */
 package org.omg.sysml.lang.sysml.impl;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Invariant;
-import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
+import org.omg.sysml.util.FeatureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,9 +46,6 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  * @generated
  */
 public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements AssertConstraintUsage {
-
-	private Type subsettingBaseDefault;
-	private Type subsettingPartDefault;
 
 	/**
 	 * The cached value of the BindingConnector from the result of the
@@ -127,35 +119,9 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @generated NOT
 	 */
 	public ConstraintUsage basicGetAssertedConstraint() {
-		Type subsettingBaseDefault = getSubsettingBaseDefault();
-		Type subsettingPartDefault = getSubsettingPartDefault();
-		EList<Subsetting> subsettings = getOwnedSubsetting();		
-		if (subsettings.stream().map(sub->sub.getSubsettedFeature()).
-				allMatch(feature->feature == subsettingBaseDefault || 
-				         feature == subsettingPartDefault)) {
-			return this;
-		} else {
-			Feature subsettedFeature = subsettings.get(0).getSubsettedFeature(); 
-			return subsettedFeature instanceof ConstraintUsage? (ConstraintUsage)subsettedFeature: this;
-		}
+		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, feature->false);
 	}
 	
-	protected Type getSubsettingBaseDefault() {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingPartDefault() {
-		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
-		}
-		return subsettingPartDefault;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

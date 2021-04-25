@@ -28,10 +28,7 @@ import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,9 +44,6 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  * @generated
  */
 public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStateUsage {
-
-	private Type subsettingBaseDefault;
-	private Type subsettingPartDefault;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,26 +81,7 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	 * @generated NOT
 	 */
 	public StateUsage basicGetExhibitedState() {
-		Type subsettingBaseDefault = getSubsettingBaseDefault();
-		Type subsettingPartDefault = getSubsettingPartDefault();
-		return FeatureUtil.getSubsettedFeatureOf(this, StateUsage.class, 
-				feature->feature == subsettingBaseDefault && feature == subsettingPartDefault);
-	}
-
-	protected Type getSubsettingBaseDefault() {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingPartDefault() {
-		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
-		}
-		return subsettingPartDefault;
+		return FeatureUtil.getSubsettedFeatureOf(this, StateUsage.class, f->false);
 	}
 
 	@Override

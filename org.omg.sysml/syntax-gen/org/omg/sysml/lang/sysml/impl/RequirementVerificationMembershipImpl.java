@@ -28,10 +28,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,9 +45,6 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  * @generated
  */
 public class RequirementVerificationMembershipImpl extends RequirementConstraintMembershipImpl implements RequirementVerificationMembership {
-
-	private Type subsettingBaseDefault;
-	private Type subsettingPartDefault;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,27 +82,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetVerifiedRequirement() {
-		RequirementUsage ownedRequirement = getOwnedRequirement();
-		Type subsettingBaseDefault = getSubsettingBaseDefault(ownedRequirement);
-		Type subsettingPartDefault = getSubsettingPartDefault(ownedRequirement);
-		return FeatureUtil.getSubsettedFeatureOf(ownedRequirement, RequirementUsage.class, 
-				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
-	}
-
-	protected Type getSubsettingBaseDefault(RequirementUsage requirement) {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(requirement.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingPartDefault(RequirementUsage requirement) {
-		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(requirement.getClass(), "subrequirement"));
-		}
-		return subsettingPartDefault;
+		return FeatureUtil.getSubsettedFeatureOf(getOwnedRequirement(), RequirementUsage.class, f->false);
 	}
 
 	/**

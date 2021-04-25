@@ -31,7 +31,6 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-import org.omg.sysml.adapter.ConstraintUsageAdapter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.BooleanExpression;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -43,9 +42,7 @@ import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
@@ -77,10 +74,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	 * @ordered
 	 */
 	protected static final boolean IS_MODEL_LEVEL_EVALUABLE_EDEFAULT = false;
-	
-	private Type subsettingBaseDefault;
-	private Type subsettingAssumptionFeature;
-	private Type subsettingRequirementFeature;
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -342,37 +336,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	public ConstraintUsage getSubsettedConstraint() {
-		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, this::isIgnoredSubsetting);
-	}
-	
-	protected boolean isIgnoredSubsetting(Feature feature) {
-		return feature == getSubsettingBaseDefault() || 
-				 feature == getSubsettingAssumptionFeature() ||
-		         feature == getSubsettingRequirementFeature();
-	}
-	
-	protected Type getSubsettingBaseDefault() {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingAssumptionFeature() {
-		if (subsettingAssumptionFeature == null) {
-			subsettingAssumptionFeature = SysMLLibraryUtil.getLibraryType(this, 
-					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_ASSUMPTION_FEATURE);
-		}
-		return subsettingAssumptionFeature;
-	}
-
-	protected Type getSubsettingRequirementFeature() {
-		if (subsettingRequirementFeature == null) {
-			subsettingRequirementFeature = SysMLLibraryUtil.getLibraryType(this, 
-					ConstraintUsageAdapter.CONSTRAINT_SUBSETTING_REQUIREMENT_FEATURE);
-		}
-		return subsettingRequirementFeature;
+		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, f->false);
 	}
 	
 	//

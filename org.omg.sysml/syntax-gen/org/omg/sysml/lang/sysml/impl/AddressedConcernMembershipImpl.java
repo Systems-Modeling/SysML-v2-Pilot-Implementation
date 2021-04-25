@@ -10,7 +10,6 @@ import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
 
 /**
@@ -104,11 +103,7 @@ public class AddressedConcernMembershipImpl extends RequirementConstraintMembers
 	 * @generated NOT
 	 */
 	public ConcernUsage basicGetReferencedConcern() {
-		ConcernUsage ownedConcern = getOwnedConcern();
-		Type subsettingBaseDefault = getSubsettingBaseDefault(ownedConcern);
-		Type subsettingPartDefault = getSubsettingPartDefault(ownedConcern);
-		return FeatureUtil.getSubsettedFeatureOf(ownedConcern, ConcernUsage.class, 
-				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
+		return FeatureUtil.getSubsettedFeatureOf(getOwnedConcern(), ConcernUsage.class, feature->false);
 	}
 
 	/**

@@ -31,12 +31,8 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
-import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -54,9 +50,6 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  * @generated
  */
 public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl implements RequirementConstraintMembership {
-
-	private Type subsettingBaseDefault;
-	private Type subsettingPartDefault;
 
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
@@ -177,27 +170,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated NOT
 	 */
 	public ConstraintUsage basicGetReferencedConstraint() {
-		ConstraintUsage ownedConstraint = getOwnedConstraint();
-		Type subsettingBaseDefault = getSubsettingBaseDefault(ownedConstraint);
-		Type subsettingPartDefault = getSubsettingPartDefault(ownedConstraint);
-		return FeatureUtil.getSubsettedFeatureOf(ownedConstraint, ConstraintUsage.class, 
-				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
-	}
-
-	protected Type getSubsettingBaseDefault(ConstraintUsage constraint) {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(constraint.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingPartDefault(ConstraintUsage constraint) {
-		if (subsettingPartDefault == null && constraint instanceof RequirementUsage) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(constraint.getClass(), "subrequirement"));
-		}
-		return subsettingPartDefault;
+		return FeatureUtil.getSubsettedFeatureOf(getOwnedConstraint(), ConstraintUsage.class, feature->false);
 	}
 
 	/**

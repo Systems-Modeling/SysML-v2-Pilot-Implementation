@@ -91,7 +91,7 @@ class KerMLOutlineTreeProvider extends DefaultOutlineTreeProvider {
 		if (membership.memberName !== null)
 			membership.memberName
 		else {
-			val name = membership.memberElement.getEffectiveName;
+			val name = membership.memberElement?.getEffectiveName;
 			if (name !== null) name else ""
 		}
 	}

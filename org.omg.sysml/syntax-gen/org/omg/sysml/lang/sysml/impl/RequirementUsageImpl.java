@@ -32,20 +32,16 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.sysml.adapter.RequirementUsageAdapter;
 import org.omg.sysml.lang.sysml.AddressedConcernMembership;
 import org.omg.sysml.lang.sysml.Comment;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Predicate;
 import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
@@ -70,8 +66,6 @@ import org.omg.sysml.util.TypeUtil;
  * @generated
  */
 public class RequirementUsageImpl extends ConstraintUsageImpl implements RequirementUsage {
-
-	private Type subsettingVerificationFeature = null;
 
 	/**
 	 * The default value of the '{@link #getReqId() <em>Req Id</em>}' attribute.
@@ -336,23 +330,6 @@ public class RequirementUsageImpl extends ConstraintUsageImpl implements Require
   		return false;
 	}
 	
-	// Additional overrides
-	
-	@Override
-	protected boolean isIgnoredSubsetting(Feature feature) {
-		return feature == getSubsettingVerificationFeature() ||
-			   super.isIgnoredSubsetting(feature);
-	}
-	
-	protected Type getSubsettingVerificationFeature() {
-		if (subsettingVerificationFeature == null) {
-			subsettingVerificationFeature = SysMLLibraryUtil.getLibraryType(this, RequirementUsageAdapter.REQUIREMENT_SUBSETTING_VERIFICATION_FEATURE);
-		}
-		return subsettingVerificationFeature;
-	}
-
-	//
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

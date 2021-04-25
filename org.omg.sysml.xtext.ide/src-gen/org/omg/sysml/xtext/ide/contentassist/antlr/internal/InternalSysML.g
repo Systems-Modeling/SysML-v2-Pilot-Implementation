@@ -12357,6 +12357,27 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__ConnectorEnd__OwnedRelationshipAlternatives_0_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0()); }
+		ruleOwnedSubsetting
+		{ after(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1()); }
+		ruleFeaturePathExpressionMember
+		{ after(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__ItemFlowDeclaration__Alternatives_0
 	@init {
 		int stackSize = keepStackSize();
@@ -20074,9 +20095,16 @@ rule__FeaturePathExpression__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFeaturePathExpressionAccess().getGroup_1()); }
-	(rule__FeaturePathExpression__Group_1__0)*
-	{ after(grammarAccess.getFeaturePathExpressionAccess().getGroup_1()); }
+	(
+		{ before(grammarAccess.getFeaturePathExpressionAccess().getGroup_1()); }
+		(rule__FeaturePathExpression__Group_1__0)
+		{ after(grammarAccess.getFeaturePathExpressionAccess().getGroup_1()); }
+	)
+	(
+		{ before(grammarAccess.getFeaturePathExpressionAccess().getGroup_1()); }
+		(rule__FeaturePathExpression__Group_1__0)*
+		{ after(grammarAccess.getFeaturePathExpressionAccess().getGroup_1()); }
+	)
 )
 ;
 finally {
@@ -50585,9 +50613,9 @@ rule__ConnectorEnd__OwnedRelationshipAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0()); }
-		ruleFeaturePathExpressionMember
-		{ after(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0()); }
+		{ before(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAlternatives_0_0()); }
+		(rule__ConnectorEnd__OwnedRelationshipAlternatives_0_0)
+		{ after(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAlternatives_0_0()); }
 	)
 ;
 finally {

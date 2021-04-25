@@ -61,6 +61,7 @@ public class SysMLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSubsetsKeywordAccess().getAlternatives(), "rule__SubsetsKeyword__Alternatives");
 			builder.put(grammarAccess.getRedefinesKeywordAccess().getAlternatives(), "rule__RedefinesKeyword__Alternatives");
 			builder.put(grammarAccess.getMultiplicityExpressionMemberAccess().getOwnedRelatedElementAlternatives_0(), "rule__MultiplicityExpressionMember__OwnedRelatedElementAlternatives_0");
+			builder.put(grammarAccess.getConnectorEndAccess().getOwnedRelationshipAlternatives_0_0(), "rule__ConnectorEnd__OwnedRelationshipAlternatives_0_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0(), "rule__ItemFlowDeclaration__Alternatives_0");
 			builder.put(grammarAccess.getItemFlowDeclarationAccess().getAlternatives_0_0_1(), "rule__ItemFlowDeclaration__Alternatives_0_0_1");
 			builder.put(grammarAccess.getItemFeatureAccess().getAlternatives(), "rule__ItemFeature__Alternatives");

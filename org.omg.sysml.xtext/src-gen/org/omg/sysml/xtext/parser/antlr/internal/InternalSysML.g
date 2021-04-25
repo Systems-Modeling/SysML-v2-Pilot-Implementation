@@ -4013,21 +4013,39 @@ ruleConnectorEnd returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0());
-				}
-				lv_ownedRelationship_0_0=ruleFeaturePathExpressionMember
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0());
 					}
-					add(
-						$current,
-						"ownedRelationship",
-						lv_ownedRelationship_0_0,
-						"org.omg.sysml.xtext.SysML.FeaturePathExpressionMember");
-					afterParserOrEnumRuleCall();
-				}
+					lv_ownedRelationship_0_1=ruleOwnedSubsetting
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_0_1,
+							"org.omg.sysml.xtext.SysML.OwnedSubsetting");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getConnectorEndAccess().getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1());
+					}
+					lv_ownedRelationship_0_2=ruleFeaturePathExpressionMember
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getConnectorEndRule());
+						}
+						add(
+							$current,
+							"ownedRelationship",
+							lv_ownedRelationship_0_2,
+							"org.omg.sysml.xtext.SysML.FeaturePathExpressionMember");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)
 		(
@@ -4143,7 +4161,7 @@ ruleFeaturePathExpression returns [EObject current=null]
 					}
 				)
 			)
-		)*
+		)+
 	)
 ;
 

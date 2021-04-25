@@ -54,8 +54,10 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 					filter(Expression.class::isInstance).
 					map(Expression.class::cast).
 					findFirst().orElse(null);
-			ElementUtil.transform(expression);
-			TypeUtil.addImplicitGeneralTypeTo(end, SysMLPackage.eINSTANCE.getSubsetting(), expression.getResult());
+			if (expression != null) {
+				ElementUtil.transform(expression);
+				TypeUtil.addImplicitGeneralTypeTo(end, SysMLPackage.eINSTANCE.getSubsetting(), expression.getResult());
+			}
 		}
 	}
 	

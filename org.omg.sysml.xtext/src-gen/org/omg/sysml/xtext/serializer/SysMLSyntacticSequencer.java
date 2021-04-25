@@ -1877,12 +1877,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     humanId=Name (ambiguity) ownedRelationship+=SnapshotFeatureMember
 	 *     humanId=Name (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
+	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isAbstract?='abstract' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
-	 *     isAbstract?='abstract' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isAbstract?='abstract' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isAbstract?='abstract' 'ref'? PartUsageKeyword (ambiguity) (rule end)
@@ -1922,12 +1922,12 @@ public class SysMLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=SnapshotFeatureMember
 	 *     isOrdered?='ordered' (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) (rule end)
+	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
+	 *     isVariation?='variation' 'ref' IndividualUsageKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' PartUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' RenderingUsageKeyword (ambiguity) (rule end)
-	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=SnapshotFeatureMember
-	 *     isVariation?='variation' 'ref' SnapshotKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref' TimeSliceKeyword (ambiguity) ownedRelationship+=TimeSliceFeatureMember
 	 *     isVariation?='variation' 'ref'? ItemUsageKeyword (ambiguity) (rule end)
 	 *     isVariation?='variation' 'ref'? PartUsageKeyword (ambiguity) (rule end)

@@ -2309,23 +2309,30 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.sysml.xtext.SysML.ConnectorEnd");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0 = (RuleCall)cOwnedRelationshipAssignment_0.eContents().get(0);
+		private final Alternatives cOwnedRelationshipAlternatives_0_0 = (Alternatives)cOwnedRelationshipAssignment_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0 = (RuleCall)cOwnedRelationshipAlternatives_0_0.eContents().get(0);
+		private final RuleCall cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1 = (RuleCall)cOwnedRelationshipAlternatives_0_0.eContents().get(1);
 		private final Assignment cOwnedRelationshipAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cOwnedRelationshipMultiplicityMemberParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
 		//ConnectorEnd SysML::Feature:
-		//	ownedRelationship+=FeaturePathExpressionMember
-		//	ownedRelationship+=MultiplicityMember?;
+		//	ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//ownedRelationship+=FeaturePathExpressionMember ownedRelationship+=MultiplicityMember?
+		//ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?
 		public Group getGroup() { return cGroup; }
 		
-		//ownedRelationship+=FeaturePathExpressionMember
+		//ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember)
 		public Assignment getOwnedRelationshipAssignment_0() { return cOwnedRelationshipAssignment_0; }
 		
+		//(OwnedSubsetting | FeaturePathExpressionMember)
+		public Alternatives getOwnedRelationshipAlternatives_0_0() { return cOwnedRelationshipAlternatives_0_0; }
+		
+		//OwnedSubsetting
+		public RuleCall getOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0() { return cOwnedRelationshipOwnedSubsettingParserRuleCall_0_0_0; }
+		
 		//FeaturePathExpressionMember
-		public RuleCall getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0() { return cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0; }
+		public RuleCall getOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1() { return cOwnedRelationshipFeaturePathExpressionMemberParserRuleCall_0_0_1; }
 		
 		//ownedRelationship+=MultiplicityMember?
 		public Assignment getOwnedRelationshipAssignment_1() { return cOwnedRelationshipAssignment_1; }
@@ -2360,16 +2367,16 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//FeaturePathExpression SysML::Expression:
 		//	FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current}
-		//	'.' operand+=FeatureReferenceExpression)*;
+		//	'.' operand+=FeatureReferenceExpression)+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)*
+		//FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)+
 		public Group getGroup() { return cGroup; }
 		
 		//FeatureReferenceExpression
 		public RuleCall getFeatureReferenceExpressionParserRuleCall_0() { return cFeatureReferenceExpressionParserRuleCall_0; }
 		
-		//({SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)*
+		//({SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)+
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{SysML::PathStepExpression.operand+=current}
@@ -14433,8 +14440,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//ConnectorEnd SysML::Feature:
-	//	ownedRelationship+=FeaturePathExpressionMember
-	//	ownedRelationship+=MultiplicityMember?;
+	//	ownedRelationship+=(OwnedSubsetting | FeaturePathExpressionMember) ownedRelationship+=MultiplicityMember?;
 	public ConnectorEndElements getConnectorEndAccess() {
 		return pConnectorEnd;
 	}
@@ -14455,7 +14461,7 @@ public class SysMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	//FeaturePathExpression SysML::Expression:
 	//	FeatureReferenceExpression ({SysML::PathStepExpression.operand+=current}
-	//	'.' operand+=FeatureReferenceExpression)*;
+	//	'.' operand+=FeatureReferenceExpression)+;
 	public FeaturePathExpressionElements getFeaturePathExpressionAccess() {
 		return pFeaturePathExpression;
 	}

@@ -23,16 +23,13 @@ package org.omg.sysml.adapter;
 
 import java.util.stream.Stream;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.TypeUtil;
 
 public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 
 	// TODO: Replace with single library package when global scope supports public re-export.
-	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "ScalarFunctions", "ControlFunctions" };
+	public static final String[] LIBRARY_PACKAGE_NAMES = { "BaseFunctions", "DataFunctions", "ControlFunctions" };
 
 	public OperatorExpressionAdapter(OperatorExpression element) {
 		super(element);
@@ -47,14 +44,14 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 		return Stream.of(LIBRARY_PACKAGE_NAMES).map(pack -> pack + "::'" + op + "'").toArray(String[]::new);
 	}
 
-	protected void addResultSubsetting() {
-		OperatorExpression expression = getTarget();
-		EList<Expression> operands = expression.getOperand();
-		if (!operands.isEmpty()) {
-			TypeUtil.addImplicitGeneralTypeTo(expression.getResult(),
-					SysMLPackage.eINSTANCE.getSubsetting(), operands.get(0).getResult());
-		}
-	}
+//	protected void addResultSubsetting() {
+//		OperatorExpression expression = getTarget();
+//		EList<Expression> operands = expression.getOperand();
+//		if (!operands.isEmpty()) {
+//			TypeUtil.addImplicitGeneralTypeTo(expression.getResult(),
+//					SysMLPackage.eINSTANCE.getSubsetting(), operands.get(0).getResult());
+//		}
+//	}
 	
 	@Override
 	public void computeImplicitGeneralTypes() {
@@ -69,9 +66,9 @@ public class OperatorExpressionAdapter extends InvocationExpressionAdapter {
 	@Override
 	public void doTransform() {
 		super.doTransform();
-		if ("[".equals(getTarget().getOperator())) {
-			addResultSubsetting();
-		}
+//		if ("[".equals(getTarget().getOperator())) {
+//			addResultSubsetting();
+//		}
 	}
 	
 }

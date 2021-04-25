@@ -12085,7 +12085,7 @@ ruleSequenceExpression returns [EObject current=null]
 				(
 					{
 						$current = forceCreateModelElementAndAdd(
-							grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0(),
+							grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0(),
 							$current);
 					}
 				)
@@ -13470,14 +13470,6 @@ ruleVisibilityIndicator returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getVisibilityIndicatorAccess().getProtectedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getVisibilityIndicatorAccess().getProtectedEnumLiteralDeclaration_2());
-			}
-		)
-		    |
-		(
-			enumLiteral_3='packaged'
-			{
-				$current = grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3());
 			}
 		)
 	)

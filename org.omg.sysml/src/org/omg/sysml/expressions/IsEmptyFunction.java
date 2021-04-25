@@ -27,8 +27,8 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class IsEmptyFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "BaseFunctions::isEmpty";
+	public String getOperatorName() {
+		return "isEmpty";
 	}
 
 	@Override

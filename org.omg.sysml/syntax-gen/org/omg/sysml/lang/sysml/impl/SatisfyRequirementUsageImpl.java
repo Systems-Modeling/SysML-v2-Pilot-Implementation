@@ -32,10 +32,7 @@ import org.omg.sysml.lang.sysml.Invariant;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.UsageUtil;
 
 /**
@@ -54,8 +51,6 @@ import org.omg.sysml.util.UsageUtil;
  * @generated
  */
 public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements SatisfyRequirementUsage {
-
-	private Type subsettingPartDefault;
 
 	/**
 	 * The cached value of the BindingConnector from the result of the
@@ -129,20 +124,9 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetSatisfiedRequirement() {
-		Type subsettingBaseDefault = getSubsettingBaseDefault();
-		Type subsettingPartDefault = getSubsettingPartDefault();
-		return FeatureUtil.getSubsettedFeatureOf(this, RequirementUsage.class, 
-				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
+		return FeatureUtil.getSubsettedFeatureOf(this, RequirementUsage.class, f->false);
 }
 	
-	protected Type getSubsettingPartDefault() {
-		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "subperformance"));
-		}
-		return subsettingPartDefault;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

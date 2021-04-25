@@ -18,8 +18,8 @@
   "repository": {
     "keywords": {
       "patterns": [
-        { "match": "\\b(about|abstract|alias|all|allInstances|as|assoc|behavior|binding|bool|by|class|classifier|comment|composite|conjugates|conjugation|connector|datatype|doc|element|end|expr|false|feature|first|flow|from|function|generalization|hastype|id|import|in|inout|instanceof|interaction|inv|is|istype|language|nonunique|null|of|ordered|out|package|packaged|port|portion|predicate|private|protected|public|redefines|redefinition|relationship|rep|specializes|step|stream|subclass|subset|subsets|subtype|succession|then|to|true|type|typed|typing)\\b", "name": "keyword.other.kerml" },
-        { "match": "(&|&&|\\?|\\?\\?|\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
+        { "match": "\\b(about|abstract|alias|all|allInstances|as|assoc|behavior|binding|bool|by|class|classifier|comment|composite|conjugates|conjugation|connector|datatype|doc|element|end|expr|false|feature|featured|featuring|filter|first|flow|from|function|generalization|hastype|id|import|in|inout|instanceof|interaction|inv|is|istype|language|metadata|namespace|nonunique|null|of|ordered|out|package|packaged|port|portion|predicate|private|protected|public|redefines|redefinition|relationship|rep|specializes|step|stream|struct|subclass|subset|subsets|subtype|succession|then|to|true|type|typed|typing)\\b", "name": "keyword.other.kerml" },
+        { "match": "(&|&&|\\?|\\?\\?|@\\[|\\^|\\||\\|\\|)", "name": "keyword.operator.logical.kerml" },
         { "match": "(!|!=|\\<|\\<=|=|==|=\\>|\\>|\\>=)", "name": "keyword.operator.comparison.kerml" },
         { "match": "(\\*|\\*\\*|\\+|\\-|/)", "name": "keyword.operator.arithmetic.kerml" },
         { "match": "(\\-\\>|\\.\\.|:|::|:\\>|:\\>\\>|@|~)", "name": "keyword.operator.other.kerml" }
@@ -37,7 +37,7 @@
       ]
     },
     "quoted-variables": {
-      "patterns": [{ "match": "\\b(\\'[^']+\\')\\b", "name": "variable.name.quoted.kerml" }]
+      "patterns": [{ "match": "('[^\\f\\n\\r\\t\\v\\\"\\\\]+?')", "name": "variable.name.quoted.kerml" }]
     },
     "comments": {
       "patterns": [

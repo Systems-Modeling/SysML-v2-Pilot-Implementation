@@ -7607,12 +7607,6 @@ rule__VisibilityIndicator__Alternatives
 		('protected')
 		{ after(grammarAccess.getVisibilityIndicatorAccess().getProtectedEnumLiteralDeclaration_2()); }
 	)
-	|
-	(
-		{ before(grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3()); }
-		('packaged')
-		{ after(grammarAccess.getVisibilityIndicatorAccess().getPackageEnumLiteralDeclaration_3()); }
-	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -24411,9 +24405,9 @@ rule__SequenceExpression__Group_1_2__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()); }
+	{ before(grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); }
 	()
-	{ after(grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()); }
+	{ after(grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); }
 )
 ;
 finally {

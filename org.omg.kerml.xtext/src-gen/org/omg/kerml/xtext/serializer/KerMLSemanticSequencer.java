@@ -60,8 +60,8 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.NullExpression;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.PathStepExpression;
 import org.omg.sysml.lang.sysml.Predicate;
-import org.omg.sysml.lang.sysml.QueryPathStepExpression;
 import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
@@ -368,7 +368,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()
+						|| action == grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
 						|| rule == grammarAccess.getSequenceConstructionExpressionRule()
 						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperandAction_1_2_0_0()
 						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperandAction_1_2_1_0()
@@ -489,7 +489,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()
+						|| action == grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
 						|| rule == grammarAccess.getSequenceConstructionExpressionRule()
 						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperandAction_1_2_0_0()
 						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperandAction_1_2_1_0()
@@ -602,7 +602,7 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 						|| rule == grammarAccess.getSequenceExpressionRule()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_0_0()
 						|| action == grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0()
-						|| action == grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()
+						|| action == grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()
 						|| rule == grammarAccess.getSequenceConstructionExpressionRule()
 						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperandAction_1_2_0_0()
 						|| action == grammarAccess.getSequenceConstructionExpressionAccess().getOperatorExpressionOperandAction_1_2_1_0()
@@ -637,11 +637,11 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 					return; 
 				}
 				else break;
+			case SysMLPackage.PATH_STEP_EXPRESSION:
+				sequence_SequenceExpression(context, (PathStepExpression) semanticObject); 
+				return; 
 			case SysMLPackage.PREDICATE:
 				sequence_ClassifierConjugationPart_ClassifierDeclaration_EmptyReturnParameterPart_FunctionBody_Identification_ParameterList_Predicate_ReturnParameterPart_SuperclassingPart(context, (Predicate) semanticObject); 
-				return; 
-			case SysMLPackage.QUERY_PATH_STEP_EXPRESSION:
-				sequence_SequenceExpression(context, (QueryPathStepExpression) semanticObject); 
 				return; 
 			case SysMLPackage.REDEFINITION:
 				if (rule == grammarAccess.getNonFeatureElementRule()
@@ -1152,10 +1152,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=NonFeatureTypeMember? 
+	 *         ownedRelationship+=FeatureTypeMember? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=NonFeatureTypeMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )
@@ -1179,10 +1179,10 @@ public class KerMLSemanticSequencer extends KerMLExpressionsSemanticSequencer {
 	 *         ((ownedRelationship+=OwnedSuperclassing ownedRelationship+=OwnedSuperclassing*) | ownedRelationship+=ClassifierConjugation)? 
 	 *         (ownedRelationship+=ParameterMember ownedRelationship+=ParameterMember*)? 
 	 *         (ownedRelationship+=ReturnParameterMember | ownedRelationship+=EmptyReturnParameterMember) 
-	 *         ownedRelationship+=NonFeatureTypeMember? 
+	 *         ownedRelationship+=FeatureTypeMember? 
 	 *         (
-	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=FeatureTypeMember | ownedRelationship+=Import)? 
-	 *             ownedRelationship+=NonFeatureTypeMember?
+	 *             (ownedRelationship+=OwnedDocumentation | ownedRelationship+=NonFeatureTypeMember | ownedRelationship+=Import)? 
+	 *             ownedRelationship+=FeatureTypeMember?
 	 *         )* 
 	 *         ownedRelationship+=ResultExpressionMember?
 	 *     )

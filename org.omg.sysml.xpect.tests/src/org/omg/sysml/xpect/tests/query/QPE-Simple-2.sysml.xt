@@ -41,6 +41,6 @@ package P {
 			}
 		}
 	}
-	part a : C = ./Q/R/x;
-	part b : C = ./Q/R/S/y;
+	part a : C = Q.R.x;
+	part b : C = Q.R.S.y;
 }

@@ -455,7 +455,7 @@ FeaturePathExpressionMember returns SysML::FeatureMembership :
 
 FeaturePathExpression returns SysML::Expression :
 	FeatureReferenceExpression
-	( {SysML::QueryPathStepExpression.operand += current}
+	( {SysML::PathStepExpression.operand += current}
 	  '.' operand += FeatureReferenceExpression )*
 ;
 
@@ -2261,12 +2261,16 @@ BodyParameter returns SysML::ReferenceUsage :
 /* QUERY PATH EXPRESSIONS */
 
 QueryPathExpression returns SysML::Expression :
-	'./' FeatureReferenceExpression
-	( '[' {SysML::QueryQualifierExpression.operand += current}
+	QueryHeadExpression
+	( '[' {SysML::PathSelectExpression.operand += current}
          ( ownedRelationship += BodyExpressionMember ) ']' )?
-	( '/' {SysML::QueryPathStepExpression.operand += current}
+	( '/' {SysML::PathStepExpression.operand += current}
 		operand += FeatureReferenceExpression
-		( '[' {SysML::QueryQualifierExpression.operand += current}
+		( '[' {SysML::PathSelectExpression.operand += current}
 	         ( ownedRelationship += BodyExpressionMember ) ']' )?
 	)*
+;
+
+QueryHeadExpression returns SysML::FeatureReferenceExpression :
+	'./' ownedRelationship += FeatureReferenceMember
 ;

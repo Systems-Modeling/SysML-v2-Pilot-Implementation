@@ -4,12 +4,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-    <revision>0.11.0-SNAPSHOT</revision>
+    <revision>0.11.1-SNAPSHOT</revision>
     <tycho-version>1.6.0</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-repository>https://download.eclipse.org/releases/2020-06</eclipse-repository>
     <plantuml-repository>https://github.com/himi/p2-update-puml-sysmlv2/raw/main/updates</plantuml-repository>
-    <xpect-repository>https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository</xpect-repository>
+    <xpect-repository>
+      https://ci.eclipse.org/xpect/job/Xpect/job/master/lastBuild/artifact/org.eclipse.xpect.releng/p2-repository/target/repository
+    </xpect-repository>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <flatten-maven-plugin.version>1.2.2</flatten-maven-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -136,16 +138,17 @@
           <execution>
             <id>set-version</id>
             <phase>validate</phase>
-	    <configuration>
-	      <target>
-		<taskdef resource="net/sf/antcontrib/antcontrib.properties"
-			 classpathref="maven.plugin.classpath"/>
-		<property name="maven-version" value="${project.version}"/>
-		<propertyregex property="bundle-version"
-			       input="${maven-version}"
-			       regexp="-SNAPSHOT"
-			       replace=".qualifier"/>
-                <echo> Set the versions to POM: ${maven-version}, Bundle: ${bundle-version} </echo>
+            <configuration>
+              <target>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties"
+                         classpathref="maven.plugin.classpath"/>
+                <property name="maven-version" value="${project.version}"/>
+                <propertyregex property="bundle-version"
+                               input="${maven-version}"
+                               regexp="-SNAPSHOT"
+                               replace=".qualifier"
+                               defaultValue="${maven-version}"/>
+                <echo>Set the versions to POM: ${maven-version}, Bundle: ${bundle-version}</echo>
                 <!-- Currently no need to change the versions of child poms but left it for future use.
                 <replaceregexp byline="true" flags="i">
                   <fileset dir="${basedir}">
@@ -159,7 +162,7 @@
                   <fileset dir="${basedir}">
                     <include name="*/META-INF/MANIFEST.MF"/>
                     <exclude name="org.omg.sysml.uml.ecore.importer*/**/*"/>
-                   </fileset>
+                  </fileset>
                   <regexp pattern="Bundle-Version:\s*(.*)"/>
                   <substitution expression="Bundle-Version: ${bundle-version}"/>
                 </replaceregexp>
@@ -177,10 +180,10 @@
             </goals>
           </execution>
         </executions>
-	<dependencies>
-	  <dependency>
-	    <groupId>ant-contrib</groupId>
-	    <artifactId>ant-contrib</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
             <version>1.0b3</version>
             <exclusions>
               <exclusion>
@@ -270,23 +273,23 @@
   </distributionManagement>
 
   <profiles>
-  	<profile>
+    <profile>
       <id>runTests</id>
       <activation>
-      	<property>
-      	  <name>!xpect.tests.skip</name>
-      	</property>
+        <property>
+          <name>!xpect.tests.skip</name>
+        </property>
       </activation>
       <repositories>
-	    <repository>
-	      <id>xpect</id>
-	      <url>${xpect-repository}</url>
-	      <layout>p2</layout>
-	    </repository>
+        <repository>
+          <id>xpect</id>
+          <url>${xpect-repository}</url>
+          <layout>p2</layout>
+        </repository>
       </repositories>
       <modules>
-      	<module>org.omg.kerml.xpect.tests</module>
-      	<module>org.omg.sysml.xpect.tests</module>
+        <module>org.omg.kerml.xpect.tests</module>
+        <module>org.omg.sysml.xpect.tests</module>
       </modules>
     </profile>
   </profiles>

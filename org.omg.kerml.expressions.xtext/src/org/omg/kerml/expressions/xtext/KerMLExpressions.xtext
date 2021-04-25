@@ -241,7 +241,7 @@ SequenceExpression returns SysML::Expression :
 	  operator = '[' operand += OwnedExpression ']'
 	| {SysML::OperatorExpression.operand += current} '->' 
 	  operator = Name ( ownedRelationship += BodyExpressionMember )+
-	| {SysML::QueryPathStepExpression.operand += current}
+	| {SysML::PathStepExpression.operand += current}
 	  '.' operand += FeatureReferenceExpression
 	)*
 ;

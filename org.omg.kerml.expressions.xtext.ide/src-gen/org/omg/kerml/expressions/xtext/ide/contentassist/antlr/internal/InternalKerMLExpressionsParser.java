@@ -16070,7 +16070,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             // InternalKerMLExpressions.g:4715:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()); 
+               before(grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); 
             }
             // InternalKerMLExpressions.g:4716:2: ()
             // InternalKerMLExpressions.g:4716:3: 
@@ -16078,7 +16078,7 @@ public class InternalKerMLExpressionsParser extends AbstractInternalContentAssis
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()); 
+               after(grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); 
             }
 
             }

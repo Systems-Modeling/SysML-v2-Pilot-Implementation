@@ -12,6 +12,7 @@ Contributor(s):
 import sys
 import os
 import re
+from typing import List
 
 
 class DATA:
@@ -63,7 +64,7 @@ class DATA:
       ]
     }},
     "quoted-variables": {{
-      "patterns": [{{ "match": "\\\\b(\\\\'[^']+\\\\')\\\\b", "name": "variable.name.quoted.{LANGUAGE_NAME_LOWERCASE}" }}]
+      "patterns": [{{ "match": "('[^\\\\f\\\\n\\\\r\\\\t\\\\v\\\\\\"\\\\\\\\]+?')", "name": "variable.name.quoted.{LANGUAGE_NAME_LOWERCASE}" }}]
     }},
     "comments": {{
       "patterns": [
@@ -164,23 +165,38 @@ class Converter(object):
         self.operators_arithmetic: [str] = []
         self.operators_other: [str] = []
 
-    def parse_xtext_grammar(self, xtext_source_path: str):
-        try:
-            input_file = open(xtext_source_path, mode="r")
-        except IOError as e:
-            print(e)
-            sys.exit(1)
-        print(f"INFO: Parsing {xtext_source_path}")
+    def parse_xtext_grammar(self, xtext_source_paths: List[str]):
 
-        self.language_name, extension = os.path.splitext(os.path.basename(xtext_source_path))
+        xtext_grammar = ""
 
-        xtext_grammar = input_file.read()
-        input_file.close()
+        for xtext_source_path in xtext_source_paths:
+            try:
+                input_file = open(xtext_source_path, mode="r")
+            except IOError as e:
+                print(e)
+                sys.exit(1)
+            print(f"INFO: Parsing {xtext_source_path}")
 
-        xtext_grammar = xtext_grammar.replace("';'", "@SEMICOLON@").replace("'*/'", "@END_COMMENT@").replace("*/", ";")
+            if xtext_grammar == "":
+                self.language_name, extension = os.path.splitext(os.path.basename(xtext_source_path))
 
-        xtext_statements = [stat.replace("@SEMICOLON@", "';'").replace("@END_COMMENT@", "'*/'").strip()
-                            for stat in xtext_grammar.split(";")]
+            xtext_grammar += input_file.read()
+            input_file.close()
+
+        xtext_grammar = xtext_grammar.replace("';'", "@SEMICOLON@").replace("'*/'", "@END_COMMENT@")
+
+        # Remove all multiline comments
+        multiline_comment_pattern = re.compile(r"(/\*).*?(\*/)", flags=re.DOTALL)
+        xtext_grammar = re.sub(multiline_comment_pattern, "", xtext_grammar)
+
+        # Remove all single line comments
+        line_comment_pattern = re.compile(r"//.*\n")
+        xtext_grammar = re.sub(line_comment_pattern, "", xtext_grammar)
+
+        # print(f"DEBUG: xtext_grammar with comments removed=\n{xtext_grammar}")
+
+        # Split xtext_grammar into xtext statements and restore the ';' token
+        xtext_statements = [stat.replace("@SEMICOLON@", "';'").strip() for stat in xtext_grammar.split(";")]
 
         single_quote_string_pattern = re.compile(r"['][^']+[']")
         bracket_like_char_pattern = re.compile(r"^(\(|\)|\[|\]|\{|\})")
@@ -189,10 +205,10 @@ class Converter(object):
         brackets_set = set()
         operators_set = set()
 
-        # Collect token literals up to the TERMINALS section
+        # Collect token literals but skip the terminal statements
         for statement in xtext_statements:
-            if statement.startswith("/* TERMINALS"):
-                break
+            if statement.startswith("terminal"):
+                continue
             raw_tokens = single_quote_string_pattern.findall(statement)
             for raw_token in raw_tokens:
                 token = raw_token[1:-1].strip()
@@ -299,10 +315,13 @@ if __name__ == "__main__":
     assert len(sys.argv) == 1
     converter = Converter()
 
-    converter.parse_xtext_grammar(xtext_source_path="../../org.omg.kerml.xtext/src/org/omg/kerml/xtext/KerML.xtext")
+    kerml_xtext_def = "../../org.omg.kerml.xtext/src/org/omg/kerml/xtext/KerML.xtext"
+    kerml_expressions_xtext_def = "../../org.omg.kerml.expressions.xtext/src/org/omg/kerml/expressions/xtext/KerMLExpressions.xtext"
+    converter.parse_xtext_grammar(xtext_source_paths=[kerml_xtext_def, kerml_expressions_xtext_def])
     converter.export_text_mate_language_file(target_path="./vscode/kerml/syntaxes/kerml.tmLanguage.json")
     converter.export_jetbrains_language_file(target_path="./jetbrains/KerML.xml")
 
-    converter.parse_xtext_grammar(xtext_source_path="../../org.omg.sysml.xtext/src/org/omg/sysml/xtext/SysML.xtext")
+    sysml_xtext_def = "../../org.omg.sysml.xtext/src/org/omg/sysml/xtext/SysML.xtext"
+    converter.parse_xtext_grammar(xtext_source_paths=[sysml_xtext_def, kerml_expressions_xtext_def])
     converter.export_text_mate_language_file(target_path="./vscode/sysml/syntaxes/sysml.tmLanguage.json")
     converter.export_jetbrains_language_file(target_path="./jetbrains/SysML.xml")

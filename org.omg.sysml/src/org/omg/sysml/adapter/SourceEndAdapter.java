@@ -21,9 +21,17 @@
 
 package org.omg.sysml.adapter;
 
+import org.eclipse.emf.common.util.EList;
+import org.omg.sysml.lang.sysml.BindingConnector;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SourceEnd;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
+import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
 
@@ -37,24 +45,50 @@ public class SourceEndAdapter extends FeatureAdapter {
 	public SourceEnd getTarget() {
 		return (SourceEnd)super.getTarget();
 	}
-
+	
 	@Override
 	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
 		addDefaultGeneralType();
-		super.addComputedRedefinitions(skip);
 	}
-	
+
 	@Override
-	public Type getLibraryType(String... defaultNames) {
+	public void addDefaultGeneralType() {
 		Type type = getTarget().getOwningType();
-		return type instanceof Feature? 
-				FeatureUtil.getSource((Feature)type): 
-				super.getLibraryType(defaultNames);
+		if (type instanceof Feature) {
+			addImplicitGeneralType(getGeneralizationEClass(), getSource((Feature)type));
+		} else {
+			super.addDefaultGeneralType();
+		}
 	}
 	
+	public static Feature getSource(Feature owningFeature) {
+		Namespace namespace = owningFeature.getOwningNamespace();
+		return owningFeature instanceof BindingConnector && 
+			   namespace instanceof SatisfyRequirementUsage? 
+					((SatisfyRequirementUsage)namespace).getSubjectParameter(): 
+					getPreviousFeature(owningFeature);
+	}
+	
+	private static Feature getPreviousFeature(Feature feature) {
+		Namespace owner = feature.getOwningNamespace();
+		if (!(owner instanceof Type)) {
+			return null;
+		} else {
+			EList<Membership> memberships = ((Type)owner).getOwnedMembership();
+			for (int i = memberships.indexOf(feature.getOwningMembership()) - 1; i >= 0; i--) {
+				Membership membership = memberships.get(i);
+				if (!(membership instanceof TransitionFeatureMembership)) {
+					Element previousElement = memberships.get(i).getMemberElement();
+					if (previousElement instanceof Feature &&
+						!(FeatureUtil.isParameter((Feature)previousElement) || 
+						  previousElement instanceof Connector || 
+						  previousElement instanceof TransitionUsage)) {
+						return (Feature)previousElement;
+					}
+				}
+			}
+			return owner instanceof Feature? getPreviousFeature((Feature)owner): null;
+		}
+	}
+
 }

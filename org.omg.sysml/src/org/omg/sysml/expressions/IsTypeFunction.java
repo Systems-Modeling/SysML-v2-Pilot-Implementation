@@ -34,8 +34,8 @@ import org.omg.sysml.util.TypeUtil;
 public class IsTypeFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "BaseFunctions::istype";
+	public String getOperatorName() {
+		return "istype";
 	}
 	
 	protected static Type getTestedType(InvocationExpression invocation) {

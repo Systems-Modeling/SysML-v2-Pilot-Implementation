@@ -29,6 +29,11 @@ package org.omg.sysml.lang.sysml;
  * <!-- begin-model-doc -->
  * <p>Membership is a Relationship between a Namespace and an Element that indicates the Element is a <code>member</code> of (i.e., is contained in) the Namespace. The Membership may define a <code>memberName</code> for the Element as a <code>member</code> of the Namespace and specifies whether or not the Element is publicly visible as a <code>member</code> of the Namespace from outside the Namespace. The Element may be owned by the Namespace, in which case it is an <code>ownedMember</code> of the Namespace, or it may be referenced but not owned, in which case it is effectively individually imported into the Namespace.</p>
  * 
+ * if memberName <> null then
+ *     memberName
+ * else
+ *     memberElement.effectiveName
+ * endif
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,9 +41,10 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberName <em>Member Name</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getEffectiveMemberName <em>Effective Member Name</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMemberElement <em>Member Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getMembershipOwningNamespace <em>Membership Owning Namespace</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.Membership#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.Membership#getOwnedMemberElement <em>Owned Member Element</em>}</li>
  * </ul>
  *
@@ -74,6 +80,31 @@ public interface Membership extends Relationship {
 	void setMemberName(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Effective Member Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>If the <code>memberName</code> is empty, then the <code>effectiveName</code> of the <code>memberElement</code>. Otherwise, the same as the <code>memberName</code>.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Effective Member Name</em>' attribute.
+	 * @see #setEffectiveMemberName(String)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getMembership_EffectiveMemberName()
+	 * @model dataType="org.omg.sysml.lang.types.String" required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	String getEffectiveMemberName();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.Membership#getEffectiveMemberName <em>Effective Member Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Effective Member Name</em>' attribute.
+	 * @see #getEffectiveMemberName()
+	 * @generated
+	 */
+	void setEffectiveMemberName(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.
 	 * The default value is <code>"public"</code>.
 	 * The literals are from the enumeration {@link org.omg.sysml.lang.sysml.VisibilityKind}.
@@ -84,7 +115,7 @@ public interface Membership extends Relationship {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>Whether or not the Membership of the <code>memberElement</code> in the <code>membershipOwningNamespace</code> is publicly visible outside that Namespace. Unless the <code>membershipOwningNamespace</code> is a Type, <code>visibility</code> must be either <code>public</code> or <code>private</code>.</p>
+	 * <p>Whether or not the Membership of the <code>memberElement</code> in the <code>membershipOwningNamespace</code> is publicly visible outside that Namespace.</p>
 	 * 
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Visibility</em>' attribute.
@@ -150,11 +181,16 @@ public interface Membership extends Relationship {
 	 * Returns the value of the '<em><b>Membership Owning Namespace</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.omg.sysml.lang.sysml.Namespace#getOwnedMembership <em>Owned Membership</em>}'.
 	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
+	 * </ul>
+	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
 	 * <ul>
 	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getSource() <em>Source</em>}'</li>
-	 *   <li>'{@link org.omg.sysml.lang.sysml.Relationship#getOwningRelatedElement() <em>Owning Related Element</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -168,6 +204,7 @@ public interface Membership extends Relationship {
 	 * @see org.omg.sysml.lang.sysml.Namespace#getOwnedMembership
 	 * @model opposite="ownedMembership" required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="redefines"
+	 *        annotation="subsets"
 	 * @generated
 	 */
 	Namespace getMembershipOwningNamespace();

@@ -1107,7 +1107,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		private final Assignment cOwnedRelationshipAssignment_1_1_3 = (Assignment)cGroup_1_1.eContents().get(3);
 		private final RuleCall cOwnedRelationshipBodyExpressionMemberParserRuleCall_1_1_3_0 = (RuleCall)cOwnedRelationshipAssignment_1_1_3.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cAlternatives_1.eContents().get(2);
-		private final Action cQueryPathStepExpressionOperandAction_1_2_0 = (Action)cGroup_1_2.eContents().get(0);
+		private final Action cPathStepExpressionOperandAction_1_2_0 = (Action)cGroup_1_2.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_2_1 = (Keyword)cGroup_1_2.eContents().get(1);
 		private final Assignment cOperandAssignment_1_2_2 = (Assignment)cGroup_1_2.eContents().get(2);
 		private final RuleCall cOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0 = (RuleCall)cOperandAssignment_1_2_2.eContents().get(0);
@@ -1117,13 +1117,13 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//	operand+=OwnedExpression ']'
 		//	| {SysML::OperatorExpression.operand+=current} '->'
 		//	operator=Name ownedRelationship+=BodyExpressionMember+
-		//	| {SysML::QueryPathStepExpression.operand+=current}
+		//	| {SysML::PathStepExpression.operand+=current}
 		//	'.' operand+=FeatureReferenceExpression)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//(SequenceConstructionExpression | BaseExpression) ({SysML::OperatorExpression.operand+=current} operator='['
 		//operand+=OwnedExpression ']' | {SysML::OperatorExpression.operand+=current} '->' operator=Name
-		//ownedRelationship+=BodyExpressionMember+ | {SysML::QueryPathStepExpression.operand+=current} '.'
+		//ownedRelationship+=BodyExpressionMember+ | {SysML::PathStepExpression.operand+=current} '.'
 		//operand+=FeatureReferenceExpression)*
 		public Group getGroup() { return cGroup; }
 		
@@ -1138,7 +1138,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		
 		//({SysML::OperatorExpression.operand+=current} operator='[' operand+=OwnedExpression ']' |
 		//{SysML::OperatorExpression.operand+=current} '->' operator=Name ownedRelationship+=BodyExpressionMember+ |
-		//{SysML::QueryPathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)*
+		//{SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression)*
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//{SysML::OperatorExpression.operand+=current} operator='[' operand+=OwnedExpression ']'
@@ -1183,11 +1183,11 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 		//BodyExpressionMember
 		public RuleCall getOwnedRelationshipBodyExpressionMemberParserRuleCall_1_1_3_0() { return cOwnedRelationshipBodyExpressionMemberParserRuleCall_1_1_3_0; }
 		
-		//{SysML::QueryPathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression
+		//{SysML::PathStepExpression.operand+=current} '.' operand+=FeatureReferenceExpression
 		public Group getGroup_1_2() { return cGroup_1_2; }
 		
-		//{SysML::QueryPathStepExpression.operand+=current}
-		public Action getQueryPathStepExpressionOperandAction_1_2_0() { return cQueryPathStepExpressionOperandAction_1_2_0; }
+		//{SysML::PathStepExpression.operand+=current}
+		public Action getPathStepExpressionOperandAction_1_2_0() { return cPathStepExpressionOperandAction_1_2_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_1_2_1() { return cFullStopKeyword_1_2_1; }
@@ -2567,7 +2567,7 @@ public class KerMLExpressionsGrammarAccess extends AbstractElementFinder.Abstrac
 	//	operand+=OwnedExpression ']'
 	//	| {SysML::OperatorExpression.operand+=current} '->'
 	//	operator=Name ownedRelationship+=BodyExpressionMember+
-	//	| {SysML::QueryPathStepExpression.operand+=current}
+	//	| {SysML::PathStepExpression.operand+=current}
 	//	'.' operand+=FeatureReferenceExpression)*;
 	public SequenceExpressionElements getSequenceExpressionAccess() {
 		return pSequenceExpression;

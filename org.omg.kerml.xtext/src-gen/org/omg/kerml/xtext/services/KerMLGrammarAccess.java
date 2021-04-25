@@ -5970,14 +5970,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cPrivatePrivateKeyword_1_0 = (Keyword)cPrivateEnumLiteralDeclaration_1.eContents().get(0);
 		private final EnumLiteralDeclaration cProtectedEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
 		private final Keyword cProtectedProtectedKeyword_2_0 = (Keyword)cProtectedEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cPackageEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cPackagePackagedKeyword_3_0 = (Keyword)cPackageEnumLiteralDeclaration_3.eContents().get(0);
 		
 		//enum VisibilityIndicator returns SysML::VisibilityKind:
-		//	public | private | protected | package='packaged';
+		//	public | private | protected;
 		public EnumRule getRule() { return rule; }
 		
-		//public | private | protected | package='packaged'
+		//public | private | protected
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//public
@@ -5997,12 +5995,6 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//'protected'
 		public Keyword getProtectedProtectedKeyword_2_0() { return cProtectedProtectedKeyword_2_0; }
-		
-		//package='packaged'
-		public EnumLiteralDeclaration getPackageEnumLiteralDeclaration_3() { return cPackageEnumLiteralDeclaration_3; }
-		
-		//'packaged'
-		public Keyword getPackagePackagedKeyword_3_0() { return cPackagePackagedKeyword_3_0; }
 	}
 	public class FeatureDirectionElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureDirection");
@@ -7153,7 +7145,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//enum VisibilityIndicator returns SysML::VisibilityKind:
-	//	public | private | protected | package='packaged';
+	//	public | private | protected;
 	public VisibilityIndicatorElements getVisibilityIndicatorAccess() {
 		return eVisibilityIndicator;
 	}
@@ -8653,7 +8645,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	operand+=OwnedExpression ']'
 	//	| {SysML::OperatorExpression.operand+=current} '->'
 	//	operator=Name ownedRelationship+=BodyExpressionMember+
-	//	| {SysML::QueryPathStepExpression.operand+=current}
+	//	| {SysML::PathStepExpression.operand+=current}
 	//	'.' operand+=FeatureReferenceExpression)*;
 	public KerMLExpressionsGrammarAccess.SequenceExpressionElements getSequenceExpressionAccess() {
 		return gaKerMLExpressions.getSequenceExpressionAccess();

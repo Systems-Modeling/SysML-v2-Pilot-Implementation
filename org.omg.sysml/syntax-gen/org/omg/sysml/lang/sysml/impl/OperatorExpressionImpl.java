@@ -42,6 +42,7 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Function;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -281,7 +282,8 @@ public class OperatorExpressionImpl extends InvocationExpressionImpl implements 
 
 		@Override
 		protected void delegateAdd(Expression object) {
-			TypeUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object);
+			TypeUtil.addOwnedFeatureTo(OperatorExpressionImpl.this, object).
+				setVisibility(VisibilityKind.PRIVATE);
 		}
 
 		@Override

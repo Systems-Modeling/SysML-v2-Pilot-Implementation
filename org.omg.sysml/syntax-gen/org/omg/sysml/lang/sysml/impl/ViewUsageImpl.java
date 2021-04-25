@@ -25,6 +25,7 @@ package org.omg.sysml.lang.sysml.impl;
 import java.util.Collection;
 import java.util.stream.Stream;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 
@@ -43,6 +44,7 @@ import org.omg.sysml.lang.sysml.PartDefinition;
 import org.omg.sysml.lang.sysml.RenderingUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.ExpressionUtil;
@@ -61,7 +63,7 @@ import org.omg.sysml.util.TypeUtil;
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getSatisfiedViewpoint <em>Satisfied Viewpoint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getExposedNamespace <em>Exposed Namespace</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getRendering <em>Rendering</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewRendering <em>View Rendering</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewCondition <em>View Condition</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ViewUsageImpl#getViewedElement <em>Viewed Element</em>}</li>
  * </ul>
@@ -152,22 +154,15 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 		return exposedNamespace;
 	}
 	
-	public Stream<Expose> getExposeImports() {
-		return getOwnedImport().stream().
-				filter(Expose.class::isInstance).
-				map(Expose.class::cast);
-	}
-	
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public RenderingUsage getRendering() {
-		RenderingUsage rendering = basicGetRendering();
-		return rendering != null && rendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)rendering) : rendering;
+	public RenderingUsage getViewRendering() {
+		RenderingUsage viewRendering = basicGetViewRendering();
+		return viewRendering != null && viewRendering.eIsProxy() ? (RenderingUsage)eResolveProxy((InternalEObject)viewRendering) : viewRendering;
 	}
 
 	/**
@@ -175,9 +170,11 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public RenderingUsage basicGetRendering() {
-		return (RenderingUsage)getFeature().stream().
-				filter(RenderingUsage.class::isInstance).
+	public RenderingUsage basicGetViewRendering() {
+		return getOwnedMembership().stream().
+				filter(ViewRenderingMembership.class::isInstance).
+				map(ViewRenderingMembership.class::cast).
+				map(ViewRenderingMembership::getReferencedRendering).
 				findFirst().orElse(null);
 	}
 
@@ -187,9 +184,16 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	 * @generated NOT
 	 */
 	@Override
-	public void setRendering(RenderingUsage newRendering) {
+	public void setViewRendering(RenderingUsage newViewRendering) {
 		throw new UnsupportedOperationException();
 	}
+
+	public Stream<Expose> getExposeImports() {
+		return getOwnedImport().stream().
+				filter(Expose.class::isInstance).
+				map(Expose.class::cast);
+	}
+	
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -218,7 +222,7 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 	public EList<Element> getViewedElement() {
 		EList<Element> viewedElements = new NonNotifyingEObjectEList<>(Element.class, this, SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT);
 		getExposeImports().
-			flatMap(imp->imp.importedMembership().stream()).
+			flatMap(imp->imp.importedMembership(new BasicEList<>()).stream()).
 			map(Membership::getMemberElement).
 			forEachOrdered(viewedElements::add);
 		EList<Expression> viewConditions = getAllViewConditions();
@@ -241,9 +245,9 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				return getSatisfiedViewpoint();
 			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
 				return getExposedNamespace();
-			case SysMLPackage.VIEW_USAGE__RENDERING:
-				if (resolve) return getRendering();
-				return basicGetRendering();
+			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:
+				if (resolve) return getViewRendering();
+				return basicGetViewRendering();
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				return getViewCondition();
 			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:
@@ -272,8 +276,8 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				getExposedNamespace().clear();
 				getExposedNamespace().addAll((Collection<? extends Namespace>)newValue);
 				return;
-			case SysMLPackage.VIEW_USAGE__RENDERING:
-				setRendering((RenderingUsage)newValue);
+			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:
+				setViewRendering((RenderingUsage)newValue);
 				return;
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				getViewCondition().clear();
@@ -304,8 +308,8 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
 				getExposedNamespace().clear();
 				return;
-			case SysMLPackage.VIEW_USAGE__RENDERING:
-				setRendering((RenderingUsage)null);
+			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:
+				setViewRendering((RenderingUsage)null);
 				return;
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				getViewCondition().clear();
@@ -333,8 +337,8 @@ public class ViewUsageImpl extends PartUsageImpl implements ViewUsage {
 				return !getSatisfiedViewpoint().isEmpty();
 			case SysMLPackage.VIEW_USAGE__EXPOSED_NAMESPACE:
 				return !getExposedNamespace().isEmpty();
-			case SysMLPackage.VIEW_USAGE__RENDERING:
-				return basicGetRendering() != null;
+			case SysMLPackage.VIEW_USAGE__VIEW_RENDERING:
+				return basicGetViewRendering() != null;
 			case SysMLPackage.VIEW_USAGE__VIEW_CONDITION:
 				return !getViewCondition().isEmpty();
 			case SysMLPackage.VIEW_USAGE__VIEWED_ELEMENT:

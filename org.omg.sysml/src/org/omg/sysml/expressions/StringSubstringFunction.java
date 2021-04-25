@@ -28,8 +28,13 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 public class StringSubstringFunction extends ModelLevelFunction {
 
 	@Override
-	public String getFunctionName() {
-		return "StringFunctions::Substring";
+	public String getPackageName() {
+		return "StringFunctions";
+	}
+
+	@Override
+	public String getOperatorName() {
+		return "Substring";
 	}
 
 	@Override

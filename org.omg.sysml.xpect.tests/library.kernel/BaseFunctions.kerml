@@ -26,18 +26,20 @@ package BaseFunctions {
 	function last(seq: Anything[0..*] ordered): Anything[0..1] {
 		seq[size(seq)]
 	}
-
-	function '.' (x: Anything): Anything[0..*] {
-		feature feat;
-	}	
-	function '['(seq: Anything[0..*] ordered, index: Integer): Anything[0..1];
-	function ','(x: Anything, seq: Anything[0..*] ordered): Anything[0..*] ordered;
+	
+	function '['(seq: Anything[0..*] ordered, index: Anything): Anything[0..1];
+	function ','(seq1: Anything[0..*] ordered, seq2: Anything[0..*] ordered): Anything[0..*] ordered;
 
 
     abstract function 'all'(): Object[0..*] {
     	abstract feature all 'type': Object;
     }
     
+    /** Deprecated */
+	abstract function 'allInstances'(): Object[0..*] {
+		abstract feature all 'type': Object;
+	}
+	
 	abstract function 'istype'(x: Anything): Boolean {
 		abstract feature 'type': Anything;
 	}

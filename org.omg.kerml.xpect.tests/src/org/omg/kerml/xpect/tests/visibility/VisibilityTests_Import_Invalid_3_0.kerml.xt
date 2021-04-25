@@ -52,6 +52,4 @@ package Classes {
 	feature q : c_clazz::c_Package::c_publicc;
 	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Public::c_protect'." at "c_clazz::c_Public::c_protect"
 	feature r : c_clazz::c_Public::c_protect;
-	//XPECT errors --> "Couldn't resolve reference to Type 'c_clazz::c_Public::c_packagee'." at "c_clazz::c_Public::c_packagee"
-	feature s : c_clazz::c_Public::c_packagee;
 }

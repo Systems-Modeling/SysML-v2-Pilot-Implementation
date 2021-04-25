@@ -2131,7 +2131,7 @@ ruleSequenceExpression returns [EObject current=null]
 				(
 					{
 						$current = forceCreateModelElementAndAdd(
-							grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0(),
+							grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0(),
 							$current);
 					}
 				)

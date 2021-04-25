@@ -47,8 +47,8 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getSpecific <em>Specific</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningType <em>Owning Type</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getGeneral <em>General</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.GeneralizationImpl#getOwningType <em>Owning Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -343,12 +343,12 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				if (resolve) return getSpecific();
 				return basicGetSpecific();
-			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				if (resolve) return getOwningType();
-				return basicGetOwningType();
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				if (resolve) return getGeneral();
 				return basicGetGeneral();
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				if (resolve) return getOwningType();
+				return basicGetOwningType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -364,11 +364,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((Type)newValue);
 				return;
-			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				setOwningType((Type)newValue);
-				return;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				setGeneral((Type)newValue);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				setOwningType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -385,11 +385,11 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 			case SysMLPackage.GENERALIZATION__SPECIFIC:
 				setSpecific((Type)null);
 				return;
-			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				setOwningType((Type)null);
-				return;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				setGeneral((Type)null);
+				return;
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				setOwningType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -411,10 +411,10 @@ public class GeneralizationImpl extends RelationshipImpl implements Generalizati
 				return isSetTarget();
 			case SysMLPackage.GENERALIZATION__SOURCE:
 				return isSetSource();
-			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
-				return basicGetOwningType() != null;
 			case SysMLPackage.GENERALIZATION__GENERAL:
 				return isSetGeneral();
+			case SysMLPackage.GENERALIZATION__OWNING_TYPE:
+				return basicGetOwningType() != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -29,7 +29,7 @@ package org.omg.sysml.lang.sysml;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * <p>A RequirementConstraintMembership is a FeatureMembership for an assumed or required ConstraintUsage of a RequirementDefinition or RequirementUsage. The <code>ownedMemberFeature</cpde> of a RequirementConstraintMembership must be a ConstraintUsage.</p>
+ * <p>A RequirementConstraintMembership is a FeatureMembership for an assumed or required ConstraintUsage of a RequirementDefinition or RequirementUsage. The <code>ownedMemberFeature</code> of a RequirementConstraintMembership must be a ConstraintUsage.</p>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +37,8 @@ package org.omg.sysml.lang.sysml;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getKind <em>Kind</em>}</li>
- *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getOwnedConstraint <em>Owned Constraint</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getReferencedConstraint <em>Referenced Constraint</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership()
@@ -78,7 +79,7 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	void setKind(RequirementConstraintKind value);
 
 	/**
-	 * Returns the value of the '<em><b>Constraint</b></em>' reference.
+	 * Returns the value of the '<em><b>Owned Constraint</b></em>' reference.
 	 * <p>
 	 * This feature redefines the following features:
 	 * </p>
@@ -86,32 +87,54 @@ public interface RequirementConstraintMembership extends FeatureMembership {
 	 *   <li>'{@link org.omg.sysml.lang.sysml.FeatureMembership#getOwnedMemberFeature() <em>Owned Member Feature</em>}'</li>
 	 * </ul>
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Constraint</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The ConstraintUsage that is the <code>ownedMemberFeature</code> of this RequirementConstraintUsage.</p>
+	 * <p>The ConstraintUsage that is the <code>ownedMemberFeature</code> of this RequirementConstraintMembership.</p>
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Constraint</em>' reference.
-	 * @see #setConstraint(ConstraintUsage)
-	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_Constraint()
+	 * @return the value of the '<em>Owned Constraint</em>' reference.
+	 * @see #setOwnedConstraint(ConstraintUsage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_OwnedConstraint()
 	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
 	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='requirementConstraintMembership'"
 	 *        annotation="redefines"
 	 * @generated
 	 */
-	ConstraintUsage getConstraint();
+	ConstraintUsage getOwnedConstraint();
 
 	/**
-	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getConstraint <em>Constraint</em>}' reference.
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getOwnedConstraint <em>Owned Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint</em>' reference.
-	 * @see #getConstraint()
+	 * @param value the new value of the '<em>Owned Constraint</em>' reference.
+	 * @see #getOwnedConstraint()
 	 * @generated
 	 */
-	void setConstraint(ConstraintUsage value);
+	void setOwnedConstraint(ConstraintUsage value);
+
+	/**
+	 * Returns the value of the '<em><b>Referenced Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p> The ConstraintUsage that is referenced through this RequirementConstraintMembership. This is derived as being the first ConstraintUsage subset by the <code>ownedConstraint</code>, if there is one, and, otherwise, the <code>ownedConstraint</code> itself.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Referenced Constraint</em>' reference.
+	 * @see #setReferencedConstraint(ConstraintUsage)
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementConstraintMembership_ReferencedConstraint()
+	 * @model required="true" transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='referencingConstraintMembership'"
+	 * @generated
+	 */
+	ConstraintUsage getReferencedConstraint();
+
+	/**
+	 * Sets the value of the '{@link org.omg.sysml.lang.sysml.RequirementConstraintMembership#getReferencedConstraint <em>Referenced Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referenced Constraint</em>' reference.
+	 * @see #getReferencedConstraint()
+	 * @generated
+	 */
+	void setReferencedConstraint(ConstraintUsage value);
 
 } // RequirementConstraintMembership

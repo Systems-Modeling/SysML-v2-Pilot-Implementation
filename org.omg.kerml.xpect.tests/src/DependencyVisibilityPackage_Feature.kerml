@@ -25,13 +25,8 @@ package VisibilityPackage {
 				protected feature c_Protect{
 					public feature c_publicc{}
 				}
-				packaged feature c_Package{
-					public feature c_publicc{}
-				}
-				
 				public feature c_Public{
 					protected feature c_protect{}
-					packaged feature c_packagee{}
 				}
 			}
 		}

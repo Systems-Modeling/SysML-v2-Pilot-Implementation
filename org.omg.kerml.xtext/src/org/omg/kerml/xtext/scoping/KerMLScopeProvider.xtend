@@ -41,7 +41,6 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.SysMLPackage
 import org.omg.sysml.lang.sysml.Import
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.omg.sysml.lang.sysml.QueryPathStepExpression
 import org.omg.sysml.lang.sysml.Conjugation
 import org.omg.sysml.lang.sysml.Connector
 import org.omg.sysml.lang.sysml.Subsetting
@@ -49,6 +48,7 @@ import org.omg.sysml.lang.sysml.Namespace
 import org.omg.sysml.lang.sysml.Redefinition
 import org.omg.sysml.lang.sysml.Expression
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
+import org.omg.sysml.lang.sysml.PathStepExpression
 
 class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 
@@ -122,7 +122,7 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				if (context instanceof Element) context else null)
 	}
 
-	def Namespace featureRefNamespace(QueryPathStepExpression qps) {
+	def Namespace featureRefNamespace(PathStepExpression qps) {
 		var ops = qps.operand
 		if (ops.size() >= 2) {
 			var op1 = ops.get(1)
@@ -137,12 +137,12 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		var rel = ns
 		if (ns instanceof FeatureReferenceExpression) {
 			val oe = ns.owner
-			if (oe instanceof QueryPathStepExpression) {
+			if (oe instanceof PathStepExpression) {
 				var ops = oe.operand
 				if (ops.size() >= 2) {
 					var op1 = ops.get(0);
 					if (op1 !== ns) {
-						if (op1 instanceof QueryPathStepExpression) {
+						if (op1 instanceof PathStepExpression) {
 							rel = op1.featureRefNamespace
 						} else if (op1 instanceof Expression) {
 							rel = op1.result

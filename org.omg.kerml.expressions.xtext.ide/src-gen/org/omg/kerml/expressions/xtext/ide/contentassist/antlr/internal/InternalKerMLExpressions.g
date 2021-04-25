@@ -4712,9 +4712,9 @@ rule__SequenceExpression__Group_1_2__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()); }
+	{ before(grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); }
 	()
-	{ after(grammarAccess.getSequenceExpressionAccess().getQueryPathStepExpressionOperandAction_1_2_0()); }
+	{ after(grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0()); }
 )
 ;
 finally {

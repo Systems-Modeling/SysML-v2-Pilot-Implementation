@@ -29,9 +29,12 @@ import java.util.HashSet;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -53,6 +56,7 @@ import org.omg.sysml.lang.sysml.VisibilityKind;
  * </p>
  * <ul>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getOwningRelatedElement <em>Owning Related Element</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getImportedNamespace <em>Imported Namespace</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.impl.ImportImpl#isRecursive <em>Is Recursive</em>}</li>
@@ -236,6 +240,27 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	protected static final int[] TARGET_ESUBSETS = new int[] {SysMLPackage.IMPORT__IMPORTED_NAMESPACE};
 
+	/**
+	 * The cached OCL expression body for the '{@link #importedMembership(org.eclipse.emf.common.util.EList) <em>Imported Membership</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #importedMembership(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IMPORTED_MEMBERSHIP__ELIST__EOCL_EXP = "importedPackage.publicMemberships("+
+"    excluded->including(importOwningNamespace))";
+
+	/**
+	 * The cached OCL query for the '{@link #importedMembership(org.eclipse.emf.common.util.EList) <em>Imported Membership</em>}' query operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #importedMembership(org.eclipse.emf.common.util.EList)
+	 * @generated
+	 * @ordered
+	 */
+	protected static OCLExpression<EClassifier> IMPORTED_MEMBERSHIP__ELIST__EOCL_QRY;
+
 	@Override
 	public Namespace getImportedNamespace() {
 		return importedNamespace == null? basicGetImportedNamespace(): getImportedNamespaceGen();
@@ -311,7 +336,8 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public Element getOwningRelatedElement() {
-		return getImportOwningNamespace();
+		if (eContainerFeatureID() != SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT) return null;
+		return (Element)eInternalContainer();
 	}
 
 	/**
@@ -319,10 +345,7 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	public NotificationChain basicSetOwningRelatedElement(Element newOwningRelatedElement, NotificationChain msgs) {
-		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
-			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
-		}
-		setImportOwningNamespace((Namespace) newOwningRelatedElement);
+		msgs = eBasicSetContainer((InternalEObject)newOwningRelatedElement, SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT, msgs);
 		return msgs;
 	}
 
@@ -332,19 +355,19 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 */
 	@Override
 	public void setOwningRelatedElement(Element newOwningRelatedElement) {
-		if (newOwningRelatedElement != null && !(newOwningRelatedElement instanceof Namespace)) {
-			throw new IllegalArgumentException("newOwningRelatedElement must be an instance of Namespace");
+		if (newOwningRelatedElement != eInternalContainer() || (eContainerFeatureID() != SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT && newOwningRelatedElement != null)) {
+			if (EcoreUtil.isAncestor(this, newOwningRelatedElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwningRelatedElement != null)
+				msgs = ((InternalEObject)newOwningRelatedElement).eInverseAdd(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+			msgs = basicSetOwningRelatedElement(newOwningRelatedElement, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		setImportOwningNamespace((Namespace) newOwningRelatedElement);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOwningRelatedElement() {
-  		return false;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT, newOwningRelatedElement, newOwningRelatedElement));
 	}
 
 	/**
@@ -372,14 +395,14 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	// Operations
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	@Override
-	public EList<Membership> importedMembership() {
+	public EList<Membership> importedMembership(EList<Namespace> excluded) {
 		return this.importMembership(new BasicInternalEList<Membership>(Membership.class), null,
-				new HashSet<Namespace>(), new HashSet<Type>());
+				excluded, new HashSet<Type>());
 	}
 
 	// Note: The excludedType parameter is needed in case the imported Namespace
@@ -422,6 +445,50 @@ public class ImportImpl extends RelationshipImpl implements Import {
 
 	//
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwningRelatedElement((Element)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT:
+				return basicSetOwningRelatedElement(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SysMLPackage.ELEMENT__OWNED_RELATIONSHIP, Element.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -498,10 +565,10 @@ public class ImportImpl extends RelationshipImpl implements Import {
 		switch (featureID) {
 			case SysMLPackage.IMPORT__TARGET:
 				return target != null && !target.isEmpty();
+			case SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT:
+				return getOwningRelatedElement() != null;
 			case SysMLPackage.IMPORT__SOURCE:
 				return isSetSource();
-			case SysMLPackage.IMPORT__OWNING_RELATED_ELEMENT:
-				return isSetOwningRelatedElement();
 			case SysMLPackage.IMPORT__IMPORTED_NAMESPACE:
 				return importedNamespace != null;
 			case SysMLPackage.IMPORT__VISIBILITY:
@@ -519,10 +586,11 @@ public class ImportImpl extends RelationshipImpl implements Import {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case SysMLPackage.IMPORT___IMPORTED_MEMBERSHIP:
-				return importedMembership();
+			case SysMLPackage.IMPORT___IMPORTED_MEMBERSHIP__ELIST:
+				return importedMembership((EList<Namespace>)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

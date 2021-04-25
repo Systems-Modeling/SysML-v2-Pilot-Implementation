@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAssumedConstraint <em>Assumed Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getRequiredConstraint <em>Required Constraint</em>}</li>
  *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getSubjectParameter <em>Subject Parameter</em>}</li>
+ *   <li>{@link org.omg.sysml.lang.sysml.RequirementDefinition#getAddressedConcern <em>Addressed Concern</em>}</li>
  * </ul>
  *
  * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition()
@@ -84,6 +85,29 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * @generated
 	 */
 	void setSubjectParameter(Usage value);
+
+	/**
+	 * Returns the value of the '<em><b>Addressed Concern</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.sysml.lang.sysml.ConcernUsage}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.omg.sysml.lang.sysml.RequirementDefinition#getRequiredConstraint() <em>Required Constraint</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>The Concerns addressed by this RequirementDefinition, derived as the <code>addressedConcerns</code> of all <code>AddressedConcernMemberships</code> of the RequirementDefinition.</p>
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Addressed Concern</em>' reference list.
+	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AddressedConcern()
+	 * @model transient="true" volatile="true" derived="true" ordered="false"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='addressingRequirementDefinition'"
+	 *        annotation="subsets"
+	 * @generated
+	 */
+	EList<ConcernUsage> getAddressedConcern();
 
 	/**
 	 * Returns the value of the '<em><b>Req Id</b></em>' attribute.
@@ -156,7 +180,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <tt>kind</tt> = <tt>requirement</tt>.</p>
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assumed Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_AssumedConstraint()
@@ -183,7 +207,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinitionb. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <tt>kind</tt> = <tt>requirement</tt>.</p>
+	 * <p>The owned ConstraintUsages that represent requirements of this RequirementDefinition. These are derived as the ConstraintUsages related to the RequirementDefinition by a RequirementConstraintMembership with <code>kind</code> = <code>requirement</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Required Constraint</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_RequiredConstraint()

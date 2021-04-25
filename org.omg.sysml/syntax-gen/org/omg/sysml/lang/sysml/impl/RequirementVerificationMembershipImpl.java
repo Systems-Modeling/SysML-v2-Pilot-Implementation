@@ -28,10 +28,7 @@ import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,9 +45,6 @@ import org.omg.sysml.util.ImplicitGeneralizationMap;
  * @generated
  */
 public class RequirementVerificationMembershipImpl extends RequirementConstraintMembershipImpl implements RequirementVerificationMembership {
-
-	private Type subsettingBaseDefault;
-	private Type subsettingPartDefault;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,27 +82,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetVerifiedRequirement() {
-		RequirementUsage ownedRequirement = getOwnedRequirement();
-		Type subsettingBaseDefault = getSubsettingBaseDefault();
-		Type subsettingPartDefault = getSubsettingPartDefault();
-		return FeatureUtil.getSubsettedFeatureOf(ownedRequirement, RequirementUsage.class, 
-				feature->feature == subsettingBaseDefault || feature == subsettingPartDefault);
-	}
-
-	protected Type getSubsettingBaseDefault() {
-		if (subsettingBaseDefault == null) {
-			subsettingBaseDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "base"));
-		}
-		return subsettingBaseDefault;
-	}
-
-	protected Type getSubsettingPartDefault() {
-		if (subsettingPartDefault == null) {
-			subsettingPartDefault = SysMLLibraryUtil.getLibraryType(this, 
-					ImplicitGeneralizationMap.getDefaultSupertypeFor(this.getClass(), "enactedPerformance"));
-		}
-		return subsettingPartDefault;
+		return FeatureUtil.getSubsettedFeatureOf(getOwnedRequirement(), RequirementUsage.class, f->false);
 	}
 
 	/**
@@ -118,6 +92,15 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	@Override
 	public void setVerifiedRequirement(RequirementUsage newVerifiedRequirement) {
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVerifiedRequirement() {
+		return basicGetVerifiedRequirement() != null;
 	}
 
 	/**
@@ -137,7 +120,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetOwnedRequirement() {
-		ConstraintUsage constraint = super.basicGetConstraint();
+		ConstraintUsage constraint = super.basicGetOwnedConstraint();
 		return constraint instanceof RequirementUsage? (RequirementUsage)constraint: null;
 	}
 
@@ -157,47 +140,6 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 */
 	public boolean isSetOwnedRequirement() {
 		return basicGetOwnedRequirement() != null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstraintUsage getConstraint() {
-		return getOwnedRequirement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ConstraintUsage basicGetConstraint() {
-		return basicGetOwnedRequirement();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setConstraint(ConstraintUsage newConstraint) {
-		if (newConstraint != null && !(newConstraint instanceof RequirementUsage)) {
-			throw new IllegalArgumentException("newConstraint must be an instance of RequirementUsage");
-		}
-		setOwnedRequirement((RequirementUsage) newConstraint);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetConstraint() {
-  		return false;
 	}
 
 	/**
@@ -262,14 +204,98 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__CONSTRAINT:
-				return isSetConstraint();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_CONSTRAINT:
+				return isSetOwnedConstraint();
+			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__REFERENCED_CONSTRAINT:
+				return isSetReferencedConstraint();
 			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__OWNED_REQUIREMENT:
 				return isSetOwnedRequirement();
 			case SysMLPackage.REQUIREMENT_VERIFICATION_MEMBERSHIP__VERIFIED_REQUIREMENT:
-				return basicGetVerifiedRequirement() != null;
+				return isSetVerifiedRequirement();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage getOwnedConstraint() {
+		return getOwnedRequirement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage basicGetOwnedConstraint() {
+		return basicGetOwnedRequirement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwnedConstraint(ConstraintUsage newOwnedConstraint) {
+		if (newOwnedConstraint != null && !(newOwnedConstraint instanceof RequirementUsage)) {
+			throw new IllegalArgumentException("newOwnedConstraint must be an instance of RequirementUsage");
+		}
+		setOwnedRequirement((RequirementUsage) newOwnedConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedConstraint() {
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage getReferencedConstraint() {
+		return getVerifiedRequirement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ConstraintUsage basicGetReferencedConstraint() {
+		return basicGetVerifiedRequirement();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferencedConstraint(ConstraintUsage newReferencedConstraint) {
+		if (newReferencedConstraint != null && !(newReferencedConstraint instanceof RequirementUsage)) {
+			throw new IllegalArgumentException("newReferencedConstraint must be an instance of RequirementUsage");
+		}
+		setVerifiedRequirement((RequirementUsage) newReferencedConstraint);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetReferencedConstraint() {
+  		return false;
 	}
 
 } //RequirementVerificationMembershipImpl

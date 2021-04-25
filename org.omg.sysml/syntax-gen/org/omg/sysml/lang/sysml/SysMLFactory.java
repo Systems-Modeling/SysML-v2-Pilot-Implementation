@@ -69,6 +69,15 @@ public interface SysMLFactory extends EFactory {
 	AssertConstraintUsage createAssertConstraintUsage();
 
 	/**
+	 * Returns a new object of class '<em>Track4</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Track4</em>'.
+	 * @generated
+	 */
+	Track4 createTrack4();
+
+	/**
 	 * Returns a new object of class '<em>Expose</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,6 +85,15 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	Expose createExpose();
+
+	/**
+	 * Returns a new object of class '<em>View Rendering Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View Rendering Membership</em>'.
+	 * @generated
+	 */
+	ViewRenderingMembership createViewRenderingMembership();
 
 	/**
 	 * Returns a new object of class '<em>Requirement Verification Membership</em>'.
@@ -591,6 +609,15 @@ public interface SysMLFactory extends EFactory {
 	StateSubactionMembership createStateSubactionMembership();
 
 	/**
+	 * Returns a new object of class '<em>Addressed Concern Membership</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Addressed Concern Membership</em>'.
+	 * @generated
+	 */
+	AddressedConcernMembership createAddressedConcernMembership();
+
+	/**
 	 * Returns a new object of class '<em>Conjugated Port Typing</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -690,6 +717,24 @@ public interface SysMLFactory extends EFactory {
 	ViewpointDefinition createViewpointDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Stakeholder Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Stakeholder Usage</em>'.
+	 * @generated
+	 */
+	StakeholderUsage createStakeholderUsage();
+
+	/**
+	 * Returns a new object of class '<em>Stakeholder Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Stakeholder Definition</em>'.
+	 * @generated
+	 */
+	StakeholderDefinition createStakeholderDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Rendering Usage</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -760,6 +805,24 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ConstraintDefinition createConstraintDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Concern Usage</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Concern Usage</em>'.
+	 * @generated
+	 */
+	ConcernUsage createConcernUsage();
+
+	/**
+	 * Returns a new object of class '<em>Concern Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Concern Definition</em>'.
+	 * @generated
+	 */
+	ConcernDefinition createConcernDefinition();
 
 	/**
 	 * Returns a new object of class '<em>Case Definition</em>'.
@@ -1077,6 +1140,24 @@ public interface SysMLFactory extends EFactory {
 	InvocationExpression createInvocationExpression();
 
 	/**
+	 * Returns a new object of class '<em>Path Select Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Select Expression</em>'.
+	 * @generated
+	 */
+	PathSelectExpression createPathSelectExpression();
+
+	/**
+	 * Returns a new object of class '<em>Path Step Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Path Step Expression</em>'.
+	 * @generated
+	 */
+	PathStepExpression createPathStepExpression();
+
+	/**
 	 * Returns a new object of class '<em>Parameter Membership</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1093,33 +1174,6 @@ public interface SysMLFactory extends EFactory {
 	 * @generated
 	 */
 	ReturnParameterMembership createReturnParameterMembership();
-
-	/**
-	 * Returns a new object of class '<em>Query Path Step Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Path Step Expression</em>'.
-	 * @generated
-	 */
-	QueryPathStepExpression createQueryPathStepExpression();
-
-	/**
-	 * Returns a new object of class '<em>Query Qualifier Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Qualifier Expression</em>'.
-	 * @generated
-	 */
-	QueryQualifierExpression createQueryQualifierExpression();
-
-	/**
-	 * Returns a new object of class '<em>Query Path Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Path Expression</em>'.
-	 * @generated
-	 */
-	QueryPathExpression createQueryPathExpression();
 
 	/**
 	 * Returns a new object of class '<em>Literal Expression</em>'.

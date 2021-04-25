@@ -42,8 +42,6 @@ import org.omg.sysml.lang.sysml.Membership
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression
 import org.omg.sysml.lang.sysml.LiteralExpression
 import org.omg.sysml.lang.sysml.NullExpression
-import org.omg.sysml.lang.sysml.impl.MembershipImpl
-import org.omg.sysml.lang.sysml.impl.ElementImpl
 import org.omg.sysml.lang.sysml.ElementFilterMembership
 import org.omg.sysml.lang.sysml.MetadataFeatureValue
 import org.omg.sysml.util.TypeUtil
@@ -83,7 +81,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 			if (owner !== null) {
 				for (e: owner.ownedElement) {
 					if (e != elm) {
-						if (elm.humanId == e.humanId || elm.humanId == (e as ElementImpl).effectiveName) {
+						if (elm.humanId == e.humanId || elm.humanId == e.getEffectiveName) {
 							warning(INVALID_ELEMENT__ID_DISTINGUISHABILITY_MSG, elm, SysMLPackage.eINSTANCE.element_HumanId, INVALID_ELEMENT__ID_DISTINGUISHABILITY)							
 						}						
 					}
@@ -99,7 +97,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || namesp instanceof NullExpression ||
 			  namesp instanceof BindingConnector)) {
 			for (e : namesp.ownedElement) {
-				if (mem.memberElement !== e && e.humanId !== null && (mem as MembershipImpl).memberEffectiveName == e.humanId) {
+				if (mem.memberElement !== e && e.humanId !== null && mem.effectiveMemberName == e.humanId) {
 					if (mem.ownedMemberElement !== null) {
 						warning(INVALID_MEMBERSHIP__DISTINGUISHABILITY_MSG_0, mem.ownedMemberElement, SysMLPackage.eINSTANCE.element_Name, INVALID_MEMBERSHIP__DISTINGUISHABILITY)
 					} else {

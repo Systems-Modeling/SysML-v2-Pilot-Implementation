@@ -103,7 +103,7 @@ public class AddressedConcernMembershipImpl extends RequirementConstraintMembers
 	 * @generated NOT
 	 */
 	public ConcernUsage basicGetReferencedConcern() {
-		return FeatureUtil.getSubsettedFeatureOf(getOwnedConcern(), ConcernUsage.class, feature->false);
+		return FeatureUtil.getReferencedFeatureOf(getOwnedConcern(), ConcernUsage.class);
 	}
 
 	/**

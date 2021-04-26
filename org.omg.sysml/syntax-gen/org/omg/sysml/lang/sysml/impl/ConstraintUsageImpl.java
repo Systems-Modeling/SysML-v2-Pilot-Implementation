@@ -336,7 +336,7 @@ public class ConstraintUsageImpl extends UsageImpl implements ConstraintUsage {
 	}
 	
 	public ConstraintUsage getSubsettedConstraint() {
-		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, f->false);
+		return FeatureUtil.getReferencedFeatureOf(this, ConstraintUsage.class);
 	}
 	
 	//

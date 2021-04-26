@@ -115,7 +115,7 @@ public class ViewRenderingMembershipImpl extends FeatureMembershipImpl implement
 	 * @generated NOT
 	 */
 	public RenderingUsage basicGetReferencedRendering() {
-		return FeatureUtil.getSubsettedFeatureOf(getOwnedRendering(), RenderingUsage.class, feature->false);
+		return FeatureUtil.getReferencedFeatureOf(getOwnedRendering(), RenderingUsage.class);
 	}
 
 	/**

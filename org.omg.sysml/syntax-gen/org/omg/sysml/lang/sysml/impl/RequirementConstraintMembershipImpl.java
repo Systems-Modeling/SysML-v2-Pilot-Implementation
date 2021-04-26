@@ -170,7 +170,7 @@ public class RequirementConstraintMembershipImpl extends FeatureMembershipImpl i
 	 * @generated NOT
 	 */
 	public ConstraintUsage basicGetReferencedConstraint() {
-		return FeatureUtil.getSubsettedFeatureOf(getOwnedConstraint(), ConstraintUsage.class, feature->false);
+		return FeatureUtil.getReferencedFeatureOf(getOwnedConstraint(), ConstraintUsage.class);
 	}
 
 	/**

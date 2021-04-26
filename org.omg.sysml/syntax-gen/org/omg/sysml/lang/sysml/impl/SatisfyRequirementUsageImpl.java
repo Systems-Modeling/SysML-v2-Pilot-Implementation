@@ -124,7 +124,7 @@ public class SatisfyRequirementUsageImpl extends RequirementUsageImpl implements
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetSatisfiedRequirement() {
-		return FeatureUtil.getSubsettedFeatureOf(this, RequirementUsage.class, f->false);
+		return FeatureUtil.getReferencedFeatureOf(this, RequirementUsage.class);
 }
 	
 	/**

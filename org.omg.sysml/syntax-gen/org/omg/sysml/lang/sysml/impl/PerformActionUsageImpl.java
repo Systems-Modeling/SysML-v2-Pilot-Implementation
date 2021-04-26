@@ -82,7 +82,7 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	 * @generated NOT
 	 */
 	public ActionUsage basicGetPerformedAction() {
-		return FeatureUtil.getSubsettedFeatureOf(this, ActionUsage.class, f->false);
+		return FeatureUtil.getReferencedFeatureOf(this, ActionUsage.class);
 	}
 
 	@Override

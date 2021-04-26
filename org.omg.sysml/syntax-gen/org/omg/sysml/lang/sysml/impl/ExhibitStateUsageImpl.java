@@ -81,7 +81,7 @@ public class ExhibitStateUsageImpl extends StateUsageImpl implements ExhibitStat
 	 * @generated NOT
 	 */
 	public StateUsage basicGetExhibitedState() {
-		return FeatureUtil.getSubsettedFeatureOf(this, StateUsage.class, f->false);
+		return FeatureUtil.getReferencedFeatureOf(this, StateUsage.class);
 	}
 
 	@Override

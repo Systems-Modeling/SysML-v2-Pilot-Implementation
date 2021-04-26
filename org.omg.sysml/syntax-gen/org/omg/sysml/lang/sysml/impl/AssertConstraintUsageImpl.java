@@ -119,7 +119,7 @@ public class AssertConstraintUsageImpl extends ConstraintUsageImpl implements As
 	 * @generated NOT
 	 */
 	public ConstraintUsage basicGetAssertedConstraint() {
-		return FeatureUtil.getSubsettedFeatureOf(this, ConstraintUsage.class, feature->false);
+		return FeatureUtil.getReferencedFeatureOf(this, ConstraintUsage.class);
 	}
 	
 	/**

@@ -82,7 +82,7 @@ public class RequirementVerificationMembershipImpl extends RequirementConstraint
 	 * @generated NOT
 	 */
 	public RequirementUsage basicGetVerifiedRequirement() {
-		return FeatureUtil.getSubsettedFeatureOf(getOwnedRequirement(), RequirementUsage.class, f->false);
+		return FeatureUtil.getReferencedFeatureOf(getOwnedRequirement(), RequirementUsage.class);
 	}
 
 	/**

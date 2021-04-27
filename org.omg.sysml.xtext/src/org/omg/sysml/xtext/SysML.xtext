@@ -2248,29 +2248,8 @@ RenderingRefUsage returns SysML::RenderingUsage :
 ;
 
 /* EXPRESSIONS */
-@Override
-OwnedExpression returns SysML::Expression :
-	 KerMLExpressions::OwnedExpression | QueryPathExpression
-;
 
 @Override
 BodyParameter returns SysML::ReferenceUsage :
 	{SysML::ReferenceUsage} ( TypedBy MultiplicityPart? | MultiplicityPart TypedBy? )?
-;
-
-/* QUERY PATH EXPRESSIONS */
-
-QueryPathExpression returns SysML::Expression :
-	QueryHeadExpression
-	( '[' {SysML::PathSelectExpression.operand += current}
-         ( ownedRelationship += BodyExpressionMember ) ']' )?
-	( '/' {SysML::PathStepExpression.operand += current}
-		operand += FeatureReferenceExpression
-		( '[' {SysML::PathSelectExpression.operand += current}
-	         ( ownedRelationship += BodyExpressionMember ) ']' )?
-	)*
-;
-
-QueryHeadExpression returns SysML::FeatureReferenceExpression :
-	'./' ownedRelationship += FeatureReferenceMember
 ;

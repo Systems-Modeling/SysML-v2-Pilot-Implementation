@@ -3,6 +3,6 @@ package Q {
   	part a;
   }
   part def C {
-    part g = ./f/a; 
+    part g = f.a;
   }
 }

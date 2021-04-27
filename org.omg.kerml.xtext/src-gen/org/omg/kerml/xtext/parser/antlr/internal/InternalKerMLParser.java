@@ -12552,11 +12552,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     {
                     int LA87_3 = input.LA(3);
 
-                    if ( (LA87_3==57) ) {
-                        alt87=2;
-                    }
-                    else if ( ((LA87_3>=16 && LA87_3<=17)||(LA87_3>=29 && LA87_3<=30)||(LA87_3>=34 && LA87_3<=36)||LA87_3==50||(LA87_3>=52 && LA87_3<=53)||LA87_3==64||LA87_3==67||LA87_3==73) ) {
+                    if ( ((LA87_3>=16 && LA87_3<=17)||(LA87_3>=29 && LA87_3<=30)||(LA87_3>=34 && LA87_3<=36)||LA87_3==50||(LA87_3>=52 && LA87_3<=53)||LA87_3==64||LA87_3==67||LA87_3==73) ) {
                         alt87=1;
+                    }
+                    else if ( (LA87_3==57) ) {
+                        alt87=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
@@ -12605,11 +12605,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA87_3 = input.LA(2);
 
-                if ( (LA87_3==57) ) {
-                    alt87=2;
-                }
-                else if ( ((LA87_3>=16 && LA87_3<=17)||(LA87_3>=29 && LA87_3<=30)||(LA87_3>=34 && LA87_3<=36)||LA87_3==50||(LA87_3>=52 && LA87_3<=53)||LA87_3==64||LA87_3==67||LA87_3==73) ) {
+                if ( ((LA87_3>=16 && LA87_3<=17)||(LA87_3>=29 && LA87_3<=30)||(LA87_3>=34 && LA87_3<=36)||LA87_3==50||(LA87_3>=52 && LA87_3<=53)||LA87_3==64||LA87_3==67||LA87_3==73) ) {
                     alt87=1;
+                }
+                else if ( (LA87_3==57) ) {
+                    alt87=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -27202,11 +27202,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     {
                     int LA204_4 = input.LA(3);
 
-                    if ( (LA204_4==21||(LA204_4>=29 && LA204_4<=30)||(LA204_4>=34 && LA204_4<=35)||LA204_4==50||(LA204_4>=52 && LA204_4<=53)||LA204_4==64||LA204_4==67||LA204_4==69||LA204_4==73) ) {
-                        alt204=1;
-                    }
-                    else if ( (LA204_4==20||LA204_4==41) ) {
+                    if ( (LA204_4==20||LA204_4==41) ) {
                         alt204=2;
+                    }
+                    else if ( (LA204_4==21||(LA204_4>=29 && LA204_4<=30)||(LA204_4>=34 && LA204_4<=35)||LA204_4==50||(LA204_4>=52 && LA204_4<=53)||LA204_4==64||LA204_4==67||LA204_4==69||LA204_4==73) ) {
+                        alt204=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
@@ -27280,11 +27280,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA204_4 = input.LA(2);
 
-                if ( (LA204_4==21||(LA204_4>=29 && LA204_4<=30)||(LA204_4>=34 && LA204_4<=35)||LA204_4==50||(LA204_4>=52 && LA204_4<=53)||LA204_4==64||LA204_4==67||LA204_4==69||LA204_4==73) ) {
-                    alt204=1;
-                }
-                else if ( (LA204_4==20||LA204_4==41) ) {
+                if ( (LA204_4==20||LA204_4==41) ) {
                     alt204=2;
+                }
+                else if ( (LA204_4==21||(LA204_4>=29 && LA204_4<=30)||(LA204_4>=34 && LA204_4<=35)||LA204_4==50||(LA204_4>=52 && LA204_4<=53)||LA204_4==64||LA204_4==67||LA204_4==69||LA204_4==73) ) {
+                    alt204=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -34649,24 +34649,24 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExtentExpression"
-    // InternalKerML.g:11887:1: ruleExtentExpression returns [EObject current=null] : ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_SequenceExpression_3= ruleSequenceExpression ) ;
+    // InternalKerML.g:11887:1: ruleExtentExpression returns [EObject current=null] : ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_PrimaryExpression_3= rulePrimaryExpression ) ;
     public final EObject ruleExtentExpression() throws RecognitionException {
         EObject current = null;
 
         Token lv_operator_1_0=null;
         EObject lv_ownedRelationship_2_0 = null;
 
-        EObject this_SequenceExpression_3 = null;
+        EObject this_PrimaryExpression_3 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:11893:2: ( ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_SequenceExpression_3= ruleSequenceExpression ) )
-            // InternalKerML.g:11894:2: ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_SequenceExpression_3= ruleSequenceExpression )
+            // InternalKerML.g:11893:2: ( ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_PrimaryExpression_3= rulePrimaryExpression ) )
+            // InternalKerML.g:11894:2: ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_PrimaryExpression_3= rulePrimaryExpression )
             {
-            // InternalKerML.g:11894:2: ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_SequenceExpression_3= ruleSequenceExpression )
+            // InternalKerML.g:11894:2: ( ( () ( (lv_operator_1_0= 'all' ) ) ( (lv_ownedRelationship_2_0= ruleTypeReferenceMember ) ) ) | this_PrimaryExpression_3= rulePrimaryExpression )
             int alt234=2;
             int LA234_0 = input.LA(1);
 
@@ -34771,21 +34771,21 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:11938:3: this_SequenceExpression_3= ruleSequenceExpression
+                    // InternalKerML.g:11938:3: this_PrimaryExpression_3= rulePrimaryExpression
                     {
                     if ( state.backtracking==0 ) {
 
-                      			newCompositeNode(grammarAccess.getExtentExpressionAccess().getSequenceExpressionParserRuleCall_1());
+                      			newCompositeNode(grammarAccess.getExtentExpressionAccess().getPrimaryExpressionParserRuleCall_1());
                       		
                     }
                     pushFollow(FOLLOW_2);
-                    this_SequenceExpression_3=ruleSequenceExpression();
+                    this_PrimaryExpression_3=rulePrimaryExpression();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                      			current = this_SequenceExpression_3;
+                      			current = this_PrimaryExpression_3;
                       			afterParserOrEnumRuleCall();
                       		
                     }
@@ -34816,28 +34816,28 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleExtentExpression"
 
 
-    // $ANTLR start "entryRuleSequenceExpression"
-    // InternalKerML.g:11950:1: entryRuleSequenceExpression returns [EObject current=null] : iv_ruleSequenceExpression= ruleSequenceExpression EOF ;
-    public final EObject entryRuleSequenceExpression() throws RecognitionException {
+    // $ANTLR start "entryRulePrimaryExpression"
+    // InternalKerML.g:11950:1: entryRulePrimaryExpression returns [EObject current=null] : iv_rulePrimaryExpression= rulePrimaryExpression EOF ;
+    public final EObject entryRulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleSequenceExpression = null;
+        EObject iv_rulePrimaryExpression = null;
 
 
         try {
-            // InternalKerML.g:11950:59: (iv_ruleSequenceExpression= ruleSequenceExpression EOF )
-            // InternalKerML.g:11951:2: iv_ruleSequenceExpression= ruleSequenceExpression EOF
+            // InternalKerML.g:11950:58: (iv_rulePrimaryExpression= rulePrimaryExpression EOF )
+            // InternalKerML.g:11951:2: iv_rulePrimaryExpression= rulePrimaryExpression EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getSequenceExpressionRule()); 
+               newCompositeNode(grammarAccess.getPrimaryExpressionRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleSequenceExpression=ruleSequenceExpression();
+            iv_rulePrimaryExpression=rulePrimaryExpression();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleSequenceExpression; 
+               current =iv_rulePrimaryExpression; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -34853,18 +34853,21 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleSequenceExpression"
+    // $ANTLR end "entryRulePrimaryExpression"
 
 
-    // $ANTLR start "ruleSequenceExpression"
-    // InternalKerML.g:11957:1: ruleSequenceExpression returns [EObject current=null] : ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) )* ) ;
-    public final EObject ruleSequenceExpression() throws RecognitionException {
+    // $ANTLR start "rulePrimaryExpression"
+    // InternalKerML.g:11957:1: rulePrimaryExpression returns [EObject current=null] : ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) | ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' ) )* ) ;
+    public final EObject rulePrimaryExpression() throws RecognitionException {
         EObject current = null;
 
         Token lv_operator_3_0=null;
         Token otherlv_5=null;
         Token otherlv_7=null;
         Token otherlv_11=null;
+        Token otherlv_14=null;
+        Token otherlv_15=null;
+        Token otherlv_17=null;
         EObject this_SequenceConstructionExpression_0 = null;
 
         EObject this_BaseExpression_1 = null;
@@ -34877,16 +34880,18 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
         EObject lv_operand_12_0 = null;
 
+        EObject lv_ownedRelationship_16_0 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalKerML.g:11963:2: ( ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) )* ) )
-            // InternalKerML.g:11964:2: ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) )* )
+            // InternalKerML.g:11963:2: ( ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) | ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' ) )* ) )
+            // InternalKerML.g:11964:2: ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) | ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' ) )* )
             {
-            // InternalKerML.g:11964:2: ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) )* )
-            // InternalKerML.g:11965:3: (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) )*
+            // InternalKerML.g:11964:2: ( (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) | ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' ) )* )
+            // InternalKerML.g:11965:3: (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression ) ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) | ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' ) )*
             {
             // InternalKerML.g:11965:3: (this_SequenceConstructionExpression_0= ruleSequenceConstructionExpression | this_BaseExpression_1= ruleBaseExpression )
             int alt235=2;
@@ -34911,7 +34916,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
 
-                      				newCompositeNode(grammarAccess.getSequenceExpressionAccess().getSequenceConstructionExpressionParserRuleCall_0_0());
+                      				newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getSequenceConstructionExpressionParserRuleCall_0_0());
                       			
                     }
                     pushFollow(FOLLOW_155);
@@ -34933,7 +34938,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
 
-                      				newCompositeNode(grammarAccess.getSequenceExpressionAccess().getBaseExpressionParserRuleCall_0_1());
+                      				newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getBaseExpressionParserRuleCall_0_1());
                       			
                     }
                     pushFollow(FOLLOW_155);
@@ -34953,10 +34958,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:11984:3: ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) )*
+            // InternalKerML.g:11984:3: ( ( () ( (lv_operator_3_0= '[' ) ) ( (lv_operand_4_0= ruleOwnedExpression ) ) otherlv_5= ']' ) | ( () otherlv_7= '->' ( (lv_operator_8_0= ruleName ) ) ( (lv_ownedRelationship_9_0= ruleBodyExpressionMember ) )+ ) | ( () otherlv_11= '.' ( (lv_operand_12_0= ruleFeatureReferenceExpression ) ) ) | ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' ) )*
             loop237:
             do {
-                int alt237=4;
+                int alt237=5;
                 switch ( input.LA(1) ) {
                 case 73:
                     {
@@ -34970,7 +34975,16 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     break;
                 case 120:
                     {
-                    alt237=3;
+                    int LA237_4 = input.LA(2);
+
+                    if ( ((LA237_4>=RULE_ID && LA237_4<=RULE_UNRESTRICTED_NAME)) ) {
+                        alt237=3;
+                    }
+                    else if ( (LA237_4==73) ) {
+                        alt237=4;
+                    }
+
+
                     }
                     break;
 
@@ -34989,7 +35003,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      						current = forceCreateModelElementAndAdd(
-            	      							grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_0_0(),
+            	      							grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_0_0(),
             	      							current);
             	      					
             	    }
@@ -35005,13 +35019,13 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    lv_operator_3_0=(Token)match(input,73,FOLLOW_33); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      							newLeafNode(lv_operator_3_0, grammarAccess.getSequenceExpressionAccess().getOperatorLeftSquareBracketKeyword_1_0_1_0());
+            	      							newLeafNode(lv_operator_3_0, grammarAccess.getPrimaryExpressionAccess().getOperatorLeftSquareBracketKeyword_1_0_1_0());
             	      						
             	    }
             	    if ( state.backtracking==0 ) {
 
             	      							if (current==null) {
-            	      								current = createModelElement(grammarAccess.getSequenceExpressionRule());
+            	      								current = createModelElement(grammarAccess.getPrimaryExpressionRule());
             	      							}
             	      							setWithLastConsumed(current, "operator", lv_operator_3_0, "[");
             	      						
@@ -35030,7 +35044,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      							newCompositeNode(grammarAccess.getSequenceExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_0_2_0());
+            	      							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandOwnedExpressionParserRuleCall_1_0_2_0());
             	      						
             	    }
             	    pushFollow(FOLLOW_44);
@@ -35041,7 +35055,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      							if (current==null) {
-            	      								current = createModelElementForParent(grammarAccess.getSequenceExpressionRule());
+            	      								current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
             	      							}
             	      							add(
             	      								current,
@@ -35060,7 +35074,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    otherlv_5=(Token)match(input,44,FOLLOW_155); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      					newLeafNode(otherlv_5, grammarAccess.getSequenceExpressionAccess().getRightSquareBracketKeyword_1_0_3());
+            	      					newLeafNode(otherlv_5, grammarAccess.getPrimaryExpressionAccess().getRightSquareBracketKeyword_1_0_3());
             	      				
             	    }
 
@@ -35081,7 +35095,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      						current = forceCreateModelElementAndAdd(
-            	      							grammarAccess.getSequenceExpressionAccess().getOperatorExpressionOperandAction_1_1_0(),
+            	      							grammarAccess.getPrimaryExpressionAccess().getOperatorExpressionOperandAction_1_1_0(),
             	      							current);
             	      					
             	    }
@@ -35091,7 +35105,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    otherlv_7=(Token)match(input,119,FOLLOW_4); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      					newLeafNode(otherlv_7, grammarAccess.getSequenceExpressionAccess().getHyphenMinusGreaterThanSignKeyword_1_1_1());
+            	      					newLeafNode(otherlv_7, grammarAccess.getPrimaryExpressionAccess().getHyphenMinusGreaterThanSignKeyword_1_1_1());
             	      				
             	    }
             	    // InternalKerML.g:12044:5: ( (lv_operator_8_0= ruleName ) )
@@ -35102,7 +35116,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      							newCompositeNode(grammarAccess.getSequenceExpressionAccess().getOperatorNameParserRuleCall_1_1_2_0());
+            	      							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperatorNameParserRuleCall_1_1_2_0());
             	      						
             	    }
             	    pushFollow(FOLLOW_4);
@@ -35113,7 +35127,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      							if (current==null) {
-            	      								current = createModelElementForParent(grammarAccess.getSequenceExpressionRule());
+            	      								current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
             	      							}
             	      							set(
             	      								current,
@@ -35150,7 +35164,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    	    {
             	    	    if ( state.backtracking==0 ) {
 
-            	    	      							newCompositeNode(grammarAccess.getSequenceExpressionAccess().getOwnedRelationshipBodyExpressionMemberParserRuleCall_1_1_3_0());
+            	    	      							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipBodyExpressionMemberParserRuleCall_1_1_3_0());
             	    	      						
             	    	    }
             	    	    pushFollow(FOLLOW_156);
@@ -35161,7 +35175,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    	    if ( state.backtracking==0 ) {
 
             	    	      							if (current==null) {
-            	    	      								current = createModelElementForParent(grammarAccess.getSequenceExpressionRule());
+            	    	      								current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
             	    	      							}
             	    	      							add(
             	    	      								current,
@@ -35206,7 +35220,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      						current = forceCreateModelElementAndAdd(
-            	      							grammarAccess.getSequenceExpressionAccess().getPathStepExpressionOperandAction_1_2_0(),
+            	      							grammarAccess.getPrimaryExpressionAccess().getPathStepExpressionOperandAction_1_2_0(),
             	      							current);
             	      					
             	    }
@@ -35216,7 +35230,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    otherlv_11=(Token)match(input,120,FOLLOW_4); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      					newLeafNode(otherlv_11, grammarAccess.getSequenceExpressionAccess().getFullStopKeyword_1_2_1());
+            	      					newLeafNode(otherlv_11, grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_2_1());
             	      				
             	    }
             	    // InternalKerML.g:12096:5: ( (lv_operand_12_0= ruleFeatureReferenceExpression ) )
@@ -35227,7 +35241,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      							newCompositeNode(grammarAccess.getSequenceExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0());
+            	      							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOperandFeatureReferenceExpressionParserRuleCall_1_2_2_0());
             	      						
             	    }
             	    pushFollow(FOLLOW_155);
@@ -35238,7 +35252,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      							if (current==null) {
-            	      								current = createModelElementForParent(grammarAccess.getSequenceExpressionRule());
+            	      								current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
             	      							}
             	      							add(
             	      								current,
@@ -35254,6 +35268,84 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             	    }
 
+
+            	    }
+
+
+            	    }
+            	    break;
+            	case 4 :
+            	    // InternalKerML.g:12117:4: ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' )
+            	    {
+            	    // InternalKerML.g:12117:4: ( () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']' )
+            	    // InternalKerML.g:12118:5: () otherlv_14= '.' otherlv_15= '[' ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) ) otherlv_17= ']'
+            	    {
+            	    // InternalKerML.g:12118:5: ()
+            	    // InternalKerML.g:12119:6: 
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      						current = forceCreateModelElementAndAdd(
+            	      							grammarAccess.getPrimaryExpressionAccess().getPathSelectExpressionOperandAction_1_3_0(),
+            	      							current);
+            	      					
+            	    }
+
+            	    }
+
+            	    otherlv_14=(Token)match(input,120,FOLLOW_42); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      					newLeafNode(otherlv_14, grammarAccess.getPrimaryExpressionAccess().getFullStopKeyword_1_3_1());
+            	      				
+            	    }
+            	    otherlv_15=(Token)match(input,73,FOLLOW_4); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      					newLeafNode(otherlv_15, grammarAccess.getPrimaryExpressionAccess().getLeftSquareBracketKeyword_1_3_2());
+            	      				
+            	    }
+            	    // InternalKerML.g:12133:5: ( (lv_ownedRelationship_16_0= ruleBodyExpressionMember ) )
+            	    // InternalKerML.g:12134:6: (lv_ownedRelationship_16_0= ruleBodyExpressionMember )
+            	    {
+            	    // InternalKerML.g:12134:6: (lv_ownedRelationship_16_0= ruleBodyExpressionMember )
+            	    // InternalKerML.g:12135:7: lv_ownedRelationship_16_0= ruleBodyExpressionMember
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      							newCompositeNode(grammarAccess.getPrimaryExpressionAccess().getOwnedRelationshipBodyExpressionMemberParserRuleCall_1_3_3_0());
+            	      						
+            	    }
+            	    pushFollow(FOLLOW_44);
+            	    lv_ownedRelationship_16_0=ruleBodyExpressionMember();
+
+            	    state._fsp--;
+            	    if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      							if (current==null) {
+            	      								current = createModelElementForParent(grammarAccess.getPrimaryExpressionRule());
+            	      							}
+            	      							add(
+            	      								current,
+            	      								"ownedRelationship",
+            	      								lv_ownedRelationship_16_0,
+            	      								"org.omg.kerml.expressions.xtext.KerMLExpressions.BodyExpressionMember");
+            	      							afterParserOrEnumRuleCall();
+            	      						
+            	    }
+
+            	    }
+
+
+            	    }
+
+            	    otherlv_17=(Token)match(input,44,FOLLOW_155); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      					newLeafNode(otherlv_17, grammarAccess.getPrimaryExpressionAccess().getRightSquareBracketKeyword_1_3_4());
+            	      				
+            	    }
 
             	    }
 
@@ -35287,11 +35379,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleSequenceExpression"
+    // $ANTLR end "rulePrimaryExpression"
 
 
     // $ANTLR start "entryRuleBodyExpressionMember"
-    // InternalKerML.g:12121:1: entryRuleBodyExpressionMember returns [EObject current=null] : iv_ruleBodyExpressionMember= ruleBodyExpressionMember EOF ;
+    // InternalKerML.g:12162:1: entryRuleBodyExpressionMember returns [EObject current=null] : iv_ruleBodyExpressionMember= ruleBodyExpressionMember EOF ;
     public final EObject entryRuleBodyExpressionMember() throws RecognitionException {
         EObject current = null;
 
@@ -35299,8 +35391,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12121:61: (iv_ruleBodyExpressionMember= ruleBodyExpressionMember EOF )
-            // InternalKerML.g:12122:2: iv_ruleBodyExpressionMember= ruleBodyExpressionMember EOF
+            // InternalKerML.g:12162:61: (iv_ruleBodyExpressionMember= ruleBodyExpressionMember EOF )
+            // InternalKerML.g:12163:2: iv_ruleBodyExpressionMember= ruleBodyExpressionMember EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBodyExpressionMemberRule()); 
@@ -35331,7 +35423,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBodyExpressionMember"
-    // InternalKerML.g:12128:1: ruleBodyExpressionMember returns [EObject current=null] : ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) ) ;
+    // InternalKerML.g:12169:1: ruleBodyExpressionMember returns [EObject current=null] : ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) ) ;
     public final EObject ruleBodyExpressionMember() throws RecognitionException {
         EObject current = null;
 
@@ -35342,14 +35434,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12134:2: ( ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) ) )
-            // InternalKerML.g:12135:2: ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) )
+            // InternalKerML.g:12175:2: ( ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) ) )
+            // InternalKerML.g:12176:2: ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) )
             {
-            // InternalKerML.g:12135:2: ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) )
-            // InternalKerML.g:12136:3: (lv_ownedRelatedElement_0_0= ruleBodyExpression )
+            // InternalKerML.g:12176:2: ( (lv_ownedRelatedElement_0_0= ruleBodyExpression ) )
+            // InternalKerML.g:12177:3: (lv_ownedRelatedElement_0_0= ruleBodyExpression )
             {
-            // InternalKerML.g:12136:3: (lv_ownedRelatedElement_0_0= ruleBodyExpression )
-            // InternalKerML.g:12137:4: lv_ownedRelatedElement_0_0= ruleBodyExpression
+            // InternalKerML.g:12177:3: (lv_ownedRelatedElement_0_0= ruleBodyExpression )
+            // InternalKerML.g:12178:4: lv_ownedRelatedElement_0_0= ruleBodyExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -35402,7 +35494,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBodyExpression"
-    // InternalKerML.g:12157:1: entryRuleBodyExpression returns [EObject current=null] : iv_ruleBodyExpression= ruleBodyExpression EOF ;
+    // InternalKerML.g:12198:1: entryRuleBodyExpression returns [EObject current=null] : iv_ruleBodyExpression= ruleBodyExpression EOF ;
     public final EObject entryRuleBodyExpression() throws RecognitionException {
         EObject current = null;
 
@@ -35410,8 +35502,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12157:55: (iv_ruleBodyExpression= ruleBodyExpression EOF )
-            // InternalKerML.g:12158:2: iv_ruleBodyExpression= ruleBodyExpression EOF
+            // InternalKerML.g:12198:55: (iv_ruleBodyExpression= ruleBodyExpression EOF )
+            // InternalKerML.g:12199:2: iv_ruleBodyExpression= ruleBodyExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBodyExpressionRule()); 
@@ -35442,7 +35534,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBodyExpression"
-    // InternalKerML.g:12164:1: ruleBodyExpression returns [EObject current=null] : ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) ) ;
+    // InternalKerML.g:12205:1: ruleBodyExpression returns [EObject current=null] : ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) ) ;
     public final EObject ruleBodyExpression() throws RecognitionException {
         EObject current = null;
 
@@ -35461,10 +35553,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12170:2: ( ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) ) )
-            // InternalKerML.g:12171:2: ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) )
+            // InternalKerML.g:12211:2: ( ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) ) )
+            // InternalKerML.g:12212:2: ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) )
             {
-            // InternalKerML.g:12171:2: ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) )
+            // InternalKerML.g:12212:2: ( ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) ) | ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) ) )
             int alt239=2;
             int LA239_0 = input.LA(1);
 
@@ -35511,19 +35603,19 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt239) {
                 case 1 :
-                    // InternalKerML.g:12172:3: ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) )
+                    // InternalKerML.g:12213:3: ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) )
                     {
-                    // InternalKerML.g:12172:3: ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) )
-                    // InternalKerML.g:12173:4: ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' )
+                    // InternalKerML.g:12213:3: ( ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' ) )
+                    // InternalKerML.g:12214:4: ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )=> ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' )
                     {
-                    // InternalKerML.g:12193:4: ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' )
-                    // InternalKerML.g:12194:5: ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')'
+                    // InternalKerML.g:12234:4: ( ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')' )
+                    // InternalKerML.g:12235:5: ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) ) ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )* otherlv_2= '(' ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) ) otherlv_4= ')'
                     {
-                    // InternalKerML.g:12194:5: ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) )
-                    // InternalKerML.g:12195:6: (lv_ownedRelationship_0_0= ruleBodyParameterMember )
+                    // InternalKerML.g:12235:5: ( (lv_ownedRelationship_0_0= ruleBodyParameterMember ) )
+                    // InternalKerML.g:12236:6: (lv_ownedRelationship_0_0= ruleBodyParameterMember )
                     {
-                    // InternalKerML.g:12195:6: (lv_ownedRelationship_0_0= ruleBodyParameterMember )
-                    // InternalKerML.g:12196:7: lv_ownedRelationship_0_0= ruleBodyParameterMember
+                    // InternalKerML.g:12236:6: (lv_ownedRelationship_0_0= ruleBodyParameterMember )
+                    // InternalKerML.g:12237:7: lv_ownedRelationship_0_0= ruleBodyParameterMember
                     {
                     if ( state.backtracking==0 ) {
 
@@ -35554,7 +35646,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalKerML.g:12213:5: ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )*
+                    // InternalKerML.g:12254:5: ( (lv_ownedRelationship_1_0= ruleBodyParameterMember ) )*
                     loop238:
                     do {
                         int alt238=2;
@@ -35567,10 +35659,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                         switch (alt238) {
                     	case 1 :
-                    	    // InternalKerML.g:12214:6: (lv_ownedRelationship_1_0= ruleBodyParameterMember )
+                    	    // InternalKerML.g:12255:6: (lv_ownedRelationship_1_0= ruleBodyParameterMember )
                     	    {
-                    	    // InternalKerML.g:12214:6: (lv_ownedRelationship_1_0= ruleBodyParameterMember )
-                    	    // InternalKerML.g:12215:7: lv_ownedRelationship_1_0= ruleBodyParameterMember
+                    	    // InternalKerML.g:12255:6: (lv_ownedRelationship_1_0= ruleBodyParameterMember )
+                    	    // InternalKerML.g:12256:7: lv_ownedRelationship_1_0= ruleBodyParameterMember
                     	    {
                     	    if ( state.backtracking==0 ) {
 
@@ -35613,11 +35705,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       					newLeafNode(otherlv_2, grammarAccess.getBodyExpressionAccess().getLeftParenthesisKeyword_0_0_2());
                       				
                     }
-                    // InternalKerML.g:12236:5: ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) )
-                    // InternalKerML.g:12237:6: (lv_ownedRelationship_3_0= ruleResultExpressionMember )
+                    // InternalKerML.g:12277:5: ( (lv_ownedRelationship_3_0= ruleResultExpressionMember ) )
+                    // InternalKerML.g:12278:6: (lv_ownedRelationship_3_0= ruleResultExpressionMember )
                     {
-                    // InternalKerML.g:12237:6: (lv_ownedRelationship_3_0= ruleResultExpressionMember )
-                    // InternalKerML.g:12238:7: lv_ownedRelationship_3_0= ruleResultExpressionMember
+                    // InternalKerML.g:12278:6: (lv_ownedRelationship_3_0= ruleResultExpressionMember )
+                    // InternalKerML.g:12279:7: lv_ownedRelationship_3_0= ruleResultExpressionMember
                     {
                     if ( state.backtracking==0 ) {
 
@@ -35664,13 +35756,13 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:12262:3: ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) )
+                    // InternalKerML.g:12303:3: ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) )
                     {
-                    // InternalKerML.g:12262:3: ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) )
-                    // InternalKerML.g:12263:4: (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping )
+                    // InternalKerML.g:12303:3: ( (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping ) )
+                    // InternalKerML.g:12304:4: (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping )
                     {
-                    // InternalKerML.g:12263:4: (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping )
-                    // InternalKerML.g:12264:5: lv_ownedRelationship_5_0= ruleOwnedFeatureTyping
+                    // InternalKerML.g:12304:4: (lv_ownedRelationship_5_0= ruleOwnedFeatureTyping )
+                    // InternalKerML.g:12305:5: lv_ownedRelationship_5_0= ruleOwnedFeatureTyping
                     {
                     if ( state.backtracking==0 ) {
 
@@ -35729,7 +35821,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBodyParameterMember"
-    // InternalKerML.g:12285:1: entryRuleBodyParameterMember returns [EObject current=null] : iv_ruleBodyParameterMember= ruleBodyParameterMember EOF ;
+    // InternalKerML.g:12326:1: entryRuleBodyParameterMember returns [EObject current=null] : iv_ruleBodyParameterMember= ruleBodyParameterMember EOF ;
     public final EObject entryRuleBodyParameterMember() throws RecognitionException {
         EObject current = null;
 
@@ -35737,8 +35829,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12285:60: (iv_ruleBodyParameterMember= ruleBodyParameterMember EOF )
-            // InternalKerML.g:12286:2: iv_ruleBodyParameterMember= ruleBodyParameterMember EOF
+            // InternalKerML.g:12326:60: (iv_ruleBodyParameterMember= ruleBodyParameterMember EOF )
+            // InternalKerML.g:12327:2: iv_ruleBodyParameterMember= ruleBodyParameterMember EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBodyParameterMemberRule()); 
@@ -35769,7 +35861,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBodyParameterMember"
-    // InternalKerML.g:12292:1: ruleBodyParameterMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) ) ;
+    // InternalKerML.g:12333:1: ruleBodyParameterMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) ) ;
     public final EObject ruleBodyParameterMember() throws RecognitionException {
         EObject current = null;
 
@@ -35782,17 +35874,17 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12298:2: ( ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) ) )
-            // InternalKerML.g:12299:2: ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) )
+            // InternalKerML.g:12339:2: ( ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) ) )
+            // InternalKerML.g:12340:2: ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) )
             {
-            // InternalKerML.g:12299:2: ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) )
-            // InternalKerML.g:12300:3: ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) )
+            // InternalKerML.g:12340:2: ( ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) ) )
+            // InternalKerML.g:12341:3: ( (lv_memberName_0_0= ruleName ) ) ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) )
             {
-            // InternalKerML.g:12300:3: ( (lv_memberName_0_0= ruleName ) )
-            // InternalKerML.g:12301:4: (lv_memberName_0_0= ruleName )
+            // InternalKerML.g:12341:3: ( (lv_memberName_0_0= ruleName ) )
+            // InternalKerML.g:12342:4: (lv_memberName_0_0= ruleName )
             {
-            // InternalKerML.g:12301:4: (lv_memberName_0_0= ruleName )
-            // InternalKerML.g:12302:5: lv_memberName_0_0= ruleName
+            // InternalKerML.g:12342:4: (lv_memberName_0_0= ruleName )
+            // InternalKerML.g:12343:5: lv_memberName_0_0= ruleName
             {
             if ( state.backtracking==0 ) {
 
@@ -35823,11 +35915,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:12319:3: ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) )
-            // InternalKerML.g:12320:4: (lv_ownedRelatedElement_1_0= ruleBodyParameter )
+            // InternalKerML.g:12360:3: ( (lv_ownedRelatedElement_1_0= ruleBodyParameter ) )
+            // InternalKerML.g:12361:4: (lv_ownedRelatedElement_1_0= ruleBodyParameter )
             {
-            // InternalKerML.g:12320:4: (lv_ownedRelatedElement_1_0= ruleBodyParameter )
-            // InternalKerML.g:12321:5: lv_ownedRelatedElement_1_0= ruleBodyParameter
+            // InternalKerML.g:12361:4: (lv_ownedRelatedElement_1_0= ruleBodyParameter )
+            // InternalKerML.g:12362:5: lv_ownedRelatedElement_1_0= ruleBodyParameter
             {
             if ( state.backtracking==0 ) {
 
@@ -35883,7 +35975,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSequenceConstructionExpression"
-    // InternalKerML.g:12342:1: entryRuleSequenceConstructionExpression returns [EObject current=null] : iv_ruleSequenceConstructionExpression= ruleSequenceConstructionExpression EOF ;
+    // InternalKerML.g:12383:1: entryRuleSequenceConstructionExpression returns [EObject current=null] : iv_ruleSequenceConstructionExpression= ruleSequenceConstructionExpression EOF ;
     public final EObject entryRuleSequenceConstructionExpression() throws RecognitionException {
         EObject current = null;
 
@@ -35891,8 +35983,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12342:71: (iv_ruleSequenceConstructionExpression= ruleSequenceConstructionExpression EOF )
-            // InternalKerML.g:12343:2: iv_ruleSequenceConstructionExpression= ruleSequenceConstructionExpression EOF
+            // InternalKerML.g:12383:71: (iv_ruleSequenceConstructionExpression= ruleSequenceConstructionExpression EOF )
+            // InternalKerML.g:12384:2: iv_ruleSequenceConstructionExpression= ruleSequenceConstructionExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getSequenceConstructionExpressionRule()); 
@@ -35923,7 +36015,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSequenceConstructionExpression"
-    // InternalKerML.g:12349:1: ruleSequenceConstructionExpression returns [EObject current=null] : ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) ) ;
+    // InternalKerML.g:12390:1: ruleSequenceConstructionExpression returns [EObject current=null] : ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) ) ;
     public final EObject ruleSequenceConstructionExpression() throws RecognitionException {
         EObject current = null;
 
@@ -35944,21 +36036,21 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12355:2: ( ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) ) )
-            // InternalKerML.g:12356:2: ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) )
+            // InternalKerML.g:12396:2: ( ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) ) )
+            // InternalKerML.g:12397:2: ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) )
             {
-            // InternalKerML.g:12356:2: ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) )
+            // InternalKerML.g:12397:2: ( ( () otherlv_1= '{' otherlv_2= '}' ) | (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' ) )
             int alt241=2;
             int LA241_0 = input.LA(1);
 
             if ( (LA241_0==17) ) {
                 int LA241_1 = input.LA(2);
 
-                if ( (LA241_1==18) ) {
-                    alt241=1;
-                }
-                else if ( ((LA241_1>=RULE_STRING_VALUE && LA241_1<=RULE_UNRESTRICTED_NAME)||LA241_1==17||LA241_1==32||LA241_1==42||LA241_1==49||LA241_1==52||LA241_1==80||(LA241_1>=106 && LA241_1<=108)||(LA241_1>=113 && LA241_1<=114)||LA241_1==118||(LA241_1>=120 && LA241_1<=123)) ) {
+                if ( ((LA241_1>=RULE_STRING_VALUE && LA241_1<=RULE_UNRESTRICTED_NAME)||LA241_1==17||LA241_1==32||LA241_1==42||LA241_1==49||LA241_1==52||LA241_1==80||(LA241_1>=106 && LA241_1<=108)||(LA241_1>=113 && LA241_1<=114)||LA241_1==118||(LA241_1>=120 && LA241_1<=123)) ) {
                     alt241=2;
+                }
+                else if ( (LA241_1==18) ) {
+                    alt241=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -35977,13 +36069,13 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt241) {
                 case 1 :
-                    // InternalKerML.g:12357:3: ( () otherlv_1= '{' otherlv_2= '}' )
+                    // InternalKerML.g:12398:3: ( () otherlv_1= '{' otherlv_2= '}' )
                     {
-                    // InternalKerML.g:12357:3: ( () otherlv_1= '{' otherlv_2= '}' )
-                    // InternalKerML.g:12358:4: () otherlv_1= '{' otherlv_2= '}'
+                    // InternalKerML.g:12398:3: ( () otherlv_1= '{' otherlv_2= '}' )
+                    // InternalKerML.g:12399:4: () otherlv_1= '{' otherlv_2= '}'
                     {
-                    // InternalKerML.g:12358:4: ()
-                    // InternalKerML.g:12359:5: 
+                    // InternalKerML.g:12399:4: ()
+                    // InternalKerML.g:12400:5: 
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36014,10 +36106,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:12375:3: (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' )
+                    // InternalKerML.g:12416:3: (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' )
                     {
-                    // InternalKerML.g:12375:3: (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' )
-                    // InternalKerML.g:12376:4: otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}'
+                    // InternalKerML.g:12416:3: (otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}' )
+                    // InternalKerML.g:12417:4: otherlv_3= '{' this_OwnedExpression_4= ruleOwnedExpression ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )? otherlv_11= '}'
                     {
                     otherlv_3=(Token)match(input,17,FOLLOW_33); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -36041,7 +36133,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       				afterParserOrEnumRuleCall();
                       			
                     }
-                    // InternalKerML.g:12388:4: ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )?
+                    // InternalKerML.g:12429:4: ( ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) ) | ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) ) )?
                     int alt240=3;
                     int LA240_0 = input.LA(1);
 
@@ -36053,13 +36145,13 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt240) {
                         case 1 :
-                            // InternalKerML.g:12389:5: ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) )
+                            // InternalKerML.g:12430:5: ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) )
                             {
-                            // InternalKerML.g:12389:5: ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) )
-                            // InternalKerML.g:12390:6: () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) )
+                            // InternalKerML.g:12430:5: ( () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) ) )
+                            // InternalKerML.g:12431:6: () ( (lv_operator_6_0= ',' ) ) ( (lv_operand_7_0= ruleSequenceElementList ) )
                             {
-                            // InternalKerML.g:12390:6: ()
-                            // InternalKerML.g:12391:7: 
+                            // InternalKerML.g:12431:6: ()
+                            // InternalKerML.g:12432:7: 
                             {
                             if ( state.backtracking==0 ) {
 
@@ -36071,11 +36163,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalKerML.g:12397:6: ( (lv_operator_6_0= ',' ) )
-                            // InternalKerML.g:12398:7: (lv_operator_6_0= ',' )
+                            // InternalKerML.g:12438:6: ( (lv_operator_6_0= ',' ) )
+                            // InternalKerML.g:12439:7: (lv_operator_6_0= ',' )
                             {
-                            // InternalKerML.g:12398:7: (lv_operator_6_0= ',' )
-                            // InternalKerML.g:12399:8: lv_operator_6_0= ','
+                            // InternalKerML.g:12439:7: (lv_operator_6_0= ',' )
+                            // InternalKerML.g:12440:8: lv_operator_6_0= ','
                             {
                             lv_operator_6_0=(Token)match(input,22,FOLLOW_33); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -36097,11 +36189,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalKerML.g:12411:6: ( (lv_operand_7_0= ruleSequenceElementList ) )
-                            // InternalKerML.g:12412:7: (lv_operand_7_0= ruleSequenceElementList )
+                            // InternalKerML.g:12452:6: ( (lv_operand_7_0= ruleSequenceElementList ) )
+                            // InternalKerML.g:12453:7: (lv_operand_7_0= ruleSequenceElementList )
                             {
-                            // InternalKerML.g:12412:7: (lv_operand_7_0= ruleSequenceElementList )
-                            // InternalKerML.g:12413:8: lv_operand_7_0= ruleSequenceElementList
+                            // InternalKerML.g:12453:7: (lv_operand_7_0= ruleSequenceElementList )
+                            // InternalKerML.g:12454:8: lv_operand_7_0= ruleSequenceElementList
                             {
                             if ( state.backtracking==0 ) {
 
@@ -36139,13 +36231,13 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalKerML.g:12432:5: ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) )
+                            // InternalKerML.g:12473:5: ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) )
                             {
-                            // InternalKerML.g:12432:5: ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) )
-                            // InternalKerML.g:12433:6: () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) )
+                            // InternalKerML.g:12473:5: ( () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) ) )
+                            // InternalKerML.g:12474:6: () ( (lv_operator_9_0= '..' ) ) ( (lv_operand_10_0= ruleOwnedExpression ) )
                             {
-                            // InternalKerML.g:12433:6: ()
-                            // InternalKerML.g:12434:7: 
+                            // InternalKerML.g:12474:6: ()
+                            // InternalKerML.g:12475:7: 
                             {
                             if ( state.backtracking==0 ) {
 
@@ -36157,11 +36249,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalKerML.g:12440:6: ( (lv_operator_9_0= '..' ) )
-                            // InternalKerML.g:12441:7: (lv_operator_9_0= '..' )
+                            // InternalKerML.g:12481:6: ( (lv_operator_9_0= '..' ) )
+                            // InternalKerML.g:12482:7: (lv_operator_9_0= '..' )
                             {
-                            // InternalKerML.g:12441:7: (lv_operator_9_0= '..' )
-                            // InternalKerML.g:12442:8: lv_operator_9_0= '..'
+                            // InternalKerML.g:12482:7: (lv_operator_9_0= '..' )
+                            // InternalKerML.g:12483:8: lv_operator_9_0= '..'
                             {
                             lv_operator_9_0=(Token)match(input,74,FOLLOW_33); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -36183,11 +36275,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalKerML.g:12454:6: ( (lv_operand_10_0= ruleOwnedExpression ) )
-                            // InternalKerML.g:12455:7: (lv_operand_10_0= ruleOwnedExpression )
+                            // InternalKerML.g:12495:6: ( (lv_operand_10_0= ruleOwnedExpression ) )
+                            // InternalKerML.g:12496:7: (lv_operand_10_0= ruleOwnedExpression )
                             {
-                            // InternalKerML.g:12455:7: (lv_operand_10_0= ruleOwnedExpression )
-                            // InternalKerML.g:12456:8: lv_operand_10_0= ruleOwnedExpression
+                            // InternalKerML.g:12496:7: (lv_operand_10_0= ruleOwnedExpression )
+                            // InternalKerML.g:12497:8: lv_operand_10_0= ruleOwnedExpression
                             {
                             if ( state.backtracking==0 ) {
 
@@ -36264,7 +36356,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSequenceElementList"
-    // InternalKerML.g:12484:1: entryRuleSequenceElementList returns [EObject current=null] : iv_ruleSequenceElementList= ruleSequenceElementList EOF ;
+    // InternalKerML.g:12525:1: entryRuleSequenceElementList returns [EObject current=null] : iv_ruleSequenceElementList= ruleSequenceElementList EOF ;
     public final EObject entryRuleSequenceElementList() throws RecognitionException {
         EObject current = null;
 
@@ -36272,8 +36364,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12484:60: (iv_ruleSequenceElementList= ruleSequenceElementList EOF )
-            // InternalKerML.g:12485:2: iv_ruleSequenceElementList= ruleSequenceElementList EOF
+            // InternalKerML.g:12525:60: (iv_ruleSequenceElementList= ruleSequenceElementList EOF )
+            // InternalKerML.g:12526:2: iv_ruleSequenceElementList= ruleSequenceElementList EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getSequenceElementListRule()); 
@@ -36304,7 +36396,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSequenceElementList"
-    // InternalKerML.g:12491:1: ruleSequenceElementList returns [EObject current=null] : (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? ) ;
+    // InternalKerML.g:12532:1: ruleSequenceElementList returns [EObject current=null] : (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? ) ;
     public final EObject ruleSequenceElementList() throws RecognitionException {
         EObject current = null;
 
@@ -36318,11 +36410,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12497:2: ( (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? ) )
-            // InternalKerML.g:12498:2: (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? )
+            // InternalKerML.g:12538:2: ( (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? ) )
+            // InternalKerML.g:12539:2: (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? )
             {
-            // InternalKerML.g:12498:2: (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? )
-            // InternalKerML.g:12499:3: this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )?
+            // InternalKerML.g:12539:2: (this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )? )
+            // InternalKerML.g:12540:3: this_OwnedExpression_0= ruleOwnedExpression ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )?
             {
             if ( state.backtracking==0 ) {
 
@@ -36340,7 +36432,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalKerML.g:12507:3: ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )?
+            // InternalKerML.g:12548:3: ( () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) ) )?
             int alt242=2;
             int LA242_0 = input.LA(1);
 
@@ -36349,10 +36441,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt242) {
                 case 1 :
-                    // InternalKerML.g:12508:4: () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) )
+                    // InternalKerML.g:12549:4: () ( (lv_operator_2_0= ',' ) ) ( (lv_operand_3_0= ruleSequenceElementList ) )
                     {
-                    // InternalKerML.g:12508:4: ()
-                    // InternalKerML.g:12509:5: 
+                    // InternalKerML.g:12549:4: ()
+                    // InternalKerML.g:12550:5: 
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36364,11 +36456,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalKerML.g:12515:4: ( (lv_operator_2_0= ',' ) )
-                    // InternalKerML.g:12516:5: (lv_operator_2_0= ',' )
+                    // InternalKerML.g:12556:4: ( (lv_operator_2_0= ',' ) )
+                    // InternalKerML.g:12557:5: (lv_operator_2_0= ',' )
                     {
-                    // InternalKerML.g:12516:5: (lv_operator_2_0= ',' )
-                    // InternalKerML.g:12517:6: lv_operator_2_0= ','
+                    // InternalKerML.g:12557:5: (lv_operator_2_0= ',' )
+                    // InternalKerML.g:12558:6: lv_operator_2_0= ','
                     {
                     lv_operator_2_0=(Token)match(input,22,FOLLOW_33); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -36390,11 +36482,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalKerML.g:12529:4: ( (lv_operand_3_0= ruleSequenceElementList ) )
-                    // InternalKerML.g:12530:5: (lv_operand_3_0= ruleSequenceElementList )
+                    // InternalKerML.g:12570:4: ( (lv_operand_3_0= ruleSequenceElementList ) )
+                    // InternalKerML.g:12571:5: (lv_operand_3_0= ruleSequenceElementList )
                     {
-                    // InternalKerML.g:12530:5: (lv_operand_3_0= ruleSequenceElementList )
-                    // InternalKerML.g:12531:6: lv_operand_3_0= ruleSequenceElementList
+                    // InternalKerML.g:12571:5: (lv_operand_3_0= ruleSequenceElementList )
+                    // InternalKerML.g:12572:6: lv_operand_3_0= ruleSequenceElementList
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36456,7 +36548,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBaseExpression"
-    // InternalKerML.g:12553:1: entryRuleBaseExpression returns [EObject current=null] : iv_ruleBaseExpression= ruleBaseExpression EOF ;
+    // InternalKerML.g:12594:1: entryRuleBaseExpression returns [EObject current=null] : iv_ruleBaseExpression= ruleBaseExpression EOF ;
     public final EObject entryRuleBaseExpression() throws RecognitionException {
         EObject current = null;
 
@@ -36464,8 +36556,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12553:55: (iv_ruleBaseExpression= ruleBaseExpression EOF )
-            // InternalKerML.g:12554:2: iv_ruleBaseExpression= ruleBaseExpression EOF
+            // InternalKerML.g:12594:55: (iv_ruleBaseExpression= ruleBaseExpression EOF )
+            // InternalKerML.g:12595:2: iv_ruleBaseExpression= ruleBaseExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBaseExpressionRule()); 
@@ -36496,7 +36588,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBaseExpression"
-    // InternalKerML.g:12560:1: ruleBaseExpression returns [EObject current=null] : (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) ) ;
+    // InternalKerML.g:12601:1: ruleBaseExpression returns [EObject current=null] : (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) ) ;
     public final EObject ruleBaseExpression() throws RecognitionException {
         EObject current = null;
 
@@ -36517,15 +36609,15 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12566:2: ( (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) ) )
-            // InternalKerML.g:12567:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) )
+            // InternalKerML.g:12607:2: ( (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) ) )
+            // InternalKerML.g:12608:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) )
             {
-            // InternalKerML.g:12567:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) )
+            // InternalKerML.g:12608:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) )
             int alt243=5;
             alt243 = dfa243.predict(input);
             switch (alt243) {
                 case 1 :
-                    // InternalKerML.g:12568:3: this_NullExpression_0= ruleNullExpression
+                    // InternalKerML.g:12609:3: this_NullExpression_0= ruleNullExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36547,7 +36639,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:12577:3: this_LiteralExpression_1= ruleLiteralExpression
+                    // InternalKerML.g:12618:3: this_LiteralExpression_1= ruleLiteralExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36569,7 +36661,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalKerML.g:12586:3: this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression
+                    // InternalKerML.g:12627:3: this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36591,7 +36683,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalKerML.g:12595:3: this_InvocationExpression_3= ruleInvocationExpression
+                    // InternalKerML.g:12636:3: this_InvocationExpression_3= ruleInvocationExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -36613,10 +36705,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalKerML.g:12604:3: (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' )
+                    // InternalKerML.g:12645:3: (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' )
                     {
-                    // InternalKerML.g:12604:3: (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' )
-                    // InternalKerML.g:12605:4: otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')'
+                    // InternalKerML.g:12645:3: (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' )
+                    // InternalKerML.g:12646:4: otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')'
                     {
                     otherlv_4=(Token)match(input,80,FOLLOW_33); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -36677,7 +36769,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeatureReferenceExpression"
-    // InternalKerML.g:12626:1: entryRuleFeatureReferenceExpression returns [EObject current=null] : iv_ruleFeatureReferenceExpression= ruleFeatureReferenceExpression EOF ;
+    // InternalKerML.g:12667:1: entryRuleFeatureReferenceExpression returns [EObject current=null] : iv_ruleFeatureReferenceExpression= ruleFeatureReferenceExpression EOF ;
     public final EObject entryRuleFeatureReferenceExpression() throws RecognitionException {
         EObject current = null;
 
@@ -36685,8 +36777,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12626:67: (iv_ruleFeatureReferenceExpression= ruleFeatureReferenceExpression EOF )
-            // InternalKerML.g:12627:2: iv_ruleFeatureReferenceExpression= ruleFeatureReferenceExpression EOF
+            // InternalKerML.g:12667:67: (iv_ruleFeatureReferenceExpression= ruleFeatureReferenceExpression EOF )
+            // InternalKerML.g:12668:2: iv_ruleFeatureReferenceExpression= ruleFeatureReferenceExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFeatureReferenceExpressionRule()); 
@@ -36717,7 +36809,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureReferenceExpression"
-    // InternalKerML.g:12633:1: ruleFeatureReferenceExpression returns [EObject current=null] : ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) ) ;
+    // InternalKerML.g:12674:1: ruleFeatureReferenceExpression returns [EObject current=null] : ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) ) ;
     public final EObject ruleFeatureReferenceExpression() throws RecognitionException {
         EObject current = null;
 
@@ -36728,14 +36820,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12639:2: ( ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) ) )
-            // InternalKerML.g:12640:2: ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) )
+            // InternalKerML.g:12680:2: ( ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) ) )
+            // InternalKerML.g:12681:2: ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) )
             {
-            // InternalKerML.g:12640:2: ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) )
-            // InternalKerML.g:12641:3: (lv_ownedRelationship_0_0= ruleFeatureReferenceMember )
+            // InternalKerML.g:12681:2: ( (lv_ownedRelationship_0_0= ruleFeatureReferenceMember ) )
+            // InternalKerML.g:12682:3: (lv_ownedRelationship_0_0= ruleFeatureReferenceMember )
             {
-            // InternalKerML.g:12641:3: (lv_ownedRelationship_0_0= ruleFeatureReferenceMember )
-            // InternalKerML.g:12642:4: lv_ownedRelationship_0_0= ruleFeatureReferenceMember
+            // InternalKerML.g:12682:3: (lv_ownedRelationship_0_0= ruleFeatureReferenceMember )
+            // InternalKerML.g:12683:4: lv_ownedRelationship_0_0= ruleFeatureReferenceMember
             {
             if ( state.backtracking==0 ) {
 
@@ -36788,7 +36880,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFeatureReferenceMember"
-    // InternalKerML.g:12662:1: entryRuleFeatureReferenceMember returns [EObject current=null] : iv_ruleFeatureReferenceMember= ruleFeatureReferenceMember EOF ;
+    // InternalKerML.g:12703:1: entryRuleFeatureReferenceMember returns [EObject current=null] : iv_ruleFeatureReferenceMember= ruleFeatureReferenceMember EOF ;
     public final EObject entryRuleFeatureReferenceMember() throws RecognitionException {
         EObject current = null;
 
@@ -36796,8 +36888,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12662:63: (iv_ruleFeatureReferenceMember= ruleFeatureReferenceMember EOF )
-            // InternalKerML.g:12663:2: iv_ruleFeatureReferenceMember= ruleFeatureReferenceMember EOF
+            // InternalKerML.g:12703:63: (iv_ruleFeatureReferenceMember= ruleFeatureReferenceMember EOF )
+            // InternalKerML.g:12704:2: iv_ruleFeatureReferenceMember= ruleFeatureReferenceMember EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getFeatureReferenceMemberRule()); 
@@ -36828,7 +36920,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureReferenceMember"
-    // InternalKerML.g:12669:1: ruleFeatureReferenceMember returns [EObject current=null] : ( ( ruleQualifiedName ) ) ;
+    // InternalKerML.g:12710:1: ruleFeatureReferenceMember returns [EObject current=null] : ( ( ruleQualifiedName ) ) ;
     public final EObject ruleFeatureReferenceMember() throws RecognitionException {
         EObject current = null;
 
@@ -36836,14 +36928,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12675:2: ( ( ( ruleQualifiedName ) ) )
-            // InternalKerML.g:12676:2: ( ( ruleQualifiedName ) )
+            // InternalKerML.g:12716:2: ( ( ( ruleQualifiedName ) ) )
+            // InternalKerML.g:12717:2: ( ( ruleQualifiedName ) )
             {
-            // InternalKerML.g:12676:2: ( ( ruleQualifiedName ) )
-            // InternalKerML.g:12677:3: ( ruleQualifiedName )
+            // InternalKerML.g:12717:2: ( ( ruleQualifiedName ) )
+            // InternalKerML.g:12718:3: ( ruleQualifiedName )
             {
-            // InternalKerML.g:12677:3: ( ruleQualifiedName )
-            // InternalKerML.g:12678:4: ruleQualifiedName
+            // InternalKerML.g:12718:3: ( ruleQualifiedName )
+            // InternalKerML.g:12719:4: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
 
@@ -36895,7 +36987,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInvocationExpression"
-    // InternalKerML.g:12695:1: entryRuleInvocationExpression returns [EObject current=null] : iv_ruleInvocationExpression= ruleInvocationExpression EOF ;
+    // InternalKerML.g:12736:1: entryRuleInvocationExpression returns [EObject current=null] : iv_ruleInvocationExpression= ruleInvocationExpression EOF ;
     public final EObject entryRuleInvocationExpression() throws RecognitionException {
         EObject current = null;
 
@@ -36903,8 +36995,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12695:61: (iv_ruleInvocationExpression= ruleInvocationExpression EOF )
-            // InternalKerML.g:12696:2: iv_ruleInvocationExpression= ruleInvocationExpression EOF
+            // InternalKerML.g:12736:61: (iv_ruleInvocationExpression= ruleInvocationExpression EOF )
+            // InternalKerML.g:12737:2: iv_ruleInvocationExpression= ruleInvocationExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getInvocationExpressionRule()); 
@@ -36935,7 +37027,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInvocationExpression"
-    // InternalKerML.g:12702:1: ruleInvocationExpression returns [EObject current=null] : ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' ) ;
+    // InternalKerML.g:12743:1: ruleInvocationExpression returns [EObject current=null] : ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' ) ;
     public final EObject ruleInvocationExpression() throws RecognitionException {
         EObject current = null;
 
@@ -36950,17 +37042,17 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12708:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' ) )
-            // InternalKerML.g:12709:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' )
+            // InternalKerML.g:12749:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' ) )
+            // InternalKerML.g:12750:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' )
             {
-            // InternalKerML.g:12709:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' )
-            // InternalKerML.g:12710:3: ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')'
+            // InternalKerML.g:12750:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')' )
+            // InternalKerML.g:12751:3: ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) ) otherlv_1= '(' (this_ArgumentList_2= ruleArgumentList[$current] )? otherlv_3= ')'
             {
-            // InternalKerML.g:12710:3: ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) )
-            // InternalKerML.g:12711:4: (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping )
+            // InternalKerML.g:12751:3: ( (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping ) )
+            // InternalKerML.g:12752:4: (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping )
             {
-            // InternalKerML.g:12711:4: (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping )
-            // InternalKerML.g:12712:5: lv_ownedRelationship_0_0= ruleOwnedFeatureTyping
+            // InternalKerML.g:12752:4: (lv_ownedRelationship_0_0= ruleOwnedFeatureTyping )
+            // InternalKerML.g:12753:5: lv_ownedRelationship_0_0= ruleOwnedFeatureTyping
             {
             if ( state.backtracking==0 ) {
 
@@ -36997,7 +37089,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_1, grammarAccess.getInvocationExpressionAccess().getLeftParenthesisKeyword_1());
               		
             }
-            // InternalKerML.g:12733:3: (this_ArgumentList_2= ruleArgumentList[$current] )?
+            // InternalKerML.g:12774:3: (this_ArgumentList_2= ruleArgumentList[$current] )?
             int alt244=2;
             int LA244_0 = input.LA(1);
 
@@ -37006,7 +37098,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt244) {
                 case 1 :
-                    // InternalKerML.g:12734:4: this_ArgumentList_2= ruleArgumentList[$current]
+                    // InternalKerML.g:12775:4: this_ArgumentList_2= ruleArgumentList[$current]
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37064,7 +37156,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleArgumentList"
-    // InternalKerML.g:12755:1: ruleArgumentList[EObject in_current] returns [EObject current=in_current] : (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] ) ;
+    // InternalKerML.g:12796:1: ruleArgumentList[EObject in_current] returns [EObject current=in_current] : (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] ) ;
     public final EObject ruleArgumentList(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
@@ -37077,10 +37169,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12761:2: ( (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] ) )
-            // InternalKerML.g:12762:2: (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] )
+            // InternalKerML.g:12802:2: ( (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] ) )
+            // InternalKerML.g:12803:2: (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] )
             {
-            // InternalKerML.g:12762:2: (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] )
+            // InternalKerML.g:12803:2: (this_PositionalArgumentList_0= rulePositionalArgumentList[$current] | this_NamedArgumentList_1= ruleNamedArgumentList[$current] )
             int alt245=2;
             switch ( input.LA(1) ) {
             case RULE_STRING_VALUE:
@@ -37110,11 +37202,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA245_2 = input.LA(2);
 
-                if ( (LA245_2==22||LA245_2==32||(LA245_2>=41 && LA245_2<=43)||LA245_2==73||(LA245_2>=80 && LA245_2<=81)||(LA245_2>=97 && LA245_2<=117)||(LA245_2>=119 && LA245_2<=120)) ) {
-                    alt245=1;
-                }
-                else if ( (LA245_2==82) ) {
+                if ( (LA245_2==82) ) {
                     alt245=2;
+                }
+                else if ( (LA245_2==22||LA245_2==32||(LA245_2>=41 && LA245_2<=43)||LA245_2==73||(LA245_2>=80 && LA245_2<=81)||(LA245_2>=97 && LA245_2<=117)||(LA245_2>=119 && LA245_2<=120)) ) {
+                    alt245=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -37154,7 +37246,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             switch (alt245) {
                 case 1 :
-                    // InternalKerML.g:12763:3: this_PositionalArgumentList_0= rulePositionalArgumentList[$current]
+                    // InternalKerML.g:12804:3: this_PositionalArgumentList_0= rulePositionalArgumentList[$current]
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37179,7 +37271,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:12775:3: this_NamedArgumentList_1= ruleNamedArgumentList[$current]
+                    // InternalKerML.g:12816:3: this_NamedArgumentList_1= ruleNamedArgumentList[$current]
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37228,7 +37320,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePositionalArgumentList"
-    // InternalKerML.g:12791:1: rulePositionalArgumentList[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* ) ;
+    // InternalKerML.g:12832:1: rulePositionalArgumentList[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* ) ;
     public final EObject rulePositionalArgumentList(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
@@ -37242,17 +37334,17 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12797:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* ) )
-            // InternalKerML.g:12798:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* )
+            // InternalKerML.g:12838:2: ( ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* ) )
+            // InternalKerML.g:12839:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* )
             {
-            // InternalKerML.g:12798:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* )
-            // InternalKerML.g:12799:3: ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )*
+            // InternalKerML.g:12839:2: ( ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )* )
+            // InternalKerML.g:12840:3: ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )*
             {
-            // InternalKerML.g:12799:3: ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) )
-            // InternalKerML.g:12800:4: (lv_ownedRelationship_0_0= ruleOwnedExpressionMember )
+            // InternalKerML.g:12840:3: ( (lv_ownedRelationship_0_0= ruleOwnedExpressionMember ) )
+            // InternalKerML.g:12841:4: (lv_ownedRelationship_0_0= ruleOwnedExpressionMember )
             {
-            // InternalKerML.g:12800:4: (lv_ownedRelationship_0_0= ruleOwnedExpressionMember )
-            // InternalKerML.g:12801:5: lv_ownedRelationship_0_0= ruleOwnedExpressionMember
+            // InternalKerML.g:12841:4: (lv_ownedRelationship_0_0= ruleOwnedExpressionMember )
+            // InternalKerML.g:12842:5: lv_ownedRelationship_0_0= ruleOwnedExpressionMember
             {
             if ( state.backtracking==0 ) {
 
@@ -37283,7 +37375,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:12818:3: (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )*
+            // InternalKerML.g:12859:3: (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) ) )*
             loop246:
             do {
                 int alt246=2;
@@ -37296,7 +37388,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                 switch (alt246) {
             	case 1 :
-            	    // InternalKerML.g:12819:4: otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) )
+            	    // InternalKerML.g:12860:4: otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) )
             	    {
             	    otherlv_1=(Token)match(input,22,FOLLOW_33); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -37304,11 +37396,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_1, grammarAccess.getPositionalArgumentListAccess().getCommaKeyword_1_0());
             	      			
             	    }
-            	    // InternalKerML.g:12823:4: ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) )
-            	    // InternalKerML.g:12824:5: (lv_ownedRelationship_2_0= ruleOwnedExpressionMember )
+            	    // InternalKerML.g:12864:4: ( (lv_ownedRelationship_2_0= ruleOwnedExpressionMember ) )
+            	    // InternalKerML.g:12865:5: (lv_ownedRelationship_2_0= ruleOwnedExpressionMember )
             	    {
-            	    // InternalKerML.g:12824:5: (lv_ownedRelationship_2_0= ruleOwnedExpressionMember )
-            	    // InternalKerML.g:12825:6: lv_ownedRelationship_2_0= ruleOwnedExpressionMember
+            	    // InternalKerML.g:12865:5: (lv_ownedRelationship_2_0= ruleOwnedExpressionMember )
+            	    // InternalKerML.g:12866:6: lv_ownedRelationship_2_0= ruleOwnedExpressionMember
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -37373,7 +37465,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNamedArgumentList"
-    // InternalKerML.g:12848:1: ruleNamedArgumentList[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* ) ;
+    // InternalKerML.g:12889:1: ruleNamedArgumentList[EObject in_current] returns [EObject current=in_current] : ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* ) ;
     public final EObject ruleNamedArgumentList(EObject in_current) throws RecognitionException {
         EObject current = in_current;
 
@@ -37387,17 +37479,17 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12854:2: ( ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* ) )
-            // InternalKerML.g:12855:2: ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* )
+            // InternalKerML.g:12895:2: ( ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* ) )
+            // InternalKerML.g:12896:2: ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* )
             {
-            // InternalKerML.g:12855:2: ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* )
-            // InternalKerML.g:12856:3: ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )*
+            // InternalKerML.g:12896:2: ( ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )* )
+            // InternalKerML.g:12897:3: ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) ) (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )*
             {
-            // InternalKerML.g:12856:3: ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) )
-            // InternalKerML.g:12857:4: (lv_ownedRelationship_0_0= ruleNamedExpressionMember )
+            // InternalKerML.g:12897:3: ( (lv_ownedRelationship_0_0= ruleNamedExpressionMember ) )
+            // InternalKerML.g:12898:4: (lv_ownedRelationship_0_0= ruleNamedExpressionMember )
             {
-            // InternalKerML.g:12857:4: (lv_ownedRelationship_0_0= ruleNamedExpressionMember )
-            // InternalKerML.g:12858:5: lv_ownedRelationship_0_0= ruleNamedExpressionMember
+            // InternalKerML.g:12898:4: (lv_ownedRelationship_0_0= ruleNamedExpressionMember )
+            // InternalKerML.g:12899:5: lv_ownedRelationship_0_0= ruleNamedExpressionMember
             {
             if ( state.backtracking==0 ) {
 
@@ -37428,7 +37520,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalKerML.g:12875:3: (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )*
+            // InternalKerML.g:12916:3: (otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) ) )*
             loop247:
             do {
                 int alt247=2;
@@ -37441,7 +37533,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                 switch (alt247) {
             	case 1 :
-            	    // InternalKerML.g:12876:4: otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) )
+            	    // InternalKerML.g:12917:4: otherlv_1= ',' ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) )
             	    {
             	    otherlv_1=(Token)match(input,22,FOLLOW_33); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -37449,11 +37541,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_1, grammarAccess.getNamedArgumentListAccess().getCommaKeyword_1_0());
             	      			
             	    }
-            	    // InternalKerML.g:12880:4: ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) )
-            	    // InternalKerML.g:12881:5: (lv_ownedRelationship_2_0= ruleNamedExpressionMember )
+            	    // InternalKerML.g:12921:4: ( (lv_ownedRelationship_2_0= ruleNamedExpressionMember ) )
+            	    // InternalKerML.g:12922:5: (lv_ownedRelationship_2_0= ruleNamedExpressionMember )
             	    {
-            	    // InternalKerML.g:12881:5: (lv_ownedRelationship_2_0= ruleNamedExpressionMember )
-            	    // InternalKerML.g:12882:6: lv_ownedRelationship_2_0= ruleNamedExpressionMember
+            	    // InternalKerML.g:12922:5: (lv_ownedRelationship_2_0= ruleNamedExpressionMember )
+            	    // InternalKerML.g:12923:6: lv_ownedRelationship_2_0= ruleNamedExpressionMember
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -37518,7 +37610,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNamedExpressionMember"
-    // InternalKerML.g:12904:1: entryRuleNamedExpressionMember returns [EObject current=null] : iv_ruleNamedExpressionMember= ruleNamedExpressionMember EOF ;
+    // InternalKerML.g:12945:1: entryRuleNamedExpressionMember returns [EObject current=null] : iv_ruleNamedExpressionMember= ruleNamedExpressionMember EOF ;
     public final EObject entryRuleNamedExpressionMember() throws RecognitionException {
         EObject current = null;
 
@@ -37526,8 +37618,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12904:62: (iv_ruleNamedExpressionMember= ruleNamedExpressionMember EOF )
-            // InternalKerML.g:12905:2: iv_ruleNamedExpressionMember= ruleNamedExpressionMember EOF
+            // InternalKerML.g:12945:62: (iv_ruleNamedExpressionMember= ruleNamedExpressionMember EOF )
+            // InternalKerML.g:12946:2: iv_ruleNamedExpressionMember= ruleNamedExpressionMember EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNamedExpressionMemberRule()); 
@@ -37558,7 +37650,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNamedExpressionMember"
-    // InternalKerML.g:12911:1: ruleNamedExpressionMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) ;
+    // InternalKerML.g:12952:1: ruleNamedExpressionMember returns [EObject current=null] : ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) ;
     public final EObject ruleNamedExpressionMember() throws RecognitionException {
         EObject current = null;
 
@@ -37572,17 +37664,17 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12917:2: ( ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) )
-            // InternalKerML.g:12918:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
+            // InternalKerML.g:12958:2: ( ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) ) )
+            // InternalKerML.g:12959:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
             {
-            // InternalKerML.g:12918:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
-            // InternalKerML.g:12919:3: ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
+            // InternalKerML.g:12959:2: ( ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) ) )
+            // InternalKerML.g:12960:3: ( (lv_memberName_0_0= ruleName ) ) otherlv_1= '=>' ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
             {
-            // InternalKerML.g:12919:3: ( (lv_memberName_0_0= ruleName ) )
-            // InternalKerML.g:12920:4: (lv_memberName_0_0= ruleName )
+            // InternalKerML.g:12960:3: ( (lv_memberName_0_0= ruleName ) )
+            // InternalKerML.g:12961:4: (lv_memberName_0_0= ruleName )
             {
-            // InternalKerML.g:12920:4: (lv_memberName_0_0= ruleName )
-            // InternalKerML.g:12921:5: lv_memberName_0_0= ruleName
+            // InternalKerML.g:12961:4: (lv_memberName_0_0= ruleName )
+            // InternalKerML.g:12962:5: lv_memberName_0_0= ruleName
             {
             if ( state.backtracking==0 ) {
 
@@ -37619,11 +37711,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_1, grammarAccess.getNamedExpressionMemberAccess().getEqualsSignGreaterThanSignKeyword_1());
               		
             }
-            // InternalKerML.g:12942:3: ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
-            // InternalKerML.g:12943:4: (lv_ownedRelatedElement_2_0= ruleOwnedExpression )
+            // InternalKerML.g:12983:3: ( (lv_ownedRelatedElement_2_0= ruleOwnedExpression ) )
+            // InternalKerML.g:12984:4: (lv_ownedRelatedElement_2_0= ruleOwnedExpression )
             {
-            // InternalKerML.g:12943:4: (lv_ownedRelatedElement_2_0= ruleOwnedExpression )
-            // InternalKerML.g:12944:5: lv_ownedRelatedElement_2_0= ruleOwnedExpression
+            // InternalKerML.g:12984:4: (lv_ownedRelatedElement_2_0= ruleOwnedExpression )
+            // InternalKerML.g:12985:5: lv_ownedRelatedElement_2_0= ruleOwnedExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -37679,7 +37771,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNullExpression"
-    // InternalKerML.g:12965:1: entryRuleNullExpression returns [EObject current=null] : iv_ruleNullExpression= ruleNullExpression EOF ;
+    // InternalKerML.g:13006:1: entryRuleNullExpression returns [EObject current=null] : iv_ruleNullExpression= ruleNullExpression EOF ;
     public final EObject entryRuleNullExpression() throws RecognitionException {
         EObject current = null;
 
@@ -37687,8 +37779,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12965:55: (iv_ruleNullExpression= ruleNullExpression EOF )
-            // InternalKerML.g:12966:2: iv_ruleNullExpression= ruleNullExpression EOF
+            // InternalKerML.g:13006:55: (iv_ruleNullExpression= ruleNullExpression EOF )
+            // InternalKerML.g:13007:2: iv_ruleNullExpression= ruleNullExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNullExpressionRule()); 
@@ -37719,7 +37811,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNullExpression"
-    // InternalKerML.g:12972:1: ruleNullExpression returns [EObject current=null] : ( () otherlv_1= 'null' ) ;
+    // InternalKerML.g:13013:1: ruleNullExpression returns [EObject current=null] : ( () otherlv_1= 'null' ) ;
     public final EObject ruleNullExpression() throws RecognitionException {
         EObject current = null;
 
@@ -37729,14 +37821,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:12978:2: ( ( () otherlv_1= 'null' ) )
-            // InternalKerML.g:12979:2: ( () otherlv_1= 'null' )
+            // InternalKerML.g:13019:2: ( ( () otherlv_1= 'null' ) )
+            // InternalKerML.g:13020:2: ( () otherlv_1= 'null' )
             {
-            // InternalKerML.g:12979:2: ( () otherlv_1= 'null' )
-            // InternalKerML.g:12980:3: () otherlv_1= 'null'
+            // InternalKerML.g:13020:2: ( () otherlv_1= 'null' )
+            // InternalKerML.g:13021:3: () otherlv_1= 'null'
             {
-            // InternalKerML.g:12980:3: ()
-            // InternalKerML.g:12981:4: 
+            // InternalKerML.g:13021:3: ()
+            // InternalKerML.g:13022:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -37779,7 +37871,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteralExpression"
-    // InternalKerML.g:12995:1: entryRuleLiteralExpression returns [EObject current=null] : iv_ruleLiteralExpression= ruleLiteralExpression EOF ;
+    // InternalKerML.g:13036:1: entryRuleLiteralExpression returns [EObject current=null] : iv_ruleLiteralExpression= ruleLiteralExpression EOF ;
     public final EObject entryRuleLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -37787,8 +37879,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:12995:58: (iv_ruleLiteralExpression= ruleLiteralExpression EOF )
-            // InternalKerML.g:12996:2: iv_ruleLiteralExpression= ruleLiteralExpression EOF
+            // InternalKerML.g:13036:58: (iv_ruleLiteralExpression= ruleLiteralExpression EOF )
+            // InternalKerML.g:13037:2: iv_ruleLiteralExpression= ruleLiteralExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLiteralExpressionRule()); 
@@ -37819,7 +37911,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralExpression"
-    // InternalKerML.g:13002:1: ruleLiteralExpression returns [EObject current=null] : (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded ) ;
+    // InternalKerML.g:13043:1: ruleLiteralExpression returns [EObject current=null] : (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded ) ;
     public final EObject ruleLiteralExpression() throws RecognitionException {
         EObject current = null;
 
@@ -37838,10 +37930,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13008:2: ( (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded ) )
-            // InternalKerML.g:13009:2: (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded )
+            // InternalKerML.g:13049:2: ( (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded ) )
+            // InternalKerML.g:13050:2: (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded )
             {
-            // InternalKerML.g:13009:2: (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded )
+            // InternalKerML.g:13050:2: (this_LiteralBoolean_0= ruleLiteralBoolean | this_LiteralString_1= ruleLiteralString | this_LiteralInteger_2= ruleLiteralInteger | this_LiteralReal_3= ruleLiteralReal | this_LiteralUnbounded_4= ruleLiteralUnbounded )
             int alt248=5;
             switch ( input.LA(1) ) {
             case 122:
@@ -37859,25 +37951,25 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                 {
                 int LA248_3 = input.LA(2);
 
-                if ( (LA248_3==EOF||(LA248_3>=16 && LA248_3<=18)||LA248_3==22||LA248_3==29||LA248_3==32||(LA248_3>=42 && LA248_3<=44)||(LA248_3>=73 && LA248_3<=74)||LA248_3==81||(LA248_3>=97 && LA248_3<=117)||LA248_3==119) ) {
-                    alt248=3;
-                }
-                else if ( (LA248_3==120) ) {
-                    int LA248_7 = input.LA(3);
+                if ( (LA248_3==120) ) {
+                    int LA248_6 = input.LA(3);
 
-                    if ( ((LA248_7>=RULE_ID && LA248_7<=RULE_UNRESTRICTED_NAME)) ) {
-                        alt248=3;
-                    }
-                    else if ( ((LA248_7>=RULE_DECIMAL_VALUE && LA248_7<=RULE_EXP_VALUE)) ) {
+                    if ( ((LA248_6>=RULE_DECIMAL_VALUE && LA248_6<=RULE_EXP_VALUE)) ) {
                         alt248=4;
+                    }
+                    else if ( ((LA248_6>=RULE_ID && LA248_6<=RULE_UNRESTRICTED_NAME)||LA248_6==73) ) {
+                        alt248=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 248, 7, input);
+                            new NoViableAltException("", 248, 6, input);
 
                         throw nvae;
                     }
+                }
+                else if ( (LA248_3==EOF||(LA248_3>=16 && LA248_3<=18)||LA248_3==22||LA248_3==29||LA248_3==32||(LA248_3>=42 && LA248_3<=44)||(LA248_3>=73 && LA248_3<=74)||LA248_3==81||(LA248_3>=97 && LA248_3<=117)||LA248_3==119) ) {
+                    alt248=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -37909,7 +38001,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             switch (alt248) {
                 case 1 :
-                    // InternalKerML.g:13010:3: this_LiteralBoolean_0= ruleLiteralBoolean
+                    // InternalKerML.g:13051:3: this_LiteralBoolean_0= ruleLiteralBoolean
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37931,7 +38023,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13019:3: this_LiteralString_1= ruleLiteralString
+                    // InternalKerML.g:13060:3: this_LiteralString_1= ruleLiteralString
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37953,7 +38045,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalKerML.g:13028:3: this_LiteralInteger_2= ruleLiteralInteger
+                    // InternalKerML.g:13069:3: this_LiteralInteger_2= ruleLiteralInteger
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37975,7 +38067,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalKerML.g:13037:3: this_LiteralReal_3= ruleLiteralReal
+                    // InternalKerML.g:13078:3: this_LiteralReal_3= ruleLiteralReal
                     {
                     if ( state.backtracking==0 ) {
 
@@ -37997,7 +38089,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalKerML.g:13046:3: this_LiteralUnbounded_4= ruleLiteralUnbounded
+                    // InternalKerML.g:13087:3: this_LiteralUnbounded_4= ruleLiteralUnbounded
                     {
                     if ( state.backtracking==0 ) {
 
@@ -38043,7 +38135,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteralBoolean"
-    // InternalKerML.g:13058:1: entryRuleLiteralBoolean returns [EObject current=null] : iv_ruleLiteralBoolean= ruleLiteralBoolean EOF ;
+    // InternalKerML.g:13099:1: entryRuleLiteralBoolean returns [EObject current=null] : iv_ruleLiteralBoolean= ruleLiteralBoolean EOF ;
     public final EObject entryRuleLiteralBoolean() throws RecognitionException {
         EObject current = null;
 
@@ -38051,8 +38143,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13058:55: (iv_ruleLiteralBoolean= ruleLiteralBoolean EOF )
-            // InternalKerML.g:13059:2: iv_ruleLiteralBoolean= ruleLiteralBoolean EOF
+            // InternalKerML.g:13099:55: (iv_ruleLiteralBoolean= ruleLiteralBoolean EOF )
+            // InternalKerML.g:13100:2: iv_ruleLiteralBoolean= ruleLiteralBoolean EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLiteralBooleanRule()); 
@@ -38083,7 +38175,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralBoolean"
-    // InternalKerML.g:13065:1: ruleLiteralBoolean returns [EObject current=null] : ( (lv_value_0_0= ruleBooleanValue ) ) ;
+    // InternalKerML.g:13106:1: ruleLiteralBoolean returns [EObject current=null] : ( (lv_value_0_0= ruleBooleanValue ) ) ;
     public final EObject ruleLiteralBoolean() throws RecognitionException {
         EObject current = null;
 
@@ -38094,14 +38186,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13071:2: ( ( (lv_value_0_0= ruleBooleanValue ) ) )
-            // InternalKerML.g:13072:2: ( (lv_value_0_0= ruleBooleanValue ) )
+            // InternalKerML.g:13112:2: ( ( (lv_value_0_0= ruleBooleanValue ) ) )
+            // InternalKerML.g:13113:2: ( (lv_value_0_0= ruleBooleanValue ) )
             {
-            // InternalKerML.g:13072:2: ( (lv_value_0_0= ruleBooleanValue ) )
-            // InternalKerML.g:13073:3: (lv_value_0_0= ruleBooleanValue )
+            // InternalKerML.g:13113:2: ( (lv_value_0_0= ruleBooleanValue ) )
+            // InternalKerML.g:13114:3: (lv_value_0_0= ruleBooleanValue )
             {
-            // InternalKerML.g:13073:3: (lv_value_0_0= ruleBooleanValue )
-            // InternalKerML.g:13074:4: lv_value_0_0= ruleBooleanValue
+            // InternalKerML.g:13114:3: (lv_value_0_0= ruleBooleanValue )
+            // InternalKerML.g:13115:4: lv_value_0_0= ruleBooleanValue
             {
             if ( state.backtracking==0 ) {
 
@@ -38154,7 +38246,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBooleanValue"
-    // InternalKerML.g:13094:1: entryRuleBooleanValue returns [String current=null] : iv_ruleBooleanValue= ruleBooleanValue EOF ;
+    // InternalKerML.g:13135:1: entryRuleBooleanValue returns [String current=null] : iv_ruleBooleanValue= ruleBooleanValue EOF ;
     public final String entryRuleBooleanValue() throws RecognitionException {
         String current = null;
 
@@ -38162,8 +38254,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13094:52: (iv_ruleBooleanValue= ruleBooleanValue EOF )
-            // InternalKerML.g:13095:2: iv_ruleBooleanValue= ruleBooleanValue EOF
+            // InternalKerML.g:13135:52: (iv_ruleBooleanValue= ruleBooleanValue EOF )
+            // InternalKerML.g:13136:2: iv_ruleBooleanValue= ruleBooleanValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBooleanValueRule()); 
@@ -38194,7 +38286,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBooleanValue"
-    // InternalKerML.g:13101:1: ruleBooleanValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'true' | kw= 'false' ) ;
+    // InternalKerML.g:13142:1: ruleBooleanValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'true' | kw= 'false' ) ;
     public final AntlrDatatypeRuleToken ruleBooleanValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -38204,10 +38296,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13107:2: ( (kw= 'true' | kw= 'false' ) )
-            // InternalKerML.g:13108:2: (kw= 'true' | kw= 'false' )
+            // InternalKerML.g:13148:2: ( (kw= 'true' | kw= 'false' ) )
+            // InternalKerML.g:13149:2: (kw= 'true' | kw= 'false' )
             {
-            // InternalKerML.g:13108:2: (kw= 'true' | kw= 'false' )
+            // InternalKerML.g:13149:2: (kw= 'true' | kw= 'false' )
             int alt249=2;
             int LA249_0 = input.LA(1);
 
@@ -38226,7 +38318,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt249) {
                 case 1 :
-                    // InternalKerML.g:13109:3: kw= 'true'
+                    // InternalKerML.g:13150:3: kw= 'true'
                     {
                     kw=(Token)match(input,122,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -38239,7 +38331,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13115:3: kw= 'false'
+                    // InternalKerML.g:13156:3: kw= 'false'
                     {
                     kw=(Token)match(input,123,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -38276,7 +38368,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteralString"
-    // InternalKerML.g:13124:1: entryRuleLiteralString returns [EObject current=null] : iv_ruleLiteralString= ruleLiteralString EOF ;
+    // InternalKerML.g:13165:1: entryRuleLiteralString returns [EObject current=null] : iv_ruleLiteralString= ruleLiteralString EOF ;
     public final EObject entryRuleLiteralString() throws RecognitionException {
         EObject current = null;
 
@@ -38284,8 +38376,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13124:54: (iv_ruleLiteralString= ruleLiteralString EOF )
-            // InternalKerML.g:13125:2: iv_ruleLiteralString= ruleLiteralString EOF
+            // InternalKerML.g:13165:54: (iv_ruleLiteralString= ruleLiteralString EOF )
+            // InternalKerML.g:13166:2: iv_ruleLiteralString= ruleLiteralString EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLiteralStringRule()); 
@@ -38316,7 +38408,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralString"
-    // InternalKerML.g:13131:1: ruleLiteralString returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING_VALUE ) ) ;
+    // InternalKerML.g:13172:1: ruleLiteralString returns [EObject current=null] : ( (lv_value_0_0= RULE_STRING_VALUE ) ) ;
     public final EObject ruleLiteralString() throws RecognitionException {
         EObject current = null;
 
@@ -38326,14 +38418,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13137:2: ( ( (lv_value_0_0= RULE_STRING_VALUE ) ) )
-            // InternalKerML.g:13138:2: ( (lv_value_0_0= RULE_STRING_VALUE ) )
+            // InternalKerML.g:13178:2: ( ( (lv_value_0_0= RULE_STRING_VALUE ) ) )
+            // InternalKerML.g:13179:2: ( (lv_value_0_0= RULE_STRING_VALUE ) )
             {
-            // InternalKerML.g:13138:2: ( (lv_value_0_0= RULE_STRING_VALUE ) )
-            // InternalKerML.g:13139:3: (lv_value_0_0= RULE_STRING_VALUE )
+            // InternalKerML.g:13179:2: ( (lv_value_0_0= RULE_STRING_VALUE ) )
+            // InternalKerML.g:13180:3: (lv_value_0_0= RULE_STRING_VALUE )
             {
-            // InternalKerML.g:13139:3: (lv_value_0_0= RULE_STRING_VALUE )
-            // InternalKerML.g:13140:4: lv_value_0_0= RULE_STRING_VALUE
+            // InternalKerML.g:13180:3: (lv_value_0_0= RULE_STRING_VALUE )
+            // InternalKerML.g:13181:4: lv_value_0_0= RULE_STRING_VALUE
             {
             lv_value_0_0=(Token)match(input,RULE_STRING_VALUE,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -38381,7 +38473,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteralInteger"
-    // InternalKerML.g:13159:1: entryRuleLiteralInteger returns [EObject current=null] : iv_ruleLiteralInteger= ruleLiteralInteger EOF ;
+    // InternalKerML.g:13200:1: entryRuleLiteralInteger returns [EObject current=null] : iv_ruleLiteralInteger= ruleLiteralInteger EOF ;
     public final EObject entryRuleLiteralInteger() throws RecognitionException {
         EObject current = null;
 
@@ -38389,8 +38481,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13159:55: (iv_ruleLiteralInteger= ruleLiteralInteger EOF )
-            // InternalKerML.g:13160:2: iv_ruleLiteralInteger= ruleLiteralInteger EOF
+            // InternalKerML.g:13200:55: (iv_ruleLiteralInteger= ruleLiteralInteger EOF )
+            // InternalKerML.g:13201:2: iv_ruleLiteralInteger= ruleLiteralInteger EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLiteralIntegerRule()); 
@@ -38421,7 +38513,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralInteger"
-    // InternalKerML.g:13166:1: ruleLiteralInteger returns [EObject current=null] : ( (lv_value_0_0= RULE_DECIMAL_VALUE ) ) ;
+    // InternalKerML.g:13207:1: ruleLiteralInteger returns [EObject current=null] : ( (lv_value_0_0= RULE_DECIMAL_VALUE ) ) ;
     public final EObject ruleLiteralInteger() throws RecognitionException {
         EObject current = null;
 
@@ -38431,14 +38523,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13172:2: ( ( (lv_value_0_0= RULE_DECIMAL_VALUE ) ) )
-            // InternalKerML.g:13173:2: ( (lv_value_0_0= RULE_DECIMAL_VALUE ) )
+            // InternalKerML.g:13213:2: ( ( (lv_value_0_0= RULE_DECIMAL_VALUE ) ) )
+            // InternalKerML.g:13214:2: ( (lv_value_0_0= RULE_DECIMAL_VALUE ) )
             {
-            // InternalKerML.g:13173:2: ( (lv_value_0_0= RULE_DECIMAL_VALUE ) )
-            // InternalKerML.g:13174:3: (lv_value_0_0= RULE_DECIMAL_VALUE )
+            // InternalKerML.g:13214:2: ( (lv_value_0_0= RULE_DECIMAL_VALUE ) )
+            // InternalKerML.g:13215:3: (lv_value_0_0= RULE_DECIMAL_VALUE )
             {
-            // InternalKerML.g:13174:3: (lv_value_0_0= RULE_DECIMAL_VALUE )
-            // InternalKerML.g:13175:4: lv_value_0_0= RULE_DECIMAL_VALUE
+            // InternalKerML.g:13215:3: (lv_value_0_0= RULE_DECIMAL_VALUE )
+            // InternalKerML.g:13216:4: lv_value_0_0= RULE_DECIMAL_VALUE
             {
             lv_value_0_0=(Token)match(input,RULE_DECIMAL_VALUE,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -38486,7 +38578,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteralReal"
-    // InternalKerML.g:13194:1: entryRuleLiteralReal returns [EObject current=null] : iv_ruleLiteralReal= ruleLiteralReal EOF ;
+    // InternalKerML.g:13235:1: entryRuleLiteralReal returns [EObject current=null] : iv_ruleLiteralReal= ruleLiteralReal EOF ;
     public final EObject entryRuleLiteralReal() throws RecognitionException {
         EObject current = null;
 
@@ -38494,8 +38586,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13194:52: (iv_ruleLiteralReal= ruleLiteralReal EOF )
-            // InternalKerML.g:13195:2: iv_ruleLiteralReal= ruleLiteralReal EOF
+            // InternalKerML.g:13235:52: (iv_ruleLiteralReal= ruleLiteralReal EOF )
+            // InternalKerML.g:13236:2: iv_ruleLiteralReal= ruleLiteralReal EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLiteralRealRule()); 
@@ -38526,7 +38618,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralReal"
-    // InternalKerML.g:13201:1: ruleLiteralReal returns [EObject current=null] : ( (lv_value_0_0= ruleRealValue ) ) ;
+    // InternalKerML.g:13242:1: ruleLiteralReal returns [EObject current=null] : ( (lv_value_0_0= ruleRealValue ) ) ;
     public final EObject ruleLiteralReal() throws RecognitionException {
         EObject current = null;
 
@@ -38537,14 +38629,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13207:2: ( ( (lv_value_0_0= ruleRealValue ) ) )
-            // InternalKerML.g:13208:2: ( (lv_value_0_0= ruleRealValue ) )
+            // InternalKerML.g:13248:2: ( ( (lv_value_0_0= ruleRealValue ) ) )
+            // InternalKerML.g:13249:2: ( (lv_value_0_0= ruleRealValue ) )
             {
-            // InternalKerML.g:13208:2: ( (lv_value_0_0= ruleRealValue ) )
-            // InternalKerML.g:13209:3: (lv_value_0_0= ruleRealValue )
+            // InternalKerML.g:13249:2: ( (lv_value_0_0= ruleRealValue ) )
+            // InternalKerML.g:13250:3: (lv_value_0_0= ruleRealValue )
             {
-            // InternalKerML.g:13209:3: (lv_value_0_0= ruleRealValue )
-            // InternalKerML.g:13210:4: lv_value_0_0= ruleRealValue
+            // InternalKerML.g:13250:3: (lv_value_0_0= ruleRealValue )
+            // InternalKerML.g:13251:4: lv_value_0_0= ruleRealValue
             {
             if ( state.backtracking==0 ) {
 
@@ -38597,7 +38689,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRealValue"
-    // InternalKerML.g:13230:1: entryRuleRealValue returns [String current=null] : iv_ruleRealValue= ruleRealValue EOF ;
+    // InternalKerML.g:13271:1: entryRuleRealValue returns [String current=null] : iv_ruleRealValue= ruleRealValue EOF ;
     public final String entryRuleRealValue() throws RecognitionException {
         String current = null;
 
@@ -38605,8 +38697,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13230:49: (iv_ruleRealValue= ruleRealValue EOF )
-            // InternalKerML.g:13231:2: iv_ruleRealValue= ruleRealValue EOF
+            // InternalKerML.g:13271:49: (iv_ruleRealValue= ruleRealValue EOF )
+            // InternalKerML.g:13272:2: iv_ruleRealValue= ruleRealValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getRealValueRule()); 
@@ -38637,7 +38729,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRealValue"
-    // InternalKerML.g:13237:1: ruleRealValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE ) ;
+    // InternalKerML.g:13278:1: ruleRealValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE ) ;
     public final AntlrDatatypeRuleToken ruleRealValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -38651,10 +38743,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13243:2: ( ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE ) )
-            // InternalKerML.g:13244:2: ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE )
+            // InternalKerML.g:13284:2: ( ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE ) )
+            // InternalKerML.g:13285:2: ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE )
             {
-            // InternalKerML.g:13244:2: ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE )
+            // InternalKerML.g:13285:2: ( ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) ) | this_EXP_VALUE_4= RULE_EXP_VALUE )
             int alt252=2;
             int LA252_0 = input.LA(1);
 
@@ -38673,12 +38765,12 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt252) {
                 case 1 :
-                    // InternalKerML.g:13245:3: ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) )
+                    // InternalKerML.g:13286:3: ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) )
                     {
-                    // InternalKerML.g:13245:3: ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) )
-                    // InternalKerML.g:13246:4: (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE )
+                    // InternalKerML.g:13286:3: ( (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE ) )
+                    // InternalKerML.g:13287:4: (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )? kw= '.' (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE )
                     {
-                    // InternalKerML.g:13246:4: (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )?
+                    // InternalKerML.g:13287:4: (this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE )?
                     int alt250=2;
                     int LA250_0 = input.LA(1);
 
@@ -38687,7 +38779,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt250) {
                         case 1 :
-                            // InternalKerML.g:13247:5: this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE
+                            // InternalKerML.g:13288:5: this_DECIMAL_VALUE_0= RULE_DECIMAL_VALUE
                             {
                             this_DECIMAL_VALUE_0=(Token)match(input,RULE_DECIMAL_VALUE,FOLLOW_163); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -38713,7 +38805,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                       				newLeafNode(kw, grammarAccess.getRealValueAccess().getFullStopKeyword_0_1());
                       			
                     }
-                    // InternalKerML.g:13260:4: (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE )
+                    // InternalKerML.g:13301:4: (this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE | this_EXP_VALUE_3= RULE_EXP_VALUE )
                     int alt251=2;
                     int LA251_0 = input.LA(1);
 
@@ -38732,7 +38824,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt251) {
                         case 1 :
-                            // InternalKerML.g:13261:5: this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE
+                            // InternalKerML.g:13302:5: this_DECIMAL_VALUE_2= RULE_DECIMAL_VALUE
                             {
                             this_DECIMAL_VALUE_2=(Token)match(input,RULE_DECIMAL_VALUE,FOLLOW_2); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -38749,7 +38841,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalKerML.g:13269:5: this_EXP_VALUE_3= RULE_EXP_VALUE
+                            // InternalKerML.g:13310:5: this_EXP_VALUE_3= RULE_EXP_VALUE
                             {
                             this_EXP_VALUE_3=(Token)match(input,RULE_EXP_VALUE,FOLLOW_2); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -38775,7 +38867,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13279:3: this_EXP_VALUE_4= RULE_EXP_VALUE
+                    // InternalKerML.g:13320:3: this_EXP_VALUE_4= RULE_EXP_VALUE
                     {
                     this_EXP_VALUE_4=(Token)match(input,RULE_EXP_VALUE,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -38816,7 +38908,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLiteralUnbounded"
-    // InternalKerML.g:13290:1: entryRuleLiteralUnbounded returns [EObject current=null] : iv_ruleLiteralUnbounded= ruleLiteralUnbounded EOF ;
+    // InternalKerML.g:13331:1: entryRuleLiteralUnbounded returns [EObject current=null] : iv_ruleLiteralUnbounded= ruleLiteralUnbounded EOF ;
     public final EObject entryRuleLiteralUnbounded() throws RecognitionException {
         EObject current = null;
 
@@ -38824,8 +38916,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13290:57: (iv_ruleLiteralUnbounded= ruleLiteralUnbounded EOF )
-            // InternalKerML.g:13291:2: iv_ruleLiteralUnbounded= ruleLiteralUnbounded EOF
+            // InternalKerML.g:13331:57: (iv_ruleLiteralUnbounded= ruleLiteralUnbounded EOF )
+            // InternalKerML.g:13332:2: iv_ruleLiteralUnbounded= ruleLiteralUnbounded EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getLiteralUnboundedRule()); 
@@ -38856,7 +38948,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLiteralUnbounded"
-    // InternalKerML.g:13297:1: ruleLiteralUnbounded returns [EObject current=null] : ( () otherlv_1= '*' ) ;
+    // InternalKerML.g:13338:1: ruleLiteralUnbounded returns [EObject current=null] : ( () otherlv_1= '*' ) ;
     public final EObject ruleLiteralUnbounded() throws RecognitionException {
         EObject current = null;
 
@@ -38866,14 +38958,14 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13303:2: ( ( () otherlv_1= '*' ) )
-            // InternalKerML.g:13304:2: ( () otherlv_1= '*' )
+            // InternalKerML.g:13344:2: ( ( () otherlv_1= '*' ) )
+            // InternalKerML.g:13345:2: ( () otherlv_1= '*' )
             {
-            // InternalKerML.g:13304:2: ( () otherlv_1= '*' )
-            // InternalKerML.g:13305:3: () otherlv_1= '*'
+            // InternalKerML.g:13345:2: ( () otherlv_1= '*' )
+            // InternalKerML.g:13346:3: () otherlv_1= '*'
             {
-            // InternalKerML.g:13305:3: ()
-            // InternalKerML.g:13306:4: 
+            // InternalKerML.g:13346:3: ()
+            // InternalKerML.g:13347:4: 
             {
             if ( state.backtracking==0 ) {
 
@@ -38916,7 +39008,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleName"
-    // InternalKerML.g:13320:1: entryRuleName returns [String current=null] : iv_ruleName= ruleName EOF ;
+    // InternalKerML.g:13361:1: entryRuleName returns [String current=null] : iv_ruleName= ruleName EOF ;
     public final String entryRuleName() throws RecognitionException {
         String current = null;
 
@@ -38924,8 +39016,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13320:44: (iv_ruleName= ruleName EOF )
-            // InternalKerML.g:13321:2: iv_ruleName= ruleName EOF
+            // InternalKerML.g:13361:44: (iv_ruleName= ruleName EOF )
+            // InternalKerML.g:13362:2: iv_ruleName= ruleName EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNameRule()); 
@@ -38956,7 +39048,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleName"
-    // InternalKerML.g:13327:1: ruleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME ) ;
+    // InternalKerML.g:13368:1: ruleName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME ) ;
     public final AntlrDatatypeRuleToken ruleName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -38967,10 +39059,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13333:2: ( (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME ) )
-            // InternalKerML.g:13334:2: (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME )
+            // InternalKerML.g:13374:2: ( (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME ) )
+            // InternalKerML.g:13375:2: (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME )
             {
-            // InternalKerML.g:13334:2: (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME )
+            // InternalKerML.g:13375:2: (this_ID_0= RULE_ID | this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME )
             int alt253=2;
             int LA253_0 = input.LA(1);
 
@@ -38989,7 +39081,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt253) {
                 case 1 :
-                    // InternalKerML.g:13335:3: this_ID_0= RULE_ID
+                    // InternalKerML.g:13376:3: this_ID_0= RULE_ID
                     {
                     this_ID_0=(Token)match(input,RULE_ID,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39006,7 +39098,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13343:3: this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME
+                    // InternalKerML.g:13384:3: this_UNRESTRICTED_NAME_1= RULE_UNRESTRICTED_NAME
                     {
                     this_UNRESTRICTED_NAME_1=(Token)match(input,RULE_UNRESTRICTED_NAME,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39047,7 +39139,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // InternalKerML.g:13354:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // InternalKerML.g:13395:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -39055,8 +39147,8 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalKerML.g:13354:53: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // InternalKerML.g:13355:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // InternalKerML.g:13395:53: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // InternalKerML.g:13396:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getQualifiedNameRule()); 
@@ -39087,7 +39179,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // InternalKerML.g:13361:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* ) ;
+    // InternalKerML.g:13402:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -39101,11 +39193,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13367:2: ( (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* ) )
-            // InternalKerML.g:13368:2: (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* )
+            // InternalKerML.g:13408:2: ( (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* ) )
+            // InternalKerML.g:13409:2: (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* )
             {
-            // InternalKerML.g:13368:2: (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* )
-            // InternalKerML.g:13369:3: this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )*
+            // InternalKerML.g:13409:2: (this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )* )
+            // InternalKerML.g:13410:3: this_Name_0= ruleName (kw= '::' this_Name_2= ruleName )*
             {
             if ( state.backtracking==0 ) {
 
@@ -39127,7 +39219,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalKerML.g:13379:3: (kw= '::' this_Name_2= ruleName )*
+            // InternalKerML.g:13420:3: (kw= '::' this_Name_2= ruleName )*
             loop254:
             do {
                 int alt254=2;
@@ -39146,7 +39238,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                 switch (alt254) {
             	case 1 :
-            	    // InternalKerML.g:13380:4: kw= '::' this_Name_2= ruleName
+            	    // InternalKerML.g:13421:4: kw= '::' this_Name_2= ruleName
             	    {
             	    kw=(Token)match(input,41,FOLLOW_4); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -39209,7 +39301,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFilterPackageMemberVisibility"
-    // InternalKerML.g:13400:1: ruleFilterPackageMemberVisibility returns [Enumerator current=null] : (enumLiteral_0= '[' ) ;
+    // InternalKerML.g:13441:1: ruleFilterPackageMemberVisibility returns [Enumerator current=null] : (enumLiteral_0= '[' ) ;
     public final Enumerator ruleFilterPackageMemberVisibility() throws RecognitionException {
         Enumerator current = null;
 
@@ -39219,11 +39311,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13406:2: ( (enumLiteral_0= '[' ) )
-            // InternalKerML.g:13407:2: (enumLiteral_0= '[' )
+            // InternalKerML.g:13447:2: ( (enumLiteral_0= '[' ) )
+            // InternalKerML.g:13448:2: (enumLiteral_0= '[' )
             {
-            // InternalKerML.g:13407:2: (enumLiteral_0= '[' )
-            // InternalKerML.g:13408:3: enumLiteral_0= '['
+            // InternalKerML.g:13448:2: (enumLiteral_0= '[' )
+            // InternalKerML.g:13449:3: enumLiteral_0= '['
             {
             enumLiteral_0=(Token)match(input,73,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -39257,7 +39349,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBasicVisibilityIndicator"
-    // InternalKerML.g:13417:1: ruleBasicVisibilityIndicator returns [Enumerator current=null] : ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) ) ;
+    // InternalKerML.g:13458:1: ruleBasicVisibilityIndicator returns [Enumerator current=null] : ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) ) ;
     public final Enumerator ruleBasicVisibilityIndicator() throws RecognitionException {
         Enumerator current = null;
 
@@ -39268,10 +39360,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13423:2: ( ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) ) )
-            // InternalKerML.g:13424:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) )
+            // InternalKerML.g:13464:2: ( ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) ) )
+            // InternalKerML.g:13465:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) )
             {
-            // InternalKerML.g:13424:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) )
+            // InternalKerML.g:13465:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) )
             int alt255=2;
             int LA255_0 = input.LA(1);
 
@@ -39290,10 +39382,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             }
             switch (alt255) {
                 case 1 :
-                    // InternalKerML.g:13425:3: (enumLiteral_0= 'public' )
+                    // InternalKerML.g:13466:3: (enumLiteral_0= 'public' )
                     {
-                    // InternalKerML.g:13425:3: (enumLiteral_0= 'public' )
-                    // InternalKerML.g:13426:4: enumLiteral_0= 'public'
+                    // InternalKerML.g:13466:3: (enumLiteral_0= 'public' )
+                    // InternalKerML.g:13467:4: enumLiteral_0= 'public'
                     {
                     enumLiteral_0=(Token)match(input,124,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39309,10 +39401,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13433:3: (enumLiteral_1= 'private' )
+                    // InternalKerML.g:13474:3: (enumLiteral_1= 'private' )
                     {
-                    // InternalKerML.g:13433:3: (enumLiteral_1= 'private' )
-                    // InternalKerML.g:13434:4: enumLiteral_1= 'private'
+                    // InternalKerML.g:13474:3: (enumLiteral_1= 'private' )
+                    // InternalKerML.g:13475:4: enumLiteral_1= 'private'
                     {
                     enumLiteral_1=(Token)match(input,125,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39352,7 +39444,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVisibilityIndicator"
-    // InternalKerML.g:13444:1: ruleVisibilityIndicator returns [Enumerator current=null] : ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) ) ;
+    // InternalKerML.g:13485:1: ruleVisibilityIndicator returns [Enumerator current=null] : ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) ) ;
     public final Enumerator ruleVisibilityIndicator() throws RecognitionException {
         Enumerator current = null;
 
@@ -39364,10 +39456,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13450:2: ( ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) ) )
-            // InternalKerML.g:13451:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) )
+            // InternalKerML.g:13491:2: ( ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) ) )
+            // InternalKerML.g:13492:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) )
             {
-            // InternalKerML.g:13451:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) )
+            // InternalKerML.g:13492:2: ( (enumLiteral_0= 'public' ) | (enumLiteral_1= 'private' ) | (enumLiteral_2= 'protected' ) )
             int alt256=3;
             switch ( input.LA(1) ) {
             case 124:
@@ -39395,10 +39487,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             switch (alt256) {
                 case 1 :
-                    // InternalKerML.g:13452:3: (enumLiteral_0= 'public' )
+                    // InternalKerML.g:13493:3: (enumLiteral_0= 'public' )
                     {
-                    // InternalKerML.g:13452:3: (enumLiteral_0= 'public' )
-                    // InternalKerML.g:13453:4: enumLiteral_0= 'public'
+                    // InternalKerML.g:13493:3: (enumLiteral_0= 'public' )
+                    // InternalKerML.g:13494:4: enumLiteral_0= 'public'
                     {
                     enumLiteral_0=(Token)match(input,124,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39414,10 +39506,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13460:3: (enumLiteral_1= 'private' )
+                    // InternalKerML.g:13501:3: (enumLiteral_1= 'private' )
                     {
-                    // InternalKerML.g:13460:3: (enumLiteral_1= 'private' )
-                    // InternalKerML.g:13461:4: enumLiteral_1= 'private'
+                    // InternalKerML.g:13501:3: (enumLiteral_1= 'private' )
+                    // InternalKerML.g:13502:4: enumLiteral_1= 'private'
                     {
                     enumLiteral_1=(Token)match(input,125,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39433,10 +39525,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalKerML.g:13468:3: (enumLiteral_2= 'protected' )
+                    // InternalKerML.g:13509:3: (enumLiteral_2= 'protected' )
                     {
-                    // InternalKerML.g:13468:3: (enumLiteral_2= 'protected' )
-                    // InternalKerML.g:13469:4: enumLiteral_2= 'protected'
+                    // InternalKerML.g:13509:3: (enumLiteral_2= 'protected' )
+                    // InternalKerML.g:13510:4: enumLiteral_2= 'protected'
                     {
                     enumLiteral_2=(Token)match(input,126,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39476,7 +39568,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureDirection"
-    // InternalKerML.g:13479:1: ruleFeatureDirection returns [Enumerator current=null] : ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) ) ;
+    // InternalKerML.g:13520:1: ruleFeatureDirection returns [Enumerator current=null] : ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) ) ;
     public final Enumerator ruleFeatureDirection() throws RecognitionException {
         Enumerator current = null;
 
@@ -39488,10 +39580,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalKerML.g:13485:2: ( ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) ) )
-            // InternalKerML.g:13486:2: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) )
+            // InternalKerML.g:13526:2: ( ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) ) )
+            // InternalKerML.g:13527:2: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) )
             {
-            // InternalKerML.g:13486:2: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) )
+            // InternalKerML.g:13527:2: ( (enumLiteral_0= 'in' ) | (enumLiteral_1= 'out' ) | (enumLiteral_2= 'inout' ) )
             int alt257=3;
             switch ( input.LA(1) ) {
             case 127:
@@ -39519,10 +39611,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             switch (alt257) {
                 case 1 :
-                    // InternalKerML.g:13487:3: (enumLiteral_0= 'in' )
+                    // InternalKerML.g:13528:3: (enumLiteral_0= 'in' )
                     {
-                    // InternalKerML.g:13487:3: (enumLiteral_0= 'in' )
-                    // InternalKerML.g:13488:4: enumLiteral_0= 'in'
+                    // InternalKerML.g:13528:3: (enumLiteral_0= 'in' )
+                    // InternalKerML.g:13529:4: enumLiteral_0= 'in'
                     {
                     enumLiteral_0=(Token)match(input,127,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39538,10 +39630,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalKerML.g:13495:3: (enumLiteral_1= 'out' )
+                    // InternalKerML.g:13536:3: (enumLiteral_1= 'out' )
                     {
-                    // InternalKerML.g:13495:3: (enumLiteral_1= 'out' )
-                    // InternalKerML.g:13496:4: enumLiteral_1= 'out'
+                    // InternalKerML.g:13536:3: (enumLiteral_1= 'out' )
+                    // InternalKerML.g:13537:4: enumLiteral_1= 'out'
                     {
                     enumLiteral_1=(Token)match(input,128,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39557,10 +39649,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalKerML.g:13503:3: (enumLiteral_2= 'inout' )
+                    // InternalKerML.g:13544:3: (enumLiteral_2= 'inout' )
                     {
-                    // InternalKerML.g:13503:3: (enumLiteral_2= 'inout' )
-                    // InternalKerML.g:13504:4: enumLiteral_2= 'inout'
+                    // InternalKerML.g:13544:3: (enumLiteral_2= 'inout' )
+                    // InternalKerML.g:13545:4: enumLiteral_2= 'inout'
                     {
                     enumLiteral_2=(Token)match(input,129,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -39640,17 +39732,17 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
     // $ANTLR start synpred3_InternalKerML
     public final void synpred3_InternalKerML_fragment() throws RecognitionException {   
-        // InternalKerML.g:12173:4: ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )
-        // InternalKerML.g:12173:5: ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' )
+        // InternalKerML.g:12214:4: ( ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' ) )
+        // InternalKerML.g:12214:5: ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' )
         {
-        // InternalKerML.g:12173:5: ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' )
-        // InternalKerML.g:12174:5: ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')'
+        // InternalKerML.g:12214:5: ( ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')' )
+        // InternalKerML.g:12215:5: ( ( ruleBodyParameterMember ) ) ( ( ruleBodyParameterMember ) )* '(' ( ( ruleResultExpressionMember ) ) ')'
         {
-        // InternalKerML.g:12174:5: ( ( ruleBodyParameterMember ) )
-        // InternalKerML.g:12175:6: ( ruleBodyParameterMember )
+        // InternalKerML.g:12215:5: ( ( ruleBodyParameterMember ) )
+        // InternalKerML.g:12216:6: ( ruleBodyParameterMember )
         {
-        // InternalKerML.g:12175:6: ( ruleBodyParameterMember )
-        // InternalKerML.g:12176:7: ruleBodyParameterMember
+        // InternalKerML.g:12216:6: ( ruleBodyParameterMember )
+        // InternalKerML.g:12217:7: ruleBodyParameterMember
         {
         pushFollow(FOLLOW_157);
         ruleBodyParameterMember();
@@ -39663,7 +39755,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
         }
 
-        // InternalKerML.g:12179:5: ( ( ruleBodyParameterMember ) )*
+        // InternalKerML.g:12220:5: ( ( ruleBodyParameterMember ) )*
         loop258:
         do {
             int alt258=2;
@@ -39676,10 +39768,10 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
             switch (alt258) {
         	case 1 :
-        	    // InternalKerML.g:12180:6: ( ruleBodyParameterMember )
+        	    // InternalKerML.g:12221:6: ( ruleBodyParameterMember )
         	    {
-        	    // InternalKerML.g:12180:6: ( ruleBodyParameterMember )
-        	    // InternalKerML.g:12181:7: ruleBodyParameterMember
+        	    // InternalKerML.g:12221:6: ( ruleBodyParameterMember )
+        	    // InternalKerML.g:12222:7: ruleBodyParameterMember
         	    {
         	    pushFollow(FOLLOW_157);
         	    ruleBodyParameterMember();
@@ -39699,11 +39791,11 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         } while (true);
 
         match(input,80,FOLLOW_158); if (state.failed) return ;
-        // InternalKerML.g:12185:5: ( ( ruleResultExpressionMember ) )
-        // InternalKerML.g:12186:6: ( ruleResultExpressionMember )
+        // InternalKerML.g:12226:5: ( ( ruleResultExpressionMember ) )
+        // InternalKerML.g:12227:6: ( ruleResultExpressionMember )
         {
-        // InternalKerML.g:12186:6: ( ruleResultExpressionMember )
-        // InternalKerML.g:12187:7: ruleResultExpressionMember
+        // InternalKerML.g:12227:6: ( ruleResultExpressionMember )
+        // InternalKerML.g:12228:7: ruleResultExpressionMember
         {
         pushFollow(FOLLOW_159);
         ruleResultExpressionMember();
@@ -39869,9 +39961,9 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_10s = "\26\uffff";
-    static final String dfa_11s = "\1\4\1\uffff\4\4\1\uffff\2\11\1\uffff\1\5\2\20\2\4\2\11\2\5\1\uffff\2\20";
-    static final String dfa_12s = "\1\175\1\uffff\1\16\1\175\2\140\1\uffff\2\12\1\uffff\1\16\2\51\2\5\1\12\1\53\2\5\1\uffff\2\51";
-    static final String dfa_13s = "\1\uffff\1\4\4\uffff\1\2\2\uffff\1\1\11\uffff\1\3\2\uffff";
+    static final String dfa_11s = "\1\4\1\uffff\4\4\1\uffff\2\11\1\uffff\1\5\2\20\2\4\2\11\2\5\2\20\1\uffff";
+    static final String dfa_12s = "\1\175\1\uffff\1\16\1\175\2\140\1\uffff\2\12\1\uffff\1\16\2\51\2\5\1\12\1\53\2\5\2\51\1\uffff";
+    static final String dfa_13s = "\1\uffff\1\4\4\uffff\1\2\2\uffff\1\1\13\uffff\1\3";
     static final String dfa_14s = "\26\uffff}>";
     static final String[] dfa_15s = {
             "\1\6\1\3\3\uffff\2\6\3\uffff\2\6\2\uffff\1\1\1\6\3\uffff\1\6\1\uffff\1\2\5\6\1\uffff\4\6\1\uffff\2\6\1\7\5\uffff\1\6\1\uffff\4\6\1\uffff\5\6\5\uffff\2\6\3\uffff\2\6\1\uffff\4\6\1\uffff\5\6\3\uffff\2\6\2\uffff\12\6\33\uffff\1\4\1\5",
@@ -39890,12 +39982,12 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\11\1\3",
             "\1\11\1\3",
             "\1\21\1\22",
-            "\1\24\1\25\37\uffff\2\23",
+            "\1\23\1\24\37\uffff\2\25",
             "\1\3",
             "\1\3",
-            "",
             "\1\6\27\uffff\1\6\1\20",
-            "\1\6\27\uffff\1\6\1\20"
+            "\1\6\27\uffff\1\6\1\20",
+            ""
     };
 
     static final short[] dfa_10 = DFA.unpackEncodedString(dfa_10s);
@@ -40283,7 +40375,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
     static final String dfa_57s = "\1\20\1\uffff\1\11\1\37\4\11\2\0\1\11\4\0\1\uffff";
     static final String dfa_58s = "\1\125\1\uffff\1\12\1\37\4\12\2\0\1\12\4\0\1\uffff";
     static final String dfa_59s = "\1\uffff\1\2\15\uffff\1\1";
-    static final String dfa_60s = "\10\uffff\1\4\1\3\1\uffff\1\0\1\1\1\2\1\5\1\uffff}>";
+    static final String dfa_60s = "\10\uffff\1\2\1\1\1\uffff\1\4\1\5\1\0\1\3\1\uffff}>";
     static final String[] dfa_61s = {
             "\2\1\3\uffff\1\1\7\uffff\1\2\1\3\3\uffff\1\6\1\7\1\1\15\uffff\1\4\15\uffff\1\1\2\uffff\1\5\1\uffff\1\1\3\uffff\1\1\6\uffff\1\1\4\uffff\1\1",
             "",
@@ -40331,36 +40423,6 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA111_11 = input.LA(1);
-
-                         
-                        int index111_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1_InternalKerML()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index111_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA111_12 = input.LA(1);
-
-                         
-                        int index111_12 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred1_InternalKerML()) ) {s = 15;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index111_12);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA111_13 = input.LA(1);
 
                          
@@ -40375,7 +40437,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                         input.seek(index111_13);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
+                    case 1 : 
                         int LA111_9 = input.LA(1);
 
                          
@@ -40390,7 +40452,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                         input.seek(index111_9);
                         if ( s>=0 ) return s;
                         break;
-                    case 4 : 
+                    case 2 : 
                         int LA111_8 = input.LA(1);
 
                          
@@ -40405,7 +40467,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
                         input.seek(index111_8);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 3 : 
                         int LA111_14 = input.LA(1);
 
                          
@@ -40418,6 +40480,36 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
 
                          
                         input.seek(index111_14);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA111_11 = input.LA(1);
+
+                         
+                        int index111_11 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1_InternalKerML()) ) {s = 15;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index111_11);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA111_12 = input.LA(1);
+
+                         
+                        int index111_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred1_InternalKerML()) ) {s = 15;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index111_12);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -40990,21 +41082,21 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_68s = "\107\uffff";
-    static final String dfa_69s = "\2\11\1\uffff\2\24\1\uffff\2\24\1\6\1\uffff\1\6\4\54\1\7\2\54\2\51\4\54\1\7\2\54\2\51\1\6\1\24\2\54\1\11\1\6\1\24\2\54\1\11\4\54\1\7\2\54\4\51\4\54\1\7\2\54\4\51\2\54\1\11\2\54\1\11\4\51";
-    static final String dfa_70s = "\2\111\1\uffff\2\122\1\uffff\2\122\1\173\1\uffff\1\173\3\112\1\170\1\10\7\112\1\170\1\10\4\112\1\173\1\103\2\112\1\12\1\173\1\103\2\112\1\12\3\54\1\170\1\10\4\54\2\112\3\54\1\170\1\10\4\54\2\112\2\54\1\12\2\54\1\12\4\54";
-    static final String dfa_71s = "\2\uffff\1\1\2\uffff\1\2\3\uffff\1\3\75\uffff";
+    static final String dfa_69s = "\2\11\1\uffff\2\24\1\uffff\2\24\1\uffff\2\6\4\54\1\7\2\54\2\51\4\54\1\7\2\54\2\51\1\6\1\24\2\54\1\11\1\6\1\24\2\54\1\11\4\54\1\7\2\54\4\51\4\54\1\7\2\54\4\51\2\54\1\11\2\54\1\11\4\51";
+    static final String dfa_70s = "\2\111\1\uffff\2\122\1\uffff\2\122\1\uffff\2\173\3\112\1\170\1\10\7\112\1\170\1\10\4\112\1\173\1\103\2\112\1\12\1\173\1\103\2\112\1\12\3\54\1\170\1\10\4\54\2\112\3\54\1\170\1\10\4\54\2\112\2\54\1\12\2\54\1\12\4\54";
+    static final String dfa_71s = "\2\uffff\1\1\2\uffff\1\2\2\uffff\1\3\76\uffff";
     static final String dfa_72s = "\107\uffff}>";
     static final String[] dfa_73s = {
             "\1\3\1\4\3\uffff\1\2\6\uffff\1\2\7\uffff\2\2\3\uffff\2\2\15\uffff\1\1\1\2\1\uffff\2\2\15\uffff\1\2\5\uffff\1\2",
             "\1\6\1\7\3\uffff\1\2\6\uffff\1\5\7\uffff\2\2\3\uffff\2\2\16\uffff\1\2\1\uffff\2\2\15\uffff\1\2\5\uffff\1\2",
             "",
-            "\1\11\1\2\7\uffff\2\2\3\uffff\2\2\5\uffff\1\11\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\10\10\uffff\1\11",
-            "\1\11\1\2\7\uffff\2\2\3\uffff\2\2\5\uffff\1\11\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\10\10\uffff\1\11",
+            "\1\10\1\2\7\uffff\2\2\3\uffff\2\2\5\uffff\1\10\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\11\10\uffff\1\10",
+            "\1\10\1\2\7\uffff\2\2\3\uffff\2\2\5\uffff\1\10\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\11\10\uffff\1\10",
             "",
             "\1\5\1\2\7\uffff\2\2\3\uffff\2\2\5\uffff\1\5\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\12\10\uffff\1\5",
             "\1\5\1\2\7\uffff\2\2\3\uffff\2\2\5\uffff\1\5\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\12\10\uffff\1\5",
+            "",
             "\1\15\1\16\1\20\1\22\1\23\37\uffff\1\21\115\uffff\1\17\1\uffff\1\13\1\14",
-            "",
             "\1\26\1\27\1\31\1\33\1\34\37\uffff\1\32\115\uffff\1\30\1\uffff\1\24\1\25",
             "\1\36\35\uffff\1\35",
             "\1\36\35\uffff\1\35",
@@ -41025,7 +41117,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\46\2\uffff\1\43\35\uffff\1\42",
             "\1\46\2\uffff\1\43\35\uffff\1\42",
             "\1\51\1\52\1\54\1\56\1\57\37\uffff\1\55\115\uffff\1\53\1\uffff\1\47\1\50",
-            "\1\11\1\2\7\uffff\2\2\3\uffff\2\2\16\uffff\1\2\15\uffff\4\2",
+            "\1\10\1\2\7\uffff\2\2\3\uffff\2\2\16\uffff\1\2\15\uffff\4\2",
             "\1\36\35\uffff\1\35",
             "\1\36\35\uffff\1\35",
             "\1\60\1\61",
@@ -41092,19 +41184,19 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             return "6896:3: ( ( (this_FeatureDeclaration_0= ruleFeatureDeclaration[$current] )? otherlv_1= 'from' ) | ( ( (lv_isSufficient_2_0= 'all' ) ) (otherlv_3= 'from' )? ) )?";
         }
     }
-    static final String dfa_74s = "\2\11\1\uffff\2\35\1\uffff\2\35\1\6\1\uffff\1\6\4\54\1\7\2\54\2\51\4\54\1\7\2\54\2\51\1\6\1\35\2\54\1\11\1\6\1\35\2\54\1\11\4\54\1\7\2\54\4\51\4\54\1\7\2\54\4\51\2\54\1\11\2\54\1\11\4\51";
-    static final String dfa_75s = "\2\111\1\uffff\2\122\1\uffff\2\122\1\173\1\uffff\1\173\3\112\1\170\1\10\7\112\1\170\1\10\4\112\1\173\1\105\2\112\1\12\1\173\1\105\2\112\1\12\3\54\1\170\1\10\4\54\2\112\3\54\1\170\1\10\4\54\2\112\2\54\1\12\2\54\1\12\4\54";
+    static final String dfa_74s = "\2\11\1\uffff\2\35\1\uffff\2\35\1\uffff\2\6\4\54\1\7\2\54\2\51\4\54\1\7\2\54\2\51\1\6\1\35\2\54\1\11\1\6\1\35\2\54\1\11\4\54\1\7\2\54\4\51\4\54\1\7\2\54\4\51\2\54\1\11\2\54\1\11\4\51";
+    static final String dfa_75s = "\2\111\1\uffff\2\122\1\uffff\2\122\1\uffff\2\173\3\112\1\170\1\10\7\112\1\170\1\10\4\112\1\173\1\105\2\112\1\12\1\173\1\105\2\112\1\12\3\54\1\170\1\10\4\54\2\112\3\54\1\170\1\10\4\54\2\112\2\54\1\12\2\54\1\12\4\54";
     static final String[] dfa_76s = {
             "\1\3\1\4\3\uffff\1\2\16\uffff\2\2\3\uffff\2\2\15\uffff\1\1\1\2\1\uffff\2\2\15\uffff\1\2\1\uffff\1\2\3\uffff\1\2",
             "\1\6\1\7\3\uffff\1\2\16\uffff\2\2\3\uffff\2\2\16\uffff\1\2\1\uffff\2\2\15\uffff\1\2\1\uffff\1\5\3\uffff\1\2",
             "",
-            "\2\2\3\uffff\2\2\1\11\4\uffff\1\11\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\1\10\10\uffff\1\11",
-            "\2\2\3\uffff\2\2\1\11\4\uffff\1\11\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\1\10\10\uffff\1\11",
+            "\2\2\3\uffff\2\2\1\10\4\uffff\1\10\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\1\11\10\uffff\1\10",
+            "\2\2\3\uffff\2\2\1\10\4\uffff\1\10\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\1\11\10\uffff\1\10",
             "",
             "\2\2\3\uffff\2\2\1\5\4\uffff\1\5\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\1\12\10\uffff\1\5",
             "\2\2\3\uffff\2\2\1\5\4\uffff\1\5\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\1\uffff\1\2\3\uffff\1\12\10\uffff\1\5",
+            "",
             "\1\15\1\16\1\20\1\22\1\23\37\uffff\1\21\115\uffff\1\17\1\uffff\1\13\1\14",
-            "",
             "\1\26\1\27\1\31\1\33\1\34\37\uffff\1\32\115\uffff\1\30\1\uffff\1\24\1\25",
             "\1\36\35\uffff\1\35",
             "\1\36\35\uffff\1\35",
@@ -41125,7 +41217,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\46\2\uffff\1\43\35\uffff\1\42",
             "\1\46\2\uffff\1\43\35\uffff\1\42",
             "\1\51\1\52\1\54\1\56\1\57\37\uffff\1\55\115\uffff\1\53\1\uffff\1\47\1\50",
-            "\2\2\3\uffff\2\2\1\11\15\uffff\1\2\15\uffff\4\2\1\uffff\1\2",
+            "\2\2\3\uffff\2\2\1\10\15\uffff\1\2\15\uffff\4\2\1\uffff\1\2",
             "\1\36\35\uffff\1\35",
             "\1\36\35\uffff\1\35",
             "\1\60\1\61",
@@ -41188,20 +41280,20 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             return "7275:3: ( ( (this_FeatureDeclaration_0= ruleFeatureDeclaration[$current] )? otherlv_1= 'of' ) | ( ( (lv_isSufficient_2_0= 'all' ) ) (otherlv_3= 'of' )? ) )?";
         }
     }
-    static final String dfa_77s = "\2\11\1\uffff\4\35\1\uffff\1\6\1\uffff\1\6\4\54\1\7\2\54\2\51\4\54\1\7\2\54\2\51\1\6\1\35\2\54\1\11\1\6\1\35\2\54\1\11\4\54\1\7\2\54\4\51\4\54\1\7\2\54\4\51\2\54\1\11\2\54\1\11\4\51";
-    static final String dfa_78s = "\2\125\1\uffff\4\126\1\uffff\1\173\1\uffff\1\173\3\112\1\170\1\10\7\112\1\170\1\10\4\112\1\173\1\126\2\112\1\12\1\173\1\126\2\112\1\12\3\54\1\170\1\10\4\54\2\112\3\54\1\170\1\10\4\54\2\112\2\54\1\12\2\54\1\12\4\54";
-    static final String dfa_79s = "\2\uffff\1\1\4\uffff\1\2\1\uffff\1\3\75\uffff";
+    static final String dfa_77s = "\2\11\1\uffff\4\35\2\uffff\2\6\4\54\1\7\2\54\2\51\4\54\1\7\2\54\2\51\1\6\1\35\2\54\1\11\1\6\1\35\2\54\1\11\4\54\1\7\2\54\4\51\4\54\1\7\2\54\4\51\2\54\1\11\2\54\1\11\4\51";
+    static final String dfa_78s = "\2\125\1\uffff\4\126\2\uffff\2\173\3\112\1\170\1\10\7\112\1\170\1\10\4\112\1\173\1\126\2\112\1\12\1\173\1\126\2\112\1\12\3\54\1\170\1\10\4\54\2\112\3\54\1\170\1\10\4\54\2\112\2\54\1\12\2\54\1\12\4\54";
+    static final String dfa_79s = "\2\uffff\1\1\4\uffff\1\2\1\3\76\uffff";
     static final String[] dfa_80s = {
             "\1\3\1\4\3\uffff\1\2\16\uffff\2\2\3\uffff\2\2\15\uffff\1\1\1\2\1\uffff\2\2\15\uffff\1\2\5\uffff\1\2\13\uffff\1\2",
             "\1\5\1\6\3\uffff\1\2\16\uffff\2\2\3\uffff\2\2\16\uffff\1\2\1\uffff\2\2\15\uffff\1\2\5\uffff\1\2\13\uffff\1\7",
             "",
-            "\2\2\3\uffff\2\2\5\uffff\1\11\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\10\10\uffff\1\11\2\uffff\1\2\1\11",
-            "\2\2\3\uffff\2\2\5\uffff\1\11\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\10\10\uffff\1\11\2\uffff\1\2\1\11",
+            "\2\2\3\uffff\2\2\5\uffff\1\10\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\11\10\uffff\1\10\2\uffff\1\2\1\10",
+            "\2\2\3\uffff\2\2\5\uffff\1\10\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\11\10\uffff\1\10\2\uffff\1\2\1\10",
             "\2\2\3\uffff\2\2\5\uffff\1\7\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\12\10\uffff\1\7\2\uffff\1\2\1\7",
             "\2\2\3\uffff\2\2\5\uffff\1\7\10\uffff\1\2\1\uffff\2\2\12\uffff\1\2\2\uffff\1\2\5\uffff\1\12\10\uffff\1\7\2\uffff\1\2\1\7",
+            "",
             "",
             "\1\15\1\16\1\20\1\22\1\23\37\uffff\1\21\115\uffff\1\17\1\uffff\1\13\1\14",
-            "",
             "\1\26\1\27\1\31\1\33\1\34\37\uffff\1\32\115\uffff\1\30\1\uffff\1\24\1\25",
             "\1\36\35\uffff\1\35",
             "\1\36\35\uffff\1\35",
@@ -41222,7 +41314,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\46\2\uffff\1\43\35\uffff\1\42",
             "\1\46\2\uffff\1\43\35\uffff\1\42",
             "\1\51\1\52\1\54\1\56\1\57\37\uffff\1\55\115\uffff\1\53\1\uffff\1\47\1\50",
-            "\2\2\3\uffff\2\2\16\uffff\1\2\15\uffff\4\2\21\uffff\1\2\1\11",
+            "\2\2\3\uffff\2\2\16\uffff\1\2\15\uffff\4\2\21\uffff\1\2\1\10",
             "\1\36\35\uffff\1\35",
             "\1\36\35\uffff\1\35",
             "\1\60\1\61",
@@ -41431,9 +41523,9 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
         }
     }
     static final String dfa_85s = "\73\uffff";
-    static final String dfa_86s = "\6\4\1\uffff\1\6\1\11\2\20\1\11\1\uffff\2\11\1\uffff\1\11\1\uffff\1\5\4\20\1\6\4\20\2\4\2\11\4\40\1\7\4\40\2\11\2\5\3\20\1\7\2\40\1\11\2\20\1\uffff\2\20\2\40";
-    static final String dfa_87s = "\1\u0081\1\16\4\u0081\1\uffff\1\173\1\111\2\170\1\16\1\uffff\1\140\1\12\1\uffff\1\12\1\uffff\1\16\2\170\2\165\1\173\2\151\2\51\2\5\2\12\4\170\1\10\4\170\1\12\1\53\2\5\3\170\1\12\2\170\1\12\2\151\1\uffff\2\51\2\170";
-    static final String dfa_88s = "\6\uffff\1\5\5\uffff\1\2\2\uffff\1\3\1\uffff\1\1\44\uffff\1\4\4\uffff";
+    static final String dfa_86s = "\6\4\1\uffff\1\6\1\11\2\20\1\11\1\uffff\2\11\1\uffff\1\11\1\uffff\1\5\4\20\1\6\4\20\2\4\2\11\4\40\1\7\4\40\2\11\2\5\3\20\1\7\2\40\1\11\4\20\1\uffff\2\40";
+    static final String dfa_87s = "\1\u0081\1\16\4\u0081\1\uffff\1\173\1\111\2\170\1\16\1\uffff\1\140\1\12\1\uffff\1\12\1\uffff\1\16\2\170\2\165\1\173\2\151\2\51\2\5\2\12\4\170\1\10\4\170\1\12\1\53\2\5\3\170\1\111\2\170\1\12\2\151\2\51\1\uffff\2\170";
+    static final String dfa_88s = "\6\uffff\1\5\5\uffff\1\2\2\uffff\1\3\1\uffff\1\1\46\uffff\1\4\2\uffff";
     static final String dfa_89s = "\73\uffff}>";
     static final String[] dfa_90s = {
             "\1\14\1\2\3\6\1\11\1\12\3\uffff\1\17\1\14\1\uffff\2\6\1\14\3\uffff\1\14\1\uffff\1\1\3\14\2\17\1\uffff\1\13\3\17\1\uffff\2\14\1\16\2\uffff\1\6\2\uffff\1\14\1\uffff\1\15\1\14\1\10\1\17\1\uffff\1\7\1\17\3\14\5\17\2\14\3\uffff\1\17\1\14\1\uffff\3\14\1\17\1\uffff\4\14\1\17\1\6\2\uffff\2\17\2\uffff\1\14\3\17\2\14\1\17\1\14\2\17\11\uffff\3\6\4\uffff\2\6\3\uffff\1\6\1\uffff\4\6\1\3\1\4\1\5\3\17",
@@ -41478,21 +41570,21 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             "\1\6\10\uffff\1\63\2\6\1\57\34\uffff\1\6\1\17\5\uffff\1\6\20\uffff\25\6\1\uffff\2\6",
             "\1\6\10\uffff\1\63\2\6\1\57\34\uffff\1\6\1\17\5\uffff\1\6\20\uffff\25\6\1\uffff\2\6",
             "\1\64\1\65",
-            "\1\67\1\70\37\uffff\2\66",
+            "\1\66\1\67\37\uffff\2\70",
             "\1\2",
             "\1\2",
             "\2\17\1\6\15\uffff\1\6\3\uffff\1\17\4\uffff\1\37\2\6\24\uffff\1\17\10\uffff\1\6\6\uffff\1\6\20\uffff\25\6\1\uffff\2\6",
             "\2\17\1\6\15\uffff\1\6\3\uffff\1\17\4\uffff\1\37\2\6\24\uffff\1\17\10\uffff\1\6\6\uffff\1\6\20\uffff\25\6\1\uffff\2\6",
             "\2\17\1\6\12\uffff\2\17\1\uffff\1\6\1\uffff\3\17\5\uffff\2\6\6\uffff\1\17\15\uffff\4\17\5\uffff\1\6\27\uffff\25\6\1\uffff\2\6",
-            "\1\61\1\62\2\6",
+            "\1\61\1\62\2\6\76\uffff\1\6",
             "\1\6\11\uffff\2\6\1\57\34\uffff\1\6\1\17\26\uffff\25\6\1\uffff\2\6",
             "\1\6\11\uffff\2\6\1\57\34\uffff\1\6\1\17\26\uffff\25\6\1\uffff\2\6",
             "\1\71\1\72",
             "\2\14\1\6\5\uffff\1\14\20\uffff\1\51\67\uffff\11\6",
             "\2\14\1\6\5\uffff\1\14\20\uffff\1\51\67\uffff\11\6",
+            "\1\14\27\uffff\1\14\1\52",
+            "\1\14\27\uffff\1\14\1\52",
             "",
-            "\1\14\27\uffff\1\14\1\52",
-            "\1\14\27\uffff\1\14\1\52",
             "\1\6\10\uffff\1\63\2\6\1\57\34\uffff\1\6\1\17\5\uffff\1\6\20\uffff\25\6\1\uffff\2\6",
             "\1\6\10\uffff\1\63\2\6\1\57\34\uffff\1\6\1\17\5\uffff\1\6\20\uffff\25\6\1\uffff\2\6"
     };
@@ -41558,7 +41650,7 @@ public class InternalKerMLParser extends AbstractInternalAntlrParser {
             this.transition = dfa_95;
         }
         public String getDescription() {
-            return "12567:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) )";
+            return "12608:2: (this_NullExpression_0= ruleNullExpression | this_LiteralExpression_1= ruleLiteralExpression | this_FeatureReferenceExpression_2= ruleFeatureReferenceExpression | this_InvocationExpression_3= ruleInvocationExpression | (otherlv_4= '(' this_OwnedExpression_5= ruleOwnedExpression otherlv_6= ')' ) )";
         }
     }
  

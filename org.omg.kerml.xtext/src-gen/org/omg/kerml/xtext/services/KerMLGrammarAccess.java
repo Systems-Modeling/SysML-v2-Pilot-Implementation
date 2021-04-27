@@ -8631,7 +8631,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//// Extent Expressions
 	//ExtentExpression SysML::Expression:
 	//	{SysML::OperatorExpression} operator='all' ownedRelationship+=TypeReferenceMember
-	//	| SequenceExpression;
+	//	| PrimaryExpression;
 	public KerMLExpressionsGrammarAccess.ExtentExpressionElements getExtentExpressionAccess() {
 		return gaKerMLExpressions.getExtentExpressionAccess();
 	}
@@ -8640,24 +8640,25 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getExtentExpressionAccess().getRule();
 	}
 	
-	///* Sequence Expressions */ SequenceExpression SysML::Expression:
+	///* Primary Expressions */ PrimaryExpression SysML::Expression:
 	//	(SequenceConstructionExpression | BaseExpression) ({SysML::OperatorExpression.operand+=current} operator='['
 	//	operand+=OwnedExpression ']'
 	//	| {SysML::OperatorExpression.operand+=current} '->'
 	//	operator=Name ownedRelationship+=BodyExpressionMember+
-	//	| {SysML::PathStepExpression.operand+=current}
-	//	'.' operand+=FeatureReferenceExpression)*;
-	public KerMLExpressionsGrammarAccess.SequenceExpressionElements getSequenceExpressionAccess() {
-		return gaKerMLExpressions.getSequenceExpressionAccess();
+	//	| {SysML::PathStepExpression.operand+=current} '.'
+	//	operand+=FeatureReferenceExpression
+	//	| {SysML::PathSelectExpression.operand+=current} '.'
+	//	'[' ownedRelationship+=BodyExpressionMember ']')*;
+	public KerMLExpressionsGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
+		return gaKerMLExpressions.getPrimaryExpressionAccess();
 	}
 	
-	public ParserRule getSequenceExpressionRule() {
-		return getSequenceExpressionAccess().getRule();
+	public ParserRule getPrimaryExpressionRule() {
+		return getPrimaryExpressionAccess().getRule();
 	}
 	
 	//BodyExpressionMember SysML::FeatureMembership:
-	//	ownedRelatedElement+=BodyExpression
-	//	// ownedMemberFeature = BodyExpression
+	//	ownedRelatedElement+=BodyExpression // ownedMemberFeature = BodyExpression
 	//;
 	public KerMLExpressionsGrammarAccess.BodyExpressionMemberElements getBodyExpressionMemberAccess() {
 		return gaKerMLExpressions.getBodyExpressionMemberAccess();
@@ -8790,8 +8791,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//NamedExpressionMember SysML::FeatureMembership:
-	//	memberName=Name '=>' ownedRelatedElement+=OwnedExpression
-	//	// ownedMemberFeature = OwnedExpression
+	//	memberName=Name '=>' ownedRelatedElement+=OwnedExpression // ownedMemberFeature = OwnedExpression
 	//;
 	public KerMLExpressionsGrammarAccess.NamedExpressionMemberElements getNamedExpressionMemberAccess() {
 		return gaKerMLExpressions.getNamedExpressionMemberAccess();

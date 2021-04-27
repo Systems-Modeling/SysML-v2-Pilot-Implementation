@@ -229,26 +229,27 @@ UnaryOperator :
 
 ExtentExpression returns SysML::Expression :
 	  {SysML::OperatorExpression} operator = 'all' ownedRelationship += TypeReferenceMember
-	| SequenceExpression
+	| PrimaryExpression
 ;
 
 
-/* Sequence Expressions */
+/* Primary Expressions */
 
-SequenceExpression returns SysML::Expression :
+PrimaryExpression returns SysML::Expression :
 	( SequenceConstructionExpression | BaseExpression )
 	( {SysML::OperatorExpression.operand += current} 
 	  operator = '[' operand += OwnedExpression ']'
 	| {SysML::OperatorExpression.operand += current} '->' 
 	  operator = Name ( ownedRelationship += BodyExpressionMember )+
-	| {SysML::PathStepExpression.operand += current}
-	  '.' operand += FeatureReferenceExpression
+	| {SysML::PathStepExpression.operand += current} '.' 
+	  operand += FeatureReferenceExpression
+	| {SysML::PathSelectExpression.operand += current} '.'
+	  '[' ownedRelationship += BodyExpressionMember ']'
 	)*
 ;
 
 BodyExpressionMember returns SysML::FeatureMembership :
-	ownedRelatedElement += BodyExpression 
-	// ownedMemberFeature = BodyExpression
+	ownedRelatedElement += BodyExpression // ownedMemberFeature = BodyExpression
 ;
 
 BodyExpression returns SysML::Expression :
@@ -259,8 +260,7 @@ BodyExpression returns SysML::Expression :
 ;
 
 ResultExpressionMember returns SysML::ResultExpressionMembership :
-	ownedRelatedElement += OwnedExpression
-	// ownedResultExpression = OwnedExpression
+	ownedRelatedElement += OwnedExpression // ownedResultExpression = OwnedExpression
 ;
 
 BodyParameterMember returns SysML::ParameterMembership :
@@ -325,8 +325,7 @@ fragment NamedArgumentList returns SysML::Expression :
 ;
 
 NamedExpressionMember returns SysML::FeatureMembership :
-	memberName = Name '=>' ownedRelatedElement += OwnedExpression 
-	// ownedMemberFeature = OwnedExpression
+	memberName = Name '=>' ownedRelatedElement += OwnedExpression // ownedMemberFeature = OwnedExpression
 ;
 
 // Null Expressions

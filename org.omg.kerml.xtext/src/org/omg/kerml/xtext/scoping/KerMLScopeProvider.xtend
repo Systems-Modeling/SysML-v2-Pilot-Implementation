@@ -94,11 +94,11 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 		} else if (context instanceof Generalization)
 			(context.eContainer as Element).scope_owningNamespace(context, reference)
 		else if (context instanceof Membership) {
-	    	context.scope_Namespace(context.membershipOwningNamespace?.relativeNamespace, context, reference)
+	    	context.scope_relativeNamespace(context.membershipOwningNamespace, context, reference)
 		} else if (context instanceof Import)
-			context.scope_Namespace(context.importOwningNamespace, context, reference)
+			context.scope_Namespace(context.importOwningNamespace, context, reference, true)
 		else if (context instanceof Namespace) 
-			context.scopeFor(reference, null, true, false, null)
+			context.scopeFor(reference, null, true, true, false, null)
 		else if (context instanceof Element)
 			context.scope_owningNamespace(context, reference)
 		else
@@ -110,16 +110,21 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 	}
 	
 	def scope_owningNamespace(Element element, EObject context, EReference reference) {
-		element.scope_Namespace(element?.parentNamespace, context, reference)
+		element.scope_Namespace(element?.parentNamespace, context, reference, true)
 	}
 
-	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference) {
+	def scope_Namespace(Element element, Namespace namespace, EObject context, EReference reference, boolean isInsideScope) {
 		if (namespace === null)
 			super.getScope(element, reference)		
 		else 
-			namespace.scopeFor(reference, element, true,
+			namespace.scopeFor(reference, element, isInsideScope, true,
 				reference == SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, 
 				if (context instanceof Element) context else null)
+	}
+	
+	def scope_relativeNamespace(Element element, Namespace ns, EObject context, EReference reference) {
+		val rel = ns.relativeNamespace
+		return element.scope_Namespace(rel, context, reference, rel === ns)
 	}
 
 	def Namespace featureRefNamespace(PathStepExpression qps) {
@@ -151,18 +156,21 @@ class KerMLScopeProvider extends AbstractKerMLScopeProvider {
 				}
 			}
 		}
-		return rel === null? ns: rel
+		return if (rel === null) ns else rel
 	}
 
-	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isFirstScope, boolean isRedefinition, Element skip) {
-		val parent = pack.parentNamespace
-		val outerscope = 
-			if (parent === null) // Root Package
-				globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
-			else
-				parent.scopeFor(reference, element, false, false, skip)		
+	def IScope scopeFor(Namespace pack, EReference reference, Element element, boolean isInsideScope, boolean isFirstScope, boolean isRedefinition, Element skip) {
+		var outerscope = IScope.NULLSCOPE;
+		if (isInsideScope) {
+			val parent = pack.parentNamespace
+			outerscope = 
+				if (parent === null) // Root Package
+					globalScope.getScope(pack.eResource, reference, Predicates.alwaysTrue)
+				else
+					parent.scopeFor(reference, element, true, false, false, skip)
+		}	
 
-		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isFirstScope, isRedefinition, element, skip)
+		new KerMLScope(outerscope, pack, reference.EReferenceType, this, isInsideScope, isFirstScope, isRedefinition, element, skip)
 	}
 	
 }
